@@ -298,10 +298,10 @@ literal|"unchecked"
 argument_list|)
 annotation|@
 name|Override
-DECL|method|randomPointIn
+DECL|method|randomPointInOrNull
 specifier|protected
 name|Point
-name|randomPointIn
+name|randomPointInOrNull
 parameter_list|(
 name|Shape
 name|shape
@@ -348,7 +348,7 @@ block|}
 return|return
 name|super
 operator|.
-name|randomPointIn
+name|randomPointInOrNull
 argument_list|(
 name|shape
 argument_list|)
@@ -689,11 +689,21 @@ block|{
 name|Point
 name|p
 init|=
-name|randomPointIn
+name|randomPointInOrNull
 argument_list|(
 name|s
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|p
+operator|==
+literal|null
+condition|)
+block|{
+comment|//couldn't find a random point in shape
+break|break;
+block|}
 name|assertRelation
 argument_list|(
 literal|null
