@@ -367,14 +367,6 @@ specifier|volatile
 name|CoreContainer
 name|cores
 decl_stmt|;
-DECL|field|pathPrefix
-specifier|protected
-name|String
-name|pathPrefix
-init|=
-literal|null
-decl_stmt|;
-comment|// strip this from the beginning of a path
 DECL|field|abortErrorMessage
 specifier|protected
 name|String
