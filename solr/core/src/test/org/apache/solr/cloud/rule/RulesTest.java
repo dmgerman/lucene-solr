@@ -273,7 +273,7 @@ literal|"cores:<4"
 argument_list|,
 literal|"node:*,replica:1"
 argument_list|,
-literal|"disk:>1"
+literal|"freedisk:>1"
 argument_list|)
 expr_stmt|;
 name|create
@@ -412,7 +412,7 @@ operator|)
 operator|.
 name|get
 argument_list|(
-literal|"disk"
+literal|"freedisk"
 argument_list|)
 argument_list|)
 expr_stmt|;

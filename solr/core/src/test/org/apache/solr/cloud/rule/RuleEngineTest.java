@@ -227,7 +227,7 @@ literal|"  '127.0.0.1:49961_':{"
 operator|+
 literal|"    'node':'127.0.0.1:49961_',"
 operator|+
-literal|"    'disk':992,"
+literal|"    'freedisk':992,"
 operator|+
 literal|"    'cores':1},"
 operator|+
@@ -235,7 +235,7 @@ literal|"  '127.0.0.1:49955_':{"
 operator|+
 literal|"    'node':'127.0.0.1:49955_',"
 operator|+
-literal|"    'disk':992,"
+literal|"    'freedisk':992,"
 operator|+
 literal|"    'cores':1},"
 operator|+
@@ -243,7 +243,7 @@ literal|"  '127.0.0.1:49952_':{"
 operator|+
 literal|"    'node':'127.0.0.1:49952_',"
 operator|+
-literal|"    'disk':992,"
+literal|"    'freedisk':992,"
 operator|+
 literal|"    'cores':1},"
 operator|+
@@ -251,7 +251,7 @@ literal|"  '127.0.0.1:49947_':{"
 operator|+
 literal|"    'node':'127.0.0.1:49947_',"
 operator|+
-literal|"    'disk':992,"
+literal|"    'freedisk':992,"
 operator|+
 literal|"    'cores':1},"
 operator|+
@@ -259,7 +259,7 @@ literal|"  '127.0.0.1:49958_':{"
 operator|+
 literal|"    'node':'127.0.0.1:49958_',"
 operator|+
-literal|"    'disk':992,"
+literal|"    'freedisk':992,"
 operator|+
 literal|"    'cores':1}}"
 decl_stmt|;
@@ -310,7 +310,7 @@ literal|"[{'cores':'<4'}, {"
 operator|+
 literal|"'replica':'1',shard:'*','node':'*'},"
 operator|+
-literal|" {'disk':'>1'}]"
+literal|" {'freedisk':'>1'}]"
 argument_list|)
 decl_stmt|;
 name|Map
@@ -435,7 +435,7 @@ literal|"  '127.0.0.1:49961_':{"
 operator|+
 literal|"    'node':'127.0.0.1:49961_',"
 operator|+
-literal|"    'disk':992,"
+literal|"    'freedisk':992,"
 operator|+
 literal|"    'cores':1},"
 operator|+
@@ -443,7 +443,7 @@ literal|"  '127.0.0.2:49955_':{"
 operator|+
 literal|"    'node':'127.0.0.1:49955_',"
 operator|+
-literal|"    'disk':995,"
+literal|"    'freedisk':995,"
 operator|+
 literal|"    'cores':1},"
 operator|+
@@ -451,7 +451,7 @@ literal|"  '127.0.0.3:49952_':{"
 operator|+
 literal|"    'node':'127.0.0.1:49952_',"
 operator|+
-literal|"    'disk':990,"
+literal|"    'freedisk':990,"
 operator|+
 literal|"    'cores':1},"
 operator|+
@@ -459,7 +459,7 @@ literal|"  '127.0.0.1:49947_':{"
 operator|+
 literal|"    'node':'127.0.0.1:49947_',"
 operator|+
-literal|"    'disk':980,"
+literal|"    'freedisk':980,"
 operator|+
 literal|"    'cores':1},"
 operator|+
@@ -467,7 +467,7 @@ literal|"  '127.0.0.2:49958_':{"
 operator|+
 literal|"    'node':'127.0.0.1:49958_',"
 operator|+
-literal|"    'disk':970,"
+literal|"    'freedisk':970,"
 operator|+
 literal|"    'cores':1}}"
 decl_stmt|;
@@ -507,7 +507,7 @@ literal|"{replica:'1',shard:'*',node:'*'},"
 operator|+
 literal|"{node:'!127.0.0.1:49947_'},"
 operator|+
-literal|"{disk:'>1'}]"
+literal|"{freedisk:'>1'}]"
 argument_list|)
 decl_stmt|;
 name|Map
@@ -598,7 +598,7 @@ literal|"[{cores:'<4'}, "
 operator|+
 literal|"{replica:'1',node:'*'},"
 operator|+
-literal|"{disk:'>980'}]"
+literal|"{freedisk:'>980'}]"
 argument_list|)
 expr_stmt|;
 name|shardVsReplicaCount
@@ -672,7 +672,7 @@ literal|"[{cores:'<4'}, "
 operator|+
 literal|"{replica:'1',node:'*'},"
 operator|+
-literal|"{disk:'>980~'}]"
+literal|"{freedisk:'>980~'}]"
 argument_list|)
 expr_stmt|;
 name|shardVsReplicaCount
