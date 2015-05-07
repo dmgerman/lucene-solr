@@ -31,10 +31,6 @@ import|;
 end_import
 
 begin_comment
-comment|// TODO: maybe TermsFilter could use this?
-end_comment
-
-begin_comment
 comment|/** Iterates over terms in across multiple fields.  The caller must  *  check {@link #field} after each {@link #next} to see if the field  *  changed, but {@code ==} can be used since the iterator  *  implementation ensures it will use the same String instance for  *  a given field. */
 end_comment
 
