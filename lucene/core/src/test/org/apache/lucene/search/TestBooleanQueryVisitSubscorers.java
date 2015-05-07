@@ -1502,7 +1502,7 @@ name|assertEquals
 argument_list|(
 literal|"CoordinatingConjunctionScorer\n"
 operator|+
-literal|"    MUST MatchAllScorer\n"
+literal|"    MUST ConstantScoreScorer\n"
 operator|+
 literal|"    MUST MinShouldMatchSumScorer\n"
 operator|+

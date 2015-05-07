@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.spatial.composite
+DECL|package|org.apache.lucene.search
 package|package
 name|org
 operator|.
@@ -8,9 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
-operator|.
-name|composite
+name|search
 package|;
 end_package
 
@@ -28,64 +26,8 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DocIdSetIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Scorer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|TwoPhaseIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Weight
-import|;
-end_import
-
 begin_comment
-comment|/**  * A constant-scoring {@link Scorer}.  *  * @lucene.internal  */
+comment|/**  * A constant-scoring {@link Scorer}.  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -97,13 +39,6 @@ name|ConstantScoreScorer
 extends|extends
 name|Scorer
 block|{
-comment|// TODO refactor CSQ's Scorer to be re-usable and look like this
-DECL|field|weight
-specifier|private
-specifier|final
-name|Weight
-name|weight
-decl_stmt|;
 DECL|field|score
 specifier|private
 specifier|final
@@ -122,6 +57,7 @@ specifier|final
 name|DocIdSetIterator
 name|disi
 decl_stmt|;
+comment|/** Constructor based on a {@link DocIdSetIterator} which will be used to    *  drive iteration. Two phase iteration will not be supported.    *  @param weight the parent weight    *  @param score the score to return on each document    *  @param disi the iterator that defines matching documents */
 DECL|method|ConstantScoreScorer
 specifier|public
 name|ConstantScoreScorer
@@ -140,12 +76,6 @@ name|super
 argument_list|(
 name|weight
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|weight
-operator|=
-name|weight
 expr_stmt|;
 name|this
 operator|.
@@ -166,8 +96,9 @@ operator|=
 name|disi
 expr_stmt|;
 block|}
+comment|/** Constructor based on a {@link TwoPhaseIterator}. In that case the    *  {@link Scorer} will support two-phase iteration.    *  @param weight the parent weight    *  @param score the score to return on each document    *  @param twoPhaseIterator the iterator that defines matching documents */
 DECL|method|ConstantScoreScorer
-specifier|protected
+specifier|public
 name|ConstantScoreScorer
 parameter_list|(
 name|Weight
@@ -184,12 +115,6 @@ name|super
 argument_list|(
 name|weight
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|weight
-operator|=
-name|weight
 expr_stmt|;
 name|this
 operator|.

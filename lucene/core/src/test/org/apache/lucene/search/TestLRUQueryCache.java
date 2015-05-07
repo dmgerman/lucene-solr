@@ -2523,7 +2523,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-specifier|protected
+specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
@@ -2532,9 +2532,6 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 throws|throws
 name|IOException
@@ -6639,7 +6636,7 @@ argument_list|)
 block|{
 annotation|@
 name|Override
-specifier|protected
+specifier|public
 name|Scorer
 name|scorer
 parameter_list|(
@@ -6648,9 +6645,6 @@ name|context
 parameter_list|,
 name|Bits
 name|acceptDocs
-parameter_list|,
-name|float
-name|score
 parameter_list|)
 throws|throws
 name|IOException
