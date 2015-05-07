@@ -7064,6 +7064,19 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+literal|".system"
+operator|.
+name|equals
+argument_list|(
+name|collectionName
+argument_list|)
+condition|)
+block|{
+comment|//do nothing
+block|}
+elseif|else
+if|if
+condition|(
 name|configExistsInZk
 condition|)
 block|{
