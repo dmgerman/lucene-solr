@@ -3538,6 +3538,315 @@ argument_list|,
 name|tdate_b
 argument_list|)
 expr_stmt|;
+name|rsp
+operator|=
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+name|i1
+operator|+
+literal|" desc"
+argument_list|,
+literal|"stats"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"stats.field"
+argument_list|,
+literal|"{!cardinality='true'}"
+operator|+
+name|oddField
+argument_list|,
+literal|"stats.field"
+argument_list|,
+literal|"{!cardinality='true'}"
+operator|+
+name|tlong
+argument_list|)
+expr_stmt|;
+block|{
+comment|// don't leak variabls
+comment|// long
+name|FieldStatsInfo
+name|s
+init|=
+name|rsp
+operator|.
+name|getFieldStatsInfo
+argument_list|()
+operator|.
+name|get
+argument_list|(
+name|tlong
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"missing stats"
+argument_list|,
+name|s
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"wrong cardinality"
+argument_list|,
+operator|new
+name|Long
+argument_list|(
+literal|13
+argument_list|)
+argument_list|,
+name|s
+operator|.
+name|getCardinality
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//
+name|assertNull
+argument_list|(
+literal|"expected null for min"
+argument_list|,
+name|s
+operator|.
+name|getMin
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for mean"
+argument_list|,
+name|s
+operator|.
+name|getMean
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for count"
+argument_list|,
+name|s
+operator|.
+name|getCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for calcDistinct"
+argument_list|,
+name|s
+operator|.
+name|getCountDistinct
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for distinct vals"
+argument_list|,
+name|s
+operator|.
+name|getDistinctValues
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for max"
+argument_list|,
+name|s
+operator|.
+name|getMax
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for missing"
+argument_list|,
+name|s
+operator|.
+name|getMissing
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for stddev"
+argument_list|,
+name|s
+operator|.
+name|getStddev
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for sum"
+argument_list|,
+name|s
+operator|.
+name|getSum
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for percentiles"
+argument_list|,
+name|s
+operator|.
+name|getSum
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// string
+name|s
+operator|=
+name|rsp
+operator|.
+name|getFieldStatsInfo
+argument_list|()
+operator|.
+name|get
+argument_list|(
+name|oddField
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"missing stats"
+argument_list|,
+name|s
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"wrong cardinality"
+argument_list|,
+operator|new
+name|Long
+argument_list|(
+literal|1
+argument_list|)
+argument_list|,
+name|s
+operator|.
+name|getCardinality
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|//
+name|assertNull
+argument_list|(
+literal|"expected null for min"
+argument_list|,
+name|s
+operator|.
+name|getMin
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for mean"
+argument_list|,
+name|s
+operator|.
+name|getMean
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for count"
+argument_list|,
+name|s
+operator|.
+name|getCount
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for calcDistinct"
+argument_list|,
+name|s
+operator|.
+name|getCountDistinct
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for distinct vals"
+argument_list|,
+name|s
+operator|.
+name|getDistinctValues
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for max"
+argument_list|,
+name|s
+operator|.
+name|getMax
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for missing"
+argument_list|,
+name|s
+operator|.
+name|getMissing
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for stddev"
+argument_list|,
+name|s
+operator|.
+name|getStddev
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for sum"
+argument_list|,
+name|s
+operator|.
+name|getSum
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for percentiles"
+argument_list|,
+name|s
+operator|.
+name|getSum
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|query
 argument_list|(
 literal|"q"
@@ -4240,6 +4549,16 @@ name|getPercentiles
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for cardinality"
+argument_list|,
+name|s
+operator|.
+name|getCardinality
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// sanity check deps relationship
 for|for
 control|(
@@ -4674,6 +4993,16 @@ name|getPercentiles
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for cardinality"
+argument_list|,
+name|s
+operator|.
+name|getCardinality
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// request stats, but disable them all via param refs
 name|rsp
@@ -4829,6 +5158,16 @@ argument_list|,
 name|s
 operator|.
 name|getPercentiles
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for cardinality"
+argument_list|,
+name|s
+operator|.
+name|getCardinality
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5517,6 +5856,18 @@ name|getPercentiles
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertNull
+argument_list|(
+name|p
+operator|+
+literal|" expected null for cardinality"
+argument_list|,
+name|s
+operator|.
+name|getCardinality
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// all of these diff ways of excluding calcdistinct should have the same result
 for|for
@@ -5787,11 +6138,23 @@ name|assertNull
 argument_list|(
 name|p
 operator|+
-literal|"expected null for percentiles"
+literal|" expected null for percentiles"
 argument_list|,
 name|s
 operator|.
 name|getPercentiles
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+name|p
+operator|+
+literal|" expected null for cardinality"
+argument_list|,
+name|s
+operator|.
+name|getCardinality
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5960,6 +6323,16 @@ argument_list|,
 name|s
 operator|.
 name|getPercentiles
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"expected null for cardinality"
+argument_list|,
+name|s
+operator|.
+name|getCardinality
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -6262,7 +6635,7 @@ literal|"Sanity check failed: either test broke, or test changed, or you adjuste
 operator|+
 literal|" (adjust constant accordingly if intentional)"
 argument_list|,
-literal|3465
+literal|4235
 argument_list|,
 name|numTotalStatQueries
 argument_list|)
