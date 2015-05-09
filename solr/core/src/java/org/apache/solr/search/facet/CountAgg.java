@@ -70,7 +70,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|CountSlotAcc
+name|CountSlotArrAcc
 argument_list|(
 name|fcontext
 argument_list|,

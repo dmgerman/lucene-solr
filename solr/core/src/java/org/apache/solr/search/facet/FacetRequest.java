@@ -1150,7 +1150,7 @@ expr_stmt|;
 name|countAcc
 operator|=
 operator|new
-name|CountSlotAcc
+name|CountSlotArrAcc
 argument_list|(
 name|fcontext
 argument_list|,
