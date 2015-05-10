@@ -346,7 +346,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
+name|Collection
 import|;
 end_import
 
@@ -356,7 +356,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
+name|Collections
 import|;
 end_import
 
@@ -2366,9 +2366,9 @@ name|getById
 argument_list|(
 name|collection
 argument_list|,
-name|Arrays
+name|Collections
 operator|.
-name|asList
+name|singletonList
 argument_list|(
 name|id
 argument_list|)
@@ -2570,14 +2570,19 @@ name|set
 argument_list|(
 literal|"ids"
 argument_list|,
-operator|(
-name|String
-index|[]
-operator|)
 name|ids
 operator|.
 name|toArray
+argument_list|(
+operator|new
+name|String
+index|[
+name|ids
+operator|.
+name|size
 argument_list|()
+index|]
+argument_list|)
 argument_list|)
 expr_stmt|;
 return|return
