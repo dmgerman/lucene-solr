@@ -1147,6 +1147,14 @@ name|SlotAcc
 argument_list|>
 argument_list|()
 expr_stmt|;
+comment|// allow a custom count acc to be used
+if|if
+condition|(
+name|countAcc
+operator|==
+literal|null
+condition|)
+block|{
 name|countAcc
 operator|=
 operator|new
@@ -1163,6 +1171,7 @@ name|key
 operator|=
 literal|"count"
 expr_stmt|;
+block|}
 for|for
 control|(
 name|Map

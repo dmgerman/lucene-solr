@@ -130,6 +130,26 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
+name|standard
+operator|.
+name|processors
+operator|.
+name|NumericQueryNodeProcessor
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|LuceneTestCase
@@ -302,6 +322,12 @@ name|SolrInstances
 name|servers
 decl_stmt|;
 comment|// for distributed testing
+DECL|field|origTableSize
+specifier|private
+specifier|static
+name|int
+name|origTableSize
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeTests
@@ -319,6 +345,19 @@ name|failRepeatedKeys
 operator|=
 literal|true
 expr_stmt|;
+name|origTableSize
+operator|=
+name|FacetFieldProcessorNumeric
+operator|.
+name|MAXIMUM_STARTING_TABLE_SIZE
+expr_stmt|;
+name|FacetFieldProcessorNumeric
+operator|.
+name|MAXIMUM_STARTING_TABLE_SIZE
+operator|=
+literal|2
+expr_stmt|;
+comment|// stress test resizing
 name|initCore
 argument_list|(
 literal|"solrconfig-tlog.xml"
@@ -373,6 +412,12 @@ operator|.
 name|failRepeatedKeys
 operator|=
 literal|false
+expr_stmt|;
+name|FacetFieldProcessorNumeric
+operator|.
+name|MAXIMUM_STARTING_TABLE_SIZE
+operator|=
+name|origTableSize
 expr_stmt|;
 if|if
 condition|(
@@ -4305,6 +4350,112 @@ operator|+
 literal|",after:  {count:1,x:7.0, ny:{count:0}}"
 operator|+
 literal|",between:{count:2,x:5.0, ny:{count:1}} }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|//
+comment|// facet on numbers
+comment|//
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|" f1:{ type:field, field:${num_i} }"
+operator|+
+literal|",f2:{ type:field, field:${num_i}, sort:'count asc' }"
+operator|+
+literal|",f3:{ type:field, field:${num_i}, sort:'index asc' }"
+operator|+
+literal|",f4:{ type:field, field:${num_i}, sort:'index desc' }"
+operator|+
+literal|",f5:{ type:field, field:${num_i}, sort:'index desc', limit:1, missing:true, allBuckets:true, numBuckets:true }"
+operator|+
+literal|",f6:{ type:field, field:${num_i}, sort:'index desc', mincount:2, numBuckets:true }"
+operator|+
+comment|// mincount should lower numbuckets
+literal|",f7:{ type:field, field:${num_i}, sort:'index desc', offset:2, numBuckets:true }"
+operator|+
+comment|// test offset
+literal|",f8:{ type:field, field:${num_i}, sort:'index desc', offset:100, numBuckets:true }"
+operator|+
+comment|// test high offset
+literal|",f9:{ type:field, field:${num_i}, sort:'x desc', facet:{x:'avg(${num_d})'}, missing:true, allBuckets:true, numBuckets:true }"
+operator|+
+comment|// test stats
+literal|",f10:{ type:field, field:${num_i}, facet:{a:{query:'${cat_s}:A'}}, missing:true, allBuckets:true, numBuckets:true }"
+operator|+
+comment|// test subfacets
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={count:6 "
+operator|+
+literal|",f1:{ buckets:[{val:-5,count:2},{val:2,count:1},{val:3,count:1},{val:7,count:1} ] } "
+operator|+
+literal|",f2:{ buckets:[{val:2,count:1},{val:3,count:1},{val:7,count:1},{val:-5,count:2} ] } "
+operator|+
+literal|",f3:{ buckets:[{val:-5,count:2},{val:2,count:1},{val:3,count:1},{val:7,count:1} ] } "
+operator|+
+literal|",f4:{ buckets:[{val:7,count:1},{val:3,count:1},{val:2,count:1},{val:-5,count:2} ] } "
+operator|+
+literal|",f5:{ buckets:[{val:7,count:1}]   , numBuckets:4, allBuckets:{count:5}, missing:{count:1}  } "
+operator|+
+literal|",f6:{ buckets:[{val:-5,count:2}]  , numBuckets:1  } "
+operator|+
+literal|",f7:{ buckets:[{val:2,count:1},{val:-5,count:2}] , numBuckets:4 } "
+operator|+
+literal|",f8:{ buckets:[] , numBuckets:4 } "
+operator|+
+literal|",f9:{ buckets:[{val:7,count:1,x:11.0},{val:2,count:1,x:4.0},{val:3,count:1,x:2.0},{val:-5,count:2,x:-7.0} ],  numBuckets:4, allBuckets:{count:5,x:0.6},missing:{count:1,x:0.0} } "
+operator|+
+comment|// TODO: should missing exclude "x" because no values were collected?
+literal|",f10:{ buckets:[{val:-5,count:2,a:{count:0}},{val:2,count:1,a:{count:1}},{val:3,count:1,a:{count:1}},{val:7,count:1,a:{count:0}} ],  numBuckets:4, allBuckets:{count:5},missing:{count:1,a:{count:0}} } "
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// facet on a float field - shares same code with integers/longs currently, so we only need to test labels/sorting
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|" f1:{ type:field, field:${num_d} }"
+operator|+
+literal|",f2:{ type:field, field:${num_d}, sort:'index desc' }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={count:6 "
+operator|+
+literal|",f1:{ buckets:[{val:-9.0,count:1},{val:-5.0,count:1},{val:2.0,count:1},{val:4.0,count:1},{val:11.0,count:1} ] } "
+operator|+
+literal|",f2:{ buckets:[{val:11.0,count:1},{val:4.0,count:1},{val:2.0,count:1},{val:-5.0,count:1},{val:-9.0,count:1} ] } "
 operator|+
 literal|"}"
 argument_list|)
