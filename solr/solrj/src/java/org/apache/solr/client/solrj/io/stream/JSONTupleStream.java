@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.solr.client.solrj.io
+DECL|package|org.apache.solr.client.solrj.io.stream
 package|package
 name|org
 operator|.
@@ -13,6 +13,8 @@ operator|.
 name|solrj
 operator|.
 name|io
+operator|.
+name|stream
 package|;
 end_package
 

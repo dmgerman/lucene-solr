@@ -388,7 +388,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Tuple
+name|Map
 argument_list|>
 name|getMetrics
 parameter_list|()
@@ -399,7 +399,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Tuple
+name|Map
 argument_list|>
 operator|)
 name|this
@@ -421,7 +421,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|Tuple
+name|Map
 argument_list|>
 name|metrics
 parameter_list|)

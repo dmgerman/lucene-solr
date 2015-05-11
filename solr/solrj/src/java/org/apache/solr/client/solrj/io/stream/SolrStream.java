@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.client.solrj.io
+DECL|package|org.apache.solr.client.solrj.io.stream
 package|package
 name|org
 operator|.
@@ -17,6 +17,8 @@ operator|.
 name|solrj
 operator|.
 name|io
+operator|.
+name|stream
 package|;
 end_package
 
@@ -95,6 +97,42 @@ operator|.
 name|impl
 operator|.
 name|HttpSolrClient
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|io
+operator|.
+name|SolrClientCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|io
+operator|.
+name|Tuple
 import|;
 end_import
 
