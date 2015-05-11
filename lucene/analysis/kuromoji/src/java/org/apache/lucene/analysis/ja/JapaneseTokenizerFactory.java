@@ -491,8 +491,9 @@ argument_list|)
 decl_stmt|;
 name|userDictionary
 operator|=
-operator|new
 name|UserDictionary
+operator|.
+name|open
 argument_list|(
 name|reader
 argument_list|)
