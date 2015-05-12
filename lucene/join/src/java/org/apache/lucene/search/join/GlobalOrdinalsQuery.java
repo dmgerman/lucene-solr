@@ -951,6 +951,11 @@ name|OrdinalMapScorer
 extends|extends
 name|BaseGlobalOrdinalScorer
 block|{
+DECL|field|foundOrds
+specifier|final
+name|LongBitSet
+name|foundOrds
+decl_stmt|;
 DECL|field|segmentOrdToGlobalOrdLookup
 specifier|final
 name|LongValues
@@ -983,8 +988,6 @@ name|super
 argument_list|(
 name|weight
 argument_list|,
-name|foundOrds
-argument_list|,
 name|values
 argument_list|,
 name|approximationScorer
@@ -995,6 +998,12 @@ operator|.
 name|score
 operator|=
 name|score
+expr_stmt|;
+name|this
+operator|.
+name|foundOrds
+operator|=
+name|foundOrds
 expr_stmt|;
 name|this
 operator|.
@@ -1181,6 +1190,11 @@ name|SegmentOrdinalScorer
 extends|extends
 name|BaseGlobalOrdinalScorer
 block|{
+DECL|field|foundOrds
+specifier|final
+name|LongBitSet
+name|foundOrds
+decl_stmt|;
 DECL|method|SegmentOrdinalScorer
 specifier|public
 name|SegmentOrdinalScorer
@@ -1205,8 +1219,6 @@ name|super
 argument_list|(
 name|weight
 argument_list|,
-name|foundOrds
-argument_list|,
 name|values
 argument_list|,
 name|approximationScorer
@@ -1217,6 +1229,12 @@ operator|.
 name|score
 operator|=
 name|score
+expr_stmt|;
+name|this
+operator|.
+name|foundOrds
+operator|=
+name|foundOrds
 expr_stmt|;
 block|}
 annotation|@
