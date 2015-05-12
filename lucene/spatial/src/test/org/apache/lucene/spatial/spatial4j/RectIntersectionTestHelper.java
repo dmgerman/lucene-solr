@@ -571,13 +571,15 @@ name|LogRule
 operator|.
 name|log
 argument_list|(
-literal|"S-R Rel: {}, Shape {}, Rectangle {}"
+literal|"S-R Rel: {}, Shape {}, Rectangle {}    lap# {}"
 argument_list|,
 name|ic
 argument_list|,
 name|s
 argument_list|,
 name|r
+argument_list|,
+name|laps
 argument_list|)
 expr_stmt|;
 if|if

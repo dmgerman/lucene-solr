@@ -52,6 +52,17 @@ name|MINIMUM_RESOLUTION
 operator|*
 name|MINIMUM_RESOLUTION
 decl_stmt|;
+DECL|field|MINIMUM_RESOLUTION_CUBED
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MINIMUM_RESOLUTION_CUBED
+init|=
+name|MINIMUM_RESOLUTION_SQUARED
+operator|*
+name|MINIMUM_RESOLUTION
+decl_stmt|;
 DECL|field|x
 specifier|public
 specifier|final

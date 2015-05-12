@@ -3805,17 +3805,6 @@ operator|*
 name|C
 decl_stmt|;
 comment|//System.err.println("E = " + E + " F = " + F + " G = " + G + " H = "+ H + " I = " + I + " J = " + J);
-name|double
-name|trialX
-init|=
-literal|2.0
-decl_stmt|;
-name|double
-name|trialY
-init|=
-literal|2.0
-decl_stmt|;
-comment|//System.err.println("Trial point evaluates to: "+(E*trialX*trialX + F*trialY*trialY + G*trialX*trialY + H*trialX + I*trialY + J));
 comment|// Check if the origin is within, by substituting x = 0, y = 0 and seeing if less than zero
 if|if
 condition|(
@@ -3965,7 +3954,7 @@ argument_list|(
 name|sqrtClause
 argument_list|)
 operator|<
-name|MINIMUM_RESOLUTION_SQUARED
+name|MINIMUM_RESOLUTION_CUBED
 condition|)
 block|{
 comment|//System.err.println(" One solution");
@@ -4286,7 +4275,7 @@ argument_list|(
 name|sqrtClause
 argument_list|)
 operator|<
-name|MINIMUM_RESOLUTION_SQUARED
+name|MINIMUM_RESOLUTION_CUBED
 condition|)
 block|{
 comment|//System.err.println(" One solution; sqrt clause was "+sqrtClause);
