@@ -332,14 +332,17 @@ name|FieldType
 name|ft
 decl_stmt|;
 DECL|field|textFieldName
+specifier|protected
 name|String
 name|textFieldName
 decl_stmt|;
 DECL|field|categoryFieldName
+specifier|protected
 name|String
 name|categoryFieldName
 decl_stmt|;
 DECL|field|booleanFieldName
+specifier|protected
 name|String
 name|booleanFieldName
 decl_stmt|;
