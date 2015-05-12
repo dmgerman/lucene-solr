@@ -447,19 +447,13 @@ name|Long
 argument_list|>
 name|fst
 decl_stmt|;
-comment|/**    * Creates a {@link BooleanPerceptronClassifier}    *    * @param leafReader     the reader on the index to be used for classification    * @param textFieldName  the name of the field used as input for the classifier    * @param classFieldName the name of the field used as the output for the classifier    * @param analyzer       an {@link Analyzer} used to analyze unseen text    * @param query          a {@link Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param batchSize      the size of the batch of docs to use for updating the perceptron weights    * @param threshold      the threshold used for class separation    * @throws IOException if the building of the underlying {@link FST} fails and / or {@link TermsEnum} for the text field    *                     cannot be found    */
+comment|/**    * Creates a {@link BooleanPerceptronClassifier}    *    * @param leafReader     the reader on the index to be used for classification    * @param analyzer       an {@link Analyzer} used to analyze unseen text    * @param query          a {@link Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param batchSize      the size of the batch of docs to use for updating the perceptron weights    * @param threshold      the threshold used for class separation    * @param classFieldName the name of the field used as the output for the classifier    * @param textFieldName  the name of the field used as input for the classifier    * @throws IOException if the building of the underlying {@link FST} fails and / or {@link TermsEnum} for the text field    *                     cannot be found    */
 DECL|method|BooleanPerceptronClassifier
 specifier|public
 name|BooleanPerceptronClassifier
 parameter_list|(
 name|LeafReader
 name|leafReader
-parameter_list|,
-name|String
-name|textFieldName
-parameter_list|,
-name|String
-name|classFieldName
 parameter_list|,
 name|Analyzer
 name|analyzer
@@ -472,6 +466,12 @@ name|batchSize
 parameter_list|,
 name|Double
 name|threshold
+parameter_list|,
+name|String
+name|classFieldName
+parameter_list|,
+name|String
+name|textFieldName
 parameter_list|)
 throws|throws
 name|IOException
