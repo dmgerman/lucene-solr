@@ -532,6 +532,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|agkn
+operator|.
+name|hll
+operator|.
+name|HLLType
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|google
@@ -3402,6 +3414,11 @@ name|HLL
 name|newHLL
 parameter_list|()
 block|{
+comment|// Although it (in theory) saves memory for "medium" size sets, the SPARSE type seems to have
+comment|// some nasty impacts on response time as it gets larger - particularly in distrib requests.
+comment|// Merging large SPARSE HLLs is much much slower then merging FULL HLLs with the same num docs
+comment|//
+comment|// TODO: add more tunning options for this.
 return|return
 operator|new
 name|HLL
@@ -3411,6 +3428,17 @@ argument_list|()
 argument_list|,
 name|getRegwidth
 argument_list|()
+argument_list|,
+operator|-
+literal|1
+comment|/* auto explict threshold */
+argument_list|,
+literal|false
+comment|/* no sparse representation */
+argument_list|,
+name|HLLType
+operator|.
+name|EMPTY
 argument_list|)
 return|;
 block|}

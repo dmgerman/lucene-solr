@@ -228,6 +228,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|agkn
+operator|.
+name|hll
+operator|.
+name|HLLType
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|google
@@ -571,9 +583,9 @@ specifier|final
 name|HashFunction
 name|hasher
 decl_stmt|;
+comment|// if null, no HLL logic can be computed; not final because of "union" optimization (see below)
 DECL|field|hll
 specifier|private
-specifier|final
 name|HLL
 name|hll
 decl_stmt|;
@@ -972,18 +984,51 @@ argument_list|(
 literal|"cardinality"
 argument_list|)
 decl_stmt|;
-name|hll
-operator|.
-name|union
-argument_list|(
+name|HLL
+name|other
+init|=
 name|HLL
 operator|.
 name|fromBytes
 argument_list|(
 name|data
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|hll
+operator|.
+name|getType
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|HLLType
+operator|.
+name|EMPTY
+argument_list|)
+condition|)
+block|{
+comment|// The HLL.union method goes out of it's way not to modify the "other" HLL.
+comment|// Which means in the case of merging into an "EMPTY" HLL (garunteed to happen at
+comment|// least once in every coordination of shard requests) it always clones all
+comment|// of the internal storage -- but since we're going to throw "other" away after
+comment|// the merge, this just means a short term doubling of RAM that we can skip.
+name|hll
+operator|=
+name|other
+expr_stmt|;
+block|}
+else|else
+block|{
+name|hll
+operator|.
+name|union
+argument_list|(
+name|other
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|updateTypeSpecificStats
 argument_list|(
