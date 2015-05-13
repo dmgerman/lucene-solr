@@ -6992,6 +6992,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+if|if
+condition|(
+literal|null
+operator|!=
+name|dynamicCopyFields
+condition|)
+block|{
 for|for
 control|(
 name|DynamicCopy
@@ -7025,6 +7032,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 return|return
 name|fieldNames
 return|;
@@ -7056,6 +7064,13 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+literal|null
+operator|!=
+name|dynamicCopyFields
+condition|)
+block|{
 for|for
 control|(
 name|DynamicCopy
@@ -7099,6 +7114,7 @@ name|maxChars
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|List
@@ -7749,6 +7765,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+if|if
+condition|(
+literal|null
+operator|!=
+name|dynamicCopyFields
+condition|)
+block|{
 for|for
 control|(
 name|IndexSchema
@@ -8044,6 +8067,7 @@ argument_list|(
 name|dynamicCopyProps
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 return|return
