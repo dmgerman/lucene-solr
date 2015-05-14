@@ -909,10 +909,6 @@ import|;
 end_import
 
 begin_comment
-comment|// javadocs
-end_comment
-
-begin_comment
 comment|// TODO:
 end_comment
 
@@ -941,7 +937,7 @@ comment|//     "automatically" keeps in sync w/ your index
 end_comment
 
 begin_comment
-comment|/** Analyzes the input text and then suggests matches based  *  on prefix matches to any tokens in the indexed text.  *  This also highlights the tokens that match.  *  *<p>This suggester supports payloads.  Matches are sorted only  *  by the suggest weight; it would be nice to support  *  blended score + weight sort in the future.  This means  *  this suggester best applies when there is a strong  *  a-priori ranking of all the suggestions.  *  *<p>This suggester supports contexts, however the  *  contexts must be valid utf8 (arbitrary binary terms will  *  not work).  *  * @lucene.experimental */
+comment|/** Analyzes the input text and then suggests matches based  *  on prefix matches to any tokens in the indexed text.  *  This also highlights the tokens that match.  *  *<p>This suggester supports payloads.  Matches are sorted only  *  by the suggest weight; it would be nice to support  *  blended score + weight sort in the future.  This means  *  this suggester best applies when there is a strong  *  a-priori ranking of all the suggestions.  *  *<p>This suggester supports contexts, including arbitrary binary  *  terms.  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -2014,8 +2010,6 @@ range|:
 name|contexts
 control|)
 block|{
-comment|// TODO: if we had a BinaryTermField we could fix
-comment|// this "must be valid ut8f" limitation:
 name|doc
 operator|.
 name|add
@@ -2026,9 +2020,6 @@ argument_list|(
 name|CONTEXTS_FIELD_NAME
 argument_list|,
 name|context
-operator|.
-name|utf8ToString
-argument_list|()
 argument_list|,
 name|Field
 operator|.
@@ -2864,8 +2855,6 @@ block|{
 comment|// NOTE: we "should" wrap this in
 comment|// ConstantScoreQuery, or maybe send this as a
 comment|// Filter instead to search.
-comment|// TODO: if we had a BinaryTermField we could fix
-comment|// this "must be valid ut8f" limitation:
 name|sub
 operator|.
 name|add
@@ -2881,9 +2870,6 @@ argument_list|,
 name|entry
 operator|.
 name|getKey
-argument_list|()
-operator|.
-name|utf8ToString
 argument_list|()
 argument_list|)
 argument_list|)
