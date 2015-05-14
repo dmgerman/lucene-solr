@@ -300,23 +300,22 @@ operator|==
 name|order
 condition|)
 block|{
-comment|// What black magic is this type intersection??
-comment|// Because this class is serializable we need to make sure the lambda is also serializable.
-comment|// This can be done by providing this type intersection on the definition of the lambda.
-comment|// Why not do it in the lambda interface? Functional Interfaces don't allow extends clauses
 name|comparator
 operator|=
-operator|(
+operator|new
 name|ComparatorLambda
-operator|&
-name|Serializable
-operator|)
+argument_list|()
+block|{
+specifier|public
+name|int
+name|compare
 parameter_list|(
+name|Tuple
 name|leftTuple
 parameter_list|,
+name|Tuple
 name|rightTuple
 parameter_list|)
-lambda|->
 block|{
 name|Comparable
 name|leftComp
@@ -352,25 +351,28 @@ argument_list|(
 name|leftComp
 argument_list|)
 return|;
+block|}
 block|}
 expr_stmt|;
 block|}
 else|else
 block|{
-comment|// See above for black magic reasoning.
 name|comparator
 operator|=
-operator|(
+operator|new
 name|ComparatorLambda
-operator|&
-name|Serializable
-operator|)
+argument_list|()
+block|{
+specifier|public
+name|int
+name|compare
 parameter_list|(
+name|Tuple
 name|leftTuple
 parameter_list|,
+name|Tuple
 name|rightTuple
 parameter_list|)
-lambda|->
 block|{
 name|Comparable
 name|leftComp
@@ -406,6 +408,7 @@ argument_list|(
 name|rightComp
 argument_list|)
 return|;
+block|}
 block|}
 expr_stmt|;
 block|}
