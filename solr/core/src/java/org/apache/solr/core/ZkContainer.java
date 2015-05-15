@@ -1426,6 +1426,16 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|method|getCoreZkRegisterExecutorService
+specifier|public
+name|ExecutorService
+name|getCoreZkRegisterExecutorService
+parameter_list|()
+block|{
+return|return
+name|coreZkRegister
+return|;
+block|}
 block|}
 end_class
 
