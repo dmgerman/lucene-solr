@@ -1262,8 +1262,6 @@ literal|"      maxTime:20},"
 operator|+
 literal|"    commitWithin:{softCommit:11},"
 operator|+
-literal|"    commitIntervalLowerBound:21,"
-operator|+
 literal|"    indexWriter:{closeWaitsForMerges:11}},"
 operator|+
 literal|"  query:{"

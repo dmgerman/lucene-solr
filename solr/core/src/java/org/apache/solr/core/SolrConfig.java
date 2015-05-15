@@ -2751,14 +2751,6 @@ argument_list|)
 argument_list|,
 name|getInt
 argument_list|(
-literal|"updateHandler/commitIntervalLowerBound"
-argument_list|,
-operator|-
-literal|1
-argument_list|)
-argument_list|,
-name|getInt
-argument_list|(
 literal|"updateHandler/autoSoftCommit/maxDocs"
 argument_list|,
 operator|-
@@ -3757,15 +3749,12 @@ name|className
 decl_stmt|;
 DECL|field|autoCommmitMaxDocs
 DECL|field|autoCommmitMaxTime
-DECL|field|commitIntervalLowerBound
 specifier|public
 specifier|final
 name|int
 name|autoCommmitMaxDocs
 decl_stmt|,
 name|autoCommmitMaxTime
-decl_stmt|,
-name|commitIntervalLowerBound
 decl_stmt|,
 DECL|field|autoSoftCommmitMaxDocs
 DECL|field|autoSoftCommmitMaxTime
@@ -3792,7 +3781,7 @@ specifier|final
 name|boolean
 name|commitWithinSoftCommit
 decl_stmt|;
-comment|/**      * @param autoCommmitMaxDocs       set -1 as default      * @param autoCommmitMaxTime       set -1 as default      * @param commitIntervalLowerBound set -1 as default      */
+comment|/**      * @param autoCommmitMaxDocs       set -1 as default      * @param autoCommmitMaxTime       set -1 as default      */
 DECL|method|UpdateHandlerInfo
 specifier|public
 name|UpdateHandlerInfo
@@ -3811,9 +3800,6 @@ name|indexWriterCloseWaitsForMerges
 parameter_list|,
 name|boolean
 name|openSearcher
-parameter_list|,
-name|int
-name|commitIntervalLowerBound
 parameter_list|,
 name|int
 name|autoSoftCommmitMaxDocs
@@ -3854,12 +3840,6 @@ operator|.
 name|openSearcher
 operator|=
 name|openSearcher
-expr_stmt|;
-name|this
-operator|.
-name|commitIntervalLowerBound
-operator|=
-name|commitIntervalLowerBound
 expr_stmt|;
 name|this
 operator|.
@@ -3927,15 +3907,6 @@ name|result
 operator|.
 name|put
 argument_list|(
-literal|"commitIntervalLowerBound"
-argument_list|,
-name|commitIntervalLowerBound
-argument_list|)
-expr_stmt|;
-name|result
-operator|.
-name|put
-argument_list|(
 literal|"commitWithin"
 argument_list|,
 name|makeMap
@@ -3961,10 +3932,6 @@ argument_list|,
 literal|"maxTime"
 argument_list|,
 name|autoCommmitMaxTime
-argument_list|,
-literal|"commitIntervalLowerBound"
-argument_list|,
-name|commitIntervalLowerBound
 argument_list|)
 argument_list|)
 expr_stmt|;
