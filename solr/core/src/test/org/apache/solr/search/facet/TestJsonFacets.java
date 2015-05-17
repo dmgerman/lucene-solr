@@ -124,6 +124,18 @@ end_import
 
 begin_import
 import|import
+name|net
+operator|.
+name|agkn
+operator|.
+name|hll
+operator|.
+name|HLL
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1914,6 +1926,57 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testDistrib
+specifier|public
+name|void
+name|testDistrib
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|initServers
+argument_list|()
+expr_stmt|;
+name|Client
+name|client
+init|=
+name|servers
+operator|.
+name|getClient
+argument_list|(
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|client
+operator|.
+name|queryDefaults
+argument_list|()
+operator|.
+name|set
+argument_list|(
+literal|"shards"
+argument_list|,
+name|servers
+operator|.
+name|getShards
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|doStats
+argument_list|(
+name|client
+argument_list|,
+name|params
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|doStats
 specifier|public
 name|void
@@ -3113,6 +3176,8 @@ literal|" , f2:{type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'max(${num
 operator|+
 literal|" , f3:{type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'unique(${where_s})'}  } "
 operator|+
+literal|" , f4:{type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'hll(${where_s})'}  } "
+operator|+
 literal|"}"
 argument_list|)
 argument_list|,
@@ -3123,6 +3188,8 @@ operator|+
 literal|", f2:{  'buckets':[{ val:'B', count:3, x:11.0 }, { val:'A', count:2, x:4.0 }]} "
 operator|+
 literal|", f3:{  'buckets':[{ val:'A', count:2, x:2 },    { val:'B', count:3, x:2 }]} "
+operator|+
+literal|", f4:{  'buckets':[{ val:'A', count:2, x:2 },    { val:'B', count:3, x:2 }]} "
 operator|+
 literal|"}"
 argument_list|)
@@ -3840,12 +3907,24 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', min1:'min(${num_d})', max1:'max(${num_d})', numwhere:'unique(${where_s})', unique_num_i:'unique(${num_i})', unique_num_d:'unique(${num_d})', unique_date:'unique(${date})',  med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)' }"
+literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', min1:'min(${num_d})', max1:'max(${num_d})'"
+operator|+
+literal|", numwhere:'unique(${where_s})', unique_num_i:'unique(${num_i})', unique_num_d:'unique(${num_d})', unique_date:'unique(${date})'"
+operator|+
+literal|", where_hll:'hll(${where_s})', hll_num_i:'hll(${num_i})', hll_num_d:'hll(${num_d})', hll_date:'hll(${date})'"
+operator|+
+literal|", med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)' }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
 operator|+
-literal|"sum1:3.0, sumsq1:247.0, avg1:0.5, min1:-9.0, max1:11.0, numwhere:2, unique_num_i:4, unique_num_d:5, unique_date:5, med:2.0, perc:[-9.0,2.0,11.0]  }"
+literal|"sum1:3.0, sumsq1:247.0, avg1:0.5, min1:-9.0, max1:11.0"
+operator|+
+literal|", numwhere:2, unique_num_i:4, unique_num_d:5, unique_date:5"
+operator|+
+literal|", where_hll:2, hll_num_i:4, hll_num_d:5, hll_date:5"
+operator|+
+literal|", med:2.0, perc:[-9.0,2.0,11.0]  }"
 argument_list|)
 expr_stmt|;
 comment|// stats at top level, no matches
@@ -3863,12 +3942,20 @@ literal|"id:DOESNOTEXIST"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', min1:'min(${num_d})', max1:'max(${num_d})', numwhere:'unique(${where_s})', unique_num_i:'unique(${num_i})', unique_num_d:'unique(${num_d})', unique_date:'unique(${date})',  med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)' }"
+literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', min1:'min(${num_d})', max1:'max(${num_d})'"
+operator|+
+literal|", numwhere:'unique(${where_s})', unique_num_i:'unique(${num_i})', unique_num_d:'unique(${num_d})', unique_date:'unique(${date})'"
+operator|+
+literal|", where_hll:'hll(${where_s})', hll_num_i:'hll(${num_i})', hll_num_d:'hll(${num_d})', hll_date:'hll(${date})'"
+operator|+
+literal|", med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)' }"
 argument_list|)
 argument_list|,
 literal|"facets=={count:0 "
 operator|+
-literal|"/* ,sum1:0.0, sumsq1:0.0, avg1:0.0, min1:'NaN', max1:'NaN', numwhere:0 */ }"
+literal|"/* ,sum1:0.0, sumsq1:0.0, avg1:0.0, min1:'NaN', max1:'NaN', numwhere:0 */"
+operator|+
+literal|" }"
 argument_list|)
 expr_stmt|;
 comment|//
@@ -3912,14 +3999,29 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{x:'unique(${multi_ss})', y:{query:{q:'id:2', facet:{x:'unique(${multi_ss})'} }}   }"
+literal|"{"
+operator|+
+literal|"x:'unique(${multi_ss})'"
+operator|+
+literal|",y:{query:{q:'id:2', facet:{x:'unique(${multi_ss})'} }}  "
+operator|+
+literal|",x2:'hll(${multi_ss})'"
+operator|+
+literal|",y2:{query:{q:'id:2', facet:{x:'hll(${multi_ss})'} }}  "
+operator|+
+literal|" }"
 argument_list|)
 argument_list|,
-literal|"facets=={ 'count':6, "
+literal|"facets=={count:6 "
 operator|+
-literal|"x:2,"
+literal|",x:2"
 operator|+
-literal|"y:{count:1, x:2}"
+literal|",y:{count:1, x:2}"
+operator|+
+comment|// single document should yield 2 unique values
+literal|",x2:2"
+operator|+
+literal|",y2:{count:1, x:2}"
 operator|+
 comment|// single document should yield 2 unique values
 literal|" }"
@@ -4463,57 +4565,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testDistrib
-specifier|public
-name|void
-name|testDistrib
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|initServers
-argument_list|()
-expr_stmt|;
-name|Client
-name|client
-init|=
-name|servers
-operator|.
-name|getClient
-argument_list|(
-name|random
-argument_list|()
-operator|.
-name|nextInt
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|client
-operator|.
-name|queryDefaults
-argument_list|()
-operator|.
-name|set
-argument_list|(
-literal|"shards"
-argument_list|,
-name|servers
-operator|.
-name|getShards
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|doStats
-argument_list|(
-name|client
-argument_list|,
-name|params
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
 DECL|method|testBigger
 specifier|public
 name|void
@@ -4901,6 +4952,50 @@ operator|+
 literal|" }]} } "
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|client
+operator|.
+name|local
+argument_list|()
+condition|)
+block|{
+comment|// distrib estimation prob won't match
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{f1:{type:terms, field:${cat_s}, limit:2, facet:{x:'hll($where_s)'}  }}"
+argument_list|)
+argument_list|,
+literal|"facets=={ 'count':"
+operator|+
+name|ndocs
+operator|+
+literal|","
+operator|+
+literal|"'f1':{  'buckets':[{ 'val':'0', 'count':"
+operator|+
+name|ndocs
+operator|+
+literal|", x:"
+operator|+
+name|sz
+operator|+
+literal|" }]} } "
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|XtestPercentiles
 specifier|public
@@ -5493,6 +5588,46 @@ name|quantile
 argument_list|(
 literal|0.9
 argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|XtestHLL
+specifier|public
+name|void
+name|XtestHLL
+parameter_list|()
+block|{
+name|HLLAgg
+operator|.
+name|HLLFactory
+name|fac
+init|=
+operator|new
+name|HLLAgg
+operator|.
+name|HLLFactory
+argument_list|()
+decl_stmt|;
+name|HLL
+name|hll
+init|=
+name|fac
+operator|.
+name|getHLL
+argument_list|()
+decl_stmt|;
+name|hll
+operator|.
+name|addRaw
+argument_list|(
+literal|123456789
+argument_list|)
+expr_stmt|;
+name|hll
+operator|.
+name|addRaw
+argument_list|(
+literal|987654321
 argument_list|)
 expr_stmt|;
 block|}
