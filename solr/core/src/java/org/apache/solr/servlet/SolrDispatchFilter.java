@@ -735,8 +735,10 @@ return|return
 name|cores
 return|;
 block|}
+comment|/**    * Get the NodeConfig whether stored on disk, in ZooKeeper, etc.    * This may also be used by custom filters to load relevant configuration.    * @return the NodeConfig    */
 DECL|method|loadNodeConfig
-specifier|private
+specifier|public
+specifier|static
 name|NodeConfig
 name|loadNodeConfig
 parameter_list|(

@@ -77,6 +77,7 @@ name|auth
 expr_stmt|;
 block|}
 DECL|method|getScheme
+specifier|public
 name|String
 name|getScheme
 parameter_list|()
@@ -86,6 +87,7 @@ name|scheme
 return|;
 block|}
 DECL|method|getAuth
+specifier|public
 name|byte
 index|[]
 name|getAuth
