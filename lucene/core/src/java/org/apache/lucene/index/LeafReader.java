@@ -114,7 +114,7 @@ specifier|static
 interface|interface
 name|CoreClosedListener
 block|{
-comment|/** Invoked when the shared core of the original {@code      *  SegmentReader} has closed. */
+comment|/** Invoked when the shared core of the original {@code      *  SegmentReader} has closed. The provided {@code      *  ownerCoreCacheKey} will be the same key as the one      *  returned by {@link LeafReader#getCoreCacheKey()}. */
 DECL|method|onClose
 specifier|public
 name|void
