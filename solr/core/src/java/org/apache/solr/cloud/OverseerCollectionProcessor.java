@@ -44,6 +44,24 @@ name|common
 operator|.
 name|cloud
 operator|.
+name|ZkNodeProps
+operator|.
+name|makeMap
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
 name|ZkStateReader
 operator|.
 name|*
@@ -1399,8 +1417,10 @@ name|Object
 argument_list|>
 name|COLL_PROPS
 init|=
-name|ZkNodeProps
+name|Collections
 operator|.
+name|unmodifiableMap
+argument_list|(
 name|makeMap
 argument_list|(
 name|ROUTER
@@ -1427,13 +1447,18 @@ name|AUTO_ADD_REPLICAS
 argument_list|,
 literal|"false"
 argument_list|,
-literal|"rule"
+name|DocCollection
+operator|.
+name|RULE
 argument_list|,
 literal|null
 argument_list|,
-literal|"snitch"
+name|DocCollection
+operator|.
+name|SNITCH
 argument_list|,
 literal|null
+argument_list|)
 argument_list|)
 decl_stmt|;
 DECL|field|RANDOM
@@ -4091,6 +4116,30 @@ case|:
 name|processRebalanceLeaders
 argument_list|(
 name|message
+argument_list|)
+expr_stmt|;
+break|break;
+case|case
+name|MODIFYCOLLECTION
+case|:
+name|overseer
+operator|.
+name|getInQueue
+argument_list|(
+name|zkStateReader
+operator|.
+name|getZkClient
+argument_list|()
+argument_list|)
+operator|.
+name|offer
+argument_list|(
+name|ZkStateReader
+operator|.
+name|toJSON
+argument_list|(
+name|message
+argument_list|)
 argument_list|)
 expr_stmt|;
 break|break;
@@ -7643,8 +7692,6 @@ comment|// assume the core exists and try to unload it
 name|Map
 name|m
 init|=
-name|ZkNodeProps
-operator|.
 name|makeMap
 argument_list|(
 literal|"qt"
@@ -9296,8 +9343,6 @@ name|collection
 operator|.
 name|getInt
 argument_list|(
-name|ZkStateReader
-operator|.
 name|MAX_SHARDS_PER_NODE
 argument_list|,
 literal|1
@@ -9310,16 +9355,12 @@ name|message
 operator|.
 name|getInt
 argument_list|(
-name|ZkStateReader
-operator|.
 name|REPLICATION_FACTOR
 argument_list|,
 name|collection
 operator|.
 name|getInt
 argument_list|(
-name|ZkStateReader
-operator|.
 name|REPLICATION_FACTOR
 argument_list|,
 literal|1
@@ -14115,8 +14156,6 @@ name|Object
 argument_list|>
 name|props
 init|=
-name|ZkNodeProps
-operator|.
 name|makeMap
 argument_list|(
 name|Overseer
@@ -14729,8 +14768,6 @@ name|Object
 argument_list|>
 name|props
 init|=
-name|ZkNodeProps
-operator|.
 name|makeMap
 argument_list|(
 name|Overseer
@@ -14746,8 +14783,6 @@ name|NAME
 argument_list|,
 name|tempSourceCollectionName
 argument_list|,
-name|ZkStateReader
-operator|.
 name|REPLICATION_FACTOR
 argument_list|,
 literal|1
@@ -15665,8 +15700,6 @@ argument_list|)
 expr_stmt|;
 name|props
 operator|=
-name|ZkNodeProps
-operator|.
 name|makeMap
 argument_list|(
 name|Overseer
@@ -16320,8 +16353,6 @@ name|message
 operator|.
 name|getInt
 argument_list|(
-name|ZkStateReader
-operator|.
 name|REPLICATION_FACTOR
 argument_list|,
 literal|1
@@ -16462,8 +16493,6 @@ name|message
 operator|.
 name|getInt
 argument_list|(
-name|ZkStateReader
-operator|.
 name|MAX_SHARDS_PER_NODE
 argument_list|,
 literal|1
@@ -16484,8 +16513,6 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-name|ZkStateReader
-operator|.
 name|REPLICATION_FACTOR
 operator|+
 literal|" must be greater than 0"
@@ -16551,8 +16578,6 @@ name|warn
 argument_list|(
 literal|"Specified "
 operator|+
-name|ZkStateReader
-operator|.
 name|REPLICATION_FACTOR
 operator|+
 literal|" of "
@@ -16616,8 +16641,6 @@ name|collectionName
 operator|+
 literal|". Value of "
 operator|+
-name|ZkStateReader
-operator|.
 name|MAX_SHARDS_PER_NODE
 operator|+
 literal|" is "
@@ -16649,8 +16672,6 @@ name|numSlices
 operator|+
 literal|" and value of "
 operator|+
-name|ZkStateReader
-operator|.
 name|REPLICATION_FACTOR
 operator|+
 literal|" is "
@@ -18165,8 +18186,6 @@ name|coll
 operator|.
 name|getInt
 argument_list|(
-name|ZkStateReader
-operator|.
 name|MAX_SHARDS_PER_NODE
 argument_list|,
 literal|1
@@ -18176,8 +18195,6 @@ name|coll
 operator|.
 name|getInt
 argument_list|(
-name|ZkStateReader
-operator|.
 name|REPLICATION_FACTOR
 argument_list|,
 literal|1
@@ -19038,8 +19055,6 @@ name|ZkStateReader
 operator|.
 name|toJSON
 argument_list|(
-name|ZkNodeProps
-operator|.
 name|makeMap
 argument_list|(
 name|ZkController
