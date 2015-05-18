@@ -2201,19 +2201,6 @@ name|void
 name|reset
 parameter_list|()
 block|{
-name|fileTypes
-operator|=
-name|DEFAULT_FILE_TYPES
-expr_stmt|;
-name|globFileFilter
-operator|=
-name|this
-operator|.
-name|getFileFilterFromFileTypes
-argument_list|(
-name|fileTypes
-argument_list|)
-expr_stmt|;
 name|backlog
 operator|=
 operator|new
@@ -4379,13 +4366,8 @@ name|file
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|type
-operator|!=
-literal|null
-condition|)
-block|{
+comment|// TODO: Add a flag that disables /update and sends all to /update/extract, to avoid CSV, JSON, and XML files
+comment|// TODO: from being interpreted as Solr documents internally
 if|if
 condition|(
 name|type
@@ -4506,23 +4488,6 @@ argument_list|(
 name|urlStr
 argument_list|)
 expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-name|warn
-argument_list|(
-literal|"Skipping "
-operator|+
-name|file
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|". Unsupported file type for auto mode."
-argument_list|)
-expr_stmt|;
-return|return;
 block|}
 block|}
 else|else
@@ -4702,7 +4667,7 @@ operator|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Guesses the type of a file, based on file name suffix    * @param file the file    * @return the content-type guessed    */
+comment|/**    * Guesses the type of a file, based on file name suffix    * Returns "application/octet-stream" if no corresponding mimeMap type.    * @param file the file    * @return the content-type guessed    */
 DECL|method|guessType
 specifier|protected
 specifier|static
@@ -4738,7 +4703,9 @@ operator|+
 literal|1
 argument_list|)
 decl_stmt|;
-return|return
+name|String
+name|type
+init|=
 name|mimeMap
 operator|.
 name|get
@@ -4752,6 +4719,17 @@ operator|.
 name|ROOT
 argument_list|)
 argument_list|)
+decl_stmt|;
+return|return
+operator|(
+name|type
+operator|!=
+literal|null
+operator|)
+condition|?
+name|type
+else|:
+literal|"application/octet-stream"
 return|;
 block|}
 comment|/**    * Performs a simple get on the given URL    */

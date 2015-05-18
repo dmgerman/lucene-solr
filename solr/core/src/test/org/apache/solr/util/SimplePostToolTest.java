@@ -865,7 +865,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|null
+literal|"application/octet-stream"
 argument_list|,
 name|SimplePostTool
 operator|.
