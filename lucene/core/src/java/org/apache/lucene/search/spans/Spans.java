@@ -20,26 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -63,6 +43,16 @@ operator|.
 name|search
 operator|.
 name|TwoPhaseIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 
@@ -116,27 +106,16 @@ name|int
 name|endPosition
 parameter_list|()
 function_decl|;
-comment|/**    * Returns the payload data for the current start/end position.    * This is only valid after {@link #nextStartPosition()}    * returned an available start position.    * This method must not be called more than once after each call    * of {@link #nextStartPosition()}. However, most payloads are loaded lazily,    * so if the payload data for the current position is not needed,    * this method may not be called at all for performance reasons.    *<br>    * Note that the return type is a collection, thus the ordering should not be relied upon.    *<br>    * @lucene.experimental    *    * @return a List of byte arrays containing the data of this payload, otherwise null if isPayloadAvailable is false    * @throws IOException if there is a low-level I/O error    */
-DECL|method|getPayload
+comment|/**    * Collect data from the current Spans    * @param collector a SpanCollector    *    * @lucene.experimental    */
+DECL|method|collect
 specifier|public
 specifier|abstract
-name|Collection
-argument_list|<
-name|byte
-index|[]
-argument_list|>
-name|getPayload
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Checks if a payload can be loaded at the current start/end position.    *<p>    * Payloads can only be loaded once per call to    * {@link #nextStartPosition()}.    *    * @return true if there is a payload available at this start/end position    *              that can be loaded    */
-DECL|method|isPayloadAvailable
-specifier|public
-specifier|abstract
-name|boolean
-name|isPayloadAvailable
-parameter_list|()
+name|void
+name|collect
+parameter_list|(
+name|SpanCollector
+name|collector
+parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
