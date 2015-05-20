@@ -1104,6 +1104,12 @@ operator|.
 name|merge
 argument_list|(
 name|facet
+argument_list|,
+operator|new
+name|FacetMerger
+operator|.
+name|Context
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1269,6 +1275,9 @@ name|merge
 parameter_list|(
 name|Object
 name|facetResult
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 function_decl|;
 DECL|method|getMergedResult
@@ -1278,6 +1287,22 @@ name|Object
 name|getMergedResult
 parameter_list|()
 function_decl|;
+DECL|class|Context
+specifier|public
+specifier|static
+class|class
+name|Context
+block|{
+DECL|field|state
+name|FacetComponentState
+name|state
+decl_stmt|;
+comment|// todo: is this needed?
+DECL|field|root
+name|Object
+name|root
+decl_stmt|;
+block|}
 block|}
 end_class
 
@@ -1332,6 +1357,9 @@ name|merge
 parameter_list|(
 name|Object
 name|facetResult
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 function_decl|;
 DECL|method|getDouble
@@ -1504,6 +1532,9 @@ name|merge
 parameter_list|(
 name|Object
 name|facetResult
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 block|{
 name|val
@@ -1755,6 +1786,9 @@ name|merge
 parameter_list|(
 name|Object
 name|facet
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 block|{
 if|if
@@ -1780,6 +1814,8 @@ operator|(
 name|SimpleOrderedMap
 operator|)
 name|facet
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -1985,6 +2021,11 @@ name|mergeBucket
 parameter_list|(
 name|SimpleOrderedMap
 name|bucket
+parameter_list|,
+name|FacetMerger
+operator|.
+name|Context
+name|mcontext
 parameter_list|)
 block|{
 comment|// todo: for refinements, we want to recurse, but not re-do stats for intermediate buckets
@@ -2086,6 +2127,8 @@ operator|.
 name|merge
 argument_list|(
 name|val
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -2356,6 +2399,9 @@ name|merge
 parameter_list|(
 name|Object
 name|facetResult
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 block|{
 name|merge
@@ -2364,16 +2410,21 @@ operator|(
 name|SimpleOrderedMap
 operator|)
 name|facetResult
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
 DECL|method|merge
-specifier|public
+specifier|protected
 name|void
 name|merge
 parameter_list|(
 name|SimpleOrderedMap
 name|facetResult
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 block|{
 if|if
@@ -2423,6 +2474,8 @@ operator|(
 name|SimpleOrderedMap
 operator|)
 name|o
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -2474,6 +2527,8 @@ operator|(
 name|SimpleOrderedMap
 operator|)
 name|o
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -2507,6 +2562,8 @@ expr_stmt|;
 name|mergeBucketList
 argument_list|(
 name|bucketList
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 if|if
@@ -2552,6 +2609,8 @@ operator|.
 name|merge
 argument_list|(
 name|nb
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -2567,6 +2626,9 @@ argument_list|<
 name|SimpleOrderedMap
 argument_list|>
 name|bucketList
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 block|{
 for|for
@@ -2629,6 +2691,8 @@ operator|.
 name|mergeBucket
 argument_list|(
 name|bucketRes
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -3408,6 +3472,9 @@ name|merge
 parameter_list|(
 name|Object
 name|facetResult
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 block|{
 name|SimpleOrderedMap
@@ -3660,6 +3727,9 @@ name|merge
 parameter_list|(
 name|Object
 name|facetResult
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 block|{
 name|merge
@@ -3668,6 +3738,8 @@ operator|(
 name|SimpleOrderedMap
 operator|)
 name|facetResult
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -3678,6 +3750,9 @@ name|merge
 parameter_list|(
 name|SimpleOrderedMap
 name|facetResult
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 block|{
 name|boolean
@@ -3754,6 +3829,8 @@ operator|(
 name|SimpleOrderedMap
 operator|)
 name|o
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -3816,6 +3893,8 @@ operator|(
 name|SimpleOrderedMap
 operator|)
 name|o
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -3878,6 +3957,8 @@ operator|(
 name|SimpleOrderedMap
 operator|)
 name|o
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -3904,6 +3985,8 @@ decl_stmt|;
 name|mergeBucketList
 argument_list|(
 name|bucketList
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
@@ -3918,6 +4001,9 @@ argument_list|<
 name|SimpleOrderedMap
 argument_list|>
 name|bucketList
+parameter_list|,
+name|Context
+name|mcontext
 parameter_list|)
 block|{
 for|for
@@ -3980,6 +4066,8 @@ operator|.
 name|mergeBucket
 argument_list|(
 name|bucketRes
+argument_list|,
+name|mcontext
 argument_list|)
 expr_stmt|;
 block|}
