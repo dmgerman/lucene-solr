@@ -34,6 +34,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashSet
 import|;
 end_import
@@ -177,7 +187,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Dictionary with terms, weights, payload (optional) and contexts (optional)  * information taken from stored/indexed fields in a Lucene index.  *</p>  *<b>NOTE:</b>   *<ul>  *<li>  *      The term and (optionally) payload fields have to be  *      stored  *</li>  *<li>  *      The weight field can be stored or can be a {@link NumericDocValues}.  *      If the weight field is not defined, the value of the weight is<code>0</code>  *</li>  *<li>  *      if any of the term or (optionally) payload fields supplied  *      do not have a value for a document, then the document is   *      skipped by the dictionary  *</li>  *</ul>  */
+comment|/**  *<p>  * Dictionary with terms, weights, payload (optional) and contexts (optional)  * information taken from stored/indexed fields in a Lucene index.  *</p>  *<b>NOTE:</b>   *<ul>  *<li>  *      The term field has to be stored; if it is missing, the document is skipped.  *</li>  *<li>  *      The payload and contexts field are optional and are not required to be stored.  *</li>  *<li>  *      The weight field can be stored or can be a {@link NumericDocValues}.  *      If the weight field is not defined, the value of the weight is<code>0</code>  *</li>  *</ul>  */
 end_comment
 
 begin_class
@@ -280,7 +290,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a new dictionary with the contents of the fields named<code>field</code>    * for the terms,<code>weightField</code> for the weights that will be used for the     * the corresponding terms,<code>payloadField</code> for the corresponding payloads    * for the entry and<code>contextsFeild</code> for associated contexts.    */
+comment|/**    * Creates a new dictionary with the contents of the fields named<code>field</code>    * for the terms,<code>weightField</code> for the weights that will be used for the     * the corresponding terms,<code>payloadField</code> for the corresponding payloads    * for the entry and<code>contextsField</code> for associated contexts.    */
 DECL|method|DocumentDictionary
 specifier|public
 name|DocumentDictionary
@@ -678,19 +688,10 @@ argument_list|,
 name|relevantFields
 argument_list|)
 decl_stmt|;
-name|Set
-argument_list|<
-name|BytesRef
-argument_list|>
-name|tempContexts
-init|=
-operator|new
-name|HashSet
-argument_list|<>
-argument_list|()
-decl_stmt|;
 name|BytesRef
 name|tempPayload
+init|=
+literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -710,13 +711,10 @@ decl_stmt|;
 if|if
 condition|(
 name|payload
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
-continue|continue;
-block|}
-elseif|else
 if|if
 condition|(
 name|payload
@@ -758,23 +756,42 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-else|else
-block|{
-continue|continue;
 block|}
-block|}
-else|else
+comment|// in case that the iterator has payloads configured, use empty values
+comment|// instead of null for payload
+if|if
+condition|(
+name|tempPayload
+operator|==
+literal|null
+condition|)
 block|{
 name|tempPayload
 operator|=
-literal|null
+operator|new
+name|BytesRef
+argument_list|()
 expr_stmt|;
 block|}
+block|}
+name|Set
+argument_list|<
+name|BytesRef
+argument_list|>
+name|tempContexts
+decl_stmt|;
 if|if
 condition|(
 name|hasContexts
 condition|)
 block|{
+name|tempContexts
+operator|=
+operator|new
+name|HashSet
+argument_list|<>
+argument_list|()
+expr_stmt|;
 specifier|final
 name|StorableField
 index|[]
@@ -847,6 +864,16 @@ block|{
 continue|continue;
 block|}
 block|}
+block|}
+else|else
+block|{
+name|tempContexts
+operator|=
+name|Collections
+operator|.
+name|emptySet
+argument_list|()
+expr_stmt|;
 block|}
 name|currentDocFields
 operator|=
