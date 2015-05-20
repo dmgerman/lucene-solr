@@ -577,7 +577,9 @@ name|client
 operator|.
 name|setPollQueueTime
 argument_list|(
-literal|0
+name|req
+operator|.
+name|pollQueueTime
 argument_list|)
 expr_stmt|;
 name|Set

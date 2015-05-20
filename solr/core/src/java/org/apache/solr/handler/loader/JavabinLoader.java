@@ -588,6 +588,22 @@ operator|=
 name|overwrite
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|updateRequest
+operator|.
+name|isLastDocInBatch
+argument_list|()
+condition|)
+block|{
+comment|// this is a hint to downstream code that indicates we've sent the last doc in a batch
+name|addCmd
+operator|.
+name|isLastDocInBatch
+operator|=
+literal|true
+expr_stmt|;
+block|}
 try|try
 block|{
 name|processor
@@ -721,6 +737,14 @@ argument_list|(
 name|req
 argument_list|)
 decl_stmt|;
+comment|// since we can give a hint to the leader that the end of a batch is being processed, it's OK to have a larger
+comment|// pollQueueTime than the default 0 since we can optimize around not waiting unnecessarily
+name|addCmd
+operator|.
+name|pollQueueTime
+operator|=
+name|pollQueueTime
+expr_stmt|;
 name|addCmd
 operator|.
 name|overwrite

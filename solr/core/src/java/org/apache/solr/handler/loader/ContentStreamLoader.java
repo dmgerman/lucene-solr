@@ -105,6 +105,22 @@ specifier|abstract
 class|class
 name|ContentStreamLoader
 block|{
+DECL|field|pollQueueTime
+specifier|protected
+specifier|static
+specifier|final
+name|int
+name|pollQueueTime
+init|=
+name|Integer
+operator|.
+name|getInteger
+argument_list|(
+literal|"solr.cloud.replication.poll-queue-time-ms"
+argument_list|,
+literal|25
+argument_list|)
+decl_stmt|;
 comment|/**    * This should be called once for each RequestHandler    */
 DECL|method|init
 specifier|public

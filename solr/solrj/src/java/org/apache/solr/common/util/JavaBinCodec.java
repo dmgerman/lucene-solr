@@ -2983,16 +2983,10 @@ return|return
 literal|"MapEntry["
 operator|+
 name|key
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|":"
 operator|+
 name|value
-operator|.
-name|toString
-argument_list|()
 operator|+
 literal|"]"
 return|;
