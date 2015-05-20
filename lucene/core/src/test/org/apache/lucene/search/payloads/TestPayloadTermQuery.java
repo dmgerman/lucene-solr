@@ -20,20 +20,6 @@ end_comment
 
 begin_import
 import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|Seed
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -485,11 +471,6 @@ comment|/**  *  *  **/
 end_comment
 
 begin_class
-annotation|@
-name|Seed
-argument_list|(
-literal|"35DE1D7C6E4744B0:BD8A22A6C0BB2948"
-argument_list|)
 DECL|class|TestPayloadTermQuery
 specifier|public
 class|class
