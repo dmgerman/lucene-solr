@@ -248,7 +248,7 @@ name|terms
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Implementing classes are required to return whether the current position is a match for the passed in    * "match" {@link SpanQuery}.    *    * This is only called if the underlying last {@link Spans#nextStartPosition()} for the    * match indicated a valid start position.    *    *    * @param spans The {@link Spans} instance, positioned at the spot to check    *    * @return whether the match is accepted, rejected, or rejected and should move to the next doc.    *    * @see Spans#nextDoc()    *    */
+comment|/**    * Implementing classes are required to return whether the current position is a match for the passed in    * "match" {@link SpanQuery}.    *    * This is only called if the underlying last {@link Spans#nextStartPosition()} for the    * match indicated a valid start position.    *    *    * @param spans The {@link Spans} instance, positioned at the spot to check    * @param collector the {@link SpanCollector} associated with the Spans    *    * @return whether the match is accepted, rejected, or rejected and should move to the next doc.    *    * @see Spans#nextDoc()    *    */
 DECL|method|acceptPosition
 specifier|protected
 specifier|abstract
@@ -257,6 +257,9 @@ name|acceptPosition
 parameter_list|(
 name|Spans
 name|spans
+parameter_list|,
+name|SpanCollector
+name|collector
 parameter_list|)
 throws|throws
 name|IOException
@@ -336,6 +339,8 @@ return|return
 name|acceptPosition
 argument_list|(
 name|candidate
+argument_list|,
+name|collector
 argument_list|)
 return|;
 block|}

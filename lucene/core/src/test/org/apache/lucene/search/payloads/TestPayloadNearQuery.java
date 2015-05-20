@@ -20,11 +20,15 @@ end_comment
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|Analyzer
 import|;
 end_import
 
@@ -38,7 +42,49 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|*
+name|MockTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|TokenStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|Tokenizer
 import|;
 end_import
 
@@ -180,6 +226,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|IndexSearcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|QueryUtils
 import|;
 end_import
@@ -195,20 +255,6 @@ operator|.
 name|search
 operator|.
 name|ScoreDoc
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|IndexSearcher
 import|;
 end_import
 
@@ -268,7 +314,7 @@ name|search
 operator|.
 name|spans
 operator|.
-name|SpanQuery
+name|SpanNearQuery
 import|;
 end_import
 
@@ -284,7 +330,7 @@ name|search
 operator|.
 name|spans
 operator|.
-name|SpanNearQuery
+name|SpanQuery
 import|;
 end_import
 
@@ -377,6 +423,16 @@ operator|.
 name|junit
 operator|.
 name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
 import|;
 end_import
 

@@ -42,9 +42,11 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|payloads
+name|spans
 operator|.
-name|PayloadSpanCollector
+name|FilterSpans
+operator|.
+name|AcceptStatus
 import|;
 end_import
 
@@ -60,9 +62,7 @@ name|search
 operator|.
 name|spans
 operator|.
-name|FilterSpans
-operator|.
-name|AcceptStatus
+name|SpanCollector
 import|;
 end_import
 
@@ -222,16 +222,6 @@ index|[]
 argument_list|>
 name|payloadToMatch
 decl_stmt|;
-DECL|field|payloadCollector
-specifier|protected
-specifier|final
-name|PayloadSpanCollector
-name|payloadCollector
-init|=
-operator|new
-name|PayloadSpanCollector
-argument_list|()
-decl_stmt|;
 comment|/**    * @param match The underlying {@link org.apache.lucene.search.spans.SpanQuery} to check    * @param payloadToMatch The {@link java.util.Collection} of payloads to match    */
 DECL|method|SpanPayloadCheckQuery
 specifier|public
@@ -299,7 +289,9 @@ name|this
 argument_list|,
 name|searcher
 argument_list|,
-name|payloadCollector
+name|PayloadSpanCollector
+operator|.
+name|FACTORY
 argument_list|)
 return|;
 block|}
@@ -312,10 +304,21 @@ name|acceptPosition
 parameter_list|(
 name|Spans
 name|spans
+parameter_list|,
+name|SpanCollector
+name|collector
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|PayloadSpanCollector
+name|payloadCollector
+init|=
+operator|(
+name|PayloadSpanCollector
+operator|)
+name|collector
+decl_stmt|;
 name|payloadCollector
 operator|.
 name|reset
