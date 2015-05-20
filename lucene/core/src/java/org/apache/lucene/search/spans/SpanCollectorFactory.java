@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Interface defining a factory for creating new {@link SpanCollector}s  * @param<T> the SpanCollector type  */
+comment|/**  * Interface defining a factory for creating new {@link SpanCollector}s  */
 end_comment
 
 begin_interface
@@ -27,15 +27,10 @@ DECL|interface|SpanCollectorFactory
 specifier|public
 interface|interface
 name|SpanCollectorFactory
-parameter_list|<
-name|T
-extends|extends
-name|SpanCollector
-parameter_list|>
 block|{
 comment|/**    * @return a new SpanCollector    */
 DECL|method|newCollector
-name|T
+name|SpanCollector
 name|newCollector
 parameter_list|()
 function_decl|;
@@ -45,9 +40,6 @@ specifier|public
 specifier|static
 specifier|final
 name|SpanCollectorFactory
-argument_list|<
-name|?
-argument_list|>
 name|NO_OP_FACTORY
 init|=
 operator|new

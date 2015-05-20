@@ -171,16 +171,10 @@ specifier|public
 specifier|static
 specifier|final
 name|SpanCollectorFactory
-argument_list|<
-name|PayloadSpanCollector
-argument_list|>
 name|FACTORY
 init|=
 operator|new
 name|SpanCollectorFactory
-argument_list|<
-name|PayloadSpanCollector
-argument_list|>
 argument_list|()
 block|{
 annotation|@
