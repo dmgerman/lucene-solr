@@ -325,7 +325,7 @@ argument_list|(
 operator|new
 name|MultiTermQuery
 operator|.
-name|TopTermsScoringBooleanQueryRewrite
+name|TopTermsBlendedFreqScoringRewrite
 argument_list|(
 name|maxExpansions
 argument_list|)
