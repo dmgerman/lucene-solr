@@ -327,6 +327,13 @@ literal|null
 operator|:
 literal|"TermContext must not be null"
 assert|;
+comment|// checked with a real exception in TermQuery constructor
+assert|assert
+name|termStates
+operator|.
+name|hasOnlyRealTerms
+argument_list|()
+assert|;
 name|this
 operator|.
 name|termStates
@@ -971,6 +978,27 @@ argument_list|(
 name|t
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|states
+operator|.
+name|hasOnlyRealTerms
+argument_list|()
+operator|==
+literal|false
+condition|)
+block|{
+comment|// The reason for this is that fake terms might have the same bytes as
+comment|// real terms, and this confuses query caching because they don't match
+comment|// the same documents
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Term queries must be created on real terms"
+argument_list|)
+throw|;
+block|}
 name|perReaderTermState
 operator|=
 name|Objects
