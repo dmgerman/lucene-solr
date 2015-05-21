@@ -1209,13 +1209,6 @@ operator|+
 name|configurer
 argument_list|)
 expr_stmt|;
-synchronized|synchronized
-init|(
-name|this
-operator|.
-name|defaultClient
-init|)
-block|{
 name|configurer
 operator|.
 name|configure
@@ -1231,7 +1224,6 @@ name|getClientParams
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|getThreadPoolExecutor
 specifier|protected

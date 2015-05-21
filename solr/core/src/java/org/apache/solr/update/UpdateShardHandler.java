@@ -528,11 +528,6 @@ operator|+
 name|configurer
 argument_list|)
 expr_stmt|;
-synchronized|synchronized
-init|(
-name|client
-init|)
-block|{
 name|configurer
 operator|.
 name|configure
@@ -546,7 +541,6 @@ name|getClientParams
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|getConnectionManager
 specifier|public
