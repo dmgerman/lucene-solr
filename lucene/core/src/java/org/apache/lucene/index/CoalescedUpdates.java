@@ -202,7 +202,7 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|totalTermCount
-name|int
+name|long
 name|totalTermCount
 decl_stmt|;
 annotation|@
@@ -262,7 +262,10 @@ name|totalTermCount
 operator|+=
 name|in
 operator|.
-name|termCount
+name|terms
+operator|.
+name|size
+argument_list|()
 expr_stmt|;
 name|terms
 operator|.

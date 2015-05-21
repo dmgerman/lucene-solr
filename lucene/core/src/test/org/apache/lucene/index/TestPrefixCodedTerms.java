@@ -381,6 +381,19 @@ operator|.
 name|iterator
 argument_list|()
 decl_stmt|;
+name|assertEquals
+argument_list|(
+name|terms
+operator|.
+name|size
+argument_list|()
+argument_list|,
+name|pb
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|//System.out.println("TEST: now iter");
 while|while
 condition|(

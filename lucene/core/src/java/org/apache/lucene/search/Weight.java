@@ -270,8 +270,9 @@ name|scorer
 argument_list|)
 return|;
 block|}
-comment|/** Just wraps a Scorer and performs top scoring using it. */
+comment|/** Just wraps a Scorer and performs top scoring using it.    *  @lucene.internal */
 DECL|class|DefaultBulkScorer
+specifier|protected
 specifier|static
 class|class
 name|DefaultBulkScorer
@@ -284,6 +285,7 @@ specifier|final
 name|Scorer
 name|scorer
 decl_stmt|;
+comment|/** Sole constructor. */
 DECL|method|DefaultBulkScorer
 specifier|public
 name|DefaultBulkScorer

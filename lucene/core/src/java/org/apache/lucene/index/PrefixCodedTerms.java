@@ -134,6 +134,20 @@ name|BytesRefBuilder
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|RamUsageEstimator
+import|;
+end_import
+
 begin_comment
 comment|/**  * Prefix codes term instances (prefixes are shared)  * @lucene.internal  */
 end_comment
@@ -151,6 +165,12 @@ specifier|final
 name|RAMFile
 name|buffer
 decl_stmt|;
+DECL|field|size
+specifier|private
+specifier|final
+name|long
+name|size
+decl_stmt|;
 DECL|field|delGen
 specifier|private
 name|long
@@ -162,6 +182,9 @@ name|PrefixCodedTerms
 parameter_list|(
 name|RAMFile
 name|buffer
+parameter_list|,
+name|long
+name|size
 parameter_list|)
 block|{
 name|this
@@ -174,6 +197,12 @@ name|requireNonNull
 argument_list|(
 name|buffer
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|size
+operator|=
+name|size
 expr_stmt|;
 block|}
 annotation|@
@@ -189,6 +218,12 @@ name|buffer
 operator|.
 name|ramBytesUsed
 argument_list|()
+operator|+
+literal|2
+operator|*
+name|RamUsageEstimator
+operator|.
+name|NUM_BYTES_LONG
 return|;
 block|}
 comment|/** Records del gen for this packet. */
@@ -256,6 +291,11 @@ init|=
 operator|new
 name|BytesRefBuilder
 argument_list|()
+decl_stmt|;
+DECL|field|size
+specifier|private
+name|long
+name|size
 decl_stmt|;
 comment|/** Sole constructor. */
 DECL|method|Builder
@@ -422,6 +462,10 @@ name|term
 operator|.
 name|field
 expr_stmt|;
+name|size
+operator|+=
+literal|1
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -457,6 +501,8 @@ operator|new
 name|PrefixCodedTerms
 argument_list|(
 name|buffer
+argument_list|,
+name|size
 argument_list|)
 return|;
 block|}
@@ -856,6 +902,17 @@ name|delGen
 argument_list|,
 name|buffer
 argument_list|)
+return|;
+block|}
+comment|/** Return the number of terms stored in this {@link PrefixCodedTerms}. */
+DECL|method|size
+specifier|public
+name|long
+name|size
+parameter_list|()
+block|{
+return|return
+name|size
 return|;
 block|}
 annotation|@

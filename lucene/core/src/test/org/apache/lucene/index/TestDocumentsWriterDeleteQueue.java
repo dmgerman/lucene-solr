@@ -994,7 +994,10 @@ name|termsSinceFreeze
 argument_list|,
 name|freezeGlobalBuffer
 operator|.
-name|termCount
+name|terms
+operator|.
+name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1182,7 +1185,10 @@ literal|1
 argument_list|,
 name|freezeGlobalBuffer
 operator|.
-name|termCount
+name|terms
+operator|.
+name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertFalse
