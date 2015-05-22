@@ -751,6 +751,45 @@ name|openExisting
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Parse tlog id from the filename
+name|String
+name|filename
+init|=
+name|tlogFile
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
+name|id
+operator|=
+name|Long
+operator|.
+name|parseLong
+argument_list|(
+name|filename
+operator|.
+name|substring
+argument_list|(
+name|filename
+operator|.
+name|indexOf
+argument_list|(
+literal|'.'
+argument_list|)
+operator|+
+literal|1
+argument_list|,
+name|filename
+operator|.
+name|indexOf
+argument_list|(
+literal|'.'
+argument_list|)
+operator|+
+literal|20
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|tlogFile
@@ -1651,7 +1690,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Unsynchronized access.  We can get away with an unsynchronized access here
+comment|// Unsynchronized access. We can get away with an unsynchronized access here
 comment|// since we will never get a false non-zero when the position is in fact 0.
 comment|// rollback() is the only function that can reset to zero, and it blocks updates.
 if|if
@@ -2872,7 +2911,7 @@ class|class
 name|LogReader
 block|{
 DECL|field|fis
-specifier|private
+specifier|protected
 name|ChannelFastInputStream
 name|fis
 decl_stmt|;

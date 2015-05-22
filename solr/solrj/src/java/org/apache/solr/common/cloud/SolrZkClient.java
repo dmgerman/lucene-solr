@@ -15,7 +15,7 @@ package|;
 end_package
 
 begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements. See the NOTICE file distributed with this  * work for additional information regarding copyright ownership. The ASF  * licenses this file to You under the Apache License, Version 2.0 (the  * "License"); you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *   * http://www.apache.org/licenses/LICENSE-2.0  *   * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the  * License for the specific language governing permissions and limitations under  * the License.  */
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements. See the NOTICE file distributed with this  * work for additional information regarding copyright ownership. The ASF  * licenses this file to You under the Apache License, Version 2.0 (the  * "License"); you may not use this file except in compliance with the License.  * You may obtain a copy of the License at  *  * http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the  * License for the specific language governing permissions and limitations under  * the License.  */
 end_comment
 
 begin_import
@@ -473,7 +473,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *   * All Solr ZooKeeper interactions should go through this class rather than  * ZooKeeper. This class handles synchronous connects and reconnections.  *  */
+comment|/**  *  * All Solr ZooKeeper interactions should go through this class rather than  * ZooKeeper. This class handles synchronous connects and reconnections.  *  */
 end_comment
 
 begin_class
@@ -597,7 +597,7 @@ DECL|method|SolrZkClient
 specifier|public
 name|SolrZkClient
 parameter_list|()
-block|{        }
+block|{    }
 DECL|method|SolrZkClient
 specifier|public
 name|SolrZkClient
@@ -1438,8 +1438,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Wraps the watcher so that it doesn't fire off ZK's event queue. In order to guarantee that a watch object will    * only be triggered once for a given notification, users need to wrap their watcher using this method before    * calling {@link #exists(String, org.apache.zookeeper.Watcher, boolean)} or    * {@link #getData(String, org.apache.zookeeper.Watcher, org.apache.zookeeper.data.Stat, boolean)}.    */
 DECL|method|wrapWatcher
-specifier|private
+specifier|public
 name|Watcher
 name|wrapWatcher
 parameter_list|(
@@ -1453,14 +1454,17 @@ condition|(
 name|watcher
 operator|==
 literal|null
+operator|||
+name|watcher
+operator|instanceof
+name|SolrZkWatcher
 condition|)
 return|return
 name|watcher
 return|;
-comment|// wrap the watcher so that it doesn't fire off ZK's event queue
 return|return
 operator|new
-name|Watcher
+name|SolrZkWatcher
 argument_list|()
 block|{
 annotation|@
@@ -1513,6 +1517,13 @@ block|}
 block|}
 return|;
 block|}
+DECL|interface|SolrZkWatcher
+specifier|private
+interface|interface
+name|SolrZkWatcher
+extends|extends
+name|Watcher
+block|{   }
 comment|/**    * Return the stat of the node of the given path. Return null if no such a    * node exists.    *<p>    * If the watch is non-null and the call is successful (no exception is thrown),    * a watch will be left on the node with the given path. The watch will be    * triggered by a successful operation that creates/delete the node or sets    * the data on the node.    *    * @param path the node path    * @param watcher explicit watcher    * @return the stat of the node of the given path; return null if no such a    *         node exists.    * @throws KeeperException If the server signals an error    * @throws InterruptedException If the server transaction is interrupted.    * @throws IllegalArgumentException if an invalid path is specified    */
 DECL|method|exists
 specifier|public
@@ -2043,7 +2054,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    */
+comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *    * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -2225,7 +2236,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * @param data to set on the last zkNode    */
+comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *    * @param data to set on the last zkNode    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -2260,7 +2271,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *     * @param data to set on the last zkNode    */
+comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *    * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *    * @param data to set on the last zkNode    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -2298,7 +2309,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *     * @param data to set on the last zkNode    */
+comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *    * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *    * @param data to set on the last zkNode    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -2341,7 +2352,7 @@ name|retryOnConnLoss
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *     * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *     * Note: retryOnConnLoss is only respected for the final node - nodes    * before that are always retried on connection loss.    */
+comment|/**    * Creates the path in ZooKeeper, creating each node as necessary.    *    * e.g. If<code>path=/solr/group/node</code> and none of the nodes, solr,    * group, node exist, each will be created.    *    * Note: retryOnConnLoss is only respected for the final node - nodes    * before that are always retried on connection loss.    */
 DECL|method|makePath
 specifier|public
 name|void
@@ -2828,7 +2839,7 @@ name|retryOnConnLoss
 argument_list|)
 return|;
 block|}
-comment|/**    * Write file to ZooKeeper - default system encoding used.    *     * @param path path to upload file to e.g. /solr/conf/solrconfig.xml    * @param file path to file to be uploaded    */
+comment|/**    * Write file to ZooKeeper - default system encoding used.    *    * @param path path to upload file to e.g. /solr/conf/solrconfig.xml    * @param file path to file to be uploaded    */
 DECL|method|setData
 specifier|public
 name|Stat

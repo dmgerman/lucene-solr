@@ -1136,7 +1136,7 @@ return|return
 name|exitStatus
 return|;
 block|}
-comment|/**      * Runs a SolrCloud tool with CloudSolrServer initialized      */
+comment|/**      * Runs a SolrCloud tool with CloudSolrClient initialized      */
 DECL|method|runCloudTool
 specifier|protected
 specifier|abstract
@@ -7232,7 +7232,7 @@ decl_stmt|;
 try|try
 init|(
 name|CloudSolrClient
-name|cloudSolrServer
+name|cloudSolrClient
 init|=
 operator|new
 name|CloudSolrClient
@@ -7252,7 +7252,7 @@ operator|+
 name|zkHost
 argument_list|)
 expr_stmt|;
-name|cloudSolrServer
+name|cloudSolrClient
 operator|.
 name|connect
 argument_list|()
@@ -7261,7 +7261,7 @@ name|toolExitStatus
 operator|=
 name|runCloudTool
 argument_list|(
-name|cloudSolrServer
+name|cloudSolrClient
 argument_list|,
 name|cli
 argument_list|)

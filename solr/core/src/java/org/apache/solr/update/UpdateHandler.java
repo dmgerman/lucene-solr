@@ -695,11 +695,41 @@ block|}
 block|}
 else|else
 block|{
+name|String
+name|className
+init|=
+name|ulogPluginInfo
+operator|.
+name|className
+operator|==
+literal|null
+condition|?
+name|UpdateLog
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+else|:
+name|ulogPluginInfo
+operator|.
+name|className
+decl_stmt|;
 name|ulog
 operator|=
-operator|new
-name|UpdateLog
+name|core
+operator|.
+name|getResourceLoader
 argument_list|()
+operator|.
+name|newInstance
+argument_list|(
+name|className
+argument_list|,
+name|UpdateLog
+operator|.
+name|class
+argument_list|)
 expr_stmt|;
 block|}
 if|if
@@ -771,7 +801,7 @@ expr_stmt|;
 block|}
 comment|// ulog.init() when reusing an existing log is deferred (currently at the end of the DUH2 constructor
 block|}
-comment|/**    * Called when the Writer should be opened again - eg when replication replaces    * all of the index files.    *     * @param rollback IndexWriter if true else close    *     * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * Called when the Writer should be opened again - eg when replication replaces    * all of the index files.    *    * @param rollback IndexWriter if true else close    *    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|newIndexWriter
 specifier|public
 specifier|abstract
