@@ -1521,7 +1521,7 @@ argument_list|(
 literal|"numVersionBuckets"
 argument_list|)
 argument_list|,
-literal|256
+literal|65536
 argument_list|)
 expr_stmt|;
 if|if
