@@ -807,6 +807,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|// The final boost for a given field named is the product of the
 comment|// *all* boosts on values of that field.
 comment|// For multi-valued fields, we only want to set the boost on the
@@ -817,7 +818,6 @@ name|compoundBoost
 operator|=
 literal|1.0f
 expr_stmt|;
-block|}
 block|}
 block|}
 catch|catch
