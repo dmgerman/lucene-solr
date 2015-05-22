@@ -123,7 +123,6 @@ block|{
 comment|/** Data type of the numeric value    * @since 3.2    */
 DECL|enum|NumericType
 specifier|public
-specifier|static
 enum|enum
 name|NumericType
 block|{
@@ -333,8 +332,9 @@ specifier|public
 name|FieldType
 parameter_list|()
 block|{   }
+comment|/**    * Throws an exception if this FieldType is frozen. Subclasses should    * call this within setters for additional state.    */
 DECL|method|checkIfFrozen
-specifier|private
+specifier|protected
 name|void
 name|checkIfFrozen
 parameter_list|()
