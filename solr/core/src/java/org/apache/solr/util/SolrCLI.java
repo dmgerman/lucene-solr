@@ -8093,7 +8093,9 @@ argument_list|)
 operator|.
 name|withDescription
 argument_list|(
-literal|"Base Solr URL, default is http://localhost:8983/solr"
+literal|"Base Solr URL, default is "
+operator|+
+name|DEFAULT_SOLR_URL
 argument_list|)
 operator|.
 name|create
@@ -8202,7 +8204,7 @@ name|getOptionValue
 argument_list|(
 literal|"solrUrl"
 argument_list|,
-literal|"http://localhost:8983/solr"
+name|DEFAULT_SOLR_URL
 argument_list|)
 decl_stmt|;
 if|if
@@ -8988,7 +8990,7 @@ name|getOptionValue
 argument_list|(
 literal|"solrUrl"
 argument_list|,
-literal|"http://localhost:8983/solr"
+name|DEFAULT_SOLR_URL
 argument_list|)
 decl_stmt|;
 if|if
@@ -9191,7 +9193,9 @@ argument_list|)
 operator|.
 name|withDescription
 argument_list|(
-literal|"Base Solr URL, default is http://localhost:8983/solr"
+literal|"Base Solr URL, default is "
+operator|+
+name|DEFAULT_SOLR_URL
 argument_list|)
 operator|.
 name|create
@@ -9346,7 +9350,7 @@ name|getOptionValue
 argument_list|(
 literal|"solrUrl"
 argument_list|,
-literal|"http://localhost:8983/solr"
+name|DEFAULT_SOLR_URL
 argument_list|)
 decl_stmt|;
 if|if
