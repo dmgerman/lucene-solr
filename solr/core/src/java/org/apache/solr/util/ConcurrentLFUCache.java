@@ -254,6 +254,11 @@ operator|new
 name|Stats
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 DECL|field|acceptableWaterMark
 specifier|private
 specifier|final
@@ -809,7 +814,7 @@ operator|.
 name|value
 return|;
 block|}
-comment|/**    * Removes items from the cache to bring the size down    * to an acceptable value ('acceptableWaterMark').    *<p/>    * It is done in two stages. In the first stage, least recently used items are evicted.    * If, after the first stage, the cache size is still greater than 'acceptableSize'    * config parameter, the second stage takes over.    *<p/>    * The second stage is more intensive and tries to bring down the cache size    * to the 'lowerWaterMark' config parameter.    */
+comment|/**    * Removes items from the cache to bring the size down to the lowerWaterMark.    */
 DECL|method|markAndSweep
 specifier|private
 name|void
@@ -855,6 +860,16 @@ operator|.
 name|get
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|sz
+operator|<=
+name|upperWaterMark
+condition|)
+block|{
+comment|/* SOLR-7585: Even though we acquired a lock, multiple threads might detect a need for calling this method.          * Locking keeps these from executing at the same time, so they run sequentially.  The second and subsequent          * sequential runs of this method don't need to be done, since there are no elements to remove.         */
+return|return;
+block|}
 name|int
 name|wantToRemove
 init|=
@@ -865,6 +880,11 @@ decl_stmt|;
 name|TreeSet
 argument_list|<
 name|CacheEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|>
 name|tree
 init|=
@@ -889,7 +909,7 @@ name|values
 argument_list|()
 control|)
 block|{
-comment|// set hitsCopy to avoid later Atomic reads
+comment|// set hitsCopy to avoid later Atomic reads.  Primitive types are faster than the atomic get().
 name|ce
 operator|.
 name|hitsCopy
@@ -948,8 +968,18 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|// If the hits are not equal, we can remove before adding
-comment|// which is slightly faster
+comment|/*            * SOLR-7585: Before doing this part, make sure the TreeSet actually has an element, since the first() method            * fails with NoSuchElementException if the set is empty.  If that test passes, check hits. This test may            * never actually fail due to the upperWaterMark check above, but we'll do it anyway.            */
+if|if
+condition|(
+name|tree
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+comment|/* If hits are not equal, we can remove before adding which is slightly faster. I can no longer remember              * why removing first is faster, but I vaguely remember being sure about it!              */
 if|if
 condition|(
 name|ce
@@ -1014,6 +1044,7 @@ name|first
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1158,6 +1189,11 @@ return|;
 name|TreeSet
 argument_list|<
 name|CacheEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|>
 name|tree
 init|=
@@ -1198,6 +1234,11 @@ argument_list|()
 control|)
 block|{
 name|CacheEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 name|ce
 init|=
 name|entry
@@ -1393,6 +1434,11 @@ return|;
 name|TreeSet
 argument_list|<
 name|CacheEntry
+argument_list|<
+name|K
+argument_list|,
+name|V
+argument_list|>
 argument_list|>
 name|tree
 init|=
