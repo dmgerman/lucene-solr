@@ -1137,7 +1137,7 @@ else|else
 block|{
 name|log
 operator|.
-name|warn
+name|info
 argument_list|(
 literal|"No terms found for {}, cannot seed version bucket highest value from index"
 argument_list|,

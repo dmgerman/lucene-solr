@@ -7576,7 +7576,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|warn
+name|info
 argument_list|(
 literal|"Could not find max version in index or recent updates, using new clock {}"
 argument_list|,
