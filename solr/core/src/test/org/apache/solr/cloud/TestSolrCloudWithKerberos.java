@@ -406,6 +406,20 @@ name|US
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Use just one jetty
+name|this
+operator|.
+name|sliceCount
+operator|=
+literal|0
+expr_stmt|;
+name|this
+operator|.
+name|fixShardCount
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
 name|setupMiniKdc
 argument_list|()
 expr_stmt|;
@@ -471,6 +485,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.jaas.debug"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
 name|String
 name|kdcDir
 init|=
