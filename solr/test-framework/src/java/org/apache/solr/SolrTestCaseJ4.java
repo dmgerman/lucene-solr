@@ -1803,6 +1803,14 @@ expr_stmt|;
 name|endTrackingSearchers
 argument_list|()
 expr_stmt|;
+name|String
+name|orr
+init|=
+name|ObjectReleaseTracker
+operator|.
+name|clearObjectTrackerAndCheckEmpty
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -1822,14 +1830,11 @@ name|class
 argument_list|)
 condition|)
 block|{
-name|assertTrue
+name|assertNull
 argument_list|(
-literal|"Some resources were not closed, shutdown, or released."
+name|orr
 argument_list|,
-name|ObjectReleaseTracker
-operator|.
-name|clearObjectTrackerAndCheckEmpty
-argument_list|()
+name|orr
 argument_list|)
 expr_stmt|;
 block|}
@@ -1837,18 +1842,16 @@ else|else
 block|{
 if|if
 condition|(
-operator|!
-name|ObjectReleaseTracker
-operator|.
-name|clearObjectTrackerAndCheckEmpty
-argument_list|()
+name|orr
+operator|!=
+literal|null
 condition|)
 block|{
 name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Some resources were not closed, shutdown, or released. Remove the SuppressObjectReleaseTracker annotation to get more information on the fail."
+literal|"Some resources were not closed, shutdown, or released. This has been ignored due to the SuppressObjectReleaseTracker annotation."
 argument_list|)
 expr_stmt|;
 block|}

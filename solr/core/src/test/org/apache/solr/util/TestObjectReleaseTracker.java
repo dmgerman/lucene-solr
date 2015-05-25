@@ -114,7 +114,7 @@ name|Object
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertFalse
+name|assertNotNull
 argument_list|(
 name|ObjectReleaseTracker
 operator|.
@@ -122,7 +122,7 @@ name|clearObjectTrackerAndCheckEmpty
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertNull
 argument_list|(
 name|ObjectReleaseTracker
 operator|.
@@ -151,7 +151,7 @@ argument_list|(
 name|obj
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertNull
 argument_list|(
 name|ObjectReleaseTracker
 operator|.
@@ -222,7 +222,7 @@ argument_list|(
 name|obj3
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertNull
 argument_list|(
 name|ObjectReleaseTracker
 operator|.
@@ -266,7 +266,7 @@ name|obj2
 argument_list|)
 expr_stmt|;
 comment|// ObjectReleaseTracker.release(obj3);
-name|assertFalse
+name|assertNotNull
 argument_list|(
 name|ObjectReleaseTracker
 operator|.
@@ -274,7 +274,7 @@ name|clearObjectTrackerAndCheckEmpty
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertNull
 argument_list|(
 name|ObjectReleaseTracker
 operator|.
