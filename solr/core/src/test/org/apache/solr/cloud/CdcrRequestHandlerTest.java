@@ -84,8 +84,6 @@ end_import
 
 begin_class
 annotation|@
-name|Ignore
-annotation|@
 name|Slow
 DECL|class|CdcrRequestHandlerTest
 specifier|public
