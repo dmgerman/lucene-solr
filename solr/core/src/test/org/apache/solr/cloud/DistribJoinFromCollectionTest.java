@@ -1235,14 +1235,12 @@ name|CollectionAdminRequest
 operator|.
 name|Delete
 argument_list|()
-decl_stmt|;
-name|req
 operator|.
 name|setCollectionName
 argument_list|(
 name|c
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|req
 operator|.
 name|process

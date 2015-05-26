@@ -5663,14 +5663,12 @@ name|CollectionAdminRequest
 operator|.
 name|Delete
 argument_list|()
-decl_stmt|;
-name|delete
 operator|.
 name|setCollectionName
 argument_list|(
 name|collectionName
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|client
 operator|.
 name|request

@@ -771,25 +771,16 @@ expr_stmt|;
 comment|// try to clean up
 try|try
 block|{
-name|CollectionAdminRequest
-operator|.
-name|Delete
-name|req
-init|=
 operator|new
 name|CollectionAdminRequest
 operator|.
 name|Delete
 argument_list|()
-decl_stmt|;
-name|req
 operator|.
 name|setCollectionName
 argument_list|(
 name|testCollectionName
 argument_list|)
-expr_stmt|;
-name|req
 operator|.
 name|process
 argument_list|(
