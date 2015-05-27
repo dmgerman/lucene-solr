@@ -30,7 +30,7 @@ specifier|public
 class|class
 name|GeoDegenerateVerticalLine
 extends|extends
-name|GeoBBoxBase
+name|GeoBaseBBox
 block|{
 DECL|field|topLat
 specifier|public
@@ -112,6 +112,10 @@ specifier|public
 name|GeoDegenerateVerticalLine
 parameter_list|(
 specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
+specifier|final
 name|double
 name|topLat
 parameter_list|,
@@ -124,6 +128,11 @@ name|double
 name|longitude
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|planetModel
+argument_list|)
+expr_stmt|;
 comment|// Argument checking
 if|if
 condition|(
@@ -304,6 +313,8 @@ operator|=
 operator|new
 name|GeoPoint
 argument_list|(
+name|planetModel
+argument_list|,
 name|sinTopLat
 argument_list|,
 name|sinLongitude
@@ -320,6 +331,8 @@ operator|=
 operator|new
 name|GeoPoint
 argument_list|(
+name|planetModel
+argument_list|,
 name|sinBottomLat
 argument_list|,
 name|sinLongitude
@@ -382,6 +395,8 @@ operator|=
 operator|new
 name|GeoPoint
 argument_list|(
+name|planetModel
+argument_list|,
 name|sinMiddleLat
 argument_list|,
 name|sinLongitude
@@ -400,6 +415,8 @@ name|SidedPlane
 argument_list|(
 name|centerPoint
 argument_list|,
+name|planetModel
+argument_list|,
 name|sinTopLat
 argument_list|)
 expr_stmt|;
@@ -411,6 +428,8 @@ operator|new
 name|SidedPlane
 argument_list|(
 name|centerPoint
+argument_list|,
+name|planetModel
 argument_list|,
 name|sinBottomLat
 argument_list|)
@@ -538,6 +557,8 @@ name|GeoBBoxFactory
 operator|.
 name|makeGeoBBox
 argument_list|(
+name|planetModel
+argument_list|,
 name|newTopLat
 argument_list|,
 name|newBottomLat
@@ -753,6 +774,8 @@ name|p
 operator|.
 name|intersects
 argument_list|(
+name|planetModel
+argument_list|,
 name|plane
 argument_list|,
 name|notablePoints
@@ -904,6 +927,13 @@ operator|)
 name|o
 decl_stmt|;
 return|return
+name|super
+operator|.
+name|equals
+argument_list|(
+name|other
+argument_list|)
+operator|&&
 name|other
 operator|.
 name|UHC
@@ -934,11 +964,22 @@ block|{
 name|int
 name|result
 init|=
-name|UHC
+name|super
 operator|.
 name|hashCode
 argument_list|()
 decl_stmt|;
+name|result
+operator|=
+literal|31
+operator|*
+name|result
+operator|+
+name|UHC
+operator|.
+name|hashCode
+argument_list|()
+expr_stmt|;
 name|result
 operator|=
 literal|31

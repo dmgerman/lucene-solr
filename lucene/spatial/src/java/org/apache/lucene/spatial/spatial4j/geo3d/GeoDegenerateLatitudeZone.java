@@ -30,7 +30,7 @@ specifier|public
 class|class
 name|GeoDegenerateLatitudeZone
 extends|extends
-name|GeoBBoxBase
+name|GeoBaseBBox
 block|{
 DECL|field|latitude
 specifier|public
@@ -82,10 +82,19 @@ specifier|public
 name|GeoDegenerateLatitudeZone
 parameter_list|(
 specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
+specifier|final
 name|double
 name|latitude
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|planetModel
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|latitude
@@ -120,6 +129,8 @@ operator|=
 operator|new
 name|Plane
 argument_list|(
+name|planetModel
+argument_list|,
 name|sinLatitude
 argument_list|)
 expr_stmt|;
@@ -129,11 +140,15 @@ operator|=
 operator|new
 name|GeoPoint
 argument_list|(
-name|cosLatitude
+name|planetModel
+argument_list|,
+name|sinLatitude
 argument_list|,
 literal|0.0
 argument_list|,
-name|sinLatitude
+name|cosLatitude
+argument_list|,
+literal|1.0
 argument_list|)
 expr_stmt|;
 name|edgePoints
@@ -177,6 +192,8 @@ name|GeoBBoxFactory
 operator|.
 name|makeGeoBBox
 argument_list|(
+name|planetModel
+argument_list|,
 name|newTopLat
 argument_list|,
 name|newBottomLat
@@ -324,6 +341,8 @@ name|p
 operator|.
 name|intersects
 argument_list|(
+name|planetModel
+argument_list|,
 name|plane
 argument_list|,
 name|notablePoints
@@ -453,6 +472,13 @@ operator|)
 name|o
 decl_stmt|;
 return|return
+name|super
+operator|.
+name|equals
+argument_list|(
+name|other
+argument_list|)
+operator|&&
 name|other
 operator|.
 name|latitude
@@ -468,6 +494,14 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
+name|int
+name|result
+init|=
+name|super
+operator|.
+name|hashCode
+argument_list|()
+decl_stmt|;
 name|long
 name|temp
 init|=
@@ -478,9 +512,12 @@ argument_list|(
 name|latitude
 argument_list|)
 decl_stmt|;
-name|int
 name|result
-init|=
+operator|=
+literal|31
+operator|*
+name|result
+operator|+
 call|(
 name|int
 call|)
@@ -493,7 +530,7 @@ operator|>>>
 literal|32
 operator|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 return|return
 name|result
 return|;
@@ -507,7 +544,11 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"GeoDegenerateLatitudeZone: {lat="
+literal|"GeoDegenerateLatitudeZone: {planetmodel="
+operator|+
+name|planetModel
+operator|+
+literal|", lat="
 operator|+
 name|latitude
 operator|+
