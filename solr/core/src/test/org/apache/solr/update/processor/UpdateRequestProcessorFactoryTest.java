@@ -297,6 +297,12 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+specifier|final
+name|int
+name|EXPECTED_CHAIN_LENGTH
+init|=
+literal|5
+decl_stmt|;
 name|SolrCore
 name|core
 init|=
@@ -350,7 +356,7 @@ name|name
 operator|+
 literal|" chain length"
 argument_list|,
-literal|5
+name|EXPECTED_CHAIN_LENGTH
 argument_list|,
 name|chain
 operator|.
@@ -413,6 +419,15 @@ name|SolrQueryResponse
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|name
+operator|+
+literal|" distrib chain had no proc's in it"
+argument_list|,
+name|proc
+argument_list|)
+expr_stmt|;
 name|assertFalse
 argument_list|(
 name|name
@@ -442,6 +457,11 @@ name|foundLog
 init|=
 literal|false
 decl_stmt|;
+name|String
+name|seen
+init|=
+literal|""
+decl_stmt|;
 for|for
 control|(
 init|;
@@ -450,6 +470,17 @@ control|)
 block|{
 name|n
 operator|++
+expr_stmt|;
+name|seen
+operator|=
+name|seen
+operator|+
+name|proc
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|", "
 expr_stmt|;
 if|if
 condition|(
@@ -463,39 +494,84 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+if|if
+condition|(
+literal|null
+operator|==
+name|proc
+operator|.
+name|next
+condition|)
+block|{
+break|break;
+block|}
+else|else
+block|{
 name|proc
 operator|=
 name|proc
 operator|.
 name|next
 expr_stmt|;
-if|if
-condition|(
-name|proc
-operator|==
-literal|null
-condition|)
-break|break;
 block|}
-name|assertTrue
-argument_list|(
-name|n
-operator|<
-name|chain
-operator|.
-name|getFactories
-argument_list|()
-operator|.
-name|length
-argument_list|)
-expr_stmt|;
+block|}
 comment|// some processors should have been dropped
 name|assertTrue
 argument_list|(
+name|name
+operator|+
+literal|" expected a distrib chain shorter then "
+operator|+
+name|EXPECTED_CHAIN_LENGTH
+operator|+
+literal|" but got: "
+operator|+
+name|n
+operator|+
+literal|" ("
+operator|+
+name|seen
+operator|+
+literal|")"
+argument_list|,
+name|n
+operator|<
+name|EXPECTED_CHAIN_LENGTH
+argument_list|)
+expr_stmt|;
+comment|// make sure the marker interface was successful in keeping the log processor even though it comes
+comment|// before distrib
+name|assertTrue
+argument_list|(
+name|name
+operator|+
+literal|" expected LogUpdateProcessor in chain due to @RunAllways, but not found: "
+operator|+
+name|seen
+argument_list|,
 name|foundLog
 argument_list|)
 expr_stmt|;
-comment|// make sure the marker interface was successful in keeping the log processor
+comment|// all of these (shortened) distrib chains should still end with RunUpdateprocessor
+name|assertTrue
+argument_list|(
+name|name
+operator|+
+literal|" last processor isn't a RunUpdateProcessor: "
+operator|+
+name|proc
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|proc
+operator|instanceof
+name|RunUpdateProcessor
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
