@@ -32,6 +32,7 @@ name|GeoPoint
 extends|extends
 name|Vector
 block|{
+comment|/** This is the lazily-evaluated magnitude.  Some constructors include it, but others don't, and    * we try not to create extra computation by always computing it. */
 DECL|field|magnitude
 specifier|protected
 name|double
@@ -41,6 +42,7 @@ name|Double
 operator|.
 name|NEGATIVE_INFINITY
 decl_stmt|;
+comment|/** Construct a GeoPoint from the trig functions of a lat and lon pair.    * @param planetModel is the planetModel to put the point on.    * @param sinLat is the sin of the latitude.    * @param sinLon is the sin of the longitude.    * @param cosLat is the cos of the latitude.    * @param cosLon is the cos of the longitude.    */
 DECL|method|GeoPoint
 specifier|public
 name|GeoPoint
@@ -68,7 +70,7 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|computeMagnitude
+name|computeDesiredEllipsoidMagnitude
 argument_list|(
 name|planetModel
 argument_list|,
@@ -95,6 +97,7 @@ name|sinLat
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Construct a GeoPoint from a latitude/longitude pair.    * @param planetModel is the planetModel to put the point on.    * @param lat is the latitude.    * @param lon is the longitude.    */
 DECL|method|GeoPoint
 specifier|public
 name|GeoPoint
@@ -146,6 +149,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Construct a GeoPoint from a unit (x,y,z) vector and a magnitude.    * @param magnitude is the desired magnitude, provided to put the point on the ellipsoid.    * @param x is the unit x value.    * @param y is the unit y value.    * @param z is the unit z value.    */
 DECL|method|GeoPoint
 specifier|public
 name|GeoPoint
@@ -189,6 +193,7 @@ operator|=
 name|magnitude
 expr_stmt|;
 block|}
+comment|/** Construct a GeoPoint from an (x,y,z) value.    * The (x,y,z) tuple must be on the desired ellipsoid.    * @param x is the ellipsoid point x value.    * @param y is the ellipsoid point y value.    * @param z is the ellipsoid point z value.    */
 DECL|method|GeoPoint
 specifier|public
 name|GeoPoint
@@ -216,6 +221,7 @@ name|z
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Compute an arc distance between two points.    * @param v is the second point.    * @return the angle, in radians, between the two points.    */
 DECL|method|arcDistance
 specifier|public
 name|double
@@ -248,6 +254,67 @@ operator|)
 argument_list|)
 return|;
 block|}
+comment|/** Compute the latitude for the point.    *@return the latitude.    */
+DECL|method|getLatitude
+specifier|public
+name|double
+name|getLatitude
+parameter_list|()
+block|{
+return|return
+name|Math
+operator|.
+name|asin
+argument_list|(
+name|z
+operator|/
+name|magnitude
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** Compute the longitude for the point.    * @return the longitude value.  Uses 0.0 if there is no computable longitude.    */
+DECL|method|getLongitude
+specifier|public
+name|double
+name|getLongitude
+parameter_list|()
+block|{
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|x
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+operator|&&
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|y
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+condition|)
+return|return
+literal|0.0
+return|;
+return|return
+name|Math
+operator|.
+name|atan2
+argument_list|(
+name|y
+argument_list|,
+name|z
+argument_list|)
+return|;
+block|}
+comment|/** Compute the linear magnitude of the point.    * @return the magnitude.    */
 annotation|@
 name|Override
 DECL|method|magnitude

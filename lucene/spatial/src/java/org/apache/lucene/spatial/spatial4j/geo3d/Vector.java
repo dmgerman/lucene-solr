@@ -1044,12 +1044,12 @@ name|z
 argument_list|)
 return|;
 block|}
-comment|/** Compute the magnitude of a vector projected to a given    * planet model.    */
-DECL|method|computeMagnitude
+comment|/** Compute the desired magnitude of a unit vector projected to a given    * planet model.    * @param planetModel is the planet model.    * @param x is the unit vector x value.    * @param y is the unit vector y value.    * @param z is the unit vector z value.    * @return a magnitude value for that (x,y,z) that projects the vector onto the specified ellipsoid.    */
+DECL|method|computeDesiredEllipsoidMagnitude
 specifier|protected
 specifier|static
 name|double
-name|computeMagnitude
+name|computeDesiredEllipsoidMagnitude
 parameter_list|(
 specifier|final
 name|PlanetModel
@@ -1101,12 +1101,12 @@ name|inverseCSquared
 argument_list|)
 return|;
 block|}
-comment|/** Compute the magnitude of a vector projected to a given    * planet model.    */
-DECL|method|computeMagnitude
+comment|/** Compute the desired magnitude of a unit vector projected to a given    * planet model.  The unit vector is specified only by a z value.    * @param planetModel is the planet model.    * @param z is the unit vector z value.    * @return a magnitude value for that z value that projects the vector onto the specified ellipsoid.    */
+DECL|method|computeDesiredEllipsoidMagnitude
 specifier|protected
 specifier|static
 name|double
-name|computeMagnitude
+name|computeDesiredEllipsoidMagnitude
 parameter_list|(
 specifier|final
 name|PlanetModel
