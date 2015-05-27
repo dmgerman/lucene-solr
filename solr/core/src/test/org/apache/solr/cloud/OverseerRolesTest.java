@@ -550,10 +550,6 @@ else|:
 literal|2
 argument_list|)
 expr_stmt|;
-name|checkCreatedVsState
-operator|=
-literal|false
-expr_stmt|;
 block|}
 annotation|@
 name|Test

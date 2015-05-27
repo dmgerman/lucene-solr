@@ -389,10 +389,6 @@ block|{
 name|super
 argument_list|()
 expr_stmt|;
-name|checkCreatedVsState
-operator|=
-literal|false
-expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -2296,12 +2292,6 @@ operator|.
 name|shutdownAndAwaitTermination
 argument_list|(
 name|executor
-argument_list|,
-literal|120
-argument_list|,
-name|TimeUnit
-operator|.
-name|SECONDS
 argument_list|)
 expr_stmt|;
 block|}
@@ -2446,12 +2436,6 @@ operator|.
 name|shutdownAndAwaitTermination
 argument_list|(
 name|executor
-argument_list|,
-literal|120
-argument_list|,
-name|TimeUnit
-operator|.
-name|SECONDS
 argument_list|)
 expr_stmt|;
 block|}

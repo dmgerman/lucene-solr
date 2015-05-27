@@ -250,12 +250,7 @@ DECL|method|ExternalCollectionsTest
 specifier|public
 name|ExternalCollectionsTest
 parameter_list|()
-block|{
-name|checkCreatedVsState
-operator|=
-literal|false
-expr_stmt|;
-block|}
+block|{   }
 annotation|@
 name|Test
 annotation|@

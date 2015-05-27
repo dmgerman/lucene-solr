@@ -848,6 +848,8 @@ argument_list|(
 name|nodeConfig
 argument_list|,
 name|extraProperties
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|cores

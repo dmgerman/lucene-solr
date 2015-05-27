@@ -5660,7 +5660,7 @@ name|ErrorCode
 operator|.
 name|INVALID_STATE
 argument_list|,
-literal|"Not enough nodes to handle the request"
+literal|"Could not find a healthy node to handle the request."
 argument_list|)
 throw|;
 block|}

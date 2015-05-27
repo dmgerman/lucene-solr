@@ -1085,11 +1085,6 @@ specifier|private
 name|boolean
 name|cloudInit
 decl_stmt|;
-DECL|field|checkCreatedVsState
-specifier|protected
-name|boolean
-name|checkCreatedVsState
-decl_stmt|;
 DECL|field|useJettyDataDir
 specifier|protected
 name|boolean
@@ -2018,8 +2013,6 @@ expr_stmt|;
 name|createJettys
 argument_list|(
 name|numServers
-argument_list|,
-name|checkCreatedVsState
 argument_list|)
 operator|.
 name|size
@@ -2201,29 +2194,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|createJettys
-specifier|protected
-name|List
-argument_list|<
-name|JettySolrRunner
-argument_list|>
-name|createJettys
-parameter_list|(
-name|int
-name|numJettys
-parameter_list|)
-throws|throws
-name|Exception
-block|{
-return|return
-name|createJettys
-argument_list|(
-name|numJettys
-argument_list|,
-literal|false
-argument_list|)
-return|;
-block|}
 DECL|field|defaultStateFormat
 specifier|protected
 name|String
@@ -2279,7 +2249,6 @@ name|defaultStateFormat
 return|;
 comment|// random
 block|}
-comment|/**    * @param checkCreatedVsState    *          if true, make sure the number created (numJettys) matches the    *          number in the cluster state - if you add more jetties this may not    *          be the case    */
 DECL|method|createJettys
 specifier|protected
 name|List
@@ -2290,9 +2259,6 @@ name|createJettys
 parameter_list|(
 name|int
 name|numJettys
-parameter_list|,
-name|boolean
-name|checkCreatedVsState
 parameter_list|)
 throws|throws
 name|Exception
@@ -2577,11 +2543,6 @@ argument_list|(
 name|DEFAULT_COLLECTION
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|checkCreatedVsState
-condition|)
-block|{
 comment|// now wait until we see that the number of shards in the cluster state
 comment|// matches what we expect
 name|int
@@ -2653,7 +2614,7 @@ operator|.
 name|getZkStateReader
 argument_list|()
 decl_stmt|;
-comment|// also make sure we have a leader for each shard
+comment|// make sure we have a leader for each shard
 for|for
 control|(
 name|int
@@ -2682,7 +2643,6 @@ argument_list|,
 literal|10000
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(

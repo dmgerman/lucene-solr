@@ -10583,7 +10583,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"could not readd the overseer designate "
+literal|"could not read the overseer designate "
 argument_list|,
 name|e
 argument_list|)
