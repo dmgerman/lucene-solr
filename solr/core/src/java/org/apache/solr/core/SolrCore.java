@@ -5055,6 +5055,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// seed version buckets with max from index during core initialization ... requires a searcher!
+name|seedVersionBucketsWithMaxFromIndex
+argument_list|()
+expr_stmt|;
 name|bufferUpdatesIfConstructing
 argument_list|(
 name|coreDescriptor
@@ -5074,18 +5078,26 @@ expr_stmt|;
 name|registerConfListener
 argument_list|()
 expr_stmt|;
-comment|// seed version buckets with max from index during core initialization
+block|}
+DECL|method|seedVersionBucketsWithMaxFromIndex
+specifier|private
+name|void
+name|seedVersionBucketsWithMaxFromIndex
+parameter_list|()
+block|{
+name|UpdateHandler
+name|uh
+init|=
+name|getUpdateHandler
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
-name|this
-operator|.
-name|updateHandler
+name|uh
 operator|!=
 literal|null
 operator|&&
-name|this
-operator|.
-name|updateHandler
+name|uh
 operator|.
 name|getUpdateLog
 argument_list|()
@@ -5111,9 +5123,7 @@ condition|)
 block|{
 try|try
 block|{
-name|this
-operator|.
-name|updateHandler
+name|uh
 operator|.
 name|getUpdateLog
 argument_list|()
@@ -5135,6 +5145,16 @@ name|decref
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"No searcher available! Cannot seed version buckets with max from index."
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
