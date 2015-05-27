@@ -977,7 +977,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"CORE DESCRIPTOR: "
+literal|"Created CoreDescriptor: "
 operator|+
 name|coreProperties
 argument_list|)

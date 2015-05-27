@@ -388,6 +388,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|logging
+operator|.
+name|MDCLoggingContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|SolrRequestHandler
@@ -1681,15 +1695,6 @@ operator|.
 name|getNodeName
 argument_list|()
 expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Node Name: "
-operator|+
-name|hostName
-argument_list|)
-expr_stmt|;
 name|zkSys
 operator|.
 name|initZooKeeper
@@ -2961,6 +2966,13 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|MDCLoggingContext
+operator|.
+name|setCore
+argument_list|(
+name|core
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|zkSys
@@ -3229,6 +3241,14 @@ expr_stmt|;
 throw|throw
 name|t
 throw|;
+block|}
+finally|finally
+block|{
+name|MDCLoggingContext
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 comment|/**    * @return a Collection of registered SolrCores    */

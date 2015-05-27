@@ -498,6 +498,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|logging
+operator|.
+name|MDCLoggingContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|LocalSolrQueryRequest
@@ -1011,9 +1025,7 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Recovery failed - I give up. core="
-operator|+
-name|coreName
+literal|"Recovery failed - I give up."
 argument_list|)
 expr_stmt|;
 try|try
@@ -1088,9 +1100,7 @@ literal|"Attempting to replicate from "
 operator|+
 name|leaderUrl
 operator|+
-literal|". core="
-operator|+
-name|coreName
+literal|"."
 argument_list|)
 expr_stmt|;
 comment|// send commit
@@ -1526,48 +1536,18 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|SolrQueryRequest
-name|req
-init|=
-operator|new
-name|LocalSolrQueryRequest
+name|MDCLoggingContext
+operator|.
+name|setCore
 argument_list|(
 name|core
-argument_list|,
-operator|new
-name|ModifiableSolrParams
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|SolrQueryResponse
-name|rsp
-init|=
-operator|new
-name|SolrQueryResponse
-argument_list|()
-decl_stmt|;
-name|SolrRequestInfo
-operator|.
-name|setRequestInfo
-argument_list|(
-operator|new
-name|SolrRequestInfo
-argument_list|(
-name|req
-argument_list|,
-name|rsp
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Starting recovery process.  core="
-operator|+
-name|coreName
-operator|+
-literal|" recoveringAfterStartup="
+literal|"Starting recovery process. recoveringAfterStartup="
 operator|+
 name|recoveringAfterStartup
 argument_list|)
@@ -1655,9 +1635,9 @@ block|}
 block|}
 finally|finally
 block|{
-name|SolrRequestInfo
+name|MDCLoggingContext
 operator|.
-name|clearRequestInfo
+name|clear
 argument_list|()
 expr_stmt|;
 block|}
@@ -1712,9 +1692,7 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"No UpdateLog found - cannot recover. core="
-operator|+
-name|coreName
+literal|"No UpdateLog found - cannot recover."
 argument_list|)
 expr_stmt|;
 name|recoveryFailed
@@ -1787,9 +1765,7 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Corrupt tlog - ignoring. core="
-operator|+
-name|coreName
+literal|"Corrupt tlog - ignoring."
 argument_list|,
 name|e
 argument_list|)
@@ -1943,9 +1919,7 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Error getting recent versions. core="
-operator|+
-name|coreName
+literal|"Error getting recent versions."
 argument_list|,
 name|e
 argument_list|)
@@ -1998,9 +1972,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Looks like a previous replication recovery did not complete - skipping peer sync. core="
-operator|+
-name|coreName
+literal|"Looks like a previous replication recovery did not complete - skipping peer sync."
 argument_list|)
 expr_stmt|;
 name|firstTime
@@ -2022,9 +1994,7 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Error trying to get ulog starting operation. core="
-operator|+
-name|coreName
+literal|"Error trying to get ulog starting operation."
 argument_list|,
 name|e
 argument_list|)
@@ -2178,18 +2148,14 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"We have not yet recovered - but we are now the leader! core="
-operator|+
-name|coreName
+literal|"We have not yet recovered - but we are now the leader!"
 argument_list|)
 expr_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Finished recovery process. core="
-operator|+
-name|coreName
+literal|"Finished recovery process."
 argument_list|)
 expr_stmt|;
 name|zkController
@@ -2371,10 +2337,6 @@ literal|"Attempting to PeerSync from "
 operator|+
 name|leaderUrl
 operator|+
-literal|" core="
-operator|+
-name|coreName
-operator|+
 literal|" - recoveringAfterStartup="
 operator|+
 name|recoveringAfterStartup
@@ -2461,9 +2423,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"PeerSync Recovery was successful - registering as Active. core="
-operator|+
-name|coreName
+literal|"PeerSync Recovery was successful - registering as Active."
 argument_list|)
 expr_stmt|;
 comment|// solrcloud_debug
@@ -2592,9 +2552,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"PeerSync Recovery was not successful - trying replication. core="
-operator|+
-name|coreName
+literal|"PeerSync Recovery was not successful - trying replication."
 argument_list|)
 expr_stmt|;
 block|}
@@ -2617,18 +2575,14 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Starting Replication Recovery. core="
-operator|+
-name|coreName
+literal|"Starting Replication Recovery."
 argument_list|)
 expr_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Begin buffering updates. core="
-operator|+
-name|coreName
+literal|"Begin buffering updates."
 argument_list|)
 expr_stmt|;
 name|ulog
@@ -2697,9 +2651,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Replication Recovery was successful - registering as Active. core="
-operator|+
-name|coreName
+literal|"Replication Recovery was successful - registering as Active."
 argument_list|)
 expr_stmt|;
 comment|// if there are pending recovery requests, don't advert as active
@@ -2828,9 +2780,7 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Error while trying to recover. core="
-operator|+
-name|coreName
+literal|"Error while trying to recover."
 argument_list|,
 name|e
 argument_list|)
@@ -2863,9 +2813,7 @@ literal|"Recovery failed - trying again... ("
 operator|+
 name|retries
 operator|+
-literal|") core="
-operator|+
-name|coreName
+literal|")"
 argument_list|)
 expr_stmt|;
 name|retries
@@ -2888,9 +2836,7 @@ literal|"Recovery failed - max retries exceeded ("
 operator|+
 name|retries
 operator|+
-literal|"). core="
-operator|+
-name|coreName
+literal|")."
 argument_list|)
 expr_stmt|;
 try|try
@@ -2945,9 +2891,7 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"core="
-operator|+
-name|coreName
+literal|""
 argument_list|,
 name|e
 argument_list|)
@@ -3035,9 +2979,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Recovery was interrupted. core="
-operator|+
-name|coreName
+literal|"Recovery was interrupted."
 argument_list|,
 name|e
 argument_list|)
@@ -3053,9 +2995,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Finished recovery process. core="
-operator|+
-name|coreName
+literal|"Finished recovery process."
 argument_list|)
 expr_stmt|;
 block|}
@@ -3104,9 +3044,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"No replay needed. core="
-operator|+
-name|coreName
+literal|"No replay needed."
 argument_list|)
 expr_stmt|;
 block|}
@@ -3116,9 +3054,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Replaying buffered documents. core="
-operator|+
-name|coreName
+literal|"Replaying buffered documents."
 argument_list|)
 expr_stmt|;
 comment|// wait for replay

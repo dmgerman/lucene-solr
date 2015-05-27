@@ -190,6 +190,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|logging
+operator|.
+name|MDCLoggingContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|RefCounted
@@ -1313,6 +1327,15 @@ name|CoreDescriptor
 name|cd
 parameter_list|)
 block|{
+name|MDCLoggingContext
+operator|.
+name|setCoreDescriptor
+argument_list|(
+name|cd
+argument_list|)
+expr_stmt|;
+try|try
+block|{
 if|if
 condition|(
 name|SKIP_AUTO_RECOVERY
@@ -1340,7 +1363,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Skipping recovery because Solr is close"
+literal|"Skipping recovery because Solr is shutdown"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1363,7 +1386,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Skipping recovery because Solr is close"
+literal|"Skipping recovery because Solr is shutdown"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1398,7 +1421,7 @@ parameter_list|(
 name|InterruptedException
 name|e
 parameter_list|)
-block|{          }
+block|{                      }
 comment|// check again for those that were waiting
 if|if
 condition|(
@@ -1412,7 +1435,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Skipping recovery because Solr is close"
+literal|"Skipping recovery because Solr is shutdown"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -1423,7 +1446,8 @@ name|closed
 condition|)
 return|return;
 block|}
-comment|// if true, we are recovering after startup and shouldn't have (or be receiving) additional updates (except for local tlog recovery)
+comment|// if true, we are recovering after startup and shouldn't have (or be receiving) additional updates (except for
+comment|// local tlog recovery)
 name|boolean
 name|recoveringAfterStartup
 init|=
@@ -1468,6 +1492,15 @@ expr_stmt|;
 name|recoveryRunning
 operator|=
 literal|true
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|MDCLoggingContext
+operator|.
+name|clear
+argument_list|()
 expr_stmt|;
 block|}
 block|}

@@ -390,6 +390,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|logging
+operator|.
+name|MDCLoggingContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|LocalSolrQueryRequest
@@ -624,6 +638,11 @@ specifier|private
 specifier|final
 name|boolean
 name|onlyIfActive
+decl_stmt|;
+DECL|field|core
+specifier|private
+name|SolrCore
+name|core
 decl_stmt|;
 comment|// comparator that sorts by absolute value, putting highest first
 DECL|field|absComparator
@@ -957,6 +976,12 @@ parameter_list|)
 block|{
 name|this
 operator|.
+name|core
+operator|=
+name|core
+expr_stmt|;
+name|this
+operator|.
 name|replicas
 operator|=
 name|replicas
@@ -1193,6 +1218,15 @@ return|return
 literal|false
 return|;
 block|}
+name|MDCLoggingContext
+operator|.
+name|setCore
+argument_list|(
+name|core
+argument_list|)
+expr_stmt|;
+try|try
+block|{
 name|log
 operator|.
 name|info
@@ -1209,7 +1243,8 @@ operator|+
 name|nUpdates
 argument_list|)
 expr_stmt|;
-comment|// TODO: does it ever make sense to allow sync when buffering or applying buffered?  Someone might request that we do it...
+comment|// TODO: does it ever make sense to allow sync when buffering or applying buffered? Someone might request that we
+comment|// do it...
 if|if
 condition|(
 operator|!
@@ -1286,7 +1321,8 @@ expr_stmt|;
 block|}
 block|}
 comment|// Fire off the requests before getting our own recent updates (for better concurrency)
-comment|// This also allows us to avoid getting updates we don't need... if we got our updates and then got their updates, they would
+comment|// This also allows us to avoid getting updates we don't need... if we got our updates and then got their updates,
+comment|// they would
 comment|// have newer stuff that we also had (assuming updates are going on and are being forwarded).
 for|for
 control|(
@@ -1630,6 +1666,15 @@ expr_stmt|;
 return|return
 literal|true
 return|;
+block|}
+finally|finally
+block|{
+name|MDCLoggingContext
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|requestVersions
 specifier|private
