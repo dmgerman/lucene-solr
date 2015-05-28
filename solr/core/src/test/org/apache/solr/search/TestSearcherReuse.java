@@ -542,7 +542,11 @@ comment|// no doc has this id, yet
 name|assertU
 argument_list|(
 name|commit
-argument_list|()
+argument_list|(
+literal|"softCommit"
+argument_list|,
+literal|"true"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertSearcherHasNotChanged

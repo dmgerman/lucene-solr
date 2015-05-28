@@ -3187,6 +3187,9 @@ operator|=
 name|data
 expr_stmt|;
 block|}
+name|changed
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** Replaces all segments in this instance, but keeps    *  generation, version, counter so that future commits    *  remain write once.    */
 DECL|method|replace
