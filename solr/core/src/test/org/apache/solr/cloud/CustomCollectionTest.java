@@ -687,15 +687,6 @@ name|CustomCollectionTest
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
-DECL|field|DEFAULT_COLLECTION
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|DEFAULT_COLLECTION
-init|=
-literal|"collection1"
-decl_stmt|;
 DECL|field|DEBUG
 specifier|private
 specifier|static

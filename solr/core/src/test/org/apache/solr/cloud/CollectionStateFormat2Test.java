@@ -496,9 +496,11 @@ argument_list|(
 name|request
 argument_list|)
 expr_stmt|;
-name|checkForMissingCollection
+name|assertCollectionNotExists
 argument_list|(
 name|collectionName
+argument_list|,
+literal|45
 argument_list|)
 expr_stmt|;
 name|assertFalse
