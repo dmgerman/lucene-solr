@@ -1997,6 +1997,22 @@ name|thisWatch
 argument_list|)
 expr_stmt|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Updated cluster state version to "
+operator|+
+name|ZkStateReader
+operator|.
+name|this
+operator|.
+name|clusterState
+operator|.
+name|getZkClusterStateVersion
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
