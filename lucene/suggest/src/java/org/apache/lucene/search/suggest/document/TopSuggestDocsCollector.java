@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link org.apache.lucene.search.Collector} that collects completion and  * score, along with document id  *<p>  * Non scoring collector that collect completions in order of their  * pre-defined weight.  *<p>  * NOTE: One document can be collected multiple times if a document  * is matched for multiple unique completions for a given query  *<p>  * Subclasses should only override {@link TopSuggestDocsCollector#collect(int, CharSequence, long)},  * {@link #setScorer(org.apache.lucene.search.Scorer)} is not  * used  *  * @lucene.experimental  */
+comment|/**  * {@link org.apache.lucene.search.Collector} that collects completion and  * score, along with document id  *<p>  * Non scoring collector that collect completions in order of their  * pre-computed scores.  *<p>  * NOTE: One document can be collected multiple times if a document  * is matched for multiple unique completions for a given query  *<p>  * Subclasses should only override  * {@link TopSuggestDocsCollector#collect(int, CharSequence, CharSequence, float)}.  *<p>  * NOTE: {@link #setScorer(org.apache.lucene.search.Scorer)} and  * {@link #collect(int)} is not used  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -109,6 +109,12 @@ specifier|private
 specifier|final
 name|SuggestScoreDocPriorityQueue
 name|priorityQueue
+decl_stmt|;
+DECL|field|num
+specifier|private
+specifier|final
+name|int
+name|num
 decl_stmt|;
 comment|/**    * Document base offset for the current Leaf    */
 DECL|field|docBase
@@ -142,6 +148,12 @@ throw|;
 block|}
 name|this
 operator|.
+name|num
+operator|=
+name|num
+expr_stmt|;
+name|this
+operator|.
 name|priorityQueue
 operator|=
 operator|new
@@ -150,6 +162,17 @@ argument_list|(
 name|num
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Returns the number of results to be collected    */
+DECL|method|getCountToCollect
+specifier|public
+name|int
+name|getCountToCollect
+parameter_list|()
+block|{
+return|return
+name|num
+return|;
 block|}
 annotation|@
 name|Override
@@ -183,7 +206,10 @@ parameter_list|,
 name|CharSequence
 name|key
 parameter_list|,
-name|long
+name|CharSequence
+name|context
+parameter_list|,
+name|float
 name|score
 parameter_list|)
 throws|throws
@@ -200,6 +226,8 @@ operator|+
 name|docID
 argument_list|,
 name|key
+argument_list|,
+name|context
 argument_list|,
 name|score
 argument_list|)
@@ -296,7 +324,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// {@link #collect(int, CharSequence, long)} is used
+comment|// {@link #collect(int, CharSequence, CharSequence, long)} is used
 comment|// instead
 block|}
 comment|/**    * Ignored    */
@@ -309,7 +337,7 @@ name|needsScores
 parameter_list|()
 block|{
 return|return
-literal|false
+literal|true
 return|;
 block|}
 block|}

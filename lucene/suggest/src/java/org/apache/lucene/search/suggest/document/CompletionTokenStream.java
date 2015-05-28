@@ -36,7 +36,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashSet
+name|BitSet
 import|;
 end_import
 
@@ -391,11 +391,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Token stream which converts a provided token stream to an automaton.  * The accepted strings enumeration from the automaton are available through the  * {@link org.apache.lucene.analysis.tokenattributes.TermToBytesRefAttribute} attribute  * The token stream uses a {@link org.apache.lucene.analysis.tokenattributes.PayloadAttribute} to store  * a completion's payload (see {@link CompletionTokenStream#setPayload(org.apache.lucene.util.BytesRef)})  *  */
+comment|/**  * Token stream which converts a provided token stream to an automaton.  * The accepted strings enumeration from the automaton are available through the  * {@link org.apache.lucene.analysis.tokenattributes.TermToBytesRefAttribute} attribute  * The token stream uses a {@link org.apache.lucene.analysis.tokenattributes.PayloadAttribute} to store  * a completion's payload (see {@link CompletionTokenStream#setPayload(org.apache.lucene.util.BytesRef)})  *  * @lucene.experimental  */
 end_comment
 
 begin_class
 DECL|class|CompletionTokenStream
+specifier|public
 specifier|final
 class|class
 name|CompletionTokenStream
@@ -448,25 +449,16 @@ name|TokenStream
 name|input
 decl_stmt|;
 DECL|field|preserveSep
-specifier|private
 specifier|final
 name|boolean
 name|preserveSep
 decl_stmt|;
 DECL|field|preservePositionIncrements
-specifier|private
 specifier|final
 name|boolean
 name|preservePositionIncrements
 decl_stmt|;
-DECL|field|sepLabel
-specifier|private
-specifier|final
-name|int
-name|sepLabel
-decl_stmt|;
 DECL|field|maxGraphExpansions
-specifier|private
 specifier|final
 name|int
 name|maxGraphExpansions
@@ -499,7 +491,6 @@ name|charTermAttribute
 decl_stmt|;
 comment|/**    * Creates a token stream to convert<code>input</code> to a token stream    * of accepted strings by its automaton.    *<p>    * The token stream<code>input</code> is converted to an automaton    * with the default settings of {@link org.apache.lucene.search.suggest.document.CompletionAnalyzer}    */
 DECL|method|CompletionTokenStream
-specifier|public
 name|CompletionTokenStream
 parameter_list|(
 name|TokenStream
@@ -513,8 +504,6 @@ argument_list|,
 name|DEFAULT_PRESERVE_SEP
 argument_list|,
 name|DEFAULT_PRESERVE_POSITION_INCREMENTS
-argument_list|,
-name|SEP_LABEL
 argument_list|,
 name|DEFAULT_MAX_GRAPH_EXPANSIONS
 argument_list|)
@@ -531,9 +520,6 @@ name|preserveSep
 parameter_list|,
 name|boolean
 name|preservePositionIncrements
-parameter_list|,
-name|int
-name|sepLabel
 parameter_list|,
 name|int
 name|maxGraphExpansions
@@ -561,27 +547,10 @@ name|preservePositionIncrements
 expr_stmt|;
 name|this
 operator|.
-name|sepLabel
-operator|=
-name|sepLabel
-expr_stmt|;
-name|this
-operator|.
 name|maxGraphExpansions
 operator|=
 name|maxGraphExpansions
 expr_stmt|;
-block|}
-comment|/**    * Returns a separator label that is reserved for the payload    * in {@link CompletionTokenStream#setPayload(org.apache.lucene.util.BytesRef)}    */
-DECL|method|sepLabel
-specifier|public
-name|int
-name|sepLabel
-parameter_list|()
-block|{
-return|return
-name|sepLabel
-return|;
 block|}
 comment|/**    * Sets a payload available throughout successive token stream enumeration    */
 DECL|method|setPayload
@@ -625,9 +594,7 @@ name|Automaton
 name|automaton
 init|=
 name|toAutomaton
-argument_list|(
-name|input
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|Set
 argument_list|<
@@ -846,14 +813,30 @@ operator|-
 literal|1
 expr_stmt|;
 block|}
-comment|/**    * Converts<code>tokenStream</code> to an automaton    */
+comment|/**    * Converts the token stream to an automaton,    * treating the transition labels as utf-8    */
+DECL|method|toAutomaton
+specifier|public
+name|Automaton
+name|toAutomaton
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|toAutomaton
+argument_list|(
+literal|false
+argument_list|)
+return|;
+block|}
+comment|/**    * Converts the tokenStream to an automaton    */
 DECL|method|toAutomaton
 specifier|public
 name|Automaton
 name|toAutomaton
 parameter_list|(
-name|TokenStream
-name|tokenStream
+name|boolean
+name|unicodeAware
 parameter_list|)
 throws|throws
 name|IOException
@@ -909,13 +892,20 @@ argument_list|(
 name|preservePositionIncrements
 argument_list|)
 expr_stmt|;
+name|tsta
+operator|.
+name|setUnicodeArcs
+argument_list|(
+name|unicodeAware
+argument_list|)
+expr_stmt|;
 name|automaton
 operator|=
 name|tsta
 operator|.
 name|toAutomaton
 argument_list|(
-name|tokenStream
+name|input
 argument_list|)
 expr_stmt|;
 block|}
@@ -925,7 +915,7 @@ name|IOUtils
 operator|.
 name|closeWhileHandlingException
 argument_list|(
-name|tokenStream
+name|input
 argument_list|)
 expr_stmt|;
 block|}
@@ -1413,29 +1403,32 @@ name|a
 parameter_list|)
 block|{
 name|int
+name|numStates
+init|=
+name|a
+operator|.
+name|getNumStates
+argument_list|()
+decl_stmt|;
+name|int
 index|[]
 name|states
 init|=
 operator|new
 name|int
 index|[
-name|a
-operator|.
-name|getNumStates
-argument_list|()
+name|numStates
 index|]
 decl_stmt|;
 specifier|final
-name|Set
-argument_list|<
-name|Integer
-argument_list|>
+name|BitSet
 name|visited
 init|=
 operator|new
-name|HashSet
-argument_list|<>
-argument_list|()
+name|BitSet
+argument_list|(
+name|numStates
+argument_list|)
 decl_stmt|;
 specifier|final
 name|LinkedList
@@ -1458,7 +1451,7 @@ argument_list|)
 expr_stmt|;
 name|visited
 operator|.
-name|add
+name|set
 argument_list|(
 literal|0
 argument_list|)
@@ -1542,7 +1535,7 @@ condition|(
 operator|!
 name|visited
 operator|.
-name|contains
+name|get
 argument_list|(
 name|t
 operator|.
@@ -1552,7 +1545,7 @@ condition|)
 block|{
 name|visited
 operator|.
-name|add
+name|set
 argument_list|(
 name|t
 operator|.
@@ -1585,28 +1578,29 @@ return|return
 name|states
 return|;
 block|}
+comment|/**    * Attribute providing access to the term builder and UTF-16 conversion    */
 DECL|interface|ByteTermAttribute
-specifier|public
+specifier|private
 interface|interface
 name|ByteTermAttribute
 extends|extends
 name|TermToBytesRefAttribute
 block|{
 comment|// marker interface
-comment|/**      * Return the builder from which the term is derived.      */
+comment|/**      * Returns the builder from which the term is derived.      */
 DECL|method|builder
-specifier|public
 name|BytesRefBuilder
 name|builder
 parameter_list|()
 function_decl|;
+comment|/**      * Returns the term represented as UTF-16      */
 DECL|method|toUTF16
-specifier|public
 name|CharSequence
 name|toUTF16
 parameter_list|()
 function_decl|;
 block|}
+comment|/**    * Custom attribute implementation for completion token stream    */
 DECL|class|ByteTermAttributeImpl
 specifier|public
 specifier|static
@@ -1635,6 +1629,12 @@ specifier|private
 name|CharsRefBuilder
 name|charsRef
 decl_stmt|;
+comment|/**      * Sole constructor      * no-op      */
+DECL|method|ByteTermAttributeImpl
+specifier|public
+name|ByteTermAttributeImpl
+parameter_list|()
+block|{     }
 annotation|@
 name|Override
 DECL|method|fillBytesRef

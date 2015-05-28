@@ -115,8 +115,16 @@ block|{
 comment|/**      * Matched completion key      */
 DECL|field|key
 specifier|public
+specifier|final
 name|CharSequence
 name|key
+decl_stmt|;
+comment|/**      * Context for the completion      */
+DECL|field|context
+specifier|public
+specifier|final
+name|CharSequence
+name|context
 decl_stmt|;
 comment|/**      * Creates a SuggestScoreDoc instance      *      * @param doc   document id (hit)      * @param key   matched completion      * @param score weight of the matched completion      */
 DECL|method|SuggestScoreDoc
@@ -129,12 +137,13 @@ parameter_list|,
 name|CharSequence
 name|key
 parameter_list|,
-name|long
+name|CharSequence
+name|context
+parameter_list|,
+name|float
 name|score
 parameter_list|)
 block|{
-comment|// loss of precision but not magnitude
-comment|// implicit conversion from long -> float
 name|super
 argument_list|(
 name|doc
@@ -147,6 +156,12 @@ operator|.
 name|key
 operator|=
 name|key
+expr_stmt|;
+name|this
+operator|.
+name|context
+operator|=
+name|context
 expr_stmt|;
 block|}
 annotation|@

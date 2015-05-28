@@ -234,7 +234,7 @@ literal|'\u001F'
 decl_stmt|;
 comment|/**    * Marks end of the analyzed input and start of dedup    * byte.    */
 DECL|field|END_BYTE
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|int
