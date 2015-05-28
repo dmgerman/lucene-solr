@@ -390,25 +390,9 @@ operator|=
 literal|"schema15.xml"
 expr_stmt|;
 comment|// we need a string id
-block|}
-annotation|@
-name|Override
-DECL|method|distribSetUp
-specifier|public
-name|void
-name|distribSetUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
 name|sliceCount
 operator|=
 literal|2
-expr_stmt|;
-name|super
-operator|.
-name|distribSetUp
-argument_list|()
 expr_stmt|;
 block|}
 annotation|@

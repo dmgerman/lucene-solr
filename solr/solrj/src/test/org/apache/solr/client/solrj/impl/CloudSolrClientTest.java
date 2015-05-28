@@ -792,6 +792,9 @@ name|void
 name|beforeSuperClass
 parameter_list|()
 block|{
+comment|// this is necessary because AbstractZkTestCase.buildZooKeeper is used by AbstractDistribZkTestBase
+comment|// and the auto-detected SOLRHOME=TEST_HOME() does not exist for solrj tests
+comment|// todo fix this
 name|AbstractZkTestCase
 operator|.
 name|SOLRHOME
@@ -804,15 +807,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|AfterClass
-DECL|method|afterSuperClass
-specifier|public
-specifier|static
-name|void
-name|afterSuperClass
-parameter_list|()
-block|{        }
 DECL|method|getCloudSolrConfig
 specifier|protected
 name|String
@@ -845,38 +839,6 @@ block|{
 return|return
 name|SOLR_HOME
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|distribSetUp
-specifier|public
-name|void
-name|distribSetUp
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|super
-operator|.
-name|distribSetUp
-argument_list|()
-expr_stmt|;
-comment|// we expect this time of exception as shards go up and down...
-comment|//ignoreException(".*");
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"numShards"
-argument_list|,
-name|Integer
-operator|.
-name|toString
-argument_list|(
-name|sliceCount
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|CloudSolrClientTest
 specifier|public
