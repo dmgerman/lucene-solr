@@ -164,6 +164,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|LockObtainFailedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|LockReleaseFailedException
 import|;
 end_import
@@ -329,6 +343,11 @@ specifier|final
 name|Configuration
 name|conf
 decl_stmt|;
+DECL|field|obtained
+specifier|private
+name|boolean
+name|obtained
+decl_stmt|;
 DECL|method|HdfsLock
 specifier|public
 name|HdfsLock
@@ -372,6 +391,20 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|obtained
+condition|)
+block|{
+comment|// Our instance is already locked:
+throw|throw
+operator|new
+name|LockObtainFailedException
+argument_list|(
+literal|"this lock instance was already obtained"
+argument_list|)
+throw|;
+block|}
 name|FSDataOutputStream
 name|file
 init|=
@@ -476,6 +509,8 @@ name|e
 parameter_list|)
 block|{
 return|return
+name|obtained
+operator|=
 literal|false
 return|;
 block|}
@@ -539,6 +574,8 @@ name|e
 argument_list|)
 expr_stmt|;
 return|return
+name|obtained
+operator|=
 literal|false
 return|;
 block|}
@@ -558,6 +595,8 @@ name|e
 argument_list|)
 expr_stmt|;
 return|return
+name|obtained
+operator|=
 literal|false
 return|;
 block|}
@@ -584,6 +623,8 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
+name|obtained
+operator|=
 literal|true
 return|;
 block|}
@@ -596,6 +637,11 @@ name|close
 parameter_list|()
 throws|throws
 name|IOException
+block|{
+if|if
+condition|(
+name|obtained
+condition|)
 block|{
 name|FileSystem
 name|fs
@@ -663,6 +709,10 @@ throw|;
 block|}
 finally|finally
 block|{
+name|obtained
+operator|=
+literal|false
+expr_stmt|;
 name|IOUtils
 operator|.
 name|closeQuietly
@@ -670,6 +720,7 @@ argument_list|(
 name|fs
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 annotation|@
