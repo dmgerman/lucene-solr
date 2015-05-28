@@ -337,11 +337,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|Ignore
-argument_list|(
-literal|"SOLR-6347,SOLR-6593"
-argument_list|)
 DECL|class|DeleteLastCustomShardedReplicaTest
 specifier|public
 class|class
