@@ -1747,6 +1747,15 @@ expr_stmt|;
 name|resetExceptionIgnores
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|suiteFailureMarker
+operator|.
+name|wasSuccessful
+argument_list|()
+condition|)
+block|{
+comment|// if the tests passed, make sure everything was closed / released
 name|endTrackingSearchers
 argument_list|()
 expr_stmt|;
@@ -1801,6 +1810,7 @@ argument_list|(
 literal|"Some resources were not closed, shutdown, or released. This has been ignored due to the SuppressObjectReleaseTracker annotation."
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|resetFactory

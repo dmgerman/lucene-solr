@@ -2413,7 +2413,7 @@ name|classEnvRule
 decl_stmt|;
 comment|/**    * Suite failure marker (any error in the test or suite scope).    */
 DECL|field|suiteFailureMarker
-specifier|private
+specifier|protected
 specifier|static
 name|TestRuleMarkFailure
 name|suiteFailureMarker
