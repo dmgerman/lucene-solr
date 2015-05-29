@@ -179,6 +179,8 @@ return|return
 operator|new
 name|AssertingSpanWeight
 argument_list|(
+name|searcher
+argument_list|,
 name|weight
 argument_list|)
 return|;
