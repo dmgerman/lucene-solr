@@ -310,7 +310,7 @@ name|atan2
 argument_list|(
 name|y
 argument_list|,
-name|z
+name|x
 argument_list|)
 return|;
 block|}
