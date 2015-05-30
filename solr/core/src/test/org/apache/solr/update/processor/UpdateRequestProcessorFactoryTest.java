@@ -154,7 +154,7 @@ name|SAVED_LEVEL
 init|=
 literal|null
 decl_stmt|;
-comment|// SOLR-7603
+comment|// SOLR-7603 - remove
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -166,7 +166,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// SOLR-7603
+comment|// SOLR-7603 - remove
 name|SAVED_LEVEL
 operator|=
 name|org
@@ -226,7 +226,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// SOLR-7603
+comment|// SOLR-7603 - remove
 name|org
 operator|.
 name|apache
@@ -412,6 +412,26 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// a key part of this test is verifying that LogUpdateProcessor is found in all chains because it
+comment|// is a @RunAllways processor -- but in order for that to work, we have to sanity check that the log
+comment|// level is at least "INFO" otherwise the factory won't even produce a processor and all our assertions
+comment|// are for nought.  (see LogUpdateProcessorFactory.getInstance)
+comment|//
+comment|// TODO: maybe create a new mock Processor w/ @RunAlways annot if folks feel requiring INFO is evil.
+name|assertTrue
+argument_list|(
+literal|"Tests must be run with INFO level logging "
+operator|+
+literal|"otherwise LogUpdateProcessor isn't used and can't be tested."
+argument_list|,
+name|LogUpdateProcessor
+operator|.
+name|log
+operator|.
+name|isInfoEnabled
+argument_list|()
+argument_list|)
+expr_stmt|;
 specifier|final
 name|int
 name|EXPECTED_CHAIN_LENGTH
