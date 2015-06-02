@@ -356,13 +356,6 @@ specifier|final
 name|int
 name|payloadSep
 decl_stmt|;
-comment|/**    * Label used to denote the end of an input in the FST and    * the beginning of dedup bytes    */
-DECL|field|endByte
-specifier|private
-specifier|final
-name|int
-name|endByte
-decl_stmt|;
 comment|/**    * Maximum queue depth for TopNSearcher    *    * NOTE: value should be<= Integer.MAX_VALUE    */
 DECL|field|MAX_TOP_N_QUEUE_SIZE
 specifier|private
@@ -393,9 +386,6 @@ name|maxAnalyzedPathsPerOutput
 parameter_list|,
 name|int
 name|payloadSep
-parameter_list|,
-name|int
-name|endByte
 parameter_list|)
 block|{
 name|this
@@ -415,12 +405,6 @@ operator|.
 name|payloadSep
 operator|=
 name|payloadSep
-expr_stmt|;
-name|this
-operator|.
-name|endByte
-operator|=
-name|endByte
 expr_stmt|;
 block|}
 annotation|@
@@ -830,24 +814,11 @@ expr_stmt|;
 block|}
 comment|// hits are also returned by search()
 comment|// we do not use it, instead collect at acceptResult
-name|Util
-operator|.
-name|TopResults
-argument_list|<
-name|Pair
-argument_list|<
-name|Long
-argument_list|,
-name|BytesRef
-argument_list|>
-argument_list|>
-name|search
-init|=
 name|searcher
 operator|.
 name|search
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 comment|// search admissibility is not guaranteed
 comment|// see comment on getMaxTopNSearcherQueueSize
 comment|// assert  search.isComplete;
@@ -1232,6 +1203,7 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
+comment|/*      * Label used to denote the end of an input in the FST and      * the beginning of dedup bytes      */
 name|int
 name|endByte
 init|=
@@ -1257,8 +1229,6 @@ argument_list|,
 name|maxAnalyzedPathsPerOutput
 argument_list|,
 name|payloadSep
-argument_list|,
-name|endByte
 argument_list|)
 return|;
 block|}

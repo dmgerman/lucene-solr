@@ -272,11 +272,6 @@ return|return
 operator|new
 name|CompletionWeight
 argument_list|(
-name|searcher
-operator|.
-name|getIndexReader
-argument_list|()
-argument_list|,
 name|this
 argument_list|,
 operator|new
