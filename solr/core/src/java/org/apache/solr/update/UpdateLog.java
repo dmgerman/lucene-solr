@@ -7407,6 +7407,16 @@ block|}
 block|}
 block|}
 block|}
+DECL|method|getCurrentMaxVersion
+specifier|public
+name|Long
+name|getCurrentMaxVersion
+parameter_list|()
+block|{
+return|return
+name|maxVersionFromIndex
+return|;
+block|}
 comment|// this method is primarily used for unit testing and is not part of the public API for this class
 DECL|method|getMaxVersionFromIndex
 name|Long
@@ -7661,10 +7671,10 @@ return|return
 name|highestVersion
 return|;
 block|}
-DECL|method|onFirstSearcher
+DECL|method|seedBucketsWithHighestVersion
 specifier|public
 name|void
-name|onFirstSearcher
+name|seedBucketsWithHighestVersion
 parameter_list|(
 name|SolrIndexSearcher
 name|newSearcher
@@ -7674,7 +7684,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"On first searcher opened, looking up max value of version field"
+literal|"Looking up max value of version field to seed version buckets"
 argument_list|)
 expr_stmt|;
 name|versionInfo

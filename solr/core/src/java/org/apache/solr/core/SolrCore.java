@@ -5055,7 +5055,7 @@ expr_stmt|;
 block|}
 block|}
 comment|// seed version buckets with max from index during core initialization ... requires a searcher!
-name|seedVersionBucketsWithMaxFromIndex
+name|seedVersionBuckets
 argument_list|()
 expr_stmt|;
 name|bufferUpdatesIfConstructing
@@ -5078,10 +5078,10 @@ name|registerConfListener
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|seedVersionBucketsWithMaxFromIndex
-specifier|private
+DECL|method|seedVersionBuckets
+specifier|public
 name|void
-name|seedVersionBucketsWithMaxFromIndex
+name|seedVersionBuckets
 parameter_list|()
 block|{
 name|UpdateHandler
@@ -5127,7 +5127,7 @@ operator|.
 name|getUpdateLog
 argument_list|()
 operator|.
-name|onFirstSearcher
+name|seedBucketsWithHighestVersion
 argument_list|(
 name|newestSearcher
 operator|.

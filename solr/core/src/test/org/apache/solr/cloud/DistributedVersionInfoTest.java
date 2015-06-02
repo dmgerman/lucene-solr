@@ -1465,14 +1465,14 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"\n\n\n Total of "
+literal|"Total of "
 operator|+
 name|deletedDocs
 operator|.
 name|size
 argument_list|()
 operator|+
-literal|" docs deleted \n\n\n"
+literal|" docs deleted"
 argument_list|)
 expr_stmt|;
 name|maxOnLeader
