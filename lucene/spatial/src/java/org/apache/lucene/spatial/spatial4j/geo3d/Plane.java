@@ -130,14 +130,18 @@ operator|=
 literal|0.0
 expr_stmt|;
 block|}
-comment|/**    * Construct a horizontal plane at a specified Z.    *    * @param height is the specified Z coordinate.    */
+comment|/**    * Construct a horizontal plane at a specified Z.    *    * @param planetModel is the planet model.    * @param sinLat is the sin(latitude).    */
 DECL|method|Plane
 specifier|public
 name|Plane
 parameter_list|(
 specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
+specifier|final
 name|double
-name|height
+name|sinLat
 parameter_list|)
 block|{
 name|super
@@ -152,7 +156,14 @@ expr_stmt|;
 name|D
 operator|=
 operator|-
-name|height
+name|sinLat
+operator|*
+name|computeDesiredEllipsoidMagnitude
+argument_list|(
+name|planetModel
+argument_list|,
+name|sinLat
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Construct a vertical plane through a specified    * x, y and origin.    *    * @param x is the specified x value.    * @param y is the specified y value.    */
@@ -219,6 +230,78 @@ name|D
 operator|=
 name|D
 expr_stmt|;
+block|}
+comment|/** Construct a normalized, vertical plane through an x-y point.  If the x-y point is at (0,0), return null.   */
+DECL|method|constructNormalizedVerticalPlane
+specifier|public
+specifier|static
+name|Plane
+name|constructNormalizedVerticalPlane
+parameter_list|(
+specifier|final
+name|double
+name|x
+parameter_list|,
+specifier|final
+name|double
+name|y
+parameter_list|)
+block|{
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|x
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+operator|&&
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|y
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+condition|)
+return|return
+literal|null
+return|;
+specifier|final
+name|double
+name|denom
+init|=
+literal|1.0
+operator|/
+name|Math
+operator|.
+name|sqrt
+argument_list|(
+name|x
+operator|*
+name|x
+operator|+
+name|y
+operator|*
+name|y
+argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|Plane
+argument_list|(
+name|x
+operator|*
+name|denom
+argument_list|,
+name|y
+operator|*
+name|denom
+argument_list|)
+return|;
 block|}
 comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *    * @param v is the vector.    * @return the result of the evaluation.    */
 DECL|method|evaluate
@@ -1120,13 +1203,63 @@ name|z
 argument_list|)
 return|;
 block|}
-comment|/**    * Find the intersection points between two planes, given a set of bounds.    *    * @param q          is the plane to intersect with.    * @param bounds     is the set of bounds.    * @param moreBounds is another set of bounds.    * @return the intersection point(s) on the unit sphere, if there are any.    */
+comment|/**    * Public version of findIntersections.    */
+DECL|method|findIntersections
+specifier|public
+name|GeoPoint
+index|[]
+name|findIntersections
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
+specifier|final
+name|Plane
+name|q
+parameter_list|,
+specifier|final
+name|Membership
+modifier|...
+name|bounds
+parameter_list|)
+block|{
+if|if
+condition|(
+name|isNumericallyIdentical
+argument_list|(
+name|q
+argument_list|)
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+return|return
+name|findIntersections
+argument_list|(
+name|planetModel
+argument_list|,
+name|q
+argument_list|,
+name|bounds
+argument_list|,
+name|NO_BOUNDS
+argument_list|)
+return|;
+block|}
+comment|/**    * Find the intersection points between two planes, given a set of bounds.    *    * @param planetModel is the planet model to use in finding points.    * @param q          is the plane to intersect with.    * @param bounds     is the set of bounds.    * @param moreBounds is another set of bounds.    * @return the intersection point(s) on the unit sphere, if there are any.    */
 DECL|method|findIntersections
 specifier|protected
 name|GeoPoint
 index|[]
 name|findIntersections
 parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
 specifier|final
 name|Plane
 name|q
@@ -1142,6 +1275,7 @@ index|[]
 name|moreBounds
 parameter_list|)
 block|{
+comment|//System.err.println("Looking for intersection between plane "+this+" and plane "+q+" within bounds");
 specifier|final
 name|Vector
 name|lineVector
@@ -1584,12 +1718,12 @@ operator|=
 literal|0.0
 expr_stmt|;
 block|}
-comment|// Once an intersecting line is determined, the next step is to intersect that line with the unit sphere, which
+comment|// Once an intersecting line is determined, the next step is to intersect that line with the ellipsoid, which
 comment|// will yield zero, one, or two points.
-comment|// The equation of the sphere is: 1.0 = x^2 + y^2 + z^2.  Plugging in the parameterized line values yields:
-comment|// 1.0 = (At+A0)^2 + (Bt+B0)^2 + (Ct+C0)^2
-comment|// A^2 t^2 + 2AA0t + A0^2 + B^2 t^2 + 2BB0t + B0^2 + C^2 t^2 + 2CC0t + C0^2 - 1,0 = 0.0
-comment|// [A^2 + B^2 + C^2] t^2 + [2AA0 + 2BB0 + 2CC0] t + [A0^2 + B0^2 + C0^2 - 1,0] = 0.0
+comment|// The ellipsoid equation: 1,0 = x^2/a^2 + y^2/b^2 + z^2/c^2
+comment|// 1.0 = (At+A0)^2/a^2 + (Bt+B0)^2/b^2 + (Ct+C0)^2/c^2
+comment|// A^2 t^2 / a^2 + 2AA0t / a^2 + A0^2 / a^2 + B^2 t^2 / b^2 + 2BB0t / b^2 + B0^2 / b^2 + C^2 t^2 / c^2 + 2CC0t / c^2 + C0^2 / c^2  - 1,0 = 0.0
+comment|// [A^2 / a^2 + B^2 / b^2 + C^2 / c^2] t^2 + [2AA0 / a^2 + 2BB0 / b^2 + 2CC0 / c^2] t + [A0^2 / a^2 + B0^2 / b^2 + C0^2 / c^2 - 1,0] = 0.0
 comment|// Use the quadratic formula to determine t values and candidate point(s)
 specifier|final
 name|double
@@ -1602,6 +1736,10 @@ operator|*
 name|lineVector
 operator|.
 name|x
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 operator|+
 name|lineVector
 operator|.
@@ -1610,6 +1748,10 @@ operator|*
 name|lineVector
 operator|.
 name|y
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 operator|+
 name|lineVector
 operator|.
@@ -1618,6 +1760,10 @@ operator|*
 name|lineVector
 operator|.
 name|z
+operator|*
+name|planetModel
+operator|.
+name|inverseCSquared
 decl_stmt|;
 specifier|final
 name|double
@@ -1631,18 +1777,30 @@ operator|.
 name|x
 operator|*
 name|x0
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 operator|+
 name|lineVector
 operator|.
 name|y
 operator|*
 name|y0
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 operator|+
 name|lineVector
 operator|.
 name|z
 operator|*
 name|z0
+operator|*
+name|planetModel
+operator|.
+name|inverseCSquared
 operator|)
 decl_stmt|;
 specifier|final
@@ -1652,14 +1810,26 @@ init|=
 name|x0
 operator|*
 name|x0
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 operator|+
 name|y0
 operator|*
 name|y0
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 operator|+
 name|z0
 operator|*
 name|z0
+operator|*
+name|planetModel
+operator|.
+name|inverseCSquared
 operator|-
 literal|1.0
 decl_stmt|;
@@ -1743,6 +1913,8 @@ operator|+
 name|z0
 argument_list|)
 decl_stmt|;
+comment|//System.err.println("  point: "+point);
+comment|//verifyPoint(planetModel, point, q);
 if|if
 condition|(
 name|point
@@ -1887,6 +2059,8 @@ operator|+
 name|z0
 argument_list|)
 decl_stmt|;
+comment|//verifyPoint(planetModel, point1, q);
+comment|//verifyPoint(planetModel, point2, q);
 comment|//System.err.println("  "+point1+" and "+point2);
 if|if
 condition|(
@@ -1961,12 +2135,17 @@ name|NO_POINTS
 return|;
 block|}
 block|}
-comment|/**    * Accumulate bounds information for this plane, intersected with another plane    * and with the unit sphere.    * Updates both latitude and longitude information, using max/min points found    * within the specified bounds.    *    * @param q          is the plane to intersect with.    * @param boundsInfo is the info to update with additional bounding information.    * @param bounds     are the surfaces delineating what's inside the shape.    */
+comment|/*   protected void verifyPoint(final PlanetModel planetModel, final GeoPoint point, final Plane q) {     if (!evaluateIsZero(point))       throw new RuntimeException("Intersection point not on original plane; point="+point+", plane="+this);     if (!q.evaluateIsZero(point))       throw new RuntimeException("Intersection point not on intersected plane; point="+point+", plane="+q);     if (Math.abs(point.x * point.x * planetModel.inverseASquared + point.y * point.y * planetModel.inverseBSquared + point.z * point.z * planetModel.inverseCSquared - 1.0)>= MINIMUM_RESOLUTION)        throw new RuntimeException("Intersection point not on ellipsoid; point="+point);   }   */
+comment|/**    * Accumulate bounds information for this plane, intersected with another plane    * and with the unit sphere.    * Updates both latitude and longitude information, using max/min points found    * within the specified bounds.    *    * @param planetModel is the planet model to use to determine bounding points    * @param q          is the plane to intersect with.    * @param boundsInfo is the info to update with additional bounding information.    * @param bounds     are the surfaces delineating what's inside the shape.    */
 DECL|method|recordBounds
 specifier|public
 name|void
 name|recordBounds
 parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
 specifier|final
 name|Plane
 name|q
@@ -1988,6 +2167,8 @@ name|intersectionPoints
 init|=
 name|findIntersections
 argument_list|(
+name|planetModel
+argument_list|,
 name|q
 argument_list|,
 name|bounds
@@ -2012,12 +2193,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Accumulate bounds information for this plane, intersected with the unit sphere.    * Updates both latitude and longitude information, using max/min points found    * within the specified bounds.    *    * @param boundsInfo is the info to update with additional bounding information.    * @param bounds     are the surfaces delineating what's inside the shape.    */
+comment|/**    * Accumulate bounds information for this plane, intersected with the unit sphere.    * Updates both latitude and longitude information, using max/min points found    * within the specified bounds.    *    * @param planetModel is the planet model to use in determining bounds.    * @param boundsInfo is the info to update with additional bounding information.    * @param bounds     are the surfaces delineating what's inside the shape.    */
 DECL|method|recordBounds
 specifier|public
 name|void
 name|recordBounds
 parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
 specifier|final
 name|Bounds
 name|boundsInfo
@@ -2070,6 +2255,12 @@ argument_list|()
 condition|)
 block|{
 comment|//System.err.println("Looking at latitude for plane "+this);
+comment|// With ellipsoids, we really have only one viable way to do this computation.
+comment|// Specifically, we compute an appropriate vertical plane, based on the current plane's x-y orientation, and
+comment|// then intersect it with this one and with the ellipsoid.  This gives us zero, one, or two points to use
+comment|// as bounds.
+comment|// There is one special case: horizontal circles.  These require TWO vertical planes: one for the x, and one for
+comment|// the y, and we use all four resulting points in the bounds computation.
 if|if
 condition|(
 operator|(
@@ -2093,1088 +2284,142 @@ name|MINIMUM_RESOLUTION
 operator|)
 condition|)
 block|{
-comment|//System.out.println("A = "+A+" B = "+B+" C = "+C+" D = "+D);
-comment|// sin (phi) = z
-comment|// cos (theta - phi) = D
-comment|// sin (theta) = C  (the dot product of (0,0,1) and (A,B,C) )
-comment|// Q: what is z?
-comment|//
-comment|// cos (theta-phi) = cos(theta)cos(phi) + sin(theta)sin(phi) = D
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
+comment|// NOT a horizontal circle!
+comment|//System.err.println(" Not a horizontal circle");
+specifier|final
+name|Plane
+name|verticalPlane
+init|=
+name|constructNormalizedVerticalPlane
 argument_list|(
-name|C
+name|A
+argument_list|,
+name|B
 argument_list|)
-operator|<
-name|MINIMUM_RESOLUTION
-condition|)
-block|{
-comment|// Special case: circle is vertical.
-comment|//System.err.println(" Degenerate case; it's vertical circle");
-comment|// cos(phi) = D, and we want sin(phi) = z
-comment|// There are two solutions for phi given cos(phi) = D: a positive solution and a negative solution.
-comment|// So, when we compute z = sqrt(1-D^2), it's really z = +/- sqrt(1-D^2) .
-name|double
-name|z
-decl_stmt|;
-name|double
-name|x
-decl_stmt|;
-name|double
-name|y
 decl_stmt|;
 specifier|final
-name|double
-name|denom
+name|GeoPoint
+index|[]
+name|points
 init|=
-literal|1.0
-operator|/
-operator|(
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|)
+name|findIntersections
+argument_list|(
+name|planetModel
+argument_list|,
+name|verticalPlane
+argument_list|,
+name|NO_BOUNDS
+argument_list|,
+name|NO_BOUNDS
+argument_list|)
 decl_stmt|;
-name|z
-operator|=
-name|Math
+for|for
+control|(
+specifier|final
+name|GeoPoint
+name|point
+range|:
+name|points
+control|)
+block|{
+name|addPoint
+argument_list|(
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|point
 operator|.
-name|sqrt
-argument_list|(
-literal|1.0
-operator|-
-name|D
-operator|*
-name|D
-argument_list|)
-expr_stmt|;
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-name|D
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-name|D
-operator|*
-name|denom
-expr_stmt|;
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
 name|x
 argument_list|,
+name|point
+operator|.
 name|y
 argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
-name|z
-operator|=
-operator|-
-name|z
-expr_stmt|;
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
+name|point
+operator|.
 name|z
 argument_list|)
 expr_stmt|;
 block|}
-elseif|else
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|D
-argument_list|)
-operator|<
-name|MINIMUM_RESOLUTION
-condition|)
-block|{
-comment|//System.err.println(" Plane through origin case");
-comment|// The general case is degenerate when the plane goes through the origin.
-comment|// Luckily there's a pretty good way to figure out the max and min for that case though.
-comment|// We find the two z values by computing the angle of the plane's inclination with the normal.
-comment|// E.g., if this.z == 1, then our z value is 0, and if this.z == 0, our z value is 1.
-comment|// Also if this.z == -1, then z value is 0 again.
-comment|// Another way of putting this is that our z = sqrt(this.x^2 + this.y^2).
-comment|//
-comment|// The only tricky part is computing x and y.
-name|double
-name|z
-decl_stmt|;
-name|double
-name|x
-decl_stmt|;
-name|double
-name|y
-decl_stmt|;
-specifier|final
-name|double
-name|denom
-init|=
-literal|1.0
-operator|/
-operator|(
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|)
-decl_stmt|;
-name|z
-operator|=
-name|Math
-operator|.
-name|sqrt
-argument_list|(
-operator|(
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|)
-operator|/
-operator|(
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|+
-name|C
-operator|*
-name|C
-operator|)
-argument_list|)
-expr_stmt|;
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
-name|z
-operator|=
-operator|-
-name|z
-expr_stmt|;
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 block|{
-comment|//System.err.println(" General latitude case");
-comment|// We might be able to identify a specific new latitude maximum or minimum.
-comment|//
-comment|// cos (theta-phi) = cos(theta)cos(phi) + sin(theta)sin(phi) = D
-comment|//
-comment|// This is tricky.  If cos(phi) = something, and we want to figure out
-comment|// what sin(phi) is, in order to capture all solutions we need to recognize
-comment|// that sin(phi) = +/- sqrt(1 - cos(phi)^2).  Basically, this means that
-comment|// whatever solution we find we have to mirror it across the x-y plane,
-comment|// and include both +z and -z solutions.
-comment|//
-comment|// cos (phi) = +/- sqrt(1-sin(phi)^2) = +/- sqrt(1-z^2)
-comment|// cos (theta) = +/- sqrt(1-sin(theta)^2) = +/- sqrt(1-C^2)
-comment|//
-comment|// D = cos(theta)cos(phi) + sin(theta)sin(phi)
-comment|// Substitute:
-comment|// D = sqrt(1-C^2) * sqrt(1-z^2) -/+ C * z
-comment|// Solve for z...
-comment|// D +/- Cz = sqrt(1-C^2)*sqrt(1-z^2) = sqrt(1 - z^2 - C^2 + z^2*C^2)
-comment|// Square both sides.
-comment|// (D +/- Cz)^2 = 1 - z^2 - C^2 + z^2*C^2
-comment|// D^2 +/- 2DCz + C^2*z^2 = 1 - z^2 - C^2 + z^2*C^2
-comment|// D^2 +/- 2DCz  = 1 - C^2 - z^2
-comment|// 0 = z^2 +/- 2DCz + (C^2 +D^2-1) = 0
-comment|//
-comment|// z = (+/- 2DC +/- sqrt(4*D^2*C^2 - 4*(C^2+D^2-1))) / (2)
-comment|// z  = +/- DC +/- sqrt(D^2*C^2 + 1 - C^2 - D^2 )
-comment|//    = +/- DC +/- sqrt(D^2*C^2 + 1 - C^2 - D^2)
-comment|//
-comment|// NOTE WELL: The above is clearly degenerate when D = 0.  So we'll have to
-comment|// code a different solution for that case!
-comment|// To get x and y, we need to plug z into the equations, as follows:
-comment|//
-comment|// Ax + By = -Cz - D
-comment|// x^2 + y^2 = 1 - z^2
-comment|//
-comment|// x = (-Cz -D -By) /A
-comment|// y = (-Cz -D -Ax) /B
-comment|//
-comment|// [(-Cz -D -By) /A]^2 + y^2 = 1 - z^2
-comment|// [-Cz -D -By]^2 + A^2*y^2 = A^2 - A^2*z^2
-comment|// C^2*z^2 + D^2 + B^2*y^2 + 2CDz + 2CBzy + 2DBy + A^2*y^2 - A^2 + A^2*z^2 = 0
-comment|// y^2 [A^2 + B^2]  + y [2DB + 2CBz] + [C^2*z^2 + D^2 + 2CDz - A^2 + A^2*z^2] = 0
-comment|//
-comment|//
-comment|// Use quadratic formula, where:
-comment|// a = [A^2 + B^2]
-comment|// b = [2BD + 2CBz]
-comment|// c = [C^2*z^2 + D^2 + 2CDz - A^2 + A^2*z^2]
-comment|//
-comment|// y = (-[2BD + 2CBz] +/- sqrt([2BD + 2CBz]^2 - 4 * [A^2 + B^2] * [C^2*z^2 + D^2 + 2CDz - A^2 + A^2*z^2]) ) / (2 * [A^2 + B^2])
-comment|// Take out a 2:
-comment|// y = (-[DB +CBz] +/- sqrt([DB + CBz]^2 - [A^2 + B^2] * [C^2*z^2 + D^2 + 2CDz - A^2 + A^2*z^2]) ) / [A^2 + B^2]
-comment|//
-comment|// The sqrt term simplifies:
-comment|//
-comment|// B^2*D^2 + C^2*B^2*z^2 + 2C*D*B^2*z - [A^2 + B^2] * [C^2*z^2 + D^2 + 2CDz - A^2 + A^2*z^2] = ?
-comment|// B^2*D^2 + C^2*B^2*z^2 + 2C*D*B^2*z - [A^2 * C^2 * z^2 + A^2 * D^2 + 2 * A^2 * CDz - A^4 + A^4*z^2
-comment|//                  + B^2 * C^2 * z^2 + B^2 * D^2 + 2 * B^2 * CDz - A^2 * B^2 + B^2 * A^2 * z^2] =?
-comment|// C^2*B^2*z^2 + 2C*D*B^2*z - [A^2 * C^2 * z^2 + A^2 * D^2 + 2 * A^2 * CDz - A^4 + A^4*z^2
-comment|//                  + B^2 * C^2 * z^2 + 2 * B^2 * CDz - A^2 * B^2 + B^2 * A^2 * z^2] =?
-comment|// 2C*D*B^2*z - [A^2 * C^2 * z^2 + A^2 * D^2 + 2 * A^2 * CDz - A^4 + A^4*z^2
-comment|//                  + 2 * B^2 * CDz - A^2 * B^2 + B^2 * A^2 * z^2] =?
-comment|// - [A^2 * C^2 * z^2 + A^2 * D^2 + 2 * A^2 * CDz - A^4 + A^4*z^2
-comment|//                  - A^2 * B^2 + B^2 * A^2 * z^2] =?
-comment|// - A^2 * [C^2 * z^2 + D^2 + 2 * CDz - A^2 + A^2*z^2
-comment|//                  - B^2 + B^2 * z^2] =?
-comment|// - A^2 * [z^2[A^2 + B^2 + C^2] - [A^2 + B^2 - D^2] + 2CDz] =?
-comment|// - A^2 * [z^2 - [A^2 + B^2 - D^2] + 2CDz] =?
-comment|//
-comment|// y = (-[DB +CBz] +/- A*sqrt([A^2 + B^2 - D^2] - z^2 - 2CDz) ) / [A^2 + B^2]
-comment|//
-comment|// correspondingly:
-comment|// x = (-[DA +CAz] +/- B*sqrt([A^2 + B^2 - D^2] - z^2 - 2CDz) ) / [A^2 + B^2]
-comment|//
-comment|// However, for the maximum or minimum we seek, the clause inside the sqrt should be zero.  If
-comment|// it is NOT zero, then we aren't looking at the right z value.
-name|double
-name|z
-decl_stmt|;
-name|double
-name|x
-decl_stmt|;
-name|double
-name|y
-decl_stmt|;
-name|double
-name|sqrtValue
+comment|// Horizontal circle.  Since a==b, one vertical plane suffices.
+specifier|final
+name|Plane
+name|verticalPlane
 init|=
-name|D
-operator|*
-name|D
-operator|*
-name|C
-operator|*
-name|C
-operator|+
+operator|new
+name|Plane
+argument_list|(
 literal|1.0
-operator|-
-name|C
-operator|*
-name|C
-operator|-
-name|D
-operator|*
-name|D
-decl_stmt|;
-name|double
-name|denom
-init|=
-literal|1.0
-operator|/
-operator|(
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|)
-decl_stmt|;
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|sqrtValue
-argument_list|)
-operator|<
-name|MINIMUM_RESOLUTION_SQUARED
-condition|)
-block|{
-comment|//System.err.println(" One latitude solution");
-name|double
-name|insideValue
-decl_stmt|;
-name|double
-name|sqrtTerm
-decl_stmt|;
-name|z
-operator|=
-name|D
-operator|*
-name|C
-expr_stmt|;
-comment|// Since we squared both sides of the equation, we may have introduced spurious solutions, so we have to check.
-comment|// But the same check applies to BOTH solutions -- the +z one as well as the -z one.
-name|insideValue
-operator|=
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|-
-name|D
-operator|*
-name|D
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-literal|2.0
-operator|*
-name|C
-operator|*
-name|D
-operator|*
-name|z
-expr_stmt|;
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|insideValue
-argument_list|)
-operator|<
-name|MINIMUM_RESOLUTION
-condition|)
-block|{
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-if|if
-condition|(
-name|evaluateIsZero
-argument_list|(
-name|x
 argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-condition|)
-block|{
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|// Check the solution on the other side of the x-y plane
-name|z
-operator|=
-operator|-
-name|z
-expr_stmt|;
-name|insideValue
-operator|=
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|-
-name|D
-operator|*
-name|D
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-literal|2.0
-operator|*
-name|C
-operator|*
-name|D
-operator|*
-name|z
-expr_stmt|;
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|insideValue
-argument_list|)
-operator|<
-name|MINIMUM_RESOLUTION
-condition|)
-block|{
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-if|if
-condition|(
-name|evaluateIsZero
-argument_list|(
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-condition|)
-block|{
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-elseif|else
-if|if
-condition|(
-name|sqrtValue
-operator|>
 literal|0.0
-condition|)
-block|{
-comment|//System.err.println(" Two latitude solutions");
-name|double
-name|sqrtResult
+argument_list|)
+decl_stmt|;
+specifier|final
+name|GeoPoint
+index|[]
+name|points
 init|=
-name|Math
-operator|.
-name|sqrt
+name|findIntersections
 argument_list|(
-name|sqrtValue
+name|planetModel
+argument_list|,
+name|verticalPlane
+argument_list|,
+name|NO_BOUNDS
+argument_list|,
+name|NO_BOUNDS
 argument_list|)
 decl_stmt|;
-name|double
-name|insideValue
+comment|// There will always be two points; we only need one.
+specifier|final
+name|GeoPoint
+name|point
+init|=
+name|points
+index|[
+literal|0
+index|]
 decl_stmt|;
-name|double
-name|sqrtTerm
-decl_stmt|;
-name|z
-operator|=
-name|D
-operator|*
-name|C
-operator|+
-name|sqrtResult
-expr_stmt|;
-comment|//System.out.println("z= "+z+" D-C*z = " + (D-C*z) + " Math.sqrt(1.0 - z*z - C*C + z*z*C*C) = "+(Math.sqrt(1.0 - z*z - C*C + z*z*C*C)));
-comment|// Since we squared both sides of the equation, we may have introduced spurios solutions, so we have to check.
-comment|// But the same check applies to BOTH solutions -- the +z one as well as the -z one.
-name|insideValue
-operator|=
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|-
-name|D
-operator|*
-name|D
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-literal|2.0
-operator|*
-name|C
-operator|*
-name|D
-operator|*
-name|z
-expr_stmt|;
-comment|//System.err.println(" z="+z+" C="+C+" D="+D+" inside value "+insideValue);
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|insideValue
-argument_list|)
-operator|<
-name|MINIMUM_RESOLUTION
-condition|)
-block|{
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-if|if
-condition|(
-name|evaluateIsZero
-argument_list|(
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-condition|)
-block|{
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|// Check the solution on the other side of the x-y plane
-name|z
-operator|=
-operator|-
-name|z
-expr_stmt|;
-name|insideValue
-operator|=
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|-
-name|D
-operator|*
-name|D
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-literal|2.0
-operator|*
-name|C
-operator|*
-name|D
-operator|*
-name|z
-expr_stmt|;
-comment|//System.err.println(" z="+z+" C="+C+" D="+D+" inside value "+insideValue);
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|insideValue
-argument_list|)
-operator|<
-name|MINIMUM_RESOLUTION
-condition|)
-block|{
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-if|if
-condition|(
-name|evaluateIsZero
-argument_list|(
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-condition|)
-block|{
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-name|z
-operator|=
-name|D
-operator|*
-name|C
-operator|-
-name|sqrtResult
-expr_stmt|;
-comment|//System.out.println("z= "+z+" D-C*z = " + (D-C*z) + " Math.sqrt(1.0 - z*z - C*C + z*z*C*C) = "+(Math.sqrt(1.0 - z*z - C*C + z*z*C*C)));
-comment|// Since we squared both sides of the equation, we may have introduced spurios solutions, so we have to check.
-comment|// But the same check applies to BOTH solutions -- the +z one as well as the -z one.
-name|insideValue
-operator|=
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|-
-name|D
-operator|*
-name|D
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-literal|2.0
-operator|*
-name|C
-operator|*
-name|D
-operator|*
-name|z
-expr_stmt|;
-comment|//System.err.println(" z="+z+" C="+C+" D="+D+" inside value "+insideValue);
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|insideValue
-argument_list|)
-operator|<
-name|MINIMUM_RESOLUTION
-condition|)
-block|{
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-if|if
-condition|(
-name|evaluateIsZero
-argument_list|(
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-condition|)
-block|{
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-comment|// Check the solution on the other side of the x-y plane
-name|z
-operator|=
-operator|-
-name|z
-expr_stmt|;
-name|insideValue
-operator|=
-name|A
-operator|*
-name|A
-operator|+
-name|B
-operator|*
-name|B
-operator|-
-name|D
-operator|*
-name|D
-operator|-
-name|z
-operator|*
-name|z
-operator|-
-literal|2.0
-operator|*
-name|C
-operator|*
-name|D
-operator|*
-name|z
-expr_stmt|;
-comment|//System.err.println(" z="+z+" C="+C+" D="+D+" inside value "+insideValue);
-if|if
-condition|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|insideValue
-argument_list|)
-operator|<
-name|MINIMUM_RESOLUTION
-condition|)
-block|{
-name|y
-operator|=
-operator|-
-name|B
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-name|x
-operator|=
-operator|-
-name|A
-operator|*
-operator|(
-name|D
-operator|+
-name|C
-operator|*
-name|z
-operator|)
-operator|*
-name|denom
-expr_stmt|;
-if|if
-condition|(
-name|evaluateIsZero
-argument_list|(
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-condition|)
-block|{
-name|addPoint
-argument_list|(
-name|boundsInfo
-argument_list|,
-name|bounds
-argument_list|,
-name|x
-argument_list|,
-name|y
-argument_list|,
-name|z
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-block|}
-block|}
-else|else
-block|{
-comment|// Horizontal circle.
-comment|// Since the recordBounds() method will be called ONLY for planes that constitute edges of a shape,
-comment|// we can be sure that some part of the horizontal circle will be part of the boundary, so we don't need
-comment|// to check Membership objects.
 name|boundsInfo
 operator|.
 name|addHorizontalCircle
 argument_list|(
-operator|-
-name|D
+name|point
+operator|.
+name|z
+operator|/
+name|Math
+operator|.
+name|sqrt
+argument_list|(
+name|point
+operator|.
+name|x
 operator|*
-name|C
+name|point
+operator|.
+name|x
+operator|+
+name|point
+operator|.
+name|y
+operator|*
+name|point
+operator|.
+name|y
+operator|+
+name|point
+operator|.
+name|z
+operator|*
+name|point
+operator|.
+name|z
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3251,8 +2496,8 @@ comment|// We need to find the endpoints of the zero-width ellipse.
 comment|// Geometrically, we have a line segment in x-y space.  We need to locate the endpoints
 comment|// of that line.  But luckily, we know some things: specifically, since it is a
 comment|// degenerate situation in projection, the C value had to have been 0.  That
-comment|// means that our line's endpoints will coincide with the unit circle.  All we
-comment|// need to do then is to find the intersection of the unit circle and the line
+comment|// means that our line's endpoints will coincide with the projected ellipse.  All we
+comment|// need to do then is to find the intersection of the projected ellipse and the line
 comment|// equation:
 comment|//
 comment|// A x + B y + D = 0
@@ -3260,25 +2505,33 @@ comment|//
 comment|// Since A != 0:
 comment|// x = (-By - D)/A
 comment|//
-comment|// The unit circle:
-comment|// x^2 + y^2 - 1 = 0
+comment|// The projected ellipse:
+comment|// x^2/a^2 + y^2/b^2 - 1 = 0
 comment|// Substitute:
-comment|// [(-By-D)/A]^2 + y^2 -1 = 0
+comment|// [(-By-D)/A]^2/a^2 + y^2/b^2 -1 = 0
 comment|// Multiply through by A^2:
-comment|// [-By - D]^2 + A^2*y^2 - A^2 = 0
+comment|// [-By - D]^2/a^2 + A^2*y^2/b^2 - A^2 = 0
 comment|// Multiply out:
-comment|// B^2*y^2 + 2BDy + D^2 + A^2*y^2 - A^2 = 0
+comment|// B^2*y^2/a^2 + 2BDy/a^2 + D^2/a^2 + A^2*y^2/b^2 - A^2 = 0
 comment|// Group:
-comment|// y^2 * [B^2 + A^2] + y [2BD] + [D^2-A^2] = 0
+comment|// y^2 * [B^2/a^2 + A^2/b^2] + y [2BD/a^2] + [D^2/a^2-A^2] = 0
 name|a
 operator|=
 name|B
 operator|*
 name|B
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 operator|+
 name|A
 operator|*
 name|A
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 expr_stmt|;
 name|b
 operator|=
@@ -3287,12 +2540,20 @@ operator|*
 name|B
 operator|*
 name|D
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 expr_stmt|;
 name|c
 operator|=
 name|D
 operator|*
 name|D
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 operator|-
 name|A
 operator|*
@@ -3504,10 +2765,18 @@ operator|=
 name|B
 operator|*
 name|B
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 operator|+
 name|A
 operator|*
 name|A
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 expr_stmt|;
 name|b
 operator|=
@@ -3516,12 +2785,20 @@ operator|*
 name|A
 operator|*
 name|D
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 expr_stmt|;
 name|c
 operator|=
 name|D
 operator|*
 name|D
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 operator|-
 name|B
 operator|*
@@ -3731,17 +3008,17 @@ comment|//System.err.println("General longitude bounds...");
 comment|// NOTE WELL: The x,y,z values generated here are NOT on the unit sphere.
 comment|// They are for lat/lon calculation purposes only.  x-y is meant to be used for longitude determination,
 comment|// and z for latitude, and that's all the values are good for.
-comment|// (1) Intersect the plane and the unit sphere, and project the results into the x-y plane:
+comment|// (1) Intersect the plane and the ellipsoid, and project the results into the x-y plane:
 comment|// From plane:
 comment|// z = (-Ax - By - D) / C
-comment|// From unit sphere:
-comment|// x^2 + y^2 + [(-Ax - By - D) / C]^2 = 1
+comment|// From ellipsoid:
+comment|// x^2/a^2 + y^2/b^2 + [(-Ax - By - D) / C]^2/c^2 = 1
 comment|// Simplify/expand:
-comment|// C^2*x^2 + C^2*y^2 + (-Ax - By - D)^2 = C^2
+comment|// C^2*x^2/a^2 + C^2*y^2/b^2 + (-Ax - By - D)^2/c^2 = C^2
 comment|//
-comment|// x^2 * C^2 + y^2 * C^2 + x^2 * (A^2 + ABxy + ADx) + (ABxy + y^2 * B^2 + BDy) + (ADx + BDy + D^2) = C^2
+comment|// x^2 * C^2/a^2 + y^2 * C^2/b^2 + x^2 * A^2/c^2 + ABxy/c^2 + ADx/c^2 + ABxy/c^2 + y^2 * B^2/c^2 + BDy/c^2 + ADx/c^2 + BDy/c^2 + D^2/c^2 = C^2
 comment|// Group:
-comment|// [A^2 + C^2] x^2 + [B^2 + C^2] y^2 + [2AB]xy + [2AD]x + [2BD]y + [D^2-C^2] = 0
+comment|// [A^2/c^2 + C^2/a^2] x^2 + [B^2/c^2 + C^2/b^2] y^2 + [2AB/c^2]xy + [2AD/c^2]x + [2BD/c^2]y + [D^2/c^2-C^2] = 0
 comment|// For convenience, introduce post-projection coefficient variables to make life easier.
 comment|// E x^2 + F y^2 + G xy + H x + I y + J = 0
 name|double
@@ -3750,10 +3027,18 @@ init|=
 name|A
 operator|*
 name|A
+operator|*
+name|planetModel
+operator|.
+name|inverseCSquared
 operator|+
 name|C
 operator|*
 name|C
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 decl_stmt|;
 name|double
 name|F
@@ -3761,10 +3046,18 @@ init|=
 name|B
 operator|*
 name|B
+operator|*
+name|planetModel
+operator|.
+name|inverseCSquared
 operator|+
 name|C
 operator|*
 name|C
+operator|*
+name|planetModel
+operator|.
+name|inverseAbSquared
 decl_stmt|;
 name|double
 name|G
@@ -3774,6 +3067,10 @@ operator|*
 name|A
 operator|*
 name|B
+operator|*
+name|planetModel
+operator|.
+name|inverseCSquared
 decl_stmt|;
 name|double
 name|H
@@ -3783,6 +3080,10 @@ operator|*
 name|A
 operator|*
 name|D
+operator|*
+name|planetModel
+operator|.
+name|inverseCSquared
 decl_stmt|;
 name|double
 name|I
@@ -3792,6 +3093,10 @@ operator|*
 name|B
 operator|*
 name|D
+operator|*
+name|planetModel
+operator|.
+name|inverseCSquared
 decl_stmt|;
 name|double
 name|J
@@ -3799,6 +3104,10 @@ init|=
 name|D
 operator|*
 name|D
+operator|*
+name|planetModel
+operator|.
+name|inverseCSquared
 operator|-
 name|C
 operator|*
@@ -4578,12 +3887,16 @@ name|z
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Determine whether the plane intersects another plane within the    * bounds provided.    *    * @param q                 is the other plane.    * @param notablePoints     are points to look at to disambiguate cases when the two planes are identical.    * @param moreNotablePoints are additional points to look at to disambiguate cases when the two planes are identical.    * @param bounds            is one part of the bounds.    * @param moreBounds        are more bounds.    * @return true if there's an intersection.    */
+comment|/**    * Determine whether the plane intersects another plane within the    * bounds provided.    *    * @param planetModel is the planet model to use in determining intersection.    * @param q                 is the other plane.    * @param notablePoints     are points to look at to disambiguate cases when the two planes are identical.    * @param moreNotablePoints are additional points to look at to disambiguate cases when the two planes are identical.    * @param bounds            is one part of the bounds.    * @param moreBounds        are more bounds.    * @return true if there's an intersection.    */
 DECL|method|intersects
 specifier|public
 name|boolean
 name|intersects
 parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
 specifier|final
 name|Plane
 name|q
@@ -4685,6 +3998,8 @@ block|}
 return|return
 name|findIntersections
 argument_list|(
+name|planetModel
+argument_list|,
 name|q
 argument_list|,
 name|bounds
@@ -4955,6 +4270,10 @@ name|GeoPoint
 name|getSampleIntersectionPoint
 parameter_list|(
 specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
+specifier|final
 name|Plane
 name|q
 parameter_list|)
@@ -4966,6 +4285,8 @@ name|intersections
 init|=
 name|findIntersections
 argument_list|(
+name|planetModel
+argument_list|,
 name|q
 argument_list|,
 name|NO_BOUNDS

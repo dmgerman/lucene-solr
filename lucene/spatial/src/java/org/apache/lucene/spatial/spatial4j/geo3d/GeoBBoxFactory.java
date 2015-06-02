@@ -35,13 +35,17 @@ specifier|private
 name|GeoBBoxFactory
 parameter_list|()
 block|{   }
-comment|/**    * Create a geobbox of the right kind given the specified bounds.    *    * @param topLat    is the top latitude    * @param bottomLat is the bottom latitude    * @param leftLon   is the left longitude    * @param rightLon  is the right longitude    * @return a GeoBBox corresponding to what was specified.    */
+comment|/**    * Create a geobbox of the right kind given the specified bounds.    *    * @param planetModel is the planet model    * @param topLat    is the top latitude    * @param bottomLat is the bottom latitude    * @param leftLon   is the left longitude    * @param rightLon  is the right longitude    * @return a GeoBBox corresponding to what was specified.    */
 DECL|method|makeGeoBBox
 specifier|public
 specifier|static
 name|GeoBBox
 name|makeGeoBBox
 parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
 name|double
 name|topLat
 parameter_list|,
@@ -196,7 +200,9 @@ condition|)
 return|return
 operator|new
 name|GeoWorld
-argument_list|()
+argument_list|(
+name|planetModel
+argument_list|)
 return|;
 if|if
 condition|(
@@ -254,6 +260,8 @@ return|return
 operator|new
 name|GeoDegeneratePoint
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 literal|0.0
@@ -263,6 +271,8 @@ return|return
 operator|new
 name|GeoDegenerateLatitudeZone
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|)
 return|;
@@ -290,6 +300,8 @@ return|return
 operator|new
 name|GeoNorthLatitudeZone
 argument_list|(
+name|planetModel
+argument_list|,
 name|bottomLat
 argument_list|)
 return|;
@@ -317,6 +329,8 @@ return|return
 operator|new
 name|GeoSouthLatitudeZone
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|)
 return|;
@@ -324,6 +338,8 @@ return|return
 operator|new
 name|GeoLatitudeZone
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 name|bottomLat
@@ -391,6 +407,8 @@ return|return
 operator|new
 name|GeoDegenerateLongitudeSlice
 argument_list|(
+name|planetModel
+argument_list|,
 name|leftLon
 argument_list|)
 return|;
@@ -406,6 +424,8 @@ return|return
 operator|new
 name|GeoWideLongitudeSlice
 argument_list|(
+name|planetModel
+argument_list|,
 name|leftLon
 argument_list|,
 name|rightLon
@@ -415,6 +435,8 @@ return|return
 operator|new
 name|GeoLongitudeSlice
 argument_list|(
+name|planetModel
+argument_list|,
 name|leftLon
 argument_list|,
 name|rightLon
@@ -457,6 +479,8 @@ return|return
 operator|new
 name|GeoDegeneratePoint
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 name|leftLon
@@ -466,6 +490,8 @@ return|return
 operator|new
 name|GeoDegenerateVerticalLine
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 name|bottomLat
@@ -505,6 +531,8 @@ return|return
 operator|new
 name|GeoWideDegenerateHorizontalLine
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 name|leftLon
@@ -537,6 +565,8 @@ return|return
 operator|new
 name|GeoWideNorthRectangle
 argument_list|(
+name|planetModel
+argument_list|,
 name|bottomLat
 argument_list|,
 name|leftLon
@@ -570,6 +600,8 @@ return|return
 operator|new
 name|GeoWideSouthRectangle
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 name|leftLon
@@ -583,6 +615,8 @@ return|return
 operator|new
 name|GeoWideRectangle
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 name|bottomLat
@@ -650,6 +684,8 @@ return|return
 operator|new
 name|GeoDegeneratePoint
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 literal|0.0
@@ -661,6 +697,8 @@ return|return
 operator|new
 name|GeoDegenerateHorizontalLine
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 name|leftLon
@@ -693,6 +731,8 @@ return|return
 operator|new
 name|GeoNorthRectangle
 argument_list|(
+name|planetModel
+argument_list|,
 name|bottomLat
 argument_list|,
 name|leftLon
@@ -726,6 +766,8 @@ return|return
 operator|new
 name|GeoSouthRectangle
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 name|leftLon
@@ -739,6 +781,8 @@ return|return
 operator|new
 name|GeoRectangle
 argument_list|(
+name|planetModel
+argument_list|,
 name|topLat
 argument_list|,
 name|bottomLat

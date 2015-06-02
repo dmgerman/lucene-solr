@@ -79,6 +79,10 @@ init|=
 operator|new
 name|GeoPoint
 argument_list|(
+name|PlanetModel
+operator|.
+name|SPHERE
+argument_list|,
 literal|0.123
 argument_list|,
 operator|-
