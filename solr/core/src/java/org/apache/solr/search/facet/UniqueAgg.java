@@ -1029,6 +1029,8 @@ name|Resizer
 name|resizer
 parameter_list|)
 block|{
+name|sets
+operator|=
 name|resizer
 operator|.
 name|resize

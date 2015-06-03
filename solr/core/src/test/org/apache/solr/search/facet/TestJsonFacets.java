@@ -4500,6 +4500,9 @@ comment|// test stats
 literal|",f10:{ type:field, field:${num_i}, facet:{a:{query:'${cat_s}:A'}}, missing:true, allBuckets:true, numBuckets:true }"
 operator|+
 comment|// test subfacets
+literal|",f11:{ type:field, field:${num_i}, facet:{a:'unique(${num_d})'} ,missing:true, allBuckets:true, sort:'a desc' }"
+operator|+
+comment|// test subfacet using unique on numeric field (this previously triggered a resizing bug)
 literal|"}"
 argument_list|)
 argument_list|,
@@ -4525,6 +4528,8 @@ literal|",f9:{ buckets:[{val:7,count:1,x:11.0},{val:2,count:1,x:4.0},{val:3,coun
 operator|+
 comment|// TODO: should missing exclude "x" because no values were collected?
 literal|",f10:{ buckets:[{val:-5,count:2,a:{count:0}},{val:2,count:1,a:{count:1}},{val:3,count:1,a:{count:1}},{val:7,count:1,a:{count:0}} ],  numBuckets:4, allBuckets:{count:5},missing:{count:1,a:{count:0}} } "
+operator|+
+literal|",f11:{ buckets:[{val:-5,count:2,a:2},{val:2,count:1,a:1},{val:3,count:1,a:1},{val:7,count:1,a:1} ] , missing:{count:1,a:0} , allBuckets:{count:5,a:5}  } "
 operator|+
 literal|"}"
 argument_list|)
