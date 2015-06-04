@@ -2180,7 +2180,7 @@ try|try
 block|{
 name|cfs
 operator|.
-name|makeLock
+name|obtainLock
 argument_list|(
 literal|"foobar"
 argument_list|)

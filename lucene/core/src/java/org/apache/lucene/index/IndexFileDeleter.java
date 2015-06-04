@@ -316,13 +316,22 @@ specifier|final
 name|InfoStream
 name|infoStream
 decl_stmt|;
+DECL|field|directoryOrig
+specifier|private
+specifier|final
+name|Directory
+name|directoryOrig
+decl_stmt|;
+comment|// for commit point metadata
 DECL|field|directory
 specifier|private
+specifier|final
 name|Directory
 name|directory
 decl_stmt|;
 DECL|field|policy
 specifier|private
+specifier|final
 name|IndexDeletionPolicy
 name|policy
 decl_stmt|;
@@ -376,6 +385,9 @@ DECL|method|IndexFileDeleter
 specifier|public
 name|IndexFileDeleter
 parameter_list|(
+name|Directory
+name|directoryOrig
+parameter_list|,
 name|Directory
 name|directory
 parameter_list|,
@@ -456,6 +468,12 @@ operator|.
 name|policy
 operator|=
 name|policy
+expr_stmt|;
+name|this
+operator|.
+name|directoryOrig
+operator|=
+name|directoryOrig
 expr_stmt|;
 name|this
 operator|.
@@ -617,7 +635,7 @@ name|SegmentInfos
 operator|.
 name|readCommit
 argument_list|(
-name|directory
+name|directoryOrig
 argument_list|,
 name|fileName
 argument_list|)
@@ -679,7 +697,7 @@ name|CommitPoint
 argument_list|(
 name|commitsToDelete
 argument_list|,
-name|directory
+name|directoryOrig
 argument_list|,
 name|sis
 argument_list|)
@@ -776,7 +794,7 @@ name|SegmentInfos
 operator|.
 name|readCommit
 argument_list|(
-name|directory
+name|directoryOrig
 argument_list|,
 name|currentSegmentsFile
 argument_list|)
@@ -832,7 +850,7 @@ name|CommitPoint
 argument_list|(
 name|commitsToDelete
 argument_list|,
-name|directory
+name|directoryOrig
 argument_list|,
 name|sis
 argument_list|)
@@ -2407,7 +2425,7 @@ name|CommitPoint
 argument_list|(
 name|commitsToDelete
 argument_list|,
-name|directory
+name|directoryOrig
 argument_list|,
 name|segmentInfos
 argument_list|)
@@ -3343,9 +3361,9 @@ DECL|field|deleted
 name|boolean
 name|deleted
 decl_stmt|;
-DECL|field|directory
+DECL|field|directoryOrig
 name|Directory
-name|directory
+name|directoryOrig
 decl_stmt|;
 DECL|field|commitsToDelete
 name|Collection
@@ -3385,7 +3403,7 @@ argument_list|>
 name|commitsToDelete
 parameter_list|,
 name|Directory
-name|directory
+name|directoryOrig
 parameter_list|,
 name|SegmentInfos
 name|segmentInfos
@@ -3395,9 +3413,9 @@ name|IOException
 block|{
 name|this
 operator|.
-name|directory
+name|directoryOrig
 operator|=
-name|directory
+name|directoryOrig
 expr_stmt|;
 name|this
 operator|.
@@ -3512,7 +3530,7 @@ name|getDirectory
 parameter_list|()
 block|{
 return|return
-name|directory
+name|directoryOrig
 return|;
 block|}
 annotation|@

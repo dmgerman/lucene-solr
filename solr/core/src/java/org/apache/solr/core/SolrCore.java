@@ -3360,13 +3360,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|boolean
-name|removeLocks
-init|=
-name|solrConfig
-operator|.
-name|unlockOnStartup
-decl_stmt|;
 name|initIndexReaderFactory
 argument_list|()
 expr_stmt|;
@@ -3413,44 +3406,13 @@ name|dir
 argument_list|)
 condition|)
 block|{
-if|if
-condition|(
-name|removeLocks
-condition|)
-block|{
-name|log
-operator|.
-name|warn
-argument_list|(
-name|logid
-operator|+
-literal|"WARNING: Solr index directory '{}' is locked.  Unlocking..."
-argument_list|,
-name|indexDir
-argument_list|)
-expr_stmt|;
-name|dir
-operator|.
-name|makeLock
-argument_list|(
-name|IndexWriter
-operator|.
-name|WRITE_LOCK_NAME
-argument_list|)
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-block|}
-else|else
-block|{
 name|log
 operator|.
 name|error
 argument_list|(
 name|logid
 operator|+
-literal|"Solr index directory '{}' is locked.  Throwing exception"
+literal|"Solr index directory '{}' is locked.  Throwing exception."
 argument_list|,
 name|indexDir
 argument_list|)
@@ -3459,12 +3421,13 @@ throw|throw
 operator|new
 name|LockObtainFailedException
 argument_list|(
-literal|"Index locked for write for core "
+literal|"Index locked for write for core '"
 operator|+
 name|name
+operator|+
+literal|"'. Solr now longer supports forceful unlocking via 'unlockOnStartup'. Please verify locks manually!"
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 finally|finally

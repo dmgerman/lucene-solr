@@ -221,14 +221,16 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|makeLock
+DECL|method|obtainLock
 specifier|public
 name|Lock
-name|makeLock
+name|obtainLock
 parameter_list|(
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|getDirectory
@@ -236,7 +238,7 @@ argument_list|(
 name|name
 argument_list|)
 operator|.
-name|makeLock
+name|obtainLock
 argument_list|(
 name|name
 argument_list|)

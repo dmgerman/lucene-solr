@@ -977,10 +977,10 @@ throw|;
 block|}
 annotation|@
 name|Override
-DECL|method|makeLock
+DECL|method|obtainLock
 specifier|public
 name|Lock
-name|makeLock
+name|obtainLock
 parameter_list|(
 name|String
 name|name

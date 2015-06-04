@@ -967,7 +967,7 @@ annotation|@
 name|Override
 specifier|public
 name|Lock
-name|makeLock
+name|obtainLock
 parameter_list|(
 name|String
 name|name

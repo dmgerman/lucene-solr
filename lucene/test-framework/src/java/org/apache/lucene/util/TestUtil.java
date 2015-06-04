@@ -1841,7 +1841,7 @@ name|NoLockFactory
 operator|.
 name|INSTANCE
 operator|.
-name|makeLock
+name|obtainLock
 argument_list|(
 name|dir
 argument_list|,

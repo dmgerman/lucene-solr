@@ -548,6 +548,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|LockValidatingDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Accountable
@@ -681,7 +695,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The {@link OpenMode} option on    {@link IndexWriterConfig#setOpenMode(OpenMode)} determines    whether a new index is created, or whether an existing index is   opened. Note that you can open an index with {@link OpenMode#CREATE}   even while readers are using the index. The old readers will    continue to search the "point in time" snapshot they had opened,    and won't see the newly created index until they re-open. If    {@link OpenMode#CREATE_OR_APPEND} is used IndexWriter will create a    new index if there is not already an index at the provided path   and otherwise open the existing index.</p><p>In either case, documents are added with {@link #addDocument(IndexDocument)   addDocument} and removed with {@link #deleteDocuments(Term...)} or {@link   #deleteDocuments(Query...)}. A document can be updated with {@link   #updateDocument(Term, IndexDocument) updateDocument} (which just deletes   and then adds the entire document). When finished adding, deleting    and updating documents, {@link #close() close} should be called.</p><a name="flush"></a><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls). A flush is triggered when there are enough added documents   since the last flush. Flushing is triggered either by RAM usage of the   documents (see {@link IndexWriterConfig#setRAMBufferSizeMB}) or the   number of added documents (see {@link IndexWriterConfig#setMaxBufferedDocs(int)}).   The default is to flush when RAM usage hits   {@link IndexWriterConfig#DEFAULT_RAM_BUFFER_SIZE_MB} MB. For   best indexing speed you should flush by RAM usage with a   large RAM buffer. Additionally, if IndexWriter reaches the configured number of   buffered deletes (see {@link IndexWriterConfig#setMaxBufferedDeleteTerms})   the deleted terms and queries are flushed and applied to existing segments.   In contrast to the other flush options {@link IndexWriterConfig#setRAMBufferSizeMB} and    {@link IndexWriterConfig#setMaxBufferedDocs(int)}, deleted terms   won't trigger a segment flush. Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit()} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}. The {@link LockObtainFailedException}   is also thrown if an IndexReader on the same directory is used to delete documents   from the index.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.   The default is {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p><a name="OOME"></a><p><b>NOTE</b>: if you hit an   OutOfMemoryError, or disaster strikes during a checkpoint   then IndexWriter will close itself.  This is a   defensive measure in case any internal state (buffered   documents, deletions, reference counts) were corrupted.     Any subsequent calls will throw an AlreadyClosedException.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link   IndexWriter} instances are completely thread   safe, meaning multiple threads can call any of its   methods, concurrently.  If your application requires   external synchronization, you should<b>not</b>   synchronize on the<code>IndexWriter</code> instance as   this may cause deadlock; use your own (non-Lucene) objects   instead.</p><p><b>NOTE</b>: If you call<code>Thread.interrupt()</code> on a thread that's within   IndexWriter, IndexWriter will try to catch this (eg, if   it's in a wait() or Thread.sleep()), and will then throw   the unchecked exception {@link ThreadInterruptedException}   and<b>clear</b> the interrupt status on the thread.</p> */
+comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The {@link OpenMode} option on    {@link IndexWriterConfig#setOpenMode(OpenMode)} determines    whether a new index is created, or whether an existing index is   opened. Note that you can open an index with {@link OpenMode#CREATE}   even while readers are using the index. The old readers will    continue to search the "point in time" snapshot they had opened,    and won't see the newly created index until they re-open. If    {@link OpenMode#CREATE_OR_APPEND} is used IndexWriter will create a    new index if there is not already an index at the provided path   and otherwise open the existing index.</p><p>In either case, documents are added with {@link #addDocument(IndexDocument)   addDocument} and removed with {@link #deleteDocuments(Term...)} or {@link   #deleteDocuments(Query...)}. A document can be updated with {@link   #updateDocument(Term, IndexDocument) updateDocument} (which just deletes   and then adds the entire document). When finished adding, deleting    and updating documents, {@link #close() close} should be called.</p><a name="flush"></a><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls). A flush is triggered when there are enough added documents   since the last flush. Flushing is triggered either by RAM usage of the   documents (see {@link IndexWriterConfig#setRAMBufferSizeMB}) or the   number of added documents (see {@link IndexWriterConfig#setMaxBufferedDocs(int)}).   The default is to flush when RAM usage hits   {@link IndexWriterConfig#DEFAULT_RAM_BUFFER_SIZE_MB} MB. For   best indexing speed you should flush by RAM usage with a   large RAM buffer. Additionally, if IndexWriter reaches the configured number of   buffered deletes (see {@link IndexWriterConfig#setMaxBufferedDeleteTerms})   the deleted terms and queries are flushed and applied to existing segments.   In contrast to the other flush options {@link IndexWriterConfig#setRAMBufferSizeMB} and    {@link IndexWriterConfig#setMaxBufferedDocs(int)}, deleted terms   won't trigger a segment flush. Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit()} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.   The default is {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p><a name="OOME"></a><p><b>NOTE</b>: if you hit an   OutOfMemoryError, or disaster strikes during a checkpoint   then IndexWriter will close itself.  This is a   defensive measure in case any internal state (buffered   documents, deletions, reference counts) were corrupted.     Any subsequent calls will throw an AlreadyClosedException.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link   IndexWriter} instances are completely thread   safe, meaning multiple threads can call any of its   methods, concurrently.  If your application requires   external synchronization, you should<b>not</b>   synchronize on the<code>IndexWriter</code> instance as   this may cause deadlock; use your own (non-Lucene) objects   instead.</p><p><b>NOTE</b>: If you call<code>Thread.interrupt()</code> on a thread that's within   IndexWriter, IndexWriter will try to catch this (eg, if   it's in a wait() or Thread.sleep()), and will then throw   the unchecked exception {@link ThreadInterruptedException}   and<b>clear</b> the interrupt status on the thread.</p> */
 end_comment
 
 begin_comment
@@ -877,20 +891,27 @@ specifier|volatile
 name|Throwable
 name|tragedy
 decl_stmt|;
+DECL|field|directoryOrig
+specifier|private
+specifier|final
+name|Directory
+name|directoryOrig
+decl_stmt|;
+comment|// original user directory
 DECL|field|directory
 specifier|private
 specifier|final
 name|Directory
 name|directory
 decl_stmt|;
-comment|// where this index resides
+comment|// wrapped with additional checks
 DECL|field|mergeDirectory
 specifier|private
 specifier|final
 name|Directory
 name|mergeDirectory
 decl_stmt|;
-comment|// used for merging
+comment|// wrapped with throttling: used for merging
 DECL|field|analyzer
 specifier|private
 specifier|final
@@ -2129,7 +2150,7 @@ name|info
 operator|.
 name|dir
 operator|==
-name|directory
+name|directoryOrig
 operator|:
 literal|"info.dir="
 operator|+
@@ -2141,7 +2162,7 @@ name|dir
 operator|+
 literal|" vs "
 operator|+
-name|directory
+name|directoryOrig
 assert|;
 name|ReadersAndUpdates
 name|rld
@@ -2447,9 +2468,82 @@ name|config
 operator|=
 name|conf
 expr_stmt|;
-name|directory
+name|infoStream
+operator|=
+name|config
+operator|.
+name|getInfoStream
+argument_list|()
+expr_stmt|;
+comment|// obtain the write.lock. If the user configured a timeout,
+comment|// we wrap with a sleeper and this might take some time.
+name|long
+name|timeout
+init|=
+name|config
+operator|.
+name|getWriteLockTimeout
+argument_list|()
+decl_stmt|;
+specifier|final
+name|Directory
+name|lockDir
+decl_stmt|;
+if|if
+condition|(
+name|timeout
+operator|==
+literal|0
+condition|)
+block|{
+comment|// user doesn't want sleep/retries
+name|lockDir
 operator|=
 name|d
+expr_stmt|;
+block|}
+else|else
+block|{
+name|lockDir
+operator|=
+operator|new
+name|SleepingLockWrapper
+argument_list|(
+name|d
+argument_list|,
+name|timeout
+argument_list|)
+expr_stmt|;
+block|}
+name|writeLock
+operator|=
+name|lockDir
+operator|.
+name|obtainLock
+argument_list|(
+name|WRITE_LOCK_NAME
+argument_list|)
+expr_stmt|;
+name|boolean
+name|success
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+name|directoryOrig
+operator|=
+name|d
+expr_stmt|;
+name|directory
+operator|=
+operator|new
+name|LockValidatingDirectoryWrapper
+argument_list|(
+name|d
+argument_list|,
+name|writeLock
+argument_list|)
 expr_stmt|;
 comment|// Directory we use for merging, so we can abort running merges, and so
 comment|// merge schedulers can optionally rate-limit per-merge IO:
@@ -2457,7 +2551,7 @@ name|mergeDirectory
 operator|=
 name|addMergeRateLimiters
 argument_list|(
-name|d
+name|directory
 argument_list|)
 expr_stmt|;
 name|analyzer
@@ -2465,13 +2559,6 @@ operator|=
 name|config
 operator|.
 name|getAnalyzer
-argument_list|()
-expr_stmt|;
-name|infoStream
-operator|=
-name|config
-operator|.
-name|getInfoStream
 argument_list|()
 expr_stmt|;
 name|mergeScheduler
@@ -2510,45 +2597,6 @@ operator|.
 name|getReaderPooling
 argument_list|()
 expr_stmt|;
-name|writeLock
-operator|=
-name|directory
-operator|.
-name|makeLock
-argument_list|(
-name|WRITE_LOCK_NAME
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-operator|!
-name|writeLock
-operator|.
-name|obtain
-argument_list|(
-name|config
-operator|.
-name|getWriteLockTimeout
-argument_list|()
-argument_list|)
-condition|)
-comment|// obtain write lock
-throw|throw
-operator|new
-name|LockObtainFailedException
-argument_list|(
-literal|"Index locked for write: "
-operator|+
-name|writeLock
-argument_list|)
-throw|;
-name|boolean
-name|success
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
 name|OpenMode
 name|mode
 init|=
@@ -2724,7 +2772,7 @@ name|SegmentInfos
 operator|.
 name|readCommit
 argument_list|(
-name|directory
+name|directoryOrig
 argument_list|,
 name|lastSegmentsFile
 argument_list|)
@@ -2756,13 +2804,22 @@ operator|.
 name|getDirectory
 argument_list|()
 operator|!=
-name|directory
+name|directoryOrig
 condition|)
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"IndexCommit's directory doesn't match my directory"
+literal|"IndexCommit's directory doesn't match my directory, expected="
+operator|+
+name|directoryOrig
+operator|+
+literal|", got="
+operator|+
+name|commit
+operator|.
+name|getDirectory
+argument_list|()
 argument_list|)
 throw|;
 name|SegmentInfos
@@ -2772,7 +2829,7 @@ name|SegmentInfos
 operator|.
 name|readCommit
 argument_list|(
-name|directory
+name|directoryOrig
 argument_list|,
 name|commit
 operator|.
@@ -2861,6 +2918,8 @@ name|this
 argument_list|,
 name|config
 argument_list|,
+name|directoryOrig
+argument_list|,
 name|directory
 argument_list|)
 expr_stmt|;
@@ -2883,6 +2942,8 @@ operator|=
 operator|new
 name|IndexFileDeleter
 argument_list|(
+name|directoryOrig
+argument_list|,
 name|directory
 argument_list|,
 name|config
@@ -3269,7 +3330,7 @@ literal|"IW"
 argument_list|,
 literal|"\ndir="
 operator|+
-name|directory
+name|directoryOrig
 operator|+
 literal|"\n"
 operator|+
@@ -3503,8 +3564,9 @@ name|Directory
 name|getDirectory
 parameter_list|()
 block|{
+comment|// return the original directory the user supplied, unwrapped.
 return|return
-name|directory
+name|directoryOrig
 return|;
 block|}
 comment|/** Returns the analyzer used by this index. */
@@ -7337,7 +7399,7 @@ index|[
 name|i
 index|]
 operator|==
-name|directory
+name|directoryOrig
 condition|)
 throw|throw
 operator|new
@@ -7417,7 +7479,7 @@ index|[
 name|i
 index|]
 operator|.
-name|makeLock
+name|obtainLock
 argument_list|(
 name|WRITE_LOCK_NAME
 argument_list|)
@@ -7427,16 +7489,6 @@ operator|.
 name|add
 argument_list|(
 name|lock
-argument_list|)
-expr_stmt|;
-name|lock
-operator|.
-name|obtain
-argument_list|(
-name|config
-operator|.
-name|getWriteLockTimeout
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|success
@@ -7454,6 +7506,7 @@ literal|false
 condition|)
 block|{
 comment|// Release all previously acquired locks:
+comment|// TODO: addSuppressed? it could be many...
 name|IOUtils
 operator|.
 name|closeWhileHandlingException
@@ -7468,7 +7521,7 @@ return|return
 name|locks
 return|;
 block|}
-comment|/**    * Adds all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing. A large document    * collection can be broken into sub-collections. Each sub-collection can be    * indexed in parallel, on a different thread, process or machine. The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>    *<b>NOTE:</b> this method acquires the write lock in    * each directory, to ensure that no {@code IndexWriter}    * is currently open or tries to open while this is    * running.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (for example disk full), then either no indexes    * will have been added or they all will have been.    *    *<p>Note that this requires temporary free space in the    * {@link Directory} up to 2X the sum of all input indexes    * (including the starting index). If readers/searchers    * are open against the starting index, then temporary    * free space required will be higher by the size of the    * starting index (see {@link #forceMerge(int)} for details).    *    *<p>This requires this index not be among those to be added.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws LockObtainFailedException if we were unable to    *   acquire the write lock in at least one directory    * @throws IllegalArgumentException if addIndexes would cause    *   the index to exceed {@link #MAX_DOCS}    */
+comment|/**    * Adds all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing. A large document    * collection can be broken into sub-collections. Each sub-collection can be    * indexed in parallel, on a different thread, process or machine. The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>    *<b>NOTE:</b> this method acquires the write lock in    * each directory, to ensure that no {@code IndexWriter}    * is currently open or tries to open while this is    * running.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (for example disk full), then either no indexes    * will have been added or they all will have been.    *    *<p>Note that this requires temporary free space in the    * {@link Directory} up to 2X the sum of all input indexes    * (including the starting index). If readers/searchers    * are open against the starting index, then temporary    * free space required will be higher by the size of the    * starting index (see {@link #forceMerge(int)} for details).    *    *<p>This requires this index not be among those to be added.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws IllegalArgumentException if addIndexes would cause    *   the index to exceed {@link #MAX_DOCS}    */
 DECL|method|addIndexes
 specifier|public
 name|void
@@ -8090,7 +8143,7 @@ init|=
 operator|new
 name|SegmentInfo
 argument_list|(
-name|directory
+name|directoryOrig
 argument_list|,
 name|Version
 operator|.
@@ -8532,7 +8585,7 @@ init|=
 operator|new
 name|SegmentInfo
 argument_list|(
-name|directory
+name|directoryOrig
 argument_list|,
 name|info
 operator|.
@@ -10339,7 +10392,7 @@ operator|+
 name|segString
 argument_list|()
 argument_list|,
-name|directory
+name|directoryOrig
 argument_list|)
 throw|;
 block|}
@@ -12999,7 +13052,7 @@ name|info
 operator|.
 name|dir
 operator|!=
-name|directory
+name|directoryOrig
 condition|)
 block|{
 name|isExternal
@@ -13651,7 +13704,7 @@ init|=
 operator|new
 name|SegmentInfo
 argument_list|(
-name|directory
+name|directoryOrig
 argument_list|,
 name|Version
 operator|.
@@ -16580,7 +16633,9 @@ literal|"finishStartCommit"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Returns<code>true</code> iff the index in the named directory is    * currently locked.    * @param directory the directory to check for a lock    * @throws IOException if there is a low-level IO error    * @deprecated Use of this method can only lead to race conditions. Try    *             to actually obtain a lock instead.    */
+annotation|@
+name|Deprecated
 DECL|method|isLocked
 specifier|public
 specifier|static
@@ -16593,17 +16648,32 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
+try|try
+block|{
 name|directory
 operator|.
-name|makeLock
+name|obtainLock
 argument_list|(
 name|WRITE_LOCK_NAME
 argument_list|)
 operator|.
-name|isLocked
+name|close
 argument_list|()
+expr_stmt|;
+return|return
+literal|false
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|LockObtainFailedException
+name|failed
+parameter_list|)
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 comment|/** If {@link DirectoryReader#open(IndexWriter,boolean)} has    *  been called (ie, this writer is in near real-time    *  mode), then after a merge completes, this class can be    *  invoked to warm the reader on the newly merged    *  segment, before the merge commits.  This is not    *  required for near real-time search, but will reduce    *  search latency on opening a new near real-time reader    *  after a merge completes.    *    * @lucene.experimental    *    *<p><b>NOTE</b>: warm is called before any deletes have    * been carried over to the merged segment. */
 DECL|class|IndexReaderWarmer

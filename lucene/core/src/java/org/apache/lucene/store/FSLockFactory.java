@@ -16,6 +16,16 @@ begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base class for file system based locking implementation.  * This class is explicitly checking that the passed {@link Directory}  * is an {@link FSDirectory}.  */
 end_comment
@@ -46,11 +56,11 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|makeLock
+DECL|method|obtainLock
 specifier|public
 specifier|final
 name|Lock
-name|makeLock
+name|obtainLock
 parameter_list|(
 name|Directory
 name|dir
@@ -58,6 +68,8 @@ parameter_list|,
 name|String
 name|lockName
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -86,7 +98,7 @@ argument_list|)
 throw|;
 block|}
 return|return
-name|makeFSLock
+name|obtainFSLock
 argument_list|(
 operator|(
 name|FSDirectory
@@ -97,12 +109,12 @@ name|lockName
 argument_list|)
 return|;
 block|}
-comment|/** Implement this method to create a lock for a FSDirectory instance. */
-DECL|method|makeFSLock
+comment|/**     * Implement this method to obtain a lock for a FSDirectory instance.     * @throws IOException if the lock could not be obtained.    */
+DECL|method|obtainFSLock
 specifier|protected
 specifier|abstract
 name|Lock
-name|makeFSLock
+name|obtainFSLock
 parameter_list|(
 name|FSDirectory
 name|dir
@@ -110,6 +122,8 @@ parameter_list|,
 name|String
 name|lockName
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_class

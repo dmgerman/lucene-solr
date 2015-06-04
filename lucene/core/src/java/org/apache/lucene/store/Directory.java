@@ -228,16 +228,18 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Construct a {@link Lock}.    * @param name the name of the lock file    */
-DECL|method|makeLock
+comment|/**     * Returns an obtained {@link Lock}.    * @param name the name of the lock file    * @throws LockObtainFailedException (optional specific exception) if the lock could    *         not be obtained because it is currently held elsewhere.    * @throws IOException if any i/o error occurs attempting to gain the lock    */
+DECL|method|obtainLock
 specifier|public
 specifier|abstract
 name|Lock
-name|makeLock
+name|obtainLock
 parameter_list|(
 name|String
 name|name
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Closes the store. */
 annotation|@

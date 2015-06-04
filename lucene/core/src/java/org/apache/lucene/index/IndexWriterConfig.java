@@ -612,7 +612,7 @@ return|return
 name|mergeScheduler
 return|;
 block|}
-comment|/**    * Sets the maximum time to wait for a write lock (in milliseconds) for this    * instance. You can change the default value for all instances by calling    * {@link #setDefaultWriteLockTimeout(long)}.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/**    * Sets the maximum time to wait for a write lock (in milliseconds) for this    * instance. You can change the default value for all instances by calling    * {@link #setDefaultWriteLockTimeout(long)}. Note that the value can be zero,    * for no sleep/retry behavior.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setWriteLockTimeout
 specifier|public
 name|IndexWriterConfig

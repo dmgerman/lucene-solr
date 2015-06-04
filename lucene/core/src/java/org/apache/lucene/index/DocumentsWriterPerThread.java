@@ -843,6 +843,9 @@ name|String
 name|segmentName
 parameter_list|,
 name|Directory
+name|directoryOrig
+parameter_list|,
+name|Directory
 name|directory
 parameter_list|,
 name|LiveIndexWriterConfig
@@ -872,7 +875,7 @@ name|this
 operator|.
 name|directoryOrig
 operator|=
-name|directory
+name|directoryOrig
 expr_stmt|;
 name|this
 operator|.
