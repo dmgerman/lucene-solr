@@ -1057,6 +1057,14 @@ operator|.
 name|getResponse
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|top
+operator|==
+literal|null
+condition|)
+continue|continue;
+comment|// shards.tolerant=true will cause this to happen on exceptions/errors
 name|Object
 name|facet
 init|=
