@@ -50,18 +50,13 @@ static|static
 block|{
 name|isJ9
 operator|=
-name|System
+name|Constants
 operator|.
-name|getProperty
-argument_list|(
-literal|"java.vm.info"
-argument_list|,
-literal|"<?>"
-argument_list|)
+name|JAVA_VENDOR
 operator|.
-name|contains
+name|startsWith
 argument_list|(
-literal|"IBM J9"
+literal|"IBM"
 argument_list|)
 expr_stmt|;
 block|}
@@ -81,6 +76,25 @@ condition|(
 name|isJ9
 condition|)
 block|{
+comment|// LUCENE-6518
+if|if
+condition|(
+literal|"ClassCache Reaper"
+operator|.
+name|equals
+argument_list|(
+name|t
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+comment|// LUCENE-4736
 name|StackTraceElement
 index|[]
 name|stack
@@ -119,7 +133,6 @@ block|{
 return|return
 literal|true
 return|;
-comment|// LUCENE-4736
 block|}
 block|}
 return|return
