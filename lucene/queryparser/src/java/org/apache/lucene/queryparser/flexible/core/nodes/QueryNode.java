@@ -223,6 +223,16 @@ name|void
 name|removeFromParent
 parameter_list|()
 function_decl|;
+comment|/**    * Remove a child node    * @param childNode Which child to remove    */
+DECL|method|removeChildren
+specifier|public
+name|void
+name|removeChildren
+parameter_list|(
+name|QueryNode
+name|childNode
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
