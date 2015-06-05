@@ -38,16 +38,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -57,20 +47,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Term
 import|;
 end_import
 
@@ -170,9 +146,8 @@ throws|throws
 name|IOException
 block|{
 return|return
+operator|new
 name|AssertingWeight
-operator|.
-name|wrap
 argument_list|(
 operator|new
 name|Random
@@ -191,6 +166,8 @@ name|searcher
 argument_list|,
 name|needsScores
 argument_list|)
+argument_list|,
+name|needsScores
 argument_list|)
 return|;
 block|}

@@ -148,6 +148,8 @@ argument_list|(
 name|random
 argument_list|,
 name|scorer
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;

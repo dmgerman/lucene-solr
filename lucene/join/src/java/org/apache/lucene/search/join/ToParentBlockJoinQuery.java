@@ -442,7 +442,13 @@ argument_list|)
 argument_list|,
 name|parentsFilter
 argument_list|,
+name|needsScores
+condition|?
 name|scoreMode
+else|:
+name|ScoreMode
+operator|.
+name|None
 argument_list|)
 return|;
 block|}

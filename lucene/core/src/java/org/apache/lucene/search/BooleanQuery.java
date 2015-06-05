@@ -68,16 +68,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -87,20 +77,6 @@ operator|.
 name|index
 operator|.
 name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|Term
 import|;
 end_import
 
@@ -713,22 +689,13 @@ block|}
 else|else
 block|{
 comment|// our single clause is a filter
-if|if
-condition|(
-name|query
-operator|.
-name|getBoost
-argument_list|()
-operator|!=
-literal|0f
-condition|)
-block|{
 name|query
 operator|=
+operator|new
+name|ConstantScoreQuery
+argument_list|(
 name|query
-operator|.
-name|clone
-argument_list|()
+argument_list|)
 expr_stmt|;
 name|query
 operator|.
@@ -737,7 +704,6 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|query
