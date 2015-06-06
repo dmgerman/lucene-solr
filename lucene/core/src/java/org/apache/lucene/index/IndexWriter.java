@@ -9009,6 +9009,31 @@ argument_list|(
 name|segmentInfos
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|changeCount
+operator|.
+name|get
+argument_list|()
+operator|!=
+name|lastCommitChangeCount
+condition|)
+block|{
+comment|// There are changes to commit, so we will write a new segments_N in startCommit.
+comment|// The act of committing is itself an NRT-visible change (an NRT reader that was
+comment|// just opened before this should see it on reopen) so we increment changeCount
+comment|// and segments version so a future NRT reopen will see the change:
+name|changeCount
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
+name|segmentInfos
+operator|.
+name|changed
+argument_list|()
+expr_stmt|;
+block|}
 comment|// Must clone the segmentInfos while we still
 comment|// hold fullFlushLock and while sync'd so that
 comment|// no partial changes (eg a delete w/o
