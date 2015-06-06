@@ -6511,6 +6511,19 @@ name|termState
 argument_list|)
 expr_stmt|;
 block|}
+comment|// check we really seeked to the right place
+name|assertEquals
+argument_list|(
+name|fieldAndTerm
+operator|.
+name|term
+argument_list|,
+name|termsEnum
+operator|.
+name|term
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|long
 name|termOrd
 decl_stmt|;

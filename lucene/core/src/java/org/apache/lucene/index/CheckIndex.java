@@ -8153,6 +8153,35 @@ argument_list|(
 name|ord
 argument_list|)
 expr_stmt|;
+name|long
+name|actualOrd
+init|=
+name|termsEnum
+operator|.
+name|ord
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|actualOrd
+operator|!=
+name|ord
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"seek to ord "
+operator|+
+name|ord
+operator|+
+literal|" returned ord "
+operator|+
+name|actualOrd
+argument_list|)
+throw|;
+block|}
 name|seekTerms
 index|[
 name|i
