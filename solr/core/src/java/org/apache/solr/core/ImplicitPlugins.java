@@ -809,7 +809,7 @@ literal|"all"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"solrpingquery"
+literal|"{!lucene}*:*"
 argument_list|)
 argument_list|)
 argument_list|)
