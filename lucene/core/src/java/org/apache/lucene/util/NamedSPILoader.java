@@ -211,7 +211,6 @@ block|}
 comment|/**     * Reloads the internal SPI list from the given {@link ClassLoader}.    * Changes to the service list are visible after the method ends, all    * iterators ({@link #iterator()},...) stay consistent.     *     *<p><b>NOTE:</b> Only new service providers are added, existing ones are    * never removed or replaced.    *     *<p><em>This method is expensive and should only be called for discovery    * of new service providers on the given classpath/classloader!</em>    */
 DECL|method|reload
 specifier|public
-specifier|synchronized
 name|void
 name|reload
 parameter_list|(

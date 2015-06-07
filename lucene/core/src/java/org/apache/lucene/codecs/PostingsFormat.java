@@ -123,7 +123,15 @@ name|NamedSPILoader
 operator|.
 name|NamedSPI
 block|{
-DECL|field|loader
+comment|/**    * This static holder class prevents classloading deadlock by delaying    * init of postings formats until needed.    */
+DECL|class|Holder
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|Holder
+block|{
+DECL|field|LOADER
 specifier|private
 specifier|static
 specifier|final
@@ -131,7 +139,7 @@ name|NamedSPILoader
 argument_list|<
 name|PostingsFormat
 argument_list|>
-name|loader
+name|LOADER
 init|=
 operator|new
 name|NamedSPILoader
@@ -142,6 +150,42 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+DECL|method|Holder
+specifier|private
+name|Holder
+parameter_list|()
+block|{}
+DECL|method|getLoader
+specifier|static
+name|NamedSPILoader
+argument_list|<
+name|PostingsFormat
+argument_list|>
+name|getLoader
+parameter_list|()
+block|{
+if|if
+condition|(
+name|LOADER
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"You tried to lookup a PostingsFormat by name before all formats could be initialized. "
+operator|+
+literal|"This likely happens if you call PostingsFormat#forName from a PostingsFormat's ctor."
+argument_list|)
+throw|;
+block|}
+return|return
+name|LOADER
+return|;
+block|}
+block|}
 comment|/** Zero-length {@code PostingsFormat} array. */
 DECL|field|EMPTY
 specifier|public
@@ -255,25 +299,11 @@ name|String
 name|name
 parameter_list|)
 block|{
-if|if
-condition|(
-name|loader
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"You called PostingsFormat.forName() before all formats could be initialized. "
-operator|+
-literal|"This likely happens if you call it from a PostingsFormat's ctor."
-argument_list|)
-throw|;
-block|}
 return|return
-name|loader
+name|Holder
+operator|.
+name|getLoader
+argument_list|()
 operator|.
 name|lookup
 argument_list|(
@@ -292,25 +322,11 @@ argument_list|>
 name|availablePostingsFormats
 parameter_list|()
 block|{
-if|if
-condition|(
-name|loader
-operator|==
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"You called PostingsFormat.availablePostingsFormats() before all formats could be initialized. "
-operator|+
-literal|"This likely happens if you call it from a PostingsFormat's ctor."
-argument_list|)
-throw|;
-block|}
 return|return
-name|loader
+name|Holder
+operator|.
+name|getLoader
+argument_list|()
 operator|.
 name|availableServices
 argument_list|()
@@ -327,7 +343,10 @@ name|ClassLoader
 name|classloader
 parameter_list|)
 block|{
-name|loader
+name|Holder
+operator|.
+name|getLoader
+argument_list|()
 operator|.
 name|reload
 argument_list|(
