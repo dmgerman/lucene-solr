@@ -1937,7 +1937,6 @@ argument_list|(
 name|pointCount
 argument_list|)
 decl_stmt|;
-comment|// TODO: we should use in-memory sort here, if number of points is small enough:
 name|long
 name|countPerLeaf
 init|=
@@ -2780,6 +2779,7 @@ operator|==
 name|splitValue
 condition|)
 block|{
+comment|// TODO: we could simplify this, by allowing splitValue to be on either side?
 comment|// If we have identical points at the split, we move the count back to before the identical points:
 name|leftCount
 operator|=
@@ -2906,7 +2906,7 @@ return|return
 name|leftCount
 return|;
 block|}
-comment|/** dim=0 means we split on lat, dim=1 means lon.  The incoming PathSlice for the dim we will split is already partitioned/sorted. */
+comment|/** The incoming PathSlice for the dim we will split is already partitioned/sorted. */
 DECL|method|build
 specifier|private
 name|void
@@ -2985,6 +2985,7 @@ name|long
 operator|)
 name|minLonEnc
 decl_stmt|;
+comment|// Compute which dim we should split on at this level:
 name|int
 name|splitDim
 decl_stmt|;
