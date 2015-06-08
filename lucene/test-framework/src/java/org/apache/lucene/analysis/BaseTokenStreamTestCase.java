@@ -5133,12 +5133,12 @@ condition|?
 operator|new
 name|MockCharFilter
 argument_list|(
-name|evilReader
+name|reader
 argument_list|,
 name|remainder
 argument_list|)
 else|:
-name|evilReader
+name|reader
 argument_list|)
 expr_stmt|;
 name|ts
