@@ -868,6 +868,12 @@ specifier|private
 name|File
 name|commonBuildDir
 decl_stmt|;
+comment|/**    * Location of ivy cache resolution directory.    */
+DECL|field|ivyResolutionCacheDir
+specifier|private
+name|File
+name|ivyResolutionCacheDir
+decl_stmt|;
 comment|/**    * A logging level associated with verbose logging.    */
 DECL|field|verboseLevel
 specifier|private
@@ -1059,6 +1065,20 @@ block|{
 name|ivySettingsFile
 operator|=
 name|file
+expr_stmt|;
+block|}
+DECL|method|setIvyResolutionCacheDir
+specifier|public
+name|void
+name|setIvyResolutionCacheDir
+parameter_list|(
+name|File
+name|dir
+parameter_list|)
+block|{
+name|ivyResolutionCacheDir
+operator|=
+name|dir
 expr_stmt|;
 block|}
 DECL|method|setCommonBuildDir
@@ -4330,6 +4350,18 @@ argument_list|(
 literal|"ivy.exclude.types"
 argument_list|,
 literal|"source|javadoc"
+argument_list|)
+expr_stmt|;
+name|ivySettings
+operator|.
+name|setVariable
+argument_list|(
+literal|"ivy.resolution-cache.dir"
+argument_list|,
+name|ivyResolutionCacheDir
+operator|.
+name|getAbsolutePath
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|ivySettings
