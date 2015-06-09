@@ -311,7 +311,11 @@ operator|=
 name|searcher
 operator|.
 name|getSimilarity
-argument_list|()
+argument_list|(
+name|termContexts
+operator|!=
+literal|null
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -449,7 +453,9 @@ return|return
 name|searcher
 operator|.
 name|getSimilarity
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 operator|.
 name|computeWeight
 argument_list|(

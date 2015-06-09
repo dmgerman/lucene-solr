@@ -2545,7 +2545,9 @@ argument_list|,
 name|searcher
 operator|.
 name|getSimilarity
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 operator|instanceof
 name|DefaultSimilarity
 argument_list|)
@@ -2559,7 +2561,9 @@ operator|)
 name|searcher
 operator|.
 name|getSimilarity
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|NumericDocValues
 name|titleNorms

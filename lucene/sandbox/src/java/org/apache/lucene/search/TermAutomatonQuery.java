@@ -1817,7 +1817,9 @@ operator|=
 name|searcher
 operator|.
 name|getSimilarity
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|List
 argument_list|<

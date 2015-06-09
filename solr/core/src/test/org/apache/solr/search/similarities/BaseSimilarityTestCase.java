@@ -151,7 +151,9 @@ name|get
 argument_list|()
 operator|.
 name|getSimilarity
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 decl_stmt|;
 name|searcher
 operator|.
