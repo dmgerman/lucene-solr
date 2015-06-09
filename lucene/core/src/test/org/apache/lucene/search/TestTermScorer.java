@@ -112,20 +112,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|LeafReader
 import|;
 end_import
@@ -1159,10 +1145,12 @@ return|;
 block|}
 block|}
 decl_stmt|;
+comment|// We don't use newSearcher because it sometimes runs checkIndex which loads norms
 name|IndexSearcher
 name|indexSearcher
 init|=
-name|newSearcher
+operator|new
+name|IndexSearcher
 argument_list|(
 name|forbiddenNorms
 argument_list|)
