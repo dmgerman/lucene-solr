@@ -451,6 +451,13 @@ name|getReader
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|jsonString
+operator|!=
+literal|null
+condition|)
+block|{
 name|MultiMapSolrParams
 operator|.
 name|addParam
@@ -462,6 +469,7 @@ argument_list|,
 name|map
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -1575,6 +1583,14 @@ argument_list|(
 name|jsonStr
 argument_list|)
 decl_stmt|;
+comment|// zero-length strings or comments can cause this to be null (and a zero-length string can result from a json content-type w/o a body)
+if|if
+condition|(
+name|o
+operator|!=
+literal|null
+condition|)
+block|{
 name|ObjectUtil
 operator|.
 name|mergeObjects
@@ -1588,6 +1604,7 @@ argument_list|,
 name|handler
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 catch|catch
