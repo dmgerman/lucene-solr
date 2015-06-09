@@ -1368,7 +1368,7 @@ name|resolve
 argument_list|(
 name|prefix
 operator|+
-literal|" "
+literal|"_"
 operator|+
 name|ctx
 operator|.

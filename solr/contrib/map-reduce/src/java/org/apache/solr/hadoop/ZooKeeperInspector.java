@@ -1224,7 +1224,7 @@ argument_list|,
 literal|"solr.xml"
 argument_list|)
 argument_list|,
-literal|"<solr></solr>"
+literal|"<solr><solrcloud></solrcloud></solr>"
 argument_list|,
 literal|"UTF-8"
 argument_list|)
