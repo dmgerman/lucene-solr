@@ -168,12 +168,6 @@ name|t1
 init|=
 literal|"a_t"
 decl_stmt|;
-DECL|field|i1dv
-name|String
-name|i1dv
-init|=
-literal|"a_idv"
-decl_stmt|;
 DECL|field|i1
 name|String
 name|i1
@@ -531,10 +525,6 @@ name|tlong
 argument_list|,
 literal|100
 argument_list|,
-name|i1dv
-argument_list|,
-literal|100
-argument_list|,
 name|t1
 argument_list|,
 literal|"now is the time for all good men"
@@ -571,10 +561,6 @@ argument_list|,
 literal|50
 argument_list|,
 name|tlong
-argument_list|,
-literal|50
-argument_list|,
-name|i1dv
 argument_list|,
 literal|50
 argument_list|,
@@ -629,10 +615,6 @@ name|tlong
 argument_list|,
 literal|101
 argument_list|,
-name|i1dv
-argument_list|,
-literal|101
-argument_list|,
 name|t1
 argument_list|,
 literal|"the quick fox jumped over the lazy dog"
@@ -660,10 +642,6 @@ name|tlong
 argument_list|,
 literal|500
 argument_list|,
-name|i1dv
-argument_list|,
-literal|500
-argument_list|,
 name|t1
 argument_list|,
 literal|"the quick fox jumped way over the lazy dog"
@@ -688,10 +666,6 @@ name|tlong
 argument_list|,
 literal|600
 argument_list|,
-name|i1dv
-argument_list|,
-literal|600
-argument_list|,
 name|t1
 argument_list|,
 literal|"humpty dumpy sat on a wall"
@@ -708,10 +682,6 @@ argument_list|,
 literal|123
 argument_list|,
 name|tlong
-argument_list|,
-literal|123
-argument_list|,
-name|i1dv
 argument_list|,
 literal|123
 argument_list|,
@@ -757,10 +727,6 @@ name|tlong
 argument_list|,
 literal|7
 argument_list|,
-name|i1dv
-argument_list|,
-literal|7
-argument_list|,
 name|t1
 argument_list|,
 literal|"couldn't put humpty together again"
@@ -777,10 +743,6 @@ argument_list|,
 literal|4321
 argument_list|,
 name|tlong
-argument_list|,
-literal|4321
-argument_list|,
-name|i1dv
 argument_list|,
 literal|4321
 argument_list|,
@@ -804,10 +766,6 @@ name|tlong
 argument_list|,
 literal|987
 argument_list|,
-name|i1dv
-argument_list|,
-literal|2015
-argument_list|,
 name|t1
 argument_list|,
 literal|"An eye for eye only ends up making the whole world blind."
@@ -824,10 +782,6 @@ argument_list|,
 literal|379
 argument_list|,
 name|tlong
-argument_list|,
-literal|379
-argument_list|,
-name|i1dv
 argument_list|,
 literal|379
 argument_list|,
@@ -954,10 +908,6 @@ name|tlong
 argument_list|,
 literal|332
 argument_list|,
-name|i1dv
-argument_list|,
-literal|150
-argument_list|,
 name|t1
 argument_list|,
 literal|"no eggs on wall, lesson learned"
@@ -980,10 +930,6 @@ argument_list|,
 name|tlong
 argument_list|,
 literal|432
-argument_list|,
-name|i1dv
-argument_list|,
-literal|300
 argument_list|,
 name|t1
 argument_list|,
@@ -1008,10 +954,6 @@ name|tlong
 argument_list|,
 literal|532
 argument_list|,
-name|i1dv
-argument_list|,
-literal|150
-argument_list|,
 name|t1
 argument_list|,
 literal|"some eggs on wall"
@@ -1034,10 +976,6 @@ argument_list|,
 name|tlong
 argument_list|,
 literal|632
-argument_list|,
-name|i1dv
-argument_list|,
-literal|120
 argument_list|,
 name|t1
 argument_list|,
@@ -1062,10 +1000,6 @@ name|tlong
 argument_list|,
 literal|732
 argument_list|,
-name|i1dv
-argument_list|,
-literal|120
-argument_list|,
 name|t1
 argument_list|,
 literal|"any eggs on wall"
@@ -1088,10 +1022,6 @@ argument_list|,
 name|tlong
 argument_list|,
 literal|734
-argument_list|,
-name|i1dv
-argument_list|,
-literal|120
 argument_list|,
 name|t1
 argument_list|,
@@ -1896,37 +1826,6 @@ operator|+
 name|t1
 operator|+
 literal|":eggs"
-argument_list|,
-literal|"group.limit"
-argument_list|,
-literal|10
-argument_list|,
-literal|"sort"
-argument_list|,
-name|i1
-operator|+
-literal|" asc, id asc"
-argument_list|)
-expr_stmt|;
-name|query
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"*:*"
-argument_list|,
-literal|"fl"
-argument_list|,
-literal|"id,"
-operator|+
-name|i1dv
-argument_list|,
-literal|"group"
-argument_list|,
-literal|"true"
-argument_list|,
-literal|"group.field"
-argument_list|,
-name|i1dv
 argument_list|,
 literal|"group.limit"
 argument_list|,
