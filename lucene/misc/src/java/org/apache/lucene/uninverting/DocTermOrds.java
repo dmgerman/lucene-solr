@@ -271,7 +271,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This class enables fast access to multiple term ords for  * a specified field across all docIDs.  *  * Like FieldCache, it uninverts the index and holds a  * packed data structure in RAM to enable fast access.  * Unlike FieldCache, it can handle multi-valued fields,  * and, it does not hold the term bytes in RAM.  Rather, you  * must obtain a TermsEnum from the {@link #getOrdTermsEnum}  * method, and then seek-by-ord to get the term's bytes.  *  * While normally term ords are type long, in this API they are  * int as the internal representation here cannot address  * more than MAX_INT unique terms.  Also, typically this  * class is used on fields with relatively few unique terms  * vs the number of documents.  In addition, there is an  * internal limit (16 MB) on how many bytes each chunk of  * documents may consume.  If you trip this limit you'll hit  * an IllegalStateException.  *  * Deleted documents are skipped during uninversion, and if  * you look them up you'll get 0 ords.  *  * The returned per-document ords do not retain their  * original order in the document.  Instead they are returned  * in sorted (by ord, ie term's BytesRef comparator) order.  They  * are also de-dup'd (ie if doc has same term more than once  * in this field, you'll only get that ord back once).  *  * This class tests whether the provided reader is able to  * retrieve terms by ord (ie, it's single segment, and it  * uses an ord-capable terms index).  If not, this class  * will create its own term index internally, allowing to  * create a wrapped TermsEnum that can handle ord.  The  * {@link #getOrdTermsEnum} method then provides this  * wrapped enum, if necessary.  *  * The RAM consumption of this class can be high!  *  * @lucene.experimental  */
+comment|/**  * This class enables fast access to multiple term ords for  * a specified field across all docIDs.  *  * Like FieldCache, it uninverts the index and holds a  * packed data structure in RAM to enable fast access.  * Unlike FieldCache, it can handle multi-valued fields,  * and, it does not hold the term bytes in RAM.  Rather, you  * must obtain a TermsEnum from the {@link #getOrdTermsEnum}  * method, and then seek-by-ord to get the term's bytes.  *  * While normally term ords are type long, in this API they are  * int as the internal representation here cannot address  * more than MAX_INT unique terms.  Also, typically this  * class is used on fields with relatively few unique terms  * vs the number of documents.  In addition, there is an  * internal limit (16 MB) on how many bytes each chunk of  * documents may consume.  If you trip this limit you'll hit  * an IllegalStateException.  *  * Deleted documents are skipped during uninversion, and if  * you look them up you'll get 0 ords.  *  * The returned per-document ords do not retain their  * original order in the document.  Instead they are returned  * in sorted (by ord, ie term's BytesRef comparator) order.  They  * are also de-dup'd (ie if doc has same term more than once  * in this field, you'll only get that ord back once).  *  * This class  * will create its own term index internally, allowing to  * create a wrapped TermsEnum that can handle ord.  The  * {@link #getOrdTermsEnum} method then provides this  * wrapped enum.  *  * The RAM consumption of this class can be high!  *  * @lucene.experimental  */
 end_comment
 
 begin_comment
@@ -400,6 +400,12 @@ specifier|protected
 name|BytesRef
 index|[]
 name|indexedTermsArray
+init|=
+operator|new
+name|BytesRef
+index|[
+literal|0
+index|]
 decl_stmt|;
 comment|/** If non-null, only terms matching this prefix were    *  indexed. */
 DECL|field|prefix
@@ -701,7 +707,7 @@ operator|<<
 name|indexIntervalBits
 expr_stmt|;
 block|}
-comment|/** Returns a TermsEnum that implements ord.  If the    *  provided reader supports ord, we just return its    *  TermsEnum; if it does not, we build a "private" terms    *  index internally (WARNING: consumes RAM) and use that    *  index to implement ord.  This also enables ord on top    *  of a composite reader.  The returned TermsEnum is    *  unpositioned.  This returns null if there are no terms.    *    *<p><b>NOTE</b>: you must pass the same reader that was    *  used when creating this class */
+comment|/**     * Returns a TermsEnum that implements ord, or null if no terms in field.    *<p>    *  we build a "private" terms    *  index internally (WARNING: consumes RAM) and use that    *  index to implement ord.  This also enables ord on top    *  of a composite reader.  The returned TermsEnum is    *  unpositioned.  This returns null if there are no terms.    *</p>    *<p><b>NOTE</b>: you must pass the same reader that was    *  used when creating this class     */
 DECL|method|getOrdTermsEnum
 specifier|public
 name|TermsEnum
@@ -713,30 +719,20 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
+comment|// NOTE: see LUCENE-6529 before attempting to optimize this method to
+comment|// return a TermsEnum directly from the reader if it already supports ord().
+assert|assert
+literal|null
+operator|!=
 name|indexedTermsArray
-operator|==
-literal|null
-condition|)
-block|{
-comment|//System.out.println("GET normal enum");
-specifier|final
-name|Terms
-name|terms
-init|=
-name|reader
-operator|.
-name|terms
-argument_list|(
-name|field
-argument_list|)
-decl_stmt|;
+assert|;
 if|if
 condition|(
-name|terms
+literal|0
 operator|==
-literal|null
+name|indexedTermsArray
+operator|.
+name|length
 condition|)
 block|{
 return|return
@@ -745,17 +741,6 @@ return|;
 block|}
 else|else
 block|{
-return|return
-name|terms
-operator|.
-name|iterator
-argument_list|()
-return|;
-block|}
-block|}
-else|else
-block|{
-comment|//System.out.println("GET wrapped enum ordBase=" + ordBase);
 return|return
 operator|new
 name|OrdWrappedTermsEnum
@@ -1022,25 +1007,28 @@ block|{
 comment|// No terms match
 return|return;
 block|}
-comment|// If we need our "term index wrapper", these will be
-comment|// init'd below:
+comment|// For our "term index wrapper"
+specifier|final
 name|List
 argument_list|<
 name|BytesRef
 argument_list|>
 name|indexedTerms
 init|=
-literal|null
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|()
 decl_stmt|;
+specifier|final
 name|PagedBytes
 name|indexedTermsBytes
 init|=
-literal|null
-decl_stmt|;
-name|boolean
-name|testedOrd
-init|=
-literal|false
+operator|new
+name|PagedBytes
+argument_list|(
+literal|15
+argument_list|)
 decl_stmt|;
 comment|// we need a minimum of 9 bytes, but round up to 12 since the space would
 comment|// be wasted with most allocators anyway.
@@ -1120,56 +1108,6 @@ block|{
 break|break;
 block|}
 comment|//System.out.println("visit term=" + t.utf8ToString() + " " + t + " termNum=" + termNum);
-if|if
-condition|(
-operator|!
-name|testedOrd
-condition|)
-block|{
-try|try
-block|{
-name|ordBase
-operator|=
-operator|(
-name|int
-operator|)
-name|te
-operator|.
-name|ord
-argument_list|()
-expr_stmt|;
-comment|//System.out.println("got ordBase=" + ordBase);
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|uoe
-parameter_list|)
-block|{
-comment|// Reader cannot provide ord support, so we wrap
-comment|// our own support by creating our own terms index:
-name|indexedTerms
-operator|=
-operator|new
-name|ArrayList
-argument_list|<>
-argument_list|()
-expr_stmt|;
-name|indexedTermsBytes
-operator|=
-operator|new
-name|PagedBytes
-argument_list|(
-literal|15
-argument_list|)
-expr_stmt|;
-comment|//System.out.println("NO ORDS");
-block|}
-name|testedOrd
-operator|=
-literal|true
-expr_stmt|;
-block|}
 name|visitTerm
 argument_list|(
 name|te
@@ -1179,10 +1117,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|indexedTerms
-operator|!=
-literal|null
-operator|&&
 operator|(
 name|termNum
 operator|&
@@ -2069,13 +2003,6 @@ condition|)
 break|break;
 block|}
 block|}
-if|if
-condition|(
-name|indexedTerms
-operator|!=
-literal|null
-condition|)
-block|{
 name|indexedTermsArray
 operator|=
 name|indexedTerms
@@ -2092,7 +2019,6 @@ argument_list|()
 index|]
 argument_list|)
 expr_stmt|;
-block|}
 name|long
 name|endTime
 init|=
@@ -2412,7 +2338,7 @@ return|return
 name|pos
 return|;
 block|}
-comment|/* Only used if original IndexReader doesn't implement    * ord; in this case we "wrap" our own terms index    * around it. */
+comment|/**     * "wrap" our own terms index around the original IndexReader.     * Only valid if there are terms for this field rom the original reader    */
 DECL|class|OrdWrappedTermsEnum
 specifier|private
 specifier|final
@@ -2457,6 +2383,13 @@ assert|assert
 name|indexedTermsArray
 operator|!=
 literal|null
+assert|;
+assert|assert
+literal|0
+operator|!=
+name|indexedTermsArray
+operator|.
+name|length
 assert|;
 name|termsEnum
 operator|=
