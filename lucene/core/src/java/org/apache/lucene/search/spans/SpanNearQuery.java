@@ -900,8 +900,6 @@ operator|.
 name|this
 argument_list|,
 name|subSpans
-argument_list|,
-name|collector
 argument_list|)
 return|;
 block|}
