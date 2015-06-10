@@ -106,7 +106,7 @@ name|int
 name|endPosition
 parameter_list|()
 function_decl|;
-comment|/**    * Collect data from the current Spans    * @param collector a SpanCollector    *    * @lucene.experimental    */
+comment|/**    * Collect postings data from the leaves of the current Spans.    *    * This method should only be called after {@link #nextStartPosition()}, and before    * {@link #NO_MORE_POSITIONS} has been reached.    *    * @param collector a SpanCollector    *    * @lucene.experimental    */
 DECL|method|collect
 specifier|public
 specifier|abstract

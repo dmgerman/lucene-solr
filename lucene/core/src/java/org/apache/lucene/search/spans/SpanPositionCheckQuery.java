@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|IndexReader
 import|;
 end_import
 
@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|LeafReaderContext
 import|;
 end_import
 
@@ -160,7 +160,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Set
+name|Objects
 import|;
 end_import
 
@@ -170,7 +170,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Objects
+name|Set
 import|;
 end_import
 
@@ -240,7 +240,7 @@ name|getField
 argument_list|()
 return|;
 block|}
-comment|/**    * Implementing classes are required to return whether the current position is a match for the passed in    * "match" {@link SpanQuery}.    *    * This is only called if the underlying last {@link Spans#nextStartPosition()} for the    * match indicated a valid start position.    *    * @param spans The {@link Spans} instance, positioned at the spot to check    * @param collector the {@link SpanCollector} associated with the Spans    *    * @return whether the match is accepted, rejected, or rejected and should move to the next doc.    *    * @see Spans#nextDoc()    *    */
+comment|/**    * Implementing classes are required to return whether the current position is a match for the passed in    * "match" {@link SpanQuery}.    *    * This is only called if the underlying last {@link Spans#nextStartPosition()} for the    * match indicated a valid start position.    *    * @param spans The {@link Spans} instance, positioned at the spot to check    *    * @return whether the match is accepted, rejected, or rejected and should move to the next doc.    *    * @see Spans#nextDoc()    *    */
 DECL|method|acceptPosition
 specifier|protected
 specifier|abstract
@@ -249,9 +249,6 @@ name|acceptPosition
 parameter_list|(
 name|Spans
 name|spans
-parameter_list|,
-name|SpanCollector
-name|collector
 parameter_list|)
 throws|throws
 name|IOException
@@ -268,9 +265,6 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
-parameter_list|,
-name|SpanCollectorFactory
-name|factory
 parameter_list|)
 throws|throws
 name|IOException
@@ -285,8 +279,6 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
-argument_list|,
-name|factory
 argument_list|)
 decl_stmt|;
 return|return
@@ -305,8 +297,6 @@ name|matchWeight
 argument_list|)
 else|:
 literal|null
-argument_list|,
-name|factory
 argument_list|)
 return|;
 block|}
@@ -339,9 +329,6 @@ argument_list|,
 name|TermContext
 argument_list|>
 name|terms
-parameter_list|,
-name|SpanCollectorFactory
-name|collectorFactory
 parameter_list|)
 throws|throws
 name|IOException
@@ -355,8 +342,6 @@ argument_list|,
 name|searcher
 argument_list|,
 name|terms
-argument_list|,
-name|collectorFactory
 argument_list|)
 expr_stmt|;
 name|this
@@ -426,8 +411,8 @@ parameter_list|,
 name|Bits
 name|acceptDocs
 parameter_list|,
-name|SpanCollector
-name|collector
+name|Postings
+name|requiredPostings
 parameter_list|)
 throws|throws
 name|IOException
@@ -443,7 +428,7 @@ name|context
 argument_list|,
 name|acceptDocs
 argument_list|,
-name|collector
+name|requiredPostings
 argument_list|)
 decl_stmt|;
 return|return
@@ -477,8 +462,6 @@ return|return
 name|acceptPosition
 argument_list|(
 name|candidate
-argument_list|,
-name|collector
 argument_list|)
 return|;
 block|}

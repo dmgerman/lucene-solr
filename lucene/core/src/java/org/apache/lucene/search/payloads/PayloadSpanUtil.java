@@ -1213,7 +1213,11 @@ operator|.
 name|getLiveDocs
 argument_list|()
 argument_list|,
-name|collector
+name|SpanWeight
+operator|.
+name|Postings
+operator|.
+name|PAYLOADS
 argument_list|)
 decl_stmt|;
 if|if

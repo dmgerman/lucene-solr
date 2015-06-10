@@ -2098,6 +2098,12 @@ argument_list|(
 name|context
 argument_list|,
 name|acceptDocs
+argument_list|,
+name|SpanWeight
+operator|.
+name|Postings
+operator|.
+name|POSITIONS
 argument_list|)
 decl_stmt|;
 if|if

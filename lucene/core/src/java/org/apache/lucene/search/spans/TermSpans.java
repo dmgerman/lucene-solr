@@ -432,7 +432,6 @@ name|cost
 argument_list|()
 return|;
 block|}
-comment|/*   @Override   public Collection<byte[]> getPayload() throws IOException {     final BytesRef payload = postings.getPayload();     readPayload = true;     final byte[] bytes;     if (payload != null) {       bytes = new byte[payload.length];       System.arraycopy(payload.bytes, payload.offset, bytes, 0, payload.length);     } else {       bytes = null;     }     return Collections.singletonList(bytes);   }    @Override   public boolean isPayloadAvailable() throws IOException {     return readPayload == false&& postings.getPayload() != null;   }   */
 annotation|@
 name|Override
 DECL|method|collect
@@ -451,6 +450,8 @@ operator|.
 name|collectLeaf
 argument_list|(
 name|postings
+argument_list|,
+name|position
 argument_list|,
 name|term
 argument_list|)

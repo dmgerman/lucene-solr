@@ -131,8 +131,9 @@ operator|-
 literal|1
 decl_stmt|;
 comment|// last doc we called setFreqCurrentDoc() for
+comment|/**    * Creates a new SpanScorer    * @lucene.internal    */
 DECL|method|SpanScorer
-specifier|protected
+specifier|public
 name|SpanScorer
 parameter_list|(
 name|Spans

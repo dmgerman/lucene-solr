@@ -806,9 +806,6 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
-parameter_list|,
-name|SpanCollectorFactory
-name|factory
 parameter_list|)
 throws|throws
 name|IOException
@@ -848,8 +845,6 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
-argument_list|,
-name|factory
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -868,8 +863,6 @@ name|subWeights
 argument_list|)
 else|:
 literal|null
-argument_list|,
-name|factory
 argument_list|,
 name|subWeights
 argument_list|)
@@ -905,9 +898,6 @@ name|TermContext
 argument_list|>
 name|terms
 parameter_list|,
-name|SpanCollectorFactory
-name|factory
-parameter_list|,
 name|List
 argument_list|<
 name|SpanWeight
@@ -926,8 +916,6 @@ argument_list|,
 name|searcher
 argument_list|,
 name|terms
-argument_list|,
-name|factory
 argument_list|)
 expr_stmt|;
 name|this
@@ -1017,8 +1005,8 @@ specifier|final
 name|Bits
 name|acceptDocs
 parameter_list|,
-name|SpanCollector
-name|collector
+name|Postings
+name|requiredPostings
 parameter_list|)
 throws|throws
 name|IOException
@@ -1058,7 +1046,7 @@ name|context
 argument_list|,
 name|acceptDocs
 argument_list|,
-name|collector
+name|requiredPostings
 argument_list|)
 decl_stmt|;
 if|if
