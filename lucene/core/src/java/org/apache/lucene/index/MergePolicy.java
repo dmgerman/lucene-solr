@@ -525,11 +525,11 @@ name|readers
 argument_list|)
 return|;
 block|}
-comment|/**      * Expert: Sets the {@link SegmentCommitInfo} of this {@link OneMerge}.      * Allows sub-classes to e.g. set diagnostics properties.      */
-DECL|method|setInfo
+comment|/**      * Expert: Sets the {@link SegmentCommitInfo} of the merged segment.      * Allows sub-classes to e.g. set diagnostics properties.      */
+DECL|method|setMergeInfo
 specifier|public
 name|void
-name|setInfo
+name|setMergeInfo
 parameter_list|(
 name|SegmentCommitInfo
 name|info
@@ -541,6 +541,17 @@ name|info
 operator|=
 name|info
 expr_stmt|;
+block|}
+comment|/**      * Returns the {@link SegmentCommitInfo} for the merged segment,      * or null if it hasn't been set yet.      */
+DECL|method|getMergeInfo
+specifier|public
+name|SegmentCommitInfo
+name|getMergeInfo
+parameter_list|()
+block|{
+return|return
+name|info
+return|;
 block|}
 comment|/** Expert: If {@link #getMergeReaders()} reorders document IDs, this method      *  must be overridden to return a mapping from the<i>natural</i> doc ID      *  (the doc ID that would result from a natural merge) to the actual doc      *  ID. This mapping is used to apply deletions that happened during the      *  merge to the new segment. */
 DECL|method|getDocMap
@@ -788,10 +799,10 @@ name|total
 return|;
 block|}
 comment|/** Return {@link MergeInfo} describing this merge. */
-DECL|method|getMergeInfo
+DECL|method|getStoreMergeInfo
 specifier|public
 name|MergeInfo
-name|getMergeInfo
+name|getStoreMergeInfo
 parameter_list|()
 block|{
 return|return

@@ -2960,10 +2960,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|setInfo
+DECL|method|setMergeInfo
 specifier|public
 name|void
-name|setInfo
+name|setMergeInfo
 parameter_list|(
 name|SegmentCommitInfo
 name|info
@@ -2991,7 +2991,7 @@ argument_list|)
 expr_stmt|;
 name|super
 operator|.
-name|setInfo
+name|setMergeInfo
 argument_list|(
 name|info
 argument_list|)
