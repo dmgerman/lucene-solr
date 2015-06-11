@@ -606,6 +606,18 @@ name|updateMergeThreads
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Returns true if auto IO throttling is currently enabled. */
+DECL|method|getAutoIOThrottle
+specifier|public
+specifier|synchronized
+name|boolean
+name|getAutoIOThrottle
+parameter_list|()
+block|{
+return|return
+name|doAutoIOThrottle
+return|;
+block|}
 comment|/** Returns the currently set per-merge IO writes rate limit, if {@link #enableAutoIOThrottle}    *  was called, else {@code Double.POSITIVE_INFINITY}. */
 DECL|method|getIORateLimitMBPerSec
 specifier|public
