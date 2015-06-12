@@ -1611,7 +1611,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Invoked Collection Action :{} with params{} "
+literal|"Invoked Collection Action :{} with params {} "
 argument_list|,
 name|action
 operator|.
