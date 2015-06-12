@@ -145,10 +145,10 @@ name|num
 operator|=
 literal|2
 argument_list|)
-DECL|method|test
+DECL|method|searchingShouldFailWithoutTolerantSearchSetToTrue
 specifier|public
 name|void
-name|test
+name|searchingShouldFailWithoutTolerantSearchSetToTrue
 parameter_list|()
 throws|throws
 name|Exception
@@ -284,8 +284,6 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
-name|response
-operator|=
 name|cloudClient
 operator|.
 name|query
@@ -354,7 +352,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"shard1"
+name|SHARD1
 argument_list|)
 argument_list|)
 expr_stmt|;
