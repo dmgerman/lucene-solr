@@ -1341,7 +1341,7 @@ name|Exception
 block|{
 name|doTestRandom
 argument_list|(
-literal|1000000
+literal|200000
 argument_list|)
 expr_stmt|;
 block|}
