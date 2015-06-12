@@ -415,7 +415,7 @@ comment|//
 end_comment
 
 begin_comment
-comment|//   ant test -Dtests.monster=true -Dtests.heapsize=8g -Dtests.codec=Lucene50 -Dtestcase=Test2BTerms
+comment|//   ant test -Dtests.monster=true -Dtests.heapsize=8g -Dtests.codec=Lucene53 -Dtestcase=Test2BTerms
 end_comment
 
 begin_comment

@@ -169,7 +169,7 @@ name|LOADER
 operator|.
 name|lookup
 argument_list|(
-literal|"Lucene50"
+literal|"Lucene53"
 argument_list|)
 decl_stmt|;
 block|}

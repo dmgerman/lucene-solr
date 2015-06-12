@@ -30,7 +30,7 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50NormsConsumer
+name|Lucene50NormsFormat
 operator|.
 name|CONST_COMPRESSED
 import|;
@@ -48,7 +48,7 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50NormsConsumer
+name|Lucene50NormsFormat
 operator|.
 name|DELTA_COMPRESSED
 import|;
@@ -66,7 +66,7 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50NormsConsumer
+name|Lucene50NormsFormat
 operator|.
 name|INDIRECT
 import|;
@@ -84,7 +84,7 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50NormsConsumer
+name|Lucene50NormsFormat
 operator|.
 name|PATCHED_BITSET
 import|;
@@ -102,7 +102,7 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50NormsConsumer
+name|Lucene50NormsFormat
 operator|.
 name|PATCHED_TABLE
 import|;
@@ -120,7 +120,7 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50NormsConsumer
+name|Lucene50NormsFormat
 operator|.
 name|TABLE_COMPRESSED
 import|;
@@ -138,7 +138,7 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50NormsConsumer
+name|Lucene50NormsFormat
 operator|.
 name|UNCOMPRESSED
 import|;
@@ -537,11 +537,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reader for {@link Lucene50NormsFormat}  */
+comment|/**  * Reader for {@link Lucene50NormsFormat}  * @deprecated Only for reading old 5.0-5.2 segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene50NormsProducer
+specifier|final
 class|class
 name|Lucene50NormsProducer
 extends|extends

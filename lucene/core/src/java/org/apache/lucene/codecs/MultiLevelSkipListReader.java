@@ -132,11 +132,6 @@ specifier|private
 name|int
 name|docCount
 decl_stmt|;
-DECL|field|haveSkipped
-specifier|private
-name|boolean
-name|haveSkipped
-decl_stmt|;
 comment|/** skipStream for each level. */
 DECL|field|skipStream
 specifier|private
@@ -404,21 +399,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-operator|!
-name|haveSkipped
-condition|)
-block|{
-comment|// first time, load skip levels
-name|loadSkipLevels
-argument_list|()
-expr_stmt|;
-name|haveSkipped
-operator|=
-literal|true
-expr_stmt|;
-block|}
 comment|// walk up the levels until highest level is found that has a skip
 comment|// for this target
 name|int
@@ -774,6 +754,8 @@ parameter_list|,
 name|int
 name|df
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|this
 operator|.
@@ -846,10 +828,6 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|haveSkipped
-operator|=
-literal|false
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -873,6 +851,9 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+name|loadSkipLevels
+argument_list|()
+expr_stmt|;
 block|}
 comment|/** Loads the skip levels  */
 DECL|method|loadSkipLevels

@@ -2441,8 +2441,6 @@ argument_list|()
 argument_list|,
 name|MAX_SKIP_LEVELS
 argument_list|,
-name|BLOCK_SIZE
-argument_list|,
 name|indexHasPos
 argument_list|,
 name|indexHasOffsets
@@ -3612,8 +3610,6 @@ name|clone
 argument_list|()
 argument_list|,
 name|MAX_SKIP_LEVELS
-argument_list|,
-name|BLOCK_SIZE
 argument_list|,
 literal|true
 argument_list|,
@@ -5450,8 +5446,6 @@ name|clone
 argument_list|()
 argument_list|,
 name|MAX_SKIP_LEVELS
-argument_list|,
-name|BLOCK_SIZE
 argument_list|,
 literal|true
 argument_list|,

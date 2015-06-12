@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests Lucene49NormsFormat  */
+comment|/**  * Tests Lucene50NormsFormat  */
 end_comment
 
 begin_class
@@ -136,9 +136,8 @@ specifier|final
 name|Codec
 name|codec
 init|=
-name|TestUtil
-operator|.
-name|getDefaultCodec
+operator|new
+name|Lucene50RWCodec
 argument_list|()
 decl_stmt|;
 annotation|@

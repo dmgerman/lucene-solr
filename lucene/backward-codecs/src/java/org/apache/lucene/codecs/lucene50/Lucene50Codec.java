@@ -233,10 +233,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the Lucene 5.0 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene50 package documentation for file format details.  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 5.0 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene50 package documentation for file format details.  * @deprecated Only for reading old 5.0-5.2 segments  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene50Codec
 specifier|public
 class|class
@@ -582,7 +584,6 @@ annotation|@
 name|Override
 DECL|method|normsFormat
 specifier|public
-specifier|final
 name|NormsFormat
 name|normsFormat
 parameter_list|()

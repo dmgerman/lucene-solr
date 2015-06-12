@@ -66,6 +66,24 @@ name|IndexInput
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50PostingsFormat
+operator|.
+name|BLOCK_SIZE
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implements the skip list reader for block postings format  * that stores positions and payloads.  *   * Although this skipper uses MultiLevelSkipListReader as an interface,   * its definition of skip position will be a little different.   *  * For example, when skipInterval = blockSize = 3, df = 2*skipInterval = 6,   *   * 0 1 2 3 4 5  * d d d d d d    (posting list)  *     ^     ^    (skip point in MultiLeveSkipWriter)  *       ^        (skip point in Lucene50SkipWriter)  *  * In this case, MultiLevelSkipListReader will use the last document as a skip point,   * while Lucene50SkipReader should assume no skip point will comes.   *  * If we use the interface directly in Lucene50SkipReader, it may silly try to read   * another skip data after the only skip point is loaded.   *  * To illustrate this, we can call skipTo(d[5]), since skip point d[3] has smaller docId,  * and numSkipped+blockSize== df, the MultiLevelSkipListReader will assume the skip list  * isn't exhausted yet, and try to load a non-existed skip point  *  * Therefore, we'll trim df before passing it to the interface. see trim(int)  *  */
 end_comment
@@ -78,12 +96,6 @@ name|Lucene50SkipReader
 extends|extends
 name|MultiLevelSkipListReader
 block|{
-DECL|field|blockSize
-specifier|private
-specifier|final
-name|int
-name|blockSize
-decl_stmt|;
 DECL|field|docPointer
 specifier|private
 name|long
@@ -149,9 +161,6 @@ parameter_list|,
 name|int
 name|maxSkipLevels
 parameter_list|,
-name|int
-name|blockSize
-parameter_list|,
 name|boolean
 name|hasPos
 parameter_list|,
@@ -168,16 +177,10 @@ name|skipStream
 argument_list|,
 name|maxSkipLevels
 argument_list|,
-name|blockSize
+name|BLOCK_SIZE
 argument_list|,
 literal|8
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|blockSize
-operator|=
-name|blockSize
 expr_stmt|;
 name|docPointer
 operator|=
@@ -274,7 +277,7 @@ block|{
 return|return
 name|df
 operator|%
-name|blockSize
+name|BLOCK_SIZE
 operator|==
 literal|0
 condition|?
@@ -305,6 +308,8 @@ parameter_list|,
 name|int
 name|df
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 operator|.
