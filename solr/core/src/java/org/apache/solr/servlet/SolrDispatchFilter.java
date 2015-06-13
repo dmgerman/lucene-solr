@@ -573,8 +573,8 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"SolrDispatchFilter.init()"
-operator|+
+literal|"SolrDispatchFilter.init(): {}"
+argument_list|,
 name|this
 operator|.
 name|getClass
@@ -951,8 +951,8 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Trying to read solr.xml from "
-operator|+
+literal|"Trying to read solr.xml from {}"
+argument_list|,
 name|zkHost
 argument_list|)
 expr_stmt|;
@@ -1254,8 +1254,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"User principal: "
-operator|+
+literal|"User principal: {}"
+argument_list|,
 operator|(
 operator|(
 name|HttpServletRequest
@@ -1287,9 +1287,6 @@ name|request
 operator|)
 operator|.
 name|getServletPath
-argument_list|()
-operator|.
-name|toString
 argument_list|()
 decl_stmt|;
 for|for
@@ -1514,19 +1511,15 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"Request to authenticate: "
-operator|+
+literal|"Request to authenticate: {}, domain: {}, port: {}"
+argument_list|,
 name|request
-operator|+
-literal|", domain: "
-operator|+
+argument_list|,
 name|request
 operator|.
 name|getLocalName
 argument_list|()
-operator|+
-literal|", port: "
-operator|+
+argument_list|,
 name|request
 operator|.
 name|getLocalPort
