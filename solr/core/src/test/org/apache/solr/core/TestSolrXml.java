@@ -256,7 +256,7 @@ operator|.
 name|none
 argument_list|()
 decl_stmt|;
-comment|// tmp dir, cleanedup automaticly.
+comment|// tmp dir, cleaned up automatically.
 DECL|field|solrHome
 specifier|private
 specifier|static
@@ -795,6 +795,30 @@ name|getZkHost
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"zk ACL provider"
+argument_list|,
+literal|"DefaultZkACLProvider"
+argument_list|,
+name|ccfg
+operator|.
+name|getZkACLProviderClass
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"zk credentials provider"
+argument_list|,
+literal|"DefaultZkCredentialsProvider"
+argument_list|,
+name|ccfg
+operator|.
+name|getZkCredentialsProviderClass
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// Test  a few property substitutions that happen to be in solr-50-all.xml.
 DECL|method|testPropertySub
@@ -1050,9 +1074,6 @@ argument_list|(
 literal|"transientCacheSize"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|cfg
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1061,7 +1082,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testIntAsLongOk
 specifier|public
@@ -1147,9 +1169,6 @@ argument_list|(
 literal|"Multiple instances of solrcloud section found in solr.xml"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|cfg
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1158,7 +1177,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testMultiLoggingSectionError
 specifier|public
@@ -1195,9 +1215,6 @@ argument_list|(
 literal|"Multiple instances of logging section found in solr.xml"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|cfg
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1206,7 +1223,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testMultiLoggingWatcherSectionError
 specifier|public
@@ -1245,9 +1263,6 @@ argument_list|(
 literal|"Multiple instances of logging/watcher section found in solr.xml"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|cfg
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1256,7 +1271,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testValidStringValueWhenBoolTypeIsExpected
 specifier|public
@@ -1436,9 +1452,6 @@ argument_list|(
 literal|"Error parsing 'maxUpdateConnections'"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|nodeConfig
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1447,7 +1460,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testFailAtConfigParseTimeWhenBoolTypeIsExpectedAndValueIsInvalidString
 specifier|public
@@ -1478,9 +1492,6 @@ argument_list|(
 literal|"invalid boolean value: NOT_A_BOOLEAN"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|nodeConfig
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1489,7 +1500,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testFailAtConfigParseTimeWhenIntTypeIsExpectedAndBoolTypeIsGiven
 specifier|public
@@ -1552,9 +1564,6 @@ name|randomBoolean
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|nodeConfig
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1563,7 +1572,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testFailAtConfigParseTimeWhenUnrecognizedSolrCloudOptionWasFound
 specifier|public
@@ -1594,9 +1604,6 @@ argument_list|(
 literal|"Unknown configuration parameter in<solrcloud> section of solr.xml: unknown-option"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|nodeConfig
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1605,7 +1612,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testFailAtConfigParseTimeWhenUnrecognizedSolrOptionWasFound
 specifier|public
@@ -1636,9 +1644,6 @@ argument_list|(
 literal|"Unknown configuration value in solr.xml: unknown-bool-option"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|nodeConfig
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1647,7 +1652,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testFailAtConfigParseTimeWhenUnrecognizedLoggingOptionWasFound
 specifier|public
@@ -1693,9 +1699,6 @@ argument_list|(
 literal|"Unknown value in logwatcher config: unknown-option"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|nodeConfig
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1704,7 +1707,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testFailAtConfigParseTimeWhenLoggingConfigParamsAreDuplicated
 specifier|public
@@ -1776,9 +1780,6 @@ argument_list|(
 literal|"<logging> section of solr.xml contains duplicated 'class'"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|nodeConfig
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1787,7 +1788,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testFailAtConfigParseTimeWhenSolrCloudConfigParamsAreDuplicated
 specifier|public
@@ -1877,9 +1879,6 @@ argument_list|(
 literal|"<solrcloud> section of solr.xml contains duplicated 'zkClientTimeout'"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|nodeConfig
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1888,7 +1887,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 annotation|@
 name|Ignore
@@ -1962,9 +1962,6 @@ argument_list|(
 literal|"Main section of solr.xml contains duplicated 'coreLoadThreads'"
 argument_list|)
 expr_stmt|;
-name|NodeConfig
-name|nodeConfig
-init|=
 name|SolrXmlConfig
 operator|.
 name|fromString
@@ -1973,7 +1970,8 @@ name|loader
 argument_list|,
 name|solrXml
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+comment|// return not used, only for validation
 block|}
 DECL|method|testCloudConfigRequiresHost
 specifier|public
