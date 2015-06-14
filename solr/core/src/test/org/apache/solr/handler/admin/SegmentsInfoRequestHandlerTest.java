@@ -216,7 +216,7 @@ argument_list|,
 literal|"/admin/segments"
 argument_list|)
 argument_list|,
-literal|"1=count(//lst[@name='segments']/lst)"
+literal|"0<count(//lst[@name='segments']/lst)"
 argument_list|)
 expr_stmt|;
 block|}
@@ -242,12 +242,12 @@ argument_list|,
 comment|//#Document
 name|DOC_COUNT
 operator|+
-literal|"=//lst[@name='segments']/lst[1]/int[@name='size']"
+literal|"=sum(//lst[@name='segments']/lst[*]/int[@name='size'])"
 argument_list|,
 comment|//#Deletes
 name|DEL_COUNT
 operator|+
-literal|"=//lst[@name='segments']/lst[1]/int[@name='delCount']"
+literal|"=sum(//lst[@name='segments']/lst[*]/int[@name='delCount'])"
 argument_list|)
 expr_stmt|;
 block|}
