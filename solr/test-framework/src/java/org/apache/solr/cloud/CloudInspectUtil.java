@@ -52,6 +52,22 @@ name|client
 operator|.
 name|solrj
 operator|.
+name|SolrRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
 name|SolrServerException
 import|;
 end_import
@@ -835,7 +851,10 @@ operator|.
 name|append
 argument_list|(
 literal|" numFound="
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|lst
 operator|.
 name|getNumFound
@@ -1094,7 +1113,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-empty_stmt|;
 name|cloudDocList
 operator|=
 name|cloudClient
@@ -1130,7 +1148,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-empty_stmt|;
 if|if
 condition|(
 name|controlDocs
@@ -1197,6 +1214,8 @@ argument_list|,
 literal|"cloudDocList"
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 comment|// get versions for the mismatched ids
 name|boolean
 name|foundId
@@ -1225,7 +1244,10 @@ operator|.
 name|append
 argument_list|(
 literal|" "
-operator|+
+argument_list|)
+operator|.
+name|append
+argument_list|(
 name|doc
 operator|.
 name|get
@@ -1284,6 +1306,7 @@ argument_list|)
 expr_stmt|;
 comment|// add a tag to aid in
 comment|// debugging via logs
+comment|// use POST, the ids in the query above is constructed and could be huge
 name|SolrDocumentList
 name|a
 init|=
@@ -1292,6 +1315,12 @@ operator|.
 name|query
 argument_list|(
 name|q
+argument_list|,
+name|SolrRequest
+operator|.
+name|METHOD
+operator|.
+name|POST
 argument_list|)
 operator|.
 name|getResults
@@ -1305,6 +1334,12 @@ operator|.
 name|query
 argument_list|(
 name|q
+argument_list|,
+name|SolrRequest
+operator|.
+name|METHOD
+operator|.
+name|POST
 argument_list|)
 operator|.
 name|getResults
@@ -1321,6 +1356,25 @@ operator|+
 literal|"\n\tcloudClient :"
 operator|+
 name|b
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|// swallow any exceptions, this is just useful for producing debug output,
+comment|// and shouldn't usurp the original issue with mismatches.
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Unable to find versions for mismatched ids"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
