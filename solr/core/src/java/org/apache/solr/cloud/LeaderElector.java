@@ -950,6 +950,15 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Watching path {} to know if I could be the leader"
+argument_list|,
+name|watchedNode
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1374,7 +1383,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"node {} Trying to join election at the head "
+literal|"Node {} trying to join election at the head"
 argument_list|,
 name|id
 argument_list|)
@@ -1510,15 +1519,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Joined at the head  {}"
-argument_list|,
-name|leaderSeqPath
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 else|else
@@ -1547,6 +1547,15 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Joined leadership election with path: {}"
+argument_list|,
+name|leaderSeqPath
+argument_list|)
+expr_stmt|;
 name|context
 operator|.
 name|leaderSeqPath
