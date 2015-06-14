@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.index
+DECL|package|org.apache.lucene.store
 package|package
 name|org
 operator|.
@@ -8,7 +8,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|store
 package|;
 end_package
 
@@ -35,20 +35,6 @@ operator|.
 name|file
 operator|.
 name|Path
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SleepingLockWrapper
 import|;
 end_import
 
@@ -91,6 +77,20 @@ operator|.
 name|store
 operator|.
 name|SingleInstanceLockFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
+name|SleepingLockWrapper
 import|;
 end_import
 

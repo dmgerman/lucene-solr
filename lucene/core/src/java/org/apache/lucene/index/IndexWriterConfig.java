@@ -110,6 +110,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|SleepingLockWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|InfoStream
@@ -233,14 +247,17 @@ name|DEFAULT_RAM_BUFFER_SIZE_MB
 init|=
 literal|16.0
 decl_stmt|;
-comment|/**    * Default value for the write lock timeout (1,000 ms).    *    * @see #setDefaultWriteLockTimeout(long)    */
+comment|/**    * Default value for the write lock timeout (0 ms: no sleeping).    * @deprecated Use {@link SleepingLockWrapper} if you want sleeping.    */
+annotation|@
+name|Deprecated
 DECL|field|WRITE_LOCK_TIMEOUT
 specifier|public
 specifier|static
+specifier|final
 name|long
 name|WRITE_LOCK_TIMEOUT
 init|=
-literal|1000
+literal|0
 decl_stmt|;
 comment|/** Default setting for {@link #setReaderPooling}. */
 DECL|field|DEFAULT_READER_POOLING
@@ -292,34 +309,6 @@ name|DEFAULT_COMMIT_ON_CLOSE
 init|=
 literal|true
 decl_stmt|;
-comment|/**    * Sets the default (for any instance) maximum time to wait for a write lock    * (in milliseconds).    */
-DECL|method|setDefaultWriteLockTimeout
-specifier|public
-specifier|static
-name|void
-name|setDefaultWriteLockTimeout
-parameter_list|(
-name|long
-name|writeLockTimeout
-parameter_list|)
-block|{
-name|WRITE_LOCK_TIMEOUT
-operator|=
-name|writeLockTimeout
-expr_stmt|;
-block|}
-comment|/**    * Returns the default write lock timeout for newly instantiated    * IndexWriterConfigs.    *    * @see #setDefaultWriteLockTimeout(long)    */
-DECL|method|getDefaultWriteLockTimeout
-specifier|public
-specifier|static
-name|long
-name|getDefaultWriteLockTimeout
-parameter_list|()
-block|{
-return|return
-name|WRITE_LOCK_TIMEOUT
-return|;
-block|}
 comment|// indicates whether this config instance is already attached to a writer.
 comment|// not final so that it can be cloned properly.
 DECL|field|writer
@@ -612,7 +601,9 @@ return|return
 name|mergeScheduler
 return|;
 block|}
-comment|/**    * Sets the maximum time to wait for a write lock (in milliseconds) for this    * instance. You can change the default value for all instances by calling    * {@link #setDefaultWriteLockTimeout(long)}. Note that the value can be zero,    * for no sleep/retry behavior.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/**    * Sets the maximum time to wait for a write lock (in milliseconds) for this    * instance. Note that the value can be zero, for no sleep/retry behavior.    *    *<p>Only takes effect when IndexWriter is first created.    * @deprecated Use {@link SleepingLockWrapper} if you want sleeping.    */
+annotation|@
+name|Deprecated
 DECL|method|setWriteLockTimeout
 specifier|public
 name|IndexWriterConfig

@@ -130,6 +130,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|store
+operator|.
+name|SleepingLockWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|InfoStream
@@ -212,7 +226,9 @@ specifier|volatile
 name|MergeScheduler
 name|mergeScheduler
 decl_stmt|;
-comment|/** Timeout when trying to obtain the write lock on init. */
+comment|/**     * Timeout when trying to obtain the write lock on init.     * @deprecated Use {@link SleepingLockWrapper} if you want sleeping.    */
+annotation|@
+name|Deprecated
 DECL|field|writeLockTimeout
 specifier|protected
 specifier|volatile
@@ -777,7 +793,9 @@ return|return
 name|mergeScheduler
 return|;
 block|}
-comment|/**    * Returns allowed timeout when acquiring the write lock.    *    * @see IndexWriterConfig#setWriteLockTimeout(long)    */
+comment|/**    * Returns allowed timeout when acquiring the write lock.    *    * @see IndexWriterConfig#setWriteLockTimeout(long)    * @deprecated Use {@link SleepingLockWrapper} if you want sleeping.    */
+annotation|@
+name|Deprecated
 DECL|method|getWriteLockTimeout
 specifier|public
 name|long
