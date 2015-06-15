@@ -423,7 +423,7 @@ implements|implements
 name|SolrCoreAware
 block|{
 DECL|field|clientCache
-specifier|private
+specifier|static
 name|SolrClientCache
 name|clientCache
 init|=
