@@ -670,8 +670,7 @@ argument_list|,
 operator|new
 name|QueryWrapperFilter
 argument_list|(
-operator|new
-name|ItemizedQuery
+name|matchTheseItems
 argument_list|(
 operator|new
 name|int
@@ -732,8 +731,7 @@ argument_list|,
 operator|new
 name|QueryWrapperFilter
 argument_list|(
-operator|new
-name|ItemizedQuery
+name|matchTheseItems
 argument_list|(
 operator|new
 name|int
@@ -790,8 +788,7 @@ argument_list|,
 operator|new
 name|QueryWrapperFilter
 argument_list|(
-operator|new
-name|ItemizedQuery
+name|matchTheseItems
 argument_list|(
 operator|new
 name|int
@@ -854,8 +851,7 @@ argument_list|,
 operator|new
 name|QueryWrapperFilter
 argument_list|(
-operator|new
-name|ItemizedQuery
+name|matchTheseItems
 argument_list|(
 operator|new
 name|int
@@ -907,8 +903,7 @@ argument_list|,
 operator|new
 name|QueryWrapperFilter
 argument_list|(
-operator|new
-name|ItemizedQuery
+name|matchTheseItems
 argument_list|(
 operator|new
 name|int
@@ -957,8 +952,7 @@ init|=
 operator|new
 name|ConstantScoreQuery
 argument_list|(
-operator|new
-name|ItemizedQuery
+name|matchTheseItems
 argument_list|(
 operator|new
 name|int
@@ -1008,8 +1002,7 @@ init|=
 operator|new
 name|ConstantScoreQuery
 argument_list|(
-operator|new
-name|ItemizedQuery
+name|matchTheseItems
 argument_list|(
 operator|new
 name|int
@@ -1051,8 +1044,7 @@ init|=
 operator|new
 name|ConstantScoreQuery
 argument_list|(
-operator|new
-name|ItemizedQuery
+name|matchTheseItems
 argument_list|(
 operator|new
 name|int

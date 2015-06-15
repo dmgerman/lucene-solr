@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A range query that works on top of the doc values APIs. Such queries are  * usually slow since they do not use an inverted index. However, in the  * dense case where most documents match this query, it<b>might</b> be as  * fast or faster than a regular {@link NumericRangeQuery}.  * @lucene.experimental  */
+comment|/**  * A range query that works on top of the doc values APIs. Such queries are  * usually slow since they do not use an inverted index. However, in the  * dense case where most documents match this query, it<b>might</b> be as  * fast or faster than a regular {@link NumericRangeQuery}.  *  *<p>  *<b>NOTE</b>: be very careful using this query: it is  * typically much slower than using {@code TermsQuery},  * but in certain specialized cases may be faster.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
