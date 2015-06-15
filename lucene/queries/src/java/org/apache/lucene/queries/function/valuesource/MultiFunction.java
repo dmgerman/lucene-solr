@@ -175,7 +175,7 @@ name|sources
 argument_list|)
 return|;
 block|}
-comment|/**    * Helper utility for {@link FunctionValues} wrapping multiple {@link FunctionValues}    *    * @return true if<em>all</em> of the specified<code>values</code>     *         {@link FunctionValues#exists} for the specified doc, else false.    */
+comment|/**    * Helper utility for {@link FunctionValues}    *    * @return true if<em>all</em> of the specified<code>values</code>    *         {@link FunctionValues#exists} for the specified doc, else false.    */
 DECL|method|allExists
 specifier|public
 specifier|static
@@ -186,7 +186,7 @@ name|int
 name|doc
 parameter_list|,
 name|FunctionValues
-modifier|...
+index|[]
 name|values
 parameter_list|)
 block|{
@@ -218,7 +218,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Helper utility for {@link FunctionValues} wrapping multiple {@link FunctionValues}    *    * @return true if<em>any</em> of the specified<code>values</code>     *         {@link FunctionValues#exists} for the specified doc, else false.    */
+comment|/**    * Helper utility for {@link FunctionValues}    *    * @return true if<em>any</em> of the specified<code>values</code>    *         {@link FunctionValues#exists} for the specified doc, else false.    */
 DECL|method|anyExists
 specifier|public
 specifier|static
@@ -229,7 +229,7 @@ name|int
 name|doc
 parameter_list|,
 name|FunctionValues
-modifier|...
+index|[]
 name|values
 parameter_list|)
 block|{
@@ -258,6 +258,72 @@ block|}
 block|}
 return|return
 literal|false
+return|;
+block|}
+comment|/**    * Equivilent the the {@code FunctionValues[]} method with the same name, but optimized for     * dealing with exactly 2 arguments.    *    * @return true if<em>both</em> of the specified<code>values</code>    *         {@link FunctionValues#exists} for the specified doc, else false.    * @see #anyExists(int,FunctionValues[])    */
+DECL|method|allExists
+specifier|public
+specifier|static
+name|boolean
+name|allExists
+parameter_list|(
+name|int
+name|doc
+parameter_list|,
+name|FunctionValues
+name|values1
+parameter_list|,
+name|FunctionValues
+name|values2
+parameter_list|)
+block|{
+return|return
+name|values1
+operator|.
+name|exists
+argument_list|(
+name|doc
+argument_list|)
+operator|&&
+name|values2
+operator|.
+name|exists
+argument_list|(
+name|doc
+argument_list|)
+return|;
+block|}
+comment|/**    * Equivilent the the {@code FunctionValues[]} method with the same name, but optimized for     * dealing with exactly 2 arguments.    *    * @return true if<em>either</em> of the specified<code>values</code>    *         {@link FunctionValues#exists} for the specified doc, else false.    * @see #anyExists(int,FunctionValues[])    */
+DECL|method|anyExists
+specifier|public
+specifier|static
+name|boolean
+name|anyExists
+parameter_list|(
+name|int
+name|doc
+parameter_list|,
+name|FunctionValues
+name|values1
+parameter_list|,
+name|FunctionValues
+name|values2
+parameter_list|)
+block|{
+return|return
+name|values1
+operator|.
+name|exists
+argument_list|(
+name|doc
+argument_list|)
+operator|||
+name|values2
+operator|.
+name|exists
+argument_list|(
+name|doc
+argument_list|)
 return|;
 block|}
 DECL|method|description
