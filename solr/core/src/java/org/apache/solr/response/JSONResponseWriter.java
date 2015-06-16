@@ -1590,6 +1590,10 @@ control|)
 block|{
 if|if
 condition|(
+name|returnFields
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|returnFields
 operator|.
@@ -1722,13 +1726,6 @@ operator|.
 name|getChildDocuments
 argument_list|()
 decl_stmt|;
-name|ReturnFields
-name|rf
-init|=
-operator|new
-name|SolrReturnFields
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -1758,7 +1755,7 @@ argument_list|(
 name|i
 argument_list|)
 argument_list|,
-name|rf
+literal|null
 argument_list|,
 name|i
 argument_list|)

@@ -230,7 +230,7 @@ name|solr
 operator|.
 name|response
 operator|.
-name|ResponseWriterUtil
+name|DocsStreamer
 import|;
 end_import
 
@@ -841,9 +841,9 @@ decl_stmt|;
 name|SolrDocument
 name|solrChildDoc
 init|=
-name|ResponseWriterUtil
+name|DocsStreamer
 operator|.
-name|toSolrDocument
+name|getDoc
 argument_list|(
 name|childDoc
 argument_list|,

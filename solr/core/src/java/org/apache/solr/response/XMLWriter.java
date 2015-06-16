@@ -962,6 +962,10 @@ control|)
 block|{
 if|if
 condition|(
+name|returnFields
+operator|!=
+literal|null
+operator|&&
 operator|!
 name|returnFields
 operator|.
