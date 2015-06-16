@@ -331,7 +331,7 @@ name|slop
 init|=
 literal|0
 decl_stmt|;
-comment|/** Sets the phrase slop for this query.    * @see PhraseQuery#setSlop(int)    */
+comment|/** Sets the phrase slop for this query.    * @see PhraseQuery#getSlop()    */
 DECL|method|setSlop
 specifier|public
 name|void
@@ -372,7 +372,7 @@ return|return
 name|slop
 return|;
 block|}
-comment|/** Add a single term at the next position in the phrase.    * @see PhraseQuery#add(Term)    */
+comment|/** Add a single term at the next position in the phrase.    */
 DECL|method|add
 specifier|public
 name|void
@@ -393,7 +393,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Add multiple terms at the next position in the phrase.  Any of the terms    * may match.    *    * @see PhraseQuery#add(Term)    */
+comment|/** Add multiple terms at the next position in the phrase.  Any of the terms    * may match.    */
 DECL|method|add
 specifier|public
 name|void
@@ -445,7 +445,7 @@ name|position
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Allows to specify the relative position of terms within the phrase.    *     * @see PhraseQuery#add(Term, int)    */
+comment|/**    * Allows to specify the relative position of terms within the phrase.    */
 DECL|method|add
 specifier|public
 name|void

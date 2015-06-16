@@ -12403,13 +12403,17 @@ name|ir
 argument_list|)
 decl_stmt|;
 name|PhraseQuery
-name|pq
+operator|.
+name|Builder
+name|builder
 init|=
 operator|new
 name|PhraseQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
-name|pq
+name|builder
 operator|.
 name|add
 argument_list|(
@@ -12424,7 +12428,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|pq
+name|builder
 operator|.
 name|add
 argument_list|(
@@ -12439,6 +12443,14 @@ argument_list|,
 literal|2
 argument_list|)
 expr_stmt|;
+name|PhraseQuery
+name|pq
+init|=
+name|builder
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
 comment|// body:"just ? test"
 name|assertEquals
 argument_list|(
@@ -12645,13 +12657,17 @@ name|ir
 argument_list|)
 decl_stmt|;
 name|PhraseQuery
-name|pq
+operator|.
+name|Builder
+name|builder
 init|=
 operator|new
 name|PhraseQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
-name|pq
+name|builder
 operator|.
 name|add
 argument_list|(
@@ -12666,7 +12682,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|pq
+name|builder
 operator|.
 name|add
 argument_list|(
@@ -12681,6 +12697,14 @@ argument_list|,
 literal|3
 argument_list|)
 expr_stmt|;
+name|PhraseQuery
+name|pq
+init|=
+name|builder
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
 comment|// body:"just ? ? test"
 name|assertEquals
 argument_list|(

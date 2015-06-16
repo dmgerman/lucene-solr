@@ -476,7 +476,7 @@ name|float
 name|f
 parameter_list|)
 function_decl|;
-comment|/** Computes the amount of a sloppy phrase match, based on an edit distance.    * This value is summed for each sloppy phrase match in a document to form    * the frequency to be used in scoring instead of the exact term count.    *    *<p>A phrase match with a small edit distance to a document passage more    * closely matches the document, so implementations of this method usually    * return larger values when the edit distance is small and smaller values    * when it is large.    *    * @see PhraseQuery#setSlop(int)    * @param distance the edit distance of this sloppy phrase match    * @return the frequency increment for this match    */
+comment|/** Computes the amount of a sloppy phrase match, based on an edit distance.    * This value is summed for each sloppy phrase match in a document to form    * the frequency to be used in scoring instead of the exact term count.    *    *<p>A phrase match with a small edit distance to a document passage more    * closely matches the document, so implementations of this method usually    * return larger values when the edit distance is small and smaller values    * when it is large.    *    * @see PhraseQuery#getSlop()    * @param distance the edit distance of this sloppy phrase match    * @return the frequency increment for this match    */
 DECL|method|sloppyFreq
 specifier|public
 specifier|abstract
