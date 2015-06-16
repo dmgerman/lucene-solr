@@ -1779,7 +1779,11 @@ literal|"                        {'source':'NewDynamicField2*', 'dest':'NewField
 operator|+
 literal|"                        {'source':'NewDynamicField3*', 'dest':'NewField3'                       },\n"
 operator|+
-literal|"                        {'source':'NewField4',         'dest':'NewField3'                       }]\n"
+literal|"                        {'source':'NewField4',         'dest':'NewField3'                       },\n"
+operator|+
+literal|"                        {'source':'NewField4',         'dest':'NewField2', maxChars: 100        },\n"
+operator|+
+literal|"                        {'source':'NewField4',         'dest':['NewField1'], maxChars: 3333     }]\n"
 operator|+
 literal|"}\n"
 decl_stmt|;
@@ -2126,7 +2130,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|3
 argument_list|,
 name|list
 operator|.
@@ -2134,25 +2138,110 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|map
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+for|for
+control|(
+name|Object
+name|obj
+range|:
+name|list
+control|)
+block|{
+name|map
+operator|.
+name|put
 argument_list|(
-literal|"NewField3"
-argument_list|,
 operator|(
 operator|(
 name|Map
 operator|)
-name|list
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
+name|obj
 operator|)
 operator|.
 name|get
 argument_list|(
 literal|"dest"
+argument_list|)
+argument_list|,
+operator|(
+operator|(
+name|Map
+operator|)
+name|obj
+operator|)
+operator|.
+name|get
+argument_list|(
+literal|"maxChars"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+name|assertTrue
+argument_list|(
+name|map
+operator|.
+name|containsKey
+argument_list|(
+literal|"NewField1"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|3333L
+argument_list|,
+name|map
+operator|.
+name|get
+argument_list|(
+literal|"NewField1"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|map
+operator|.
+name|containsKey
+argument_list|(
+literal|"NewField2"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|100L
+argument_list|,
+name|map
+operator|.
+name|get
+argument_list|(
+literal|"NewField2"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|map
+operator|.
+name|containsKey
+argument_list|(
+literal|"NewField3"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+name|map
+operator|.
+name|get
+argument_list|(
+literal|"NewField3"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2633,7 +2722,7 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
-literal|3
+literal|4
 argument_list|,
 name|list
 operator|.
@@ -2648,6 +2737,16 @@ operator|.
 name|contains
 argument_list|(
 literal|"NewField1"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|set
+operator|.
+name|contains
+argument_list|(
+literal|"NewField4"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2983,15 +3082,15 @@ name|cmds
 operator|=
 literal|"{\n"
 operator|+
-literal|"  'delete-copy-field': [{'source':'NewField1',         'dest':['NewField2', 'NewDynamicField1A']},\n"
+literal|"  'delete-copy-field': [{'source':'NewField1',         'dest':['NewField2', 'NewDynamicField1A']     },\n"
 operator|+
-literal|"                        {'source':'NewDynamicField1*', 'dest':'NewField2'                       },\n"
+literal|"                        {'source':'NewDynamicField1*', 'dest':'NewField2'                            },\n"
 operator|+
-literal|"                        {'source':'NewDynamicField2*', 'dest':'NewField2'                       },\n"
+literal|"                        {'source':'NewDynamicField2*', 'dest':'NewField2'                            },\n"
 operator|+
-literal|"                        {'source':'NewDynamicField3*', 'dest':'NewField3'                       },\n"
+literal|"                        {'source':'NewDynamicField3*', 'dest':'NewField3'                            },\n"
 operator|+
-literal|"                        {'source':'NewField4',         'dest':'NewField3'                       }]\n"
+literal|"                        {'source':'NewField4',         'dest':['NewField1', 'NewField2', 'NewField3']}]\n"
 operator|+
 literal|"}\n"
 expr_stmt|;
