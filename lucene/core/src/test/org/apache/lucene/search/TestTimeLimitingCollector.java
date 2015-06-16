@@ -1029,8 +1029,15 @@ argument_list|()
 decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"doc collected at timeout must be> 0!"
+literal|"doc collected at timeout must be> 0! or == -1 but was: "
+operator|+
+name|exceptionDoc
 argument_list|,
+name|exceptionDoc
+operator|==
+operator|-
+literal|1
+operator|||
 name|exceptionDoc
 operator|>
 literal|0
