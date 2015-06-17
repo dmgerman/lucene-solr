@@ -50,6 +50,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|LinkedHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -352,7 +362,7 @@ argument_list|>
 name|extraFilters
 init|=
 operator|new
-name|TreeMap
+name|LinkedHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
@@ -447,7 +457,7 @@ name|ServletHolder
 name|servlet
 parameter_list|,
 name|String
-name|servletName
+name|pathSpec
 parameter_list|)
 block|{
 name|extraServlets
@@ -456,7 +466,7 @@ name|put
 argument_list|(
 name|servlet
 argument_list|,
-name|servletName
+name|pathSpec
 argument_list|)
 expr_stmt|;
 return|return
@@ -508,7 +518,7 @@ argument_list|>
 name|filterClass
 parameter_list|,
 name|String
-name|filterName
+name|pathSpec
 parameter_list|)
 block|{
 name|extraFilters
@@ -517,7 +527,7 @@ name|put
 argument_list|(
 name|filterClass
 argument_list|,
-name|filterName
+name|pathSpec
 argument_list|)
 expr_stmt|;
 return|return
