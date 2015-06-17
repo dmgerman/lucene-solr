@@ -81,7 +81,7 @@ specifier|abstract
 class|class
 name|BaseEditorialTransformer
 extends|extends
-name|TransformerWithContext
+name|DocTransformer
 block|{
 DECL|field|name
 specifier|final

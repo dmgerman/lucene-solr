@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -81,6 +91,11 @@ specifier|abstract
 class|class
 name|DocTransformer
 block|{
+DECL|field|context
+specifier|protected
+name|TransformContext
+name|context
+decl_stmt|;
 comment|/**    *    * @return The name of the transformer    */
 DECL|method|getName
 specifier|public
@@ -98,7 +113,14 @@ parameter_list|(
 name|TransformContext
 name|context
 parameter_list|)
-block|{}
+block|{
+name|this
+operator|.
+name|context
+operator|=
+name|context
+expr_stmt|;
+block|}
 comment|/**    * This is where implementations do the actual work    *    *    * @param doc The document to alter    * @param docid The Lucene internal doc id    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|transform
 specifier|public

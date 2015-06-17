@@ -23,6 +23,8 @@ comment|/**  *  * @since solr 4.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|TransformerWithContext
 specifier|public
 specifier|abstract
@@ -31,13 +33,6 @@ name|TransformerWithContext
 extends|extends
 name|DocTransformer
 block|{
-DECL|field|context
-specifier|protected
-name|TransformContext
-name|context
-init|=
-literal|null
-decl_stmt|;
 annotation|@
 name|Override
 DECL|method|setContext
