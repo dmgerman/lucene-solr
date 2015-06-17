@@ -727,6 +727,15 @@ init|=
 literal|1500
 decl_stmt|;
 comment|// delay between cloud state updates
+DECL|field|NUM_RESPONSES_TO_STORE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|NUM_RESPONSES_TO_STORE
+init|=
+literal|10000
+decl_stmt|;
 DECL|field|log
 specifier|private
 specifier|static
@@ -746,7 +755,6 @@ DECL|enum|LeaderStatus
 DECL|enum constant|DONT_KNOW
 DECL|enum constant|NO
 DECL|enum constant|YES
-specifier|static
 enum|enum
 name|LeaderStatus
 block|{
@@ -5260,7 +5268,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/* Internal map for successfully completed tasks, not to be used outside of the Overseer */
+comment|/* Size-limited map for successfully completed tasks*/
 DECL|method|getCompletedMap
 specifier|static
 name|DistributedMap
@@ -5278,17 +5286,19 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|DistributedMap
+name|SizeLimitedDistributedMap
 argument_list|(
 name|zkClient
 argument_list|,
 literal|"/overseer/collection-map-completed"
 argument_list|,
 literal|null
+argument_list|,
+name|NUM_RESPONSES_TO_STORE
 argument_list|)
 return|;
 block|}
-comment|/* Internal map for failed tasks, not to be used outside of the Overseer */
+comment|/* Map for failed tasks, not to be used outside of the Overseer */
 DECL|method|getFailureMap
 specifier|static
 name|DistributedMap
@@ -5306,13 +5316,15 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|DistributedMap
+name|SizeLimitedDistributedMap
 argument_list|(
 name|zkClient
 argument_list|,
 literal|"/overseer/collection-map-failure"
 argument_list|,
 literal|null
+argument_list|,
+name|NUM_RESPONSES_TO_STORE
 argument_list|)
 return|;
 block|}
