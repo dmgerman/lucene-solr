@@ -345,7 +345,7 @@ block|}
 comment|/**      * @throws TooManyClauses if the new number of clauses exceeds the maximum clause number      */
 DECL|method|add
 specifier|public
-name|void
+name|Builder
 name|add
 parameter_list|(
 name|Query
@@ -392,6 +392,9 @@ name|occur
 argument_list|)
 argument_list|)
 expr_stmt|;
+return|return
+name|this
+return|;
 block|}
 comment|/** Create a new {@link BooleanQuery} based on the parameters that have      *  been set on this builder. */
 DECL|method|build
