@@ -280,6 +280,15 @@ operator|.
 name|normalize
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|newNormalVector
+operator|==
+literal|null
+condition|)
+return|return
+literal|null
+return|;
 comment|// To construct the plane, we now just need D, which is simply the negative of the evaluation of the circle normal vector at one of the points.
 return|return
 operator|new
