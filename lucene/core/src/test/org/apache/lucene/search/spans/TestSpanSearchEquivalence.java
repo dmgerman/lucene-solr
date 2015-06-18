@@ -1059,6 +1059,26 @@ name|bytes
 argument_list|()
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|t1
+operator|.
+name|equals
+argument_list|(
+name|t2
+argument_list|)
+condition|)
+block|{
+name|assertSameSet
+argument_list|(
+name|q1
+argument_list|,
+name|q2
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|assertSameScores
 argument_list|(
 name|q1
@@ -1066,6 +1086,7 @@ argument_list|,
 name|q2
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** SpanNearQuery([A, B], â, false) = +A +B */
 DECL|method|testSpanNearVersusBooleanAnd
