@@ -166,7 +166,7 @@ init|=
 name|randomTerm
 argument_list|()
 decl_stmt|;
-name|assertSameSet
+name|assertSameScores
 argument_list|(
 operator|new
 name|TermQuery
@@ -1059,7 +1059,7 @@ name|bytes
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|assertSameSet
+name|assertSameScores
 argument_list|(
 name|q1
 argument_list|,

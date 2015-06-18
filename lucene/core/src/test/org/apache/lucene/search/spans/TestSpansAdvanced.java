@@ -508,7 +508,7 @@ name|doTestBooleanQueryWithSpanQueries
 argument_list|(
 name|searcher
 argument_list|,
-literal|0.3884282f
+literal|0.54932045f
 argument_list|)
 expr_stmt|;
 block|}

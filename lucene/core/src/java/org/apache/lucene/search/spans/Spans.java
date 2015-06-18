@@ -48,6 +48,24 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|similarities
+operator|.
+name|Similarity
+operator|.
+name|SimScorer
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -104,6 +122,14 @@ specifier|public
 specifier|abstract
 name|int
 name|endPosition
+parameter_list|()
+function_decl|;
+comment|/**    * Return the width of the match, which is typically used to compute    * the {@link SimScorer#computeSlopFactor(int) slop factor}. It is only legal    * to call this method when the iterator is on a valid doc ID and positioned.    * The return value must be positive, and lower values means that the match is    * better.    */
+DECL|method|width
+specifier|public
+specifier|abstract
+name|int
+name|width
 parameter_list|()
 function_decl|;
 comment|/**    * Collect postings data from the leaves of the current Spans.    *    * This method should only be called after {@link #nextStartPosition()}, and before    * {@link #NO_MORE_POSITIONS} has been reached.    *    * @param collector a SpanCollector    *    * @lucene.experimental    */
