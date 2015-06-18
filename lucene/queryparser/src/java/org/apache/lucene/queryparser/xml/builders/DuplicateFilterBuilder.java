@@ -48,7 +48,7 @@ name|queryparser
 operator|.
 name|xml
 operator|.
-name|FilterBuilder
+name|ParserException
 import|;
 end_import
 
@@ -64,7 +64,7 @@ name|queryparser
 operator|.
 name|xml
 operator|.
-name|ParserException
+name|QueryBuilder
 import|;
 end_import
 
@@ -124,14 +124,14 @@ specifier|public
 class|class
 name|DuplicateFilterBuilder
 implements|implements
-name|FilterBuilder
+name|QueryBuilder
 block|{
 annotation|@
 name|Override
-DECL|method|getFilter
+DECL|method|getQuery
 specifier|public
 name|Filter
-name|getFilter
+name|getQuery
 parameter_list|(
 name|Element
 name|e

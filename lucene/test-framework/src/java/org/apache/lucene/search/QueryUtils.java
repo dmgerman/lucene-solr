@@ -362,41 +362,6 @@ argument_list|(
 name|q
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|q
-operator|instanceof
-name|FilteredQuery
-condition|)
-block|{
-comment|// This is our best option to have coverage on filters since they are
-comment|// rarely searched on directly
-comment|// This hack can go away when FilteredQuery goes away too
-name|FilteredQuery
-name|filtered
-init|=
-operator|(
-name|FilteredQuery
-operator|)
-name|q
-decl_stmt|;
-name|check
-argument_list|(
-name|filtered
-operator|.
-name|getQuery
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|check
-argument_list|(
-name|filtered
-operator|.
-name|getFilter
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|/** check very basic hashCode and equals */
 DECL|method|checkHashEquals

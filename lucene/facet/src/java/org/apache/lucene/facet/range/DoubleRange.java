@@ -490,6 +490,11 @@ name|ValueSource
 name|valueSource
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|range

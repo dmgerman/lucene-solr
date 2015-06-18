@@ -1224,7 +1224,7 @@ name|q
 init|=
 name|parse
 argument_list|(
-literal|"CachedFilter.xml"
+literal|"CachedQuery.xml"
 argument_list|)
 decl_stmt|;
 name|dumpResults

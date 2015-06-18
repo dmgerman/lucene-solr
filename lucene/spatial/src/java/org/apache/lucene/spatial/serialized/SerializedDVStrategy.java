@@ -665,7 +665,7 @@ literal|" efficiently. Instead try a Filter or ValueSource."
 argument_list|)
 throw|;
 block|}
-comment|/**    * Returns a Filter that should be used with {@link org.apache.lucene.search.FilteredQuery#QUERY_FIRST_FILTER_STRATEGY}.    * Use in another manner is likely to result in an {@link java.lang.UnsupportedOperationException}    * to prevent misuse because the filter can't efficiently work via iteration.    */
+comment|/**    * Returns a Filter that should be used in a random-access fashion.    * Use in another manner is likely to result in an {@link java.lang.UnsupportedOperationException}    * to prevent misuse because the filter can't efficiently work via iteration.    */
 annotation|@
 name|Override
 DECL|method|makeFilter
@@ -756,6 +756,11 @@ name|ValueSource
 name|predicateValueSource
 parameter_list|)
 block|{
+name|super
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|predicateValueSource
@@ -799,7 +804,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"Iteration is too slow; instead try FilteredQuery.QUERY_FIRST_FILTER_STRATEGY"
+literal|"Iteration is too slow; consume using DocIdSet.bits() instead"
 argument_list|)
 throw|;
 comment|//Note that if you're truly bent on doing this, then see FunctionValues.getRangeScorer

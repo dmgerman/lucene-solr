@@ -513,13 +513,6 @@ throws|throws
 name|Exception
 block|{
 name|Query
-name|query
-init|=
-operator|new
-name|MatchAllDocsQuery
-argument_list|()
-decl_stmt|;
-name|Query
 name|term
 init|=
 operator|new
@@ -557,13 +550,7 @@ name|searcher
 operator|.
 name|search
 argument_list|(
-operator|new
-name|FilteredQuery
-argument_list|(
-name|query
-argument_list|,
 name|filter
-argument_list|)
 argument_list|,
 literal|5
 argument_list|)

@@ -145,7 +145,7 @@ argument_list|,
 name|parser
 argument_list|)
 expr_stmt|;
-name|filterFactory
+name|queryFactory
 operator|.
 name|addBuilder
 argument_list|(
