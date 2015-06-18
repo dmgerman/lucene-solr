@@ -523,14 +523,23 @@ argument_list|)
 expr_stmt|;
 comment|/* the main query we will execute.  we disable the coord because      * this query is an artificial construct      */
 name|BooleanQuery
+operator|.
+name|Builder
 name|query
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|query
+operator|.
+name|setDisableCoord
 argument_list|(
 literal|true
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|boolean
 name|notBlank
 init|=
@@ -565,6 +574,9 @@ argument_list|)
 expr_stmt|;
 return|return
 name|query
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 DECL|method|addBoostFunctions
@@ -573,6 +585,8 @@ name|void
 name|addBoostFunctions
 parameter_list|(
 name|BooleanQuery
+operator|.
+name|Builder
 name|query
 parameter_list|,
 name|SolrParams
@@ -718,6 +732,8 @@ name|void
 name|addBoostQuery
 parameter_list|(
 name|BooleanQuery
+operator|.
+name|Builder
 name|query
 parameter_list|,
 name|SolrParams
@@ -933,6 +949,8 @@ name|boolean
 name|addMainQuery
 parameter_list|(
 name|BooleanQuery
+operator|.
+name|Builder
 name|query
 parameter_list|,
 name|SolrParams
@@ -1323,10 +1341,14 @@ name|BooleanQuery
 condition|)
 block|{
 name|BooleanQuery
+operator|.
+name|Builder
 name|t
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|SolrPluginUtils
@@ -1353,6 +1375,9 @@ expr_stmt|;
 name|query
 operator|=
 name|t
+operator|.
+name|build
+argument_list|()
 expr_stmt|;
 block|}
 return|return

@@ -1294,14 +1294,14 @@ operator|==
 literal|0
 condition|)
 block|{
-name|BooleanQuery
-name|bq
+name|MatchNoDocsQuery
+name|q
 init|=
 operator|new
-name|BooleanQuery
+name|MatchNoDocsQuery
 argument_list|()
 decl_stmt|;
-name|bq
+name|q
 operator|.
 name|setBoost
 argument_list|(
@@ -1310,7 +1310,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
-name|bq
+name|q
 return|;
 block|}
 elseif|else

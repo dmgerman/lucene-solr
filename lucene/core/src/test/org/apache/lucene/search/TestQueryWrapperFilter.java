@@ -549,10 +549,14 @@ argument_list|)
 expr_stmt|;
 comment|// should not throw exception with complex primitive query
 name|BooleanQuery
+operator|.
+name|Builder
 name|booleanQuery
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|booleanQuery

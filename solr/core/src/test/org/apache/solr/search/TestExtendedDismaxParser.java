@@ -5726,9 +5726,6 @@ name|BooleanClause
 name|clause
 range|:
 name|query
-operator|.
-name|getClauses
-argument_list|()
 control|)
 block|{
 if|if

@@ -981,10 +981,14 @@ throws|throws
 name|Exception
 block|{
 name|BooleanQuery
+operator|.
+name|Builder
 name|q1
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|q1
@@ -1064,6 +1068,9 @@ operator|new
 name|CustomExternalQuery
 argument_list|(
 name|q1
+operator|.
+name|build
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|log
@@ -1478,13 +1485,17 @@ argument_list|)
 decl_stmt|;
 comment|// regular (boolean) query.
 name|BooleanQuery
-name|q1
+operator|.
+name|Builder
+name|q1b
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
-name|q1
+name|q1b
 operator|.
 name|add
 argument_list|(
@@ -1507,7 +1518,7 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
-name|q1
+name|q1b
 operator|.
 name|add
 argument_list|(
@@ -1530,7 +1541,7 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
-name|q1
+name|q1b
 operator|.
 name|add
 argument_list|(
@@ -1553,6 +1564,14 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
+name|Query
+name|q1
+init|=
+name|q1b
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
 name|log
 argument_list|(
 name|q1
@@ -1560,14 +1579,23 @@ argument_list|)
 expr_stmt|;
 comment|// custom query, that should score the same as q1.
 name|BooleanQuery
-name|q2CustomNeutral
+operator|.
+name|Builder
+name|q2CustomNeutralB
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|q2CustomNeutralB
+operator|.
+name|setDisableCoord
 argument_list|(
 literal|true
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|Query
 name|q2CustomNeutralInner
 init|=
@@ -1577,22 +1605,7 @@ argument_list|(
 name|q1
 argument_list|)
 decl_stmt|;
-name|q2CustomNeutral
-operator|.
-name|add
-argument_list|(
 name|q2CustomNeutralInner
-argument_list|,
-name|BooleanClause
-operator|.
-name|Occur
-operator|.
-name|SHOULD
-argument_list|)
-expr_stmt|;
-comment|// a little tricky: we split the boost across an outer BQ and CustomScoreQuery
-comment|// this ensures boosting is correct across all these functions (see LUCENE-4935)
-name|q2CustomNeutral
 operator|.
 name|setBoost
 argument_list|(
@@ -1607,7 +1620,30 @@ name|dboost
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|q2CustomNeutralB
+operator|.
+name|add
+argument_list|(
 name|q2CustomNeutralInner
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+expr_stmt|;
+comment|// a little tricky: we split the boost across an outer BQ and CustomScoreQuery
+comment|// this ensures boosting is correct across all these functions (see LUCENE-4935)
+name|Query
+name|q2CustomNeutral
+init|=
+name|q2CustomNeutralB
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
+name|q2CustomNeutral
 operator|.
 name|setBoost
 argument_list|(

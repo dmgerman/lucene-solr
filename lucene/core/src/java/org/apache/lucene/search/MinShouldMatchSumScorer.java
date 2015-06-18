@@ -129,7 +129,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Scorer} for {@link BooleanQuery} when  * {@link BooleanQuery#setMinimumNumberShouldMatch(int) minShouldMatch} is  * between 2 and the total number of clauses.  *  * This implementation keeps sub scorers in 3 different places:  *  - lead: a linked list of scorer that are positioned on the desired doc ID  *  - tail: a heap that contains at most minShouldMatch - 1 scorers that are  *    behind the desired doc ID. These scorers are ordered by cost so that we  *    can advance the least costly ones first.  *  - head: a heap that contains scorers which are beyond the desired doc ID,  *    ordered by doc ID in order to move quickly to the next candidate.  *  * Finding the next match consists of first setting the desired doc ID to the  * least entry in 'head' and then advance 'tail' until there is a match.  */
+comment|/**  * A {@link Scorer} for {@link BooleanQuery} when  * {@link BooleanQuery.Builder#setMinimumNumberShouldMatch(int) minShouldMatch} is  * between 2 and the total number of clauses.  *  * This implementation keeps sub scorers in 3 different places:  *  - lead: a linked list of scorer that are positioned on the desired doc ID  *  - tail: a heap that contains at most minShouldMatch - 1 scorers that are  *    behind the desired doc ID. These scorers are ordered by cost so that we  *    can advance the least costly ones first.  *  - head: a heap that contains scorers which are beyond the desired doc ID,  *    ordered by doc ID in order to move quickly to the next candidate.  *  * Finding the next match consists of first setting the desired doc ID to the  * least entry in 'head' and then advance 'tail' until there is a match.  */
 end_comment
 
 begin_class

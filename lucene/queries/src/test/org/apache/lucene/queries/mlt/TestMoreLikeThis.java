@@ -54,7 +54,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|Collection
 import|;
 end_import
 
@@ -64,7 +64,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|HashMap
 import|;
 end_import
 
@@ -660,7 +660,7 @@ literal|"lucene release"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|List
+name|Collection
 argument_list|<
 name|BooleanClause
 argument_list|>
@@ -907,7 +907,7 @@ literal|"lucene release"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|List
+name|Collection
 argument_list|<
 name|BooleanClause
 argument_list|>
@@ -1171,7 +1171,7 @@ literal|"apache lucene"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|List
+name|Collection
 argument_list|<
 name|BooleanClause
 argument_list|>
@@ -1510,7 +1510,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// check best terms are topN of highest idf
-name|List
+name|Collection
 argument_list|<
 name|BooleanClause
 argument_list|>

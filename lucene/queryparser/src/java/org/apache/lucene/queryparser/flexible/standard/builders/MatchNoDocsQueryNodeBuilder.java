@@ -34,24 +34,6 @@ name|queryparser
 operator|.
 name|flexible
 operator|.
-name|messages
-operator|.
-name|MessageImpl
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|flexible
-operator|.
 name|core
 operator|.
 name|QueryNodeException
@@ -130,6 +112,24 @@ name|queryparser
 operator|.
 name|flexible
 operator|.
+name|messages
+operator|.
+name|MessageImpl
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
 name|standard
 operator|.
 name|parser
@@ -148,12 +148,12 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BooleanQuery
+name|MatchNoDocsQuery
 import|;
 end_import
 
 begin_comment
-comment|/**  * Builds an empty {@link BooleanQuery} object from a  * {@link MatchNoDocsQueryNode} object.  */
+comment|/**  * Builds a {@link MatchNoDocsQuery} object from a  * {@link MatchNoDocsQueryNode} object.  */
 end_comment
 
 begin_class
@@ -175,7 +175,7 @@ annotation|@
 name|Override
 DECL|method|build
 specifier|public
-name|BooleanQuery
+name|MatchNoDocsQuery
 name|build
 parameter_list|(
 name|QueryNode
@@ -228,7 +228,7 @@ throw|;
 block|}
 return|return
 operator|new
-name|BooleanQuery
+name|MatchNoDocsQuery
 argument_list|()
 return|;
 block|}

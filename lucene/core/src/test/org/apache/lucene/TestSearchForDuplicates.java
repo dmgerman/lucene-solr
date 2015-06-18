@@ -858,10 +858,14 @@ operator|=
 literal|null
 expr_stmt|;
 name|BooleanQuery
+operator|.
+name|Builder
 name|booleanQuery
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|booleanQuery
@@ -918,6 +922,9 @@ literal|"Query: "
 operator|+
 name|booleanQuery
 operator|.
+name|build
+argument_list|()
+operator|.
 name|toString
 argument_list|(
 name|PRIORITY_FIELD
@@ -931,6 +938,9 @@ operator|.
 name|search
 argument_list|(
 name|booleanQuery
+operator|.
+name|build
+argument_list|()
 argument_list|,
 name|MAX_DOCS
 argument_list|,

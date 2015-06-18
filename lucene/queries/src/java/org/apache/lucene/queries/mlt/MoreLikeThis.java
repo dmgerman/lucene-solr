@@ -1254,10 +1254,14 @@ name|q
 parameter_list|)
 block|{
 name|BooleanQuery
+operator|.
+name|Builder
 name|query
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|ScoreTerm
@@ -1374,6 +1378,9 @@ block|}
 block|}
 return|return
 name|query
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 comment|/**    * Create a PriorityQueue from a word-&gt;tf map.    *    * @param words a map of words keyed on the word(String) with Int objects as the values.    */

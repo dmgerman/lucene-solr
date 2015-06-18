@@ -144,10 +144,14 @@ literal|"queries.length != fields.length"
 argument_list|)
 throw|;
 name|BooleanQuery
+operator|.
+name|Builder
 name|bQuery
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|StandardQueryParser
@@ -204,32 +208,9 @@ condition|(
 name|q
 operator|!=
 literal|null
-operator|&&
-comment|// q never null, just being defensive
-operator|(
-operator|!
-operator|(
-name|q
-operator|instanceof
-name|BooleanQuery
-operator|)
-operator|||
-operator|(
-operator|(
-name|BooleanQuery
-operator|)
-name|q
-operator|)
-operator|.
-name|getClauses
-argument_list|()
-operator|.
-name|length
-operator|>
-literal|0
-operator|)
 condition|)
 block|{
+comment|// q never null, just being defensive
 name|bQuery
 operator|.
 name|add
@@ -247,6 +228,9 @@ block|}
 block|}
 return|return
 name|bQuery
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 comment|/**    * Parses a query, searching on the fields specified. Use this if you need to    * specify certain fields as required, and others as prohibited.    *<p>    *     * Usage:    *<pre class="prettyprint">    *<code>    * String[] fields = {&quot;filename&quot;,&quot;contents&quot;,&quot;description&quot;};    * BooleanClause.Occur[] flags = {BooleanClause.Occur.SHOULD,    *                BooleanClause.Occur.MUST,    *                BooleanClause.Occur.MUST_NOT};    * MultiFieldQueryParser.parse(&quot;query&quot;, fields, flags, analyzer);    *</code>    *</pre>    *<p>    * The code above would construct a query:    *     *<pre>    *<code>    * (filename:query) +(contents:query) -(description:query)    *</code>    *</pre>    *     * @param query    *          Query string to parse    * @param fields    *          Fields to search on    * @param flags    *          Flags describing the fields    * @param analyzer    *          Analyzer to use    * @throws IllegalArgumentException    *           if the length of the fields array differs from the length of the    *           flags array    */
@@ -293,10 +277,14 @@ literal|"fields.length != flags.length"
 argument_list|)
 throw|;
 name|BooleanQuery
+operator|.
+name|Builder
 name|bQuery
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|StandardQueryParser
@@ -350,32 +338,9 @@ condition|(
 name|q
 operator|!=
 literal|null
-operator|&&
-comment|// q never null, just being defensive
-operator|(
-operator|!
-operator|(
-name|q
-operator|instanceof
-name|BooleanQuery
-operator|)
-operator|||
-operator|(
-operator|(
-name|BooleanQuery
-operator|)
-name|q
-operator|)
-operator|.
-name|getClauses
-argument_list|()
-operator|.
-name|length
-operator|>
-literal|0
-operator|)
 condition|)
 block|{
+comment|// q never null, just being defensive
 name|bQuery
 operator|.
 name|add
@@ -392,6 +357,9 @@ block|}
 block|}
 return|return
 name|bQuery
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 comment|/**    * Parses a query, searching on the fields specified. Use this if you need to    * specify certain fields as required, and others as prohibited.    *<p>    *     * Usage:    *<pre class="prettyprint">    *<code>    * String[] query = {&quot;query1&quot;,&quot;query2&quot;,&quot;query3&quot;};    * String[] fields = {&quot;filename&quot;,&quot;contents&quot;,&quot;description&quot;};    * BooleanClause.Occur[] flags = {BooleanClause.Occur.SHOULD,    *                BooleanClause.Occur.MUST,    *                BooleanClause.Occur.MUST_NOT};    * MultiFieldQueryParser.parse(query, fields, flags, analyzer);    *</code>    *</pre>    *<p>    * The code above would construct a query:    *     *<pre>    *<code>    * (filename:query1) +(contents:query2) -(description:query3)    *</code>    *</pre>    *     * @param queries    *          Queries string to parse    * @param fields    *          Fields to search on    * @param flags    *          Flags describing the fields    * @param analyzer    *          Analyzer to use    * @throws IllegalArgumentException    *           if the length of the queries, fields, and flags array differ    */
@@ -450,10 +418,14 @@ literal|"queries, fields, and flags array have have different length"
 argument_list|)
 throw|;
 name|BooleanQuery
+operator|.
+name|Builder
 name|bQuery
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|StandardQueryParser
@@ -510,32 +482,9 @@ condition|(
 name|q
 operator|!=
 literal|null
-operator|&&
-comment|// q never null, just being defensive
-operator|(
-operator|!
-operator|(
-name|q
-operator|instanceof
-name|BooleanQuery
-operator|)
-operator|||
-operator|(
-operator|(
-name|BooleanQuery
-operator|)
-name|q
-operator|)
-operator|.
-name|getClauses
-argument_list|()
-operator|.
-name|length
-operator|>
-literal|0
-operator|)
 condition|)
 block|{
+comment|// q never null, just being defensive
 name|bQuery
 operator|.
 name|add
@@ -552,6 +501,9 @@ block|}
 block|}
 return|return
 name|bQuery
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 comment|/**    * Returns a String where those characters that TextParser expects to be    * escaped are escaped by a preceding<code>\</code>.    */

@@ -1823,9 +1823,6 @@ name|BooleanClause
 name|clause
 range|:
 name|mtqTerms
-operator|.
-name|getClauses
-argument_list|()
 control|)
 block|{
 name|termSet

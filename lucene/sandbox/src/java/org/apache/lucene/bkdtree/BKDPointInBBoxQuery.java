@@ -889,14 +889,23 @@ condition|)
 block|{
 comment|// Disable coord here because a multi-valued doc could match both rects and get unfairly boosted:
 name|BooleanQuery
+operator|.
+name|Builder
 name|q
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|q
+operator|.
+name|setDisableCoord
 argument_list|(
 literal|true
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|// E.g.: maxLon = -179, minLon = 179
 name|BKDPointInBBoxQuery
 name|left
@@ -988,6 +997,9 @@ argument_list|)
 expr_stmt|;
 return|return
 name|q
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 else|else

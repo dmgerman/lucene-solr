@@ -287,10 +287,14 @@ operator|)
 name|queryNode
 decl_stmt|;
 name|BooleanQuery
+operator|.
+name|Builder
 name|bQuery
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|List
@@ -402,6 +406,9 @@ block|}
 block|}
 return|return
 name|bQuery
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 DECL|method|getModifierValue

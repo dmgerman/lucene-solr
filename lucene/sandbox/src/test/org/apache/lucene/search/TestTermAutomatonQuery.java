@@ -3479,10 +3479,14 @@ comment|// Build the (finite, no any transitions) TermAutomatonQuery and
 comment|// also the "equivalent" BooleanQuery and make sure they match the
 comment|// same docs:
 name|BooleanQuery
+operator|.
+name|Builder
 name|bq
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|int
@@ -3994,6 +3998,9 @@ name|Query
 name|q2
 init|=
 name|bq
+operator|.
+name|build
+argument_list|()
 decl_stmt|;
 if|if
 condition|(

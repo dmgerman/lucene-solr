@@ -637,10 +637,14 @@ argument_list|)
 decl_stmt|;
 comment|// advance() method is used by ConjunctionScorer, so we need to create Boolean conjunction query
 name|BooleanQuery
+operator|.
+name|Builder
 name|conjunctionQuery
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|WildcardQuery
@@ -702,6 +706,9 @@ operator|.
 name|search
 argument_list|(
 name|conjunctionQuery
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|1
 argument_list|)
@@ -864,10 +871,14 @@ argument_list|)
 decl_stmt|;
 comment|// advance() method is used by ConjunctionScorer, so we need to create Boolean conjunction query
 name|BooleanQuery
+operator|.
+name|Builder
 name|conjunctionQuery
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|WildcardQuery
@@ -921,6 +932,9 @@ operator|.
 name|search
 argument_list|(
 name|conjunctionQuery
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|1
 argument_list|)
@@ -1419,10 +1433,14 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 name|BooleanQuery
+operator|.
+name|Builder
 name|childrenQueryWithRandomParent
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|childrenQueryWithRandomParent
@@ -1461,6 +1479,9 @@ argument_list|)
 expr_stmt|;
 return|return
 name|childrenQueryWithRandomParent
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 DECL|method|createParentsQueryWithOneChild
@@ -1474,10 +1495,14 @@ name|randomChildNumber
 parameter_list|)
 block|{
 name|BooleanQuery
+operator|.
+name|Builder
 name|childQueryWithRandomParent
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|Query
@@ -1538,6 +1563,9 @@ argument_list|)
 expr_stmt|;
 return|return
 name|childQueryWithRandomParent
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 DECL|method|createParentQuery

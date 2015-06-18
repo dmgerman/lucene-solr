@@ -543,10 +543,14 @@ throws|throws
 name|Exception
 block|{
 name|BooleanQuery
+operator|.
+name|Builder
 name|booleanQuery
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|booleanQuery
@@ -601,6 +605,9 @@ init|=
 name|ffl
 argument_list|(
 name|booleanQuery
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|"a b b b b b b b b b b b a b a b b b b b c a a b b"
 argument_list|)

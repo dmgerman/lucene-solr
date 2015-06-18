@@ -50,20 +50,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|Fields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -172,33 +158,42 @@ specifier|abstract
 class|class
 name|TermCollectingRewrite
 parameter_list|<
-name|Q
-extends|extends
-name|Query
+name|B
 parameter_list|>
 extends|extends
 name|MultiTermQuery
 operator|.
 name|RewriteMethod
 block|{
-comment|/** Return a suitable top-level Query for holding all expanded terms. */
-DECL|method|getTopLevelQuery
+comment|/** Return a suitable builder for the top-level Query for holding all expanded terms. */
+DECL|method|getTopLevelBuilder
 specifier|protected
 specifier|abstract
-name|Q
-name|getTopLevelQuery
+name|B
+name|getTopLevelBuilder
 parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Add a MultiTermQuery term to the top-level query */
+comment|/** Finalize the creation of the query from the builder. */
+DECL|method|build
+specifier|protected
+specifier|abstract
+name|Query
+name|build
+parameter_list|(
+name|B
+name|builder
+parameter_list|)
+function_decl|;
+comment|/** Add a MultiTermQuery term to the top-level query builder. */
 DECL|method|addClause
 specifier|protected
 specifier|final
 name|void
 name|addClause
 parameter_list|(
-name|Q
+name|B
 name|topLevel
 parameter_list|,
 name|Term
@@ -233,7 +228,7 @@ specifier|abstract
 name|void
 name|addClause
 parameter_list|(
-name|Q
+name|B
 name|topLevel
 parameter_list|,
 name|Term

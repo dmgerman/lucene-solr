@@ -189,14 +189,12 @@ specifier|abstract
 class|class
 name|TopTermsRewrite
 parameter_list|<
-name|Q
-extends|extends
-name|Query
+name|B
 parameter_list|>
 extends|extends
 name|TermCollectingRewrite
 argument_list|<
-name|Q
+name|B
 argument_list|>
 block|{
 DECL|field|size
@@ -245,7 +243,7 @@ name|Override
 DECL|method|rewrite
 specifier|public
 specifier|final
-name|Q
+name|Query
 name|rewrite
 parameter_list|(
 specifier|final
@@ -815,10 +813,10 @@ block|}
 argument_list|)
 expr_stmt|;
 specifier|final
-name|Q
-name|q
+name|B
+name|b
 init|=
-name|getTopLevelQuery
+name|getTopLevelBuilder
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -886,7 +884,7 @@ argument_list|)
 decl_stmt|;
 name|addClause
 argument_list|(
-name|q
+name|b
 argument_list|,
 name|term
 argument_list|,
@@ -914,7 +912,10 @@ expr_stmt|;
 comment|// add to query
 block|}
 return|return
-name|q
+name|build
+argument_list|(
+name|b
+argument_list|)
 return|;
 block|}
 DECL|method|adjustScoreTerms

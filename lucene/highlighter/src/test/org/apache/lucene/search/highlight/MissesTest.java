@@ -352,10 +352,14 @@ init|)
 block|{
 specifier|final
 name|BooleanQuery
+operator|.
+name|Builder
 name|query
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|query
@@ -415,6 +419,9 @@ operator|new
 name|QueryScorer
 argument_list|(
 name|query
+operator|.
+name|build
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

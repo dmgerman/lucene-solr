@@ -2394,10 +2394,14 @@ literal|false
 argument_list|)
 decl_stmt|;
 name|BooleanQuery
+operator|.
+name|Builder
 name|noVal
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|noVal
@@ -2415,6 +2419,9 @@ argument_list|)
 expr_stmt|;
 return|return
 name|noVal
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 block|}

@@ -1346,10 +1346,14 @@ argument_list|)
 expr_stmt|;
 block|}
 name|BooleanQuery
+operator|.
+name|Builder
 name|f
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 comment|// Add latitude range filter:
@@ -1400,10 +1404,14 @@ block|{
 comment|// The bounding box crosses the international date
 comment|// line:
 name|BooleanQuery
+operator|.
+name|Builder
 name|lonF
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|lonF
@@ -1473,6 +1481,9 @@ operator|.
 name|add
 argument_list|(
 name|lonF
+operator|.
+name|build
+argument_list|()
 argument_list|,
 name|BooleanClause
 operator|.
@@ -1526,6 +1537,9 @@ operator|new
 name|QueryWrapperFilter
 argument_list|(
 name|f
+operator|.
+name|build
+argument_list|()
 argument_list|)
 return|;
 block|}

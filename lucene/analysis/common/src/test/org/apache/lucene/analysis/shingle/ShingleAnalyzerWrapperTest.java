@@ -859,10 +859,14 @@ throws|throws
 name|Exception
 block|{
 name|BooleanQuery
+operator|.
+name|Builder
 name|q
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 try|try
@@ -952,6 +956,9 @@ operator|.
 name|search
 argument_list|(
 name|q
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|1000
 argument_list|)

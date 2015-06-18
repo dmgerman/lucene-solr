@@ -33,6 +33,7 @@ end_comment
 begin_class
 DECL|class|BooleanClause
 specifier|public
+specifier|final
 class|class
 name|BooleanClause
 block|{
@@ -77,7 +78,7 @@ return|;
 block|}
 block|}
 block|,
-comment|/** Use this operator for clauses that<i>should</i> appear in the       * matching documents. For a BooleanQuery with no<code>MUST</code>       * clauses one or more<code>SHOULD</code> clauses must match a document       * for the BooleanQuery to match.      * @see BooleanQuery#setMinimumNumberShouldMatch      */
+comment|/** Use this operator for clauses that<i>should</i> appear in the       * matching documents. For a BooleanQuery with no<code>MUST</code>       * clauses one or more<code>SHOULD</code> clauses must match a document       * for the BooleanQuery to match.      * @see BooleanQuery.Builder#setMinimumNumberShouldMatch      */
 DECL|enum constant|SHOULD
 name|SHOULD
 block|{
@@ -114,11 +115,13 @@ block|;    }
 comment|/** The query whose matching documents are combined by the boolean query.    */
 DECL|field|query
 specifier|private
+specifier|final
 name|Query
 name|query
 decl_stmt|;
 DECL|field|occur
 specifier|private
+specifier|final
 name|Occur
 name|occur
 decl_stmt|;
@@ -171,29 +174,6 @@ return|return
 name|occur
 return|;
 block|}
-DECL|method|setOccur
-specifier|public
-name|void
-name|setOccur
-parameter_list|(
-name|Occur
-name|occur
-parameter_list|)
-block|{
-name|this
-operator|.
-name|occur
-operator|=
-name|Objects
-operator|.
-name|requireNonNull
-argument_list|(
-name|occur
-argument_list|,
-literal|"Occur must not be null"
-argument_list|)
-expr_stmt|;
-block|}
 DECL|method|getQuery
 specifier|public
 name|Query
@@ -203,29 +183,6 @@ block|{
 return|return
 name|query
 return|;
-block|}
-DECL|method|setQuery
-specifier|public
-name|void
-name|setQuery
-parameter_list|(
-name|Query
-name|query
-parameter_list|)
-block|{
-name|this
-operator|.
-name|query
-operator|=
-name|Objects
-operator|.
-name|requireNonNull
-argument_list|(
-name|query
-argument_list|,
-literal|"Query must not be null"
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|isProhibited
 specifier|public

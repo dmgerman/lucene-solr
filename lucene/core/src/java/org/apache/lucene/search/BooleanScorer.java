@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * {@link BulkScorer} that is used for pure disjunctions and disjunctions  * that have low values of {@link BooleanQuery#setMinimumNumberShouldMatch(int)}  * and dense clauses. This scorer scores documents by batches of 2048 docs.  */
+comment|/**  * {@link BulkScorer} that is used for pure disjunctions and disjunctions  * that have low values of {@link BooleanQuery.Builder#setMinimumNumberShouldMatch(int)}  * and dense clauses. This scorer scores documents by batches of 2048 docs.  */
 end_comment
 
 begin_class

@@ -862,10 +862,14 @@ throws|throws
 name|Exception
 block|{
 name|BooleanQuery
+operator|.
+name|Builder
 name|bq
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 for|for
@@ -918,6 +922,9 @@ operator|.
 name|createNormalizedWeight
 argument_list|(
 name|bq
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|true
 argument_list|)
@@ -2638,7 +2645,7 @@ name|clause
 range|:
 name|bq
 operator|.
-name|getClauses
+name|clauses
 argument_list|()
 control|)
 block|{

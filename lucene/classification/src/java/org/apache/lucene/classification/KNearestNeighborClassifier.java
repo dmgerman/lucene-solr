@@ -667,10 +667,14 @@ throws|throws
 name|IOException
 block|{
 name|BooleanQuery
+operator|.
+name|Builder
 name|mltQuery
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 for|for
@@ -769,6 +773,9 @@ operator|.
 name|search
 argument_list|(
 name|mltQuery
+operator|.
+name|build
+argument_list|()
 argument_list|,
 name|k
 argument_list|)

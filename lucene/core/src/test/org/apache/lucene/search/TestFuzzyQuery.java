@@ -2828,10 +2828,14 @@ name|close
 argument_list|()
 expr_stmt|;
 name|BooleanQuery
+operator|.
+name|Builder
 name|query
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|String
@@ -2913,6 +2917,9 @@ operator|.
 name|search
 argument_list|(
 name|query
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|1000
 argument_list|)

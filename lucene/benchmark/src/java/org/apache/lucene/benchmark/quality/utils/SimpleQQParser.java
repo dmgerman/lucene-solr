@@ -308,10 +308,14 @@ argument_list|)
 expr_stmt|;
 block|}
 name|BooleanQuery
+operator|.
+name|Builder
 name|bq
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 for|for
@@ -363,6 +367,9 @@ argument_list|)
 expr_stmt|;
 return|return
 name|bq
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 block|}

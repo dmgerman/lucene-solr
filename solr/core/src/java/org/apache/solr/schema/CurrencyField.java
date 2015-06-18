@@ -1941,10 +1941,14 @@ argument_list|)
 decl_stmt|;
 specifier|final
 name|BooleanQuery
+operator|.
+name|Builder
 name|docsInRange
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|docsInRange
@@ -1977,6 +1981,9 @@ operator|new
 name|QueryWrapperFilter
 argument_list|(
 name|docsInRange
+operator|.
+name|build
+argument_list|()
 argument_list|)
 argument_list|)
 return|;

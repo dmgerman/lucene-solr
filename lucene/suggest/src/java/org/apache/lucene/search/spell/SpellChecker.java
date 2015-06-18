@@ -1016,10 +1016,14 @@ block|}
 return|;
 block|}
 name|BooleanQuery
+operator|.
+name|Builder
 name|query
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|String
@@ -1183,6 +1187,9 @@ operator|.
 name|search
 argument_list|(
 name|query
+operator|.
+name|build
+argument_list|()
 argument_list|,
 name|maxHits
 argument_list|)
@@ -1464,6 +1471,8 @@ name|void
 name|add
 parameter_list|(
 name|BooleanQuery
+operator|.
+name|Builder
 name|q
 parameter_list|,
 name|String
@@ -1524,6 +1533,8 @@ name|void
 name|add
 parameter_list|(
 name|BooleanQuery
+operator|.
+name|Builder
 name|q
 parameter_list|,
 name|String

@@ -470,10 +470,14 @@ argument_list|()
 expr_stmt|;
 comment|// Do ordinary BooleanQuery:
 name|BooleanQuery
+operator|.
+name|Builder
 name|bq
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|bq
@@ -543,6 +547,9 @@ operator|.
 name|search
 argument_list|(
 name|bq
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|10
 argument_list|)
@@ -976,10 +983,14 @@ argument_list|()
 expr_stmt|;
 comment|// Do ordinary BooleanQuery:
 name|BooleanQuery
+operator|.
+name|Builder
 name|bq
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|bq
@@ -1049,6 +1060,9 @@ operator|.
 name|search
 argument_list|(
 name|bq
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|10
 argument_list|)
@@ -1306,10 +1320,14 @@ argument_list|()
 expr_stmt|;
 comment|// Do ordinary BooleanQuery:
 name|BooleanQuery
+operator|.
+name|Builder
 name|bq
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|bq
@@ -1370,6 +1388,9 @@ operator|.
 name|search
 argument_list|(
 name|bq
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|10
 argument_list|)
@@ -1715,10 +1736,14 @@ argument_list|()
 expr_stmt|;
 comment|// Do ordinary BooleanQuery:
 name|BooleanQuery
+operator|.
+name|Builder
 name|bq
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|bq
@@ -1779,6 +1804,9 @@ operator|.
 name|search
 argument_list|(
 name|bq
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|10
 argument_list|)
@@ -2000,6 +2028,9 @@ operator|.
 name|explain
 argument_list|(
 name|bq
+operator|.
+name|build
+argument_list|()
 argument_list|,
 name|docID
 argument_list|)
@@ -2098,6 +2129,9 @@ operator|.
 name|explain
 argument_list|(
 name|bq
+operator|.
+name|build
+argument_list|()
 argument_list|,
 name|docID
 argument_list|)
@@ -2333,10 +2367,14 @@ argument_list|()
 expr_stmt|;
 comment|// Do ordinary BooleanQuery:
 name|BooleanQuery
+operator|.
+name|Builder
 name|bq
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|bq
@@ -2397,6 +2435,9 @@ operator|.
 name|search
 argument_list|(
 name|bq
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|10
 argument_list|)

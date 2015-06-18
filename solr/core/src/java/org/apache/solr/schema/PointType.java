@@ -825,14 +825,23 @@ name|dimension
 argument_list|)
 decl_stmt|;
 name|BooleanQuery
+operator|.
+name|Builder
 name|result
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|result
+operator|.
+name|setDisableCoord
 argument_list|(
 literal|true
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -901,6 +910,9 @@ expr_stmt|;
 block|}
 return|return
 name|result
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -933,14 +945,23 @@ argument_list|)
 decl_stmt|;
 comment|//TODO: should we assert that p1.length == dimension?
 name|BooleanQuery
+operator|.
+name|Builder
 name|bq
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|bq
+operator|.
+name|setDisableCoord
 argument_list|(
 literal|true
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -1004,6 +1025,9 @@ expr_stmt|;
 block|}
 return|return
 name|bq
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 comment|/**    * Calculates the range and creates a RangeQuery (bounding box) wrapped in a BooleanQuery (unless the dimension is    * 1, one range for every dimension, AND'd together by a Boolean    *    * @param parser  The parser    * @param options The {@link org.apache.solr.search.SpatialOptions} for this filter.    * @return The Query representing the bounding box around the point.    */
@@ -1193,10 +1217,14 @@ block|}
 else|else
 block|{
 name|BooleanQuery
+operator|.
+name|Builder
 name|tmp
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 comment|//TODO: Handle distance measures, as this assumes Euclidean
@@ -1320,6 +1348,9 @@ expr_stmt|;
 block|}
 return|return
 name|tmp
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 block|}

@@ -1739,10 +1739,14 @@ name|clear
 argument_list|()
 expr_stmt|;
 name|BooleanQuery
+operator|.
+name|Builder
 name|bq
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 comment|//create BooleanQueries to hold the variants for each token/field pair and ensure it
@@ -1942,14 +1946,23 @@ block|}
 else|else
 block|{
 name|BooleanQuery
+operator|.
+name|Builder
 name|termVariants
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|termVariants
+operator|.
+name|setDisableCoord
 argument_list|(
 literal|true
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 comment|//disable coord and IDF for these term variants
 for|for
 control|(
@@ -2022,6 +2035,9 @@ operator|.
 name|add
 argument_list|(
 name|termVariants
+operator|.
+name|build
+argument_list|()
 argument_list|,
 name|BooleanClause
 operator|.
@@ -2035,7 +2051,15 @@ block|}
 block|}
 comment|//TODO possible alternative step 3 - organize above booleans into a new layer of field-based
 comment|// booleans with a minimum-should-match of NumFields-1?
+name|Query
+name|q
+init|=
 name|bq
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
+name|q
 operator|.
 name|setBoost
 argument_list|(
@@ -2047,10 +2071,10 @@ name|this
 operator|.
 name|rewrittenQuery
 operator|=
-name|bq
+name|q
 expr_stmt|;
 return|return
-name|bq
+name|q
 return|;
 block|}
 comment|//Holds info for a fuzzy term variant - initially score is set to edit distance (for ranking best

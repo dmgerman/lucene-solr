@@ -1623,7 +1623,7 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
-name|assertSame
+name|assertEquals
 argument_list|(
 name|base
 argument_list|,

@@ -300,21 +300,6 @@ name|srndQuery
 argument_list|)
 return|;
 block|}
-comment|/**     * Not supported by this query.    * @throws UnsupportedOperationException always: clone is not supported. */
-annotation|@
-name|Override
-DECL|method|clone
-specifier|public
-name|RewriteQuery
-name|clone
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
 block|}
 end_class
 

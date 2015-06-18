@@ -48,7 +48,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Iterator
+name|HashMap
 import|;
 end_import
 
@@ -58,7 +58,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
+name|Iterator
 import|;
 end_import
 
@@ -100,7 +100,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Query
+name|MatchNoDocsQuery
 import|;
 end_import
 
@@ -114,9 +114,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|spans
-operator|.
-name|SpanNearQuery
+name|Query
 import|;
 end_import
 
@@ -408,10 +406,13 @@ block|{
 if|if
 condition|(
 name|q
-operator|==
-name|SrndQuery
 operator|.
-name|theEmptyLcnQuery
+name|getClass
+argument_list|()
+operator|==
+name|MatchNoDocsQuery
+operator|.
+name|class
 condition|)
 return|return;
 if|if

@@ -1440,10 +1440,14 @@ argument_list|)
 decl_stmt|;
 comment|// This query will be equivalent to +body:pie +body:"blue*"
 name|BooleanQuery
+operator|.
+name|Builder
 name|q
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|q
@@ -1525,6 +1529,9 @@ operator|.
 name|search
 argument_list|(
 name|q
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|1000
 argument_list|)
@@ -1548,6 +1555,9 @@ operator|.
 name|explain
 argument_list|(
 name|q
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|0
 argument_list|)
@@ -1630,10 +1640,14 @@ argument_list|)
 decl_stmt|;
 comment|// This query will be equivalent to +type:note +body:"a t*"
 name|BooleanQuery
+operator|.
+name|Builder
 name|q
 init|=
 operator|new
 name|BooleanQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|q
@@ -1728,6 +1742,9 @@ operator|.
 name|search
 argument_list|(
 name|q
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|1000
 argument_list|)
