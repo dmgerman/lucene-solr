@@ -359,22 +359,36 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-assert|assert
+if|if
+condition|(
 name|i
-operator|>=
-literal|0L
-assert|;
-name|writeNegativeVLong
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot write negative vLong (got: "
+operator|+
+name|i
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
+name|writeSignedVLong
 argument_list|(
 name|i
 argument_list|)
 expr_stmt|;
 block|}
-comment|// write a pontentially negative vLong
-DECL|method|writeNegativeVLong
+comment|// write a potentially negative vLong
+DECL|method|writeSignedVLong
 specifier|private
 name|void
-name|writeNegativeVLong
+name|writeSignedVLong
 parameter_list|(
 name|long
 name|i
@@ -437,7 +451,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|writeNegativeVLong
+name|writeSignedVLong
 argument_list|(
 name|BitUtil
 operator|.
