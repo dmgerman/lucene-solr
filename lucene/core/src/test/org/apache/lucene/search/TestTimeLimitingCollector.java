@@ -969,7 +969,7 @@ argument_list|)
 decl_stmt|;
 comment|// search
 name|TimeExceededException
-name|timoutException
+name|timeoutException
 init|=
 literal|null
 decl_stmt|;
@@ -987,7 +987,7 @@ name|TimeExceededException
 name|x
 parameter_list|)
 block|{
-name|timoutException
+name|timeoutException
 operator|=
 name|x
 expr_stmt|;
@@ -1014,14 +1014,14 @@ name|assertNotNull
 argument_list|(
 literal|"Timeout expected!"
 argument_list|,
-name|timoutException
+name|timeoutException
 argument_list|)
 expr_stmt|;
 comment|// greediness affect last doc collected
 name|int
 name|exceptionDoc
 init|=
-name|timoutException
+name|timeoutException
 operator|.
 name|getLastDocCollected
 argument_list|()
@@ -1034,17 +1034,21 @@ operator|.
 name|getLastDocCollected
 argument_list|()
 decl_stmt|;
+comment|// exceptionDoc == -1 means we hit the timeout in getLeafCollector:
+if|if
+condition|(
+name|exceptionDoc
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
 name|assertTrue
 argument_list|(
 literal|"doc collected at timeout must be> 0! or == -1 but was: "
 operator|+
 name|exceptionDoc
 argument_list|,
-name|exceptionDoc
-operator|==
-operator|-
-literal|1
-operator|||
 name|exceptionDoc
 operator|>
 literal|0
@@ -1109,10 +1113,11 @@ name|lastCollected
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 comment|// verify that elapsed time at exception is within valid limits
 name|assertEquals
 argument_list|(
-name|timoutException
+name|timeoutException
 operator|.
 name|getTimeAllowed
 argument_list|()
@@ -1125,7 +1130,7 @@ name|assertTrue
 argument_list|(
 literal|"elapsed="
 operator|+
-name|timoutException
+name|timeoutException
 operator|.
 name|getTimeElapsed
 argument_list|()
@@ -1141,7 +1146,7 @@ name|getResolution
 argument_list|()
 operator|)
 argument_list|,
-name|timoutException
+name|timeoutException
 operator|.
 name|getTimeElapsed
 argument_list|()
@@ -1159,7 +1164,7 @@ comment|//    This part is problematic in a busy test system, so we just print a
 comment|//    We already verified that a timeout occurred, we just can't be picky about how long it took.
 if|if
 condition|(
-name|timoutException
+name|timeoutException
 operator|.
 name|getTimeElapsed
 argument_list|()
@@ -1186,14 +1191,14 @@ name|exceptionDoc
 operator|+
 literal|" ,&& allowed="
 operator|+
-name|timoutException
+name|timeoutException
 operator|.
 name|getTimeAllowed
 argument_list|()
 operator|+
 literal|" ,&& elapsed="
 operator|+
-name|timoutException
+name|timeoutException
 operator|.
 name|getTimeElapsed
 argument_list|()
@@ -1457,7 +1462,7 @@ argument_list|)
 decl_stmt|;
 comment|// search
 name|TimeExceededException
-name|timoutException
+name|timeoutException
 init|=
 literal|null
 decl_stmt|;
@@ -1540,7 +1545,7 @@ name|TimeExceededException
 name|x
 parameter_list|)
 block|{
-name|timoutException
+name|timeoutException
 operator|=
 name|x
 expr_stmt|;
@@ -1550,7 +1555,7 @@ name|assertNotNull
 argument_list|(
 literal|"Timeout expected!"
 argument_list|,
-name|timoutException
+name|timeoutException
 argument_list|)
 expr_stmt|;
 name|assertEquals

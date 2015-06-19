@@ -309,7 +309,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Checks if this time limited collector is greedy in collecting the last hit.    * A non greedy collector, upon a timeout, would throw a {@link TimeExceededException}     * without allowing the wrapped collector to collect current doc. A greedy one would     * first allow the wrapped hit collector to collect current doc and only then     * throw a {@link TimeExceededException}.    * @see #setGreedy(boolean)    */
+comment|/**    * Checks if this time limited collector is greedy in collecting the last hit.    * A non greedy collector, upon a timeout, would throw a {@link TimeExceededException}     * without allowing the wrapped collector to collect current doc. A greedy one would     * first allow the wrapped hit collector to collect current doc and only then     * throw a {@link TimeExceededException}.  However, if the timeout is detected in    * {@link #getLeafCollector} then no current document is collected.    * @see #setGreedy(boolean)    */
 DECL|method|isGreedy
 specifier|public
 name|boolean
