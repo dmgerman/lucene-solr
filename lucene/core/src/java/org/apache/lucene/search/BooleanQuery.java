@@ -371,14 +371,6 @@ name|TooManyClauses
 argument_list|()
 throw|;
 block|}
-name|query
-operator|=
-name|query
-operator|.
-name|clone
-argument_list|()
-expr_stmt|;
-comment|// be defensive
 name|clauses
 operator|.
 name|add
