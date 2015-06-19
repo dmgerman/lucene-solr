@@ -280,7 +280,7 @@ name|io
 operator|.
 name|comp
 operator|.
-name|FieldComparator
+name|MultiComp
 import|;
 end_import
 
@@ -300,7 +300,29 @@ name|io
 operator|.
 name|comp
 operator|.
-name|MultiComp
+name|StreamComparator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|io
+operator|.
+name|stream
+operator|.
+name|expr
+operator|.
+name|Expressible
 import|;
 end_import
 
@@ -538,7 +560,7 @@ name|CloudSolrStream
 extends|extends
 name|TupleStream
 implements|implements
-name|ExpressibleStream
+name|Expressible
 block|{
 DECL|field|serialVersionUID
 specifier|private
@@ -1816,7 +1838,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|FieldComparator
+name|StreamComparator
 argument_list|(
 name|fieldName
 argument_list|,

@@ -38,16 +38,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|ArrayList
 import|;
 end_import
@@ -68,6 +58,26 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Locale
 import|;
 end_import
@@ -79,16 +89,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
 import|;
 end_import
 
@@ -126,7 +126,7 @@ name|io
 operator|.
 name|comp
 operator|.
-name|FieldComparator
+name|StreamComparator
 import|;
 end_import
 
@@ -144,9 +144,11 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|comp
+name|stream
 operator|.
-name|ExpressibleComparator
+name|expr
+operator|.
+name|Expressible
 import|;
 end_import
 
@@ -250,7 +252,7 @@ name|ReducerStream
 extends|extends
 name|TupleStream
 implements|implements
-name|ExpressibleStream
+name|Expressible
 block|{
 DECL|field|serialVersionUID
 specifier|private
@@ -337,7 +339,7 @@ name|getExpressionOperandsRepresentingTypes
 argument_list|(
 name|expression
 argument_list|,
-name|ExpressibleStream
+name|Expressible
 operator|.
 name|class
 argument_list|,
@@ -508,7 +510,7 @@ operator|.
 name|getValue
 argument_list|()
 argument_list|,
-name|FieldComparator
+name|StreamComparator
 operator|.
 name|class
 argument_list|)
@@ -563,7 +565,7 @@ if|if
 condition|(
 name|comp
 operator|instanceof
-name|ExpressibleComparator
+name|Expressible
 condition|)
 block|{
 name|expression
@@ -577,7 +579,7 @@ literal|"by"
 argument_list|,
 operator|(
 operator|(
-name|ExpressibleComparator
+name|Expressible
 operator|)
 name|comp
 operator|)

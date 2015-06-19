@@ -210,7 +210,7 @@ name|io
 operator|.
 name|comp
 operator|.
-name|FieldComparator
+name|StreamComparator
 import|;
 end_import
 
@@ -2162,7 +2162,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|FieldComparator
+name|StreamComparator
 argument_list|(
 name|stripQuotes
 argument_list|(
@@ -2296,7 +2296,7 @@ name|i
 index|]
 operator|=
 operator|new
-name|FieldComparator
+name|StreamComparator
 argument_list|(
 name|stripQuotes
 argument_list|(
