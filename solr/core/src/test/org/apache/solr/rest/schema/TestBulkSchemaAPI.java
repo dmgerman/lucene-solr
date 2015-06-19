@@ -1451,6 +1451,30 @@ literal|"                       'stored':true\n"
 operator|+
 literal|"                       },\n"
 operator|+
+literal|"          'add-field-type' : {"
+operator|+
+literal|"                       'name' : 'mySimField',\n"
+operator|+
+literal|"                       'class':'solr.TextField',\n"
+operator|+
+literal|"                       'analyzer' : {'tokenizer':{'class':'solr.WhitespaceTokenizerFactory'}},\n"
+operator|+
+literal|"                       'similarity' : {'class':'org.apache.lucene.misc.SweetSpotSimilarity'}\n"
+operator|+
+literal|"                       },\n"
+operator|+
+literal|"          'add-field' : {\n"
+operator|+
+literal|"                       'name':'a4',\n"
+operator|+
+literal|"                       'type': 'mySimField',\n"
+operator|+
+literal|"                       'stored':true,\n"
+operator|+
+literal|"                       'indexed':true\n"
+operator|+
+literal|"                       },\n"
+operator|+
 literal|"          'delete-field' : {'name':'wdf_nocase'},\n"
 operator|+
 literal|"          'delete-field-type' : {'name':'wdf_nocase'},\n"
@@ -1949,6 +1973,81 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"myNewTxtField"
+argument_list|,
+name|m
+operator|.
+name|get
+argument_list|(
+literal|"type"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|m
+operator|=
+name|getObj
+argument_list|(
+name|harness
+argument_list|,
+literal|"mySimField"
+argument_list|,
+literal|"fieldTypes"
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|m
+argument_list|)
+expr_stmt|;
+name|m
+operator|=
+operator|(
+name|Map
+operator|)
+name|m
+operator|.
+name|get
+argument_list|(
+literal|"similarity"
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|m
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"org.apache.lucene.misc.SweetSpotSimilarity"
+argument_list|,
+name|m
+operator|.
+name|get
+argument_list|(
+literal|"class"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|m
+operator|=
+name|getObj
+argument_list|(
+name|harness
+argument_list|,
+literal|"a4"
+argument_list|,
+literal|"fields"
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"field a4 not created"
+argument_list|,
+name|m
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"mySimField"
 argument_list|,
 name|m
 operator|.
