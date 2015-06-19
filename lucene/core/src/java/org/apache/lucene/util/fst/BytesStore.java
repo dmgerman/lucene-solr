@@ -495,6 +495,16 @@ operator|<=
 name|chunk
 condition|)
 block|{
+assert|assert
+name|b
+operator|!=
+literal|null
+assert|;
+assert|assert
+name|current
+operator|!=
+literal|null
+assert|;
 name|System
 operator|.
 name|arraycopy
