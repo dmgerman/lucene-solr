@@ -349,6 +349,11 @@ specifier|private
 name|IntersectTermsEnumFrame
 name|currentFrame
 decl_stmt|;
+DECL|field|currentTransition
+specifier|private
+name|Transition
+name|currentTransition
+decl_stmt|;
 DECL|field|term
 specifier|private
 specifier|final
@@ -423,7 +428,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//if (DEBUG) System.out.println("\nintEnum.init seg=" + fr.parent.segment + " commonSuffix=" + commonSuffix);
 name|this
 operator|.
 name|fr
@@ -446,7 +450,6 @@ name|runAutomaton
 operator|!=
 literal|null
 assert|;
-comment|//if (DEBUG) System.out.println("sinkState=" + sinkState + " AUTOMATON:\n" + automaton.toDot());
 name|this
 operator|.
 name|runAutomaton
@@ -699,6 +702,12 @@ name|startTerm
 argument_list|)
 expr_stmt|;
 block|}
+name|currentTransition
+operator|=
+name|currentFrame
+operator|.
+name|transition
+expr_stmt|;
 block|}
 comment|// only for assert:
 DECL|method|setSavedStartTerm
@@ -1000,6 +1009,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|currentFrame
+operator|!=
+literal|null
+assert|;
 specifier|final
 name|IntersectTermsEnumFrame
 name|f
@@ -1043,7 +1057,6 @@ name|currentFrame
 operator|.
 name|suffix
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("    pushFrame state=" + state + " prefix=" + f.prefix);
 name|f
 operator|.
 name|setState
@@ -1217,13 +1230,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//if (DEBUG) System.out.println("BTIR.docFreq");
 name|currentFrame
 operator|.
 name|decodeMetaData
 argument_list|()
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("  return " + currentFrame.termState.docFreq);
 return|return
 name|currentFrame
 operator|.
@@ -1382,7 +1393,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//if (DEBUG) System.out.println("seek to startTerm=" + target.utf8ToString() + " length=" + target.length);
 assert|assert
 name|currentFrame
 operator|.
@@ -1456,7 +1466,6 @@ name|idx
 operator|++
 control|)
 block|{
-comment|//if (DEBUG) System.out.println("cycle idx=" + idx);
 while|while
 condition|(
 literal|true
@@ -1523,7 +1532,6 @@ name|currentFrame
 operator|.
 name|isAutoPrefixTerm
 decl_stmt|;
-comment|//if (DEBUG) System.out.println("    cycle isAutoPrefix=" + saveIsAutoPrefixTerm + " ent=" + currentFrame.nextEnt + " (of " + currentFrame.entCount + ") prefix=" + currentFrame.prefix + " suffix=" + currentFrame.suffix + " firstLabel=" + (currentFrame.suffix == 0 ? "" : (currentFrame.suffixBytes[currentFrame.startBytePos])&0xff));
 specifier|final
 name|boolean
 name|isSubBlock
@@ -1601,7 +1609,6 @@ operator|.
 name|suffix
 argument_list|)
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("      isSubBlock=" + isSubBlock + " term/prefix=" + brToString(term) + " saveIsAutoPrefixTerm=" + saveIsAutoPrefixTerm + " allowAutoPrefixTerms=" + allowAutoPrefixTerms);
 if|if
 condition|(
 name|isSubBlock
@@ -1617,7 +1624,6 @@ argument_list|)
 condition|)
 block|{
 comment|// Recurse
-comment|//if (DEBUG) System.out.println("      recurse!");
 name|currentFrame
 operator|=
 name|pushFrame
@@ -1641,7 +1647,6 @@ argument_list|(
 name|target
 argument_list|)
 decl_stmt|;
-comment|//if (DEBUG) System.out.println("      cmp=" + cmp);
 if|if
 condition|(
 name|cmp
@@ -1669,7 +1674,6 @@ name|isLastInFloor
 condition|)
 block|{
 comment|// Advance to next floor block
-comment|//if (DEBUG) System.out.println("  load floorBlock");
 name|currentFrame
 operator|.
 name|loadNextFloorBlock
@@ -1679,7 +1683,6 @@ continue|continue;
 block|}
 else|else
 block|{
-comment|//if (DEBUG) System.out.println("  return term=" + brToString(term));
 return|return;
 block|}
 block|}
@@ -1706,7 +1709,6 @@ condition|)
 block|{
 continue|continue;
 block|}
-comment|//if (DEBUG) System.out.println("  return term=" + brToString(term));
 return|return;
 block|}
 elseif|else
@@ -1725,7 +1727,6 @@ comment|// Fallback to prior entry: the semantics of
 comment|// this method is that the first call to
 comment|// next() will return the term after the
 comment|// requested term
-comment|//if (DEBUG) System.out.println("    fallback prior entry");
 name|currentFrame
 operator|.
 name|nextEnt
@@ -1823,34 +1824,107 @@ assert|assert
 literal|false
 assert|;
 block|}
-annotation|@
-name|Override
-DECL|method|next
-specifier|public
-name|BytesRef
-name|next
+DECL|method|popPushNext
+specifier|private
+name|boolean
+name|popPushNext
 parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|//if (DEBUG) {
-comment|//  System.out.println("\nintEnum.next seg=" + fr.parent.segment);
-comment|//  System.out.println("  frame ord=" + currentFrame.ord + " prefix=" + brToString(new BytesRef(term.bytes, term.offset, currentFrame.prefix)) + " state=" + currentFrame.state + " lastInFloor?=" + currentFrame.isLastInFloor + " fp=" + currentFrame.fp + " outputPrefix=" + currentFrame.outputPrefix + " trans: " + currentFrame.transition + " useAutoPrefix=" + useAutoPrefixTerm);
-comment|//}
-name|nextTerm
-label|:
+comment|// Pop finished frames
 while|while
 condition|(
-literal|true
+name|currentFrame
+operator|.
+name|nextEnt
+operator|==
+name|currentFrame
+operator|.
+name|entCount
 condition|)
 block|{
-name|boolean
-name|isSubBlock
-decl_stmt|;
 if|if
 condition|(
-name|useAutoPrefixTerm
+operator|!
+name|currentFrame
+operator|.
+name|isLastInFloor
 condition|)
+block|{
+comment|// Advance to next floor block
+name|currentFrame
+operator|.
+name|loadNextFloorBlock
+argument_list|()
+expr_stmt|;
+break|break;
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|currentFrame
+operator|.
+name|ord
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+name|NoMoreTermsException
+operator|.
+name|INSTANCE
+throw|;
+block|}
+specifier|final
+name|long
+name|lastFP
+init|=
+name|currentFrame
+operator|.
+name|fpOrig
+decl_stmt|;
+name|currentFrame
+operator|=
+name|stack
+index|[
+name|currentFrame
+operator|.
+name|ord
+operator|-
+literal|1
+index|]
+expr_stmt|;
+name|currentTransition
+operator|=
+name|currentFrame
+operator|.
+name|transition
+expr_stmt|;
+assert|assert
+name|currentFrame
+operator|.
+name|lastSubFP
+operator|==
+name|lastFP
+assert|;
+block|}
+block|}
+return|return
+name|currentFrame
+operator|.
+name|next
+argument_list|()
+return|;
+block|}
+DECL|method|skipPastLastAutoPrefixTerm
+specifier|private
+name|boolean
+name|skipPastLastAutoPrefixTerm
+parameter_list|()
+throws|throws
+name|IOException
 block|{
 assert|assert
 name|currentFrame
@@ -1869,9 +1943,6 @@ name|isRealTerm
 operator|=
 literal|true
 expr_stmt|;
-comment|//if (DEBUG) {
-comment|//  System.out.println("    now scan beyond auto-prefix term=" + brToString(term) + " floorSuffixLeadEnd=" + Integer.toHexString(currentFrame.floorSuffixLeadEnd));
-comment|//}
 comment|// If we last returned an auto-prefix term, we must now skip all
 comment|// actual terms sharing that prefix.  At most, that skipping
 comment|// requires popping one frame, but it can also require simply
@@ -1884,6 +1955,9 @@ init|=
 name|currentFrame
 operator|.
 name|floorSuffixLeadEnd
+decl_stmt|;
+name|boolean
+name|isSubBlock
 decl_stmt|;
 if|if
 condition|(
@@ -1908,7 +1982,6 @@ name|currentFrame
 operator|.
 name|suffix
 decl_stmt|;
-comment|//if (DEBUG) System.out.println("    prefix=" + prefix + " suffix=" + suffix);
 if|if
 condition|(
 name|suffix
@@ -1916,7 +1989,6 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("    pop frame& nextTerm");
 comment|// Easy case: the prefix term's suffix is the empty string,
 comment|// meaning the prefix corresponds to all terms in the
 comment|// current block, so we just pop this entire block:
@@ -1929,10 +2001,11 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("  return null");
-return|return
-literal|null
-return|;
+throw|throw
+name|NoMoreTermsException
+operator|.
+name|INSTANCE
+throw|;
 block|}
 name|currentFrame
 operator|=
@@ -1945,9 +2018,16 @@ operator|-
 literal|1
 index|]
 expr_stmt|;
-continue|continue
-name|nextTerm
-continue|;
+name|currentTransition
+operator|=
+name|currentFrame
+operator|.
+name|transition
+expr_stmt|;
+return|return
+name|popPushNext
+argument_list|()
+return|;
 block|}
 else|else
 block|{
@@ -1964,7 +2044,6 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("    scan next");
 if|if
 condition|(
 name|currentFrame
@@ -2001,16 +2080,16 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("  return null0");
-return|return
-literal|null
-return|;
+throw|throw
+name|NoMoreTermsException
+operator|.
+name|INSTANCE
+throw|;
 block|}
 else|else
 block|{
 comment|// Pop frame, which also means we've moved beyond this
 comment|// auto-prefix term:
-comment|//if (DEBUG) System.out.println("  pop; nextTerm");
 name|currentFrame
 operator|=
 name|stack
@@ -2022,9 +2101,16 @@ operator|-
 literal|1
 index|]
 expr_stmt|;
-continue|continue
-name|nextTerm
-continue|;
+name|currentTransition
+operator|=
+name|currentFrame
+operator|.
+name|transition
+expr_stmt|;
+return|return
+name|popPushNext
+argument_list|()
+return|;
 block|}
 block|}
 name|isSubBlock
@@ -2034,12 +2120,6 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|//if (DEBUG) {
-comment|//  BytesRef suffixBytes = new BytesRef(currentFrame.suffix);
-comment|//  System.arraycopy(currentFrame.suffixBytes, currentFrame.startBytePos, suffixBytes.bytes, 0, currentFrame.suffix);
-comment|//  suffixBytes.length = currentFrame.suffix;
-comment|//  System.out.println("      currentFrame.suffix=" + brToString(suffixBytes));
-comment|//}
 for|for
 control|(
 name|int
@@ -2078,7 +2158,6 @@ name|i
 index|]
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("      done; now stop scan");
 break|break
 name|scanPrefix
 break|;
@@ -2121,7 +2200,6 @@ name|suffix
 operator|++
 expr_stmt|;
 block|}
-comment|//if (DEBUG) System.out.println("      prefix=" + prefix + " suffix=" + suffix);
 if|if
 condition|(
 name|suffix
@@ -2129,7 +2207,6 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("  pop frame");
 comment|// This means current frame is fooa*, so we have to first
 comment|// pop the current frame, then scan in parent frame:
 if|if
@@ -2141,10 +2218,11 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("  return null");
-return|return
-literal|null
-return|;
+throw|throw
+name|NoMoreTermsException
+operator|.
+name|INSTANCE
+throw|;
 block|}
 name|currentFrame
 operator|=
@@ -2156,6 +2234,12 @@ name|ord
 operator|-
 literal|1
 index|]
+expr_stmt|;
+name|currentTransition
+operator|=
+name|currentFrame
+operator|.
+name|transition
 expr_stmt|;
 comment|// Current (parent) frame is now foo*, so now we just scan
 comment|// until the lead suffix byte is> floorSuffixLeadEnd
@@ -2184,7 +2268,6 @@ else|else
 block|{
 comment|// No need to pop; just scan in currentFrame:
 block|}
-comment|//if (DEBUG) System.out.println("    start scan: prefix=" + prefix + " suffix=" + suffix);
 comment|// Now we scan until the lead suffix byte is> floorSuffixLeadEnd
 name|scanFloor
 label|:
@@ -2193,7 +2276,6 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("      scan next");
 if|if
 condition|(
 name|currentFrame
@@ -2214,7 +2296,6 @@ operator|==
 literal|false
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("      next floor block");
 name|currentFrame
 operator|.
 name|loadNextFloorBlock
@@ -2231,10 +2312,11 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("  return null");
-return|return
-literal|null
-return|;
+throw|throw
+name|NoMoreTermsException
+operator|.
+name|INSTANCE
+throw|;
 block|}
 else|else
 block|{
@@ -2251,10 +2333,16 @@ operator|-
 literal|1
 index|]
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("      pop, now curFrame.prefix=" + currentFrame.prefix);
-continue|continue
-name|nextTerm
-continue|;
+name|currentTransition
+operator|=
+name|currentFrame
+operator|.
+name|transition
+expr_stmt|;
+return|return
+name|popPushNext
+argument_list|()
+return|;
 block|}
 block|}
 name|isSubBlock
@@ -2264,12 +2352,6 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-comment|//if (DEBUG) {
-comment|//  BytesRef suffixBytes = new BytesRef(currentFrame.suffix);
-comment|//  System.arraycopy(currentFrame.suffixBytes, currentFrame.startBytePos, suffixBytes.bytes, 0, currentFrame.suffix);
-comment|//  suffixBytes.length = currentFrame.suffix;
-comment|//  System.out.println("      currentFrame.suffix=" + brToString(suffixBytes));
-comment|//}
 for|for
 control|(
 name|int
@@ -2310,17 +2392,11 @@ name|i
 index|]
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("      done; now stop scan");
 break|break
 name|scanFloor
 break|;
 block|}
 block|}
-comment|//if (DEBUG) {
-comment|//  if (currentFrame.suffix>= suffix) {
-comment|//    System.out.println("      cmp label=" + Integer.toHexString(currentFrame.suffixBytes[currentFrame.startBytePos+suffix-1]) + " vs " + floorSuffixLeadEnd);
-comment|//  }
-comment|//}
 if|if
 condition|(
 name|currentFrame
@@ -2351,105 +2427,148 @@ condition|)
 block|{
 comment|// Done scanning: we are now on the first term after all
 comment|// terms matched by this auto-prefix term
-comment|//if (DEBUG) System.out.println("      done; now stop scan");
 break|break;
 block|}
 block|}
 block|}
+return|return
+name|isSubBlock
+return|;
 block|}
-else|else
+comment|// Only used internally when there are no more terms in next():
+DECL|class|NoMoreTermsException
+specifier|private
+specifier|static
+specifier|final
+class|class
+name|NoMoreTermsException
+extends|extends
+name|RuntimeException
 block|{
-comment|// Pop finished frames
-while|while
-condition|(
-name|currentFrame
-operator|.
-name|nextEnt
-operator|==
-name|currentFrame
-operator|.
-name|entCount
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|currentFrame
-operator|.
-name|isLastInFloor
-condition|)
-block|{
-comment|//if (DEBUG) System.out.println("    next-floor-block: trans: " + currentFrame.transition);
-comment|// Advance to next floor block
-name|currentFrame
-operator|.
-name|loadNextFloorBlock
+comment|// Only used internally when there are no more terms in next():
+DECL|field|INSTANCE
+specifier|public
+specifier|static
+specifier|final
+name|NoMoreTermsException
+name|INSTANCE
+init|=
+operator|new
+name|NoMoreTermsException
 argument_list|()
-expr_stmt|;
-comment|//if (DEBUG) System.out.println("\n  frame ord=" + currentFrame.ord + " prefix=" + brToString(new BytesRef(term.bytes, term.offset, currentFrame.prefix)) + " state=" + currentFrame.state + " lastInFloor?=" + currentFrame.isLastInFloor + " fp=" + currentFrame.fp + " outputPrefix=" + currentFrame.outputPrefix);
-break|break;
+decl_stmt|;
+DECL|method|NoMoreTermsException
+specifier|private
+name|NoMoreTermsException
+parameter_list|()
+block|{     }
+annotation|@
+name|Override
+DECL|method|fillInStackTrace
+specifier|public
+name|Throwable
+name|fillInStackTrace
+parameter_list|()
+block|{
+comment|// Do nothing:
+return|return
+name|this
+return|;
 block|}
-else|else
+block|}
+annotation|@
+name|Override
+DECL|method|next
+specifier|public
+name|BytesRef
+name|next
+parameter_list|()
+throws|throws
+name|IOException
 block|{
-comment|//if (DEBUG) System.out.println("  pop frame");
-if|if
-condition|(
+try|try
+block|{
+return|return
+name|_next
+argument_list|()
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|NoMoreTermsException
+name|eoi
+parameter_list|)
+block|{
+comment|// Provoke NPE if we are (illegally!) called again:
 name|currentFrame
-operator|.
-name|ord
-operator|==
-literal|0
-condition|)
-block|{
-comment|//if (DEBUG) System.out.println("  return null");
+operator|=
+literal|null
+expr_stmt|;
 return|return
 literal|null
 return|;
 block|}
-specifier|final
-name|long
-name|lastFP
-init|=
-name|currentFrame
-operator|.
-name|fpOrig
+block|}
+DECL|method|_next
+specifier|private
+name|BytesRef
+name|_next
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|boolean
+name|isSubBlock
 decl_stmt|;
-name|currentFrame
-operator|=
-name|stack
-index|[
-name|currentFrame
-operator|.
-name|ord
-operator|-
-literal|1
-index|]
-expr_stmt|;
-assert|assert
-name|currentFrame
-operator|.
-name|lastSubFP
-operator|==
-name|lastFP
-assert|;
-comment|//if (DEBUG) System.out.println("\n  frame ord=" + currentFrame.ord + " prefix=" + brToString(new BytesRef(term.bytes, term.offset, currentFrame.prefix)) + " state=" + currentFrame.state + " lastInFloor?=" + currentFrame.isLastInFloor + " fp=" + currentFrame.fp + " outputPrefix=" + currentFrame.outputPrefix);
-block|}
-block|}
+if|if
+condition|(
+name|useAutoPrefixTerm
+condition|)
+block|{
+comment|// If the current term was an auto-prefix term, we have to skip past it:
 name|isSubBlock
 operator|=
-name|currentFrame
-operator|.
-name|next
+name|skipPastLastAutoPrefixTerm
+argument_list|()
+expr_stmt|;
+assert|assert
+name|useAutoPrefixTerm
+operator|==
+literal|false
+assert|;
+block|}
+else|else
+block|{
+name|isSubBlock
+operator|=
+name|popPushNext
 argument_list|()
 expr_stmt|;
 block|}
-comment|//if (DEBUG) {
-comment|//  final BytesRef suffixRef = new BytesRef();
-comment|//  suffixRef.bytes = currentFrame.suffixBytes;
-comment|//  suffixRef.offset = currentFrame.startBytePos;
-comment|//  suffixRef.length = currentFrame.suffix;
-comment|//  System.out.println("    " + (isSubBlock ? "sub-block" : "term") + " " + currentFrame.nextEnt + " (of " + currentFrame.entCount + ") suffix=" + brToString(suffixRef));
-comment|//}
+name|nextTerm
+label|:
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+assert|assert
+name|currentFrame
+operator|.
+name|transition
+operator|==
+name|currentTransition
+assert|;
+name|int
+name|state
+decl_stmt|;
+name|int
+name|lastState
+decl_stmt|;
+comment|// NOTE: suffix == 0 can only happen on the first term in a block, when
+comment|// there is a term exactly matching a prefix in the index.  If we
+comment|// could somehow re-org the code so we only checked this case immediately
+comment|// after pushing a frame...
 if|if
 condition|(
 name|currentFrame
@@ -2459,14 +2578,20 @@ operator|!=
 literal|0
 condition|)
 block|{
-comment|// Advance where we are in the automaton to match what terms
-comment|// dict next'd to:
+specifier|final
+name|byte
+index|[]
+name|suffixBytes
+init|=
+name|currentFrame
+operator|.
+name|suffixBytes
+decl_stmt|;
+comment|// This is the first byte of the suffix of the term we are now on:
 specifier|final
 name|int
 name|label
 init|=
-name|currentFrame
-operator|.
 name|suffixBytes
 index|[
 name|currentFrame
@@ -2476,16 +2601,81 @@ index|]
 operator|&
 literal|0xff
 decl_stmt|;
-comment|//if (DEBUG) {
-comment|//  System.out.println("    move automaton to label=" + label + " vs curMax=" + currentFrame.curTransitionMax);
-comment|// }
+if|if
+condition|(
+name|label
+operator|<
+name|currentTransition
+operator|.
+name|min
+condition|)
+block|{
+comment|// Common case: we are scanning terms in this block to "catch up" to
+comment|// current transition in the automaton:
+name|int
+name|minTrans
+init|=
+name|currentTransition
+operator|.
+name|min
+decl_stmt|;
+while|while
+condition|(
+name|currentFrame
+operator|.
+name|nextEnt
+operator|<
+name|currentFrame
+operator|.
+name|entCount
+condition|)
+block|{
+name|isSubBlock
+operator|=
+name|currentFrame
+operator|.
+name|next
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+operator|(
+name|suffixBytes
+index|[
+name|currentFrame
+operator|.
+name|startBytePos
+index|]
+operator|&
+literal|0xff
+operator|)
+operator|>=
+name|minTrans
+condition|)
+block|{
+continue|continue
+name|nextTerm
+continue|;
+block|}
+block|}
+comment|// End of frame:
+name|isSubBlock
+operator|=
+name|popPushNext
+argument_list|()
+expr_stmt|;
+continue|continue
+name|nextTerm
+continue|;
+block|}
+comment|// Advance where we are in the automaton to match this label:
 while|while
 condition|(
 name|label
 operator|>
-name|currentFrame
+name|currentTransition
 operator|.
-name|curTransitionMax
+name|max
 condition|)
 block|{
 if|if
@@ -2503,7 +2693,6 @@ condition|)
 block|{
 comment|// Pop this frame: no further matches are possible because
 comment|// we've moved beyond what the max transition will allow
-comment|//if (DEBUG) System.out.println("      break: trans");
 if|if
 condition|(
 name|currentFrame
@@ -2513,7 +2702,11 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("  return null");
+comment|// Provoke NPE if we are (illegally!) called again:
+name|currentFrame
+operator|=
+literal|null
+expr_stmt|;
 return|return
 literal|null
 return|;
@@ -2529,6 +2722,17 @@ operator|-
 literal|1
 index|]
 expr_stmt|;
+name|currentTransition
+operator|=
+name|currentFrame
+operator|.
+name|transition
+expr_stmt|;
+name|isSubBlock
+operator|=
+name|popPushNext
+argument_list|()
+expr_stmt|;
 continue|continue
 name|nextTerm
 continue|;
@@ -2542,25 +2746,75 @@ name|automaton
 operator|.
 name|getNextTransition
 argument_list|(
-name|currentFrame
-operator|.
-name|transition
+name|currentTransition
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|label
+operator|<
+name|currentTransition
+operator|.
+name|min
+condition|)
+block|{
+name|int
+name|minTrans
+init|=
+name|currentTransition
+operator|.
+name|min
+decl_stmt|;
+while|while
+condition|(
 name|currentFrame
 operator|.
-name|curTransitionMax
+name|nextEnt
+operator|<
+name|currentFrame
+operator|.
+name|entCount
+condition|)
+block|{
+name|isSubBlock
 operator|=
 name|currentFrame
 operator|.
-name|transition
-operator|.
-name|max
+name|next
+argument_list|()
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("      next trans");
+if|if
+condition|(
+operator|(
+name|suffixBytes
+index|[
+name|currentFrame
+operator|.
+name|startBytePos
+index|]
+operator|&
+literal|0xff
+operator|)
+operator|>=
+name|minTrans
+condition|)
+block|{
+continue|continue
+name|nextTerm
+continue|;
 block|}
 block|}
-comment|// First test the common suffix, if set:
+comment|// End of frame:
+name|isSubBlock
+operator|=
+name|popPushNext
+argument_list|()
+expr_stmt|;
+continue|continue
+name|nextTerm
+continue|;
+block|}
+block|}
 if|if
 condition|(
 name|commonSuffix
@@ -2593,20 +2847,15 @@ name|length
 condition|)
 block|{
 comment|// No match
-comment|//if (DEBUG) System.out.println("      skip: common suffix length");
+name|isSubBlock
+operator|=
+name|popPushNext
+argument_list|()
+expr_stmt|;
 continue|continue
 name|nextTerm
 continue|;
 block|}
-specifier|final
-name|byte
-index|[]
-name|suffixBytes
-init|=
-name|currentFrame
-operator|.
-name|suffixBytes
-decl_stmt|;
 specifier|final
 name|byte
 index|[]
@@ -2706,7 +2955,11 @@ operator|++
 index|]
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("      skip: common suffix mismatch (in prefix)");
+name|isSubBlock
+operator|=
+name|popPushNext
+argument_list|()
+expr_stmt|;
 continue|continue
 name|nextTerm
 continue|;
@@ -2767,7 +3020,11 @@ operator|++
 index|]
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("      skip: common suffix mismatch");
+name|isSubBlock
+operator|=
+name|popPushNext
+argument_list|()
+expr_stmt|;
 continue|continue
 name|nextTerm
 continue|;
@@ -2779,38 +3036,47 @@ comment|// that AutomatonTermsEnum does, so that if we
 comment|// reach a part of the automaton where .* is
 comment|// "temporarily" accepted, we just blindly .next()
 comment|// until the limit
-comment|// TODO: for first iter of this loop can't we just use the current trans?  we already advanced it and confirmed it matches lead
-comment|// byte of the suffix
 comment|// See if the term suffix matches the automaton:
-name|int
-name|state
-init|=
+comment|// We know from above that the first byte in our suffix (label) matches
+comment|// the current transition, so we step from the 2nd byte
+comment|// in the suffix:
+name|lastState
+operator|=
 name|currentFrame
 operator|.
 name|state
-decl_stmt|;
+expr_stmt|;
+name|state
+operator|=
+name|currentTransition
+operator|.
+name|dest
+expr_stmt|;
 name|int
-name|lastState
+name|end
 init|=
 name|currentFrame
 operator|.
-name|lastState
+name|startBytePos
+operator|+
+name|currentFrame
+operator|.
+name|suffix
 decl_stmt|;
-comment|//if (DEBUG) {
-comment|//  System.out.println("  a state=" + state + " curFrame.suffix.len=" + currentFrame.suffix + " curFrame.prefix=" + currentFrame.prefix);
-comment|// }
 for|for
 control|(
 name|int
 name|idx
 init|=
-literal|0
+name|currentFrame
+operator|.
+name|startBytePos
+operator|+
+literal|1
 init|;
 name|idx
 operator|<
-name|currentFrame
-operator|.
-name|suffix
+name|end
 condition|;
 name|idx
 operator|++
@@ -2820,7 +3086,6 @@ name|lastState
 operator|=
 name|state
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("    step label=" + (char) (currentFrame.suffixBytes[currentFrame.startBytePos+idx]& 0xff));
 name|state
 operator|=
 name|runAutomaton
@@ -2829,14 +3094,8 @@ name|step
 argument_list|(
 name|state
 argument_list|,
-name|currentFrame
-operator|.
 name|suffixBytes
 index|[
-name|currentFrame
-operator|.
-name|startBytePos
-operator|+
 name|idx
 index|]
 operator|&
@@ -2852,24 +3111,38 @@ literal|1
 condition|)
 block|{
 comment|// No match
-comment|//System.out.println("    no s=" + state);
+name|isSubBlock
+operator|=
+name|popPushNext
+argument_list|()
+expr_stmt|;
 continue|continue
 name|nextTerm
 continue|;
 block|}
+block|}
+block|}
 else|else
 block|{
-comment|//System.out.println("    c s=" + state);
+name|state
+operator|=
+name|currentFrame
+operator|.
+name|state
+expr_stmt|;
+name|lastState
+operator|=
+name|currentFrame
+operator|.
+name|lastState
+expr_stmt|;
 block|}
-block|}
-comment|//if (DEBUG) System.out.println("    after suffix: state=" + state + " lastState=" + lastState);
 if|if
 condition|(
 name|isSubBlock
 condition|)
 block|{
 comment|// Match!  Recurse:
-comment|//if (DEBUG) System.out.println("      sub-block match to state=" + state + "; recurse fp=" + currentFrame.lastSubFP);
 name|copyTerm
 argument_list|()
 expr_stmt|;
@@ -2880,13 +3153,18 @@ argument_list|(
 name|state
 argument_list|)
 expr_stmt|;
+name|currentTransition
+operator|=
+name|currentFrame
+operator|.
+name|transition
+expr_stmt|;
 name|currentFrame
 operator|.
 name|lastState
 operator|=
 name|lastState
 expr_stmt|;
-comment|//xif (DEBUG) System.out.println("\n  frame ord=" + currentFrame.ord + " prefix=" + brToString(new BytesRef(term.bytes, term.offset, currentFrame.prefix)) + " state=" + currentFrame.state + " lastInFloor?=" + currentFrame.isLastInFloor + " fp=" + currentFrame.fp + " trans=" + (currentFrame.transitions.length == 0 ? "n/a" : currentFrame.transitions[currentFrame.transitionIndex]) + " outputPrefix=" + currentFrame.outputPrefix);
 block|}
 elseif|else
 if|if
@@ -2950,7 +3228,6 @@ name|state
 argument_list|)
 condition|)
 block|{
-comment|//if (DEBUG) System.out.println("      state is accept");
 name|useAutoPrefixTerm
 operator|=
 name|acceptsSuffixRange
@@ -2985,12 +3262,12 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//if (DEBUG) System.out.println("  useAutoPrefixTerm=" + useAutoPrefixTerm);
 if|if
 condition|(
 name|useAutoPrefixTerm
 condition|)
 block|{
+comment|// All suffixes of this auto-prefix term are accepted by the automaton, so we can use it:
 name|copyTerm
 argument_list|()
 expr_stmt|;
@@ -3002,7 +3279,6 @@ name|isRealTerm
 operator|=
 literal|false
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("  return auto prefix term: " + brToString(term));
 return|return
 name|term
 return|;
@@ -3031,7 +3307,6 @@ block|{
 name|copyTerm
 argument_list|()
 expr_stmt|;
-comment|//if (DEBUG) System.out.println("      term match to state=" + state);
 assert|assert
 name|savedStartTerm
 operator|==
@@ -3060,22 +3335,26 @@ operator|.
 name|utf8ToString
 argument_list|()
 assert|;
-comment|//if (DEBUG) System.out.println("      return term=" + brToString(term));
 return|return
 name|term
 return|;
 block|}
 else|else
 block|{
-comment|//System.out.println("    no s=" + state);
+comment|// This term is a prefix of a term accepted by the automaton, but is not itself acceptd
+block|}
+name|isSubBlock
+operator|=
+name|popPushNext
+argument_list|()
+expr_stmt|;
 block|}
 block|}
-block|}
-DECL|field|transition
+DECL|field|scratchTransition
 specifier|private
 specifier|final
 name|Transition
-name|transition
+name|scratchTransition
 init|=
 operator|new
 name|Transition
@@ -3097,7 +3376,6 @@ name|int
 name|end
 parameter_list|)
 block|{
-comment|//xif (DEBUG) System.out.println("    acceptsSuffixRange state=" + state + " start=" + start + " end=" + end);
 name|int
 name|count
 init|=
@@ -3107,11 +3385,9 @@ name|initTransition
 argument_list|(
 name|state
 argument_list|,
-name|transition
+name|scratchTransition
 argument_list|)
 decl_stmt|;
-comment|//xif (DEBUG) System.out.println("      transCount=" + count);
-comment|//xif (DEBUG) System.out.println("      trans=" + transition);
 for|for
 control|(
 name|int
@@ -3131,24 +3407,24 @@ name|automaton
 operator|.
 name|getNextTransition
 argument_list|(
-name|transition
+name|scratchTransition
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
 name|start
 operator|>=
-name|transition
+name|scratchTransition
 operator|.
 name|min
 operator|&&
 name|end
 operator|<=
-name|transition
+name|scratchTransition
 operator|.
 name|max
 operator|&&
-name|transition
+name|scratchTransition
 operator|.
 name|dest
 operator|==
@@ -3215,7 +3491,6 @@ name|void
 name|copyTerm
 parameter_list|()
 block|{
-comment|//System.out.println("      copyTerm cur.prefix=" + currentFrame.prefix + " cur.suffix=" + currentFrame.suffix + " first=" + (char) currentFrame.suffixBytes[currentFrame.startBytePos]);
 specifier|final
 name|int
 name|len
