@@ -41,11 +41,11 @@ specifier|abstract
 class|class
 name|ShardHandler
 block|{
-DECL|method|checkDistributed
+DECL|method|prepDistributed
 specifier|public
 specifier|abstract
 name|void
-name|checkDistributed
+name|prepDistributed
 parameter_list|(
 name|ResponseBuilder
 name|rb

@@ -197,7 +197,7 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|checkDistributed
+name|prepDistributed
 parameter_list|(
 name|ResponseBuilder
 name|rb
