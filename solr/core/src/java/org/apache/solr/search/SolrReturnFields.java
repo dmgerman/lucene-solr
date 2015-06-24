@@ -1572,8 +1572,10 @@ operator|!
 name|_wantsAllFields
 condition|)
 block|{
+name|Set
+argument_list|<
 name|String
-index|[]
+argument_list|>
 name|extra
 init|=
 name|t
