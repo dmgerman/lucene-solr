@@ -566,7 +566,7 @@ operator|new
 name|ArrayList
 argument_list|<>
 argument_list|(
-literal|6
+literal|8
 argument_list|)
 decl_stmt|;
 name|names
