@@ -427,7 +427,7 @@ name|StreamExpressionParser
 operator|.
 name|parse
 argument_list|(
-literal|"unique(search(collection1, q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\"), over=\"a_f asc\")"
+literal|"unique(search(collection1, q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\"), over=\"a_f\")"
 argument_list|)
 argument_list|,
 name|factory
@@ -461,7 +461,7 @@ name|expressionString
 operator|.
 name|contains
 argument_list|(
-literal|"over=\"a_f asc\""
+literal|"over=a_f"
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -4069,7 +4069,17 @@ name|streamFactory
 operator|.
 name|constructStream
 argument_list|(
-literal|"parallel(collection1, top(search(collection1, q=\"*:*\", fl=\"id,a_s,a_i\", sort=\"a_i asc\", partitionKeys=\"a_i\"), n=\"11\", sort=\"a_i desc\"), workers=\"2\", zkHost=\""
+literal|"parallel("
+operator|+
+literal|"collection1, "
+operator|+
+literal|"top("
+operator|+
+literal|"search(collection1, q=\"*:*\", fl=\"id,a_s,a_i\", sort=\"a_i asc\", partitionKeys=\"a_i\"), "
+operator|+
+literal|"n=\"11\", "
+operator|+
+literal|"sort=\"a_i desc\"), workers=\"2\", zkHost=\""
 operator|+
 name|zkHost
 operator|+

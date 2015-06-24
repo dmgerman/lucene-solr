@@ -98,16 +98,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -189,6 +179,26 @@ operator|.
 name|io
 operator|.
 name|Tuple
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|io
+operator|.
+name|comp
+operator|.
+name|FieldComparator
 import|;
 end_import
 
@@ -471,10 +481,7 @@ parameter_list|,
 name|int
 name|workers
 parameter_list|,
-name|Comparator
-argument_list|<
-name|Tuple
-argument_list|>
+name|StreamComparator
 name|comp
 parameter_list|)
 throws|throws
@@ -510,10 +517,7 @@ parameter_list|,
 name|int
 name|workers
 parameter_list|,
-name|Comparator
-argument_list|<
-name|Tuple
-argument_list|>
+name|StreamComparator
 name|comp
 parameter_list|)
 throws|throws
@@ -1009,10 +1013,7 @@ literal|0
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|Comparator
-argument_list|<
-name|Tuple
-argument_list|>
+name|StreamComparator
 name|comp
 init|=
 name|factory
@@ -1032,7 +1033,7 @@ operator|.
 name|getValue
 argument_list|()
 argument_list|,
-name|StreamComparator
+name|FieldComparator
 operator|.
 name|class
 argument_list|)
@@ -1072,10 +1073,7 @@ parameter_list|,
 name|int
 name|workers
 parameter_list|,
-name|Comparator
-argument_list|<
-name|Tuple
-argument_list|>
+name|StreamComparator
 name|comp
 parameter_list|)
 throws|throws
@@ -1229,13 +1227,6 @@ argument_list|)
 throw|;
 block|}
 comment|// sort
-if|if
-condition|(
-name|comp
-operator|instanceof
-name|Expressible
-condition|)
-block|{
 name|expression
 operator|.
 name|addParameter
@@ -1245,12 +1236,7 @@ name|StreamExpressionNamedParameter
 argument_list|(
 literal|"sort"
 argument_list|,
-operator|(
-operator|(
-name|Expressible
-operator|)
 name|comp
-operator|)
 operator|.
 name|toExpression
 argument_list|(
@@ -1259,17 +1245,6 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"This ParallelStream contains a non-expressible comparator - it cannot be converted to an expression"
-argument_list|)
-throw|;
-block|}
 comment|// zkHost
 name|expression
 operator|.
