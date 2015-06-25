@@ -60,6 +60,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|LeafReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|LeafReaderContext
 import|;
 end_import
@@ -207,7 +221,7 @@ name|float
 name|topLevelBoost
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a {@link Scorer} which scores documents in/out-of order according    * to<code>scoreDocsInOrder</code>.    *<p>    *<b>NOTE:</b> null can be returned if no documents will be scored by this    * query.    *     * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    *              * @return a {@link Scorer} which scores documents in/out-of order.    * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Returns a {@link Scorer} which can iterate in order over all matching    * documents and assign them a score.    *<p>    *<b>NOTE:</b> null can be returned if no documents will be scored by this    * query.    *<p>    *<b>NOTE</b>: The returned {@link Scorer} does not have    * {@link LeafReader#getLiveDocs()} applied, they need to be checked on top.    *     * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    *              * @return a {@link Scorer} which scores documents in/out-of order.    * @throws IOException if there is a low-level I/O error    */
 DECL|method|scorer
 specifier|public
 specifier|abstract
@@ -220,7 +234,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Optional method, to return a {@link BulkScorer} to    * score the query and send hits to a {@link Collector}.    * Only queries that have a different top-level approach    * need to override this; the default implementation    * pulls a normal {@link Scorer} and iterates and    * collects the resulting hits.    *    * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    *    * @return a {@link BulkScorer} which scores documents and    * passes them to a collector.    * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Optional method, to return a {@link BulkScorer} to    * score the query and send hits to a {@link Collector}.    * Only queries that have a different top-level approach    * need to override this; the default implementation    * pulls a normal {@link Scorer} and iterates and    * collects the resulting hits which are not marked as deleted.    *    * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    *    * @return a {@link BulkScorer} which scores documents and    * passes them to a collector.    * @throws IOException if there is a low-level I/O error    */
 DECL|method|bulkScorer
 specifier|public
 name|BulkScorer
