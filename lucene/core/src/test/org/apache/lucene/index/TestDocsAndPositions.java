@@ -419,8 +419,6 @@ name|reader
 argument_list|()
 argument_list|,
 name|bytes
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -615,9 +613,6 @@ name|reader
 parameter_list|,
 name|BytesRef
 name|bytes
-parameter_list|,
-name|Bits
-name|liveDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -662,8 +657,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-name|liveDocs
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -1024,8 +1017,6 @@ name|reader
 argument_list|()
 argument_list|,
 name|bytes
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -1596,8 +1587,6 @@ name|bytes
 argument_list|,
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|FREQS
@@ -2127,8 +2116,6 @@ name|reader
 argument_list|()
 argument_list|,
 name|bytes
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2363,8 +2350,6 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -2436,8 +2421,6 @@ name|random
 argument_list|()
 argument_list|,
 name|te
-argument_list|,
-literal|null
 argument_list|,
 name|disi
 argument_list|,
@@ -2645,8 +2628,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|disi
 argument_list|,
 name|PostingsEnum

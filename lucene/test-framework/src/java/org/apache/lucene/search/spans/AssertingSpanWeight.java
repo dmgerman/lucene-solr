@@ -104,20 +104,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -233,9 +219,6 @@ parameter_list|(
 name|LeafReaderContext
 name|context
 parameter_list|,
-name|Bits
-name|liveDocs
-parameter_list|,
 name|Postings
 name|requiredPostings
 parameter_list|)
@@ -250,8 +233,6 @@ operator|.
 name|getSpans
 argument_list|(
 name|context
-argument_list|,
-name|liveDocs
 argument_list|,
 name|requiredPostings
 argument_list|)
@@ -345,9 +326,6 @@ name|scorer
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -358,8 +336,6 @@ operator|.
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 return|;
 block|}

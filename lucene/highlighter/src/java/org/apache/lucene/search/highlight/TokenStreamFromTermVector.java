@@ -735,8 +735,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|dpEnum
 argument_list|,
 name|dpEnumFlags

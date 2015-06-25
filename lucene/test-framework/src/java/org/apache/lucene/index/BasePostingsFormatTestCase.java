@@ -1120,8 +1120,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|firstFlags
 argument_list|)
 decl_stmt|;
@@ -1132,8 +1130,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postings1
 argument_list|,
 name|secondFlags
@@ -1703,8 +1699,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -1904,8 +1898,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -2173,8 +2165,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
@@ -2560,8 +2550,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docs
 argument_list|,
 name|PostingsEnum
@@ -2578,8 +2566,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -2842,8 +2828,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docs
 argument_list|,
 name|PostingsEnum
@@ -2860,8 +2844,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -3643,8 +3625,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postings
 argument_list|)
 decl_stmt|;
@@ -3738,8 +3718,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|flag
 argument_list|)
 expr_stmt|;
@@ -3793,8 +3771,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postings
 argument_list|,
 name|flag
@@ -4092,8 +4068,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postings
 argument_list|)
 decl_stmt|;
@@ -4165,8 +4139,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -4231,8 +4203,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsOnly
 argument_list|,
 name|PostingsEnum
@@ -4338,8 +4308,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|flag
 argument_list|)
 expr_stmt|;
@@ -4401,8 +4369,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postings
 argument_list|,
 name|flag
@@ -4692,8 +4658,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postings
 argument_list|)
 decl_stmt|;
@@ -4765,8 +4729,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -4831,8 +4793,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsOnly
 argument_list|,
 name|PostingsEnum
@@ -5061,8 +5021,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -5361,8 +5319,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -5659,8 +5615,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -5956,8 +5910,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -6330,8 +6282,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postings
 argument_list|)
 decl_stmt|;
@@ -6403,8 +6353,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -6469,8 +6417,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsOnly
 argument_list|,
 name|PostingsEnum
@@ -6729,8 +6675,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -7089,8 +7033,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -7413,8 +7355,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -7702,8 +7642,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -8080,8 +8018,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postings
 argument_list|)
 decl_stmt|;
@@ -8153,8 +8089,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -8219,8 +8153,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsOnly
 argument_list|,
 name|PostingsEnum
@@ -8483,8 +8415,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -8828,8 +8758,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -9172,8 +9100,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -9515,8 +9441,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -9931,8 +9855,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postings
 argument_list|)
 decl_stmt|;
@@ -10004,8 +9926,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -10070,8 +9990,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsOnly
 argument_list|,
 name|PostingsEnum
@@ -10364,8 +10282,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -10769,8 +10685,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -11139,8 +11053,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum
@@ -11474,8 +11386,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositionsEnum
 argument_list|,
 name|PostingsEnum

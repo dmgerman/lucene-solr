@@ -1141,14 +1141,6 @@ name|getSpans
 argument_list|(
 name|leafReaderContext
 argument_list|,
-name|leafReaderContext
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
-argument_list|,
 name|SpanWeight
 operator|.
 name|Postings

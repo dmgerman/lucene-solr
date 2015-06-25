@@ -1604,8 +1604,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|ALL
@@ -1618,8 +1616,6 @@ name|memTermsIter
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -1797,8 +1793,6 @@ operator|.
 name|postings
 argument_list|(
 literal|null
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|PostingsEnum
@@ -1808,8 +1802,6 @@ name|memTermsIter
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
@@ -2383,8 +2375,6 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -2452,8 +2442,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|disi
 argument_list|,
 name|PostingsEnum
@@ -2786,8 +2774,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|disi
 argument_list|)
 expr_stmt|;
@@ -4080,8 +4066,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|POSITIONS
@@ -4094,8 +4078,6 @@ name|memTermEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum

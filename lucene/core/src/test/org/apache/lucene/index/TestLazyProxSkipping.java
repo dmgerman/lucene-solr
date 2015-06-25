@@ -899,13 +899,6 @@ name|getTermPositionsEnum
 argument_list|(
 name|reader
 argument_list|,
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|reader
-argument_list|)
-argument_list|,
 name|this
 operator|.
 name|field
@@ -965,13 +958,6 @@ operator|.
 name|getTermPositionsEnum
 argument_list|(
 name|reader
-argument_list|,
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|reader
-argument_list|)
 argument_list|,
 name|this
 operator|.

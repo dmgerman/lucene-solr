@@ -623,9 +623,6 @@ name|scorer
 parameter_list|(
 name|LeafReaderContext
 name|readerContext
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -639,14 +636,6 @@ operator|.
 name|scorer
 argument_list|(
 name|readerContext
-argument_list|,
-name|readerContext
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -725,8 +714,6 @@ argument_list|,
 name|firstChildDoc
 argument_list|,
 name|scoreMode
-argument_list|,
-name|acceptDocs
 argument_list|)
 return|;
 block|}
@@ -755,14 +742,6 @@ operator|)
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|context
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
@@ -827,12 +806,6 @@ specifier|final
 name|ScoreMode
 name|scoreMode
 decl_stmt|;
-DECL|field|acceptDocs
-specifier|private
-specifier|final
-name|Bits
-name|acceptDocs
-decl_stmt|;
 DECL|field|parentDoc
 specifier|private
 name|int
@@ -896,9 +869,6 @@ name|firstChildDoc
 parameter_list|,
 name|ScoreMode
 name|scoreMode
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 block|{
 name|super
@@ -924,12 +894,6 @@ operator|.
 name|scoreMode
 operator|=
 name|scoreMode
-expr_stmt|;
-name|this
-operator|.
-name|acceptDocs
-operator|=
-name|acceptDocs
 expr_stmt|;
 name|nextChildDoc
 operator|=
@@ -1096,12 +1060,6 @@ throws|throws
 name|IOException
 block|{
 comment|//System.out.println("Q.nextDoc() nextChildDoc=" + nextChildDoc);
-comment|// Loop until we hit a parentDoc that's accepted
-while|while
-condition|(
-literal|true
-condition|)
-block|{
 if|if
 condition|(
 name|nextChildDoc
@@ -1161,69 +1119,6 @@ name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
 assert|;
-comment|//System.out.println("  nextChildDoc=" + nextChildDoc);
-if|if
-condition|(
-name|acceptDocs
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|acceptDocs
-operator|.
-name|get
-argument_list|(
-name|parentDoc
-argument_list|)
-condition|)
-block|{
-comment|// Parent doc not accepted; skip child docs until
-comment|// we hit a new parent doc:
-do|do
-block|{
-name|nextChildDoc
-operator|=
-name|childScorer
-operator|.
-name|nextDoc
-argument_list|()
-expr_stmt|;
-block|}
-do|while
-condition|(
-name|nextChildDoc
-operator|<
-name|parentDoc
-condition|)
-do|;
-comment|// Parent& child docs are supposed to be
-comment|// orthogonal:
-if|if
-condition|(
-name|nextChildDoc
-operator|==
-name|parentDoc
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"child query must only match non-parent docs, but parent docID="
-operator|+
-name|nextChildDoc
-operator|+
-literal|" matched childScorer="
-operator|+
-name|childScorer
-operator|.
-name|getClass
-argument_list|()
-argument_list|)
-throw|;
-block|}
-continue|continue;
-block|}
 name|float
 name|totalScore
 init|=
@@ -1487,7 +1382,6 @@ comment|//System.out.println("  return parentDoc=" + parentDoc + " childDocUpto=
 return|return
 name|parentDoc
 return|;
-block|}
 block|}
 annotation|@
 name|Override

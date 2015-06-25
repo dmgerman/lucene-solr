@@ -1029,14 +1029,6 @@ operator|.
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|context
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1062,14 +1054,6 @@ operator|.
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|context
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// second time, nested filter should not be called
@@ -1090,14 +1074,6 @@ operator|.
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|context
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertFalse

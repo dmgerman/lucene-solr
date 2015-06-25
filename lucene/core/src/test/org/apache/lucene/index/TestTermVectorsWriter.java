@@ -506,8 +506,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|ALL
@@ -583,8 +581,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|dpEnum
 argument_list|,
 name|PostingsEnum
@@ -876,8 +872,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|ALL
@@ -1132,8 +1126,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -1418,8 +1410,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|ALL
@@ -1684,8 +1674,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -1956,8 +1944,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|ALL
@@ -2014,8 +2000,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|dpEnum
 argument_list|,
 name|PostingsEnum
@@ -2074,8 +2058,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|dpEnum
 argument_list|,
 name|PostingsEnum
@@ -2299,8 +2281,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|ALL
@@ -2370,8 +2350,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|dpEnum
 argument_list|,
 name|PostingsEnum
@@ -2609,8 +2587,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|ALL
@@ -2680,8 +2656,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|dpEnum
 argument_list|,
 name|PostingsEnum

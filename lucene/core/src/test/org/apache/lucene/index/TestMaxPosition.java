@@ -529,8 +529,6 @@ name|getTermPositionsEnum
 argument_list|(
 name|r
 argument_list|,
-literal|null
-argument_list|,
 literal|"foo"
 argument_list|,
 operator|new

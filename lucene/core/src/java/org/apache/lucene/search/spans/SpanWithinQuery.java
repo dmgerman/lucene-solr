@@ -76,20 +76,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -323,10 +309,6 @@ specifier|final
 name|LeafReaderContext
 name|context
 parameter_list|,
-specifier|final
-name|Bits
-name|acceptDocs
-parameter_list|,
 name|Postings
 name|requiredPostings
 parameter_list|)
@@ -342,8 +324,6 @@ init|=
 name|prepareConjunction
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|,
 name|requiredPostings
 argument_list|)

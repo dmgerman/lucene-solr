@@ -54,20 +54,6 @@ name|AttributeSource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
-import|;
-end_import
-
 begin_comment
 comment|/**  * Abstract class for enumerating a subset of all terms.   *   *<p>Term enumerations are always ordered by  * {@link BytesRef#compareTo}.  Each term in the enumeration is  * greater than all that precede it.</p>  *<p><em>Please note:</em> Consumers of this enum cannot  * call {@code seek()}, it is forward only; it throws  * {@link UnsupportedOperationException} when a seeking method  * is called.  */
 end_comment
@@ -413,9 +399,6 @@ specifier|public
 name|PostingsEnum
 name|postings
 parameter_list|(
-name|Bits
-name|bits
-parameter_list|,
 name|PostingsEnum
 name|reuse
 parameter_list|,
@@ -430,8 +413,6 @@ name|tenum
 operator|.
 name|postings
 argument_list|(
-name|bits
-argument_list|,
 name|reuse
 argument_list|,
 name|flags

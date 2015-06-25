@@ -7251,8 +7251,6 @@ name|get
 argument_list|(
 literal|0
 argument_list|)
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -7324,8 +7322,6 @@ name|get
 argument_list|(
 literal|0
 argument_list|)
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -7411,6 +7407,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+argument_list|,
+literal|null
 argument_list|,
 literal|0
 argument_list|,

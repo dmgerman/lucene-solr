@@ -584,7 +584,7 @@ argument_list|>
 name|contexts
 parameter_list|)
 function_decl|;
-comment|/**    * Expert: Return a Spans object iterating over matches from this Weight    * @param ctx a LeafReaderContext for this Spans    * @param acceptDocs a bitset of documents to check    * @return a Spans    * @throws IOException on error    */
+comment|/**    * Expert: Return a Spans object iterating over matches from this Weight    * @param ctx a LeafReaderContext for this Spans    * @return a Spans    * @throws IOException on error    */
 DECL|method|getSpans
 specifier|public
 specifier|abstract
@@ -593,9 +593,6 @@ name|getSpans
 parameter_list|(
 name|LeafReaderContext
 name|ctx
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|,
 name|Postings
 name|requiredPostings
@@ -667,9 +664,6 @@ name|scorer
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -734,8 +728,6 @@ init|=
 name|getSpans
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|,
 name|Postings
 operator|.
@@ -807,14 +799,6 @@ operator|)
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|context
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 decl_stmt|;
 if|if

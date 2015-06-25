@@ -151,9 +151,6 @@ decl_stmt|;
 DECL|field|doc
 name|int
 name|doc
-init|=
-operator|-
-literal|1
 decl_stmt|;
 DECL|method|AssertingScorer
 specifier|private
@@ -193,6 +190,15 @@ operator|.
 name|needsScores
 operator|=
 name|needsScores
+expr_stmt|;
+name|this
+operator|.
+name|doc
+operator|=
+name|in
+operator|.
+name|docID
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|getIn
@@ -343,15 +349,6 @@ name|int
 name|docID
 parameter_list|()
 block|{
-assert|assert
-name|state
-operator|!=
-name|IteratorState
-operator|.
-name|APPROXIMATING
-operator|:
-literal|"calling docId() on the Scorer while the match has not been confirmed"
-assert|;
 return|return
 name|in
 operator|.
@@ -711,6 +708,8 @@ operator|==
 name|nextDoc
 assert|;
 return|return
+name|doc
+operator|=
 name|nextDoc
 return|;
 block|}
@@ -804,6 +803,8 @@ operator|==
 name|advanced
 assert|;
 return|return
+name|doc
+operator|=
 name|advanced
 return|;
 block|}

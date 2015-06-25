@@ -562,9 +562,6 @@ name|scorer
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 block|{
 throw|throw
@@ -581,9 +578,6 @@ name|bulkScorer
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 block|{
 return|return
@@ -599,6 +593,9 @@ name|score
 parameter_list|(
 name|LeafCollector
 name|collector
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|,
 name|int
 name|min

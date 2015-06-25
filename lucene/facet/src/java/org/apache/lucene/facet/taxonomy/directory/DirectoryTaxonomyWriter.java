@@ -1523,8 +1523,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docs
 argument_list|,
 literal|0
@@ -2563,8 +2561,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postingsEnum
 argument_list|,
 name|PostingsEnum
@@ -2956,8 +2952,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docs
 argument_list|,
 name|PostingsEnum

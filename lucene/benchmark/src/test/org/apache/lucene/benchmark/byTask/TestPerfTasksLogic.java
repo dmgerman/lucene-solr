@@ -2345,13 +2345,6 @@ argument_list|()
 argument_list|,
 name|termsEnum
 argument_list|,
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|reader
-argument_list|)
-argument_list|,
 name|docs
 argument_list|,
 name|PostingsEnum

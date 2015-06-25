@@ -1762,8 +1762,6 @@ name|prefixTermsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|prefixDocsEnum
 argument_list|,
 literal|0

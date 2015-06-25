@@ -871,8 +871,6 @@ name|segmentTermsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postingsEnum
 argument_list|,
 name|PostingsEnum
@@ -1007,9 +1005,6 @@ name|scorer
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -1075,8 +1070,6 @@ name|MVInOrderScorer
 argument_list|(
 name|this
 argument_list|,
-name|acceptDocs
-argument_list|,
 name|segmentTermsEnum
 argument_list|,
 name|context
@@ -1098,8 +1091,6 @@ operator|new
 name|SVInOrderScorer
 argument_list|(
 name|this
-argument_list|,
-name|acceptDocs
 argument_list|,
 name|segmentTermsEnum
 argument_list|,
@@ -1154,9 +1145,6 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
-name|Bits
-name|acceptDocs
-parameter_list|,
 name|TermsEnum
 name|termsEnum
 parameter_list|,
@@ -1197,8 +1185,6 @@ name|fillDocsAndScores
 argument_list|(
 name|matchingDocs
 argument_list|,
-name|acceptDocs
-argument_list|,
 name|termsEnum
 argument_list|)
 expr_stmt|;
@@ -1228,9 +1214,6 @@ name|fillDocsAndScores
 parameter_list|(
 name|FixedBitSet
 name|matchingDocs
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|,
 name|TermsEnum
 name|termsEnum
@@ -1294,8 +1277,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-name|acceptDocs
-argument_list|,
 name|postingsEnum
 argument_list|,
 name|PostingsEnum
@@ -1474,9 +1455,6 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
-name|Bits
-name|acceptDocs
-parameter_list|,
 name|TermsEnum
 name|termsEnum
 parameter_list|,
@@ -1492,8 +1470,6 @@ block|{
 name|super
 argument_list|(
 name|weight
-argument_list|,
-name|acceptDocs
 argument_list|,
 name|termsEnum
 argument_list|,
@@ -1512,9 +1488,6 @@ name|fillDocsAndScores
 parameter_list|(
 name|FixedBitSet
 name|matchingDocs
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|,
 name|TermsEnum
 name|termsEnum
@@ -1578,8 +1551,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-name|acceptDocs
-argument_list|,
 name|postingsEnum
 argument_list|,
 name|PostingsEnum

@@ -52,6 +52,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|carrotsearch
@@ -207,6 +221,9 @@ name|score
 parameter_list|(
 name|LeafCollector
 name|collector
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -250,6 +267,8 @@ name|score
 argument_list|(
 name|collector
 argument_list|,
+name|acceptDocs
+argument_list|,
 literal|0
 argument_list|,
 name|PostingsEnum
@@ -276,6 +295,8 @@ operator|.
 name|score
 argument_list|(
 name|collector
+argument_list|,
+name|acceptDocs
 argument_list|)
 expr_stmt|;
 block|}
@@ -287,6 +308,8 @@ operator|.
 name|score
 argument_list|(
 name|collector
+argument_list|,
+name|acceptDocs
 argument_list|)
 expr_stmt|;
 block|}
@@ -300,6 +323,9 @@ name|score
 parameter_list|(
 name|LeafCollector
 name|collector
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|,
 name|int
 name|min
@@ -370,6 +396,8 @@ operator|.
 name|score
 argument_list|(
 name|collector
+argument_list|,
+name|acceptDocs
 argument_list|,
 name|min
 argument_list|,

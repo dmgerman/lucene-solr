@@ -2303,8 +2303,6 @@ argument_list|()
 argument_list|,
 name|te
 argument_list|,
-literal|null
-argument_list|,
 name|postingsEnum
 argument_list|,
 name|PostingsEnum
@@ -4831,8 +4829,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -4865,8 +4861,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -4897,8 +4891,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -4956,8 +4948,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -4988,8 +4978,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -5047,8 +5035,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -5079,8 +5065,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -5398,8 +5382,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -5432,8 +5414,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -5464,8 +5444,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -5522,8 +5500,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -5860,8 +5836,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -5906,8 +5880,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -5978,8 +5950,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -6408,8 +6378,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postingsEnum
 argument_list|,
 literal|0

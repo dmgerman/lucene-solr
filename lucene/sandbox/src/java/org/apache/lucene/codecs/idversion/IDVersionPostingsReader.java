@@ -319,9 +319,6 @@ parameter_list|,
 name|BlockTermState
 name|termState
 parameter_list|,
-name|Bits
-name|liveDocs
-parameter_list|,
 name|PostingsEnum
 name|reuse
 parameter_list|,
@@ -394,8 +391,6 @@ argument_list|,
 name|_termState
 operator|.
 name|idVersion
-argument_list|,
-name|liveDocs
 argument_list|)
 expr_stmt|;
 return|return
@@ -438,8 +433,6 @@ name|termState
 operator|)
 operator|.
 name|docID
-argument_list|,
-name|liveDocs
 argument_list|)
 expr_stmt|;
 return|return

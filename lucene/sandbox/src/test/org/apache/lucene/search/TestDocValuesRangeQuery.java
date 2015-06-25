@@ -2640,8 +2640,6 @@ operator|.
 name|scorer
 argument_list|(
 name|ctx
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -2702,8 +2700,6 @@ operator|.
 name|scorer
 argument_list|(
 name|ctx
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 name|assertNotNull

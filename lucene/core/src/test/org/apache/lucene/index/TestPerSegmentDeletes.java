@@ -968,8 +968,6 @@ argument_list|()
 argument_list|,
 name|ctermsEnum
 argument_list|,
-name|bits
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum

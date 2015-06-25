@@ -54,9 +54,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|util
 operator|.
-name|BooleanWeight
+name|Bits
 import|;
 end_import
 
@@ -164,6 +164,9 @@ specifier|final
 name|LeafCollector
 name|collector
 parameter_list|,
+name|Bits
+name|acceptDocs
+parameter_list|,
 name|int
 name|min
 parameter_list|,
@@ -242,6 +245,8 @@ operator|.
 name|score
 argument_list|(
 name|noScoreCollector
+argument_list|,
+name|acceptDocs
 argument_list|,
 name|min
 argument_list|,
@@ -341,6 +346,8 @@ name|IOException
 block|{
 name|score
 argument_list|(
+literal|null
+argument_list|,
 name|min
 argument_list|,
 name|min
@@ -351,6 +358,9 @@ DECL|method|score
 name|void
 name|score
 parameter_list|(
+name|Bits
+name|acceptDocs
+parameter_list|,
 name|int
 name|min
 parameter_list|,
@@ -367,6 +377,8 @@ operator|.
 name|score
 argument_list|(
 name|orCollector
+argument_list|,
+name|acceptDocs
 argument_list|,
 name|min
 argument_list|,
@@ -1260,6 +1272,9 @@ parameter_list|(
 name|LeafCollector
 name|collector
 parameter_list|,
+name|Bits
+name|acceptDocs
+parameter_list|,
 name|int
 name|base
 parameter_list|,
@@ -1314,6 +1329,8 @@ name|scorer
 operator|.
 name|score
 argument_list|(
+name|acceptDocs
+argument_list|,
 name|min
 argument_list|,
 name|max
@@ -1476,6 +1493,9 @@ name|scoreWindow
 parameter_list|(
 name|LeafCollector
 name|collector
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|,
 name|int
 name|windowBase
@@ -1647,6 +1667,8 @@ name|scoreWindow
 argument_list|(
 name|collector
 argument_list|,
+name|acceptDocs
+argument_list|,
 name|windowBase
 argument_list|,
 name|windowMin
@@ -1715,6 +1737,9 @@ name|score
 parameter_list|(
 name|LeafCollector
 name|collector
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|,
 name|int
 name|min
@@ -1800,6 +1825,8 @@ comment|// general case
 name|scoreWindow
 argument_list|(
 name|collector
+argument_list|,
+name|acceptDocs
 argument_list|,
 name|windowBase
 argument_list|,

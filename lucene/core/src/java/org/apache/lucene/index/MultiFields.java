@@ -576,9 +576,6 @@ parameter_list|(
 name|IndexReader
 name|r
 parameter_list|,
-name|Bits
-name|liveDocs
-parameter_list|,
 name|String
 name|field
 parameter_list|,
@@ -592,8 +589,6 @@ return|return
 name|getTermDocsEnum
 argument_list|(
 name|r
-argument_list|,
-name|liveDocs
 argument_list|,
 name|field
 argument_list|,
@@ -605,7 +600,7 @@ name|FREQS
 argument_list|)
 return|;
 block|}
-comment|/** Returns {@link PostingsEnum} for the specified field and    *  term, with control over whether freqs are required.    *  Some codecs may be able to optimize their    *  implementation when freqs are not required.  This will    *  return null if the field or term does not exist.  See {@link    *  TermsEnum#postings(Bits, PostingsEnum,int)}.*/
+comment|/** Returns {@link PostingsEnum} for the specified field and    *  term, with control over whether freqs are required.    *  Some codecs may be able to optimize their    *  implementation when freqs are not required.  This will    *  return null if the field or term does not exist.  See {@link    *  TermsEnum#postings(PostingsEnum,int)}.*/
 DECL|method|getTermDocsEnum
 specifier|public
 specifier|static
@@ -614,9 +609,6 @@ name|getTermDocsEnum
 parameter_list|(
 name|IndexReader
 name|r
-parameter_list|,
-name|Bits
-name|liveDocs
 parameter_list|,
 name|String
 name|field
@@ -682,8 +674,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-name|liveDocs
-argument_list|,
 literal|null
 argument_list|,
 name|flags
@@ -695,7 +685,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Returns {@link PostingsEnum} for the specified    *  field and term.  This will return null if the field or    *  term does not exist or positions were not indexed.     *  @see #getTermPositionsEnum(IndexReader, Bits, String, BytesRef, int) */
+comment|/** Returns {@link PostingsEnum} for the specified    *  field and term.  This will return null if the field or    *  term does not exist or positions were not indexed.     *  @see #getTermPositionsEnum(IndexReader, String, BytesRef, int) */
 DECL|method|getTermPositionsEnum
 specifier|public
 specifier|static
@@ -704,9 +694,6 @@ name|getTermPositionsEnum
 parameter_list|(
 name|IndexReader
 name|r
-parameter_list|,
-name|Bits
-name|liveDocs
 parameter_list|,
 name|String
 name|field
@@ -721,8 +708,6 @@ return|return
 name|getTermPositionsEnum
 argument_list|(
 name|r
-argument_list|,
-name|liveDocs
 argument_list|,
 name|field
 argument_list|,
@@ -734,7 +719,7 @@ name|ALL
 argument_list|)
 return|;
 block|}
-comment|/** Returns {@link PostingsEnum} for the specified    *  field and term, with control over whether offsets and payloads are    *  required.  Some codecs may be able to optimize    *  their implementation when offsets and/or payloads are not    *  required. This will return null if the field or term does not    *  exist. See {@link TermsEnum#postings(Bits, PostingsEnum,int)}. */
+comment|/** Returns {@link PostingsEnum} for the specified    *  field and term, with control over whether offsets and payloads are    *  required.  Some codecs may be able to optimize    *  their implementation when offsets and/or payloads are not    *  required. This will return null if the field or term does not    *  exist. See {@link TermsEnum#postings(PostingsEnum,int)}. */
 DECL|method|getTermPositionsEnum
 specifier|public
 specifier|static
@@ -743,9 +728,6 @@ name|getTermPositionsEnum
 parameter_list|(
 name|IndexReader
 name|r
-parameter_list|,
-name|Bits
-name|liveDocs
 parameter_list|,
 name|String
 name|field
@@ -811,8 +793,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-name|liveDocs
-argument_list|,
 literal|null
 argument_list|,
 name|flags

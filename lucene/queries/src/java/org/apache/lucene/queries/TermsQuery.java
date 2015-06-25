@@ -1419,9 +1419,6 @@ name|rewrite
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -1621,8 +1618,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-name|acceptDocs
-argument_list|,
 name|docs
 argument_list|,
 name|PostingsEnum
@@ -1692,8 +1687,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-name|acceptDocs
-argument_list|,
 name|docs
 argument_list|,
 name|PostingsEnum
@@ -1739,8 +1732,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-name|acceptDocs
-argument_list|,
 name|docs
 argument_list|,
 name|PostingsEnum
@@ -1975,9 +1966,6 @@ name|bulkScorer
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -1989,8 +1977,6 @@ init|=
 name|rewrite
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 decl_stmt|;
 if|if
@@ -2010,8 +1996,6 @@ operator|.
 name|bulkScorer
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 return|;
 block|}
@@ -2056,9 +2040,6 @@ name|scorer
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -2070,8 +2051,6 @@ init|=
 name|rewrite
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 decl_stmt|;
 if|if
@@ -2091,8 +2070,6 @@ operator|.
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 return|;
 block|}

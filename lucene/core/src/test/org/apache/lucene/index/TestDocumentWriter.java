@@ -855,13 +855,6 @@ name|getTermPositionsEnum
 argument_list|(
 name|reader
 argument_list|,
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|reader
-argument_list|)
-argument_list|,
 literal|"repeated"
 argument_list|,
 operator|new
@@ -1271,11 +1264,6 @@ operator|.
 name|getTermPositionsEnum
 argument_list|(
 name|reader
-argument_list|,
-name|reader
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|,
 literal|"f1"
 argument_list|,

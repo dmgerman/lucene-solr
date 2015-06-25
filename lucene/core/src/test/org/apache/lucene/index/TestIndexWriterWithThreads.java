@@ -1401,13 +1401,6 @@ argument_list|(
 literal|"aaa"
 argument_list|)
 argument_list|,
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|reader
-argument_list|)
-argument_list|,
 literal|null
 argument_list|,
 literal|0

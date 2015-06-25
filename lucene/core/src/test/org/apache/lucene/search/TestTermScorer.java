@@ -522,14 +522,6 @@ operator|.
 name|bulkScorer
 argument_list|(
 name|context
-argument_list|,
-name|context
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// we have 2 documents with the term all in them, one document for all the
@@ -683,6 +675,8 @@ literal|true
 return|;
 block|}
 block|}
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -836,14 +830,6 @@ operator|.
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|context
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -982,14 +968,6 @@ operator|.
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|context
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1177,8 +1155,6 @@ name|forbiddenNorms
 operator|.
 name|getContext
 argument_list|()
-argument_list|,
-literal|null
 argument_list|)
 operator|.
 name|nextDoc
@@ -1218,8 +1194,6 @@ name|forbiddenNorms
 operator|.
 name|getContext
 argument_list|()
-argument_list|,
-literal|null
 argument_list|)
 operator|.
 name|nextDoc

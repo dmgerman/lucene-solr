@@ -64,20 +64,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|BytesRef
 import|;
 end_import
@@ -95,7 +81,7 @@ name|PostingsEnum
 extends|extends
 name|DocIdSetIterator
 block|{
-comment|/**    * Flag to pass to {@link TermsEnum#postings(Bits, PostingsEnum, int)} if you don't    * require per-document postings in the returned enum.    */
+comment|/**    * Flag to pass to {@link TermsEnum#postings(PostingsEnum, int)} if you don't    * require per-document postings in the returned enum.    */
 DECL|field|NONE
 specifier|public
 specifier|static
@@ -105,7 +91,7 @@ name|NONE
 init|=
 literal|0
 decl_stmt|;
-comment|/** Flag to pass to {@link TermsEnum#postings(Bits, PostingsEnum, int)}    *  if you require term frequencies in the returned enum. */
+comment|/** Flag to pass to {@link TermsEnum#postings(PostingsEnum, int)}    *  if you require term frequencies in the returned enum. */
 DECL|field|FREQS
 specifier|public
 specifier|static
@@ -117,7 +103,7 @@ literal|1
 operator|<<
 literal|3
 decl_stmt|;
-comment|/** Flag to pass to {@link TermsEnum#postings(Bits, PostingsEnum, int)}    * if you require term positions in the returned enum. */
+comment|/** Flag to pass to {@link TermsEnum#postings(PostingsEnum, int)}    * if you require term positions in the returned enum. */
 DECL|field|POSITIONS
 specifier|public
 specifier|static
@@ -131,7 +117,7 @@ literal|1
 operator|<<
 literal|4
 decl_stmt|;
-comment|/** Flag to pass to {@link TermsEnum#postings(Bits, PostingsEnum, int)}    *  if you require offsets in the returned enum. */
+comment|/** Flag to pass to {@link TermsEnum#postings(PostingsEnum, int)}    *  if you require offsets in the returned enum. */
 DECL|field|OFFSETS
 specifier|public
 specifier|static
@@ -145,7 +131,7 @@ literal|1
 operator|<<
 literal|5
 decl_stmt|;
-comment|/** Flag to pass to  {@link TermsEnum#postings(Bits, PostingsEnum, int)}    *  if you require payloads in the returned enum. */
+comment|/** Flag to pass to  {@link TermsEnum#postings(PostingsEnum, int)}    *  if you require payloads in the returned enum. */
 DECL|field|PAYLOADS
 specifier|public
 specifier|static
@@ -159,7 +145,7 @@ literal|1
 operator|<<
 literal|6
 decl_stmt|;
-comment|/**    * Flag to pass to {@link TermsEnum#postings(Bits, PostingsEnum, int)}    * to get positions, payloads and offsets in the returned enum    */
+comment|/**    * Flag to pass to {@link TermsEnum#postings(PostingsEnum, int)}    * to get positions, payloads and offsets in the returned enum    */
 DECL|field|ALL
 specifier|public
 specifier|static

@@ -1342,14 +1342,6 @@ operator|.
 name|scorer
 argument_list|(
 name|leave
-argument_list|,
-name|leave
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals

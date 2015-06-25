@@ -208,7 +208,9 @@ argument_list|,
 literal|false
 argument_list|)
 decl_stmt|;
-return|return
+name|DocIdSet
+name|set
+init|=
 operator|new
 name|DocIdSet
 argument_list|()
@@ -228,8 +230,6 @@ operator|.
 name|scorer
 argument_list|(
 name|privateContext
-argument_list|,
-name|acceptDocs
 argument_list|)
 return|;
 block|}
@@ -245,6 +245,16 @@ literal|0L
 return|;
 block|}
 block|}
+decl_stmt|;
+return|return
+name|BitsFilteredDocIdSet
+operator|.
+name|wrap
+argument_list|(
+name|set
+argument_list|,
+name|acceptDocs
+argument_list|)
 return|;
 block|}
 annotation|@

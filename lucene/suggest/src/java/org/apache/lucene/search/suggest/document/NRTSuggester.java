@@ -154,6 +154,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Bits
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|BytesRef
 import|;
 end_import
@@ -315,7 +329,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * NRTSuggester executes Top N search on a weighted FST specified by a {@link CompletionScorer}  *<p>  * See {@link #lookup(CompletionScorer, TopSuggestDocsCollector)} for more implementation  * details.  *<p>  * FST Format:  *<ul>  *<li>Input: analyzed forms of input terms</li>  *<li>Output: Pair&lt;Long, BytesRef&gt; containing weight, surface form and docID</li>  *</ul>  *<p>  * NOTE:  *<ul>  *<li>having too many deletions or using a very restrictive filter can make the search inadmissible due to  *     over-pruning of potential paths. See {@link CompletionScorer#accept(int)}</li>  *<li>when matched documents are arbitrarily filtered ({@link CompletionScorer#filtered} set to<code>true</code>,  *     it is assumed that the filter will roughly filter out half the number of documents that match  *     the provided automaton</li>  *<li>lookup performance will degrade as more accepted completions lead to filtered out documents</li>  *</ul>  *  * @lucene.experimental  */
+comment|/**  *<p>  * NRTSuggester executes Top N search on a weighted FST specified by a {@link CompletionScorer}  *<p>  * See {@link #lookup(CompletionScorer, Bits, TopSuggestDocsCollector)} for more implementation  * details.  *<p>  * FST Format:  *<ul>  *<li>Input: analyzed forms of input terms</li>  *<li>Output: Pair&lt;Long, BytesRef&gt; containing weight, surface form and docID</li>  *</ul>  *<p>  * NOTE:  *<ul>  *<li>having too many deletions or using a very restrictive filter can make the search inadmissible due to  *     over-pruning of potential paths. See {@link CompletionScorer#accept(int, Bits)}</li>  *<li>when matched documents are arbitrarily filtered ({@link CompletionScorer#filtered} set to<code>true</code>,  *     it is assumed that the filter will roughly filter out half the number of documents that match  *     the provided automaton</li>  *<li>lookup performance will degrade as more accepted completions lead to filtered out documents</li>  *</ul>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -446,7 +460,7 @@ name|emptyList
 argument_list|()
 return|;
 block|}
-comment|/**    * Collects at most {@link TopSuggestDocsCollector#getCountToCollect()} completions that    * match the provided {@link CompletionScorer}.    *<p>    * The {@link CompletionScorer#automaton} is intersected with the {@link #fst}.    * {@link CompletionScorer#weight} is used to compute boosts and/or extract context    * for each matched partial paths. A top N search is executed on {@link #fst} seeded with    * the matched partial paths. Upon reaching a completed path, {@link CompletionScorer#accept(int)}    * and {@link CompletionScorer#score(float, float)} is used on the document id, index weight    * and query boost to filter and score the entry, before being collected via    * {@link TopSuggestDocsCollector#collect(int, CharSequence, CharSequence, float)}    */
+comment|/**    * Collects at most {@link TopSuggestDocsCollector#getCountToCollect()} completions that    * match the provided {@link CompletionScorer}.    *<p>    * The {@link CompletionScorer#automaton} is intersected with the {@link #fst}.    * {@link CompletionScorer#weight} is used to compute boosts and/or extract context    * for each matched partial paths. A top N search is executed on {@link #fst} seeded with    * the matched partial paths. Upon reaching a completed path, {@link CompletionScorer#accept(int, Bits)}    * and {@link CompletionScorer#score(float, float)} is used on the document id, index weight    * and query boost to filter and score the entry, before being collected via    * {@link TopSuggestDocsCollector#collect(int, CharSequence, CharSequence, float)}    */
 DECL|method|lookup
 specifier|public
 name|void
@@ -455,6 +469,9 @@ parameter_list|(
 specifier|final
 name|CompletionScorer
 name|scorer
+parameter_list|,
+name|Bits
+name|acceptDocs
 parameter_list|,
 specifier|final
 name|TopSuggestDocsCollector
@@ -677,6 +694,8 @@ operator|.
 name|accept
 argument_list|(
 name|docID
+argument_list|,
+name|acceptDocs
 argument_list|)
 condition|)
 block|{

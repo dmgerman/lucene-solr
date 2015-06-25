@@ -50,20 +50,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|BytesRef
 import|;
 end_import
@@ -277,16 +263,13 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Get {@link PostingsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *<p>    *  Use this method if you only require documents and frequencies,    *  and do not need any proximity data.    *  This method is equivalent to     *  {@link #postings(Bits, PostingsEnum, int) postings(liveDocs, reuse, PostingsEnum.FREQS)}    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior PostingsEnum for possible reuse     * @see #postings(Bits, PostingsEnum, int)    */
+comment|/** Get {@link PostingsEnum} for the current term.  Do not    *  call this when the enum is unpositioned.  This method    *  will not return null.    *<p>    *<b>NOTE</b>: the returned iterator may return deleted documents, so    *  deleted documents have to be checked on top of the {@link PostingsEnum}.    *<p>    *  Use this method if you only require documents and frequencies,    *  and do not need any proximity data.    *  This method is equivalent to     *  {@link #postings(PostingsEnum, int) postings(reuse, PostingsEnum.FREQS)}    *    * @param reuse pass a prior PostingsEnum for possible reuse     * @see #postings(PostingsEnum, int)    */
 DECL|method|postings
 specifier|public
 specifier|final
 name|PostingsEnum
 name|postings
 parameter_list|(
-name|Bits
-name|liveDocs
-parameter_list|,
 name|PostingsEnum
 name|reuse
 parameter_list|)
@@ -296,8 +279,6 @@ block|{
 return|return
 name|postings
 argument_list|(
-name|liveDocs
-argument_list|,
 name|reuse
 argument_list|,
 name|PostingsEnum
@@ -306,16 +287,13 @@ name|FREQS
 argument_list|)
 return|;
 block|}
-comment|/** Get {@link PostingsEnum} for the current term, with    *  control over whether freqs, positions, offsets or payloads    *  are required.  Do not call this when the enum is    *  unpositioned.  This method may return null if the postings    *  information required is not available from the index    *      * @param liveDocs unset bits are documents that should not    * be returned    * @param reuse pass a prior PostingsEnum for possible reuse    * @param flags specifies which optional per-document values    *        you require; see {@link PostingsEnum#FREQS}    */
+comment|/** Get {@link PostingsEnum} for the current term, with    *  control over whether freqs, positions, offsets or payloads    *  are required.  Do not call this when the enum is    *  unpositioned.  This method may return null if the postings    *  information required is not available from the index    *<p>    *<b>NOTE</b>: the returned iterator may return deleted documents, so    *  deleted documents have to be checked on top of the {@link PostingsEnum}.    *    * @param reuse pass a prior PostingsEnum for possible reuse    * @param flags specifies which optional per-document values    *        you require; see {@link PostingsEnum#FREQS}    */
 DECL|method|postings
 specifier|public
 specifier|abstract
 name|PostingsEnum
 name|postings
 parameter_list|(
-name|Bits
-name|liveDocs
-parameter_list|,
 name|PostingsEnum
 name|reuse
 parameter_list|,
@@ -462,9 +440,6 @@ specifier|public
 name|PostingsEnum
 name|postings
 parameter_list|(
-name|Bits
-name|liveDocs
-parameter_list|,
 name|PostingsEnum
 name|reuse
 parameter_list|,

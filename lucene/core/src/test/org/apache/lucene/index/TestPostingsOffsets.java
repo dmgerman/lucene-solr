@@ -607,8 +607,6 @@ name|getTermPositionsEnum
 argument_list|(
 name|r
 argument_list|,
-literal|null
-argument_list|,
 literal|"content"
 argument_list|,
 operator|new
@@ -723,8 +721,6 @@ name|getTermPositionsEnum
 argument_list|(
 name|r
 argument_list|,
-literal|null
-argument_list|,
 literal|"content"
 argument_list|,
 operator|new
@@ -808,8 +804,6 @@ operator|.
 name|getTermPositionsEnum
 argument_list|(
 name|r
-argument_list|,
-literal|null
 argument_list|,
 literal|"content"
 argument_list|,
@@ -1210,8 +1204,6 @@ name|getTermPositionsEnum
 argument_list|(
 name|reader
 argument_list|,
-literal|null
-argument_list|,
 literal|"numbers"
 argument_list|,
 operator|new
@@ -1428,8 +1420,6 @@ name|getTermPositionsEnum
 argument_list|(
 name|reader
 argument_list|,
-literal|null
-argument_list|,
 literal|"numbers"
 argument_list|,
 operator|new
@@ -1610,8 +1600,6 @@ operator|.
 name|getTermDocsEnum
 argument_list|(
 name|reader
-argument_list|,
-literal|null
 argument_list|,
 literal|"id"
 argument_list|,
@@ -2310,8 +2298,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docs
 argument_list|)
 expr_stmt|;
@@ -2394,8 +2380,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositions
 argument_list|,
 name|PostingsEnum
@@ -2511,8 +2495,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|docsAndPositions
 argument_list|,
 name|PostingsEnum

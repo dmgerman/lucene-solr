@@ -601,8 +601,6 @@ name|getTermPositionsEnum
 argument_list|(
 name|reader
 argument_list|,
-literal|null
-argument_list|,
 name|Consts
 operator|.
 name|FIELD_PAYLOADS

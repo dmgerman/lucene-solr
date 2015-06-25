@@ -1181,8 +1181,6 @@ name|te
 operator|.
 name|postings
 argument_list|(
-name|liveDocs
-argument_list|,
 name|postingsEnum
 argument_list|,
 name|PostingsEnum
@@ -2414,9 +2412,6 @@ specifier|public
 name|PostingsEnum
 name|postings
 parameter_list|(
-name|Bits
-name|liveDocs
-parameter_list|,
 name|PostingsEnum
 name|reuse
 parameter_list|,
@@ -2431,8 +2426,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-name|liveDocs
-argument_list|,
 name|reuse
 argument_list|,
 name|flags

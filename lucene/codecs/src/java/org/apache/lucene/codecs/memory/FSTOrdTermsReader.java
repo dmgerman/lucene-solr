@@ -2828,9 +2828,6 @@ specifier|public
 name|PostingsEnum
 name|postings
 parameter_list|(
-name|Bits
-name|liveDocs
-parameter_list|,
 name|PostingsEnum
 name|reuse
 parameter_list|,
@@ -2851,8 +2848,6 @@ argument_list|(
 name|fieldInfo
 argument_list|,
 name|state
-argument_list|,
-name|liveDocs
 argument_list|,
 name|reuse
 argument_list|,

@@ -613,7 +613,7 @@ name|field
 argument_list|)
 return|;
 block|}
-comment|/** Returns {@link PostingsEnum} for the specified term.    *  This will return null if either the field or    *  term does not exist.    *  @see TermsEnum#postings(Bits, PostingsEnum) */
+comment|/** Returns {@link PostingsEnum} for the specified term.    *  This will return null if either the field or    *  term does not exist.    *<p><b>NOTE:</b> The returned {@link PostingsEnum} may contain deleted docs.    *  @see TermsEnum#postings(PostingsEnum) */
 DECL|method|postings
 specifier|public
 specifier|final
@@ -691,9 +691,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-name|getLiveDocs
-argument_list|()
-argument_list|,
 literal|null
 argument_list|,
 name|flags
@@ -705,7 +702,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Returns {@link PostingsEnum} for the specified term    *  with {@link PostingsEnum#FREQS}.    *<p>    *  Use this method if you only require documents and frequencies,    *  and do not need any proximity data.    *  This method is equivalent to     *  {@link #postings(Term, int) postings(term, PostingsEnum.FREQS)}    *  @see #postings(Term, int)    */
+comment|/** Returns {@link PostingsEnum} for the specified term    *  with {@link PostingsEnum#FREQS}.    *<p>    *  Use this method if you only require documents and frequencies,    *  and do not need any proximity data.    *  This method is equivalent to     *  {@link #postings(Term, int) postings(term, PostingsEnum.FREQS)}    *<p><b>NOTE:</b> The returned {@link PostingsEnum} may contain deleted docs.    *  @see #postings(Term, int)    */
 DECL|method|postings
 specifier|public
 specifier|final

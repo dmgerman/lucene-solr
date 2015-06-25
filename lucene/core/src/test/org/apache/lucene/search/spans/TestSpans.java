@@ -2005,14 +2005,6 @@ operator|.
 name|scorer
 argument_list|(
 name|ctx
-argument_list|,
-name|ctx
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -120,20 +120,6 @@ name|Accountable
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
-import|;
-end_import
-
 begin_comment
 comment|/** The core terms dictionaries (BlockTermsReader,  *  BlockTreeTermsReader) interact with a single instance  *  of this class to manage creation of {@link org.apache.lucene.index.PostingsEnum} and  *  {@link org.apache.lucene.index.PostingsEnum} instances.  It provides an  *  IndexInput (termsIn) where this class may read any  *  previously stored data that it had written in its  *  corresponding {@link PostingsWriterBase} at indexing  *  time.   *  @lucene.experimental */
 end_comment
@@ -235,9 +221,6 @@ name|fieldInfo
 parameter_list|,
 name|BlockTermState
 name|state
-parameter_list|,
-name|Bits
-name|skipDocs
 parameter_list|,
 name|PostingsEnum
 name|reuse

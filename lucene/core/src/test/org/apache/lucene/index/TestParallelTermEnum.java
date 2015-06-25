@@ -441,9 +441,6 @@ parameter_list|(
 name|Terms
 name|terms
 parameter_list|,
-name|Bits
-name|liveDocs
-parameter_list|,
 name|String
 modifier|...
 name|termsList
@@ -507,8 +504,6 @@ name|random
 argument_list|()
 argument_list|,
 name|te
-argument_list|,
-name|liveDocs
 argument_list|,
 literal|null
 argument_list|,
@@ -580,14 +575,6 @@ argument_list|,
 name|ir2
 argument_list|)
 decl_stmt|;
-name|Bits
-name|liveDocs
-init|=
-name|pr
-operator|.
-name|getLiveDocs
-argument_list|()
-decl_stmt|;
 name|Fields
 name|fields
 init|=
@@ -631,8 +618,6 @@ argument_list|(
 name|f
 argument_list|)
 argument_list|,
-name|liveDocs
-argument_list|,
 literal|"brown"
 argument_list|,
 literal|"fox"
@@ -667,8 +652,6 @@ argument_list|(
 name|f
 argument_list|)
 argument_list|,
-name|liveDocs
-argument_list|,
 literal|"brown"
 argument_list|,
 literal|"fox"
@@ -702,8 +685,6 @@ name|terms
 argument_list|(
 name|f
 argument_list|)
-argument_list|,
-name|liveDocs
 argument_list|,
 literal|"dog"
 argument_list|,

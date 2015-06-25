@@ -659,9 +659,6 @@ name|scorer
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -681,9 +678,6 @@ name|bulkScorer
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -698,8 +692,6 @@ operator|.
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 decl_stmt|;
 name|DrillSidewaysScorer
@@ -893,8 +885,6 @@ operator|.
 name|scorer
 argument_list|(
 name|context
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 if|if

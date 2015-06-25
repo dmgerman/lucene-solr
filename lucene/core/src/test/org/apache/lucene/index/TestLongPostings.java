@@ -891,8 +891,6 @@ name|getTermPositionsEnum
 argument_list|(
 name|r
 argument_list|,
-literal|null
-argument_list|,
 literal|"field"
 argument_list|,
 operator|new
@@ -1973,8 +1971,6 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -2007,8 +2003,6 @@ name|BytesRef
 argument_list|(
 name|term
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 literal|null
 argument_list|,

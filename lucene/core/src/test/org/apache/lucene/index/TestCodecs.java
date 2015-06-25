@@ -1630,8 +1630,6 @@ argument_list|()
 argument_list|,
 name|termsEnum
 argument_list|,
-literal|null
-argument_list|,
 name|postingsEnum
 argument_list|,
 name|PostingsEnum
@@ -2685,8 +2683,6 @@ name|termsEnum
 argument_list|,
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -2714,8 +2710,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -2859,8 +2853,6 @@ name|termsEnum
 argument_list|,
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|NONE
@@ -2888,8 +2880,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 literal|null
 argument_list|,
 name|PostingsEnum
@@ -3280,8 +3270,6 @@ name|postings
 argument_list|(
 literal|null
 argument_list|,
-literal|null
-argument_list|,
 name|PostingsEnum
 operator|.
 name|ALL
@@ -3300,8 +3288,6 @@ name|random
 argument_list|()
 argument_list|,
 name|termsEnum
-argument_list|,
-literal|null
 argument_list|,
 literal|null
 argument_list|,
@@ -4260,9 +4246,6 @@ specifier|public
 name|PostingsEnum
 name|postings
 parameter_list|(
-name|Bits
-name|liveDocs
-parameter_list|,
 name|PostingsEnum
 name|reuse
 parameter_list|,
@@ -4270,11 +4253,6 @@ name|int
 name|flags
 parameter_list|)
 block|{
-assert|assert
-name|liveDocs
-operator|==
-literal|null
-assert|;
 return|return
 operator|new
 name|DataPostingsEnum

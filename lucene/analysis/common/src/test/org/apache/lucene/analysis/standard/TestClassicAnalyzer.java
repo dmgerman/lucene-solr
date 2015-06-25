@@ -1917,13 +1917,6 @@ name|getTermPositionsEnum
 argument_list|(
 name|reader
 argument_list|,
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|reader
-argument_list|)
-argument_list|,
 literal|"content"
 argument_list|,
 operator|new

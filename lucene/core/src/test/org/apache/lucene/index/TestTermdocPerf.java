@@ -722,13 +722,6 @@ name|random
 argument_list|,
 name|tenum
 argument_list|,
-name|MultiFields
-operator|.
-name|getLiveDocs
-argument_list|(
-name|reader
-argument_list|)
-argument_list|,
 name|tdocs
 argument_list|,
 name|PostingsEnum

@@ -4255,9 +4255,6 @@ specifier|public
 name|PostingsEnum
 name|postings
 parameter_list|(
-name|Bits
-name|skipDocs
-parameter_list|,
 name|PostingsEnum
 name|reuse
 parameter_list|,
@@ -4298,8 +4295,6 @@ argument_list|,
 name|currentFrame
 operator|.
 name|state
-argument_list|,
-name|skipDocs
 argument_list|,
 name|reuse
 argument_list|,

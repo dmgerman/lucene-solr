@@ -3996,8 +3996,6 @@ name|termsEnum
 operator|.
 name|postings
 argument_list|(
-literal|null
-argument_list|,
 name|postingsEnum
 argument_list|,
 name|PostingsEnum
