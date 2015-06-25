@@ -256,6 +256,8 @@ name|AnalyzerProfile
 operator|.
 name|ANALYSIS_DATA_DIR
 decl_stmt|;
+try|try
+block|{
 name|singleInstance
 operator|.
 name|load
@@ -263,6 +265,21 @@ argument_list|(
 name|dictRoot
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|ioe
+argument_list|)
+throw|;
+block|}
 block|}
 catch|catch
 parameter_list|(
@@ -336,6 +353,8 @@ name|IOException
 throws|,
 name|ClassNotFoundException
 block|{
+try|try
+init|(
 name|ObjectInputStream
 name|input
 init|=
@@ -344,7 +363,8 @@ name|ObjectInputStream
 argument_list|(
 name|serialObjectInputStream
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|bigramHashTable
 operator|=
 operator|(
@@ -368,11 +388,7 @@ name|readObject
 argument_list|()
 expr_stmt|;
 comment|// log.info("load bigram dict from serialization.");
-name|input
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 DECL|method|saveToObj
 specifier|private
@@ -382,9 +398,11 @@ parameter_list|(
 name|Path
 name|serialObj
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 try|try
-block|{
+init|(
 name|ObjectOutputStream
 name|output
 init|=
@@ -398,7 +416,8 @@ argument_list|(
 name|serialObj
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|output
 operator|.
 name|writeObject
@@ -413,20 +432,7 @@ argument_list|(
 name|frequencyTable
 argument_list|)
 expr_stmt|;
-name|output
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 comment|// log.info("serialize bigram dict.");
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-comment|// log.warn(e.getMessage());
 block|}
 block|}
 DECL|method|load
@@ -466,6 +472,8 @@ parameter_list|(
 name|String
 name|dictRoot
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|String
 name|bigramDictPath
