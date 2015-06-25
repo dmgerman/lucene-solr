@@ -627,24 +627,19 @@ name|Point
 name|nearP
 parameter_list|)
 block|{
-while|while
-condition|(
-literal|true
-condition|)
-block|{
 specifier|final
 name|int
 name|circleRadius
 init|=
+literal|180
+operator|-
 name|random
 argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-literal|179
+literal|180
 argument_list|)
-operator|+
-literal|1
 decl_stmt|;
 comment|//no 0-radius
 specifier|final
@@ -653,8 +648,6 @@ name|point
 init|=
 name|nearP
 decl_stmt|;
-try|try
-block|{
 specifier|final
 name|GeoShape
 name|shape
@@ -694,18 +687,6 @@ argument_list|,
 name|ctx
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// This is what happens when we create a shape that is invalid.  Although it is conceivable that there are cases where
-comment|// the exception is thrown incorrectly, we aren't going to be able to do that in this random test.
-continue|continue;
-block|}
-block|}
 block|}
 annotation|@
 name|Override
