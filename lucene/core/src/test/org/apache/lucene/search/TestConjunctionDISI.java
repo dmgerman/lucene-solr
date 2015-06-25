@@ -1719,28 +1719,6 @@ name|size
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"cutting ["
-operator|+
-name|subSeqStart
-operator|+
-literal|":"
-operator|+
-name|subSeqEnd
-operator|+
-literal|") from iterators of size "
-operator|+
-name|iterators
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
 specifier|final
 name|ConjunctionDISI
 name|subConjunction
