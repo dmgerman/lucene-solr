@@ -7810,15 +7810,6 @@ name|int
 name|posMult
 parameter_list|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"NEW"
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|posMult
