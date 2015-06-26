@@ -137,13 +137,11 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * When a transformer needs access to fields that are not automatically derived from the    * input fields names, this option lets us explicitly say the field names that we hope    * will be in the SolrDocument.  These fields will be requested from the    * {@link SolrIndexSearcher} but may or may not be returned in the final    * {@link QueryResponseWriter}    *     * @return a set of extra lucene fields    */
+comment|/**    * When a transformer needs access to fields that are not automaticaly derived from the    * input fields names, this option lets us explicitly say the field names that we hope    * will be in the SolrDocument.  These fields will be requestd from the     * {@link SolrIndexSearcher} but may or may not be returned in the final    * {@link QueryResponseWriter}    *     * @return a list of extra lucene fields    */
 DECL|method|getExtraRequestFields
 specifier|public
-name|Set
-argument_list|<
 name|String
-argument_list|>
+index|[]
 name|getExtraRequestFields
 parameter_list|()
 block|{
