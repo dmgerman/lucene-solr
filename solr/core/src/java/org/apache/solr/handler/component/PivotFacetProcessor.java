@@ -513,9 +513,14 @@ range|:
 name|pivots
 control|)
 block|{
+specifier|final
+name|ParsedParams
+name|parsed
+decl_stmt|;
 try|try
 block|{
-comment|// NOTE: this sets localParams (SimpleFacets is stateful)
+name|parsed
+operator|=
 name|this
 operator|.
 name|parseParams
@@ -556,6 +561,8 @@ name|StrUtils
 operator|.
 name|splitSmart
 argument_list|(
+name|parsed
+operator|.
 name|facetValue
 argument_list|,
 literal|","
@@ -670,12 +677,16 @@ if|if
 condition|(
 literal|null
 operator|!=
+name|parsed
+operator|.
 name|localParams
 condition|)
 block|{
 comment|// we might be refining..
 name|refineKey
 operator|=
+name|parsed
+operator|.
 name|localParams
 operator|.
 name|get
@@ -688,6 +699,8 @@ expr_stmt|;
 name|String
 name|statsLocalParam
 init|=
+name|parsed
+operator|.
 name|localParams
 operator|.
 name|get
@@ -776,6 +789,8 @@ argument_list|,
 name|refinements
 argument_list|,
 name|statsFields
+argument_list|,
+name|parsed
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -794,6 +809,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|statsFields
+argument_list|,
+name|parsed
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -832,6 +849,10 @@ argument_list|<
 name|StatsField
 argument_list|>
 name|statsFields
+parameter_list|,
+specifier|final
+name|ParsedParams
+name|parsed
 parameter_list|)
 throws|throws
 name|IOException
@@ -1027,7 +1048,7 @@ name|firstFieldsValues
 argument_list|,
 name|getSubsetSize
 argument_list|(
-name|this
+name|parsed
 operator|.
 name|docs
 argument_list|,
@@ -1049,9 +1070,7 @@ name|getTermCountsForPivots
 argument_list|(
 name|field
 argument_list|,
-name|this
-operator|.
-name|docs
+name|parsed
 argument_list|)
 expr_stmt|;
 block|}
@@ -1079,6 +1098,8 @@ name|pivotResponse
 operator|.
 name|add
 argument_list|(
+name|parsed
+operator|.
 name|key
 argument_list|,
 name|doPivots
@@ -1093,9 +1114,7 @@ name|fnames
 argument_list|,
 name|vnames
 argument_list|,
-name|this
-operator|.
-name|docs
+name|parsed
 argument_list|,
 name|statsFields
 argument_list|)
@@ -1108,6 +1127,8 @@ name|pivotResponse
 operator|.
 name|add
 argument_list|(
+name|parsed
+operator|.
 name|key
 argument_list|,
 name|doPivots
@@ -1122,9 +1143,7 @@ name|fnames
 argument_list|,
 name|vnames
 argument_list|,
-name|this
-operator|.
-name|docs
+name|parsed
 argument_list|,
 name|statsFields
 argument_list|)
@@ -1305,8 +1324,8 @@ name|String
 argument_list|>
 name|vnames
 parameter_list|,
-name|DocSet
-name|docs
+name|ParsedParams
+name|parsed
 parameter_list|,
 name|List
 argument_list|<
@@ -1527,11 +1546,14 @@ argument_list|,
 name|pivotCount
 argument_list|)
 expr_stmt|;
+specifier|final
 name|DocSet
 name|subset
 init|=
 name|getSubset
 argument_list|(
+name|parsed
+operator|.
 name|docs
 argument_list|,
 name|sfield
@@ -1611,7 +1633,12 @@ name|getTermCountsForPivots
 argument_list|(
 name|subField
 argument_list|,
+name|parsed
+operator|.
+name|withDocs
+argument_list|(
 name|subset
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1643,7 +1670,12 @@ name|fnames
 argument_list|,
 name|vnames
 argument_list|,
+name|parsed
+operator|.
+name|withDocs
+argument_list|(
 name|subset
+argument_list|)
 argument_list|,
 name|statsFields
 argument_list|)
