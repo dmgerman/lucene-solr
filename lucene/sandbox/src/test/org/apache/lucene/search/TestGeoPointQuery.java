@@ -1697,6 +1697,16 @@ literal|"TestGeoPointQuery"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|iwc
+operator|.
+name|setCodec
+argument_list|(
+name|TestUtil
+operator|.
+name|getDefaultCodec
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
