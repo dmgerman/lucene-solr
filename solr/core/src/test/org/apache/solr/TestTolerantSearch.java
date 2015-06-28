@@ -974,7 +974,9 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"shards.info"
+name|ShardParams
+operator|.
+name|SHARDS_INFO
 argument_list|)
 operator|)
 decl_stmt|;
@@ -1360,7 +1362,9 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"shards.info"
+name|ShardParams
+operator|.
+name|SHARDS_INFO
 argument_list|)
 operator|)
 decl_stmt|;
