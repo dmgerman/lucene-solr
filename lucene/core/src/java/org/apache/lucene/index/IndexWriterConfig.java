@@ -449,7 +449,7 @@ return|return
 name|delPolicy
 return|;
 block|}
-comment|/**    * Expert: allows to open a certain commit point. The default is null which    * opens the latest commit point.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/**    * Expert: allows to open a certain commit point. The default is null which    * opens the latest commit point.  This can also be used to open {@link IndexWriter}    * from a near-real-time reader, if you pass the reader's    * {@link DirectoryReader#getIndexCommit}.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setIndexCommit
 specifier|public
 name|IndexWriterConfig

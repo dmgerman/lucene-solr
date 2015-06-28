@@ -151,13 +151,11 @@ extends|extends
 name|DirectoryReader
 block|{
 DECL|field|writer
-specifier|private
 specifier|final
 name|IndexWriter
 name|writer
 decl_stmt|;
 DECL|field|segmentInfos
-specifier|private
 specifier|final
 name|SegmentInfos
 name|segmentInfos
@@ -1887,6 +1885,8 @@ return|return
 operator|new
 name|ReaderCommit
 argument_list|(
+name|this
+argument_list|,
 name|segmentInfos
 argument_list|,
 name|directory
@@ -1937,9 +1937,18 @@ specifier|final
 name|int
 name|segmentCount
 decl_stmt|;
+DECL|field|reader
+specifier|private
+specifier|final
+name|StandardDirectoryReader
+name|reader
+decl_stmt|;
 DECL|method|ReaderCommit
 name|ReaderCommit
 parameter_list|(
+name|StandardDirectoryReader
+name|reader
+parameter_list|,
 name|SegmentInfos
 name|infos
 parameter_list|,
@@ -1996,6 +2005,13 @@ name|infos
 operator|.
 name|size
 argument_list|()
+expr_stmt|;
+comment|// NOTE: we intentionally do not incRef this!  Else we'd need to make IndexCommit Closeable...
+name|this
+operator|.
+name|reader
+operator|=
+name|reader
 expr_stmt|;
 block|}
 annotation|@
@@ -2121,6 +2137,17 @@ argument_list|(
 literal|"This IndexCommit does not support deletions"
 argument_list|)
 throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|getReader
+name|StandardDirectoryReader
+name|getReader
+parameter_list|()
+block|{
+return|return
+name|reader
+return|;
 block|}
 block|}
 block|}

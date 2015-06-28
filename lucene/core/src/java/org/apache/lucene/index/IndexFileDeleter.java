@@ -405,6 +405,9 @@ name|writer
 parameter_list|,
 name|boolean
 name|initialIndexExists
+parameter_list|,
+name|boolean
+name|isReaderInit
 parameter_list|)
 throws|throws
 name|IOException
@@ -870,6 +873,20 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|isReaderInit
+condition|)
+block|{
+comment|// Incoming SegmentInfos may have NRT changes not yet visible in the latest commit, so we have to protect its files from deletion too:
+name|checkpoint
+argument_list|(
+name|segmentInfos
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 comment|// We keep commits list in sorted order (oldest to newest):
 name|CollectionUtil
 operator|.
@@ -987,19 +1004,28 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-name|startingCommitDeleted
-operator|=
+if|if
+condition|(
 name|currentCommitPoint
 operator|==
 literal|null
-condition|?
+condition|)
+block|{
+name|startingCommitDeleted
+operator|=
 literal|false
-else|:
+expr_stmt|;
+block|}
+else|else
+block|{
+name|startingCommitDeleted
+operator|=
 name|currentCommitPoint
 operator|.
 name|isDeleted
 argument_list|()
 expr_stmt|;
+block|}
 name|deleteCommits
 argument_list|()
 expr_stmt|;
@@ -1285,7 +1311,7 @@ block|}
 comment|// Generation is advanced before write:
 name|infos
 operator|.
-name|setGeneration
+name|setNextWriteGeneration
 argument_list|(
 name|Math
 operator|.

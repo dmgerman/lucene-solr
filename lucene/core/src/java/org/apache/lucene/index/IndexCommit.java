@@ -64,6 +64,14 @@ begin_comment
 comment|/**  *<p>Expert: represents a single commit into an index as seen by the  * {@link IndexDeletionPolicy} or {@link IndexReader}.</p>  *  *<p> Changes to the content of an index are made visible  * only after the writer who made that change commits by  * writing a new segments file  * (<code>segments_N</code>). This point in time, when the  * action of writing of a new segments file to the directory  * is completed, is an index commit.</p>  *  *<p>Each index commit point has a unique segments file  * associated with it. The segments file associated with a  * later index commit point would have a larger N.</p>  *  * @lucene.experimental */
 end_comment
 
+begin_comment
+comment|// TODO: this is now a poor name, because this class also represents a
+end_comment
+
+begin_comment
+comment|// point-in-time view from an NRT reader
+end_comment
+
 begin_class
 DECL|class|IndexCommit
 specifier|public
@@ -290,6 +298,16 @@ name|gen
 argument_list|,
 name|comgen
 argument_list|)
+return|;
+block|}
+comment|/** Package-private API for IndexWriter to init from a commit-point pulled from an NRT or non-NRT reader. */
+DECL|method|getReader
+name|StandardDirectoryReader
+name|getReader
+parameter_list|()
+block|{
+return|return
+literal|null
 return|;
 block|}
 block|}
