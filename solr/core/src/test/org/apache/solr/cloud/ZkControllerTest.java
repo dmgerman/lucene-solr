@@ -1744,7 +1744,7 @@ name|AwaitsFix
 argument_list|(
 name|bugUrl
 operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-6665"
+literal|"https://issues.apache.org/jira/browse/SOLR-7736"
 argument_list|)
 DECL|method|testPublishAndWaitForDownStates
 specifier|public
