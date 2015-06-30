@@ -145,17 +145,6 @@ argument_list|,
 name|parser
 argument_list|)
 expr_stmt|;
-name|queryFactory
-operator|.
-name|addBuilder
-argument_list|(
-literal|"DuplicateFilter"
-argument_list|,
-operator|new
-name|DuplicateFilterBuilder
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|String
 name|fields
 index|[]
