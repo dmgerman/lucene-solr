@@ -510,7 +510,7 @@ literal|" bytes; "
 operator|+
 name|b
 operator|.
-name|getTotStateCount
+name|getNodeCount
 argument_list|()
 operator|+
 literal|" nodes"
@@ -521,7 +521,7 @@ if|if
 condition|(
 name|b
 operator|.
-name|getTotStateCount
+name|getNodeCount
 argument_list|()
 operator|>
 name|Integer
@@ -586,14 +586,14 @@ argument_list|()
 operator|+
 literal|"; nodeCount="
 operator|+
-name|fst
+name|b
 operator|.
 name|getNodeCount
 argument_list|()
 operator|+
 literal|"; arcCount="
 operator|+
-name|fst
+name|b
 operator|.
 name|getArcCount
 argument_list|()
@@ -1158,14 +1158,14 @@ argument_list|()
 operator|+
 literal|"; nodeCount="
 operator|+
-name|fst
+name|b
 operator|.
 name|getNodeCount
 argument_list|()
 operator|+
 literal|"; arcCount="
 operator|+
-name|fst
+name|b
 operator|.
 name|getArcCount
 argument_list|()
@@ -1669,14 +1669,14 @@ argument_list|()
 operator|+
 literal|"; nodeCount="
 operator|+
-name|fst
+name|b
 operator|.
 name|getNodeCount
 argument_list|()
 operator|+
 literal|"; arcCount="
 operator|+
-name|fst
+name|b
 operator|.
 name|getArcCount
 argument_list|()

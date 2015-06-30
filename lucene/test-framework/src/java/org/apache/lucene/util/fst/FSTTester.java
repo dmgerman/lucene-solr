@@ -418,6 +418,14 @@ specifier|final
 name|boolean
 name|doReverseLookup
 decl_stmt|;
+DECL|field|nodeCount
+name|long
+name|nodeCount
+decl_stmt|;
+DECL|field|arcCount
+name|long
+name|arcCount
+decl_stmt|;
 DECL|method|FSTTester
 specifier|public
 name|FSTTester
@@ -2140,14 +2148,14 @@ name|println
 argument_list|(
 literal|"  fst has "
 operator|+
-name|fst
+name|builder
 operator|.
 name|getNodeCount
 argument_list|()
 operator|+
 literal|" nodes and "
 operator|+
-name|fst
+name|builder
 operator|.
 name|getArcCount
 argument_list|()
@@ -2190,6 +2198,20 @@ name|prune2
 argument_list|)
 expr_stmt|;
 block|}
+name|nodeCount
+operator|=
+name|builder
+operator|.
+name|getNodeCount
+argument_list|()
+expr_stmt|;
+name|arcCount
+operator|=
+name|builder
+operator|.
+name|getArcCount
+argument_list|()
+expr_stmt|;
 return|return
 name|fst
 return|;

@@ -1067,14 +1067,14 @@ name|print
 argument_list|(
 literal|"  "
 operator|+
-name|fst
+name|fstBuilder
 operator|.
 name|getNodeCount
 argument_list|()
 operator|+
 literal|" nodes, "
 operator|+
-name|fst
+name|fstBuilder
 operator|.
 name|getArcCount
 argument_list|()

@@ -124,18 +124,6 @@ specifier|public
 class|class
 name|Stats
 block|{
-comment|/** How many nodes in the index FST. */
-DECL|field|indexNodeCount
-specifier|public
-name|long
-name|indexNodeCount
-decl_stmt|;
-comment|/** How many arcs in the index FST. */
-DECL|field|indexArcCount
-specifier|public
-name|long
-name|indexArcCount
-decl_stmt|;
 comment|/** Byte size of the index. */
 DECL|field|indexNumBytes
 specifier|public
@@ -653,28 +641,6 @@ operator|.
 name|println
 argument_list|(
 literal|"  index FST:"
-argument_list|)
-expr_stmt|;
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    "
-operator|+
-name|indexNodeCount
-operator|+
-literal|" nodes"
-argument_list|)
-expr_stmt|;
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"    "
-operator|+
-name|indexArcCount
-operator|+
-literal|" arcs"
 argument_list|)
 expr_stmt|;
 name|out
