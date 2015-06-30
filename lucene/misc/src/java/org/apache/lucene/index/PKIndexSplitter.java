@@ -62,20 +62,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DocIdSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|DocIdSetIterator
 import|;
 end_import
@@ -90,7 +76,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
+name|IndexSearcher
 import|;
 end_import
 
@@ -104,7 +90,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|QueryWrapperFilter
+name|Query
 import|;
 end_import
 
@@ -119,6 +105,20 @@ operator|.
 name|search
 operator|.
 name|TermRangeQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Weight
 import|;
 end_import
 
@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Split an index based on a {@link Filter}.  */
+comment|/**  * Split an index based on a {@link Query}.  */
 end_comment
 
 begin_class
@@ -205,7 +205,7 @@ block|{
 DECL|field|docsInFirstIndex
 specifier|private
 specifier|final
-name|Filter
+name|Query
 name|docsInFirstIndex
 decl_stmt|;
 DECL|field|input
@@ -238,7 +238,7 @@ specifier|final
 name|IndexWriterConfig
 name|config2
 decl_stmt|;
-comment|/**    * Split an index based on a {@link Filter}. All documents that match the filter    * are sent to dir1, remaining ones to dir2.    */
+comment|/**    * Split an index based on a {@link Query}. All documents that match the query    * are sent to dir1, remaining ones to dir2.    */
 DECL|method|PKIndexSplitter
 specifier|public
 name|PKIndexSplitter
@@ -252,7 +252,7 @@ parameter_list|,
 name|Directory
 name|dir2
 parameter_list|,
-name|Filter
+name|Query
 name|docsInFirstIndex
 parameter_list|)
 block|{
@@ -309,7 +309,7 @@ parameter_list|,
 name|Directory
 name|dir2
 parameter_list|,
-name|Filter
+name|Query
 name|docsInFirstIndex
 parameter_list|,
 name|IndexWriterConfig
@@ -383,9 +383,6 @@ argument_list|,
 name|dir2
 argument_list|,
 operator|new
-name|QueryWrapperFilter
-argument_list|(
-operator|new
 name|TermRangeQuery
 argument_list|(
 name|midTerm
@@ -403,7 +400,6 @@ argument_list|,
 literal|true
 argument_list|,
 literal|false
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -440,9 +436,6 @@ argument_list|,
 name|dir2
 argument_list|,
 operator|new
-name|QueryWrapperFilter
-argument_list|(
-operator|new
 name|TermRangeQuery
 argument_list|(
 name|midTerm
@@ -460,7 +453,6 @@ argument_list|,
 literal|true
 argument_list|,
 literal|false
-argument_list|)
 argument_list|)
 argument_list|,
 name|config1
@@ -567,7 +559,7 @@ parameter_list|,
 name|DirectoryReader
 name|reader
 parameter_list|,
-name|Filter
+name|Query
 name|preserveFilter
 parameter_list|,
 name|boolean
@@ -595,6 +587,43 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
+name|IndexSearcher
+name|searcher
+init|=
+operator|new
+name|IndexSearcher
+argument_list|(
+name|reader
+argument_list|)
+decl_stmt|;
+name|searcher
+operator|.
+name|setQueryCache
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+specifier|final
+name|boolean
+name|needsScores
+init|=
+literal|false
+decl_stmt|;
+comment|// scores are not needed, only matching docs
+specifier|final
+name|Weight
+name|preserveWeight
+init|=
+name|searcher
+operator|.
+name|createNormalizedWeight
+argument_list|(
+name|preserveFilter
+argument_list|,
+name|needsScores
+argument_list|)
+decl_stmt|;
 specifier|final
 name|List
 argument_list|<
@@ -646,7 +675,7 @@ name|DocumentFilteredLeafIndexReader
 argument_list|(
 name|ctx
 argument_list|,
-name|preserveFilter
+name|preserveWeight
 argument_list|,
 name|negateFilter
 argument_list|)
@@ -714,8 +743,8 @@ parameter_list|(
 name|LeafReaderContext
 name|context
 parameter_list|,
-name|Filter
-name|preserveFilter
+name|Weight
+name|preserveWeight
 parameter_list|,
 name|boolean
 name|negateFilter
@@ -756,37 +785,19 @@ argument_list|)
 decl_stmt|;
 comment|// ignore livedocs here, as we filter them later:
 specifier|final
-name|DocIdSet
-name|docs
+name|DocIdSetIterator
+name|preserveIt
 init|=
-name|preserveFilter
+name|preserveWeight
 operator|.
-name|getDocIdSet
+name|scorer
 argument_list|(
 name|context
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|docs
-operator|!=
-literal|null
-condition|)
-block|{
-specifier|final
-name|DocIdSetIterator
-name|it
-init|=
-name|docs
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|it
+name|preserveIt
 operator|!=
 literal|null
 condition|)
@@ -795,10 +806,9 @@ name|bits
 operator|.
 name|or
 argument_list|(
-name|it
+name|preserveIt
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(
@@ -861,8 +871,10 @@ name|nextDoc
 argument_list|()
 init|;
 name|i
-operator|<
-name|maxDoc
+operator|!=
+name|DocIdSetIterator
+operator|.
+name|NO_MORE_DOCS
 condition|;
 name|i
 operator|=
