@@ -94,20 +94,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|LeafCollector
 import|;
 end_import
@@ -246,6 +232,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|Weight
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|ArrayUtil
@@ -314,7 +314,7 @@ decl_stmt|;
 DECL|field|lastDocPerGroup
 specifier|private
 specifier|final
-name|Filter
+name|Weight
 name|lastDocPerGroup
 decl_stmt|;
 comment|// TODO: specialize into 2 classes, static "create" method:
@@ -881,7 +881,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**    * Create the single pass collector.    *    *  @param groupSort The {@link Sort} used to sort the    *    groups.  The top sorted document within each group    *    according to groupSort, determines how that group    *    sorts against other groups.  This must be non-null,    *    ie, if you want to groupSort by relevance use    *    Sort.RELEVANCE.    *  @param topNGroups How many top groups to keep.    *  @param needsScores true if the collected documents    *    require scores, either because relevance is included    *    in the withinGroupSort or because you plan to pass true    *    for either getSscores or getMaxScores to {@link    *    #getTopGroups}    *  @param lastDocPerGroup a {@link Filter} that marks the    *    last document in each group.    */
+comment|/**    * Create the single pass collector.    *    *  @param groupSort The {@link Sort} used to sort the    *    groups.  The top sorted document within each group    *    according to groupSort, determines how that group    *    sorts against other groups.  This must be non-null,    *    ie, if you want to groupSort by relevance use    *    Sort.RELEVANCE.    *  @param topNGroups How many top groups to keep.    *  @param needsScores true if the collected documents    *    require scores, either because relevance is included    *    in the withinGroupSort or because you plan to pass true    *    for either getSscores or getMaxScores to {@link    *    #getTopGroups}    *  @param lastDocPerGroup a {@link Weight} that marks the    *    last document in each group.    */
 DECL|method|BlockGroupingCollector
 specifier|public
 name|BlockGroupingCollector
@@ -895,7 +895,7 @@ parameter_list|,
 name|boolean
 name|needsScores
 parameter_list|,
-name|Filter
+name|Weight
 name|lastDocPerGroup
 parameter_list|)
 throws|throws
@@ -1992,21 +1992,10 @@ name|lastDocPerGroupBits
 operator|=
 name|lastDocPerGroup
 operator|.
-name|getDocIdSet
+name|scorer
 argument_list|(
 name|readerContext
-argument_list|,
-name|readerContext
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getLiveDocs
-argument_list|()
 argument_list|)
-operator|.
-name|iterator
-argument_list|()
 expr_stmt|;
 name|groupEndDocID
 operator|=

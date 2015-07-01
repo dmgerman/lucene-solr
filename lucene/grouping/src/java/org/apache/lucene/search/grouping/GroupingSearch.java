@@ -72,20 +72,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -143,6 +129,20 @@ operator|.
 name|search
 operator|.
 name|SortField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Weight
 import|;
 end_import
 
@@ -430,7 +430,7 @@ decl_stmt|;
 DECL|field|groupEndDocs
 specifier|private
 specifier|final
-name|Filter
+name|Query
 name|groupEndDocs
 decl_stmt|;
 DECL|field|groupSort
@@ -573,12 +573,12 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructor for grouping documents by doc block.    * This constructor can only be used when documents belonging in a group are indexed in one block.    *    * @param groupEndDocs The filter that marks the last document in all doc blocks    */
+comment|/**    * Constructor for grouping documents by doc block.    * This constructor can only be used when documents belonging in a group are indexed in one block.    *    * @param groupEndDocs The query that marks the last document in all doc blocks    */
 DECL|method|GroupingSearch
 specifier|public
 name|GroupingSearch
 parameter_list|(
-name|Filter
+name|Query
 name|groupEndDocs
 parameter_list|)
 block|{
@@ -612,7 +612,7 @@ name|?
 argument_list|>
 name|valueSourceContext
 parameter_list|,
-name|Filter
+name|Query
 name|groupEndDocs
 parameter_list|)
 block|{
@@ -1363,6 +1363,21 @@ init|=
 name|groupOffset
 operator|+
 name|groupLimit
+decl_stmt|;
+specifier|final
+name|Weight
+name|groupEndDocs
+init|=
+name|searcher
+operator|.
+name|createNormalizedWeight
+argument_list|(
+name|this
+operator|.
+name|groupEndDocs
+argument_list|,
+literal|false
+argument_list|)
 decl_stmt|;
 name|BlockGroupingCollector
 name|c
