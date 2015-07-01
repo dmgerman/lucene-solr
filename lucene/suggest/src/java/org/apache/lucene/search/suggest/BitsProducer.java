@@ -81,6 +81,12 @@ specifier|abstract
 class|class
 name|BitsProducer
 block|{
+comment|/** Sole constructor, typically invoked by sub-classes. */
+DECL|method|BitsProducer
+specifier|protected
+name|BitsProducer
+parameter_list|()
+block|{}
 comment|/** Return {@link Bits} for the given leaf. The returned instance must    *  be non-null and have a {@link Bits#length() length} equal to    *  {@link LeafReader#maxDoc() maxDoc}. */
 DECL|method|getBits
 specifier|public
