@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
+name|Query
 import|;
 end_import
 
@@ -124,7 +124,9 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Query
+name|suggest
+operator|.
+name|BitsProducer
 import|;
 end_import
 
@@ -169,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract {@link Query} that match documents containing terms with a specified prefix  * filtered by {@link Filter}. This should be used to query against any {@link SuggestField}s  * or {@link ContextSuggestField}s of documents.  *<p>  * Use {@link SuggestIndexSearcher#suggest(CompletionQuery, int)} to execute any query  * that provides a concrete implementation of this query. Example below shows using this query  * to retrieve the top 5 documents.  *  *<pre class="prettyprint">  *  SuggestIndexSearcher searcher = new SuggestIndexSearcher(reader);  *  TopSuggestDocs suggestDocs = searcher.suggest(query, 5);  *</pre>  * This query rewrites to an appropriate {@link CompletionQuery} depending on the  * type ({@link SuggestField} or {@link ContextSuggestField}) of the field the query is run against.  *  * @lucene.experimental  */
+comment|/**  * Abstract {@link Query} that match documents containing terms with a specified prefix  * filtered by {@link BitsProducer}. This should be used to query against any {@link SuggestField}s  * or {@link ContextSuggestField}s of documents.  *<p>  * Use {@link SuggestIndexSearcher#suggest(CompletionQuery, int)} to execute any query  * that provides a concrete implementation of this query. Example below shows using this query  * to retrieve the top 5 documents.  *  *<pre class="prettyprint">  *  SuggestIndexSearcher searcher = new SuggestIndexSearcher(reader);  *  TopSuggestDocs suggestDocs = searcher.suggest(query, 5);  *</pre>  * This query rewrites to an appropriate {@link CompletionQuery} depending on the  * type ({@link SuggestField} or {@link ContextSuggestField}) of the field the query is run against.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -188,11 +190,11 @@ specifier|final
 name|Term
 name|term
 decl_stmt|;
-comment|/**    * Filter for document scoping    */
+comment|/**    * {@link BitsProducer} which is used to filter the document scope.    */
 DECL|field|filter
 specifier|private
 specifier|final
-name|Filter
+name|BitsProducer
 name|filter
 decl_stmt|;
 comment|/**    * Creates a base Completion query against a<code>term</code>    * with a<code>filter</code> to scope the documents    */
@@ -203,7 +205,7 @@ parameter_list|(
 name|Term
 name|term
 parameter_list|,
-name|Filter
+name|BitsProducer
 name|filter
 parameter_list|)
 block|{
@@ -228,10 +230,10 @@ operator|=
 name|filter
 expr_stmt|;
 block|}
-comment|/**    * Returns the filter for the query, used to    * suggest completions on a subset of indexed documents    */
+comment|/**    * Returns a {@link BitsProducer}. Only suggestions matching the returned    * bits will be returned.    */
 DECL|method|getFilter
 specifier|public
-name|Filter
+name|BitsProducer
 name|getFilter
 parameter_list|()
 block|{
@@ -567,9 +569,7 @@ argument_list|(
 name|filter
 operator|.
 name|toString
-argument_list|(
-name|field
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
