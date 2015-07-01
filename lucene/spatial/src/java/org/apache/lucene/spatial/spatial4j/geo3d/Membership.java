@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Interface describing 3d shape membership methods.  *  * @lucene.experimental  */
+comment|/**  * Implemented by Geo3D shapes that can calculate if a point is within it or not.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface
@@ -33,6 +33,7 @@ block|{
 comment|/**    * Check if a point is within this shape.    *    * @param point is the point to check.    * @return true if the point is within this shape    */
 DECL|method|isWithin
 specifier|public
+specifier|default
 name|boolean
 name|isWithin
 parameter_list|(
@@ -40,7 +41,24 @@ specifier|final
 name|Vector
 name|point
 parameter_list|)
-function_decl|;
+block|{
+return|return
+name|isWithin
+argument_list|(
+name|point
+operator|.
+name|x
+argument_list|,
+name|point
+operator|.
+name|y
+argument_list|,
+name|point
+operator|.
+name|z
+argument_list|)
+return|;
+block|}
 comment|/**    * Check if a point is within this shape.    *    * @param x is x coordinate of point to check.    * @param y is y coordinate of point to check.    * @param z is z coordinate of point to check.    * @return true if the point is within this shape    */
 DECL|method|isWithin
 specifier|public

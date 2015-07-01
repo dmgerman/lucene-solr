@@ -113,7 +113,6 @@ operator|.
 name|PI
 return|;
 block|}
-comment|/**    * Returns the center of a circle into which the area will be inscribed.    *    * @return the center.    */
 annotation|@
 name|Override
 DECL|method|getCenter
@@ -125,22 +124,6 @@ block|{
 comment|// Totally arbitrary
 return|return
 name|originPoint
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|isWithin
-specifier|public
-name|boolean
-name|isWithin
-parameter_list|(
-specifier|final
-name|Vector
-name|point
-parameter_list|)
-block|{
-return|return
-literal|true
 return|;
 block|}
 annotation|@
@@ -206,7 +189,6 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Compute longitude/latitude bounds for the shape.    *    * @param bounds is the optional input bounds object.  If this is null,    *               a bounds object will be created.  Otherwise, the input object will be modified.    * @return a Bounds object describing the shape's bounds.  If the bounds cannot    * be computed, then return a Bounds object with noLongitudeBound,    * noTopLatitudeBound, and noBottomLatitudeBound.    */
 annotation|@
 name|Override
 DECL|method|getBounds
@@ -274,6 +256,34 @@ name|WITHIN
 return|;
 return|return
 name|OVERLAPS
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|outsideDistance
+specifier|protected
+name|double
+name|outsideDistance
+parameter_list|(
+specifier|final
+name|DistanceStyle
+name|distanceStyle
+parameter_list|,
+specifier|final
+name|double
+name|x
+parameter_list|,
+specifier|final
+name|double
+name|y
+parameter_list|,
+specifier|final
+name|double
+name|z
+parameter_list|)
+block|{
+return|return
+literal|0.0
 return|;
 block|}
 annotation|@

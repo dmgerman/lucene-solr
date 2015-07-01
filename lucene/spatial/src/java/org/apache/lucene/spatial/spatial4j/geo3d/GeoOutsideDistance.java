@@ -21,26 +21,26 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * An implementer of this interface is capable of computing the described "distance" values,  * which are meant to provide both actual distance values, as well as  * distance estimates that can be computed more cheaply.  *  * @lucene.experimental  */
+comment|/**  * Implemented by Geo3D shapes that can compute the distance from a point to the closest outside edge.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface
-DECL|interface|GeoDistance
+DECL|interface|GeoOutsideDistance
 specifier|public
 interface|interface
-name|GeoDistance
+name|GeoOutsideDistance
 extends|extends
 name|Membership
 block|{
 comment|// The following methods compute distances from the shape to a point
-comment|// expected to be INSIDE the shape.  Typically a value of Double.MAX_VALUE
-comment|// is returned for points that happen to be outside the shape.
-comment|/**    * Compute this shape's<em>internal</em> "distance" to the GeoPoint.    * Implementations should clarify how this is computed when it's non-obvious.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param distanceStyle is the distance style.    * @param point is the point to compute the distance to.    * @return the distance.    */
-DECL|method|computeDistance
+comment|// expected to be OUTSIDE the shape.  Typically a value of 0.0
+comment|// is returned for points that happen to be within the shape.
+comment|/**    * Compute this shape's distance to the GeoPoint.    * A return value of 0.0 should be returned for    * points inside of the shape.    * @param distanceStyle is the distance style.    * @param point is the point to compute the distance to.    * @return the distance.    */
+DECL|method|computeOutsideDistance
 specifier|public
 specifier|default
 name|double
-name|computeDistance
+name|computeOutsideDistance
 parameter_list|(
 specifier|final
 name|DistanceStyle
@@ -52,7 +52,7 @@ name|point
 parameter_list|)
 block|{
 return|return
-name|computeDistance
+name|computeOutsideDistance
 argument_list|(
 name|distanceStyle
 argument_list|,
@@ -70,11 +70,11 @@ name|z
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute this shape's<em>internal</em> "distance" to the GeoPoint.    * Implementations should clarify how this is computed when it's non-obvious.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param x is the point's unit x coordinate (using U.S. convention).    * @param y is the point's unit y coordinate (using U.S. convention).    * @param z is the point's unit z coordinate (using U.S. convention).    * @return the distance.    */
-DECL|method|computeDistance
+comment|/**    * Compute this shape's distance to the GeoPoint.    * A return value of 0.0 should be returned for    * points inside of the shape.    * @param distanceStyle is the distance style.    * @param x is the point's unit x coordinate (using U.S. convention).    * @param y is the point's unit y coordinate (using U.S. convention).    * @param z is the point's unit z coordinate (using U.S. convention).    * @return the distance.    */
+DECL|method|computeOutsideDistance
 specifier|public
 name|double
-name|computeDistance
+name|computeOutsideDistance
 parameter_list|(
 specifier|final
 name|DistanceStyle

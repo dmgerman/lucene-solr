@@ -72,16 +72,6 @@ name|Bounds
 name|bounds
 parameter_list|)
 function_decl|;
-comment|/**    * Equals    */
-DECL|method|equals
-specifier|public
-name|boolean
-name|equals
-parameter_list|(
-name|Object
-name|o
-parameter_list|)
-function_decl|;
 block|}
 end_interface
 

@@ -115,7 +115,6 @@ name|this
 block|}
 expr_stmt|;
 block|}
-comment|/**    * Expand box by specified angle.    *    * @param angle is the angle amount to expand the GeoBBox by.    * @return a new GeoBBox.    */
 annotation|@
 name|Override
 DECL|method|expand
@@ -177,7 +176,6 @@ name|newRightLon
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a sample point that is on the edge of the shape.    *    * @return an interior point.    */
 annotation|@
 name|Override
 DECL|method|getEdgePoints
@@ -191,7 +189,6 @@ return|return
 name|edgePoints
 return|;
 block|}
-comment|/**    * Assess whether a plane, within the provided bounds, intersects    * with the shape.    *    * @param plane  is the plane to assess for intersection with the shape's edges or    *               bounding curves.    * @param bounds are a set of bounds that define an area that an    *               intersection must be within in order to qualify (provided by a GeoArea).    * @return true if there's such an intersection, false if not.    */
 annotation|@
 name|Override
 DECL|method|intersects
@@ -254,7 +251,6 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**    * Compute longitude/latitude bounds for the shape.    *    * @param bounds is the optional input bounds object.  If this is null,    *               a bounds object will be created.  Otherwise, the input object will be modified.    * @return a Bounds object describing the shape's bounds.  If the bounds cannot    * be computed, then return a Bounds object with noLongitudeBound,    * noTopLatitudeBound, and noBottomLatitudeBound.    */
 annotation|@
 name|Override
 DECL|method|getBounds
@@ -291,7 +287,72 @@ return|return
 name|bounds
 return|;
 block|}
-comment|/**    * Equals    */
+annotation|@
+name|Override
+DECL|method|computeOutsideDistance
+specifier|public
+name|double
+name|computeOutsideDistance
+parameter_list|(
+specifier|final
+name|DistanceStyle
+name|distanceStyle
+parameter_list|,
+specifier|final
+name|GeoPoint
+name|point
+parameter_list|)
+block|{
+return|return
+name|distanceStyle
+operator|.
+name|computeDistance
+argument_list|(
+name|this
+argument_list|,
+name|point
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|computeOutsideDistance
+specifier|public
+name|double
+name|computeOutsideDistance
+parameter_list|(
+specifier|final
+name|DistanceStyle
+name|distanceStyle
+parameter_list|,
+specifier|final
+name|double
+name|x
+parameter_list|,
+specifier|final
+name|double
+name|y
+parameter_list|,
+specifier|final
+name|double
+name|z
+parameter_list|)
+block|{
+return|return
+name|distanceStyle
+operator|.
+name|computeDistance
+argument_list|(
+name|this
+argument_list|,
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|equals
@@ -465,7 +526,6 @@ operator|+
 literal|")}"
 return|;
 block|}
-comment|/**    * Check if a point is within this shape.    *    * @param point is the point to check.    * @return true if the point is within this shape    */
 annotation|@
 name|Override
 DECL|method|isWithin
@@ -495,7 +555,6 @@ name|z
 argument_list|)
 return|;
 block|}
-comment|/**    * Check if a point is within this shape.    *    * @param x is x coordinate of point to check.    * @param y is y coordinate of point to check.    * @param z is z coordinate of point to check.    * @return true if the point is within this shape    */
 annotation|@
 name|Override
 DECL|method|isWithin
@@ -536,7 +595,6 @@ operator|.
 name|z
 return|;
 block|}
-comment|/**    * Returns the radius of a circle into which the GeoSizeable area can    * be inscribed.    *    * @return the radius.    */
 annotation|@
 name|Override
 DECL|method|getRadius
@@ -549,7 +607,6 @@ return|return
 literal|0.0
 return|;
 block|}
-comment|/**    * Returns the center of a circle into which the area will be inscribed.    *    * @return the center.    */
 annotation|@
 name|Override
 DECL|method|getCenter
@@ -562,7 +619,6 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Find the spatial relationship between a shape and the current geo area.    * Note: return value is how the GeoShape relates to the GeoArea, not the    * other way around. For example, if this GeoArea is entirely within the    * shape, then CONTAINS should be returned.  If the shape is entirely enclosed    * by this GeoArea, then WITHIN should be returned.    *    * @param shape is the shape to consider.    * @return the relationship, from the perspective of the shape.    */
 annotation|@
 name|Override
 DECL|method|getRelationship

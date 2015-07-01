@@ -21,24 +21,67 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * An implementer of this interface is capable of computing the described "distance" values,  * which are meant to provide both actual distance values, as well as  * distance estimates that can be computed more cheaply.  *  * @lucene.experimental  */
+comment|/**  * Distance shapes have capabilities of both geohashing and distance  * computation (which also includes point membership determination).  *  * @lucene.experimental  */
 end_comment
 
-begin_interface
-DECL|interface|GeoDistance
+begin_class
+DECL|class|GeoBaseDistanceShape
 specifier|public
-interface|interface
-name|GeoDistance
+specifier|abstract
+class|class
+name|GeoBaseDistanceShape
 extends|extends
-name|Membership
+name|GeoBaseMembershipShape
+implements|implements
+name|GeoDistanceShape
 block|{
-comment|// The following methods compute distances from the shape to a point
-comment|// expected to be INSIDE the shape.  Typically a value of Double.MAX_VALUE
-comment|// is returned for points that happen to be outside the shape.
-comment|/**    * Compute this shape's<em>internal</em> "distance" to the GeoPoint.    * Implementations should clarify how this is computed when it's non-obvious.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param distanceStyle is the distance style.    * @param point is the point to compute the distance to.    * @return the distance.    */
+DECL|method|GeoBaseDistanceShape
+specifier|public
+name|GeoBaseDistanceShape
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|planetModel
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|isWithin
+specifier|public
+name|boolean
+name|isWithin
+parameter_list|(
+name|Vector
+name|point
+parameter_list|)
+block|{
+return|return
+name|isWithin
+argument_list|(
+name|point
+operator|.
+name|x
+argument_list|,
+name|point
+operator|.
+name|y
+argument_list|,
+name|point
+operator|.
+name|z
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|computeDistance
 specifier|public
-specifier|default
 name|double
 name|computeDistance
 parameter_list|(
@@ -70,7 +113,8 @@ name|z
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute this shape's<em>internal</em> "distance" to the GeoPoint.    * Implementations should clarify how this is computed when it's non-obvious.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param x is the point's unit x coordinate (using U.S. convention).    * @param y is the point's unit y coordinate (using U.S. convention).    * @param z is the point's unit z coordinate (using U.S. convention).    * @return the distance.    */
+annotation|@
+name|Override
 DECL|method|computeDistance
 specifier|public
 name|double
@@ -92,9 +136,65 @@ specifier|final
 name|double
 name|z
 parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+name|isWithin
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+condition|)
+block|{
+return|return
+name|Double
+operator|.
+name|MAX_VALUE
+return|;
+block|}
+return|return
+name|distance
+argument_list|(
+name|distanceStyle
+argument_list|,
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+return|;
+block|}
+comment|/** Called by a {@code computeDistance} method if X/Y/Z is not within this shape. */
+DECL|method|distance
+specifier|protected
+specifier|abstract
+name|double
+name|distance
+parameter_list|(
+specifier|final
+name|DistanceStyle
+name|distanceStyle
+parameter_list|,
+specifier|final
+name|double
+name|x
+parameter_list|,
+specifier|final
+name|double
+name|y
+parameter_list|,
+specifier|final
+name|double
+name|z
+parameter_list|)
 function_decl|;
 block|}
-end_interface
+end_class
 
 end_unit
 

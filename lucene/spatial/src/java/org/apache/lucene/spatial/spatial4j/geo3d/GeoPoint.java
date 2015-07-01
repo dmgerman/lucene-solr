@@ -21,7 +21,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * This class represents a point on the surface of a unit sphere.  *  * @lucene.experimental  */
+comment|/**  * This class represents a point on the surface of a sphere or ellipsoid.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -457,6 +457,57 @@ name|v
 operator|.
 name|magnitude
 argument_list|()
+operator|)
+argument_list|)
+return|;
+block|}
+comment|/** Compute an arc distance between two points.    * @param x is the x part of the second point.    * @param y is the y part of the second point.    * @param z is the z part of the second point.    * @return the angle, in radians, between the two points.    */
+DECL|method|arcDistance
+specifier|public
+name|double
+name|arcDistance
+parameter_list|(
+specifier|final
+name|double
+name|x
+parameter_list|,
+specifier|final
+name|double
+name|y
+parameter_list|,
+specifier|final
+name|double
+name|z
+parameter_list|)
+block|{
+return|return
+name|Tools
+operator|.
+name|safeAcos
+argument_list|(
+name|dotProduct
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+operator|/
+operator|(
+name|magnitude
+argument_list|()
+operator|*
+name|Vector
+operator|.
+name|magnitude
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
 operator|)
 argument_list|)
 return|;
