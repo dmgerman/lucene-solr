@@ -5662,7 +5662,9 @@ name|a
 argument_list|,
 name|a2
 argument_list|,
-name|DEFAULT_MAX_DETERMINIZED_STATES
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|)
 expr_stmt|;
 block|}
