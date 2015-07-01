@@ -408,20 +408,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -464,7 +450,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|QueryWrapperFilter
+name|Query
 import|;
 end_import
 
@@ -1109,11 +1095,11 @@ argument_list|)
 return|;
 block|}
 comment|/** Given a latitude and longitude (in degrees) and the    *  maximum great circle (surface of the earth) distance,    *  returns a simple Filter bounding box to "fast match"    *  candidates. */
-DECL|method|getBoundingBoxFilter
+DECL|method|getBoundingBoxQuery
 specifier|public
 specifier|static
-name|Filter
-name|getBoundingBoxFilter
+name|Query
+name|getBoundingBoxQuery
 parameter_list|(
 name|double
 name|originLat
@@ -1533,14 +1519,10 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-operator|new
-name|QueryWrapperFilter
-argument_list|(
 name|f
 operator|.
 name|build
 argument_list|()
-argument_list|)
 return|;
 block|}
 comment|/** User runs a query and counts facets. */
@@ -1583,7 +1565,7 @@ argument_list|()
 argument_list|,
 name|fc
 argument_list|,
-name|getBoundingBoxFilter
+name|getBoundingBoxQuery
 argument_list|(
 name|ORIGIN_LATITUDE
 argument_list|,
@@ -1650,9 +1632,9 @@ literal|"field"
 argument_list|,
 name|range
 operator|.
-name|getFilter
+name|getQuery
 argument_list|(
-name|getBoundingBoxFilter
+name|getBoundingBoxQuery
 argument_list|(
 name|ORIGIN_LATITUDE
 argument_list|,

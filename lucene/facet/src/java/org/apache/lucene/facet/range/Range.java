@@ -44,24 +44,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|facet
-operator|.
-name|DrillSideways
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|queries
 operator|.
 name|function
@@ -80,7 +62,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
+name|NumericRangeQuery
 import|;
 end_import
 
@@ -94,7 +76,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|NumericRangeQuery
+name|Query
 import|;
 end_import
 
@@ -147,32 +129,32 @@ operator|=
 name|label
 expr_stmt|;
 block|}
-comment|/** Returns a new {@link Filter} accepting only documents    *  in this range.  This filter is not general-purpose;    *  you should either use it with {@link DrillSideways} by    *  adding it to {@link DrillDownQuery#add}.  If the    *  {@link ValueSource} is static, e.g. an indexed numeric    *  field, then it may be more efficient to use {@link    *  NumericRangeQuery}.  The provided fastMatchFilter,    *  if non-null, will first be consulted, and only if    *  that is set for each document will the range then be    *  checked. */
-DECL|method|getFilter
+comment|/** Returns a new {@link Query} accepting only documents    *  in this range.  This query might not be very efficient    *  when run on its own since it is optimized towards    *  random-access, so it is best used either with    *  {@link DrillDownQuery#add(String, Query) DrillDownQuery}    *  or when intersected with another query that can lead the    *  iteration.  If the {@link ValueSource} is static, e.g. an    *  indexed numeric field, then it may be more efficient to use    *  {@link NumericRangeQuery}. The provided fastMatchQuery,    *  if non-null, will first be consulted, and only if    *  that is set for each document will the range then be    *  checked. */
+DECL|method|getQuery
 specifier|public
 specifier|abstract
-name|Filter
-name|getFilter
+name|Query
+name|getQuery
 parameter_list|(
-name|Filter
-name|fastMatchFilter
+name|Query
+name|fastMatchQuery
 parameter_list|,
 name|ValueSource
 name|valueSource
 parameter_list|)
 function_decl|;
-comment|/** Returns a new {@link Filter} accepting only documents    *  in this range.  This filter is not general-purpose;    *  you should either use it with {@link DrillSideways} by    *  adding it to {@link DrillDownQuery#add}.  If the    *  {@link ValueSource} is static, e.g. an indexed numeric    *  field, then it may be more efficient to use {@link NumericRangeQuery}. */
-DECL|method|getFilter
+comment|/** Returns a new {@link Query} accepting only documents    *  in this range.  This query might not be very efficient    *  when run on its own since it is optimized towards    *  random-access, so it is best used either with    *  {@link DrillDownQuery#add(String, Query) DrillDownQuery}    *  or when intersected with another query that can lead the    *  iteration.  If the {@link ValueSource} is static, e.g. an    *  indexed numeric field, then it may be more efficient to    *  use {@link NumericRangeQuery}. */
+DECL|method|getQuery
 specifier|public
-name|Filter
-name|getFilter
+name|Query
+name|getQuery
 parameter_list|(
 name|ValueSource
 name|valueSource
 parameter_list|)
 block|{
 return|return
-name|getFilter
+name|getQuery
 argument_list|(
 literal|null
 argument_list|,
