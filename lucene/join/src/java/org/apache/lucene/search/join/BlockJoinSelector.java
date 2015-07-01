@@ -182,16 +182,23 @@ specifier|public
 class|class
 name|BlockJoinSelector
 block|{
+DECL|method|BlockJoinSelector
+specifier|private
+name|BlockJoinSelector
+parameter_list|()
+block|{}
 comment|/** Type of selection to perform. If none of the documents in the block have    *  a value then no value will be selected. */
 DECL|enum|Type
 specifier|public
 enum|enum
 name|Type
 block|{
+comment|/** Only consider the minimum value from the block when sorting. */
 DECL|enum constant|MIN
-DECL|enum constant|MAX
 name|MIN
 block|,
+comment|/** Only consider the maximum value from the block when sorting. */
+DECL|enum constant|MAX
 name|MAX
 block|;   }
 comment|/** Return a {@link Bits} instance that returns true if, and only if, any of    *  the children of the given parent document has a value. */
@@ -749,6 +756,7 @@ name|children
 argument_list|)
 return|;
 block|}
+comment|/** Wraps the provided {@link NumericDocValues} in order to only select    *  one value per parent among its {@code children} using the configured    *  {@code selection} type. */
 DECL|method|wrap
 specifier|public
 specifier|static
