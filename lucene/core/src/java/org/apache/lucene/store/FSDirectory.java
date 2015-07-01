@@ -219,6 +219,18 @@ argument_list|(
 name|lockFactory
 argument_list|)
 expr_stmt|;
+comment|// If only read access is permitted, createDirectories fails even if the directory already exists.
+if|if
+condition|(
+operator|!
+name|Files
+operator|.
+name|isDirectory
+argument_list|(
+name|path
+argument_list|)
+condition|)
+block|{
 name|Files
 operator|.
 name|createDirectories
@@ -227,6 +239,7 @@ name|path
 argument_list|)
 expr_stmt|;
 comment|// create directory, if it doesn't exist
+block|}
 name|directory
 operator|=
 name|path
