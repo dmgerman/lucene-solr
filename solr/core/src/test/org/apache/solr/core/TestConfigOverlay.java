@@ -120,7 +120,7 @@ name|assertTrue
 argument_list|(
 name|isEditableProp
 argument_list|(
-literal|"updateHandler/autoCommit/maxDocs"
+literal|"updateHandler/autoSoftCommit/maxDocs"
 argument_list|,
 literal|true
 argument_list|,
@@ -132,7 +132,7 @@ name|assertTrue
 argument_list|(
 name|isEditableProp
 argument_list|(
-literal|"updateHandler/autoCommit/maxTime"
+literal|"updateHandler/autoSoftCommit/maxTime"
 argument_list|,
 literal|true
 argument_list|,
@@ -204,7 +204,7 @@ name|assertTrue
 argument_list|(
 name|isEditableProp
 argument_list|(
-literal|"updateHandler.autoCommit.maxDocs"
+literal|"updateHandler.autoSoftCommit.maxDocs"
 argument_list|,
 literal|false
 argument_list|,
@@ -216,7 +216,7 @@ name|assertTrue
 argument_list|(
 name|isEditableProp
 argument_list|(
-literal|"updateHandler.autoCommit.maxTime"
+literal|"updateHandler.autoSoftCommit.maxTime"
 argument_list|,
 literal|false
 argument_list|,
