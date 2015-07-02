@@ -1786,10 +1786,13 @@ specifier|final
 name|Plane
 name|normalPlane
 init|=
-operator|new
 name|Plane
+operator|.
+name|constructNormalizedVerticalPlane
 argument_list|(
 name|upperPoint
+argument_list|,
+name|lowerPoint
 argument_list|,
 name|point
 argument_list|)
