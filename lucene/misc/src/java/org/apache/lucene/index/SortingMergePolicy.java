@@ -1059,14 +1059,18 @@ literal|")"
 return|;
 block|}
 block|}
-comment|/** Returns {@code true} if the given {@code reader} is sorted by the    *  {@code sort} order of this {@link SortingMergePolicy}. */
+comment|/** Returns {@code true} if the given {@code reader} is sorted by the    *  {@code sort} given. Typically the given {@code sort} would be the    *  {@link SortingMergePolicy#getSort()} order of a {@link SortingMergePolicy}. */
 DECL|method|isSorted
 specifier|public
+specifier|static
 name|boolean
 name|isSorted
 parameter_list|(
 name|LeafReader
 name|reader
+parameter_list|,
+name|Sort
+name|sort
 parameter_list|)
 block|{
 name|String
