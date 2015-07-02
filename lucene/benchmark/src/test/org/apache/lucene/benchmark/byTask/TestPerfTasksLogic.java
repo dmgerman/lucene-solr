@@ -4285,16 +4285,6 @@ operator|.
 name|getBytesRef
 argument_list|()
 decl_stmt|;
-name|termAtt1
-operator|.
-name|fillBytesRef
-argument_list|()
-expr_stmt|;
-name|termAtt2
-operator|.
-name|fillBytesRef
-argument_list|()
-expr_stmt|;
 name|assertEquals
 argument_list|(
 name|bytes1

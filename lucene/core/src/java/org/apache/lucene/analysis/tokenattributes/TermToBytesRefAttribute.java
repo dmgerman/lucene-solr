@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This attribute is requested by TermsHashPerField to index the contents.  * This attribute can be used to customize the final byte[] encoding of terms.  *<p>  * Consumers of this attribute call {@link #getBytesRef()} up-front, and then  * invoke {@link #fillBytesRef()} for each term. Example:  *<pre class="prettyprint">  *   final TermToBytesRefAttribute termAtt = tokenStream.getAttribute(TermToBytesRefAttribute.class);  *   final BytesRef bytes = termAtt.getBytesRef();  *  *   while (tokenStream.incrementToken() {  *  *     // you must call termAtt.fillBytesRef() before doing something with the bytes.  *     // this encodes the term value (internally it might be a char[], etc) into the bytes.  *     int hashCode = termAtt.fillBytesRef();  *  *     if (isInteresting(bytes)) {  *       *       // because the bytes are reused by the attribute (like CharTermAttribute's char[] buffer),  *       // you should make a copy if you need persistent access to the bytes, otherwise they will  *       // be rewritten across calls to incrementToken()  *  *       doSomethingWith(new BytesRef(bytes));  *     }  *   }  *   ...  *</pre>  * @lucene.experimental This is a very expert API, please use  * {@link CharTermAttributeImpl} and its implementation of this method  * for UTF-8 terms.  */
+comment|/**  * This attribute is requested by TermsHashPerField to index the contents.  * This attribute can be used to customize the final byte[] encoding of terms.  *<p>  * Consumers of this attribute call {@link #getBytesRef()} for each term. Example:  *<pre class="prettyprint">  *   final TermToBytesRefAttribute termAtt = tokenStream.getAttribute(TermToBytesRefAttribute.class);  *  *   while (tokenStream.incrementToken() {  *     final BytesRef bytes = termAtt.getBytesRef();  *  *     if (isInteresting(bytes)) {  *       *       // because the bytes are reused by the attribute (like CharTermAttribute's char[] buffer),  *       // you should make a copy if you need persistent access to the bytes, otherwise they will  *       // be rewritten across calls to incrementToken()  *  *       doSomethingWith(BytesRef.deepCopyOf(bytes));  *     }  *   }  *   ...  *</pre>  * @lucene.internal This is a very expert and internal API, please use  * {@link CharTermAttribute} and its implementation for UTF-8 terms; to  * index binary terms, use {@link BytesTermAttribute} and its implementation.  */
 end_comment
 
 begin_interface
@@ -58,14 +58,7 @@ name|TermToBytesRefAttribute
 extends|extends
 name|Attribute
 block|{
-comment|/**     * Updates the bytes {@link #getBytesRef()} to contain this term's    * final encoding.    */
-DECL|method|fillBytesRef
-specifier|public
-name|void
-name|fillBytesRef
-parameter_list|()
-function_decl|;
-comment|/**    * Retrieve this attribute's BytesRef. The bytes are updated     * from the current term when the consumer calls {@link #fillBytesRef()}.    * @return this Attributes internal BytesRef.    */
+comment|/**    * Retrieve this attribute's BytesRef. The bytes are updated from the current term.    * The implementation may return a new instance or keep the previous one.    * @return a BytesRef to be indexed (only stays valid until token stream gets incremented)    */
 DECL|method|getBytesRef
 specifier|public
 name|BytesRef

@@ -2567,14 +2567,6 @@ decl_stmt|;
 comment|//System.out.println("lookup: key='" + key + "'");
 comment|// Run full analysis, but save only the
 comment|// last 1gram, last 2gram, etc.:
-name|BytesRef
-name|tokenBytes
-init|=
-name|termBytesAtt
-operator|.
-name|getBytesRef
-argument_list|()
-decl_stmt|;
 name|int
 name|maxEndOffset
 init|=
@@ -2594,11 +2586,14 @@ name|incrementToken
 argument_list|()
 condition|)
 block|{
+name|BytesRef
+name|tokenBytes
+init|=
 name|termBytesAtt
 operator|.
-name|fillBytesRef
+name|getBytesRef
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|sawRealToken
 operator||=
 name|tokenBytes

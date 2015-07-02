@@ -176,10 +176,6 @@ DECL|field|termAtt
 name|TermToBytesRefAttribute
 name|termAtt
 decl_stmt|;
-DECL|field|termBytesRef
-name|BytesRef
-name|termBytesRef
-decl_stmt|;
 comment|// Copied from our perThread
 DECL|field|intPool
 specifier|final
@@ -708,11 +704,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|termAtt
-operator|.
-name|fillBytesRef
-argument_list|()
-expr_stmt|;
 comment|// We are first in the chain so we must "intern" the
 comment|// term text into textStart address
 comment|// Get the text& hash of this term.
@@ -723,7 +714,10 @@ name|bytesHash
 operator|.
 name|add
 argument_list|(
-name|termBytesRef
+name|termAtt
+operator|.
+name|getBytesRef
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//System.out.println("add term=" + termBytesRef.utf8ToString() + " doc=" + docState.docID + " termID=" + termID);
@@ -1485,22 +1479,6 @@ name|fieldState
 operator|.
 name|termAttribute
 expr_stmt|;
-comment|// EmptyTokenStream can have null term att
-if|if
-condition|(
-name|termAtt
-operator|!=
-literal|null
-condition|)
-block|{
-name|termBytesRef
-operator|=
-name|termAtt
-operator|.
-name|getBytesRef
-argument_list|()
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|nextPerField

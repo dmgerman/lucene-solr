@@ -260,15 +260,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-specifier|final
-name|BytesRef
-name|term
-init|=
-name|termBytesAtt
-operator|.
-name|getBytesRef
-argument_list|()
-decl_stmt|;
 name|in
 operator|.
 name|reset
@@ -406,11 +397,14 @@ name|createState
 argument_list|()
 expr_stmt|;
 block|}
+name|BytesRef
+name|term
+init|=
 name|termBytesAtt
 operator|.
-name|fillBytesRef
+name|getBytesRef
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 comment|//System.out.println(pos + "-" + endPos + ": " + term.utf8ToString() + ": posInc=" + posInc);
 if|if
 condition|(

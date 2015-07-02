@@ -432,12 +432,12 @@ decl_stmt|;
 DECL|field|bytesAtt
 specifier|private
 specifier|final
-name|ByteTermAttribute
+name|BytesRefBuilderTermAttribute
 name|bytesAtt
 init|=
 name|addAttribute
 argument_list|(
-name|ByteTermAttribute
+name|BytesRefBuilderTermAttribute
 operator|.
 name|class
 argument_list|)
@@ -1579,14 +1579,13 @@ name|states
 return|;
 block|}
 comment|/**    * Attribute providing access to the term builder and UTF-16 conversion    */
-DECL|interface|ByteTermAttribute
+DECL|interface|BytesRefBuilderTermAttribute
 specifier|private
 interface|interface
-name|ByteTermAttribute
+name|BytesRefBuilderTermAttribute
 extends|extends
 name|TermToBytesRefAttribute
 block|{
-comment|// marker interface
 comment|/**      * Returns the builder from which the term is derived.      */
 DECL|method|builder
 name|BytesRefBuilder
@@ -1601,16 +1600,16 @@ parameter_list|()
 function_decl|;
 block|}
 comment|/**    * Custom attribute implementation for completion token stream    */
-DECL|class|ByteTermAttributeImpl
+DECL|class|BytesRefBuilderTermAttributeImpl
 specifier|public
 specifier|static
 specifier|final
 class|class
-name|ByteTermAttributeImpl
+name|BytesRefBuilderTermAttributeImpl
 extends|extends
 name|AttributeImpl
 implements|implements
-name|ByteTermAttribute
+name|BytesRefBuilderTermAttribute
 implements|,
 name|TermToBytesRefAttribute
 block|{
@@ -1626,25 +1625,16 @@ argument_list|()
 decl_stmt|;
 DECL|field|charsRef
 specifier|private
+specifier|transient
 name|CharsRefBuilder
 name|charsRef
 decl_stmt|;
 comment|/**      * Sole constructor      * no-op      */
-DECL|method|ByteTermAttributeImpl
+DECL|method|BytesRefBuilderTermAttributeImpl
 specifier|public
-name|ByteTermAttributeImpl
+name|BytesRefBuilderTermAttributeImpl
 parameter_list|()
 block|{     }
-annotation|@
-name|Override
-DECL|method|fillBytesRef
-specifier|public
-name|void
-name|fillBytesRef
-parameter_list|()
-block|{
-comment|// does nothing - we change in place
-block|}
 annotation|@
 name|Override
 DECL|method|builder
@@ -1697,11 +1687,11 @@ name|AttributeImpl
 name|target
 parameter_list|)
 block|{
-name|ByteTermAttributeImpl
+name|BytesRefBuilderTermAttributeImpl
 name|other
 init|=
 operator|(
-name|ByteTermAttributeImpl
+name|BytesRefBuilderTermAttributeImpl
 operator|)
 name|target
 decl_stmt|;
@@ -1714,6 +1704,30 @@ argument_list|(
 name|bytes
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|clone
+specifier|public
+name|AttributeImpl
+name|clone
+parameter_list|()
+block|{
+name|BytesRefBuilderTermAttributeImpl
+name|other
+init|=
+operator|new
+name|BytesRefBuilderTermAttributeImpl
+argument_list|()
+decl_stmt|;
+name|copyTo
+argument_list|(
+name|other
+argument_list|)
+expr_stmt|;
+return|return
+name|other
+return|;
 block|}
 annotation|@
 name|Override
