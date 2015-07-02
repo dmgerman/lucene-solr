@@ -21,6 +21,8 @@ comment|/**  * This interface is used to reflect contents of {@link AttributeSou
 end_comment
 
 begin_interface
+annotation|@
+name|FunctionalInterface
 DECL|interface|AttributeReflector
 specifier|public
 interface|interface
