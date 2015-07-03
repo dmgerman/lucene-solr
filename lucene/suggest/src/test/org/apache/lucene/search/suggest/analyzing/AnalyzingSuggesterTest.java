@@ -8309,6 +8309,14 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+name|StackOverflowError
+name|soe
+parameter_list|)
+block|{
+comment|// OK
+block|}
+catch|catch
+parameter_list|(
 name|IllegalArgumentException
 name|iae
 parameter_list|)
