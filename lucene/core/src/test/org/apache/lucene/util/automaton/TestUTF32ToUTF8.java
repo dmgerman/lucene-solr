@@ -1400,14 +1400,11 @@ name|assertEquals
 argument_list|(
 name|set
 argument_list|,
-name|Operations
+name|TestOperations
 operator|.
 name|getFiniteStrings
 argument_list|(
 name|utf8
-argument_list|,
-operator|-
-literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
