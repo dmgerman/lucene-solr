@@ -522,7 +522,15 @@ expr_stmt|;
 name|assertU
 argument_list|(
 name|commit
-argument_list|()
+argument_list|(
+literal|"softCommit"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"openSearcher"
+argument_list|,
+literal|"true"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertSearcherHasNotChanged
@@ -544,6 +552,10 @@ argument_list|(
 name|commit
 argument_list|(
 literal|"softCommit"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"openSearcher"
 argument_list|,
 literal|"true"
 argument_list|)
