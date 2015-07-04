@@ -44,6 +44,8 @@ specifier|public
 interface|interface
 name|Expressible
 block|{
+comment|//  public String getFunctionName();
+comment|//  public void setFunctionName(String functionName);
 DECL|method|toExpression
 name|StreamExpressionParameter
 name|toExpression

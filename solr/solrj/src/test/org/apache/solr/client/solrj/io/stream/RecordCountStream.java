@@ -199,10 +199,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|CountStream
+DECL|class|RecordCountStream
 specifier|public
 class|class
-name|CountStream
+name|RecordCountStream
 extends|extends
 name|TupleStream
 implements|implements
@@ -220,9 +220,9 @@ specifier|private
 name|int
 name|count
 decl_stmt|;
-DECL|method|CountStream
+DECL|method|RecordCountStream
 specifier|public
-name|CountStream
+name|RecordCountStream
 parameter_list|(
 name|TupleStream
 name|stream
@@ -235,9 +235,9 @@ operator|=
 name|stream
 expr_stmt|;
 block|}
-DECL|method|CountStream
+DECL|method|RecordCountStream
 specifier|public
-name|CountStream
+name|RecordCountStream
 parameter_list|(
 name|StreamExpression
 name|expression
@@ -417,7 +417,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"This CountStream contains a non-expressible TupleStream - it cannot be converted to an expression"
+literal|"This RecordCountStream contains a non-expressible TupleStream - it cannot be converted to an expression"
 argument_list|)
 throw|;
 block|}
