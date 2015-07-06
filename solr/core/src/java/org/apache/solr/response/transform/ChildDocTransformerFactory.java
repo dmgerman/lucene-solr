@@ -110,7 +110,7 @@ name|search
 operator|.
 name|join
 operator|.
-name|BitDocIdSetCachingWrapperFilter
+name|QueryBitSetProducer
 import|;
 end_import
 
@@ -126,7 +126,7 @@ name|search
 operator|.
 name|join
 operator|.
-name|BitDocIdSetFilter
+name|BitSetProducer
 import|;
 end_import
 
@@ -442,7 +442,7 @@ argument_list|,
 literal|10
 argument_list|)
 decl_stmt|;
-name|BitDocIdSetFilter
+name|BitSetProducer
 name|parentsFilter
 init|=
 literal|null
@@ -469,7 +469,7 @@ decl_stmt|;
 name|parentsFilter
 operator|=
 operator|new
-name|BitDocIdSetCachingWrapperFilter
+name|QueryBitSetProducer
 argument_list|(
 operator|new
 name|QueryWrapperFilter
@@ -598,7 +598,7 @@ name|schema
 decl_stmt|;
 DECL|field|parentsFilter
 specifier|private
-name|BitDocIdSetFilter
+name|BitSetProducer
 name|parentsFilter
 decl_stmt|;
 DECL|field|childFilterQuery
@@ -619,7 +619,7 @@ name|String
 name|name
 parameter_list|,
 specifier|final
-name|BitDocIdSetFilter
+name|BitSetProducer
 name|parentsFilter
 parameter_list|,
 specifier|final

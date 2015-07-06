@@ -248,35 +248,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BitDocIdSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|BitSet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
 import|;
 end_import
 
@@ -295,7 +267,7 @@ block|{
 DECL|field|parentsFilter
 specifier|private
 specifier|final
-name|BitDocIdSetFilter
+name|BitSetProducer
 name|parentsFilter
 decl_stmt|;
 DECL|field|childQuery
@@ -329,7 +301,7 @@ parameter_list|(
 name|Query
 name|childQuery
 parameter_list|,
-name|BitDocIdSetFilter
+name|BitSetProducer
 name|parentsFilter
 parameter_list|,
 name|ScoreMode
@@ -374,7 +346,7 @@ parameter_list|,
 name|Query
 name|childQuery
 parameter_list|,
-name|BitDocIdSetFilter
+name|BitSetProducer
 name|parentsFilter
 parameter_list|,
 name|ScoreMode
@@ -486,7 +458,7 @@ decl_stmt|;
 DECL|field|parentsFilter
 specifier|private
 specifier|final
-name|BitDocIdSetFilter
+name|BitSetProducer
 name|parentsFilter
 decl_stmt|;
 DECL|field|scoreMode
@@ -505,7 +477,7 @@ parameter_list|,
 name|Weight
 name|childWeight
 parameter_list|,
-name|BitDocIdSetFilter
+name|BitSetProducer
 name|parentsFilter
 parameter_list|,
 name|ScoreMode
@@ -676,12 +648,12 @@ block|}
 comment|// NOTE: this does not take accept docs into account, the responsibility
 comment|// to not match deleted docs is on the scorer
 specifier|final
-name|BitDocIdSet
+name|BitSet
 name|parents
 init|=
 name|parentsFilter
 operator|.
-name|getDocIdSet
+name|getBitSet
 argument_list|(
 name|readerContext
 argument_list|)
@@ -707,9 +679,6 @@ argument_list|,
 name|childScorer
 argument_list|,
 name|parents
-operator|.
-name|bits
-argument_list|()
 argument_list|,
 name|firstChildDoc
 argument_list|,
