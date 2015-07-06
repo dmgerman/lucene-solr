@@ -274,18 +274,6 @@ argument_list|,
 literal|200
 argument_list|)
 decl_stmt|;
-name|automata
-operator|.
-name|add
-argument_list|(
-name|Automata
-operator|.
-name|makeString
-argument_list|(
-name|s
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Util
 operator|.
 name|toUTF32
@@ -305,6 +293,8 @@ argument_list|,
 name|scratch
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
 name|strings
 operator|.
 name|add
@@ -313,6 +303,19 @@ name|scratch
 operator|.
 name|toIntsRef
 argument_list|()
+argument_list|)
+condition|)
+block|{
+name|automata
+operator|.
+name|add
+argument_list|(
+name|Automata
+operator|.
+name|makeString
+argument_list|(
+name|s
+argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
@@ -331,6 +334,7 @@ operator|+
 name|s
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// TODO: we could sometimes use

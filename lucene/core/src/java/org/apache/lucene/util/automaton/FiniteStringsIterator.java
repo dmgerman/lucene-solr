@@ -85,7 +85,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Iterates all accepted strings.  *  *<p>If the {@link Automaton} has cycles then this iterator may throw an {@code  * IllegalArgumentException}, but this is not guaranteed!  *  *<p>Be aware that the iteration order is implementation dependent  * and may change across releases.  *  * @lucene.experimental  */
+comment|/**  * Iterates all accepted strings.  *  *<p>If the {@link Automaton} has cycles then this iterator may throw an {@code  * IllegalArgumentException}, but this is not guaranteed!  *  *<p>Be aware that the iteration order is implementation dependent  * and may change across releases.  *  *<p>If the automaton is not determinized then it's possible this iterator  * will return duplicates.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
