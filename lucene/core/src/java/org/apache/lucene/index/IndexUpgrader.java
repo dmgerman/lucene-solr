@@ -169,6 +169,15 @@ specifier|final
 class|class
 name|IndexUpgrader
 block|{
+DECL|field|LOG_PREFIX
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|LOG_PREFIX
+init|=
+literal|"IndexUpgrader"
+decl_stmt|;
 annotation|@
 name|SuppressForbidden
 argument_list|(
@@ -786,6 +795,8 @@ name|KeepOnlyLastCommitDeletionPolicy
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 specifier|final
 name|IndexWriter
 name|w
@@ -797,8 +808,7 @@ name|dir
 argument_list|,
 name|iwc
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
 name|InfoStream
 name|infoStream
@@ -814,7 +824,7 @@ name|infoStream
 operator|.
 name|isEnabled
 argument_list|(
-literal|"IndexUpgrader"
+name|LOG_PREFIX
 argument_list|)
 condition|)
 block|{
@@ -822,7 +832,7 @@ name|infoStream
 operator|.
 name|message
 argument_list|(
-literal|"IndexUpgrader"
+name|LOG_PREFIX
 argument_list|,
 literal|"Upgrading all pre-"
 operator|+
@@ -857,7 +867,7 @@ name|infoStream
 operator|.
 name|isEnabled
 argument_list|(
-literal|"IndexUpgrader"
+name|LOG_PREFIX
 argument_list|)
 condition|)
 block|{
@@ -865,7 +875,7 @@ name|infoStream
 operator|.
 name|message
 argument_list|(
-literal|"IndexUpgrader"
+name|LOG_PREFIX
 argument_list|,
 literal|"All segments upgraded to version "
 operator|+
@@ -874,15 +884,58 @@ operator|.
 name|LATEST
 argument_list|)
 expr_stmt|;
+name|infoStream
+operator|.
+name|message
+argument_list|(
+name|LOG_PREFIX
+argument_list|,
+literal|"Enforcing commit to rewrite all index metadata..."
+argument_list|)
+expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
 name|w
 operator|.
-name|close
+name|setCommitData
+argument_list|(
+name|w
+operator|.
+name|getCommitData
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// fake change to enforce a commit (e.g. if index has no segments)
+assert|assert
+name|w
+operator|.
+name|hasUncommittedChanges
+argument_list|()
+assert|;
+name|w
+operator|.
+name|commit
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+name|LOG_PREFIX
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+name|LOG_PREFIX
+argument_list|,
+literal|"Committed upgraded metadata to index."
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
