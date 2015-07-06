@@ -128,6 +128,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicBoolean
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1987,6 +2001,14 @@ specifier|final
 name|QueryCachingPolicy
 name|policy
 decl_stmt|;
+comment|// we use an AtomicBoolean because Weight.scorer may be called from multiple
+comment|// threads when IndexSearcher is created with threads
+DECL|field|used
+specifier|private
+specifier|final
+name|AtomicBoolean
+name|used
+decl_stmt|;
 DECL|method|CachingWrapperWeight
 name|CachingWrapperWeight
 parameter_list|(
@@ -2016,6 +2038,14 @@ operator|.
 name|policy
 operator|=
 name|policy
+expr_stmt|;
+name|used
+operator|=
+operator|new
+name|AtomicBoolean
+argument_list|(
+literal|false
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -2092,11 +2122,14 @@ name|IOException
 block|{
 if|if
 condition|(
-name|context
+name|used
 operator|.
-name|ord
-operator|==
-literal|0
+name|compareAndSet
+argument_list|(
+literal|false
+argument_list|,
+literal|true
+argument_list|)
 condition|)
 block|{
 name|policy
