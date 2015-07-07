@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -27,6 +37,20 @@ operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrDocument
 import|;
 end_import
 
@@ -59,6 +83,20 @@ operator|.
 name|params
 operator|.
 name|ModifiableSolrParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|response
+operator|.
+name|SolrQueryResponse
 import|;
 end_import
 
@@ -128,6 +166,16 @@ name|id
 init|=
 literal|"id"
 decl_stmt|;
+name|String
+name|FIELD1
+init|=
+literal|"lowerfilt"
+decl_stmt|;
+name|String
+name|FIELD2
+init|=
+literal|"lowerfilt1"
+decl_stmt|;
 name|delQ
 argument_list|(
 literal|"*:*"
@@ -141,7 +189,7 @@ name|id
 argument_list|,
 literal|"1"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"toyota"
 argument_list|)
@@ -155,7 +203,7 @@ name|id
 argument_list|,
 literal|"2"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"chevrolet"
 argument_list|)
@@ -169,7 +217,7 @@ name|id
 argument_list|,
 literal|"3"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"suzuki"
 argument_list|)
@@ -183,7 +231,7 @@ name|id
 argument_list|,
 literal|"4"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"ford"
 argument_list|)
@@ -197,7 +245,7 @@ name|id
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"ferrari"
 argument_list|)
@@ -211,7 +259,7 @@ name|id
 argument_list|,
 literal|"6"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"jaguar"
 argument_list|)
@@ -225,7 +273,7 @@ name|id
 argument_list|,
 literal|"7"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"mclaren moon or the moon and moon moon shine "
 operator|+
@@ -241,7 +289,7 @@ name|id
 argument_list|,
 literal|"8"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"sonata"
 argument_list|)
@@ -255,7 +303,7 @@ name|id
 argument_list|,
 literal|"9"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The quick red fox jumped over the lazy big "
 operator|+
@@ -271,7 +319,7 @@ name|id
 argument_list|,
 literal|"10"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"blue"
 argument_list|)
@@ -285,7 +333,7 @@ name|id
 argument_list|,
 literal|"12"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"glue"
 argument_list|)
@@ -299,7 +347,7 @@ name|id
 argument_list|,
 literal|"13"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The quote red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -313,7 +361,7 @@ name|id
 argument_list|,
 literal|"14"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The quote red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -327,7 +375,7 @@ name|id
 argument_list|,
 literal|"15"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The fat red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -341,7 +389,7 @@ name|id
 argument_list|,
 literal|"16"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The slim red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -355,7 +403,7 @@ name|id
 argument_list|,
 literal|"17"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The quote red fox jumped moon over the lazy "
 operator|+
@@ -371,7 +419,7 @@ name|id
 argument_list|,
 literal|"18"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The quote red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -385,7 +433,7 @@ name|id
 argument_list|,
 literal|"19"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The hose red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -399,7 +447,7 @@ name|id
 argument_list|,
 literal|"20"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The quote red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -413,7 +461,7 @@ name|id
 argument_list|,
 literal|"21"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The court red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -427,7 +475,7 @@ name|id
 argument_list|,
 literal|"22"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The quote red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -441,7 +489,7 @@ name|id
 argument_list|,
 literal|"23"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The quote red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -455,7 +503,7 @@ name|id
 argument_list|,
 literal|"24"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"The file red fox jumped over the lazy brown dogs."
 argument_list|)
@@ -469,9 +517,123 @@ name|id
 argument_list|,
 literal|"25"
 argument_list|,
-literal|"lowerfilt"
+name|FIELD1
 argument_list|,
 literal|"rod fix"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+name|id
+argument_list|,
+literal|"26"
+argument_list|,
+name|FIELD1
+argument_list|,
+literal|"bmw usa 328i"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+name|id
+argument_list|,
+literal|"27"
+argument_list|,
+name|FIELD1
+argument_list|,
+literal|"bmw usa 535i"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+name|id
+argument_list|,
+literal|"28"
+argument_list|,
+name|FIELD1
+argument_list|,
+literal|"bmw 750Li"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+name|id
+argument_list|,
+literal|"29"
+argument_list|,
+name|FIELD1
+argument_list|,
+literal|"bmw usa"
+argument_list|,
+name|FIELD2
+argument_list|,
+literal|"red green blue"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+name|id
+argument_list|,
+literal|"30"
+argument_list|,
+name|FIELD1
+argument_list|,
+literal|"The quote red fox jumped over the lazy brown dogs."
+argument_list|,
+name|FIELD2
+argument_list|,
+literal|"red green yellow"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+name|id
+argument_list|,
+literal|"31"
+argument_list|,
+name|FIELD1
+argument_list|,
+literal|"The fat red fox jumped over the lazy brown dogs."
+argument_list|,
+name|FIELD2
+argument_list|,
+literal|"green blue yellow"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+name|id
+argument_list|,
+literal|"32"
+argument_list|,
+name|FIELD1
+argument_list|,
+literal|"The slim red fox jumped over the lazy brown dogs."
+argument_list|,
+name|FIELD2
+argument_list|,
+literal|"yellow white black"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -525,6 +687,164 @@ argument_list|,
 literal|"//result/doc[9]/int[@name='id'][.='22']"
 argument_list|,
 literal|"//result/doc[10]/int[@name='id'][.='23']"
+argument_list|)
+expr_stmt|;
+name|params
+operator|=
+operator|new
+name|ModifiableSolrParams
+argument_list|()
+expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|Q
+argument_list|,
+literal|"{!mlt qf=lowerfilt mindf=0 mintf=1}26"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|DEBUG
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|,
+literal|"//result/doc[1]/int[@name='id'][.='26']"
+argument_list|,
+literal|"//result/doc[2]/int[@name='id'][.='29']"
+argument_list|,
+literal|"//result/doc[3]/int[@name='id'][.='27']"
+argument_list|,
+literal|"//result/doc[4]/int[@name='id'][.='28']"
+argument_list|)
+expr_stmt|;
+name|params
+operator|=
+operator|new
+name|ModifiableSolrParams
+argument_list|()
+expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|Q
+argument_list|,
+literal|"{!mlt qf=lowerfilt mindf=10 mintf=1}26"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|DEBUG
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='0']"
+argument_list|)
+expr_stmt|;
+name|params
+operator|=
+operator|new
+name|ModifiableSolrParams
+argument_list|()
+expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|Q
+argument_list|,
+literal|"{!mlt qf=lowerfilt minwl=3 mintf=1 mindf=1}26"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|DEBUG
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='4']"
+argument_list|)
+expr_stmt|;
+name|params
+operator|=
+operator|new
+name|ModifiableSolrParams
+argument_list|()
+expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|Q
+argument_list|,
+literal|"{!mlt qf=lowerfilt minwl=4 mintf=1 mindf=1}26"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|DEBUG
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
 argument_list|)
 expr_stmt|;
 block|}

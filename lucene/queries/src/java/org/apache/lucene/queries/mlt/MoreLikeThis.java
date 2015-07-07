@@ -2105,6 +2105,13 @@ argument_list|(
 name|field
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|fieldValues
+operator|==
+literal|null
+condition|)
+continue|continue;
 for|for
 control|(
 name|Object
