@@ -715,7 +715,7 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-literal|0
+literal|1
 argument_list|,
 literal|3
 argument_list|)
