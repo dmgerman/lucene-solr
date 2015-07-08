@@ -162,16 +162,6 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|Test
 import|;
 end_import
@@ -212,6 +202,44 @@ name|RandomizedRunner
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ThreadLeakLingering
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|fail
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|Assert
+operator|.
+name|assertEquals
+import|;
+end_import
+
 begin_comment
 comment|/* WARNING: This test does *not* extend LuceneTestCase to prevent static class  * initialization when spawned as subprocess (and please let default codecs alive)! */
 end_comment
@@ -224,12 +252,18 @@ name|RandomizedRunner
 operator|.
 name|class
 argument_list|)
+annotation|@
+name|ThreadLeakLingering
+argument_list|(
+name|linger
+operator|=
+literal|5000
+argument_list|)
+comment|// Linger a bit waiting for threadpool threads to die.
 DECL|class|TestCodecLoadingDeadlock
 specifier|public
 class|class
 name|TestCodecLoadingDeadlock
-extends|extends
-name|Assert
 block|{
 annotation|@
 name|Test
