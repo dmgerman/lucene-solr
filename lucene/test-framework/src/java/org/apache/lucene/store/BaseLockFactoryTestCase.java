@@ -1055,6 +1055,23 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: WriterThread iter="
+operator|+
+name|i
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 name|writer

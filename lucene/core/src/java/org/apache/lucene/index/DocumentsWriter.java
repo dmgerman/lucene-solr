@@ -1657,6 +1657,8 @@ operator|new
 name|DocumentsWriterPerThread
 argument_list|(
 name|writer
+argument_list|,
+name|writer
 operator|.
 name|newSegmentName
 argument_list|()

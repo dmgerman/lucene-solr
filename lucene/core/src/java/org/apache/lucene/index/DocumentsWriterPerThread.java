@@ -835,10 +835,19 @@ specifier|final
 name|boolean
 name|enableTestPoints
 decl_stmt|;
+DECL|field|indexWriter
+specifier|private
+specifier|final
+name|IndexWriter
+name|indexWriter
+decl_stmt|;
 DECL|method|DocumentsWriterPerThread
 specifier|public
 name|DocumentsWriterPerThread
 parameter_list|(
+name|IndexWriter
+name|writer
+parameter_list|,
 name|String
 name|segmentName
 parameter_list|,
@@ -871,6 +880,12 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|this
+operator|.
+name|indexWriter
+operator|=
+name|writer
+expr_stmt|;
 name|this
 operator|.
 name|directoryOrig
@@ -2508,7 +2523,7 @@ name|files
 argument_list|()
 decl_stmt|;
 comment|// TODO: like addIndexes, we are relying on createCompoundFile to successfully cleanup...
-name|IndexWriter
+name|indexWriter
 operator|.
 name|createCompoundFile
 argument_list|(

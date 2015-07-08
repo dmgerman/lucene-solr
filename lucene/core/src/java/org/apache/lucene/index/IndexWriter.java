@@ -2625,6 +2625,15 @@ name|fromReader
 init|=
 literal|false
 decl_stmt|;
+name|String
+index|[]
+name|files
+init|=
+name|directory
+operator|.
+name|listAll
+argument_list|()
+decl_stmt|;
 comment|// Set up our initial SegmentInfos:
 name|IndexCommit
 name|commit
@@ -2964,15 +2973,6 @@ else|else
 block|{
 comment|// Init from either the latest commit point, or an explicit prior commit point:
 name|String
-index|[]
-name|files
-init|=
-name|directory
-operator|.
-name|listAll
-argument_list|()
-decl_stmt|;
-name|String
 name|lastSegmentsFile
 init|=
 name|SegmentInfos
@@ -3171,6 +3171,7 @@ argument_list|()
 expr_stmt|;
 comment|// Default deleter (for backwards compatibility) is
 comment|// KeepOnlyLastCommitDeleter:
+comment|// Sync'd is silly here, but IFD asserts we sync'd on the IW instance:
 synchronized|synchronized
 init|(
 name|this
@@ -3181,6 +3182,8 @@ operator|=
 operator|new
 name|IndexFileDeleter
 argument_list|(
+name|files
+argument_list|,
 name|directoryOrig
 argument_list|,
 name|directory
@@ -8244,25 +8247,13 @@ range|:
 name|infos
 control|)
 block|{
-name|IOUtils
-operator|.
-name|deleteFilesIgnoringExceptions
+comment|// Safe: these files must exist
+name|deleteNewFiles
 argument_list|(
-name|directory
-argument_list|,
 name|sipc
 operator|.
 name|files
 argument_list|()
-operator|.
-name|toArray
-argument_list|(
-operator|new
-name|String
-index|[
-literal|0
-index|]
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -8309,34 +8300,15 @@ range|:
 name|infos
 control|)
 block|{
-for|for
-control|(
-name|String
-name|file
-range|:
+comment|// Safe: these files must exist
+name|deleteNewFiles
+argument_list|(
 name|sipc
 operator|.
 name|files
 argument_list|()
-control|)
-block|{
-try|try
-block|{
-name|directory
-operator|.
-name|deleteFile
-argument_list|(
-name|file
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{                 }
-block|}
 block|}
 block|}
 block|}
@@ -8716,8 +8688,7 @@ condition|(
 name|stopMerges
 condition|)
 block|{
-name|deleter
-operator|.
+comment|// Safe: these files must exist
 name|deleteNewFiles
 argument_list|(
 name|infoPerCommit
@@ -8791,19 +8762,11 @@ finally|finally
 block|{
 comment|// delete new non cfs files directly: they were never
 comment|// registered with IFD
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-name|deleter
-operator|.
 name|deleteNewFiles
 argument_list|(
 name|filesToDelete
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|info
 operator|.
@@ -8888,11 +8851,10 @@ condition|(
 name|stopMerges
 condition|)
 block|{
-name|deleter
-operator|.
+comment|// Safe: these files must exist
 name|deleteNewFiles
 argument_list|(
-name|info
+name|infoPerCommit
 operator|.
 name|files
 argument_list|()
@@ -9063,6 +9025,17 @@ name|success
 init|=
 literal|false
 decl_stmt|;
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|copiedFiles
+init|=
+operator|new
+name|HashSet
+argument_list|<>
+argument_list|()
+decl_stmt|;
 try|try
 block|{
 comment|// Copy the segment's files
@@ -9125,6 +9098,13 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
+name|copiedFiles
+operator|.
+name|add
+argument_list|(
+name|newFileName
+argument_list|)
+expr_stmt|;
 block|}
 name|success
 operator|=
@@ -9139,29 +9119,25 @@ operator|!
 name|success
 condition|)
 block|{
-name|IOUtils
-operator|.
-name|deleteFilesIgnoringExceptions
+comment|// Safe: these files must exist
+name|deleteNewFiles
 argument_list|(
-name|directory
-argument_list|,
-name|newInfo
-operator|.
-name|files
-argument_list|()
-operator|.
-name|toArray
-argument_list|(
-operator|new
-name|String
-index|[
-literal|0
-index|]
-argument_list|)
+name|copiedFiles
 argument_list|)
 expr_stmt|;
 block|}
 block|}
+assert|assert
+name|copiedFiles
+operator|.
+name|equals
+argument_list|(
+name|newInfoPerCommit
+operator|.
+name|files
+argument_list|()
+argument_list|)
+assert|;
 return|return
 name|newInfoPerCommit
 return|;
@@ -12372,8 +12348,7 @@ operator|.
 name|info
 argument_list|)
 expr_stmt|;
-name|deleter
-operator|.
+comment|// Safe: these files must exist:
 name|deleteNewFiles
 argument_list|(
 name|merge
@@ -12687,8 +12662,7 @@ operator|.
 name|info
 argument_list|)
 expr_stmt|;
-name|deleter
-operator|.
+comment|// Safe: these files must exist
 name|deleteNewFiles
 argument_list|(
 name|merge
@@ -13072,8 +13046,9 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-operator|!
 name|success
+operator|==
+literal|false
 condition|)
 block|{
 if|if
@@ -15697,8 +15672,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
-name|ioe
+name|Throwable
+name|t
 parameter_list|)
 block|{
 synchronized|synchronized
@@ -15716,42 +15691,52 @@ name|getAbort
 argument_list|()
 condition|)
 block|{
-comment|// This can happen if rollback or close(false)
-comment|// is called -- fall through to logic below to
-comment|// remove the partially created CFS:
+comment|// This can happen if rollback is called while we were building
+comment|// our CFS -- fall through to logic below to remove the non-CFS
+comment|// merged files:
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"IW"
+argument_list|,
+literal|"hit merge abort exception creating compound file during merge"
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+literal|0
+return|;
 block|}
 else|else
 block|{
 name|handleMergeException
 argument_list|(
-name|ioe
-argument_list|,
-name|merge
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-name|handleMergeException
-argument_list|(
 name|t
 argument_list|,
 name|merge
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 block|}
 finally|finally
 block|{
 if|if
 condition|(
-operator|!
 name|success
+operator|==
+literal|false
 condition|)
 block|{
 if|if
@@ -15774,45 +15759,7 @@ literal|"hit exception creating compound file during merge"
 argument_list|)
 expr_stmt|;
 block|}
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|cfsFiles
-init|=
-operator|new
-name|HashSet
-argument_list|<>
-argument_list|(
-name|trackingCFSDir
-operator|.
-name|getCreatedFiles
-argument_list|()
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|String
-name|cfsFile
-range|:
-name|cfsFiles
-control|)
-block|{
-name|deleter
-operator|.
-name|deleteFile
-argument_list|(
-name|cfsFile
-argument_list|)
-expr_stmt|;
-block|}
-name|deleter
-operator|.
+comment|// Safe: these files must exist
 name|deleteNewFiles
 argument_list|(
 name|merge
@@ -15823,7 +15770,6 @@ name|files
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|// So that, if we hit exc in deleteNewFiles (next)
@@ -15840,8 +15786,6 @@ init|)
 block|{
 comment|// delete new non cfs files directly: they were never
 comment|// registered with IFD
-name|deleter
-operator|.
 name|deleteNewFiles
 argument_list|(
 name|filesToRemove
@@ -15877,38 +15821,17 @@ literal|"abort merge after building CFS"
 argument_list|)
 expr_stmt|;
 block|}
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|cfsFiles
-init|=
-operator|new
-name|HashSet
-argument_list|<>
+comment|// Safe: these files must exist
+name|deleteNewFiles
 argument_list|(
-name|trackingCFSDir
+name|merge
 operator|.
-name|getCreatedFiles
+name|info
+operator|.
+name|files
 argument_list|()
 argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|String
-name|cfsFile
-range|:
-name|cfsFiles
-control|)
-block|{
-name|deleter
-operator|.
-name|deleteFile
-argument_list|(
-name|cfsFile
-argument_list|)
 expr_stmt|;
-block|}
 return|return
 literal|0
 return|;
@@ -15978,13 +15901,7 @@ operator|!
 name|success2
 condition|)
 block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
-name|deleter
-operator|.
+comment|// Safe: these files must exist
 name|deleteNewFiles
 argument_list|(
 name|merge
@@ -15995,7 +15912,6 @@ name|files
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|// TODO: ideally we would freeze merge.info here!!
@@ -16157,8 +16073,9 @@ comment|// Readers are already closed in commitMerge if we didn't hit
 comment|// an exc:
 if|if
 condition|(
-operator|!
 name|success
+operator|==
+literal|false
 condition|)
 block|{
 name|closeMergeReaders
@@ -17500,7 +17417,6 @@ expr_stmt|;
 block|}
 comment|/**    * NOTE: this method creates a compound file for all files returned by    * info.files(). While, generally, this may include separate norms and    * deletion files, this SegmentInfo must not reference such files when this    * method is called, because they are not allowed within a compound file.    */
 DECL|method|createCompoundFile
-specifier|static
 specifier|final
 name|void
 name|createCompoundFile
@@ -17600,49 +17516,22 @@ operator|!
 name|success
 condition|)
 block|{
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|cfsFiles
-init|=
-operator|new
-name|HashSet
-argument_list|<>
+comment|// Safe: these files must exist
+name|deleteNewFiles
 argument_list|(
 name|directory
 operator|.
 name|getCreatedFiles
 argument_list|()
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|String
-name|file
-range|:
-name|cfsFiles
-control|)
-block|{
-name|IOUtils
-operator|.
-name|deleteFilesIgnoringExceptions
-argument_list|(
-name|directory
-argument_list|,
-name|file
 argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 comment|// Replace all previous files with the CFS/CFE files:
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|siFiles
-init|=
+name|info
+operator|.
+name|setFiles
+argument_list|(
 operator|new
 name|HashSet
 argument_list|<>
@@ -17652,12 +17541,6 @@ operator|.
 name|getCreatedFiles
 argument_list|()
 argument_list|)
-decl_stmt|;
-name|info
-operator|.
-name|setFiles
-argument_list|(
-name|siFiles
 argument_list|)
 expr_stmt|;
 block|}
@@ -17992,7 +17875,6 @@ function_decl|;
 block|}
 comment|/** Used only by asserts: returns true if the file exists    *  (can be opened), false if it cannot be opened, and    *  (unlike Java's File.exists) throws IOException if    *  there's some unexpected error. */
 DECL|method|slowFileExists
-specifier|private
 specifier|static
 name|boolean
 name|slowFileExists
