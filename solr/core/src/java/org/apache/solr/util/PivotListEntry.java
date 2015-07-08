@@ -107,6 +107,12 @@ name|PIVOT
 block|,
 DECL|enum constant|STATS
 name|STATS
+block|,
+DECL|enum constant|QUERIES
+name|QUERIES
+block|,
+DECL|enum constant|RANGES
+name|RANGES
 block|;
 DECL|field|MIN_INDEX_OF_OPTIONAL
 specifier|private

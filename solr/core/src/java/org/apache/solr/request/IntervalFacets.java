@@ -541,6 +541,7 @@ expr_stmt|;
 block|}
 comment|/**    * Constructor that accepts an already constructed array of {@link FacetInterval} objects. This array needs to be sorted    * by start value in weakly ascending order. null values are not allowed in the array.    */
 DECL|method|IntervalFacets
+specifier|public
 name|IntervalFacets
 parameter_list|(
 name|SchemaField
@@ -1807,6 +1808,7 @@ name|GREATER_THAN_END
 block|,   }
 comment|/**    * Helper class to match and count of documents in specified intervals    */
 DECL|class|FacetInterval
+specifier|public
 specifier|static
 class|class
 name|FacetInterval
@@ -2407,6 +2409,7 @@ block|}
 block|}
 comment|/**      *       * Constructor that accepts already parsed values of start and end. This constructor      * can only be used with numeric field types.      *       * @param schemaField schemaField for this range      * @param startStr String representation of the start value of this interval. Can be a "*".      * @param endStr String representation of the end value of this interval. Can be a "*".      * @param includeLower Indicates weather this interval should include values equal to start      * @param includeUpper Indicates weather this interval should include values equal to end      * @param key String key of this interval      */
 DECL|method|FacetInterval
+specifier|public
 name|FacetInterval
 parameter_list|(
 name|SchemaField
