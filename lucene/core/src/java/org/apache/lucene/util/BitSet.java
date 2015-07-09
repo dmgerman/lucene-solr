@@ -55,7 +55,7 @@ name|MutableBits
 implements|,
 name|Accountable
 block|{
-comment|/** Build a {@link BitSet} from the content of the provided {@link DocIdSetIterator}.    *  NOTE: this will consume the {@link BitSet}. */
+comment|/** Build a {@link BitSet} from the content of the provided {@link DocIdSetIterator}.    *  NOTE: this will fully consume the {@link DocIdSetIterator}. */
 DECL|method|of
 specifier|public
 specifier|static
