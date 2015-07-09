@@ -138,20 +138,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DocIdSetIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|Filter
 import|;
 end_import
@@ -182,9 +168,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|spatial
+operator|.
 name|util
 operator|.
-name|BitDocIdSet
+name|BitDocIdSetBuilder
 import|;
 end_import
 
@@ -585,9 +573,7 @@ specifier|protected
 name|void
 name|collectDocs
 parameter_list|(
-name|BitDocIdSet
-operator|.
-name|Builder
+name|BitDocIdSetBuilder
 name|bitSetBuilder
 parameter_list|)
 throws|throws

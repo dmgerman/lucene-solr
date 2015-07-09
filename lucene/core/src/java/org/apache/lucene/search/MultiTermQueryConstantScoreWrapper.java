@@ -180,7 +180,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BitDocIdSet
+name|BytesRef
 import|;
 end_import
 
@@ -194,7 +194,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|DocIdSetBuilder
 import|;
 end_import
 
@@ -293,24 +293,24 @@ name|totalTermFreq
 expr_stmt|;
 block|}
 block|}
-DECL|class|WeightOrBitSet
+DECL|class|WeightOrDocIdSet
 specifier|private
 specifier|static
 class|class
-name|WeightOrBitSet
+name|WeightOrDocIdSet
 block|{
 DECL|field|weight
 specifier|final
 name|Weight
 name|weight
 decl_stmt|;
-DECL|field|bitset
+DECL|field|set
 specifier|final
-name|BitDocIdSet
-name|bitset
+name|DocIdSet
+name|set
 decl_stmt|;
-DECL|method|WeightOrBitSet
-name|WeightOrBitSet
+DECL|method|WeightOrDocIdSet
+name|WeightOrDocIdSet
 parameter_list|(
 name|Weight
 name|weight
@@ -329,21 +329,21 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|bitset
+name|set
 operator|=
 literal|null
 expr_stmt|;
 block|}
-DECL|method|WeightOrBitSet
-name|WeightOrBitSet
+DECL|method|WeightOrDocIdSet
+name|WeightOrDocIdSet
 parameter_list|(
-name|BitDocIdSet
+name|DocIdSet
 name|bitset
 parameter_list|)
 block|{
 name|this
 operator|.
-name|bitset
+name|set
 operator|=
 name|bitset
 expr_stmt|;
@@ -660,7 +660,7 @@ return|;
 block|}
 comment|/**        * On the given leaf context, try to either rewrite to a disjunction if        * there are few terms, or build a bitset containing matching docs.        */
 specifier|private
-name|WeightOrBitSet
+name|WeightOrDocIdSet
 name|rewrite
 parameter_list|(
 name|LeafReaderContext
@@ -695,10 +695,10 @@ block|{
 comment|// field does not exist
 return|return
 operator|new
-name|WeightOrBitSet
+name|WeightOrDocIdSet
 argument_list|(
 operator|(
-name|BitDocIdSet
+name|DocIdSet
 operator|)
 literal|null
 argument_list|)
@@ -853,7 +853,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|WeightOrBitSet
+name|WeightOrDocIdSet
 argument_list|(
 name|searcher
 operator|.
@@ -872,15 +872,11 @@ argument_list|)
 return|;
 block|}
 comment|// Too many terms: go back to the terms we already collected and start building the bit set
-name|BitDocIdSet
-operator|.
-name|Builder
+name|DocIdSetBuilder
 name|builder
 init|=
 operator|new
-name|BitDocIdSet
-operator|.
-name|Builder
+name|DocIdSetBuilder
 argument_list|(
 name|context
 operator|.
@@ -945,7 +941,7 @@ argument_list|)
 expr_stmt|;
 name|builder
 operator|.
-name|or
+name|add
 argument_list|(
 name|docs
 argument_list|)
@@ -970,7 +966,7 @@ argument_list|)
 expr_stmt|;
 name|builder
 operator|.
-name|or
+name|add
 argument_list|(
 name|docs
 argument_list|)
@@ -988,7 +984,7 @@ condition|)
 do|;
 return|return
 operator|new
-name|WeightOrBitSet
+name|WeightOrDocIdSet
 argument_list|(
 name|builder
 operator|.
@@ -1001,9 +997,11 @@ specifier|private
 name|Scorer
 name|scorer
 parameter_list|(
-name|BitDocIdSet
+name|DocIdSet
 name|set
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -1062,7 +1060,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|WeightOrBitSet
+name|WeightOrDocIdSet
 name|weightOrBitSet
 init|=
 name|rewrite
@@ -1100,7 +1098,7 @@ name|scorer
 argument_list|(
 name|weightOrBitSet
 operator|.
-name|bitset
+name|set
 argument_list|)
 decl_stmt|;
 if|if
@@ -1136,7 +1134,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|WeightOrBitSet
+name|WeightOrDocIdSet
 name|weightOrBitSet
 init|=
 name|rewrite
@@ -1171,7 +1169,7 @@ name|scorer
 argument_list|(
 name|weightOrBitSet
 operator|.
-name|bitset
+name|set
 argument_list|)
 return|;
 block|}
