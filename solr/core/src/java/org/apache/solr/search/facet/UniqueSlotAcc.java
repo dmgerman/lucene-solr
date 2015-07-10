@@ -1870,7 +1870,7 @@ expr_stmt|;
 block|}
 name|docToTerm
 operator|.
-name|getTerms
+name|getBigTerms
 argument_list|(
 name|doc
 operator|+
@@ -1880,6 +1880,17 @@ name|this
 argument_list|)
 expr_stmt|;
 comment|// this will call back to our Callback.call(int termNum)
+name|docToTerm
+operator|.
+name|getSmallTerms
+argument_list|(
+name|doc
+operator|+
+name|currentDocBase
+argument_list|,
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override

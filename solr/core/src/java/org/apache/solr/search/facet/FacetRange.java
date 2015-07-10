@@ -1496,9 +1496,6 @@ argument_list|,
 name|slotCount
 argument_list|)
 expr_stmt|;
-name|prepareForCollection
-argument_list|()
-expr_stmt|;
 for|for
 control|(
 name|int
