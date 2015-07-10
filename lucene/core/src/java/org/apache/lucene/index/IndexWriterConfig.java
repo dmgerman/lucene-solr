@@ -253,16 +253,6 @@ name|DEFAULT_RAM_PER_THREAD_HARD_LIMIT_MB
 init|=
 literal|1945
 decl_stmt|;
-comment|/** The maximum number of simultaneous threads that may be    *  indexing documents at once in IndexWriter; if more    *  than this many threads arrive they will wait for    *  others to finish. Default value is 8. */
-DECL|field|DEFAULT_MAX_THREAD_STATES
-specifier|public
-specifier|final
-specifier|static
-name|int
-name|DEFAULT_MAX_THREAD_STATES
-init|=
-literal|8
-decl_stmt|;
 comment|/** Default value for compound file system for newly written segments    *  (set to<code>true</code>). For batch indexing with very large     *  ram buffers use<code>false</code> */
 DECL|field|DEFAULT_USE_COMPOUND_FILE_SYSTEM
 specifier|public
@@ -677,45 +667,6 @@ parameter_list|()
 block|{
 return|return
 name|indexerThreadPool
-return|;
-block|}
-comment|/**    * Sets the max number of simultaneous threads that may be indexing documents    * at once in IndexWriter. Values&lt; 1 are invalid and if passed    *<code>maxThreadStates</code> will be set to    * {@link #DEFAULT_MAX_THREAD_STATES}.    *    *<p>Only takes effect when IndexWriter is first created. */
-DECL|method|setMaxThreadStates
-specifier|public
-name|IndexWriterConfig
-name|setMaxThreadStates
-parameter_list|(
-name|int
-name|maxThreadStates
-parameter_list|)
-block|{
-name|this
-operator|.
-name|indexerThreadPool
-operator|=
-operator|new
-name|DocumentsWriterPerThreadPool
-argument_list|(
-name|maxThreadStates
-argument_list|)
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getMaxThreadStates
-specifier|public
-name|int
-name|getMaxThreadStates
-parameter_list|()
-block|{
-return|return
-name|indexerThreadPool
-operator|.
-name|getMaxThreadStates
-argument_list|()
 return|;
 block|}
 comment|/** By default, IndexWriter does not pool the    *  SegmentReaders it must open for deletions and    *  merging, unless a near-real-time reader has been    *  obtained by calling {@link DirectoryReader#open(IndexWriter, boolean)}.    *  This method lets you enable pooling without getting a    *  near-real-time reader.  NOTE: if you set this to    *  false, IndexWriter will still pool readers once    *  {@link DirectoryReader#open(IndexWriter, boolean)} is called.    *    *<p>Only takes effect when IndexWriter is first created. */

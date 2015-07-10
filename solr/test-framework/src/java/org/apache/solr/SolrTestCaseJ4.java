@@ -2494,57 +2494,6 @@ argument_list|,
 name|mergeSchedulerClass
 argument_list|)
 expr_stmt|;
-comment|// don't ask iwc.getMaxThreadStates(), sometimes newIWC uses
-comment|// RandomDocumentsWriterPerThreadPool and all hell breaks loose
-name|int
-name|maxIndexingThreads
-init|=
-name|rarely
-argument_list|(
-name|random
-argument_list|()
-argument_list|)
-condition|?
-name|TestUtil
-operator|.
-name|nextInt
-argument_list|(
-name|random
-argument_list|()
-argument_list|,
-literal|5
-argument_list|,
-literal|20
-argument_list|)
-comment|// crazy value
-else|:
-name|TestUtil
-operator|.
-name|nextInt
-argument_list|(
-name|random
-argument_list|()
-argument_list|,
-literal|1
-argument_list|,
-literal|4
-argument_list|)
-decl_stmt|;
-comment|// reasonable value
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"solr.tests.maxIndexingThreads"
-argument_list|,
-name|String
-operator|.
-name|valueOf
-argument_list|(
-name|maxIndexingThreads
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|getWrappedException
 specifier|public

@@ -578,7 +578,6 @@ return|;
 block|}
 DECL|method|applyAllDeletes
 specifier|private
-specifier|final
 name|boolean
 name|applyAllDeletes
 parameter_list|(
@@ -634,7 +633,6 @@ literal|false
 return|;
 block|}
 DECL|method|purgeBuffer
-specifier|final
 name|int
 name|purgeBuffer
 parameter_list|(
@@ -767,7 +765,7 @@ name|limit
 init|=
 name|perThreadPool
 operator|.
-name|getActiveThreadState
+name|getActiveThreadStateCount
 argument_list|()
 decl_stmt|;
 for|for
@@ -1025,7 +1023,6 @@ block|}
 comment|/** Returns how many documents were aborted. */
 DECL|method|abortThreadState
 specifier|private
-specifier|final
 name|int
 name|abortThreadState
 parameter_list|(
@@ -1122,7 +1119,6 @@ return|;
 block|}
 block|}
 DECL|method|unlockAllAfterAbortAll
-specifier|final
 specifier|synchronized
 name|void
 name|unlockAllAfterAbortAll
@@ -1282,10 +1278,7 @@ name|isEnabled
 argument_list|(
 literal|"DW"
 argument_list|)
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|anyChanges
 condition|)
 block|{
@@ -1319,7 +1312,6 @@ operator|+
 name|pendingChangesInCurrentFullFlush
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|anyChanges
@@ -1474,10 +1466,7 @@ name|isEnabled
 argument_list|(
 literal|"DW"
 argument_list|)
-condition|)
-block|{
-if|if
-condition|(
+operator|&&
 name|flushControl
 operator|.
 name|anyStalledThreads
@@ -1493,7 +1482,6 @@ argument_list|,
 literal|"WARNING DocumentsWriter has stalled threads; waiting"
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 name|flushControl
 operator|.
@@ -1609,7 +1597,6 @@ return|;
 block|}
 DECL|method|ensureInitialized
 specifier|private
-specifier|final
 name|void
 name|ensureInitialized
 parameter_list|(
@@ -2092,11 +2079,6 @@ name|ticket
 init|=
 literal|null
 decl_stmt|;
-name|Throwable
-name|exc
-init|=
-literal|null
-decl_stmt|;
 try|try
 block|{
 assert|assert
@@ -2280,7 +2262,7 @@ argument_list|()
 operator|>=
 name|perThreadPool
 operator|.
-name|getActiveThreadState
+name|getActiveThreadStateCount
 argument_list|()
 condition|)
 block|{
@@ -2437,7 +2419,6 @@ name|hasEvents
 return|;
 block|}
 DECL|method|subtractFlushedNumDocs
-specifier|final
 name|void
 name|subtractFlushedNumDocs
 parameter_list|(
@@ -2515,7 +2496,6 @@ return|;
 block|}
 comment|/*    * FlushAllThreads is synced by IW fullFlushLock. Flushing all threads is a    * two stage operation; the caller must ensure (in try/finally) that finishFlush    * is called after this method, to release the flush lock in DWFlushControl    */
 DECL|method|flushAllThreads
-specifier|final
 name|boolean
 name|flushAllThreads
 parameter_list|()
@@ -2707,7 +2687,6 @@ name|anythingFlushed
 return|;
 block|}
 DECL|method|finishFullFlush
-specifier|final
 name|void
 name|finishFullFlush
 parameter_list|(

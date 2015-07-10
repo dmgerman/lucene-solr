@@ -415,11 +415,7 @@ name|indexerThreadPool
 operator|=
 operator|new
 name|DocumentsWriterPerThreadPool
-argument_list|(
-name|IndexWriterConfig
-operator|.
-name|DEFAULT_MAX_THREAD_STATES
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|perThreadHardLimitMB
 operator|=
@@ -794,20 +790,6 @@ parameter_list|()
 block|{
 return|return
 name|indexerThreadPool
-return|;
-block|}
-comment|/**    * Returns the max number of simultaneous threads that may be indexing    * documents at once in IndexWriter.    */
-DECL|method|getMaxThreadStates
-specifier|public
-name|int
-name|getMaxThreadStates
-parameter_list|()
-block|{
-return|return
-name|indexerThreadPool
-operator|.
-name|getMaxThreadStates
-argument_list|()
 return|;
 block|}
 comment|/**    * Returns {@code true} if {@link IndexWriter} should pool readers even if    * {@link DirectoryReader#open(IndexWriter, boolean)} has not been called.    */

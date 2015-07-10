@@ -226,20 +226,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|IndexSearcher
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|TermQuery
 import|;
 end_import
@@ -461,19 +447,6 @@ name|newDirectory
 argument_list|()
 decl_stmt|;
 comment|// mergeFactor=2; maxBufferedDocs=2; Map docs = indexRandom(1, 3, 2, dir1);
-name|int
-name|maxThreadStates
-init|=
-literal|1
-operator|+
-name|random
-argument_list|()
-operator|.
-name|nextInt
-argument_list|(
-literal|10
-argument_list|)
-decl_stmt|;
 name|boolean
 name|doReaderPooling
 init|=
@@ -500,8 +473,6 @@ argument_list|,
 literal|100
 argument_list|,
 name|dir1
-argument_list|,
-name|maxThreadStates
 argument_list|,
 name|doReaderPooling
 argument_list|)
@@ -621,19 +592,6 @@ argument_list|)
 operator|+
 literal|2
 expr_stmt|;
-name|int
-name|maxThreadStates
-init|=
-literal|1
-operator|+
-name|random
-argument_list|()
-operator|.
-name|nextInt
-argument_list|(
-literal|10
-argument_list|)
-decl_stmt|;
 name|boolean
 name|doReaderPooling
 init|=
@@ -724,10 +682,6 @@ literal|" doPooling="
 operator|+
 name|doReaderPooling
 operator|+
-literal|" maxThreadStates="
-operator|+
-name|maxThreadStates
-operator|+
 literal|" sameFieldOrder="
 operator|+
 name|sameFieldOrder
@@ -759,8 +713,6 @@ argument_list|,
 name|range
 argument_list|,
 name|dir1
-argument_list|,
-name|maxThreadStates
 argument_list|,
 name|doReaderPooling
 argument_list|)
@@ -1240,9 +1192,6 @@ parameter_list|,
 name|Directory
 name|dir
 parameter_list|,
-name|int
-name|maxThreadStates
-parameter_list|,
 name|boolean
 name|doReaderPooling
 parameter_list|)
@@ -1298,15 +1247,6 @@ operator|.
 name|setMaxBufferedDocs
 argument_list|(
 name|maxBufferedDocs
-argument_list|)
-operator|.
-name|setIndexerThreadPool
-argument_list|(
-operator|new
-name|DocumentsWriterPerThreadPool
-argument_list|(
-name|maxThreadStates
-argument_list|)
 argument_list|)
 operator|.
 name|setReaderPooling

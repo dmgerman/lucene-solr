@@ -871,15 +871,6 @@ name|collectionProperties
 operator|.
 name|put
 argument_list|(
-literal|"solr.tests.maxIndexingThreads"
-argument_list|,
-literal|"-1"
-argument_list|)
-expr_stmt|;
-name|collectionProperties
-operator|.
-name|put
-argument_list|(
 literal|"solr.tests.ramBufferSizeMB"
 argument_list|,
 literal|"100"

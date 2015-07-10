@@ -279,16 +279,6 @@ name|LiveIndexWriterConfig
 name|iwc
 parameter_list|)
 block|{
-name|assertEquals
-argument_list|(
-literal|123
-argument_list|,
-name|iwc
-operator|.
-name|getMaxThreadStates
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|iwc

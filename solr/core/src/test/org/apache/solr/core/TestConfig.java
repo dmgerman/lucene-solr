@@ -693,22 +693,6 @@ name|numDefaultsTested
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"default maxIndexingThreads"
-argument_list|,
-name|IndexWriterConfig
-operator|.
-name|DEFAULT_MAX_THREAD_STATES
-argument_list|,
-name|sic
-operator|.
-name|maxIndexingThreads
-argument_list|)
-expr_stmt|;
-operator|++
-name|numDefaultsTested
-expr_stmt|;
-name|assertEquals
-argument_list|(
 literal|"default mergeFactor"
 argument_list|,
 operator|-
