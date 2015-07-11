@@ -511,7 +511,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"One of analysis.value or q or analysis.query parameters must be specified"
+literal|"One of analysis.fieldvalue, q, or analysis.query parameters must be specified"
 argument_list|)
 throw|;
 block|}
