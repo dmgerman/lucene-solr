@@ -352,6 +352,16 @@ name|TRANSIENT
 init|=
 literal|"transient"
 decl_stmt|;
+comment|// Node to create a replica on for ADDREPLICA at least.
+DECL|field|NODE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|NODE
+init|=
+literal|"node"
+decl_stmt|;
 DECL|enum|CoreAdminAction
 specifier|public
 enum|enum
