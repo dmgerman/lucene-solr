@@ -1054,7 +1054,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** Responsible for issuing build and rebload command to the specified {@link SolrSuggester} */
+comment|/** Responsible for issuing build and rebuild command to the specified {@link SolrSuggester} */
 annotation|@
 name|Override
 DECL|method|prepare
