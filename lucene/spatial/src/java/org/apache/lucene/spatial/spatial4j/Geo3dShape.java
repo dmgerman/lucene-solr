@@ -126,10 +126,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
-operator|.
-name|spatial4j
-operator|.
 name|geo3d
 operator|.
 name|Bounds
@@ -143,10 +139,6 @@ operator|.
 name|apache
 operator|.
 name|lucene
-operator|.
-name|spatial
-operator|.
-name|spatial4j
 operator|.
 name|geo3d
 operator|.
@@ -162,10 +154,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
-operator|.
-name|spatial4j
-operator|.
 name|geo3d
 operator|.
 name|GeoAreaFactory
@@ -179,10 +167,6 @@ operator|.
 name|apache
 operator|.
 name|lucene
-operator|.
-name|spatial
-operator|.
-name|spatial4j
 operator|.
 name|geo3d
 operator|.
@@ -198,10 +182,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
-operator|.
-name|spatial4j
-operator|.
 name|geo3d
 operator|.
 name|GeoShape
@@ -215,10 +195,6 @@ operator|.
 name|apache
 operator|.
 name|lucene
-operator|.
-name|spatial
-operator|.
-name|spatial4j
 operator|.
 name|geo3d
 operator|.

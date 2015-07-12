@@ -22,15 +22,29 @@ end_comment
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|spatial4j
+name|apache
 operator|.
-name|core
+name|lucene
 operator|.
-name|distance
+name|geo3d
 operator|.
-name|DistanceUtils
+name|GeoPoint
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo3d
+operator|.
+name|PlanetModel
 import|;
 end_import
 
@@ -55,6 +69,20 @@ operator|.
 name|junit
 operator|.
 name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|spatial4j
+operator|.
+name|core
+operator|.
+name|distance
+operator|.
+name|DistanceUtils
 import|;
 end_import
 
