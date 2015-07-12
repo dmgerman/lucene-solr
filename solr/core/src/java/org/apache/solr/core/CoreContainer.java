@@ -3881,6 +3881,13 @@ name|boolean
 name|deleteInstanceDir
 parameter_list|)
 block|{
+if|if
+condition|(
+name|name
+operator|!=
+literal|null
+condition|)
+block|{
 comment|// check for core-init errors first
 name|CoreLoadFailure
 name|loadFailure
@@ -3916,6 +3923,7 @@ name|deleteInstanceDir
 argument_list|)
 expr_stmt|;
 return|return;
+block|}
 block|}
 name|CoreDescriptor
 name|cd
