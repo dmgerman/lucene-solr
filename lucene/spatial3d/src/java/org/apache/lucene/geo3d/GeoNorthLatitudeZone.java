@@ -28,32 +28,37 @@ name|GeoNorthLatitudeZone
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** The bottom latitude of the zone */
 DECL|field|bottomLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|bottomLat
 decl_stmt|;
+comment|/** Cosine of the bottom latitude of the zone */
 DECL|field|cosBottomLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|cosBottomLat
 decl_stmt|;
+comment|/** The bottom plane of the zone */
 DECL|field|bottomPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|bottomPlane
 decl_stmt|;
+comment|/** An interior point of the zone */
 DECL|field|interiorPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|interiorPoint
 decl_stmt|;
+comment|/** Notable points: none */
 DECL|field|planePoints
-specifier|public
+specifier|protected
 specifier|final
 specifier|static
 name|GeoPoint
@@ -66,20 +71,22 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/** A point on the bottom boundary */
 DECL|field|bottomBoundaryPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|bottomBoundaryPoint
 decl_stmt|;
-comment|// Edge points
+comment|/** A reference to the point on the boundary */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
+comment|/** Constructor.    *@param planetModel is the planet model.    *@param bottomLat is the bottom latitude.    */
 DECL|method|GeoNorthLatitudeZone
 specifier|public
 name|GeoNorthLatitudeZone

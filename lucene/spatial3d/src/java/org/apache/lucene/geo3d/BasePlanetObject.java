@@ -27,12 +27,14 @@ specifier|abstract
 class|class
 name|BasePlanetObject
 block|{
+comment|/** This is the planet model embedded in all objects derived from this    * class. */
 DECL|field|planetModel
 specifier|protected
 specifier|final
 name|PlanetModel
 name|planetModel
 decl_stmt|;
+comment|/** Constructor creating class instance given a planet model.    * @param planetModel is the planet model.    */
 DECL|method|BasePlanetObject
 specifier|public
 name|BasePlanetObject

@@ -31,6 +31,7 @@ name|GeoBaseMembershipShape
 implements|implements
 name|GeoDistanceShape
 block|{
+comment|/** Constructor.    *@param planetModel is the planet model to use.    */
 DECL|method|GeoBaseDistanceShape
 specifier|public
 name|GeoBaseDistanceShape

@@ -28,95 +28,109 @@ name|GeoNorthRectangle
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** The bottom latitude of the rectangle */
 DECL|field|bottomLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|bottomLat
 decl_stmt|;
+comment|/** The left longitude */
 DECL|field|leftLon
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|leftLon
 decl_stmt|;
+comment|/** The right longitude */
 DECL|field|rightLon
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|rightLon
 decl_stmt|;
+comment|/** Cosine of the middle latitude */
 DECL|field|cosMiddleLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|cosMiddleLat
 decl_stmt|;
+comment|/** Lower right hand corner point */
 DECL|field|LRHC
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|LRHC
 decl_stmt|;
+comment|/** Lower left hand corner point */
 DECL|field|LLHC
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|LLHC
 decl_stmt|;
+comment|/** Bottom edge plane */
 DECL|field|bottomPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|bottomPlane
 decl_stmt|;
+comment|/** Left-side plane */
 DECL|field|leftPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|leftPlane
 decl_stmt|;
+comment|/** Right-side plane */
 DECL|field|rightPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|rightPlane
 decl_stmt|;
+comment|/** Bottom plane notable points */
 DECL|field|bottomPlanePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|bottomPlanePoints
 decl_stmt|;
+comment|/** Left plane notable points */
 DECL|field|leftPlanePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|leftPlanePoints
 decl_stmt|;
+comment|/** Right plane notable points */
 DECL|field|rightPlanePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|rightPlanePoints
 decl_stmt|;
+comment|/** Center point */
 DECL|field|centerPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|centerPoint
 decl_stmt|;
+comment|/** A point on the edge */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
-comment|/**    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}    */
+comment|/**    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}    *@param planetModel is the planet model.    *@param bottomLat is the bottom latitude.    *@param leftLon is the left longitude.    *@param rightLon is the right longitude.    */
 DECL|method|GeoNorthRectangle
 specifier|public
 name|GeoNorthRectangle

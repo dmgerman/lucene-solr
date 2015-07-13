@@ -28,75 +28,86 @@ name|GeoDegenerateHorizontalLine
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** Latitude of horizontal line */
 DECL|field|latitude
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|latitude
 decl_stmt|;
+comment|/** Left bounding longitude of line */
 DECL|field|leftLon
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|leftLon
 decl_stmt|;
+comment|/** Right bounding longitude of line */
 DECL|field|rightLon
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|rightLon
 decl_stmt|;
+comment|/** Left hand endpoint of line */
 DECL|field|LHC
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|LHC
 decl_stmt|;
+comment|/** Right hand endpoint of line */
 DECL|field|RHC
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|RHC
 decl_stmt|;
+comment|/** The plane describing the line */
 DECL|field|plane
-specifier|public
+specifier|protected
 specifier|final
 name|Plane
 name|plane
 decl_stmt|;
+comment|/** The left side end plane */
 DECL|field|leftPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|leftPlane
 decl_stmt|;
+comment|/** The right side end plane */
 DECL|field|rightPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|rightPlane
 decl_stmt|;
+comment|/** Notable points for the line */
 DECL|field|planePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|planePoints
 decl_stmt|;
+comment|/** Center of line */
 DECL|field|centerPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|centerPoint
 decl_stmt|;
+comment|/** A point that's on the line */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
-comment|/**    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}    */
+comment|/**    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}    *@param planetModel is the planet model.    *@param latitude is the latitude of the line.    *@param leftLon is the left end longitude.    *@param rightLon is the right end longitude.    */
 DECL|method|GeoDegenerateHorizontalLine
 specifier|public
 name|GeoDegenerateHorizontalLine

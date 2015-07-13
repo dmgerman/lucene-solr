@@ -28,75 +28,87 @@ name|GeoDegenerateVerticalLine
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** Top latitude of the vertical line */
 DECL|field|topLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|topLat
 decl_stmt|;
+comment|/** Bottom latitude of the vertical line */
 DECL|field|bottomLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|bottomLat
 decl_stmt|;
+comment|/** Longitude of the vertical line */
 DECL|field|longitude
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|longitude
 decl_stmt|;
+comment|/** Point at the upper end of the vertical line */
 DECL|field|UHC
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|UHC
 decl_stmt|;
+comment|/** Point at the lower end of the vertical line */
 DECL|field|LHC
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|LHC
 decl_stmt|;
+comment|/** Top end cutoff plane */
 DECL|field|topPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|topPlane
 decl_stmt|;
+comment|/** Bottom end cutoff plane */
 DECL|field|bottomPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|bottomPlane
 decl_stmt|;
+comment|/** Back-side cutoff plane */
 DECL|field|boundingPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|boundingPlane
 decl_stmt|;
+comment|/** The vertical line plane */
 DECL|field|plane
-specifier|public
+specifier|protected
 specifier|final
 name|Plane
 name|plane
 decl_stmt|;
+comment|/** Notable points for the line (end points) */
 DECL|field|planePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|planePoints
 decl_stmt|;
+comment|/** A computed center point for the line */
 DECL|field|centerPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|centerPoint
 decl_stmt|;
+comment|/** A point that's on the line */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]

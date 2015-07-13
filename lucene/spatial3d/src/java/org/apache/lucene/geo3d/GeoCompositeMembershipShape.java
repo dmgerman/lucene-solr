@@ -48,6 +48,7 @@ name|GeoCompositeMembershipShape
 implements|implements
 name|GeoMembershipShape
 block|{
+comment|/** The list of shapes. */
 DECL|field|shapes
 specifier|protected
 specifier|final
@@ -64,12 +65,13 @@ name|GeoMembershipShape
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/** Constructor.    */
 DECL|method|GeoCompositeMembershipShape
 specifier|public
 name|GeoCompositeMembershipShape
 parameter_list|()
 block|{   }
-comment|/**    * Add a shape to the composite.    */
+comment|/**    * Add a shape to the composite.    *@param shape is the shape to add.    */
 DECL|method|addShape
 specifier|public
 name|void

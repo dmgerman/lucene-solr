@@ -28,32 +28,37 @@ name|GeoSouthLatitudeZone
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** The top latitude of the zone */
 DECL|field|topLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|topLat
 decl_stmt|;
+comment|/** The cosine of the top latitude of the zone */
 DECL|field|cosTopLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|cosTopLat
 decl_stmt|;
+comment|/** The top plane of the zone */
 DECL|field|topPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|topPlane
 decl_stmt|;
+comment|/** An interior point of the zone */
 DECL|field|interiorPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|interiorPoint
 decl_stmt|;
+comment|/** Notable points for the plane (none) */
 DECL|field|planePoints
-specifier|public
+specifier|protected
 specifier|final
 specifier|static
 name|GeoPoint
@@ -66,20 +71,22 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/** A point on the top boundary */
 DECL|field|topBoundaryPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|topBoundaryPoint
 decl_stmt|;
-comment|// Edge points
+comment|/** Edge points; a reference to the topBoundaryPoint */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
+comment|/** Constructor.    *@param planetModel is the planet model.    *@param topLat is the top latitude of the zone.    */
 DECL|method|GeoSouthLatitudeZone
 specifier|public
 name|GeoSouthLatitudeZone

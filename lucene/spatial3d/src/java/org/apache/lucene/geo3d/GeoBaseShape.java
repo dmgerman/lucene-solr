@@ -31,6 +31,7 @@ name|BasePlanetObject
 implements|implements
 name|GeoShape
 block|{
+comment|/** Constructor.    *@param planetModel is the planet model to use.    */
 DECL|method|GeoBaseShape
 specifier|public
 name|GeoBaseShape

@@ -156,6 +156,7 @@ literal|false
 argument_list|)
 return|;
 block|}
+comment|/** Build a GeoMembershipShape given points, starting edge, and whether starting edge is internal or not.    * @param pointsList        is a list of the GeoPoints to build an arbitrary polygon out of.    * @param startPointIndex is one of the points constituting the starting edge.    * @param endPointIndex is another of the points constituting the starting edge.    * @param startingEdge is the plane describing the starting edge.    * @param isInternalEdge is true if the specified edge is an internal one.    * @return a GeoMembershipShape corresponding to what was specified.    */
 DECL|method|buildPolygonShape
 specifier|public
 specifier|static
@@ -886,15 +887,18 @@ return|return
 name|rval
 return|;
 block|}
+comment|/** Check if a point is within a described list of planes.    *@param newPoint is the point.     *@param currentPlanes is the list of planes.    *@return true if within.    */
 DECL|method|isWithin
 specifier|protected
 specifier|static
 name|boolean
 name|isWithin
 parameter_list|(
+specifier|final
 name|GeoPoint
 name|newPoint
 parameter_list|,
+specifier|final
 name|List
 argument_list|<
 name|SidedPlane
@@ -928,6 +932,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/** Convert raw point index into valid array position.    *@param index is the array index.    *@param size is the array size.    *@return an updated index.    */
 DECL|method|getLegalIndex
 specifier|protected
 specifier|static

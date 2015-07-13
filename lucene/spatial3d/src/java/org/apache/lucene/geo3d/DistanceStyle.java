@@ -27,6 +27,7 @@ interface|interface
 name|DistanceStyle
 block|{
 comment|// convenient access to built-in styles:
+comment|/** Arc distance calculator */
 DECL|field|ARC
 specifier|public
 specifier|static
@@ -38,6 +39,7 @@ name|ArcDistance
 operator|.
 name|INSTANCE
 decl_stmt|;
+comment|/** Linear distance calculator */
 DECL|field|LINEAR
 specifier|public
 specifier|static
@@ -49,6 +51,7 @@ name|LinearDistance
 operator|.
 name|INSTANCE
 decl_stmt|;
+comment|/** Linear distance squared calculator */
 DECL|field|LINEAR_SQUARED
 specifier|public
 specifier|static
@@ -60,6 +63,7 @@ name|LinearSquaredDistance
 operator|.
 name|INSTANCE
 decl_stmt|;
+comment|/** Normal distance calculator */
 DECL|field|NORMAL
 specifier|public
 specifier|static
@@ -71,6 +75,7 @@ name|NormalDistance
 operator|.
 name|INSTANCE
 decl_stmt|;
+comment|/** Normal distance squared calculator */
 DECL|field|NORMAL_SQUARED
 specifier|public
 specifier|static

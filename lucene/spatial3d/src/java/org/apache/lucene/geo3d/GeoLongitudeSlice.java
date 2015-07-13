@@ -28,51 +28,58 @@ name|GeoLongitudeSlice
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** The left longitude of the slice */
 DECL|field|leftLon
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|leftLon
 decl_stmt|;
+comment|/** The right longitude of the slice */
 DECL|field|rightLon
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|rightLon
 decl_stmt|;
+comment|/** The left plane of the slice */
 DECL|field|leftPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|leftPlane
 decl_stmt|;
+comment|/** The right plane of the slice */
 DECL|field|rightPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|rightPlane
 decl_stmt|;
+comment|/** The notable points for the slice (north and south poles) */
 DECL|field|planePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|planePoints
 decl_stmt|;
+comment|/** The center point of the slice */
 DECL|field|centerPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|centerPoint
 decl_stmt|;
+comment|/** A point on the edge of the slice */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
-comment|/**    * Accepts only values in the following ranges: lon: {@code -PI -> PI}    */
+comment|/**    * Accepts only values in the following ranges: lon: {@code -PI -> PI}    *@param planetModel is the planet model.    *@param leftLon is the left longitude of the slice.    *@param rightLon is the right longitude of the slice.    */
 DECL|method|GeoLongitudeSlice
 specifier|public
 name|GeoLongitudeSlice

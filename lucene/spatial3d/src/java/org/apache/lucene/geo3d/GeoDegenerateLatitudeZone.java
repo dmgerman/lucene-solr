@@ -28,39 +28,45 @@ name|GeoDegenerateLatitudeZone
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** The latitude */
 DECL|field|latitude
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|latitude
 decl_stmt|;
+comment|/** Sine of the latitude */
 DECL|field|sinLatitude
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|sinLatitude
 decl_stmt|;
+comment|/** Plane describing the latitude zone */
 DECL|field|plane
-specifier|public
+specifier|protected
 specifier|final
 name|Plane
 name|plane
 decl_stmt|;
+comment|/** A point on the world that's also on the zone */
 DECL|field|interiorPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|interiorPoint
 decl_stmt|;
+comment|/** An array consisting of the interiorPoint */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
+comment|/** No notable points */
 DECL|field|planePoints
-specifier|public
+specifier|protected
 specifier|final
 specifier|static
 name|GeoPoint
@@ -73,6 +79,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/** Constructor.    *@param planetModel is the planet model to use.    *@param latitude is the latitude of the latitude zone.    */
 DECL|method|GeoDegenerateLatitudeZone
 specifier|public
 name|GeoDegenerateLatitudeZone

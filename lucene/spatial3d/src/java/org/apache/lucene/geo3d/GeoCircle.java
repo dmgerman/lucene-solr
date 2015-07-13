@@ -30,33 +30,38 @@ name|GeoBaseDistanceShape
 implements|implements
 name|GeoSizeable
 block|{
+comment|/** Center of circle */
 DECL|field|center
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|center
 decl_stmt|;
+comment|/** Cutoff angle of circle (not quite the same thing as radius) */
 DECL|field|cutoffAngle
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|cutoffAngle
 decl_stmt|;
+comment|/** The plane describing the circle (really an ellipse on a non-spherical world) */
 DECL|field|circlePlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|circlePlane
 decl_stmt|;
+comment|/** A point that is on the world and on the circle plane */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
+comment|/** Notable points for a circle -- there aren't any */
 DECL|field|circlePoints
-specifier|public
+specifier|protected
 specifier|static
 specifier|final
 name|GeoPoint
@@ -69,6 +74,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/** Constructor.    *@param planetModel is the planet model.    *@param lat is the center latitude.    *@param lon is the center longitude.    *@param cutoffAngle is the cutoff angle for the circle.    */
 DECL|method|GeoCircle
 specifier|public
 name|GeoCircle

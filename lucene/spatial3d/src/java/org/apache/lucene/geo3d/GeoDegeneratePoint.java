@@ -30,31 +30,36 @@ name|GeoPoint
 implements|implements
 name|GeoBBox
 block|{
+comment|/** The latitude of the point */
 DECL|field|latitude
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|latitude
 decl_stmt|;
+comment|/** The longitude of the point */
 DECL|field|longitude
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|longitude
 decl_stmt|;
+comment|/** Current planet model, since we don't extend BasePlanetObject */
 DECL|field|planetModel
-specifier|public
+specifier|protected
 specifier|final
 name|PlanetModel
 name|planetModel
 decl_stmt|;
+comment|/** Edge point is an area containing just this */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
+comment|/** Constructor.    *@param planetModel is the planet model to use.    *@param lat is the latitude.    *@param lon is the longitude.    */
 DECL|method|GeoDegeneratePoint
 specifier|public
 name|GeoDegeneratePoint

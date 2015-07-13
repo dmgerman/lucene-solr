@@ -28,6 +28,7 @@ name|ArcDistance
 implements|implements
 name|DistanceStyle
 block|{
+comment|/** An instance of the ArcDistance DistanceStyle. */
 DECL|field|INSTANCE
 specifier|public
 specifier|final

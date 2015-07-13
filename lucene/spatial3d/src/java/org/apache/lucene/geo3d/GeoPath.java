@@ -78,28 +78,30 @@ name|GeoPath
 extends|extends
 name|GeoBaseDistanceShape
 block|{
+comment|/** The cutoff angle (width) */
 DECL|field|cutoffAngle
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|cutoffAngle
 decl_stmt|;
+comment|/** Sine of cutoff angle */
 DECL|field|sinAngle
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|sinAngle
 decl_stmt|;
-comment|// sine of cutoffAngle
+comment|/** Cosine of cutoff angle */
 DECL|field|cosAngle
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|cosAngle
 decl_stmt|;
-comment|// cosine of cutoffAngle
+comment|/** The original list of path points */
 DECL|field|points
-specifier|public
+specifier|protected
 specifier|final
 name|List
 argument_list|<
@@ -114,35 +116,40 @@ name|GeoPoint
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/** A list of SegmentEndpoints */
 DECL|field|endPoints
-specifier|public
+specifier|protected
 name|List
 argument_list|<
 name|SegmentEndpoint
 argument_list|>
 name|endPoints
 decl_stmt|;
+comment|/** A list of PathSegments */
 DECL|field|segments
-specifier|public
+specifier|protected
 name|List
 argument_list|<
 name|PathSegment
 argument_list|>
 name|segments
 decl_stmt|;
+comment|/** A point on the edge */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
+comment|/** Set to true if path has been completely constructed */
 DECL|field|isDone
-specifier|public
+specifier|protected
 name|boolean
 name|isDone
 init|=
 literal|false
 decl_stmt|;
+comment|/** Constructor.    *@param planetModel is the planet model.    *@param maxCutoffAngle is the width of the path, measured as an angle.    *@param pathPoints are the points in the path.    */
 DECL|method|GeoPath
 specifier|public
 name|GeoPath
@@ -181,6 +188,7 @@ name|done
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** Piece-wise constructor.  Use in conjunction with addPoint() and done().    *@param planetModel is the planet model.    *@param maxCutoffAngle is the width of the path, measured as an angle.    */
 DECL|method|GeoPath
 specifier|public
 name|GeoPath
@@ -249,14 +257,17 @@ name|maxCutoffAngle
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Add a point to the path.    *@param lat is the latitude of the point.    *@param lon is the longitude of the point.    */
 DECL|method|addPoint
 specifier|public
 name|void
 name|addPoint
 parameter_list|(
+specifier|final
 name|double
 name|lat
 parameter_list|,
+specifier|final
 name|double
 name|lon
 parameter_list|)
@@ -288,6 +299,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Complete the path.    */
 DECL|method|done
 specifier|public
 name|void
@@ -1678,18 +1690,21 @@ specifier|static
 class|class
 name|SegmentEndpoint
 block|{
+comment|/** The center point of the endpoint */
 DECL|field|point
 specifier|public
 specifier|final
 name|GeoPoint
 name|point
 decl_stmt|;
+comment|/** A plane describing the circle */
 DECL|field|circlePlane
 specifier|public
 specifier|final
 name|SidedPlane
 name|circlePlane
 decl_stmt|;
+comment|/** Pertinent cutoff planes from adjoining segments */
 DECL|field|cutoffPlanes
 specifier|public
 specifier|final
@@ -1697,6 +1712,7 @@ name|Membership
 index|[]
 name|cutoffPlanes
 decl_stmt|;
+comment|/** Notable points for this segment endpoint */
 DECL|field|notablePoints
 specifier|public
 specifier|final
@@ -1704,6 +1720,7 @@ name|GeoPoint
 index|[]
 name|notablePoints
 decl_stmt|;
+comment|/** No notable points from the circle itself */
 DECL|field|circlePoints
 specifier|public
 specifier|final
@@ -1753,7 +1770,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/** Constructor for case (1).      * Generate a simple circle cutoff plane.      */
+comment|/** Constructor for case (1).      * Generate a simple circle cutoff plane.      *@param point is the center point.      *@param upperPoint is a point that must be on the circle plane.      *@param lowerPoint is another point that must be on the circle plane.      */
 DECL|method|SegmentEndpoint
 specifier|public
 name|SegmentEndpoint
@@ -1832,7 +1849,7 @@ literal|0
 index|]
 expr_stmt|;
 block|}
-comment|/** Constructor for case (2).      * Generate an endpoint, given a single cutoff plane plus upper and lower edge points.      */
+comment|/** Constructor for case (2).      * Generate an endpoint, given a single cutoff plane plus upper and lower edge points.      *@param point is the center point.      *@param cutoffPlane is the plane from the adjoining path segment marking the boundary between this endpoint and that segment.      *@param topEdgePoint is a point on the cutoffPlane that should be also on the circle plane.      *@param bottomEdgePoint is another point on the cutoffPlane that should be also on the circle plane.      */
 DECL|method|SegmentEndpoint
 specifier|public
 name|SegmentEndpoint
@@ -1907,7 +1924,7 @@ name|bottomEdgePoint
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Constructor for case (2.5).      * Generate an endpoint, given two cutoff planes plus upper and lower edge points.      */
+comment|/** Constructor for case (2.5).      * Generate an endpoint, given two cutoff planes plus upper and lower edge points.      *@param point is the center.      *@param cutoffPlane1 is one adjoining path segment cutoff plane.      *@param cutoffPlane2 is another adjoining path segment cutoff plane.      *@param topEdgePoint is a point on the cutoffPlane that should be also on the circle plane.      *@param bottomEdgePoint is another point on the cutoffPlane that should be also on the circle plane.      */
 DECL|method|SegmentEndpoint
 specifier|public
 name|SegmentEndpoint
@@ -1992,7 +2009,7 @@ name|bottomEdgePoint
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Constructor for case (3).      * Generate an endpoint for an intersection, given four points.      */
+comment|/** Constructor for case (3).      * Generate an endpoint for an intersection, given four points.      *@param point is the center.      *@param prevCutoffPlane is the previous adjoining segment cutoff plane.      *@param nextCutoffPlane is the next path segment cutoff plane.      *@param notCand2Point is a point NOT on candidate2.      *@param notCand1Point is a point NOT on candidate1.      *@param notCand3Point is a point NOT on candidate3.      *@param notCand4Point is a point NOT on candidate4.      *@param candidate1 one of four candidate circle planes.      *@param candidate2 one of four candidate circle planes.      *@param candidate3 one of four candidate circle planes.      *@param candidate4 one of four candidate circle planes.      */
 DECL|method|SegmentEndpoint
 specifier|public
 name|SegmentEndpoint
@@ -2371,6 +2388,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** Check if point is within this endpoint.      *@param point is the point.      *@return true of within.      */
 DECL|method|isWithin
 specifier|public
 name|boolean
@@ -2399,6 +2417,7 @@ name|point
 argument_list|)
 return|;
 block|}
+comment|/** Check if point is within this endpoint.      *@param x is the point x.      *@param y is the point y.      *@param z is the point z.      *@return true of within.      */
 DECL|method|isWithin
 specifier|public
 name|boolean
@@ -2439,6 +2458,7 @@ name|z
 argument_list|)
 return|;
 block|}
+comment|/** Compute interior path distance.      *@param distanceStyle is the distance style.      *@param x is the point x.      *@param y is the point y.      *@param z is the point z.      *@return the distance metric.      */
 DECL|method|pathDistance
 specifier|public
 name|double
@@ -2495,6 +2515,7 @@ name|z
 argument_list|)
 return|;
 block|}
+comment|/** Compute external distance.      *@param distanceStyle is the distance style.      *@param x is the point x.      *@param y is the point y.      *@param z is the point z.      *@return the distance metric.      */
 DECL|method|outsideDistance
 specifier|public
 name|double
@@ -2534,6 +2555,7 @@ name|z
 argument_list|)
 return|;
 block|}
+comment|/** Determine if this endpoint intersects a specified plane.      *@param planetModel is the planet model.      *@param p is the plane.      *@param notablePoints are the points associated with the plane.      *@param bounds are any bounds which the intersection must lie within.      *@return true if there is a matching intersection.      */
 DECL|method|intersects
 specifier|public
 name|boolean
@@ -2591,6 +2613,7 @@ name|cutoffPlanes
 argument_list|)
 return|;
 block|}
+comment|/** Get the bounds for a segment endpoint.      *@param planetModel is the planet model.      *@param bounds are the bounds to be modified.      */
 DECL|method|getBounds
 specifier|public
 name|void
@@ -2708,18 +2731,21 @@ specifier|static
 class|class
 name|PathSegment
 block|{
+comment|/** Starting point of the segment */
 DECL|field|start
 specifier|public
 specifier|final
 name|GeoPoint
 name|start
 decl_stmt|;
+comment|/** End point of the segment */
 DECL|field|end
 specifier|public
 specifier|final
 name|GeoPoint
 name|end
 decl_stmt|;
+comment|/** Place to keep any complete segment distances we've calculated so far */
 DECL|field|fullDistanceCache
 specifier|public
 specifier|final
@@ -2740,60 +2766,70 @@ name|Double
 argument_list|>
 argument_list|()
 decl_stmt|;
+comment|/** Normalized plane connecting the two points and going through world center */
 DECL|field|normalizedConnectingPlane
 specifier|public
 specifier|final
 name|Plane
 name|normalizedConnectingPlane
 decl_stmt|;
+comment|/** Cutoff plane parallel to connecting plane representing one side of the path segment */
 DECL|field|upperConnectingPlane
 specifier|public
 specifier|final
 name|SidedPlane
 name|upperConnectingPlane
 decl_stmt|;
+comment|/** Cutoff plane parallel to connecting plane representing the other side of the path segment */
 DECL|field|lowerConnectingPlane
 specifier|public
 specifier|final
 name|SidedPlane
 name|lowerConnectingPlane
 decl_stmt|;
+comment|/** Plane going through the center and start point, marking the start edge of the segment */
 DECL|field|startCutoffPlane
 specifier|public
 specifier|final
 name|SidedPlane
 name|startCutoffPlane
 decl_stmt|;
+comment|/** Plane going through the center and end point, marking the end edge of the segment */
 DECL|field|endCutoffPlane
 specifier|public
 specifier|final
 name|SidedPlane
 name|endCutoffPlane
 decl_stmt|;
+comment|/** Upper right hand corner of segment */
 DECL|field|URHC
 specifier|public
 specifier|final
 name|GeoPoint
 name|URHC
 decl_stmt|;
+comment|/** Lower right hand corner of segment */
 DECL|field|LRHC
 specifier|public
 specifier|final
 name|GeoPoint
 name|LRHC
 decl_stmt|;
+comment|/** Upper left hand corner of segment */
 DECL|field|ULHC
 specifier|public
 specifier|final
 name|GeoPoint
 name|ULHC
 decl_stmt|;
+comment|/** Lower left hand corner of segment */
 DECL|field|LLHC
 specifier|public
 specifier|final
 name|GeoPoint
 name|LLHC
 decl_stmt|;
+comment|/** Notable points for the upper connecting plane */
 DECL|field|upperConnectingPlanePoints
 specifier|public
 specifier|final
@@ -2801,6 +2837,7 @@ name|GeoPoint
 index|[]
 name|upperConnectingPlanePoints
 decl_stmt|;
+comment|/** Notable points for the lower connecting plane */
 DECL|field|lowerConnectingPlanePoints
 specifier|public
 specifier|final
@@ -2808,6 +2845,7 @@ name|GeoPoint
 index|[]
 name|lowerConnectingPlanePoints
 decl_stmt|;
+comment|/** Notable points for the start cutoff plane */
 DECL|field|startCutoffPlanePoints
 specifier|public
 specifier|final
@@ -2815,18 +2853,13 @@ name|GeoPoint
 index|[]
 name|startCutoffPlanePoints
 decl_stmt|;
+comment|/** Notable points for the end cutoff plane */
 DECL|field|endCutoffPlanePoints
 specifier|public
 specifier|final
 name|GeoPoint
 index|[]
 name|endCutoffPlanePoints
-decl_stmt|;
-DECL|field|planeBoundingOffset
-specifier|public
-specifier|final
-name|double
-name|planeBoundingOffset
 decl_stmt|;
 DECL|method|PathSegment
 specifier|public
@@ -2870,12 +2903,6 @@ operator|.
 name|normalizedConnectingPlane
 operator|=
 name|normalizedConnectingPlane
-expr_stmt|;
-name|this
-operator|.
-name|planeBoundingOffset
-operator|=
-name|planeBoundingOffset
 expr_stmt|;
 comment|// Either start or end should be on the correct side
 name|upperConnectingPlane
@@ -3189,6 +3216,7 @@ name|LRHC
 block|}
 expr_stmt|;
 block|}
+comment|/** Compute the full distance along this path segment.      *@param distanceStyle is the distance style.      *@return the distance metric.      */
 DECL|method|fullPathDistance
 specifier|public
 name|double
@@ -3264,6 +3292,7 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/** Check if point is within this segment.      *@param point is the point.      *@return true of within.      */
 DECL|method|isWithin
 specifier|public
 name|boolean
@@ -3274,11 +3303,6 @@ name|Vector
 name|point
 parameter_list|)
 block|{
-comment|//System.err.println(" assessing whether point "+point+" is within path segment "+this);
-comment|//System.err.println("  within "+startCutoffPlane+": "+startCutoffPlane.isWithin(point));
-comment|//System.err.println("  within "+endCutoffPlane+": "+endCutoffPlane.isWithin(point));
-comment|//System.err.println("  within "+upperConnectingPlane+": "+upperConnectingPlane.isWithin(point));
-comment|//System.err.println("  within "+lowerConnectingPlane+": "+lowerConnectingPlane.isWithin(point));
 return|return
 name|startCutoffPlane
 operator|.
@@ -3309,6 +3333,7 @@ name|point
 argument_list|)
 return|;
 block|}
+comment|/** Check if point is within this segment.      *@param x is the point x.      *@param y is the point y.      *@param z is the point z.      *@return true of within.      */
 DECL|method|isWithin
 specifier|public
 name|boolean
@@ -3373,6 +3398,7 @@ name|z
 argument_list|)
 return|;
 block|}
+comment|/** Compute interior path distance.      *@param planetModel is the planet model.      *@param distanceStyle is the distance style.      *@param x is the point x.      *@param y is the point y.      *@param z is the point z.      *@return the distance metric.      */
 DECL|method|pathDistance
 specifier|public
 name|double
@@ -3719,6 +3745,7 @@ name|z
 argument_list|)
 return|;
 block|}
+comment|/** Compute external distance.      *@param planetModel is the planet model.      *@param distanceStyle is the distance style.      *@param x is the point x.      *@param y is the point y.      *@param z is the point z.      *@return the distance metric.      */
 DECL|method|outsideDistance
 specifier|public
 name|double
@@ -3966,6 +3993,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/** Determine if this endpoint intersects a specified plane.      *@param planetModel is the planet model.      *@param p is the plane.      *@param notablePoints are the points associated with the plane.      *@param bounds are any bounds which the intersection must lie within.      *@return true if there is a matching intersection.      */
 DECL|method|intersects
 specifier|public
 name|boolean
@@ -4034,6 +4062,7 @@ name|endCutoffPlane
 argument_list|)
 return|;
 block|}
+comment|/** Get the bounds for a segment endpoint.      *@param planetModel is the planet model.      *@param bounds are the bounds to be modified.      */
 DECL|method|getBounds
 specifier|public
 name|void

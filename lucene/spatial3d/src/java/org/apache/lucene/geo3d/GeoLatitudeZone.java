@@ -28,50 +28,58 @@ name|GeoLatitudeZone
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** The top latitude of the zone */
 DECL|field|topLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|topLat
 decl_stmt|;
+comment|/** The bottom latitude of the zone */
 DECL|field|bottomLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|bottomLat
 decl_stmt|;
+comment|/** Cosine of the top lat */
 DECL|field|cosTopLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|cosTopLat
 decl_stmt|;
+comment|/** Cosine of the bottom lat */
 DECL|field|cosBottomLat
-specifier|public
+specifier|protected
 specifier|final
 name|double
 name|cosBottomLat
 decl_stmt|;
+comment|/** The top plane */
 DECL|field|topPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|topPlane
 decl_stmt|;
+comment|/** The bottom plane */
 DECL|field|bottomPlane
-specifier|public
+specifier|protected
 specifier|final
 name|SidedPlane
 name|bottomPlane
 decl_stmt|;
+comment|/** An interior point */
 DECL|field|interiorPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|interiorPoint
 decl_stmt|;
+comment|/** Notable points (none) */
 DECL|field|planePoints
-specifier|public
+specifier|protected
 specifier|final
 specifier|static
 name|GeoPoint
@@ -86,26 +94,29 @@ index|]
 decl_stmt|;
 comment|// We need two additional points because a latitude zone's boundaries don't intersect.  This is a very
 comment|// special case that most GeoBBox's do not have.
+comment|/** Top boundary point */
 DECL|field|topBoundaryPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|topBoundaryPoint
 decl_stmt|;
+comment|/** Bottom boundary point */
 DECL|field|bottomBoundaryPoint
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 name|bottomBoundaryPoint
 decl_stmt|;
-comment|// Edge points
+comment|/** A point on each distinct edge */
 DECL|field|edgePoints
-specifier|public
+specifier|protected
 specifier|final
 name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
+comment|/** Constructor.    *@param planetModel is the planet model to use.    *@param topLat is the top latitude.    *@param bottomLat is the bottom latitude.    */
 DECL|method|GeoLatitudeZone
 specifier|public
 name|GeoLatitudeZone
