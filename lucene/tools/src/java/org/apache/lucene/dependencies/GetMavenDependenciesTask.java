@@ -3376,6 +3376,7 @@ argument_list|,
 literal|"analysis/"
 argument_list|)
 decl_stmt|;
+comment|// Exclude the module's own build output, in addition to UNWANTED_INTERNAL_DEPENDENCIES
 name|Pattern
 name|unwantedInternalDependencies
 init|=
@@ -3386,6 +3387,9 @@ argument_list|(
 literal|"(?:lucene/build/|solr/build/(?:contrib/)?)"
 operator|+
 name|origModuleDir
+operator|+
+literal|"/"
+comment|// require dir separator
 operator|+
 literal|"|"
 operator|+
