@@ -1648,11 +1648,6 @@ name|closed
 operator|=
 literal|true
 expr_stmt|;
-name|perThreadPool
-operator|.
-name|deactivateUnreleasedStates
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 comment|/**    * Returns an iterator that provides access to all currently active {@link ThreadState}s     */

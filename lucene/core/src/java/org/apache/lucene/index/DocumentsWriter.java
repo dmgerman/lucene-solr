@@ -919,6 +919,11 @@ operator|.
 name|getMaxThreadStates
 argument_list|()
 decl_stmt|;
+name|perThreadPool
+operator|.
+name|setAbort
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -1007,8 +1012,9 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-operator|!
 name|success
+operator|==
+literal|false
 condition|)
 block|{
 comment|// if something happens here we unlock all states again
@@ -1162,6 +1168,11 @@ operator|.
 name|getMaxThreadStates
 argument_list|()
 decl_stmt|;
+name|perThreadPool
+operator|.
+name|clearAbort
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int

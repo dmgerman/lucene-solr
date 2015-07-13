@@ -1955,8 +1955,9 @@ operator|.
 name|NONE
 condition|)
 block|{
-comment|// This will throw an exc if the caller tried to
-comment|// change the DV type for the field:
+comment|// This is the first time we are seeing this field indexed with doc values, so we
+comment|// now record the DV type so that any future attempt to (illegally) change
+comment|// the DV type of this field, will throw an IllegalArgExc:
 name|fieldInfos
 operator|.
 name|globalFieldNumbers
