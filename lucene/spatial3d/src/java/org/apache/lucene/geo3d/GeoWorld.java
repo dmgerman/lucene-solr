@@ -28,6 +28,7 @@ name|GeoWorld
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** No points on the edge of the shape */
 DECL|field|edgePoints
 specifier|protected
 specifier|final
@@ -42,12 +43,14 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/** Point in the middle of the world */
 DECL|field|originPoint
 specifier|protected
 specifier|final
 name|GeoPoint
 name|originPoint
 decl_stmt|;
+comment|/** Constructor.    *@param planetModel is the planet model.    */
 DECL|method|GeoWorld
 specifier|public
 name|GeoWorld

@@ -48,6 +48,7 @@ name|MINIMUM_RESOLUTION
 operator|*
 name|MINIMUM_RESOLUTION
 decl_stmt|;
+comment|/**    * For cubed quantities, cube the bound.    */
 DECL|field|MINIMUM_RESOLUTION_CUBED
 specifier|public
 specifier|static
@@ -59,25 +60,28 @@ name|MINIMUM_RESOLUTION_SQUARED
 operator|*
 name|MINIMUM_RESOLUTION
 decl_stmt|;
+comment|/** The x value */
 DECL|field|x
 specifier|public
 specifier|final
 name|double
 name|x
 decl_stmt|;
+comment|/** The y value */
 DECL|field|y
 specifier|public
 specifier|final
 name|double
 name|y
 decl_stmt|;
+comment|/** The z value */
 DECL|field|z
 specifier|public
 specifier|final
 name|double
 name|z
 decl_stmt|;
-comment|/**    * Construct from (U.S.) x,y,z coordinates.    */
+comment|/**    * Construct from (U.S.) x,y,z coordinates.    *@param x is the x value.    *@param y is the y value.    *@param z is the z value.    */
 DECL|method|Vector
 specifier|public
 name|Vector

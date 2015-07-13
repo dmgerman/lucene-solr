@@ -28,84 +28,98 @@ name|GeoWideRectangle
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** The top latitude */
 DECL|field|topLat
 specifier|protected
 specifier|final
 name|double
 name|topLat
 decl_stmt|;
+comment|/** The bottom latitude */
 DECL|field|bottomLat
 specifier|protected
 specifier|final
 name|double
 name|bottomLat
 decl_stmt|;
+comment|/** The left longitude */
 DECL|field|leftLon
 specifier|protected
 specifier|final
 name|double
 name|leftLon
 decl_stmt|;
+comment|/** The right longitude */
 DECL|field|rightLon
 specifier|protected
 specifier|final
 name|double
 name|rightLon
 decl_stmt|;
+comment|/** Cosine of the middle latitude */
 DECL|field|cosMiddleLat
 specifier|protected
 specifier|final
 name|double
 name|cosMiddleLat
 decl_stmt|;
+comment|/** Upper left hand corner point */
 DECL|field|ULHC
 specifier|protected
 specifier|final
 name|GeoPoint
 name|ULHC
 decl_stmt|;
+comment|/** Lower right hand corner point */
 DECL|field|URHC
 specifier|protected
 specifier|final
 name|GeoPoint
 name|URHC
 decl_stmt|;
+comment|/** Lower right hand corner point */
 DECL|field|LRHC
 specifier|protected
 specifier|final
 name|GeoPoint
 name|LRHC
 decl_stmt|;
+comment|/** Lower left hand corner point */
 DECL|field|LLHC
 specifier|protected
 specifier|final
 name|GeoPoint
 name|LLHC
 decl_stmt|;
+comment|/** Top plane */
 DECL|field|topPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|topPlane
 decl_stmt|;
+comment|/** Bottom plane */
 DECL|field|bottomPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|bottomPlane
 decl_stmt|;
+comment|/** Left plane */
 DECL|field|leftPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|leftPlane
 decl_stmt|;
+comment|/** Right plane */
 DECL|field|rightPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|rightPlane
 decl_stmt|;
+comment|/** Top plane's notable points */
 DECL|field|topPlanePoints
 specifier|protected
 specifier|final
@@ -113,6 +127,7 @@ name|GeoPoint
 index|[]
 name|topPlanePoints
 decl_stmt|;
+comment|/** Bottom plane's notable points */
 DECL|field|bottomPlanePoints
 specifier|protected
 specifier|final
@@ -120,6 +135,7 @@ name|GeoPoint
 index|[]
 name|bottomPlanePoints
 decl_stmt|;
+comment|/** Left plane's notable points */
 DECL|field|leftPlanePoints
 specifier|protected
 specifier|final
@@ -127,6 +143,7 @@ name|GeoPoint
 index|[]
 name|leftPlanePoints
 decl_stmt|;
+comment|/** Right plane's notable points */
 DECL|field|rightPlanePoints
 specifier|protected
 specifier|final
@@ -134,18 +151,21 @@ name|GeoPoint
 index|[]
 name|rightPlanePoints
 decl_stmt|;
+comment|/** Center point */
 DECL|field|centerPoint
 specifier|protected
 specifier|final
 name|GeoPoint
 name|centerPoint
 decl_stmt|;
+comment|/** Combined left/right bounds */
 DECL|field|eitherBound
 specifier|protected
 specifier|final
 name|EitherBound
 name|eitherBound
 decl_stmt|;
+comment|/** A point on the edge */
 DECL|field|edgePoints
 specifier|protected
 specifier|final
@@ -1725,6 +1745,7 @@ operator|+
 literal|")}"
 return|;
 block|}
+comment|/** A membership implementation representing a wide (more than 180) left/right bound.    */
 DECL|class|EitherBound
 specifier|protected
 class|class
@@ -1732,6 +1753,7 @@ name|EitherBound
 implements|implements
 name|Membership
 block|{
+comment|/** Constructor.       */
 DECL|method|EitherBound
 specifier|public
 name|EitherBound

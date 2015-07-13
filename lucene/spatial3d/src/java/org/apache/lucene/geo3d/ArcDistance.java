@@ -40,6 +40,12 @@ operator|new
 name|ArcDistance
 argument_list|()
 decl_stmt|;
+comment|/** Constructor.    */
+DECL|method|ArcDistance
+specifier|public
+name|ArcDistance
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|computeDistance

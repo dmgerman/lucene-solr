@@ -28,6 +28,7 @@ name|Plane
 extends|extends
 name|Vector
 block|{
+comment|/** An array with no points in it */
 DECL|field|NO_POINTS
 specifier|protected
 specifier|final
@@ -42,6 +43,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/** An array with no bounds in it */
 DECL|field|NO_BOUNDS
 specifier|protected
 specifier|final
@@ -56,13 +58,14 @@ index|[
 literal|0
 index|]
 decl_stmt|;
+comment|/** Ax + By + Cz + D = 0 */
 DECL|field|D
 specifier|public
 specifier|final
 name|double
 name|D
 decl_stmt|;
-comment|/**    * Construct a plane with all four coefficients defined.    */
+comment|/**    * Construct a plane with all four coefficients defined.    *@param A is A    *@param B is B    *@param C is C    *@param D is D    */
 DECL|method|Plane
 specifier|public
 name|Plane
@@ -191,7 +194,7 @@ operator|=
 literal|0.0
 expr_stmt|;
 block|}
-comment|/**    * Construct a plane with a specific vector, and D offset    * from origin.    *    * @param D is the D offset from the origin.    */
+comment|/**    * Construct a plane with a specific vector, and D offset    * from origin.    * @param v is the normal vector.    * @param D is the D offset from the origin.    */
 DECL|method|Plane
 specifier|public
 name|Plane
@@ -227,7 +230,7 @@ operator|=
 name|D
 expr_stmt|;
 block|}
-comment|/** Construct the most accurate normalized, vertical plane given a set of points.  If none of the points can determine   * the plane, return null.   */
+comment|/** Construct the most accurate normalized, vertical plane given a set of points.  If none of the points can determine    * the plane, return null.    * @param planePoints is a set of points to choose from.  The best one for constructing the most precise normal plane is picked.    * @return the normal plane    */
 DECL|method|constructNormalizedVerticalPlane
 specifier|public
 specifier|static
@@ -310,7 +313,7 @@ name|y
 argument_list|)
 return|;
 block|}
-comment|/** Construct a normalized, vertical plane through an x-y point.  If the x-y point is at (0,0), return null.   */
+comment|/** Construct a normalized, vertical plane through an x-y point.  If the x-y point is at (0,0), return null.    * @param x is the x value.    * @param y is the y value.    * @return a vertical plane passing through the center and (x,y,0).    */
 DECL|method|constructNormalizedVerticalPlane
 specifier|public
 specifier|static
@@ -402,7 +405,7 @@ operator|+
 name|D
 return|;
 block|}
-comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    */
+comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    * @param x is the x value.    * @param y is the y value.    * @param z is the z value.    * @return the result of the evaluation.    */
 DECL|method|evaluate
 specifier|public
 name|double
@@ -459,7 +462,7 @@ operator|<
 name|MINIMUM_RESOLUTION
 return|;
 block|}
-comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *    * @return true if the result is on the plane.    */
+comment|/**    * Evaluate the plane equation for a given point, as represented    * by a vector.    *    * @param x is the x value.    * @param y is the y value.    * @param z is the z value.    * @return true if the result is on the plane.    */
 DECL|method|evaluateIsZero
 specifier|public
 name|boolean
@@ -532,7 +535,7 @@ name|D
 argument_list|)
 return|;
 block|}
-comment|/** @see #arcDistance(PlanetModel, double, double, double, Membership...) */
+comment|/** Compute arc distance from plane to a vector expressed with a {@link GeoPoint}.    *  @see #arcDistance(PlanetModel, double, double, double, Membership...) */
 DECL|method|arcDistance
 specifier|public
 name|double
@@ -573,7 +576,7 @@ name|bounds
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute arc distance from plane to a vector.    * @param x is the x vector value.    * @param y is the y vector value.    * @param z is the z vector value.    * @return the arc distance.    */
+comment|/**    * Compute arc distance from plane to a vector.    * @param planetModel is the planet model.    * @param x is the x vector value.    * @param y is the y vector value.    * @param z is the z vector value.    * @param bounds are the bounds which constrain the intersection point.    * @return the arc distance.    */
 DECL|method|arcDistance
 specifier|public
 name|double
@@ -757,7 +760,7 @@ return|return
 name|minDistance
 return|;
 block|}
-comment|/**    * Compute normal distance from plane to a vector.    * @param v is the vector.    * @return the normal distance.    */
+comment|/**    * Compute normal distance from plane to a vector.    * @param v is the vector.    * @param bounds are the bounds which constrain the intersection point.    * @return the normal distance.    */
 DECL|method|normalDistance
 specifier|public
 name|double
@@ -792,7 +795,7 @@ name|bounds
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute normal distance from plane to a vector.    * @param x is the vector x.    * @param y is the vector y.    * @param z is the vector z.    * @return the normal distance.    */
+comment|/**    * Compute normal distance from plane to a vector.    * @param x is the vector x.    * @param y is the vector y.    * @param z is the vector z.    * @param bounds are the bounds which constrain the intersection point.    * @return the normal distance.    */
 DECL|method|normalDistance
 specifier|public
 name|double
@@ -895,7 +898,7 @@ name|dist
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute normal distance squared from plane to a vector.    * @param v is the vector.    * @return the normal distance squared.    */
+comment|/**    * Compute normal distance squared from plane to a vector.    * @param v is the vector.    * @param bounds are the bounds which constrain the intersection point.    * @return the normal distance squared.    */
 DECL|method|normalDistanceSquared
 specifier|public
 name|double
@@ -930,7 +933,7 @@ name|bounds
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute normal distance squared from plane to a vector.    * @param x is the vector x.    * @param y is the vector y.    * @param z is the vector z.    * @return the normal distance squared.    */
+comment|/**    * Compute normal distance squared from plane to a vector.    * @param x is the vector x.    * @param y is the vector y.    * @param z is the vector z.    * @param bounds are the bounds which constrain the intersection point.    * @return the normal distance squared.    */
 DECL|method|normalDistanceSquared
 specifier|public
 name|double
@@ -986,7 +989,7 @@ operator|*
 name|normal
 return|;
 block|}
-comment|/**    * Compute linear distance from plane to a vector.  This is defined    * as the distance from the given point to the nearest intersection of     * this plane with the planet surface.    * @param v is the vector.    * @return the linear distance.    */
+comment|/**    * Compute linear distance from plane to a vector.  This is defined    * as the distance from the given point to the nearest intersection of     * this plane with the planet surface.    * @param planetModel is the planet model.    * @param v is the point.    * @param bounds are the bounds which constrain the intersection point.    * @return the linear distance.    */
 DECL|method|linearDistance
 specifier|public
 name|double
@@ -1027,7 +1030,7 @@ name|bounds
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute linear distance from plane to a vector.  This is defined    * as the distance from the given point to the nearest intersection of     * this plane with the planet surface.    * @param x is the vector x.    * @param y is the vector y.    * @param z is the vector z.    * @return the linear distance.    */
+comment|/**    * Compute linear distance from plane to a vector.  This is defined    * as the distance from the given point to the nearest intersection of     * this plane with the planet surface.    * @param planetModel is the planet model.    * @param x is the vector x.    * @param y is the vector y.    * @param z is the vector z.    * @param bounds are the bounds which constrain the intersection point.    * @return the linear distance.    */
 DECL|method|linearDistance
 specifier|public
 name|double
@@ -1211,7 +1214,7 @@ return|return
 name|minDistance
 return|;
 block|}
-comment|/**    * Compute linear distance squared from plane to a vector.  This is defined    * as the distance from the given point to the nearest intersection of     * this plane with the planet surface.    * @param v is the vector.    * @return the linear distance squared.    */
+comment|/**    * Compute linear distance squared from plane to a vector.  This is defined    * as the distance from the given point to the nearest intersection of     * this plane with the planet surface.    * @param planetModel is the planet model.    * @param v is the point.    * @param bounds are the bounds which constrain the intersection point.    * @return the linear distance squared.    */
 DECL|method|linearDistanceSquared
 specifier|public
 name|double
@@ -1252,7 +1255,7 @@ name|bounds
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute linear distance squared from plane to a vector.  This is defined    * as the distance from the given point to the nearest intersection of     * this plane with the planet surface.    * @param x is the vector x.    * @param y is the vector y.    * @param z is the vector z.    * @return the linear distance squared.    */
+comment|/**    * Compute linear distance squared from plane to a vector.  This is defined    * as the distance from the given point to the nearest intersection of     * this plane with the planet surface.    * @param planetModel is the planet model.    * @param x is the vector x.    * @param y is the vector y.    * @param z is the vector z.    * @param bounds are the bounds which constrain the intersection point.    * @return the linear distance squared.    */
 DECL|method|linearDistanceSquared
 specifier|public
 name|double
@@ -1303,7 +1306,7 @@ operator|*
 name|linearDistance
 return|;
 block|}
-comment|/**    * Find points on the boundary of the intersection of a plane and the unit sphere,    * given a starting point, and ending point, and a list of proportions of the arc (e.g. 0.25, 0.5, 0.75).    * The angle between the starting point and ending point is assumed to be less than pi.    */
+comment|/**    * Find points on the boundary of the intersection of a plane and the unit sphere,    * given a starting point, and ending point, and a list of proportions of the arc (e.g. 0.25, 0.5, 0.75).    * The angle between the starting point and ending point is assumed to be less than pi.    * @param start is the start point.    * @param end is the end point.    * @param proportions is an array of fractional proportions measured between start and end.    * @return an array of points corresponding to the proportions passed in.    */
 DECL|method|interpolate
 specifier|public
 name|GeoPoint
@@ -1894,7 +1897,7 @@ return|return
 name|returnValues
 return|;
 block|}
-comment|/**    * Modify a point to produce a vector in translated/rotated space.    */
+comment|/**    * Modify a point to produce a vector in translated/rotated space.    * @param start is the start point.    * @param transX is the translation x value.    * @param transY is the translation y value.    * @param transZ is the translation z value.    * @param sinRA is the sine of the ascension angle.    * @param cosRA is the cosine of the ascension angle.    * @param sinHA is the sine of the height angle.    * @param cosHA is the cosine of the height angle.    * @return the modified point.    */
 DECL|method|modify
 specifier|protected
 specifier|static
@@ -1961,7 +1964,7 @@ name|cosHA
 argument_list|)
 return|;
 block|}
-comment|/**    * Reverse modify a point to produce a GeoPoint in normal space.    */
+comment|/**    * Reverse modify a point to produce a GeoPoint in normal space.    * @param point is the translated point.    * @param transX is the translation x value.    * @param transY is the translation y value.    * @param transZ is the translation z value.    * @param sinRA is the sine of the ascension angle.    * @param cosRA is the cosine of the ascension angle.    * @param sinHA is the sine of the height angle.    * @param cosHA is the cosine of the height angle.    * @return the original point.    */
 DECL|method|reverseModify
 specifier|protected
 specifier|static
@@ -2053,7 +2056,7 @@ name|z
 argument_list|)
 return|;
 block|}
-comment|/**    * Public version of findIntersections.    */
+comment|/**    * Public version of findIntersections.    * @param planetModel is the planet model.    * @param q is the plane to intersect with.    * @param bounds are the bounds to consider to determine legal intersection points.    * @return the set of legal intersection points.    */
 DECL|method|findIntersections
 specifier|public
 name|GeoPoint
@@ -4701,6 +4704,7 @@ block|}
 block|}
 block|}
 block|}
+comment|/** Add a point to boundsInfo if within a specifically bounded area.    * @param boundsInfo is the object to be modified.    * @param bounds is the area that the point must be within.    * @param x is the x value.    * @param y is the y value.    * @param z is the z value.    */
 DECL|method|addPoint
 specifier|protected
 specifier|static
@@ -4895,7 +4899,7 @@ operator|>
 literal|0
 return|;
 block|}
-comment|/**    * Returns true if this plane and the other plane are identical within the margin of error.    */
+comment|/**    * Returns true if this plane and the other plane are identical within the margin of error.    * @param p is the plane to compare against.    * @return true if the planes are numerically identical.    */
 DECL|method|isNumericallyIdentical
 specifier|protected
 name|boolean
@@ -5075,6 +5079,7 @@ name|denom
 argument_list|)
 return|;
 block|}
+comment|/**    * Check if a vector meets the provided bounds.    * @param p is the vector.    * @param bounds are the bounds.    * @return true if the vector describes a point within the bounds.    */
 DECL|method|meetsAllBounds
 specifier|protected
 specifier|static
@@ -5110,6 +5115,7 @@ name|bounds
 argument_list|)
 return|;
 block|}
+comment|/**    * Check if a vector meets the provided bounds.    * @param x is the x value.    * @param y is the y value.    * @param z is the z value.    * @param bounds are the bounds.    * @return true if the vector describes a point within the bounds.    */
 DECL|method|meetsAllBounds
 specifier|protected
 specifier|static
@@ -5165,6 +5171,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**    * Check if a vector meets the provided bounds.    * @param p is the vector.    * @param bounds are the bounds.    * @param moreBounds are an additional set of bounds.    * @return true if the vector describes a point within the bounds.    */
 DECL|method|meetsAllBounds
 specifier|protected
 specifier|static
@@ -5207,6 +5214,7 @@ name|moreBounds
 argument_list|)
 return|;
 block|}
+comment|/**    * Check if a vector meets the provided bounds.    * @param x is the x value.    * @param y is the y value.    * @param z is the z value.    * @param bounds are the bounds.    * @param moreBounds are an additional set of bounds.    * @return true if the vector describes a point within the bounds.    */
 DECL|method|meetsAllBounds
 specifier|protected
 specifier|static
@@ -5260,7 +5268,7 @@ name|moreBounds
 argument_list|)
 return|;
 block|}
-comment|/**    * Find a sample point on the intersection between two planes and the unit sphere.    */
+comment|/**    * Find a sample point on the intersection between two planes and the world.    * @param planetModel is the planet model.    * @param q is the second plane to consider.    * @return a sample point that is on the intersection between the two planes and the world.    */
 DECL|method|getSampleIntersectionPoint
 specifier|public
 name|GeoPoint

@@ -95,48 +95,56 @@ decl_stmt|;
 comment|// Surface of the planet:
 comment|// x^2/a^2 + y^2/b^2 + z^2/c^2 = 1.0
 comment|// Scaling factors are a,b,c.  geo3d can only support models where a==b, so use ab instead.
+comment|/** The x/y scaling factor */
 DECL|field|ab
 specifier|public
 specifier|final
 name|double
 name|ab
 decl_stmt|;
+comment|/** The z scaling factor */
 DECL|field|c
 specifier|public
 specifier|final
 name|double
 name|c
 decl_stmt|;
+comment|/** The inverse of ab */
 DECL|field|inverseAb
 specifier|public
 specifier|final
 name|double
 name|inverseAb
 decl_stmt|;
+comment|/** The inverse of c */
 DECL|field|inverseC
 specifier|public
 specifier|final
 name|double
 name|inverseC
 decl_stmt|;
+comment|/** The square of the inverse of ab */
 DECL|field|inverseAbSquared
 specifier|public
 specifier|final
 name|double
 name|inverseAbSquared
 decl_stmt|;
+comment|/** The square of the inverse of c */
 DECL|field|inverseCSquared
 specifier|public
 specifier|final
 name|double
 name|inverseCSquared
 decl_stmt|;
+comment|/** The flattening value */
 DECL|field|flattening
 specifier|public
 specifier|final
 name|double
 name|flattening
 decl_stmt|;
+comment|/** The square ratio */
 DECL|field|squareRatio
 specifier|public
 specifier|final
@@ -145,18 +153,21 @@ name|squareRatio
 decl_stmt|;
 comment|// We do NOT include radius, because all computations in geo3d are in radians, not meters.
 comment|// Compute north and south pole for planet model, since these are commonly used.
+comment|/** North pole */
 DECL|field|NORTH_POLE
 specifier|public
 specifier|final
 name|GeoPoint
 name|NORTH_POLE
 decl_stmt|;
+comment|/** South pole */
 DECL|field|SOUTH_POLE
 specifier|public
 specifier|final
 name|GeoPoint
 name|SOUTH_POLE
 decl_stmt|;
+comment|/** Constructor.    * @param ab is the x/y scaling factor.    * @param c is the z scaling factor.    */
 DECL|method|PlanetModel
 specifier|public
 name|PlanetModel
@@ -297,7 +308,7 @@ literal|0.0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Find the minimum magnitude of all points on the ellipsoid.    */
+comment|/** Find the minimum magnitude of all points on the ellipsoid.    * @return the minimum magnitude for the planet.    */
 DECL|method|getMinimumMagnitude
 specifier|public
 name|double
@@ -319,7 +330,7 @@ name|c
 argument_list|)
 return|;
 block|}
-comment|/** Find the maximum magnitude of all points on the ellipsoid.    */
+comment|/** Find the maximum magnitude of all points on the ellipsoid.    * @return the maximum magnitude for the planet.    */
 DECL|method|getMaximumMagnitude
 specifier|public
 name|double

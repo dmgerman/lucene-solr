@@ -28,60 +28,70 @@ name|GeoWideSouthRectangle
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** Top latitude of rect */
 DECL|field|topLat
 specifier|protected
 specifier|final
 name|double
 name|topLat
 decl_stmt|;
+comment|/** Left longitude of rect */
 DECL|field|leftLon
 specifier|protected
 specifier|final
 name|double
 name|leftLon
 decl_stmt|;
+comment|/** Right longitude of rect */
 DECL|field|rightLon
 specifier|protected
 specifier|final
 name|double
 name|rightLon
 decl_stmt|;
+comment|/** Cosine of middle latitude */
 DECL|field|cosMiddleLat
 specifier|protected
 specifier|final
 name|double
 name|cosMiddleLat
 decl_stmt|;
+comment|/** Upper left hand corner */
 DECL|field|ULHC
 specifier|protected
 specifier|final
 name|GeoPoint
 name|ULHC
 decl_stmt|;
+comment|/** Upper right hand corner */
 DECL|field|URHC
 specifier|protected
 specifier|final
 name|GeoPoint
 name|URHC
 decl_stmt|;
+comment|/** The top plane */
 DECL|field|topPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|topPlane
 decl_stmt|;
+comment|/** The left plane */
 DECL|field|leftPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|leftPlane
 decl_stmt|;
+comment|/** The right plane */
 DECL|field|rightPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|rightPlane
 decl_stmt|;
+comment|/** Notable points for top plane */
 DECL|field|topPlanePoints
 specifier|protected
 specifier|final
@@ -89,6 +99,7 @@ name|GeoPoint
 index|[]
 name|topPlanePoints
 decl_stmt|;
+comment|/** Notable points for left plane */
 DECL|field|leftPlanePoints
 specifier|protected
 specifier|final
@@ -96,6 +107,7 @@ name|GeoPoint
 index|[]
 name|leftPlanePoints
 decl_stmt|;
+comment|/** Notable points for right plane */
 DECL|field|rightPlanePoints
 specifier|protected
 specifier|final
@@ -103,18 +115,21 @@ name|GeoPoint
 index|[]
 name|rightPlanePoints
 decl_stmt|;
+comment|/** Center point */
 DECL|field|centerPoint
 specifier|protected
 specifier|final
 name|GeoPoint
 name|centerPoint
 decl_stmt|;
+comment|/** Left/right bounds */
 DECL|field|eitherBound
 specifier|protected
 specifier|final
 name|EitherBound
 name|eitherBound
 decl_stmt|;
+comment|/** A point on the edge */
 DECL|field|edgePoints
 specifier|protected
 specifier|final
@@ -1401,6 +1416,7 @@ operator|+
 literal|")}"
 return|;
 block|}
+comment|/** Membership implementation representing width more than 180.    */
 DECL|class|EitherBound
 specifier|protected
 class|class
@@ -1408,6 +1424,7 @@ name|EitherBound
 implements|implements
 name|Membership
 block|{
+comment|/** Constructor.      */
 DECL|method|EitherBound
 specifier|public
 name|EitherBound

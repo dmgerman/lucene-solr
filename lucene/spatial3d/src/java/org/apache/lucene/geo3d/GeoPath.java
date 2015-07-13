@@ -2861,6 +2861,7 @@ name|GeoPoint
 index|[]
 name|endCutoffPlanePoints
 decl_stmt|;
+comment|/** Construct a path segment.      *@param planetModel is the planet model.      *@param start is the starting point.      *@param end is the ending point.      *@param normalizedConnectingPlane is the connecting plane.      *@param planeBoundingOffset is the linear offset from the connecting plane to either side.      */
 DECL|method|PathSegment
 specifier|public
 name|PathSegment

@@ -28,30 +28,35 @@ name|GeoWideLongitudeSlice
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** The left longitude */
 DECL|field|leftLon
 specifier|protected
 specifier|final
 name|double
 name|leftLon
 decl_stmt|;
+comment|/** The right longitude */
 DECL|field|rightLon
 specifier|protected
 specifier|final
 name|double
 name|rightLon
 decl_stmt|;
+comment|/** The left plane */
 DECL|field|leftPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|leftPlane
 decl_stmt|;
+comment|/** The right plane */
 DECL|field|rightPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|rightPlane
 decl_stmt|;
+comment|/** Notable points for the shape */
 DECL|field|planePoints
 specifier|protected
 specifier|final
@@ -59,12 +64,14 @@ name|GeoPoint
 index|[]
 name|planePoints
 decl_stmt|;
+comment|/** Center point for the shape */
 DECL|field|centerPoint
 specifier|protected
 specifier|final
 name|GeoPoint
 name|centerPoint
 decl_stmt|;
+comment|/** A point on the edge of the shape */
 DECL|field|edgePoints
 specifier|protected
 specifier|final
@@ -72,7 +79,7 @@ name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
-comment|/**    * Accepts only values in the following ranges: lon: {@code -PI -> PI}.    * Horizantal angle must be greater than or equal to PI.    */
+comment|/**    * Accepts only values in the following ranges: lon: {@code -PI -> PI}.    * Horizantal angle must be greater than or equal to PI.    *@param planetModel is the planet model.    *@param leftLon is the left longitude.    *@param rightLon is the right longitude.    */
 DECL|method|GeoWideLongitudeSlice
 specifier|public
 name|GeoWideLongitudeSlice

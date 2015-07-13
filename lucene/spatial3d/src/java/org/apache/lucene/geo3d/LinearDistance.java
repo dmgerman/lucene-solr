@@ -28,6 +28,7 @@ name|LinearDistance
 implements|implements
 name|DistanceStyle
 block|{
+comment|/** A convenient instance */
 DECL|field|INSTANCE
 specifier|public
 specifier|final
@@ -39,6 +40,12 @@ operator|new
 name|LinearDistance
 argument_list|()
 decl_stmt|;
+comment|/** Constructor.    */
+DECL|method|LinearDistance
+specifier|public
+name|LinearDistance
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|computeDistance

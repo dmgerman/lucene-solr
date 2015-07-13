@@ -30,6 +30,7 @@ name|Plane
 implements|implements
 name|Membership
 block|{
+comment|/** The sign value for evaluation of a point on the correct side of the plane */
 DECL|field|sigNum
 specifier|public
 specifier|final

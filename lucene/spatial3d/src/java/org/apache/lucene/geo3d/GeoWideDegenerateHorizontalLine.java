@@ -28,54 +28,63 @@ name|GeoWideDegenerateHorizontalLine
 extends|extends
 name|GeoBaseBBox
 block|{
+comment|/** The latitude of the line */
 DECL|field|latitude
 specifier|protected
 specifier|final
 name|double
 name|latitude
 decl_stmt|;
+comment|/** The left longitude cutoff of the line */
 DECL|field|leftLon
 specifier|protected
 specifier|final
 name|double
 name|leftLon
 decl_stmt|;
+comment|/** The right longitude cutoff of the line */
 DECL|field|rightLon
 specifier|protected
 specifier|final
 name|double
 name|rightLon
 decl_stmt|;
+comment|/** The left end of the line */
 DECL|field|LHC
 specifier|protected
 specifier|final
 name|GeoPoint
 name|LHC
 decl_stmt|;
+comment|/** The right end of the line */
 DECL|field|RHC
 specifier|protected
 specifier|final
 name|GeoPoint
 name|RHC
 decl_stmt|;
+comment|/** The plane the line is in */
 DECL|field|plane
 specifier|protected
 specifier|final
 name|Plane
 name|plane
 decl_stmt|;
+comment|/** The left cutoff plane */
 DECL|field|leftPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|leftPlane
 decl_stmt|;
+comment|/** The right cutoff plane */
 DECL|field|rightPlane
 specifier|protected
 specifier|final
 name|SidedPlane
 name|rightPlane
 decl_stmt|;
+comment|/** Notable points for the line */
 DECL|field|planePoints
 specifier|protected
 specifier|final
@@ -83,18 +92,21 @@ name|GeoPoint
 index|[]
 name|planePoints
 decl_stmt|;
+comment|/** Center point for the line */
 DECL|field|centerPoint
 specifier|protected
 specifier|final
 name|GeoPoint
 name|centerPoint
 decl_stmt|;
+comment|/** Left/right combination bound */
 DECL|field|eitherBound
 specifier|protected
 specifier|final
 name|EitherBound
 name|eitherBound
 decl_stmt|;
+comment|/** A point on the line */
 DECL|field|edgePoints
 specifier|protected
 specifier|final
@@ -102,7 +114,7 @@ name|GeoPoint
 index|[]
 name|edgePoints
 decl_stmt|;
-comment|/**    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}.    * Horizontal angle must be greater than or equal to PI.    */
+comment|/**    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}.    * Horizontal angle must be greater than or equal to PI.    *@param planetModel is the planet model.    *@param latitude is the line latitude.    *@param leftLon is the left cutoff longitude.    *@param rightLon is the right cutoff longitude.    */
 DECL|method|GeoWideDegenerateHorizontalLine
 specifier|public
 name|GeoWideDegenerateHorizontalLine
@@ -1120,6 +1132,7 @@ operator|+
 literal|")}"
 return|;
 block|}
+comment|/** Membership implementation representing a wide cutoff (more than 180 degrees).    */
 DECL|class|EitherBound
 specifier|protected
 class|class
@@ -1127,6 +1140,7 @@ name|EitherBound
 implements|implements
 name|Membership
 block|{
+comment|/** Constructor.      */
 DECL|method|EitherBound
 specifier|public
 name|EitherBound
