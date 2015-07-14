@@ -3767,7 +3767,9 @@ comment|// closing
 if|if
 condition|(
 name|shouldClose
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 condition|)
 block|{
 name|boolean
@@ -3883,14 +3885,17 @@ expr_stmt|;
 block|}
 block|}
 comment|// Returns true if this thread should attempt to close, or
-comment|// false if IndexWriter is now closed; else, waits until
-comment|// another thread finishes closing
+comment|// false if IndexWriter is now closed; else,
+comment|// waits until another thread finishes closing
 DECL|method|shouldClose
 specifier|synchronized
 specifier|private
 name|boolean
 name|shouldClose
-parameter_list|()
+parameter_list|(
+name|boolean
+name|waitForClose
+parameter_list|)
 block|{
 while|while
 condition|(
@@ -3899,22 +3904,37 @@ condition|)
 block|{
 if|if
 condition|(
-operator|!
 name|closed
+operator|==
+literal|false
 condition|)
 block|{
 if|if
 condition|(
-operator|!
 name|closing
+operator|==
+literal|false
 condition|)
 block|{
+comment|// We get to close
 name|closing
 operator|=
 literal|true
 expr_stmt|;
 return|return
 literal|true
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|waitForClose
+operator|==
+literal|false
+condition|)
+block|{
+return|return
+literal|false
 return|;
 block|}
 else|else
@@ -6545,7 +6565,9 @@ block|{
 if|if
 condition|(
 name|shouldClose
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 condition|)
 block|{
 name|rollbackInternal
@@ -6589,19 +6611,9 @@ expr_stmt|;
 block|}
 try|try
 block|{
-synchronized|synchronized
-init|(
-name|this
-init|)
-block|{
 name|abortMerges
 argument_list|()
 expr_stmt|;
-name|stopMerges
-operator|=
-literal|true
-expr_stmt|;
-block|}
 name|rateLimiters
 operator|.
 name|close
@@ -6628,7 +6640,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Must pre-close in case it increments changeCount so that we can then
-comment|// set it to false before calling closeInternal
+comment|// set it to false before calling rollbackInternal
 name|mergeScheduler
 operator|.
 name|close
@@ -6702,10 +6714,8 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|// Keep the same segmentInfos instance but replace all
-comment|// of its SegmentInfo instances.  This is so the next
-comment|// attempt to commit using this instance of IndexWriter
-comment|// will always write to a new generation ("write
-comment|// once").
+comment|// of its SegmentInfo instances so IFD below will remove
+comment|// any segments we flushed since the last commit:
 name|segmentInfos
 operator|.
 name|rollbackSegmentInfos
@@ -6744,7 +6754,15 @@ literal|"rollback before checkpoint"
 argument_list|)
 expr_stmt|;
 comment|// Ask deleter to locate unreferenced files& remove
-comment|// them:
+comment|// them ... only when we are not experiencing a tragedy, else
+comment|// these methods throw ACE:
+if|if
+condition|(
+name|tragedy
+operator|==
+literal|null
+condition|)
+block|{
 name|deleter
 operator|.
 name|checkpoint
@@ -6759,16 +6777,17 @@ operator|.
 name|refresh
 argument_list|()
 expr_stmt|;
+name|deleter
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 name|lastCommitChangeCount
 operator|=
 name|changeCount
 operator|.
 name|get
-argument_list|()
-expr_stmt|;
-name|deleter
-operator|.
-name|close
 argument_list|()
 expr_stmt|;
 comment|// Must set closed while inside same sync block where we call deleter.refresh, else concurrent threads may try to sneak a flush in,
@@ -6813,8 +6832,9 @@ finally|finally
 block|{
 if|if
 condition|(
-operator|!
 name|success
+operator|==
+literal|false
 condition|)
 block|{
 comment|// Must not hold IW's lock while closing
@@ -6835,8 +6855,9 @@ init|)
 block|{
 if|if
 condition|(
-operator|!
 name|success
+operator|==
+literal|false
 condition|)
 block|{
 comment|// we tried to be nice about it: do the minimum
@@ -6900,6 +6921,10 @@ expr_stmt|;
 name|closing
 operator|=
 literal|false
+expr_stmt|;
+comment|// So any "concurrently closing" threads wake up and see that the close has now completed:
+name|notifyAll
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -6966,6 +6991,11 @@ block|{
 comment|// Abort any running merges
 name|abortMerges
 argument_list|()
+expr_stmt|;
+comment|// Let merges run again
+name|stopMerges
+operator|=
+literal|false
 expr_stmt|;
 comment|// Remove all segments
 name|pendingNumDocs
@@ -7194,10 +7224,8 @@ name|setAbort
 argument_list|()
 expr_stmt|;
 block|}
-comment|// These merges periodically check whether they have
-comment|// been aborted, and stop if so.  We wait here to make
-comment|// sure they all stop.  It should not take very long
-comment|// because the merge threads periodically check if
+comment|// We wait here to make all merges stop.  It should not
+comment|// take very long because they periodically check if
 comment|// they are aborted.
 while|while
 condition|(
@@ -7205,7 +7233,7 @@ name|runningMerges
 operator|.
 name|size
 argument_list|()
-operator|>
+operator|!=
 literal|0
 condition|)
 block|{
@@ -7240,10 +7268,6 @@ name|doWait
 argument_list|()
 expr_stmt|;
 block|}
-name|stopMerges
-operator|=
-literal|false
-expr_stmt|;
 name|notifyAll
 argument_list|()
 expr_stmt|;
@@ -9803,6 +9827,28 @@ init|(
 name|this
 init|)
 block|{
+name|ensureOpen
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|tragedy
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"this writer hit an unrecoverable error; cannot complete commit"
+argument_list|,
+name|tragedy
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|pendingCommit
@@ -10120,6 +10166,7 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Flush all in-memory buffered updates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param applyAllDeletes whether pending deletes should also    */
+comment|// why protected
 DECL|method|flush
 specifier|protected
 specifier|final
@@ -12837,7 +12884,7 @@ name|MergeAbortedException
 condition|)
 block|{
 comment|// We can ignore this exception (it happens when
-comment|// close(false) or rollback is called), unless the
+comment|// deleteAll or rollback is called), unless the
 comment|// merge involves segments from external directories,
 comment|// in which case we must throw it so, for example, the
 comment|// rollbackTransaction code in addIndexes* is
@@ -13067,13 +13114,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// This merge (and, generally, any change to the
-comment|// segments) may now enable new merges, so we call
-comment|// merge policy& update pending merges.
+elseif|else
 if|if
 condition|(
-name|success
-operator|&&
 name|merge
 operator|.
 name|rateLimiter
@@ -13101,6 +13144,9 @@ operator|)
 operator|)
 condition|)
 block|{
+comment|// This merge (and, generally, any change to the
+comment|// segments) may now enable new merges, so we call
+comment|// merge policy& update pending merges.
 name|updatePendingMerges
 argument_list|(
 name|mergePolicy
@@ -13120,13 +13166,15 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|OutOfMemoryError
-name|oom
+name|Throwable
+name|t
 parameter_list|)
 block|{
+comment|// Important that tragicEvent is called after mergeFinish, else we hang
+comment|// waiting for our merge thread to be removed from runningMerges:
 name|tragicEvent
 argument_list|(
-name|oom
+name|t
 argument_list|,
 literal|"merge"
 argument_list|)
@@ -16165,7 +16213,6 @@ return|;
 block|}
 comment|/** Returns a string description of all segments, for    *  debugging.    *    * @lucene.internal */
 DECL|method|segString
-specifier|public
 specifier|synchronized
 name|String
 name|segString
@@ -16180,7 +16227,6 @@ return|;
 block|}
 comment|/** Returns a string description of the specified    *  segments, for debugging.    *    * @lucene.internal */
 DECL|method|segString
-specifier|public
 specifier|synchronized
 name|String
 name|segString
@@ -16247,7 +16293,6 @@ return|;
 block|}
 comment|/** Returns a string description of the specified    *  segment, for debugging.    *    * @lucene.internal */
 DECL|method|segString
-specifier|public
 specifier|synchronized
 name|String
 name|segString
@@ -17050,6 +17095,17 @@ name|getCause
 argument_list|()
 expr_stmt|;
 block|}
+comment|// This is not supposed to be tragic: IW is supposed to catch this and
+comment|// ignore, because it means we asked the merge to abort:
+assert|assert
+name|tragedy
+operator|instanceof
+name|MergePolicy
+operator|.
+name|MergeAbortedException
+operator|==
+literal|false
+assert|;
 comment|// We cannot hold IW's lock here else it can lead to deadlock:
 assert|assert
 name|Thread
@@ -17104,16 +17160,25 @@ init|(
 name|this
 init|)
 block|{
-comment|// it's possible you could have a really bad day
+comment|// It's possible you could have a really bad day
 if|if
 condition|(
 name|this
 operator|.
 name|tragedy
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
+comment|// Another thread is already dealing / has dealt with the tragedy:
+name|IOUtils
+operator|.
+name|reThrow
+argument_list|(
+name|tragedy
+argument_list|)
+expr_stmt|;
+block|}
 name|this
 operator|.
 name|tragedy
@@ -17121,36 +17186,18 @@ operator|=
 name|tragedy
 expr_stmt|;
 block|}
-block|}
 comment|// if we are already closed (e.g. called by rollback), this will be a no-op.
-synchronized|synchronized
-init|(
-name|commitLock
-init|)
-block|{
 if|if
 condition|(
-name|closing
-operator|==
+name|shouldClose
+argument_list|(
 literal|false
+argument_list|)
 condition|)
 block|{
-try|try
-block|{
-name|rollback
+name|rollbackInternal
 argument_list|()
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|ignored
-parameter_list|)
-block|{
-comment|// it would be confusing to addSuppressed here, it's unrelated to the disaster,
-comment|// and it's possible our internal state is amiss anyway.
-block|}
-block|}
 block|}
 name|IOUtils
 operator|.

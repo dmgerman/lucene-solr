@@ -471,6 +471,7 @@ name|getMethodName
 argument_list|()
 argument_list|)
 condition|)
+block|{
 throw|throw
 operator|new
 name|IOException
@@ -478,6 +479,7 @@ argument_list|(
 literal|"now failing during merge"
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}
@@ -613,6 +615,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|writer
 operator|.
 name|addDocument
@@ -620,6 +623,9 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
+try|try
+block|{
 operator|(
 operator|(
 name|MyMergeScheduler
@@ -636,9 +642,18 @@ operator|.
 name|sync
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalStateException
+name|ise
+parameter_list|)
+block|{
+comment|// OK
+block|}
 name|writer
 operator|.
-name|close
+name|rollback
 argument_list|()
 expr_stmt|;
 name|assertTrue

@@ -1526,11 +1526,20 @@ range|:
 name|mergeThreads
 control|)
 block|{
+comment|// In case a merge thread is calling us, don't try to sync on
+comment|// itself, since that will never finish!
 if|if
 condition|(
 name|t
 operator|.
 name|isAlive
+argument_list|()
+operator|&&
+name|t
+operator|!=
+name|Thread
+operator|.
+name|currentThread
 argument_list|()
 condition|)
 block|{
@@ -2342,36 +2351,6 @@ name|Throwable
 name|exc
 parameter_list|)
 block|{
-try|try
-block|{
-comment|// When an exception is hit during merge, IndexWriter
-comment|// removes any partial files and then allows another
-comment|// merge to run.  If whatever caused the error is not
-comment|// transient then the exception will keep happening,
-comment|// so, we sleep here to avoid saturating CPU in such
-comment|// cases:
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|250
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|ie
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|ThreadInterruptedException
-argument_list|(
-name|ie
-argument_list|)
-throw|;
-block|}
 throw|throw
 operator|new
 name|MergePolicy
