@@ -1052,15 +1052,6 @@ if|if
 condition|(
 name|perThread
 operator|.
-name|isActive
-argument_list|()
-condition|)
-block|{
-comment|// we might be closed
-if|if
-condition|(
-name|perThread
-operator|.
 name|isInitialized
 argument_list|()
 condition|)
@@ -1114,16 +1105,6 @@ name|perThread
 argument_list|)
 expr_stmt|;
 comment|// This DWPT was never initialized so it has no indexed documents:
-return|return
-literal|0
-return|;
-block|}
-block|}
-else|else
-block|{
-assert|assert
-name|closed
-assert|;
 return|return
 literal|0
 return|;
@@ -1631,11 +1612,6 @@ if|if
 condition|(
 name|state
 operator|.
-name|isActive
-argument_list|()
-operator|&&
-name|state
-operator|.
 name|dwpt
 operator|==
 literal|null
@@ -1741,24 +1717,11 @@ name|flushingDWPT
 decl_stmt|;
 try|try
 block|{
-if|if
-condition|(
-operator|!
-name|perThread
-operator|.
-name|isActive
-argument_list|()
-condition|)
-block|{
+comment|// This must happen after we've pulled the ThreadState because IW.close
+comment|// waits for all ThreadStates to be released:
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-assert|assert
-literal|false
-operator|:
-literal|"perThread is not active but we are still open"
-assert|;
-block|}
 name|ensureInitialized
 argument_list|(
 name|perThread
@@ -1922,24 +1885,11 @@ name|flushingDWPT
 decl_stmt|;
 try|try
 block|{
-if|if
-condition|(
-operator|!
-name|perThread
-operator|.
-name|isActive
-argument_list|()
-condition|)
-block|{
+comment|// This must happen after we've pulled the ThreadState because IW.close
+comment|// waits for all ThreadStates to be released:
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-assert|assert
-literal|false
-operator|:
-literal|"perThread is not active but we are still open"
-assert|;
-block|}
 name|ensureInitialized
 argument_list|(
 name|perThread
