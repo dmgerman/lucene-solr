@@ -244,9 +244,9 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
+name|util
 operator|.
-name|ZkStateReader
+name|StrUtils
 import|;
 end_import
 
@@ -262,7 +262,7 @@ name|common
 operator|.
 name|util
 operator|.
-name|StrUtils
+name|Utils
 import|;
 end_import
 
@@ -438,9 +438,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|RequestParams
+name|util
+operator|.
+name|Utils
 operator|.
 name|getDeepCopy
 import|;
@@ -984,7 +986,7 @@ name|msg
 operator|+=
 literal|"\n tag values"
 operator|+
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSONString
 argument_list|(
@@ -1005,7 +1007,7 @@ name|msg
 operator|+=
 literal|"\nInitial state for the coll : "
 operator|+
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSONString
 argument_list|(

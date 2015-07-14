@@ -134,6 +134,22 @@ name|ZkNodeProps
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|Utils
+import|;
+end_import
+
 begin_class
 DECL|class|TestClusterStateMutator
 specifier|public
@@ -218,7 +234,7 @@ init|=
 operator|new
 name|ZkNodeProps
 argument_list|(
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 argument_list|(
@@ -315,7 +331,7 @@ operator|=
 operator|new
 name|ZkNodeProps
 argument_list|(
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 argument_list|(

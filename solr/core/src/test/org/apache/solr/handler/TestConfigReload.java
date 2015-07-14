@@ -36,9 +36,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|ConfigOverlay
+name|util
+operator|.
+name|Utils
 operator|.
 name|getObjectByPath
 import|;
@@ -63,16 +65,6 @@ operator|.
 name|charset
 operator|.
 name|StandardCharsets
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|MessageFormat
 import|;
 end_import
 

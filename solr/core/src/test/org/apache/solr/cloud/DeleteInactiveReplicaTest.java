@@ -33,24 +33,6 @@ import|;
 end_import
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkNodeProps
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -287,6 +269,22 @@ operator|.
 name|util
 operator|.
 name|NamedList
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|Utils
 import|;
 end_import
 
@@ -791,6 +789,8 @@ expr_stmt|;
 name|Map
 name|m
 init|=
+name|Utils
+operator|.
 name|makeMap
 argument_list|(
 literal|"qt"
@@ -879,6 +879,8 @@ try|try
 block|{
 name|m
 operator|=
+name|Utils
+operator|.
 name|makeMap
 argument_list|(
 literal|"action"

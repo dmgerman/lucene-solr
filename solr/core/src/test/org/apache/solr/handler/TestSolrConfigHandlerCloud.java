@@ -20,16 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
-operator|.
-name|MessageFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -73,22 +63,6 @@ operator|.
 name|util
 operator|.
 name|Objects
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
-operator|.
-name|BadApple
 import|;
 end_import
 
@@ -228,9 +202,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|ConfigOverlay
+name|util
+operator|.
+name|Utils
 import|;
 end_import
 
@@ -1567,7 +1543,7 @@ name|equals
 argument_list|(
 name|expected
 argument_list|,
-name|ConfigOverlay
+name|Utils
 operator|.
 name|getObjectByPath
 argument_list|(

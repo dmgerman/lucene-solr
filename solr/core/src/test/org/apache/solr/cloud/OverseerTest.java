@@ -126,18 +126,6 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|Executors
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|TimeUnit
 import|;
 end_import
@@ -365,6 +353,22 @@ operator|.
 name|util
 operator|.
 name|ExecutorUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|Utils
 import|;
 end_import
 
@@ -1026,7 +1030,7 @@ name|q
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -1126,7 +1130,7 @@ name|q
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -3774,7 +3778,7 @@ name|q
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -3886,7 +3890,7 @@ name|q
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -6373,7 +6377,7 @@ name|q
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -6511,7 +6515,7 @@ name|q
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -6651,7 +6655,7 @@ name|q
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -7275,7 +7279,7 @@ name|queue
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -7348,7 +7352,7 @@ name|queue
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -7446,7 +7450,7 @@ name|queue
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(

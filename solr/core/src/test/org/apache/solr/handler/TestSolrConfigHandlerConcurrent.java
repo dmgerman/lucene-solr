@@ -36,9 +36,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|ConfigOverlay
+name|util
+operator|.
+name|Utils
 operator|.
 name|getObjectByPath
 import|;
@@ -75,16 +77,6 @@ operator|.
 name|charset
 operator|.
 name|StandardCharsets
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|text
-operator|.
-name|MessageFormat
 import|;
 end_import
 
@@ -347,6 +339,22 @@ operator|.
 name|util
 operator|.
 name|StrUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|Utils
 import|;
 end_import
 
@@ -1051,7 +1059,7 @@ argument_list|(
 operator|new
 name|String
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(

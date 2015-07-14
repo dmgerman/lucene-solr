@@ -150,23 +150,9 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
+name|util
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkStateReader
+name|Utils
 import|;
 end_import
 
@@ -208,9 +194,9 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
+name|util
 operator|.
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 import|;
@@ -284,7 +270,7 @@ operator|=
 operator|(
 name|Map
 operator|)
-name|ZkStateReader
+name|Utils
 operator|.
 name|fromJSON
 argument_list|(
@@ -492,7 +478,7 @@ operator|=
 operator|(
 name|Map
 operator|)
-name|ZkStateReader
+name|Utils
 operator|.
 name|fromJSON
 argument_list|(
@@ -997,7 +983,7 @@ init|=
 operator|(
 name|List
 operator|)
-name|ZkStateReader
+name|Utils
 operator|.
 name|fromJSON
 argument_list|(

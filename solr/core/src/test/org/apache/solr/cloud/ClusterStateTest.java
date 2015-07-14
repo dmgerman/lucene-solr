@@ -22,16 +22,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -178,9 +168,15 @@ begin_import
 import|import
 name|org
 operator|.
-name|easymock
+name|apache
 operator|.
-name|EasyMock
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|Utils
 import|;
 end_import
 
@@ -190,7 +186,7 @@ name|org
 operator|.
 name|easymock
 operator|.
-name|IAnswer
+name|EasyMock
 import|;
 end_import
 
@@ -225,18 +221,6 @@ operator|.
 name|EasyMock
 operator|.
 name|createStrictMock
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
-operator|.
-name|expectLastCall
 import|;
 end_import
 
@@ -488,7 +472,7 @@ name|byte
 index|[]
 name|bytes
 init|=
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(

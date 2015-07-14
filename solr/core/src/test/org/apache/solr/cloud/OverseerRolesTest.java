@@ -172,22 +172,6 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
-operator|.
-name|ZkStateReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|params
 operator|.
 name|CollectionParams
@@ -234,11 +218,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|zookeeper
+name|solr
 operator|.
-name|data
+name|common
 operator|.
-name|Stat
+name|util
+operator|.
+name|Utils
 import|;
 end_import
 
@@ -246,9 +232,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|apache
 operator|.
-name|BeforeClass
+name|zookeeper
+operator|.
+name|data
+operator|.
+name|Stat
 import|;
 end_import
 
@@ -380,9 +370,9 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
+name|util
 operator|.
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 import|;
@@ -579,7 +569,7 @@ init|=
 operator|(
 name|Map
 operator|)
-name|ZkStateReader
+name|Utils
 operator|.
 name|fromJSON
 argument_list|(
@@ -618,7 +608,7 @@ argument_list|)
 operator|.
 name|offer
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(

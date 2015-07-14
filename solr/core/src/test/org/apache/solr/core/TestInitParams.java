@@ -38,9 +38,9 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
+name|util
 operator|.
-name|ZkNodeProps
+name|NamedList
 import|;
 end_import
 
@@ -56,7 +56,7 @@ name|common
 operator|.
 name|util
 operator|.
-name|NamedList
+name|Utils
 import|;
 end_import
 
@@ -371,7 +371,7 @@ argument_list|,
 operator|new
 name|NamedList
 argument_list|(
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 argument_list|(
@@ -934,7 +934,7 @@ name|InitParams
 operator|.
 name|TYPE
 argument_list|,
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 argument_list|(
@@ -977,7 +977,7 @@ name|InitParams
 operator|.
 name|TYPE
 argument_list|,
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 argument_list|(
@@ -1030,7 +1030,7 @@ name|InitParams
 operator|.
 name|TYPE
 argument_list|,
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 argument_list|(

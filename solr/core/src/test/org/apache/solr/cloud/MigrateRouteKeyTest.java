@@ -226,22 +226,6 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
-operator|.
-name|ZkNodeProps
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|params
 operator|.
 name|ModifiableSolrParams
@@ -256,9 +240,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|update
+name|common
 operator|.
-name|DirectUpdateHandler2
+name|util
+operator|.
+name|Utils
 import|;
 end_import
 
@@ -830,7 +816,7 @@ name|Object
 argument_list|>
 name|props
 init|=
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 argument_list|(

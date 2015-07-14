@@ -200,19 +200,15 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|apache
 operator|.
-name|BeforeClass
-import|;
-end_import
-
-begin_import
-import|import
-name|org
+name|solr
 operator|.
-name|junit
+name|common
 operator|.
-name|Ignore
+name|util
+operator|.
+name|Utils
 import|;
 end_import
 
@@ -308,9 +304,9 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
+name|util
 operator|.
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 import|;
@@ -410,7 +406,7 @@ name|Object
 argument_list|>
 name|props
 init|=
-name|ZkNodeProps
+name|Utils
 operator|.
 name|makeMap
 argument_list|(

@@ -206,9 +206,9 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
+name|util
 operator|.
-name|ZkStateReader
+name|StrUtils
 import|;
 end_import
 
@@ -224,7 +224,7 @@ name|common
 operator|.
 name|util
 operator|.
-name|StrUtils
+name|Utils
 import|;
 end_import
 
@@ -899,7 +899,7 @@ argument_list|(
 operator|new
 name|String
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -1359,7 +1359,7 @@ argument_list|(
 operator|new
 name|String
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
@@ -1812,7 +1812,7 @@ argument_list|(
 operator|new
 name|String
 argument_list|(
-name|ZkStateReader
+name|Utils
 operator|.
 name|toJSON
 argument_list|(
