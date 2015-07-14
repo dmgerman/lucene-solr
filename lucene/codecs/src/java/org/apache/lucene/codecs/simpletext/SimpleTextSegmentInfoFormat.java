@@ -1263,13 +1263,6 @@ operator|.
 name|SI_EXTENSION
 argument_list|)
 decl_stmt|;
-name|si
-operator|.
-name|addFile
-argument_list|(
-name|segFileName
-argument_list|)
-expr_stmt|;
 try|try
 init|(
 name|IndexOutput
@@ -1285,6 +1278,14 @@ name|ioContext
 argument_list|)
 init|)
 block|{
+comment|// Only add the file once we've successfully created it, else IFD assert can trip:
+name|si
+operator|.
+name|addFile
+argument_list|(
+name|segFileName
+argument_list|)
+expr_stmt|;
 name|BytesRefBuilder
 name|scratch
 init|=
