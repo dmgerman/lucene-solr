@@ -85,6 +85,21 @@ argument_list|(
 name|weight
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|in
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|NullPointerException
+argument_list|(
+literal|"wrapped Scorer must not be null"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|in
