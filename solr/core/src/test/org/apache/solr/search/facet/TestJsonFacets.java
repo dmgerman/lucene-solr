@@ -3936,7 +3936,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', min1:'min(${num_d})', max1:'max(${num_d})'"
+literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', avg2:'avg(def(${num_d},0))', min1:'min(${num_d})', max1:'max(${num_d})'"
 operator|+
 literal|", numwhere:'unique(${where_s})', unique_num_i:'unique(${num_i})', unique_num_d:'unique(${num_d})', unique_date:'unique(${date})'"
 operator|+
@@ -3947,7 +3947,7 @@ argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
 operator|+
-literal|"sum1:3.0, sumsq1:247.0, avg1:0.5, min1:-9.0, max1:11.0"
+literal|"sum1:3.0, sumsq1:247.0, avg1:0.6, avg2:0.5, min1:-9.0, max1:11.0"
 operator|+
 literal|", numwhere:2, unique_num_i:4, unique_num_d:5, unique_date:5"
 operator|+

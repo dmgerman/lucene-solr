@@ -1950,7 +1950,20 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-comment|// todo: worth trying to share this value across multiple stats that need it?
+if|if
+condition|(
+name|val
+operator|!=
+literal|0
+operator|||
+name|values
+operator|.
+name|exists
+argument_list|(
+name|doc
+argument_list|)
+condition|)
+block|{
 name|result
 index|[
 name|slotNum
@@ -1965,6 +1978,7 @@ index|]
 operator|+=
 literal|1
 expr_stmt|;
+block|}
 block|}
 DECL|method|avg
 specifier|private
