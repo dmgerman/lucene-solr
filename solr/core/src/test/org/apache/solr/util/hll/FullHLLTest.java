@@ -1743,7 +1743,7 @@ specifier|final
 name|BitVector
 name|bitVectorB
 init|=
-name|hllA
+name|hllB
 operator|.
 name|probabilisticStorage
 decl_stmt|;
