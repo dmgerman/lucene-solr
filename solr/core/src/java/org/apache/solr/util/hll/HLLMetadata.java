@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A concrete {@link IHLLMetadata} implemented as a simple struct.  *  * @author timon  */
+comment|/**  * A concrete {@link IHLLMetadata} implemented as a simple struct.  */
 end_comment
 
 begin_class

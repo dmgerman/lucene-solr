@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A serialization schema for HLLs. Reads and writes HLL metadata to  * and from<code>byte[]</code> representations.  *  * @author timon  */
+comment|/**  * A serialization schema for HLLs. Reads and writes HLL metadata to  * and from<code>byte[]</code> representations.  */
 end_comment
 
 begin_interface

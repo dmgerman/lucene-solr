@@ -67,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Unit and smoke tests for {@link BigEndianAscendingWordDeserializer}.  *  * @author timon  */
+comment|/**  * Unit and smoke tests for {@link BigEndianAscendingWordDeserializer}.  */
 end_comment
 
 begin_class

@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link HLLUtil} static methods.  *  * @author tkarnezo  */
+comment|/**  * Tests {@link HLLUtil} static methods.  */
 end_comment
 
 begin_class

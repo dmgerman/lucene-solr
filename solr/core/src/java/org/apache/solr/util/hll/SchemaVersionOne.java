@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * A concrete {@link ISchemaVersion} representing schema version one.  *  * @author timon  */
+comment|/**  * A concrete {@link ISchemaVersion} representing schema version one.  */
 end_comment
 
 begin_class
