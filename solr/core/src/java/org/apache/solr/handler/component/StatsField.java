@@ -520,9 +520,13 @@ end_import
 
 begin_import
 import|import
-name|net
+name|org
 operator|.
-name|agkn
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
 operator|.
 name|hll
 operator|.
@@ -532,9 +536,13 @@ end_import
 
 begin_import
 import|import
-name|net
+name|org
 operator|.
-name|agkn
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
 operator|.
 name|hll
 operator|.
@@ -2963,7 +2971,7 @@ operator|=
 name|hasher
 expr_stmt|;
 block|}
-comment|/**       * Creates an HllOptions based on the (local) params specified (if appropriate).      *      * @param localParams the LocalParams for this {@link StatsField}      * @param field the field corrisponding to this {@link StatsField}, may be null if these stats are over a value source      * @return the {@link HllOptions} to use basd on the params, or null if no {@link HLL} should be computed      * @throws SolrException if there are invalid options      */
+comment|/**       * Creates an HllOptions based on the (local) params specified (if appropriate).      *      * @param localParams the LocalParams for this {@link StatsField}      * @param field the field corresponding to this {@link StatsField}, may be null if these stats are over a value source      * @return the {@link HllOptions} to use based on the params, or null if no {@link HLL} should be computed      * @throws SolrException if there are invalid options      */
 DECL|method|parseHllOptions
 specifier|public
 specifier|static
