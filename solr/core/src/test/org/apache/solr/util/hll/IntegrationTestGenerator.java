@@ -56,7 +56,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileWriter
+name|IOException
 import|;
 end_import
 
@@ -66,7 +66,43 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|Writer
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Files
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Paths
 import|;
 end_import
 
@@ -195,7 +231,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -395,7 +431,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -485,7 +521,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -842,7 +878,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -951,7 +987,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -1101,7 +1137,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -1260,7 +1296,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -1399,7 +1435,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -1586,7 +1622,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -1732,7 +1768,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -1914,7 +1950,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -2077,7 +2113,7 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
 name|openOutput
@@ -2614,11 +2650,11 @@ return|return
 name|hll
 return|;
 block|}
-comment|/**      * Opens a {@link FileWriter} and writes out an appropriate CSV header.      *      * @param  schemaVersion Schema version of the output. This cannot be      *<code>null</code>.      * @param  description Description string used to build the filename.      *         This cannot be<code>null</code>.      * @param  type {@link TestType type} of the test file to be written.      *         This cannot be<code>null</code>.      * @return The opened {@link FileWriter writer}. This will never be<code>null</code>.      */
+comment|/**      * Opens a {@link Writer} and writes out an appropriate CSV header.      *      * @param  schemaVersion Schema version of the output. This cannot be      *<code>null</code>.      * @param  description Description string used to build the filename.      *         This cannot be<code>null</code>.      * @param  type {@link TestType type} of the test file to be written.      *         This cannot be<code>null</code>.      * @return The opened {@link Writer writer}. This will never be<code>null</code>.      */
 DECL|method|openOutput
 specifier|private
 specifier|static
-name|FileWriter
+name|Writer
 name|openOutput
 parameter_list|(
 specifier|final
@@ -2710,15 +2746,25 @@ argument_list|)
 throw|;
 block|}
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 init|=
-operator|new
-name|FileWriter
+name|Files
+operator|.
+name|newBufferedWriter
+argument_list|(
+name|Paths
+operator|.
+name|get
 argument_list|(
 name|OUTPUT_DIRECTORY
-operator|+
+argument_list|,
 name|filename
+argument_list|)
+argument_list|,
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|output
@@ -2737,7 +2783,7 @@ return|return
 name|output
 return|;
 block|}
-comment|/**      * Writes out a {@link TestType#ADD}-formatted test line.      *      * @param  output The output {@link FileWriter writer}. This cannot be<code>null</code>.      * @param  hll The "accumulator" HLL instance. This cannot be<code>null</code>.      * @param  rawValue The raw value added to the HLL.      * @param  schemaVersion the schema with which to serialize the HLLs. This cannot      *         be<code>null</code>.      */
+comment|/**      * Writes out a {@link TestType#ADD}-formatted test line.      *      * @param  output The output {@link Writer writer}. This cannot be<code>null</code>.      * @param  hll The "accumulator" HLL instance. This cannot be<code>null</code>.      * @param  rawValue The raw value added to the HLL.      * @param  schemaVersion the schema with which to serialize the HLLs. This cannot      *         be<code>null</code>.      */
 DECL|method|cumulativeAddLine
 specifier|private
 specifier|static
@@ -2745,7 +2791,7 @@ name|void
 name|cumulativeAddLine
 parameter_list|(
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 parameter_list|,
 specifier|final
@@ -2807,7 +2853,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Writes an initial line for a {@link TestType#ADD}-formatted test.      *      * @param  output The output {@link FileWriter writer}. This cannot be<code>null</code>.      * @param  hll The "accumulator" HLL instance. This cannot be<code>null</code>.      * @param  schemaVersion the schema with which to serialize the HLLs. This cannot      *         be<code>null</code>.      */
+comment|/**      * Writes an initial line for a {@link TestType#ADD}-formatted test.      *      * @param  output The output {@link Writer writer}. This cannot be<code>null</code>.      * @param  hll The "accumulator" HLL instance. This cannot be<code>null</code>.      * @param  schemaVersion the schema with which to serialize the HLLs. This cannot      *         be<code>null</code>.      */
 DECL|method|initLineAdd
 specifier|private
 specifier|static
@@ -2815,7 +2861,7 @@ name|void
 name|initLineAdd
 parameter_list|(
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 parameter_list|,
 specifier|final
@@ -2857,7 +2903,7 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Writes out a {@link TestType#UNION}-formatted test line.      *      * @param  output The output {@link FileWriter writer}. This cannot be<code>null</code>.      * @param  hll The "accumulator" HLL instance. This cannot be<code>null</code>.      * @param  increment The "increment" HLL instance which will be unioned into      *         the accumulator. This cannot be<code>null</code>.      * @param  schemaVersion the schema with which to serialize the HLLs. This cannot      *         be<code>null</code>.      */
+comment|/**      * Writes out a {@link TestType#UNION}-formatted test line.      *      * @param  output The output {@link Writer writer}. This cannot be<code>null</code>.      * @param  hll The "accumulator" HLL instance. This cannot be<code>null</code>.      * @param  increment The "increment" HLL instance which will be unioned into      *         the accumulator. This cannot be<code>null</code>.      * @param  schemaVersion the schema with which to serialize the HLLs. This cannot      *         be<code>null</code>.      */
 DECL|method|cumulativeUnionLine
 specifier|private
 specifier|static
@@ -2865,7 +2911,7 @@ name|void
 name|cumulativeUnionLine
 parameter_list|(
 specifier|final
-name|FileWriter
+name|Writer
 name|output
 parameter_list|,
 specifier|final
