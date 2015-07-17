@@ -74,16 +74,6 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|Test
 import|;
 end_import
@@ -139,8 +129,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|Ignore
 annotation|@
 name|Slow
 DECL|class|CdcrReplicationHandlerTest
@@ -198,7 +186,7 @@ name|ShardsFixed
 argument_list|(
 name|num
 operator|=
-literal|4
+literal|2
 argument_list|)
 DECL|method|doTest
 specifier|public
@@ -238,6 +226,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|this
+operator|.
+name|clearSourceCollection
+argument_list|()
+expr_stmt|;
 name|List
 argument_list|<
 name|CloudJettyRunner
@@ -367,7 +360,7 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|assertUpdateLogs
+name|assertUpdateLogsEquals
 argument_list|(
 name|SOURCE_COLLECTION
 argument_list|,
@@ -594,7 +587,7 @@ expr_stmt|;
 comment|// at this stage, the slave should have replicated the 5 missing tlog files
 name|this
 operator|.
-name|assertUpdateLogs
+name|assertUpdateLogsEquals
 argument_list|(
 name|SOURCE_COLLECTION
 argument_list|,
@@ -761,7 +754,7 @@ expr_stmt|;
 comment|// at this stage, the slave should have replicated the 5 missing tlog files
 name|this
 operator|.
-name|assertUpdateLogs
+name|assertUpdateLogsEquals
 argument_list|(
 name|SOURCE_COLLECTION
 argument_list|,
@@ -1091,7 +1084,7 @@ expr_stmt|;
 comment|// at this stage, the slave should have replicated the 5 missing tlog files
 name|this
 operator|.
-name|assertUpdateLogs
+name|assertUpdateLogsEquals
 argument_list|(
 name|SOURCE_COLLECTION
 argument_list|,
@@ -1163,19 +1156,17 @@ return|return
 name|jetties
 return|;
 block|}
-comment|/**    * Asserts that the transaction logs between the leader and slave    */
-annotation|@
-name|Override
-DECL|method|assertUpdateLogs
+comment|/**    * Asserts that the update logs are in sync between the leader and slave. The leader and the slaves    * must have identical tlog files.    */
+DECL|method|assertUpdateLogsEquals
 specifier|protected
 name|void
-name|assertUpdateLogs
+name|assertUpdateLogsEquals
 parameter_list|(
 name|String
 name|collection
 parameter_list|,
 name|int
-name|maxNumberOfTLogs
+name|numberOfTLogs
 parameter_list|)
 throws|throws
 name|Exception
@@ -1270,7 +1261,7 @@ name|assertEquals
 argument_list|(
 literal|"Incorrect number of tlog files on the leader"
 argument_list|,
-name|maxNumberOfTLogs
+name|numberOfTLogs
 argument_list|,
 name|leaderFilesMeta
 operator|.
@@ -1282,7 +1273,7 @@ name|assertEquals
 argument_list|(
 literal|"Incorrect number of tlog files on the slave"
 argument_list|,
-name|maxNumberOfTLogs
+name|numberOfTLogs
 argument_list|,
 name|slaveFilesMeta
 operator|.

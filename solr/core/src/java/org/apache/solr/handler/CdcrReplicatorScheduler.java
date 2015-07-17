@@ -383,6 +383,12 @@ operator|.
 name|poll
 argument_list|()
 decl_stmt|;
+assert|assert
+name|state
+operator|!=
+literal|null
+assert|;
+comment|// Should never happen
 try|try
 block|{
 operator|new

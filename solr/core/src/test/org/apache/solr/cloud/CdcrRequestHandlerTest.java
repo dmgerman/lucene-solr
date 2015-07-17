@@ -68,23 +68,11 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Ignore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|Test
 import|;
 end_import
 
 begin_class
-annotation|@
-name|Ignore
 annotation|@
 name|Slow
 DECL|class|CdcrRequestHandlerTest
@@ -127,7 +115,7 @@ name|ShardsFixed
 argument_list|(
 name|num
 operator|=
-literal|4
+literal|2
 argument_list|)
 DECL|method|doTest
 specifier|public

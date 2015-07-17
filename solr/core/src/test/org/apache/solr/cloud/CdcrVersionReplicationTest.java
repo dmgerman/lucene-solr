@@ -367,10 +367,10 @@ name|num
 operator|=
 literal|4
 argument_list|)
-DECL|method|doTest
+DECL|method|testCdcrDocVersions
 specifier|public
 name|void
-name|doTest
+name|testCdcrDocVersions
 parameter_list|()
 throws|throws
 name|Exception
