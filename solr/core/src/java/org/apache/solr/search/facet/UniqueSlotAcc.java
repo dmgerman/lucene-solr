@@ -50,9 +50,13 @@ end_import
 
 begin_import
 import|import
-name|net
+name|org
 operator|.
-name|agkn
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
 operator|.
 name|hll
 operator|.

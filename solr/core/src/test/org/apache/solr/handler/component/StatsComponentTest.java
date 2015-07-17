@@ -508,18 +508,6 @@ end_import
 
 begin_import
 import|import
-name|net
-operator|.
-name|agkn
-operator|.
-name|hll
-operator|.
-name|HLL
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|google
@@ -543,6 +531,22 @@ operator|.
 name|hash
 operator|.
 name|HashFunction
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|hll
+operator|.
+name|HLL
 import|;
 end_import
 
