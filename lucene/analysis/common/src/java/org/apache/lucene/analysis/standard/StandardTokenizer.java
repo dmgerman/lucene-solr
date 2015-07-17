@@ -326,6 +326,17 @@ block|,
 literal|"<HANGUL>"
 block|}
 decl_stmt|;
+DECL|field|MAX_TOKEN_LENGTH_LIMIT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|MAX_TOKEN_LENGTH_LIMIT
+init|=
+literal|1024
+operator|*
+literal|1024
+decl_stmt|;
 DECL|field|skippedPositions
 specifier|private
 name|int
@@ -340,7 +351,7 @@ name|StandardAnalyzer
 operator|.
 name|DEFAULT_MAX_TOKEN_LENGTH
 decl_stmt|;
-comment|/** Set the max allowed token length.  Any token longer    *  than this is skipped. */
+comment|/**    * Set the max allowed token length.  No tokens longer than this are emitted.    *     * @throws IllegalArgumentException if the given length is outside of the    *  range [1, {@value #MAX_TOKEN_LENGTH_LIMIT}].    */
 DECL|method|setMaxTokenLength
 specifier|public
 name|void
@@ -365,8 +376,31 @@ literal|"maxTokenLength must be greater than zero"
 argument_list|)
 throw|;
 block|}
-name|this
-operator|.
+elseif|else
+if|if
+condition|(
+name|length
+operator|>
+name|MAX_TOKEN_LENGTH_LIMIT
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxTokenLength may not exceed "
+operator|+
+name|MAX_TOKEN_LENGTH_LIMIT
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|length
+operator|!=
+name|maxTokenLength
+condition|)
+block|{
 name|maxTokenLength
 operator|=
 name|length
@@ -375,19 +409,10 @@ name|scanner
 operator|.
 name|setBufferSize
 argument_list|(
-name|Math
-operator|.
-name|min
-argument_list|(
 name|length
-argument_list|,
-literal|1024
-operator|*
-literal|1024
-argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// limit buffer size to 1M chars
+block|}
 block|}
 comment|/** @see #setMaxTokenLength */
 DECL|method|getMaxTokenLength
