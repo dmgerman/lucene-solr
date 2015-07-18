@@ -1602,7 +1602,7 @@ literal|96.4538113027811
 argument_list|,
 literal|32.94823588839368
 argument_list|,
-literal|600000
+literal|6000
 argument_list|,
 literal|20
 argument_list|)
@@ -1611,7 +1611,7 @@ name|assertEquals
 argument_list|(
 literal|"GeoDistanceQuery failed"
 argument_list|,
-literal|6
+literal|1
 argument_list|,
 name|td
 operator|.
