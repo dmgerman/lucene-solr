@@ -768,11 +768,6 @@ operator|.
 name|getActiveThreadStateCount
 argument_list|()
 decl_stmt|;
-name|perThreadPool
-operator|.
-name|setAbort
-argument_list|()
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -1240,11 +1235,6 @@ block|}
 comment|// ignore& keep on unlocking
 block|}
 block|}
-name|perThreadPool
-operator|.
-name|clearAbort
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|anyChanges
 name|boolean
