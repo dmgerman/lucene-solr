@@ -254,7 +254,7 @@ name|solr
 operator|.
 name|schema
 operator|.
-name|SchemaField
+name|DateValueFieldType
 import|;
 end_import
 
@@ -268,7 +268,7 @@ name|solr
 operator|.
 name|schema
 operator|.
-name|TrieDateField
+name|SchemaField
 import|;
 end_import
 
@@ -481,16 +481,8 @@ name|schemaField
 operator|.
 name|getType
 argument_list|()
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|TrieDateField
-operator|.
-name|class
-argument_list|)
+operator|instanceof
+name|DateValueFieldType
 expr_stmt|;
 name|this
 operator|.

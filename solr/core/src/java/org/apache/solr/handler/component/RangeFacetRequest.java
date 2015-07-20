@@ -298,6 +298,20 @@ name|DateMathParser
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|DateFormatUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * Encapsulates a single facet.range request along with all its parameters. This class  * calculates all the ranges (gaps) required to be counted.  */
 end_comment
@@ -3226,17 +3240,9 @@ name|val
 parameter_list|)
 block|{
 return|return
-operator|(
-operator|(
-name|TrieDateField
-operator|)
-name|field
+name|DateFormatUtil
 operator|.
-name|getType
-argument_list|()
-operator|)
-operator|.
-name|toExternal
+name|formatExternal
 argument_list|(
 name|val
 argument_list|)
@@ -3254,15 +3260,7 @@ name|rawval
 parameter_list|)
 block|{
 return|return
-operator|(
-operator|(
-name|TrieDateField
-operator|)
-name|field
-operator|.
-name|getType
-argument_list|()
-operator|)
+name|DateFormatUtil
 operator|.
 name|parseMath
 argument_list|(
@@ -3410,7 +3408,7 @@ name|val
 parameter_list|)
 block|{
 return|return
-name|TrieDateField
+name|DateFormatUtil
 operator|.
 name|formatExternal
 argument_list|(

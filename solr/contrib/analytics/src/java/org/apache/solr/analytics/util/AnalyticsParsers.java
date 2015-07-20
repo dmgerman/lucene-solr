@@ -160,6 +160,20 @@ name|TrieLongField
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|DateFormatUtil
+import|;
+end_import
+
 begin_comment
 comment|/**   * Class to hold the parsers used for Solr Analytics.  */
 end_comment
@@ -697,7 +711,7 @@ block|{
 try|try
 block|{
 return|return
-name|TrieDateField
+name|DateFormatUtil
 operator|.
 name|formatExternal
 argument_list|(
@@ -758,7 +772,7 @@ block|{
 return|return
 literal|""
 operator|+
-name|TrieDateField
+name|DateFormatUtil
 operator|.
 name|formatExternal
 argument_list|(

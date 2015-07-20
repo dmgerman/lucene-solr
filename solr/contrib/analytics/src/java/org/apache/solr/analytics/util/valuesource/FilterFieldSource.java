@@ -136,9 +136,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|schema
+name|util
 operator|.
-name|TrieDateField
+name|DateFormatUtil
 import|;
 end_import
 
@@ -252,7 +252,7 @@ argument_list|()
 operator|+
 literal|","
 operator|+
-name|TrieDateField
+name|DateFormatUtil
 operator|.
 name|formatExternal
 argument_list|(

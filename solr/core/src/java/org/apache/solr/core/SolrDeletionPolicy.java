@@ -96,9 +96,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|schema
+name|util
 operator|.
-name|TrieDateField
+name|DateMathParser
 import|;
 end_import
 
@@ -112,7 +112,7 @@ name|solr
 operator|.
 name|util
 operator|.
-name|DateMathParser
+name|DateFormatUtil
 import|;
 end_import
 
@@ -964,7 +964,7 @@ init|=
 operator|new
 name|DateMathParser
 argument_list|(
-name|TrieDateField
+name|DateFormatUtil
 operator|.
 name|UTC
 argument_list|,

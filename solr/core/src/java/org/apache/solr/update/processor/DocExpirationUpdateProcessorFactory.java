@@ -256,20 +256,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|schema
-operator|.
-name|TrieDateField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|update
 operator|.
 name|AddUpdateCommand
@@ -315,6 +301,20 @@ operator|.
 name|util
 operator|.
 name|DateMathParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|DateFormatUtil
 import|;
 end_import
 
@@ -1582,7 +1582,7 @@ name|expireField
 operator|+
 literal|":[* TO "
 operator|+
-name|TrieDateField
+name|DateFormatUtil
 operator|.
 name|formatExternal
 argument_list|(

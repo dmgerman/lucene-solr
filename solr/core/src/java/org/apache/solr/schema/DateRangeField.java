@@ -286,6 +286,20 @@ name|SyntaxError
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|DateFormatUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * A field for indexed dates and date ranges. It's mostly compatible with TrieDateField.  *  * @see NumberRangePrefixTreeStrategy  * @see DateRangePrefixTree  */
 end_comment
@@ -322,18 +336,6 @@ name|DateRangePrefixTree
 operator|.
 name|INSTANCE
 decl_stmt|;
-DECL|field|trieDateField
-specifier|private
-specifier|static
-specifier|final
-name|TrieDateField
-name|trieDateField
-init|=
-operator|new
-name|TrieDateField
-argument_list|()
-decl_stmt|;
-comment|//used for utility methods
 annotation|@
 name|Override
 DECL|method|init
@@ -494,7 +496,7 @@ name|getTime
 argument_list|()
 decl_stmt|;
 return|return
-name|TrieDateField
+name|DateFormatUtil
 operator|.
 name|formatExternal
 argument_list|(
@@ -628,7 +630,7 @@ comment|//TODO parse a Calendar instead of a Date, rounded according to DateMath
 name|Date
 name|date
 init|=
-name|trieDateField
+name|DateFormatUtil
 operator|.
 name|parseMath
 argument_list|(
@@ -698,7 +700,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/** For easy compatibility with {@link TrieDateField#parseMath(Date, String)}. */
+comment|/** For easy compatibility with {@link DateFormatUtil#parseMath(Date, String)}. */
 DECL|method|parseMath
 specifier|public
 name|Date
@@ -712,7 +714,7 @@ name|rawval
 parameter_list|)
 block|{
 return|return
-name|trieDateField
+name|DateFormatUtil
 operator|.
 name|parseMath
 argument_list|(
@@ -776,7 +778,7 @@ name|getTime
 argument_list|()
 decl_stmt|;
 return|return
-name|TrieDateField
+name|DateFormatUtil
 operator|.
 name|formatExternal
 argument_list|(
