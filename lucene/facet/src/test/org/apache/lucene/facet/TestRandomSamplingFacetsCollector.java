@@ -552,6 +552,17 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|writer
+operator|.
+name|forceMerge
+argument_list|(
+name|CHI_SQUARE_VALUES
+operator|.
+name|length
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
 comment|// NRT open
 name|IndexSearcher
 name|searcher
