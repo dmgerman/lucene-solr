@@ -1173,12 +1173,6 @@ name|UnInvertedField
 argument_list|>
 name|fieldValueCache
 decl_stmt|;
-DECL|field|optimizer
-specifier|private
-specifier|final
-name|LuceneQueryOptimizer
-name|optimizer
-decl_stmt|;
 comment|// map of generic caches - not synchronized since it's read-only after the constructor.
 DECL|field|cacheMap
 specifier|private
@@ -2220,12 +2214,6 @@ operator|=
 name|noCaches
 expr_stmt|;
 block|}
-comment|// TODO: This option has been dead/noop since 3.1, should we re-enable it?
-comment|//    optimizer = solrConfig.filtOptEnabled ? new LuceneQueryOptimizer(solrConfig.filtOptCacheSize,solrConfig.filtOptThreshold) : null;
-name|optimizer
-operator|=
-literal|null
-expr_stmt|;
 name|fieldNames
 operator|=
 operator|new
