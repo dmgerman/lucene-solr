@@ -121,7 +121,7 @@ name|fields
 operator|.
 name|containsKey
 argument_list|(
-literal|"_EXCEPTION_"
+literal|"EXCEPTION"
 argument_list|)
 condition|)
 block|{
@@ -223,7 +223,7 @@ name|fields
 operator|.
 name|get
 argument_list|(
-literal|"_EXCEPTION_"
+literal|"EXCEPTION"
 argument_list|)
 return|;
 block|}

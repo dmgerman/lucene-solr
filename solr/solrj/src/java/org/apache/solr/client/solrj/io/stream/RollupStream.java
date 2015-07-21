@@ -1227,6 +1227,17 @@ operator|!
 name|finished
 condition|)
 block|{
+if|if
+condition|(
+name|currentMetrics
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+name|tuple
+return|;
+block|}
 name|Map
 name|map
 init|=

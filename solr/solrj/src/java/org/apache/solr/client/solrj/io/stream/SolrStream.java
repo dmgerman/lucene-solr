@@ -745,7 +745,7 @@ name|fields
 operator|.
 name|get
 argument_list|(
-literal|"_EXCEPTION_"
+literal|"EXCEPTION"
 argument_list|)
 decl_stmt|;
 if|if
@@ -761,12 +761,6 @@ init|=
 operator|new
 name|HandledException
 argument_list|(
-name|this
-operator|.
-name|baseUrl
-operator|+
-literal|":"
-operator|+
 name|msg
 argument_list|)
 decl_stmt|;
@@ -824,7 +818,22 @@ name|e
 parameter_list|)
 block|{
 throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"--> "
+operator|+
+name|this
+operator|.
+name|baseUrl
+operator|+
+literal|":"
+operator|+
 name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
 throw|;
 block|}
 catch|catch
@@ -834,15 +843,12 @@ name|e
 parameter_list|)
 block|{
 comment|//The Stream source did not provide an exception in a format that the SolrStream could propagate.
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 throw|throw
 operator|new
 name|IOException
 argument_list|(
+literal|"--> "
+operator|+
 name|this
 operator|.
 name|baseUrl

@@ -1942,6 +1942,25 @@ operator|.
 name|collection
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|slices
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|Exception
+argument_list|(
+literal|"Collection not found:"
+operator|+
+name|this
+operator|.
+name|collection
+argument_list|)
+throw|;
+block|}
 name|long
 name|time
 init|=
