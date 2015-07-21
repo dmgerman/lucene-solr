@@ -619,8 +619,10 @@ name|tc
 operator|.
 name|getCharFilterFactories
 argument_list|()
+operator|.
+name|length
 operator|==
-literal|null
+literal|0
 argument_list|)
 expr_stmt|;
 block|}

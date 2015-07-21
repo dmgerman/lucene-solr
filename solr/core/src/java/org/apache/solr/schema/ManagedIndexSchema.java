@@ -8279,13 +8279,6 @@ operator|.
 name|getCharFilterFactories
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|charFilters
-operator|!=
-literal|null
-condition|)
-block|{
 for|for
 control|(
 name|CharFilterFactory
@@ -8336,7 +8329,6 @@ throw|;
 block|}
 block|}
 block|}
-block|}
 name|TokenizerFactory
 name|tokenizerFactory
 init|=
@@ -8347,10 +8339,6 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|tokenizerFactory
-operator|!=
-literal|null
-operator|&&
 name|tokenizerFactory
 operator|instanceof
 name|ResourceLoaderAware
@@ -8399,13 +8387,6 @@ operator|.
 name|getTokenFilterFactories
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|filters
-operator|!=
-literal|null
-condition|)
-block|{
 for|for
 control|(
 name|TokenFilterFactory
@@ -8453,7 +8434,6 @@ argument_list|,
 name|e
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 block|}

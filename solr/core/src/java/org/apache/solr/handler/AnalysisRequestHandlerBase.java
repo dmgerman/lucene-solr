@@ -640,9 +640,11 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+literal|0
+operator|<
 name|cfiltfacs
-operator|!=
-literal|null
+operator|.
+name|length
 condition|)
 block|{
 name|String
