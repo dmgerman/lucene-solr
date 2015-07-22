@@ -2053,12 +2053,6 @@ literal|null
 operator|&&
 name|processor
 operator|.
-name|missingAcc
-operator|==
-literal|null
-operator|&&
-name|processor
-operator|.
 name|allBucketsAcc
 operator|==
 literal|null
