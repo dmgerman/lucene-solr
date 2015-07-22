@@ -217,9 +217,12 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Did not find ConfigSet properties"
-argument_list|,
+literal|"Did not find ConfigSet properties, assuming default properties: "
+operator|+
 name|ex
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
