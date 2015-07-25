@@ -766,6 +766,22 @@ name|common
 operator|.
 name|util
 operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
 name|XML
 import|;
 end_import
@@ -2591,6 +2607,13 @@ name|tearDown
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"method is specific to java.util.logging and highly suspect!"
+argument_list|)
 DECL|method|setLoggingLevel
 specifier|public
 specifier|static

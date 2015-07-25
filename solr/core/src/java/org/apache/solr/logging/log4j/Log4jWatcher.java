@@ -190,6 +190,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|logging
 operator|.
 name|CircularList
@@ -253,6 +269,13 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"class is specific to log4j"
+argument_list|)
 DECL|class|Log4jWatcher
 specifier|public
 class|class

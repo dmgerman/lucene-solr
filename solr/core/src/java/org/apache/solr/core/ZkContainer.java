@@ -112,31 +112,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|Executors
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
 name|TimeoutException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|log4j
-operator|.
-name|MDC
 import|;
 end_import
 
@@ -317,24 +293,6 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkStateReader
-operator|.
-name|CORE_NAME_PROP
 import|;
 end_import
 
@@ -1238,7 +1196,7 @@ block|}
 block|}
 finally|finally
 block|{
-name|MDC
+name|MDCLoggingContext
 operator|.
 name|clear
 argument_list|()
@@ -1286,7 +1244,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|MDC
+name|MDCLoggingContext
 operator|.
 name|clear
 argument_list|()

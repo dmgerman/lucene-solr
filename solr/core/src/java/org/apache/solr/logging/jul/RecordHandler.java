@@ -38,6 +38,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|logging
 operator|.
 name|LogWatcher
@@ -45,6 +61,13 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"class is specific to java.util.logging"
+argument_list|)
 DECL|class|RecordHandler
 specifier|public
 specifier|final
