@@ -695,7 +695,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"HttpParitionTest succeeded ... shutting down now!"
+literal|"HttpPartitionTest succeeded ... shutting down now!"
 argument_list|)
 expr_stmt|;
 block|}
