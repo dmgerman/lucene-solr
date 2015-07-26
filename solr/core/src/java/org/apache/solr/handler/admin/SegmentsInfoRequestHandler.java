@@ -313,13 +313,6 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Handling data for segmets info query searcher"
-argument_list|)
-expr_stmt|;
 name|rsp
 operator|.
 name|add
