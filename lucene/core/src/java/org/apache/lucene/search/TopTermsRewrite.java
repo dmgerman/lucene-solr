@@ -847,13 +847,6 @@ argument_list|,
 name|scoreTermSortByTermComp
 argument_list|)
 expr_stmt|;
-name|adjustScoreTerms
-argument_list|(
-name|reader
-argument_list|,
-name|scoreTerms
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 specifier|final
@@ -917,20 +910,6 @@ argument_list|(
 name|b
 argument_list|)
 return|;
-block|}
-DECL|method|adjustScoreTerms
-name|void
-name|adjustScoreTerms
-parameter_list|(
-name|IndexReader
-name|reader
-parameter_list|,
-name|ScoreTerm
-index|[]
-name|scoreTerms
-parameter_list|)
-block|{
-comment|//no-op but allows subclasses the ability to tweak the score terms used in ranking e.g. balancing IDF.
 block|}
 annotation|@
 name|Override

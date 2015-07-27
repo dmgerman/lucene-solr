@@ -44,16 +44,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Iterator
 import|;
 end_import
@@ -167,6 +157,20 @@ operator|.
 name|search
 operator|.
 name|BooleanQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|IndexSearcher
 import|;
 end_import
 
@@ -1157,11 +1161,15 @@ decl_stmt|;
 comment|// Rewrite this clause e.g one* becomes (one OR onerous)
 name|qc
 operator|=
-name|qc
+operator|new
+name|IndexSearcher
+argument_list|(
+name|reader
+argument_list|)
 operator|.
 name|rewrite
 argument_list|(
-name|reader
+name|qc
 argument_list|)
 expr_stmt|;
 if|if
