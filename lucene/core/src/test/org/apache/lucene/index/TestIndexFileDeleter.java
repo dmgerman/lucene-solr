@@ -3033,6 +3033,14 @@ argument_list|(
 literal|"fake fail"
 argument_list|)
 operator|||
+operator|(
+name|t
+operator|.
+name|getCause
+argument_list|()
+operator|!=
+literal|null
+operator|&&
 name|t
 operator|.
 name|getCause
@@ -3045,6 +3053,7 @@ name|contains
 argument_list|(
 literal|"fake fail"
 argument_list|)
+operator|)
 condition|)
 block|{
 comment|// ok
