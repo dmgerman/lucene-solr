@@ -3964,11 +3964,16 @@ decl_stmt|;
 name|double
 name|epsilon
 init|=
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|expect
 operator|*
 literal|0.1E
 operator|-
 literal|7D
+argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -4024,7 +4029,7 @@ argument_list|)
 expr_stmt|;
 name|assertNumerics
 argument_list|(
-literal|"big"
+literal|"large a"
 argument_list|,
 operator|new
 name|Double
@@ -4036,6 +4041,23 @@ operator|new
 name|Double
 argument_list|(
 literal|2.300539003816927E9
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNumerics
+argument_list|(
+literal|"large b"
+argument_list|,
+operator|new
+name|Double
+argument_list|(
+literal|1.2722582464444444E9
+argument_list|)
+argument_list|,
+operator|new
+name|Double
+argument_list|(
+literal|1.2722582464444442E9
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4062,11 +4084,50 @@ argument_list|)
 expr_stmt|;
 name|assertNumerics
 argument_list|(
-literal|"small"
+literal|"large a negative"
 argument_list|,
 operator|new
 name|Double
 argument_list|(
+operator|-
+literal|2.3005390038169265E9
+argument_list|)
+argument_list|,
+operator|new
+name|Double
+argument_list|(
+operator|-
+literal|2.300539003816927E9
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNumerics
+argument_list|(
+literal|"large b negative"
+argument_list|,
+operator|new
+name|Double
+argument_list|(
+operator|-
+literal|1.2722582464444444E9
+argument_list|)
+argument_list|,
+operator|new
+name|Double
+argument_list|(
+operator|-
+literal|1.2722582464444442E9
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNumerics
+argument_list|(
+literal|"small negative"
+argument_list|,
+operator|new
+name|Double
+argument_list|(
+operator|-
 literal|2.3005390038169265E
 operator|-
 literal|9
@@ -4075,6 +4136,7 @@ argument_list|,
 operator|new
 name|Double
 argument_list|(
+operator|-
 literal|2.300539003816927E
 operator|-
 literal|9
@@ -4133,6 +4195,8 @@ operator|.
 name|MIN_VALUE
 argument_list|)
 expr_stmt|;
+comment|// NOTE: can't use 'fail' in these try blocks, because we are catching AssertionError
+comment|// (ie: the code we are expecting to 'fail' is an actual test assertion generator)
 for|for
 control|(
 name|Object
@@ -4167,11 +4231,13 @@ argument_list|,
 name|num
 argument_list|)
 expr_stmt|;
-name|fail
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"expected was null"
+literal|"did not get assertion failure when expected was null"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -4190,11 +4256,13 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|fail
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"actual was null"
+literal|"did not get assertion failure when actual was null"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -4214,11 +4282,13 @@ argument_list|,
 literal|42
 argument_list|)
 expr_stmt|;
-name|fail
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"expected was non-number"
+literal|"did not get assertion failure when expected was non-number"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -4237,11 +4307,13 @@ argument_list|,
 literal|"foo"
 argument_list|)
 expr_stmt|;
-name|fail
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"actual was non-number"
+literal|"did not get assertion failure when actual was non-number"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -4268,11 +4340,13 @@ literal|2.267272520100462E9
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"big& diff"
+literal|"did not get assertion failure when args are big& too diff"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -4303,11 +4377,13 @@ literal|9
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"small& diff"
+literal|"did not get assertion failure when args are small& too diff"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -4332,11 +4408,13 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|fail
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"diff long"
+literal|"did not get assertion failure when args are diff longs"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -4361,11 +4439,13 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|fail
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"diff int"
+literal|"did not get assertion failure when args are diff ints"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
@@ -4392,11 +4472,13 @@ literal|43
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
+throw|throw
+operator|new
+name|RuntimeException
 argument_list|(
-literal|"diff date"
+literal|"did not get assertion failure when args are diff dates"
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 catch|catch
 parameter_list|(
