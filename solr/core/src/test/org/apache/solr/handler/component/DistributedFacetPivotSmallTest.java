@@ -1841,6 +1841,10 @@ literal|"facet.pivot"
 argument_list|,
 literal|"place_t,company_t"
 argument_list|,
+literal|"f.place_t.facet.mincount"
+argument_list|,
+literal|"2"
+argument_list|,
 comment|// default facet.sort
 name|FacetParams
 operator|.
