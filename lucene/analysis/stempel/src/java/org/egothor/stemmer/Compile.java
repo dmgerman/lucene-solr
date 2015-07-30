@@ -362,16 +362,6 @@ operator|new
 name|Diff
 argument_list|()
 decl_stmt|;
-name|int
-name|stems
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|words
-init|=
-literal|0
-decl_stmt|;
 name|allocTrie
 argument_list|()
 expr_stmt|;
@@ -481,9 +471,6 @@ argument_list|,
 literal|"-a"
 argument_list|)
 expr_stmt|;
-name|words
-operator|++
-expr_stmt|;
 block|}
 while|while
 condition|(
@@ -528,9 +515,6 @@ argument_list|,
 name|stem
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|words
-operator|++
 expr_stmt|;
 block|}
 block|}
