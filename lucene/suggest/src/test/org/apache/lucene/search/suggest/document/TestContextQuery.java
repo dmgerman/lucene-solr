@@ -1796,10 +1796,8 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|.
-name|addContext
-argument_list|(
-literal|"*"
-argument_list|)
+name|addAllContexts
+argument_list|()
 expr_stmt|;
 name|TopSuggestDocs
 name|suggest
@@ -2341,12 +2339,8 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|.
-name|addContext
-argument_list|(
-literal|"*"
-argument_list|,
-literal|5
-argument_list|)
+name|addAllContexts
+argument_list|()
 expr_stmt|;
 name|TopSuggestDocs
 name|suggest
@@ -2396,8 +2390,6 @@ argument_list|,
 literal|"type3"
 argument_list|,
 literal|2
-operator|*
-literal|5
 argument_list|)
 argument_list|,
 operator|new
@@ -2408,8 +2400,6 @@ argument_list|,
 literal|"type4"
 argument_list|,
 literal|1
-operator|*
-literal|5
 argument_list|)
 argument_list|)
 expr_stmt|;

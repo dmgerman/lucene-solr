@@ -731,8 +731,6 @@ literal|"suggestion"
 argument_list|,
 literal|"type4"
 argument_list|,
-literal|1
-operator|+
 literal|4
 argument_list|)
 argument_list|,
@@ -743,8 +741,6 @@ literal|"suggdestion"
 argument_list|,
 literal|"type4"
 argument_list|,
-literal|1
-operator|+
 literal|4
 argument_list|)
 argument_list|,
@@ -755,8 +751,6 @@ literal|"sugdgestion"
 argument_list|,
 literal|"type3"
 argument_list|,
-literal|1
-operator|+
 literal|3
 argument_list|)
 argument_list|,
@@ -767,8 +761,6 @@ literal|"sudggestion"
 argument_list|,
 literal|"type2"
 argument_list|,
-literal|1
-operator|+
 literal|2
 argument_list|)
 argument_list|,
@@ -779,8 +771,6 @@ literal|"sduggestion"
 argument_list|,
 literal|"type1"
 argument_list|,
-literal|1
-operator|+
 literal|1
 argument_list|)
 argument_list|)

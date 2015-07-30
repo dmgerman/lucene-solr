@@ -994,10 +994,8 @@ argument_list|)
 expr_stmt|;
 name|contextQuery
 operator|.
-name|addContext
-argument_list|(
-literal|"*"
-argument_list|)
+name|addAllContexts
+argument_list|()
 expr_stmt|;
 name|TopSuggestDocs
 name|suggest
