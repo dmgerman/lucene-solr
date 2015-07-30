@@ -11418,6 +11418,11 @@ argument_list|()
 decl_stmt|;
 name|SolrRequestInfo
 operator|.
+name|clearRequestInfo
+argument_list|()
+expr_stmt|;
+name|SolrRequestInfo
+operator|.
 name|setRequestInfo
 argument_list|(
 operator|new
