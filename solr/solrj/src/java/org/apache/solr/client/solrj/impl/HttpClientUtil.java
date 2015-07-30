@@ -1960,11 +1960,11 @@ name|?
 extends|extends
 name|DefaultHttpClient
 argument_list|>
-name|productConstructor
+name|constructor
 decl_stmt|;
 try|try
 block|{
-name|productConstructor
+name|constructor
 operator|=
 name|defaultHttpClientClass
 operator|.
@@ -1981,7 +1981,7 @@ block|}
 argument_list|)
 expr_stmt|;
 return|return
-name|productConstructor
+name|constructor
 operator|.
 name|newInstance
 argument_list|(
