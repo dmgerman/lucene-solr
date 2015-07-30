@@ -362,7 +362,7 @@ block|}
 comment|/**      * Set the slop.      * @see PhraseQuery#getSlop()      */
 DECL|method|setSlop
 specifier|public
-name|void
+name|Builder
 name|setSlop
 parameter_list|(
 name|int
@@ -375,17 +375,21 @@ name|slop
 operator|=
 name|slop
 expr_stmt|;
+return|return
+name|this
+return|;
 block|}
 comment|/**      * Adds a term to the end of the query phrase.      * The relative position of the term is the one immediately after the last term added.      */
 DECL|method|add
 specifier|public
-name|void
+name|Builder
 name|add
 parameter_list|(
 name|Term
 name|term
 parameter_list|)
 block|{
+return|return
 name|add
 argument_list|(
 name|term
@@ -411,12 +415,12 @@ operator|-
 literal|1
 argument_list|)
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 comment|/**      * Adds a term to the end of the query phrase.      * The relative position of the term within the phrase is specified explicitly.      * This allows e.g. phrases with more than one term at the same position      * or phrases with gaps (e.g. in connection with stopwords).      *       */
 DECL|method|add
 specifier|public
-name|void
+name|Builder
 name|add
 parameter_list|(
 name|Term
@@ -582,6 +586,9 @@ argument_list|(
 name|position
 argument_list|)
 expr_stmt|;
+return|return
+name|this
+return|;
 block|}
 comment|/**      * Build a phrase query based on the terms that have been added.      */
 DECL|method|build
