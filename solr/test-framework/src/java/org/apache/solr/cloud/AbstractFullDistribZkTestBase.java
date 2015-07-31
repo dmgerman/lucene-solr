@@ -11731,7 +11731,7 @@ name|cs
 return|;
 block|}
 DECL|method|getRequestStateAfterCompletion
-specifier|protected
+specifier|static
 name|String
 name|getRequestStateAfterCompletion
 parameter_list|(
@@ -11835,7 +11835,7 @@ name|state
 return|;
 block|}
 DECL|method|getRequestState
-specifier|protected
+specifier|static
 name|String
 name|getRequestState
 parameter_list|(
@@ -11865,7 +11865,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|getRequestState
-specifier|protected
+specifier|static
 name|String
 name|getRequestState
 parameter_list|(
