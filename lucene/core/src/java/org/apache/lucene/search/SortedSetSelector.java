@@ -222,6 +222,13 @@ argument_list|(
 literal|"codec does not support random access ordinals, cannot use selector: "
 operator|+
 name|selector
+operator|+
+literal|" docValsImpl: "
+operator|+
+name|sortedSet
+operator|.
+name|toString
+argument_list|()
 argument_list|)
 throw|;
 block|}
