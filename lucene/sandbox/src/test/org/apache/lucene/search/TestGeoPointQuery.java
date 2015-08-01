@@ -326,6 +326,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|GeoDistanceUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|GeoUtils
 import|;
 end_import
@@ -462,6 +476,8 @@ init|=
 literal|"geoField"
 decl_stmt|;
 comment|// error threshold for point-distance queries (in meters)
+comment|// @todo haversine is sloppy, would be good to have a better heuristic for
+comment|// determining the possible haversine error
 DECL|field|DISTANCE_ERR
 specifier|private
 specifier|static
@@ -469,7 +485,7 @@ specifier|final
 name|int
 name|DISTANCE_ERR
 init|=
-literal|700
+literal|1000
 decl_stmt|;
 comment|// Global bounding box we will "cover" in the random test; we have to make this "smallish" else the queries take very long:
 DECL|field|originLat
@@ -882,6 +898,19 @@ argument_list|,
 literal|178.8538113027811
 argument_list|,
 literal|32.94823588839368
+argument_list|,
+name|storedPoint
+argument_list|)
+block|,
+operator|new
+name|GeoPointField
+argument_list|(
+name|FIELD_NAME
+argument_list|,
+operator|-
+literal|73.998776
+argument_list|,
+literal|40.720611
 argument_list|,
 name|storedPoint
 argument_list|)
@@ -1530,7 +1559,44 @@ name|assertEquals
 argument_list|(
 literal|"testWholeMap failed"
 argument_list|,
-literal|14
+literal|15
+argument_list|,
+name|td
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|smallTest
+specifier|public
+name|void
+name|smallTest
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|TopDocs
+name|td
+init|=
+name|geoDistanceQuery
+argument_list|(
+operator|-
+literal|73.998776
+argument_list|,
+literal|40.720611
+argument_list|,
+literal|1
+argument_list|,
+literal|20
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"smallTest failed"
+argument_list|,
+literal|1
 argument_list|,
 name|td
 operator|.
@@ -1612,6 +1678,44 @@ argument_list|(
 literal|"GeoDistanceQuery failed"
 argument_list|,
 literal|1
+argument_list|,
+name|td
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * LUCENE-6704    */
+annotation|@
+name|Nightly
+DECL|method|testGeoDistanceQueryHuge
+specifier|public
+name|void
+name|testGeoDistanceQueryHuge
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|TopDocs
+name|td
+init|=
+name|geoDistanceQuery
+argument_list|(
+operator|-
+literal|96.4538113027811
+argument_list|,
+literal|32.94823588839368
+argument_list|,
+literal|1000000
+argument_list|,
+literal|20
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"GeoDistanceQuery failed"
+argument_list|,
+literal|6
 argument_list|,
 name|td
 operator|.
@@ -2745,15 +2849,16 @@ literal|2.0
 operator|)
 decl_stmt|;
 comment|// radius (in meters) as a function of the random generated bbox
-comment|// TODO: change 100 back to 1000
 specifier|final
 name|double
 name|radius
 init|=
-name|SloppyMath
+name|GeoDistanceUtils
 operator|.
-name|haversin
+name|vincentyDistance
 argument_list|(
+name|centerLon
+argument_list|,
 name|centerLat
 argument_list|,
 name|centerLon
@@ -2761,12 +2866,9 @@ argument_list|,
 name|bbox
 operator|.
 name|minLat
-argument_list|,
-name|centerLon
 argument_list|)
-operator|*
-literal|100
 decl_stmt|;
+comment|//final double radius = SloppyMath.haversin(centerLat, centerLon, bbox.minLat, centerLon)*1000;
 if|if
 condition|(
 name|VERBOSE

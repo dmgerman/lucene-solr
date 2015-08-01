@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract base class used by {@code GeoPointInBBoxQueryImpl}  *  * @lucene.experimental  */
+comment|/**  * TermQuery for GeoPointField for overriding {@link org.apache.lucene.search.MultiTermQuery} methods specific to  * Geospatial operations  *  * @lucene.experimental  */
 end_comment
 
 begin_comment
