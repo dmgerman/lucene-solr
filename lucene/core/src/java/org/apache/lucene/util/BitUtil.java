@@ -53,6 +53,8 @@ block|,
 literal|0x0000FFFF0000FFFFL
 block|,
 literal|0x00000000FFFFFFFFL
+block|,
+literal|0xAAAAAAAAAAAAAAAAL
 block|}
 decl_stmt|;
 comment|// shift values for bit interleaving
@@ -879,6 +881,47 @@ index|]
 expr_stmt|;
 return|return
 name|b
+return|;
+block|}
+comment|/**    * flip flops odd with even bits    */
+DECL|method|flipFlop
+specifier|public
+specifier|static
+specifier|final
+name|long
+name|flipFlop
+parameter_list|(
+specifier|final
+name|long
+name|b
+parameter_list|)
+block|{
+return|return
+operator|(
+operator|(
+name|b
+operator|&
+name|MAGIC
+index|[
+literal|6
+index|]
+operator|)
+operator|>>>
+literal|1
+operator|)
+operator||
+operator|(
+operator|(
+name|b
+operator|&
+name|MAGIC
+index|[
+literal|0
+index|]
+operator|)
+operator|<<
+literal|1
+operator|)
 return|;
 block|}
 comment|/** Same as {@link #zigZagEncode(long)} but on integers. */
