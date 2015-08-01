@@ -2171,9 +2171,7 @@ comment|// get latest cloud state
 name|zkStateReader
 operator|.
 name|updateClusterState
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|Slice
 name|theShards
@@ -2326,9 +2324,7 @@ comment|// get latest cloud state
 name|zkStateReader
 operator|.
 name|updateClusterState
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 comment|// get random shard
 name|List

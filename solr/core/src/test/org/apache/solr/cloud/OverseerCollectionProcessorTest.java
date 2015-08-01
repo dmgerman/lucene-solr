@@ -1608,10 +1608,7 @@ expr_stmt|;
 name|zkStateReaderMock
 operator|.
 name|updateClusterState
-argument_list|(
-name|anyBoolean
 argument_list|()
-argument_list|)
 expr_stmt|;
 name|clusterStateMock
 operator|.

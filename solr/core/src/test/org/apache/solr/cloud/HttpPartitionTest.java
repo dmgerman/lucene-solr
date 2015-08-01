@@ -3136,9 +3136,7 @@ decl_stmt|;
 name|zkr
 operator|.
 name|updateClusterState
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 comment|// force the state to be fresh
 name|ClusterState
@@ -3204,9 +3202,7 @@ name|getZkStateReader
 argument_list|()
 operator|.
 name|updateClusterState
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|cs
 operator|=
