@@ -162,7 +162,7 @@ specifier|final
 name|String
 name|DATA_CODEC_NAME
 init|=
-literal|"NumericTreeData"
+literal|"RangeTreeData"
 decl_stmt|;
 DECL|field|DATA_VERSION_START
 specifier|static
@@ -194,7 +194,7 @@ specifier|final
 name|String
 name|META_CODEC_NAME
 init|=
-literal|"NumericTreeMeta"
+literal|"RangeTreeMeta"
 decl_stmt|;
 DECL|field|META_VERSION_START
 specifier|static
@@ -274,7 +274,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"NumericTree"
+literal|"RangeTree"
 argument_list|)
 expr_stmt|;
 name|RangeTreeWriter

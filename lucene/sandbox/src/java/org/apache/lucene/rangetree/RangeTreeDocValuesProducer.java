@@ -640,7 +640,7 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
-comment|// clone for merge: we don't hang onto the NumericTrees we load
+comment|// clone for merge: we don't hang onto the RangeTrees we load
 DECL|method|RangeTreeDocValuesProducer
 name|RangeTreeDocValuesProducer
 parameter_list|(
