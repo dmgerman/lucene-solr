@@ -82,6 +82,15 @@ name|MM
 init|=
 literal|"mm"
 decl_stmt|;
+comment|/**    * If set to true, will try to reduce MM if tokens are removed from some clauses but not all    */
+DECL|field|MM_AUTORELAX
+specifier|public
+specifier|static
+name|String
+name|MM_AUTORELAX
+init|=
+literal|"mm.autoRelax"
+decl_stmt|;
 comment|/**    * query and init param for Phrase Slop value in phrase    * boost query (in pf fields)    */
 DECL|field|PS
 specifier|public
