@@ -2593,6 +2593,8 @@ operator|.
 name|clearCore
 argument_list|()
 expr_stmt|;
+try|try
+block|{
 name|DirectUpdateHandler2
 operator|.
 name|commitOnClose
@@ -2925,6 +2927,29 @@ operator|.
 name|decref
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|DirectUpdateHandler2
+operator|.
+name|commitOnClose
+operator|=
+literal|true
+expr_stmt|;
+comment|// reset
+name|UpdateLog
+operator|.
+name|testing_logReplayHook
+operator|=
+literal|null
+expr_stmt|;
+name|UpdateLog
+operator|.
+name|testing_logReplayFinishHook
+operator|=
+literal|null
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Check the buffering of the old tlogs    */
 annotation|@
