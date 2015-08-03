@@ -904,6 +904,15 @@ name|NUMTERMS
 init|=
 literal|"numTerms"
 decl_stmt|;
+DECL|field|INCLUDE_INDEX_FIELD_FLAGS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|INCLUDE_INDEX_FIELD_FLAGS
+init|=
+literal|"includeIndexFieldFlags"
+decl_stmt|;
 DECL|field|DOC_ID
 specifier|public
 specifier|static
@@ -3251,8 +3260,18 @@ name|indexed
 argument_list|()
 condition|)
 block|{
-comment|// In the pre-4.0 days, this did a veeeery expensive range query. But we can be much faster now,
-comment|// so just do this all the time.
+if|if
+condition|(
+name|params
+operator|.
+name|getBool
+argument_list|(
+name|INCLUDE_INDEX_FIELD_FLAGS
+argument_list|,
+literal|true
+argument_list|)
+condition|)
+block|{
 name|StoredDocument
 name|doc
 init|=
@@ -3346,6 +3365,7 @@ name|getDocCount
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 if|if
 condition|(
