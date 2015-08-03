@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**   * The payloads package provides Query mechanisms for finding and using payloads.  *<p>  *   The following Query implementations are provided:  *<ol>  *<li>{@link org.apache.lucene.search.payloads.PayloadTermQuery PayloadTermQuery} -- Boost a term's score based on the value of the payload located at that term.</li>  *<li>{@link org.apache.lucene.search.payloads.PayloadNearQuery PayloadNearQuery} -- A {@link org.apache.lucene.search.spans.SpanNearQuery SpanNearQuery} that factors in the value of the payloads located   *        at each of the positions where the spans occur.</li>  *</ol>  */
+comment|/**   * The payloads package provides Query mechanisms for finding and using payloads.  *<p>  *   The following Query implementations are provided:  *<ol>  *<li>{@link org.apache.lucene.search.payloads.PayloadScoreQuery PayloadScoreQuery} -- For all terms matched by  *        a SpanQuery, boost the score based on the value of the payload located at those terms.</li>  *</ol>  */
 end_comment
 
 begin_package
