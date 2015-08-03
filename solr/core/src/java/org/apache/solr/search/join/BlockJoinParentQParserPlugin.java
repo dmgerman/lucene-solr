@@ -24,6 +24,22 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|join
+operator|.
+name|ScoreMode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|common
@@ -93,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Usage: {!parent which="PARENT:true"}CHILD_PRICE:10  *  **/
+comment|/**  * Usage: {!parent which="PARENT:true"}CHILD_PRICE:10  * supports optional<code>score</code> parameter with one of {@link ScoreMode} values:  *  None,Avg,Total,Min,Max. Lowercase is also accepted.  **/
 end_comment
 
 begin_class

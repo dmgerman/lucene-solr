@@ -115,6 +115,8 @@ name|req
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|createQuery
 specifier|protected
 name|Query
@@ -125,6 +127,9 @@ name|parentListQuery
 parameter_list|,
 name|Query
 name|query
+parameter_list|,
+name|String
+name|scoreMode
 parameter_list|)
 block|{
 return|return
