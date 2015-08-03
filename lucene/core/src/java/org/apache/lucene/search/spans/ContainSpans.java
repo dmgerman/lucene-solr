@@ -203,7 +203,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|sourceSpans
+name|bigSpans
+operator|.
+name|collect
+argument_list|(
+name|collector
+argument_list|)
+expr_stmt|;
+name|littleSpans
 operator|.
 name|collect
 argument_list|(

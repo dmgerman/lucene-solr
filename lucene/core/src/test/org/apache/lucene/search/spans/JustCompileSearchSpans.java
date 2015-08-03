@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -45,16 +55,6 @@ operator|.
 name|similarities
 operator|.
 name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -498,22 +498,6 @@ argument_list|,
 name|docScorer
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|setFreqCurrentDoc
-specifier|protected
-name|void
-name|setFreqCurrentDoc
-parameter_list|()
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-name|UNSUPPORTED_MSG
-argument_list|)
-throw|;
 block|}
 annotation|@
 name|Override
