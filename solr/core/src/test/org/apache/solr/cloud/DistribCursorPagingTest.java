@@ -2564,7 +2564,26 @@ name|rsp
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// tri-level sort with more dups of primary then fit on a page
+comment|// tri-level sort with more dups of primary then fit on a page.
+comment|// also a function based sort using a simple function(s) on same field
+comment|// (order should be the same in all cases)
+for|for
+control|(
+name|String
+name|primarysort
+range|:
+operator|new
+name|String
+index|[]
+block|{
+literal|"float"
+block|,
+literal|"field('float')"
+block|,
+literal|"sum(float,42)"
+block|}
+control|)
+block|{
 name|cursorMark
 operator|=
 name|CURSOR_MARK_START
@@ -2587,7 +2606,9 @@ literal|"id"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"float asc, "
+name|primarysort
+operator|+
+literal|" asc, "
 operator|+
 name|intsort
 operator|+
@@ -2865,6 +2886,7 @@ name|rsp
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 comment|// trivial base case: rows bigger then number of matches
 name|cursorMark
 operator|=
