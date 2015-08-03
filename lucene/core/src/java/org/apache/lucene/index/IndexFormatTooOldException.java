@@ -62,33 +62,93 @@ name|IndexFormatTooOldException
 extends|extends
 name|IOException
 block|{
-comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param resourceDesc describes the file that was too old    *  @param version the version of the file that was too old    *     * @lucene.internal */
+DECL|field|resourceDescription
+specifier|private
+specifier|final
+name|String
+name|resourceDescription
+decl_stmt|;
+DECL|field|reason
+specifier|private
+specifier|final
+name|String
+name|reason
+decl_stmt|;
+DECL|field|version
+specifier|private
+specifier|final
+name|Integer
+name|version
+decl_stmt|;
+DECL|field|minVersion
+specifier|private
+specifier|final
+name|Integer
+name|minVersion
+decl_stmt|;
+DECL|field|maxVersion
+specifier|private
+specifier|final
+name|Integer
+name|maxVersion
+decl_stmt|;
+comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param resourceDescription describes the file that was too old    *  @param reason the reason for this exception if the version is not available    *    * @lucene.internal */
 DECL|method|IndexFormatTooOldException
 specifier|public
 name|IndexFormatTooOldException
 parameter_list|(
 name|String
-name|resourceDesc
+name|resourceDescription
 parameter_list|,
 name|String
-name|version
+name|reason
 parameter_list|)
 block|{
 name|super
 argument_list|(
 literal|"Format version is not supported (resource "
 operator|+
-name|resourceDesc
+name|resourceDescription
 operator|+
 literal|"): "
 operator|+
-name|version
+name|reason
 operator|+
 literal|". This version of Lucene only supports indexes created with release 4.0 and later."
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|resourceDescription
+operator|=
+name|resourceDescription
+expr_stmt|;
+name|this
+operator|.
+name|reason
+operator|=
+name|reason
+expr_stmt|;
+name|this
+operator|.
+name|version
+operator|=
+literal|null
+expr_stmt|;
+name|this
+operator|.
+name|minVersion
+operator|=
+literal|null
+expr_stmt|;
+name|this
+operator|.
+name|maxVersion
+operator|=
+literal|null
+expr_stmt|;
 block|}
-comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param in the open file that's too old    *  @param version the version of the file that was too old    *    * @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param in the open file that's too old    *  @param reason the reason for this exception if the version is not available    *    * @lucene.internal */
 DECL|method|IndexFormatTooOldException
 specifier|public
 name|IndexFormatTooOldException
@@ -97,7 +157,7 @@ name|DataInput
 name|in
 parameter_list|,
 name|String
-name|version
+name|reason
 parameter_list|)
 block|{
 name|this
@@ -109,17 +169,17 @@ argument_list|(
 name|in
 argument_list|)
 argument_list|,
-name|version
+name|reason
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param resourceDesc describes the file that was too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maxium version accepted    *     * @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param resourceDescription describes the file that was too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maximum version accepted    *     * @lucene.internal */
 DECL|method|IndexFormatTooOldException
 specifier|public
 name|IndexFormatTooOldException
 parameter_list|(
 name|String
-name|resourceDesc
+name|resourceDescription
 parameter_list|,
 name|int
 name|version
@@ -135,7 +195,7 @@ name|super
 argument_list|(
 literal|"Format version is not supported (resource "
 operator|+
-name|resourceDesc
+name|resourceDescription
 operator|+
 literal|"): "
 operator|+
@@ -152,8 +212,38 @@ operator|+
 literal|"). This version of Lucene only supports indexes created with release 4.0 and later."
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|resourceDescription
+operator|=
+name|resourceDescription
+expr_stmt|;
+name|this
+operator|.
+name|version
+operator|=
+name|version
+expr_stmt|;
+name|this
+operator|.
+name|minVersion
+operator|=
+name|minVersion
+expr_stmt|;
+name|this
+operator|.
+name|maxVersion
+operator|=
+name|maxVersion
+expr_stmt|;
+name|this
+operator|.
+name|reason
+operator|=
+literal|null
+expr_stmt|;
 block|}
-comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param in the open file that's too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maxium version accepted    *    * @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooOldException}.    *    *  @param in the open file that's too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maximum version accepted    *    * @lucene.internal */
 DECL|method|IndexFormatTooOldException
 specifier|public
 name|IndexFormatTooOldException
@@ -187,6 +277,61 @@ argument_list|,
 name|maxVersion
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Returns a description of the file that was too old    */
+DECL|method|getResourceDescription
+specifier|public
+name|String
+name|getResourceDescription
+parameter_list|()
+block|{
+return|return
+name|resourceDescription
+return|;
+block|}
+comment|/**    * Returns an optional reason for this exception if the version information was not available. Otherwise<code>null</code>    */
+DECL|method|getReason
+specifier|public
+name|String
+name|getReason
+parameter_list|()
+block|{
+return|return
+name|reason
+return|;
+block|}
+comment|/**    * Returns the version of the file that was too old.    * This method will return<code>null</code> if an alternative {@link #getReason()}    * is provided.    */
+DECL|method|getVersion
+specifier|public
+name|Integer
+name|getVersion
+parameter_list|()
+block|{
+return|return
+name|version
+return|;
+block|}
+comment|/**    * Returns the maximum version accepted.    * This method will return<code>null</code> if an alternative {@link #getReason()}    * is provided.    */
+DECL|method|getMaxVersion
+specifier|public
+name|Integer
+name|getMaxVersion
+parameter_list|()
+block|{
+return|return
+name|maxVersion
+return|;
+block|}
+comment|/**    * Returns the minimum version accepted    * This method will return<code>null</code> if an alternative {@link #getReason()}    * is provided.    */
+DECL|method|getMinVersion
+specifier|public
+name|Integer
+name|getMinVersion
+parameter_list|()
+block|{
+return|return
+name|minVersion
+return|;
 block|}
 block|}
 end_class

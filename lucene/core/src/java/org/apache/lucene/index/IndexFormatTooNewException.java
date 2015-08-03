@@ -62,13 +62,37 @@ name|IndexFormatTooNewException
 extends|extends
 name|IOException
 block|{
-comment|/** Creates an {@code IndexFormatTooNewException}    *    *  @param resourceDesc describes the file that was too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maxium version accepted    *    * @lucene.internal */
+DECL|field|resourceDescription
+specifier|private
+specifier|final
+name|String
+name|resourceDescription
+decl_stmt|;
+DECL|field|version
+specifier|private
+specifier|final
+name|int
+name|version
+decl_stmt|;
+DECL|field|minVersion
+specifier|private
+specifier|final
+name|int
+name|minVersion
+decl_stmt|;
+DECL|field|maxVersion
+specifier|private
+specifier|final
+name|int
+name|maxVersion
+decl_stmt|;
+comment|/** Creates an {@code IndexFormatTooNewException}    *    *  @param resourceDescription describes the file that was too new    *  @param version the version of the file that was too new    *  @param minVersion the minimum version accepted    *  @param maxVersion the maximum version accepted    *    * @lucene.internal */
 DECL|method|IndexFormatTooNewException
 specifier|public
 name|IndexFormatTooNewException
 parameter_list|(
 name|String
-name|resourceDesc
+name|resourceDescription
 parameter_list|,
 name|int
 name|version
@@ -84,7 +108,7 @@ name|super
 argument_list|(
 literal|"Format version is not supported (resource "
 operator|+
-name|resourceDesc
+name|resourceDescription
 operator|+
 literal|"): "
 operator|+
@@ -101,8 +125,32 @@ operator|+
 literal|")"
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|resourceDescription
+operator|=
+name|resourceDescription
+expr_stmt|;
+name|this
+operator|.
+name|version
+operator|=
+name|version
+expr_stmt|;
+name|this
+operator|.
+name|minVersion
+operator|=
+name|minVersion
+expr_stmt|;
+name|this
+operator|.
+name|maxVersion
+operator|=
+name|maxVersion
+expr_stmt|;
 block|}
-comment|/** Creates an {@code IndexFormatTooNewException}    *    *  @param in the open file that's too old    *  @param version the version of the file that was too old    *  @param minVersion the minimum version accepted    *  @param maxVersion the maxium version accepted    *    * @lucene.internal */
+comment|/** Creates an {@code IndexFormatTooNewException}    *    *  @param in the open file that's too new    *  @param version the version of the file that was too new    *  @param minVersion the minimum version accepted    *  @param maxVersion the maximum version accepted    *    * @lucene.internal */
 DECL|method|IndexFormatTooNewException
 specifier|public
 name|IndexFormatTooNewException
@@ -136,6 +184,50 @@ argument_list|,
 name|maxVersion
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Returns a description of the file that was too new    */
+DECL|method|getResourceDescription
+specifier|public
+name|String
+name|getResourceDescription
+parameter_list|()
+block|{
+return|return
+name|resourceDescription
+return|;
+block|}
+comment|/**    * Returns the version of the file that was too new    */
+DECL|method|getVersion
+specifier|public
+name|int
+name|getVersion
+parameter_list|()
+block|{
+return|return
+name|version
+return|;
+block|}
+comment|/**    * Returns the maximum version accepted    */
+DECL|method|getMaxVersion
+specifier|public
+name|int
+name|getMaxVersion
+parameter_list|()
+block|{
+return|return
+name|maxVersion
+return|;
+block|}
+comment|/**    * Returns the minimum version accepted    */
+DECL|method|getMinVersion
+specifier|public
+name|int
+name|getMinVersion
+parameter_list|()
+block|{
+return|return
+name|minVersion
+return|;
 block|}
 block|}
 end_class
