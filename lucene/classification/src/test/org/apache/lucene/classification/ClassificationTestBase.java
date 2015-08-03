@@ -303,6 +303,30 @@ literal|"Much is made of what the likes of Facebook, Google and Apple know about
 operator|+
 literal|" Truth is, Amazon may know more."
 decl_stmt|;
+DECL|field|STRONG_TECHNOLOGY_INPUT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|STRONG_TECHNOLOGY_INPUT
+init|=
+literal|"Much is made of what the likes of Facebook, Google and Apple know about users."
+operator|+
+literal|" Truth is, Amazon may know more. This technology observation is extracted from the internet."
+decl_stmt|;
+DECL|field|SUPER_STRONG_TECHNOLOGY_INPUT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SUPER_STRONG_TECHNOLOGY_INPUT
+init|=
+literal|"More than 400 million people trust Google with their e-mail, and 50 million store files"
+operator|+
+literal|" in the cloud using the Dropbox service. People manage their bank accounts, pay bills, trade stocks and "
+operator|+
+literal|"generally transfer or store huge volumes of personal data online. traveling seeks raises some questions Republican presidential. "
+decl_stmt|;
 DECL|field|TECHNOLOGY_RESULT
 specifier|public
 specifier|static
