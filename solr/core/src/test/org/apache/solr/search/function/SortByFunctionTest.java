@@ -43,7 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  *  **/
+comment|/**  *  * @see TestSortByMinMaxFunction  **/
 end_comment
 
 begin_class
@@ -593,7 +593,26 @@ literal|"//result/doc[4]/int[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Sort by function normally compares the double value, but if a function is specified that identifies    * a single field, we should use the underlying field's SortField to save of a lot of type converstion     * (and RAM), and keep the sort precision as high as possible    */
+comment|/**    * The sort clauses to test in<code>testFieldSortSpecifiedAsFunction</code>.    *    * @see #testFieldSortSpecifiedAsFunction    */
+DECL|method|getFieldFunctionClausesToTest
+specifier|protected
+name|String
+index|[]
+name|getFieldFunctionClausesToTest
+parameter_list|()
+block|{
+return|return
+operator|new
+name|String
+index|[]
+block|{
+literal|"primary_tl1"
+block|,
+literal|"field(primary_tl1)"
+block|}
+return|;
+block|}
+comment|/**    * Sort by function normally compares the double value, but if a function is specified that identifies    * a single field, we should use the underlying field's SortField to save of a lot of type converstion     * (and RAM), and keep the sort precision as high as possible    *    * @see #getFieldFunctionClausesToTest    */
 DECL|method|testFieldSortSpecifiedAsFunction
 specifier|public
 name|void
@@ -839,23 +858,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// all of these sorts should result in the exact same order
+comment|// min/max of a field is tested in TestSortByMinMaxFunction
 for|for
 control|(
 name|String
 name|primarySort
 range|:
-operator|new
-name|String
-index|[]
-block|{
-literal|"primary_tl1"
-block|,
-literal|"field(primary_tl1)"
-block|,
-literal|"field(multi_l_dv,max)"
-block|,
-literal|"field(multi_l_dv,min)"
-block|}
+name|getFieldFunctionClausesToTest
+argument_list|()
 control|)
 block|{
 name|assertQ
