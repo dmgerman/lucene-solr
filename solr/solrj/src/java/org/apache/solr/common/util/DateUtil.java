@@ -569,7 +569,7 @@ name|format
 argument_list|,
 name|Locale
 operator|.
-name|ROOT
+name|ENGLISH
 argument_list|)
 expr_stmt|;
 name|dateParser

@@ -873,7 +873,7 @@ literal|"dd-MMM-yyyy HH:mm:ss"
 argument_list|,
 name|Locale
 operator|.
-name|ROOT
+name|ENGLISH
 argument_list|)
 decl_stmt|;
 DECL|field|cal
