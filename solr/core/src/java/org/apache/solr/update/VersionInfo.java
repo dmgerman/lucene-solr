@@ -1112,30 +1112,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"\n\n versionTerms is a "
-operator|+
-name|versionTerms
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|", versionTerms.size() = "
-operator|+
-name|versionTerms
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" \n\n"
-argument_list|)
-expr_stmt|;
 name|maxVersionInIndex
 operator|=
 name|NumericUtils
