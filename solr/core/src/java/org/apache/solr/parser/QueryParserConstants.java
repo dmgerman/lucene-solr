@@ -87,182 +87,182 @@ DECL|field|AND
 name|int
 name|AND
 init|=
-literal|9
+literal|13
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|OR
 name|int
 name|OR
 init|=
-literal|10
+literal|14
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|NOT
 name|int
 name|NOT
 init|=
-literal|11
+literal|15
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|PLUS
 name|int
 name|PLUS
 init|=
-literal|12
+literal|16
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|MINUS
 name|int
 name|MINUS
 init|=
-literal|13
+literal|17
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|BAREOPER
 name|int
 name|BAREOPER
 init|=
-literal|14
+literal|18
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|LPAREN
 name|int
 name|LPAREN
 init|=
-literal|15
+literal|19
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RPAREN
 name|int
 name|RPAREN
 init|=
-literal|16
+literal|20
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|COLON
 name|int
 name|COLON
 init|=
-literal|17
+literal|21
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|STAR
 name|int
 name|STAR
 init|=
-literal|18
+literal|22
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|CARAT
 name|int
 name|CARAT
 init|=
-literal|19
+literal|23
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|QUOTED
 name|int
 name|QUOTED
 init|=
-literal|20
+literal|24
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|TERM
 name|int
 name|TERM
 init|=
-literal|21
+literal|25
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|FUZZY_SLOP
 name|int
 name|FUZZY_SLOP
 init|=
-literal|22
+literal|26
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|PREFIXTERM
 name|int
 name|PREFIXTERM
 init|=
-literal|23
+literal|27
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|WILDTERM
 name|int
 name|WILDTERM
 init|=
-literal|24
+literal|28
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|REGEXPTERM
 name|int
 name|REGEXPTERM
 init|=
-literal|25
+literal|29
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEIN_START
 name|int
 name|RANGEIN_START
 init|=
-literal|26
+literal|30
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_START
 name|int
 name|RANGEEX_START
 init|=
-literal|27
+literal|31
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|LPARAMS
 name|int
 name|LPARAMS
 init|=
-literal|28
+literal|32
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|NUMBER
 name|int
 name|NUMBER
 init|=
-literal|29
+literal|33
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGE_TO
 name|int
 name|RANGE_TO
 init|=
-literal|30
+literal|34
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEIN_END
 name|int
 name|RANGEIN_END
 init|=
-literal|31
+literal|35
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_END
 name|int
 name|RANGEEX_END
 init|=
-literal|32
+literal|36
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGE_QUOTED
 name|int
 name|RANGE_QUOTED
 init|=
-literal|33
+literal|37
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGE_GOOP
 name|int
 name|RANGE_GOOP
 init|=
-literal|34
+literal|38
 decl_stmt|;
 comment|/** Lexical state. */
 DECL|field|Boost
@@ -279,11 +279,18 @@ init|=
 literal|1
 decl_stmt|;
 comment|/** Lexical state. */
+DECL|field|COMMENT
+name|int
+name|COMMENT
+init|=
+literal|2
+decl_stmt|;
+comment|/** Lexical state. */
 DECL|field|DEFAULT
 name|int
 name|DEFAULT
 init|=
-literal|2
+literal|3
 decl_stmt|;
 comment|/** Literal token values. */
 DECL|field|tokenImage
@@ -309,6 +316,14 @@ block|,
 literal|"<_SQUOTED_CHAR>"
 block|,
 literal|"<token of kind 8>"
+block|,
+literal|"\"/*\""
+block|,
+literal|"\"*/\""
+block|,
+literal|"<token of kind 11>"
+block|,
+literal|"<token of kind 12>"
 block|,
 literal|"<AND>"
 block|,

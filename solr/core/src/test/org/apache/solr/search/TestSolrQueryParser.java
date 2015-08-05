@@ -780,6 +780,75 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testComments
+specifier|public
+name|void
+name|testComments
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1 id:2 /* *:* */ id:3"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==3"
+argument_list|)
+expr_stmt|;
+comment|//
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1 /**.*/"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+comment|// if it matches more than one, it's being treated as a regex.
+argument_list|)
+expr_stmt|;
+comment|// don't match comment start in string
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|" \"/*\" id:1 id:2 \"*/\" id:3"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==3"
+argument_list|)
+expr_stmt|;
+comment|// don't match an end of comment within  a string
+comment|// assertJQ(req("q","id:1 id:2 /* \"*/\" *:* */ id:3")
+comment|//     ,"/response/numFound==3"
+comment|// );
+comment|// removed this functionality - there's more of a danger to thinking we're in a string.
+comment|//   can't do it */  ......... '
+comment|// nested comments
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:1 /* id:2 /* */ /* /**/ id:3 */ id:10 */ id:11"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==2"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
