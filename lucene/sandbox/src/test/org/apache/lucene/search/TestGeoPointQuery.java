@@ -588,9 +588,9 @@ argument_list|(
 name|FIELD_NAME
 argument_list|,
 operator|-
-literal|96.4538113027811
+literal|96.774
 argument_list|,
-literal|32.94823588839368
+literal|32.763420
 argument_list|,
 name|storedPoint
 argument_list|)
@@ -643,6 +643,19 @@ operator|-
 literal|139.73458170890808
 argument_list|,
 literal|27.703618681345585
+argument_list|,
+name|storedPoint
+argument_list|)
+block|,
+operator|new
+name|GeoPointField
+argument_list|(
+name|FIELD_NAME
+argument_list|,
+operator|-
+literal|96.4538113027811
+argument_list|,
+literal|32.94823588839368
 argument_list|,
 name|storedPoint
 argument_list|)
@@ -799,6 +812,62 @@ operator|.
 name|add
 argument_list|(
 name|p
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
+name|addDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
+comment|// add explicit multi-valued docs
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|pts
+operator|.
+name|length
+condition|;
+name|i
+operator|+=
+literal|2
+control|)
+block|{
+name|Document
+name|doc
+init|=
+operator|new
+name|Document
+argument_list|()
+decl_stmt|;
+name|doc
+operator|.
+name|add
+argument_list|(
+name|pts
+index|[
+name|i
+index|]
+argument_list|)
+expr_stmt|;
+name|doc
+operator|.
+name|add
+argument_list|(
+name|pts
+index|[
+name|i
+operator|+
+literal|1
+index|]
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1035,7 +1104,7 @@ name|assertEquals
 argument_list|(
 literal|"GeoBoundingBoxQuery failed"
 argument_list|,
-literal|2
+literal|4
 argument_list|,
 name|td
 operator|.
@@ -1115,7 +1184,7 @@ name|assertEquals
 argument_list|(
 literal|"GeoPolygonQuery failed"
 argument_list|,
-literal|1
+literal|2
 argument_list|,
 name|td
 operator|.
@@ -1368,7 +1437,7 @@ name|assertEquals
 argument_list|(
 literal|"BBoxCrossDateline query failed"
 argument_list|,
-literal|1
+literal|2
 argument_list|,
 name|td
 operator|.
@@ -1408,7 +1477,7 @@ name|assertEquals
 argument_list|(
 literal|"testWholeMap failed"
 argument_list|,
-literal|15
+literal|24
 argument_list|,
 name|td
 operator|.
@@ -1445,7 +1514,7 @@ name|assertEquals
 argument_list|(
 literal|"smallTest failed"
 argument_list|,
-literal|1
+literal|2
 argument_list|,
 name|td
 operator|.
@@ -1526,7 +1595,7 @@ name|assertEquals
 argument_list|(
 literal|"GeoDistanceQuery failed"
 argument_list|,
-literal|1
+literal|2
 argument_list|,
 name|td
 operator|.
@@ -1534,7 +1603,48 @@ name|totalHits
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * LUCENE-6704    */
+annotation|@
+name|Test
+DECL|method|testMultiValuedQuery
+specifier|public
+name|void
+name|testMultiValuedQuery
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|TopDocs
+name|td
+init|=
+name|bboxQuery
+argument_list|(
+operator|-
+literal|96.4538113027811
+argument_list|,
+literal|32.7559529921407
+argument_list|,
+operator|-
+literal|96.7706036567688
+argument_list|,
+literal|32.7756745755423
+argument_list|,
+literal|20
+argument_list|)
+decl_stmt|;
+comment|// 3 single valued docs + 2 multi-valued docs
+name|assertEquals
+argument_list|(
+literal|"testMultiValuedQuery failed"
+argument_list|,
+literal|5
+argument_list|,
+name|td
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Explicitly large    */
 annotation|@
 name|Nightly
 DECL|method|testGeoDistanceQueryHuge
@@ -1555,7 +1665,7 @@ literal|96.4538113027811
 argument_list|,
 literal|32.94823588839368
 argument_list|,
-literal|1000000
+literal|2000000
 argument_list|,
 literal|20
 argument_list|)
@@ -1564,7 +1674,7 @@ name|assertEquals
 argument_list|(
 literal|"GeoDistanceQuery failed"
 argument_list|,
-literal|6
+literal|13
 argument_list|,
 name|td
 operator|.
@@ -1601,7 +1711,7 @@ name|assertEquals
 argument_list|(
 literal|"GeoDistanceQuery failed"
 argument_list|,
-literal|2
+literal|3
 argument_list|,
 name|td
 operator|.
