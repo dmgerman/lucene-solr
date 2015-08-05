@@ -698,8 +698,8 @@ specifier|private
 name|void
 name|createRandomIndex
 parameter_list|(
-name|Integer
-name|maxSegmentCount
+name|boolean
+name|singleSortedSegment
 parameter_list|)
 throws|throws
 name|IOException
@@ -961,19 +961,34 @@ block|}
 block|}
 if|if
 condition|(
-name|maxSegmentCount
-operator|!=
-literal|null
+name|singleSortedSegment
 condition|)
 block|{
+comment|// because of deletions, there might still be a single flush segment in
+comment|// the index, although want want a sorted segment so it needs to be merged
+name|iw
+operator|.
+name|getReader
+argument_list|()
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+comment|// refresh
+name|iw
+operator|.
+name|addDocument
+argument_list|(
+operator|new
+name|Document
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|iw
 operator|.
 name|forceMerge
 argument_list|(
-name|maxSegmentCount
-operator|.
-name|intValue
-argument_list|()
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -1061,7 +1076,7 @@ control|)
 block|{
 name|createRandomIndex
 argument_list|(
-literal|null
+literal|false
 argument_list|)
 expr_stmt|;
 for|for
@@ -1703,7 +1718,7 @@ name|IOException
 block|{
 name|createRandomIndex
 argument_list|(
-literal|null
+literal|false
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -2339,7 +2354,7 @@ control|)
 block|{
 name|createRandomIndex
 argument_list|(
-literal|1
+literal|true
 argument_list|)
 expr_stmt|;
 specifier|final
