@@ -32,18 +32,21 @@ name|RuntimeException
 block|{
 DECL|field|automaton
 specifier|private
+specifier|transient
 specifier|final
 name|Automaton
 name|automaton
 decl_stmt|;
 DECL|field|regExp
 specifier|private
+specifier|transient
 specifier|final
 name|RegExp
 name|regExp
 decl_stmt|;
 DECL|field|maxDeterminizedStates
 specifier|private
+specifier|transient
 specifier|final
 name|int
 name|maxDeterminizedStates
@@ -117,7 +120,21 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Determinizing automaton would result in more than "
+literal|"Determinizing automaton with "
+operator|+
+name|automaton
+operator|.
+name|getNumStates
+argument_list|()
+operator|+
+literal|" states and "
+operator|+
+name|automaton
+operator|.
+name|getNumTransitions
+argument_list|()
+operator|+
+literal|" transitions would result in more than "
 operator|+
 name|maxDeterminizedStates
 operator|+
