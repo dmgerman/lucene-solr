@@ -496,9 +496,17 @@ name|MockAuthenticationPlugin
 operator|.
 name|expectedPassword
 expr_stmt|;
+specifier|final
+name|String
+name|collectionName
+init|=
+literal|"testAuthenticationFrameworkCollection"
+decl_stmt|;
 comment|// Should pass
 name|testCollectionCreateSearchDelete
-argument_list|()
+argument_list|(
+name|collectionName
+argument_list|)
 expr_stmt|;
 name|requestUsername
 operator|=
@@ -514,7 +522,9 @@ comment|// Should fail with 401
 try|try
 block|{
 name|testCollectionCreateSearchDelete
-argument_list|()
+argument_list|(
+name|collectionName
+argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(

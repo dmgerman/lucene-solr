@@ -636,8 +636,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+specifier|final
+name|String
+name|collectionName
+init|=
+literal|"testSolrCloudCollectionKerberos"
+decl_stmt|;
 name|testCollectionCreateSearchDelete
-argument_list|()
+argument_list|(
+name|collectionName
+argument_list|)
 expr_stmt|;
 comment|// sometimes run a second test e.g. to test collection create-delete-create scenario
 if|if
@@ -649,7 +657,9 @@ name|nextBoolean
 argument_list|()
 condition|)
 name|testCollectionCreateSearchDelete
-argument_list|()
+argument_list|(
+name|collectionName
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
