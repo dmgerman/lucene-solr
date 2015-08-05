@@ -743,13 +743,22 @@ name|shard
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
+name|cache
+operator|!=
+literal|null
+operator|)
+condition|?
 name|cache
 operator|.
 name|get
 argument_list|(
 name|t
 argument_list|)
+else|:
+literal|null
 return|;
+comment|//Term doesn't exist in shard
 block|}
 annotation|@
 name|Override
