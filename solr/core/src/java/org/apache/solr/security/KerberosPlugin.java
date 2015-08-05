@@ -359,6 +359,8 @@ class|class
 name|KerberosPlugin
 extends|extends
 name|AuthenticationPlugin
+implements|implements
+name|HttpClientInterceptorPlugin
 block|{
 DECL|field|log
 specifier|static
@@ -760,10 +762,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getDefaultConfigurer
+DECL|method|getClientConfigurer
 specifier|public
 name|HttpClientConfigurer
-name|getDefaultConfigurer
+name|getClientConfigurer
 parameter_list|()
 block|{
 return|return

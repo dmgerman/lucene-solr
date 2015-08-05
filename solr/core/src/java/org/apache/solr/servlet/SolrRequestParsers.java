@@ -152,6 +152,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|security
+operator|.
+name|Principal
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -1035,6 +1045,8 @@ name|getRequestTimer
 argument_list|(
 name|req
 argument_list|)
+argument_list|,
+name|req
 argument_list|)
 decl_stmt|;
 comment|// Handlers and login will want to know the path. If it contains a ':'
@@ -1125,6 +1137,8 @@ argument_list|,
 operator|new
 name|RTimer
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 return|;
 block|}
@@ -1147,6 +1161,10 @@ name|streams
 parameter_list|,
 name|RTimer
 name|requestTimer
+parameter_list|,
+specifier|final
+name|HttpServletRequest
+name|req
 parameter_list|)
 throws|throws
 name|Exception
@@ -1411,7 +1429,28 @@ name|params
 argument_list|,
 name|requestTimer
 argument_list|)
-block|{ }
+block|{
+annotation|@
+name|Override
+specifier|public
+name|Principal
+name|getUserPrincipal
+parameter_list|()
+block|{
+return|return
+name|req
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|req
+operator|.
+name|getUserPrincipal
+argument_list|()
+return|;
+block|}
+block|}
 decl_stmt|;
 if|if
 condition|(
