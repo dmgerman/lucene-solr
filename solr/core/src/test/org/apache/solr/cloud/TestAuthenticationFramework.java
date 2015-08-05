@@ -498,6 +498,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// save original username/password
+specifier|final
+name|String
+name|originalRequestUsername
+init|=
+name|requestUsername
+decl_stmt|;
+specifier|final
+name|String
+name|originalRequestPassword
+init|=
+name|requestPassword
+decl_stmt|;
 name|requestUsername
 operator|=
 name|MockAuthenticationPlugin
@@ -572,6 +585,18 @@ literal|"Should've returned a 401 error"
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
+comment|// restore original username/password
+name|requestUsername
+operator|=
+name|originalRequestUsername
+expr_stmt|;
+name|requestPassword
+operator|=
+name|originalRequestPassword
+expr_stmt|;
 block|}
 block|}
 annotation|@
