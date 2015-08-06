@@ -28,20 +28,6 @@ name|Locale
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-import|;
-end_import
-
 begin_interface
 DECL|interface|CollectionParams
 specifier|public
@@ -74,76 +60,168 @@ name|CollectionAction
 block|{
 DECL|enum constant|CREATE
 name|CREATE
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|DELETE
 name|DELETE
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|RELOAD
 name|RELOAD
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|SYNCSHARD
 name|SYNCSHARD
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|CREATEALIAS
 name|CREATEALIAS
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|DELETEALIAS
 name|DELETEALIAS
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|SPLITSHARD
 name|SPLITSHARD
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|DELETESHARD
 name|DELETESHARD
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|CREATESHARD
 name|CREATESHARD
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|DELETEREPLICA
 name|DELETEREPLICA
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|MIGRATE
 name|MIGRATE
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|ADDROLE
 name|ADDROLE
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|REMOVEROLE
 name|REMOVEROLE
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|CLUSTERPROP
 name|CLUSTERPROP
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|REQUESTSTATUS
 name|REQUESTSTATUS
+argument_list|(
+literal|false
+argument_list|)
 block|,
 DECL|enum constant|ADDREPLICA
 name|ADDREPLICA
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|OVERSEERSTATUS
 name|OVERSEERSTATUS
+argument_list|(
+literal|false
+argument_list|)
 block|,
 DECL|enum constant|LIST
 name|LIST
+argument_list|(
+literal|false
+argument_list|)
 block|,
 DECL|enum constant|CLUSTERSTATUS
 name|CLUSTERSTATUS
+argument_list|(
+literal|false
+argument_list|)
 block|,
 DECL|enum constant|ADDREPLICAPROP
 name|ADDREPLICAPROP
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|DELETEREPLICAPROP
 name|DELETEREPLICAPROP
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|BALANCESHARDUNIQUE
 name|BALANCESHARDUNIQUE
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|REBALANCELEADERS
 name|REBALANCELEADERS
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|MODIFYCOLLECTION
 name|MODIFYCOLLECTION
+argument_list|(
+literal|true
+argument_list|)
 block|;
+DECL|field|isWrite
+specifier|public
+specifier|final
+name|boolean
+name|isWrite
+decl_stmt|;
+DECL|method|CollectionAction
+name|CollectionAction
+parameter_list|(
+name|boolean
+name|isWrite
+parameter_list|)
+block|{
+name|this
+operator|.
+name|isWrite
+operator|=
+name|isWrite
+expr_stmt|;
+block|}
 DECL|method|get
 specifier|public
 specifier|static

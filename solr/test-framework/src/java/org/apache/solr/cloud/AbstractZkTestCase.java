@@ -181,6 +181,7 @@ init|=
 literal|"zookeeper.forceSync"
 decl_stmt|;
 DECL|field|TIMEOUT
+specifier|public
 specifier|static
 specifier|final
 name|int
