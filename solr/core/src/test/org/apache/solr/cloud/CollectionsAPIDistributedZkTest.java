@@ -918,7 +918,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|NUM_SLICES
 import|;
@@ -3023,7 +3023,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|CREATE_NODE_SET
 argument_list|,

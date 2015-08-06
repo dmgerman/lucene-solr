@@ -2052,7 +2052,7 @@ name|miniCluster
 argument_list|,
 name|collectionName
 argument_list|,
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|CREATE_NODE_SET_EMPTY
 argument_list|,

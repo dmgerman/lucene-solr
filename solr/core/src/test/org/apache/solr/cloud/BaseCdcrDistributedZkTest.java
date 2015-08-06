@@ -414,7 +414,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|*
 import|;
@@ -2181,7 +2181,7 @@ operator|=
 operator|(
 name|Integer
 operator|)
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|COLL_PROPS
 operator|.

@@ -4604,7 +4604,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|NUM_SLICES
 argument_list|,
@@ -4643,7 +4643,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|CREATE_NODE_SET
 argument_list|,

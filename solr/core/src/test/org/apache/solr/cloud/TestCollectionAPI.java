@@ -348,7 +348,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|SHARD_UNIQUE
 import|;

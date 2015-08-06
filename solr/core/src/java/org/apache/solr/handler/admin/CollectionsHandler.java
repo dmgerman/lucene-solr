@@ -768,7 +768,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|COLL_CONF
 import|;
@@ -784,7 +784,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|COLL_PROP_PREFIX
 import|;
@@ -800,7 +800,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|CREATE_NODE_SET
 import|;
@@ -816,7 +816,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|CREATE_NODE_SET_SHUFFLE
 import|;
@@ -832,7 +832,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|NUM_SLICES
 import|;
@@ -848,7 +848,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|ONLY_ACTIVE_NODES
 import|;
@@ -864,7 +864,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|ONLY_IF_DOWN
 import|;
@@ -880,7 +880,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|REQUESTID
 import|;
@@ -896,7 +896,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|SHARDS_PROP
 import|;
@@ -912,7 +912,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionMessageHandler
 operator|.
 name|SHARD_UNIQUE
 import|;

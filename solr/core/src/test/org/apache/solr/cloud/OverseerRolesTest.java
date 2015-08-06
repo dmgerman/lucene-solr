@@ -324,22 +324,6 @@ name|cloud
 operator|.
 name|OverseerCollectionProcessor
 operator|.
-name|NUM_SLICES
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|OverseerCollectionProcessor
-operator|.
 name|getLeaderNode
 import|;
 end_import
@@ -357,6 +341,22 @@ operator|.
 name|OverseerCollectionProcessor
 operator|.
 name|getSortedOverseerNodeNames
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|cloud
+operator|.
+name|OverseerCollectionMessageHandler
+operator|.
+name|NUM_SLICES
 import|;
 end_import
 

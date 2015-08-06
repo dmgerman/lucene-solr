@@ -106,7 +106,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerProcessor
 import|;
 end_import
 
@@ -1275,7 +1275,7 @@ name|String
 argument_list|>
 name|electionNodes
 init|=
-name|OverseerCollectionProcessor
+name|OverseerProcessor
 operator|.
 name|getSortedElectionNodes
 argument_list|(
@@ -1476,7 +1476,7 @@ name|String
 argument_list|>
 name|electionNodes
 init|=
-name|OverseerCollectionProcessor
+name|OverseerProcessor
 operator|.
 name|getSortedElectionNodes
 argument_list|(
@@ -1595,7 +1595,7 @@ name|String
 argument_list|>
 name|electionNodesTmp
 init|=
-name|OverseerCollectionProcessor
+name|OverseerProcessor
 operator|.
 name|getSortedElectionNodes
 argument_list|(
@@ -1620,7 +1620,7 @@ decl_stmt|;
 comment|// Now find other nodes that have the same sequence number as this node and re-queue them at the end of the queue.
 name|electionNodes
 operator|=
-name|OverseerCollectionProcessor
+name|OverseerProcessor
 operator|.
 name|getSortedElectionNodes
 argument_list|(
@@ -1811,7 +1811,7 @@ name|String
 argument_list|>
 name|electionNodes
 init|=
-name|OverseerCollectionProcessor
+name|OverseerProcessor
 operator|.
 name|getSortedElectionNodes
 argument_list|(
