@@ -26,9 +26,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|*
+name|IndexReader
 import|;
 end_import
 
@@ -40,9 +40,23 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|search
 operator|.
-name|IndexReader
+name|Explanation
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Scorer
 import|;
 end_import
 
@@ -614,6 +628,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**    * Yields a {@link Scorer} that matches all documents,    * and that which produces scores equal to {@link #floatVal(int)}.    */
 DECL|method|getScorer
 specifier|public
 name|ValueSourceScorer
@@ -631,8 +646,25 @@ name|reader
 argument_list|,
 name|this
 argument_list|)
+block|{
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|matches
+parameter_list|(
+name|int
+name|doc
+parameter_list|)
+block|{
+return|return
+literal|true
 return|;
 block|}
+block|}
+return|;
+block|}
+comment|/**    * Yields a {@link Scorer} that matches documents with values between the specified range,    * and that which produces scores equal to {@link #floatVal(int)}.    */
 comment|// A RangeValueSource can't easily be a ValueSource that takes another ValueSource
 comment|// because it needs different behavior depending on the type of fields.  There is also
 comment|// a setup cost - parsing and normalizing params, and doing a binary search on the StringIndex.
@@ -748,7 +780,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|matchesValue
+name|matches
 parameter_list|(
 name|int
 name|doc
@@ -797,7 +829,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|matchesValue
+name|matches
 parameter_list|(
 name|int
 name|doc
@@ -846,7 +878,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|matchesValue
+name|matches
 parameter_list|(
 name|int
 name|doc
@@ -888,7 +920,7 @@ annotation|@
 name|Override
 specifier|public
 name|boolean
-name|matchesValue
+name|matches
 parameter_list|(
 name|int
 name|doc
