@@ -223,46 +223,53 @@ init|=
 literal|32
 decl_stmt|;
 comment|/** RegularExpression Id. */
+DECL|field|FILTER
+name|int
+name|FILTER
+init|=
+literal|33
+decl_stmt|;
+comment|/** RegularExpression Id. */
 DECL|field|NUMBER
 name|int
 name|NUMBER
 init|=
-literal|33
+literal|34
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGE_TO
 name|int
 name|RANGE_TO
 init|=
-literal|34
+literal|35
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEIN_END
 name|int
 name|RANGEIN_END
 init|=
-literal|35
+literal|36
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGEEX_END
 name|int
 name|RANGEEX_END
 init|=
-literal|36
+literal|37
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGE_QUOTED
 name|int
 name|RANGE_QUOTED
 init|=
-literal|37
+literal|38
 decl_stmt|;
 comment|/** RegularExpression Id. */
 DECL|field|RANGE_GOOP
 name|int
 name|RANGE_GOOP
 init|=
-literal|38
+literal|39
 decl_stmt|;
 comment|/** Lexical state. */
 DECL|field|Boost
@@ -364,6 +371,8 @@ block|,
 literal|"\"{\""
 block|,
 literal|"<LPARAMS>"
+block|,
+literal|"\"filter(\""
 block|,
 literal|"<NUMBER>"
 block|,
