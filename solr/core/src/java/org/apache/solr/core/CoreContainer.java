@@ -1799,6 +1799,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|//this happened due to an authc plugin reload. no need to register the pkiAuthc plugin again
+if|if
+condition|(
+name|pkiAuthenticationPlugin
+operator|.
+name|isInterceptorRegistered
+argument_list|()
+condition|)
+return|return;
 name|log
 operator|.
 name|info
@@ -1810,6 +1819,11 @@ name|addHttpConfigurer
 argument_list|(
 name|pkiAuthenticationPlugin
 argument_list|)
+expr_stmt|;
+name|pkiAuthenticationPlugin
+operator|.
+name|setInterceptorRegistered
+argument_list|()
 expr_stmt|;
 block|}
 block|}
