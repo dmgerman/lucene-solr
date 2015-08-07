@@ -8439,20 +8439,13 @@ condition|(
 name|collection
 operator|!=
 literal|null
-operator|&&
-name|collection
-operator|.
-name|getStateFormat
-argument_list|()
-operator|>
-literal|1
 condition|)
 block|{
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Registering watch for external collection {}"
+literal|"Registering watch for collection {}"
 argument_list|,
 name|cd
 operator|.

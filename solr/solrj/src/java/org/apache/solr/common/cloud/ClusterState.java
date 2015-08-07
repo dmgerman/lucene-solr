@@ -1935,7 +1935,9 @@ name|map
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * The version of clusterstate.json in ZooKeeper.    *     * @return null if ClusterState was created for publication, not consumption    */
+comment|/**    * The version of clusterstate.json in ZooKeeper.    *     * @return null if ClusterState was created for publication, not consumption    * @deprecated true cluster state spans many ZK nodes, stop depending on the version number of the shared node!    */
+annotation|@
+name|Deprecated
 DECL|method|getZkClusterStateVersion
 specifier|public
 name|Integer
