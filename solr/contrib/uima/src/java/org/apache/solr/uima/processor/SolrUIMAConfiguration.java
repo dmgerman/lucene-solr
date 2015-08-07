@@ -202,6 +202,7 @@ name|fieldsMerging
 return|;
 block|}
 DECL|method|getTypesFeaturesFieldsMapping
+specifier|public
 name|Map
 argument_list|<
 name|String
@@ -266,6 +267,7 @@ name|logField
 return|;
 block|}
 DECL|class|MapField
+specifier|public
 specifier|static
 specifier|final
 class|class
@@ -389,6 +391,7 @@ throw|;
 block|}
 block|}
 DECL|method|getFieldNameFeature
+specifier|public
 name|String
 name|getFieldNameFeature
 parameter_list|()
@@ -398,6 +401,7 @@ name|fieldNameFeature
 return|;
 block|}
 DECL|method|getFieldName
+specifier|public
 name|String
 name|getFieldName
 parameter_list|(
