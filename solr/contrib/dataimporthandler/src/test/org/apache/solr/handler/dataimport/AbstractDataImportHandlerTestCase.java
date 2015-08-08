@@ -138,6 +138,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|SolrCore
@@ -949,6 +965,13 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Needs currentTimeMillis to set modified time for a file"
+argument_list|)
 DECL|method|createFile
 specifier|public
 specifier|static

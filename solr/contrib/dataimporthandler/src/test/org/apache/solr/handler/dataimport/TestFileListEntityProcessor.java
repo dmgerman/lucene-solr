@@ -50,6 +50,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Ignore
@@ -895,6 +911,13 @@ return|return
 name|fList
 return|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Needs currentTimeMillis to set last modified time"
+argument_list|)
 annotation|@
 name|Test
 DECL|method|testNTOT

@@ -1588,9 +1588,10 @@ name|field
 operator|+
 literal|"_"
 operator|+
-name|System
+name|random
+argument_list|()
 operator|.
-name|currentTimeMillis
+name|nextInt
 argument_list|()
 operator|+
 literal|"'}"

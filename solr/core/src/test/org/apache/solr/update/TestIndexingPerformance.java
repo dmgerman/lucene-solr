@@ -78,6 +78,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|RTimer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|AfterClass
@@ -385,12 +399,12 @@ literal|"just how fast is this text indexing?"
 block|}
 decl_stmt|;
 comment|/***     String[] fields = {             "a_i","1"             ,"b_i","2"             ,"c_i","3"             ,"d_i","4"             ,"e_i","5"             ,"f_i","6"             ,"g_i","7"             ,"h_i","8"             ,"i_i","9"             ,"j_i","0"             ,"k_i","0"     };    ***/
-name|long
-name|start
+specifier|final
+name|RTimer
+name|timer
 init|=
-name|System
-operator|.
-name|currentTimeMillis
+operator|new
+name|RTimer
 argument_list|()
 decl_stmt|;
 name|AddUpdateCommand
@@ -508,14 +522,6 @@ name|add
 argument_list|)
 expr_stmt|;
 block|}
-name|long
-name|end
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-decl_stmt|;
 name|log
 operator|.
 name|info
@@ -530,6 +536,14 @@ name|fields
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|double
+name|elapsed
+init|=
+name|timer
+operator|.
+name|getTime
+argument_list|()
+decl_stmt|;
 name|log
 operator|.
 name|info
@@ -540,11 +554,7 @@ name|iter
 operator|+
 literal|" time="
 operator|+
-operator|(
-name|end
-operator|-
-name|start
-operator|)
+name|elapsed
 operator|+
 literal|" throughput="
 operator|+
@@ -557,11 +567,7 @@ operator|*
 literal|1000
 operator|)
 operator|/
-operator|(
-name|end
-operator|-
-name|start
-operator|)
+name|elapsed
 argument_list|)
 expr_stmt|;
 comment|//discard all the changes

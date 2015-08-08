@@ -32,6 +32,22 @@ name|AtomicBoolean
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
 begin_comment
 comment|/**  * @lucene.experimental  */
 end_comment
@@ -56,16 +72,14 @@ DECL|field|lastAccess
 specifier|private
 name|long
 name|lastAccess
-init|=
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
 decl_stmt|;
 DECL|field|accesses
 specifier|private
 name|long
 name|accesses
+init|=
+operator|-
+literal|1
 decl_stmt|;
 DECL|field|removed
 specifier|private
@@ -78,6 +92,15 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
+DECL|method|BlockCacheLocation
+specifier|public
+name|BlockCacheLocation
+parameter_list|()
+block|{
+name|touch
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|setBlock
 specifier|public
 name|void
@@ -130,6 +153,13 @@ return|return
 name|bankId
 return|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Need currentTimeMillis, only used by unused getLastAccess"
+argument_list|)
 DECL|method|touch
 specifier|public
 name|void

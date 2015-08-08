@@ -2099,7 +2099,7 @@ name|set
 argument_list|(
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2129,7 +2129,7 @@ name|set
 argument_list|(
 name|newSearcher
 operator|.
-name|getOpenTime
+name|getOpenNanoTime
 argument_list|()
 argument_list|)
 expr_stmt|;

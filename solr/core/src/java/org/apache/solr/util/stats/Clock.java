@@ -46,6 +46,22 @@ name|ThreadMXBean
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
 begin_comment
 comment|/**  * An abstraction for how time passes. It is passed to {@link Timer} to track timing.  */
 end_comment
@@ -66,6 +82,13 @@ name|getTick
 parameter_list|()
 function_decl|;
 comment|/**    * Returns the current time in milliseconds.    *    * @return time in milliseconds    */
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Need currentTimeMillis, API used by ExponentiallyDecayingSample for suspect reasons"
+argument_list|)
 DECL|method|getTime
 specifier|public
 name|long

@@ -92,6 +92,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|AfterClass
@@ -417,6 +433,13 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Needs currentTimeMillis to check against expiry headers from Solr"
+argument_list|)
 DECL|method|checkVetoHeaders
 specifier|protected
 name|void

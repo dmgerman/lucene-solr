@@ -242,6 +242,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|SolrQueryRequest
@@ -914,6 +930,13 @@ argument_list|)
 expr_stmt|;
 comment|//to see it in the logs of the landing core
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Need currentTimeMillis, only used for naming"
+argument_list|)
 DECL|method|generateRid
 specifier|private
 name|String

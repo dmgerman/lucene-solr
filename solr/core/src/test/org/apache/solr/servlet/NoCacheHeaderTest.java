@@ -86,6 +86,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -213,6 +229,13 @@ literal|"POST"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Needs currentTimeMillis for testing caching headers"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|doLastModified

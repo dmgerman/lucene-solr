@@ -378,6 +378,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|RTimer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Test
@@ -3117,12 +3131,12 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|long
-name|startMs
+specifier|final
+name|RTimer
+name|timer
 init|=
-name|System
-operator|.
-name|currentTimeMillis
+operator|new
+name|RTimer
 argument_list|()
 decl_stmt|;
 name|ZkStateReader
@@ -3367,31 +3381,18 @@ name|testCollectionName
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|long
-name|diffMs
-init|=
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|startMs
-operator|)
-decl_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Took "
-operator|+
-name|diffMs
-operator|+
-literal|" ms to see replicas ["
-operator|+
+literal|"Took {} ms to see replicas [{}] become active."
+argument_list|,
+name|timer
+operator|.
+name|getTime
+argument_list|()
+argument_list|,
 name|replicasToCheck
-operator|+
-literal|"] become active."
 argument_list|)
 expr_stmt|;
 block|}

@@ -353,7 +353,17 @@ name|getTag
 parameter_list|()
 function_decl|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Need currentTimeMillis to compare against log event timestamp. "
+operator|+
+literal|"This is inaccurate but unavoidable due to interface limitations, in any case this is just for logging."
+argument_list|)
 DECL|field|startTime
+specifier|final
 name|long
 name|startTime
 init|=

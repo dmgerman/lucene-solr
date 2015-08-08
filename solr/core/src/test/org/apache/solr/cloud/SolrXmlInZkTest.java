@@ -132,16 +132,6 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Before
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
 name|Rule
 import|;
 end_import
@@ -421,7 +411,7 @@ literal|"zookeeper"
 operator|+
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 operator|+
 literal|"/server1/data"

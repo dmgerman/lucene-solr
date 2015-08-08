@@ -500,6 +500,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|RTimer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|zookeeper
 operator|.
 name|CreateMode
@@ -1444,12 +1458,11 @@ name|int
 name|maxWaitSecs
 parameter_list|)
 block|{
-name|long
-name|startMs
+name|RTimer
+name|timer
 init|=
-name|System
-operator|.
-name|currentTimeMillis
+operator|new
+name|RTimer
 argument_list|()
 decl_stmt|;
 comment|// get a list of active replica cores to query for the schema zk version (skipping this core of course)
@@ -1820,46 +1833,24 @@ name|shutdownNow
 argument_list|()
 expr_stmt|;
 block|}
-name|long
-name|diffMs
-init|=
-operator|(
-name|System
-operator|.
-name|currentTimeMillis
-argument_list|()
-operator|-
-name|startMs
-operator|)
-decl_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Took "
-operator|+
-name|Math
+literal|"Took {}ms for {} replicas to apply schema update version {} for collection {}"
+argument_list|,
+name|timer
 operator|.
-name|round
-argument_list|(
-name|diffMs
-operator|/
-literal|1000d
-argument_list|)
-operator|+
-literal|" secs for "
-operator|+
+name|getTime
+argument_list|()
+argument_list|,
 name|concurrentTasks
 operator|.
 name|size
 argument_list|()
-operator|+
-literal|" replicas to apply schema update version "
-operator|+
+argument_list|,
 name|schemaZkVersion
-operator|+
-literal|" for collection "
-operator|+
+argument_list|,
 name|collection
 argument_list|)
 expr_stmt|;

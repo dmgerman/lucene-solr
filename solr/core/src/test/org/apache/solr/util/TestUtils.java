@@ -1169,7 +1169,7 @@ name|num
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 name|sortable

@@ -1549,7 +1549,7 @@ operator|.
 name|get
 argument_list|()
 operator|.
-name|getOpenTime
+name|getOpenNanoTime
 argument_list|()
 expr_stmt|;
 block|}

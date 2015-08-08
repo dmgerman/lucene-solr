@@ -3604,17 +3604,12 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// TODO: look at using nanoTime
 if|if
 condition|(
+operator|!
 name|rule
 operator|.
-name|getExpireAt
-argument_list|()
-operator|>=
-name|System
-operator|.
-name|currentTimeMillis
+name|isExpired
 argument_list|()
 condition|)
 block|{

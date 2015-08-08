@@ -140,6 +140,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|CoreContainer
@@ -433,6 +449,13 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Needs currentTimeMillis to construct date stamps"
+argument_list|)
 annotation|@
 name|Test
 DECL|method|testZKPropertiesWriter

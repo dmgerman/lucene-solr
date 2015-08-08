@@ -82,6 +82,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|TimeUnit
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -407,7 +419,7 @@ name|add529
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 name|assertU
@@ -531,46 +543,72 @@ operator|.
 name|assertSaneOffers
 argument_list|()
 expr_stmt|;
+specifier|final
+name|long
+name|soft529Ms
+init|=
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
+name|soft529
+operator|-
+name|add529
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"soft529 occured too fast: "
+literal|"soft529 occured too fast, in "
 operator|+
-name|add529
+name|soft529Ms
 operator|+
-literal|" + "
+literal|"ms, less than soft commit interval "
 operator|+
 name|softCommitWaitMillis
-operator|+
-literal|" !<= "
-operator|+
-name|soft529
 argument_list|,
-name|add529
-operator|+
+name|soft529Ms
+operator|>=
 name|softCommitWaitMillis
-operator|<=
-name|soft529
 argument_list|)
 expr_stmt|;
+specifier|final
+name|long
+name|hard529Ms
+init|=
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
+name|hard529
+operator|-
+name|add529
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"hard529 occured too fast: "
+literal|"hard529 occured too fast, in "
 operator|+
-name|add529
+name|hard529Ms
 operator|+
-literal|" + "
+literal|"ms, less than hard commit interval "
 operator|+
 name|hardCommitWaitMillis
-operator|+
-literal|" !<= "
-operator|+
-name|hard529
 argument_list|,
-name|add529
-operator|+
+name|hard529Ms
+operator|>=
 name|hardCommitWaitMillis
-operator|<=
-name|hard529
 argument_list|)
 expr_stmt|;
 comment|// however slow the machine was to do the soft commit compared to expected,
@@ -587,34 +625,45 @@ argument_list|,
 literal|12
 operator|*
 operator|(
-name|soft529
-operator|-
-name|add529
+name|soft529Ms
 operator|-
 name|softCommitWaitMillis
 operator|)
 argument_list|)
 decl_stmt|;
+specifier|final
+name|long
+name|softCommitToSearcherOpenMs
+init|=
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
+name|searcher529
+operator|-
+name|soft529
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"searcher529 wasn't soon enough after soft529: "
+literal|"searcher529 wasn't soon enough after soft529: Took "
 operator|+
-name|searcher529
+name|softCommitToSearcherOpenMs
 operator|+
-literal|" !< "
-operator|+
-name|soft529
-operator|+
-literal|" + "
+literal|"ms,>= acceptable "
 operator|+
 name|slowTestFudge
 operator|+
-literal|" (fudge)"
+literal|"ms (fudge)"
 argument_list|,
-name|searcher529
+name|softCommitToSearcherOpenMs
 operator|<
-name|soft529
-operator|+
 name|slowTestFudge
 argument_list|)
 expr_stmt|;
@@ -941,7 +990,7 @@ name|del529
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 name|assertU
@@ -1055,46 +1104,72 @@ operator|.
 name|assertSaneOffers
 argument_list|()
 expr_stmt|;
+specifier|final
+name|long
+name|soft529Ms
+init|=
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
+name|soft529
+operator|-
+name|del529
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"soft529 occured too fast: "
+literal|"soft529 occured too fast, in "
 operator|+
-name|del529
+name|soft529Ms
 operator|+
-literal|" + "
+literal|"ms, less than soft commit interval "
 operator|+
 name|softCommitWaitMillis
-operator|+
-literal|" !<= "
-operator|+
-name|soft529
 argument_list|,
-name|del529
-operator|+
+name|soft529Ms
+operator|>=
 name|softCommitWaitMillis
-operator|<=
-name|soft529
 argument_list|)
 expr_stmt|;
+specifier|final
+name|long
+name|hard529Ms
+init|=
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
+name|hard529
+operator|-
+name|del529
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"hard529 occured too fast: "
+literal|"hard529 occured too fast, in "
 operator|+
-name|del529
+name|hard529Ms
 operator|+
-literal|" + "
+literal|"ms, less than hard commit interval "
 operator|+
 name|hardCommitWaitMillis
-operator|+
-literal|" !<= "
-operator|+
-name|hard529
 argument_list|,
-name|del529
-operator|+
+name|hard529Ms
+operator|>=
 name|hardCommitWaitMillis
-operator|<=
-name|hard529
 argument_list|)
 expr_stmt|;
 comment|// however slow the machine was to do the soft commit compared to expected,
@@ -1106,39 +1181,50 @@ name|Math
 operator|.
 name|max
 argument_list|(
-literal|150
+literal|300
 argument_list|,
-literal|3
+literal|12
 operator|*
 operator|(
-name|soft529
-operator|-
-name|del529
+name|soft529Ms
 operator|-
 name|softCommitWaitMillis
 operator|)
 argument_list|)
 decl_stmt|;
+specifier|final
+name|long
+name|softCommitToSearcherOpenMs
+init|=
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
+name|searcher529
+operator|-
+name|soft529
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
-literal|"searcher529 wasn't soon enough after soft529: "
+literal|"searcher529 wasn't soon enough after soft529: Took "
 operator|+
-name|searcher529
+name|softCommitToSearcherOpenMs
 operator|+
-literal|" !< "
-operator|+
-name|soft529
-operator|+
-literal|" + "
+literal|"ms,>= acceptable "
 operator|+
 name|slowTestFudge
 operator|+
-literal|" (fudge)"
+literal|"ms (fudge)"
 argument_list|,
-name|searcher529
+name|softCommitToSearcherOpenMs
 operator|<
-name|soft529
-operator|+
 name|slowTestFudge
 argument_list|)
 expr_stmt|;
@@ -1282,7 +1368,7 @@ name|fast5start
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 for|for
@@ -1324,10 +1410,21 @@ name|fast5end
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 operator|-
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+operator|.
+name|convert
+argument_list|(
 literal|200
+argument_list|,
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+argument_list|)
 decl_stmt|;
 comment|// minus a tad of slop
 name|long
@@ -1335,9 +1432,20 @@ name|fast5time
 init|=
 literal|1
 operator|+
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
 name|fast5end
 operator|-
 name|fast5start
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
 decl_stmt|;
 comment|// total time for all 5 adds determines the number of soft to expect
 name|long
@@ -1350,6 +1458,9 @@ name|Math
 operator|.
 name|ceil
 argument_list|(
+operator|(
+name|double
+operator|)
 name|fast5time
 operator|/
 name|softCommitWaitMillis
@@ -1365,6 +1476,9 @@ name|Math
 operator|.
 name|ceil
 argument_list|(
+operator|(
+name|double
+operator|)
 name|fast5time
 operator|/
 name|hardCommitWaitMillis
@@ -1419,15 +1533,33 @@ argument_list|()
 expr_stmt|;
 comment|// have to assume none of the docs were added until
 comment|// very end of the add window
+name|long
+name|softMs
+init|=
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
+name|soft
+operator|-
+name|fast5end
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
 name|i
 operator|+
 literal|": soft occured too fast: "
 operator|+
-name|fast5end
+name|softMs
 operator|+
-literal|" + ("
+literal|"< ("
 operator|+
 name|softCommitWaitMillis
 operator|+
@@ -1435,19 +1567,15 @@ literal|" * "
 operator|+
 name|i
 operator|+
-literal|") !<= "
-operator|+
-name|soft
+literal|")"
 argument_list|,
-name|fast5end
-operator|+
+name|softMs
+operator|>=
 operator|(
 name|softCommitWaitMillis
 operator|*
 name|i
 operator|)
-operator|<=
-name|soft
 argument_list|)
 expr_stmt|;
 block|}
@@ -1499,15 +1627,33 @@ argument_list|()
 expr_stmt|;
 comment|// have to assume none of the docs were added until
 comment|// very end of the add window
+name|long
+name|hardMs
+init|=
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+operator|.
+name|convert
+argument_list|(
+name|hard
+operator|-
+name|fast5end
+argument_list|,
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
 name|i
 operator|+
-literal|": soft occured too fast: "
+literal|": hard occured too fast: "
 operator|+
-name|fast5end
+name|hardMs
 operator|+
-literal|" + ("
+literal|"< ("
 operator|+
 name|hardCommitWaitMillis
 operator|+
@@ -1515,19 +1661,15 @@ literal|" * "
 operator|+
 name|i
 operator|+
-literal|") !<= "
-operator|+
-name|hard
+literal|")"
 argument_list|,
-name|fast5end
-operator|+
+name|hardMs
+operator|>=
 operator|(
 name|hardCommitWaitMillis
 operator|*
 name|i
 operator|)
-operator|<=
-name|hard
 argument_list|)
 expr_stmt|;
 block|}
@@ -1638,7 +1780,7 @@ name|now
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 if|if
@@ -1674,7 +1816,7 @@ name|now
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 if|if
@@ -1710,7 +1852,7 @@ name|now
 init|=
 name|System
 operator|.
-name|currentTimeMillis
+name|nanoTime
 argument_list|()
 decl_stmt|;
 if|if

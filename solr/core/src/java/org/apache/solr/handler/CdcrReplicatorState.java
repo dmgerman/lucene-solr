@@ -425,9 +425,8 @@ name|ErrorQueueEntry
 argument_list|(
 name|error
 argument_list|,
-name|System
-operator|.
-name|currentTimeMillis
+operator|new
+name|Date
 argument_list|()
 argument_list|)
 argument_list|)
@@ -557,13 +556,9 @@ name|DateFormatUtil
 operator|.
 name|formatExternal
 argument_list|(
-operator|new
-name|Date
-argument_list|(
 name|entry
 operator|.
 name|timestamp
-argument_list|)
 argument_list|)
 block|,
 name|entry
@@ -1026,7 +1021,7 @@ name|type
 decl_stmt|;
 DECL|field|timestamp
 specifier|private
-name|long
+name|Date
 name|timestamp
 decl_stmt|;
 DECL|method|ErrorQueueEntry
@@ -1036,7 +1031,7 @@ parameter_list|(
 name|ErrorType
 name|type
 parameter_list|,
-name|long
+name|Date
 name|timestamp
 parameter_list|)
 block|{

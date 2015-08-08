@@ -258,6 +258,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|schema
 operator|.
 name|IndexSchema
@@ -709,14 +725,11 @@ comment|/** We are currently using this time-based clock to avoid going back in 
 comment|// Time-based lamport clock.  Good for introducing some reality into clocks (to the degree
 comment|// that times are somewhat synchronized in the cluster).
 comment|// Good if we want to relax some constraints to scale down to where only one node may be
-comment|// up at a time.  Possibly harder to detect missing messages (because versions are not contiguous.
+comment|// up at a time.  Possibly harder to detect missing messages (because versions are not contiguous).
 DECL|field|vclock
+specifier|private
 name|long
 name|vclock
-decl_stmt|;
-DECL|field|time
-name|long
-name|time
 decl_stmt|;
 DECL|field|clockSync
 specifier|private
@@ -728,6 +741,13 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"need currentTimeMillis just for getting realistic version stamps, does not assume monotonicity"
+argument_list|)
 DECL|method|getNewClock
 specifier|public
 name|long
@@ -739,13 +759,14 @@ init|(
 name|clockSync
 init|)
 block|{
+name|long
 name|time
-operator|=
+init|=
 name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|long
 name|result
 init|=

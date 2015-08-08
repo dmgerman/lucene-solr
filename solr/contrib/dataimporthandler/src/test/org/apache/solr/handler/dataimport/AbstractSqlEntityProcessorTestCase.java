@@ -28,6 +28,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|After
@@ -2378,6 +2394,13 @@ literal|0
 index|]
 return|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Needs currentTimeMillis to set change time for SQL query"
+argument_list|)
 DECL|method|modifySomePeople
 specifier|public
 name|IntChanges
@@ -2946,6 +2969,13 @@ return|return
 name|c
 return|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Needs currentTimeMillis to set change time for SQL query"
+argument_list|)
 DECL|method|modifySomeCountries
 specifier|public
 name|String
@@ -3998,6 +4028,13 @@ return|return
 name|config
 return|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Needs currentTimeMillis to set change time for SQL query"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|populateData

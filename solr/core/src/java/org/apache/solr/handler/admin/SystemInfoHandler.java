@@ -743,14 +743,10 @@ name|add
 argument_list|(
 literal|"start"
 argument_list|,
-operator|new
-name|Date
-argument_list|(
 name|core
 operator|.
-name|getStartTime
+name|getStartTimeStamp
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Solr Home
