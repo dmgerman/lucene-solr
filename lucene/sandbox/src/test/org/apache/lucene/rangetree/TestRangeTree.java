@@ -875,7 +875,7 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-literal|1024
+name|maxPointsInLeaf
 argument_list|,
 literal|1024
 operator|*
