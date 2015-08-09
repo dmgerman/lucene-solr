@@ -24,20 +24,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|response
-operator|.
-name|SolrQueryResponse
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|search
 operator|.
 name|SolrIndexSearcher
@@ -55,20 +41,6 @@ operator|.
 name|schema
 operator|.
 name|IndexSchema
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|RTimer
 import|;
 end_import
 
@@ -115,6 +87,20 @@ operator|.
 name|core
 operator|.
 name|SolrCore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|RTimerTree
 import|;
 end_import
 
@@ -211,7 +197,7 @@ function_decl|;
 comment|/** The timer for this request, created when the request started being processed */
 DECL|method|getRequestTimer
 specifier|public
-name|RTimer
+name|RTimerTree
 name|getRequestTimer
 parameter_list|()
 function_decl|;

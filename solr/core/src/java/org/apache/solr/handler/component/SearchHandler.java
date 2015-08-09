@@ -248,22 +248,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|StrUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|core
 operator|.
 name|CloseHook
@@ -380,7 +364,7 @@ name|solr
 operator|.
 name|util
 operator|.
-name|RTimer
+name|RTimerTree
 import|;
 end_import
 
@@ -1537,7 +1521,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|final
-name|RTimer
+name|RTimerTree
 name|timer
 init|=
 name|rb
@@ -1592,7 +1576,7 @@ block|}
 else|else
 block|{
 comment|// debugging prepare phase
-name|RTimer
+name|RTimerTree
 name|subt
 init|=
 name|timer
@@ -1723,7 +1707,7 @@ block|}
 else|else
 block|{
 comment|// Process
-name|RTimer
+name|RTimerTree
 name|subt
 init|=
 name|timer

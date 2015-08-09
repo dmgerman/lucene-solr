@@ -40,20 +40,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|response
-operator|.
-name|SolrQueryResponse
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|search
 operator|.
 name|SolrIndexSearcher
@@ -70,7 +56,7 @@ name|solr
 operator|.
 name|util
 operator|.
-name|RTimer
+name|RTimerTree
 import|;
 end_import
 
@@ -257,7 +243,7 @@ decl_stmt|;
 DECL|field|requestTimer
 specifier|private
 specifier|final
-name|RTimer
+name|RTimerTree
 name|requestTimer
 decl_stmt|;
 DECL|field|startTime
@@ -283,7 +269,7 @@ parameter_list|,
 name|SolrParams
 name|params
 parameter_list|,
-name|RTimer
+name|RTimerTree
 name|requestTimer
 parameter_list|)
 block|{
@@ -352,7 +338,7 @@ argument_list|,
 name|params
 argument_list|,
 operator|new
-name|RTimer
+name|RTimerTree
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -443,9 +429,11 @@ return|return
 name|startTime
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getRequestTimer
 specifier|public
-name|RTimer
+name|RTimerTree
 name|getRequestTimer
 parameter_list|()
 block|{
