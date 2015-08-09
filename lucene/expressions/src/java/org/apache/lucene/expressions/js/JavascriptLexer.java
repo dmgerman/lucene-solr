@@ -749,7 +749,7 @@ name|getGrammarFileName
 parameter_list|()
 block|{
 return|return
-literal|"Javascript.g"
+literal|"Javascript.g4"
 return|;
 block|}
 annotation|@
