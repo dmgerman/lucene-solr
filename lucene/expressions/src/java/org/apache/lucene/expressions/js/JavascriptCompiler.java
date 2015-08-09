@@ -1063,12 +1063,15 @@ specifier|private
 name|void
 name|generateClass
 parameter_list|(
+specifier|final
 name|ParseTree
 name|parseTree
 parameter_list|,
+specifier|final
 name|ClassWriter
 name|classWriter
 parameter_list|,
+specifier|final
 name|Map
 argument_list|<
 name|String
