@@ -148,6 +148,20 @@ name|solr
 operator|.
 name|search
 operator|.
+name|SolrConstantScoreQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
 name|SolrIndexSearcher
 import|;
 end_import
@@ -469,11 +483,11 @@ name|q
 argument_list|)
 decl_stmt|;
 comment|// reqInfo.addCloseHook(docs);  // needed for off-heap refcounting
-name|ConstantScoreQuery
+name|SolrConstantScoreQuery
 name|csq
 init|=
 operator|new
-name|ConstantScoreQuery
+name|SolrConstantScoreQuery
 argument_list|(
 name|docs
 operator|.
