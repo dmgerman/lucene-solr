@@ -903,6 +903,9 @@ comment|// we have no way to estimate the size of these things in codecs althoug
 comment|// something like a Collections.newSetFromMap(new HashMap<>()) uses quite
 comment|// some memory... So for now the test ignores the overhead of such
 comment|// collections but can we do better?
+name|long
+name|v
+decl_stmt|;
 if|if
 condition|(
 name|o
@@ -937,7 +940,8 @@ operator|)
 name|o
 argument_list|)
 expr_stmt|;
-return|return
+name|v
+operator|=
 operator|(
 name|long
 operator|)
@@ -949,7 +953,7 @@ operator|*
 name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_REF
-return|;
+expr_stmt|;
 block|}
 elseif|else
 if|if
@@ -998,7 +1002,8 @@ name|values
 argument_list|()
 argument_list|)
 expr_stmt|;
-return|return
+name|v
+operator|=
 literal|2L
 operator|*
 name|map
@@ -1009,11 +1014,12 @@ operator|*
 name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_REF
-return|;
+expr_stmt|;
 block|}
-name|long
+else|else
+block|{
 name|v
-init|=
+operator|=
 name|super
 operator|.
 name|accumulateObject
@@ -1026,7 +1032,8 @@ name|fieldValues
 argument_list|,
 name|queue
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 comment|// System.out.println(o.getClass() + "=" + v);
 return|return
 name|v
