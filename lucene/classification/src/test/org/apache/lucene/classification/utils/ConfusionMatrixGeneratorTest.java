@@ -417,6 +417,8 @@ name|KNearestNeighborClassifier
 argument_list|(
 name|reader
 argument_list|,
+literal|null
+argument_list|,
 name|analyzer
 argument_list|,
 literal|null

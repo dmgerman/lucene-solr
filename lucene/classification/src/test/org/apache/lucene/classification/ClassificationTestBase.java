@@ -477,7 +477,10 @@ expr_stmt|;
 block|}
 DECL|method|checkCorrectClassification
 specifier|protected
-name|void
+name|ClassificationResult
+argument_list|<
+name|T
+argument_list|>
 name|checkCorrectClassification
 parameter_list|(
 name|Classifier
@@ -556,6 +559,9 @@ operator|>=
 literal|0
 argument_list|)
 expr_stmt|;
+return|return
+name|classificationResult
+return|;
 block|}
 DECL|method|checkOnlineClassification
 specifier|protected
