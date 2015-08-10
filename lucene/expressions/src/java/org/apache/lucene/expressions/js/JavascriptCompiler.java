@@ -426,7 +426,7 @@ name|CLASSFILE_VERSION
 init|=
 name|Opcodes
 operator|.
-name|V1_7
+name|V1_8
 decl_stmt|;
 comment|// We use the same class name for all generated classes as they all have their own class loader.
 comment|// The source code is displayed as "source file name" in stack trace.
