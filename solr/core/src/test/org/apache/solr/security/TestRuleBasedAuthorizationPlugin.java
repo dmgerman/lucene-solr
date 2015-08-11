@@ -44,6 +44,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collections
 import|;
 end_import
@@ -198,27 +208,21 @@ literal|"    noble:[dev,user]"
 operator|+
 literal|"  },"
 operator|+
-literal|"  permissions : {"
+literal|"  permissions : ["
 operator|+
-literal|"    schema-edit :{"
+literal|"    {name:'schema-edit',"
 operator|+
-literal|"      role:admin"
+literal|"     role:admin},"
 operator|+
-literal|"    },"
+literal|"    {name:'collection-admin-read',"
 operator|+
-literal|"    collection-admin-read :{"
+literal|"    role:null},"
 operator|+
-literal|"      role:null"
+literal|"    {name:collection-admin-edit ,"
 operator|+
-literal|"    },"
+literal|"    role:admin},"
 operator|+
-literal|"    collection-admin-edit :{"
-operator|+
-literal|"      role:admin"
-operator|+
-literal|"    },"
-operator|+
-literal|"    mycoll_update: {"
+literal|"    {name:mycoll_update,"
 operator|+
 literal|"      collection:mycoll,"
 operator|+
@@ -226,7 +230,7 @@ literal|"      path:'/update/*',"
 operator|+
 literal|"      role:[dev,admin]"
 operator|+
-literal|"    }}}"
+literal|"    }]}"
 decl_stmt|;
 name|Map
 name|initConfig
@@ -496,6 +500,18 @@ argument_list|(
 literal|"resource"
 argument_list|,
 literal|"/admin/collections"
+argument_list|)
+expr_stmt|;
+name|values
+operator|.
+name|put
+argument_list|(
+literal|"collectionRequests"
+argument_list|,
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|values

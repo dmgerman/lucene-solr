@@ -114,6 +114,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|Utils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Assert
@@ -1214,6 +1230,75 @@ operator|.
 name|SortableStr2long
 argument_list|(
 name|sortable
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testUtilsJSPath
+specifier|public
+name|void
+name|testUtilsJSPath
+parameter_list|()
+block|{
+name|String
+name|json
+init|=
+literal|"{\n"
+operator|+
+literal|"  'authorization':{\n"
+operator|+
+literal|"    'class':'solr.RuleBasedAuthorizationPlugin',\n"
+operator|+
+literal|"    'user-role':{\n"
+operator|+
+literal|"      'solr':'admin',\n"
+operator|+
+literal|"      'harry':'admin'},\n"
+operator|+
+literal|"    'permissions':[{\n"
+operator|+
+literal|"        'name':'security-edit',\n"
+operator|+
+literal|"        'role':'admin'},\n"
+operator|+
+literal|"      {\n"
+operator|+
+literal|"        'name':'x-update',\n"
+operator|+
+literal|"        'collection':'x',\n"
+operator|+
+literal|"        'path':'/update/*',\n"
+operator|+
+literal|"        'role':'dev'}],\n"
+operator|+
+literal|"    '':{'v':4}}}"
+decl_stmt|;
+name|Map
+name|m
+init|=
+operator|(
+name|Map
+operator|)
+name|Utils
+operator|.
+name|fromJSONString
+argument_list|(
+name|json
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"x-update"
+argument_list|,
+name|Utils
+operator|.
+name|getObjectByPath
+argument_list|(
+name|m
+argument_list|,
+literal|false
+argument_list|,
+literal|"authorization/permissions[1]/name"
 argument_list|)
 argument_list|)
 expr_stmt|;

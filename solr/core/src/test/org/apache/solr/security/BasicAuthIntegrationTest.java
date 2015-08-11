@@ -1152,7 +1152,7 @@ name|baseUrl
 operator|+
 literal|"/admin/authorization"
 argument_list|,
-literal|"authorization/permissions/x-update/collection"
+literal|"authorization/permissions[1]/collection"
 argument_list|,
 literal|"x"
 argument_list|,
@@ -1577,7 +1577,7 @@ literal|"    'class':'solr.RuleBasedAuthorizationPlugin',\n"
 operator|+
 literal|"    'user-role':{'solr':'admin'},\n"
 operator|+
-literal|"    'permissions':{'security-edit':{'role':'admin'}}}}"
+literal|"    'permissions':[{'name':'security-edit','role':'admin'}]}}"
 decl_stmt|;
 block|}
 end_class
