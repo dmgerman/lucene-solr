@@ -1713,14 +1713,6 @@ name|Object
 name|authcPlugin
 parameter_list|)
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"addHttpConfigurer()"
-argument_list|)
-expr_stmt|;
-comment|//TODO no commit
 if|if
 condition|(
 name|authcPlugin
