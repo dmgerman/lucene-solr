@@ -229,7 +229,7 @@ operator|=
 literal|0.75f
 expr_stmt|;
 block|}
-comment|/** Implemented as<code>log(1 + (numDocs - docFreq + 0.5)/(docFreq + 0.5))</code>. */
+comment|/** Implemented as<code>log(1 + (docCount - docFreq + 0.5)/(docFreq + 0.5))</code>. */
 DECL|method|idf
 specifier|protected
 name|float
@@ -239,7 +239,7 @@ name|long
 name|docFreq
 parameter_list|,
 name|long
-name|numDocs
+name|docCount
 parameter_list|)
 block|{
 return|return
@@ -253,7 +253,7 @@ argument_list|(
 literal|1
 operator|+
 operator|(
-name|numDocs
+name|docCount
 operator|-
 name|docFreq
 operator|+
@@ -311,7 +311,7 @@ return|return
 literal|1
 return|;
 block|}
-comment|/** The default implementation computes the average as<code>sumTotalTermFreq / maxDoc</code>,    * or returns<code>1</code> if the index does not store sumTotalTermFreq:    * any field that omits frequency information). */
+comment|/** The default implementation computes the average as<code>sumTotalTermFreq / docCount</code>,    * or returns<code>1</code> if the index does not store sumTotalTermFreq:    * any field that omits frequency information). */
 DECL|method|avgFieldLength
 specifier|protected
 name|float
@@ -344,6 +344,28 @@ comment|// field does not exist, or stat is unsupported
 block|}
 else|else
 block|{
+specifier|final
+name|long
+name|docCount
+init|=
+name|collectionStats
+operator|.
+name|docCount
+argument_list|()
+operator|==
+operator|-
+literal|1
+condition|?
+name|collectionStats
+operator|.
+name|maxDoc
+argument_list|()
+else|:
+name|collectionStats
+operator|.
+name|docCount
+argument_list|()
+decl_stmt|;
 return|return
 call|(
 name|float
@@ -354,10 +376,7 @@ operator|/
 operator|(
 name|double
 operator|)
-name|collectionStats
-operator|.
-name|maxDoc
-argument_list|()
+name|docCount
 argument_list|)
 return|;
 block|}
@@ -552,7 +571,7 @@ name|numTerms
 argument_list|)
 return|;
 block|}
-comment|/**    * Computes a score factor for a simple term and returns an explanation    * for that score factor.    *     *<p>    * The default implementation uses:    *     *<pre class="prettyprint">    * idf(docFreq, searcher.maxDoc());    *</pre>    *     * Note that {@link CollectionStatistics#maxDoc()} is used instead of    * {@link org.apache.lucene.index.IndexReader#numDocs() IndexReader#numDocs()} because also     * {@link TermStatistics#docFreq()} is used, and when the latter     * is inaccurate, so is {@link CollectionStatistics#maxDoc()}, and in the same direction.    * In addition, {@link CollectionStatistics#maxDoc()} is more efficient to compute    *       * @param collectionStats collection-level statistics    * @param termStats term-level statistics for the term    * @return an Explain object that includes both an idf score factor               and an explanation for the term.    */
+comment|/**    * Computes a score factor for a simple term and returns an explanation    * for that score factor.    *     *<p>    * The default implementation uses:    *     *<pre class="prettyprint">    * idf(docFreq, docCount);    *</pre>    *     * Note that {@link CollectionStatistics#docCount()} is used instead of    * {@link org.apache.lucene.index.IndexReader#numDocs() IndexReader#numDocs()} because also     * {@link TermStatistics#docFreq()} is used, and when the latter     * is inaccurate, so is {@link CollectionStatistics#docCount()}, and in the same direction.    * In addition, {@link CollectionStatistics#docCount()} does not skew when fields are sparse.    *       * @param collectionStats collection-level statistics    * @param termStats term-level statistics for the term    * @return an Explain object that includes both an idf score factor               and an explanation for the term.    */
 DECL|method|idfExplain
 specifier|public
 name|Explanation
@@ -576,11 +595,24 @@ argument_list|()
 decl_stmt|;
 specifier|final
 name|long
-name|max
+name|docCount
 init|=
 name|collectionStats
 operator|.
+name|docCount
+argument_list|()
+operator|==
+operator|-
+literal|1
+condition|?
+name|collectionStats
+operator|.
 name|maxDoc
+argument_list|()
+else|:
+name|collectionStats
+operator|.
+name|docCount
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -591,7 +623,7 @@ name|idf
 argument_list|(
 name|df
 argument_list|,
-name|max
+name|docCount
 argument_list|)
 decl_stmt|;
 return|return
@@ -605,9 +637,9 @@ literal|"idf(docFreq="
 operator|+
 name|df
 operator|+
-literal|", maxDocs="
+literal|", docCount="
 operator|+
-name|max
+name|docCount
 operator|+
 literal|")"
 argument_list|)
@@ -629,11 +661,24 @@ parameter_list|)
 block|{
 specifier|final
 name|long
-name|max
+name|docCount
 init|=
 name|collectionStats
 operator|.
+name|docCount
+argument_list|()
+operator|==
+operator|-
+literal|1
+condition|?
+name|collectionStats
+operator|.
 name|maxDoc
+argument_list|()
+else|:
+name|collectionStats
+operator|.
+name|docCount
 argument_list|()
 decl_stmt|;
 name|float
@@ -678,7 +723,7 @@ name|idf
 argument_list|(
 name|df
 argument_list|,
-name|max
+name|docCount
 argument_list|)
 decl_stmt|;
 name|details
@@ -695,9 +740,9 @@ literal|"idf(docFreq="
 operator|+
 name|df
 operator|+
-literal|", maxDocs="
+literal|", docCount="
 operator|+
-name|max
+name|docCount
 operator|+
 literal|")"
 argument_list|)

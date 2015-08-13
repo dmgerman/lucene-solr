@@ -3143,7 +3143,7 @@ literal|"myalias"
 argument_list|,
 literal|"f.myalias.qf"
 argument_list|,
-literal|"name trait_ss^0.5"
+literal|"name trait_ss^0.1"
 argument_list|)
 argument_list|,
 literal|"//result/doc[1]/str[@name='id']=42"
@@ -3170,7 +3170,7 @@ literal|"myalias^100 name"
 argument_list|,
 literal|"f.myalias.qf"
 argument_list|,
-literal|"trait_ss^0.5"
+literal|"trait_ss^0.1"
 argument_list|)
 argument_list|,
 literal|"//result/doc[1]/str[@name='id']=47"
