@@ -2588,6 +2588,22 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+name|p
+operator|.
+name|set
+argument_list|(
+literal|"Z_num_i"
+argument_list|,
+literal|"Z_"
+operator|+
+name|p
+operator|.
+name|get
+argument_list|(
+literal|"num_i"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|MacroExpander
 name|m
 init|=
@@ -2638,6 +2654,16 @@ operator|.
 name|expand
 argument_list|(
 literal|"${num_i}"
+argument_list|)
+decl_stmt|;
+name|String
+name|Z_num_i
+init|=
+name|m
+operator|.
+name|expand
+argument_list|(
+literal|"${Z_num_i}"
 argument_list|)
 decl_stmt|;
 name|String
@@ -2790,6 +2816,10 @@ argument_list|,
 name|multi_ss
 argument_list|,
 literal|"b"
+argument_list|,
+name|Z_num_i
+argument_list|,
+literal|"0"
 argument_list|)
 argument_list|,
 literal|null
@@ -2851,6 +2881,14 @@ argument_list|,
 name|multi_ss
 argument_list|,
 literal|"b"
+argument_list|,
+name|Z_num_i
+argument_list|,
+literal|""
+operator|+
+name|Integer
+operator|.
+name|MIN_VALUE
 argument_list|)
 argument_list|,
 literal|null
@@ -2948,6 +2986,14 @@ argument_list|,
 name|multi_ss
 argument_list|,
 literal|"a"
+argument_list|,
+name|Z_num_i
+argument_list|,
+literal|""
+operator|+
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|)
 argument_list|,
 literal|null
@@ -4596,6 +4642,51 @@ operator|+
 literal|",f1:{ buckets:[{val:-9.0,count:1},{val:-5.0,count:1},{val:2.0,count:1},{val:4.0,count:1},{val:11.0,count:1} ] } "
 operator|+
 literal|",f2:{ buckets:[{val:11.0,count:1},{val:4.0,count:1},{val:2.0,count:1},{val:-5.0,count:1},{val:-9.0,count:1} ] } "
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test 0, min/max int
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|" u : 'unique(${Z_num_i})'"
+operator|+
+literal|", f1:{ type:field, field:${Z_num_i} }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={count:6 "
+operator|+
+literal|",u:3"
+operator|+
+literal|",f1:{ buckets:[{val:"
+operator|+
+name|Integer
+operator|.
+name|MIN_VALUE
+operator|+
+literal|",count:1},{val:0,count:1},{val:"
+operator|+
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|+
+literal|",count:1}]} "
 operator|+
 literal|"}"
 argument_list|)
