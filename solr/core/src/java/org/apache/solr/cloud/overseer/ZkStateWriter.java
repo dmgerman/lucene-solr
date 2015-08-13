@@ -224,12 +224,38 @@ name|singletonMap
 import|;
 end_import
 
+begin_comment
+comment|/**  * ZkStateWriter is responsible for writing updates to the cluster state stored in ZooKeeper for  * both stateFormat=1 collection (stored in shared /clusterstate.json in ZK) and stateFormat=2 collections  * each of which get their own individual state.json in ZK.  *  * Updates to the cluster state are specified using the  * {@link #enqueueUpdate(ClusterState, ZkWriteCommand, ZkWriteCallback)} method. The class buffers updates  * to reduce the number of writes to ZK. The buffered updates are flushed during<code>enqueueUpdate</code>  * automatically if necessary. The {@link #writePendingUpdates()} can be used to force flush any pending updates.  *  * If either {@link #enqueueUpdate(ClusterState, ZkWriteCommand, ZkWriteCallback)} or {@link #writePendingUpdates()}  * throws a {@link org.apache.zookeeper.KeeperException.BadVersionException} then the internal buffered state of the  * class is suspect and the current instance of the class should be discarded and a new instance should be created  * and used for any future updates.  */
+end_comment
+
 begin_class
 DECL|class|ZkStateWriter
 specifier|public
 class|class
 name|ZkStateWriter
 block|{
+DECL|field|MAX_FLUSH_INTERVAL
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|MAX_FLUSH_INTERVAL
+init|=
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+operator|.
+name|convert
+argument_list|(
+name|Overseer
+operator|.
+name|STATE_UPDATE_DELAY
+argument_list|,
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+argument_list|)
+decl_stmt|;
 DECL|field|log
 specifier|private
 specifier|static
@@ -245,6 +271,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/**    * Represents a no-op {@link ZkWriteCommand} which will result in no modification to cluster state    */
 DECL|field|NO_OP
 specifier|public
 specifier|static
@@ -323,6 +350,14 @@ name|lastCollectionName
 init|=
 literal|null
 decl_stmt|;
+comment|/**    * Set to true if we ever get a BadVersionException so that we can disallow future operations    * with this instance    */
+DECL|field|invalidState
+specifier|protected
+name|boolean
+name|invalidState
+init|=
+literal|false
+decl_stmt|;
 DECL|method|ZkStateWriter
 specifier|public
 name|ZkStateWriter
@@ -354,6 +389,7 @@ operator|=
 name|stats
 expr_stmt|;
 block|}
+comment|/**    * Applies the given {@link ZkWriteCommand} on the<code>prevState</code>. The modified    * {@link ClusterState} is returned and it is expected that the caller will use the returned    * cluster state for the subsequent invocation of this method.    *<p>    * The modified state may be buffered or flushed to ZooKeeper depending on the internal buffering    * logic of this class. The {@link #hasPendingUpdates()} method may be used to determine if the    * last enqueue operation resulted in buffered state. The method {@link #writePendingUpdates()} can    * be used to force an immediate flush of pending cluster state changes.    *    * @param prevState the cluster state information on which the given<code>cmd</code> is applied    * @param cmd       the {@link ZkWriteCommand} which specifies the change to be applied to cluster state    * @param callback  a {@link org.apache.solr.cloud.overseer.ZkStateWriter.ZkWriteCallback} object to be used    *                  for any callbacks    * @return modified cluster state created after applying<code>cmd</code> to<code>prevState</code>. If    *<code>cmd</code> is a no-op ({@link #NO_OP}) then the<code>prevState</code> is returned unmodified.    * @throws IllegalStateException if the current instance is no longer usable. The current instance must be    *                               discarded.    * @throws Exception             on an error in ZK operations or callback. If a flush to ZooKeeper results    *                               in a {@link org.apache.zookeeper.KeeperException.BadVersionException} this instance becomes unusable and    *                               must be discarded    */
 DECL|method|enqueueUpdate
 specifier|public
 name|ClusterState
@@ -369,8 +405,23 @@ name|ZkWriteCallback
 name|callback
 parameter_list|)
 throws|throws
+name|IllegalStateException
+throws|,
 name|Exception
 block|{
+if|if
+condition|(
+name|invalidState
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"ZkStateWriter has seen a tragic error, this instance can no longer be used"
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|cmd
@@ -663,20 +714,7 @@ argument_list|()
 operator|-
 name|lastUpdatedTime
 operator|>
-name|TimeUnit
-operator|.
-name|NANOSECONDS
-operator|.
-name|convert
-argument_list|(
-name|Overseer
-operator|.
-name|STATE_UPDATE_DELAY
-argument_list|,
-name|TimeUnit
-operator|.
-name|MILLISECONDS
-argument_list|)
+name|MAX_FLUSH_INTERVAL
 return|;
 block|}
 DECL|method|hasPendingUpdates
@@ -695,16 +733,32 @@ operator|||
 name|isClusterStateModified
 return|;
 block|}
+comment|/**    * Writes all pending updates to ZooKeeper and returns the modified cluster state    *    * @return the modified cluster state    * @throws IllegalStateException if the current instance is no longer usable and must be discarded    * @throws KeeperException       if any ZooKeeper operation results in an error    * @throws InterruptedException  if the current thread is interrupted    */
 DECL|method|writePendingUpdates
 specifier|public
 name|ClusterState
 name|writePendingUpdates
 parameter_list|()
 throws|throws
+name|IllegalStateException
+throws|,
 name|KeeperException
 throws|,
 name|InterruptedException
 block|{
+if|if
+condition|(
+name|invalidState
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"ZkStateWriter has seen a tragic error, this instance can no longer be used"
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -1172,6 +1226,23 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|KeeperException
+operator|.
+name|BadVersionException
+name|bve
+parameter_list|)
+block|{
+comment|// this is a tragic error, we must disallow usage of this instance
+name|invalidState
+operator|=
+literal|true
+expr_stmt|;
+throw|throw
+name|bve
+throw|;
 block|}
 finally|finally
 block|{

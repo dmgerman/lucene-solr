@@ -1008,13 +1008,7 @@ block|{
 name|ZkStateWriter
 name|zkStateWriter
 init|=
-operator|new
-name|ZkStateWriter
-argument_list|(
-name|reader
-argument_list|,
-name|stats
-argument_list|)
+literal|null
 decl_stmt|;
 name|ClusterState
 name|clusterState
@@ -1091,6 +1085,16 @@ name|reader
 operator|.
 name|getClusterState
 argument_list|()
+expr_stmt|;
+name|zkStateWriter
+operator|=
+operator|new
+name|ZkStateWriter
+argument_list|(
+name|reader
+argument_list|,
+name|stats
+argument_list|)
 expr_stmt|;
 name|refreshClusterState
 operator|=
@@ -1524,6 +1528,28 @@ block|}
 catch|catch
 parameter_list|(
 name|KeeperException
+operator|.
+name|BadVersionException
+name|bve
+parameter_list|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Bad version writing to ZK using compare-and-set, will force refresh cluster state"
+argument_list|,
+name|bve
+argument_list|)
+expr_stmt|;
+name|refreshClusterState
+operator|=
+literal|true
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|KeeperException
 name|e
 parameter_list|)
 block|{
@@ -1565,7 +1591,7 @@ name|refreshClusterState
 operator|=
 literal|true
 expr_stmt|;
-comment|// it might have been a bad version error
+comment|// force refresh state in case of all errors
 block|}
 catch|catch
 parameter_list|(
