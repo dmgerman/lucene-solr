@@ -1058,6 +1058,7 @@ name|re
 throw|;
 block|}
 block|}
+comment|/**    * Sends the bytecode of class file to {@link ClassWriter}.    */
 DECL|method|generateClass
 specifier|private
 name|void
@@ -1252,7 +1253,6 @@ name|ArrayDeque
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -1291,7 +1291,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -1316,7 +1315,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -1461,7 +1459,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -1796,7 +1793,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2059,7 +2055,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2166,7 +2161,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2255,7 +2249,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2362,7 +2355,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2487,7 +2479,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2576,7 +2567,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2614,7 +2604,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2652,7 +2641,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2690,7 +2678,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2808,7 +2795,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
@@ -2926,7 +2912,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**        * For internal compiler use only, do NOT use        */
 annotation|@
 name|Override
 specifier|public
