@@ -1596,6 +1596,8 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
+name|Ignore
+annotation|@
 name|Test
 DECL|method|testTechproductsExample
 specifier|public
