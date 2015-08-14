@@ -1162,6 +1162,8 @@ name|IOUtils
 operator|.
 name|closeWhileHandlingException
 argument_list|(
+name|sortedWriter
+argument_list|,
 name|reader
 argument_list|)
 expr_stmt|;
@@ -1568,6 +1570,11 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+name|sorted
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 return|return
 name|sorted
 return|;

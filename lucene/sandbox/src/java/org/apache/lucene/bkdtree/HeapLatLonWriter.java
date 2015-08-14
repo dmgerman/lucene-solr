@@ -53,6 +53,11 @@ specifier|private
 name|int
 name|nextWrite
 decl_stmt|;
+DECL|field|closed
+specifier|private
+name|boolean
+name|closed
+decl_stmt|;
 DECL|method|HeapLatLonWriter
 specifier|public
 name|HeapLatLonWriter
@@ -157,6 +162,9 @@ name|long
 name|start
 parameter_list|)
 block|{
+assert|assert
+name|closed
+assert|;
 return|return
 operator|new
 name|HeapLatLonReader
@@ -188,6 +196,10 @@ name|void
 name|close
 parameter_list|()
 block|{
+name|closed
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|nextWrite

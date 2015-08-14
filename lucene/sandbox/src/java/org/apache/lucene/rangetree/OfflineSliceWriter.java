@@ -150,6 +150,11 @@ specifier|final
 name|long
 name|count
 decl_stmt|;
+DECL|field|closed
+specifier|private
+name|boolean
+name|closed
+decl_stmt|;
 DECL|field|countWritten
 specifier|private
 name|long
@@ -266,6 +271,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|closed
+assert|;
 return|return
 operator|new
 name|OfflineSliceReader
@@ -290,6 +298,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|closed
+operator|=
+literal|true
+expr_stmt|;
 name|out
 operator|.
 name|close
