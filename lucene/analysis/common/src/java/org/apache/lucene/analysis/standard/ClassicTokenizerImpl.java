@@ -53,6 +53,11 @@ comment|/**  * This class implements the classic lucene StandardTokenizer up unt
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|class|ClassicTokenizerImpl
 class|class
 name|ClassicTokenizerImpl

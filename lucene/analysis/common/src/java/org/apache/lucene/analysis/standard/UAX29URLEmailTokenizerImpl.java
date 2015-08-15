@@ -43,6 +43,11 @@ comment|/**  * This class implements Word Break rules from the Unicode Text Segm
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|class|UAX29URLEmailTokenizerImpl
 specifier|public
 specifier|final

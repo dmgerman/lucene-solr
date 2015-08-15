@@ -43,6 +43,11 @@ comment|/**  * JFlex-generated tokenizer that is aware of Wikipedia syntax.  */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|class|WikipediaTokenizerImpl
 class|class
 name|WikipediaTokenizerImpl
