@@ -165,6 +165,9 @@ class|class
 name|ConfusionMatrixGeneratorTest
 extends|extends
 name|ClassificationTestBase
+argument_list|<
+name|Object
+argument_list|>
 block|{
 annotation|@
 name|Test
