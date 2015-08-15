@@ -10014,6 +10014,8 @@ name|SuppressWarnings
 argument_list|(
 block|{
 literal|"unchecked"
+block|,
+literal|"rawtypes"
 block|}
 argument_list|)
 name|TopGroups
