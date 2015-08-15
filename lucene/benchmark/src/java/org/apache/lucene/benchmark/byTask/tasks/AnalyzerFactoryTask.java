@@ -415,6 +415,11 @@ block|}
 comment|/**    * Sets the params.    * Analysis component factory names may optionally include the "Factory" suffix.    *    * @param params analysis pipeline specification: name, (optional) positionIncrementGap,    *               (optional) offsetGap, 0+ CharFilterFactory's, 1 TokenizerFactory,    *               and 0+ TokenFilterFactory's    */
 annotation|@
 name|Override
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|method|setParams
 specifier|public
 name|void
@@ -1400,6 +1405,11 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Instantiates the given analysis factory class after pulling params from    * the given stream tokenizer, then stores the result in the appropriate    * pipeline component list.    *    * @param stok stream tokenizer from which to draw analysis factory params    * @param clazz analysis factory class to instantiate    */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
 DECL|method|createAnalysisPipelineComponent
 specifier|private
 name|void
