@@ -2597,6 +2597,11 @@ argument_list|<
 name|Map
 operator|.
 name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 argument_list|>
 name|sortedEntries
 init|=
@@ -2610,6 +2615,11 @@ argument_list|<
 name|Map
 operator|.
 name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 argument_list|>
 argument_list|()
 block|{
@@ -2622,11 +2632,21 @@ parameter_list|(
 name|Map
 operator|.
 name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|o1
 parameter_list|,
 name|Map
 operator|.
 name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|o2
 parameter_list|)
 block|{
@@ -2654,8 +2674,8 @@ argument_list|)
 return|;
 block|}
 block|}
-argument_list|)
-decl_stmt|;
+block|)
+function|;
 name|sortedEntries
 operator|.
 name|addAll
@@ -2671,6 +2691,11 @@ control|(
 name|Map
 operator|.
 name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|entry
 range|:
 name|sortedEntries
@@ -2837,7 +2862,13 @@ block|}
 block|}
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Collect transitive compile-scope dependencies for the given artifact's    * ivy.xml from the Ivy cache, using the default ivy pattern     * "[organisation]/[module]/ivy-[revision].xml".  See     *<a href="http://ant.apache.org/ivy/history/latest-milestone/settings/caches.html"    *>the Ivy cache documentation</a>.    */
+end_comment
+
+begin_function
 DECL|method|getTransitiveDependenciesFromIvyCache
 specifier|private
 name|Collection
@@ -3050,7 +3081,13 @@ return|return
 name|transitiveDependencies
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Sets the internal dependencies compile and test properties to be inserted     * into modules' POMs.    *     * Also collects shared external dependencies,     * e.g. solr-core wants all of solrj's external dependencies     */
+end_comment
+
+begin_function
 DECL|method|setInternalDependencyProperties
 specifier|private
 name|void
@@ -3180,6 +3217,11 @@ control|(
 name|Map
 operator|.
 name|Entry
+argument_list|<
+name|?
+argument_list|,
+name|?
+argument_list|>
 name|entry
 range|:
 name|moduleDependencies
@@ -4002,7 +4044,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Converts either a compile output directory or an internal jar    * dependency, taken from an Ant (test.)classpath, into an artifactId    */
+end_comment
+
+begin_function
 DECL|method|dependencyToArtifactId
 specifier|private
 name|String
@@ -4176,7 +4224,13 @@ name|toString
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Convert Ant project names to artifact names: prepend "lucene-"    * to Lucene project names    */
+end_comment
+
+begin_function
 DECL|method|antProjectToArtifactName
 specifier|private
 name|String
@@ -4214,7 +4268,13 @@ return|return
 name|module
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Collect external dependencies from the given ivy.xml file, constructing    * property values containing&lt;dependency&gt; snippets, which will be    * filtered (substituted) when copying the POM for the module corresponding    * to the given ivy.xml file.    */
+end_comment
+
+begin_function
 DECL|method|collectExternalDependenciesFromIvyXmlFile
 specifier|private
 name|void
@@ -4713,7 +4773,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Stores information about an external dependency    */
+end_comment
+
+begin_class
 DECL|class|ExternalDependency
 specifier|private
 class|class
@@ -5039,7 +5105,13 @@ literal|0
 return|;
 block|}
 block|}
+end_class
+
+begin_comment
 comment|/**    * Extract module name from ivy.xml path.    */
+end_comment
+
+begin_function
 DECL|method|getModuleName
 specifier|private
 name|String
@@ -5203,7 +5275,13 @@ literal|"solr-"
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**  * Appends a&lt;dependency&gt; snippet to the given builder.  */
+end_comment
+
+begin_function
 DECL|method|appendDependencyXml
 specifier|private
 name|void
@@ -5554,8 +5632,8 @@ literal|"</dependency>\n"
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-end_class
+end_function
 
+unit|}
 end_unit
 

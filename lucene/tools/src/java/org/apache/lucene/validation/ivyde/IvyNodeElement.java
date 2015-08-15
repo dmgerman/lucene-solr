@@ -370,6 +370,9 @@ literal|null
 condition|)
 block|{
 name|Collection
+argument_list|<
+name|IvyNodeElement
+argument_list|>
 name|deepDependencies
 init|=
 name|getDeepDependencies
@@ -379,10 +382,6 @@ argument_list|)
 decl_stmt|;
 name|deepDependencyCache
 operator|=
-operator|(
-name|IvyNodeElement
-index|[]
-operator|)
 name|deepDependencies
 operator|.
 name|toArray
@@ -614,6 +613,9 @@ expr_stmt|;
 for|for
 control|(
 name|Iterator
+argument_list|<
+name|IvyNodeElement
+argument_list|>
 name|iter
 init|=
 name|dependencies
@@ -631,9 +633,6 @@ block|{
 name|IvyNodeElement
 name|dependency
 init|=
-operator|(
-name|IvyNodeElement
-operator|)
 name|iter
 operator|.
 name|next
@@ -679,6 +678,9 @@ name|void
 name|setConflicts
 parameter_list|(
 name|Collection
+argument_list|<
+name|IvyNodeElement
+argument_list|>
 name|conflicts
 parameter_list|)
 block|{
