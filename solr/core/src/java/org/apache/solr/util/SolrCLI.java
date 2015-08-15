@@ -8699,33 +8699,6 @@ name|SolrServerException
 name|sse
 parameter_list|)
 block|{
-comment|// check if already exists
-if|if
-condition|(
-name|safeCheckCollectionExists
-argument_list|(
-name|collectionListUrl
-argument_list|,
-name|collectionName
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Collection '"
-operator|+
-name|collectionName
-operator|+
-literal|"' already exists!\nChecked collection existence using Collections API command:\n"
-operator|+
-name|collectionListUrl
-argument_list|)
-throw|;
-block|}
-else|else
-block|{
 throw|throw
 operator|new
 name|Exception
@@ -8742,7 +8715,6 @@ name|getMessage
 argument_list|()
 argument_list|)
 throw|;
-block|}
 block|}
 name|CharArr
 name|arr
@@ -9452,57 +9424,11 @@ name|Object
 argument_list|>
 name|json
 init|=
-literal|null
-decl_stmt|;
-try|try
-block|{
-name|json
-operator|=
 name|getJson
 argument_list|(
 name|createCoreUrl
 argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|SolrServerException
-name|sse
-parameter_list|)
-block|{
-comment|// mostly likely the core already exists ...
-if|if
-condition|(
-name|safeCheckCoreExists
-argument_list|(
-name|coreStatusUrl
-argument_list|,
-name|coreName
-argument_list|)
-condition|)
-block|{
-comment|// core already exists
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"Core '"
-operator|+
-name|coreName
-operator|+
-literal|"' already exists!\nChecked core existence using Core API command:\n"
-operator|+
-name|coreStatusUrl
-argument_list|)
-throw|;
-block|}
-else|else
-block|{
-throw|throw
-name|sse
-throw|;
-block|}
-block|}
+decl_stmt|;
 name|CharArr
 name|arr
 init|=
