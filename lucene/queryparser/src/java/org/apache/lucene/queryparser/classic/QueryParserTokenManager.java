@@ -147,6 +147,11 @@ comment|/** Token Manager. */
 end_comment
 
 begin_class
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"cast"
+argument_list|)
 DECL|class|QueryParserTokenManager
 specifier|public
 class|class
