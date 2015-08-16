@@ -162,9 +162,13 @@ argument_list|,
 literal|"english"
 argument_list|)
 expr_stmt|;
-comment|// disabled due to snowball java code generation bug:
-comment|// see http://article.gmane.org/gmane.comp.search.snowball/1139
-comment|// assertCorrectOutput("Finnish", "finnish");
+name|assertCorrectOutput
+argument_list|(
+literal|"Finnish"
+argument_list|,
+literal|"finnish"
+argument_list|)
+expr_stmt|;
 name|assertCorrectOutput
 argument_list|(
 literal|"French"
@@ -207,9 +211,13 @@ argument_list|,
 literal|"kraaij_pohlmann"
 argument_list|)
 expr_stmt|;
-comment|// disabled due to snowball java code generation bug:
-comment|// see http://article.gmane.org/gmane.comp.search.snowball/1139
-comment|// assertCorrectOutput("Lovins", "lovins");
+name|assertCorrectOutput
+argument_list|(
+literal|"Lovins"
+argument_list|,
+literal|"lovins"
+argument_list|)
+expr_stmt|;
 name|assertCorrectOutput
 argument_list|(
 literal|"Norwegian"

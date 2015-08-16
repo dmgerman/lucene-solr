@@ -46,6 +46,11 @@ end_comment
 
 begin_class
 DECL|class|RussianStemmer
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 specifier|public
 class|class
 name|RussianStemmer
@@ -62,14 +67,30 @@ init|=
 literal|1L
 decl_stmt|;
 DECL|field|methodObject
+comment|/* patched */
 specifier|private
-specifier|final
 specifier|static
-name|RussianStemmer
+specifier|final
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+operator|.
+name|Lookup
 name|methodObject
 init|=
-operator|new
-name|RussianStemmer
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+operator|.
+name|lookup
 argument_list|()
 decl_stmt|;
 DECL|field|a_0
