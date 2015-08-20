@@ -10126,8 +10126,9 @@ operator|.
 name|getState
 argument_list|()
 operator|+
-literal|" replay:"
+literal|" replay: "
 operator|+
+operator|(
 operator|(
 name|cmd
 operator|.
@@ -10137,6 +10138,9 @@ operator|&
 name|UpdateCommand
 operator|.
 name|REPLAY
+operator|)
+operator|!=
+literal|0
 operator|)
 argument_list|)
 expr_stmt|;
