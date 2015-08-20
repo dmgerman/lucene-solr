@@ -148,7 +148,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|DistributedQueue
+name|OverseerCollectionQueue
 operator|.
 name|QueueEvent
 import|;
@@ -167,22 +167,6 @@ operator|.
 name|Overseer
 operator|.
 name|LeaderStatus
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|overseer
-operator|.
-name|OverseerAction
 import|;
 end_import
 
@@ -433,7 +417,7 @@ argument_list|)
 decl_stmt|;
 DECL|field|workQueue
 specifier|private
-name|DistributedQueue
+name|OverseerCollectionQueue
 name|workQueue
 decl_stmt|;
 DECL|field|runningMap
@@ -563,7 +547,7 @@ parameter_list|,
 name|OverseerNodePrioritizer
 name|prioritizer
 parameter_list|,
-name|DistributedQueue
+name|OverseerCollectionQueue
 name|workQueue
 parameter_list|,
 name|DistributedMap

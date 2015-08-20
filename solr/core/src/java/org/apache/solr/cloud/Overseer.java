@@ -1274,9 +1274,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|DistributedQueue
-operator|.
-name|QueueEvent
+name|byte
+index|[]
 name|head
 init|=
 literal|null
@@ -1375,15 +1374,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-specifier|final
 name|byte
 index|[]
 name|data
 init|=
 name|head
-operator|.
-name|getBytes
-argument_list|()
 decl_stmt|;
 specifier|final
 name|ZkNodeProps
@@ -1393,10 +1388,7 @@ name|ZkNodeProps
 operator|.
 name|load
 argument_list|(
-name|head
-operator|.
-name|getBytes
-argument_list|()
+name|data
 argument_list|)
 decl_stmt|;
 name|log
@@ -5388,7 +5380,7 @@ block|}
 comment|/* Collection creation queue */
 DECL|method|getCollectionQueue
 specifier|static
-name|DistributedQueue
+name|OverseerCollectionQueue
 name|getCollectionQueue
 parameter_list|(
 specifier|final
@@ -5409,7 +5401,7 @@ return|;
 block|}
 DECL|method|getCollectionQueue
 specifier|static
-name|DistributedQueue
+name|OverseerCollectionQueue
 name|getCollectionQueue
 parameter_list|(
 specifier|final
@@ -5427,7 +5419,7 @@ argument_list|)
 expr_stmt|;
 return|return
 operator|new
-name|DistributedQueue
+name|OverseerCollectionQueue
 argument_list|(
 name|zkClient
 argument_list|,

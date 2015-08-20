@@ -1143,7 +1143,7 @@ decl_stmt|;
 DECL|field|overseerCollectionQueue
 specifier|private
 specifier|final
-name|DistributedQueue
+name|OverseerCollectionQueue
 name|overseerCollectionQueue
 decl_stmt|;
 DECL|field|overseerRunningMap
@@ -9866,7 +9866,7 @@ return|;
 block|}
 DECL|method|getOverseerCollectionQueue
 specifier|public
-name|DistributedQueue
+name|OverseerCollectionQueue
 name|getOverseerCollectionQueue
 parameter_list|()
 block|{
