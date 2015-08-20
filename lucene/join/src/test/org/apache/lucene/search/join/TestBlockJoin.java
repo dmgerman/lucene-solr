@@ -13607,7 +13607,7 @@ name|numResumes
 init|=
 name|atLeast
 argument_list|(
-literal|50
+literal|100
 argument_list|)
 decl_stmt|;
 for|for
@@ -13659,7 +13659,7 @@ name|numJobs
 init|=
 name|atLeast
 argument_list|(
-literal|1
+literal|10
 argument_list|)
 decl_stmt|;
 for|for
@@ -13688,18 +13688,21 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-literal|1
-argument_list|,
+operator|-
 literal|10
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 decl_stmt|;
+comment|// neg so no overlap with q (both used for "year")
 specifier|final
 name|int
 name|numQualifications
 init|=
 name|atLeast
 argument_list|(
-literal|1
+literal|10
 argument_list|)
 decl_stmt|;
 for|for
@@ -13876,9 +13879,11 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-literal|1
-argument_list|,
+operator|-
 literal|10
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 decl_stmt|;
 specifier|final
