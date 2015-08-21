@@ -874,6 +874,12 @@ specifier|private
 name|File
 name|ivyResolutionCacheDir
 decl_stmt|;
+comment|/**    * Artifact lock strategy that Ivy should use.    */
+DECL|field|ivyLockStrategy
+specifier|private
+name|String
+name|ivyLockStrategy
+decl_stmt|;
 comment|/**    * A logging level associated with verbose logging.    */
 DECL|field|verboseLevel
 specifier|private
@@ -1079,6 +1085,22 @@ block|{
 name|ivyResolutionCacheDir
 operator|=
 name|dir
+expr_stmt|;
+block|}
+DECL|method|setIvyLockStrategy
+specifier|public
+name|void
+name|setIvyLockStrategy
+parameter_list|(
+name|String
+name|strategy
+parameter_list|)
+block|{
+name|this
+operator|.
+name|ivyLockStrategy
+operator|=
+name|strategy
 expr_stmt|;
 block|}
 DECL|method|setCommonBuildDir
@@ -4362,6 +4384,15 @@ name|ivyResolutionCacheDir
 operator|.
 name|getAbsolutePath
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|ivySettings
+operator|.
+name|setVariable
+argument_list|(
+literal|"ivy.lock-strategy"
+argument_list|,
+name|ivyLockStrategy
 argument_list|)
 expr_stmt|;
 name|ivySettings
