@@ -38,6 +38,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -477,6 +487,12 @@ name|tokenUpto
 init|=
 literal|0
 decl_stmt|;
+name|Random
+name|rnd
+init|=
+name|random
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -538,9 +554,9 @@ name|j
 operator|*
 literal|10
 operator|+
-name|Math
+name|rnd
 operator|.
-name|random
+name|nextDouble
 argument_list|()
 operator|*
 literal|10
