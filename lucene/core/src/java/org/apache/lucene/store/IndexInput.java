@@ -143,7 +143,7 @@ return|return
 name|resourceDescription
 return|;
 block|}
-comment|/** {@inheritDoc}    *     *<p><b>Warning:</b> Lucene never closes cloned    * {@code IndexInput}s, it will only call {@link #close()} on the original object.    *     *<p>If you access the cloned IndexInput after closing the original object,    * any<code>readXXX</code> methods will throw {@link AlreadyClosedException}.    */
+comment|/** {@inheritDoc}    *     *<p><b>Warning:</b> Lucene never closes cloned    * {@code IndexInput}s, it will only call {@link #close()} on the original object.    *     *<p>If you access the cloned IndexInput after closing the original object,    * any<code>readXXX</code> methods will throw {@link AlreadyClosedException}.    *    *<p>This method is NOT thread safe, so if the current {@code IndexInput}    * is being used by one thread while {@code clone} is called by another,    * disaster could strike.    */
 annotation|@
 name|Override
 DECL|method|clone

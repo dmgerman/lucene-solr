@@ -779,7 +779,17 @@ literal|"this field was not indexed as a BKDPointField"
 argument_list|)
 throw|;
 block|}
+comment|// LUCENE-6697: never do real IOPs with the original IndexInput because search
+comment|// threads can be concurrently cloning it:
+name|IndexInput
+name|clone
+init|=
 name|datIn
+operator|.
+name|clone
+argument_list|()
+decl_stmt|;
+name|clone
 operator|.
 name|seek
 argument_list|(
@@ -791,7 +801,7 @@ operator|=
 operator|new
 name|BKDTreeReader
 argument_list|(
-name|datIn
+name|clone
 argument_list|,
 name|maxDoc
 argument_list|)
