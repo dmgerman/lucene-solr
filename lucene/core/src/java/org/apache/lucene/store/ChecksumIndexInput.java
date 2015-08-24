@@ -80,12 +80,18 @@ name|IOException
 block|{
 specifier|final
 name|long
+name|curFP
+init|=
+name|getFilePointer
+argument_list|()
+decl_stmt|;
+specifier|final
+name|long
 name|skip
 init|=
 name|pos
 operator|-
-name|getFilePointer
-argument_list|()
+name|curFP
 decl_stmt|;
 if|if
 condition|(
@@ -101,7 +107,15 @@ argument_list|(
 name|getClass
 argument_list|()
 operator|+
-literal|" cannot seek backwards"
+literal|" cannot seek backwards (pos="
+operator|+
+name|pos
+operator|+
+literal|" getFilePointer()="
+operator|+
+name|curFP
+operator|+
+literal|")"
 argument_list|)
 throw|;
 block|}
