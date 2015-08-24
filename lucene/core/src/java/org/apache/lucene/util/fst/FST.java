@@ -334,24 +334,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|fst
-operator|.
-name|Builder
-operator|.
-name|UnCompiledNode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|packed
 operator|.
 name|GrowableWriter
@@ -569,7 +551,7 @@ name|ARCS_AS_FIXED_ARRAY
 init|=
 name|BIT_ARC_HAS_FINAL_OUTPUT
 decl_stmt|;
-comment|/**    * @see #shouldExpand(Builder, UnCompiledNode)    */
+comment|/**    * @see #shouldExpand(Builder, Builder.UnCompiledNode)    */
 DECL|field|FIXED_ARRAY_SHALLOW_DISTANCE
 specifier|static
 specifier|final
@@ -579,7 +561,7 @@ init|=
 literal|3
 decl_stmt|;
 comment|// 0 => only root node.
-comment|/**    * @see #shouldExpand(Builder, UnCompiledNode)    */
+comment|/**    * @see #shouldExpand(Builder, Builder.UnCompiledNode)    */
 DECL|field|FIXED_ARRAY_NUM_ARCS_SHALLOW
 specifier|static
 specifier|final
@@ -588,7 +570,7 @@ name|FIXED_ARRAY_NUM_ARCS_SHALLOW
 init|=
 literal|5
 decl_stmt|;
-comment|/**    * @see #shouldExpand(Builder, UnCompiledNode)    */
+comment|/**    * @see #shouldExpand(Builder, Builder.UnCompiledNode)    */
 DECL|field|FIXED_ARRAY_NUM_ARCS_DEEP
 specifier|static
 specifier|final
@@ -6342,6 +6324,8 @@ name|T
 argument_list|>
 name|builder
 parameter_list|,
+name|Builder
+operator|.
 name|UnCompiledNode
 argument_list|<
 name|T

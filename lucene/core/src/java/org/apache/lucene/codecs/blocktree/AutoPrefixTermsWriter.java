@@ -181,7 +181,7 @@ comment|// just walk this virtual field and gather its stats)
 end_comment
 
 begin_comment
-comment|/** Used in the first pass when writing a segment to locate  *  "appropriate" auto-prefix terms to pre-compile into the index.  *  This visits every term in the index to find prefixes that  *  match>= min and<= max number of terms. */
+comment|/** Used in the first pass when writing a segment to locate  *  "appropriate" auto-prefix terms to pre-compile into the index.  *  This visits every term in the index to find prefixes that  *  match {@code>= min} and {@code<= max} number of terms. */
 end_comment
 
 begin_class

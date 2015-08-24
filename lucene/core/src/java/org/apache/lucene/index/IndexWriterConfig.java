@@ -624,7 +624,7 @@ return|return
 name|mergePolicy
 return|;
 block|}
-comment|/** Expert: Sets the {@link DocumentsWriterPerThreadPool} instance used by the    * IndexWriter to assign thread-states to incoming indexing threads.    *</p>    *<p>    * NOTE: The given {@link DocumentsWriterPerThreadPool} instance must not be used with    * other {@link IndexWriter} instances once it has been initialized / associated with an    * {@link IndexWriter}.    *</p>    *<p>    * NOTE: This only takes effect when IndexWriter is first created.</p>*/
+comment|/** Expert: Sets the {@link DocumentsWriterPerThreadPool} instance used by the    * IndexWriter to assign thread-states to incoming indexing threads.    *<p>    * NOTE: The given {@link DocumentsWriterPerThreadPool} instance must not be used with    * other {@link IndexWriter} instances once it has been initialized / associated with an    * {@link IndexWriter}.    *</p>    *<p>    * NOTE: This only takes effect when IndexWriter is first created.</p>*/
 DECL|method|setIndexerThreadPool
 name|IndexWriterConfig
 name|setIndexerThreadPool
