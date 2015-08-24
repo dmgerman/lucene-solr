@@ -50,6 +50,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -3763,7 +3775,6 @@ name|String
 name|v
 parameter_list|)
 block|{
-comment|// NOTE: renamed hashUnencodedChars starting with guava 15
 return|return
 name|hasher
 operator|.

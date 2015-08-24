@@ -2827,7 +2827,7 @@ argument_list|)
 argument_list|,
 literal|1
 argument_list|,
-literal|16
+literal|15
 argument_list|,
 operator|new
 name|TermQuery

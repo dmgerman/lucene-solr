@@ -50,7 +50,7 @@ name|carrotsearch
 operator|.
 name|hppc
 operator|.
-name|IntByteOpenHashMap
+name|IntByteHashMap
 import|;
 end_import
 
@@ -2396,11 +2396,11 @@ name|SPARSE
 argument_list|)
 decl_stmt|;
 specifier|final
-name|IntByteOpenHashMap
+name|IntByteHashMap
 name|map
 init|=
 operator|new
-name|IntByteOpenHashMap
+name|IntByteHashMap
 argument_list|()
 decl_stmt|;
 for|for
@@ -2541,7 +2541,7 @@ name|registerValue
 parameter_list|)
 block|{
 specifier|final
-name|IntByteOpenHashMap
+name|IntByteHashMap
 name|sparseProbabilisticStorage
 init|=
 name|hll
@@ -2582,7 +2582,7 @@ name|registerValue
 parameter_list|)
 block|{
 specifier|final
-name|IntByteOpenHashMap
+name|IntByteHashMap
 name|sparseProbabilisticStorage
 init|=
 name|hll
@@ -2629,7 +2629,7 @@ name|hllB
 parameter_list|)
 block|{
 specifier|final
-name|IntByteOpenHashMap
+name|IntByteHashMap
 name|sparseProbabilisticStorageA
 init|=
 name|hllA
@@ -2637,7 +2637,7 @@ operator|.
 name|sparseProbabilisticStorage
 decl_stmt|;
 specifier|final
-name|IntByteOpenHashMap
+name|IntByteHashMap
 name|sparseProbabilisticStorageB
 init|=
 name|hllB

@@ -118,7 +118,7 @@ name|carrotsearch
 operator|.
 name|hppc
 operator|.
-name|IntIntOpenHashMap
+name|IntIntHashMap
 import|;
 end_import
 
@@ -130,7 +130,7 @@ name|carrotsearch
 operator|.
 name|hppc
 operator|.
-name|IntLongOpenHashMap
+name|IntLongHashMap
 import|;
 end_import
 
@@ -1461,7 +1461,7 @@ block|}
 block|}
 DECL|method|getBoostDocs
 specifier|private
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|getBoostDocs
 parameter_list|(
 name|SolrIndexSearcher
@@ -1481,7 +1481,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 init|=
 name|QueryElevationComponent
@@ -1528,7 +1528,7 @@ decl_stmt|;
 comment|//Deal with boosted docs.
 comment|//We have to deal with it here rather then the constructor because
 comment|//because the QueryElevationComponent runs after the Queries are constructed.
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocsMap
 init|=
 literal|null
@@ -2260,7 +2260,7 @@ parameter_list|,
 name|int
 name|nullPolicy
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocsMap
 parameter_list|)
 block|{
@@ -3405,7 +3405,7 @@ name|collapseValues
 decl_stmt|;
 DECL|field|cmap
 specifier|private
-name|IntLongOpenHashMap
+name|IntLongHashMap
 name|cmap
 decl_stmt|;
 DECL|field|maxDoc
@@ -3490,7 +3490,7 @@ parameter_list|,
 name|String
 name|field
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocsMap
 parameter_list|)
 block|{
@@ -3553,7 +3553,7 @@ operator|.
 name|cmap
 operator|=
 operator|new
-name|IntLongOpenHashMap
+name|IntLongHashMap
 argument_list|(
 name|size
 argument_list|)
@@ -3805,14 +3805,24 @@ operator|.
 name|score
 argument_list|()
 decl_stmt|;
+specifier|final
+name|int
+name|idx
+decl_stmt|;
 if|if
 condition|(
+operator|(
+name|idx
+operator|=
 name|cmap
 operator|.
-name|containsKey
+name|indexOf
 argument_list|(
 name|collapseValue
 argument_list|)
+operator|)
+operator|>=
+literal|0
 condition|)
 block|{
 name|long
@@ -3820,8 +3830,10 @@ name|scoreDoc
 init|=
 name|cmap
 operator|.
-name|lget
-argument_list|()
+name|indexGet
+argument_list|(
+name|idx
+argument_list|)
 decl_stmt|;
 name|int
 name|testScore
@@ -3855,8 +3867,10 @@ block|{
 comment|//Current score is higher so replace the old scoreDoc with the current scoreDoc
 name|cmap
 operator|.
-name|lset
+name|indexReplace
 argument_list|(
+name|idx
+argument_list|,
 operator|(
 operator|(
 operator|(
@@ -3899,8 +3913,10 @@ name|globalDoc
 decl_stmt|;
 name|cmap
 operator|.
-name|put
+name|indexInsert
 argument_list|(
+name|idx
+argument_list|,
 name|collapseValue
 argument_list|,
 name|scoreDoc
@@ -4564,7 +4580,7 @@ parameter_list|,
 name|FieldType
 name|fieldType
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 parameter_list|,
 name|FunctionQuery
@@ -5586,7 +5602,7 @@ parameter_list|,
 name|FieldType
 name|fieldType
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocsMap
 parameter_list|,
 name|FunctionQuery
@@ -6020,7 +6036,7 @@ name|nullScoreIndex
 init|=
 literal|0
 decl_stmt|;
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|cmap
 init|=
 name|collapseStrategy
@@ -6348,7 +6364,7 @@ parameter_list|,
 name|int
 name|size
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 parameter_list|,
 name|SolrIndexSearcher
@@ -7248,7 +7264,7 @@ parameter_list|,
 name|boolean
 name|needsScores
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocsMap
 parameter_list|,
 name|SortedDocValues
@@ -7662,7 +7678,7 @@ parameter_list|,
 name|boolean
 name|needsScores
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 parameter_list|,
 name|SortedDocValues
@@ -8090,7 +8106,7 @@ parameter_list|,
 name|boolean
 name|needsScores
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 parameter_list|,
 name|SortedDocValues
@@ -8538,7 +8554,7 @@ parameter_list|,
 name|boolean
 name|needsScores
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 parameter_list|,
 name|SortedDocValues
@@ -8990,7 +9006,7 @@ parameter_list|,
 name|boolean
 name|needsScores
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 parameter_list|,
 name|FunctionQuery
@@ -9447,7 +9463,7 @@ name|nullPolicy
 decl_stmt|;
 DECL|field|cmap
 specifier|protected
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|cmap
 decl_stmt|;
 DECL|field|scorer
@@ -9593,7 +9609,7 @@ parameter_list|,
 name|boolean
 name|needsScores
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocsMap
 parameter_list|)
 block|{
@@ -9648,7 +9664,7 @@ operator|.
 name|cmap
 operator|=
 operator|new
-name|IntIntOpenHashMap
+name|IntIntHashMap
 argument_list|(
 name|size
 argument_list|)
@@ -9941,7 +9957,7 @@ return|;
 block|}
 DECL|method|getCollapseMap
 specifier|public
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|getCollapseMap
 parameter_list|()
 block|{
@@ -10061,7 +10077,7 @@ parameter_list|,
 name|boolean
 name|needsScores
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 parameter_list|)
 throws|throws
@@ -10274,14 +10290,24 @@ operator|!=
 name|nullValue
 condition|)
 block|{
+specifier|final
+name|int
+name|idx
+decl_stmt|;
 if|if
 condition|(
+operator|(
+name|idx
+operator|=
 name|cmap
 operator|.
-name|containsKey
+name|indexOf
 argument_list|(
 name|collapseKey
 argument_list|)
+operator|)
+operator|>=
+literal|0
 condition|)
 block|{
 name|int
@@ -10289,8 +10315,10 @@ name|pointer
 init|=
 name|cmap
 operator|.
-name|lget
-argument_list|()
+name|indexGet
+argument_list|(
+name|idx
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -10581,7 +10609,7 @@ parameter_list|,
 name|boolean
 name|needsScores
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 parameter_list|)
 throws|throws
@@ -10805,14 +10833,24 @@ operator|!=
 name|nullValue
 condition|)
 block|{
+specifier|final
+name|int
+name|idx
+decl_stmt|;
 if|if
 condition|(
+operator|(
+name|idx
+operator|=
 name|cmap
 operator|.
-name|containsKey
+name|indexOf
 argument_list|(
 name|collapseKey
 argument_list|)
+operator|)
+operator|>=
+literal|0
 condition|)
 block|{
 name|int
@@ -10820,8 +10858,10 @@ name|pointer
 init|=
 name|cmap
 operator|.
-name|lget
-argument_list|()
+name|indexGet
+argument_list|(
+name|idx
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -11140,7 +11180,7 @@ parameter_list|,
 name|boolean
 name|needsScores
 parameter_list|,
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 parameter_list|,
 name|FunctionQuery
@@ -11430,14 +11470,24 @@ operator|!=
 name|nullValue
 condition|)
 block|{
+specifier|final
+name|int
+name|idx
+decl_stmt|;
 if|if
 condition|(
+operator|(
+name|idx
+operator|=
 name|cmap
 operator|.
-name|containsKey
+name|indexOf
 argument_list|(
 name|collapseKey
 argument_list|)
+operator|)
+operator|>=
+literal|0
 condition|)
 block|{
 name|int
@@ -11445,8 +11495,10 @@ name|pointer
 init|=
 name|cmap
 operator|.
-name|lget
-argument_list|()
+name|indexGet
+argument_list|(
+name|idx
+argument_list|)
 decl_stmt|;
 if|if
 condition|(

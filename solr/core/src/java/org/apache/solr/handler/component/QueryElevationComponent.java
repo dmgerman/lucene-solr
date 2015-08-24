@@ -20,18 +20,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|hppc
-operator|.
-name|IntIntOpenHashMap
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -775,6 +763,18 @@ operator|.
 name|sax
 operator|.
 name|InputSource
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|hppc
+operator|.
+name|IntIntHashMap
 import|;
 end_import
 
@@ -3980,7 +3980,7 @@ block|}
 DECL|method|getBoostDocs
 specifier|public
 specifier|static
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|getBoostDocs
 parameter_list|(
 name|SolrIndexSearcher
@@ -4000,7 +4000,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|IntIntOpenHashMap
+name|IntIntHashMap
 name|boostDocs
 init|=
 literal|null
@@ -4024,7 +4024,7 @@ block|{
 name|boostDocs
 operator|=
 operator|(
-name|IntIntOpenHashMap
+name|IntIntHashMap
 operator|)
 name|context
 operator|.
@@ -4073,6 +4073,7 @@ name|localBoosts
 init|=
 operator|new
 name|HashSet
+argument_list|<>
 argument_list|(
 name|boosted
 operator|.
@@ -4118,14 +4119,12 @@ block|}
 name|boostDocs
 operator|=
 operator|new
-name|IntIntOpenHashMap
+name|IntIntHashMap
 argument_list|(
 name|boosted
 operator|.
 name|size
 argument_list|()
-operator|*
-literal|2
 argument_list|)
 expr_stmt|;
 name|List

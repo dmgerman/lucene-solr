@@ -522,7 +522,6 @@ literal|"string_s"
 argument_list|,
 name|strValue
 argument_list|,
-comment|// NOTE: renamed hashUnencodedChars starting with guava 15
 literal|"string_s_prehashed_l"
 argument_list|,
 literal|""
