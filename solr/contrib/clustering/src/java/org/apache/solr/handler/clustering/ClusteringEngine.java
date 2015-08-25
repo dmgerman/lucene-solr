@@ -55,6 +55,7 @@ end_comment
 begin_class
 DECL|class|ClusteringEngine
 specifier|public
+specifier|abstract
 class|class
 name|ClusteringEngine
 block|{
@@ -122,6 +123,13 @@ return|return
 name|name
 return|;
 block|}
+DECL|method|isAvailable
+specifier|public
+specifier|abstract
+name|boolean
+name|isAvailable
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

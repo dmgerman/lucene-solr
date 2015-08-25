@@ -121,6 +121,18 @@ argument_list|<>
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|isAvailable
+specifier|public
+name|boolean
+name|isAvailable
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 end_class
 
