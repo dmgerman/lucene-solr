@@ -14777,10 +14777,7 @@ operator|.
 name|getClusterState
 argument_list|()
 operator|.
-name|getCollections
-argument_list|()
-operator|.
-name|contains
+name|hasCollection
 argument_list|(
 name|collectionName
 argument_list|)
