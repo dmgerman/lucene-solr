@@ -1183,7 +1183,7 @@ name|sliceCount
 operator|=
 name|TEST_NIGHTLY
 condition|?
-literal|7
+literal|5
 else|:
 literal|3
 expr_stmt|;
@@ -1191,7 +1191,7 @@ name|fixShardCount
 argument_list|(
 name|TEST_NIGHTLY
 condition|?
-literal|7
+literal|5
 else|:
 literal|3
 argument_list|)
@@ -3691,7 +3691,7 @@ literal|3
 argument_list|,
 literal|3
 argument_list|,
-literal|5
+literal|3
 argument_list|)
 expr_stmt|;
 block|}
@@ -4596,7 +4596,7 @@ literal|3
 argument_list|,
 literal|3
 argument_list|,
-literal|5
+literal|3
 argument_list|)
 expr_stmt|;
 block|}
