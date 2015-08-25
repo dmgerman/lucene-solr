@@ -3259,8 +3259,9 @@ name|maxSize
 init|=
 name|end
 operator|*
-literal|4
+literal|3
 decl_stmt|;
+comment|// 3 is enough, see SOLR-7971
 if|if
 condition|(
 name|bytes
