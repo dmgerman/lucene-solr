@@ -183,8 +183,16 @@ name|long
 name|bitsRequired
 init|=
 operator|(
+operator|(
+name|long
+operator|)
 name|wordLength
+operator|)
 operator|*
+operator|(
+operator|(
+name|long
+operator|)
 name|wordCount
 operator|)
 decl_stmt|;

@@ -274,8 +274,16 @@ name|long
 name|firstBitIndex
 init|=
 operator|(
+operator|(
+name|long
+operator|)
 name|position
+operator|)
 operator|*
+operator|(
+operator|(
+name|long
+operator|)
 name|wordLength
 operator|)
 decl_stmt|;
