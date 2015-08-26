@@ -1080,7 +1080,7 @@ literal|"' reRankDocs="
 operator|+
 name|reRankDocs
 operator|+
-literal|" reRankWeigh="
+literal|" reRankWeight="
 operator|+
 name|reRankWeight
 operator|+
