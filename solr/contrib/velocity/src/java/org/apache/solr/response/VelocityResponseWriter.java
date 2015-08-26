@@ -1732,6 +1732,17 @@ literal|','
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|engine
+operator|.
+name|setProperty
+argument_list|(
+name|RuntimeConstants
+operator|.
+name|INPUT_ENCODING
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+expr_stmt|;
 comment|// bring in any custom properties too
 name|engine
 operator|.
