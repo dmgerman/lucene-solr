@@ -6180,6 +6180,13 @@ name|typeSupported
 argument_list|(
 name|type
 argument_list|)
+operator|||
+literal|"*"
+operator|.
+name|equals
+argument_list|(
+name|fileTypes
+argument_list|)
 condition|)
 block|{
 name|String
