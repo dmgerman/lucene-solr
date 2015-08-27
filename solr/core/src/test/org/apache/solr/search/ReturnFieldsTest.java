@@ -2560,6 +2560,71 @@ block|,
 literal|'\u3000'
 block|,   }
 decl_stmt|;
+static|static
+block|{
+comment|// if the JVM/unicode can redefine whitespace once (LUCENE-6760), it might happen again
+comment|// in the future.  if that happens, fail early with a clera msg, even if java asserts
+comment|// (used in randomWhitespace) are disbled
+for|for
+control|(
+name|int
+name|offset
+init|=
+literal|0
+init|;
+name|offset
+operator|<
+name|WHITESPACE_CHARACTERS
+operator|.
+name|length
+condition|;
+name|offset
+operator|++
+control|)
+block|{
+name|char
+name|c
+init|=
+name|WHITESPACE_CHARACTERS
+index|[
+name|offset
+index|]
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|Character
+operator|.
+name|isWhitespace
+argument_list|(
+name|c
+argument_list|)
+condition|)
+block|{
+name|fail
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ENGLISH
+argument_list|,
+literal|"Not really whitespace? New JVM/Unicode definitions? WHITESPACE_CHARACTERS[%d] is '\\u%04X'"
+argument_list|,
+name|offset
+argument_list|,
+operator|(
+name|int
+operator|)
+name|c
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 comment|/**    * Returns a random string in the specified length range consisting     * entirely of whitespace characters     * @see #WHITESPACE_CHARACTERS    */
 DECL|method|randomWhitespace
 specifier|public
