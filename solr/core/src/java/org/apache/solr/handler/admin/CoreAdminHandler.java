@@ -5732,7 +5732,7 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Cound not find core to call sync:"
+literal|"Could not find core to call sync:"
 operator|+
 name|cname
 argument_list|)

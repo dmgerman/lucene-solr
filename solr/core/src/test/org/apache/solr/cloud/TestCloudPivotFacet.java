@@ -1642,7 +1642,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Recursive Helper method for asserting that pivot constraint counds match    * results when filtering on those constraints. Returns the recursive depth reached     * (for sanity checking)    */
+comment|/**    * Recursive Helper method for asserting that pivot constraint counts match    * results when filtering on those constraints. Returns the recursive depth reached     * (for sanity checking)    */
 DECL|method|assertPivotCountsAreCorrect
 specifier|private
 name|int
