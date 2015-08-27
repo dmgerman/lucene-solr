@@ -204,6 +204,20 @@ name|apache
 operator|.
 name|http
 operator|.
+name|auth
+operator|.
+name|AuthSchemeRegistry
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|http
+operator|.
 name|impl
 operator|.
 name|auth
@@ -502,10 +516,15 @@ argument_list|(
 name|jaasConfig
 argument_list|)
 expr_stmt|;
-name|httpClient
-operator|.
-name|getAuthSchemes
+comment|//Enable only SPNEGO authentication scheme.
+name|AuthSchemeRegistry
+name|registry
+init|=
+operator|new
+name|AuthSchemeRegistry
 argument_list|()
+decl_stmt|;
+name|registry
 operator|.
 name|register
 argument_list|(
@@ -520,6 +539,13 @@ literal|true
 argument_list|,
 literal|false
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|httpClient
+operator|.
+name|setAuthSchemes
+argument_list|(
+name|registry
 argument_list|)
 expr_stmt|;
 comment|// Get the credentials from the JAAS configuration rather than here
