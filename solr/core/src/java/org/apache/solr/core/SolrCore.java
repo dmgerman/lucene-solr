@@ -3486,6 +3486,17 @@ operator|!
 name|reload
 condition|)
 block|{
+specifier|final
+name|String
+name|lockType
+init|=
+name|getSolrConfig
+argument_list|()
+operator|.
+name|indexConfig
+operator|.
+name|lockType
+decl_stmt|;
 name|Directory
 name|dir
 init|=
@@ -3499,11 +3510,6 @@ name|DirContext
 operator|.
 name|DEFAULT
 argument_list|,
-name|getSolrConfig
-argument_list|()
-operator|.
-name|indexConfig
-operator|.
 name|lockType
 argument_list|)
 decl_stmt|;
@@ -3525,20 +3531,32 @@ name|error
 argument_list|(
 name|logid
 operator|+
-literal|"Solr index directory '{}' is locked.  Throwing exception."
+literal|"Solr index directory '{}' is locked (lockType={}).  Throwing exception."
 argument_list|,
 name|indexDir
+argument_list|,
+name|lockType
 argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
 name|LockObtainFailedException
 argument_list|(
-literal|"Index locked for write for core '"
+literal|"Index dir '"
+operator|+
+name|indexDir
+operator|+
+literal|"' of core '"
 operator|+
 name|name
 operator|+
-literal|"'. Solr now longer supports forceful unlocking via 'unlockOnStartup'. Please verify locks manually!"
+literal|"' is already locked. "
+operator|+
+literal|"The most likely cause is another Solr server (or another solr core in this server) "
+operator|+
+literal|"also configured to use this directory; other possible causes may be specific to lockType: "
+operator|+
+name|lockType
 argument_list|)
 throw|;
 block|}

@@ -1334,6 +1334,33 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|assertWarnOrFail
+argument_list|(
+literal|"Solr no longer supports forceful unlocking via the 'unlockOnStartup' option.  "
+operator|+
+literal|"This is no longer neccessary for the default lockType except in situations where "
+operator|+
+literal|"it would be dangerous and should not be done.  For other lockTypes and/or "
+operator|+
+literal|"directoryFactory options it may also be dangerous and users must resolve "
+operator|+
+literal|"problematic locks manually."
+argument_list|,
+literal|null
+operator|==
+name|getNode
+argument_list|(
+name|indexConfigPrefix
+operator|+
+literal|"/unlockOnStartup"
+argument_list|,
+literal|false
+argument_list|)
+argument_list|,
+literal|true
+comment|// 'fail' in trunk
+argument_list|)
+expr_stmt|;
 comment|// Parse indexConfig section, using mainIndex as backup in case old config is used
 name|indexConfig
 operator|=
