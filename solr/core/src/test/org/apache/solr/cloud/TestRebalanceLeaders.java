@@ -1066,7 +1066,7 @@ try|try
 block|{
 name|ret
 operator|=
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getSortedElectionNodes
 argument_list|(

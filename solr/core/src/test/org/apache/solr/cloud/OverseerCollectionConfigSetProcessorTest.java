@@ -72,7 +72,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionQueue
+name|OverseerTaskQueue
 operator|.
 name|QueueEvent
 import|;
@@ -693,10 +693,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|OverseerCollectionProcessorTest
+DECL|class|OverseerCollectionConfigSetProcessorTest
 specifier|public
 class|class
-name|OverseerCollectionProcessorTest
+name|OverseerCollectionConfigSetProcessorTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
@@ -730,7 +730,7 @@ decl_stmt|;
 DECL|field|workQueueMock
 specifier|private
 specifier|static
-name|OverseerCollectionQueue
+name|OverseerTaskQueue
 name|workQueueMock
 decl_stmt|;
 DECL|field|runningMapMock
@@ -808,7 +808,7 @@ name|lastProcessMessageResult
 decl_stmt|;
 DECL|field|underTest
 specifier|private
-name|OverseerCollectionProcessorToBeTested
+name|OverseerCollectionConfigSetProcessorToBeTested
 name|underTest
 decl_stmt|;
 DECL|field|thread
@@ -831,16 +831,16 @@ argument_list|(
 literal|10
 argument_list|)
 decl_stmt|;
-DECL|class|OverseerCollectionProcessorToBeTested
+DECL|class|OverseerCollectionConfigSetProcessorToBeTested
 specifier|private
 class|class
-name|OverseerCollectionProcessorToBeTested
+name|OverseerCollectionConfigSetProcessorToBeTested
 extends|extends
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 block|{
-DECL|method|OverseerCollectionProcessorToBeTested
+DECL|method|OverseerCollectionConfigSetProcessorToBeTested
 specifier|public
-name|OverseerCollectionProcessorToBeTested
+name|OverseerCollectionConfigSetProcessorToBeTested
 parameter_list|(
 name|ZkStateReader
 name|zkStateReader
@@ -854,7 +854,7 @@ parameter_list|,
 name|String
 name|adminPath
 parameter_list|,
-name|OverseerCollectionQueue
+name|OverseerTaskQueue
 name|workQueue
 parameter_list|,
 name|DistributedMap
@@ -935,7 +935,7 @@ name|workQueueMock
 operator|=
 name|createMock
 argument_list|(
-name|OverseerCollectionQueue
+name|OverseerTaskQueue
 operator|.
 name|class
 argument_list|)
@@ -1127,7 +1127,7 @@ expr_stmt|;
 name|underTest
 operator|=
 operator|new
-name|OverseerCollectionProcessorToBeTested
+name|OverseerCollectionConfigSetProcessorToBeTested
 argument_list|(
 name|zkStateReaderMock
 argument_list|,

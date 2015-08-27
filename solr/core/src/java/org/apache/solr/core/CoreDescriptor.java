@@ -473,7 +473,9 @@ name|put
 argument_list|(
 name|CORE_CONFIGSET_PROPERTIES
 argument_list|,
-literal|"configsetprops.json"
+name|ConfigSetProperties
+operator|.
+name|DEFAULT_FILENAME
 argument_list|)
 operator|.
 name|put

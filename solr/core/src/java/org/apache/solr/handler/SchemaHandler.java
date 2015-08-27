@@ -288,6 +288,22 @@ name|JSON
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|ConfigSetProperties
+operator|.
+name|IMMUTABLE_CONFIGSET_ARG
+import|;
+end_import
+
 begin_class
 DECL|class|SchemaHandler
 specifier|public
@@ -311,15 +327,6 @@ name|SchemaHandler
 operator|.
 name|class
 argument_list|)
-decl_stmt|;
-DECL|field|IMMUTABLE_CONFIGSET_ARG
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|IMMUTABLE_CONFIGSET_ARG
-init|=
-literal|"immutable"
 decl_stmt|;
 DECL|field|isImmutableConfigSet
 specifier|private

@@ -434,6 +434,18 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"config set handler class"
+argument_list|,
+literal|"testConfigSetsHandler"
+argument_list|,
+name|cfg
+operator|.
+name|getConfigSetsHandlerClass
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
 literal|"core load threads"
 argument_list|,
 literal|11

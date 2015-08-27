@@ -495,7 +495,7 @@ block|{
 name|String
 name|leaderNode
 init|=
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getLeaderNode
 argument_list|(

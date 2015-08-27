@@ -260,7 +260,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionQueue
+name|OverseerTaskQueue
 import|;
 end_import
 
@@ -274,7 +274,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionQueue
+name|OverseerTaskQueue
 operator|.
 name|QueueEvent
 import|;
@@ -2158,7 +2158,7 @@ name|SERVER_ERROR
 argument_list|,
 name|operation
 operator|+
-literal|" the collection unkown case"
+literal|" the collection unknown case"
 argument_list|)
 throw|;
 block|}
@@ -2177,7 +2177,7 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-name|OverseerCollectionQueue
+name|OverseerTaskQueue
 name|collectionQueue
 init|=
 name|coreContainer

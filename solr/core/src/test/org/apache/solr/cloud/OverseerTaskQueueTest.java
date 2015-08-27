@@ -17,19 +17,19 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_class
-DECL|class|OverseerCollectionQueueTest
+DECL|class|OverseerTaskQueueTest
 specifier|public
 class|class
-name|OverseerCollectionQueueTest
+name|OverseerTaskQueueTest
 extends|extends
 name|DistributedQueueTest
 block|{
-comment|// TODO: OverseerCollectionQueue specific tests.
+comment|// TODO: OverseerTaskQueue specific tests.
 annotation|@
 name|Override
 DECL|method|makeDistributedQueue
 specifier|protected
-name|OverseerCollectionQueue
+name|OverseerTaskQueue
 name|makeDistributedQueue
 parameter_list|(
 name|String
@@ -40,7 +40,7 @@ name|Exception
 block|{
 return|return
 operator|new
-name|OverseerCollectionQueue
+name|OverseerTaskQueue
 argument_list|(
 name|zkClient
 argument_list|,

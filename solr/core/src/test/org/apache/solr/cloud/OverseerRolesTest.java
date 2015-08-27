@@ -348,7 +348,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getLeaderNode
 import|;
@@ -364,7 +364,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getSortedOverseerNodeNames
 import|;
@@ -687,7 +687,7 @@ control|)
 block|{
 name|newLeader
 operator|=
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getLeaderNode
 argument_list|(
@@ -730,7 +730,7 @@ name|assertTrue
 argument_list|(
 literal|"The old leader should have rejoined election "
 argument_list|,
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getSortedOverseerNodeNames
 argument_list|(
@@ -780,7 +780,7 @@ name|String
 argument_list|>
 name|l
 init|=
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getSortedOverseerNodeNames
 argument_list|(
@@ -805,7 +805,7 @@ expr_stmt|;
 name|String
 name|currentLeader
 init|=
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getLeaderNode
 argument_list|(
@@ -909,7 +909,7 @@ name|overseerDesignate
 operator|.
 name|equals
 argument_list|(
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getLeaderNode
 argument_list|(
@@ -966,7 +966,7 @@ argument_list|)
 operator|+
 literal|" ldr :"
 operator|+
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getLeaderNode
 argument_list|(
@@ -1175,7 +1175,7 @@ name|info
 argument_list|(
 literal|"current election Queue"
 argument_list|,
-name|OverseerCollectionProcessor
+name|OverseerCollectionConfigSetProcessor
 operator|.
 name|getSortedElectionNodes
 argument_list|(

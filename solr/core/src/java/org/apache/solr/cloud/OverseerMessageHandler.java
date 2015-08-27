@@ -49,7 +49,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Interface for processing messages received by an {@link OverseerProcessor}  */
+comment|/**  * Interface for processing messages received by an {@link OverseerTaskProcessor}  */
 end_comment
 
 begin_interface
@@ -106,7 +106,7 @@ name|ZkNodeProps
 name|message
 parameter_list|)
 function_decl|;
-comment|/**    * @param taskKey the key associated with the task    * @param operation the operation being processed    */
+comment|/**    * @param taskKey the key associated with the task    * @param operation the operation being processed    * @param message the message being processed    */
 DECL|method|unmarkExclusiveTask
 name|void
 name|unmarkExclusiveTask
@@ -116,6 +116,9 @@ name|taskKey
 parameter_list|,
 name|String
 name|operation
+parameter_list|,
+name|ZkNodeProps
+name|message
 parameter_list|)
 function_decl|;
 comment|/**    * @param taskKey the key associated with the task    * @param message the message being processed    *    * @return the exclusive marking    */
