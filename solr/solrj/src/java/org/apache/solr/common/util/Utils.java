@@ -611,11 +611,10 @@ name|out
 operator|.
 name|size
 argument_list|()
-operator|<<
-literal|2
+operator|*
+literal|3
 index|]
 decl_stmt|;
-comment|// is 4x the real worst-case upper-bound?
 name|int
 name|nBytes
 init|=
