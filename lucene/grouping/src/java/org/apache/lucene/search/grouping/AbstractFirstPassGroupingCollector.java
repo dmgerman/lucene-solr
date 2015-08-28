@@ -82,12 +82,6 @@ parameter_list|>
 extends|extends
 name|SimpleCollector
 block|{
-DECL|field|groupSort
-specifier|private
-specifier|final
-name|Sort
-name|groupSort
-decl_stmt|;
 DECL|field|comparators
 specifier|private
 specifier|final
@@ -205,12 +199,6 @@ throw|;
 block|}
 comment|// TODO: allow null groupSort to mean "by relevance",
 comment|// and specialize it?
-name|this
-operator|.
-name|groupSort
-operator|=
-name|groupSort
-expr_stmt|;
 name|this
 operator|.
 name|topNGroups
@@ -426,10 +414,7 @@ specifier|final
 name|int
 name|sortFieldCount
 init|=
-name|groupSort
-operator|.
-name|getSort
-argument_list|()
+name|comparators
 operator|.
 name|length
 decl_stmt|;
