@@ -3818,7 +3818,8 @@ literal|"response"
 argument_list|)
 operator|)
 operator|.
-name|docs
+name|getDocList
+argument_list|()
 decl_stmt|;
 name|StoredDocument
 name|d
@@ -4030,7 +4031,8 @@ literal|"response"
 argument_list|)
 operator|)
 operator|.
-name|docs
+name|getDocList
+argument_list|()
 decl_stmt|;
 name|DocIterator
 name|di
@@ -4230,7 +4232,8 @@ literal|"response"
 argument_list|)
 operator|)
 operator|.
-name|docs
+name|getDocList
+argument_list|()
 expr_stmt|;
 name|di
 operator|=

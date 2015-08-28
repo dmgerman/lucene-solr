@@ -32,36 +32,6 @@ name|SolrDocument
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|NamedList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|request
-operator|.
-name|SolrQueryRequest
-import|;
-end_import
-
 begin_comment
 comment|/**  * Return a field with a name that is different that what is indexed  *  *  * @since solr 4.0  */
 end_comment
@@ -154,6 +124,9 @@ name|doc
 parameter_list|,
 name|int
 name|docid
+parameter_list|,
+name|float
+name|score
 parameter_list|)
 block|{
 name|Object

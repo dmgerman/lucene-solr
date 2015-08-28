@@ -1109,7 +1109,8 @@ name|setNumFound
 argument_list|(
 name|ctx
 operator|.
-name|docs
+name|getDocList
+argument_list|()
 operator|.
 name|matches
 argument_list|()
@@ -1121,7 +1122,8 @@ name|setStart
 argument_list|(
 name|ctx
 operator|.
-name|docs
+name|getDocList
+argument_list|()
 operator|.
 name|offset
 argument_list|()
@@ -1133,7 +1135,8 @@ name|setMaxScore
 argument_list|(
 name|ctx
 operator|.
-name|docs
+name|getDocList
+argument_list|()
 operator|.
 name|maxScore
 argument_list|()

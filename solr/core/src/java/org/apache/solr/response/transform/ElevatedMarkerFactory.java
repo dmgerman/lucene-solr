@@ -230,7 +230,8 @@ argument_list|>
 operator|)
 name|context
 operator|.
-name|req
+name|getRequest
+argument_list|()
 operator|.
 name|getContext
 argument_list|()

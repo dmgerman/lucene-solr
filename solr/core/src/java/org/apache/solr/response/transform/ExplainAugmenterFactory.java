@@ -384,6 +384,9 @@ name|doc
 parameter_list|,
 name|int
 name|docid
+parameter_list|,
+name|float
+name|score
 parameter_list|)
 block|{
 if|if

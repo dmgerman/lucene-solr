@@ -576,7 +576,7 @@ DECL|class|ChildDocTransformer
 class|class
 name|ChildDocTransformer
 extends|extends
-name|TransformerWithContext
+name|DocTransformer
 block|{
 DECL|field|name
 specifier|private
@@ -698,6 +698,9 @@ name|doc
 parameter_list|,
 name|int
 name|docid
+parameter_list|,
+name|float
+name|score
 parameter_list|)
 block|{
 name|FieldType
@@ -775,7 +778,8 @@ name|children
 init|=
 name|context
 operator|.
-name|searcher
+name|getSearcher
+argument_list|()
 operator|.
 name|getDocList
 argument_list|(
@@ -831,7 +835,8 @@ name|childDoc
 init|=
 name|context
 operator|.
-name|searcher
+name|getSearcher
+argument_list|()
 operator|.
 name|doc
 argument_list|(

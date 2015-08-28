@@ -1695,7 +1695,8 @@ literal|"response"
 argument_list|)
 operator|)
 operator|.
-name|docs
+name|getDocList
+argument_list|()
 operator|.
 name|matches
 argument_list|()

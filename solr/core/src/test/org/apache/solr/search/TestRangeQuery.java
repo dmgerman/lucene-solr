@@ -2232,7 +2232,8 @@ literal|"response"
 argument_list|)
 operator|)
 operator|.
-name|docs
+name|getDocList
+argument_list|()
 decl_stmt|;
 name|DocList
 name|rB
@@ -2252,7 +2253,8 @@ literal|"response"
 argument_list|)
 operator|)
 operator|.
-name|docs
+name|getDocList
+argument_list|()
 decl_stmt|;
 name|sameDocs
 argument_list|(

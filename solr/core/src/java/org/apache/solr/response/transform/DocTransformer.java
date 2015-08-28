@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -74,6 +64,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|response
+operator|.
+name|ResultContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|search
 operator|.
 name|SolrIndexSearcher
@@ -93,7 +97,7 @@ name|DocTransformer
 block|{
 DECL|field|context
 specifier|protected
-name|TransformContext
+name|ResultContext
 name|context
 decl_stmt|;
 comment|/**    *    * @return The name of the transformer    */
@@ -104,13 +108,13 @@ name|String
 name|getName
 parameter_list|()
 function_decl|;
-comment|/**    * This is called before transform and sets    * @param context The {@link org.apache.solr.response.transform.TransformContext} stores information about the current state of things in Solr that may be    * useful for doing transformations.    */
+comment|/**    * This is called before transform and sets    * @param context The {@link ResultContext} stores information about how the documents were produced.    */
 DECL|method|setContext
 specifier|public
 name|void
 name|setContext
 parameter_list|(
-name|TransformContext
+name|ResultContext
 name|context
 parameter_list|)
 block|{
@@ -121,7 +125,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-comment|/**    * This is where implementations do the actual work    *    *    * @param doc The document to alter    * @param docid The Lucene internal doc id    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * This is where implementations do the actual work    *    *    * @param doc The document to alter    * @param docid The Lucene internal doc id    * @param score    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|transform
 specifier|public
 specifier|abstract
@@ -133,6 +137,9 @@ name|doc
 parameter_list|,
 name|int
 name|docid
+parameter_list|,
+name|float
+name|score
 parameter_list|)
 throws|throws
 name|IOException

@@ -80,9 +80,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 operator|.
-name|SolrQueryRequest
+name|ResultContext
 import|;
 end_import
 
@@ -251,7 +251,7 @@ specifier|public
 name|void
 name|setContext
 parameter_list|(
-name|TransformContext
+name|ResultContext
 name|context
 parameter_list|)
 block|{
@@ -284,6 +284,9 @@ name|doc
 parameter_list|,
 name|int
 name|docid
+parameter_list|,
+name|float
+name|score
 parameter_list|)
 throws|throws
 name|IOException
@@ -303,6 +306,8 @@ argument_list|(
 name|doc
 argument_list|,
 name|docid
+argument_list|,
+name|score
 argument_list|)
 expr_stmt|;
 block|}
