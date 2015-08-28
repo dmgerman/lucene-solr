@@ -191,6 +191,16 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|response
+operator|.
+name|addHeader
+argument_list|(
+literal|"X-Frame-Options"
+argument_list|,
+literal|"DENY"
+argument_list|)
+expr_stmt|;
+comment|// security: SOLR-7966 - avoid clickjacking for admin interface
 comment|// This attribute is set by the SolrDispatchFilter
 name|CoreContainer
 name|cores
