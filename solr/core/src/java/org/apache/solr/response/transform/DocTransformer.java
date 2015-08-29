@@ -125,7 +125,7 @@ operator|=
 name|context
 expr_stmt|;
 block|}
-comment|/**    * This is where implementations do the actual work    *    *    * @param doc The document to alter    * @param docid The Lucene internal doc id    * @param score    * @throws IOException If there is a low-level I/O error.    */
+comment|/**    * This is where implementations do the actual work    *    *    * @param doc The document to alter    * @param docid The Lucene internal doc id    * @param score the score for this document    * @throws IOException If there is a low-level I/O error.    */
 DECL|method|transform
 specifier|public
 specifier|abstract
