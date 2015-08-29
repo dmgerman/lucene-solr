@@ -384,7 +384,7 @@ block|{
 name|int
 name|trials
 init|=
-literal|30
+literal|20
 decl_stmt|;
 name|setupBaseConfigSet
 argument_list|(

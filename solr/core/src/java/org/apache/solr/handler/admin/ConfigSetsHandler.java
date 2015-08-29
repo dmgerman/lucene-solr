@@ -469,7 +469,7 @@ specifier|static
 name|long
 name|DEFAULT_ZK_TIMEOUT
 init|=
-literal|180
+literal|300
 operator|*
 literal|1000
 decl_stmt|;
