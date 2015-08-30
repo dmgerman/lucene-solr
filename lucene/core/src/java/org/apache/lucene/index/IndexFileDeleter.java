@@ -68,6 +68,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|IOUtils
 import|;
 end_import
@@ -3238,7 +3252,12 @@ parameter_list|)
 block|{
 comment|// if delete fails
 comment|// IndexWriter should only ask us to delete files it knows it wrote, so if we hit this, something is wrong!
+comment|// LUCENE-6684: we suppress this assert for Windows, since a file could be in a confusing "pending delete" state:
 assert|assert
+name|Constants
+operator|.
+name|WINDOWS
+operator|||
 name|e
 operator|instanceof
 name|NoSuchFileException
@@ -3250,6 +3269,10 @@ operator|+
 name|fileName
 assert|;
 assert|assert
+name|Constants
+operator|.
+name|WINDOWS
+operator|||
 name|e
 operator|instanceof
 name|FileNotFoundException
