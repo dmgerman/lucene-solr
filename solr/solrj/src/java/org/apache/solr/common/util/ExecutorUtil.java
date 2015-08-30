@@ -408,8 +408,11 @@ name|ctx
 parameter_list|)
 function_decl|;
 block|}
-comment|// this will interrupt the threads! Lucene and Solr do not like this because it can close channels, so only use
-comment|// this if you know what you are doing - you probably want shutdownAndAwaitTermination
+comment|// ** This will interrupt the threads! ** Lucene and Solr do not like this because it can close channels, so only use
+comment|// this if you know what you are doing - you probably want shutdownAndAwaitTermination.
+comment|// Marked as Deprecated to discourage use.
+annotation|@
+name|Deprecated
 DECL|method|shutdownNowAndAwaitTermination
 specifier|public
 specifier|static
