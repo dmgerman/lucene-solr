@@ -14109,6 +14109,13 @@ name|enabled
 expr_stmt|;
 block|}
 comment|/**     * Compares two strings with a collator, also looking to see if the the strings    * are impacted by jdk bugs. may not avoid all jdk bugs in tests.    * see https://bugs.openjdk.java.net/browse/JDK-8071862    */
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"dodges JDK-8071862"
+argument_list|)
 DECL|method|collate
 specifier|public
 specifier|static

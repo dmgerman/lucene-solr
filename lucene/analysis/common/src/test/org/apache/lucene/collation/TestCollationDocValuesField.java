@@ -904,10 +904,10 @@ decl_stmt|;
 name|boolean
 name|collatorAccepts
 init|=
-name|collator
-operator|.
-name|compare
+name|collate
 argument_list|(
+name|collator
+argument_list|,
 name|s
 argument_list|,
 name|startPoint
@@ -915,10 +915,10 @@ argument_list|)
 operator|>=
 literal|0
 operator|&&
-name|collator
-operator|.
-name|compare
+name|collate
 argument_list|(
+name|collator
+argument_list|,
 name|s
 argument_list|,
 name|endPoint
@@ -959,6 +959,16 @@ literal|0
 decl_stmt|;
 name|assertEquals
 argument_list|(
+name|startPoint
+operator|+
+literal|"<= "
+operator|+
+name|s
+operator|+
+literal|"<= "
+operator|+
+name|endPoint
+argument_list|,
 name|collatorAccepts
 argument_list|,
 name|luceneAccepts
