@@ -446,6 +446,8 @@ condition|(
 name|isStarted
 condition|)
 block|{
+comment|// interrupts are often dangerous in Lucene / Solr code, but the
+comment|// test for this will leak threads without
 name|replicatorsPool
 operator|.
 name|shutdown

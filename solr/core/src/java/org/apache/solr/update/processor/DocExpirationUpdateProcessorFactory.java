@@ -72,6 +72,22 @@ name|common
 operator|.
 name|util
 operator|.
+name|ExecutorUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
 name|NamedList
 import|;
 end_import
@@ -1032,7 +1048,7 @@ name|SolrCore
 name|core
 parameter_list|)
 block|{
-comment|// update handler is gone, hard terminiate anything that's left.
+comment|// update handler is gone, terminate anything that's left.
 if|if
 condition|(
 name|executor
@@ -1045,13 +1061,15 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Triggering hard close of DocExpiration Executor"
+literal|"Waiting for close of DocExpiration Executor"
 argument_list|)
 expr_stmt|;
-name|executor
+name|ExecutorUtil
 operator|.
-name|shutdownNow
-argument_list|()
+name|shutdownAndAwaitTermination
+argument_list|(
+name|executor
+argument_list|)
 expr_stmt|;
 block|}
 block|}

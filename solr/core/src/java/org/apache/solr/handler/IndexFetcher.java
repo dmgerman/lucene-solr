@@ -3693,7 +3693,7 @@ argument_list|()
 condition|)
 name|fsyncService
 operator|.
-name|shutdownNow
+name|shutdown
 argument_list|()
 expr_stmt|;
 name|fsyncService

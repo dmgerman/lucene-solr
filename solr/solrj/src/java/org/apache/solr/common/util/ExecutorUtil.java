@@ -413,11 +413,11 @@ comment|// this if you know what you are doing - you probably want shutdownAndAw
 comment|// Marked as Deprecated to discourage use.
 annotation|@
 name|Deprecated
-DECL|method|shutdownNowAndAwaitTermination
+DECL|method|shutdownWithInterruptAndAwaitTermination
 specifier|public
 specifier|static
 name|void
-name|shutdownNowAndAwaitTermination
+name|shutdownWithInterruptAndAwaitTermination
 parameter_list|(
 name|ExecutorService
 name|pool
@@ -425,16 +425,10 @@ parameter_list|)
 block|{
 name|pool
 operator|.
-name|shutdown
-argument_list|()
-expr_stmt|;
-comment|// Disable new tasks from being submitted
-name|pool
-operator|.
 name|shutdownNow
 argument_list|()
 expr_stmt|;
-comment|// Cancel currently executing tasks  - NOTE: this interrupts!
+comment|// Cancel currently executing tasks - NOTE: this interrupts!
 name|boolean
 name|shutdown
 init|=
@@ -455,7 +449,79 @@ name|pool
 operator|.
 name|awaitTermination
 argument_list|(
-literal|1
+literal|60
+argument_list|,
+name|TimeUnit
+operator|.
+name|SECONDS
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|ie
+parameter_list|)
+block|{
+comment|// Preserve interrupt status
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|interrupt
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+block|}
+comment|// ** This will interrupt the threads! ** Lucene and Solr do not like this because it can close channels, so only use
+comment|// this if you know what you are doing - you probably want shutdownAndAwaitTermination.
+comment|// Marked as Deprecated to discourage use.
+annotation|@
+name|Deprecated
+DECL|method|shutdownAndAwaitTerminationWithInterrupt
+specifier|public
+specifier|static
+name|void
+name|shutdownAndAwaitTerminationWithInterrupt
+parameter_list|(
+name|ExecutorService
+name|pool
+parameter_list|)
+block|{
+name|pool
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+comment|// Disable new tasks from being submitted
+name|boolean
+name|shutdown
+init|=
+literal|false
+decl_stmt|;
+name|boolean
+name|interrupted
+init|=
+literal|false
+decl_stmt|;
+while|while
+condition|(
+operator|!
+name|shutdown
+condition|)
+block|{
+try|try
+block|{
+comment|// Wait a while for existing tasks to terminate
+name|shutdown
+operator|=
+name|pool
+operator|.
+name|awaitTermination
+argument_list|(
+literal|60
 argument_list|,
 name|TimeUnit
 operator|.
@@ -483,6 +549,9 @@ if|if
 condition|(
 operator|!
 name|shutdown
+operator|&&
+operator|!
+name|interrupted
 condition|)
 block|{
 name|pool
@@ -491,6 +560,10 @@ name|shutdownNow
 argument_list|()
 expr_stmt|;
 comment|// Cancel currently executing tasks - NOTE: this interrupts!
+name|interrupted
+operator|=
+literal|true
+expr_stmt|;
 block|}
 block|}
 block|}
@@ -530,7 +603,7 @@ name|pool
 operator|.
 name|awaitTermination
 argument_list|(
-literal|1
+literal|60
 argument_list|,
 name|TimeUnit
 operator|.
