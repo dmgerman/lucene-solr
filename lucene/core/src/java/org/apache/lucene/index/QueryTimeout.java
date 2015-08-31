@@ -34,6 +34,18 @@ name|boolean
 name|shouldExit
 parameter_list|()
 function_decl|;
+comment|/** Returns true if timeouts are enabled for this query (i.e. if shouldExit would ever return true) */
+DECL|method|isTimeoutEnabled
+specifier|public
+specifier|default
+name|boolean
+name|isTimeoutEnabled
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 block|}
 end_interface
 

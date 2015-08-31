@@ -125,6 +125,21 @@ name|get
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|isTimeoutEnabled
+specifier|public
+name|boolean
+name|isTimeoutEnabled
+parameter_list|()
+block|{
+return|return
+name|get
+argument_list|()
+operator|!=
+literal|null
+return|;
+block|}
 comment|/**    * Return true if a timeoutAt value is set and the current time has exceeded the set timeOut.    */
 annotation|@
 name|Override
