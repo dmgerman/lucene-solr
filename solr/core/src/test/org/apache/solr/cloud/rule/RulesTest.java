@@ -286,9 +286,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|CoreContainer
+name|params
+operator|.
+name|CommonParams
 operator|.
 name|COLLECTIONS_HANDLER_PATH
 import|;
