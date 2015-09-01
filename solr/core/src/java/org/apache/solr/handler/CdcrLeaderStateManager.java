@@ -470,6 +470,8 @@ operator|+
 literal|"/leaders/"
 operator|+
 name|myShardId
+operator|+
+literal|"/leader"
 return|;
 block|}
 DECL|method|setAmILeader

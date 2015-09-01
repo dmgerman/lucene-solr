@@ -2047,7 +2047,7 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"zkController is null in CoreAdminHandler.handleRequestInternal:REJOINLEADERELCTIONS. No action taken."
+literal|"zkController is null in CoreAdminHandler.handleRequestInternal:REJOINLEADERELECTION. No action taken."
 argument_list|)
 expr_stmt|;
 block|}
