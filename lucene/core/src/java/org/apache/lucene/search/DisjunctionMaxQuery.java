@@ -381,11 +381,11 @@ name|weights
 operator|.
 name|add
 argument_list|(
-name|disjunctQuery
+name|searcher
 operator|.
 name|createWeight
 argument_list|(
-name|searcher
+name|disjunctQuery
 argument_list|,
 name|needsScores
 argument_list|)
