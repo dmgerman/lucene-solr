@@ -906,6 +906,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-7999"
+argument_list|)
 DECL|method|testStreamURL
 specifier|public
 name|void
