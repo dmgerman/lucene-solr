@@ -610,8 +610,9 @@ name|max
 argument_list|)
 return|;
 block|}
+comment|/**    * Calculate probabilities for all classes for a given input text    * @param inputDocument the input text as a {@code String}    * @return a {@code List} of {@code ClassificationResult}, one for each existing class    * @throws IOException if assigning probabilities fails    */
 DECL|method|assignClassNormalizedList
-specifier|private
+specifier|protected
 name|List
 argument_list|<
 name|ClassificationResult
@@ -693,6 +694,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|next
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
 name|double
 name|clVal
 init|=
@@ -731,6 +741,7 @@ name|clVal
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// normalization; the values transforms to a 0-1 range
 name|ArrayList
@@ -1090,6 +1101,11 @@ block|}
 name|tokenStream
 operator|.
 name|end
+argument_list|()
+expr_stmt|;
+name|tokenStream
+operator|.
+name|close
 argument_list|()
 expr_stmt|;
 block|}
