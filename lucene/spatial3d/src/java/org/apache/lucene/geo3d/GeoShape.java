@@ -57,10 +57,10 @@ modifier|...
 name|bounds
 parameter_list|)
 function_decl|;
-comment|/**    * Compute longitude/latitude bounds for the shape.    *    * @param bounds is the optional input bounds object.  If this is null,    *               a bounds object will be created.  Otherwise, the input object will be modified.    * @return a Bounds object describing the shape's bounds.  If the bounds cannot    * be computed, then return a Bounds object with noLongitudeBound,    * noTopLatitudeBound, and noBottomLatitudeBound.    */
+comment|/**    * Compute bounds for the shape.    *    * @param bounds is the input bounds object.    *             The input object will be modified.    */
 DECL|method|getBounds
 specifier|public
-name|Bounds
+name|void
 name|getBounds
 parameter_list|(
 specifier|final

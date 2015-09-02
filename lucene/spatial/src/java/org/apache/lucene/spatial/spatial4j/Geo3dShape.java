@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|geo3d
 operator|.
-name|Bounds
+name|LatLonBounds
 import|;
 end_import
 
@@ -600,16 +600,20 @@ operator|==
 literal|null
 condition|)
 block|{
-name|Bounds
+name|LatLonBounds
 name|bounds
 init|=
+operator|new
+name|LatLonBounds
+argument_list|()
+decl_stmt|;
 name|shape
 operator|.
 name|getBounds
 argument_list|(
-literal|null
+name|bounds
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|double
 name|leftLon
 decl_stmt|;

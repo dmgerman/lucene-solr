@@ -34,7 +34,7 @@ specifier|final
 name|double
 name|MINIMUM_RESOLUTION
 init|=
-literal|1e-12
+literal|5.0e-13
 decl_stmt|;
 comment|/**    * For squared quantities, the bound is squared too.    */
 DECL|field|MINIMUM_RESOLUTION_SQUARED

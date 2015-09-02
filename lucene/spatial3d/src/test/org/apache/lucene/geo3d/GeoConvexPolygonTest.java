@@ -515,7 +515,7 @@ block|{
 name|GeoConvexPolygon
 name|c
 decl_stmt|;
-name|Bounds
+name|LatLonBounds
 name|b
 decl_stmt|;
 name|c
@@ -579,11 +579,15 @@ argument_list|)
 expr_stmt|;
 name|b
 operator|=
+operator|new
+name|LatLonBounds
+argument_list|()
+expr_stmt|;
 name|c
 operator|.
 name|getBounds
 argument_list|(
-literal|null
+name|b
 argument_list|)
 expr_stmt|;
 name|assertFalse

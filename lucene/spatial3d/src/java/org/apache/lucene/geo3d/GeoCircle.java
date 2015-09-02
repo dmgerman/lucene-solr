@@ -152,11 +152,11 @@ throw|;
 if|if
 condition|(
 name|cutoffAngle
-operator|<=
+argument_list|<
 literal|0.0
 operator|||
 name|cutoffAngle
-operator|>
+argument_list|>
 name|Math
 operator|.
 name|PI
@@ -166,6 +166,21 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"Cutoff angle out of bounds"
+argument_list|)
+throw|;
+if|if
+condition|(
+name|cutoffAngle
+operator|<
+name|Vector
+operator|.
+name|MINIMUM_RESOLUTION
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cutoff angle cannot be effectively zero"
 argument_list|)
 throw|;
 name|this
@@ -375,7 +390,7 @@ name|normalPlane
 init|=
 name|Plane
 operator|.
-name|constructNormalizedVerticalPlane
+name|constructNormalizedZPlane
 argument_list|(
 name|upperPoint
 argument_list|,
@@ -410,9 +425,9 @@ literal|null
 condition|)
 throw|throw
 operator|new
-name|RuntimeException
+name|IllegalArgumentException
 argument_list|(
-literal|"Couldn't construct circle plane.  Cutoff angle = "
+literal|"Couldn't construct circle plane, probably too small?  Cutoff angle = "
 operator|+
 name|cutoffAngle
 operator|+
@@ -425,6 +440,34 @@ operator|+
 name|lowerPoint
 argument_list|)
 throw|;
+specifier|final
+name|GeoPoint
+name|recomputedIntersectionPoint
+init|=
+name|circlePlane
+operator|.
+name|getSampleIntersectionPoint
+argument_list|(
+name|planetModel
+argument_list|,
+name|normalPlane
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|recomputedIntersectionPoint
+operator|==
+literal|null
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Couldn't construct intersection point, probably circle too small?  Plane = "
+operator|+
+name|circlePlane
+argument_list|)
+throw|;
 name|this
 operator|.
 name|edgePoints
@@ -433,7 +476,7 @@ operator|new
 name|GeoPoint
 index|[]
 block|{
-name|upperPoint
+name|recomputedIntersectionPoint
 block|}
 expr_stmt|;
 block|}
@@ -656,15 +699,13 @@ annotation|@
 name|Override
 DECL|method|getBounds
 specifier|public
-name|Bounds
+name|void
 name|getBounds
 parameter_list|(
 name|Bounds
 name|bounds
 parameter_list|)
 block|{
-name|bounds
-operator|=
 name|super
 operator|.
 name|getBounds
@@ -679,21 +720,8 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// Entire world
-name|bounds
-operator|.
-name|noTopLatitudeBound
-argument_list|()
-operator|.
-name|noBottomLatitudeBound
-argument_list|()
-operator|.
-name|noLongitudeBound
-argument_list|()
-expr_stmt|;
-return|return
-name|bounds
-return|;
+comment|// Entire world; should already be covered
+return|return;
 block|}
 name|bounds
 operator|.
@@ -702,18 +730,15 @@ argument_list|(
 name|center
 argument_list|)
 expr_stmt|;
-name|circlePlane
+name|bounds
 operator|.
-name|recordBounds
+name|addPlane
 argument_list|(
 name|planetModel
 argument_list|,
-name|bounds
+name|circlePlane
 argument_list|)
 expr_stmt|;
-return|return
-name|bounds
-return|;
 block|}
 annotation|@
 name|Override

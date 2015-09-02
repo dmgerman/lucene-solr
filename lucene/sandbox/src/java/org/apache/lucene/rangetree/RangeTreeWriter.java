@@ -1682,7 +1682,13 @@ name|maxValuesInLeafNode
 condition|)
 block|{
 name|countPerLeaf
-operator|/=
+operator|=
+operator|(
+name|countPerLeaf
+operator|+
+literal|1
+operator|)
+operator|/
 literal|2
 expr_stmt|;
 name|innerNodeCount

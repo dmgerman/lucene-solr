@@ -33,7 +33,7 @@ comment|// we put the onus on the GeoArea implementation to do the right thing.
 comment|// This will, of course, rely heavily on methods provided by
 comment|// the underlying GeoShape class.
 comment|// Relationship values for "getRelationship()"
-comment|/** The referenced shape CONTAINS this shape */
+comment|/** The referenced shape CONTAINS this area */
 DECL|field|CONTAINS
 specifier|public
 specifier|static
@@ -43,7 +43,7 @@ name|CONTAINS
 init|=
 literal|0
 decl_stmt|;
-comment|/** The referenced shape IS WITHIN this shape */
+comment|/** The referenced shape IS WITHIN this area */
 DECL|field|WITHIN
 specifier|public
 specifier|static
@@ -53,7 +53,7 @@ name|WITHIN
 init|=
 literal|1
 decl_stmt|;
-comment|/** The referenced shape OVERLAPS this shape */
+comment|/** The referenced shape OVERLAPS this area */
 DECL|field|OVERLAPS
 specifier|public
 specifier|static
@@ -63,7 +63,7 @@ name|OVERLAPS
 init|=
 literal|2
 decl_stmt|;
-comment|/** The referenced shape has no relation to this shape */
+comment|/** The referenced shape has no relation to this area */
 DECL|field|DISJOINT
 specifier|public
 specifier|static
@@ -73,7 +73,7 @@ name|DISJOINT
 init|=
 literal|3
 decl_stmt|;
-comment|/**    * Find the spatial relationship between a shape and the current geo area.    * Note: return value is how the GeoShape relates to the GeoArea, not the    * other way around. For example, if this GeoArea is entirely within the    * shape, then CONTAINS should be returned.  If the shape is entirely enclosed    * by this GeoArea, then WITHIN should be returned.    * Note well: When a shape consists of multiple independent overlapping subshapes,    * it is sometimes impossible to determine the distinction between    * OVERLAPS and CONTAINS.  In that case, OVERLAPS may be returned even    * though the proper result would in fact be CONTAINS.  Code accordingly.    *    * @param shape is the shape to consider.    * @return the relationship, from the perspective of the shape.    */
+comment|/**    * Find the spatial relationship between a shape and the current geo area.    * Note: return value is how the GeoShape relates to the GeoArea, not the    * other way around. For example, if this GeoArea is entirely within the    * shape, then CONTAINS should be returned.  If the shape is entirely enclosed    * by this GeoArea, then WITHIN should be returned.    *    * It is permissible to return OVERLAPS instead of WITHIN if the shape    * intersects with the area at even a single point.  So, a circle inscribed in    * a rectangle could return either OVERLAPS or WITHIN, depending on    * implementation.  It is not permissible to return CONTAINS or DISJOINT    * in this circumstance, however.    *    * Similarly, it is permissible to return OVERLAPS instead of CONTAINS    * under conditions where the shape consists of multiple independent overlapping    * subshapes, and the area overlaps one of the subshapes.  It is not permissible    * to return WITHIN or DISJOINT in this circumstance, however.    *    * @param shape is the shape to consider.    * @return the relationship, from the perspective of the shape.    */
 DECL|method|getRelationship
 specifier|public
 name|int

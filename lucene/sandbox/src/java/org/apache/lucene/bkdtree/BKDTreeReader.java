@@ -167,23 +167,24 @@ name|IndexInput
 name|in
 decl_stmt|;
 DECL|enum|Relation
-DECL|enum constant|INSIDE
-DECL|enum constant|CROSSES
-DECL|enum constant|OUTSIDE
+DECL|enum constant|CELL_INSIDE_SHAPE
+DECL|enum constant|SHAPE_CROSSES_CELL
+DECL|enum constant|SHAPE_OUTSIDE_CELL
 enum|enum
 name|Relation
 block|{
-name|INSIDE
+name|CELL_INSIDE_SHAPE
 block|,
-name|CROSSES
+name|SHAPE_CROSSES_CELL
 block|,
-name|OUTSIDE
+name|SHAPE_OUTSIDE_CELL
 block|}
 empty_stmt|;
 DECL|interface|LatLonFilter
 interface|interface
 name|LatLonFilter
 block|{
+comment|// TODO: move DVs/encoding out on top: this method should just take a docID
 DECL|method|accept
 name|boolean
 name|accept
@@ -195,6 +196,7 @@ name|double
 name|lon
 parameter_list|)
 function_decl|;
+comment|// TODO: move DVs/encoding out on top: this method should take ints and do its own decode
 DECL|method|compare
 name|Relation
 name|compare
@@ -473,46 +475,7 @@ name|sndv
 expr_stmt|;
 block|}
 block|}
-DECL|method|intersect
-specifier|public
-name|DocIdSet
-name|intersect
-parameter_list|(
-name|double
-name|latMin
-parameter_list|,
-name|double
-name|latMax
-parameter_list|,
-name|double
-name|lonMin
-parameter_list|,
-name|double
-name|lonMax
-parameter_list|,
-name|SortedNumericDocValues
-name|sndv
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|intersect
-argument_list|(
-name|latMin
-argument_list|,
-name|latMax
-argument_list|,
-name|lonMin
-argument_list|,
-name|lonMax
-argument_list|,
-literal|null
-argument_list|,
-name|sndv
-argument_list|)
-return|;
-block|}
+comment|// TODO: move DVs/encoding out on top: this method should take ints, and encode should be done up above
 DECL|method|intersect
 specifier|public
 name|DocIdSet
@@ -667,9 +630,6 @@ argument_list|(
 name|lonMax
 argument_list|)
 decl_stmt|;
-comment|// TODO: we should use a sparse bit collector here, but BitDocIdSet.Builder is 2.4X slower than straight FixedBitSet.
-comment|// Maybe we should use simple int[] (not de-duping) up until size X, then cutover.  Or maybe SentinelIntSet when it's
-comment|// small.
 name|QueryState
 name|state
 init|=
@@ -815,7 +775,6 @@ return|return
 literal|0
 return|;
 block|}
-comment|//IndexInput in = leafDISI.in;
 name|state
 operator|.
 name|in
@@ -825,7 +784,6 @@ argument_list|(
 name|fp
 argument_list|)
 expr_stmt|;
-comment|//allLeafDISI.reset(fp);
 comment|//System.out.println("    seek to leafFP=" + fp);
 comment|// How many points are stored in this leaf cell:
 name|int
@@ -882,8 +840,6 @@ name|docID
 argument_list|)
 expr_stmt|;
 block|}
-comment|//bits.or(allLeafDISI);
-comment|//return allLeafDISI.getHitCount();
 return|return
 name|count
 return|;
@@ -981,6 +937,7 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// Only call the filter when the current cell does not fully contain the bbox:
 if|if
 condition|(
 name|cellLatMinEnc
@@ -1046,14 +1003,14 @@ name|cellLonMaxEnc
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("BKD.intersect cellLat=" + BKDTreeWriter.decodeLat(cellLatMinEnc) + " TO " + BKDTreeWriter.decodeLat(cellLatMaxEnc) + ", cellLon=" + BKDTreeWriter.decodeLon(cellLonMinEnc) + " TO " + BKDTreeWriter.decodeLon(cellLonMaxEnc) + " compare=" + r);
+comment|// System.out.println("BKD.intersect cellLat=" + BKDTreeWriter.decodeLat(cellLatMinEnc) + " TO " + BKDTreeWriter.decodeLat(cellLatMaxEnc) + ", cellLon=" + BKDTreeWriter.decodeLon(cellLonMinEnc) + " TO " + BKDTreeWriter.decodeLon(cellLonMaxEnc) + " compare=" + r);
 if|if
 condition|(
 name|r
 operator|==
 name|Relation
 operator|.
-name|OUTSIDE
+name|SHAPE_OUTSIDE_CELL
 condition|)
 block|{
 comment|// This cell is fully outside of the query shape: stop recursing
@@ -1068,7 +1025,7 @@ name|r
 operator|==
 name|Relation
 operator|.
-name|INSIDE
+name|CELL_INSIDE_SHAPE
 condition|)
 block|{
 comment|// This cell is fully inside of the query shape: recursively add all points in this cell without filtering
@@ -1086,6 +1043,7 @@ block|{
 comment|// The cell crosses the shape boundary, so we fall through and do full filtering
 block|}
 block|}
+comment|// TODO: clean this up: the bbox case should also just be a filter, and we should assert filter != null at the start
 block|}
 elseif|else
 if|if
@@ -1115,7 +1073,7 @@ operator|>=
 name|cellLonMaxEnc
 condition|)
 block|{
-comment|// Optimize the case when the query fully contains this cell: we can
+comment|// Bbox query: optimize the case when the query fully contains this cell: we can
 comment|// recursively add all points without checking if they match the query:
 return|return
 name|addAll
@@ -1189,7 +1147,6 @@ name|hitCount
 init|=
 literal|0
 decl_stmt|;
-comment|//IndexInput in = leafDISI.in;
 name|long
 name|fp
 init|=
@@ -1419,8 +1376,6 @@ block|}
 return|return
 name|hitCount
 return|;
-comment|// this (using BitDocIdSet.Builder) is 3.4X slower!
-comment|/*       //bits.or(leafDISI);       //return leafDISI.getHitCount();       */
 block|}
 else|else
 block|{

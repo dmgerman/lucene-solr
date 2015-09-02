@@ -99,6 +99,19 @@ name|p
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|sigNum
+operator|==
+literal|0.0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cannot determine sidedness because check point is on plane."
+argument_list|)
+throw|;
 block|}
 comment|/**    * Construct a sided plane from a point and a Z coordinate.    *    * @param p      point to evaluate.    * @param planetModel is the planet model.    * @param sinLat is the sin of the latitude of the plane.    */
 DECL|method|SidedPlane
@@ -135,6 +148,19 @@ name|p
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|sigNum
+operator|==
+literal|0.0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cannot determine sidedness because check point is on plane."
+argument_list|)
+throw|;
 block|}
 comment|/**    * Construct a sided vertical plane from a point and specified x and y coordinates.    *    * @param p point to evaluate.    * @param x is the specified x.    * @param y is the specified y.    */
 DECL|method|SidedPlane
@@ -170,6 +196,19 @@ name|p
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|sigNum
+operator|==
+literal|0.0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cannot determine sidedness because check point is on plane."
+argument_list|)
+throw|;
 block|}
 comment|/**    * Construct a sided plane with a normal vector and offset.    *    * @param p point to evaluate.    * @param v is the normal vector.    * @param D is the origin offset for the plan.    */
 DECL|method|SidedPlane
@@ -205,6 +244,77 @@ name|p
 argument_list|)
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|sigNum
+operator|==
+literal|0.0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cannot determine sidedness because check point is on plane."
+argument_list|)
+throw|;
+block|}
+comment|/**    * Construct a sided plane with a normal vector and offset.    *    * @param pX X coord of point to evaluate.    * @param pY Y coord of point to evaluate.    * @param pZ Z coord of point to evaluate.    * @param v is the normal vector.    * @param D is the origin offset for the plan.    */
+DECL|method|SidedPlane
+specifier|public
+name|SidedPlane
+parameter_list|(
+name|double
+name|pX
+parameter_list|,
+name|double
+name|pY
+parameter_list|,
+name|double
+name|pZ
+parameter_list|,
+name|Vector
+name|v
+parameter_list|,
+name|double
+name|D
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|v
+argument_list|,
+name|D
+argument_list|)
+expr_stmt|;
+name|sigNum
+operator|=
+name|Math
+operator|.
+name|signum
+argument_list|(
+name|evaluate
+argument_list|(
+name|pX
+argument_list|,
+name|pY
+argument_list|,
+name|pZ
+argument_list|)
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|sigNum
+operator|==
+literal|0.0
+condition|)
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cannot determine sidedness because check point is on plane."
+argument_list|)
+throw|;
 block|}
 comment|/** Construct a sided plane from two points and a third normal vector.    */
 DECL|method|constructNormalizedPerpendicularSidedPlane

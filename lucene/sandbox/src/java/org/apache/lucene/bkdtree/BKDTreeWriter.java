@@ -1962,7 +1962,13 @@ name|maxPointsInLeafNode
 condition|)
 block|{
 name|countPerLeaf
-operator|/=
+operator|=
+operator|(
+name|countPerLeaf
+operator|+
+literal|1
+operator|)
+operator|/
 literal|2
 expr_stmt|;
 name|innerNodeCount
@@ -2992,6 +2998,15 @@ name|long
 operator|)
 name|minLonEnc
 decl_stmt|;
+assert|assert
+name|lastLatSorted
+operator|.
+name|count
+operator|==
+name|lastLonSorted
+operator|.
+name|count
+assert|;
 comment|// Compute which dim we should split on at this level:
 name|int
 name|splitDim
@@ -3093,24 +3108,7 @@ name|minLonEnc
 assert|;
 comment|//System.out.println("\nleaf:\n  lat range: " + ((long) maxLatEnc-minLatEnc));
 comment|//System.out.println("  lon range: " + ((long) maxLonEnc-minLonEnc));
-assert|assert
-name|count
-operator|==
-name|source
-operator|.
-name|count
-operator|:
-literal|"count="
-operator|+
-name|count
-operator|+
-literal|" vs source.count="
-operator|+
-name|source
-operator|.
-name|count
-assert|;
-comment|// Sort by docID in the leaf so we can .or(DISI) at search time:
+comment|// Sort by docID in the leaf so we get sequentiality at search time (may not matter?):
 name|LatLonReader
 name|reader
 init|=
@@ -3125,6 +3123,7 @@ operator|.
 name|start
 argument_list|)
 decl_stmt|;
+comment|// TODO: we can reuse this
 name|int
 index|[]
 name|docIDs
@@ -3371,7 +3370,7 @@ comment|//System.out.println("  bytes/doc: " + ((endFP - startFP) / count));
 block|}
 else|else
 block|{
-comment|// Inner node: sort, partition/recurse
+comment|// Inner node: partition/recurse
 assert|assert
 name|nodeID
 operator|<
@@ -3399,13 +3398,6 @@ index|[
 literal|1
 index|]
 decl_stmt|;
-assert|assert
-name|source
-operator|.
-name|count
-operator|==
-name|count
-assert|;
 name|long
 name|leftCount
 init|=
@@ -3477,21 +3469,12 @@ name|rightWriter
 operator|=
 name|getWriter
 argument_list|(
-name|nextSource
-operator|.
 name|count
 operator|-
 name|leftCount
 argument_list|)
 expr_stmt|;
 comment|//if (DEBUG) System.out.println("  partition:\n    splitValueEnc=" + splitValue + "\n    " + nextSource + "\n      --> leftSorted=" + leftWriter + "\n      --> rightSorted=" + rightWriter + ")");
-assert|assert
-name|nextSource
-operator|.
-name|count
-operator|==
-name|count
-assert|;
 name|reader
 operator|=
 name|nextSource
@@ -3516,8 +3499,6 @@ literal|0
 init|;
 name|i
 operator|<
-name|nextSource
-operator|.
 name|count
 condition|;
 name|i
@@ -3758,21 +3739,6 @@ operator|+
 literal|" nextLeftCount="
 operator|+
 name|nextLeftCount
-assert|;
-assert|assert
-name|count
-operator|==
-name|nextSource
-operator|.
-name|count
-operator|:
-literal|"count="
-operator|+
-name|count
-operator|+
-literal|" nextSource.count="
-operator|+
-name|count
 assert|;
 name|success
 operator|=
