@@ -6848,10 +6848,14 @@ block|{
 comment|// trigger an eviction
 name|searcher
 operator|.
-name|count
+name|search
 argument_list|(
 operator|new
 name|MatchAllDocsQuery
+argument_list|()
+argument_list|,
+operator|new
+name|TotalHitCountCollector
 argument_list|()
 argument_list|)
 expr_stmt|;
