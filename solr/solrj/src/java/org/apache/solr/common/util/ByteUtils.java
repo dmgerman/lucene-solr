@@ -901,7 +901,7 @@ operator|-
 name|resultOffset
 return|;
 block|}
-comment|/** Writes UTF8 into the given OutputStream by first writing to the given scratch array    * and then writing the contents of the scratch array to the OutputStream. The given scratch byte array    * is used to buffer intermediate data before it is written to the byte buffer.    *    * @return the number of bytes written    */
+comment|/** Writes UTF8 into the given OutputStream by first writing to the given scratch array    * and then writing the contents of the scratch array to the OutputStream. The given scratch byte array    * is used to buffer intermediate data before it is written to the output stream.    *    * @return the number of bytes written    */
 DECL|method|writeUTF16toUTF8
 specifier|public
 specifier|static
