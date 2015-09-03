@@ -332,7 +332,7 @@ name|solr
 operator|.
 name|cloud
 operator|.
-name|TestMiniSolrCloudCluster
+name|TestMiniSolrCloudClusterBase
 import|;
 end_import
 
@@ -596,7 +596,7 @@ specifier|public
 class|class
 name|BasicAuthIntegrationTest
 extends|extends
-name|TestMiniSolrCloudCluster
+name|TestMiniSolrCloudClusterBase
 block|{
 DECL|field|log
 specifier|private
@@ -1400,56 +1400,7 @@ name|RemoteSolrException
 name|e
 parameter_list|)
 block|{      }
-name|httpPost
-operator|=
-operator|new
-name|HttpPost
-argument_list|(
-name|baseUrl
-operator|+
-literal|"/admin/authorization"
-argument_list|)
-expr_stmt|;
-name|setBasicAuthHeader
-argument_list|(
-name|httpPost
-argument_list|,
-literal|"harry"
-argument_list|,
-literal|"HarryIsUberCool"
-argument_list|)
-expr_stmt|;
-name|httpPost
-operator|.
-name|setEntity
-argument_list|(
-operator|new
-name|ByteArrayEntity
-argument_list|(
-name|Utils
-operator|.
-name|toJSON
-argument_list|(
-name|singletonMap
-argument_list|(
-literal|"delete-permission"
-argument_list|,
-literal|"collection-admin-edit"
-argument_list|)
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|r
-operator|=
-name|cl
-operator|.
-name|execute
-argument_list|(
-name|httpPost
-argument_list|)
-expr_stmt|;
-comment|//cleanup so that the super class does not need to pass on credentials
+comment|/* httpPost = new HttpPost(baseUrl + "/admin/authorization");     setBasicAuthHeader(httpPost, "harry", "HarryIsUberCool");     httpPost.setEntity(new ByteArrayEntity(Utils.toJSON(singletonMap("delete-permission", "collection-admin-edit"))));     r = cl.execute(httpPost); //cleanup so that the super class does not need to pass on credentials      for (Slice  slice : zkStateReader.getClusterState().getCollection(defaultCollName).getSlices()) {       //ensure that all nodes have removed the collection-admin-edit permission       for (Replica replica : slice.getReplicas()) {         baseUrl = replica.getStr(BASE_URL_PROP);         verifySecurityStatus(cl, baseUrl + "/admin/authorization", "authorization/permissions[2]/name", null, 20);       }     }*/
 block|}
 DECL|method|verifySecurityStatus
 specifier|public
@@ -1607,6 +1558,12 @@ name|Objects
 operator|.
 name|equals
 argument_list|(
+name|actual
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
 name|String
 operator|.
 name|valueOf
@@ -1823,38 +1780,6 @@ return|;
 block|}
 block|}
 decl_stmt|;
-annotation|@
-name|Override
-DECL|method|testErrorsInStartup
-specifier|public
-name|void
-name|testErrorsInStartup
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|//don't do anything
-block|}
-annotation|@
-name|Override
-DECL|method|testErrorsInShutdown
-specifier|public
-name|void
-name|testErrorsInShutdown
-parameter_list|()
-throws|throws
-name|Exception
-block|{   }
-annotation|@
-name|Override
-DECL|method|testCollectionCreateWithoutCoresThenDelete
-specifier|public
-name|void
-name|testCollectionCreateWithoutCoresThenDelete
-parameter_list|()
-throws|throws
-name|Exception
-block|{   }
 comment|//the password is 'SolrRocks'
 comment|//this could be generated everytime. But , then we will not know if there is any regression
 DECL|field|STD_CONF
