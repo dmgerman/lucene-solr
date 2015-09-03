@@ -359,6 +359,29 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+literal|0
+operator|==
+name|bytes
+operator|.
+name|length
+condition|)
+block|{
+comment|// the only way this should be possible is for non existent value
+assert|assert
+operator|!
+name|exists
+argument_list|(
+name|doc
+argument_list|)
+operator|:
+literal|"zero bytes for doc, but exists is true"
+assert|;
+return|return
+literal|0L
+return|;
+block|}
 return|return
 name|NumericUtils
 operator|.
@@ -432,14 +455,31 @@ name|int
 name|doc
 parameter_list|)
 block|{
+comment|// micro optimized (eliminate at least one redudnent ord check)
+comment|//mval.exists = exists(doc);
+comment|//mval.value = mval.exists ? longVal(doc) : 0;
+comment|//
+name|BytesRef
+name|bytes
+init|=
+name|view
+operator|.
+name|get
+argument_list|(
+name|doc
+argument_list|)
+decl_stmt|;
 name|mval
 operator|.
 name|exists
 operator|=
-name|exists
-argument_list|(
-name|doc
-argument_list|)
+operator|(
+literal|0
+operator|==
+name|bytes
+operator|.
+name|length
+operator|)
 expr_stmt|;
 name|mval
 operator|.
@@ -449,12 +489,14 @@ name|mval
 operator|.
 name|exists
 condition|?
-name|longVal
+name|NumericUtils
+operator|.
+name|prefixCodedToLong
 argument_list|(
-name|doc
+name|bytes
 argument_list|)
 else|:
-literal|0
+literal|0L
 expr_stmt|;
 block|}
 block|}
