@@ -1478,23 +1478,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|iw
-operator|.
-name|decref
-argument_list|()
-expr_stmt|;
-block|}
-synchronized|synchronized
-init|(
-name|solrCoreState
-operator|.
-name|getUpdateLock
-argument_list|()
-init|)
-block|{
 if|if
 condition|(
 name|ulog
@@ -1507,6 +1490,14 @@ name|add
 argument_list|(
 name|cmd
 argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|iw
+operator|.
+name|decref
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -1719,15 +1710,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|iw
-operator|.
-name|decref
-argument_list|()
-expr_stmt|;
-block|}
 comment|// Add to the transaction log *after* successfully adding to the
 comment|// index, if there was no error.
 comment|// This ordering ensures that if we log it, it's definitely been
@@ -1735,14 +1717,6 @@ comment|// added to the the index.
 comment|// This also ensures that if a commit sneaks in-between, that we
 comment|// know everything in a particular
 comment|// log version was definitely committed.
-synchronized|synchronized
-init|(
-name|solrCoreState
-operator|.
-name|getUpdateLock
-argument_list|()
-init|)
-block|{
 if|if
 condition|(
 name|ulog
@@ -1755,6 +1729,14 @@ name|add
 argument_list|(
 name|cmd
 argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+name|iw
+operator|.
+name|decref
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -1967,24 +1949,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
-finally|finally
-block|{
-name|iw
-operator|.
-name|decref
-argument_list|()
-expr_stmt|;
-block|}
-synchronized|synchronized
-init|(
-name|solrCoreState
-operator|.
-name|getUpdateLock
-argument_list|()
-init|)
-block|{
 if|if
 condition|(
 name|ulog
@@ -1999,6 +1963,16 @@ name|cmd
 argument_list|,
 literal|true
 argument_list|)
+expr_stmt|;
+comment|// this needs to be protected by update lock
+block|}
+block|}
+finally|finally
+block|{
+name|iw
+operator|.
+name|decref
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -2516,6 +2490,9 @@ comment|// synchronized to prevent deleteByQuery from running during the "open n
 comment|// part of a commit.  DBQ needs to signal that a fresh reader will be needed for
 comment|// a realtime view of the index.  When a new searcher is opened after a DBQ, that
 comment|// flag can be cleared.  If those thing happen concurrently, it's not thread safe.
+comment|// Also, ulog.deleteByQuery clears caches and is thus not safe to be called between
+comment|// preSoftCommit/postSoftCommit and thus we use the updateLock to prevent this (just
+comment|// as we use around ulog.preCommit... also see comments in ulog.postSoftCommit)
 comment|//
 synchronized|synchronized
 init|(
@@ -2593,6 +2570,7 @@ argument_list|(
 name|cmd
 argument_list|)
 expr_stmt|;
+comment|// this needs to be protected by the update lock
 block|}
 name|madeIt
 operator|=
