@@ -406,9 +406,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// with random merge policies, a regular commit can cause a segment to be flushed that can kick off a background merge
+comment|// that can cause a later commit to actually see changes and open a new searcher.  This should not be possible with optimize
 name|assertU
 argument_list|(
-name|commit
+name|optimize
 argument_list|()
 argument_list|)
 expr_stmt|;
