@@ -235,16 +235,6 @@ name|that
 operator|.
 name|query
 argument_list|)
-operator|&&
-name|this
-operator|.
-name|getBoost
-argument_list|()
-operator|==
-name|that
-operator|.
-name|getBoost
-argument_list|()
 return|;
 block|}
 annotation|@

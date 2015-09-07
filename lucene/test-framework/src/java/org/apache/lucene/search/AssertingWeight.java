@@ -213,7 +213,7 @@ name|float
 name|norm
 parameter_list|,
 name|float
-name|topLevelBoost
+name|boost
 parameter_list|)
 block|{
 name|in
@@ -222,7 +222,7 @@ name|normalize
 argument_list|(
 name|norm
 argument_list|,
-name|topLevelBoost
+name|boost
 argument_list|)
 expr_stmt|;
 block|}

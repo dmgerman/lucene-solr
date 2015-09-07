@@ -840,17 +840,6 @@ argument_list|(
 literal|"]"
 argument_list|)
 operator|.
-name|append
-argument_list|(
-name|ToStringUtils
-operator|.
-name|boost
-argument_list|(
-name|getBoost
-argument_list|()
-argument_list|)
-argument_list|)
-operator|.
 name|toString
 argument_list|()
 return|;

@@ -888,11 +888,6 @@ operator|.
 name|docFreq
 argument_list|()
 argument_list|,
-name|query
-operator|.
-name|getBoost
-argument_list|()
-operator|*
 name|st
 operator|.
 name|boost

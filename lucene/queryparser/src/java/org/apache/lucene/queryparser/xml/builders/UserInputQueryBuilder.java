@@ -72,7 +72,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Query
+name|BoostQuery
 import|;
 end_import
 
@@ -84,9 +84,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|search
 operator|.
-name|Version
+name|Query
 import|;
 end_import
 
@@ -313,10 +313,9 @@ name|text
 argument_list|)
 expr_stmt|;
 block|}
-name|q
-operator|.
-name|setBoost
-argument_list|(
+name|float
+name|boost
+init|=
 name|DOMUtils
 operator|.
 name|getAttribute
@@ -327,10 +326,15 @@ literal|"boost"
 argument_list|,
 literal|1.0f
 argument_list|)
-argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
+operator|new
+name|BoostQuery
+argument_list|(
 name|q
+argument_list|,
+name|boost
+argument_list|)
 return|;
 block|}
 catch|catch

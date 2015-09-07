@@ -267,17 +267,26 @@ name|Query
 name|query
 parameter_list|)
 block|{
-comment|// call possible Query clone and hashCode outside of sync block
+assert|assert
+name|query
+operator|instanceof
+name|BoostQuery
+operator|==
+literal|false
+assert|;
+assert|assert
+name|query
+operator|instanceof
+name|ConstantScoreQuery
+operator|==
+literal|false
+assert|;
+comment|// call hashCode outside of sync block
 comment|// in case it's somewhat expensive:
 name|int
 name|hashCode
 init|=
-name|QueryCache
-operator|.
-name|cacheKey
-argument_list|(
 name|query
-argument_list|)
 operator|.
 name|hashCode
 argument_list|()
@@ -307,17 +316,26 @@ name|Query
 name|query
 parameter_list|)
 block|{
-comment|// call possible Query clone and hashCode outside of sync block
+assert|assert
+name|query
+operator|instanceof
+name|BoostQuery
+operator|==
+literal|false
+assert|;
+assert|assert
+name|query
+operator|instanceof
+name|ConstantScoreQuery
+operator|==
+literal|false
+assert|;
+comment|// call hashCode outside of sync block
 comment|// in case it's somewhat expensive:
 name|int
 name|hashCode
 init|=
-name|QueryCache
-operator|.
-name|cacheKey
-argument_list|(
 name|query
-argument_list|)
 operator|.
 name|hashCode
 argument_list|()

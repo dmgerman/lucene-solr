@@ -320,6 +320,13 @@ name|hashCode
 parameter_list|()
 block|{
 return|return
+literal|31
+operator|*
+name|super
+operator|.
+name|hashCode
+argument_list|()
+operator|+
 name|Objects
 operator|.
 name|hash
@@ -327,9 +334,6 @@ argument_list|(
 name|field
 argument_list|,
 name|numbers
-argument_list|,
-name|getBoost
-argument_list|()
 argument_list|)
 return|;
 block|}

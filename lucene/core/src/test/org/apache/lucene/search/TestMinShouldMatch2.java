@@ -2731,8 +2731,6 @@ name|similarity
 operator|.
 name|computeWeight
 argument_list|(
-literal|1f
-argument_list|,
 name|searcher
 operator|.
 name|collectionStatistics

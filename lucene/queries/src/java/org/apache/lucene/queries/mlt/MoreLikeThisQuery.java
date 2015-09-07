@@ -398,26 +398,11 @@ name|percentTermsToMatch
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Query
-name|rewritten
-init|=
+return|return
 name|newBq
 operator|.
 name|build
 argument_list|()
-decl_stmt|;
-name|rewritten
-operator|.
-name|setBoost
-argument_list|(
-name|bq
-operator|.
-name|getBoost
-argument_list|()
-argument_list|)
-expr_stmt|;
-return|return
-name|rewritten
 return|;
 block|}
 comment|/* (non-Javadoc)   * @see org.apache.lucene.search.Query#toString(java.lang.String)   */

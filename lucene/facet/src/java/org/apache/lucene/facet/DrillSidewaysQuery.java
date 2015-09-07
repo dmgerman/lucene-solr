@@ -423,7 +423,12 @@ name|baseQuery
 condition|)
 block|{
 return|return
-name|this
+name|super
+operator|.
+name|rewrite
+argument_list|(
+name|reader
+argument_list|)
 return|;
 block|}
 else|else
@@ -596,7 +601,7 @@ name|float
 name|norm
 parameter_list|,
 name|float
-name|topLevelBoost
+name|boost
 parameter_list|)
 block|{
 name|baseWeight
@@ -605,7 +610,7 @@ name|normalize
 argument_list|(
 name|norm
 argument_list|,
-name|topLevelBoost
+name|boost
 argument_list|)
 expr_stmt|;
 block|}

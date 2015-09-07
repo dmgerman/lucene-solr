@@ -1890,9 +1890,6 @@ name|similarity
 operator|.
 name|computeWeight
 argument_list|(
-name|getBoost
-argument_list|()
-argument_list|,
 name|searcher
 operator|.
 name|collectionStatistics
@@ -2008,7 +2005,7 @@ name|float
 name|queryNorm
 parameter_list|,
 name|float
-name|topLevelBoost
+name|boost
 parameter_list|)
 block|{
 name|stats
@@ -2017,7 +2014,7 @@ name|normalize
 argument_list|(
 name|queryNorm
 argument_list|,
-name|topLevelBoost
+name|boost
 argument_list|)
 expr_stmt|;
 block|}

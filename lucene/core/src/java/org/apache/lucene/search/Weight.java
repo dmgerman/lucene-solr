@@ -207,7 +207,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Assigns the query normalization factor and boost from parent queries to this. */
+comment|/** Assigns the query normalization factor and boost to this. */
 DECL|method|normalize
 specifier|public
 specifier|abstract
@@ -218,7 +218,7 @@ name|float
 name|norm
 parameter_list|,
 name|float
-name|topLevelBoost
+name|boost
 parameter_list|)
 function_decl|;
 comment|/**    * Returns a {@link Scorer} which can iterate in order over all matching    * documents and assign them a score.    *<p>    *<b>NOTE:</b> null can be returned if no documents will be scored by this    * query.    *<p>    *<b>NOTE</b>: The returned {@link Scorer} does not have    * {@link LeafReader#getLiveDocs()} applied, they need to be checked on top.    *     * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    *              * @return a {@link Scorer} which scores documents in/out-of order.    * @throws IOException if there is a low-level I/O error    */

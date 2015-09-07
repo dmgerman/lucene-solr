@@ -131,7 +131,7 @@ block|{
 return|return
 name|stats
 operator|.
-name|getTotalBoost
+name|getBoost
 argument_list|()
 operator|*
 operator|(
@@ -201,7 +201,7 @@ if|if
 condition|(
 name|stats
 operator|.
-name|getTotalBoost
+name|getBoost
 argument_list|()
 operator|!=
 literal|1.0f
@@ -217,7 +217,7 @@ name|match
 argument_list|(
 name|stats
 operator|.
-name|getTotalBoost
+name|getBoost
 argument_list|()
 argument_list|,
 literal|"boost"

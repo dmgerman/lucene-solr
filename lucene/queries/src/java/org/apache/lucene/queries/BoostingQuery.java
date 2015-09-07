@@ -160,27 +160,14 @@ operator|.
 name|context
 operator|=
 name|context
-operator|.
-name|clone
-argument_list|()
 expr_stmt|;
-comment|// clone before boost
+comment|// ignore context-only matches
 name|this
 operator|.
 name|boost
 operator|=
 name|boost
 expr_stmt|;
-name|this
-operator|.
-name|context
-operator|.
-name|setBoost
-argument_list|(
-literal|0.0f
-argument_list|)
-expr_stmt|;
-comment|// ignore context-only matches
 block|}
 annotation|@
 name|Override
@@ -226,9 +213,7 @@ operator|!=
 name|contextRewritten
 condition|)
 block|{
-name|BoostingQuery
-name|rewritten
-init|=
+return|return
 operator|new
 name|BoostingQuery
 argument_list|(
@@ -238,17 +223,6 @@ name|contextRewritten
 argument_list|,
 name|boost
 argument_list|)
-decl_stmt|;
-name|rewritten
-operator|.
-name|setBoost
-argument_list|(
-name|getBoost
-argument_list|()
-argument_list|)
-expr_stmt|;
-return|return
-name|rewritten
 return|;
 block|}
 return|return
@@ -478,7 +452,7 @@ name|float
 name|norm
 parameter_list|,
 name|float
-name|topLevelBoost
+name|boost
 parameter_list|)
 block|{
 name|matchWeight
@@ -487,7 +461,7 @@ name|normalize
 argument_list|(
 name|norm
 argument_list|,
-name|topLevelBoost
+name|boost
 argument_list|)
 expr_stmt|;
 block|}

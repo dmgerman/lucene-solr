@@ -199,9 +199,6 @@ specifier|public
 name|SimWeight
 name|computeWeight
 parameter_list|(
-name|float
-name|queryBoost
-parameter_list|,
 name|CollectionStatistics
 name|collectionStats
 parameter_list|,
@@ -251,8 +248,6 @@ index|]
 operator|.
 name|computeWeight
 argument_list|(
-name|queryBoost
-argument_list|,
 name|collectionStats
 argument_list|,
 name|termStats
@@ -627,7 +622,7 @@ name|float
 name|queryNorm
 parameter_list|,
 name|float
-name|topLevelBoost
+name|boost
 parameter_list|)
 block|{
 for|for
@@ -644,7 +639,7 @@ name|normalize
 argument_list|(
 name|queryNorm
 argument_list|,
-name|topLevelBoost
+name|boost
 argument_list|)
 expr_stmt|;
 block|}

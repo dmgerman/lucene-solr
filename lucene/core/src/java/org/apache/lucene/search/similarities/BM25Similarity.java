@@ -774,9 +774,6 @@ specifier|final
 name|SimWeight
 name|computeWeight
 parameter_list|(
-name|float
-name|queryBoost
-parameter_list|,
 name|CollectionStatistics
 name|collectionStats
 parameter_list|,
@@ -885,8 +882,6 @@ name|field
 argument_list|()
 argument_list|,
 name|idf
-argument_list|,
-name|queryBoost
 argument_list|,
 name|avgdl
 argument_list|,
@@ -1172,18 +1167,11 @@ specifier|final
 name|float
 name|avgdl
 decl_stmt|;
-comment|/** query's inner boost */
-DECL|field|queryBoost
-specifier|private
-specifier|final
-name|float
-name|queryBoost
-decl_stmt|;
-comment|/** query's outer boost (only for explain) */
-DECL|field|topLevelBoost
+comment|/** query boost */
+DECL|field|boost
 specifier|private
 name|float
-name|topLevelBoost
+name|boost
 decl_stmt|;
 comment|/** weight (idf * boost) */
 DECL|field|weight
@@ -1216,9 +1204,6 @@ name|Explanation
 name|idf
 parameter_list|,
 name|float
-name|queryBoost
-parameter_list|,
-name|float
 name|avgdl
 parameter_list|,
 name|float
@@ -1240,12 +1225,6 @@ name|idf
 expr_stmt|;
 name|this
 operator|.
-name|queryBoost
-operator|=
-name|queryBoost
-expr_stmt|;
-name|this
-operator|.
 name|avgdl
 operator|=
 name|avgdl
@@ -1255,6 +1234,13 @@ operator|.
 name|cache
 operator|=
 name|cache
+expr_stmt|;
+name|normalize
+argument_list|(
+literal|1f
+argument_list|,
+literal|1f
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -1266,21 +1252,10 @@ name|getValueForNormalization
 parameter_list|()
 block|{
 comment|// we return a TF-IDF like normalization to be nice, but we don't actually normalize ourselves.
-specifier|final
-name|float
-name|queryWeight
-init|=
-name|idf
-operator|.
-name|getValue
-argument_list|()
-operator|*
-name|queryBoost
-decl_stmt|;
 return|return
-name|queryWeight
+name|weight
 operator|*
-name|queryWeight
+name|weight
 return|;
 block|}
 annotation|@
@@ -1294,15 +1269,15 @@ name|float
 name|queryNorm
 parameter_list|,
 name|float
-name|topLevelBoost
+name|boost
 parameter_list|)
 block|{
 comment|// we don't normalize with queryNorm at all, we just capture the top-level boost
 name|this
 operator|.
-name|topLevelBoost
+name|boost
 operator|=
-name|topLevelBoost
+name|boost
 expr_stmt|;
 name|this
 operator|.
@@ -1313,9 +1288,7 @@ operator|.
 name|getValue
 argument_list|()
 operator|*
-name|queryBoost
-operator|*
-name|topLevelBoost
+name|boost
 expr_stmt|;
 block|}
 block|}
@@ -1560,11 +1533,7 @@ name|match
 argument_list|(
 name|stats
 operator|.
-name|queryBoost
-operator|*
-name|stats
-operator|.
-name|topLevelBoost
+name|boost
 argument_list|,
 literal|"boost"
 argument_list|)

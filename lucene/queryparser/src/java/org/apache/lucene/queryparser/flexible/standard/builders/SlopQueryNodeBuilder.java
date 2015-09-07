@@ -302,16 +302,6 @@ operator|.
 name|build
 argument_list|()
 expr_stmt|;
-name|query
-operator|.
-name|setBoost
-argument_list|(
-name|pq
-operator|.
-name|getBoost
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 else|else
 block|{

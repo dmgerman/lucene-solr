@@ -1199,13 +1199,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|query
-operator|.
-name|setBoost
-argument_list|(
-literal|1.0f
-argument_list|)
-expr_stmt|;
 name|Query
 name|other
 init|=
@@ -1224,13 +1217,6 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|other
-operator|.
-name|setBoost
-argument_list|(
-literal|1.0f
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|"query equals itself is true"
@@ -1262,25 +1248,6 @@ name|other
 operator|.
 name|hashCode
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|other
-operator|.
-name|setBoost
-argument_list|(
-literal|2.0f
-argument_list|)
-expr_stmt|;
-name|assertFalse
-argument_list|(
-literal|"Different boost queries are not equal"
-argument_list|,
-name|query
-operator|.
-name|equals
-argument_list|(
-name|other
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|other

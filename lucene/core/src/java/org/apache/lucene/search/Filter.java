@@ -203,7 +203,7 @@ name|float
 name|norm
 parameter_list|,
 name|float
-name|topLevelBoost
+name|boost
 parameter_list|)
 block|{}
 annotation|@

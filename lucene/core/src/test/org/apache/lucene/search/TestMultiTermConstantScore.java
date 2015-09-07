@@ -1625,18 +1625,17 @@ argument_list|,
 name|T
 argument_list|)
 decl_stmt|;
-name|q
+name|search
 operator|.
-name|setBoost
+name|search
 argument_list|(
+operator|new
+name|BoostQuery
+argument_list|(
+name|q
+argument_list|,
 literal|100
 argument_list|)
-expr_stmt|;
-name|search
-operator|.
-name|search
-argument_list|(
-name|q
 argument_list|,
 operator|new
 name|SimpleCollector
@@ -1744,6 +1743,9 @@ comment|//
 name|Query
 name|q1
 init|=
+operator|new
+name|BoostQuery
+argument_list|(
 name|csrq
 argument_list|(
 literal|"data"
@@ -1756,15 +1758,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
-decl_stmt|;
-comment|// matches document #0
-name|q1
-operator|.
-name|setBoost
-argument_list|(
+argument_list|,
 literal|.1f
 argument_list|)
-expr_stmt|;
+decl_stmt|;
+comment|// matches document #0
 name|Query
 name|q2
 init|=
@@ -1891,6 +1889,9 @@ argument_list|)
 expr_stmt|;
 name|q1
 operator|=
+operator|new
+name|BoostQuery
+argument_list|(
 name|csrq
 argument_list|(
 literal|"data"
@@ -1907,15 +1908,11 @@ name|MultiTermQuery
 operator|.
 name|CONSTANT_SCORE_BOOLEAN_REWRITE
 argument_list|)
-expr_stmt|;
-comment|// matches document #0
-name|q1
-operator|.
-name|setBoost
-argument_list|(
+argument_list|,
 literal|.1f
 argument_list|)
 expr_stmt|;
+comment|// matches document #0
 name|q2
 operator|=
 name|csrq
@@ -2040,6 +2037,9 @@ argument_list|)
 expr_stmt|;
 name|q1
 operator|=
+operator|new
+name|BoostQuery
+argument_list|(
 name|csrq
 argument_list|(
 literal|"data"
@@ -2052,15 +2052,11 @@ name|T
 argument_list|,
 name|T
 argument_list|)
-expr_stmt|;
-comment|// matches document #0
-name|q1
-operator|.
-name|setBoost
-argument_list|(
+argument_list|,
 literal|10f
 argument_list|)
 expr_stmt|;
+comment|// matches document #0
 name|q2
 operator|=
 name|csrq

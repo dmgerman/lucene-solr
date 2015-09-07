@@ -113,9 +113,6 @@ name|reader
 argument_list|,
 name|fieldName
 argument_list|,
-name|getBoost
-argument_list|()
-argument_list|,
 name|qf
 argument_list|)
 return|;

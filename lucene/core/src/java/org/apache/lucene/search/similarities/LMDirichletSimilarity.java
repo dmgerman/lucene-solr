@@ -162,7 +162,7 @@ name|score
 init|=
 name|stats
 operator|.
-name|getTotalBoost
+name|getBoost
 argument_list|()
 operator|*
 call|(
@@ -246,7 +246,7 @@ if|if
 condition|(
 name|stats
 operator|.
-name|getTotalBoost
+name|getBoost
 argument_list|()
 operator|!=
 literal|1.0f
@@ -262,7 +262,7 @@ name|match
 argument_list|(
 name|stats
 operator|.
-name|getTotalBoost
+name|getBoost
 argument_list|()
 argument_list|,
 literal|"boost"

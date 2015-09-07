@@ -2664,23 +2664,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|q
-operator|.
-name|setBoost
-argument_list|(
-literal|2
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"field:\"? hi|hello ? ? ? test\"~5^2.0"
-argument_list|,
-name|q
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testWrappedPhrase
 specifier|public

@@ -206,20 +206,6 @@ name|SimScorer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ToStringUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * A Query that matches documents containing a term. This may be combined with  * other terms with a {@link BooleanQuery}.  */
 end_comment
@@ -453,9 +439,6 @@ name|similarity
 operator|.
 name|computeWeight
 argument_list|(
-name|getBoost
-argument_list|()
-argument_list|,
 name|collectionStats
 argument_list|,
 name|termStats
@@ -529,7 +512,7 @@ name|float
 name|queryNorm
 parameter_list|,
 name|float
-name|topLevelBoost
+name|boost
 parameter_list|)
 block|{
 name|stats
@@ -538,7 +521,7 @@ name|normalize
 argument_list|(
 name|queryNorm
 argument_list|,
-name|topLevelBoost
+name|boost
 argument_list|)
 expr_stmt|;
 block|}
@@ -1132,19 +1115,6 @@ name|term
 operator|.
 name|text
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|buffer
-operator|.
-name|append
-argument_list|(
-name|ToStringUtils
-operator|.
-name|boost
-argument_list|(
-name|getBoost
-argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 return|return

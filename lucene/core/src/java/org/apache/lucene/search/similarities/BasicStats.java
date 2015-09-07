@@ -82,35 +82,19 @@ name|long
 name|totalTermFreq
 decl_stmt|;
 comment|// -------------------------- Boost-related stuff --------------------------
-comment|/** Query's inner boost. */
-DECL|field|queryBoost
-specifier|protected
-specifier|final
-name|float
-name|queryBoost
-decl_stmt|;
-comment|/** Any outer query's boost. */
-DECL|field|topLevelBoost
-specifier|protected
-name|float
-name|topLevelBoost
-decl_stmt|;
 comment|/** For most Similarities, the immediate and the top level query boosts are    * not handled differently. Hence, this field is just the product of the    * other two. */
-DECL|field|totalBoost
+DECL|field|boost
 specifier|protected
 name|float
-name|totalBoost
+name|boost
 decl_stmt|;
-comment|/** Constructor. Sets the query boost. */
+comment|/** Constructor. */
 DECL|method|BasicStats
 specifier|public
 name|BasicStats
 parameter_list|(
 name|String
 name|field
-parameter_list|,
-name|float
-name|queryBoost
 parameter_list|)
 block|{
 name|this
@@ -119,17 +103,12 @@ name|field
 operator|=
 name|field
 expr_stmt|;
-name|this
-operator|.
-name|queryBoost
-operator|=
-name|queryBoost
-expr_stmt|;
-name|this
-operator|.
-name|totalBoost
-operator|=
-name|queryBoost
+name|normalize
+argument_list|(
+literal|1f
+argument_list|,
+literal|1f
+argument_list|)
 expr_stmt|;
 block|}
 comment|// ------------------------- Getter/setter methods -------------------------
@@ -303,10 +282,10 @@ name|rawNormalizationValue
 parameter_list|()
 block|{
 return|return
-name|queryBoost
+name|boost
 return|;
 block|}
-comment|/** No normalization is done. {@code topLevelBoost} is saved in the object,    * however. */
+comment|/** No normalization is done. {@code boost} is saved in the object, however. */
 annotation|@
 name|Override
 DECL|method|normalize
@@ -318,31 +297,25 @@ name|float
 name|queryNorm
 parameter_list|,
 name|float
-name|topLevelBoost
+name|boost
 parameter_list|)
 block|{
 name|this
 operator|.
-name|topLevelBoost
+name|boost
 operator|=
-name|topLevelBoost
-expr_stmt|;
-name|totalBoost
-operator|=
-name|queryBoost
-operator|*
-name|topLevelBoost
+name|boost
 expr_stmt|;
 block|}
 comment|/** Returns the total boost. */
-DECL|method|getTotalBoost
+DECL|method|getBoost
 specifier|public
 name|float
-name|getTotalBoost
+name|getBoost
 parameter_list|()
 block|{
 return|return
-name|totalBoost
+name|boost
 return|;
 block|}
 block|}
