@@ -2103,9 +2103,6 @@ name|double
 name|delta
 decl_stmt|;
 name|double
-name|beginAngle
-decl_stmt|;
-name|double
 name|newEndAngle
 init|=
 name|endAngle
@@ -2143,10 +2140,6 @@ name|newEndAngle
 operator|-
 name|startAngle
 expr_stmt|;
-name|beginAngle
-operator|=
-name|startAngle
-expr_stmt|;
 block|}
 else|else
 block|{
@@ -2175,10 +2168,6 @@ name|delta
 operator|=
 name|newStartAngle
 operator|-
-name|endAngle
-expr_stmt|;
-name|beginAngle
-operator|=
 name|endAngle
 expr_stmt|;
 block|}
@@ -3468,123 +3457,7 @@ name|this
 operator|.
 name|z
 decl_stmt|;
-comment|// For the X and Y values, we need a D value, which is the AVERAGE D value
-comment|// for two planes that pass through the two Z points determined here, for the axis in question.
-specifier|final
-name|GeoPoint
-index|[]
-name|zPoints
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|boundsInfo
-operator|.
-name|isSmallestMinX
-argument_list|(
-name|planetModel
-argument_list|)
-operator|||
-operator|!
-name|boundsInfo
-operator|.
-name|isLargestMaxX
-argument_list|(
-name|planetModel
-argument_list|)
-operator|||
-operator|!
-name|boundsInfo
-operator|.
-name|isSmallestMinY
-argument_list|(
-name|planetModel
-argument_list|)
-operator|||
-operator|!
-name|boundsInfo
-operator|.
-name|isLargestMaxY
-argument_list|(
-name|planetModel
-argument_list|)
-condition|)
-block|{
-if|if
-condition|(
-operator|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|A
-argument_list|)
-operator|>=
-name|MINIMUM_RESOLUTION
-operator|||
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|B
-argument_list|)
-operator|>=
-name|MINIMUM_RESOLUTION
-operator|)
-condition|)
-block|{
-comment|// We need unconstrained values in order to compute D
-name|zPoints
-operator|=
-name|findIntersections
-argument_list|(
-name|planetModel
-argument_list|,
-name|constructNormalizedZPlane
-argument_list|(
-name|A
-argument_list|,
-name|B
-argument_list|)
-argument_list|,
-name|NO_BOUNDS
-argument_list|,
-name|NO_BOUNDS
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|zPoints
-operator|.
-name|length
-operator|==
-literal|0
-condition|)
-block|{
-comment|// No intersections, so plane never intersects world.
-comment|//System.err.println("  plane never intersects world");
-return|return;
-block|}
-comment|//for (final GeoPoint p : zPoints) {
-comment|//  System.err.println("zPoint: "+p);
-comment|//}
-block|}
-else|else
-block|{
-name|zPoints
-operator|=
-literal|null
-expr_stmt|;
-block|}
-block|}
-else|else
-block|{
-name|zPoints
-operator|=
-literal|null
-expr_stmt|;
-block|}
-comment|// Do Z.
+comment|// Do Z.  This can be done simply because it is symmetrical.
 if|if
 condition|(
 operator|!
@@ -3725,6 +3598,111 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// First, compute common subexpressions
+specifier|final
+name|double
+name|k
+init|=
+literal|1.0
+operator|/
+operator|(
+operator|(
+name|x
+operator|*
+name|x
+operator|+
+name|y
+operator|*
+name|y
+operator|)
+operator|*
+name|planetModel
+operator|.
+name|ab
+operator|*
+name|planetModel
+operator|.
+name|ab
+operator|+
+name|z
+operator|*
+name|z
+operator|*
+name|planetModel
+operator|.
+name|c
+operator|*
+name|planetModel
+operator|.
+name|c
+operator|)
+decl_stmt|;
+specifier|final
+name|double
+name|abSquared
+init|=
+name|planetModel
+operator|.
+name|ab
+operator|*
+name|planetModel
+operator|.
+name|ab
+decl_stmt|;
+specifier|final
+name|double
+name|cSquared
+init|=
+name|planetModel
+operator|.
+name|c
+operator|*
+name|planetModel
+operator|.
+name|c
+decl_stmt|;
+specifier|final
+name|double
+name|ASquared
+init|=
+name|A
+operator|*
+name|A
+decl_stmt|;
+specifier|final
+name|double
+name|BSquared
+init|=
+name|B
+operator|*
+name|B
+decl_stmt|;
+specifier|final
+name|double
+name|CSquared
+init|=
+name|C
+operator|*
+name|C
+decl_stmt|;
+specifier|final
+name|double
+name|r
+init|=
+literal|2.0
+operator|*
+name|D
+operator|*
+name|k
+decl_stmt|;
+specifier|final
+name|double
+name|rSquared
+init|=
+name|r
+operator|*
+name|r
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -3744,182 +3722,675 @@ name|planetModel
 argument_list|)
 condition|)
 block|{
+comment|// For min/max x, we need to use lagrange multipliers.
+comment|//
+comment|// For this, we need grad(F(x,y,z)) = (dF/dx, dF/dy, dF/dz).
+comment|//
+comment|// Minimize and maximize f(x,y,z) = x, with respect to g(x,y,z) = Ax + By + Cz - D and h(x,y,z) = x^2/ab^2 + y^2/ab^2 + z^2/c^2 - 1
+comment|//
+comment|// grad(f(x,y,z)) = (1,0,0)
+comment|// grad(g(x,y,z)) = (A,B,C)
+comment|// grad(h(x,y,z)) = (2x/ab^2,2y/ab^2,2z/c^2)
+comment|//
+comment|// Equations we need to simultaneously solve:
+comment|//
+comment|// grad(f(x,y,z)) = l * grad(g(x,y,z)) + m * grad(h(x,y,z))
+comment|// g(x,y,z) = 0
+comment|// h(x,y,z) = 0
+comment|//
+comment|// Equations:
+comment|// 1 = l*A + m*2x/ab^2
+comment|// 0 = l*B + m*2y/ab^2
+comment|// 0 = l*C + m*2z/c^2
+comment|// Ax + By + Cz + D = 0
+comment|// x^2/ab^2 + y^2/ab^2 + z^2/c^2 - 1 = 0
+comment|//
+comment|// Solve for x,y,z in terms of (l, m):
+comment|//
+comment|// x = ((1 - l*A) * ab^2 ) / (2 * m)
+comment|// y = (-l*B * ab^2) / ( 2 * m)
+comment|// z = (-l*C * c^2)/ (2 * m)
+comment|//
+comment|// Two equations, two unknowns:
+comment|//
+comment|// A * (((1 - l*A) * ab^2 ) / (2 * m)) + B * ((-l*B * ab^2) / ( 2 * m)) + C * ((-l*C * c^2)/ (2 * m)) + D = 0
+comment|//
+comment|// and
+comment|//
+comment|// (((1 - l*A) * ab^2 ) / (2 * m))^2/ab^2 + ((-l*B * ab^2) / ( 2 * m))^2/ab^2 + ((-l*C * c^2)/ (2 * m))^2/c^2 - 1 = 0
+comment|//
+comment|// Simple: solve for l and m, then find x from it.
+comment|//
+comment|// (a) Use first equation to find l in terms of m.
+comment|//
+comment|// A * (((1 - l*A) * ab^2 ) / (2 * m)) + B * ((-l*B * ab^2) / ( 2 * m)) + C * ((-l*C * c^2)/ (2 * m)) + D = 0
+comment|// A * ((1 - l*A) * ab^2 ) + B * (-l*B * ab^2) + C * (-l*C * c^2) + D * 2 * m = 0
+comment|// A * ab^2 - l*A^2* ab^2 - B^2 * l * ab^2 - C^2 * l * c^2 + D * 2 * m = 0
+comment|// - l *(A^2* ab^2 + B^2 * ab^2 + C^2 * c^2) + (A * ab^2 + D * 2 * m) = 0
+comment|// l = (A * ab^2 + D * 2 * m) / (A^2* ab^2 + B^2 * ab^2 + C^2 * c^2)
+comment|// l = A * ab^2 / (A^2* ab^2 + B^2 * ab^2 + C^2 * c^2) + m * 2 * D / (A^2* ab^2 + B^2 * ab^2 + C^2 * c^2)
+comment|//
+comment|// For convenience:
+comment|//
+comment|// k = 1.0 / (A^2* ab^2 + B^2 * ab^2 + C^2 * c^2)
+comment|//
+comment|// Then:
+comment|//
+comment|// l = A * ab^2 * k + m * 2 * D * k
+comment|// l = k * (A*ab^2 + m*2*D)
+comment|//
+comment|// For further convenience:
+comment|//
+comment|// q = A*ab^2*k
+comment|// r = 2*D*k
+comment|//
+comment|// l = (r*m + q)
+comment|// l^2 = (r^2 * m^2 + 2*r*m*q + q^2)
+comment|//
+comment|// (b) Simplify the second equation before substitution
+comment|//
+comment|// (((1 - l*A) * ab^2 ) / (2 * m))^2/ab^2 + ((-l*B * ab^2) / ( 2 * m))^2/ab^2 + ((-l*C * c^2)/ (2 * m))^2/c^2 - 1 = 0
+comment|// ((1 - l*A) * ab^2 )^2/ab^2 + (-l*B * ab^2)^2/ab^2 + (-l*C * c^2)^2/c^2 = 4 * m^2
+comment|// (1 - l*A)^2 * ab^2 + (-l*B)^2 * ab^2 + (-l*C)^2 * c^2 = 4 * m^2
+comment|// (1 - 2*l*A + l^2*A^2) * ab^2 + l^2*B^2 * ab^2 + l^2*C^2 * c^2 = 4 * m^2
+comment|// ab^2 - 2*A*ab^2*l + A^2*ab^2*l^2 + B^2*ab^2*l^2 + C^2*c^2*l^2 - 4*m^2 = 0
+comment|//
+comment|// (c) Substitute for l, l^2
+comment|//
+comment|// ab^2 - 2*A*ab^2*(r*m + q) + A^2*ab^2*(r^2 * m^2 + 2*r*m*q + q^2) + B^2*ab^2*(r^2 * m^2 + 2*r*m*q + q^2) + C^2*c^2*(r^2 * m^2 + 2*r*m*q + q^2) - 4*m^2 = 0
+comment|// ab^2 - 2*A*ab^2*r*m - 2*A*ab^2*q + A^2*ab^2*r^2*m^2 + 2*A^2*ab^2*r*q*m +
+comment|//        A^2*ab^2*q^2 + B^2*ab^2*r^2*m^2 + 2*B^2*ab^2*r*q*m + B^2*ab^2*q^2 + C^2*c^2*r^2*m^2 + 2*C^2*c^2*r*q*m + C^2*c^2*q^2 - 4*m^2 = 0
+comment|//
+comment|// (d) Group
+comment|//
+comment|// m^2 * [A^2*ab^2*r^2 + B^2*ab^2*r^2 + C^2*c^2*r^2 - 4] +
+comment|// m * [- 2*A*ab^2*r + 2*A^2*ab^2*r*q + 2*B^2*ab^2*r*q + 2*C^2*c^2*r*q] +
+comment|// [ab^2 - 2*A*ab^2*q + A^2*ab^2*q^2 + B^2*ab^2*q^2 + C^2*c^2*q^2]  =  0
 comment|//System.err.println("    computing X bound");
-if|if
-condition|(
-operator|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|B
-argument_list|)
-operator|>=
-name|MINIMUM_RESOLUTION
-operator|||
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|C
-argument_list|)
-operator|>=
-name|MINIMUM_RESOLUTION
-operator|)
-condition|)
-block|{
-comment|// NOT a degenerate case.  Compute D.
-comment|//System.err.println("    not degenerate; B="+B+"; C="+C);
+comment|// Useful subexpressions for this bound
 specifier|final
-name|Plane
-name|originPlane
-init|=
-name|constructNormalizedXPlane
-argument_list|(
-name|B
-argument_list|,
-name|C
-argument_list|,
-literal|0.0
-argument_list|)
-decl_stmt|;
 name|double
-name|DValue
+name|q
 init|=
-literal|0.0
+name|A
+operator|*
+name|abSquared
+operator|*
+name|k
+decl_stmt|;
+specifier|final
+name|double
+name|qSquared
+init|=
+name|q
+operator|*
+name|q
+decl_stmt|;
+comment|// Quadratic equation
+specifier|final
+name|double
+name|a
+init|=
+name|ASquared
+operator|*
+name|abSquared
+operator|*
+name|rSquared
+operator|+
+name|BSquared
+operator|*
+name|abSquared
+operator|*
+name|rSquared
+operator|+
+name|CSquared
+operator|*
+name|cSquared
+operator|*
+name|rSquared
+operator|-
+literal|4.0
+decl_stmt|;
+specifier|final
+name|double
+name|b
+init|=
+operator|-
+literal|2.0
+operator|*
+name|A
+operator|*
+name|abSquared
+operator|*
+name|r
+operator|+
+literal|2.0
+operator|*
+name|ASquared
+operator|*
+name|abSquared
+operator|*
+name|r
+operator|*
+name|q
+operator|+
+literal|2.0
+operator|*
+name|BSquared
+operator|*
+name|abSquared
+operator|*
+name|r
+operator|*
+name|q
+operator|+
+literal|2.0
+operator|*
+name|CSquared
+operator|*
+name|cSquared
+operator|*
+name|r
+operator|*
+name|q
+decl_stmt|;
+specifier|final
+name|double
+name|c
+init|=
+name|abSquared
+operator|-
+literal|2.0
+operator|*
+name|A
+operator|*
+name|abSquared
+operator|*
+name|q
+operator|+
+name|ASquared
+operator|*
+name|abSquared
+operator|*
+name|qSquared
+operator|+
+name|BSquared
+operator|*
+name|abSquared
+operator|*
+name|qSquared
+operator|+
+name|CSquared
+operator|*
+name|cSquared
+operator|*
+name|qSquared
 decl_stmt|;
 if|if
 condition|(
-name|zPoints
-operator|!=
-literal|null
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|a
+argument_list|)
+operator|>=
+name|MINIMUM_RESOLUTION_SQUARED
 condition|)
 block|{
-for|for
-control|(
+specifier|final
+name|double
+name|sqrtTerm
+init|=
+name|b
+operator|*
+name|b
+operator|-
+literal|4.0
+operator|*
+name|a
+operator|*
+name|c
+decl_stmt|;
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|sqrtTerm
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION_SQUARED
+condition|)
+block|{
+comment|// One solution
+specifier|final
+name|double
+name|m
+init|=
+operator|-
+name|b
+operator|/
+operator|(
+literal|2.0
+operator|*
+name|a
+operator|)
+decl_stmt|;
+specifier|final
+name|double
+name|l
+init|=
+name|r
+operator|*
+name|m
+operator|+
+name|q
+decl_stmt|;
+comment|// x = ((1 - l*A) * ab^2 ) / (2 * m)
+comment|// y = (-l*B * ab^2) / ( 2 * m)
+comment|// z = (-l*C * c^2)/ (2 * m)
+specifier|final
+name|double
+name|denom0
+init|=
+literal|0.5
+operator|/
+name|m
+decl_stmt|;
 specifier|final
 name|GeoPoint
-name|p
-range|:
-name|zPoints
-control|)
-block|{
-specifier|final
-name|double
-name|zValue
+name|thePoint
 init|=
-name|originPlane
-operator|.
-name|evaluate
+operator|new
+name|GeoPoint
 argument_list|(
-name|p
-argument_list|)
-decl_stmt|;
-comment|//System.err.println("    originPlane.evaluate(zpoint)="+zValue);
-name|DValue
-operator|+=
-name|zValue
-expr_stmt|;
-block|}
-name|DValue
-operator|/=
 operator|(
-name|double
+literal|1.0
+operator|-
+name|l
+operator|*
+name|A
 operator|)
-name|zPoints
-operator|.
-name|length
-expr_stmt|;
-block|}
-specifier|final
-name|Plane
-name|normalizedXPlane
-init|=
-name|constructNormalizedXPlane
-argument_list|(
-name|B
-argument_list|,
-name|C
+operator|*
+name|abSquared
+operator|*
+name|denom0
 argument_list|,
 operator|-
-name|DValue
+name|l
+operator|*
+name|B
+operator|*
+name|abSquared
+operator|*
+name|denom0
+argument_list|,
+operator|-
+name|l
+operator|*
+name|C
+operator|*
+name|cSquared
+operator|*
+name|denom0
 argument_list|)
 decl_stmt|;
-specifier|final
-name|GeoPoint
-index|[]
-name|points
-init|=
-name|findIntersections
-argument_list|(
-name|planetModel
-argument_list|,
-name|normalizedXPlane
-argument_list|,
-name|bounds
-argument_list|,
-name|NO_BOUNDS
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-specifier|final
-name|GeoPoint
-name|point
-range|:
-name|points
-control|)
-block|{
-assert|assert
-name|planetModel
-operator|.
-name|pointOnSurface
-argument_list|(
-name|point
-argument_list|)
-assert|;
-comment|//System.err.println("      Point = "+point+"; this.evaluate(point)="+this.evaluate(point)+"; normalizedXPlane.evaluate(point)="+normalizedXPlane.evaluate(point));
+comment|//Math is not quite accurate enough for this
+comment|//assert planetModel.pointOnSurface(thePoint): "Point: "+thePoint+"; Planetmodel="+planetModel+"; A="+A+" B="+B+" C="+C+" D="+D+" planetfcn="+
+comment|//  (thePoint.x*thePoint.x*planetModel.inverseAb*planetModel.inverseAb + thePoint.y*thePoint.y*planetModel.inverseAb*planetModel.inverseAb + thePoint.z*thePoint.z*planetModel.inverseC*planetModel.inverseC);
+comment|//assert evaluateIsZero(thePoint): "Evaluation of point: "+evaluate(thePoint);
 name|addPoint
 argument_list|(
 name|boundsInfo
 argument_list|,
 name|bounds
 argument_list|,
-name|point
+name|thePoint
 argument_list|)
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|sqrtTerm
+operator|>
+literal|0.0
+condition|)
+block|{
+comment|// Two solutions
+specifier|final
+name|double
+name|sqrtResult
+init|=
+name|Math
+operator|.
+name|sqrt
+argument_list|(
+name|sqrtTerm
+argument_list|)
+decl_stmt|;
+specifier|final
+name|double
+name|commonDenom
+init|=
+literal|0.5
+operator|/
+name|a
+decl_stmt|;
+specifier|final
+name|double
+name|m1
+init|=
+operator|(
+operator|-
+name|b
+operator|+
+name|sqrtResult
+operator|)
+operator|*
+name|commonDenom
+decl_stmt|;
+assert|assert
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|a
+operator|*
+name|m1
+operator|*
+name|m1
+operator|+
+name|b
+operator|*
+name|m1
+operator|+
+name|c
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+assert|;
+specifier|final
+name|double
+name|m2
+init|=
+operator|(
+operator|-
+name|b
+operator|-
+name|sqrtResult
+operator|)
+operator|*
+name|commonDenom
+decl_stmt|;
+assert|assert
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|a
+operator|*
+name|m2
+operator|*
+name|m2
+operator|+
+name|b
+operator|*
+name|m2
+operator|+
+name|c
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+assert|;
+specifier|final
+name|double
+name|l1
+init|=
+name|r
+operator|*
+name|m1
+operator|+
+name|q
+decl_stmt|;
+specifier|final
+name|double
+name|l2
+init|=
+name|r
+operator|*
+name|m2
+operator|+
+name|q
+decl_stmt|;
+comment|// x = ((1 - l*A) * ab^2 ) / (2 * m)
+comment|// y = (-l*B * ab^2) / ( 2 * m)
+comment|// z = (-l*C * c^2)/ (2 * m)
+specifier|final
+name|double
+name|denom1
+init|=
+literal|0.5
+operator|/
+name|m1
+decl_stmt|;
+specifier|final
+name|double
+name|denom2
+init|=
+literal|0.5
+operator|/
+name|m2
+decl_stmt|;
+specifier|final
+name|GeoPoint
+name|thePoint1
+init|=
+operator|new
+name|GeoPoint
+argument_list|(
+operator|(
+literal|1.0
+operator|-
+name|l1
+operator|*
+name|A
+operator|)
+operator|*
+name|abSquared
+operator|*
+name|denom1
+argument_list|,
+operator|-
+name|l1
+operator|*
+name|B
+operator|*
+name|abSquared
+operator|*
+name|denom1
+argument_list|,
+operator|-
+name|l1
+operator|*
+name|C
+operator|*
+name|cSquared
+operator|*
+name|denom1
+argument_list|)
+decl_stmt|;
+specifier|final
+name|GeoPoint
+name|thePoint2
+init|=
+operator|new
+name|GeoPoint
+argument_list|(
+operator|(
+literal|1.0
+operator|-
+name|l2
+operator|*
+name|A
+operator|)
+operator|*
+name|abSquared
+operator|*
+name|denom2
+argument_list|,
+operator|-
+name|l2
+operator|*
+name|B
+operator|*
+name|abSquared
+operator|*
+name|denom2
+argument_list|,
+operator|-
+name|l2
+operator|*
+name|C
+operator|*
+name|cSquared
+operator|*
+name|denom2
+argument_list|)
+decl_stmt|;
+comment|//Math is not quite accurate enough for this
+comment|//assert planetModel.pointOnSurface(thePoint1): "Point1: "+thePoint1+"; Planetmodel="+planetModel+"; A="+A+" B="+B+" C="+C+" D="+D+" planetfcn="+
+comment|//  (thePoint1.x*thePoint1.x*planetModel.inverseAb*planetModel.inverseAb + thePoint1.y*thePoint1.y*planetModel.inverseAb*planetModel.inverseAb + thePoint1.z*thePoint1.z*planetModel.inverseC*planetModel.inverseC);
+comment|//assert planetModel.pointOnSurface(thePoint2): "Point1: "+thePoint2+"; Planetmodel="+planetModel+"; A="+A+" B="+B+" C="+C+" D="+D+" planetfcn="+
+comment|//  (thePoint2.x*thePoint2.x*planetModel.inverseAb*planetModel.inverseAb + thePoint2.y*thePoint2.y*planetModel.inverseAb*planetModel.inverseAb + thePoint2.z*thePoint2.z*planetModel.inverseC*planetModel.inverseC);
+comment|//assert evaluateIsZero(thePoint1): "Evaluation of point1: "+evaluate(thePoint1);
+comment|//assert evaluateIsZero(thePoint2): "Evaluation of point2: "+evaluate(thePoint2);
+name|addPoint
+argument_list|(
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|thePoint1
+argument_list|)
+expr_stmt|;
+name|addPoint
+argument_list|(
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|thePoint2
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Since b==c==0, any plane including the X axis suffices.
-comment|//System.err.println("      Perpendicular to x");
+comment|// No solutions
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|b
+argument_list|)
+operator|>
+name|MINIMUM_RESOLUTION_SQUARED
+condition|)
+block|{
+comment|//System.err.println("Not x quadratic");
+comment|// a = 0, so m = - c / b
+specifier|final
+name|double
+name|m
+init|=
+operator|-
+name|c
+operator|/
+name|b
+decl_stmt|;
+specifier|final
+name|double
+name|l
+init|=
+name|r
+operator|*
+name|m
+operator|+
+name|q
+decl_stmt|;
+comment|// x = ((1 - l*A) * ab^2 ) / (2 * m)
+comment|// y = (-l*B * ab^2) / ( 2 * m)
+comment|// z = (-l*C * c^2)/ (2 * m)
+specifier|final
+name|double
+name|denom0
+init|=
+literal|0.5
+operator|/
+name|m
+decl_stmt|;
 specifier|final
 name|GeoPoint
-index|[]
-name|points
+name|thePoint
 init|=
-name|findIntersections
+operator|new
+name|GeoPoint
 argument_list|(
-name|planetModel
+operator|(
+literal|1.0
+operator|-
+name|l
+operator|*
+name|A
+operator|)
+operator|*
+name|abSquared
+operator|*
+name|denom0
 argument_list|,
-name|normalZPlane
+operator|-
+name|l
+operator|*
+name|B
+operator|*
+name|abSquared
+operator|*
+name|denom0
 argument_list|,
-name|NO_BOUNDS
-argument_list|,
-name|NO_BOUNDS
+operator|-
+name|l
+operator|*
+name|C
+operator|*
+name|cSquared
+operator|*
+name|denom0
 argument_list|)
 decl_stmt|;
-name|boundsInfo
-operator|.
-name|addXValue
+comment|//Math is not quite accurate enough for this
+comment|//assert planetModel.pointOnSurface(thePoint): "Point: "+thePoint+"; Planetmodel="+planetModel+"; A="+A+" B="+B+" C="+C+" D="+D+" planetfcn="+
+comment|//  (thePoint.x*thePoint.x*planetModel.inverseAb*planetModel.inverseAb + thePoint.y*thePoint.y*planetModel.inverseAb*planetModel.inverseAb + thePoint.z*thePoint.z*planetModel.inverseC*planetModel.inverseC);
+comment|//assert evaluateIsZero(thePoint): "Evaluation of point: "+evaluate(thePoint);
+name|addPoint
 argument_list|(
-name|points
-index|[
-literal|0
-index|]
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|thePoint
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Something went very wrong; a = b = 0
 block|}
 block|}
 comment|// Do Y
@@ -3942,177 +4413,673 @@ name|planetModel
 argument_list|)
 condition|)
 block|{
+comment|// For min/max x, we need to use lagrange multipliers.
+comment|//
+comment|// For this, we need grad(F(x,y,z)) = (dF/dx, dF/dy, dF/dz).
+comment|//
+comment|// Minimize and maximize f(x,y,z) = y, with respect to g(x,y,z) = Ax + By + Cz - D and h(x,y,z) = x^2/ab^2 + y^2/ab^2 + z^2/c^2 - 1
+comment|//
+comment|// grad(f(x,y,z)) = (0,1,0)
+comment|// grad(g(x,y,z)) = (A,B,C)
+comment|// grad(h(x,y,z)) = (2x/ab^2,2y/ab^2,2z/c^2)
+comment|//
+comment|// Equations we need to simultaneously solve:
+comment|//
+comment|// grad(f(x,y,z)) = l * grad(g(x,y,z)) + m * grad(h(x,y,z))
+comment|// g(x,y,z) = 0
+comment|// h(x,y,z) = 0
+comment|//
+comment|// Equations:
+comment|// 0 = l*A + m*2x/ab^2
+comment|// 1 = l*B + m*2y/ab^2
+comment|// 0 = l*C + m*2z/c^2
+comment|// Ax + By + Cz + D = 0
+comment|// x^2/ab^2 + y^2/ab^2 + z^2/c^2 - 1 = 0
+comment|//
+comment|// Solve for x,y,z in terms of (l, m):
+comment|//
+comment|// x = (-l*A * ab^2 ) / (2 * m)
+comment|// y = ((1 - l*B) * ab^2) / ( 2 * m)
+comment|// z = (-l*C * c^2)/ (2 * m)
+comment|//
+comment|// Two equations, two unknowns:
+comment|//
+comment|// A * ((-l*A * ab^2 ) / (2 * m)) + B * (((1 - l*B) * ab^2) / ( 2 * m)) + C * ((-l*C * c^2)/ (2 * m)) + D = 0
+comment|//
+comment|// and
+comment|//
+comment|// ((-l*A * ab^2 ) / (2 * m))^2/ab^2 + (((1 - l*B) * ab^2) / ( 2 * m))^2/ab^2 + ((-l*C * c^2)/ (2 * m))^2/c^2 - 1 = 0
+comment|//
+comment|// Simple: solve for l and m, then find y from it.
+comment|//
+comment|// (a) Use first equation to find l in terms of m.
+comment|//
+comment|// A * ((-l*A * ab^2 ) / (2 * m)) + B * (((1 - l*B) * ab^2) / ( 2 * m)) + C * ((-l*C * c^2)/ (2 * m)) + D = 0
+comment|// A * (-l*A * ab^2 ) + B * ((1-l*B) * ab^2) + C * (-l*C * c^2) + D * 2 * m = 0
+comment|// -A^2*l*ab^2 + B*ab^2 - l*B^2*ab^2 - C^2*l*c^2 + D*2*m = 0
+comment|// - l *(A^2* ab^2 + B^2 * ab^2 + C^2 * c^2) + (B * ab^2 + D * 2 * m) = 0
+comment|// l = (B * ab^2 + D * 2 * m) / (A^2* ab^2 + B^2 * ab^2 + C^2 * c^2)
+comment|// l = B * ab^2 / (A^2* ab^2 + B^2 * ab^2 + C^2 * c^2) + m * 2 * D / (A^2* ab^2 + B^2 * ab^2 + C^2 * c^2)
+comment|//
+comment|// For convenience:
+comment|//
+comment|// k = 1.0 / (A^2* ab^2 + B^2 * ab^2 + C^2 * c^2)
+comment|//
+comment|// Then:
+comment|//
+comment|// l = B * ab^2 * k + m * 2 * D * k
+comment|// l = k * (B*ab^2 + m*2*D)
+comment|//
+comment|// For further convenience:
+comment|//
+comment|// q = B*ab^2*k
+comment|// r = 2*D*k
+comment|//
+comment|// l = (r*m + q)
+comment|// l^2 = (r^2 * m^2 + 2*r*m*q + q^2)
+comment|//
+comment|// (b) Simplify the second equation before substitution
+comment|//
+comment|// ((-l*A * ab^2 ) / (2 * m))^2/ab^2 + (((1 - l*B) * ab^2) / ( 2 * m))^2/ab^2 + ((-l*C * c^2)/ (2 * m))^2/c^2 - 1 = 0
+comment|// (-l*A * ab^2 )^2/ab^2 + ((1 - l*B) * ab^2)^2/ab^2 + (-l*C * c^2)^2/c^2 = 4 * m^2
+comment|// (-l*A)^2 * ab^2 + (1 - l*B)^2 * ab^2 + (-l*C)^2 * c^2 = 4 * m^2
+comment|// l^2*A^2 * ab^2 + (1 - 2*l*B + l^2*B^2) * ab^2 + l^2*C^2 * c^2 = 4 * m^2
+comment|// A^2*ab^2*l^2 + ab^2 - 2*B*ab^2*l + B^2*ab^2*l^2 + C^2*c^2*l^2 - 4*m^2 = 0
+comment|//
+comment|// (c) Substitute for l, l^2
+comment|//
+comment|// A^2*ab^2*(r^2 * m^2 + 2*r*m*q + q^2) + ab^2 - 2*B*ab^2*(r*m + q) + B^2*ab^2*(r^2 * m^2 + 2*r*m*q + q^2) + C^2*c^2*(r^2 * m^2 + 2*r*m*q + q^2) - 4*m^2 = 0
+comment|// A^2*ab^2*r^2*m^2 + 2*A^2*ab^2*r*q*m + A^2*ab^2*q^2 + ab^2 - 2*B*ab^2*r*m - 2*B*ab^2*q + B^2*ab^2*r^2*m^2 +
+comment|//    2*B^2*ab^2*r*q*m + B^2*ab^2*q^2 + C^2*c^2*r^2*m^2 + 2*C^2*c^2*r*q*m + C^2*c^2*q^2 - 4*m^2 = 0
+comment|//
+comment|// (d) Group
+comment|//
+comment|// m^2 * [A^2*ab^2*r^2 + B^2*ab^2*r^2 + C^2*c^2*r^2 - 4] +
+comment|// m * [2*A^2*ab^2*r*q - 2*B*ab^2*r + 2*B^2*ab^2*r*q + 2*C^2*c^2*r*q] +
+comment|// [A^2*ab^2*q^2 + ab^2 - 2*B*ab^2*q + B^2*ab^2*q^2 + C^2*c^2*q^2]  =  0
 comment|//System.err.println("    computing Y bound");
-if|if
-condition|(
-operator|(
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|A
-argument_list|)
-operator|>=
-name|MINIMUM_RESOLUTION
-operator|||
-name|Math
-operator|.
-name|abs
-argument_list|(
-name|C
-argument_list|)
-operator|>=
-name|MINIMUM_RESOLUTION
-operator|)
-condition|)
-block|{
-comment|// NOT a degenerate case.  Compute D.
-comment|//System.err.println("    not degenerate");
+comment|// Useful subexpressions for this bound
 specifier|final
-name|Plane
-name|originPlane
-init|=
-name|constructNormalizedYPlane
-argument_list|(
-name|A
-argument_list|,
-name|C
-argument_list|,
-literal|0.0
-argument_list|)
-decl_stmt|;
 name|double
-name|DValue
+name|q
 init|=
-literal|0.0
+name|B
+operator|*
+name|abSquared
+operator|*
+name|k
+decl_stmt|;
+specifier|final
+name|double
+name|qSquared
+init|=
+name|q
+operator|*
+name|q
+decl_stmt|;
+comment|// Quadratic equation
+specifier|final
+name|double
+name|a
+init|=
+name|ASquared
+operator|*
+name|abSquared
+operator|*
+name|rSquared
+operator|+
+name|BSquared
+operator|*
+name|abSquared
+operator|*
+name|rSquared
+operator|+
+name|CSquared
+operator|*
+name|cSquared
+operator|*
+name|rSquared
+operator|-
+literal|4.0
+decl_stmt|;
+specifier|final
+name|double
+name|b
+init|=
+literal|2.0
+operator|*
+name|ASquared
+operator|*
+name|abSquared
+operator|*
+name|r
+operator|*
+name|q
+operator|-
+literal|2.0
+operator|*
+name|B
+operator|*
+name|abSquared
+operator|*
+name|r
+operator|+
+literal|2.0
+operator|*
+name|BSquared
+operator|*
+name|abSquared
+operator|*
+name|r
+operator|*
+name|q
+operator|+
+literal|2.0
+operator|*
+name|CSquared
+operator|*
+name|cSquared
+operator|*
+name|r
+operator|*
+name|q
+decl_stmt|;
+specifier|final
+name|double
+name|c
+init|=
+name|ASquared
+operator|*
+name|abSquared
+operator|*
+name|qSquared
+operator|+
+name|abSquared
+operator|-
+literal|2.0
+operator|*
+name|B
+operator|*
+name|abSquared
+operator|*
+name|q
+operator|+
+name|BSquared
+operator|*
+name|abSquared
+operator|*
+name|qSquared
+operator|+
+name|CSquared
+operator|*
+name|cSquared
+operator|*
+name|qSquared
 decl_stmt|;
 if|if
 condition|(
-name|zPoints
-operator|!=
-literal|null
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|a
+argument_list|)
+operator|>=
+name|MINIMUM_RESOLUTION_SQUARED
 condition|)
 block|{
-for|for
-control|(
+specifier|final
+name|double
+name|sqrtTerm
+init|=
+name|b
+operator|*
+name|b
+operator|-
+literal|4.0
+operator|*
+name|a
+operator|*
+name|c
+decl_stmt|;
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|sqrtTerm
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION_SQUARED
+condition|)
+block|{
+comment|// One solution
+specifier|final
+name|double
+name|m
+init|=
+operator|-
+name|b
+operator|/
+operator|(
+literal|2.0
+operator|*
+name|a
+operator|)
+decl_stmt|;
+specifier|final
+name|double
+name|l
+init|=
+name|r
+operator|*
+name|m
+operator|+
+name|q
+decl_stmt|;
+comment|// x = (-l*A * ab^2 ) / (2 * m)
+comment|// y = ((1.0-l*B) * ab^2) / ( 2 * m)
+comment|// z = (-l*C * c^2)/ (2 * m)
+specifier|final
+name|double
+name|denom0
+init|=
+literal|0.5
+operator|/
+name|m
+decl_stmt|;
 specifier|final
 name|GeoPoint
-name|p
-range|:
-name|zPoints
-control|)
-block|{
-name|DValue
-operator|+=
-name|originPlane
-operator|.
-name|evaluate
-argument_list|(
-name|p
-argument_list|)
-expr_stmt|;
-block|}
-name|DValue
-operator|/=
-operator|(
-name|double
-operator|)
-name|zPoints
-operator|.
-name|length
-expr_stmt|;
-block|}
-specifier|final
-name|Plane
-name|normalizedYPlane
+name|thePoint
 init|=
-name|constructNormalizedYPlane
+operator|new
+name|GeoPoint
 argument_list|(
+operator|-
+name|l
+operator|*
 name|A
+operator|*
+name|abSquared
+operator|*
+name|denom0
 argument_list|,
-name|C
+operator|(
+literal|1.0
+operator|-
+name|l
+operator|*
+name|B
+operator|)
+operator|*
+name|abSquared
+operator|*
+name|denom0
 argument_list|,
 operator|-
-name|DValue
+name|l
+operator|*
+name|C
+operator|*
+name|cSquared
+operator|*
+name|denom0
 argument_list|)
 decl_stmt|;
-specifier|final
-name|GeoPoint
-index|[]
-name|points
-init|=
-name|findIntersections
-argument_list|(
-name|planetModel
-argument_list|,
-name|normalizedYPlane
-argument_list|,
-name|bounds
-argument_list|,
-name|NO_BOUNDS
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-specifier|final
-name|GeoPoint
-name|point
-range|:
-name|points
-control|)
-block|{
-assert|assert
-name|planetModel
-operator|.
-name|pointOnSurface
-argument_list|(
-name|point
-argument_list|)
-assert|;
-comment|//System.err.println("      Point = "+point+"; this.evaluate(point)="+this.evaluate(point)+"; normalizedYPlane.evaluate(point)="+normalizedYPlane.evaluate(point));
+comment|//Math is not quite accurate enough for this
+comment|//assert planetModel.pointOnSurface(thePoint): "Point: "+thePoint+"; Planetmodel="+planetModel+"; A="+A+" B="+B+" C="+C+" D="+D+" planetfcn="+
+comment|//  (thePoint1.x*thePoint.x*planetModel.inverseAb*planetModel.inverseAb + thePoint.y*thePoint.y*planetModel.inverseAb*planetModel.inverseAb + thePoint.z*thePoint.z*planetModel.inverseC*planetModel.inverseC);
+comment|//assert evaluateIsZero(thePoint): "Evaluation of point: "+evaluate(thePoint);
 name|addPoint
 argument_list|(
 name|boundsInfo
 argument_list|,
 name|bounds
 argument_list|,
-name|point
+name|thePoint
 argument_list|)
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|sqrtTerm
+operator|>
+literal|0.0
+condition|)
+block|{
+comment|// Two solutions
+specifier|final
+name|double
+name|sqrtResult
+init|=
+name|Math
+operator|.
+name|sqrt
+argument_list|(
+name|sqrtTerm
+argument_list|)
+decl_stmt|;
+specifier|final
+name|double
+name|commonDenom
+init|=
+literal|0.5
+operator|/
+name|a
+decl_stmt|;
+specifier|final
+name|double
+name|m1
+init|=
+operator|(
+operator|-
+name|b
+operator|+
+name|sqrtResult
+operator|)
+operator|*
+name|commonDenom
+decl_stmt|;
+assert|assert
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|a
+operator|*
+name|m1
+operator|*
+name|m1
+operator|+
+name|b
+operator|*
+name|m1
+operator|+
+name|c
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+assert|;
+specifier|final
+name|double
+name|m2
+init|=
+operator|(
+operator|-
+name|b
+operator|-
+name|sqrtResult
+operator|)
+operator|*
+name|commonDenom
+decl_stmt|;
+assert|assert
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|a
+operator|*
+name|m2
+operator|*
+name|m2
+operator|+
+name|b
+operator|*
+name|m2
+operator|+
+name|c
+argument_list|)
+operator|<
+name|MINIMUM_RESOLUTION
+assert|;
+specifier|final
+name|double
+name|l1
+init|=
+name|r
+operator|*
+name|m1
+operator|+
+name|q
+decl_stmt|;
+specifier|final
+name|double
+name|l2
+init|=
+name|r
+operator|*
+name|m2
+operator|+
+name|q
+decl_stmt|;
+comment|// x = (-l*A * ab^2 ) / (2 * m)
+comment|// y = ((1.0-l*B) * ab^2) / ( 2 * m)
+comment|// z = (-l*C * c^2)/ (2 * m)
+specifier|final
+name|double
+name|denom1
+init|=
+literal|0.5
+operator|/
+name|m1
+decl_stmt|;
+specifier|final
+name|double
+name|denom2
+init|=
+literal|0.5
+operator|/
+name|m2
+decl_stmt|;
+specifier|final
+name|GeoPoint
+name|thePoint1
+init|=
+operator|new
+name|GeoPoint
+argument_list|(
+operator|-
+name|l1
+operator|*
+name|A
+operator|*
+name|abSquared
+operator|*
+name|denom1
+argument_list|,
+operator|(
+literal|1.0
+operator|-
+name|l1
+operator|*
+name|B
+operator|)
+operator|*
+name|abSquared
+operator|*
+name|denom1
+argument_list|,
+operator|-
+name|l1
+operator|*
+name|C
+operator|*
+name|cSquared
+operator|*
+name|denom1
+argument_list|)
+decl_stmt|;
+specifier|final
+name|GeoPoint
+name|thePoint2
+init|=
+operator|new
+name|GeoPoint
+argument_list|(
+operator|-
+name|l2
+operator|*
+name|A
+operator|*
+name|abSquared
+operator|*
+name|denom2
+argument_list|,
+operator|(
+literal|1.0
+operator|-
+name|l2
+operator|*
+name|B
+operator|)
+operator|*
+name|abSquared
+operator|*
+name|denom2
+argument_list|,
+operator|-
+name|l2
+operator|*
+name|C
+operator|*
+name|cSquared
+operator|*
+name|denom2
+argument_list|)
+decl_stmt|;
+comment|//Math is not quite accurate enough for this
+comment|//assert planetModel.pointOnSurface(thePoint1): "Point1: "+thePoint1+"; Planetmodel="+planetModel+"; A="+A+" B="+B+" C="+C+" D="+D+" planetfcn="+
+comment|//  (thePoint1.x*thePoint1.x*planetModel.inverseAb*planetModel.inverseAb + thePoint1.y*thePoint1.y*planetModel.inverseAb*planetModel.inverseAb + thePoint1.z*thePoint1.z*planetModel.inverseC*planetModel.inverseC);
+comment|//assert planetModel.pointOnSurface(thePoint2): "Point2: "+thePoint2+"; Planetmodel="+planetModel+"; A="+A+" B="+B+" C="+C+" D="+D+" planetfcn="+
+comment|//  (thePoint2.x*thePoint2.x*planetModel.inverseAb*planetModel.inverseAb + thePoint2.y*thePoint2.y*planetModel.inverseAb*planetModel.inverseAb + thePoint2.z*thePoint2.z*planetModel.inverseC*planetModel.inverseC);
+comment|//assert evaluateIsZero(thePoint1): "Evaluation of point1: "+evaluate(thePoint1);
+comment|//assert evaluateIsZero(thePoint2): "Evaluation of point2: "+evaluate(thePoint2);
+name|addPoint
+argument_list|(
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|thePoint1
+argument_list|)
+expr_stmt|;
+name|addPoint
+argument_list|(
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|thePoint2
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
-comment|// Since a==c==0, any plane including the Y axis suffices.
-comment|// It doesn't matter that we may discard the point due to bounds, because if there are bounds, we'll have endpoints
-comment|// that will be tallied separately.
-comment|//System.err.println("      Perpendicular to y");
+comment|// No solutions
+block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|b
+argument_list|)
+operator|>
+name|MINIMUM_RESOLUTION_SQUARED
+condition|)
+block|{
+comment|// a = 0, so m = - c / b
+specifier|final
+name|double
+name|m
+init|=
+operator|-
+name|c
+operator|/
+name|b
+decl_stmt|;
+specifier|final
+name|double
+name|l
+init|=
+name|r
+operator|*
+name|m
+operator|+
+name|q
+decl_stmt|;
+comment|// x = ( -l*A * ab^2 ) / (2 * m)
+comment|// y = ((1-l*B) * ab^2) / ( 2 * m)
+comment|// z = (-l*C * c^2)/ (2 * m)
+specifier|final
+name|double
+name|denom0
+init|=
+literal|0.5
+operator|/
+name|m
+decl_stmt|;
 specifier|final
 name|GeoPoint
-index|[]
-name|points
+name|thePoint
 init|=
-name|findIntersections
+operator|new
+name|GeoPoint
 argument_list|(
-name|planetModel
+operator|-
+name|l
+operator|*
+name|A
+operator|*
+name|abSquared
+operator|*
+name|denom0
 argument_list|,
-name|normalXPlane
+operator|(
+literal|1.0
+operator|-
+name|l
+operator|*
+name|B
+operator|)
+operator|*
+name|abSquared
+operator|*
+name|denom0
 argument_list|,
-name|NO_BOUNDS
-argument_list|,
-name|NO_BOUNDS
+operator|-
+name|l
+operator|*
+name|C
+operator|*
+name|cSquared
+operator|*
+name|denom0
 argument_list|)
 decl_stmt|;
-name|boundsInfo
-operator|.
-name|addYValue
+comment|//Math is not quite accurate enough for this
+comment|//assert planetModel.pointOnSurface(thePoint): "Point: "+thePoint+"; Planetmodel="+planetModel+"; A="+A+" B="+B+" C="+C+" D="+D+" planetfcn="+
+comment|//  (thePoint.x*thePoint.x*planetModel.inverseAb*planetModel.inverseAb + thePoint.y*thePoint.y*planetModel.inverseAb*planetModel.inverseAb + thePoint.z*thePoint.z*planetModel.inverseC*planetModel.inverseC);
+comment|//assert evaluateIsZero(thePoint): "Evaluation of point: "+evaluate(thePoint);
+name|addPoint
 argument_list|(
-name|points
-index|[
-literal|0
-index|]
+name|boundsInfo
+argument_list|,
+name|bounds
+argument_list|,
+name|thePoint
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// Something went very wrong; a = b = 0
 block|}
 block|}
 block|}

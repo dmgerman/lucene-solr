@@ -468,12 +468,10 @@ comment|// Find any point on the X plane that intersects the world
 comment|// First construct a perpendicular plane that will allow us to find a sample point.
 comment|// This plane is vertical and goes through the points (0,0,0) and (1,0,0)
 comment|// Then use it to compute a sample point.
-name|xEdges
-operator|=
-operator|new
+specifier|final
 name|GeoPoint
-index|[]
-block|{
+name|intPoint
+init|=
 name|xPlane
 operator|.
 name|getSampleIntersectionPoint
@@ -482,8 +480,31 @@ name|planetModel
 argument_list|,
 name|xVerticalPlane
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|intPoint
+operator|!=
+literal|null
+condition|)
+block|{
+name|xEdges
+operator|=
+operator|new
+name|GeoPoint
+index|[]
+block|{
+name|intPoint
 block|}
 expr_stmt|;
+block|}
+else|else
+block|{
+name|xEdges
+operator|=
+name|EMPTY_POINTS
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
