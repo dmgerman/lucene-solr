@@ -742,24 +742,6 @@ operator|.
 name|score
 argument_list|)
 expr_stmt|;
-comment|/*      * Score should be (based on Default Sim.: All floats are approximate tf = 1      * numDocs = 6 docFreq(all) = 2 idf = ln(6/3) + 1 = 1.693147 idf ^ 2 =      * 2.8667 boost = 1 lengthNorm = 1 //there is 1 term in every document coord      * = 1 sumOfSquaredWeights = (idf * boost) ^ 2 = 1.693147 ^ 2 = 2.8667      * queryNorm = 1 / (sumOfSquaredWeights)^0.5 = 1 /(1.693147) = 0.590      *       * score = 1 * 2.8667 * 1 * 1 * 0.590 = 1.69      */
-name|assertTrue
-argument_list|(
-name|doc0
-operator|.
-name|score
-operator|+
-literal|" does not equal: "
-operator|+
-literal|1.6931472f
-argument_list|,
-name|doc0
-operator|.
-name|score
-operator|==
-literal|1.6931472f
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testNext
 specifier|public
@@ -848,18 +830,6 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"score is not correct"
-argument_list|,
-name|ts
-operator|.
-name|score
-argument_list|()
-operator|==
-literal|1.6931472f
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
 literal|"next did not return a doc"
 argument_list|,
 name|ts
@@ -870,18 +840,6 @@ operator|!=
 name|DocIdSetIterator
 operator|.
 name|NO_MORE_DOCS
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-literal|"score is not correct"
-argument_list|,
-name|ts
-operator|.
-name|score
-argument_list|()
-operator|==
-literal|1.6931472f
 argument_list|)
 expr_stmt|;
 name|assertTrue

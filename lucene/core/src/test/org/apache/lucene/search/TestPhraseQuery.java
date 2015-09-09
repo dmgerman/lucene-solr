@@ -2286,7 +2286,7 @@ comment|// Make sure that those matches where the terms appear closer to
 comment|// each other get a higher score:
 name|assertEquals
 argument_list|(
-literal|0.71
+literal|1.0
 argument_list|,
 name|hits
 index|[
@@ -2312,7 +2312,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|0.44
+literal|0.62
 argument_list|,
 name|hits
 index|[
@@ -2338,7 +2338,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|0.31
+literal|0.43
 argument_list|,
 name|hits
 index|[

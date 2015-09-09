@@ -5763,19 +5763,19 @@ literal|"stats.field"
 argument_list|,
 literal|"{!lucene key=k}foo_t:cow"
 argument_list|)
-comment|// scores are: 1.0, 0.625, 0.5,& "missing"
+comment|// TODO: change to not rely on exact scores
 argument_list|,
 name|kpre
 operator|+
-literal|"double[@name='min'][.='0.5']"
+literal|"double[@name='min'][.='0.6115717887878418']"
 argument_list|,
 name|kpre
 operator|+
-literal|"double[@name='max'][.='1.0']"
+literal|"double[@name='max'][.='1.2231435775756836']"
 argument_list|,
 name|kpre
 operator|+
-literal|"double[@name='sum'][.='2.125']"
+literal|"double[@name='sum'][.='2.5991801023483276']"
 argument_list|,
 name|kpre
 operator|+
@@ -5787,15 +5787,15 @@ literal|"long[@name='missing'][.='1']"
 argument_list|,
 name|kpre
 operator|+
-literal|"double[@name='sumOfSquares'][.='1.640625']"
+literal|"double[@name='sumOfSquares'][.='2.4545065967701163']"
 argument_list|,
 name|kpre
 operator|+
-literal|"double[@name='mean'][.='0.7083333333333334']"
+literal|"double[@name='mean'][.='0.8663933674494425']"
 argument_list|,
 name|kpre
 operator|+
-literal|"double[@name='stddev'][.='0.2602082499332666']"
+literal|"double[@name='stddev'][.='0.3182720497380833']"
 argument_list|)
 expr_stmt|;
 block|}

@@ -2224,9 +2224,9 @@ operator|new
 name|float
 index|[]
 block|{
-literal|0.5945349f
+literal|1.0f
 block|,
-literal|0.5945349f
+literal|1.0f
 block|}
 argument_list|)
 expr_stmt|;
@@ -3346,7 +3346,7 @@ index|[]
 block|{
 literal|42F
 block|,
-literal|1F
+literal|1.4054651F
 block|}
 argument_list|)
 expr_stmt|;
