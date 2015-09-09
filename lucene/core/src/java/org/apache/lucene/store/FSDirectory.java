@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileOutputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|FilterOutputStream
 import|;
 end_import
@@ -712,7 +702,7 @@ name|FSIndexOutput
 extends|extends
 name|OutputStreamIndexOutput
 block|{
-comment|/**      * The maximum chunk size is 8192 bytes, because {@link FileOutputStream} mallocs      * a native buffer outside of stack if the write buffer size is larger.      */
+comment|/**      * The maximum chunk size is 8192 bytes, because file channel mallocs      * a native buffer outside of stack if the write buffer size is larger.      */
 DECL|field|CHUNK_SIZE
 specifier|static
 specifier|final
