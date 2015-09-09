@@ -8786,20 +8786,8 @@ name|s
 argument_list|)
 condition|)
 block|{
-name|assertTrue
-argument_list|(
-literal|"Expected to find numFound in the up shard info"
-argument_list|,
-name|info
-operator|.
-name|get
-argument_list|(
-literal|"numFound"
-argument_list|)
-operator|!=
-literal|null
-argument_list|)
-expr_stmt|;
+comment|// this is no longer true if there was a query timeout on an up shard
+comment|// assertTrue("Expected to find numFound in the up shard info",info.get("numFound") != null);
 name|assertTrue
 argument_list|(
 literal|"Expected to find shardAddress in the up shard info"

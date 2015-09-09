@@ -819,8 +819,8 @@ argument_list|,
 name|maxDoc
 argument_list|)
 decl_stmt|;
-try|try
-block|{
+comment|// This may throw an ExitableDirectoryReader.ExitingReaderException
+comment|// but we should not catch it here, as we don't know how this DocSet will be used (it could be negated before use) or cached.
 name|searcher
 operator|.
 name|search
@@ -830,34 +830,6 @@ argument_list|,
 name|collector
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ExitableDirectoryReader
-operator|.
-name|ExitingReaderException
-name|e
-parameter_list|)
-block|{
-name|searcher
-operator|.
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"Query: "
-operator|+
-name|query
-operator|+
-literal|"; "
-operator|+
-name|e
-operator|.
-name|getMessage
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 return|return
 name|collector
 operator|.
