@@ -788,6 +788,12 @@ argument_list|,
 name|taxoDir
 argument_list|)
 expr_stmt|;
+name|indexDir
+operator|=
+name|taxoDir
+operator|=
+literal|null
+expr_stmt|;
 block|}
 DECL|method|randomCategories
 specifier|private
