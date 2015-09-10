@@ -255,19 +255,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// theoretically classes should also be loadable:
-name|IOUtils
-operator|.
-name|closeWhileHandlingException
-argument_list|(
-name|rl
-operator|.
-name|openResource
-argument_list|(
-literal|"java/lang/String.class"
-argument_list|)
-argument_list|)
-expr_stmt|;
 block|}
 DECL|method|testBaseDir
 specifier|public
