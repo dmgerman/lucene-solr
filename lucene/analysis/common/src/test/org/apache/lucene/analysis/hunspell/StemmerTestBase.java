@@ -120,12 +120,23 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|AfterClass
+import|;
+end_import
+
 begin_comment
 comment|/** base class for hunspell stemmer tests */
 end_comment
 
 begin_class
 DECL|class|StemmerTestBase
+specifier|public
 specifier|abstract
 class|class
 name|StemmerTestBase
@@ -138,6 +149,20 @@ specifier|static
 name|Stemmer
 name|stemmer
 decl_stmt|;
+annotation|@
+name|AfterClass
+DECL|method|afterClass
+specifier|public
+specifier|static
+name|void
+name|afterClass
+parameter_list|()
+block|{
+name|stemmer
+operator|=
+literal|null
+expr_stmt|;
+block|}
 DECL|method|init
 specifier|static
 name|void
