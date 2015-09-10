@@ -1597,6 +1597,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|unsortedReader
+operator|=
+name|sortedReader
+operator|=
+literal|null
+expr_stmt|;
+name|dir
+operator|=
+literal|null
+expr_stmt|;
 block|}
 annotation|@
 name|Test
