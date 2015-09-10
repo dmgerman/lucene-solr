@@ -17,19 +17,17 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Interface describing circular area with a center and radius.  *  * @lucene.experimental  */
+comment|/**  * GeoPolygon interface description.  *  * @lucene.experimental  */
 end_comment
 
 begin_interface
-DECL|interface|GeoCircle
+DECL|interface|GeoPolygon
 specifier|public
 interface|interface
-name|GeoCircle
+name|GeoPolygon
 extends|extends
-name|GeoDistanceShape
-extends|,
-name|GeoSizeable
-block|{ }
+name|GeoMembershipShape
+block|{  }
 end_interface
 
 end_unit

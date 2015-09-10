@@ -17,20 +17,27 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Interface describing circular area with a center and radius.  *  * @lucene.experimental  */
+comment|/**  * GeoCompositePolygon is a specific implementation of GeoMembershipShape, which implements GeoPolygon explicitly.  *  * @lucene.experimental  */
 end_comment
 
-begin_interface
-DECL|interface|GeoCircle
+begin_class
+DECL|class|GeoCompositePolygon
 specifier|public
-interface|interface
-name|GeoCircle
+class|class
+name|GeoCompositePolygon
 extends|extends
-name|GeoDistanceShape
-extends|,
-name|GeoSizeable
-block|{ }
-end_interface
+name|GeoCompositeMembershipShape
+implements|implements
+name|GeoPolygon
+block|{
+comment|/** Constructor.    */
+DECL|method|GeoCompositePolygon
+specifier|public
+name|GeoCompositePolygon
+parameter_list|()
+block|{   }
+block|}
+end_class
 
 end_unit
 

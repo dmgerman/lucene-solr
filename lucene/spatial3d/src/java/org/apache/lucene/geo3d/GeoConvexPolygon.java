@@ -56,7 +56,7 @@ specifier|public
 class|class
 name|GeoConvexPolygon
 extends|extends
-name|GeoBaseMembershipShape
+name|GeoBasePolygon
 block|{
 comment|/** The list of polygon points */
 DECL|field|points

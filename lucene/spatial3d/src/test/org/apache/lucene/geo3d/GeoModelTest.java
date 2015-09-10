@@ -174,7 +174,7 @@ name|GeoCircle
 name|circle
 init|=
 operator|new
-name|GeoCircle
+name|GeoStandardCircle
 argument_list|(
 name|scaledModel
 argument_list|,
@@ -280,7 +280,7 @@ expr_stmt|;
 name|circle
 operator|=
 operator|new
-name|GeoCircle
+name|GeoStandardCircle
 argument_list|(
 name|scaledModel
 argument_list|,
@@ -426,7 +426,7 @@ expr_stmt|;
 name|circle
 operator|=
 operator|new
-name|GeoCircle
+name|GeoStandardCircle
 argument_list|(
 name|scaledModel
 argument_list|,

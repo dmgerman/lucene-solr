@@ -17,20 +17,38 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Interface describing circular area with a center and radius.  *  * @lucene.experimental  */
+comment|/**  * GeoCircles have all the characteristics of GeoBaseDistanceShapes, plus GeoSizeable.  *  * @lucene.experimental  */
 end_comment
 
-begin_interface
-DECL|interface|GeoCircle
+begin_class
+DECL|class|GeoBaseCircle
 specifier|public
-interface|interface
-name|GeoCircle
+specifier|abstract
+class|class
+name|GeoBaseCircle
 extends|extends
-name|GeoDistanceShape
-extends|,
-name|GeoSizeable
-block|{ }
-end_interface
+name|GeoBaseDistanceShape
+implements|implements
+name|GeoCircle
+block|{
+comment|/** Constructor.    *@param planetModel is the planet model to use.    */
+DECL|method|GeoBaseCircle
+specifier|public
+name|GeoBaseCircle
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|planetModel
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+end_class
 
 end_unit
 

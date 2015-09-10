@@ -61,11 +61,11 @@ specifier|private
 name|GeoPolygonFactory
 parameter_list|()
 block|{   }
-comment|/**    * Create a GeoMembershipShape of the right kind given the specified bounds.    *    * @param pointList        is a list of the GeoPoints to build an arbitrary polygon out of.    * @param convexPointIndex is the index of a single convex point whose conformation with    *                         its neighbors determines inside/outside for the entire polygon.    * @return a GeoMembershipShape corresponding to what was specified.    */
+comment|/**    * Create a GeoMembershipShape of the right kind given the specified bounds.    *    * @param pointList        is a list of the GeoPoints to build an arbitrary polygon out of.    * @param convexPointIndex is the index of a single convex point whose conformation with    *                         its neighbors determines inside/outside for the entire polygon.    * @return a GeoPolygon corresponding to what was specified.    */
 DECL|method|makeGeoPolygon
 specifier|public
 specifier|static
-name|GeoMembershipShape
+name|GeoPolygon
 name|makeGeoPolygon
 parameter_list|(
 specifier|final
@@ -160,7 +160,7 @@ comment|/** Build a GeoMembershipShape given points, starting edge, and whether 
 DECL|method|buildPolygonShape
 specifier|public
 specifier|static
-name|GeoMembershipShape
+name|GeoPolygon
 name|buildPolygonShape
 parameter_list|(
 specifier|final
@@ -197,11 +197,11 @@ comment|// If not, put it into a list of points for recursion.  If it is within,
 comment|// Once we detect a point that is within, if there are points put aside for recursion, then call recursively.
 comment|// Current composite.  This is what we'll actually be returning.
 specifier|final
-name|GeoCompositeMembershipShape
+name|GeoCompositePolygon
 name|rval
 init|=
 operator|new
-name|GeoCompositeMembershipShape
+name|GeoCompositePolygon
 argument_list|()
 decl_stmt|;
 specifier|final

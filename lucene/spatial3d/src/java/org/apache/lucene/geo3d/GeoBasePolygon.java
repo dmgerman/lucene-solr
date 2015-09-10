@@ -17,20 +17,38 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Interface describing circular area with a center and radius.  *  * @lucene.experimental  */
+comment|/**  * GeoBasePolygon objects are the base class of most GeoPolygon objects.  *  * @lucene.experimental  */
 end_comment
 
-begin_interface
-DECL|interface|GeoCircle
+begin_class
+DECL|class|GeoBasePolygon
 specifier|public
-interface|interface
-name|GeoCircle
+specifier|abstract
+class|class
+name|GeoBasePolygon
 extends|extends
-name|GeoDistanceShape
-extends|,
-name|GeoSizeable
-block|{ }
-end_interface
+name|GeoBaseMembershipShape
+implements|implements
+name|GeoPolygon
+block|{
+comment|/** Constructor.    *@param planetModel is the planet model to use.    */
+DECL|method|GeoBasePolygon
+specifier|public
+name|GeoBasePolygon
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|planetModel
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+end_class
 
 end_unit
 
