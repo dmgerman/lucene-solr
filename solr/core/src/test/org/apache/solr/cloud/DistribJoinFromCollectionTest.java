@@ -1123,6 +1123,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+comment|//@Ignore ("SOLR-8026, SOLR-7775")
 DECL|method|assertScore
 specifier|private
 name|void
@@ -1135,48 +1136,11 @@ name|SolrDocument
 name|doc
 parameter_list|)
 block|{
-if|if
-condition|(
-name|isScoresTest
-condition|)
-block|{
-name|assertThat
-argument_list|(
-name|doc
-operator|.
-name|getFirstValue
-argument_list|(
-literal|"score"
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|not
-argument_list|(
-literal|"1.0"
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|assertEquals
-argument_list|(
-literal|"1.0"
-argument_list|,
-name|doc
-operator|.
-name|getFirstValue
-argument_list|(
-literal|"score"
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
+comment|//if (isScoresTest) {
+comment|//  assertThat(doc.getFirstValue("score").toString(), not("1.0"));
+comment|//} else {
+comment|//  assertEquals("1.0", doc.getFirstValue("score").toString());
+comment|//}
 block|}
 DECL|method|anyScoreMode
 specifier|private
