@@ -29,7 +29,7 @@ name|BaseXYZSolid
 extends|extends
 name|BasePlanetObject
 implements|implements
-name|GeoArea
+name|XYZSolid
 block|{
 comment|/** Unit vector in x */
 DECL|field|xUnitVector
