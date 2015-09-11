@@ -154,7 +154,7 @@ name|lucene
 operator|.
 name|geo3d
 operator|.
-name|GeoStandardCircle
+name|GeoCircleFactory
 import|;
 end_import
 
@@ -950,8 +950,9 @@ name|WGS84
 argument_list|,
 literal|"field"
 argument_list|,
-operator|new
-name|GeoStandardCircle
+name|GeoCircleFactory
+operator|.
+name|makeGeoCircle
 argument_list|(
 name|PlanetModel
 operator|.
@@ -1159,8 +1160,9 @@ name|SPHERE
 argument_list|,
 literal|"field"
 argument_list|,
-operator|new
-name|GeoStandardCircle
+name|GeoCircleFactory
+operator|.
+name|makeGeoCircle
 argument_list|(
 name|PlanetModel
 operator|.
@@ -5505,8 +5507,9 @@ block|}
 try|try
 block|{
 return|return
-operator|new
-name|GeoStandardCircle
+name|GeoCircleFactory
+operator|.
+name|makeGeoCircle
 argument_list|(
 name|planetModel
 argument_list|,
