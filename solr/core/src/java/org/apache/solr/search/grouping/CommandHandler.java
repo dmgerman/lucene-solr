@@ -1227,10 +1227,6 @@ operator|new
 name|DocSetCollector
 argument_list|(
 name|maxDoc
-operator|>>
-literal|6
-argument_list|,
-name|maxDoc
 argument_list|)
 decl_stmt|;
 name|List

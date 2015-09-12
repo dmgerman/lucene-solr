@@ -338,6 +338,28 @@ specifier|public
 class|class
 name|DocSetUtil
 block|{
+comment|/** The cut-off point for small sets (SortedIntDocSet) vs large sets (BitDocSet) */
+DECL|method|smallSetSize
+specifier|public
+specifier|static
+name|int
+name|smallSetSize
+parameter_list|(
+name|int
+name|maxDoc
+parameter_list|)
+block|{
+return|return
+operator|(
+name|maxDoc
+operator|>>
+literal|6
+operator|)
+operator|+
+literal|5
+return|;
+comment|// The +5 is for better test coverage for small sets
+block|}
 comment|/**    * Iterates DocSets to test for equality - slow and for testing purposes only.    * @lucene.internal    */
 DECL|method|equals
 specifier|public
@@ -607,14 +629,6 @@ init|=
 operator|new
 name|DocSetCollector
 argument_list|(
-operator|(
-name|maxDoc
-operator|>>
-literal|6
-operator|)
-operator|+
-literal|5
-argument_list|,
 name|maxDoc
 argument_list|)
 decl_stmt|;
@@ -674,13 +688,10 @@ decl_stmt|;
 name|int
 name|smallSetSize
 init|=
-operator|(
+name|smallSetSize
+argument_list|(
 name|maxDoc
-operator|>>
-literal|6
-operator|)
-operator|+
-literal|5
+argument_list|)
 decl_stmt|;
 name|String
 name|field
@@ -1244,13 +1255,10 @@ decl_stmt|;
 name|int
 name|smallSetSize
 init|=
-operator|(
+name|smallSetSize
+argument_list|(
 name|maxDoc
-operator|>>
-literal|6
-operator|)
-operator|+
-literal|5
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
