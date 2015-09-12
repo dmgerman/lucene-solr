@@ -7479,6 +7479,17 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Returns true if this dictionary was constructed with the {@code ignoreCase} option */
+DECL|method|getIgnoreCase
+specifier|public
+name|boolean
+name|getIgnoreCase
+parameter_list|()
+block|{
+return|return
+name|ignoreCase
+return|;
+block|}
 block|}
 end_class
 
