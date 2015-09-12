@@ -142,7 +142,7 @@ name|getArch
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// make another using addGetterIfAvaliable
+comment|// make another using addMXBeanProperty()
 name|SimpleOrderedMap
 argument_list|<
 name|Object
@@ -156,7 +156,7 @@ argument_list|()
 decl_stmt|;
 name|SystemInfoHandler
 operator|.
-name|addGetterIfAvaliable
+name|addMXBeanProperty
 argument_list|(
 name|os
 argument_list|,
@@ -171,7 +171,7 @@ argument_list|)
 expr_stmt|;
 name|SystemInfoHandler
 operator|.
-name|addGetterIfAvaliable
+name|addMXBeanProperty
 argument_list|(
 name|os
 argument_list|,
@@ -186,7 +186,7 @@ argument_list|)
 expr_stmt|;
 name|SystemInfoHandler
 operator|.
-name|addGetterIfAvaliable
+name|addMXBeanProperty
 argument_list|(
 name|os
 argument_list|,
