@@ -1142,20 +1142,14 @@ name|docBase
 decl_stmt|;
 specifier|final
 name|int
-name|maxDoc
-init|=
-name|reader
-operator|.
-name|maxDoc
-argument_list|()
-decl_stmt|;
-specifier|final
-name|int
 name|max
 init|=
 name|base
 operator|+
+name|reader
+operator|.
 name|maxDoc
+argument_list|()
 decl_stmt|;
 comment|// one past the max doc in this segment.
 return|return
@@ -1210,16 +1204,18 @@ name|int
 name|nextDoc
 parameter_list|()
 block|{
+name|int
+name|next
+init|=
+name|pos
+operator|+
+literal|1
+decl_stmt|;
 if|if
 condition|(
-name|pos
+name|next
 operator|>=
-name|bs
-operator|.
-name|length
-argument_list|()
-operator|-
-literal|1
+name|max
 condition|)
 block|{
 return|return
@@ -1236,9 +1232,7 @@ name|bs
 operator|.
 name|nextSetBit
 argument_list|(
-name|pos
-operator|+
-literal|1
+name|next
 argument_list|)
 expr_stmt|;
 return|return
@@ -1288,10 +1282,7 @@ if|if
 condition|(
 name|adjusted
 operator|>=
-name|bs
-operator|.
-name|length
-argument_list|()
+name|max
 condition|)
 block|{
 return|return
@@ -1335,6 +1326,13 @@ parameter_list|()
 block|{
 comment|// we don't want to actually compute cardinality, but
 comment|// if it's already been computed, we use it (pro-rated for the segment)
+name|int
+name|maxDoc
+init|=
+name|max
+operator|-
+name|base
+decl_stmt|;
 if|if
 condition|(
 name|size
@@ -1438,7 +1436,9 @@ name|length
 parameter_list|()
 block|{
 return|return
-name|maxDoc
+name|max
+operator|-
+name|base
 return|;
 block|}
 block|}

@@ -27,11 +27,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A LSB Radix sorter for unsigned int values.  */
+comment|/**  * A LSB Radix sorter for unsigned int values.  * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|LSBRadixSorter
+specifier|public
 specifier|final
 class|class
 name|LSBRadixSorter

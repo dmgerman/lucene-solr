@@ -2911,6 +2911,21 @@ return|return
 name|fieldNames
 return|;
 block|}
+DECL|method|getFilterCache
+specifier|public
+name|SolrCache
+argument_list|<
+name|Query
+argument_list|,
+name|DocSet
+argument_list|>
+name|getFilterCache
+parameter_list|()
+block|{
+return|return
+name|filterCache
+return|;
+block|}
 comment|/**    * Returns a collection of the names of all stored fields which can be    * highlighted the index reader knows about.    */
 DECL|method|getStoredHighlightFieldNames
 specifier|public
@@ -5128,10 +5143,8 @@ name|absAnswer
 return|;
 else|else
 return|return
-name|getPositiveDocSet
-argument_list|(
-name|matchAllDocsQuery
-argument_list|)
+name|getLiveDocs
+argument_list|()
 operator|.
 name|andNot
 argument_list|(
@@ -5157,10 +5170,8 @@ name|positive
 condition|?
 name|absAnswer
 else|:
-name|getPositiveDocSet
-argument_list|(
-name|matchAllDocsQuery
-argument_list|)
+name|getLiveDocs
+argument_list|()
 operator|.
 name|andNot
 argument_list|(
@@ -5267,6 +5278,39 @@ operator|new
 name|MatchAllDocsQuery
 argument_list|()
 decl_stmt|;
+DECL|field|liveDocs
+specifier|private
+name|BitDocSet
+name|liveDocs
+decl_stmt|;
+DECL|method|getLiveDocs
+specifier|public
+name|BitDocSet
+name|getLiveDocs
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// going through the filter cache will provide thread safety here
+if|if
+condition|(
+name|liveDocs
+operator|==
+literal|null
+condition|)
+block|{
+name|liveDocs
+operator|=
+name|getDocSetBits
+argument_list|(
+name|matchAllDocsQuery
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|liveDocs
+return|;
+block|}
 DECL|class|ProcessedFilter
 specifier|public
 specifier|static
@@ -6238,10 +6282,8 @@ condition|)
 block|{
 name|answer
 operator|=
-name|getPositiveDocSet
-argument_list|(
-name|matchAllDocsQuery
-argument_list|)
+name|getLiveDocs
+argument_list|()
 expr_stmt|;
 block|}
 comment|// do negative queries first to shrink set size
@@ -6414,10 +6456,8 @@ condition|)
 block|{
 name|answer
 operator|=
-name|getPositiveDocSet
-argument_list|(
-name|matchAllDocsQuery
-argument_list|)
+name|getLiveDocs
+argument_list|()
 expr_stmt|;
 block|}
 comment|// "answer" is the only part of the filter, so set it.
@@ -11133,10 +11173,8 @@ comment|// don't have a counting method that takes three.
 name|DocSet
 name|all
 init|=
-name|getPositiveDocSet
-argument_list|(
-name|matchAllDocsQuery
-argument_list|)
+name|getLiveDocs
+argument_list|()
 decl_stmt|;
 comment|// -a -b == *:*.andNot(a).andNotSize(b) == *.*.andNotSize(a.union(b))
 comment|// we use the last form since the intermediate DocSet should normally be smaller.
