@@ -1026,15 +1026,7 @@ name|VelocityResponseWriter
 operator|.
 name|TEMPLATE
 argument_list|,
-literal|"t"
-argument_list|,
-name|SolrParamResourceLoader
-operator|.
-name|TEMPLATE_PARAM_PREFIX
-operator|+
-literal|"t"
-argument_list|,
-literal|"$resource.get(\"color\",\"resources\",\"en_UK\")"
+literal|"resource_get"
 argument_list|)
 argument_list|)
 argument_list|)
