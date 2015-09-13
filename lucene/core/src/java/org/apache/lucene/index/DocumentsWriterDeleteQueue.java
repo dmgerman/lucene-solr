@@ -193,9 +193,8 @@ specifier|final
 name|BufferedUpdates
 name|globalBufferedUpdates
 decl_stmt|;
-comment|/* only acquired to update the global deletes */
+comment|// only acquired to update the global deletes, pkg-private for access by tests:
 DECL|field|globalBufferLock
-specifier|private
 specifier|final
 name|ReentrantLock
 name|globalBufferLock

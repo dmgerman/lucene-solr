@@ -44,20 +44,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|CharsRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|CharsRefBuilder
 import|;
 end_import
@@ -72,7 +58,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|UnicodeUtil
+name|SuppressForbidden
 import|;
 end_import
 
@@ -161,6 +147,24 @@ name|Method
 name|getPrefixMethod
 decl_stmt|;
 static|static
+block|{
+name|initClass
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"TODO: Remove this class completely and also the hack around setAccessible!"
+argument_list|)
+DECL|method|initClass
+specifier|private
+specifier|static
+name|void
+name|initClass
+parameter_list|()
 block|{
 try|try
 block|{

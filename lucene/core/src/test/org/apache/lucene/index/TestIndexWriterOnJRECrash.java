@@ -997,6 +997,13 @@ argument_list|()
 return|;
 block|}
 comment|/**    * currently, this only works/tested on Sun and IBM.    */
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"We need Unsafe to actually crush :-)"
+argument_list|)
 DECL|method|crashJRE
 specifier|public
 name|void
