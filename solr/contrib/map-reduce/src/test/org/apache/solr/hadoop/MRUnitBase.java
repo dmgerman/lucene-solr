@@ -275,6 +275,10 @@ name|toPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|solrHomeZip
+operator|=
+literal|null
+expr_stmt|;
 block|}
 DECL|method|setupHadoopConfig
 specifier|protected

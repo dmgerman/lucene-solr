@@ -96,16 +96,6 @@ name|Map
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|TimeZone
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests that defaults are set for Primitive (non-analyzed) fields  */
 end_comment
@@ -142,19 +132,6 @@ operator|+
 name|File
 operator|.
 name|separator
-decl_stmt|;
-DECL|field|UTC
-specifier|public
-specifier|static
-name|TimeZone
-name|UTC
-init|=
-name|TimeZone
-operator|.
-name|getTimeZone
-argument_list|(
-literal|"UTC"
-argument_list|)
 decl_stmt|;
 DECL|field|config
 specifier|protected
