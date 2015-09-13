@@ -6557,11 +6557,6 @@ block|{
 comment|// don't call ensureOpen here: this acts like "close()" in closeable.
 comment|// Ensure that only one thread actually gets to do the
 comment|// closing, and make sure no commit is also in progress:
-synchronized|synchronized
-init|(
-name|commitLock
-init|)
-block|{
 if|if
 condition|(
 name|shouldClose
@@ -6575,11 +6570,29 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-block|}
 DECL|method|rollbackInternal
 specifier|private
 name|void
 name|rollbackInternal
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// Make sure no commit is running, else e.g. we can close while another thread is still fsync'ing:
+synchronized|synchronized
+init|(
+name|commitLock
+init|)
+block|{
+name|rollbackInternalNoCommit
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+DECL|method|rollbackInternalNoCommit
+specifier|private
+name|void
+name|rollbackInternalNoCommit
 parameter_list|()
 throws|throws
 name|IOException
