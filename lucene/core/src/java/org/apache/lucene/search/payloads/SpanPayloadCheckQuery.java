@@ -300,20 +300,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ToStringUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * Only return those matches that have a specific payload at the given position.  */
 end_comment
@@ -967,10 +953,12 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-name|bytes
+name|Term
 operator|.
-name|utf8ToString
-argument_list|()
+name|toString
+argument_list|(
+name|bytes
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|buffer
