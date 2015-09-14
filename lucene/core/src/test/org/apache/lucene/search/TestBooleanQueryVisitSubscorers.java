@@ -268,6 +268,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|similarities
+operator|.
+name|ClassicSimilarity
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -450,6 +466,7 @@ argument_list|()
 expr_stmt|;
 comment|// we do not use newSearcher because the assertingXXX layers break
 comment|// the toString representations we are relying on
+comment|// TODO: clean that up
 name|searcher
 operator|=
 operator|new
@@ -458,12 +475,30 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
+name|searcher
+operator|.
+name|setSimilarity
+argument_list|(
+operator|new
+name|ClassicSimilarity
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|scorerSearcher
 operator|=
 operator|new
 name|ScorerIndexSearcher
 argument_list|(
 name|reader
+argument_list|)
+expr_stmt|;
+name|scorerSearcher
+operator|.
+name|setSimilarity
+argument_list|(
+operator|new
+name|ClassicSimilarity
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

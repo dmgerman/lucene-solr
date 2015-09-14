@@ -65,10 +65,10 @@ comment|/**  * Expert: Default scoring implementation which {@link #encodeNormVa
 end_comment
 
 begin_class
-DECL|class|DefaultSimilarity
+DECL|class|ClassicSimilarity
 specifier|public
 class|class
-name|DefaultSimilarity
+name|ClassicSimilarity
 extends|extends
 name|TFIDFSimilarity
 block|{
@@ -122,9 +122,9 @@ expr_stmt|;
 block|}
 block|}
 comment|/** Sole constructor: parameter-free */
-DECL|method|DefaultSimilarity
+DECL|method|ClassicSimilarity
 specifier|public
-name|DefaultSimilarity
+name|ClassicSimilarity
 parameter_list|()
 block|{}
 comment|/** Implemented as<code>overlap / maxOverlap</code>. */
@@ -450,7 +450,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"DefaultSimilarity"
+literal|"ClassicSimilarity"
 return|;
 block|}
 block|}

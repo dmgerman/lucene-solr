@@ -323,7 +323,7 @@ name|term
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|//IDF algorithm taken from DefaultSimilarity class
+comment|//IDF algorithm taken from ClassicSimilarity class
 name|float
 name|idf
 init|=

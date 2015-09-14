@@ -254,7 +254,7 @@ throw|throw
 operator|new
 name|UnsupportedOperationException
 argument_list|(
-literal|"requires a TFIDFSimilarity (such as DefaultSimilarity)"
+literal|"requires a TFIDFSimilarity (such as ClassicSimilarity)"
 argument_list|)
 throw|;
 block|}

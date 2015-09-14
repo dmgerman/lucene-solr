@@ -389,7 +389,7 @@ name|Similarity
 name|sim
 init|=
 operator|new
-name|PreciseDefaultSimilarity
+name|PreciseClassicSimilarity
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -803,16 +803,16 @@ comment|/** Encodes norm as 4-byte float. */
 end_comment
 
 begin_class
-DECL|class|PreciseDefaultSimilarity
+DECL|class|PreciseClassicSimilarity
 class|class
-name|PreciseDefaultSimilarity
+name|PreciseClassicSimilarity
 extends|extends
 name|TFIDFSimilarity
 block|{
 comment|/** Sole constructor: parameter-free */
-DECL|method|PreciseDefaultSimilarity
+DECL|method|PreciseClassicSimilarity
 specifier|public
-name|PreciseDefaultSimilarity
+name|PreciseClassicSimilarity
 parameter_list|()
 block|{}
 comment|/** Implemented as<code>overlap / maxOverlap</code>. */

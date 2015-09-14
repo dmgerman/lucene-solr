@@ -30,7 +30,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarity
+name|ClassicSimilarity
 import|;
 end_import
 
@@ -40,7 +40,7 @@ specifier|public
 class|class
 name|MockConfigurableSimilarity
 extends|extends
-name|DefaultSimilarity
+name|ClassicSimilarity
 block|{
 DECL|field|passthrough
 specifier|private

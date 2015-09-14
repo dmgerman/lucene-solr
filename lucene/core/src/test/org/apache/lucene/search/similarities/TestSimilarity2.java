@@ -382,7 +382,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DefaultSimilarity
+name|ClassicSimilarity
 argument_list|()
 argument_list|)
 expr_stmt|;

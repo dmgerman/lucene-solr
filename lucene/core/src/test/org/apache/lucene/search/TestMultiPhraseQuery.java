@@ -230,7 +230,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarity
+name|ClassicSimilarity
 import|;
 end_import
 
@@ -2221,7 +2221,7 @@ operator|.
 name|setSimilarity
 argument_list|(
 operator|new
-name|DefaultSimilarity
+name|ClassicSimilarity
 argument_list|()
 block|{
 annotation|@

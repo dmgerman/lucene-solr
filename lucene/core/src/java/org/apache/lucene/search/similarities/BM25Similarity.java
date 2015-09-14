@@ -161,7 +161,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * BM25 Similarity. Introduced in Stephen E. Robertson, Steve Walker,  * Susan Jones, Micheline Hancock-Beaulieu, and Mike Gatford. Okapi at TREC-3.  * In Proceedings of the Third<b>T</b>ext<b>RE</b>trieval<b>C</b>onference (TREC 1994).  * Gaithersburg, USA, November 1994.  * @lucene.experimental  */
+comment|/**  * BM25 Similarity. Introduced in Stephen E. Robertson, Steve Walker,  * Susan Jones, Micheline Hancock-Beaulieu, and Mike Gatford. Okapi at TREC-3.  * In Proceedings of the Third<b>T</b>ext<b>RE</b>trieval<b>C</b>onference (TREC 1994).  * Gaithersburg, USA, November 1994.  */
 end_comment
 
 begin_class
@@ -184,7 +184,6 @@ specifier|final
 name|float
 name|b
 decl_stmt|;
-comment|// TODO: should we add a delta like sifaka.cs.uiuc.edu/~ylv2/pub/sigir11-bm25l.pdf ?
 comment|/**    * BM25 with the supplied parameter values.    * @param k1 Controls non-linear term frequency normalization (saturation).    * @param b Controls to what degree document length normalizes tf values.    */
 DECL|method|BM25Similarity
 specifier|public
@@ -210,7 +209,7 @@ operator|=
 name|b
 expr_stmt|;
 block|}
-comment|/** BM25 with these default values:    *<ul>    *<li>{@code k1 = 1.2},    *<li>{@code b = 0.75}.</li>    *</ul>    */
+comment|/** BM25 with these default values:    *<ul>    *<li>{@code k1 = 1.2}</li>    *<li>{@code b = 0.75}</li>    *</ul>    */
 DECL|method|BM25Similarity
 specifier|public
 name|BM25Similarity
@@ -1654,6 +1653,7 @@ block|}
 comment|/**     * Returns the<code>k1</code> parameter    * @see #BM25Similarity(float, float)     */
 DECL|method|getK1
 specifier|public
+specifier|final
 name|float
 name|getK1
 parameter_list|()
@@ -1665,6 +1665,7 @@ block|}
 comment|/**    * Returns the<code>b</code> parameter     * @see #BM25Similarity(float, float)     */
 DECL|method|getB
 specifier|public
+specifier|final
 name|float
 name|getB
 parameter_list|()

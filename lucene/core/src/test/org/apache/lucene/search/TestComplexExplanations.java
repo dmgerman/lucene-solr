@@ -58,7 +58,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarity
+name|ClassicSimilarity
 import|;
 end_import
 
@@ -145,13 +145,13 @@ comment|// must be static for weight serialization tests
 DECL|method|createQnorm1Similarity
 specifier|private
 specifier|static
-name|DefaultSimilarity
+name|ClassicSimilarity
 name|createQnorm1Similarity
 parameter_list|()
 block|{
 return|return
 operator|new
-name|DefaultSimilarity
+name|ClassicSimilarity
 argument_list|()
 block|{
 annotation|@

@@ -346,7 +346,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarity
+name|BM25Similarity
 import|;
 end_import
 
@@ -697,7 +697,7 @@ name|Similarity
 name|defaultSimilarity
 init|=
 operator|new
-name|DefaultSimilarity
+name|BM25Similarity
 argument_list|()
 decl_stmt|;
 DECL|field|queryCache
@@ -1120,7 +1120,7 @@ operator|=
 name|similarity
 expr_stmt|;
 block|}
-comment|/** Expert: Get the {@link Similarity} to use to compute scores. When    *  {@code needsScores} is {@code false}, this method will return a simple    *  {@link Similarity} that does not leverage scoring factors such as norms.    *  When {@code needsScores} is {@code true}, this returns the    *  {@link Similarity} that has been set through {@link #setSimilarity(Similarity)}    *  or the {@link #getDefaultSimilarity()} default {@link Similarity} if none    *  has been set explicitely. */
+comment|/** Expert: Get the {@link Similarity} to use to compute scores. When    *  {@code needsScores} is {@code false}, this method will return a simple    *  {@link Similarity} that does not leverage scoring factors such as norms.    *  When {@code needsScores} is {@code true}, this returns the    *  {@link Similarity} that has been set through {@link #setSimilarity(Similarity)}    *  or the {@link #getDefaultSimilarity()} default {@link Similarity} if none    *  has been set explicitly. */
 DECL|method|getSimilarity
 specifier|public
 name|Similarity

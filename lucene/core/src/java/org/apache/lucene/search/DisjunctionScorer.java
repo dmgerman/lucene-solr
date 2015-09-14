@@ -75,7 +75,6 @@ name|boolean
 name|needsScores
 decl_stmt|;
 DECL|field|subScorers
-specifier|private
 specifier|final
 name|DisiPriorityQueue
 argument_list|<

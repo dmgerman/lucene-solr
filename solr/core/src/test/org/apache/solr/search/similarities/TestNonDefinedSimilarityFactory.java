@@ -30,7 +30,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarity
+name|ClassicSimilarity
 import|;
 end_import
 
@@ -100,14 +100,14 @@ argument_list|,
 literal|"schema-tiny.xml"
 argument_list|)
 expr_stmt|;
-name|DefaultSimilarity
+name|ClassicSimilarity
 name|sim
 init|=
 name|getSimilarity
 argument_list|(
 literal|"text"
 argument_list|,
-name|DefaultSimilarity
+name|ClassicSimilarity
 operator|.
 name|class
 argument_list|)

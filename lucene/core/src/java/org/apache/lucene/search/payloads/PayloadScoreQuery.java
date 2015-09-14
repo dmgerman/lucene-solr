@@ -158,7 +158,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarity
+name|ClassicSimilarity
 import|;
 end_import
 
@@ -273,7 +273,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Query class that uses a {@link PayloadFunction} to modify the score of a  * wrapped SpanQuery  *  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link DefaultSimilarity}), you must override {@link DefaultSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *  * @see org.apache.lucene.search.similarities.Similarity.SimScorer#computePayloadFactor(int, int, int, BytesRef)  */
+comment|/**  * A Query class that uses a {@link PayloadFunction} to modify the score of a  * wrapped SpanQuery  *  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link ClassicSimilarity}), you must override {@link ClassicSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *  * @see org.apache.lucene.search.similarities.Similarity.SimScorer#computePayloadFactor(int, int, int, BytesRef)  */
 end_comment
 
 begin_class

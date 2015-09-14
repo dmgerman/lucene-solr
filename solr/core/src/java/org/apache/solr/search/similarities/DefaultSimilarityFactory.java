@@ -30,7 +30,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarity
+name|ClassicSimilarity
 import|;
 end_import
 
@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link DefaultSimilarity}  *<p>  * DefaultSimilarity is Lucene's default scoring implementation, based  * upon the Vector Space Model.  *<p>  * Optional settings:  *<ul>  *<li>discountOverlaps (bool): Sets  *       {@link DefaultSimilarity#setDiscountOverlaps(boolean)}</li>  *</ul>  * @see TFIDFSimilarity  * @lucene.experimental  */
+comment|/**  * Factory for {@link ClassicSimilarity}  *<p>  * ClassicSimilarity is Lucene's original scoring implementation, based  * upon the Vector Space Model.  *<p>  * Optional settings:  *<ul>  *<li>discountOverlaps (bool): Sets  *       {@link ClassicSimilarity#setDiscountOverlaps(boolean)}</li>  *</ul>  * @see TFIDFSimilarity  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -112,7 +112,7 @@ name|DefaultSimilarityFactory
 extends|extends
 name|SimilarityFactory
 block|{
-comment|/** Init param name for specifying the value to use in     * {@link DefaultSimilarity#setDiscountOverlaps(boolean)}     */
+comment|/** Init param name for specifying the value to use in     * {@link ClassicSimilarity#setDiscountOverlaps(boolean)}     */
 DECL|field|DISCOUNT_OVERLAPS
 specifier|public
 specifier|static
@@ -122,7 +122,7 @@ name|DISCOUNT_OVERLAPS
 init|=
 literal|"discountOverlaps"
 decl_stmt|;
-comment|/**     * Controls the value of {@link DefaultSimilarity#setDiscountOverlaps(boolean)}     * on newly constructed instances of {@link DefaultSimilarity}    */
+comment|/**     * Controls the value of {@link ClassicSimilarity#setDiscountOverlaps(boolean)}     * on newly constructed instances of {@link ClassicSimilarity}    */
 DECL|field|discountOverlaps
 specifier|protected
 name|boolean
@@ -168,11 +168,11 @@ name|Similarity
 name|getSimilarity
 parameter_list|()
 block|{
-name|DefaultSimilarity
+name|ClassicSimilarity
 name|sim
 init|=
 operator|new
-name|DefaultSimilarity
+name|ClassicSimilarity
 argument_list|()
 decl_stmt|;
 name|sim

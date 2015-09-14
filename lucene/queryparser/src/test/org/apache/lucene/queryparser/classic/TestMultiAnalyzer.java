@@ -264,7 +264,7 @@ expr_stmt|;
 comment|// two tokens at the same position:
 name|assertEquals
 argument_list|(
-literal|"(multi multi2) foo"
+literal|"Synonym(multi multi2) foo"
 argument_list|,
 name|qp
 operator|.
@@ -279,7 +279,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"foo (multi multi2)"
+literal|"foo Synonym(multi multi2)"
 argument_list|,
 name|qp
 operator|.
@@ -294,7 +294,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(multi multi2) (multi multi2)"
+literal|"Synonym(multi multi2) Synonym(multi multi2)"
 argument_list|,
 name|qp
 operator|.
@@ -309,7 +309,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"+(foo (multi multi2)) +(bar (multi multi2))"
+literal|"+(foo Synonym(multi multi2)) +(bar Synonym(multi multi2))"
 argument_list|,
 name|qp
 operator|.
@@ -324,7 +324,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"+(foo (multi multi2)) field:\"bar (multi multi2)\""
+literal|"+(foo Synonym(multi multi2)) field:\"bar (multi multi2)\""
 argument_list|,
 name|qp
 operator|.
@@ -386,7 +386,7 @@ expr_stmt|;
 comment|// fields:
 name|assertEquals
 argument_list|(
-literal|"(field:multi field:multi2) field:foo"
+literal|"Synonym(field:multi field:multi2) field:foo"
 argument_list|,
 name|qp
 operator|.
@@ -417,7 +417,7 @@ expr_stmt|;
 comment|// three tokens at one position:
 name|assertEquals
 argument_list|(
-literal|"triplemulti multi3 multi2"
+literal|"Synonym(multi2 multi3 triplemulti)"
 argument_list|,
 name|qp
 operator|.
@@ -432,7 +432,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"foo (triplemulti multi3 multi2) foobar"
+literal|"foo Synonym(multi2 multi3 triplemulti) foobar"
 argument_list|,
 name|qp
 operator|.
@@ -534,7 +534,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"+(multi multi2) +foo"
+literal|"+Synonym(multi multi2) +foo"
 argument_list|,
 name|qp
 operator|.

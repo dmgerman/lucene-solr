@@ -126,7 +126,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|DefaultSimilarity
+name|ClassicSimilarity
 import|;
 end_import
 
@@ -2340,7 +2340,7 @@ name|TFIDFSimilarity
 name|similarity
 init|=
 operator|new
-name|DefaultSimilarity
+name|ClassicSimilarity
 argument_list|()
 decl_stmt|;
 comment|// make sure it doesn't get a NPE if no terms are present in a field.

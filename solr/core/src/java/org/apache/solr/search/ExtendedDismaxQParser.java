@@ -4803,9 +4803,6 @@ argument_list|<
 name|BooleanClause
 argument_list|>
 name|clauses
-parameter_list|,
-name|boolean
-name|disableCoord
 parameter_list|)
 throws|throws
 name|SyntaxError
@@ -4818,8 +4815,6 @@ operator|.
 name|getBooleanQuery
 argument_list|(
 name|clauses
-argument_list|,
-name|disableCoord
 argument_list|)
 decl_stmt|;
 if|if
