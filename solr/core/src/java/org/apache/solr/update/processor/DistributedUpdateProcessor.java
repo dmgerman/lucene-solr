@@ -5792,6 +5792,25 @@ break|break;
 block|}
 block|}
 block|}
+comment|// If the client specified minRf and we didn't achieve the minRf, don't send recovery and let client retry
+if|if
+condition|(
+name|replicationTracker
+operator|!=
+literal|null
+operator|&&
+name|replicationTracker
+operator|.
+name|getAchievedRf
+argument_list|()
+operator|<
+name|replicationTracker
+operator|.
+name|minRf
+condition|)
+block|{
+continue|continue;
+block|}
 if|if
 condition|(
 name|cloudDesc
