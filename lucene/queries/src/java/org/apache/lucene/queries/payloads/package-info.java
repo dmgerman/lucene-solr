@@ -4,11 +4,11 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**   * The payloads package provides Query mechanisms for finding and using payloads.  *<p>  *   The following Query implementations are provided:  *<ol>  *<li>{@link org.apache.lucene.search.payloads.PayloadScoreQuery PayloadScoreQuery} -- For all terms matched by  *        a SpanQuery, boost the score based on the value of the payload located at those terms.</li>  *</ol>  */
+comment|/**   * The payloads package provides Query mechanisms for finding and using payloads.  *<p>  *   The following Query implementations are provided:  *<ol>  *<li>{@link org.apache.lucene.queries.payloads.PayloadScoreQuery PayloadScoreQuery} -- For all terms matched by  *        a SpanQuery, boost the score based on the value of the payload located at those terms.</li>  *</ol>  */
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.search.payloads
+DECL|package|org.apache.lucene.queries.payloads
 package|package
 name|org
 operator|.
@@ -16,7 +16,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|queries
 operator|.
 name|payloads
 package|;
