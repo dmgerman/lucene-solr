@@ -1530,17 +1530,17 @@ name|stop
 init|=
 literal|false
 decl_stmt|;
-DECL|field|useInternal
+DECL|field|useInternalCompression
 specifier|private
 name|boolean
-name|useInternal
+name|useInternalCompression
 init|=
 literal|false
 decl_stmt|;
-DECL|field|useExternal
+DECL|field|useExternalCompression
 specifier|private
 name|boolean
-name|useExternal
+name|useExternalCompression
 init|=
 literal|false
 decl_stmt|;
@@ -1785,7 +1785,7 @@ argument_list|(
 name|COMPRESSION
 argument_list|)
 decl_stmt|;
-name|useInternal
+name|useInternalCompression
 operator|=
 name|INTERNAL
 operator|.
@@ -1794,7 +1794,7 @@ argument_list|(
 name|compress
 argument_list|)
 expr_stmt|;
-name|useExternal
+name|useExternalCompression
 operator|=
 name|EXTERNAL
 operator|.
@@ -1877,7 +1877,7 @@ name|httpBasicAuthUser
 argument_list|,
 name|httpBasicAuthPassword
 argument_list|,
-name|useExternal
+name|useExternalCompression
 argument_list|)
 expr_stmt|;
 block|}
@@ -9210,7 +9210,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|useInternal
+name|useInternalCompression
 condition|)
 block|{
 name|params
@@ -9348,7 +9348,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|useInternal
+name|useInternalCompression
 condition|)
 block|{
 name|is
