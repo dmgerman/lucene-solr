@@ -182,6 +182,12 @@ specifier|static
 name|MiniDFSCluster
 name|dfsCluster
 decl_stmt|;
+DECL|field|initialFailLogsCount
+specifier|private
+specifier|static
+name|long
+name|initialFailLogsCount
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|setupClass
@@ -218,6 +224,15 @@ argument_list|,
 literal|"false"
 argument_list|)
 expr_stmt|;
+name|initialFailLogsCount
+operator|=
+name|HdfsUpdateLog
+operator|.
+name|INIT_FAILED_LOGS_COUNT
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|AfterClass
@@ -230,6 +245,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// there should be no new fails from this test
 name|assertEquals
 argument_list|(
 literal|0
@@ -240,6 +256,8 @@ name|INIT_FAILED_LOGS_COUNT
 operator|.
 name|get
 argument_list|()
+operator|-
+name|initialFailLogsCount
 argument_list|)
 expr_stmt|;
 name|HdfsTestUtil
