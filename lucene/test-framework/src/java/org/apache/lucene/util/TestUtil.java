@@ -8982,6 +8982,8 @@ return|;
 block|}
 catch|catch
 parameter_list|(
+name|AssertionError
+decl||
 name|IllegalArgumentException
 name|t
 parameter_list|)
