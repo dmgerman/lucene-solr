@@ -2936,6 +2936,10 @@ argument_list|,
 name|shape2
 argument_list|)
 argument_list|,
+name|RandomSpatialOpFuzzyPrefixTreeTest
+operator|.
+name|this
+operator|.
 name|ctx
 argument_list|)
 expr_stmt|;
