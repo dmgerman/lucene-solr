@@ -5877,7 +5877,13 @@ operator|.
 name|getNodeProps
 argument_list|()
 argument_list|,
-name|leaderCoreNodeName
+name|req
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getCoreDescriptor
+argument_list|()
 argument_list|,
 literal|false
 comment|/* forcePublishState */
