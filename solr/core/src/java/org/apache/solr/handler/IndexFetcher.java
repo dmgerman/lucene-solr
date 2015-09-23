@@ -6220,15 +6220,17 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|warn
 argument_list|(
-literal|"Skipping move file - it already exists:"
+literal|"Cannot complete replication attempt because file already exists:"
 operator|+
 name|fname
 argument_list|)
 expr_stmt|;
+comment|// we fail - we downloaded the files we need, if we can't move one in, we can't
+comment|// count on the correct index
 return|return
-literal|true
+literal|false
 return|;
 block|}
 block|}
