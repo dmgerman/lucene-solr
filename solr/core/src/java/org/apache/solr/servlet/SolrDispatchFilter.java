@@ -1069,6 +1069,37 @@ name|HttpServletRequest
 operator|)
 condition|)
 return|return;
+if|if
+condition|(
+name|cores
+operator|==
+literal|null
+operator|||
+name|cores
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Error processing the request. CoreContainer is either not initialized or shutting down."
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVICE_UNAVAILABLE
+argument_list|,
+literal|"Error processing the request. CoreContainer is either not initialized or shutting down."
+argument_list|)
+throw|;
+block|}
 name|AtomicReference
 argument_list|<
 name|ServletRequest
