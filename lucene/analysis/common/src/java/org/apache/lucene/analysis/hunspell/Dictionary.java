@@ -980,7 +980,7 @@ name|tempDir
 init|=
 name|OfflineSorter
 operator|.
-name|defaultTempDir
+name|getDefaultTempDir
 argument_list|()
 decl_stmt|;
 comment|// TODO: make this configurable?

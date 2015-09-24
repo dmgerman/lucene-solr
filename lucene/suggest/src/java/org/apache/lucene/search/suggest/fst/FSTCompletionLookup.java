@@ -617,7 +617,7 @@ name|createTempFile
 argument_list|(
 name|OfflineSorter
 operator|.
-name|defaultTempDir
+name|getDefaultTempDir
 argument_list|()
 argument_list|,
 name|FSTCompletionLookup
@@ -639,7 +639,7 @@ name|createTempFile
 argument_list|(
 name|OfflineSorter
 operator|.
-name|defaultTempDir
+name|getDefaultTempDir
 argument_list|()
 argument_list|,
 name|FSTCompletionLookup

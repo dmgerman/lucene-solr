@@ -524,10 +524,6 @@ name|AtomicBoolean
 import|;
 end_import
 
-begin_comment
-comment|// TODO: can test framework assert we don't leak temp files?
-end_comment
-
 begin_class
 DECL|class|TestRangeTree
 specifier|public

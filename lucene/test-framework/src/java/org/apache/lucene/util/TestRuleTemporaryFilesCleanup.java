@@ -511,6 +511,14 @@ operator|=
 name|initializeJavaTempDir
 argument_list|()
 expr_stmt|;
+comment|// So all code using OfflineSorter (suggesters, BKD tree, NumericRangeTree) see MockFS goodness, e.g. catching leaked file handles:
+name|OfflineSorter
+operator|.
+name|setDefaultTempDir
+argument_list|(
+name|javaTempDir
+argument_list|)
+expr_stmt|;
 block|}
 comment|// os/config-independent limit for too many open files
 comment|// TODO: can we make this lower?

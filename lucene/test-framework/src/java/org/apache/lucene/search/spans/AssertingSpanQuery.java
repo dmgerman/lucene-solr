@@ -257,9 +257,6 @@ return|return
 operator|new
 name|AssertingSpanQuery
 argument_list|(
-operator|(
-name|SpanQuery
-operator|)
 name|in
 argument_list|)
 return|;
