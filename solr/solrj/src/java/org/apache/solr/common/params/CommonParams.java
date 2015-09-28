@@ -464,6 +464,15 @@ name|AUTHC_PATH
 init|=
 literal|"/admin/authentication"
 decl_stmt|;
+DECL|field|ZK_PATH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|ZK_PATH
+init|=
+literal|"/admin/zookeeper"
+decl_stmt|;
 comment|/** valid values for:<code>echoParams</code> */
 DECL|enum|EchoParamStyle
 specifier|public

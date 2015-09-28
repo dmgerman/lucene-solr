@@ -251,6 +251,7 @@ implements|implements
 name|QueryResponseWriter
 block|{
 DECL|field|CONTENT_TYPE_JSON_UTF8
+specifier|public
 specifier|static
 name|String
 name|CONTENT_TYPE_JSON_UTF8
