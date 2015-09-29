@@ -593,6 +593,7 @@ return|return
 literal|20
 return|;
 block|}
+comment|// producing "within" cases in Geo3D based on our random shapes doesn't happen often. It'd be nice to increase this.
 DECL|method|getWithinMinimum
 specifier|protected
 name|int
@@ -603,7 +604,7 @@ name|laps
 parameter_list|)
 block|{
 return|return
-literal|20
+literal|2
 return|;
 block|}
 DECL|method|getDisjointMinimum
