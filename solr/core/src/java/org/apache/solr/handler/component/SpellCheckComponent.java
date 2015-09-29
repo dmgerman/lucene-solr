@@ -4551,16 +4551,6 @@ operator|instanceof
 name|Map
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"##mapspellchecker"
-argument_list|)
-expr_stmt|;
-comment|//todo nocommit
 name|addSpellChecker
 argument_list|(
 name|core
