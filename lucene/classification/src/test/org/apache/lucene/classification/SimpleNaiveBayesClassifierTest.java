@@ -512,8 +512,6 @@ return|;
 block|}
 block|}
 annotation|@
-name|Ignore
-annotation|@
 name|Test
 DECL|method|testPerformance
 specifier|public
