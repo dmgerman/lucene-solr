@@ -2389,6 +2389,73 @@ literal|"key"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|payload
+operator|=
+literal|"{\n"
+operator|+
+literal|"    'add-searchcomponent': {\n"
+operator|+
+literal|"        'name': 'myspellcheck',\n"
+operator|+
+literal|"        'class': 'solr.SpellCheckComponent',\n"
+operator|+
+literal|"        'queryAnalyzerFieldType': 'text_general',\n"
+operator|+
+literal|"        'spellchecker': {\n"
+operator|+
+literal|"            'name': 'default',\n"
+operator|+
+literal|"            'field': '_text_',\n"
+operator|+
+literal|"            'class': 'solr.DirectSolrSpellChecker'\n"
+operator|+
+literal|"        }\n"
+operator|+
+literal|"    }\n"
+operator|+
+literal|"}"
+expr_stmt|;
+name|runConfigCommand
+argument_list|(
+name|writeHarness
+argument_list|,
+literal|"/config?wt=json"
+argument_list|,
+name|payload
+argument_list|)
+expr_stmt|;
+name|map
+operator|=
+name|testForResponseElement
+argument_list|(
+name|writeHarness
+argument_list|,
+name|testServerBaseUrl
+argument_list|,
+literal|"/config?wt=json"
+argument_list|,
+name|cloudSolrClient
+argument_list|,
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"config"
+argument_list|,
+literal|"searchComponent"
+argument_list|,
+literal|"myspellcheck"
+argument_list|,
+literal|"spellchecker"
+argument_list|,
+literal|"class"
+argument_list|)
+argument_list|,
+literal|"solr.DirectSolrSpellChecker"
+argument_list|,
+literal|10
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testForResponseElement
 specifier|public
