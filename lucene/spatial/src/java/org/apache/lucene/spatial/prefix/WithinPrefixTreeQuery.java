@@ -255,12 +255,12 @@ comment|/**  * Finds docs where its indexed shape is {@link org.apache.lucene.sp
 end_comment
 
 begin_class
-DECL|class|WithinPrefixTreeFilter
+DECL|class|WithinPrefixTreeQuery
 specifier|public
 class|class
-name|WithinPrefixTreeFilter
+name|WithinPrefixTreeQuery
 extends|extends
-name|AbstractVisitingPrefixTreeFilter
+name|AbstractVisitingPrefixTreeQuery
 block|{
 comment|//TODO LUCENE-4869: implement faster algorithm based on filtering out false-positives of a
 comment|//  minimal query buffer by looking in a DocValues cache holding a representative
@@ -274,10 +274,10 @@ name|Shape
 name|bufferedQueryShape
 decl_stmt|;
 comment|//if null then the whole world
-comment|/**    * See {@link AbstractVisitingPrefixTreeFilter#AbstractVisitingPrefixTreeFilter(com.spatial4j.core.shape.Shape, String, org.apache.lucene.spatial.prefix.tree.SpatialPrefixTree, int, int)}.    * {@code queryBuffer} is the (minimum) distance beyond the query shape edge    * where non-matching documents are looked for so they can be excluded. If    * -1 is used then the whole world is examined (a good default for correctness).    */
-DECL|method|WithinPrefixTreeFilter
+comment|/**    * See {@link AbstractVisitingPrefixTreeQuery#AbstractVisitingPrefixTreeQuery(com.spatial4j.core.shape.Shape, String, org.apache.lucene.spatial.prefix.tree.SpatialPrefixTree, int, int)}.    * {@code queryBuffer} is the (minimum) distance beyond the query shape edge    * where non-matching documents are looked for so they can be excluded. If    * -1 is used then the whole world is examined (a good default for correctness).    */
+DECL|method|WithinPrefixTreeQuery
 specifier|public
-name|WithinPrefixTreeFilter
+name|WithinPrefixTreeQuery
 parameter_list|(
 name|Shape
 name|queryShape
@@ -355,11 +355,11 @@ return|return
 literal|false
 return|;
 comment|//checks getClass == o.getClass& instanceof
-name|WithinPrefixTreeFilter
+name|WithinPrefixTreeQuery
 name|that
 init|=
 operator|(
-name|WithinPrefixTreeFilter
+name|WithinPrefixTreeQuery
 operator|)
 name|o
 decl_stmt|;
@@ -443,7 +443,13 @@ name|field
 parameter_list|)
 block|{
 return|return
-literal|"WithinPrefixTreeFilter("
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|"("
 operator|+
 literal|"fieldName="
 operator|+
@@ -807,15 +813,12 @@ block|}
 annotation|@
 name|Override
 DECL|method|getDocIdSet
-specifier|public
+specifier|protected
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -825,8 +828,6 @@ operator|new
 name|VisitorTemplate
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 block|{
 specifier|private

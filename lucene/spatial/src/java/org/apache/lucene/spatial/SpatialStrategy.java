@@ -130,34 +130,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|ConstantScoreQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|Query
 import|;
 end_import
@@ -179,7 +151,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The SpatialStrategy encapsulates an approach to indexing and searching based  * on shapes.  *<p>  * Different implementations will support different features. A strategy should  * document these common elements:  *<ul>  *<li>Can it index more than one shape per field?</li>  *<li>What types of shapes can be indexed?</li>  *<li>What types of query shapes can be used?</li>  *<li>What types of query operations are supported?  *   This might vary per shape.</li>  *<li>Does it use some type of cache?  When?  *</ul>  * If a strategy only supports certain shapes at index or query time, then in  * general it will throw an exception if given an incompatible one.  It will not  * be coerced into compatibility.  *<p>  * Note that a SpatialStrategy is not involved with the Lucene stored field  * values of shapes, which is immaterial to indexing and search.  *<p>  * Thread-safe.  *  * @lucene.experimental  */
+comment|/**  * The SpatialStrategy encapsulates an approach to indexing and searching based  * on shapes.  *<p>  * Different implementations will support different features. A strategy should  * document these common elements:  *<ul>  *<li>Can it index more than one shape per field?</li>  *<li>What types of shapes can be indexed?</li>  *<li>What types of query shapes can be used?</li>  *<li>What types of query operations are supported?  *   This might vary per shape.</li>  *<li>Does it use some type of cache?  When?  *</ul>  * If a strategy only supports certain shapes at index or query time, then in  * general it will throw an exception if given an incompatible one.  It will not  * be coerced into compatibility.  *<p>  * Note that a SpatialStrategy is not involved with the Lucene stored field  * values of shapes, which is immaterial to indexing and search.  *<p>  * Thread-safe.  *<p>  * This API is marked as experimental, however it is quite stable.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -325,33 +297,12 @@ name|double
 name|multiplier
 parameter_list|)
 function_decl|;
-comment|/**    * Make a Query based principally on {@link org.apache.lucene.spatial.query.SpatialOperation}    * and {@link Shape} from the supplied {@code args}.    * The default implementation is    *<pre>return new ConstantScoreQuery(makeFilter(args));</pre>    *    * @throws UnsupportedOperationException If the strategy does not support the shape in {@code args}    * @throws org.apache.lucene.spatial.query.UnsupportedSpatialOperation If the strategy does not support the {@link    * org.apache.lucene.spatial.query.SpatialOperation} in {@code args}.    */
+comment|/**    * Make a Query based principally on {@link org.apache.lucene.spatial.query.SpatialOperation}    * and {@link Shape} from the supplied {@code args}.  It should be constant scoring of 1.    *    * @throws UnsupportedOperationException If the strategy does not support the shape in {@code args}    * @throws org.apache.lucene.spatial.query.UnsupportedSpatialOperation If the strategy does not support the {@link    * org.apache.lucene.spatial.query.SpatialOperation} in {@code args}.    */
 DECL|method|makeQuery
 specifier|public
+specifier|abstract
 name|Query
 name|makeQuery
-parameter_list|(
-name|SpatialArgs
-name|args
-parameter_list|)
-block|{
-return|return
-operator|new
-name|ConstantScoreQuery
-argument_list|(
-name|makeFilter
-argument_list|(
-name|args
-argument_list|)
-argument_list|)
-return|;
-block|}
-comment|/**    * Make a Filter based principally on {@link org.apache.lucene.spatial.query.SpatialOperation}    * and {@link Shape} from the supplied {@code args}.    *<p>    * If a subclasses implements    * {@link #makeQuery(org.apache.lucene.spatial.query.SpatialArgs)}    * then this method could be simply:    *<pre>return new QueryWrapperFilter(makeQuery(args).getQuery());</pre>    *    * @throws UnsupportedOperationException If the strategy does not support the shape in {@code args}    * @throws org.apache.lucene.spatial.query.UnsupportedSpatialOperation If the strategy does not support the {@link    * org.apache.lucene.spatial.query.SpatialOperation} in {@code args}.    */
-DECL|method|makeFilter
-specifier|public
-specifier|abstract
-name|Filter
-name|makeFilter
 parameter_list|(
 name|SpatialArgs
 name|args

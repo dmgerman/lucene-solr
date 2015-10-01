@@ -172,41 +172,27 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|BytesRef
 import|;
 end_import
 
 begin_comment
-comment|/**  * Traverses a {@link SpatialPrefixTree} indexed field, using the template and  * visitor design patterns for subclasses to guide the traversal and collect  * matching documents.  *<p>  * Subclasses implement {@link #getDocIdSet(org.apache.lucene.index.LeafReaderContext,  * org.apache.lucene.util.Bits)} by instantiating a custom {@link  * VisitorTemplate} subclass (i.e. an anonymous inner class) and implement the  * required methods.  *  * @lucene.internal  */
+comment|/**  * Traverses a {@link SpatialPrefixTree} indexed field, using the template and  * visitor design patterns for subclasses to guide the traversal and collect  * matching documents.  *<p>  * Subclasses implement {@link #getDocIdSet(org.apache.lucene.index.LeafReaderContext)}  * by instantiating a custom {@link VisitorTemplate} subclass (i.e. an anonymous inner class)  * and implement the required methods.  *  * @lucene.internal  */
 end_comment
 
 begin_class
-DECL|class|AbstractVisitingPrefixTreeFilter
+DECL|class|AbstractVisitingPrefixTreeQuery
 specifier|public
 specifier|abstract
 class|class
-name|AbstractVisitingPrefixTreeFilter
+name|AbstractVisitingPrefixTreeQuery
 extends|extends
-name|AbstractPrefixTreeFilter
+name|AbstractPrefixTreeQuery
 block|{
-comment|//Historical note: this code resulted from a refactoring of RecursivePrefixTreeFilter,
+comment|//Historical note: this code resulted from a refactoring of RecursivePrefixTreeQuery,
 comment|// which in turn came out of SOLR-2155
-comment|//This class perhaps could have been implemented in terms of FilteredTermsEnum& MultiTermQuery
-comment|//& MultiTermQueryWrapperFilter.  Maybe so for simple Intersects predicate but not for when we want to collect terms
+comment|//This class perhaps could have been implemented in terms of FilteredTermsEnum& MultiTermQuery.
+comment|//  Maybe so for simple Intersects predicate but not for when we want to collect terms
 comment|//  differently depending on cell state like IsWithin and for fuzzy/accurate collection planned improvements.  At
 comment|//  least it would just make things more complicated.
 DECL|field|prefixGridScanLevel
@@ -216,9 +202,9 @@ name|int
 name|prefixGridScanLevel
 decl_stmt|;
 comment|//at least one less than grid.getMaxLevels()
-DECL|method|AbstractVisitingPrefixTreeFilter
+DECL|method|AbstractVisitingPrefixTreeQuery
 specifier|public
-name|AbstractVisitingPrefixTreeFilter
+name|AbstractVisitingPrefixTreeQuery
 parameter_list|(
 name|Shape
 name|queryShape
@@ -281,7 +267,7 @@ name|getMaxLevels
 argument_list|()
 assert|;
 block|}
-comment|/**    * An abstract class designed to make it easy to implement predicates or    * other operations on a {@link SpatialPrefixTree} indexed field. An instance    * of this class is not designed to be re-used across LeafReaderContext    * instances so simply create a new one for each call to, say a {@link    * org.apache.lucene.search.Filter#getDocIdSet(org.apache.lucene.index.LeafReaderContext, org.apache.lucene.util.Bits)}.    * The {@link #getDocIdSet()} method here starts the work. It first checks    * that there are indexed terms; if not it quickly returns null. Then it calls    * {@link #start()} so a subclass can set up a return value, like an    * {@link org.apache.lucene.util.FixedBitSet}. Then it starts the traversal    * process, calling {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Cell)}    * which by default finds the top cells that intersect {@code queryShape}. If    * there isn't an indexed cell for a corresponding cell returned for this    * method then it's short-circuited until it finds one, at which point    * {@link #visitPrefix(org.apache.lucene.spatial.prefix.tree.Cell)} is called. At    * some depths, of the tree, the algorithm switches to a scanning mode that    * calls {@link #visitScanned(org.apache.lucene.spatial.prefix.tree.Cell)}    * for each leaf cell found.    *    * @lucene.internal    */
+comment|/**    * An abstract class designed to make it easy to implement predicates or    * other operations on a {@link SpatialPrefixTree} indexed field. An instance    * of this class is not designed to be re-used across LeafReaderContext    * instances so simply create a new one per-leaf.    * The {@link #getDocIdSet()} method here starts the work. It first checks    * that there are indexed terms; if not it quickly returns null. Then it calls    * {@link #start()} so a subclass can set up a return value, like an    * {@link org.apache.lucene.util.FixedBitSet}. Then it starts the traversal    * process, calling {@link #findSubCellsToVisit(org.apache.lucene.spatial.prefix.tree.Cell)}    * which by default finds the top cells that intersect {@code queryShape}. If    * there isn't an indexed cell for a corresponding cell returned for this    * method then it's short-circuited until it finds one, at which point    * {@link #visitPrefix(org.apache.lucene.spatial.prefix.tree.Cell)} is called. At    * some depths, of the tree, the algorithm switches to a scanning mode that    * calls {@link #visitScanned(org.apache.lucene.spatial.prefix.tree.Cell)}    * for each leaf cell found.    *    * @lucene.internal    */
 DECL|class|VisitorTemplate
 specifier|public
 specifier|abstract
@@ -328,9 +314,6 @@ name|VisitorTemplate
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -338,8 +321,6 @@ block|{
 name|super
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 expr_stmt|;
 block|}

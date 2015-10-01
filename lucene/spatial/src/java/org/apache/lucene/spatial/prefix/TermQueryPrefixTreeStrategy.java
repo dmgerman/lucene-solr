@@ -90,21 +90,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|QueryWrapperFilter
+name|Query
 import|;
 end_import
 
@@ -327,10 +313,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|makeFilter
+DECL|method|makeQuery
 specifier|public
-name|Filter
-name|makeFilter
+name|Query
+name|makeQuery
 parameter_list|(
 name|SpatialArgs
 name|args
@@ -550,16 +536,12 @@ comment|//unfortunately TermsQuery will needlessly sort& dedupe
 comment|//TODO an automatonQuery might be faster?
 return|return
 operator|new
-name|QueryWrapperFilter
-argument_list|(
-operator|new
 name|TermsQuery
 argument_list|(
 name|getFieldName
 argument_list|()
 argument_list|,
 name|terms
-argument_list|)
 argument_list|)
 return|;
 block|}

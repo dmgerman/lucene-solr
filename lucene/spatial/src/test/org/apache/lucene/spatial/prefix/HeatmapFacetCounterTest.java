@@ -200,21 +200,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|MatchAllDocsQuery
+name|Query
 import|;
 end_import
 
@@ -279,6 +265,20 @@ operator|.
 name|tree
 operator|.
 name|SpatialPrefixTree
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
 import|;
 end_import
 
@@ -1226,7 +1226,7 @@ return|return
 literal|false
 return|;
 block|}
-name|Filter
+name|Bits
 name|filter
 init|=
 literal|null
@@ -1583,11 +1583,11 @@ name|this
 operator|.
 name|strategy
 decl_stmt|;
-name|Filter
+name|Query
 name|filter
 init|=
 operator|new
-name|IntersectsPrefixTreeFilter
+name|IntersectsPrefixTreeQuery
 argument_list|(
 name|pt
 argument_list|,

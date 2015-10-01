@@ -140,20 +140,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|spatial
 operator|.
 name|prefix
@@ -214,8 +200,22 @@ name|ArrayUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
+import|;
+end_import
+
 begin_comment
-comment|/**  * Computes spatial facets in two dimensions as a grid of numbers.  The data is often visualized as a so-called  * "heatmap", hence the name.  */
+comment|/**  * Computes spatial facets in two dimensions as a grid of numbers.  The data is often visualized as a so-called  * "heatmap", hence the name.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -384,7 +384,7 @@ literal|'}'
 return|;
 block|}
 block|}
-comment|/**    * Calculates spatial 2D facets (aggregated counts) in a grid, sometimes called a heatmap.    * Facet computation is implemented by navigating the underlying indexed terms efficiently. If you don't know exactly    * what facetLevel to go to for a given input box but you have some sense of how many cells there should be relative    * to the size of the shape, then consider using the logic that {@link org.apache.lucene.spatial.prefix.PrefixTreeStrategy}    * uses when approximating what level to go to when indexing a shape given a distErrPct.    *    * @param context the IndexReader's context    * @param filter a Filter to limit counted docs. For optimal performance, it's    *               {@link org.apache.lucene.search.DocIdSet#bits()} should be non-null. If no filter is provided, live    *               docs are counted.    * @param inputShape the shape to gather grid squares for; typically a {@link com.spatial4j.core.shape.Rectangle}.    *                   The<em>actual</em> heatmap area will usually be larger since the cells on the edge that overlap    *                   are returned. We always return a rectangle of integers even if the inputShape isn't a rectangle    *                   -- the non-intersecting cells will all be 0.    *                   If null is given, the entire world is assumed.    * @param facetLevel the target depth (detail) of cells.    * @param maxCells the maximum number of cells to return. If the cells exceed this count, an    *                 IllegalArgumentException is thrown.    */
+comment|/**    * Calculates spatial 2D facets (aggregated counts) in a grid, sometimes called a heatmap.    * Facet computation is implemented by navigating the underlying indexed terms efficiently. If you don't know exactly    * what facetLevel to go to for a given input box but you have some sense of how many cells there should be relative    * to the size of the shape, then consider using the logic that {@link org.apache.lucene.spatial.prefix.PrefixTreeStrategy}    * uses when approximating what level to go to when indexing a shape given a distErrPct.    *    * @param context the IndexReader's context    * @param topAcceptDocs a Bits to limit counted docs.  If null, live docs are counted.    * @param inputShape the shape to gather grid squares for; typically a {@link Rectangle}.    *                   The<em>actual</em> heatmap area will usually be larger since the cells on the edge that overlap    *                   are returned. We always return a rectangle of integers even if the inputShape isn't a rectangle    *                   -- the non-intersecting cells will all be 0.    *                   If null is given, the entire world is assumed.    * @param facetLevel the target depth (detail) of cells.    * @param maxCells the maximum number of cells to return. If the cells exceed this count, an    */
 DECL|method|calcFacets
 specifier|public
 specifier|static
@@ -397,8 +397,8 @@ parameter_list|,
 name|IndexReaderContext
 name|context
 parameter_list|,
-name|Filter
-name|filter
+name|Bits
+name|topAcceptDocs
 parameter_list|,
 name|Shape
 name|inputShape
@@ -916,7 +916,7 @@ name|strategy
 argument_list|,
 name|context
 argument_list|,
-name|filter
+name|topAcceptDocs
 argument_list|,
 name|inputShape
 argument_list|,

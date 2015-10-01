@@ -1073,7 +1073,7 @@ name|Contains
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** See LUCENE-5062, {@link ContainsPrefixTreeFilter#multiOverlappingIndexedShapes}. */
+comment|/** See LUCENE-5062, {@link ContainsPrefixTreeQuery#multiOverlappingIndexedShapes}. */
 annotation|@
 name|Test
 DECL|method|testContainsPairOverlap

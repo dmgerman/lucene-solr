@@ -370,20 +370,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|Query
 import|;
 end_import
@@ -1995,6 +1981,7 @@ operator|.
 name|getLocalParams
 argument_list|()
 decl_stmt|;
+comment|//See SOLR-2883 needScore
 name|String
 name|scoreParam
 init|=
@@ -2037,10 +2024,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|//FYI Solr FieldType doesn't have a getFilter(). We'll always grab
-comment|// getQuery() but it's possible a strategy has a more efficient getFilter
-comment|// that could be wrapped -- no way to know.
-comment|//See SOLR-2883 needScore
 return|return
 name|strategy
 operator|.
@@ -2049,7 +2032,7 @@ argument_list|(
 name|spatialArgs
 argument_list|)
 return|;
-comment|//ConstantScoreQuery
+comment|//assumed constant scoring
 block|}
 name|FunctionQuery
 name|functionQuery
@@ -2079,12 +2062,12 @@ condition|)
 return|return
 name|functionQuery
 return|;
-name|Filter
-name|filter
+name|Query
+name|filterQuery
 init|=
 name|strategy
 operator|.
-name|makeFilter
+name|makeQuery
 argument_list|(
 name|spatialArgs
 argument_list|)
@@ -2104,15 +2087,17 @@ name|Occur
 operator|.
 name|MUST
 argument_list|)
+comment|//matches everything and provides score
 operator|.
 name|add
 argument_list|(
-name|filter
+name|filterQuery
 argument_list|,
 name|Occur
 operator|.
 name|FILTER
 argument_list|)
+comment|//filters (score isn't used)
 operator|.
 name|build
 argument_list|()

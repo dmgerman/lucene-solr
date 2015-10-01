@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
+name|Query
 import|;
 end_import
 
@@ -211,7 +211,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link PrefixTreeStrategy} which uses {@link AbstractVisitingPrefixTreeFilter}.  * This strategy has support for searching non-point shapes (note: not tested).  * Even a query shape with distErrPct=0 (fully precise to the grid) should have  * good performance for typical data, unless there is a lot of indexed data  * coincident with the shape's edge.  *  * @lucene.experimental  */
+comment|/**  * A {@link PrefixTreeStrategy} which uses {@link AbstractVisitingPrefixTreeQuery}.  * This strategy has support for searching non-point shapes (note: not tested).  * Even a query shape with distErrPct=0 (fully precise to the grid) should have  * good performance for typical data, unless there is a lot of indexed data  * coincident with the shape's edge.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -311,7 +311,7 @@ return|return
 name|multiOverlappingIndexedShapes
 return|;
 block|}
-comment|/** See {@link ContainsPrefixTreeFilter#multiOverlappingIndexedShapes}. */
+comment|/** See {@link ContainsPrefixTreeQuery#multiOverlappingIndexedShapes}. */
 DECL|method|setMultiOverlappingIndexedShapes
 specifier|public
 name|void
@@ -758,10 +758,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|makeFilter
+DECL|method|makeQuery
 specifier|public
-name|Filter
-name|makeFilter
+name|Query
+name|makeQuery
 parameter_list|(
 name|SpatialArgs
 name|args
@@ -812,7 +812,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|IntersectsPrefixTreeFilter
+name|IntersectsPrefixTreeQuery
 argument_list|(
 name|shape
 argument_list|,
@@ -839,7 +839,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|WithinPrefixTreeFilter
+name|WithinPrefixTreeQuery
 argument_list|(
 name|shape
 argument_list|,
@@ -870,7 +870,7 @@ condition|)
 block|{
 return|return
 operator|new
-name|ContainsPrefixTreeFilter
+name|ContainsPrefixTreeQuery
 argument_list|(
 name|shape
 argument_list|,

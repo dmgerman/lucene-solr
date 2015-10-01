@@ -144,20 +144,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|spatial
 operator|.
 name|prefix
@@ -183,6 +169,20 @@ operator|.
 name|tree
 operator|.
 name|NumberRangePrefixTree
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Bits
 import|;
 end_import
 
@@ -342,7 +342,7 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-comment|/** Calculates facets between {@code start} and {@code end} to a detail level one greater than that provided by the    * arguments. For example providing March to October of 2014 would return facets to the day level of those months.    * This is just a convenience method.    * @see #calcFacets(IndexReaderContext, Filter, Shape, int)    */
+comment|/** Calculates facets between {@code start} and {@code end} to a detail level one greater than that provided by the    * arguments. For example providing March to October of 2014 would return facets to the day level of those months.    * This is just a convenience method.    * @see #calcFacets(IndexReaderContext, Bits, Shape, int)    */
 DECL|method|calcFacets
 specifier|public
 name|Facets
@@ -351,8 +351,8 @@ parameter_list|(
 name|IndexReaderContext
 name|context
 parameter_list|,
-name|Filter
-name|filter
+name|Bits
+name|topAcceptDocs
 parameter_list|,
 name|UnitNRShape
 name|start
@@ -401,7 +401,7 @@ name|calcFacets
 argument_list|(
 name|context
 argument_list|,
-name|filter
+name|topAcceptDocs
 argument_list|,
 name|facetRange
 argument_list|,
@@ -418,8 +418,8 @@ parameter_list|(
 name|IndexReaderContext
 name|context
 parameter_list|,
-name|Filter
-name|filter
+name|Bits
+name|topAcceptDocs
 parameter_list|,
 name|Shape
 name|facetRange
@@ -449,7 +449,7 @@ name|this
 argument_list|,
 name|context
 argument_list|,
-name|filter
+name|topAcceptDocs
 argument_list|,
 name|facetRange
 argument_list|,

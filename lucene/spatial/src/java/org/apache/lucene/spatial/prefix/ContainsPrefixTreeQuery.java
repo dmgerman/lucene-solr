@@ -251,12 +251,12 @@ comment|/**  * Finds docs where its indexed shape {@link org.apache.lucene.spati
 end_comment
 
 begin_class
-DECL|class|ContainsPrefixTreeFilter
+DECL|class|ContainsPrefixTreeQuery
 specifier|public
 class|class
-name|ContainsPrefixTreeFilter
+name|ContainsPrefixTreeQuery
 extends|extends
-name|AbstractPrefixTreeFilter
+name|AbstractPrefixTreeQuery
 block|{
 comment|/**    * If the spatial data for a document is comprised of multiple overlapping or adjacent parts,    * it might fail to match a query shape when doing the CONTAINS predicate when the sum of    * those shapes contain the query shape but none do individually.  Set this to false to    * increase performance if you don't care about that circumstance (such as if your indexed    * data doesn't even have such conditions).  See LUCENE-5062.    */
 DECL|field|multiOverlappingIndexedShapes
@@ -265,9 +265,9 @@ specifier|final
 name|boolean
 name|multiOverlappingIndexedShapes
 decl_stmt|;
-DECL|method|ContainsPrefixTreeFilter
+DECL|method|ContainsPrefixTreeQuery
 specifier|public
-name|ContainsPrefixTreeFilter
+name|ContainsPrefixTreeQuery
 parameter_list|(
 name|Shape
 name|queryShape
@@ -332,7 +332,7 @@ name|multiOverlappingIndexedShapes
 operator|==
 operator|(
 operator|(
-name|ContainsPrefixTreeFilter
+name|ContainsPrefixTreeQuery
 operator|)
 name|o
 operator|)
@@ -375,7 +375,13 @@ name|field
 parameter_list|)
 block|{
 return|return
-literal|"ContainsPrefixTreeFilter("
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|"("
 operator|+
 literal|"fieldName="
 operator|+
@@ -405,15 +411,12 @@ block|}
 annotation|@
 name|Override
 DECL|method|getDocIdSet
-specifier|public
+specifier|protected
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -423,8 +426,6 @@ operator|new
 name|ContainsVisitor
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 operator|.
 name|visit
@@ -434,7 +435,7 @@ operator|.
 name|getWorldCell
 argument_list|()
 argument_list|,
-name|acceptDocs
+literal|null
 argument_list|)
 return|;
 block|}
@@ -451,9 +452,6 @@ name|ContainsVisitor
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -461,8 +459,6 @@ block|{
 name|super
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 expr_stmt|;
 if|if
@@ -1265,6 +1261,7 @@ block|}
 block|}
 comment|//class ContainsVisitor
 comment|/** A hash based mutable set of docIds. If this were Solr code then we might    * use a combination of HashDocSet and SortedIntDocSet instead. */
+comment|// TODO use DocIdSetBuilder?
 DECL|class|SmallDocSet
 specifier|private
 specifier|static

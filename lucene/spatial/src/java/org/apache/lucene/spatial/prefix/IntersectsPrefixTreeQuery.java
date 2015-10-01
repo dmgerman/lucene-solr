@@ -144,39 +144,25 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|FixedBitSet
 import|;
 end_import
 
 begin_comment
-comment|/**  * A Filter matching documents that have an {@link SpatialRelation#INTERSECTS}  * (i.e. not DISTINCT) relationship with a provided query shape.  *  * @lucene.internal  */
+comment|/**  * A Query matching documents that have an {@link SpatialRelation#INTERSECTS}  * (i.e. not DISTINCT) relationship with a provided query shape.  *  * @lucene.internal  */
 end_comment
 
 begin_class
-DECL|class|IntersectsPrefixTreeFilter
+DECL|class|IntersectsPrefixTreeQuery
 specifier|public
 class|class
-name|IntersectsPrefixTreeFilter
+name|IntersectsPrefixTreeQuery
 extends|extends
-name|AbstractVisitingPrefixTreeFilter
+name|AbstractVisitingPrefixTreeQuery
 block|{
-DECL|method|IntersectsPrefixTreeFilter
+DECL|method|IntersectsPrefixTreeQuery
 specifier|public
-name|IntersectsPrefixTreeFilter
+name|IntersectsPrefixTreeQuery
 parameter_list|(
 name|Shape
 name|queryShape
@@ -211,15 +197,12 @@ block|}
 annotation|@
 name|Override
 DECL|method|getDocIdSet
-specifier|public
+specifier|protected
 name|DocIdSet
 name|getDocIdSet
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -230,8 +213,6 @@ operator|new
 name|VisitorTemplate
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 block|{
 specifier|private
@@ -349,7 +330,13 @@ name|field
 parameter_list|)
 block|{
 return|return
-literal|"IntersectsPrefixTreeFilter("
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|"("
 operator|+
 literal|"fieldName="
 operator|+

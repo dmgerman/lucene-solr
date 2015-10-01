@@ -250,7 +250,7 @@ name|spatial
 operator|.
 name|prefix
 operator|.
-name|AbstractVisitingPrefixTreeFilter
+name|AbstractVisitingPrefixTreeQuery
 import|;
 end_import
 
@@ -300,20 +300,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|DocIdSetBuilder
 import|;
 end_import
@@ -330,11 +316,11 @@ name|IntersectsRPTVerifyQuery
 extends|extends
 name|Query
 block|{
-DECL|field|intersectsDiffFilter
+DECL|field|intersectsDiffQuery
 specifier|private
 specifier|final
-name|IntersectsDifferentiatingFilter
-name|intersectsDiffFilter
+name|IntersectsDifferentiatingQuery
+name|intersectsDiffQuery
 decl_stmt|;
 DECL|field|predicateValueSource
 specifier|private
@@ -374,10 +360,10 @@ name|predicateValueSource
 expr_stmt|;
 name|this
 operator|.
-name|intersectsDiffFilter
+name|intersectsDiffQuery
 operator|=
 operator|new
-name|IntersectsDifferentiatingFilter
+name|IntersectsDifferentiatingQuery
 argument_list|(
 name|queryShape
 argument_list|,
@@ -454,13 +440,13 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|intersectsDiffFilter
+name|intersectsDiffQuery
 operator|.
 name|equals
 argument_list|(
 name|that
 operator|.
-name|intersectsDiffFilter
+name|intersectsDiffQuery
 argument_list|)
 condition|)
 return|return
@@ -499,7 +485,7 @@ literal|31
 operator|*
 name|result
 operator|+
-name|intersectsDiffFilter
+name|intersectsDiffQuery
 operator|.
 name|hashCode
 argument_list|()
@@ -567,18 +553,16 @@ name|IOException
 block|{
 comment|// Compute approx& exact
 specifier|final
-name|IntersectsDifferentiatingFilter
+name|IntersectsDifferentiatingQuery
 operator|.
 name|IntersectsDifferentiatingVisitor
 name|result
 init|=
-name|intersectsDiffFilter
+name|intersectsDiffQuery
 operator|.
 name|compute
 argument_list|(
 name|context
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 if|if
@@ -784,21 +768,21 @@ block|}
 block|}
 return|;
 block|}
-comment|//This is a "Filter" but we don't use it as-such; the caller calls the constructor and then compute() and examines
+comment|//This may be a "Query" but we don't use it as-such; the caller calls the constructor and then compute() and examines
 comment|// the results which consists of two parts -- the approximated results, and a subset of exact matches. The
 comment|// difference needs to be verified.
-comment|// TODO refactor AVPTF to not be a Query/Filter?
-DECL|class|IntersectsDifferentiatingFilter
+comment|// TODO refactor AVPTQ to not be a Query?
+DECL|class|IntersectsDifferentiatingQuery
 specifier|private
 specifier|static
 class|class
-name|IntersectsDifferentiatingFilter
+name|IntersectsDifferentiatingQuery
 extends|extends
-name|AbstractVisitingPrefixTreeFilter
+name|AbstractVisitingPrefixTreeQuery
 block|{
-DECL|method|IntersectsDifferentiatingFilter
+DECL|method|IntersectsDifferentiatingQuery
 specifier|public
-name|IntersectsDifferentiatingFilter
+name|IntersectsDifferentiatingQuery
 parameter_list|(
 name|Shape
 name|queryShape
@@ -831,34 +815,29 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|compute
-name|IntersectsDifferentiatingFilter
+name|IntersectsDifferentiatingQuery
 operator|.
 name|IntersectsDifferentiatingVisitor
 name|compute
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 specifier|final
-name|IntersectsDifferentiatingFilter
+name|IntersectsDifferentiatingQuery
 operator|.
 name|IntersectsDifferentiatingVisitor
 name|result
 init|=
 operator|new
-name|IntersectsDifferentiatingFilter
+name|IntersectsDifferentiatingQuery
 operator|.
 name|IntersectsDifferentiatingVisitor
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 decl_stmt|;
 name|result
@@ -871,7 +850,7 @@ return|return
 name|result
 return|;
 block|}
-comment|// TODO consider if IntersectsPrefixTreeFilter should simply do this and provide both sets
+comment|// TODO consider if IntersectsPrefixTreeQuery should simply do this and provide both sets
 DECL|class|IntersectsDifferentiatingVisitor
 class|class
 name|IntersectsDifferentiatingVisitor
@@ -924,9 +903,6 @@ name|IntersectsDifferentiatingVisitor
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
@@ -934,8 +910,6 @@ block|{
 name|super
 argument_list|(
 name|context
-argument_list|,
-name|acceptDocs
 argument_list|)
 expr_stmt|;
 block|}
@@ -1021,7 +995,7 @@ block|}
 return|return
 literal|null
 return|;
-comment|//unused in this weird re-use of AVPTF
+comment|//unused in this weird re-use of AVPTQ
 block|}
 annotation|@
 name|Override
@@ -1149,9 +1123,6 @@ name|getDocIdSet
 parameter_list|(
 name|LeafReaderContext
 name|context
-parameter_list|,
-name|Bits
-name|acceptDocs
 parameter_list|)
 throws|throws
 name|IOException
