@@ -336,21 +336,10 @@ decl_stmt|;
 comment|// TODO: If groups.truncate=true we only have to query the specific shards even faceting and statistics are enabled
 if|if
 condition|(
-operator|(
 name|rb
 operator|.
-name|getQueryCommand
+name|isNeedDocSet
 argument_list|()
-operator|.
-name|getFlags
-argument_list|()
-operator|&
-name|SolrIndexSearcher
-operator|.
-name|GET_DOCSET
-operator|)
-operator|!=
-literal|0
 operator|||
 name|containsGroupByQuery
 condition|)
