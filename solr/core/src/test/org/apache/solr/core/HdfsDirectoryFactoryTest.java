@@ -1313,6 +1313,17 @@ argument_list|,
 literal|"false"
 argument_list|)
 expr_stmt|;
+name|props
+operator|.
+name|put
+argument_list|(
+name|HdfsDirectoryFactory
+operator|.
+name|LOCALITYMETRICS_ENABLED
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
 name|factory
 operator|.
 name|init
