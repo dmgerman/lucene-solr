@@ -378,6 +378,16 @@ name|lastReplicationSuccess
 init|=
 literal|true
 decl_stmt|;
+comment|// will we attempt recovery as if we just started up (i.e. use starting versions rather than recent versions for peersync
+comment|// so we aren't looking at update versions that have started buffering since we came up.
+DECL|field|recoveringAfterStartup
+specifier|private
+specifier|volatile
+name|boolean
+name|recoveringAfterStartup
+init|=
+literal|true
+decl_stmt|;
 DECL|field|refCntWriter
 specifier|private
 name|RefCounted
@@ -1268,15 +1278,6 @@ name|closed
 condition|)
 return|return;
 block|}
-comment|// if true, we are recovering after startup and shouldn't have (or be receiving) additional updates (except for
-comment|// local tlog recovery)
-name|boolean
-name|recoveringAfterStartup
-init|=
-name|recoveryStrat
-operator|==
-literal|null
-decl_stmt|;
 name|recoveryThrottle
 operator|.
 name|minimumWaitBetweenActions
@@ -1389,6 +1390,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** called from recoveryStrat on a successful recovery */
 annotation|@
 name|Override
 DECL|method|recovered
@@ -1397,11 +1399,17 @@ name|void
 name|recovered
 parameter_list|()
 block|{
+name|recoveringAfterStartup
+operator|=
+literal|false
+expr_stmt|;
+comment|// once we have successfully recovered, we no longer need to act as if we are recovering after startup
 name|recoveryRunning
 operator|=
 literal|false
 expr_stmt|;
 block|}
+comment|/** called from recoveryStrat on a failed recovery */
 annotation|@
 name|Override
 DECL|method|failed
