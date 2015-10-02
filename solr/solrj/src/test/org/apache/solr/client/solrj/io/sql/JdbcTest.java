@@ -432,6 +432,11 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|waitForRecoveriesToFinish
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 name|indexr
 argument_list|(
 name|id
