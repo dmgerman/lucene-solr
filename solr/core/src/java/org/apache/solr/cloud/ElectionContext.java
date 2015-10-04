@@ -1892,12 +1892,19 @@ operator|.
 name|getLeaderVoteWait
 argument_list|()
 decl_stmt|;
+name|boolean
+name|allReplicasInLine
+init|=
+literal|false
+decl_stmt|;
 if|if
 condition|(
 operator|!
 name|weAreReplacement
 condition|)
 block|{
+name|allReplicasInLine
+operator|=
 name|waitForReplicasToComeUp
 argument_list|(
 name|leaderVoteWait
@@ -2424,6 +2431,97 @@ condition|(
 name|isLeader
 condition|)
 block|{
+if|if
+condition|(
+name|allReplicasInLine
+condition|)
+block|{
+comment|// SOLR-8075: A bug may allow the proper leader to get marked as LIR DOWN and
+comment|// if we are marked as DOWN but were able to become the leader, we remove
+comment|// the DOWN entry here so that we don't fail publishing ACTIVE due to being in LIR.
+comment|// We only do this if all the replicas participated in the election just in case
+comment|// this was a valid LIR entry and the proper leader replica is missing.
+try|try
+init|(
+name|SolrCore
+name|core
+init|=
+name|cc
+operator|.
+name|getCore
+argument_list|(
+name|coreName
+argument_list|)
+init|)
+block|{
+specifier|final
+name|Replica
+operator|.
+name|State
+name|lirState
+init|=
+name|zkController
+operator|.
+name|getLeaderInitiatedRecoveryState
+argument_list|(
+name|collection
+argument_list|,
+name|shardId
+argument_list|,
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|getCoreNodeName
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|lirState
+operator|==
+name|Replica
+operator|.
+name|State
+operator|.
+name|DOWN
+condition|)
+block|{
+name|zkController
+operator|.
+name|updateLeaderInitiatedRecoveryState
+argument_list|(
+name|collection
+argument_list|,
+name|shardId
+argument_list|,
+name|leaderProps
+operator|.
+name|getStr
+argument_list|(
+name|ZkStateReader
+operator|.
+name|CORE_NODE_NAME_PROP
+argument_list|)
+argument_list|,
+name|Replica
+operator|.
+name|State
+operator|.
+name|ACTIVE
+argument_list|,
+literal|null
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
 comment|// check for any replicas in my shard that were set to down by the previous leader
 try|try
 block|{
@@ -2783,9 +2881,10 @@ block|}
 block|}
 comment|// core gets closed automagically
 block|}
+comment|// returns true if all replicas are found to be up, false if not
 DECL|method|waitForReplicasToComeUp
 specifier|private
-name|void
+name|boolean
 name|waitForReplicasToComeUp
 parameter_list|(
 name|int
@@ -2957,7 +3056,9 @@ argument_list|(
 literal|"Enough replicas found to continue."
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+literal|true
+return|;
 block|}
 else|else
 block|{
@@ -3030,7 +3131,9 @@ argument_list|(
 literal|"Was waiting for replicas to come up, but they are taking too long - assuming they won't come back till later"
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+literal|false
+return|;
 block|}
 block|}
 else|else
@@ -3048,7 +3151,9 @@ operator|+
 name|collection
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+literal|false
+return|;
 block|}
 name|Thread
 operator|.
@@ -3075,6 +3180,9 @@ name|cnt
 operator|++
 expr_stmt|;
 block|}
+return|return
+literal|false
+return|;
 block|}
 DECL|method|rejoinLeaderElection
 specifier|private
