@@ -57,6 +57,9 @@ name|CREATE
 block|,
 DECL|enum constant|DELETE
 name|DELETE
+block|,
+DECL|enum constant|LIST
+name|LIST
 block|;
 DECL|method|get
 specifier|public
