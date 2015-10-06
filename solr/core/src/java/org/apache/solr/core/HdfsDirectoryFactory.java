@@ -590,20 +590,6 @@ name|google
 operator|.
 name|common
 operator|.
-name|base
-operator|.
-name|Preconditions
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
 name|cache
 operator|.
 name|CacheBuilder
@@ -1297,10 +1283,9 @@ name|getConfig
 argument_list|(
 name|BLOCKCACHE_GLOBAL
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 decl_stmt|;
-comment|// default to false for back compat
 name|boolean
 name|blockCacheReadEnabled
 init|=
