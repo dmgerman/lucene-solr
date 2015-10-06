@@ -2169,7 +2169,18 @@ name|add
 argument_list|(
 name|formatString
 argument_list|(
-literal|"The value for tag {0} is not available for node {}"
+literal|"The value for tag {0} is not available for node {1}"
+argument_list|,
+name|rule
+operator|.
+name|tag
+operator|.
+name|name
+argument_list|,
+name|e
+operator|.
+name|getKey
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
