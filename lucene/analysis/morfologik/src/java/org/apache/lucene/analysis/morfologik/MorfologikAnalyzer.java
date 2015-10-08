@@ -34,6 +34,28 @@ end_import
 
 begin_import
 import|import
+name|morfologik
+operator|.
+name|stemming
+operator|.
+name|Dictionary
+import|;
+end_import
+
+begin_import
+import|import
+name|morfologik
+operator|.
+name|stemming
+operator|.
+name|polish
+operator|.
+name|PolishStemmer
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -107,24 +129,24 @@ block|{
 DECL|field|dictionary
 specifier|private
 specifier|final
-name|String
+name|Dictionary
 name|dictionary
 decl_stmt|;
-comment|/**    * Builds an analyzer with an explicit dictionary resource.    *     * @param dictionaryResource A constant specifying which dictionary to choose. The    * dictionary resource must be named<code>morfologik/dictionaries/{dictionaryResource}.dict</code>    * and have an associated<code>.info</code> metadata file. See the Morfologik project    * for details.    *     * @see<a href="http://morfologik.blogspot.com/">http://morfologik.blogspot.com/</a>    */
+comment|/**    * Builds an analyzer with an explicit {@link Dictionary} resource.    *     * @param dictionary A prebuilt automaton with inflected and base word forms.    * @see<a href="https://github.com/morfologik/">https://github.com/morfologik/</a>    */
 DECL|method|MorfologikAnalyzer
 specifier|public
 name|MorfologikAnalyzer
 parameter_list|(
 specifier|final
-name|String
-name|dictionaryResource
+name|Dictionary
+name|dictionary
 parameter_list|)
 block|{
 name|this
 operator|.
 name|dictionary
 operator|=
-name|dictionaryResource
+name|dictionary
 expr_stmt|;
 block|}
 comment|/**    * Builds an analyzer with the default Morfologik's Polish dictionary.    */
@@ -135,9 +157,12 @@ parameter_list|()
 block|{
 name|this
 argument_list|(
-name|MorfologikFilterFactory
+operator|new
+name|PolishStemmer
+argument_list|()
 operator|.
-name|DEFAULT_DICTIONARY_RESOURCE
+name|getDictionary
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
