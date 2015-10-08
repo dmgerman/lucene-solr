@@ -1025,6 +1025,23 @@ argument_list|,
 name|parent
 argument_list|)
 expr_stmt|;
+comment|/*       * Skip the lib subdirectory when we are loading from the solr home.      * Otherwise load it, so core lib directories still get loaded.      * The default sharedLib will pick this up later, and if the user has      * changed sharedLib, then we don't want to load that location anyway.      */
+if|if
+condition|(
+operator|!
+name|this
+operator|.
+name|instanceDir
+operator|.
+name|equals
+argument_list|(
+name|SolrResourceLoader
+operator|.
+name|locateSolrHome
+argument_list|()
+argument_list|)
+condition|)
+block|{
 name|addToClassLoader
 argument_list|(
 literal|"./lib/"
@@ -1037,6 +1054,7 @@ expr_stmt|;
 name|reloadLuceneSPI
 argument_list|()
 expr_stmt|;
+block|}
 name|this
 operator|.
 name|coreProperties
