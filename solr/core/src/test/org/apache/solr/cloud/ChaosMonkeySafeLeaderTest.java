@@ -857,6 +857,20 @@ argument_list|(
 literal|180000
 argument_list|)
 expr_stmt|;
+comment|// even if things were leveled out, a jetty may have just been stopped or something
+comment|// we wait again and wait to level out again to make sure the system is not still in flux
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|3000
+argument_list|)
+expr_stmt|;
+name|waitForThingsToLevelOut
+argument_list|(
+literal|180000
+argument_list|)
+expr_stmt|;
 name|checkShardConsistency
 argument_list|(
 name|batchSize
