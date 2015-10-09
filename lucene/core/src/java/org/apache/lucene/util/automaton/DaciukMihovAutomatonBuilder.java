@@ -104,10 +104,21 @@ end_comment
 
 begin_class
 DECL|class|DaciukMihovAutomatonBuilder
+specifier|public
 specifier|final
 class|class
 name|DaciukMihovAutomatonBuilder
 block|{
+comment|/**    * The default constructor is private.  Use static methods directly.    */
+DECL|method|DaciukMihovAutomatonBuilder
+specifier|private
+name|DaciukMihovAutomatonBuilder
+parameter_list|()
+block|{
+name|super
+argument_list|()
+expr_stmt|;
+block|}
 comment|/**    * DFSA state with<code>char</code> labels on transitions.    */
 DECL|class|State
 specifier|private

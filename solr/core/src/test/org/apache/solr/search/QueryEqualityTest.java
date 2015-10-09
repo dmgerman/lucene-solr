@@ -1573,6 +1573,116 @@ literal|"{!child of=foo_s:parent}dude"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testGraphQuery
+specifier|public
+name|void
+name|testGraphQuery
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|SolrQueryRequest
+name|req
+init|=
+name|req
+argument_list|(
+literal|"from"
+argument_list|,
+literal|"node_s"
+argument_list|,
+literal|"to"
+argument_list|,
+literal|"edge_s"
+argument_list|,
+literal|"traversalFilter"
+argument_list|,
+literal|"foo"
+argument_list|,
+literal|"returnOnlyLeaf"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"returnRoot"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"maxDepth"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"useAutn"
+argument_list|,
+literal|"false"
+argument_list|)
+decl_stmt|;
+comment|// make sure all param subsitution works for all args to graph query.
+name|assertQueryEquals
+argument_list|(
+literal|"graph"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!graph from=node_s to=edge_s}*:*"
+argument_list|,
+literal|"{!graph from=$from to=$to}*:*"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"graph"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!graph from=node_s to=edge_s traversalFilter=foo}*:*"
+argument_list|,
+literal|"{!graph from=$from to=$to traversalFilter=$traversalFilter}*:*"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"graph"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!graph from=node_s to=edge_s traversalFilter=foo returnOnlyLeaf=true}*:*"
+argument_list|,
+literal|"{!graph from=$from to=$to traversalFilter=$traversalFilter returnOnlyLeaf=$returnOnlyLeaf}*:*"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"graph"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!graph from=node_s to=edge_s traversalFilter=foo returnOnlyLeaf=true returnRoot=false}*:*"
+argument_list|,
+literal|"{!graph from=$from to=$to traversalFilter=$traversalFilter returnOnlyLeaf=$returnOnlyLeaf returnRoot=$returnRoot}*:*"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"graph"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!graph from=node_s to=edge_s traversalFilter=foo returnOnlyLeaf=true returnRoot=false maxDepth=2}*:*"
+argument_list|,
+literal|"{!graph from=$from to=$to traversalFilter=$traversalFilter returnOnlyLeaf=$returnOnlyLeaf returnRoot=$returnRoot maxDepth=$maxDepth}*:*"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"graph"
+argument_list|,
+name|req
+argument_list|,
+literal|"{!graph from=node_s to=edge_s traversalFilter=foo returnOnlyLeaf=true returnRoot=false maxDepth=2 useAutn=false}*:*"
+argument_list|,
+literal|"{!graph from=$from to=$to traversalFilter=$traversalFilter returnOnlyLeaf=$returnOnlyLeaf returnRoot=$returnRoot maxDepth=$maxDepth useAutn=$useAutn}*:*"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testQuerySurround
 specifier|public
 name|void
