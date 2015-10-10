@@ -927,6 +927,7 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// be explicit with generics, because Java 9 fails to compile otherwise (type inference: Map.Entry[] vs. singletonMap):
 return|return
 operator|new
 name|PluginInfo
@@ -941,12 +942,20 @@ operator|new
 name|NamedList
 argument_list|<>
 argument_list|(
+name|Collections
+operator|.
+expr|<
+name|String
+argument_list|,
+name|Object
+operator|>
 name|singletonMap
 argument_list|(
 name|DEFAULTS
 argument_list|,
 operator|new
 name|NamedList
+argument_list|<>
 argument_list|(
 name|defaults
 argument_list|)
