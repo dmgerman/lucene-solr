@@ -52,6 +52,21 @@ DECL|field|count
 name|int
 name|count
 decl_stmt|;
+comment|/** A Solr or Lucene query for filtering suggestions*/
+DECL|field|contextFilterQuery
+name|String
+name|contextFilterQuery
+decl_stmt|;
+comment|/** Are all terms required?*/
+DECL|field|allTermsRequired
+name|boolean
+name|allTermsRequired
+decl_stmt|;
+comment|/** Highlight term in results?*/
+DECL|field|highlight
+name|boolean
+name|highlight
+decl_stmt|;
 DECL|method|SuggesterOptions
 specifier|public
 name|SuggesterOptions
@@ -61,6 +76,15 @@ name|token
 parameter_list|,
 name|int
 name|count
+parameter_list|,
+name|String
+name|contextFilterQuery
+parameter_list|,
+name|boolean
+name|allTermsRequired
+parameter_list|,
+name|boolean
+name|highlight
 parameter_list|)
 block|{
 name|this
@@ -74,6 +98,24 @@ operator|.
 name|count
 operator|=
 name|count
+expr_stmt|;
+name|this
+operator|.
+name|contextFilterQuery
+operator|=
+name|contextFilterQuery
+expr_stmt|;
+name|this
+operator|.
+name|allTermsRequired
+operator|=
+name|allTermsRequired
+expr_stmt|;
+name|this
+operator|.
+name|highlight
+operator|=
+name|highlight
 expr_stmt|;
 block|}
 block|}

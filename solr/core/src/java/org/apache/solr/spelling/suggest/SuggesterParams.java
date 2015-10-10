@@ -117,6 +117,42 @@ name|SUGGEST_PREFIX
 operator|+
 literal|"reloadAll"
 decl_stmt|;
+comment|/**    * contextFilterQuery to use for filtering the result of the suggestion    */
+DECL|field|SUGGEST_CONTEXT_FILTER_QUERY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SUGGEST_CONTEXT_FILTER_QUERY
+init|=
+name|SUGGEST_PREFIX
+operator|+
+literal|"cfq"
+decl_stmt|;
+comment|/**    * Whether keyword should be highlighted in result or not    */
+DECL|field|SUGGEST_HIGHLIGHT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SUGGEST_HIGHLIGHT
+init|=
+name|SUGGEST_PREFIX
+operator|+
+literal|"highlight"
+decl_stmt|;
+comment|/**    * Whether all terms are required or not    */
+DECL|field|SUGGEST_ALL_TERMS_REQUIRED
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SUGGEST_ALL_TERMS_REQUIRED
+init|=
+name|SUGGEST_PREFIX
+operator|+
+literal|"allTermsRequired"
+decl_stmt|;
 block|}
 end_interface
 

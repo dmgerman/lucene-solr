@@ -288,6 +288,16 @@ name|FILENAME
 init|=
 literal|"iwfsta.bin"
 decl_stmt|;
+comment|/**    * Clone of CONTEXTS_FIELD_NAME in AnalyzingInfixSuggester    */
+DECL|field|CONTEXTS_FIELD_NAME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CONTEXTS_FIELD_NAME
+init|=
+literal|"contexts"
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|create
