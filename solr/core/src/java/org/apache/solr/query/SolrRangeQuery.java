@@ -280,20 +280,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Filter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -365,20 +351,6 @@ operator|.
 name|util
 operator|.
 name|AttributeSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
 import|;
 end_import
 
@@ -504,7 +476,7 @@ name|solr
 operator|.
 name|search
 operator|.
-name|SolrConstantScoreQuery
+name|Filter
 import|;
 end_import
 

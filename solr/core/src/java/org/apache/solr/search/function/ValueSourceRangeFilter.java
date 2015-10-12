@@ -98,9 +98,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|util
 operator|.
-name|BitsFilteredDocIdSet
+name|Bits
 import|;
 end_import
 
@@ -110,11 +110,11 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|util
+name|search
 operator|.
-name|Bits
+name|BitsFilteredDocIdSet
 import|;
 end_import
 

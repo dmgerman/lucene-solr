@@ -125,10 +125,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestFilterCachingPolicy
+DECL|class|TestQueryCachingPolicy
 specifier|public
 class|class
-name|TestFilterCachingPolicy
+name|TestQueryCachingPolicy
 extends|extends
 name|LuceneTestCase
 block|{
@@ -248,12 +248,9 @@ argument_list|()
 control|)
 block|{
 specifier|final
-name|Filter
-name|filter
+name|Query
+name|query
 init|=
-operator|new
-name|QueryWrapperFilter
-argument_list|(
 operator|new
 name|TermQuery
 argument_list|(
@@ -265,7 +262,6 @@ argument_list|,
 literal|"value"
 argument_list|)
 argument_list|)
-argument_list|)
 decl_stmt|;
 specifier|final
 name|boolean
@@ -275,7 +271,7 @@ name|policy
 operator|.
 name|shouldCache
 argument_list|(
-name|filter
+name|query
 argument_list|,
 name|ctx
 argument_list|)
@@ -325,7 +321,7 @@ argument_list|)
 operator|.
 name|shouldCache
 argument_list|(
-name|filter
+name|query
 argument_list|,
 name|ctx
 argument_list|)
@@ -349,7 +345,7 @@ argument_list|)
 operator|.
 name|shouldCache
 argument_list|(
-name|filter
+name|query
 argument_list|,
 name|ctx
 argument_list|)
