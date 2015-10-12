@@ -499,7 +499,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Blended(foo:bar^4.0 foo:baz^3.0)"
+literal|"Blended((foo:bar)^4.0 (foo:baz)^3.0)"
 argument_list|,
 operator|new
 name|BlendedTermQuery

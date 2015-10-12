@@ -551,7 +551,7 @@ expr_stmt|;
 comment|// phrase with non-default boost:
 name|assertEquals
 argument_list|(
-literal|"\"(multi multi2) foo\"^2.0"
+literal|"(\"(multi multi2) foo\")^2.0"
 argument_list|,
 name|qp
 operator|.

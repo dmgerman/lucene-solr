@@ -201,7 +201,7 @@ parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
-literal|"foo:bar^2.0"
+literal|"(foo:bar)^2.0"
 argument_list|,
 operator|new
 name|SpanBoostQuery
@@ -258,7 +258,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"spanOr([foo:bar, foo:baz])^2.0"
+literal|"(spanOr([foo:bar, foo:baz]))^2.0"
 argument_list|,
 operator|new
 name|SpanBoostQuery
