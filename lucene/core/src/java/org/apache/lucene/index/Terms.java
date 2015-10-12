@@ -103,7 +103,7 @@ specifier|protected
 name|Terms
 parameter_list|()
 block|{   }
-comment|/** Returns an iterator that will step through all    *  terms. This method will not return null.  If you have    *  a previous TermsEnum, for example from a different    *  field, you can pass it for possible reuse if the    *  implementation can do so. */
+comment|/** Returns an iterator that will step through all    *  terms. This method will not return null. */
 DECL|method|iterator
 specifier|public
 specifier|abstract
