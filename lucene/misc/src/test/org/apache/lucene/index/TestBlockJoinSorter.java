@@ -272,6 +272,16 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
+
 begin_class
 DECL|class|TestBlockJoinSorter
 specifier|public
@@ -280,6 +290,13 @@ name|TestBlockJoinSorter
 extends|extends
 name|LuceneTestCase
 block|{
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/LUCENE-6836"
+argument_list|)
 DECL|method|test
 specifier|public
 name|void
