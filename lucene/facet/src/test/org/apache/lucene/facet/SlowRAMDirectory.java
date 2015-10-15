@@ -724,6 +724,11 @@ operator|+
 name|io
 operator|+
 literal|")"
+argument_list|,
+name|io
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|this

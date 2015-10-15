@@ -285,6 +285,16 @@ return|return
 operator|new
 name|BKDTreeDocValuesConsumer
 argument_list|(
+name|state
+operator|.
+name|directory
+argument_list|,
+name|state
+operator|.
+name|segmentInfo
+operator|.
+name|name
+argument_list|,
 name|delegate
 operator|.
 name|fieldsConsumer

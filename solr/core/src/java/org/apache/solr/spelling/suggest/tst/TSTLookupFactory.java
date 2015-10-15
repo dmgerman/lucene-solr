@@ -138,7 +138,12 @@ block|{
 return|return
 operator|new
 name|TSTLookup
+argument_list|(
+name|getTempDir
 argument_list|()
+argument_list|,
+literal|"suggester"
+argument_list|)
 return|;
 block|}
 annotation|@

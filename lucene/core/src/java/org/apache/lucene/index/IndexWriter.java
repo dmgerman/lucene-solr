@@ -175,8 +175,6 @@ operator|.
 name|util
 operator|.
 name|Map
-operator|.
-name|Entry
 import|;
 end_import
 
@@ -187,6 +185,8 @@ operator|.
 name|util
 operator|.
 name|Map
+operator|.
+name|Entry
 import|;
 end_import
 
@@ -508,6 +508,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|LockValidatingDirectoryWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|MergeInfo
 import|;
 end_import
@@ -537,20 +551,6 @@ operator|.
 name|store
 operator|.
 name|TrackingDirectoryWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|LockValidatingDirectoryWrapper
 import|;
 end_import
 
@@ -8614,10 +8614,7 @@ argument_list|)
 expr_stmt|;
 name|trackingDir
 operator|.
-name|getCreatedFiles
-argument_list|()
-operator|.
-name|clear
+name|clearCreatedFiles
 argument_list|()
 expr_stmt|;
 name|setDiagnostics

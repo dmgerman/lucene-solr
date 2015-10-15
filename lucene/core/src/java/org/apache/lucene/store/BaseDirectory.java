@@ -26,6 +26,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Random
+import|;
+end_import
+
 begin_comment
 comment|/**  * Base implementation for a concrete {@link Directory} that uses a {@link LockFactory} for locking.  * @lucene.experimental  */
 end_comment
@@ -54,6 +64,68 @@ specifier|final
 name|LockFactory
 name|lockFactory
 decl_stmt|;
+comment|/** Subclasses can use this to generate temp file name candidates */
+DECL|field|tempFileRandom
+specifier|protected
+specifier|static
+specifier|final
+name|Random
+name|tempFileRandom
+decl_stmt|;
+static|static
+block|{
+name|String
+name|prop
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.seed"
+argument_list|)
+decl_stmt|;
+name|int
+name|seed
+decl_stmt|;
+if|if
+condition|(
+name|prop
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// So if there is a test failure that relied on temp file names,
+comment|//we remain reproducible based on the test seed:
+name|seed
+operator|=
+name|prop
+operator|.
+name|hashCode
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|seed
+operator|=
+operator|(
+name|int
+operator|)
+name|System
+operator|.
+name|currentTimeMillis
+argument_list|()
+expr_stmt|;
+block|}
+name|tempFileRandom
+operator|=
+operator|new
+name|Random
+argument_list|(
+name|seed
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Sole constructor. */
 DECL|method|BaseDirectory
 specifier|protected

@@ -118,6 +118,11 @@ operator|+
 name|delegate
 operator|+
 literal|")"
+argument_list|,
+name|delegate
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|this

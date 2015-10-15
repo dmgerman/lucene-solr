@@ -32,7 +32,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
+name|FileDescriptor
 import|;
 end_import
 
@@ -52,7 +52,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileDescriptor
+name|FileOutputStream
 import|;
 end_import
 
@@ -62,7 +62,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileOutputStream
+name|IOException
 import|;
 end_import
 
@@ -531,6 +531,8 @@ argument_list|(
 name|name
 argument_list|)
 argument_list|,
+name|name
+argument_list|,
 name|mergeBufferSize
 argument_list|)
 return|;
@@ -604,6 +606,9 @@ parameter_list|(
 name|Path
 name|path
 parameter_list|,
+name|String
+name|name
+parameter_list|,
 name|int
 name|bufferSize
 parameter_list|)
@@ -620,6 +625,8 @@ name|toString
 argument_list|()
 operator|+
 literal|"\")"
+argument_list|,
+name|name
 argument_list|)
 expr_stmt|;
 comment|//this.path = path;

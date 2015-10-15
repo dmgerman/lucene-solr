@@ -1877,6 +1877,8 @@ operator|new
 name|IndexOutput
 argument_list|(
 literal|"fake"
+argument_list|,
+literal|"fake"
 argument_list|)
 block|{
 annotation|@

@@ -692,6 +692,11 @@ return|return
 operator|new
 name|FuzzySuggester
 argument_list|(
+name|getTempDir
+argument_list|()
+argument_list|,
+literal|"suggester"
+argument_list|,
 name|indexAnalyzer
 argument_list|,
 name|queryAnalyzer

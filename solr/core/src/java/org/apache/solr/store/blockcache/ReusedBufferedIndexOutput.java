@@ -121,11 +121,16 @@ name|ReusedBufferedIndexOutput
 parameter_list|(
 name|String
 name|resourceDescription
+parameter_list|,
+name|String
+name|name
 parameter_list|)
 block|{
 name|this
 argument_list|(
 name|resourceDescription
+argument_list|,
+name|name
 argument_list|,
 name|BUFFER_SIZE
 argument_list|)
@@ -138,6 +143,9 @@ parameter_list|(
 name|String
 name|resourceDescription
 parameter_list|,
+name|String
+name|name
+parameter_list|,
 name|int
 name|bufferSize
 parameter_list|)
@@ -145,6 +153,8 @@ block|{
 name|super
 argument_list|(
 name|resourceDescription
+argument_list|,
+name|name
 argument_list|)
 expr_stmt|;
 name|checkBufferSize

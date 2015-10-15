@@ -220,6 +220,8 @@ operator|+
 name|name
 operator|+
 literal|"\")"
+argument_list|,
+name|name
 argument_list|)
 expr_stmt|;
 name|file

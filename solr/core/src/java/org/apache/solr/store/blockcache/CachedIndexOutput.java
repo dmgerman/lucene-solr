@@ -123,6 +123,8 @@ literal|" name="
 operator|+
 name|name
 argument_list|,
+name|name
+argument_list|,
 name|bufferSize
 argument_list|)
 expr_stmt|;

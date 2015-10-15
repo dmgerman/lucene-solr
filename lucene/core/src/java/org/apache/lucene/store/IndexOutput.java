@@ -51,11 +51,19 @@ name|DataOutput
 implements|implements
 name|Closeable
 block|{
+comment|/** Full description of this output, e.g. which class such as {@code FSIndexOutput}, and the full path to the file */
 DECL|field|resourceDescription
 specifier|private
 specifier|final
 name|String
 name|resourceDescription
+decl_stmt|;
+comment|/** Just the name part from {@code resourceDescription} */
+DECL|field|name
+specifier|private
+specifier|final
+name|String
+name|name
 decl_stmt|;
 comment|/** Sole constructor.  resourceDescription should be non-null, opaque string    *  describing this resource; it's returned from {@link #toString}. */
 DECL|method|IndexOutput
@@ -64,6 +72,9 @@ name|IndexOutput
 parameter_list|(
 name|String
 name|resourceDescription
+parameter_list|,
+name|String
+name|name
 parameter_list|)
 block|{
 if|if
@@ -87,6 +98,24 @@ name|resourceDescription
 operator|=
 name|resourceDescription
 expr_stmt|;
+name|this
+operator|.
+name|name
+operator|=
+name|name
+expr_stmt|;
+block|}
+comment|/** Returns the name used to create this {@code IndexOutput}.  This is especially useful when using    * {@link Directory#createTempOutput}. */
+comment|// TODO: can we somehow use this as the default resource description or something?
+DECL|method|getName
+specifier|public
+name|String
+name|getName
+parameter_list|()
+block|{
+return|return
+name|name
+return|;
 block|}
 comment|/** Closes this stream to further operations. */
 annotation|@

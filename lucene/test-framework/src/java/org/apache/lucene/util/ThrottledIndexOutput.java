@@ -266,6 +266,17 @@ operator|+
 name|delegate
 operator|+
 literal|")"
+argument_list|,
+name|delegate
+operator|==
+literal|null
+condition|?
+literal|"n/a"
+else|:
+name|delegate
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 assert|assert
@@ -552,7 +563,9 @@ name|ms
 operator|<=
 literal|0
 condition|)
+block|{
 return|return;
+block|}
 try|try
 block|{
 name|Thread
