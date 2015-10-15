@@ -930,6 +930,17 @@ operator|=
 name|queryCache
 expr_stmt|;
 block|}
+comment|/**    * Return the query cache of this {@link IndexSearcher}. This will be either    * the {@link #getDefaultQueryCache() default query cache} or the query cache    * that was last set through {@link #setQueryCache(QueryCache)}. A return    * value of {@code null} indicates that caching is disabled.    * @lucene.experimental    */
+DECL|method|getQueryCache
+specifier|public
+name|QueryCache
+name|getQueryCache
+parameter_list|()
+block|{
+return|return
+name|queryCache
+return|;
+block|}
 comment|/**    * Set the {@link QueryCachingPolicy} to use for query caching.    * This method should be called<b>before</b> starting using this    * {@link IndexSearcher}.    * @see QueryCachingPolicy    * @lucene.experimental    */
 DECL|method|setQueryCachingPolicy
 specifier|public
@@ -951,6 +962,17 @@ argument_list|(
 name|queryCachingPolicy
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Return the query cache of this {@link IndexSearcher}. This will be either    * the {@link #getDefaultQueryCachingPolicy() default policy} or the policy    * that was last set through {@link #setQueryCachingPolicy(QueryCachingPolicy)}.    * @lucene.experimental    */
+DECL|method|getQueryCachingPolicy
+specifier|public
+name|QueryCachingPolicy
+name|getQueryCachingPolicy
+parameter_list|()
+block|{
+return|return
+name|queryCachingPolicy
+return|;
 block|}
 comment|/**    * Expert: Creates an array of leaf slices each holding a subset of the given leaves.    * Each {@link LeafSlice} is executed in a single thread. By default there    * will be one {@link LeafSlice} per leaf ({@link org.apache.lucene.index.LeafReaderContext}).    */
 DECL|method|slices
