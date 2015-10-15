@@ -284,7 +284,7 @@ block|}
 block|}
 comment|/** Adds a clause to this query */
 DECL|method|addClause
-specifier|public
+specifier|private
 specifier|final
 name|void
 name|addClause
