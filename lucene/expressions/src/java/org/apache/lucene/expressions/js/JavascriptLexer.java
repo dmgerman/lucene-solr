@@ -164,7 +164,7 @@ name|RuntimeMetaData
 operator|.
 name|checkVersion
 argument_list|(
-literal|"4.5"
+literal|"4.5.1"
 argument_list|,
 name|RuntimeMetaData
 operator|.
