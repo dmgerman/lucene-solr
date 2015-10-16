@@ -3139,7 +3139,7 @@ literal|"      path:'/update/*'},"
 operator|+
 literal|"    read :{"
 operator|+
-literal|"      path:['/update/*', '/get']},"
+literal|"      path:['/select', '/get']},"
 operator|+
 literal|"    config-edit:{"
 operator|+

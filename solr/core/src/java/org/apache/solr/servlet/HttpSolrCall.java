@@ -6272,7 +6272,9 @@ name|getParams
 parameter_list|()
 block|{
 return|return
-name|getQueryParams
+name|solrReq
+operator|.
+name|getParams
 argument_list|()
 return|;
 block|}

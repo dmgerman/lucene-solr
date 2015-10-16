@@ -1426,6 +1426,42 @@ name|RemoteSolrException
 name|e
 parameter_list|)
 block|{      }
+name|reload
+operator|.
+name|setMethod
+argument_list|(
+name|SolrRequest
+operator|.
+name|METHOD
+operator|.
+name|POST
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+name|rsp
+operator|=
+name|solrClient
+operator|.
+name|request
+argument_list|(
+name|reload
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"must have failed"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|HttpSolrClient
+operator|.
+name|RemoteSolrException
+name|e
+parameter_list|)
+block|{      }
 name|cloudSolrClient
 operator|.
 name|request
