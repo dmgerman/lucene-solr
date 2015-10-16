@@ -488,7 +488,7 @@ name|schema
 operator|.
 name|getFieldType
 argument_list|(
-literal|"foo_tdtdv"
+literal|"foo_tdtdvs"
 argument_list|)
 decl_stmt|;
 name|assertTrue

@@ -381,7 +381,7 @@ operator|!=
 name|processor
 condition|)
 block|{
-comment|// test chain might be empty or short circuted.
+comment|// test chain might be empty or short circuited.
 name|processor
 operator|.
 name|processAdd
