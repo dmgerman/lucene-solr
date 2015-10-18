@@ -3608,7 +3608,7 @@ name|getGroupSort
 argument_list|()
 argument_list|)
 operator|.
-name|setGroupSort
+name|setWithinGroupSort
 argument_list|(
 name|groupingSpec
 operator|.

@@ -2024,7 +2024,7 @@ argument_list|)
 decl_stmt|;
 name|grouping
 operator|.
-name|setGroupSort
+name|setWithinGroupSort
 argument_list|(
 name|rb
 operator|.
