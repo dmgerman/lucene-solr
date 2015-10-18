@@ -1108,11 +1108,6 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
-name|tokenStream
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 return|return
