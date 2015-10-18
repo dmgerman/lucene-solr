@@ -3600,7 +3600,7 @@ argument_list|)
 decl_stmt|;
 name|grouping
 operator|.
-name|setSort
+name|setGroupSort
 argument_list|(
 name|groupingSpec
 operator|.
