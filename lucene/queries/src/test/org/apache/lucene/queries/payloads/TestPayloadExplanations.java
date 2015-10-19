@@ -281,6 +281,12 @@ argument_list|)
 argument_list|)
 argument_list|,
 name|fn
+argument_list|,
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
 argument_list|)
 return|;
 block|}
@@ -463,7 +469,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// TODO: test the payloadnear query too!
 comment|/*     protected static final String[] docFields = {     "w1 w2 w3 w4 w5",     "w1 w3 w2 w3 zz",     "w1 xx w2 yy w3",     "w1 w3 xx w2 yy w3 zz"   };    */
 DECL|method|testAllFunctions
 specifier|public
@@ -496,6 +501,12 @@ argument_list|(
 name|query
 argument_list|,
 name|fn
+argument_list|,
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
 argument_list|)
 argument_list|,
 name|expected
