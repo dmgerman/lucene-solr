@@ -120,20 +120,6 @@ name|concurrent
 operator|.
 name|atomic
 operator|.
-name|AtomicInteger
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
 name|AtomicLong
 import|;
 end_import
@@ -350,18 +336,59 @@ comment|// NOTE: this returns a "weakly consistent view". Unless we change Dir A
 comment|// and do not synchronize or anything stronger. it's great for testing!
 comment|// NOTE: fileMap.keySet().toArray(new String[0]) is broken in non Sun JDKs,
 comment|// and the code below is resilient to map changes during the array population.
-return|return
+comment|// NOTE: don't replace this with return names.toArray(new String[names.size()]);
+comment|// or some files could be null at the end of the array if files are being deleted
+comment|// concurrently
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|fileNames
+init|=
 name|fileMap
 operator|.
 name|keySet
 argument_list|()
+decl_stmt|;
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|names
+init|=
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|(
+name|fileNames
+operator|.
+name|size
+argument_list|()
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|String
+name|name
+range|:
+name|fileNames
+control|)
+name|names
+operator|.
+name|add
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+return|return
+name|names
 operator|.
 name|toArray
 argument_list|(
 operator|new
 name|String
 index|[
-name|fileMap
+name|names
 operator|.
 name|size
 argument_list|()
