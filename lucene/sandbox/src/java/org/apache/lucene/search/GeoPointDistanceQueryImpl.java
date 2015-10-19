@@ -581,6 +581,19 @@ return|return
 name|result
 return|;
 block|}
+DECL|method|getRadius
+specifier|public
+name|double
+name|getRadius
+parameter_list|()
+block|{
+return|return
+name|query
+operator|.
+name|getRadius
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

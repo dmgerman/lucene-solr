@@ -28,6 +28,7 @@ name|GeoProjectionUtils
 block|{
 comment|// WGS84 earth-ellipsoid major (a) minor (b) radius, (f) flattening and eccentricity (e)
 DECL|field|SEMIMAJOR_AXIS
+specifier|public
 specifier|static
 specifier|final
 name|double
@@ -37,6 +38,7 @@ literal|6_378_137
 decl_stmt|;
 comment|// [m]
 DECL|field|FLATTENING
+specifier|public
 specifier|static
 specifier|final
 name|double
@@ -47,6 +49,7 @@ operator|/
 literal|298.257223563
 decl_stmt|;
 DECL|field|SEMIMINOR_AXIS
+specifier|public
 specifier|static
 specifier|final
 name|double
@@ -62,6 +65,7 @@ operator|)
 decl_stmt|;
 comment|//6_356_752.31420; // [m]
 DECL|field|ECCENTRICITY
+specifier|public
 specifier|static
 specifier|final
 name|double

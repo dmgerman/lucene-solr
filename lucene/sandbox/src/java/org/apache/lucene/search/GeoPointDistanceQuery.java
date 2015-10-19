@@ -65,7 +65,6 @@ end_comment
 begin_class
 DECL|class|GeoPointDistanceQuery
 specifier|public
-specifier|final
 class|class
 name|GeoPointDistanceQuery
 extends|extends
