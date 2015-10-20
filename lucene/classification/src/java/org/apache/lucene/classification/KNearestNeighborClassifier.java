@@ -932,6 +932,7 @@ argument_list|)
 return|;
 block|}
 comment|//ranking of classes must be taken in consideration
+comment|/**    * build a list of classification results from search results    * @param topDocs the search results as a {@link TopDocs} object    * @return a {@link List} of {@link ClassificationResult}, one for each existing class    * @throws IOException if it's not possible to get the stored value of class field    */
 DECL|method|buildListFromTopDocs
 specifier|protected
 name|List
