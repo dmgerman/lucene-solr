@@ -283,6 +283,7 @@ argument_list|<
 name|BytesRef
 argument_list|>
 block|{
+comment|/**    * map of per field analyzers    */
 DECL|field|field2analyzer
 specifier|protected
 name|Map
