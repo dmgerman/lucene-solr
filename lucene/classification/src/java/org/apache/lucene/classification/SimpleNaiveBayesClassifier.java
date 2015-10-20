@@ -704,21 +704,25 @@ literal|0
 condition|)
 block|{
 comment|// We are passing the term to IndexSearcher so we need to make sure it will not change over time
-name|next
-operator|=
-name|BytesRef
-operator|.
-name|deepCopyOf
+name|Term
+name|term
+init|=
+operator|new
+name|Term
 argument_list|(
+name|this
+operator|.
+name|classFieldName
+argument_list|,
 name|next
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|double
 name|clVal
 init|=
 name|calculateLogPrior
 argument_list|(
-name|next
+name|term
 argument_list|,
 name|docsWithClassSize
 argument_list|)
@@ -727,7 +731,7 @@ name|calculateLogLikelihood
 argument_list|(
 name|tokenizedText
 argument_list|,
-name|next
+name|term
 argument_list|,
 name|docsWithClassSize
 argument_list|)
@@ -740,7 +744,10 @@ operator|new
 name|ClassificationResult
 argument_list|<>
 argument_list|(
-name|next
+name|term
+operator|.
+name|bytes
+argument_list|()
 argument_list|,
 name|clVal
 argument_list|)
@@ -749,22 +756,11 @@ expr_stmt|;
 block|}
 block|}
 comment|// normalization; the values transforms to a 0-1 range
-name|ArrayList
-argument_list|<
-name|ClassificationResult
-argument_list|<
-name|BytesRef
-argument_list|>
-argument_list|>
-name|assignedClassesNorm
-init|=
+return|return
 name|normClassificationResults
 argument_list|(
 name|assignedClasses
 argument_list|)
-decl_stmt|;
-return|return
-name|assignedClassesNorm
 return|;
 block|}
 comment|/**    * count the number of documents in the index having at least a value for the 'class' field    *    * @return the no. of documents having a value for the 'class' field    * @throws IOException if accessing to term vectors or search fails    */
@@ -1016,8 +1012,8 @@ name|String
 index|[]
 name|tokenizedText
 parameter_list|,
-name|BytesRef
-name|c
+name|Term
+name|term
 parameter_list|,
 name|int
 name|docsWithClass
@@ -1047,7 +1043,7 @@ name|getWordFreqForClass
 argument_list|(
 name|word
 argument_list|,
-name|c
+name|term
 argument_list|)
 decl_stmt|;
 comment|// num : count the no of times the word appears in documents of class c (+1)
@@ -1065,7 +1061,7 @@ name|den
 init|=
 name|getTextTermFreqForClass
 argument_list|(
-name|c
+name|term
 argument_list|)
 operator|+
 name|docsWithClass
@@ -1093,14 +1089,14 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns the average number of unique terms times the number of docs belonging to the input class    * @param c the class    * @return the average number of unique terms    * @throws IOException if a low level I/O problem happens    */
+comment|/**    * Returns the average number of unique terms times the number of docs belonging to the input class    * @param term the term representing the class    * @return the average number of unique terms    * @throws IOException if a low level I/O problem happens    */
 DECL|method|getTextTermFreqForClass
 specifier|private
 name|double
 name|getTextTermFreqForClass
 parameter_list|(
-name|BytesRef
-name|c
+name|Term
+name|term
 parameter_list|)
 throws|throws
 name|IOException
@@ -1160,13 +1156,7 @@ name|leafReader
 operator|.
 name|docFreq
 argument_list|(
-operator|new
-name|Term
-argument_list|(
-name|classFieldName
-argument_list|,
-name|c
-argument_list|)
+name|term
 argument_list|)
 decl_stmt|;
 return|return
@@ -1176,7 +1166,7 @@ name|docsWithC
 return|;
 comment|// avg # of unique terms in text fields per doc * # docs with c
 block|}
-comment|/**    * Returns the number of documents of the input class ( from the whole index or from a subset)    * that contains the word ( in a specific field or in all the fields if no one selected)    * @param word the token produced by the analyzer    * @param c the class    * @return the number of documents of the input class    * @throws IOException if a low level I/O problem happens    */
+comment|/**    * Returns the number of documents of the input class ( from the whole index or from a subset)    * that contains the word ( in a specific field or in all the fields if no one selected)    * @param word the token produced by the analyzer    * @param term the term representing the class    * @return the number of documents of the input class    * @throws IOException if a low level I/O problem happens    */
 DECL|method|getWordFreqForClass
 specifier|private
 name|int
@@ -1185,8 +1175,8 @@ parameter_list|(
 name|String
 name|word
 parameter_list|,
-name|BytesRef
-name|c
+name|Term
+name|term
 parameter_list|)
 throws|throws
 name|IOException
@@ -1279,13 +1269,7 @@ argument_list|(
 operator|new
 name|TermQuery
 argument_list|(
-operator|new
-name|Term
-argument_list|(
-name|classFieldName
-argument_list|,
-name|c
-argument_list|)
+name|term
 argument_list|)
 argument_list|,
 name|BooleanClause
@@ -1348,8 +1332,8 @@ specifier|private
 name|double
 name|calculateLogPrior
 parameter_list|(
-name|BytesRef
-name|currentClass
+name|Term
+name|term
 parameter_list|,
 name|int
 name|docsWithClassSize
@@ -1367,7 +1351,7 @@ name|double
 operator|)
 name|docCount
 argument_list|(
-name|currentClass
+name|term
 argument_list|)
 argument_list|)
 operator|-
@@ -1384,8 +1368,8 @@ specifier|private
 name|int
 name|docCount
 parameter_list|(
-name|BytesRef
-name|countedClass
+name|Term
+name|term
 parameter_list|)
 throws|throws
 name|IOException
@@ -1395,13 +1379,7 @@ name|leafReader
 operator|.
 name|docFreq
 argument_list|(
-operator|new
-name|Term
-argument_list|(
-name|classFieldName
-argument_list|,
-name|countedClass
-argument_list|)
+name|term
 argument_list|)
 return|;
 block|}

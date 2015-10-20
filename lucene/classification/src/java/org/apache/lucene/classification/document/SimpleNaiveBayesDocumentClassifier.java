@@ -744,6 +744,19 @@ name|classScore
 init|=
 literal|0
 decl_stmt|;
+name|Term
+name|term
+init|=
+operator|new
+name|Term
+argument_list|(
+name|this
+operator|.
+name|classFieldName
+argument_list|,
+name|c
+argument_list|)
+decl_stmt|;
 for|for
 control|(
 name|String
@@ -784,7 +797,7 @@ name|fieldScore
 operator|+=
 name|calculateLogPrior
 argument_list|(
-name|c
+name|term
 argument_list|,
 name|docsWithClassSize
 argument_list|)
@@ -795,7 +808,7 @@ name|fieldTokensArray
 argument_list|,
 name|fieldName
 argument_list|,
-name|c
+name|term
 argument_list|,
 name|docsWithClassSize
 argument_list|)
@@ -821,34 +834,21 @@ operator|new
 name|ClassificationResult
 argument_list|<>
 argument_list|(
-name|BytesRef
+name|term
 operator|.
-name|deepCopyOf
-argument_list|(
-name|c
-argument_list|)
+name|bytes
+argument_list|()
 argument_list|,
 name|classScore
 argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|ArrayList
-argument_list|<
-name|ClassificationResult
-argument_list|<
-name|BytesRef
-argument_list|>
-argument_list|>
-name|assignedClassesNorm
-init|=
+return|return
 name|normClassificationResults
 argument_list|(
 name|assignedClasses
 argument_list|)
-decl_stmt|;
-return|return
-name|assignedClassesNorm
 return|;
 block|}
 comment|/**    * This methods performs the analysis for the seed document and extract the boosts if present.    * This is done only one time for the Seed Document.    *    * @param inputDocument         the seed unseen document    * @param fieldName2tokensArray a map that associated to a field name the list of token arrays for all its values    * @param fieldName2boost       a map that associates the boost to the field    * @throws IOException If there is a low-level I/O error    */
@@ -1266,7 +1266,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/**    * @param tokenizedText the tokenized content of a field    * @param fieldName     the input field name    * @param c             the class to calculate the score of    * @param docsWithClass the total number of docs that have a class    * @return a normalized score for the class    * @throws IOException If there is a low-level I/O error    */
+comment|/**    * @param tokenizedText the tokenized content of a field    * @param fieldName     the input field name    * @param term          the {@link Term} referring to the class to calculate the score of    * @param docsWithClass the total number of docs that have a class    * @return a normalized score for the class    * @throws IOException If there is a low-level I/O error    */
 DECL|method|calculateLogLikelihood
 specifier|private
 name|double
@@ -1279,8 +1279,8 @@ parameter_list|,
 name|String
 name|fieldName
 parameter_list|,
-name|BytesRef
-name|c
+name|Term
+name|term
 parameter_list|,
 name|int
 name|docsWithClass
@@ -1312,7 +1312,7 @@ name|word
 argument_list|,
 name|fieldName
 argument_list|,
-name|c
+name|term
 argument_list|)
 decl_stmt|;
 comment|// num : count the no of times the word appears in documents of class c (+1)
@@ -1330,7 +1330,7 @@ name|den
 init|=
 name|getTextTermFreqForClass
 argument_list|(
-name|c
+name|term
 argument_list|,
 name|fieldName
 argument_list|)
@@ -1372,14 +1372,14 @@ return|return
 name|normScore
 return|;
 block|}
-comment|/**    * Returns the average number of unique terms times the number of docs belonging to the input class    *    * @param c the class    * @return the average number of unique terms    * @throws java.io.IOException If there is a low-level I/O error    */
+comment|/**    * Returns the average number of unique terms times the number of docs belonging to the input class    *    * @param  term the class term    * @return the average number of unique terms    * @throws java.io.IOException If there is a low-level I/O error    */
 DECL|method|getTextTermFreqForClass
 specifier|private
 name|double
 name|getTextTermFreqForClass
 parameter_list|(
-name|BytesRef
-name|c
+name|Term
+name|term
 parameter_list|,
 name|String
 name|fieldName
@@ -1431,13 +1431,7 @@ name|leafReader
 operator|.
 name|docFreq
 argument_list|(
-operator|new
-name|Term
-argument_list|(
-name|classFieldName
-argument_list|,
-name|c
-argument_list|)
+name|term
 argument_list|)
 decl_stmt|;
 return|return
@@ -1447,7 +1441,7 @@ name|docsWithC
 return|;
 comment|// avg # of unique terms in text fields per doc * # docs with c
 block|}
-comment|/**    * Returns the number of documents of the input class ( from the whole index or from a subset)    * that contains the word ( in a specific field or in all the fields if no one selected)    *    * @param word      the token produced by the analyzer    * @param fieldName the field the word is coming from    * @param c         the class    * @return number of documents of the input class    * @throws java.io.IOException If there is a low-level I/O error    */
+comment|/**    * Returns the number of documents of the input class ( from the whole index or from a subset)    * that contains the word ( in a specific field or in all the fields if no one selected)    *    * @param word      the token produced by the analyzer    * @param fieldName the field the word is coming from    * @param term      the class term    * @return number of documents of the input class    * @throws java.io.IOException If there is a low-level I/O error    */
 DECL|method|getWordFreqForClass
 specifier|private
 name|int
@@ -1459,8 +1453,8 @@ parameter_list|,
 name|String
 name|fieldName
 parameter_list|,
-name|BytesRef
-name|c
+name|Term
+name|term
 parameter_list|)
 throws|throws
 name|IOException
@@ -1544,13 +1538,7 @@ argument_list|(
 operator|new
 name|TermQuery
 argument_list|(
-operator|new
-name|Term
-argument_list|(
-name|classFieldName
-argument_list|,
-name|c
-argument_list|)
+name|term
 argument_list|)
 argument_list|,
 name|BooleanClause
@@ -1613,8 +1601,8 @@ specifier|private
 name|double
 name|calculateLogPrior
 parameter_list|(
-name|BytesRef
-name|currentClass
+name|Term
+name|term
 parameter_list|,
 name|int
 name|docsWithClassSize
@@ -1632,7 +1620,7 @@ name|double
 operator|)
 name|docCount
 argument_list|(
-name|currentClass
+name|term
 argument_list|)
 argument_list|)
 operator|-
@@ -1649,8 +1637,8 @@ specifier|private
 name|int
 name|docCount
 parameter_list|(
-name|BytesRef
-name|countedClass
+name|Term
+name|term
 parameter_list|)
 throws|throws
 name|IOException
@@ -1660,13 +1648,7 @@ name|leafReader
 operator|.
 name|docFreq
 argument_list|(
-operator|new
-name|Term
-argument_list|(
-name|classFieldName
-argument_list|,
-name|countedClass
-argument_list|)
+name|term
 argument_list|)
 return|;
 block|}

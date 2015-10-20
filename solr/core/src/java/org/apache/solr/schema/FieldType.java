@@ -3028,9 +3028,6 @@ name|getName
 argument_list|()
 argument_list|,
 name|br
-operator|.
-name|toBytesRef
-argument_list|()
 argument_list|)
 argument_list|)
 return|;

@@ -88,6 +88,20 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
 begin_comment
 comment|/**   A Term represents a word from text.  This is the unit of search.  It is   composed of two elements, the text of the word, as a string, and the name of   the field that the text occurred in.    Note that terms may represent more than words from text fields, but also   things like dates, email addresses, urls, etc.  */
 end_comment
@@ -112,7 +126,7 @@ DECL|field|bytes
 name|BytesRef
 name|bytes
 decl_stmt|;
-comment|/** Constructs a Term with the given field and bytes.    *<p>Note that a null field or null bytes value results in undefined    * behavior for most Lucene APIs that accept a Term parameter.     *    *<p>WARNING: the provided BytesRef is not copied, but used directly.    * Therefore the bytes should not be modified after construction, for    * example, you should clone a copy by {@link BytesRef#deepCopyOf}    * rather than pass reused bytes from a TermsEnum.    */
+comment|/** Constructs a Term with the given field and bytes.    *<p>Note that a null field or null bytes value results in undefined    * behavior for most Lucene APIs that accept a Term parameter.    *    *<p>The provided BytesRef is copied when it is non null.    */
 DECL|method|Term
 specifier|public
 name|Term
@@ -133,6 +147,43 @@ operator|.
 name|bytes
 operator|=
 name|bytes
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
+name|BytesRef
+operator|.
+name|deepCopyOf
+argument_list|(
+name|bytes
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Constructs a Term with the given field and the bytes from a builder.    *<p>Note that a null field value results in undefined    * behavior for most Lucene APIs that accept a Term parameter.    */
+DECL|method|Term
+specifier|public
+name|Term
+parameter_list|(
+name|String
+name|fld
+parameter_list|,
+name|BytesRefBuilder
+name|bytesBuilder
+parameter_list|)
+block|{
+name|field
+operator|=
+name|fld
+expr_stmt|;
+name|this
+operator|.
+name|bytes
+operator|=
+name|bytesBuilder
+operator|.
+name|toBytesRef
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** Constructs a Term with the given field and text.    *<p>Note that a null field or null text value results in undefined    * behavior for most Lucene APIs that accept a Term parameter. */
@@ -159,7 +210,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Constructs a Term with the given field and empty text.    * This serves two purposes: 1) reuse of a Term with the same field.    * 2) pattern for a query.    *     * @param fld field's name    */
+comment|/** Constructs a Term with the given field and empty text.    * This serves two purposes: 1) reuse of a Term with the same field.    * 2) pattern for a query.    *    * @param fld field's name    */
 DECL|method|Term
 specifier|public
 name|Term
@@ -285,7 +336,7 @@ argument_list|()
 return|;
 block|}
 block|}
-comment|/** Returns the bytes of this term. */
+comment|/** Returns the bytes of this term, these should not be modified. */
 DECL|method|bytes
 specifier|public
 specifier|final
@@ -536,7 +587,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**     * Resets the field and text of a Term.     *<p>WARNING: the provided BytesRef is not copied, but used directly.    * Therefore the bytes should not be modified after construction, for    * example, you should clone a copy rather than pass reused bytes from    * a TermsEnum.    */
+comment|/**    * Resets the field and text of a Term.    *<p>WARNING: the provided BytesRef is not copied, but used directly.    * Therefore the bytes should not be modified after construction, for    * example, you should clone a copy rather than pass reused bytes from    * a TermsEnum.    */
 DECL|method|set
 specifier|final
 name|void
