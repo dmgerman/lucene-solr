@@ -98,12 +98,10 @@ expr_stmt|;
 block|}
 block|}
 DECL|interface|CdcrStateObserver
-specifier|static
 interface|interface
 name|CdcrStateObserver
 block|{
 DECL|method|stateUpdate
-specifier|public
 name|void
 name|stateUpdate
 parameter_list|()

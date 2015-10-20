@@ -357,7 +357,7 @@ argument_list|,
 literal|""
 argument_list|)
 expr_stmt|;
-comment|// Start the benchmakr timer
+comment|// Start the benchmark timer
 name|state
 operator|.
 name|getBenchmarkTimer

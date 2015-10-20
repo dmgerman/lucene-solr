@@ -302,7 +302,6 @@ literal|"cdcr-scheduler"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//replicatorsPool = Executors.newFixedThreadPool(poolSize, new DefaultSolrThreadFactory("cdcr-replicator"));
 name|replicatorsPool
 operator|=
 name|ExecutorUtil
@@ -358,7 +357,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// a thread that pool one state from the queue, execute the replication task, and push back
+comment|// a thread that poll one state from the queue, execute the replication task, and push back
 comment|// the state in the queue when the task is completed
 name|replicatorsPool
 operator|.

@@ -617,9 +617,7 @@ argument_list|)
 return|;
 block|}
 return|return
-operator|new
-name|String
-argument_list|()
+literal|""
 return|;
 block|}
 comment|/**    * Gets the benchmark timer.    */
@@ -799,7 +797,6 @@ expr_stmt|;
 return|return;
 block|}
 default|default:
-return|return;
 block|}
 block|}
 DECL|method|getRunTime
