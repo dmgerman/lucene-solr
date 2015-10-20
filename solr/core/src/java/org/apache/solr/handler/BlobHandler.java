@@ -642,12 +642,12 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-DECL|field|MAX_SZ
+DECL|field|DEFAULT_MAX_SIZE
 specifier|private
 specifier|static
 specifier|final
 name|long
-name|MAX_SZ
+name|DEFAULT_MAX_SIZE
 init|=
 literal|5
 operator|*
@@ -655,13 +655,13 @@ literal|1024
 operator|*
 literal|1024
 decl_stmt|;
-comment|//2MB
+comment|// 5MB
 DECL|field|maxSize
 specifier|private
 name|long
 name|maxSize
 init|=
-name|MAX_SZ
+name|DEFAULT_MAX_SIZE
 decl_stmt|;
 annotation|@
 name|Override
