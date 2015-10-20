@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Uses already seen data (the indexed documents) to classify new documents.  *<p>  * Currently contains a (simplistic) Naive Bayes classifier and a k-Nearest  * Neighbor classifier.  */
+comment|/**  * Uses already seen data (the indexed documents) to classify new documents.  *  * Currently contains a (simplistic) Naive Bayes classifier and a k-Nearest  * Neighbor classifier.  */
 end_comment
 
 begin_package

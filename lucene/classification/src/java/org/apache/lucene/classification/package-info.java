@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Uses already seen data (the indexed documents) to classify an input ( can be simple text or a structured document).  *<p>  * Currently contains a (simplistic) Naive Bayes classifier, a k-Nearest  * Neighbor classifier and a Perceptron based classifier.  */
+comment|/**  * Uses already seen data (the indexed documents) to classify an input ( can be simple text or a structured document).  *  * Currently contains a (simplistic) Naive Bayes classifier, a k-Nearest  * Neighbor classifier and a Perceptron based classifier.  */
 end_comment
 
 begin_package
