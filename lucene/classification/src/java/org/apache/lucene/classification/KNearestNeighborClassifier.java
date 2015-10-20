@@ -317,12 +317,14 @@ argument_list|<
 name|BytesRef
 argument_list|>
 block|{
+comment|/**    * a {@link MoreLikeThis} instance used to perform MLT queries    */
 DECL|field|mlt
 specifier|protected
 specifier|final
 name|MoreLikeThis
 name|mlt
 decl_stmt|;
+comment|/**    * the name of the fields used as the input text    */
 DECL|field|textFieldNames
 specifier|protected
 specifier|final
@@ -330,24 +332,28 @@ name|String
 index|[]
 name|textFieldNames
 decl_stmt|;
+comment|/**    * the name of the field used as the output text    */
 DECL|field|classFieldName
 specifier|protected
 specifier|final
 name|String
 name|classFieldName
 decl_stmt|;
+comment|/**    * an {@link IndexSearcher} used to perform queries    */
 DECL|field|indexSearcher
 specifier|protected
 specifier|final
 name|IndexSearcher
 name|indexSearcher
 decl_stmt|;
+comment|/**    * the no. of docs to compare in order to find the nearest neighbor to the input text    */
 DECL|field|k
 specifier|protected
 specifier|final
 name|int
 name|k
 decl_stmt|;
+comment|/**    * a {@link Query} used to filter the documents that should be used from this classifier's underlying {@link LeafReader}    */
 DECL|field|query
 specifier|protected
 specifier|final
