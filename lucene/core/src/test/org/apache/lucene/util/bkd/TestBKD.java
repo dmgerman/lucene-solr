@@ -4749,6 +4749,8 @@ expr_stmt|;
 block|}
 block|}
 block|}
+finally|finally
+block|{
 name|dir
 operator|.
 name|deleteFile
@@ -4756,6 +4758,7 @@ argument_list|(
 literal|"bkd"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|randomBigInt
 specifier|private
