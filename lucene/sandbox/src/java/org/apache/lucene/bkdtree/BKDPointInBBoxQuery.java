@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -549,15 +559,6 @@ operator|.
 name|delegate
 argument_list|)
 decl_stmt|;
-specifier|final
-name|DocIdSetIterator
-name|disi
-init|=
-name|result
-operator|.
-name|iterator
-argument_list|()
-decl_stmt|;
 return|return
 operator|new
 name|ConstantScoreScorer
@@ -567,7 +568,10 @@ argument_list|,
 name|score
 argument_list|()
 argument_list|,
-name|disi
+name|result
+operator|.
+name|iterator
+argument_list|()
 argument_list|)
 return|;
 block|}

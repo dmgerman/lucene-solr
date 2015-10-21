@@ -30,7 +30,7 @@ specifier|public
 class|class
 name|SloppyMath
 block|{
-comment|/**    * Returns the distance in kilometers between two points    * specified in decimal degrees (latitude/longitude).    * @param lat1 Latitude of the first point.    * @param lon1 Longitude of the first point.    * @param lat2 Latitude of the second point.    * @param lon2 Longitude of the second point.    * @return distance in kilometers.    */
+comment|/**    * Returns the Haversine distance in kilometers between two points    * specified in decimal degrees (latitude/longitude).  This works correctly    * even if the dateline is between the two points.    *    * @param lat1 Latitude of the first point.    * @param lon1 Longitude of the first point.    * @param lat2 Latitude of the second point.    * @param lon2 Longitude of the second point.    * @return distance in kilometers.    */
 DECL|method|haversin
 specifier|public
 specifier|static

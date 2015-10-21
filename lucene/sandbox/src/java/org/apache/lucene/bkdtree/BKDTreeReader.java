@@ -726,6 +726,163 @@ name|hitCount
 argument_list|)
 return|;
 block|}
+DECL|method|accept
+specifier|private
+name|boolean
+name|accept
+parameter_list|(
+name|QueryState
+name|state
+parameter_list|,
+name|int
+name|docID
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|//System.out.println("    check accept docID=" + docID);
+name|state
+operator|.
+name|sndv
+operator|.
+name|setDocument
+argument_list|(
+name|docID
+argument_list|)
+expr_stmt|;
+comment|// How many values this doc has:
+name|int
+name|count
+init|=
+name|state
+operator|.
+name|sndv
+operator|.
+name|count
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|int
+name|j
+init|=
+literal|0
+init|;
+name|j
+operator|<
+name|count
+condition|;
+name|j
+operator|++
+control|)
+block|{
+name|long
+name|enc
+init|=
+name|state
+operator|.
+name|sndv
+operator|.
+name|valueAt
+argument_list|(
+name|j
+argument_list|)
+decl_stmt|;
+name|int
+name|latEnc
+init|=
+call|(
+name|int
+call|)
+argument_list|(
+operator|(
+name|enc
+operator|>>
+literal|32
+operator|)
+operator|&
+literal|0xffffffffL
+argument_list|)
+decl_stmt|;
+name|int
+name|lonEnc
+init|=
+call|(
+name|int
+call|)
+argument_list|(
+name|enc
+operator|&
+literal|0xffffffffL
+argument_list|)
+decl_stmt|;
+comment|//System.out.println("      lat=" + BKDTreeWriter.decodeLat(latEnc) + " lon=" + BKDTreeWriter.decodeLon(lonEnc));
+if|if
+condition|(
+name|latEnc
+operator|>=
+name|state
+operator|.
+name|latMinEnc
+operator|&&
+name|latEnc
+operator|<
+name|state
+operator|.
+name|latMaxEnc
+operator|&&
+name|lonEnc
+operator|>=
+name|state
+operator|.
+name|lonMinEnc
+operator|&&
+name|lonEnc
+operator|<
+name|state
+operator|.
+name|lonMaxEnc
+operator|&&
+operator|(
+name|state
+operator|.
+name|latLonFilter
+operator|==
+literal|null
+operator|||
+name|state
+operator|.
+name|latLonFilter
+operator|.
+name|accept
+argument_list|(
+name|BKDTreeWriter
+operator|.
+name|decodeLat
+argument_list|(
+name|latEnc
+argument_list|)
+argument_list|,
+name|BKDTreeWriter
+operator|.
+name|decodeLon
+argument_list|(
+name|lonEnc
+argument_list|)
+argument_list|)
+operator|)
+condition|)
+block|{
+comment|//System.out.println("      yes");
+return|return
+literal|true
+return|;
+block|}
+block|}
+return|return
+literal|false
+return|;
+block|}
 comment|/** Fast path: this is called when the query rect fully encompasses all cells under this node. */
 DECL|method|addAll
 specifier|private
@@ -741,6 +898,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("  addAll nodeID=" + nodeID);
 comment|//long latRange = (long) cellLatMaxEnc - (long) cellLatMinEnc;
 comment|//long lonRange = (long) cellLonMaxEnc - (long) cellLonMinEnc;
 if|if
@@ -750,6 +908,7 @@ operator|>=
 name|leafNodeOffset
 condition|)
 block|{
+comment|//System.out.println("    leaf");
 comment|/*       System.out.println("A: " + BKDTreeWriter.decodeLat(cellLatMinEnc)                          + " " + BKDTreeWriter.decodeLat(cellLatMaxEnc)                          + " " + BKDTreeWriter.decodeLon(cellLonMinEnc)                          + " " + BKDTreeWriter.decodeLon(cellLonMaxEnc));       */
 comment|// Leaf node
 name|long
@@ -830,6 +989,15 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
+comment|//System.out.println("  docID=" + docID);
+assert|assert
+name|accept
+argument_list|(
+name|state
+argument_list|,
+name|docID
+argument_list|)
+assert|;
 name|state
 operator|.
 name|docs
@@ -927,6 +1095,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|//System.out.println("\nBKD: intersect nodeID=" + nodeID + " lat=" + BKDTreeWriter.decodeLat(state.latMinEnc) + " TO " + BKDTreeWriter.decodeLat(state.latMaxEnc) +
+comment|//" lon=" + BKDTreeWriter.decodeLon(state.lonMinEnc) + " TO " + BKDTreeWriter.decodeLon(state.lonMaxEnc));
 comment|// 2.06 sec -> 1.52 sec for 225 OSM London queries:
 if|if
 condition|(
@@ -937,7 +1107,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// Only call the filter when the current cell does not fully contain the bbox:
+comment|// Don't check the filter if the current cell fully contains the query bbox (just keep recursing in that case):
 if|if
 condition|(
 name|cellLatMinEnc
@@ -1042,6 +1212,10 @@ else|else
 block|{
 comment|// The cell crosses the shape boundary, so we fall through and do full filtering
 block|}
+block|}
+else|else
+block|{
+comment|//System.out.println("  straight recurse");
 block|}
 comment|// TODO: clean this up: the bbox case should also just be a filter, and we should assert filter != null at the start
 block|}
@@ -1157,6 +1331,7 @@ operator|-
 name|leafNodeOffset
 index|]
 decl_stmt|;
+comment|//System.out.println("  intersect leaf fp=" + fp);
 if|if
 condition|(
 name|fp
@@ -1225,135 +1400,14 @@ operator|.
 name|readInt
 argument_list|()
 decl_stmt|;
-name|state
-operator|.
-name|sndv
-operator|.
-name|setDocument
-argument_list|(
-name|docID
-argument_list|)
-expr_stmt|;
-comment|// How many values this doc has:
-name|int
-name|docValueCount
-init|=
-name|state
-operator|.
-name|sndv
-operator|.
-name|count
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|int
-name|j
-init|=
-literal|0
-init|;
-name|j
-operator|<
-name|docValueCount
-condition|;
-name|j
-operator|++
-control|)
-block|{
-name|long
-name|enc
-init|=
-name|state
-operator|.
-name|sndv
-operator|.
-name|valueAt
-argument_list|(
-name|j
-argument_list|)
-decl_stmt|;
-name|int
-name|latEnc
-init|=
-call|(
-name|int
-call|)
-argument_list|(
-operator|(
-name|enc
-operator|>>
-literal|32
-operator|)
-operator|&
-literal|0xffffffffL
-argument_list|)
-decl_stmt|;
-name|int
-name|lonEnc
-init|=
-call|(
-name|int
-call|)
-argument_list|(
-name|enc
-operator|&
-literal|0xffffffffL
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
-name|latEnc
-operator|>=
-name|state
-operator|.
-name|latMinEnc
-operator|&&
-name|latEnc
-operator|<
-name|state
-operator|.
-name|latMaxEnc
-operator|&&
-name|lonEnc
-operator|>=
-name|state
-operator|.
-name|lonMinEnc
-operator|&&
-name|lonEnc
-operator|<
-name|state
-operator|.
-name|lonMaxEnc
-operator|&&
-operator|(
-name|state
-operator|.
-name|latLonFilter
-operator|==
-literal|null
-operator|||
-name|state
-operator|.
-name|latLonFilter
-operator|.
 name|accept
 argument_list|(
-name|BKDTreeWriter
-operator|.
-name|decodeLat
-argument_list|(
-name|latEnc
-argument_list|)
+name|state
 argument_list|,
-name|BKDTreeWriter
-operator|.
-name|decodeLon
-argument_list|(
-name|lonEnc
+name|docID
 argument_list|)
-argument_list|)
-operator|)
 condition|)
 block|{
 name|state
@@ -1368,9 +1422,6 @@ expr_stmt|;
 name|hitCount
 operator|++
 expr_stmt|;
-comment|// Stop processing values for this doc:
-break|break;
-block|}
 block|}
 block|}
 return|return
@@ -1415,7 +1466,7 @@ operator|==
 literal|0
 condition|)
 block|{
-comment|//System.out.println("  split on lat=" + splitValue);
+comment|//System.out.println("  split on lat=" + BKDTreeWriter.decodeLat(splitValue));
 comment|// Inner node split on lat:
 comment|// Left node:
 if|if
@@ -1447,6 +1498,10 @@ argument_list|,
 name|cellLonMaxEnc
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|//System.out.println("  no recurse left");
 block|}
 comment|// Right node:
 if|if
@@ -1481,6 +1536,10 @@ name|cellLonMaxEnc
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+comment|//System.out.println("  no recurse right");
+block|}
 block|}
 else|else
 block|{
@@ -1490,7 +1549,7 @@ name|dim
 operator|==
 literal|1
 assert|;
-comment|// System.out.println("  split on lon=" + splitValue);
+comment|//System.out.println("  split on lon=" + BKDTreeWriter.decodeLon(splitValue));
 comment|// Left node:
 if|if
 condition|(
@@ -1501,7 +1560,7 @@ operator|<
 name|splitValue
 condition|)
 block|{
-comment|// System.out.println("  recurse left");
+comment|//System.out.println("  recurse left");
 name|count
 operator|+=
 name|intersect
@@ -1522,6 +1581,10 @@ name|splitValue
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+comment|//System.out.println("  no recurse left");
+block|}
 comment|// Right node:
 if|if
 condition|(
@@ -1532,7 +1595,7 @@ operator|>=
 name|splitValue
 condition|)
 block|{
-comment|// System.out.println("  recurse right");
+comment|//System.out.println("  recurse right");
 name|count
 operator|+=
 name|intersect
@@ -1555,7 +1618,12 @@ name|cellLonMaxEnc
 argument_list|)
 expr_stmt|;
 block|}
+else|else
+block|{
+comment|//System.out.println("  no recurse right");
 block|}
+block|}
+comment|//System.out.println("  return nodeID=" + nodeID);
 return|return
 name|count
 return|;

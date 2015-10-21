@@ -3302,6 +3302,7 @@ operator|!=
 name|lastDocID
 condition|)
 block|{
+comment|//System.out.println("  docID=" + docID);
 name|out
 operator|.
 name|writeInt

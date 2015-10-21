@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -55,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements a point distance range query on a GeoPoint field. This is based on  * {@code org.apache.lucene.search.GeoPointDistanceQuery} and is implemented using a  * {@code org.apache.lucene.search.BooleanClause.MUST_NOT} clause to exclude any points that fall within  * minRadius from the provided point.  *  *    @lucene.experimental  */
+comment|/** Implements a point distance range query on a GeoPoint field. This is based on  * {@code org.apache.lucene.search.GeoPointDistanceQuery} and is implemented using a  * {@code org.apache.lucene.search.BooleanClause.MUST_NOT} clause to exclude any points that fall within  * minRadiusMeters from the provided point.  *  *    @lucene.experimental  */
 end_comment
 
 begin_class
@@ -67,11 +57,11 @@ name|GeoPointDistanceRangeQuery
 extends|extends
 name|GeoPointDistanceQuery
 block|{
-DECL|field|minRadius
+DECL|field|minRadiusMeters
 specifier|protected
 specifier|final
 name|double
-name|minRadius
+name|minRadiusMeters
 decl_stmt|;
 DECL|method|GeoPointDistanceRangeQuery
 specifier|public
@@ -91,7 +81,7 @@ name|centerLat
 parameter_list|,
 specifier|final
 name|double
-name|minRadius
+name|minRadiusMeters
 parameter_list|,
 specifier|final
 name|double
@@ -111,9 +101,9 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|minRadius
+name|minRadiusMeters
 operator|=
-name|minRadius
+name|minRadiusMeters
 expr_stmt|;
 block|}
 annotation|@
@@ -139,7 +129,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|minRadius
+name|minRadiusMeters
 operator|==
 literal|0.0
 condition|)
@@ -173,55 +163,13 @@ name|centerLon
 argument_list|,
 name|centerLat
 argument_list|,
-name|minRadius
+name|minRadiusMeters
 argument_list|)
 decl_stmt|;
 comment|// full map search
-if|if
-condition|(
-name|radius
-operator|>=
-name|GeoProjectionUtils
-operator|.
-name|SEMIMINOR_AXIS
-condition|)
-block|{
-name|bqb
-operator|.
-name|add
-argument_list|(
-operator|new
-name|BooleanClause
-argument_list|(
-operator|new
-name|GeoPointInBBoxQuery
-argument_list|(
-name|this
-operator|.
-name|field
-argument_list|,
-operator|-
-literal|180.0
-argument_list|,
-operator|-
-literal|90.0
-argument_list|,
-literal|180.0
-argument_list|,
-literal|90.0
-argument_list|)
-argument_list|,
-name|BooleanClause
-operator|.
-name|Occur
-operator|.
-name|MUST
-argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
+comment|//    if (radiusMeters>= GeoProjectionUtils.SEMIMINOR_AXIS) {
+comment|//      bqb.add(new BooleanClause(new GeoPointInBBoxQuery(this.field, -180.0, -90.0, 180.0, 90.0), BooleanClause.Occur.MUST));
+comment|//    } else {
 name|bqb
 operator|.
 name|add
@@ -239,7 +187,7 @@ name|MUST
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
+comment|//    }
 name|bqb
 operator|.
 name|add
@@ -373,7 +321,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|minRadius
+name|minRadiusMeters
 argument_list|)
 operator|.
 name|append
@@ -388,7 +336,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|radius
+name|radiusMeters
 argument_list|)
 operator|.
 name|append
@@ -459,7 +407,7 @@ block|{
 return|return
 name|this
 operator|.
-name|minRadius
+name|minRadiusMeters
 return|;
 block|}
 DECL|method|getMaxRadiusMeters
@@ -471,7 +419,7 @@ block|{
 return|return
 name|this
 operator|.
-name|radius
+name|radiusMeters
 return|;
 block|}
 block|}
