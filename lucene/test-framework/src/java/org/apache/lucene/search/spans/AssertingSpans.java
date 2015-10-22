@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -48,16 +58,22 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|search
+operator|.
+name|similarities
+operator|.
+name|Similarity
 import|;
 end_import
 
 begin_comment
-comment|/**   * Wraps a Spans with additional asserts   */
+comment|/**   * Wraps a Spans with additional asserts  */
 end_comment
 
 begin_class
@@ -123,8 +139,26 @@ name|AssertingSpans
 parameter_list|(
 name|Spans
 name|in
+parameter_list|,
+name|Similarity
+operator|.
+name|SimScorer
+name|docScorer
 parameter_list|)
 block|{
+name|super
+argument_list|(
+operator|(
+name|SpanWeight
+operator|)
+name|in
+operator|.
+name|getWeight
+argument_list|()
+argument_list|,
+name|docScorer
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|in
@@ -775,6 +809,37 @@ return|return
 name|in
 operator|.
 name|cost
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|scoreCurrentDoc
+specifier|protected
+name|float
+name|scoreCurrentDoc
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+assert|assert
+name|in
+operator|.
+name|docScorer
+operator|!=
+literal|null
+operator|:
+name|in
+operator|.
+name|getClass
+argument_list|()
+operator|+
+literal|" has no docScorer!"
+assert|;
+return|return
+name|in
+operator|.
+name|scoreCurrentDoc
 argument_list|()
 return|;
 block|}

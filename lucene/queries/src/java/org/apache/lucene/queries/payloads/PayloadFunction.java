@@ -32,6 +32,22 @@ name|Explanation
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spans
+operator|.
+name|Spans
+import|;
+end_import
+
 begin_comment
 comment|/**  * An abstract class that defines a way for PayloadScoreQuery instances to transform  * the cumulative effects of payload scores for a document.  *   * @see org.apache.lucene.queries.payloads.PayloadScoreQuery for more information  *   * @lucene.experimental This class and its derivations are experimental and subject to  *               change  *   **/
 end_comment
@@ -43,7 +59,7 @@ specifier|abstract
 class|class
 name|PayloadFunction
 block|{
-comment|/**    * Calculate the score up to this point for this doc and field    * @param docId The current doc    * @param field The field    * @param start The start position of the matching Span    * @param end The end position of the matching Span    * @param numPayloadsSeen The number of payloads seen so far    * @param currentScore The current score so far    * @param currentPayloadScore The score for the current payload    * @return The new current Score    *    * @see org.apache.lucene.search.spans.Spans    */
+comment|/**    * Calculate the score up to this point for this doc and field    * @param docId The current doc    * @param field The field    * @param start The start position of the matching Span    * @param end The end position of the matching Span    * @param numPayloadsSeen The number of payloads seen so far    * @param currentScore The current score so far    * @param currentPayloadScore The score for the current payload    * @return The new current Score    *    * @see Spans    */
 DECL|method|currentScore
 specifier|public
 specifier|abstract
