@@ -644,7 +644,6 @@ argument_list|,
 literal|"/response/docs/[0]/id=='1'"
 argument_list|)
 expr_stmt|;
-comment|// boost should multiply
 name|assertJQ
 argument_list|(
 name|req
@@ -675,7 +674,6 @@ argument_list|,
 literal|"/debug/parsedquery_toString=='((text:x)^2.0)^3.0'"
 argument_list|)
 expr_stmt|;
-comment|// boost should multiply
 name|assertJQ
 argument_list|(
 name|req

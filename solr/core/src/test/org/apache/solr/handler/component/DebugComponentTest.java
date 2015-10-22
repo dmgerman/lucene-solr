@@ -1223,6 +1223,147 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|//
+comment|// NOTE: String representations are not meant to be exact or backward compatible.
+comment|// For example, foo:bar^3, foo:bar^3.0 and (foo:bar)^3 are equivalent.  Use your
+comment|// judgement when modifying these tests.
+comment|//
+annotation|@
+name|Test
+DECL|method|testQueryToString
+specifier|public
+name|void
+name|testQueryToString
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// test that both boosts are represented in a double-boost scenario
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"(foo_s:aaa^3)^4"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][.='foo_s:aaa^3.0^4.0']"
+argument_list|)
+expr_stmt|;
+comment|// test to see that extra parens are avoided
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"+foo_s:aaa^3 -bar_s:bbb^0"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][.='+foo_s:aaa^3.0 -bar_s:bbb^0.0']"
+argument_list|)
+expr_stmt|;
+comment|// test that parens are added when needed
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"foo_s:aaa (bar_s:bbb baz_s:ccc)"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][.='foo_s:aaa (bar_s:bbb baz_s:ccc)']"
+argument_list|)
+expr_stmt|;
+comment|// test boosts on subqueries
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"foo_s:aaa^3 (bar_s:bbb baz_s:ccc)^4"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][.='foo_s:aaa^3.0 (bar_s:bbb baz_s:ccc)^4.0']"
+argument_list|)
+expr_stmt|;
+comment|// test constant score query boost exists
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"foo_s:aaa^=3"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'3.0')]"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
