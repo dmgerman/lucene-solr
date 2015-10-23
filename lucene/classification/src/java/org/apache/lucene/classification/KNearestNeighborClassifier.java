@@ -52,6 +52,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collections
 import|;
 end_import
@@ -1292,6 +1302,43 @@ expr_stmt|;
 block|}
 return|return
 name|returnList
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"KNearestNeighborClassifier{"
+operator|+
+literal|", textFieldNames="
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|textFieldNames
+argument_list|)
+operator|+
+literal|", classFieldName='"
+operator|+
+name|classFieldName
+operator|+
+literal|'\''
+operator|+
+literal|", k="
+operator|+
+name|k
+operator|+
+literal|", query="
+operator|+
+name|query
+operator|+
+literal|'}'
 return|;
 block|}
 block|}
