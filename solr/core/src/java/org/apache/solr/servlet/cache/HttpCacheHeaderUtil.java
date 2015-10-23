@@ -325,10 +325,15 @@ name|EtagCacheVal
 argument_list|>
 name|etagCoreCache
 init|=
+name|Collections
+operator|.
+name|synchronizedMap
+argument_list|(
 operator|new
 name|WeakHashMap
 argument_list|<>
 argument_list|()
+argument_list|)
 decl_stmt|;
 comment|/** @see #etagCoreCache */
 DECL|class|EtagCacheVal
