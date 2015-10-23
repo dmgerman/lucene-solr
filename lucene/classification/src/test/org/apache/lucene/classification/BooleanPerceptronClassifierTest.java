@@ -540,21 +540,9 @@ operator|>
 name|avgClassificationTime
 argument_list|)
 expr_stmt|;
-name|double
-name|accuracy
-init|=
-name|confusionMatrix
-operator|.
-name|getAccuracy
-argument_list|()
-decl_stmt|;
-name|assertTrue
-argument_list|(
-name|accuracy
-operator|>
-literal|0d
-argument_list|)
-expr_stmt|;
+comment|// accuracy check disabled until LUCENE-6853 is fixed
+comment|//      double accuracy = confusionMatrix.getAccuracy();
+comment|//      assertTrue(accuracy> 0d);
 block|}
 finally|finally
 block|{
