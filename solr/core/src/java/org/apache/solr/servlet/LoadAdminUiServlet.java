@@ -218,6 +218,25 @@ argument_list|)
 expr_stmt|;
 comment|// security: SOLR-7966 - avoid clickjacking for admin interface
 comment|// This attribute is set by the SolrDispatchFilter
+name|String
+name|admin
+init|=
+name|request
+operator|.
+name|getRequestURI
+argument_list|()
+operator|.
+name|substring
+argument_list|(
+name|request
+operator|.
+name|getContextPath
+argument_list|()
+operator|.
+name|length
+argument_list|()
+argument_list|)
+decl_stmt|;
 name|CoreContainer
 name|cores
 init|=
@@ -239,7 +258,7 @@ argument_list|()
 operator|.
 name|getResourceAsStream
 argument_list|(
-literal|"/admin.html"
+name|admin
 argument_list|)
 decl_stmt|;
 if|if
