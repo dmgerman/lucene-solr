@@ -2804,7 +2804,7 @@ if|if
 condition|(
 name|runtime
 operator|>
-literal|30
+literal|45
 operator|&&
 name|stops
 operator|.
@@ -2818,7 +2818,7 @@ name|LuceneTestCase
 operator|.
 name|fail
 argument_list|(
-literal|"The Monkey ran for over 30 seconds and no jetties were stopped - this is worth investigating!"
+literal|"The Monkey ran for over 45 seconds and no jetties were stopped - this is worth investigating!"
 argument_list|)
 expr_stmt|;
 block|}
