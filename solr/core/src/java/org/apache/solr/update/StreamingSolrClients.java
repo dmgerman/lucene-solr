@@ -435,6 +435,9 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|// NOTE: increasing to more than 1 threadCount for the client could cause updates to be reordered
+comment|// on a greater scale since the current behavior is to only increase the number of connections/Runners when
+comment|// the queue is more than half full.
 name|client
 operator|=
 operator|new
