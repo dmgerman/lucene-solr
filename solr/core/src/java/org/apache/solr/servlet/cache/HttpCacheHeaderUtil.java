@@ -108,6 +108,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|WeakIdentityMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|common
@@ -317,7 +331,7 @@ comment|/**    * Weak Ref based cache for keeping track of core specific etagSee
 DECL|field|etagCoreCache
 specifier|private
 specifier|static
-name|Map
+name|WeakIdentityMap
 argument_list|<
 name|SolrCore
 argument_list|,
@@ -325,15 +339,10 @@ name|EtagCacheVal
 argument_list|>
 name|etagCoreCache
 init|=
-name|Collections
+name|WeakIdentityMap
 operator|.
-name|synchronizedMap
-argument_list|(
-operator|new
-name|WeakHashMap
-argument_list|<>
+name|newConcurrentHashMap
 argument_list|()
-argument_list|)
 decl_stmt|;
 comment|/** @see #etagCoreCache */
 DECL|class|EtagCacheVal
