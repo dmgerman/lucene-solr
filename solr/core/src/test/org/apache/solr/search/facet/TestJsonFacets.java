@@ -4129,6 +4129,88 @@ operator|+
 literal|"x:{ buckets:[{val:a, count:3}, {val:b, count:3}] , allBuckets:{count:6} } }"
 argument_list|)
 expr_stmt|;
+comment|// allBuckets for multi-valued field with stats.  This can sometimes take a different path of adding complete DocSets to the Acc
+comment|// also test limit:0
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|" f0:{type:terms, field:${multi_ss}, allBuckets:true, limit:0} "
+operator|+
+literal|",f1:{type:terms, field:${multi_ss}, allBuckets:true, limit:0, offset:1} "
+operator|+
+comment|// offset with 0 limit
+literal|",f2:{type:terms, field:${multi_ss}, allBuckets:true, limit:0, facet:{x:'sum(${num_d})'}, sort:'x desc' } "
+operator|+
+literal|",f3:{type:terms, field:${multi_ss}, allBuckets:true, limit:0, missing:true, facet:{x:'sum(${num_d})', y:'avg(${num_d})'}, sort:'x desc' } "
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ 'count':6, "
+operator|+
+literal|" f0:{allBuckets:{count:6}, buckets:[]}"
+operator|+
+literal|",f1:{allBuckets:{count:6}, buckets:[]}"
+operator|+
+literal|",f2:{allBuckets:{count:6, x:-15.0}, buckets:[]} "
+operator|+
+literal|",f3:{allBuckets:{count:6, x:-15.0, y:-2.5}, buckets:[], missing:{count:2, x:4.0, y:4.0} }} "
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// allBuckets with numeric field with stats.
+comment|// also test limit:0
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|" f0:{type:terms, field:${num_i}, allBuckets:true, limit:0} "
+operator|+
+literal|",f1:{type:terms, field:${num_i}, allBuckets:true, limit:0, offset:1} "
+operator|+
+comment|// offset with 0 limit
+literal|",f2:{type:terms, field:${num_i}, allBuckets:true, limit:0, facet:{x:'sum(${num_d})'}, sort:'x desc' } "
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ 'count':6, "
+operator|+
+literal|" f0:{allBuckets:{count:5}, buckets:[]}"
+operator|+
+literal|",f1:{allBuckets:{count:5}, buckets:[]}"
+operator|+
+literal|",f2:{allBuckets:{count:5, x:3.0}, buckets:[]} "
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
 comment|//////////////////////////////////////////////////////////////////////////////////////////////////////////
 comment|// test converting legacy facets
 comment|// test mincount

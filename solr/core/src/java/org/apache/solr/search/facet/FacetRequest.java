@@ -2763,6 +2763,21 @@ operator|.
 name|limit
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|facet
+operator|.
+name|limit
+operator|==
+literal|0
+condition|)
+name|facet
+operator|.
+name|offset
+operator|=
+literal|0
+expr_stmt|;
+comment|// normalize.  an offset with a limit of non-zero isn't useful.
 name|facet
 operator|.
 name|mincount

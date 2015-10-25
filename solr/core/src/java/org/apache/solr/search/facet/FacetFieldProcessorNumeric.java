@@ -1676,7 +1676,7 @@ argument_list|(
 name|freq
 operator|.
 name|limit
-operator|>
+operator|>=
 literal|0
 condition|?
 name|freq
