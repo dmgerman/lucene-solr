@@ -1315,7 +1315,7 @@ block|{
 return|return
 literal|"KNearestNeighborClassifier{"
 operator|+
-literal|", textFieldNames="
+literal|"textFieldNames="
 operator|+
 name|Arrays
 operator|.
@@ -1337,6 +1337,15 @@ operator|+
 literal|", query="
 operator|+
 name|query
+operator|+
+literal|", similarity="
+operator|+
+name|indexSearcher
+operator|.
+name|getSimilarity
+argument_list|(
+literal|true
+argument_list|)
 operator|+
 literal|'}'
 return|;

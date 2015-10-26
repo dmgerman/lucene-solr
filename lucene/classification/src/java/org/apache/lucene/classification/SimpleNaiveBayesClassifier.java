@@ -703,7 +703,6 @@ operator|>
 literal|0
 condition|)
 block|{
-comment|// We are passing the term to IndexSearcher so we need to make sure it will not change over time
 name|Term
 name|term
 init|=

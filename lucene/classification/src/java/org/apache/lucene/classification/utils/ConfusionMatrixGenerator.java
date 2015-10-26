@@ -889,6 +889,13 @@ name|fp
 init|=
 literal|0
 decl_stmt|;
+if|if
+condition|(
+name|classifications
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|Map
@@ -966,7 +973,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 return|return
+name|tp
+operator|+
+name|fp
+operator|>
+literal|0
+condition|?
 name|tp
 operator|/
 operator|(
@@ -974,6 +988,8 @@ name|tp
 operator|+
 name|fp
 operator|)
+else|:
+literal|0
 return|;
 block|}
 comment|/**      * calculate recall on the given class      *      * @param klass the class to calculate the recall for      * @return the recall for the given class      */
@@ -1011,6 +1027,13 @@ name|fn
 init|=
 literal|0
 decl_stmt|;
+if|if
+condition|(
+name|classifications
+operator|!=
+literal|null
+condition|)
+block|{
 for|for
 control|(
 name|Map
@@ -1061,7 +1084,14 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
 return|return
+name|tp
+operator|+
+name|fn
+operator|>
+literal|0
+condition|?
 name|tp
 operator|/
 operator|(
@@ -1069,6 +1099,8 @@ name|tp
 operator|+
 name|fn
 operator|)
+else|:
+literal|0
 return|;
 block|}
 comment|/**      * get the F-1 measure of the given class      *      * @param klass the class to calculate the F-1 measure for      * @return the F-1 measure for the given class      */
@@ -1098,6 +1130,14 @@ name|klass
 argument_list|)
 decl_stmt|;
 return|return
+name|precision
+operator|>
+literal|0
+operator|&&
+name|recall
+operator|>
+literal|0
+condition|?
 literal|2
 operator|*
 name|precision
@@ -1109,6 +1149,8 @@ name|precision
 operator|+
 name|recall
 operator|)
+else|:
+literal|0
 return|;
 block|}
 comment|/**      * Calculate accuracy on this confusion matrix using the formula:      * {@literal accuracy = correctly-classified / (correctly-classified + wrongly-classified)}      *      * @return the accuracy      */
