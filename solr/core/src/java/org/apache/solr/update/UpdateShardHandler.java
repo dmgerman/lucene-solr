@@ -301,6 +301,7 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
+comment|/*    * A downside to configuring an upper bound will be big update reorders (when that upper bound is hit)    * and then undetected shard inconsistency as a result.    * This update executor is used for different things too... both update streams (which may be very long lived)    * and control messages (peersync? LIR?) and could lead to starvation if limited.    * Therefore this thread pool is left unbounded. See SOLR-8205    */
 DECL|field|updateExecutor
 specifier|private
 name|ExecutorService
