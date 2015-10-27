@@ -1213,6 +1213,15 @@ operator|!=
 name|DocValuesType
 operator|.
 name|NONE
+operator|||
+name|field
+operator|.
+name|type
+operator|.
+name|dimensionCount
+argument_list|()
+operator|!=
+literal|0
 return|;
 block|}
 block|}

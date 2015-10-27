@@ -109,6 +109,20 @@ name|DocValuesType
 name|docValuesType
 parameter_list|()
 function_decl|;
+comment|/**    * If this is positive, the field is indexed dimensionally.    */
+DECL|method|dimensionCount
+specifier|public
+name|int
+name|dimensionCount
+parameter_list|()
+function_decl|;
+comment|/**    * The number of bytes in each dimension's values.    */
+DECL|method|dimensionNumBytes
+specifier|public
+name|int
+name|dimensionNumBytes
+parameter_list|()
+function_decl|;
 block|}
 end_interface
 

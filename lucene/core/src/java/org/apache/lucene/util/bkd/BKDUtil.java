@@ -39,11 +39,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Utility methods to handle N-dimensional packed byte[] as if they were numbers! */
+comment|/** Utility methods to convert to/from N-dimensional packed byte[] as numbers */
 end_comment
 
 begin_class
 DECL|class|BKDUtil
+specifier|public
 specifier|final
 class|class
 name|BKDUtil
@@ -55,7 +56,7 @@ parameter_list|()
 block|{
 comment|// No instance
 block|}
-comment|/** result = a - b, where a>= b */
+comment|/** result = a - b, where a&gt;= b */
 DECL|method|subtract
 specifier|public
 specifier|static
@@ -192,7 +193,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns positive int if a> b, negative int if a< b and 0 if a == b */
+comment|/** Returns positive int if a&gt; b, negative int if a&lt; b and 0 if a == b */
 DECL|method|compare
 specifier|public
 specifier|static
@@ -378,6 +379,7 @@ literal|true
 return|;
 block|}
 DECL|method|intToBytes
+specifier|public
 specifier|static
 name|void
 name|intToBytes
@@ -438,6 +440,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|bytesToInt
+specifier|public
 specifier|static
 name|int
 name|bytesToInt
@@ -502,6 +505,7 @@ literal|0x80000000
 return|;
 block|}
 DECL|method|sortableBigIntBytes
+specifier|public
 specifier|static
 name|void
 name|sortableBigIntBytes
@@ -545,6 +549,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|bigIntToBytes
+specifier|public
 specifier|static
 name|void
 name|bigIntToBytes
@@ -719,6 +724,7 @@ argument_list|)
 assert|;
 block|}
 DECL|method|bytesToBigInt
+specifier|public
 specifier|static
 name|BigInteger
 name|bytesToBigInt

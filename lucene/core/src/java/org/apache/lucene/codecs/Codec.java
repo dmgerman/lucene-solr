@@ -32,16 +32,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|ServiceLoader
 import|;
 end_import
@@ -49,6 +39,16 @@ end_import
 begin_comment
 comment|// javadocs
 end_comment
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
 
 begin_import
 import|import
@@ -286,6 +286,14 @@ specifier|public
 specifier|abstract
 name|CompoundFormat
 name|compoundFormat
+parameter_list|()
+function_decl|;
+comment|/** Encodes/decodes dimensional index */
+DECL|method|dimensionalFormat
+specifier|public
+specifier|abstract
+name|DimensionalFormat
+name|dimensionalFormat
 parameter_list|()
 function_decl|;
 comment|/** looks up a codec by name */

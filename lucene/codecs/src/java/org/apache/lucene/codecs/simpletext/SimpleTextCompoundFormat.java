@@ -1443,8 +1443,6 @@ parameter_list|,
 name|BytesRef
 name|prefix
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new

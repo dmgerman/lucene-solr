@@ -68,11 +68,15 @@ end_import
 
 begin_import
 import|import
-name|junit
+name|org
 operator|.
-name|framework
+name|apache
 operator|.
-name|Assert
+name|lucene
+operator|.
+name|index
+operator|.
+name|BinaryDocValues
 import|;
 end_import
 
@@ -86,7 +90,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BinaryDocValues
+name|DimensionalValues
 import|;
 end_import
 
@@ -333,6 +337,16 @@ operator|.
 name|Assert
 operator|.
 name|assertTrue
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|Assert
 import|;
 end_import
 
@@ -1202,6 +1216,17 @@ parameter_list|()
 block|{
 return|return
 name|liveDocs
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|DimensionalValues
+name|getDimensionalValues
+parameter_list|()
+block|{
+return|return
+literal|null
 return|;
 block|}
 annotation|@

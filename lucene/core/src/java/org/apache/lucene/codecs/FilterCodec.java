@@ -195,6 +195,21 @@ name|compoundFormat
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|dimensionalFormat
+specifier|public
+name|DimensionalFormat
+name|dimensionalFormat
+parameter_list|()
+block|{
+return|return
+name|delegate
+operator|.
+name|dimensionalFormat
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

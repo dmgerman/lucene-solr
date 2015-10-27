@@ -230,7 +230,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValuesType
+name|DimensionalValues
 import|;
 end_import
 
@@ -244,7 +244,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|PostingsEnum
+name|DocValuesType
 import|;
 end_import
 
@@ -357,6 +357,20 @@ operator|.
 name|index
 operator|.
 name|OrdTermState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|PostingsEnum
 import|;
 end_import
 
@@ -639,20 +653,6 @@ operator|.
 name|util
 operator|.
 name|BytesRefHash
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRefHash
 operator|.
 name|DirectBytesStartArray
 import|;
@@ -668,7 +668,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Counter
+name|BytesRefHash
 import|;
 end_import
 
@@ -682,7 +682,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|IntBlockPool
+name|Counter
 import|;
 end_import
 
@@ -715,6 +715,20 @@ operator|.
 name|IntBlockPool
 operator|.
 name|SliceWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|IntBlockPool
 import|;
 end_import
 
@@ -1678,6 +1692,10 @@ name|Collections
 operator|.
 name|emptyMap
 argument_list|()
+argument_list|,
+literal|0
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 name|sliceArray
@@ -3241,6 +3259,18 @@ name|field
 parameter_list|)
 throws|throws
 name|IOException
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getDimensionalValues
+specifier|public
+name|DimensionalValues
+name|getDimensionalValues
+parameter_list|()
 block|{
 return|return
 literal|null
