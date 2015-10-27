@@ -68,9 +68,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene50
+name|lucene54
 operator|.
-name|Lucene50DocValuesFormat
+name|Lucene54DocValuesFormat
 import|;
 end_import
 
@@ -145,7 +145,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link DocValuesFormat} to efficiently index numeric values from  * from {@link SortedNumericDocValuesField} or BytesRef values from {@link SortedSetDocValuesField}  * for numeric range queries using ({@link NumericRangeTreeQuery}) and arbitrary binary  * range queries using {@link SortedSetRangeTreeQuery}.  *  *<p>This wraps {@link Lucene50DocValuesFormat}, but saves its own numeric tree  * structures to disk for fast query-time intersection. See<a  * href="https://www.cs.duke.edu/~pankaj/publications/papers/bkd-sstd.pdf">this paper</a>  * for details.  *  *<p>The numeric tree slices up 1D space into smaller and  * smaller ranges, until the smallest ranges have approximately  * between X/2 and X (X default is 1024) values in them, at which point  * such leaf cells are written as a block to disk, while the index tree  * structure records how space was sub-divided is loaded into HEAP  * at search time.  At search time, the tree is recursed based on whether  * each of left or right child overlap with the query range, and once  * a leaf block is reached, all documents in that leaf block are collected  * if the cell is fully enclosed by the query shape, or filtered and then  * collected, if not.  *  *<p>The index is also quite compact, because docs only appear once in  * the tree (no "prefix terms").  *  *<p>In addition to the files written by {@link Lucene50DocValuesFormat}, this format writes:  *<ol>  *<li><tt>.ndd</tt>: numeric tree leaf data and index</li>  *<li><tt>.ndm</tt>: numeric tree metadata</li>  *</ol>  *  *<p>The disk format is experimental and free to change suddenly, and this code likely has new and exciting bugs!  *  * @lucene.experimental */
+comment|/**  * A {@link DocValuesFormat} to efficiently index numeric values from  * from {@link SortedNumericDocValuesField} or BytesRef values from {@link SortedSetDocValuesField}  * for numeric range queries using ({@link NumericRangeTreeQuery}) and arbitrary binary  * range queries using {@link SortedSetRangeTreeQuery}.  *  *<p>This wraps {@link Lucene54DocValuesFormat}, but saves its own numeric tree  * structures to disk for fast query-time intersection. See<a  * href="https://www.cs.duke.edu/~pankaj/publications/papers/bkd-sstd.pdf">this paper</a>  * for details.  *  *<p>The numeric tree slices up 1D space into smaller and  * smaller ranges, until the smallest ranges have approximately  * between X/2 and X (X default is 1024) values in them, at which point  * such leaf cells are written as a block to disk, while the index tree  * structure records how space was sub-divided is loaded into HEAP  * at search time.  At search time, the tree is recursed based on whether  * each of left or right child overlap with the query range, and once  * a leaf block is reached, all documents in that leaf block are collected  * if the cell is fully enclosed by the query shape, or filtered and then  * collected, if not.  *  *<p>The index is also quite compact, because docs only appear once in  * the tree (no "prefix terms").  *  *<p>In addition to the files written by {@link Lucene54DocValuesFormat}, this format writes:  *<ol>  *<li><tt>.ndd</tt>: numeric tree leaf data and index</li>  *<li><tt>.ndm</tt>: numeric tree metadata</li>  *</ol>  *  *<p>The disk format is experimental and free to change suddenly, and this code likely has new and exciting bugs!  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -239,7 +239,7 @@ name|DocValuesFormat
 name|delegate
 init|=
 operator|new
-name|Lucene50DocValuesFormat
+name|Lucene54DocValuesFormat
 argument_list|()
 decl_stmt|;
 comment|/** Default constructor */

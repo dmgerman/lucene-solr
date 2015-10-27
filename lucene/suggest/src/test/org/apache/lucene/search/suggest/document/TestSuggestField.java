@@ -180,9 +180,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene53
+name|lucene54
 operator|.
-name|Lucene53Codec
+name|Lucene54Codec
 import|;
 end_import
 
@@ -4877,7 +4877,7 @@ name|Codec
 name|filterCodec
 init|=
 operator|new
-name|Lucene53Codec
+name|Lucene54Codec
 argument_list|()
 block|{
 name|PostingsFormat

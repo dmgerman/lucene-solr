@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene53
+DECL|package|org.apache.lucene.codecs.lucene54
 package|package
 name|org
 operator|.
@@ -10,7 +10,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene53
+name|lucene54
 package|;
 end_package
 
@@ -67,34 +67,6 @@ operator|.
 name|codecs
 operator|.
 name|DimensionalFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|DimensionalReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|DimensionalWriter
 import|;
 end_import
 
@@ -348,6 +320,22 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|lucene53
+operator|.
+name|Lucene53NormsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|perfield
 operator|.
 name|PerFieldDocValuesFormat
@@ -370,43 +358,15 @@ name|PerFieldPostingsFormat
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentReadState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentWriteState
-import|;
-end_import
-
 begin_comment
-comment|/**  * Implements the Lucene 5.3 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene53 package documentation for file format details.  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 5.4 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene54 package documentation for file format details.  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|Lucene53Codec
+DECL|class|Lucene54Codec
 specifier|public
 class|class
-name|Lucene53Codec
+name|Lucene54Codec
 extends|extends
 name|Codec
 block|{
@@ -481,7 +441,7 @@ name|field
 parameter_list|)
 block|{
 return|return
-name|Lucene53Codec
+name|Lucene54Codec
 operator|.
 name|this
 operator|.
@@ -514,7 +474,7 @@ name|field
 parameter_list|)
 block|{
 return|return
-name|Lucene53Codec
+name|Lucene54Codec
 operator|.
 name|this
 operator|.
@@ -532,10 +492,10 @@ specifier|final
 name|StoredFieldsFormat
 name|storedFieldsFormat
 decl_stmt|;
-comment|/**     * Instantiates a new codec.    */
-DECL|method|Lucene53Codec
+comment|/**    * Instantiates a new codec.    */
+DECL|method|Lucene54Codec
 specifier|public
-name|Lucene53Codec
+name|Lucene54Codec
 parameter_list|()
 block|{
 name|this
@@ -546,10 +506,10 @@ name|BEST_SPEED
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Instantiates a new codec, specifying the stored fields compression    * mode to use.    * @param mode stored fields compression mode to use for newly     *             flushed/merged segments.    */
-DECL|method|Lucene53Codec
+comment|/**    * Instantiates a new codec, specifying the stored fields compression    * mode to use.    * @param mode stored fields compression mode to use for newly    *             flushed/merged segments.    */
+DECL|method|Lucene54Codec
 specifier|public
-name|Lucene53Codec
+name|Lucene54Codec
 parameter_list|(
 name|Mode
 name|mode
@@ -557,7 +517,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Lucene53"
+literal|"Lucene54"
 argument_list|)
 expr_stmt|;
 name|this
@@ -667,7 +627,7 @@ return|return
 name|compoundFormat
 return|;
 block|}
-comment|/** Returns the postings format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene50".    *<p>    *<b>WARNING:</b> if you subclass, you are responsible for index     *  backwards compatibility: future version of Lucene are only     *  guaranteed to be able to read the default implementation.     */
+comment|/** Returns the postings format that should be used for writing    *  new segments of<code>field</code>.    *    *  The default implementation always returns "Lucene50".    *<p>    *<b>WARNING:</b> if you subclass, you are responsible for index    *  backwards compatibility: future version of Lucene are only    *  guaranteed to be able to read the default implementation.    */
 DECL|method|getPostingsFormatForField
 specifier|public
 name|PostingsFormat
@@ -681,7 +641,7 @@ return|return
 name|defaultFormat
 return|;
 block|}
-comment|/** Returns the docvalues format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene50".    *<p>    *<b>WARNING:</b> if you subclass, you are responsible for index     *  backwards compatibility: future version of Lucene are only     *  guaranteed to be able to read the default implementation.     */
+comment|/** Returns the docvalues format that should be used for writing    *  new segments of<code>field</code>.    *    *  The default implementation always returns "Lucene54".    *<p>    *<b>WARNING:</b> if you subclass, you are responsible for index    *  backwards compatibility: future version of Lucene are only    *  guaranteed to be able to read the default implementation.    */
 DECL|method|getDocValuesFormatForField
 specifier|public
 name|DocValuesFormat
@@ -746,7 +706,7 @@ name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene50"
+literal|"Lucene54"
 argument_list|)
 decl_stmt|;
 DECL|field|normsFormat
