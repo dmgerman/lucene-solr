@@ -655,14 +655,19 @@ specifier|static
 enum|enum
 name|FacetMethod
 block|{
+DECL|enum constant|DV
+name|DV
+block|,
+comment|// DocValues
+DECL|enum constant|UIF
+name|UIF
+block|,
+comment|// UnInvertedField
 DECL|enum constant|ENUM
 name|ENUM
 block|,
 DECL|enum constant|STREAM
 name|STREAM
-block|,
-DECL|enum constant|FIELDCACHE
-name|FIELDCACHE
 block|,
 DECL|enum constant|SMART
 name|SMART
@@ -695,6 +700,36 @@ literal|null
 return|;
 if|if
 condition|(
+literal|"dv"
+operator|.
+name|equals
+argument_list|(
+name|method
+argument_list|)
+condition|)
+block|{
+return|return
+name|DV
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+literal|"uif"
+operator|.
+name|equals
+argument_list|(
+name|method
+argument_list|)
+condition|)
+block|{
+return|return
+name|UIF
+return|;
+block|}
+elseif|else
+if|if
+condition|(
 literal|"enum"
 operator|.
 name|equals
@@ -705,28 +740,6 @@ condition|)
 block|{
 return|return
 name|ENUM
-return|;
-block|}
-elseif|else
-if|if
-condition|(
-literal|"fc"
-operator|.
-name|equals
-argument_list|(
-name|method
-argument_list|)
-operator|||
-literal|"fieldcache"
-operator|.
-name|equals
-argument_list|(
-name|method
-argument_list|)
-condition|)
-block|{
-return|return
-name|FIELDCACHE
 return|;
 block|}
 elseif|else
@@ -948,7 +961,6 @@ block|}
 else|else
 block|{
 comment|// single valued string...
-comment|//        return new FacetFieldProcessorDV(fcontext, this, sf);
 return|return
 operator|new
 name|FacetFieldProcessorDV
@@ -960,10 +972,31 @@ argument_list|,
 name|sf
 argument_list|)
 return|;
-comment|// what about FacetFieldProcessorFC?
 block|}
 block|}
-comment|// Multi-valued field cache (UIF)
+comment|// multivalued but field doesn't have docValues
+if|if
+condition|(
+name|method
+operator|==
+name|FacetMethod
+operator|.
+name|DV
+condition|)
+block|{
+return|return
+operator|new
+name|FacetFieldProcessorDV
+argument_list|(
+name|fcontext
+argument_list|,
+name|this
+argument_list|,
+name|sf
+argument_list|)
+return|;
+block|}
+comment|// Top-level multi-valued field cache (UIF)
 return|return
 operator|new
 name|FacetFieldProcessorUIF

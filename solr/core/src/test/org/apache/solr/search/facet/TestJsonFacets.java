@@ -2394,6 +2394,65 @@ literal|"multi_ss"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// multi-valued strings, method=dv for terms facets
+name|doStatsTemplated
+argument_list|(
+name|client
+argument_list|,
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"terms"
+argument_list|,
+literal|"method:dv,"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"noexist"
+argument_list|,
+literal|"noexist_ss"
+argument_list|,
+literal|"cat_s"
+argument_list|,
+literal|"cat_ss"
+argument_list|,
+literal|"where_s"
+argument_list|,
+literal|"where_ss"
+argument_list|,
+literal|"num_d"
+argument_list|,
+literal|"num_f"
+argument_list|,
+literal|"num_i"
+argument_list|,
+literal|"num_l"
+argument_list|,
+literal|"super_s"
+argument_list|,
+literal|"super_ss"
+argument_list|,
+literal|"val_b"
+argument_list|,
+literal|"val_b"
+argument_list|,
+literal|"date"
+argument_list|,
+literal|"date_dt"
+argument_list|,
+literal|"sparse_s"
+argument_list|,
+literal|"sparse_ss"
+argument_list|,
+literal|"multi_ss"
+argument_list|,
+literal|"multi_ss"
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// single valued docvalues for strings, and single valued numeric doc values for numeric fields
 name|doStatsTemplated
 argument_list|(
@@ -3103,7 +3162,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{c1:{field:'${cat_s}'}, c2:{field:{field:'${cat_s}'}}, c3:{type:terms, field:'${cat_s}'}  }"
+literal|"{c1:{field:'${cat_s}'}, c2:{field:{field:'${cat_s}'}}, c3:{${terms} type:terms, field:'${cat_s}'}  }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3130,7 +3189,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:'${cat_s}', mincount:3}}}"
+literal|"{f1:{terms:{${terms} field:'${cat_s}', mincount:3}}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3176,7 +3235,7 @@ literal|"id:1"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{processEmpty:true, f1:{terms:{field:'${cat_s}', mincount:0}}}"
+literal|"{processEmpty:true, f1:{terms:{${terms} field:'${cat_s}', mincount:0}}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':1, "
@@ -3199,7 +3258,7 @@ literal|"id:1"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{processEmpty:true, f1:{terms:{field:'${cat_s}', mincount:0, allBuckets:true, facet:{n1:'sum(${num_d})'}  }}}"
+literal|"{processEmpty:true, f1:{terms:{${terms} field:'${cat_s}', mincount:0, allBuckets:true, facet:{n1:'sum(${num_d})'}  }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':1, "
@@ -3222,9 +3281,9 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:'${cat_s}', sort:'n1 desc', facet:{n1:'sum(${num_d})'}  }}"
+literal|"{f1:{terms:{${terms} field:'${cat_s}', sort:'n1 desc', facet:{n1:'sum(${num_d})'}  }}"
 operator|+
-literal|" , f2:{terms:{field:'${cat_s}', sort:'n1 asc', facet:{n1:'sum(${num_d})'}  }} }"
+literal|" , f2:{terms:{${terms} field:'${cat_s}', sort:'n1 asc', facet:{n1:'sum(${num_d})'}  }} }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3249,13 +3308,13 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'min(${num_d})'}  }"
+literal|"{f1:{${terms} type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'min(${num_d})'}  }"
 operator|+
-literal|" , f2:{type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'max(${num_d})'}  } "
+literal|" , f2:{${terms} type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'max(${num_d})'}  } "
 operator|+
-literal|" , f3:{type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'unique(${where_s})'}  } "
+literal|" , f3:{${terms} type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'unique(${where_s})'}  } "
 operator|+
-literal|" , f4:{type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'hll(${where_s})'}  } "
+literal|" , f4:{${terms} type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'hll(${where_s})'}  } "
 operator|+
 literal|"}"
 argument_list|)
@@ -3288,9 +3347,9 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:'${cat_s}', sort:'n1 desc', facet:{n1:'avg(add(${num_d},${num_d}))'}  }}"
+literal|"{f1:{terms:{${terms} field:'${cat_s}', sort:'n1 desc', facet:{n1:'avg(add(${num_d},${num_d}))'}  }}"
 operator|+
-literal|" , f2:{terms:{field:'${cat_s}', sort:'n1 asc', facet:{n1:'avg(add(${num_d},${num_d}))'}  }} }"
+literal|" , f2:{terms:{${terms} field:'${cat_s}', sort:'n1 asc', facet:{n1:'avg(add(${num_d},${num_d}))'}  }} }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3319,9 +3378,9 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:'${cat_s}', sort:'n1 desc', facet:{n1:'percentile(${num_d},50)'}  }}"
+literal|"{f1:{terms:{${terms} field:'${cat_s}', sort:'n1 desc', facet:{n1:'percentile(${num_d},50)'}  }}"
 operator|+
-literal|" , f2:{terms:{field:'${cat_s}', sort:'n1 asc', facet:{n1:'percentile(${num_d},50)'}  }} }"
+literal|" , f2:{terms:{${terms} field:'${cat_s}', sort:'n1 asc', facet:{n1:'percentile(${num_d},50)'}  }} }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3346,9 +3405,9 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:'${cat_s}', sort:'n1 desc', facet:{n1:'percentile(${num_d},50,0,100)'}  }}"
+literal|"{f1:{terms:{${terms} field:${cat_s}, sort:'n1 desc', facet:{n1:'percentile(${num_d},50,0,100)'}  }}"
 operator|+
-literal|" , f2:{terms:{field:'${cat_s}', sort:'n1 asc', facet:{n1:'percentile(${num_d},50,0,100)'}  }} }"
+literal|" , f2:{terms:{${terms} field:${cat_s}, sort:'n1 asc', facet:{n1:'percentile(${num_d},50,0,100)'}  }} }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3373,13 +3432,13 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:'${cat_s}', sort:'count desc' }  }"
+literal|"{f1:{terms:{${terms} field:'${cat_s}', sort:'count desc' }  }"
 operator|+
-literal|"           , f2:{terms:{field:'${cat_s}', sort:'count asc'  }  }"
+literal|"           , f2:{terms:{${terms} field:'${cat_s}', sort:'count asc'  }  }"
 operator|+
-literal|"           , f3:{terms:{field:'${cat_s}', sort:'index asc'  }  }"
+literal|"           , f3:{terms:{${terms} field:'${cat_s}', sort:'index asc'  }  }"
 operator|+
-literal|"           , f4:{terms:{field:'${cat_s}', sort:'index desc' }  }"
+literal|"           , f4:{terms:{${terms} field:'${cat_s}', sort:'index desc' }  }"
 operator|+
 literal|"}"
 argument_list|)
@@ -3412,9 +3471,9 @@ literal|"id:1 id:6"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:'${cat_s}', sort:'count desc' }  }"
+literal|"{f1:{terms:{${terms} field:'${cat_s}', sort:'count desc' }  }"
 operator|+
-literal|"           , f2:{terms:{field:'${cat_s}', sort:'count asc'  }  }"
+literal|"           , f2:{terms:{${terms} field:'${cat_s}', sort:'count asc'  }  }"
 operator|+
 literal|"}"
 argument_list|)
@@ -3443,7 +3502,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{cat:{terms:{field:'${cat_s}', facet:{nj:{query:'${where_s}:NJ'}}    }   }} }"
+literal|"{cat:{terms:{${terms} field:'${cat_s}', facet:{nj:{query:'${where_s}:NJ'}}    }   }} }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3466,7 +3525,7 @@ literal|"id:(2 5 4)"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{cat:{terms:{field:'${cat_s}', facet:{nj:{query:'${where_s}:NJ'}}    }   }} }"
+literal|"{cat:{terms:{${terms} field:'${cat_s}', facet:{nj:{query:'${where_s}:NJ'}}    }   }} }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':3, "
@@ -3489,7 +3548,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${super_s}, prefix:s, mincount:0 }}}"
+literal|"{f1:{terms:{${terms} field:${super_s}, prefix:s, mincount:0 }}}"
 comment|// even with mincount=0, we should only see buckets with the prefix
 argument_list|)
 argument_list|,
@@ -3513,7 +3572,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${super_s}, prefix:ttt, mincount:0 }}}"
+literal|"{f1:{terms:{${terms} field:${super_s}, prefix:ttt, mincount:0 }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3536,7 +3595,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${super_s}, prefix:aaaaaa, mincount:0 }}}"
+literal|"{f1:{terms:{${terms} field:${super_s}, prefix:aaaaaa, mincount:0 }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3559,7 +3618,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${super_s}, prefix:zzzzzz, mincount:0 }}}"
+literal|"{f1:{terms:{${terms} field:${super_s}, prefix:zzzzzz, mincount:0 }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3585,7 +3644,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${noexist}, missing:true}}}"
+literal|"{f1:{terms:{${terms} field:${noexist}, missing:true}}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3608,7 +3667,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${sparse_s}, missing:true }}}"
+literal|"{f1:{terms:{${terms} field:${sparse_s}, missing:true }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3631,7 +3690,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${sparse_s}, missing:true, facet:{x:'sum(${num_d})'}   }}}"
+literal|"{f1:{terms:{${terms} field:${sparse_s}, missing:true, facet:{x:'sum(${num_d})'}   }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3654,7 +3713,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${sparse_s}, missing:true, prefix:on, facet:{x:'sum(${num_d})'}   }}}"
+literal|"{f1:{terms:{${terms} field:${sparse_s}, missing:true, prefix:on, facet:{x:'sum(${num_d})'}   }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3677,7 +3736,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${sparse_s}, missing:true, prefix:ppp, facet:{x:'sum(${num_d})'}   }}}"
+literal|"{f1:{terms:{${terms} field:${sparse_s}, missing:true, prefix:ppp, facet:{x:'sum(${num_d})'}   }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3708,7 +3767,7 @@ literal|"true"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${cat_s}, numBuckets:true, limit:1}}}"
+literal|"{f1:{terms:{${terms} field:${cat_s}, numBuckets:true, limit:1}}}"
 comment|// TODO: limit:0 produced an error
 argument_list|)
 argument_list|,
@@ -3740,7 +3799,7 @@ literal|"true"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${cat_s}, numBuckets:true, prefix:B}}}"
+literal|"{f1:{terms:{${terms} field:${cat_s}, numBuckets:true, prefix:B}}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -3771,7 +3830,7 @@ literal|"true"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{terms:{field:${cat_s}, numBuckets:true, mincount:3}}}"
+literal|"{f1:{terms:{${terms} field:${cat_s}, numBuckets:true, mincount:3}}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -4055,7 +4114,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{cat:{terms:{field:'${multi_ss}', facet:{nj:{query:'${where_s}:NJ'}}    }   }} }"
+literal|"{cat:{terms:{${terms} field:'${multi_ss}', facet:{nj:{query:'${where_s}:NJ'}}    }   }} }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -4121,7 +4180,7 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{x:{terms:{field:'${multi_ss}',allBuckets:true}}}"
+literal|"{x:{terms:{${terms} field:'${multi_ss}',allBuckets:true}}}"
 argument_list|)
 argument_list|,
 literal|"facets=={ count:6, "
@@ -4147,14 +4206,14 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|" f0:{type:terms, field:${multi_ss}, allBuckets:true, limit:0} "
+literal|" f0:{${terms} type:terms, field:${multi_ss}, allBuckets:true, limit:0} "
 operator|+
-literal|",f1:{type:terms, field:${multi_ss}, allBuckets:true, limit:0, offset:1} "
+literal|",f1:{${terms} type:terms, field:${multi_ss}, allBuckets:true, limit:0, offset:1} "
 operator|+
 comment|// offset with 0 limit
-literal|",f2:{type:terms, field:${multi_ss}, allBuckets:true, limit:0, facet:{x:'sum(${num_d})'}, sort:'x desc' } "
+literal|",f2:{${terms} type:terms, field:${multi_ss}, allBuckets:true, limit:0, facet:{x:'sum(${num_d})'}, sort:'x desc' } "
 operator|+
-literal|",f3:{type:terms, field:${multi_ss}, allBuckets:true, limit:0, missing:true, facet:{x:'sum(${num_d})', y:'avg(${num_d})'}, sort:'x desc' } "
+literal|",f3:{${terms} type:terms, field:${multi_ss}, allBuckets:true, limit:0, missing:true, facet:{x:'sum(${num_d})', y:'avg(${num_d})'}, sort:'x desc' } "
 operator|+
 literal|"}"
 argument_list|)
@@ -4190,12 +4249,12 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|" f0:{type:terms, field:${num_i}, allBuckets:true, limit:0} "
+literal|" f0:{${terms} type:terms, field:${num_i}, allBuckets:true, limit:0} "
 operator|+
-literal|",f1:{type:terms, field:${num_i}, allBuckets:true, limit:0, offset:1} "
+literal|",f1:{${terms} type:terms, field:${num_i}, allBuckets:true, limit:0, offset:1} "
 operator|+
 comment|// offset with 0 limit
-literal|",f2:{type:terms, field:${num_i}, allBuckets:true, limit:0, facet:{x:'sum(${num_d})'}, sort:'x desc' } "
+literal|",f2:{${terms} type:terms, field:${num_i}, allBuckets:true, limit:0, facet:{x:'sum(${num_d})'}, sort:'x desc' } "
 operator|+
 literal|"}"
 argument_list|)
@@ -4540,13 +4599,13 @@ literal|"json.facet"
 argument_list|,
 literal|"{processEmpty:true, "
 operator|+
-literal|" f0:{type:terms, field:${cat_s},                                    facet:{nj:{query:'${where_s}:NJ'}} }  "
+literal|" f0:{${terms} type:terms, field:${cat_s},                                    facet:{nj:{query:'${where_s}:NJ'}} }  "
 operator|+
-literal|",f1:{type:terms, field:${cat_s}, excludeTags:doc3,   missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
+literal|",f1:{${terms} type:terms, field:${cat_s}, excludeTags:doc3,   missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
 operator|+
-literal|",f2:{type:terms, field:${cat_s}, excludeTags:allfilt,missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
+literal|",f2:{${terms} type:terms, field:${cat_s}, excludeTags:allfilt,missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
 operator|+
-literal|",f3:{type:terms, field:${cat_s}, excludeTags:doc6,   missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
+literal|",f3:{${terms} type:terms, field:${cat_s}, excludeTags:doc6,   missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
 operator|+
 literal|"}"
 argument_list|)
@@ -4636,32 +4695,32 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|" f1:{ type:field, field:${num_i} }"
+literal|" f1:{${terms}  type:field, field:${num_i} }"
 operator|+
-literal|",f2:{ type:field, field:${num_i}, sort:'count asc' }"
+literal|",f2:{${terms}  type:field, field:${num_i}, sort:'count asc' }"
 operator|+
-literal|",f3:{ type:field, field:${num_i}, sort:'index asc' }"
+literal|",f3:{${terms}  type:field, field:${num_i}, sort:'index asc' }"
 operator|+
-literal|",f4:{ type:field, field:${num_i}, sort:'index desc' }"
+literal|",f4:{${terms}  type:field, field:${num_i}, sort:'index desc' }"
 operator|+
-literal|",f5:{ type:field, field:${num_i}, sort:'index desc', limit:1, missing:true, allBuckets:true, numBuckets:true }"
+literal|",f5:{${terms}  type:field, field:${num_i}, sort:'index desc', limit:1, missing:true, allBuckets:true, numBuckets:true }"
 operator|+
-literal|",f6:{ type:field, field:${num_i}, sort:'index desc', mincount:2, numBuckets:true }"
+literal|",f6:{${terms}  type:field, field:${num_i}, sort:'index desc', mincount:2, numBuckets:true }"
 operator|+
 comment|// mincount should lower numbuckets
-literal|",f7:{ type:field, field:${num_i}, sort:'index desc', offset:2, numBuckets:true }"
+literal|",f7:{${terms}  type:field, field:${num_i}, sort:'index desc', offset:2, numBuckets:true }"
 operator|+
 comment|// test offset
-literal|",f8:{ type:field, field:${num_i}, sort:'index desc', offset:100, numBuckets:true }"
+literal|",f8:{${terms}  type:field, field:${num_i}, sort:'index desc', offset:100, numBuckets:true }"
 operator|+
 comment|// test high offset
-literal|",f9:{ type:field, field:${num_i}, sort:'x desc', facet:{x:'avg(${num_d})'}, missing:true, allBuckets:true, numBuckets:true }"
+literal|",f9:{${terms}  type:field, field:${num_i}, sort:'x desc', facet:{x:'avg(${num_d})'}, missing:true, allBuckets:true, numBuckets:true }"
 operator|+
 comment|// test stats
-literal|",f10:{ type:field, field:${num_i}, facet:{a:{query:'${cat_s}:A'}}, missing:true, allBuckets:true, numBuckets:true }"
+literal|",f10:{${terms}  type:field, field:${num_i}, facet:{a:{query:'${cat_s}:A'}}, missing:true, allBuckets:true, numBuckets:true }"
 operator|+
 comment|// test subfacets
-literal|",f11:{ type:field, field:${num_i}, facet:{a:'unique(${num_d})'} ,missing:true, allBuckets:true, sort:'a desc' }"
+literal|",f11:{${terms}  type:field, field:${num_i}, facet:{a:'unique(${num_d})'} ,missing:true, allBuckets:true, sort:'a desc' }"
 operator|+
 comment|// test subfacet using unique on numeric field (this previously triggered a resizing bug)
 literal|"}"
@@ -4712,9 +4771,9 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|" f1:{ type:field, field:${num_d} }"
+literal|" f1:{${terms}  type:field, field:${num_d} }"
 operator|+
-literal|",f2:{ type:field, field:${num_d}, sort:'index desc' }"
+literal|",f2:{${terms}  type:field, field:${num_d}, sort:'index desc' }"
 operator|+
 literal|"}"
 argument_list|)
@@ -4747,7 +4806,7 @@ literal|"{"
 operator|+
 literal|" u : 'unique(${Z_num_i})'"
 operator|+
-literal|", f1:{ type:field, field:${Z_num_i} }"
+literal|", f1:{${terms}  type:field, field:${Z_num_i} }"
 operator|+
 literal|"}"
 argument_list|)
