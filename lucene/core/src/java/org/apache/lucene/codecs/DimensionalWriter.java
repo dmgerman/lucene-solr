@@ -205,6 +205,16 @@ index|[
 name|i
 index|]
 decl_stmt|;
+if|if
+condition|(
+name|dimensionalReader
+operator|==
+literal|null
+condition|)
+block|{
+comment|// This segment has no dimensional values
+continue|continue;
+block|}
 name|MergeState
 operator|.
 name|DocMap
