@@ -263,6 +263,11 @@ literal|1
 argument_list|,
 name|createTempDir
 argument_list|()
+argument_list|,
+name|buildJettyConfig
+argument_list|(
+literal|"/solr"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
