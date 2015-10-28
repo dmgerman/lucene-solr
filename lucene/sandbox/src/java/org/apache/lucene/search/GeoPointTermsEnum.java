@@ -369,6 +369,14 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+assert|assert
+name|rangeBounds
+operator|.
+name|isEmpty
+argument_list|()
+operator|==
+literal|false
+assert|;
 name|Collections
 operator|.
 name|sort
