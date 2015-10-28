@@ -3498,6 +3498,87 @@ literal|"-term"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testNegationInParentheses
+specifier|public
+name|void
+name|testNegationInParentheses
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQueryEquals
+argument_list|(
+literal|"(-a)"
+argument_list|,
+literal|null
+argument_list|,
+literal|"-a"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"(!a)"
+argument_list|,
+literal|null
+argument_list|,
+literal|"-a"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"(NOT a)"
+argument_list|,
+literal|null
+argument_list|,
+literal|"-a"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a (!b)"
+argument_list|,
+literal|null
+argument_list|,
+literal|"a (-b)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"+a +(!b)"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+a +(-b)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a AND (!b)"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+a +(-b)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a (NOT b)"
+argument_list|,
+literal|null
+argument_list|,
+literal|"a (-b)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"a AND (NOT b)"
+argument_list|,
+literal|null
+argument_list|,
+literal|"+a +(-b)"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testWildcard
 specifier|public
 name|void
