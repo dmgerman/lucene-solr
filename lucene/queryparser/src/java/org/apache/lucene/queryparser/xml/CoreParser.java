@@ -165,15 +165,6 @@ specifier|protected
 name|QueryBuilderFactory
 name|queryFactory
 decl_stmt|;
-comment|//Controls the max size of the LRU cache used for QueryFilter objects parsed.
-DECL|field|maxNumCachedQueries
-specifier|public
-specifier|static
-name|int
-name|maxNumCachedQueries
-init|=
-literal|20
-decl_stmt|;
 comment|/**    * Construct an XML parser that uses a single instance QueryParser for handling    * UserQuery tags - all parse operations are synchronised on this parser    *    * @param parser A QueryParser which will be synchronized on during parse calls.    */
 DECL|method|CoreParser
 specifier|public
@@ -382,21 +373,6 @@ operator|new
 name|ConstantScoreQueryBuilder
 argument_list|(
 name|queryFactory
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|queryFactory
-operator|.
-name|addBuilder
-argument_list|(
-literal|"CachedQuery"
-argument_list|,
-operator|new
-name|CachedQueryBuilder
-argument_list|(
-name|queryFactory
-argument_list|,
-name|maxNumCachedQueries
 argument_list|)
 argument_list|)
 expr_stmt|;
