@@ -539,12 +539,19 @@ argument_list|,
 name|fst
 argument_list|)
 decl_stmt|;
+comment|// The topN is increased by a factor of # of intersected path
+comment|// to ensure search admissibility. For example, one suggestion can
+comment|// have multiple contexts, resulting in num_context paths for the
+comment|// suggestion instead of 1 in the FST. When queried for the suggestion,
+comment|// the topN value ensures that all paths to the suggestion are evaluated
+comment|// (in case of a match all context query).
+comment|// Note that collectors will early terminate as soon as enough suggestions
+comment|// have been collected, regardless of the set topN value. This value is the
+comment|// maximum number of suggestions that can be collected.
 specifier|final
 name|int
-name|queueSize
+name|topN
 init|=
-name|getMaxTopNSearcherQueueSize
-argument_list|(
 name|collector
 operator|.
 name|getCountToCollect
@@ -554,6 +561,14 @@ name|prefixPaths
 operator|.
 name|size
 argument_list|()
+decl_stmt|;
+specifier|final
+name|int
+name|queueSize
+init|=
+name|getMaxTopNSearcherQueueSize
+argument_list|(
+name|topN
 argument_list|,
 name|scorer
 operator|.
@@ -611,10 +626,7 @@ argument_list|>
 argument_list|(
 name|fst
 argument_list|,
-name|collector
-operator|.
-name|getCountToCollect
-argument_list|()
+name|topN
 argument_list|,
 name|queueSize
 argument_list|,

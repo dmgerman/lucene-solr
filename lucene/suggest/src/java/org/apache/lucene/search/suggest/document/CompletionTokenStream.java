@@ -419,11 +419,10 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-DECL|field|input
-specifier|private
+DECL|field|inputTokenStream
 specifier|final
 name|TokenStream
-name|input
+name|inputTokenStream
 decl_stmt|;
 DECL|field|preserveSep
 specifier|final
@@ -460,12 +459,12 @@ DECL|method|CompletionTokenStream
 name|CompletionTokenStream
 parameter_list|(
 name|TokenStream
-name|input
+name|inputTokenStream
 parameter_list|)
 block|{
 name|this
 argument_list|(
-name|input
+name|inputTokenStream
 argument_list|,
 name|DEFAULT_PRESERVE_SEP
 argument_list|,
@@ -479,7 +478,7 @@ DECL|method|CompletionTokenStream
 name|CompletionTokenStream
 parameter_list|(
 name|TokenStream
-name|input
+name|inputTokenStream
 parameter_list|,
 name|boolean
 name|preserveSep
@@ -492,12 +491,12 @@ name|maxGraphExpansions
 parameter_list|)
 block|{
 comment|// Don't call the super(input) ctor - this is a true delegate and has a new attribute source since we consume
-comment|// the input stream entirely in toFiniteStrings(input)
+comment|// the input stream entirely in the first call to incrementToken
 name|this
 operator|.
-name|input
+name|inputTokenStream
 operator|=
-name|input
+name|inputTokenStream
 expr_stmt|;
 name|this
 operator|.
@@ -672,7 +671,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|input
+name|inputTokenStream
 operator|.
 name|end
 argument_list|()
@@ -696,7 +695,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|input
+name|inputTokenStream
 operator|.
 name|close
 argument_list|()
@@ -836,7 +835,7 @@ name|tsta
 operator|.
 name|toAutomaton
 argument_list|(
-name|input
+name|inputTokenStream
 argument_list|)
 expr_stmt|;
 block|}
@@ -846,7 +845,7 @@ name|IOUtils
 operator|.
 name|closeWhileHandlingException
 argument_list|(
-name|input
+name|inputTokenStream
 argument_list|)
 expr_stmt|;
 block|}
@@ -1326,7 +1325,7 @@ return|;
 block|}
 comment|/**    * Attribute providing access to the term builder and UTF-16 conversion    */
 DECL|interface|BytesRefBuilderTermAttribute
-specifier|private
+specifier|public
 interface|interface
 name|BytesRefBuilderTermAttribute
 extends|extends
