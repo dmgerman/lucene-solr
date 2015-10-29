@@ -945,7 +945,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|RandomizedTest
+name|Assert
 operator|.
 name|assertFalse
 argument_list|(
