@@ -1239,6 +1239,35 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SimpleTextDimensionalReader(segment="
+operator|+
+name|readState
+operator|.
+name|segmentInfo
+operator|.
+name|name
+operator|+
+literal|" maxDoc="
+operator|+
+name|readState
+operator|.
+name|segmentInfo
+operator|.
+name|maxDoc
+argument_list|()
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 end_class
 

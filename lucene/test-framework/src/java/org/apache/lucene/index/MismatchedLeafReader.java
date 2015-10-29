@@ -290,12 +290,17 @@ name|attributes
 argument_list|()
 argument_list|,
 comment|// attributes
-literal|0
+name|oldInfo
+operator|.
+name|getDimensionCount
+argument_list|()
 argument_list|,
-literal|0
+name|oldInfo
+operator|.
+name|getDimensionNumBytes
+argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// dimensional count,numBytes
 name|shuffled
 operator|.
 name|set
