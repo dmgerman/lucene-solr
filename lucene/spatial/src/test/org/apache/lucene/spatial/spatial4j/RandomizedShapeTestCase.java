@@ -22,18 +22,6 @@ begin_import
 import|import
 name|com
 operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|RandomizedTest
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
 name|spatial4j
 operator|.
 name|core
@@ -176,6 +164,34 @@ name|WITHIN
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|RandomizedTest
+operator|.
+name|*
+import|;
+end_import
+
 begin_comment
 comment|/**  * A base test class with utility methods to help test shapes.  * Extends from RandomizedTest.  */
 end_comment
@@ -187,7 +203,7 @@ specifier|abstract
 class|class
 name|RandomizedShapeTestCase
 extends|extends
-name|RandomizedTest
+name|LuceneTestCase
 block|{
 DECL|field|EPS
 specifier|protected
