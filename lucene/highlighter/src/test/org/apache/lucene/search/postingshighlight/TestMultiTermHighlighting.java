@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -4469,12 +4479,9 @@ init|=
 operator|new
 name|DisjunctionMaxQuery
 argument_list|(
-literal|0
-argument_list|)
-decl_stmt|;
-name|query
+name|Collections
 operator|.
-name|add
+name|singleton
 argument_list|(
 operator|new
 name|WildcardQuery
@@ -4488,7 +4495,10 @@ literal|"te*"
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
 name|TopDocs
 name|topDocs
 init|=

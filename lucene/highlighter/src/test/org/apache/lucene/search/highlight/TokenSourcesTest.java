@@ -30,6 +30,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|carrotsearch
@@ -899,12 +909,9 @@ init|=
 operator|new
 name|DisjunctionMaxQuery
 argument_list|(
-literal|1
-argument_list|)
-decl_stmt|;
-name|query
+name|Arrays
 operator|.
-name|add
+name|asList
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -917,12 +924,7 @@ argument_list|,
 literal|"{fox}"
 argument_list|)
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|query
-operator|.
-name|add
-argument_list|(
+argument_list|,
 operator|new
 name|SpanTermQuery
 argument_list|(
@@ -935,7 +937,10 @@ literal|"fox"
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
+argument_list|,
+literal|1
+argument_list|)
+decl_stmt|;
 comment|// final Query phraseQuery = new SpanNearQuery(new SpanQuery[] {
 comment|// new SpanTermQuery(new Term(FIELD, "{fox}")),
 comment|// new SpanTermQuery(new Term(FIELD, "fox")) }, 0, true);
@@ -1184,12 +1189,9 @@ init|=
 operator|new
 name|DisjunctionMaxQuery
 argument_list|(
-literal|1
-argument_list|)
-decl_stmt|;
-name|query
+name|Arrays
 operator|.
-name|add
+name|asList
 argument_list|(
 operator|new
 name|SpanTermQuery
@@ -1202,12 +1204,7 @@ argument_list|,
 literal|"{fox}"
 argument_list|)
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|query
-operator|.
-name|add
-argument_list|(
+argument_list|,
 operator|new
 name|SpanTermQuery
 argument_list|(
@@ -1220,7 +1217,10 @@ literal|"fox"
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
+argument_list|,
+literal|1
+argument_list|)
+decl_stmt|;
 comment|// final Query phraseQuery = new SpanNearQuery(new SpanQuery[] {
 comment|// new SpanTermQuery(new Term(FIELD, "{fox}")),
 comment|// new SpanTermQuery(new Term(FIELD, "fox")) }, 0, true);
