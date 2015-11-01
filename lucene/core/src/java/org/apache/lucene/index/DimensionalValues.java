@@ -109,7 +109,7 @@ name|maxPackedValue
 parameter_list|)
 function_decl|;
 block|}
-comment|/** Finds all documents and points matching the provided visitor */
+comment|/** Finds all documents and points matching the provided visitor.    *  This method does not enforce live docs, so it's up to the caller    *  to test whether each document is deleted, if necessary. */
 DECL|method|intersect
 specifier|public
 specifier|abstract

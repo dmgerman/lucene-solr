@@ -441,6 +441,17 @@ name|DimensionalValues
 name|values
 parameter_list|)
 block|{
+if|if
+condition|(
+name|values
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
 return|return
 operator|new
 name|DimensionalReader

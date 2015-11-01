@@ -42,9 +42,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene54
+name|lucene60
 operator|.
-name|Lucene54Codec
+name|Lucene60Codec
 import|;
 end_import
 
@@ -81,7 +81,7 @@ name|Codec
 name|codec
 init|=
 operator|new
-name|Lucene54Codec
+name|Lucene60Codec
 argument_list|()
 decl_stmt|;
 annotation|@

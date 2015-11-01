@@ -60,9 +60,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene54
+name|lucene60
 operator|.
-name|Lucene54Codec
+name|Lucene60Codec
 import|;
 end_import
 
@@ -210,7 +210,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Lucene54Codec
+name|Lucene60Codec
 argument_list|(
 name|Mode
 operator|.
@@ -259,7 +259,7 @@ operator|.
 name|setCodec
 argument_list|(
 operator|new
-name|Lucene54Codec
+name|Lucene60Codec
 argument_list|(
 name|RandomPicks
 operator|.
@@ -453,7 +453,7 @@ block|{
 try|try
 block|{
 operator|new
-name|Lucene54Codec
+name|Lucene60Codec
 argument_list|(
 literal|null
 argument_list|)

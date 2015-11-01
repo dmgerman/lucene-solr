@@ -505,6 +505,30 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|fieldInfo
+operator|.
+name|getDimensionCount
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"writing field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\" but dimensionalCount is 0"
+argument_list|)
+throw|;
+block|}
 name|in
 operator|.
 name|writeField

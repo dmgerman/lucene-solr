@@ -474,12 +474,14 @@ argument_list|()
 expr_stmt|;
 name|hasDimensionalValues
 operator||=
+operator|(
 name|info
 operator|.
 name|getDimensionCount
 argument_list|()
 operator|!=
 literal|0
+operator|)
 expr_stmt|;
 block|}
 name|this

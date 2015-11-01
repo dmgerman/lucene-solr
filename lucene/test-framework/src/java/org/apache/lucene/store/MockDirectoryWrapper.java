@@ -1890,6 +1890,29 @@ operator|<
 name|randomIOExceptionRate
 condition|)
 block|{
+name|IOException
+name|ioe
+init|=
+operator|new
+name|IOException
+argument_list|(
+literal|"a random IOException"
+operator|+
+operator|(
+name|message
+operator|==
+literal|null
+condition|?
+literal|""
+else|:
+literal|" ("
+operator|+
+name|message
+operator|+
+literal|")"
+operator|)
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|LuceneTestCase
@@ -1928,27 +1951,18 @@ literal|")"
 operator|)
 argument_list|)
 expr_stmt|;
+name|ioe
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 block|}
 throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"a random IOException"
-operator|+
-operator|(
-name|message
-operator|==
-literal|null
-condition|?
-literal|""
-else|:
-literal|" ("
-operator|+
-name|message
-operator|+
-literal|")"
-operator|)
-argument_list|)
+name|ioe
 throw|;
 block|}
 block|}

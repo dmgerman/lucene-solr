@@ -366,6 +366,7 @@ specifier|final
 name|int
 name|bytesPerDoc
 decl_stmt|;
+comment|/** Default maximum number of point in each leaf block */
 DECL|field|DEFAULT_MAX_POINTS_IN_LEAF_NODE
 specifier|public
 specifier|static
@@ -375,6 +376,7 @@ name|DEFAULT_MAX_POINTS_IN_LEAF_NODE
 init|=
 literal|1024
 decl_stmt|;
+comment|/** Default maximum heap to use, before spilling to (slower) disk */
 DECL|field|DEFAULT_MAX_MB_SORT_IN_HEAP
 specifier|public
 specifier|static
@@ -1827,6 +1829,26 @@ name|IOException
 block|{
 comment|//System.out.println("\nBKDTreeWriter.finish pointCount=" + pointCount + " out=" + out + " heapWriter=" + heapWriter);
 comment|// TODO: specialize the 1D case?  it's much faster at indexing time (no partitioning on recruse...)
+comment|// Catch user silliness:
+if|if
+condition|(
+name|heapPointWriter
+operator|==
+literal|null
+operator|&&
+name|tempInput
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"already finished"
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|offlinePointWriter
