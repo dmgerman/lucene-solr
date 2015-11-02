@@ -939,6 +939,7 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/** make a plugin available in an alternate name. This is an internal API and not for public use    * @param src key in which the plugin is already registered    * @param target the new key in which the plugin should be aliased to. If target exists already, the alias fails    * @return flag if the operation is successful or not    */
 DECL|method|alias
 name|boolean
 name|alias
