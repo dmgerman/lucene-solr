@@ -9013,6 +9013,38 @@ name|void
 name|zkCheck
 parameter_list|()
 block|{
+comment|// Streaming updates can delay shutdown and cause big update reorderings (new streams can't be
+comment|// initiated, but existing streams carry on).  This is why we check if the CC is shutdown.
+comment|// See SOLR-8203 and loop HdfsChaosMonkeyNothingIsSafeTest (and check for inconsistent shards) to test.
+if|if
+condition|(
+name|req
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVICE_UNAVAILABLE
+argument_list|,
+literal|"CoreContainer is shutting down."
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 operator|(
