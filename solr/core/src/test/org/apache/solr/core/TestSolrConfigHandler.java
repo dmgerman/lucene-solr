@@ -370,6 +370,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|BaseDistributedSearchTestCase
+operator|.
+name|log
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|util
@@ -1582,6 +1596,59 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
+name|payload
+operator|=
+literal|"{\n"
+operator|+
+literal|"'update-requesthandler' : { 'name' : '/dump', "
+operator|+
+literal|"'initParams': 'a',"
+operator|+
+literal|"'class': 'org.apache.solr.handler.DumpRequestHandler' ,"
+operator|+
+literal|" 'defaults': {'a':'A','b':'B','c':'C'}}\n"
+operator|+
+literal|"}"
+expr_stmt|;
+name|runConfigCommand
+argument_list|(
+name|writeHarness
+argument_list|,
+literal|"/config?wt=json"
+argument_list|,
+name|payload
+argument_list|)
+expr_stmt|;
+name|testForResponseElement
+argument_list|(
+name|writeHarness
+argument_list|,
+name|testServerBaseUrl
+argument_list|,
+literal|"/config/overlay?wt=json"
+argument_list|,
+name|cloudSolrClient
+argument_list|,
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"overlay"
+argument_list|,
+literal|"requestHandler"
+argument_list|,
+literal|"/dump"
+argument_list|,
+literal|"defaults"
+argument_list|,
+literal|"c"
+argument_list|)
+argument_list|,
+literal|"C"
+argument_list|,
+literal|10
+argument_list|)
+expr_stmt|;
 name|testForResponseElement
 argument_list|(
 name|writeHarness
@@ -2743,7 +2810,7 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'create-requesthandler' : { 'name' : '/dump', 'class': 'org.apache.solr.handler.DumpRequestHandler' }\n"
+literal|"'create-requesthandler' : { 'name' : '/d', 'class': 'org.apache.solr.handler.DumpRequestHandler' }\n"
 operator|+
 literal|"}"
 expr_stmt|;
@@ -2778,12 +2845,12 @@ literal|"overlay"
 argument_list|,
 literal|"requestHandler"
 argument_list|,
-literal|"/dump"
+literal|"/d"
 argument_list|,
 literal|"name"
 argument_list|)
 argument_list|,
-literal|"/dump"
+literal|"/d"
 argument_list|,
 literal|10
 argument_list|)
@@ -2796,7 +2863,7 @@ name|harness
 argument_list|,
 literal|null
 argument_list|,
-literal|"/dump?wt=json&useParams=x"
+literal|"/d?wt=json&useParams=x"
 argument_list|,
 literal|null
 argument_list|,
@@ -2822,7 +2889,7 @@ name|harness
 argument_list|,
 literal|null
 argument_list|,
-literal|"/dump?wt=json&useParams=x&a=fomrequest"
+literal|"/d?wt=json&useParams=x&a=fomrequest"
 argument_list|,
 literal|null
 argument_list|,
