@@ -1321,7 +1321,7 @@ name|ref
 init|=
 name|queue
 operator|.
-name|pop
+name|top
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -1394,10 +1394,16 @@ block|{
 comment|// Not done with this these TopDocs yet:
 name|queue
 operator|.
-name|add
-argument_list|(
-name|ref
-argument_list|)
+name|updateTop
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|queue
+operator|.
+name|pop
+argument_list|()
 expr_stmt|;
 block|}
 block|}
