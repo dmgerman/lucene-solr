@@ -1271,6 +1271,11 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
+name|noVirusChecker
+argument_list|(
+name|dir
+argument_list|)
+expr_stmt|;
 name|IndexWriterConfig
 name|iwc
 init|=
