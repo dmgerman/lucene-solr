@@ -2891,6 +2891,20 @@ operator|.
 name|cacheDf
 argument_list|)
 expr_stmt|;
+name|facet
+operator|.
+name|perSeg
+operator|=
+operator|(
+name|Boolean
+operator|)
+name|m
+operator|.
+name|get
+argument_list|(
+literal|"perSeg"
+argument_list|)
+expr_stmt|;
 comment|// facet.sort may depend on a facet stat...
 comment|// should we be parsing / validating this here, or in the execution environment?
 name|Object
