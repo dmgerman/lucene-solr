@@ -28,20 +28,6 @@ name|Locale
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-import|;
-end_import
-
 begin_interface
 DECL|interface|CollectionParams
 specifier|public
@@ -128,6 +114,12 @@ argument_list|)
 block|,
 DECL|enum constant|DELETEREPLICA
 name|DELETEREPLICA
+argument_list|(
+literal|true
+argument_list|)
+block|,
+DECL|enum constant|FORCELEADER
+name|FORCELEADER
 argument_list|(
 literal|true
 argument_list|)

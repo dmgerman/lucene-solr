@@ -433,6 +433,10 @@ block|,
 DECL|enum constant|REJOINLEADERELECTION
 name|REJOINLEADERELECTION
 block|,
+comment|//internal API used by force shard leader election
+DECL|enum constant|FORCEPREPAREFORLEADERSHIP
+name|FORCEPREPAREFORLEADERSHIP
+block|,
 DECL|enum constant|INVOKE
 name|INVOKE
 block|;
