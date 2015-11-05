@@ -59,7 +59,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Verifies that the default behavior of the implicit {@link ClassicSimilarityFactory}   * (ie: no similarity configured in schema.xml at all) is consistnent with   * expectations based on the luceneMatchVersion  * @see<a href="https://issues.apache.org/jira/browse/SOLR-5561">SOLR-5561</a>  */
+comment|/**  * Verifies that the default behavior of the implicit {@link DefaultSimilarityFactory}   * (ie: no similarity configured in schema.xml at all) is consistnent with   * expectations based on the luceneMatchVersion  * @see<a href="https://issues.apache.org/jira/browse/SOLR-5561">SOLR-5561</a>  */
 end_comment
 
 begin_class
