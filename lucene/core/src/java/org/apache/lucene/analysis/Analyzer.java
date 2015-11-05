@@ -18,6 +18,46 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|Reader
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -55,56 +95,6 @@ operator|.
 name|util
 operator|.
 name|Version
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Closeable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -188,7 +178,7 @@ name|String
 name|fieldName
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a TokenStream suitable for<code>fieldName</code>, tokenizing    * the contents of<code>reader</code>.    *<p>    * This method uses {@link #createComponents(String)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *<p>    *<b>NOTE:</b> After calling this method, the consumer must follow the     * workflow described in {@link TokenStream} to properly consume its contents.    * See the {@link org.apache.lucene.analysis Analysis package documentation} for    * some examples demonstrating this.    *     *<b>NOTE:</b> If your data is available as a {@code String}, use    * {@link #tokenStream(String, String)} which reuses a {@code StringReader}-like    * instance internally.    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    * @return TokenStream for iterating the analyzed content of<code>reader</code>    * @throws AlreadyClosedException if the Analyzer is closed.    * @throws IOException if an i/o error occurs.    * @see #tokenStream(String, String)    */
+comment|/**    * Returns a TokenStream suitable for<code>fieldName</code>, tokenizing    * the contents of<code>reader</code>.    *<p>    * This method uses {@link #createComponents(String)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *<p>    *<b>NOTE:</b> After calling this method, the consumer must follow the     * workflow described in {@link TokenStream} to properly consume its contents.    * See the {@link org.apache.lucene.analysis Analysis package documentation} for    * some examples demonstrating this.    *     *<b>NOTE:</b> If your data is available as a {@code String}, use    * {@link #tokenStream(String, String)} which reuses a {@code StringReader}-like    * instance internally.    *     * @param fieldName the name of the field the created TokenStream is used for    * @param reader the reader the streams source reads from    * @return TokenStream for iterating the analyzed content of<code>reader</code>    * @throws AlreadyClosedException if the Analyzer is closed.    * @see #tokenStream(String, String)    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -203,8 +193,6 @@ specifier|final
 name|Reader
 name|reader
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|TokenStreamComponents
 name|components
@@ -269,7 +257,7 @@ name|getTokenStream
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a TokenStream suitable for<code>fieldName</code>, tokenizing    * the contents of<code>text</code>.    *<p>    * This method uses {@link #createComponents(String)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *<p>    *<b>NOTE:</b> After calling this method, the consumer must follow the     * workflow described in {@link TokenStream} to properly consume its contents.    * See the {@link org.apache.lucene.analysis Analysis package documentation} for    * some examples demonstrating this.    *     * @param fieldName the name of the field the created TokenStream is used for    * @param text the String the streams source reads from    * @return TokenStream for iterating the analyzed content of<code>reader</code>    * @throws AlreadyClosedException if the Analyzer is closed.    * @throws IOException if an i/o error occurs (may rarely happen for strings).    * @see #tokenStream(String, Reader)    */
+comment|/**    * Returns a TokenStream suitable for<code>fieldName</code>, tokenizing    * the contents of<code>text</code>.    *<p>    * This method uses {@link #createComponents(String)} to obtain an    * instance of {@link TokenStreamComponents}. It returns the sink of the    * components and stores the components internally. Subsequent calls to this    * method will reuse the previously stored components after resetting them    * through {@link TokenStreamComponents#setReader(Reader)}.    *<p>    *<b>NOTE:</b> After calling this method, the consumer must follow the     * workflow described in {@link TokenStream} to properly consume its contents.    * See the {@link org.apache.lucene.analysis Analysis package documentation} for    * some examples demonstrating this.    *     * @param fieldName the name of the field the created TokenStream is used for    * @param text the String the streams source reads from    * @return TokenStream for iterating the analyzed content of<code>reader</code>    * @throws AlreadyClosedException if the Analyzer is closed.    * @see #tokenStream(String, Reader)    */
 DECL|method|tokenStream
 specifier|public
 specifier|final
@@ -284,8 +272,6 @@ specifier|final
 name|String
 name|text
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|TokenStreamComponents
 name|components
@@ -580,7 +566,7 @@ operator|=
 name|source
 expr_stmt|;
 block|}
-comment|/**      * Resets the encapsulated components with the given reader. If the components      * cannot be reset, an Exception should be thrown.      *       * @param reader      *          a reader to reset the source component      * @throws IOException      *           if the component's reset method throws an {@link IOException}      */
+comment|/**      * Resets the encapsulated components with the given reader. If the components      * cannot be reset, an Exception should be thrown.      *       * @param reader      *          a reader to reset the source component      */
 DECL|method|setReader
 specifier|protected
 name|void
@@ -590,8 +576,6 @@ specifier|final
 name|Reader
 name|reader
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|source
 operator|.

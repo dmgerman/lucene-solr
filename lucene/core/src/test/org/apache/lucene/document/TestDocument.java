@@ -22,16 +22,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|StringReader
 import|;
 end_import
@@ -2376,20 +2366,6 @@ name|iae
 parameter_list|)
 block|{
 comment|// expected
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|ioe
-argument_list|)
-throw|;
 block|}
 block|}
 DECL|method|testNumericFieldAsString

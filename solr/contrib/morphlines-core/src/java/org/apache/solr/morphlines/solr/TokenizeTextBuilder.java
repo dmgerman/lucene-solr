@@ -541,8 +541,6 @@ argument_list|(
 name|analyzer
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 comment|// register CharTermAttribute for later (implicit) reuse
 name|this
 operator|.
@@ -564,25 +562,6 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|MorphlineCompilationException
-argument_list|(
-literal|"Cannot create token stream"
-argument_list|,
-name|config
-argument_list|,
-name|e
-argument_list|)
-throw|;
-block|}
 name|Preconditions
 operator|.
 name|checkNotNull
