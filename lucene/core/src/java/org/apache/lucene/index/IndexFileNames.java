@@ -43,10 +43,6 @@ import|;
 end_import
 
 begin_comment
-comment|// TODO: put all files under codec and remove all the static extensions here
-end_comment
-
-begin_comment
 comment|/**  * This class contains useful constants representing filenames and extensions  * used by lucene, as well as convenience methods for querying whether a file  * name matches an extension ({@link #matchesExtension(String, String)  * matchesExtension}), as well as generating file names from a segment name,  * generation and extension (  * {@link #fileNameFromGeneration(String, String, long) fileNameFromGeneration},  * {@link #segmentFileName(String, String, String) segmentFileName}).  *  *<p><b>NOTE</b>: extensions used by codecs are not  * listed here.  You must interact with the {@link Codec}  * directly.  *  * @lucene.internal  */
 end_comment
 
