@@ -208,36 +208,6 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-operator|.
-name|ErrorCode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|NamedList
@@ -393,12 +363,8 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|SolrException
+name|IOException
 argument_list|(
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
 literal|"Field '"
 operator|+
 name|schemaField
@@ -406,7 +372,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"' does not have docValues"
+literal|"' does not have docValues and therefore cannot be faceted over."
 argument_list|)
 throw|;
 block|}
@@ -431,25 +397,6 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-operator|!
-name|schemaField
-operator|.
-name|hasDocValues
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-name|name
-operator|+
-literal|" does not have docValues and therefore cannot be faceted over."
-argument_list|)
-throw|;
-block|}
 name|this
 operator|.
 name|multiValued
