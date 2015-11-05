@@ -2673,8 +2673,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|Throwable
-name|t
+name|RuntimeException
+name|e
 parameter_list|)
 block|{
 name|SolrException
@@ -2685,7 +2685,7 @@ name|log
 argument_list|,
 literal|"Error registering SolrCore"
 argument_list|,
-name|t
+name|e
 argument_list|)
 expr_stmt|;
 block|}
