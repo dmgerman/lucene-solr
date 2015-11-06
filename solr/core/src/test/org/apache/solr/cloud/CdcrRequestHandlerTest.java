@@ -28,7 +28,7 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
-name|Slow
+name|Nightly
 import|;
 end_import
 
@@ -74,7 +74,7 @@ end_import
 
 begin_class
 annotation|@
-name|Slow
+name|Nightly
 DECL|class|CdcrRequestHandlerTest
 specifier|public
 class|class
@@ -108,6 +108,7 @@ name|distribSetUp
 argument_list|()
 expr_stmt|;
 block|}
+comment|// check that the life-cycle state is properly synchronised across nodes
 annotation|@
 name|Test
 annotation|@
@@ -117,35 +118,10 @@ name|num
 operator|=
 literal|2
 argument_list|)
-DECL|method|doTest
+DECL|method|testLifeCycleActions
 specifier|public
 name|void
-name|doTest
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|this
-operator|.
-name|doTestLifeCycleActions
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|doTestCheckpointActions
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|doTestBufferActions
-argument_list|()
-expr_stmt|;
-block|}
-comment|// check that the life-cycle state is properly synchronised across nodes
-DECL|method|doTestLifeCycleActions
-specifier|public
-name|void
-name|doTestLifeCycleActions
+name|testLifeCycleActions
 parameter_list|()
 throws|throws
 name|Exception
@@ -386,10 +362,19 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// check the checkpoint API
-DECL|method|doTestCheckpointActions
+annotation|@
+name|Test
+annotation|@
+name|ShardsFixed
+argument_list|(
+name|num
+operator|=
+literal|2
+argument_list|)
+DECL|method|testCheckpointActions
 specifier|public
 name|void
-name|doTestCheckpointActions
+name|testCheckpointActions
 parameter_list|()
 throws|throws
 name|Exception
@@ -953,10 +938,19 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// check that the buffer state is properly synchronised across nodes
-DECL|method|doTestBufferActions
+annotation|@
+name|Test
+annotation|@
+name|ShardsFixed
+argument_list|(
+name|num
+operator|=
+literal|2
+argument_list|)
+DECL|method|testBufferActions
 specifier|public
 name|void
-name|doTestBufferActions
+name|testBufferActions
 parameter_list|()
 throws|throws
 name|Exception

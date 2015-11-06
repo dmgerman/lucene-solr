@@ -2637,7 +2637,7 @@ block|}
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Returning the lowest last processed version {}  @ {}:{}"
 argument_list|,
