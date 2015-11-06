@@ -61,7 +61,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests {@link DefaultSimilarityFactory} when specified on a per-fieldtype basis with various init options.  * @see SchemaSimilarityFactory  */
+comment|/**  * Tests {@link ClassicSimilarityFactory} when specified on a per-fieldtype basis with various init options.  * @see SchemaSimilarityFactory  */
 end_comment
 
 begin_class
@@ -138,70 +138,6 @@ init|=
 name|getSimilarity
 argument_list|(
 literal|"text_overlap"
-argument_list|,
-name|ClassicSimilarity
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|false
-argument_list|,
-name|sim
-operator|.
-name|getDiscountOverlaps
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Default w/ default parameters */
-DECL|method|testDefaultWithDefaults
-specifier|public
-name|void
-name|testDefaultWithDefaults
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|ClassicSimilarity
-name|sim
-init|=
-name|getSimilarity
-argument_list|(
-literal|"text__default"
-argument_list|,
-name|ClassicSimilarity
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|true
-argument_list|,
-name|sim
-operator|.
-name|getDiscountOverlaps
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Default w/ explicit params */
-DECL|method|testDefaultWithParams
-specifier|public
-name|void
-name|testDefaultWithParams
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|ClassicSimilarity
-name|sim
-init|=
-name|getSimilarity
-argument_list|(
-literal|"text_overlap__default"
 argument_list|,
 name|ClassicSimilarity
 operator|.
