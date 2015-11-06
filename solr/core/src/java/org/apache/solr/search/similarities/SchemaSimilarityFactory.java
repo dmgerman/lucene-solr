@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * SimilarityFactory that returns a {@link PerFieldSimilarityWrapper}  * that delegates to the field type, if it's configured, otherwise  * {@link ClassicSimilarity}.  *  *<p>  *<b>NOTE:</b> Users should be aware that in addition to supporting   *<code>Similarity</code> configurations specified on individual   * field types, this factory also differs in behavior from   * {@link DefaultSimilarityFactory} because of other differences in the   * implementations of<code>PerFieldSimilarityWrapper</code> and   *<code>DefaultSimilarity</code> - notably in methods such as   * {@link Similarity#coord} and {@link Similarity#queryNorm}.    *</p>  *  * @see FieldType#getSimilarity  */
+comment|/**  * SimilarityFactory that returns a {@link PerFieldSimilarityWrapper}  * that delegates to the field type, if it's configured, otherwise  * {@link ClassicSimilarity}.  *  *<p>  *<b>NOTE:</b> Users should be aware that in addition to supporting   *<code>Similarity</code> configurations specified on individual   * field types, this factory also differs in behavior from   * {@link ClassicSimilarityFactory} because of other differences in the   * implementations of<code>PerFieldSimilarityWrapper</code> and   * {@link ClassicSimilarity} - notably in methods such as   * {@link Similarity#coord} and {@link Similarity#queryNorm}.    *</p>  *  * @see FieldType#getSimilarity  */
 end_comment
 
 begin_class
