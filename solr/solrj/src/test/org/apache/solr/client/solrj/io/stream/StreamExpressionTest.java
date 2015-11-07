@@ -2152,6 +2152,54 @@ argument_list|,
 literal|4
 argument_list|)
 expr_stmt|;
+comment|// full factory w/multi streams
+name|stream
+operator|=
+name|factory
+operator|.
+name|constructStream
+argument_list|(
+literal|"merge("
+operator|+
+literal|"search(collection1, q=\"id:(0 4)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_s asc\"),"
+operator|+
+literal|"search(collection1, q=\"id:(1)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_s asc\"),"
+operator|+
+literal|"search(collection1, q=\"id:(2)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_s asc\"),"
+operator|+
+literal|"on=\"a_f asc\")"
+argument_list|)
+expr_stmt|;
+name|tuples
+operator|=
+name|getTuples
+argument_list|(
+name|stream
+argument_list|)
+expr_stmt|;
+assert|assert
+operator|(
+name|tuples
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|4
+operator|)
+assert|;
+name|assertOrder
+argument_list|(
+name|tuples
+argument_list|,
+literal|0
+argument_list|,
+literal|2
+argument_list|,
+literal|1
+argument_list|,
+literal|4
+argument_list|)
+expr_stmt|;
 name|del
 argument_list|(
 literal|"*:*"
