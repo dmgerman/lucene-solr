@@ -152,7 +152,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Creates a new, empty file for writing in the directory, with a    *  temporary file name derived from prefix and suffix.  Use    *  {@link IndexOutput#getName} to see what name was used.  */
+comment|/** Creates a new, empty file for writing in the directory, with a    *  temporary file name including prefix and suffix, ending with the    *  reserved extension<code>.tmp</code>.  Use    *  {@link IndexOutput#getName} to see what name was used.  */
 DECL|method|createTempOutput
 specifier|public
 specifier|abstract

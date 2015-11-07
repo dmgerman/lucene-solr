@@ -380,7 +380,7 @@ specifier|final
 name|String
 name|TERMS_EXTENSION
 init|=
-literal|"tmp"
+literal|"tfp"
 decl_stmt|;
 DECL|field|TERMS_CODEC_NAME
 specifier|static
