@@ -2834,7 +2834,7 @@ literal|"group("
 operator|+
 literal|"search(collection1, q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_s asc, a_f asc\"),"
 operator|+
-literal|"by=\"a_s asc\")"
+literal|"by=\"a_s\")"
 argument_list|)
 expr_stmt|;
 name|stream
@@ -2969,7 +2969,7 @@ literal|"group("
 operator|+
 literal|"search(collection1, q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_s asc, a_f       asc\"),"
 operator|+
-literal|"by=\"a_s asc\")"
+literal|"by=\"a_s\")"
 argument_list|)
 expr_stmt|;
 name|stream
@@ -4692,7 +4692,7 @@ name|streamFactory
 operator|.
 name|constructStream
 argument_list|(
-literal|"parallel(collection1, group(search(collection1, q=\"*:*\", fl=\"id,a_s,a_i,a_f\", sort=\"a_s asc,a_f asc\", partitionKeys=\"a_s\"), by=\"a_s asc\"), workers=\"2\", zkHost=\""
+literal|"parallel(collection1, group(search(collection1, q=\"*:*\", fl=\"id,a_s,a_i,a_f\", sort=\"a_s asc,a_f asc\", partitionKeys=\"a_s\"), by=\"a_s\"), workers=\"2\", zkHost=\""
 operator|+
 name|zkHost
 operator|+
@@ -4839,7 +4839,7 @@ name|streamFactory
 operator|.
 name|constructStream
 argument_list|(
-literal|"parallel(collection1, group(search(collection1, q=\"*:*\", fl=\"id,a_s,a_i,a_f\", sort=\"a_s desc,a_f asc\", partitionKeys=\"a_s\"), by=\"a_s desc\"), workers=\"2\", zkHost=\""
+literal|"parallel(collection1, group(search(collection1, q=\"*:*\", fl=\"id,a_s,a_i,a_f\", sort=\"a_s desc,a_f asc\", partitionKeys=\"a_s\"), by=\"a_s\"), workers=\"2\", zkHost=\""
 operator|+
 name|zkHost
 operator|+

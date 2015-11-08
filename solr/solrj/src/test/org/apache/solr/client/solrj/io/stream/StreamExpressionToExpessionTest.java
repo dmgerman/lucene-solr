@@ -754,7 +754,7 @@ literal|"group("
 operator|+
 literal|"search(collection1, q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_s desc, a_f asc\"),"
 operator|+
-literal|"by=\"a_s desc\")"
+literal|"by=\"a_s\")"
 argument_list|)
 argument_list|,
 name|factory
@@ -788,7 +788,7 @@ name|expressionString
 operator|.
 name|contains
 argument_list|(
-literal|"by=\"a_s desc\""
+literal|"by=a_s"
 argument_list|)
 argument_list|)
 expr_stmt|;
