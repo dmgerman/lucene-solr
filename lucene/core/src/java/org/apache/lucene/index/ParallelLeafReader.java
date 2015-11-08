@@ -1504,17 +1504,7 @@ operator|==
 literal|null
 condition|)
 block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"field=\""
-operator|+
-name|fieldName
-operator|+
-literal|"\" did not index dimensional values"
-argument_list|)
-throw|;
+return|return;
 block|}
 name|DimensionalValues
 name|dimValues
@@ -1531,17 +1521,7 @@ operator|==
 literal|null
 condition|)
 block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"field=\""
-operator|+
-name|fieldName
-operator|+
-literal|"\" did not index dimensional values"
-argument_list|)
-throw|;
+return|return;
 block|}
 name|dimValues
 operator|.

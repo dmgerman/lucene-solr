@@ -333,7 +333,7 @@ comment|// Forces this segment's DimensionalReader to always visit all docs + va
 return|return
 name|Relation
 operator|.
-name|QUERY_CROSSES_CELL
+name|CELL_CROSSES_QUERY
 return|;
 block|}
 block|}

@@ -606,7 +606,7 @@ block|{
 return|return
 name|Relation
 operator|.
-name|QUERY_CROSSES_CELL
+name|CELL_CROSSES_QUERY
 return|;
 block|}
 specifier|public
@@ -872,7 +872,7 @@ block|{
 return|return
 name|Relation
 operator|.
-name|QUERY_CROSSES_CELL
+name|CELL_CROSSES_QUERY
 return|;
 block|}
 specifier|public
@@ -1212,7 +1212,7 @@ block|{
 return|return
 name|Relation
 operator|.
-name|QUERY_CROSSES_CELL
+name|CELL_CROSSES_QUERY
 return|;
 block|}
 specifier|public
@@ -2970,7 +2970,7 @@ block|{
 return|return
 name|Relation
 operator|.
-name|QUERY_OUTSIDE_CELL
+name|CELL_OUTSIDE_QUERY
 return|;
 block|}
 elseif|else
@@ -3015,7 +3015,7 @@ block|{
 return|return
 name|Relation
 operator|.
-name|QUERY_CROSSES_CELL
+name|CELL_CROSSES_QUERY
 return|;
 block|}
 else|else
@@ -7541,7 +7541,7 @@ comment|//System.out.println("  query_outside_cell");
 return|return
 name|Relation
 operator|.
-name|QUERY_OUTSIDE_CELL
+name|CELL_OUTSIDE_QUERY
 return|;
 block|}
 elseif|else
@@ -7603,7 +7603,7 @@ comment|//System.out.println("  query_crosses_cell");
 return|return
 name|Relation
 operator|.
-name|QUERY_CROSSES_CELL
+name|CELL_CROSSES_QUERY
 return|;
 block|}
 else|else

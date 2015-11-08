@@ -1,6 +1,6 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
 begin_package
-DECL|package|org.apache.lucene.bkdtree3d
+DECL|package|org.apache.lucene.geo3d
 package|package
 name|org
 operator|.
@@ -8,41 +8,13 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|bkdtree3d
+name|geo3d
 package|;
 end_package
 
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|geo3d
-operator|.
-name|PlanetModel
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|geo3d
-operator|.
-name|GeoPoint
-import|;
-end_import
 
 begin_import
 import|import
@@ -80,9 +52,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|util
 operator|.
-name|DocValuesType
+name|BytesRef
 import|;
 end_import
 
@@ -96,16 +68,28 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRef
+name|RamUsageEstimator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|bkd
+operator|.
+name|BKDUtil
 import|;
 end_import
 
 begin_comment
-comment|// TODO: allow multi-valued, packing all points into a single BytesRef
-end_comment
-
-begin_comment
-comment|/** Add this to a document to index lat/lon point, but be sure to use {@link Geo3DDocValuesFormat} for the field.   *  @lucene.experimental */
+comment|/** Add this to a document to index lat/lon or x/y/z point, indexed as a dimensional value.  *  Multiple values are allowed: just add multiple Geo3DPointField to the document with the  *  same field name.  *  *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -133,11 +117,13 @@ static|static
 block|{
 name|TYPE
 operator|.
-name|setDocValuesType
+name|setDimensions
 argument_list|(
-name|DocValuesType
+literal|3
+argument_list|,
+name|RamUsageEstimator
 operator|.
-name|BINARY
+name|NUM_BYTES_INT
 argument_list|)
 expr_stmt|;
 name|TYPE
@@ -278,11 +264,11 @@ index|[
 literal|12
 index|]
 decl_stmt|;
-name|Geo3DDocValuesFormat
+name|BKDUtil
 operator|.
-name|writeInt
+name|intToBytes
 argument_list|(
-name|Geo3DDocValuesFormat
+name|Geo3DUtil
 operator|.
 name|encodeValue
 argument_list|(
@@ -296,11 +282,11 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|Geo3DDocValuesFormat
+name|BKDUtil
 operator|.
-name|writeInt
+name|intToBytes
 argument_list|(
-name|Geo3DDocValuesFormat
+name|Geo3DUtil
 operator|.
 name|encodeValue
 argument_list|(
@@ -311,14 +297,14 @@ argument_list|)
 argument_list|,
 name|bytes
 argument_list|,
-literal|4
+literal|1
 argument_list|)
 expr_stmt|;
-name|Geo3DDocValuesFormat
+name|BKDUtil
 operator|.
-name|writeInt
+name|intToBytes
 argument_list|(
-name|Geo3DDocValuesFormat
+name|Geo3DUtil
 operator|.
 name|encodeValue
 argument_list|(
@@ -329,7 +315,7 @@ argument_list|)
 argument_list|,
 name|bytes
 argument_list|,
-literal|8
+literal|2
 argument_list|)
 expr_stmt|;
 name|fieldsData

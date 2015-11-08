@@ -1166,14 +1166,6 @@ name|int
 name|j
 parameter_list|)
 block|{
-if|if
-condition|(
-name|dim
-operator|!=
-operator|-
-literal|1
-condition|)
-block|{
 name|writer
 operator|.
 name|readPackedValue
@@ -1221,11 +1213,9 @@ return|return
 name|cmp
 return|;
 block|}
-block|}
 comment|// Tie-break
-name|int
 name|cmp
-init|=
+operator|=
 name|Integer
 operator|.
 name|compare
@@ -1244,7 +1234,7 @@ index|[
 name|j
 index|]
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
 name|cmp
@@ -2049,6 +2039,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
+comment|//long t0 = System.nanoTime();
 for|for
 control|(
 name|int
@@ -2083,6 +2074,8 @@ name|pointCount
 argument_list|)
 expr_stmt|;
 block|}
+comment|//long t1 = System.nanoTime();
+comment|//System.out.println("sort time: " + ((t1-t0)/1000000.0) + " msec");
 if|if
 condition|(
 name|tempInput
@@ -2164,6 +2157,8 @@ operator|.
 name|isEmpty
 argument_list|()
 assert|;
+comment|//long t2 = System.nanoTime();
+comment|//System.out.println("write time: " + ((t2-t1)/1000000.0) + " msec");
 name|success
 operator|=
 literal|true
@@ -2366,11 +2361,6 @@ argument_list|(
 name|count
 argument_list|)
 expr_stmt|;
-name|int
-name|lastDocID
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -2386,28 +2376,17 @@ name|i
 operator|++
 control|)
 block|{
-name|int
-name|docID
-init|=
+name|out
+operator|.
+name|writeInt
+argument_list|(
 name|docIDs
 index|[
 name|start
 operator|+
 name|i
 index|]
-decl_stmt|;
-name|out
-operator|.
-name|writeVInt
-argument_list|(
-name|docID
-operator|-
-name|lastDocID
 argument_list|)
-expr_stmt|;
-name|lastDocID
-operator|=
-name|docID
 expr_stmt|;
 block|}
 block|}
@@ -2919,6 +2898,7 @@ name|dim
 expr_stmt|;
 block|}
 block|}
+comment|//System.out.println("SPLIT: " + splitDim);
 return|return
 name|splitDim
 return|;
@@ -3187,33 +3167,6 @@ name|source
 operator|.
 name|writer
 decl_stmt|;
-comment|// Sort by docID in the leaf so we can delta-vInt encode:
-name|sortHeapPointWriter
-argument_list|(
-name|heapSource
-argument_list|,
-name|Math
-operator|.
-name|toIntExact
-argument_list|(
-name|source
-operator|.
-name|start
-argument_list|)
-argument_list|,
-name|Math
-operator|.
-name|toIntExact
-argument_list|(
-name|source
-operator|.
-name|count
-argument_list|)
-argument_list|,
-operator|-
-literal|1
-argument_list|)
-expr_stmt|;
 comment|// Save the block file pointer:
 name|leafBlockFPs
 index|[

@@ -9134,7 +9134,7 @@ name|DimensionalValues
 operator|.
 name|Relation
 operator|.
-name|QUERY_CROSSES_CELL
+name|CELL_CROSSES_QUERY
 return|;
 block|}
 specifier|private

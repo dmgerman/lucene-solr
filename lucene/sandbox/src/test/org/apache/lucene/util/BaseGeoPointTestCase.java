@@ -567,9 +567,18 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Return true when testing on a non-small region may be too slow (GeoPoint*Query) */
+DECL|method|forceSmall
+specifier|protected
+name|boolean
+name|forceSmall
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|// A particularly tricky adversary for BKD tree:
-annotation|@
-name|Nightly
 DECL|method|testSamePointManyTimes
 specifier|public
 name|void
@@ -578,6 +587,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// For GeoPointQuery, only run this test nightly:
+name|assumeTrue
+argument_list|(
+literal|"GeoPoint*Query is too slow otherwise"
+argument_list|,
+name|TEST_NIGHTLY
+operator|||
+name|forceSmall
+argument_list|()
+operator|==
+literal|false
+argument_list|)
+expr_stmt|;
 name|int
 name|numPoints
 init|=
@@ -586,7 +608,6 @@ argument_list|(
 literal|1000
 argument_list|)
 decl_stmt|;
-comment|// TODO: GeoUtils are potentially slow if we use small=false with heavy testing
 name|boolean
 name|small
 init|=
@@ -661,8 +682,6 @@ name|lons
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Nightly
 DECL|method|testAllLatEqual
 specifier|public
 name|void
@@ -671,6 +690,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// For GeoPointQuery, only run this test nightly:
+name|assumeTrue
+argument_list|(
+literal|"GeoPoint*Query is too slow otherwise"
+argument_list|,
+name|TEST_NIGHTLY
+operator|||
+name|forceSmall
+argument_list|()
+operator|==
+literal|false
+argument_list|)
+expr_stmt|;
 name|int
 name|numPoints
 init|=
@@ -679,12 +711,17 @@ argument_list|(
 literal|10000
 argument_list|)
 decl_stmt|;
-comment|// TODO: GeoUtils are potentially slow if we use small=false with heavy testing
-comment|// boolean small = random().nextBoolean();
 name|boolean
 name|small
 init|=
-literal|true
+name|forceSmall
+argument_list|()
+operator|||
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
 decl_stmt|;
 name|double
 name|lat
@@ -941,8 +978,6 @@ name|lons
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Nightly
 DECL|method|testAllLonEqual
 specifier|public
 name|void
@@ -951,6 +986,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// For GeoPointQuery, only run this test nightly:
+name|assumeTrue
+argument_list|(
+literal|"GeoPoint*Query is too slow otherwise"
+argument_list|,
+name|TEST_NIGHTLY
+operator|||
+name|forceSmall
+argument_list|()
+operator|==
+literal|false
+argument_list|)
+expr_stmt|;
 name|int
 name|numPoints
 init|=
@@ -959,12 +1007,17 @@ argument_list|(
 literal|10000
 argument_list|)
 decl_stmt|;
-comment|// TODO: GeoUtils are potentially slow if we use small=false with heavy testing
-comment|// boolean small = random().nextBoolean();
 name|boolean
 name|small
 init|=
-literal|true
+name|forceSmall
+argument_list|()
+operator|||
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
 decl_stmt|;
 name|double
 name|theLon
@@ -1222,8 +1275,6 @@ name|lons
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Nightly
 DECL|method|testMultiValued
 specifier|public
 name|void
@@ -1232,6 +1283,19 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// For GeoPointQuery, only run this test nightly:
+name|assumeTrue
+argument_list|(
+literal|"GeoPoint*Query is too slow otherwise"
+argument_list|,
+name|TEST_NIGHTLY
+operator|||
+name|forceSmall
+argument_list|()
+operator|==
+literal|false
+argument_list|)
+expr_stmt|;
 name|int
 name|numPoints
 init|=
@@ -1312,7 +1376,6 @@ argument_list|,
 name|iwc
 argument_list|)
 decl_stmt|;
-comment|// TODO: GeoUtils are potentially slow if we use small=false with heavy testing
 name|boolean
 name|small
 init|=
@@ -1322,7 +1385,6 @@ operator|.
 name|nextBoolean
 argument_list|()
 decl_stmt|;
-comment|//boolean small = true;
 for|for
 control|(
 name|int
@@ -1542,6 +1604,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: share w/ verify; just need parallel array of the expected ids
 if|if
 condition|(
 name|random
@@ -1633,7 +1696,7 @@ literal|"\nTEST: iter="
 operator|+
 name|iter
 operator|+
-literal|" bbox="
+literal|" rect="
 operator|+
 name|rect
 argument_list|)
@@ -1642,7 +1705,7 @@ block|}
 name|Query
 name|query
 init|=
-name|newBBoxQuery
+name|newRectQuery
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -2121,7 +2184,6 @@ index|[
 name|numPoints
 index|]
 decl_stmt|;
-comment|// TODO: GeoUtils are potentially slow if we use small=false with heavy testing
 name|boolean
 name|small
 init|=
@@ -2671,6 +2733,7 @@ name|nextDouble
 argument_list|()
 expr_stmt|;
 block|}
+comment|// TODO: we should not do this here!  it weakens the test, and users don't pre-quantize the lat/lons they send us:
 return|return
 name|unscaleLat
 argument_list|(
@@ -2736,6 +2799,7 @@ name|nextDouble
 argument_list|()
 expr_stmt|;
 block|}
+comment|// TODO: we should not do this here!  it weakens the test, and users don't pre-quantize the lat/lons they send us:
 return|return
 name|unscaleLon
 argument_list|(
@@ -2881,11 +2945,11 @@ name|double
 name|lon
 parameter_list|)
 function_decl|;
-DECL|method|newBBoxQuery
+DECL|method|newRectQuery
 specifier|protected
 specifier|abstract
 name|Query
-name|newBBoxQuery
+name|newRectQuery
 parameter_list|(
 name|String
 name|field
@@ -3504,13 +3568,6 @@ literal|100
 argument_list|)
 expr_stmt|;
 block|}
-name|initIndexWriterConfig
-argument_list|(
-name|FIELD_NAME
-argument_list|,
-name|iwc
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 decl_stmt|;
@@ -3979,10 +4036,10 @@ name|nextBoolean
 argument_list|()
 condition|)
 block|{
-comment|// BBox: don't allow dateline crossing when testing small:
+comment|// Rect: don't allow dateline crossing when testing small:
 specifier|final
 name|GeoRect
-name|bbox
+name|rect
 init|=
 name|randomRect
 argument_list|(
@@ -3995,11 +4052,11 @@ argument_list|)
 decl_stmt|;
 name|query
 operator|=
-name|newBBoxQuery
+name|newRectQuery
 argument_list|(
 name|FIELD_NAME
 argument_list|,
-name|bbox
+name|rect
 argument_list|)
 expr_stmt|;
 name|verifyHits
@@ -4024,7 +4081,7 @@ block|{
 return|return
 name|rectContainsPoint
 argument_list|(
-name|bbox
+name|rect
 argument_list|,
 name|pointLat
 argument_list|,

@@ -54,12 +54,12 @@ DECL|enum constant|CELL_INSIDE_QUERY
 name|CELL_INSIDE_QUERY
 block|,
 comment|/** Return this if the cell and query do not overlap */
-DECL|enum constant|QUERY_OUTSIDE_CELL
-name|QUERY_OUTSIDE_CELL
+DECL|enum constant|CELL_OUTSIDE_QUERY
+name|CELL_OUTSIDE_QUERY
 block|,
 comment|/** Return this if the cell partially overlapps the query */
-DECL|enum constant|QUERY_CROSSES_CELL
-name|QUERY_CROSSES_CELL
+DECL|enum constant|CELL_CROSSES_QUERY
+name|CELL_CROSSES_QUERY
 block|}
 empty_stmt|;
 comment|/** We recurse the BKD tree, using a provided instance of this to guide the recursion.    *    * @lucene.experimental */
@@ -108,6 +108,17 @@ index|[]
 name|maxPackedValue
 parameter_list|)
 function_decl|;
+comment|/** Notifies the caller that this many documents (from one block) are about      *  to be visited */
+DECL|method|grow
+specifier|default
+name|void
+name|grow
+parameter_list|(
+name|int
+name|count
+parameter_list|)
+block|{}
+empty_stmt|;
 block|}
 comment|/** Finds all documents and points matching the provided visitor.    *  This method does not enforce live docs, so it's up to the caller    *  to test whether each document is deleted, if necessary. */
 DECL|method|intersect

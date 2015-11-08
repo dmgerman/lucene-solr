@@ -266,6 +266,19 @@ literal|0.005
 decl_stmt|;
 annotation|@
 name|Override
+DECL|method|forceSmall
+specifier|protected
+name|boolean
+name|forceSmall
+parameter_list|()
+block|{
+comment|// TODO: GeoUtils are potentially slow if we use small=false with heavy testing
+return|return
+literal|true
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|addPointToDoc
 specifier|protected
 name|void
@@ -308,10 +321,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|newBBoxQuery
+DECL|method|newRectQuery
 specifier|protected
 name|Query
-name|newBBoxQuery
+name|newRectQuery
 parameter_list|(
 name|String
 name|field
