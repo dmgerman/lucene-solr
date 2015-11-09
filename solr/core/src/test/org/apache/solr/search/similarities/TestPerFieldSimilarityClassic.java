@@ -44,7 +44,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|BM25Similarity
+name|ClassicSimilarity
 import|;
 end_import
 
@@ -68,6 +68,30 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|AfterClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -75,14 +99,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests per-field similarity support in the schema  * @see TestPerFieldSimilarityClassic  */
+comment|/**  * Tests per-field similarity support in the schema when luceneMatchVersion indicates   * {@link ClassicSimilarity} should be the default.  * @see TestPerFieldSimilarity  */
 end_comment
 
 begin_class
-DECL|class|TestPerFieldSimilarity
+DECL|class|TestPerFieldSimilarityClassic
 specifier|public
 class|class
-name|TestPerFieldSimilarity
+name|TestPerFieldSimilarityClassic
 extends|extends
 name|BaseSimilarityTestCase
 block|{
@@ -97,11 +121,45 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// any value below 6.0 should have this behavior
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"tests.luceneMatchVersion"
+argument_list|,
+name|Version
+operator|.
+name|LUCENE_5_3_1
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|initCore
 argument_list|(
 literal|"solrconfig-basic.xml"
 argument_list|,
 literal|"schema-sim.xml"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|AfterClass
+DECL|method|afterClass
+specifier|public
+specifier|static
+name|void
+name|afterClass
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"tests.luceneMatchVersion"
 argument_list|)
 expr_stmt|;
 block|}
@@ -264,7 +322,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|BM25Similarity
+name|ClassicSimilarity
 operator|.
 name|class
 argument_list|,
@@ -295,7 +353,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|BM25Similarity
+name|ClassicSimilarity
 operator|.
 name|class
 argument_list|,
@@ -325,7 +383,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|BM25Similarity
+name|ClassicSimilarity
 operator|.
 name|class
 argument_list|,

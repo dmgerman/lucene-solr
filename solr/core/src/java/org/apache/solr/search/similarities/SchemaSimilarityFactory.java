@@ -46,6 +46,22 @@ name|search
 operator|.
 name|similarities
 operator|.
+name|BM25Similarity
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|similarities
+operator|.
 name|PerFieldSimilarityWrapper
 import|;
 end_import
@@ -63,6 +79,20 @@ operator|.
 name|similarities
 operator|.
 name|Similarity
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
 import|;
 end_import
 
@@ -141,7 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * SimilarityFactory that returns a {@link PerFieldSimilarityWrapper}  * that delegates to the field type, if it's configured, otherwise  * {@link ClassicSimilarity}.  *  *<p>  *<b>NOTE:</b> Users should be aware that in addition to supporting   *<code>Similarity</code> configurations specified on individual   * field types, this factory also differs in behavior from   * {@link ClassicSimilarityFactory} because of other differences in the   * implementations of<code>PerFieldSimilarityWrapper</code> and   * {@link ClassicSimilarity} - notably in methods such as   * {@link Similarity#coord} and {@link Similarity#queryNorm}.    *</p>  *  * @see FieldType#getSimilarity  */
+comment|/**  *<p>  * SimilarityFactory that returns a {@link PerFieldSimilarityWrapper}  * that delegates to the field type, if it's configured, otherwise  * returns a sensible default depending on the {@link Version} matching configured.  *</p>  *<ul>  *<li><code>luceneMatchVersion&lt; 6.0</code> = {@link ClassicSimilarity}</li>  *<li><code>luceneMatchVersion&gt;= 6.0</code> = {@link BM25Similarity}</li>  *</ul>  *<p>  *<b>NOTE:</b> Users should be aware that in addition to supporting   *<code>Similarity</code> configurations specified on individual   * field types, this factory also differs in behavior from   * {@link ClassicSimilarityFactory} because of other differences in the   * implementations of<code>PerFieldSimilarityWrapper</code> and   * {@link ClassicSimilarity} - notably in methods such as   * {@link Similarity#coord} and {@link Similarity#queryNorm}.    *</p>  *  * @see FieldType#getSimilarity  */
 end_comment
 
 begin_class
@@ -159,15 +189,13 @@ specifier|private
 name|Similarity
 name|similarity
 decl_stmt|;
+comment|// set by init
 DECL|field|defaultSimilarity
 specifier|private
 name|Similarity
 name|defaultSimilarity
-init|=
-operator|new
-name|ClassicSimilarity
-argument_list|()
 decl_stmt|;
+comment|// set by inform(SolrCore)
 DECL|field|core
 specifier|private
 specifier|volatile
@@ -190,6 +218,34 @@ operator|.
 name|core
 operator|=
 name|core
+expr_stmt|;
+name|this
+operator|.
+name|defaultSimilarity
+operator|=
+name|this
+operator|.
+name|core
+operator|.
+name|getSolrConfig
+argument_list|()
+operator|.
+name|luceneMatchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_6_0_0
+argument_list|)
+condition|?
+operator|new
+name|BM25Similarity
+argument_list|()
+else|:
+operator|new
+name|ClassicSimilarity
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
