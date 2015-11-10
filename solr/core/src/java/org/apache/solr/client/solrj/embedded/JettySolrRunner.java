@@ -1948,19 +1948,6 @@ literal|"/*"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated Use {@link #getSolrDispatchFilter()} or {@link #getCoreContainer()}    */
-annotation|@
-name|Deprecated
-DECL|method|getDispatchFilter
-specifier|public
-name|FilterHolder
-name|getDispatchFilter
-parameter_list|()
-block|{
-return|return
-name|dispatchFilter
-return|;
-block|}
 comment|/**    * @return the {@link SolrDispatchFilter} for this node    */
 DECL|method|getSolrDispatchFilter
 specifier|public
