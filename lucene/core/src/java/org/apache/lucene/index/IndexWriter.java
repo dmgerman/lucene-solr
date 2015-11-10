@@ -10123,10 +10123,26 @@ name|fullFlushLock
 argument_list|)
 return|;
 block|}
-comment|/**    * Flush all in-memory buffered updates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param applyAllDeletes whether pending deletes should also    */
-comment|// why protected
+comment|/** Moves all in-memory segments to the {@link Directory}, but does not commit    *  (fsync) them (call {@link #commit} for that). */
 DECL|method|flush
-specifier|protected
+specifier|public
+specifier|final
+name|void
+name|flush
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|flush
+argument_list|(
+literal|true
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Flush all in-memory buffered updates (adds and deletes)    * to the Directory.    * @param triggerMerge if true, we may merge segments (if    *  deletes or docs were flushed) if necessary    * @param applyAllDeletes whether pending deletes should also    */
+DECL|method|flush
 specifier|final
 name|void
 name|flush
