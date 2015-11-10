@@ -248,20 +248,6 @@ name|CoreContainer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|servlet
-operator|.
-name|SolrDispatchFilter
-import|;
-end_import
-
 begin_comment
 comment|/**  * A ShardHandlerFactory that extends HttpShardHandlerFactory and  * tracks requests made to nodes/shards such that interested parties  * can watch such requests and make assertions inside tests  *<p>  * This is a test helper only and should *not* be used for production.  */
 end_comment
@@ -564,20 +550,9 @@ block|{
 name|CoreContainer
 name|container
 init|=
-operator|(
-operator|(
-name|SolrDispatchFilter
-operator|)
 name|runner
 operator|.
-name|getDispatchFilter
-argument_list|()
-operator|.
-name|getFilter
-argument_list|()
-operator|)
-operator|.
-name|getCores
+name|getCoreContainer
 argument_list|()
 decl_stmt|;
 name|ShardHandlerFactory
