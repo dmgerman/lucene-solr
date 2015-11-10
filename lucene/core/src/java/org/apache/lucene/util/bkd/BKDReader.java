@@ -680,8 +680,6 @@ argument_list|(
 name|count
 argument_list|)
 expr_stmt|;
-comment|// TODO: especially for the 1D case, this was a decent speedup, because caller could know it should budget for around XXX docs:
-comment|//state.docs.grow(count);
 for|for
 control|(
 name|int
@@ -743,9 +741,6 @@ operator|.
 name|readVInt
 argument_list|()
 decl_stmt|;
-comment|// TODO: we could maybe pollute the IntersectVisitor API with a "grow" method if this maybe helps perf
-comment|// enough (it did before, esp. for the 1D case):
-comment|//state.docs.grow(count);
 for|for
 control|(
 name|int

@@ -2271,6 +2271,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+comment|// TODO: for 1D case, don't waste the first byte of each split value (it's always 0)
 comment|// NOTE: splitPackedValues[0] is unused, because nodeID is 1-based:
 name|out
 operator|.

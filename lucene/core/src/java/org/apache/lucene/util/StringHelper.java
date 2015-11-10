@@ -1694,7 +1694,7 @@ name|bytes
 argument_list|)
 return|;
 block|}
-comment|/** Compares a fixed length slice of two byte arrays interpreted as    *  unsigned values.  Returns positive int if a&gt; b, negative    *  int if a&lt; b and 0 if a == b */
+comment|/** Compares a fixed length slice of two byte arrays interpreted as    *  big-endian unsigned values.  Returns positive int if a&gt; b,    *  negative int if a&lt; b and 0 if a == b */
 DECL|method|compare
 specifier|public
 specifier|static
