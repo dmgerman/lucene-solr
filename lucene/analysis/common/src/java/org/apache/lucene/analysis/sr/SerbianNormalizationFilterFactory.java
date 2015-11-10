@@ -24,6 +24,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -91,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link SerbianNormalizationFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_srnorm" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;filter class="solr.SerbianNormalizationFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   */
+comment|/**  * Factory for {@link SerbianNormalizationFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_srnorm" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.StandardTokenizerFactory"/&gt;  *&lt;filter class="solr.LowerCaseFilterFactory"/&gt;  *&lt;filter class="solr.SerbianNormalizationFilterFactory"  *       haircut="bald"/&gt;   *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>   */
 end_comment
 
 begin_class
@@ -104,6 +114,11 @@ name|TokenFilterFactory
 implements|implements
 name|MultiTermAwareComponent
 block|{
+DECL|field|haircut
+specifier|final
+name|String
+name|haircut
+decl_stmt|;
 comment|/** Creates a new SerbianNormalizationFilterFactory */
 DECL|method|SerbianNormalizationFilterFactory
 specifier|public
@@ -121,6 +136,28 @@ block|{
 name|super
 argument_list|(
 name|args
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|haircut
+operator|=
+name|get
+argument_list|(
+name|args
+argument_list|,
+literal|"haircut"
+argument_list|,
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"bald"
+argument_list|,
+literal|"regular"
+argument_list|)
+argument_list|,
+literal|"bald"
 argument_list|)
 expr_stmt|;
 if|if
@@ -154,6 +191,28 @@ name|TokenStream
 name|input
 parameter_list|)
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|haircut
+operator|.
+name|equals
+argument_list|(
+literal|"regular"
+argument_list|)
+condition|)
+block|{
+return|return
+operator|new
+name|SerbianNormalizationRegularFilter
+argument_list|(
+name|input
+argument_list|)
+return|;
+block|}
+else|else
+block|{
 return|return
 operator|new
 name|SerbianNormalizationFilter
@@ -161,6 +220,7 @@ argument_list|(
 name|input
 argument_list|)
 return|;
+block|}
 block|}
 annotation|@
 name|Override
