@@ -416,6 +416,8 @@ parameter_list|,
 name|int
 name|limit
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|this
 operator|.
@@ -459,6 +461,34 @@ name|sorts
 operator|=
 name|sorts
 expr_stmt|;
+comment|// In a facet world it only makes sense to have the same field name in all of the sorters
+comment|// Because FieldComparator allows for left and right field names we will need to validate
+comment|// that they are the same
+for|for
+control|(
+name|FieldComparator
+name|sort
+range|:
+name|sorts
+control|)
+block|{
+if|if
+condition|(
+name|sort
+operator|.
+name|hasDifferentFieldNames
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Invalid FacetStream - all sorts must be constructed with a single field name."
+argument_list|)
+throw|;
+block|}
+block|}
 block|}
 DECL|method|setStreamContext
 specifier|public
@@ -911,7 +941,7 @@ index|[
 literal|0
 index|]
 operator|.
-name|getFieldName
+name|getLeftFieldName
 argument_list|()
 operator|.
 name|contains
@@ -1119,7 +1149,7 @@ index|[
 name|level
 index|]
 operator|.
-name|getFieldName
+name|getLeftFieldName
 argument_list|()
 argument_list|,
 name|_metrics

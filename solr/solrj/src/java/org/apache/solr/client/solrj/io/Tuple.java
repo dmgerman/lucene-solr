@@ -608,6 +608,26 @@ return|return
 name|clone
 return|;
 block|}
+DECL|method|merge
+specifier|public
+name|void
+name|merge
+parameter_list|(
+name|Tuple
+name|other
+parameter_list|)
+block|{
+name|fields
+operator|.
+name|putAll
+argument_list|(
+name|other
+operator|.
+name|getMap
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

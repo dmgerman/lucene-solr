@@ -2515,7 +2515,7 @@ name|stream
 decl_stmt|;
 DECL|field|comp
 specifier|private
-name|Comparator
+name|StreamComparator
 name|comp
 decl_stmt|;
 DECL|method|TupleWrapper
@@ -2525,7 +2525,7 @@ parameter_list|(
 name|SolrStream
 name|stream
 parameter_list|,
-name|Comparator
+name|StreamComparator
 name|comp
 parameter_list|)
 block|{
@@ -2681,10 +2681,7 @@ name|stream
 decl_stmt|;
 DECL|field|comp
 specifier|private
-name|Comparator
-argument_list|<
-name|Tuple
-argument_list|>
+name|StreamComparator
 name|comp
 decl_stmt|;
 DECL|method|StreamOpener
@@ -2694,10 +2691,7 @@ parameter_list|(
 name|SolrStream
 name|stream
 parameter_list|,
-name|Comparator
-argument_list|<
-name|Tuple
-argument_list|>
+name|StreamComparator
 name|comp
 parameter_list|)
 block|{
