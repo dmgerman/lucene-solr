@@ -2275,22 +2275,25 @@ argument_list|,
 literal|"{!rerank reRankQuery=$rqq reRankDocs=6}"
 argument_list|)
 expr_stmt|;
+comment|// function query for predictible scores (relative to id) independent of similarity
 name|params
 operator|.
 name|add
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"*:* OR test_ti:[0 TO 2000]"
+literal|"{!func}id"
 argument_list|)
 expr_stmt|;
+comment|// constant score for each clause (unique per doc) for predictible scores independent of similarity
+comment|// NOTE: biased in favor of doc id == 2
 name|params
 operator|.
 name|add
 argument_list|(
 literal|"rqq"
 argument_list|,
-literal|"id:1^10 id:2^20 id:3^30 id:4^40 id:5^50 id:6^60"
+literal|"id:1^=10 id:2^=40 id:3^=30 id:4^=40 id:5^=50 id:6^=60"
 argument_list|)
 expr_stmt|;
 name|params
@@ -2337,9 +2340,10 @@ literal|"//result/doc[3]/float[@name='id'][.='4.0']"
 argument_list|,
 literal|"//result/doc[4]/float[@name='id'][.='2.0']"
 argument_list|,
-literal|"//result/doc[5]/float[@name='id'][.='1.0']"
+comment|// reranked out of orig order
+literal|"//result/doc[5]/float[@name='id'][.='3.0']"
 argument_list|,
-literal|"//result/doc[6]/float[@name='id'][.='3.0']"
+literal|"//result/doc[6]/float[@name='id'][.='1.0']"
 argument_list|)
 expr_stmt|;
 comment|//Test with start beyond reRankDocs

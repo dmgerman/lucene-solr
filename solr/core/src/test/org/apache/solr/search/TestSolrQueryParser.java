@@ -1512,8 +1512,7 @@ argument_list|,
 literal|"id asc"
 argument_list|)
 argument_list|,
-literal|"/response/docs/[0]/score==1.0"
-comment|// normalization reduces to 1
+literal|"/response/docs/[0]/score==10.0"
 argument_list|)
 expr_stmt|;
 block|}

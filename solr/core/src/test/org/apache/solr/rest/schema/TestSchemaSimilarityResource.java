@@ -66,7 +66,7 @@ literal|"/schema/similarity?indent=on&wt=xml"
 argument_list|,
 literal|"count(/response/lst[@name='similarity']) = 1"
 argument_list|,
-literal|"/response/lst[@name='similarity']/str[@name='class'][.='org.apache.solr.search.similarities.ClassicSimilarityFactory']"
+literal|"/response/lst[@name='similarity']/str[@name='class'][.='org.apache.solr.search.similarities.BM25SimilarityFactory']"
 argument_list|)
 expr_stmt|;
 block|}
