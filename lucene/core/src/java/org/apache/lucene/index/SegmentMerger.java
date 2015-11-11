@@ -712,7 +712,7 @@ operator|/
 literal|1000000
 operator|)
 operator|+
-literal|" msec to merge dimensional values values ["
+literal|" msec to merge dimensional values ["
 operator|+
 name|numMerged
 operator|+
