@@ -7837,7 +7837,11 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<>
-argument_list|()
+argument_list|(
+name|dirs
+operator|.
+name|length
+argument_list|)
 decl_stmt|;
 for|for
 control|(
@@ -14781,7 +14785,12 @@ operator|=
 operator|new
 name|ArrayList
 argument_list|<>
+argument_list|(
+name|sourceSegments
+operator|.
+name|size
 argument_list|()
+argument_list|)
 expr_stmt|;
 comment|// This is try/finally to make sure merger's readers are
 comment|// closed:

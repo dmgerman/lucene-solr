@@ -1556,6 +1556,7 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+specifier|final
 name|List
 argument_list|<
 name|Accountable
@@ -1565,7 +1566,9 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<>
-argument_list|()
+argument_list|(
+literal|6
+argument_list|)
 decl_stmt|;
 comment|// terms/postings
 name|resources

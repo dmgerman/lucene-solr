@@ -866,6 +866,7 @@ argument_list|>
 name|getChildResources
 parameter_list|()
 block|{
+specifier|final
 name|List
 argument_list|<
 name|Accountable
@@ -875,7 +876,12 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<>
+argument_list|(
+name|dvProducers
+operator|.
+name|size
 argument_list|()
+argument_list|)
 decl_stmt|;
 for|for
 control|(
