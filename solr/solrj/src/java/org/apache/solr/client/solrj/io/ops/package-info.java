@@ -4,11 +4,11 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Equalitors for the Streaming Aggregation API  **/
+comment|/**  * Operations for the Streaming Aggregation API  **/
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.client.solrj.io.eq
+DECL|package|org.apache.solr.client.solrj.io.ops
 package|package
 name|org
 operator|.
@@ -22,7 +22,7 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|eq
+name|ops
 package|;
 end_package
 

@@ -388,7 +388,7 @@ name|io
 operator|.
 name|stream
 operator|.
-name|EditStream
+name|RollupStream
 import|;
 end_import
 
@@ -408,7 +408,7 @@ name|io
 operator|.
 name|stream
 operator|.
-name|RollupStream
+name|SelectStream
 import|;
 end_import
 
@@ -3040,11 +3040,13 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|EditStream
+name|SelectStream
 argument_list|(
 name|tupleStream
 argument_list|,
-name|remove
+name|sqlVisitor
+operator|.
+name|fields
 argument_list|)
 return|;
 block|}
