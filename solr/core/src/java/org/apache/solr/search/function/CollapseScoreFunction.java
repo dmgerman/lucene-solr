@@ -211,6 +211,13 @@ argument_list|(
 literal|"CSCORE"
 argument_list|)
 expr_stmt|;
+assert|assert
+literal|null
+operator|!=
+name|this
+operator|.
+name|cscore
+assert|;
 block|}
 DECL|method|intVal
 specifier|public
