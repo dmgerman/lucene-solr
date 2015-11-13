@@ -199,6 +199,14 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Return an estimation of the cost of using the positions of    * this {@link Spans} for any single document, but only after    * {@link #asTwoPhaseIterator} returned {@code null}.    * Otherwise this method should not be called.    * The returned value is independent of the current document.    *    * @lucene.experimental    */
+DECL|method|positionsCost
+specifier|public
+specifier|abstract
+name|float
+name|positionsCost
+parameter_list|()
+function_decl|;
 annotation|@
 name|Override
 DECL|method|toString

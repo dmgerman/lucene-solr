@@ -173,6 +173,18 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|float
+name|matchCost
+parameter_list|()
+block|{
+return|return
+literal|5
+return|;
+comment|// #operations in FixedBitSet#get()
+block|}
 block|}
 return|;
 block|}

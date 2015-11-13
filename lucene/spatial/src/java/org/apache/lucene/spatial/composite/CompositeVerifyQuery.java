@@ -603,6 +603,18 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|float
+name|matchCost
+parameter_list|()
+block|{
+return|return
+literal|100
+return|;
+comment|// TODO: use cost of predFuncValues.boolVal()
+block|}
 block|}
 decl_stmt|;
 return|return

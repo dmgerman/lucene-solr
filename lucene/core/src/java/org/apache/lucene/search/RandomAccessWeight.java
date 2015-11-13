@@ -203,6 +203,18 @@ name|doc
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|float
+name|matchCost
+parameter_list|()
+block|{
+return|return
+literal|10
+return|;
+comment|// TODO: use some cost of matchingDocs
+block|}
 block|}
 decl_stmt|;
 return|return

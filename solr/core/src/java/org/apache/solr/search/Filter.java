@@ -520,6 +520,18 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|float
+name|matchCost
+parameter_list|()
+block|{
+return|return
+literal|10
+return|;
+comment|// TODO use cost of bits.get()
+block|}
 block|}
 decl_stmt|;
 return|return

@@ -548,6 +548,21 @@ name|exclTwoPhaseIterator
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|float
+name|matchCost
+parameter_list|()
+block|{
+return|return
+name|reqTwoPhaseIterator
+operator|.
+name|matchCost
+argument_list|()
+return|;
+comment|// TODO: also use cost of exclApproximation.advance()
+block|}
 block|}
 return|;
 block|}

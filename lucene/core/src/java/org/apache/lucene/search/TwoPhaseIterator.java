@@ -232,7 +232,7 @@ return|return
 name|approximation
 return|;
 block|}
-comment|/** Return whether the current doc ID that the iterator is on matches. This    *  method should only be called when the iterator is positioned -- ie. not    *  when {@link DocIdSetIterator#docID()} is {@code -1} or    *  {@link DocIdSetIterator#NO_MORE_DOCS} -- and at most once. */
+comment|/** Return whether the current doc ID that {@link #approximation()} is on matches. This    *  method should only be called when the iterator is positioned -- ie. not    *  when {@link DocIdSetIterator#docID()} is {@code -1} or    *  {@link DocIdSetIterator#NO_MORE_DOCS} -- and at most once. */
 DECL|method|matches
 specifier|public
 specifier|abstract
@@ -242,7 +242,15 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a {@link TwoPhaseIterator} for this {@link DocIdSetIterator}    * when available * otherwise returns null.    */
+comment|/** An estimate of the expected cost to determine that a single document {@link #matches()}.    *  This can be called before iterating the documents of {@link #approximation()}.    *  Returns an expected cost in number of simple operations like addition, multiplication,    *  comparing two numbers and indexing an array.    *  The returned value must be positive.    */
+DECL|method|matchCost
+specifier|public
+specifier|abstract
+name|float
+name|matchCost
+parameter_list|()
+function_decl|;
+comment|/**    * Returns a {@link TwoPhaseIterator} for this {@link DocIdSetIterator}    * when available, otherwise returns null.    */
 DECL|method|asTwoPhaseIterator
 specifier|public
 specifier|static

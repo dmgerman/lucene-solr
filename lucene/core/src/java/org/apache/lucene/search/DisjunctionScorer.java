@@ -217,11 +217,18 @@ name|TwoPhaseIterator
 name|asTwoPhaseIterator
 parameter_list|()
 block|{
-name|boolean
-name|hasApproximation
+name|float
+name|sumMatchCost
 init|=
-literal|false
+literal|0
 decl_stmt|;
+name|long
+name|sumApproxCost
+init|=
+literal|0
+decl_stmt|;
+comment|// Compute matchCost as the avarage over the matchCost of the subScorers.
+comment|// This is weighted by the cost, which is an expected number of matching documents.
 for|for
 control|(
 name|DisiWrapper
@@ -242,24 +249,60 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|hasApproximation
-operator|=
-literal|true
+name|long
+name|costWeight
+init|=
+operator|(
+name|w
+operator|.
+name|cost
+operator|<=
+literal|1
+operator|)
+condition|?
+literal|1
+else|:
+name|w
+operator|.
+name|cost
+decl_stmt|;
+name|sumMatchCost
+operator|+=
+name|w
+operator|.
+name|twoPhaseView
+operator|.
+name|matchCost
+argument_list|()
+operator|*
+name|costWeight
 expr_stmt|;
-break|break;
+name|sumApproxCost
+operator|+=
+name|costWeight
+expr_stmt|;
 block|}
 block|}
 if|if
 condition|(
-operator|!
-name|hasApproximation
+name|sumApproxCost
+operator|==
+literal|0
 condition|)
 block|{
-comment|// none of the sub scorers supports approximations
+comment|// no sub scorer supports approximations
 return|return
 literal|null
 return|;
 block|}
+specifier|final
+name|float
+name|matchCost
+init|=
+name|sumMatchCost
+operator|/
+name|sumApproxCost
+decl_stmt|;
 comment|// note it is important to share the same pq as this scorer so that
 comment|// rebalancing the pq through the approximation will also rebalance
 comment|// the pq in this scorer.
@@ -432,6 +475,17 @@ name|topScorers
 expr_stmt|;
 return|return
 literal|true
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|float
+name|matchCost
+parameter_list|()
+block|{
+return|return
+name|matchCost
 return|;
 block|}
 block|}

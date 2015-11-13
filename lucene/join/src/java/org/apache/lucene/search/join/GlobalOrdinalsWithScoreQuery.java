@@ -1261,6 +1261,18 @@ return|return
 literal|false
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|float
+name|matchCost
+parameter_list|()
+block|{
+return|return
+literal|100
+return|;
+comment|// TODO: use cost of values.getOrd() and collector.score()
+block|}
 block|}
 return|;
 block|}
@@ -1472,6 +1484,18 @@ block|}
 return|return
 literal|false
 return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|float
+name|matchCost
+parameter_list|()
+block|{
+return|return
+literal|100
+return|;
+comment|// TODO: use cost.getOrd() of values and collector.score()
 block|}
 block|}
 return|;
