@@ -235,6 +235,13 @@ name|count
 init|=
 literal|0
 decl_stmt|;
+name|Files
+operator|.
+name|createDirectories
+argument_list|(
+name|outputDir
+argument_list|)
+expr_stmt|;
 try|try
 init|(
 name|DirectoryStream
@@ -363,7 +370,7 @@ name|sgmFile
 argument_list|,
 name|StandardCharsets
 operator|.
-name|UTF_8
+name|ISO_8859_1
 argument_list|)
 init|)
 block|{

@@ -786,6 +786,11 @@ argument_list|,
 name|SetKeywordMarkerFilter
 operator|.
 name|class
+argument_list|,
+name|UnicodeWhitespaceTokenizer
+operator|.
+name|class
+comment|// a supported option via WhitespaceTokenizerFactory
 argument_list|)
 expr_stmt|;
 block|}

@@ -56,6 +56,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|util
+operator|.
+name|UnicodeProps
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|AttributeFactory
@@ -63,28 +79,28 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A tokenizer that divides text at whitespace characters as defined by  * {@link Character#isWhitespace(int)}.  Note: That definition explicitly excludes the non-breaking space.  * Adjacent sequences of non-Whitespace characters form tokens.  *  * @see UnicodeWhitespaceTokenizer  */
+comment|/**  * A UnicodeWhitespaceTokenizer is a tokenizer that divides text at whitespace.  * Adjacent sequences of non-Whitespace characters form tokens (according to  * Unicode's WHITESPACE property).  *<p>  *<em>For Unicode version see: {@link UnicodeProps}</em>  */
 end_comment
 
 begin_class
-DECL|class|WhitespaceTokenizer
+DECL|class|UnicodeWhitespaceTokenizer
 specifier|public
 specifier|final
 class|class
-name|WhitespaceTokenizer
+name|UnicodeWhitespaceTokenizer
 extends|extends
 name|CharTokenizer
 block|{
-comment|/**    * Construct a new WhitespaceTokenizer.    */
-DECL|method|WhitespaceTokenizer
+comment|/**    * Construct a new UnicodeWhitespaceTokenizer.    */
+DECL|method|UnicodeWhitespaceTokenizer
 specifier|public
-name|WhitespaceTokenizer
+name|UnicodeWhitespaceTokenizer
 parameter_list|()
 block|{   }
-comment|/**    * Construct a new WhitespaceTokenizer using a given    * {@link org.apache.lucene.util.AttributeFactory}.    *    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
-DECL|method|WhitespaceTokenizer
+comment|/**    * Construct a new UnicodeWhitespaceTokenizer using a given    * {@link org.apache.lucene.util.AttributeFactory}.    *    * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
+DECL|method|UnicodeWhitespaceTokenizer
 specifier|public
-name|WhitespaceTokenizer
+name|UnicodeWhitespaceTokenizer
 parameter_list|(
 name|AttributeFactory
 name|factory
@@ -96,7 +112,7 @@ name|factory
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Collects only characters which do not satisfy    * {@link Character#isWhitespace(int)}.*/
+comment|/** Collects only characters which do not satisfy Unicode's WHITESPACE property. */
 annotation|@
 name|Override
 DECL|method|isTokenChar
@@ -110,9 +126,11 @@ parameter_list|)
 block|{
 return|return
 operator|!
-name|Character
+name|UnicodeProps
 operator|.
-name|isWhitespace
+name|WHITESPACE
+operator|.
+name|get
 argument_list|(
 name|c
 argument_list|)
