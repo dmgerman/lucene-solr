@@ -3456,6 +3456,45 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
+comment|// test sorting by default count/index order
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{f1:{terms:{${terms} field:'${cat_s}', sort:'count' }  }"
+operator|+
+literal|"           , f2:{terms:{${terms} field:'${cat_s}', sort:'count asc'  }  }"
+operator|+
+literal|"           , f3:{terms:{${terms} field:'${cat_s}', sort:'index'  }  }"
+operator|+
+literal|"           , f4:{terms:{${terms} field:'${cat_s}', sort:'index desc' }  }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:6 "
+operator|+
+literal|" ,f1:{buckets:[ {val:B,count:3}, {val:A,count:2} ] }"
+operator|+
+literal|" ,f2:{buckets:[ {val:A,count:2}, {val:B,count:3} ] }"
+operator|+
+literal|" ,f3:{buckets:[ {val:A,count:2}, {val:B,count:3} ] }"
+operator|+
+literal|" ,f4:{buckets:[ {val:B,count:3}, {val:A,count:2} ] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
 comment|// test tiebreaks when sorting by count
 name|client
 operator|.
