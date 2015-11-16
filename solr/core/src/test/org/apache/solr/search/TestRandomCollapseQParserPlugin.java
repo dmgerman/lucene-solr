@@ -1040,6 +1040,8 @@ literal|"'}"
 operator|)
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 specifier|final
 name|QueryResponse
 name|mainRsp
@@ -1288,6 +1290,29 @@ argument_list|,
 name|firstMatchId
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"BUG using params: "
+operator|+
+name|collapseP
+operator|+
+literal|" + "
+operator|+
+name|mainP
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 block|}

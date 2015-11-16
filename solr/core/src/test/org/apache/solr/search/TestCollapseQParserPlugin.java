@@ -4041,6 +4041,99 @@ argument_list|,
 literal|"//result/doc[2]/float[@name='id'][.='1.0']"
 argument_list|)
 expr_stmt|;
+comment|// Test collapse using selector field in no docs
+comment|// tie selector in all of these cases, so index order applies
+for|for
+control|(
+name|String
+name|selector
+range|:
+operator|new
+name|String
+index|[]
+block|{
+literal|" min=bogus_ti "
+block|,
+literal|" sort='bogus_ti asc' "
+block|,
+literal|" max=bogus_ti "
+block|,
+literal|" sort='bogus_ti desc' "
+block|,
+literal|" min=bogus_tf "
+block|,
+literal|" sort='bogus_tf asc' "
+block|,
+literal|" max=bogus_tf "
+block|,
+literal|" sort='bogus_tf desc' "
+block|,
+literal|" sort='bogus_td asc' "
+block|,
+literal|" sort='bogus_td desc' "
+block|,
+literal|" sort='bogus_s asc' "
+block|,
+literal|" sort='bogus_s desc' "
+block|,        }
+control|)
+block|{
+name|params
+operator|=
+operator|new
+name|ModifiableSolrParams
+argument_list|()
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"fq"
+argument_list|,
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+name|selector
+operator|+
+name|hint
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=2]"
+argument_list|,
+literal|"//result/doc[1]/float[@name='id'][.='1.0']"
+argument_list|,
+literal|"//result/doc[2]/float[@name='id'][.='5.0']"
+argument_list|)
+expr_stmt|;
+block|}
 comment|// attempting to use cscore() in sort local param should fail
 name|assertQEx
 argument_list|(
@@ -4777,6 +4870,422 @@ argument_list|,
 literal|"*[count(//doc)=0]"
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|testNoDocsHaveGroupField
+specifier|public
+name|void
+name|testNoDocsHaveGroupField
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// as unlikely as this test seems, it's important for the possibility that a segment exists w/o
+comment|// any live docs that have DocValues for the group field -- ie: every doc in segment is in null group.
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"group_s"
+argument_list|,
+literal|"group1"
+argument_list|,
+literal|"test_ti"
+argument_list|,
+literal|"5"
+argument_list|,
+literal|"test_tl"
+argument_list|,
+literal|"10"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"group_s"
+argument_list|,
+literal|"group1"
+argument_list|,
+literal|"test_ti"
+argument_list|,
+literal|"5"
+argument_list|,
+literal|"test_tl"
+argument_list|,
+literal|"1000"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"3"
+argument_list|,
+literal|"group_s"
+argument_list|,
+literal|"group1"
+argument_list|,
+literal|"test_ti"
+argument_list|,
+literal|"5"
+argument_list|,
+literal|"test_tl"
+argument_list|,
+literal|"1000"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"4"
+argument_list|,
+literal|"group_s"
+argument_list|,
+literal|"group1"
+argument_list|,
+literal|"test_ti"
+argument_list|,
+literal|"10"
+argument_list|,
+literal|"test_tl"
+argument_list|,
+literal|"100"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|//
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"5"
+argument_list|,
+literal|"group_s"
+argument_list|,
+literal|"group2"
+argument_list|,
+literal|"test_ti"
+argument_list|,
+literal|"5"
+argument_list|,
+literal|"test_tl"
+argument_list|,
+literal|"10"
+argument_list|,
+literal|"term_s"
+argument_list|,
+literal|"YYYY"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"6"
+argument_list|,
+literal|"group_s"
+argument_list|,
+literal|"group2"
+argument_list|,
+literal|"test_ti"
+argument_list|,
+literal|"5"
+argument_list|,
+literal|"test_tl"
+argument_list|,
+literal|"1000"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"7"
+argument_list|,
+literal|"group_s"
+argument_list|,
+literal|"group2"
+argument_list|,
+literal|"test_ti"
+argument_list|,
+literal|"5"
+argument_list|,
+literal|"test_tl"
+argument_list|,
+literal|"1000"
+argument_list|,
+literal|"term_s"
+argument_list|,
+literal|"XXXX"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"8"
+argument_list|,
+literal|"group_s"
+argument_list|,
+literal|"group2"
+argument_list|,
+literal|"test_ti"
+argument_list|,
+literal|"10"
+argument_list|,
+literal|"test_tl"
+argument_list|,
+literal|"100"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// none of these grouping fields are in any doc
+for|for
+control|(
+name|String
+name|group
+range|:
+operator|new
+name|String
+index|[]
+block|{
+literal|"field=bogus_s"
+block|,
+literal|"field=bogus_s_dv"
+block|,
+literal|"field=bogus_s hint=top_fc"
+block|,
+comment|// alternative docvalues codepath w/ hint
+literal|"field=bogus_s_dv hint=top_fc"
+block|,
+comment|// alternative docvalues codepath w/ hint
+literal|"field=bogus_ti"
+block|,
+literal|"field=bogus_tf"
+block|}
+control|)
+block|{
+comment|// for any of these selectors, behavior of these checks should be consistent
+for|for
+control|(
+name|String
+name|selector
+range|:
+operator|new
+name|String
+index|[]
+block|{
+literal|""
+block|,
+literal|" sort='score desc' "
+block|,
+literal|" min=test_ti "
+block|,
+literal|" max=test_ti "
+block|,
+literal|" sort='test_ti asc' "
+block|,
+literal|" sort='test_ti desc' "
+block|,
+literal|" min=test_tf "
+block|,
+literal|" max=test_tf "
+block|,
+literal|" sort='test_tf asc' "
+block|,
+literal|" sort='test_tf desc' "
+block|,
+literal|" sort='group_s asc' "
+block|,
+literal|" sort='group_s desc' "
+block|,
+comment|// fields that don't exist
+literal|" min=bogus_sort_ti "
+block|,
+literal|" max=bogus_sort_ti "
+block|,
+literal|" sort='bogus_sort_ti asc' "
+block|,
+literal|" sort='bogus_sort_ti desc' "
+block|,
+literal|" sort='bogus_sort_s asc' "
+block|,
+literal|" sort='bogus_sort_s desc' "
+block|,         }
+control|)
+block|{
+name|ModifiableSolrParams
+name|params
+init|=
+literal|null
+decl_stmt|;
+comment|// w/default nullPolicy, no groups found
+name|params
+operator|=
+operator|new
+name|ModifiableSolrParams
+argument_list|()
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"sort"
+argument_list|,
+literal|"id desc"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"fq"
+argument_list|,
+literal|"{!collapse "
+operator|+
+name|group
+operator|+
+literal|" "
+operator|+
+name|selector
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=0]"
+argument_list|)
+expr_stmt|;
+comment|// w/nullPolicy=expand, every doc found
+name|params
+operator|=
+operator|new
+name|ModifiableSolrParams
+argument_list|()
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"sort"
+argument_list|,
+literal|"id desc"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"fq"
+argument_list|,
+literal|"{!collapse field="
+operator|+
+name|group
+operator|+
+literal|" nullPolicy=expand "
+operator|+
+name|selector
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=8]"
+argument_list|,
+literal|"//result/doc[1]/float[@name='id'][.='8.0']"
+argument_list|,
+literal|"//result/doc[2]/float[@name='id'][.='7.0']"
+argument_list|,
+literal|"//result/doc[3]/float[@name='id'][.='6.0']"
+argument_list|,
+literal|"//result/doc[4]/float[@name='id'][.='5.0']"
+argument_list|,
+literal|"//result/doc[5]/float[@name='id'][.='4.0']"
+argument_list|,
+literal|"//result/doc[6]/float[@name='id'][.='3.0']"
+argument_list|,
+literal|"//result/doc[7]/float[@name='id'][.='2.0']"
+argument_list|,
+literal|"//result/doc[8]/float[@name='id'][.='1.0']"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 DECL|method|testGroupHeadSelector
 specifier|public
