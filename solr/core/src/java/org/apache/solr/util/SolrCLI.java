@@ -9434,7 +9434,7 @@ block|}
 block|}
 name|echo
 argument_list|(
-literal|"\nSetup new core instance directory:\n"
+literal|"\nCopying configuration to new core instance directory:\n"
 operator|+
 name|coreInstanceDir
 operator|.
@@ -9476,6 +9476,8 @@ operator|+
 literal|"\n"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|Map
 argument_list|<
 name|String
@@ -9522,6 +9524,25 @@ argument_list|(
 literal|"\n"
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|/* create-core failed, cleanup the copied configset before propagating the error. */
+name|FileUtils
+operator|.
+name|deleteDirectory
+argument_list|(
+name|coreInstanceDir
+argument_list|)
+expr_stmt|;
+throw|throw
+name|e
+throw|;
+block|}
 block|}
 block|}
 comment|// end CreateCoreTool class
