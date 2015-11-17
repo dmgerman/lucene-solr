@@ -471,7 +471,7 @@ name|zk
 argument_list|,
 name|OverseerElectionContext
 operator|.
-name|PATH
+name|OVERSEER_ELECT
 operator|+
 name|LeaderElector
 operator|.
