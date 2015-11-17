@@ -1416,9 +1416,7 @@ block|{
 name|field
 operator|.
 name|checkFieldCacheSource
-argument_list|(
-name|qparser
-argument_list|)
+argument_list|()
 expr_stmt|;
 switch|switch
 condition|(
