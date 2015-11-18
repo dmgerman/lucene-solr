@@ -3975,8 +3975,6 @@ name|funcName
 init|=
 operator|(
 operator|new
-name|QueryParsing
-operator|.
 name|StrParser
 argument_list|(
 name|inputs

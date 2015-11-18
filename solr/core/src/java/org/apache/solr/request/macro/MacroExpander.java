@@ -42,7 +42,7 @@ name|solr
 operator|.
 name|search
 operator|.
-name|QueryParsing
+name|StrParser
 import|;
 end_import
 
@@ -720,14 +720,10 @@ operator|+
 literal|1
 expr_stmt|;
 comment|// String inbetween = val.substring(idx, rbrace);
-name|QueryParsing
-operator|.
 name|StrParser
 name|parser
 init|=
 operator|new
-name|QueryParsing
-operator|.
 name|StrParser
 argument_list|(
 name|val
