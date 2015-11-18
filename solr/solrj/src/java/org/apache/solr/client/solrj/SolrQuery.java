@@ -213,7 +213,7 @@ name|DOCID
 init|=
 literal|"_docid_"
 decl_stmt|;
-comment|// duplicate of org.apache.solr.search.QueryParsing.DOCID which is not accessible from here
+comment|// duplicate of org.apache.solr.search.SortSpecParsing.DOCID which is not accessible from here
 DECL|enum|ORDER
 DECL|enum constant|desc
 DECL|enum constant|asc

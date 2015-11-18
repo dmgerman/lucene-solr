@@ -1028,7 +1028,7 @@ block|{
 name|SortSpec
 name|spec
 init|=
-name|QueryParsing
+name|SortSpecParsing
 operator|.
 name|parseSortSpec
 argument_list|(

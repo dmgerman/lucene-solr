@@ -1131,7 +1131,7 @@ decl_stmt|;
 name|SortSpec
 name|sort
 init|=
-name|QueryParsing
+name|SortSpecParsing
 operator|.
 name|parseSortSpec
 argument_list|(
