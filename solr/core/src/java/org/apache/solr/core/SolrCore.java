@@ -2264,7 +2264,7 @@ name|getResourceName
 argument_list|()
 return|;
 block|}
-comment|/** @return the latest snapshot of the schema used by this core instance. */
+comment|/**     * @return the latest snapshot of the schema used by this core instance.     * @see #setLatestSchema     */
 DECL|method|getLatestSchema
 specifier|public
 name|IndexSchema
@@ -2275,7 +2275,7 @@ return|return
 name|schema
 return|;
 block|}
-comment|/** Sets the latest schema snapshot to be used by this core instance. */
+comment|/**     * Sets the latest schema snapshot to be used by this core instance.     * If the specified<code>replacementSchema</code> uses a {@link SimilarityFactory} which is     * {@link SolrCoreAware} then this method will {@link SolrCoreAware#inform} that factory about     * this SolrCore prior to using the<code>replacementSchema</code>    * @see #getLatestSchema    */
 DECL|method|setLatestSchema
 specifier|public
 name|void
@@ -2285,6 +2285,44 @@ name|IndexSchema
 name|replacementSchema
 parameter_list|)
 block|{
+comment|// 1) For a newly instantiated core, the Similarity needs SolrCore before inform() is called on
+comment|// any registered SolrCoreAware listeners (which will likeley need to use the SolrIndexSearcher.
+comment|//
+comment|// 2) If a new IndexSchema is assigned to an existing live SolrCore (ie: managed schema
+comment|// replacement via SolrCloud) then we need to explicitly inform() the similarity because
+comment|// we can't rely on the normal SolrResourceLoader lifecycle because the sim was instantiated
+comment|// after the SolrCore was already live (see: SOLR-8311 + SOLR-8280)
+specifier|final
+name|SimilarityFactory
+name|similarityFactory
+init|=
+name|replacementSchema
+operator|.
+name|getSimilarityFactory
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|similarityFactory
+operator|instanceof
+name|SolrCoreAware
+condition|)
+block|{
+operator|(
+operator|(
+name|SolrCoreAware
+operator|)
+name|similarityFactory
+operator|)
+operator|.
+name|inform
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+name|this
+operator|.
 name|schema
 operator|=
 name|replacementSchema
@@ -4711,10 +4749,6 @@ name|SolrFieldCacheMBean
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|schema
-operator|=
 name|initSchema
 argument_list|(
 name|config
@@ -5589,9 +5623,10 @@ return|return
 name|newUpdateHandler
 return|;
 block|}
+comment|/**    * Initializes the "Latest Schema" for this SolrCore using either the provided<code>schema</code>     * if non-null, or a new instance build via the factory identified in the specified<code>config</code>    * @see IndexSchemaFactory    * @see #setLatestSchema    */
 DECL|method|initSchema
 specifier|private
-name|IndexSchema
+name|void
 name|initSchema
 parameter_list|(
 name|SolrConfig
@@ -5622,39 +5657,11 @@ name|config
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
-name|SimilarityFactory
-name|similarityFactory
-init|=
-name|schema
-operator|.
-name|getSimilarityFactory
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|similarityFactory
-operator|instanceof
-name|SolrCoreAware
-condition|)
-block|{
-comment|// Similarity needs SolrCore before inform() is called on all registered SolrCoreAware listeners below
-operator|(
-operator|(
-name|SolrCoreAware
-operator|)
-name|similarityFactory
-operator|)
-operator|.
-name|inform
+name|setLatestSchema
 argument_list|(
-name|this
+name|schema
 argument_list|)
 expr_stmt|;
-block|}
-return|return
-name|schema
-return|;
 block|}
 DECL|method|initInfoRegistry
 specifier|private

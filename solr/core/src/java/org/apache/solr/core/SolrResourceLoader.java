@@ -3823,6 +3823,8 @@ operator|new
 name|Class
 index|[]
 block|{
+comment|// DO NOT ADD THINGS TO THIS LIST -- ESPECIALLY THINGS THAT CAN BE CREATED DYNAMICALLY
+comment|// VIA RUNTIME APIS -- UNTILL CAREFULLY CONSIDERING THE ISSUES MENTIONED IN SOLR-8311
 name|CodecFactory
 operator|.
 name|class
@@ -3873,6 +3875,8 @@ operator|new
 name|Class
 index|[]
 block|{
+comment|// DO NOT ADD THINGS TO THIS LIST -- ESPECIALLY THINGS THAT CAN BE CREATED DYNAMICALLY
+comment|// VIA RUNTIME APIS -- UNTILL CAREFULLY CONSIDERING THE ISSUES MENTIONED IN SOLR-8311
 name|CharFilterFactory
 operator|.
 name|class

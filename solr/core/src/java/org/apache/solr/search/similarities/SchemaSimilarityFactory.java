@@ -170,6 +170,26 @@ name|SolrCoreAware
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p>  * SimilarityFactory that returns a {@link PerFieldSimilarityWrapper}  * that delegates to the field type, if it's configured, otherwise  * returns a sensible default depending on the {@link Version} matching configured.  *</p>  *<ul>  *<li><code>luceneMatchVersion&lt; 6.0</code> = {@link ClassicSimilarity}</li>  *<li><code>luceneMatchVersion&gt;= 6.0</code> = {@link BM25Similarity}</li>  *</ul>  *<p>  *<b>NOTE:</b> Users should be aware that in addition to supporting   *<code>Similarity</code> configurations specified on individual   * field types, this factory also differs in behavior from   * {@link ClassicSimilarityFactory} because of other differences in the   * implementations of<code>PerFieldSimilarityWrapper</code> and   * {@link ClassicSimilarity} - notably in methods such as   * {@link Similarity#coord} and {@link Similarity#queryNorm}.    *</p>  *  * @see FieldType#getSimilarity  */
 end_comment
@@ -338,13 +358,21 @@ name|Similarity
 name|getSimilarity
 parameter_list|()
 block|{
-assert|assert
-name|core
-operator|!=
+if|if
+condition|(
 literal|null
-operator|:
-literal|"inform must be called first"
-assert|;
+operator|==
+name|core
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"SchemaSimilarityFactory can not be used until SolrCoreAware.inform has been called"
+argument_list|)
+throw|;
+block|}
 return|return
 name|similarity
 return|;
