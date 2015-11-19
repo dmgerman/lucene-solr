@@ -756,6 +756,13 @@ argument_list|>
 name|finished
 decl_stmt|;
 comment|// requests that have received responses from all shards
+DECL|field|preferredHostAddress
+specifier|public
+name|String
+name|preferredHostAddress
+init|=
+literal|null
+decl_stmt|;
 DECL|field|shortCircuitedURL
 specifier|public
 name|String
@@ -833,12 +840,6 @@ name|add
 argument_list|(
 name|sreq
 argument_list|)
-expr_stmt|;
-name|sreq
-operator|.
-name|rb
-operator|=
-name|this
 expr_stmt|;
 if|if
 condition|(
