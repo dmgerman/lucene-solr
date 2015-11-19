@@ -2069,7 +2069,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Reads a long in a variable-length format.  Reads between one and    * nine bytes. Small values typically take fewer bytes.    */
+comment|/**    * Reads a long in a variable-length format.  Reads between one andCorePropLo    * nine bytes. Small values typically take fewer bytes.    */
 DECL|method|readTLong
 specifier|static
 name|long
@@ -3675,6 +3675,20 @@ break|break;
 case|case
 name|NO
 case|:
+if|if
+condition|(
+name|fieldIDX
+operator|==
+name|doc
+operator|.
+name|numStoredFields
+operator|-
+literal|1
+condition|)
+block|{
+comment|// don't skipField on last field value; treat like STOP
+return|return;
+block|}
 name|skipField
 argument_list|(
 name|doc
