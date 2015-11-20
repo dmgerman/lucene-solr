@@ -22,6 +22,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|carrotsearch
@@ -303,16 +313,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|File
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -376,15 +376,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-DECL|field|SOLR_XML
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|SOLR_XML
-init|=
-literal|"solr.xml"
-decl_stmt|;
 DECL|field|tempDirProp
 specifier|private
 specifier|static
@@ -407,54 +398,7 @@ name|SystemPropertiesRestoreRule
 argument_list|()
 argument_list|)
 decl_stmt|;
-annotation|@
-name|Override
-DECL|method|getSolrXml
-specifier|protected
-name|File
-name|getSolrXml
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-comment|// This test writes on the directory where the solr.xml is located. Better
-comment|// to copy the solr.xml to
-comment|// the temporary directory where we store the index
-name|File
-name|origSolrXml
-init|=
-operator|new
-name|File
-argument_list|(
-name|SOLR_HOME
-argument_list|,
-name|SOLR_XML
-argument_list|)
-decl_stmt|;
-name|File
-name|solrXml
-init|=
-operator|new
-name|File
-argument_list|(
-name|tempDir
-argument_list|,
-name|SOLR_XML
-argument_list|)
-decl_stmt|;
-name|FileUtils
-operator|.
-name|copyFile
-argument_list|(
-name|origSolrXml
-argument_list|,
-name|solrXml
-argument_list|)
-expr_stmt|;
-return|return
-name|solrXml
-return|;
-block|}
+comment|/*   @Override   protected File getSolrXml() throws Exception {     // This test writes on the directory where the solr.xml is located. Better     // to copy the solr.xml to     // the temporary directory where we store the index     File origSolrXml = new File(SOLR_HOME, SOLR_XML);     File solrXml = new File(tempDir, SOLR_XML);     FileUtils.copyFile(origSolrXml, solrXml);     return solrXml;   }   */
 DECL|method|getSolrAdmin
 specifier|protected
 name|SolrClient

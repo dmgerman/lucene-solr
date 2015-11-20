@@ -19,24 +19,6 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|handler
-operator|.
-name|dataimport
-operator|.
-name|DataImportHandlerException
-operator|.
-name|SEVERE
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -257,6 +239,24 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|handler
+operator|.
+name|dataimport
+operator|.
+name|DataImportHandlerException
+operator|.
+name|SEVERE
 import|;
 end_import
 
@@ -629,6 +629,9 @@ operator|=
 name|SolrResourceLoader
 operator|.
 name|locateSolrHome
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 expr_stmt|;
 block|}

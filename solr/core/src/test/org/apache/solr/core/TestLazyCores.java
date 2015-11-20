@@ -604,7 +604,7 @@ name|SolrResourceLoader
 argument_list|(
 name|solrHomeDirectory
 operator|.
-name|getAbsolutePath
+name|toPath
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3439,34 +3439,6 @@ name|rand_snip
 argument_list|)
 expr_stmt|;
 block|}
-comment|// Write the solr.xml file. Cute how minimal it can be now....
-name|File
-name|solrXml
-init|=
-operator|new
-name|File
-argument_list|(
-name|solrHomeDirectory
-argument_list|,
-literal|"solr.xml"
-argument_list|)
-decl_stmt|;
-name|FileUtils
-operator|.
-name|write
-argument_list|(
-name|solrXml
-argument_list|,
-literal|"<solr/>"
-argument_list|,
-name|Charsets
-operator|.
-name|UTF_8
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|SolrResourceLoader
 name|loader
 init|=
@@ -3475,7 +3447,7 @@ name|SolrResourceLoader
 argument_list|(
 name|solrHomeDirectory
 operator|.
-name|getAbsolutePath
+name|toPath
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -3484,11 +3456,11 @@ name|config
 init|=
 name|SolrXmlConfig
 operator|.
-name|fromFile
+name|fromString
 argument_list|(
 name|loader
 argument_list|,
-name|solrXml
+literal|"<solr/>"
 argument_list|)
 decl_stmt|;
 comment|// OK this should succeed, but at the end we should have recorded a series of errors.

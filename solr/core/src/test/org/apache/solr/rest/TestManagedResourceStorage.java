@@ -30,6 +30,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Paths
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -88,7 +100,7 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
-name|Slow
+name|AwaitsFix
 import|;
 end_import
 
@@ -104,7 +116,7 @@ name|util
 operator|.
 name|LuceneTestCase
 operator|.
-name|AwaitsFix
+name|Slow
 import|;
 end_import
 
@@ -180,22 +192,6 @@ name|rest
 operator|.
 name|ManagedResourceStorage
 operator|.
-name|StorageIO
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|rest
-operator|.
-name|ManagedResourceStorage
-operator|.
 name|FileStorageIO
 import|;
 end_import
@@ -212,7 +208,7 @@ name|rest
 operator|.
 name|ManagedResourceStorage
 operator|.
-name|ZooKeeperStorageIO
+name|JsonStorage
 import|;
 end_import
 
@@ -228,7 +224,23 @@ name|rest
 operator|.
 name|ManagedResourceStorage
 operator|.
-name|JsonStorage
+name|StorageIO
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|rest
+operator|.
+name|ManagedResourceStorage
+operator|.
+name|ZooKeeperStorageIO
 import|;
 end_import
 
@@ -308,7 +320,12 @@ init|=
 operator|new
 name|SolrResourceLoader
 argument_list|(
+name|Paths
+operator|.
+name|get
+argument_list|(
 literal|"./"
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// Solr unit tests can only write to their working directory due to
@@ -393,7 +410,7 @@ name|SolrResourceLoader
 argument_list|(
 name|instanceDir
 operator|.
-name|getAbsolutePath
+name|toPath
 argument_list|()
 argument_list|)
 decl_stmt|;

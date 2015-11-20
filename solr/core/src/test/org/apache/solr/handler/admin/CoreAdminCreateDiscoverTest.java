@@ -62,6 +62,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Properties
@@ -198,18 +210,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|StandardCharsets
-import|;
-end_import
-
 begin_class
 DECL|class|CoreAdminCreateDiscoverTest
 specifier|public
@@ -286,6 +286,9 @@ expr_stmt|;
 name|setupNoCoreTest
 argument_list|(
 name|solrHomeDirectory
+operator|.
+name|toPath
+argument_list|()
 argument_list|,
 literal|null
 argument_list|)

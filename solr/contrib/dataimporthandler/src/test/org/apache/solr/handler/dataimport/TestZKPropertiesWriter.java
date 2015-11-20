@@ -384,7 +384,7 @@ argument_list|(
 literal|"dih/solr"
 argument_list|)
 operator|.
-name|getAbsolutePath
+name|toPath
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -20,19 +20,11 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|nio
 operator|.
-name|File
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|file
 operator|.
-name|io
-operator|.
-name|IOException
+name|Path
 import|;
 end_import
 
@@ -43,18 +35,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|ParserConfigurationException
 import|;
 end_import
 
@@ -202,18 +182,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|xml
-operator|.
-name|sax
-operator|.
-name|SAXException
-import|;
-end_import
-
 begin_comment
 comment|/**  * Testcase for {@link SolrIndexConfig}  *  * @see TestMergePolicyConfig  */
 end_comment
@@ -248,19 +216,16 @@ block|}
 DECL|field|instanceDir
 specifier|private
 specifier|final
-name|String
+name|Path
 name|instanceDir
 init|=
-operator|new
-name|File
+name|TEST_PATH
+argument_list|()
+operator|.
+name|resolve
 argument_list|(
-literal|"solr"
-argument_list|,
 literal|"collection1"
 argument_list|)
-operator|.
-name|getPath
-argument_list|()
 decl_stmt|;
 DECL|field|solrConfigFileNameWarmer
 specifier|private

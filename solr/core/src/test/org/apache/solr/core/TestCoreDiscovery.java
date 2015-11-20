@@ -2776,7 +2776,7 @@ name|SolrResourceLoader
 argument_list|(
 name|solrHomeDirectory
 operator|.
-name|getAbsolutePath
+name|toPath
 argument_list|()
 argument_list|)
 decl_stmt|;

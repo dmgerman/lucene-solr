@@ -197,11 +197,7 @@ name|is
 init|=
 operator|new
 name|SolrResourceLoader
-argument_list|(
-literal|null
-argument_list|,
-literal|null
-argument_list|)
+argument_list|()
 operator|.
 name|openResource
 argument_list|(

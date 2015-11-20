@@ -18,6 +18,18 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Paths
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -137,10 +149,15 @@ return|return
 operator|new
 name|ZkSolrResourceLoader
 argument_list|(
+name|Paths
+operator|.
+name|get
+argument_list|(
 name|cd
 operator|.
 name|getInstanceDir
 argument_list|()
+argument_list|)
 argument_list|,
 name|configName
 argument_list|,

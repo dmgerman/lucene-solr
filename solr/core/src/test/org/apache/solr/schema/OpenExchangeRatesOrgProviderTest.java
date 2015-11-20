@@ -18,13 +18,21 @@ end_comment
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|util
 operator|.
-name|solr
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|SolrTestCaseJ4
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -41,6 +49,18 @@ operator|.
 name|util
 operator|.
 name|ResourceLoader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
 import|;
 end_import
 
@@ -105,26 +125,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
 import|;
 end_import
 
@@ -227,7 +227,13 @@ operator|=
 operator|new
 name|SolrResourceLoader
 argument_list|(
-literal|"solr/collection1"
+name|TEST_PATH
+argument_list|()
+operator|.
+name|resolve
+argument_list|(
+literal|"collection1"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

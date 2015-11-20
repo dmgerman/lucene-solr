@@ -32,6 +32,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Paths
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -229,7 +241,12 @@ argument_list|(
 operator|new
 name|SolrResourceLoader
 argument_list|(
+name|Paths
+operator|.
+name|get
+argument_list|(
 literal|"."
+argument_list|)
 argument_list|)
 argument_list|,
 name|entries

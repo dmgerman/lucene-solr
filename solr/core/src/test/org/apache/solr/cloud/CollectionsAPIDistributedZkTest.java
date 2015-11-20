@@ -5791,15 +5791,11 @@ name|theCores
 control|)
 block|{
 comment|// look for core props file
-name|assertTrue
-argument_list|(
-literal|"Could not find expected core.properties file"
-argument_list|,
-operator|new
-name|File
-argument_list|(
+name|Path
+name|instancedir
+init|=
 operator|(
-name|String
+name|Path
 operator|)
 name|core
 operator|.
@@ -5810,12 +5806,22 @@ name|get
 argument_list|(
 literal|"instanceDir"
 argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Could not find expected core.properties file"
 argument_list|,
-literal|"core.properties"
-argument_list|)
+name|Files
 operator|.
 name|exists
-argument_list|()
+argument_list|(
+name|instancedir
+operator|.
+name|resolve
+argument_list|(
+literal|"core.properties"
+argument_list|)
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Path
@@ -5847,27 +5853,6 @@ name|getName
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|Path
-name|reported
-init|=
-name|Paths
-operator|.
-name|get
-argument_list|(
-operator|(
-name|String
-operator|)
-name|core
-operator|.
-name|getStatistics
-argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"instanceDir"
-argument_list|)
-argument_list|)
-decl_stmt|;
 name|assertTrue
 argument_list|(
 literal|"Expected: "
@@ -5876,7 +5861,7 @@ name|expected
 operator|+
 literal|"\nFrom core stats: "
 operator|+
-name|reported
+name|instancedir
 argument_list|,
 name|Files
 operator|.
@@ -5884,7 +5869,7 @@ name|isSameFile
 argument_list|(
 name|expected
 argument_list|,
-name|reported
+name|instancedir
 argument_list|)
 argument_list|)
 expr_stmt|;

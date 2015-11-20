@@ -18,15 +18,37 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
+name|Path
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|commons
 operator|.
-name|core
+name|io
 operator|.
-name|SolrResourceLoader
+name|IOUtils
 import|;
 end_import
 
@@ -74,11 +96,15 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|File
+name|solr
+operator|.
+name|core
+operator|.
+name|SolrResourceLoader
 import|;
 end_import
 
@@ -91,20 +117,6 @@ operator|.
 name|sax
 operator|.
 name|InputSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|io
-operator|.
-name|IOUtils
 import|;
 end_import
 
@@ -235,7 +247,7 @@ throws|throws
 name|Exception
 block|{
 specifier|final
-name|String
+name|Path
 name|testHome
 init|=
 name|SolrTestCaseJ4
@@ -245,7 +257,10 @@ argument_list|(
 literal|"solr/collection1"
 argument_list|)
 operator|.
-name|getParent
+name|getParentFile
+argument_list|()
+operator|.
+name|toPath
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -256,8 +271,11 @@ operator|new
 name|SolrResourceLoader
 argument_list|(
 name|testHome
-operator|+
-literal|"/collection1"
+operator|.
+name|resolve
+argument_list|(
+literal|"collection1"
+argument_list|)
 argument_list|,
 name|this
 operator|.
