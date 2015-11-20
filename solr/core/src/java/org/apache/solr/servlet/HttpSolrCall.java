@@ -2171,24 +2171,6 @@ operator|!=
 literal|null
 condition|)
 return|return;
-comment|// try the default core
-if|if
-condition|(
-name|core
-operator|==
-literal|null
-condition|)
-block|{
-name|core
-operator|=
-name|cores
-operator|.
-name|getCore
-argument_list|(
-literal|""
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|// With a valid core...
 if|if
@@ -4087,31 +4069,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|core
-operator|==
-literal|null
-condition|)
-block|{
-name|localCore
-operator|=
-name|cores
-operator|.
-name|getCore
-argument_list|(
-literal|""
-argument_list|)
-expr_stmt|;
-comment|// default core
-block|}
-else|else
-block|{
 name|localCore
 operator|=
 name|core
 expr_stmt|;
-block|}
 if|if
 condition|(
 name|solrReq
