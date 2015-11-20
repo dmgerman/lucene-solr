@@ -433,9 +433,11 @@ argument_list|)
 expr_stmt|;
 throw|throw
 operator|new
-name|IOException
+name|EOFException
 argument_list|(
-literal|"read past EOF"
+literal|"read past EOF: "
+operator|+
+name|this
 argument_list|)
 throw|;
 block|}
@@ -489,9 +491,11 @@ argument_list|()
 condition|)
 throw|throw
 operator|new
-name|IOException
+name|EOFException
 argument_list|(
-literal|"read past EOF"
+literal|"read past EOF: "
+operator|+
+name|this
 argument_list|)
 throw|;
 name|readInternal
@@ -1001,7 +1005,9 @@ throw|throw
 operator|new
 name|EOFException
 argument_list|(
-literal|"read past EOF"
+literal|"read past EOF: "
+operator|+
+name|this
 argument_list|)
 throw|;
 if|if
