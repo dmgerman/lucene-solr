@@ -50,6 +50,7 @@ name|TestSchemaSimilarityResource
 extends|extends
 name|SolrRestletTestBase
 block|{
+comment|/**    * NOTE: schema used by parent class doesn't define a global sim, so we get the implicit default    * which causes the FQN of the class to be returned    *     * @see TestClassNameShortening#testShortenedGlobalSimilarityStaysShortened    */
 annotation|@
 name|Test
 DECL|method|testGetSchemaSimilarity
@@ -66,7 +67,7 @@ literal|"/schema/similarity?indent=on&wt=xml"
 argument_list|,
 literal|"count(/response/lst[@name='similarity']) = 1"
 argument_list|,
-literal|"/response/lst[@name='similarity']/str[@name='class'][.='solr.SchemaSimilarityFactory']"
+literal|"/response/lst[@name='similarity']/str[@name='class'][.='org.apache.solr.search.similarities.SchemaSimilarityFactory']"
 argument_list|)
 expr_stmt|;
 block|}

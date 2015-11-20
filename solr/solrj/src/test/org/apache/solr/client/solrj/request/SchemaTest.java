@@ -1740,7 +1740,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"org.apache.solr.search.similarities.BM25SimilarityFactory"
+literal|"org.apache.solr.search.similarities.SchemaSimilarityFactory"
 argument_list|,
 name|globalSimilarityResponse
 operator|.

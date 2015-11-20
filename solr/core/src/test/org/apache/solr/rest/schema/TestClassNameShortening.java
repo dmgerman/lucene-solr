@@ -211,6 +211,7 @@ literal|"/response/lst[@name='fieldType']/lst[@name='similarity']/str[@name='cla
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**     * See {@link TestSchemaSimilarityResource#testGetSchemaSimilarity} for where the long class name    * is verified when the config doesn't specify a sim at all    */
 annotation|@
 name|Test
 DECL|method|testShortenedGlobalSimilarityStaysShortened
