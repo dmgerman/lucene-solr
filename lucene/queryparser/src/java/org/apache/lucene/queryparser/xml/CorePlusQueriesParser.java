@@ -58,7 +58,25 @@ name|xml
 operator|.
 name|builders
 operator|.
-name|FuzzyLikeThisQueryBuilder
+name|LikeThisQueryBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|xml
+operator|.
+name|builders
+operator|.
+name|BoostingQueryBuilder
 import|;
 end_import
 
@@ -67,21 +85,21 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Assembles a QueryBuilder which uses Query objects from  * Lucene's<code>sandbox</code> and<code>queries</code>  * modules in addition to core queries.  */
+comment|/**  * Assembles a QueryBuilder which uses Query objects from  * Lucene's<code>queries</code> module in addition to core queries.  */
 end_comment
 
 begin_class
-DECL|class|CorePlusExtensionsParser
+DECL|class|CorePlusQueriesParser
 specifier|public
 class|class
-name|CorePlusExtensionsParser
-extends|extends
 name|CorePlusQueriesParser
+extends|extends
+name|CoreParser
 block|{
 comment|/**    * Construct an XML parser that uses a single instance QueryParser for handling    * UserQuery tags - all parse operations are synchronized on this parser    *    * @param parser A QueryParser which will be synchronized on during parse calls.    */
-DECL|method|CorePlusExtensionsParser
+DECL|method|CorePlusQueriesParser
 specifier|public
-name|CorePlusExtensionsParser
+name|CorePlusQueriesParser
 parameter_list|(
 name|Analyzer
 name|analyzer
@@ -101,9 +119,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Constructs an XML parser that creates a QueryParser for each UserQuery request.    *    * @param defaultField The default field name used by QueryParsers constructed for UserQuery tags    */
-DECL|method|CorePlusExtensionsParser
+DECL|method|CorePlusQueriesParser
 specifier|public
-name|CorePlusExtensionsParser
+name|CorePlusQueriesParser
 parameter_list|(
 name|String
 name|defaultField
@@ -122,9 +140,9 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|CorePlusExtensionsParser
-specifier|private
-name|CorePlusExtensionsParser
+DECL|method|CorePlusQueriesParser
+specifier|protected
+name|CorePlusQueriesParser
 parameter_list|(
 name|String
 name|defaultField
@@ -145,16 +163,39 @@ argument_list|,
 name|parser
 argument_list|)
 expr_stmt|;
+name|String
+name|fields
+index|[]
+init|=
+block|{
+literal|"contents"
+block|}
+decl_stmt|;
 name|queryFactory
 operator|.
 name|addBuilder
 argument_list|(
-literal|"FuzzyLikeThisQuery"
+literal|"LikeThisQuery"
 argument_list|,
 operator|new
-name|FuzzyLikeThisQueryBuilder
+name|LikeThisQueryBuilder
 argument_list|(
 name|analyzer
+argument_list|,
+name|fields
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|queryFactory
+operator|.
+name|addBuilder
+argument_list|(
+literal|"BoostingQuery"
+argument_list|,
+operator|new
+name|BoostingQueryBuilder
+argument_list|(
+name|queryFactory
 argument_list|)
 argument_list|)
 expr_stmt|;
