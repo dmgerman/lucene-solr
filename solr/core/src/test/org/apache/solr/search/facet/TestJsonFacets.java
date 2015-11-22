@@ -5838,6 +5838,41 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
+comment|// test facet on children nested under terms facet on parents
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"books:{ type:terms, field:book_s, facet:{ pages:{type:terms, field:v_t, domain:{blockChildren:'type_s:book'}} } }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:10"
+operator|+
+literal|", books:{buckets:[{val:A,count:1,pages:{buckets:[]}}"
+operator|+
+literal|"                 ,{val:B,count:1,pages:{buckets:[{val:y,count:3},{val:x,count:2},{val:z,count:2}]}}"
+operator|+
+literal|"                 ,{val:C,count:1,pages:{buckets:[{val:x,count:1},{val:y,count:1},{val:z,count:1}]}}"
+operator|+
+literal|"                 ,{val:D,count:1,pages:{buckets:[]}}"
+operator|+
+literal|"] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|XtestPercentiles
 specifier|public
