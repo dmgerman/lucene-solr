@@ -1509,14 +1509,10 @@ argument_list|()
 operator|+
 literal|"/update"
 operator|+
-name|ClientUtils
+name|requestParams
 operator|.
 name|toQueryString
-argument_list|(
-name|requestParams
-argument_list|,
-literal|false
-argument_list|)
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|method
