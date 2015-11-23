@@ -30,6 +30,20 @@ name|IndexReader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|GeoUtils
+import|;
+end_import
+
 begin_comment
 comment|/** Implements a simple bounding box query on a GeoPoint field. This is inspired by  * {@link org.apache.lucene.search.NumericRangeQuery} and is implemented using a  * two phase approach. First, candidate terms are queried using a numeric  * range based on the morton codes of the min and max lat/lon pairs. Terms  * passing this initial filter are passed to a final check that verifies whether  * the decoded lat/lon falls within (or on the boundary) of the query bounding box.  * The value comparisons are subject to a precision tolerance defined in  * {@value org.apache.lucene.util.GeoUtils#TOLERANCE}  *  * NOTES:  *    1.  All latitude/longitude values must be in decimal degrees.  *    2.  Complex computational geometry (e.g., dateline wrapping) is not supported  *    3.  For more advanced GeoSpatial indexing and query operations see spatial module  *    4.  This is well suited for small rectangles, large bounding boxes may result  *        in many terms, depending whether the bounding box falls on the boundary of  *        many cells (degenerate case)  *  * @lucene.experimental  */
 end_comment
@@ -139,6 +153,43 @@ name|IndexReader
 name|reader
 parameter_list|)
 block|{
+comment|// short-circuit to match all if specifying the whole map
+if|if
+condition|(
+name|minLon
+operator|==
+name|GeoUtils
+operator|.
+name|MIN_LON_INCL
+operator|&&
+name|maxLon
+operator|==
+name|GeoUtils
+operator|.
+name|MAX_LON_INCL
+operator|&&
+name|minLat
+operator|==
+name|GeoUtils
+operator|.
+name|MIN_LAT_INCL
+operator|&&
+name|maxLat
+operator|==
+name|GeoUtils
+operator|.
+name|MAX_LAT_INCL
+condition|)
+block|{
+comment|// FieldValueQuery is valid since DocValues are *required* for GeoPointField
+return|return
+operator|new
+name|FieldValueQuery
+argument_list|(
+name|field
+argument_list|)
+return|;
+block|}
 if|if
 condition|(
 name|maxLon
