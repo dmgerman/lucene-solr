@@ -599,9 +599,17 @@ literal|"#finish has been called already"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|bufferSize
+operator|>
+literal|0
+condition|)
+block|{
 name|flush
 argument_list|()
 expr_stmt|;
+block|}
 name|finished
 operator|=
 literal|true
