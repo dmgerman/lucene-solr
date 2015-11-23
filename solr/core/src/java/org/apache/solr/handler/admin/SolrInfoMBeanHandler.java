@@ -686,11 +686,6 @@ operator|new
 name|StringReader
 argument_list|(
 name|content
-operator|.
-name|substring
-argument_list|(
-name|idx
-argument_list|)
 argument_list|)
 argument_list|)
 operator|.

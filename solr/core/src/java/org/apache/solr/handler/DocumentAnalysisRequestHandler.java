@@ -559,7 +559,7 @@ name|ex
 parameter_list|)
 block|{
 comment|// Other implementations will likely throw this exception since "reuse-instance"
-comment|// isimplementation specific.
+comment|// is implementation specific.
 name|log
 operator|.
 name|debug
