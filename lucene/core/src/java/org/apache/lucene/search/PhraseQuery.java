@@ -311,7 +311,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A Query that matches documents containing a particular sequence of terms.  * A PhraseQuery is built by QueryParser for input like<code>"new york"</code>.  *   *<p>This query may be combined with other terms or queries with a {@link BooleanQuery}.  *  *<b>NOTE</b>: Leading holes don't have any particular meaning for this query  * and will be ignored. For instance this query:  *<pre class="prettyprint">  * PhraseQuery.Builder builder = new PhraseQuery.Builder();  * builder.add(new Term("body", "one"), 4);  * builder.add(new Term("body", "two"), 5);  * PhraseQuery pq = builder.build();  *</pre>  * is equivalent to the below query:  *<pre class="prettyprint">  * PhraseQuery.Builder builder = new PhraseQuery.Builder();  * builder.add(new Term("body", "one"), 0);  * builder.add(new Term("body", "two"), 1);  * PhraseQuery pq = builder.build();  *</pre>  */
+comment|/** A Query that matches documents containing a particular sequence of terms.  * A PhraseQuery is built by QueryParser for input like<code>"new york"</code>.  *   *<p>This query may be combined with other terms or queries with a {@link BooleanQuery}.  *  *<p><b>NOTE</b>:  * All terms in the phrase must match, even those at the same position. If you  * have terms at the same position, perhaps synonyms, you probably want {@link MultiPhraseQuery}  * instead which only requires one term at a position to match.  *<br>Also, Leading holes don't have any particular meaning for this query  * and will be ignored. For instance this query:  *<pre class="prettyprint">  * PhraseQuery.Builder builder = new PhraseQuery.Builder();  * builder.add(new Term("body", "one"), 4);  * builder.add(new Term("body", "two"), 5);  * PhraseQuery pq = builder.build();  *</pre>  * is equivalent to the below query:  *<pre class="prettyprint">  * PhraseQuery.Builder builder = new PhraseQuery.Builder();  * builder.add(new Term("body", "one"), 0);  * builder.add(new Term("body", "two"), 1);  * PhraseQuery pq = builder.build();  *</pre>  */
 end_comment
 
 begin_class
@@ -435,7 +435,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**      * Adds a term to the end of the query phrase.      * The relative position of the term within the phrase is specified explicitly.      * This allows e.g. phrases with more than one term at the same position      * or phrases with gaps (e.g. in connection with stopwords).      *       */
+comment|/**      * Adds a term to the end of the query phrase.      * The relative position of the term within the phrase is specified explicitly, but must be greater than      * or equal to that of the previously added term.      * A greater position allows phrases with gaps (e.g. in connection with stopwords).      * If the position is equal, you most likely should be using      * {@link MultiPhraseQuery} instead which only requires one term at each position to match; this class requires      * all of them.      */
 DECL|method|add
 specifier|public
 name|Builder

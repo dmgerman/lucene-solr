@@ -253,7 +253,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * MultiPhraseQuery is a generalized version of PhraseQuery, with an added  * method {@link #add(Term[])}.  * To use this class, to search for the phrase "Microsoft app*" first use  * add(Term) on the term "Microsoft", then find all terms that have "app" as  * prefix using IndexReader.terms(Term), and use MultiPhraseQuery.add(Term[]  * terms) to add them to the query.  *  */
+comment|/**  * A generalized version of {@link PhraseQuery}, with an added  * method {@link #add(Term[])} for adding more than one term at the same position  * that are treated as a disjunction (OR).  * To use this class to search for the phrase "Microsoft app*" first use  * {@link #add(Term)} on the term "microsoft" (assuming lowercase analysis), then  * find all terms that have "app" as prefix using {@link LeafReader#terms(String)},  * seeking to "app" then iterating and collecting terms until there is no longer  * that prefix, and finally use {@link #add(Term[])} to add them to the query.  */
 end_comment
 
 begin_class
@@ -269,8 +269,10 @@ specifier|private
 name|String
 name|field
 decl_stmt|;
+comment|// becomes non-null on first add() then is unmodified
 DECL|field|termArrays
 specifier|private
+specifier|final
 name|ArrayList
 argument_list|<
 name|Term
@@ -285,6 +287,7 @@ argument_list|()
 decl_stmt|;
 DECL|field|positions
 specifier|private
+specifier|final
 name|ArrayList
 argument_list|<
 name|Integer
@@ -365,7 +368,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Add multiple terms at the next position in the phrase.  Any of the terms    * may match.    */
+comment|/** Add multiple terms at the next position in the phrase.  Any of the terms    * may match (a disjunction).    * The array is not copied or mutated, the caller should consider it    * immutable subsequent to calling this method.    */
 DECL|method|add
 specifier|public
 name|void
@@ -403,9 +406,6 @@ argument_list|()
 operator|-
 literal|1
 argument_list|)
-operator|.
-name|intValue
-argument_list|()
 operator|+
 literal|1
 expr_stmt|;
@@ -417,7 +417,7 @@ name|position
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Allows to specify the relative position of terms within the phrase.    */
+comment|/**    * Allows to specify the relative position of terms within the phrase.    * The array is not copied or mutated, the caller should consider it    * immutable subsequent to calling this method.    */
 DECL|method|add
 specifier|public
 name|void
@@ -461,28 +461,16 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|Term
+name|term
+range|:
 name|terms
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 if|if
 condition|(
 operator|!
-name|terms
-index|[
-name|i
-index|]
+name|term
 operator|.
 name|field
 argument_list|()
@@ -503,10 +491,7 @@ name|field
 operator|+
 literal|"): "
 operator|+
-name|terms
-index|[
-name|i
-index|]
+name|term
 argument_list|)
 throw|;
 block|}
@@ -522,16 +507,11 @@ name|positions
 operator|.
 name|add
 argument_list|(
-name|Integer
-operator|.
-name|valueOf
-argument_list|(
 name|position
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns a List of the terms in the multiphrase.    * Do not modify the List or its contents.    */
+comment|/**    * Returns a List of the terms in the multi-phrase.    * Do not modify the List or its contents.    */
 DECL|method|getTermArrays
 specifier|public
 name|List
@@ -600,9 +580,6 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 return|return
 name|result
@@ -834,23 +811,15 @@ range|:
 name|termArrays
 control|)
 block|{
-for|for
-control|(
-specifier|final
-name|Term
-name|term
-range|:
-name|arr
-control|)
-block|{
-name|terms
+name|Collections
 operator|.
-name|add
+name|addAll
 argument_list|(
-name|term
+name|terms
+argument_list|,
+name|arr
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 annotation|@
@@ -979,7 +948,9 @@ literal|"field \""
 operator|+
 name|field
 operator|+
-literal|"\" was indexed without position data; cannot run MultiPhraseQuery (phrase="
+literal|"\" was indexed without position data;"
+operator|+
+literal|" cannot run MultiPhraseQuery (phrase="
 operator|+
 name|getQuery
 argument_list|()
@@ -1484,19 +1455,10 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
+name|Term
+name|term
+range|:
 name|terms
-operator|.
-name|length
-condition|;
-name|i
-operator|++
 control|)
 block|{
 name|builder
@@ -1506,10 +1468,7 @@ argument_list|(
 operator|new
 name|TermQuery
 argument_list|(
-name|terms
-index|[
-name|i
-index|]
+name|term
 argument_list|)
 argument_list|,
 name|BooleanClause
