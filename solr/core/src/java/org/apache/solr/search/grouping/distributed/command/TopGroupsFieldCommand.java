@@ -722,6 +722,7 @@ name|emptyList
 argument_list|()
 return|;
 block|}
+specifier|final
 name|List
 argument_list|<
 name|Collector
@@ -731,8 +732,11 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<>
-argument_list|()
+argument_list|(
+literal|1
+argument_list|)
 decl_stmt|;
+specifier|final
 name|FieldType
 name|fieldType
 init|=
