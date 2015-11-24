@@ -588,7 +588,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|util
+name|common
 operator|.
 name|EmptyEntityResolver
 import|;
