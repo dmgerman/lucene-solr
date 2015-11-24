@@ -1482,7 +1482,7 @@ throw|throw
 operator|new
 name|AssertionError
 argument_list|(
-literal|"Timeout while trying to assert number of documents @ "
+literal|"Timeout while trying to assert number of documents on collection: "
 operator|+
 name|collection
 argument_list|,
