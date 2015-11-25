@@ -4613,7 +4613,7 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
-comment|// terms facet with nested query facet (with excludeTags)
+comment|// terms facet with nested query facet (with excludeTags, using new format inside domain:{})
 name|client
 operator|.
 name|testJQ
@@ -4640,11 +4640,11 @@ literal|"{processEmpty:true, "
 operator|+
 literal|" f0:{${terms} type:terms, field:${cat_s},                                    facet:{nj:{query:'${where_s}:NJ'}} }  "
 operator|+
-literal|",f1:{${terms} type:terms, field:${cat_s}, excludeTags:doc3,   missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
+literal|",f1:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc3},   missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
 operator|+
-literal|",f2:{${terms} type:terms, field:${cat_s}, excludeTags:allfilt,missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
+literal|",f2:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:allfilt},missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
 operator|+
-literal|",f3:{${terms} type:terms, field:${cat_s}, excludeTags:doc6,   missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
+literal|",f3:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc6},   missing:true,  facet:{nj:{query:'${where_s}:NJ'}} }  "
 operator|+
 literal|"}"
 argument_list|)
@@ -4687,7 +4687,7 @@ literal|"json.facet"
 argument_list|,
 literal|"{processEmpty:true "
 operator|+
-literal|", f1:{type:range, field:${num_d}, start:-5, end:10, gap:5, other:all,   facet:{ x:'sum(${num_i})', ny:{query:'${where_s}:NY'}} , excludeTags:allfilt }"
+literal|", f1:{type:range, field:${num_d}, start:-5, end:10, gap:5, other:all,   facet:{ x:'sum(${num_i})', ny:{query:'${where_s}:NY'}} , domain:{excludeTags:allfilt} }"
 operator|+
 literal|", f2:{type:range, field:${num_d}, start:-5, end:10, gap:5, other:all,   facet:{ x:'sum(${num_i})', ny:{query:'${where_s}:NY'}}  }"
 operator|+
