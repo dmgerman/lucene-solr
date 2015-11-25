@@ -485,7 +485,6 @@ block|}
 comment|/** Get the current configuration for a dimension. */
 DECL|method|getDimConfig
 specifier|public
-specifier|synchronized
 name|DimConfig
 name|getDimConfig
 parameter_list|(
