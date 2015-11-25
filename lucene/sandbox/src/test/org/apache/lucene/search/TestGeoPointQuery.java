@@ -666,9 +666,10 @@ argument_list|(
 name|FIELD_NAME
 argument_list|,
 operator|-
-literal|83.99724648980559
+literal|177.23537676036358
 argument_list|,
-literal|58.29438379542874
+operator|-
+literal|88.56029371730983
 argument_list|,
 name|storedPoint
 argument_list|)
@@ -2190,6 +2191,43 @@ name|totalHits
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** see https://issues.apache.org/jira/browse/LUCENE-6905 */
+DECL|method|testNonEmptyTermsEnum
+specifier|public
+name|void
+name|testNonEmptyTermsEnum
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|TopDocs
+name|td
+init|=
+name|geoDistanceQuery
+argument_list|(
+operator|-
+literal|177.23537676036358
+argument_list|,
+operator|-
+literal|88.56029371730983
+argument_list|,
+literal|7757.999232959935
+argument_list|,
+literal|20
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"GeoDistanceQuery failed"
+argument_list|,
+literal|2
+argument_list|,
+name|td
+operator|.
+name|totalHits
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testMultiValuedQuery
 specifier|public
 name|void
@@ -2297,7 +2335,7 @@ name|assertEquals
 argument_list|(
 literal|"GeoDistanceQuery failed"
 argument_list|,
-literal|18
+literal|16
 argument_list|,
 name|td
 operator|.
