@@ -2809,12 +2809,11 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
+literal|"AuthorizationContext : {}"
+argument_list|,
 name|context
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|AuthorizationResponse

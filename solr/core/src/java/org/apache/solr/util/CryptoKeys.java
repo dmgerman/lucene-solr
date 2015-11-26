@@ -1688,6 +1688,16 @@ return|return
 name|pubKeyStr
 return|;
 block|}
+DECL|method|getPublicKey
+specifier|public
+name|PublicKey
+name|getPublicKey
+parameter_list|()
+block|{
+return|return
+name|publicKey
+return|;
+block|}
 DECL|method|encrypt
 specifier|public
 name|byte
