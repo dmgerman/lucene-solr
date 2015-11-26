@@ -962,8 +962,6 @@ name|lastDocPerGroup
 operator|=
 name|lastDocPerGroup
 expr_stmt|;
-comment|// TODO: allow null groupSort to mean "by relevance",
-comment|// and specialize it?
 name|this
 operator|.
 name|groupSort
@@ -1088,7 +1086,7 @@ comment|// TODO: maybe allow no sort on retrieving groups?  app
 comment|// may want to simply process docs in the group itself?
 comment|// typically they will be presented as a "single" result
 comment|// in the UI?
-comment|/** Returns the grouped results.  Returns null if the    *  number of groups collected is&lt;= groupOffset.    *    *<p><b>NOTE</b>: This collector is unable to compute    *  the groupValue per group so it will always be null.    *  This is normally not a problem, as you can obtain the    *  value just like you obtain other values for each    *  matching document (eg, via stored fields, via    *  DocValues, etc.)    *    *  @param withinGroupSort The {@link Sort} used to sort    *    documents within each group.  Passing null is    *    allowed, to sort by relevance.    *  @param groupOffset Which group to start from    *  @param withinGroupOffset Which document to start from    *    within each group    *  @param maxDocsPerGroup How many top documents to keep    *     within each group.    *  @param fillSortFields If true then the Comparable    *     values for the sort fields will be set    */
+comment|/** Returns the grouped results.  Returns null if the    *  number of groups collected is&lt;= groupOffset.    *    *<p><b>NOTE</b>: This collector is unable to compute    *  the groupValue per group so it will always be null.    *  This is normally not a problem, as you can obtain the    *  value just like you obtain other values for each    *  matching document (eg, via stored fields, via    *  DocValues, etc.)    *    *  @param withinGroupSort The {@link Sort} used to sort    *    documents within each group.    *  @param groupOffset Which group to start from    *  @param withinGroupOffset Which document to start from    *    within each group    *  @param maxDocsPerGroup How many top documents to keep    *     within each group.    *  @param fillSortFields If true then the Comparable    *     values for the sort fields will be set    */
 DECL|method|getTopGroups
 specifier|public
 name|TopGroups
@@ -1234,8 +1232,13 @@ decl_stmt|;
 if|if
 condition|(
 name|withinGroupSort
-operator|==
-literal|null
+operator|.
+name|equals
+argument_list|(
+name|Sort
+operator|.
+name|RELEVANCE
+argument_list|)
 condition|)
 block|{
 comment|// Sort by score
@@ -1510,12 +1513,6 @@ operator|.
 name|getSort
 argument_list|()
 argument_list|,
-name|withinGroupSort
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|withinGroupSort
 operator|.
 name|getSort

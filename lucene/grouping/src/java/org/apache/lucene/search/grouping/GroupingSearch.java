@@ -446,6 +446,10 @@ DECL|field|sortWithinGroup
 specifier|private
 name|Sort
 name|sortWithinGroup
+init|=
+name|Sort
+operator|.
+name|RELEVANCE
 decl_stmt|;
 DECL|field|groupDocsOffset
 specifier|private

@@ -2942,12 +2942,23 @@ argument_list|,
 name|groupCount
 argument_list|)
 expr_stmt|;
-comment|// We cannot validate distributed grouping with scoring as first sort. since there is no global idf. We can check if no errors occur
-name|simpleQuery
+comment|// We validate distributed grouping with scoring as first sort.
+comment|// note: this 'q' matches all docs and returns the 'id' as the score, which is unique and so our results should be deterministic.
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"maxScore"
+argument_list|,
+name|SKIP
+argument_list|)
+expr_stmt|;
+comment|// TODO see SOLR-6612
+name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"*:*"
+literal|"{!func}id"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -2955,7 +2966,7 @@ literal|100
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"id,"
+literal|"score,id,"
 operator|+
 name|i1
 argument_list|,
@@ -2983,11 +2994,11 @@ literal|"score desc"
 argument_list|)
 expr_stmt|;
 comment|// SOLR-2955
-name|simpleQuery
+name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"*:*"
+literal|"{!func}id"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -2995,7 +3006,7 @@ literal|100
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"id,"
+literal|"score,id,"
 operator|+
 name|i1
 argument_list|,
@@ -3016,11 +3027,11 @@ argument_list|,
 literal|"score desc, _docid_ asc, id asc"
 argument_list|)
 expr_stmt|;
-name|simpleQuery
+name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"*:*"
+literal|"{!func}id"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -3028,7 +3039,7 @@ literal|100
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"id,"
+literal|"score,id,"
 operator|+
 name|i1
 argument_list|,

@@ -86,6 +86,16 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+import|;
+end_import
+
 begin_comment
 comment|/**  * SecondPassGroupingCollector is the second of two passes  * necessary to collect grouped docs.  This pass gathers the  * top N documents per top group computed from the  * first pass. Concrete subclasses define what a group is and how it  * is internally collected.  *  *<p>See {@link org.apache.lucene.search.grouping} for more  * details including a full code example.</p>  *  * @lucene.experimental  */
 end_comment
@@ -204,17 +214,15 @@ if|if
 condition|(
 name|groups
 operator|.
-name|size
+name|isEmpty
 argument_list|()
-operator|==
-literal|0
 condition|)
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"no groups to collect (groups.size() is 0)"
+literal|"no groups to collect (groups is empty)"
 argument_list|)
 throw|;
 block|}
@@ -222,19 +230,34 @@ name|this
 operator|.
 name|groupSort
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|groupSort
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|withinGroupSort
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|withinGroupSort
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
 name|groups
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|groups
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -242,6 +265,8 @@ name|maxDocsPerGroup
 operator|=
 name|maxDocsPerGroup
 expr_stmt|;
+name|this
+operator|.
 name|groupMap
 operator|=
 operator|new
@@ -276,10 +301,16 @@ decl_stmt|;
 if|if
 condition|(
 name|withinGroupSort
-operator|==
-literal|null
+operator|.
+name|equals
+argument_list|(
+name|Sort
+operator|.
+name|RELEVANCE
+argument_list|)
 condition|)
 block|{
+comment|// optimize to use TopScoreDocCollector
 comment|// Sort by score
 name|collector
 operator|=
@@ -639,12 +670,6 @@ operator|.
 name|getSort
 argument_list|()
 argument_list|,
-name|withinGroupSort
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
 name|withinGroupSort
 operator|.
 name|getSort

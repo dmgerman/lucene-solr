@@ -1332,7 +1332,9 @@ name|groupField
 argument_list|,
 name|groupSort
 argument_list|,
-literal|null
+name|Sort
+operator|.
+name|RELEVANCE
 argument_list|,
 literal|0
 argument_list|,
