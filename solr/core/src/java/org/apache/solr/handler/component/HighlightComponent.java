@@ -1282,6 +1282,16 @@ argument_list|(
 name|id
 argument_list|)
 decl_stmt|;
+comment|// sdoc maybe null
+if|if
+condition|(
+name|sdoc
+operator|==
+literal|null
+condition|)
+block|{
+continue|continue;
+block|}
 name|int
 name|idx
 init|=
