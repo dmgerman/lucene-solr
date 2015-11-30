@@ -664,6 +664,22 @@ name|IOException
 block|{
 comment|// no idea how to implement this on HDFS
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"HdfsLock(lockFile="
+operator|+
+name|lockFile
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 block|}
 end_class

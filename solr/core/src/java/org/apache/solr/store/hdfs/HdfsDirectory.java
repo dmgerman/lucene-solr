@@ -1464,6 +1464,32 @@ name|hdfsDirPath
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|"@"
+operator|+
+name|hdfsDirPath
+operator|+
+literal|" lockFactory="
+operator|+
+name|lockFactory
+return|;
+block|}
 block|}
 end_class
 
