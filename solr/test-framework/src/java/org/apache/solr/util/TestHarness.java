@@ -1015,7 +1015,15 @@ name|cc
 argument_list|,
 name|coreName
 argument_list|,
+name|cc
+operator|.
+name|getCoreRootDirectory
+argument_list|()
+operator|.
+name|resolve
+argument_list|(
 name|coreName
+argument_list|)
 argument_list|,
 name|CoreDescriptor
 operator|.

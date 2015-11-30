@@ -92,6 +92,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|ImmutableMap
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -431,18 +445,6 @@ argument_list|,
 literal|"${core.dataDir:stuffandnonsense}"
 argument_list|)
 expr_stmt|;
-name|props
-operator|.
-name|put
-argument_list|(
-name|CoreDescriptor
-operator|.
-name|CORE_INSTDIR
-argument_list|,
-literal|"totallybogus"
-argument_list|)
-expr_stmt|;
-comment|// For testing that this property is ignored if present.
 for|for
 control|(
 name|String
@@ -940,22 +942,6 @@ name|desc
 operator|.
 name|getInstanceDir
 argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// Prove we're ignoring this even though it's set in the properties file
-name|assertFalse
-argument_list|(
-literal|"InstanceDir should be ignored"
-argument_list|,
-name|desc
-operator|.
-name|getInstanceDir
-argument_list|()
-operator|.
-name|contains
-argument_list|(
-literal|"totallybogus"
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1824,15 +1810,12 @@ name|cc
 operator|.
 name|create
 argument_list|(
-operator|new
-name|CoreDescriptor
+literal|"core3"
+argument_list|,
+name|ImmutableMap
+operator|.
+name|of
 argument_list|(
-name|cc
-argument_list|,
-literal|"core3"
-argument_list|,
-literal|"core3"
-argument_list|,
 literal|"configSet"
 argument_list|,
 literal|"minimal"
@@ -1847,6 +1830,12 @@ name|getCoreDescriptor
 argument_list|()
 operator|.
 name|getInstanceDir
+argument_list|()
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
 argument_list|()
 argument_list|,
 name|containsString

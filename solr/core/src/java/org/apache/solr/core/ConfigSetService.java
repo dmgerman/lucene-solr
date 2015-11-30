@@ -691,15 +691,10 @@ operator|==
 literal|null
 condition|)
 return|return
-name|Paths
-operator|.
-name|get
-argument_list|(
 name|cd
 operator|.
 name|getInstanceDir
 argument_list|()
-argument_list|)
 return|;
 name|Path
 name|configSetDirectory

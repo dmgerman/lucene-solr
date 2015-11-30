@@ -76,6 +76,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|ImmutableMap
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -438,23 +452,12 @@ name|container
 operator|.
 name|create
 argument_list|(
-operator|new
-name|CoreDescriptor
-argument_list|(
-name|container
-argument_list|,
 literal|"core1"
 argument_list|,
-name|testDirectory
+name|ImmutableMap
 operator|.
-name|resolve
+name|of
 argument_list|(
-literal|"core1"
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|,
 literal|"configSet"
 argument_list|,
 literal|"configset-2"
@@ -570,23 +573,12 @@ name|container
 operator|.
 name|create
 argument_list|(
-operator|new
-name|CoreDescriptor
-argument_list|(
-name|container
-argument_list|,
 literal|"core1"
 argument_list|,
-name|testDirectory
+name|ImmutableMap
 operator|.
-name|resolve
+name|of
 argument_list|(
-literal|"core1"
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|,
 literal|"configSet"
 argument_list|,
 literal|"nonexistent"
@@ -741,7 +733,7 @@ operator|.
 name|load
 argument_list|()
 expr_stmt|;
-comment|// We initially don't have a /get handler defined
+comment|// We initially don't have a /dump handler defined
 name|SolrCore
 name|core
 init|=
@@ -749,17 +741,12 @@ name|container
 operator|.
 name|create
 argument_list|(
-operator|new
-name|CoreDescriptor
-argument_list|(
-name|container
-argument_list|,
 literal|"core1"
 argument_list|,
-name|testDirectory
-operator|+
-literal|"/core"
-argument_list|,
+name|ImmutableMap
+operator|.
+name|of
+argument_list|(
 literal|"configSet"
 argument_list|,
 literal|"configset-2"
@@ -784,7 +771,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Now copy in a config with a /get handler and reload
+comment|// Now copy in a config with a /dump handler and reload
 name|FileUtils
 operator|.
 name|copyFile
