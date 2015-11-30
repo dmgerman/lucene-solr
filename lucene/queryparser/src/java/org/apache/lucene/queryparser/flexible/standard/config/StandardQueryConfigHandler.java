@@ -409,7 +409,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
-comment|/**      * Key used to set the fields a query should be expanded to when the field      * is<code>null</code>      *       * @see StandardQueryParser#setMultiFields(CharSequence[])      * @see StandardQueryParser#getMultiFields(CharSequence[])      */
+comment|/**      * Key used to set the fields a query should be expanded to when the field      * is<code>null</code>      *       * @see StandardQueryParser#setMultiFields(CharSequence[])      * @see StandardQueryParser#getMultiFields()      */
 DECL|field|MULTI_FIELDS
 specifier|final
 specifier|public
