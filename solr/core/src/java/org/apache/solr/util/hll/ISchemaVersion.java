@@ -24,6 +24,7 @@ end_comment
 
 begin_interface
 DECL|interface|ISchemaVersion
+specifier|public
 interface|interface
 name|ISchemaVersion
 block|{

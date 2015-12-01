@@ -2371,7 +2371,7 @@ name|map
 return|;
 block|}
 DECL|class|CacheEntry
-specifier|private
+specifier|public
 specifier|static
 class|class
 name|CacheEntry
