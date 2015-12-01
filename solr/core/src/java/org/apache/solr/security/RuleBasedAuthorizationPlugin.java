@@ -1061,6 +1061,15 @@ operator|==
 literal|null
 condition|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"request has come without principal. failed permission {} "
+argument_list|,
+name|permission
+argument_list|)
+expr_stmt|;
 comment|//this resource needs a principal but the request has come without
 comment|//any credential.
 return|return
@@ -1114,12 +1123,35 @@ operator|.
 name|PERMITTED
 return|;
 block|}
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"This resource is configured to have a permission {}, The principal {} does not have the right role "
+argument_list|,
+name|permission
+argument_list|,
+name|principal
+argument_list|)
+expr_stmt|;
 return|return
 name|MatchStatus
 operator|.
 name|FORBIDDEN
 return|;
 block|}
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"No permissions configured for the resource {} . So allowed to access"
+argument_list|,
+name|context
+operator|.
+name|getResource
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|MatchStatus
 operator|.

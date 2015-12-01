@@ -2953,6 +2953,22 @@ name|SC_OK
 operator|)
 condition|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"USER_REQUIRED auth header {} context : {} "
+argument_list|,
+name|req
+operator|.
+name|getHeader
+argument_list|(
+literal|"Authorization"
+argument_list|)
+argument_list|,
+name|context
+argument_list|)
+expr_stmt|;
 name|sendError
 argument_list|(
 name|authResponse
@@ -3319,7 +3335,9 @@ operator|!=
 literal|null
 condition|)
 block|{
-return|return
+name|boolean
+name|b
+init|=
 name|cores
 operator|.
 name|getPkiAuthenticationPlugin
@@ -3329,6 +3347,18 @@ name|needsAuthorization
 argument_list|(
 name|req
 argument_list|)
+decl_stmt|;
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"PkiAuthenticationPlugin says authorization required : {} "
+argument_list|,
+name|b
+argument_list|)
+expr_stmt|;
+return|return
+name|b
 return|;
 block|}
 return|return
@@ -6488,6 +6518,31 @@ operator|.
 name|append
 argument_list|(
 literal|"]"
+argument_list|)
+expr_stmt|;
+name|response
+operator|.
+name|append
+argument_list|(
+literal|" path : "
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|path
+argument_list|)
+operator|.
+name|append
+argument_list|(
+literal|" params :"
+argument_list|)
+operator|.
+name|append
+argument_list|(
+name|solrReq
+operator|.
+name|getParams
+argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
