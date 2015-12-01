@@ -12610,6 +12610,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-7339"
+argument_list|)
 DECL|method|testUpdateField
 specifier|public
 name|void
