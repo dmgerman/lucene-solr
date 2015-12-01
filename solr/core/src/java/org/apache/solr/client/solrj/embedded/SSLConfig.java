@@ -335,15 +335,10 @@ name|factory
 operator|.
 name|setTrustStorePath
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
 name|sslConfig
 operator|.
 name|getTrustStore
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 if|if
