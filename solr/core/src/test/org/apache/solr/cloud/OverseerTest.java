@@ -74,6 +74,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collections
 import|;
 end_import
@@ -716,11 +726,14 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|collection
+specifier|final
 specifier|private
 name|String
 name|collection
 init|=
-literal|"collection1"
+name|SolrTestCaseJ4
+operator|.
+name|DEFAULT_TEST_COLLECTION_NAME
 decl_stmt|;
 DECL|class|MockZKController
 specifier|public
@@ -1758,6 +1771,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1773,7 +1787,7 @@ argument_list|()
 operator|.
 name|getSlice
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"shard1"
 argument_list|)
@@ -1812,7 +1826,7 @@ argument_list|()
 operator|.
 name|getSlice
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"shard2"
 argument_list|)
@@ -1840,7 +1854,7 @@ argument_list|()
 operator|.
 name|getSlice
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"shard3"
 argument_list|)
@@ -1859,7 +1873,7 @@ name|reader
 operator|.
 name|getLeaderUrl
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"shard1"
 argument_list|,
@@ -1873,7 +1887,7 @@ name|reader
 operator|.
 name|getLeaderUrl
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"shard2"
 argument_list|,
@@ -1887,7 +1901,7 @@ name|reader
 operator|.
 name|getLeaderUrl
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"shard3"
 argument_list|,
@@ -3010,6 +3024,7 @@ operator|.
 name|getClusterState
 argument_list|()
 decl_stmt|;
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -3022,7 +3037,7 @@ name|state
 operator|.
 name|getSlicesMap
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|)
 decl_stmt|;
 if|if
@@ -3356,7 +3371,7 @@ name|reader
 operator|.
 name|getLeaderUrl
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"shard"
 operator|+
@@ -3772,7 +3787,7 @@ name|ZkStateReader
 operator|.
 name|COLLECTION_PROP
 argument_list|,
-literal|"collection1"
+name|collection
 argument_list|,
 name|ZkStateReader
 operator|.
@@ -3816,7 +3831,7 @@ name|waitForCollections
 argument_list|(
 name|reader
 argument_list|,
-literal|"collection1"
+name|collection
 argument_list|)
 expr_stmt|;
 name|assertSame
@@ -3842,7 +3857,7 @@ argument_list|()
 operator|.
 name|getSlice
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"shard1"
 argument_list|)
@@ -3866,7 +3881,12 @@ name|Overseer
 operator|.
 name|QUEUE_OPERATION
 argument_list|,
-literal|"state"
+name|OverseerAction
+operator|.
+name|STATE
+operator|.
+name|toLower
+argument_list|()
 argument_list|,
 name|ZkStateReader
 operator|.
@@ -3884,7 +3904,7 @@ name|ZkStateReader
 operator|.
 name|COLLECTION_PROP
 argument_list|,
-literal|"collection1"
+name|collection
 argument_list|,
 name|ZkStateReader
 operator|.
@@ -4163,6 +4183,30 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+specifier|final
+name|String
+name|core
+init|=
+literal|"core1"
+decl_stmt|;
+specifier|final
+name|String
+name|core_node
+init|=
+literal|"core_node1"
+decl_stmt|;
+specifier|final
+name|String
+name|shard
+init|=
+literal|"shard1"
+decl_stmt|;
+specifier|final
+name|int
+name|numShards
+init|=
+literal|1
+decl_stmt|;
 name|server
 operator|.
 name|run
@@ -4257,9 +4301,9 @@ name|publishState
 argument_list|(
 name|collection
 argument_list|,
-literal|"core1"
+name|core
 argument_list|,
-literal|"core_node1"
+name|core_node
 argument_list|,
 name|Replica
 operator|.
@@ -4267,7 +4311,7 @@ name|State
 operator|.
 name|RECOVERING
 argument_list|,
-literal|1
+name|numShards
 argument_list|)
 expr_stmt|;
 name|waitForCollections
@@ -4308,9 +4352,9 @@ name|publishState
 argument_list|(
 name|collection
 argument_list|,
-literal|"core1"
+name|core
 argument_list|,
-literal|"core_node1"
+name|core_node
 argument_list|,
 name|Replica
 operator|.
@@ -4318,7 +4362,7 @@ name|State
 operator|.
 name|ACTIVE
 argument_list|,
-literal|1
+name|numShards
 argument_list|)
 expr_stmt|;
 while|while
@@ -4374,9 +4418,9 @@ name|publishState
 argument_list|(
 name|collection
 argument_list|,
-literal|"core1"
+name|core
 argument_list|,
-literal|"core_node1"
+name|core_node
 argument_list|,
 name|Replica
 operator|.
@@ -4384,7 +4428,7 @@ name|State
 operator|.
 name|RECOVERING
 argument_list|,
-literal|1
+name|numShards
 argument_list|)
 expr_stmt|;
 name|version
@@ -4451,7 +4495,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Shard count does not match"
+name|shard
+operator|+
+literal|" replica count does not match"
 argument_list|,
 literal|1
 argument_list|,
@@ -4464,7 +4510,7 @@ name|getSlice
 argument_list|(
 name|collection
 argument_list|,
-literal|"shard1"
+name|shard
 argument_list|)
 operator|.
 name|getReplicasMap
@@ -4487,13 +4533,13 @@ name|publishState
 argument_list|(
 name|collection
 argument_list|,
-literal|"core1"
+name|core
 argument_list|,
-literal|"core_node1"
+name|core_node
 argument_list|,
 literal|null
 argument_list|,
-literal|1
+name|numShards
 argument_list|)
 expr_stmt|;
 while|while
@@ -4515,7 +4561,9 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-literal|"collection1 should be gone after publishing the null state"
+name|collection
+operator|+
+literal|" should be gone after publishing the null state"
 argument_list|,
 name|reader
 operator|.
@@ -5428,7 +5476,7 @@ name|verifyShardLeader
 argument_list|(
 name|reader
 argument_list|,
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"shard1"
 argument_list|,
@@ -5467,7 +5515,7 @@ name|verifyShardLeader
 argument_list|(
 name|reader
 argument_list|,
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"shard1"
 argument_list|,
@@ -6035,7 +6083,7 @@ name|waitForCollections
 argument_list|(
 name|reader
 argument_list|,
-literal|"collection1"
+name|collection
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -6051,7 +6099,7 @@ argument_list|()
 operator|.
 name|getSlices
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|)
 operator|.
 name|size
@@ -7160,7 +7208,12 @@ name|Overseer
 operator|.
 name|QUEUE_OPERATION
 argument_list|,
-literal|"state"
+name|OverseerAction
+operator|.
+name|STATE
+operator|.
+name|toLower
+argument_list|()
 argument_list|,
 name|ZkStateReader
 operator|.
@@ -7184,7 +7237,7 @@ name|ZkStateReader
 operator|.
 name|COLLECTION_PROP
 argument_list|,
-literal|"collection1"
+name|collection
 argument_list|,
 name|ZkStateReader
 operator|.
@@ -7257,7 +7310,7 @@ name|ZkStateReader
 operator|.
 name|COLLECTION_PROP
 argument_list|,
-literal|"collection1"
+name|collection
 argument_list|,
 name|ZkStateReader
 operator|.
@@ -7355,7 +7408,7 @@ name|ZkStateReader
 operator|.
 name|COLLECTION_PROP
 argument_list|,
-literal|"collection1"
+name|collection
 argument_list|,
 name|ZkStateReader
 operator|.
@@ -7420,7 +7473,7 @@ argument_list|()
 operator|.
 name|getSlice
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"s1"
 argument_list|)
@@ -7459,7 +7512,7 @@ argument_list|()
 operator|.
 name|getSlice
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"s1"
 argument_list|)
@@ -7476,7 +7529,7 @@ argument_list|()
 operator|.
 name|getSlice
 argument_list|(
-literal|"collection1"
+name|collection
 argument_list|,
 literal|"s1"
 argument_list|)
