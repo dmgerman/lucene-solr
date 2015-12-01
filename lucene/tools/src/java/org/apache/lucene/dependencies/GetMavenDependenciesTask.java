@@ -748,8 +748,6 @@ name|Arrays
 operator|.
 name|asList
 argument_list|(
-literal|"org.slf4j:jcl-over-slf4j"
-argument_list|,
 literal|"org.slf4j:jul-to-slf4j"
 argument_list|,
 literal|"org.slf4j:slf4j-log4j12"
