@@ -1249,15 +1249,14 @@ throw|;
 block|}
 comment|// TODO: these startingVersions assume that we successfully recover from all
 comment|// non-complete tlogs.
-name|HdfsUpdateLog
-operator|.
+try|try
+init|(
 name|RecentUpdates
 name|startingUpdates
 init|=
 name|getRecentUpdates
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 name|startingVersions
 operator|=
@@ -1429,14 +1428,6 @@ name|version
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-name|startingUpdates
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 annotation|@

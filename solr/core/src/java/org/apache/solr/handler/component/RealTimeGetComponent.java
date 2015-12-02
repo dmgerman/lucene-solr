@@ -3328,6 +3328,8 @@ operator|==
 literal|null
 condition|)
 return|return;
+try|try
+init|(
 name|UpdateLog
 operator|.
 name|RecentUpdates
@@ -3337,8 +3339,7 @@ name|ulog
 operator|.
 name|getRecentUpdates
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 name|rb
 operator|.
@@ -3356,15 +3357,6 @@ name|nVersions
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|recentUpdates
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-comment|// cache this somehow?
 block|}
 block|}
 DECL|method|processSync
@@ -3654,6 +3646,8 @@ operator|.
 name|MAX_VALUE
 decl_stmt|;
 comment|// TODO: get this from cache instead of rebuilding?
+try|try
+init|(
 name|UpdateLog
 operator|.
 name|RecentUpdates
@@ -3663,8 +3657,7 @@ name|ulog
 operator|.
 name|getRecentUpdates
 argument_list|()
-decl_stmt|;
-try|try
+init|)
 block|{
 for|for
 control|(
@@ -3775,15 +3768,6 @@ argument_list|,
 name|updates
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|recentUpdates
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-comment|// cache this somehow?
 block|}
 block|}
 block|}
