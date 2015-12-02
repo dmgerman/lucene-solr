@@ -20,16 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -43,16 +33,6 @@ operator|.
 name|util
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
 import|;
 end_import
 
@@ -115,20 +95,18 @@ DECL|class|SolrInputDocument
 specifier|public
 class|class
 name|SolrInputDocument
-implements|implements
-name|Map
+extends|extends
+name|SolrDocumentBase
 argument_list|<
-name|String
-argument_list|,
 name|SolrInputField
+argument_list|,
+name|SolrInputDocument
 argument_list|>
-implements|,
+implements|implements
 name|Iterable
 argument_list|<
 name|SolrInputField
 argument_list|>
-implements|,
-name|Serializable
 block|{
 DECL|field|_fields
 specifier|private
@@ -241,6 +219,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Get the first value for a field.    *     * @param name name of the field to fetch    * @return first value of the field or null if not present    */
+annotation|@
+name|Override
 DECL|method|getFieldValue
 specifier|public
 name|Object
@@ -281,6 +261,8 @@ name|o
 return|;
 block|}
 comment|/** Get all the values for a field.    *     * @param name name of the field to fetch    * @return value of the field or null if not set    */
+annotation|@
+name|Override
 DECL|method|getFieldValues
 specifier|public
 name|Collection
@@ -320,6 +302,8 @@ literal|null
 return|;
 block|}
 comment|/** Get all field names.    *     * @return Set of all field names.    */
+annotation|@
+name|Override
 DECL|method|getFieldNames
 specifier|public
 name|Collection
@@ -925,6 +909,8 @@ name|values
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|addChildDocument
 specifier|public
 name|void
@@ -966,7 +952,7 @@ name|Collection
 argument_list|<
 name|SolrInputDocument
 argument_list|>
-name|childs
+name|children
 parameter_list|)
 block|{
 for|for
@@ -974,7 +960,7 @@ control|(
 name|SolrInputDocument
 name|child
 range|:
-name|childs
+name|children
 control|)
 block|{
 name|addChildDocument
@@ -1021,6 +1007,26 @@ decl_stmt|;
 return|return
 operator|!
 name|isEmpty
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getChildDocumentCount
+specifier|public
+name|int
+name|getChildDocumentCount
+parameter_list|()
+block|{
+return|return
+name|hasChildDocuments
+argument_list|()
+condition|?
+name|_childDocuments
+operator|.
+name|size
+argument_list|()
+else|:
+literal|0
 return|;
 block|}
 block|}
