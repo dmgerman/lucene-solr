@@ -185,7 +185,7 @@ name|lookupClass
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**     * Not private so tests can inspect it,     * Not final so it can be set on clone    */
+comment|/**     * Not private so tests can inspect it,     */
 DECL|field|inner
 specifier|final
 name|MergePolicy
