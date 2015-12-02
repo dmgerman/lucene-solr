@@ -150,6 +150,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|HashMap
@@ -197,7 +209,9 @@ class|class
 name|CloudInspectUtil
 block|{
 DECL|field|log
+specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|log
 init|=
@@ -205,9 +219,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|CloudInspectUtil
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * When a and b are known to be different, this method tells if the difference    * is legal given the adds and deletes that failed from b.    *     * @param a first list of docs    * @param b second list of docs    * @param aName label for first list of docs    * @param bName  label for second list of docs    * @param bAddFails null or list of the ids of adds that failed for b    * @param bDeleteFails null or list of the ids of deletes that failed for b    * @return true if the difference in a and b is legal    */

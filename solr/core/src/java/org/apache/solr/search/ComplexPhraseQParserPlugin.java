@@ -278,14 +278,7 @@ return|return
 name|qParser
 return|;
 block|}
-block|}
-end_class
-
-begin_comment
-comment|/**  * Modified from {@link org.apache.solr.search.LuceneQParser} and {@link org.apache.solr.search.SurroundQParser}  */
-end_comment
-
-begin_class
+comment|/**    * Modified from {@link org.apache.solr.search.LuceneQParser} and {@link org.apache.solr.search.SurroundQParserPlugin.SurroundQParser}    */
 DECL|class|ComplexPhraseQParser
 class|class
 name|ComplexPhraseQParser
@@ -302,7 +295,7 @@ name|inOrder
 init|=
 literal|true
 decl_stmt|;
-comment|/**    * When<code>inOrder</code> is true, the search terms must    * exists in the documents as the same order as in query.    *    * @param inOrder parameter to choose between ordered or un-ordered proximity search    */
+comment|/**      * When<code>inOrder</code> is true, the search terms must      * exists in the documents as the same order as in query.      *      * @param inOrder parameter to choose between ordered or un-ordered proximity search      */
 DECL|method|setInOrder
 specifier|public
 name|void
@@ -569,6 +562,7 @@ name|getField
 argument_list|()
 block|}
 return|;
+block|}
 block|}
 block|}
 end_class

@@ -334,6 +334,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collections
@@ -425,9 +437,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|ExactStatsCache
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// experimenting with strategy that takes more RAM, but also doesn't share memory

@@ -70,6 +70,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|net
 operator|.
 name|URI
@@ -353,9 +365,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|SolrOutputFormat
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * The parameter used to pass the solr config zip file information. This will    * be the hdfs path to the configuration zip file    */

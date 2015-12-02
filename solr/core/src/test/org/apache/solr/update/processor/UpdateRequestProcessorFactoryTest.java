@@ -40,6 +40,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Arrays
@@ -118,6 +130,26 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  *   */
 end_comment
@@ -130,6 +162,26 @@ name|UpdateRequestProcessorFactoryTest
 extends|extends
 name|AbstractSolrTestCase
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|MethodHandles
+operator|.
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
+argument_list|)
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -329,8 +381,6 @@ literal|"Tests must be run with INFO level logging "
 operator|+
 literal|"otherwise LogUpdateProcessor isn't used and can't be tested."
 argument_list|,
-name|LogUpdateProcessor
-operator|.
 name|log
 operator|.
 name|isInfoEnabled
@@ -544,6 +594,8 @@ name|proc
 operator|.
 name|next
 operator|instanceof
+name|LogUpdateProcessorFactory
+operator|.
 name|LogUpdateProcessor
 operator|&&
 name|procs
@@ -553,6 +605,8 @@ argument_list|(
 literal|1
 argument_list|)
 operator|instanceof
+name|LogUpdateProcessorFactory
+operator|.
 name|LogUpdateProcessor
 operator|)
 argument_list|)
@@ -620,6 +674,8 @@ operator|(
 comment|// compare them both just because i'm going insane and the more checks the better
 name|proc
 operator|instanceof
+name|LogUpdateProcessorFactory
+operator|.
 name|LogUpdateProcessor
 operator|&&
 name|procs
@@ -629,6 +685,8 @@ argument_list|(
 literal|0
 argument_list|)
 operator|instanceof
+name|LogUpdateProcessorFactory
+operator|.
 name|LogUpdateProcessor
 operator|)
 argument_list|)

@@ -440,26 +440,6 @@ name|SolrIndexSearcher
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|LoggerFactory
-import|;
-end_import
-
 begin_comment
 comment|/**  * GraphQuery - search for nodes and traverse edges in an index.  *   * Params:  * fromField = the field that contains the node id  * toField = the field that contains the edge ids  * traversalFilter = a query that can be applied for each hop in the graph.  * maxDepth = the max depth to traverse.  (start nodes is depth=1)  * onlyLeafNodes = only return documents that have no edge id values.  * returnRoot = if false, the documents matching the initial query will not be returned.  *  * @lucene.experimental  */
 end_comment

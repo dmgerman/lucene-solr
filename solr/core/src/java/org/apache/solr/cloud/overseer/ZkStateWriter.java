@@ -224,6 +224,18 @@ name|singletonMap
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
 begin_comment
 comment|/**  * ZkStateWriter is responsible for writing updates to the cluster state stored in ZooKeeper for  * both stateFormat=1 collection (stored in shared /clusterstate.json in ZK) and stateFormat=2 collections  * each of which get their own individual state.json in ZK.  *  * Updates to the cluster state are specified using the  * {@link #enqueueUpdate(ClusterState, ZkWriteCommand, ZkWriteCallback)} method. The class buffers updates  * to reduce the number of writes to ZK. The buffered updates are flushed during<code>enqueueUpdate</code>  * automatically if necessary. The {@link #writePendingUpdates()} can be used to force flush any pending updates.  *  * If either {@link #enqueueUpdate(ClusterState, ZkWriteCommand, ZkWriteCallback)} or {@link #writePendingUpdates()}  * throws a {@link org.apache.zookeeper.KeeperException.BadVersionException} then the internal buffered state of the  * class is suspect and the current instance of the class should be discarded and a new instance should be created  * and used for any future updates.  */
 end_comment
@@ -259,6 +271,7 @@ decl_stmt|;
 DECL|field|log
 specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|log
 init|=
@@ -266,9 +279,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|ZkStateWriter
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * Represents a no-op {@link ZkWriteCommand} which will result in no modification to cluster state    */

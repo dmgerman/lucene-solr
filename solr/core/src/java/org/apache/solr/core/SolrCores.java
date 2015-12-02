@@ -82,6 +82,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -313,9 +325,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|SolrCores
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// This map will hold objects that are being currently operated on. The core (value) may be null in the case of
@@ -391,8 +407,6 @@ operator|.
 name|MAX_VALUE
 condition|)
 block|{
-name|CoreContainer
-operator|.
 name|log
 operator|.
 name|info
@@ -635,8 +649,6 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|CoreContainer
-operator|.
 name|log
 argument_list|,
 literal|"Error shutting down core"
@@ -702,8 +714,6 @@ block|{
 name|SolrCore
 name|retCore
 decl_stmt|;
-name|CoreContainer
-operator|.
 name|log
 operator|.
 name|info
@@ -1697,8 +1707,6 @@ name|name
 argument_list|)
 condition|)
 block|{
-name|CoreContainer
-operator|.
 name|log
 operator|.
 name|warn
@@ -1751,8 +1759,6 @@ name|name
 argument_list|)
 condition|)
 block|{
-name|CoreContainer
-operator|.
 name|log
 operator|.
 name|warn

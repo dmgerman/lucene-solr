@@ -170,6 +170,18 @@ name|InputStream
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
 begin_comment
 comment|/** Base class for factories for IndexSchema implementations */
 end_comment
@@ -194,9 +206,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|IndexSchemaFactory
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/** Returns an index schema created from a local resource */

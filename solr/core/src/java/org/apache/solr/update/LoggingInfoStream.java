@@ -60,6 +60,18 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
 begin_comment
 comment|/**  * An {@link InfoStream} implementation which passes messages on to Solr's logging.  */
 end_comment
@@ -73,7 +85,7 @@ extends|extends
 name|InfoStream
 block|{
 DECL|field|log
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|Logger
@@ -83,9 +95,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|LoggingInfoStream
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 annotation|@

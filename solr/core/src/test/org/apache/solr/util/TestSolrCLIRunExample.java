@@ -90,6 +90,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|net
 operator|.
 name|ServerSocket
@@ -450,10 +462,9 @@ extends|extends
 name|SolrTestCaseJ4
 block|{
 DECL|field|log
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
-specifier|transient
 name|Logger
 name|log
 init|=
@@ -461,9 +472,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|TestSolrCLIRunExample
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * Overrides the call to exec bin/solr to start Solr nodes to start them using the Solr test-framework    * instead of the script, since the script depends on a full build.    */

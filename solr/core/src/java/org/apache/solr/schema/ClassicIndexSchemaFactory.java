@@ -18,6 +18,18 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -101,9 +113,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|ClassicIndexSchemaFactory
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 annotation|@

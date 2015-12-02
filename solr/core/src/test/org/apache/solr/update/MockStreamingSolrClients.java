@@ -96,26 +96,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -152,21 +132,6 @@ name|MockStreamingSolrClients
 extends|extends
 name|StreamingSolrClients
 block|{
-DECL|field|log
-specifier|public
-specifier|static
-name|Logger
-name|log
-init|=
-name|LoggerFactory
-operator|.
-name|getLogger
-argument_list|(
-name|MockStreamingSolrClients
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 DECL|enum|Exp
 DECL|enum constant|CONNECT_EXCEPTION
 DECL|enum constant|SOCKET_EXCEPTION

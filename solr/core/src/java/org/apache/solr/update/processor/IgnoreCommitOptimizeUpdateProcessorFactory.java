@@ -46,6 +46,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -181,9 +193,9 @@ extends|extends
 name|UpdateRequestProcessorFactory
 block|{
 DECL|field|log
-specifier|public
-specifier|final
+specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|log
 init|=
@@ -191,9 +203,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|IgnoreCommitOptimizeUpdateProcessorFactory
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|DEFAULT_RESPONSE_MSG
@@ -465,11 +481,8 @@ name|next
 argument_list|)
 return|;
 block|}
-block|}
-end_class
-
-begin_class
 DECL|class|IgnoreCommitOptimizeUpdateProcessor
+specifier|static
 class|class
 name|IgnoreCommitOptimizeUpdateProcessor
 extends|extends
@@ -749,6 +762,7 @@ argument_list|,
 name|responseHeader
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

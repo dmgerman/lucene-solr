@@ -40,6 +40,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Collections
@@ -265,8 +277,9 @@ class|class
 name|CloudUtil
 block|{
 DECL|field|log
-specifier|protected
+specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|log
 init|=
@@ -274,9 +287,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|CloudUtil
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * See if coreNodeName has been taken over by another baseUrl and unload core    * + throw exception if it has been.    */

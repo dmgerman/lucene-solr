@@ -200,26 +200,6 @@ name|SolrCoreAware
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|LoggerFactory
-import|;
-end_import
-
 begin_comment
 comment|/**  *<p>  *<code>SimilarityFactory</code> that returns a global {@link PerFieldSimilarityWrapper}  * that delegates to the field type, if it's configured.  For field type's that  * do not have a<code>Similarity</code> explicitly configured, the global<code>Similarity</code>   * will use per fieldtype defaults -- either based on an explicitly configured   *<code>defaultSimFromFieldType</code> a sensible default depending on the {@link Version}   * matching configured:  *</p>  *<ul>  *<li><code>luceneMatchVersion&lt; 6.0</code> = {@link ClassicSimilarity}</li>  *<li><code>luceneMatchVersion&gt;= 6.0</code> = {@link BM25Similarity}</li>  *</ul>  *<p>  * The<code>defaultSimFromFieldType</code> option accepts the name of any fieldtype, and uses   * whatever<code>Similarity</code> is explicitly configured for that fieldType as thedefault for   * all other field types.  For example:  *</p>  *<pre class="prettyprint">  *&lt;similarity class="solr.SchemaSimilarityFactory"&gt;  *&lt;str name="defaultSimFromFieldType"&gt;type-using-custom-dfr&lt;/str&gt;  *&lt;/similarity&gt;  *   ...  *&lt;fieldType name="type-using-custom-dfr" class="solr.TextField"&gt;  *     ...  *&lt;similarity class="solr.DFRSimilarityFactory"&gt;  *&lt;str name="basicModel"&gt;I(F)&lt;/str&gt;  *&lt;str name="afterEffect"&gt;B&lt;/str&gt;  *&lt;str name="normalization"&gt;H3&lt;/str&gt;  *&lt;float name="mu"&gt;900&lt;/float&gt;  *&lt;/similarity&gt;  *&lt;/fieldType&gt;  *</pre>  *<p>  * In the example above, any fieldtypes that do not define their own<code>&lt;/similarity/&gt;</code>   * will use the<code>Similarity</code> configured for the<code>type-using-custom-dfr</code>.  *</p>  *   *<p>  *<b>NOTE:</b> Users should be aware that even when this factory uses a single default   *<code>Similarity</code> for some or all fields in a Query, the behavior can be inconsistent   * with the behavior of explicitly configuring that same<code>Similarity</code> globally, because   * of differences in how some multi-field / multi-clause behavior is defined in   *<code>PerFieldSimilarityWrapper</code>.  In particular please consider carefully the documentation   *&amp; implementation of {@link Similarity#coord} and {@link Similarity#queryNorm} in   * {@link ClassicSimilarity} compared to {@link PerFieldSimilarityWrapper}  *</p>  *  * @see FieldType#getSimilarity  */
 end_comment

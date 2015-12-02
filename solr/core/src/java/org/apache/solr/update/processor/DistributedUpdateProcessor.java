@@ -32,6 +32,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -1040,9 +1052,9 @@ init|=
 literal|"test.distrib.skip.servers"
 decl_stmt|;
 DECL|field|log
-specifier|public
-specifier|final
+specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|log
 init|=
@@ -1050,9 +1062,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|DistributedUpdateProcessor
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * Values this processor supports for the<code>DISTRIB_UPDATE_PARAM</code>.    * This is an implementation detail exposed solely for tests.    *     * @see DistributingUpdateProcessorFactory#DISTRIB_UPDATE_PARAM    */

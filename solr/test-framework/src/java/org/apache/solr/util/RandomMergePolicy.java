@@ -30,6 +30,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Map
@@ -154,8 +166,9 @@ extends|extends
 name|MergePolicy
 block|{
 DECL|field|log
-specifier|public
+specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|log
 init|=
@@ -163,9 +176,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|RandomMergePolicy
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**     * Not private so tests can inspect it,     * Not final so it can be set on clone    */

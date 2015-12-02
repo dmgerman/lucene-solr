@@ -26,6 +26,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|slf4j
@@ -55,8 +67,9 @@ class|class
 name|IOUtils
 block|{
 DECL|field|LOG
-specifier|public
+specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|LOG
 init|=
@@ -64,9 +77,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|IOUtils
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|method|closeQuietly

@@ -92,6 +92,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|nio
 operator|.
 name|charset
@@ -503,9 +515,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|Suggester
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/** Location of the source data - either a path to a file, or null for the    * current IndexReader.    */

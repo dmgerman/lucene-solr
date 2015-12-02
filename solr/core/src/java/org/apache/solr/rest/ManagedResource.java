@@ -40,6 +40,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Date
@@ -256,7 +268,7 @@ class|class
 name|ManagedResource
 block|{
 DECL|field|log
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|Logger
@@ -266,9 +278,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|ManagedResource
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|/**    * Marker interface to indicate a ManagedResource implementation class also supports    * managing child resources at path: /&lt;resource&gt;/{child}    */

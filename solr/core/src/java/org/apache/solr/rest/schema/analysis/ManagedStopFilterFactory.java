@@ -130,26 +130,6 @@ name|ManagedResource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|LoggerFactory
-import|;
-end_import
-
 begin_comment
 comment|/**  * TokenFilterFactory that uses the ManagedWordSetResource implementation  * for managing stop words using the REST API.  */
 end_comment
@@ -162,22 +142,6 @@ name|ManagedStopFilterFactory
 extends|extends
 name|BaseManagedTokenFilterFactory
 block|{
-DECL|field|log
-specifier|public
-specifier|static
-specifier|final
-name|Logger
-name|log
-init|=
-name|LoggerFactory
-operator|.
-name|getLogger
-argument_list|(
-name|ManagedStopFilterFactory
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 comment|// this only gets changed once during core initialization and not every
 comment|// time an update is made to the underlying managed word set.
 DECL|field|stopWords

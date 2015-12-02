@@ -190,6 +190,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -681,8 +693,9 @@ extends|extends
 name|ContentStreamLoader
 block|{
 DECL|field|log
-specifier|public
+specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|log
 init|=
@@ -690,9 +703,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|XMLLoader
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|xmllog
@@ -1175,8 +1192,6 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|UpdateRequestHandler
-operator|.
 name|log
 operator|.
 name|isTraceEnabled
@@ -1197,8 +1212,6 @@ argument_list|)
 decl_stmt|;
 comment|// TODO: The charset may be wrong, as the real charset is later
 comment|// determined by the XML parser, the content-type is only used as a hint!
-name|UpdateRequestHandler
-operator|.
 name|log
 operator|.
 name|trace

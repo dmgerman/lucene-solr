@@ -40,6 +40,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|IdentityHashMap
@@ -102,6 +114,26 @@ name|SolrRequestInfo
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/*  * Bridge between old style context and a real class.  * This is currently slightly more heavy weight than necessary because of the need to inherit from IdentityHashMap rather than  * instantiate it on demand (and the need to put "searcher" in the map)  * @lucene.experimental  */
 end_comment
@@ -138,6 +170,26 @@ argument_list|,
 name|String
 argument_list|>
 name|closeHooks
+decl_stmt|;
+DECL|field|log
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|MethodHandles
+operator|.
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
+argument_list|)
 decl_stmt|;
 comment|// migrated from ValueSource
 DECL|method|newContext
@@ -338,8 +390,6 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|SolrCore
-operator|.
 name|log
 argument_list|,
 literal|"Exception during close hook"

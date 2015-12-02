@@ -26,6 +26,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|concurrent
@@ -383,8 +395,9 @@ literal|60000
 decl_stmt|;
 comment|// by default, every minute
 DECL|field|log
-specifier|protected
+specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|log
 init|=
@@ -392,9 +405,13 @@ name|LoggerFactory
 operator|.
 name|getLogger
 argument_list|(
-name|CdcrUpdateLogSynchronizer
+name|MethodHandles
 operator|.
-name|class
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|method|CdcrUpdateLogSynchronizer
