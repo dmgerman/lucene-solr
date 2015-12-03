@@ -227,7 +227,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link org.apache.lucene.analysis.ja.JapaneseTokenizer}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"  *       mode="NORMAL"  *       userDictionary="user.txt"  *       userDictionaryEncoding="UTF-8"  *       discardPunctuation="true"  *     /&gt;  *&lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  */
+comment|/**  * Factory for {@link org.apache.lucene.analysis.ja.JapaneseTokenizer}.  *<pre class="prettyprint">  *&lt;fieldType name="text_ja" class="solr.TextField"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.JapaneseTokenizerFactory"  *       mode="NORMAL"  *       userDictionary="user.txt"  *       userDictionaryEncoding="UTF-8"  *       discardPunctuation="true"  *     /&gt;  *&lt;filter class="solr.JapaneseBaseFormFilterFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;  *</pre>  *<p>  * Additional expert user parameters nBestCost and nBestExamples can be  * used to include additional searchable tokens that those most likely  * according to the statistical model. A typical use-case for this is to  * improve recall and make segmentation more resilient to mistakes.  * The feature can also be used to get a decompounding effect.  *<p>  * The nBestCost parameter specifies an additional Viterbi cost, and  * when used, JapaneseTokenizer will include all tokens in Viterbi paths  * that are within the nBestCost value of the best path.  *<p>  * Finding a good value for nBestCost can be difficult to do by hand. The  * nBestExamples parameter can be used to find an nBestCost value based on  * examples with desired segmentation outcomes.  *<p>  * For example, a value of /ç®±æ ¹å±±-ç®±æ ¹/æç°ç©ºæ¸¯-æç°/ indicates that in  * the texts, ç®±æ ¹å±± (Mt. Hakone) and æç°ç©ºæ¸¯ (Narita Airport) we'd like  * a cost that gives is us ç®±æ ¹ (Hakone) and æç° (Narita). Notice that  * costs are estimated for each example individually, and the maximum  * nBestCost found across all examples is used.  *<p>  * If both nBestCost and nBestExamples is used in a configuration,  * the largest value of the two is used.  *<p>  * Parameters nBestCost and nBestExamples work with all tokenizer  * modes, but it makes the most sense to use them with NORMAL mode.  */
 end_comment
 
 begin_class
@@ -277,6 +277,24 @@ init|=
 literal|"discardPunctuation"
 decl_stmt|;
 comment|// Expert option
+DECL|field|NBEST_COST
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|NBEST_COST
+init|=
+literal|"nBestCost"
+decl_stmt|;
+DECL|field|NBEST_EXAMPLES
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|NBEST_EXAMPLES
+init|=
+literal|"nBestExamples"
+decl_stmt|;
 DECL|field|userDictionary
 specifier|private
 name|UserDictionary
@@ -305,6 +323,21 @@ specifier|private
 specifier|final
 name|String
 name|userDictionaryEncoding
+decl_stmt|;
+comment|/* Example string for NBEST output.    * its form as:    *   nbestExamples := [ / ] example [ / example ]... [ / ]    *   example := TEXT - TOKEN    *   TEXT := input text    *   TOKEN := token should be in nbest result    * Ex. /ç®±æ ¹å±±-ç®±æ ¹/æç°ç©ºæ¸¯-æç°/    * When the result tokens are "ç®±æ ¹å±±", "æç°ç©ºæ¸¯" in NORMAL mode,    * /ç®±æ ¹å±±-ç®±æ ¹/æç°ç©ºæ¸¯-æç°/ requests "ç®±æ ¹" and "æç°" to be in the result in NBEST output.    */
+DECL|field|nbestExamples
+specifier|private
+specifier|final
+name|String
+name|nbestExamples
+decl_stmt|;
+DECL|field|nbestCost
+specifier|private
+name|int
+name|nbestCost
+init|=
+operator|-
+literal|1
 decl_stmt|;
 comment|/** Creates a new JapaneseTokenizerFactory */
 DECL|method|JapaneseTokenizerFactory
@@ -380,6 +413,26 @@ argument_list|,
 name|DISCARD_PUNCTUATION
 argument_list|,
 literal|true
+argument_list|)
+expr_stmt|;
+name|nbestCost
+operator|=
+name|getInt
+argument_list|(
+name|args
+argument_list|,
+name|NBEST_COST
+argument_list|,
+literal|0
+argument_list|)
+expr_stmt|;
+name|nbestExamples
+operator|=
+name|args
+operator|.
+name|remove
+argument_list|(
+name|NBEST_EXAMPLES
 argument_list|)
 expr_stmt|;
 if|if
@@ -518,7 +571,9 @@ name|AttributeFactory
 name|factory
 parameter_list|)
 block|{
-return|return
+name|JapaneseTokenizer
+name|t
+init|=
 operator|new
 name|JapaneseTokenizer
 argument_list|(
@@ -530,6 +585,40 @@ name|discardPunctuation
 argument_list|,
 name|mode
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|nbestExamples
+operator|!=
+literal|null
+condition|)
+block|{
+name|nbestCost
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|nbestCost
+argument_list|,
+name|t
+operator|.
+name|calcNBestCost
+argument_list|(
+name|nbestExamples
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+name|t
+operator|.
+name|setNBestCost
+argument_list|(
+name|nbestCost
+argument_list|)
+expr_stmt|;
+return|return
+name|t
 return|;
 block|}
 block|}

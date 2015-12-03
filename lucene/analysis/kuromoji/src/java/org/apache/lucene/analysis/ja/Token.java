@@ -402,6 +402,17 @@ name|length
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the type of this token    * @return token type, not null    */
+DECL|method|getType
+specifier|public
+name|Type
+name|getType
+parameter_list|()
+block|{
+return|return
+name|type
+return|;
+block|}
 comment|/**    * Returns true if this token is known word    * @return true if this token is in standard dictionary. false if not.    */
 DECL|method|isKnown
 specifier|public
