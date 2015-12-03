@@ -326,7 +326,7 @@ literal|"(?:(?!("
 operator|+
 name|NMTOKEN
 operator|+
-literal|":|\\d+)))[\\p{L}_\\-0-9]+"
+literal|":|[\\^.]\\d+)))[^^.\\s][\\p{L}_\\-0-9]+"
 decl_stmt|;
 comment|// previous version: Pattern.compile("(?:(?!(\\w+:|\\d+)))\\w+");
 DECL|field|QUERY_REGEX
