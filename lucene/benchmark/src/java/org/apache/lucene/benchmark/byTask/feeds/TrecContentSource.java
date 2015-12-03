@@ -653,11 +653,6 @@ argument_list|()
 expr_stmt|;
 continue|continue;
 block|}
-name|line
-operator|.
-name|length
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|lineStart
