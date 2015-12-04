@@ -903,9 +903,11 @@ name|needsScores
 parameter_list|()
 block|{
 return|return
-literal|true
+name|sortWithinGroup
+operator|.
+name|needsScores
+argument_list|()
 return|;
-comment|// TODO, maybe we don't: e.g. return sortWithinGroup.needsScores()
 block|}
 block|}
 end_class

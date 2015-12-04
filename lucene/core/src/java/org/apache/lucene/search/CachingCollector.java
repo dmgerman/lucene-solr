@@ -328,6 +328,8 @@ name|maxDocsToCache
 argument_list|)
 return|;
 block|}
+comment|// note: do *not* override needScore to say false. Just because we aren't caching the score doesn't mean the
+comment|//   wrapped collector doesn't need it to do its job.
 DECL|method|getLeafCollector
 specifier|public
 name|LeafCollector
@@ -728,6 +730,21 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Ensure the scores are collected so they can be replayed, even if the wrapped collector doesn't need them. */
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|collect
 specifier|protected
 name|void

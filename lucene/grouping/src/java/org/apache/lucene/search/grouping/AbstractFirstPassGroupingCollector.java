@@ -112,6 +112,12 @@ specifier|final
 name|int
 name|topNGroups
 decl_stmt|;
+DECL|field|needsScores
+specifier|private
+specifier|final
+name|boolean
+name|needsScores
+decl_stmt|;
 DECL|field|groupMap
 specifier|private
 specifier|final
@@ -204,6 +210,15 @@ operator|.
 name|topNGroups
 operator|=
 name|topNGroups
+expr_stmt|;
+name|this
+operator|.
+name|needsScores
+operator|=
+name|groupSort
+operator|.
+name|needsScores
+argument_list|()
 expr_stmt|;
 specifier|final
 name|SortField
@@ -325,6 +340,18 @@ argument_list|(
 name|topNGroups
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|needsScores
+specifier|public
+name|boolean
+name|needsScores
+parameter_list|()
+block|{
+return|return
+name|needsScores
+return|;
 block|}
 comment|/**    * Returns top groups, starting from offset.  This may    * return null, if no groups were collected, or if the    * number of unique groups collected is&lt;= offset.    *    * @param groupOffset The offset in the collected groups    * @param fillFields Whether to fill to {@link SearchGroup#sortValues}    * @return top groups, starting from offset    */
 DECL|method|getTopGroups
