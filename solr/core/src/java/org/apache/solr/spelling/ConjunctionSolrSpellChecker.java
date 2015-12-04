@@ -302,12 +302,16 @@ block|}
 elseif|else
 if|if
 condition|(
+operator|!
 name|stringDistance
-operator|!=
+operator|.
+name|equals
+argument_list|(
 name|checker
 operator|.
 name|getStringDistance
 argument_list|()
+argument_list|)
 condition|)
 block|{
 throw|throw
