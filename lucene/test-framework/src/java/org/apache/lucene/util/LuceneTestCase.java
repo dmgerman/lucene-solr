@@ -282,6 +282,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|security
+operator|.
+name|SecurityPermission
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|text
 operator|.
 name|Collator
@@ -13898,7 +13908,7 @@ literal|".tmp"
 argument_list|)
 return|;
 block|}
-comment|/**     * Runs a code part with restricted permissions (be sure to add all required permissions,    * because it would start with empty permissions). You cannot grant more permissions than    * our policy file allows, but you may restrict writing to several dirs...    *<p><em>Note:</em> This assumes a {@link SecurityManager} enabled, otherwise it    * stops test execution.    */
+comment|/**     * Runs a code part with restricted permissions (be sure to add all required permissions,    * because it would start with empty permissions). You cannot grant more permissions than    * our policy file allows, but you may restrict writing to several dirs...    *<p><em>Note:</em> This assumes a {@link SecurityManager} enabled, otherwise it    * stops test execution. If enabled, it needs the following {@link SecurityPermission}:    * {@code "createAccessControlContext"}    */
 DECL|method|runWithRestrictedPermissions
 specifier|public
 specifier|static
@@ -13931,6 +13941,18 @@ name|getSecurityManager
 argument_list|()
 operator|!=
 literal|null
+argument_list|)
+expr_stmt|;
+comment|// be sure to have required permission, otherwise doPrivileged runs with *no* permissions:
+name|AccessController
+operator|.
+name|checkPermission
+argument_list|(
+operator|new
+name|SecurityPermission
+argument_list|(
+literal|"createAccessControlContext"
+argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final
