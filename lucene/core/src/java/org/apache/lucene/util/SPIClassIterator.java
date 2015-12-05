@@ -82,26 +82,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|security
-operator|.
-name|AccessController
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|security
-operator|.
-name|PrivilegedAction
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -314,7 +294,7 @@ name|loader
 argument_list|)
 return|;
 block|}
-comment|/**    * Utility method to check if some class loader is a (grand-)parent of or the same as another one.    * This means the child will be able to load all classes from the parent, too.    *<p>    * If Lucene's codebase doesn't have enough permissions to do the check, {@code false} is returned.    */
+comment|/**    * Utility method to check if some class loader is a (grand-)parent of or the same as another one.    * This means the child will be able to load all classes from the parent, too.    *<p>    * If caller's codesource doesn't have enough permissions to do the check, {@code false} is returned    * (this is fine, because if we get a {@code SecurityException} it is for sure no parent).    */
 DECL|method|isParentClassLoader
 specifier|public
 specifier|static
@@ -329,32 +309,6 @@ specifier|final
 name|ClassLoader
 name|child
 parameter_list|)
-block|{
-if|if
-condition|(
-name|parent
-operator|==
-name|child
-condition|)
-block|{
-return|return
-literal|true
-return|;
-comment|// don't try to use AccessController for performance
-block|}
-return|return
-name|AccessController
-operator|.
-name|doPrivileged
-argument_list|(
-call|(
-name|PrivilegedAction
-argument_list|<
-name|Boolean
-argument_list|>
-call|)
-argument_list|()
-operator|->
 block|{
 try|try
 block|{
@@ -387,15 +341,12 @@ name|cl
 operator|.
 name|getParent
 argument_list|()
-argument_list|;
+expr_stmt|;
 block|}
 return|return
 literal|false
 return|;
 block|}
-end_class
-
-begin_catch
 catch|catch
 parameter_list|(
 name|SecurityException
@@ -406,27 +357,20 @@ return|return
 literal|false
 return|;
 block|}
-end_catch
-
-begin_empty_stmt
-unit|})
-empty_stmt|;
-end_empty_stmt
-
-begin_expr_stmt
-unit|}      private
+block|}
 DECL|method|SPIClassIterator
+specifier|private
 name|SPIClassIterator
-argument_list|(
+parameter_list|(
 name|Class
 argument_list|<
 name|S
 argument_list|>
 name|clazz
-argument_list|,
+parameter_list|,
 name|ClassLoader
 name|loader
-argument_list|)
+parameter_list|)
 block|{
 name|this
 operator|.
@@ -440,7 +384,7 @@ name|clazz
 argument_list|,
 literal|"clazz"
 argument_list|)
-block|;
+expr_stmt|;
 name|this
 operator|.
 name|loader
@@ -453,7 +397,7 @@ name|loader
 argument_list|,
 literal|"loader"
 argument_list|)
-block|;
+expr_stmt|;
 try|try
 block|{
 specifier|final
@@ -479,9 +423,6 @@ name|fullName
 argument_list|)
 expr_stmt|;
 block|}
-end_expr_stmt
-
-begin_catch
 catch|catch
 parameter_list|(
 name|IOException
@@ -505,9 +446,6 @@ name|ioe
 argument_list|)
 throw|;
 block|}
-end_catch
-
-begin_expr_stmt
 name|this
 operator|.
 name|linesIterator
@@ -523,11 +461,9 @@ operator|.
 name|iterator
 argument_list|()
 expr_stmt|;
-end_expr_stmt
-
-begin_function
-unit|}      private
+block|}
 DECL|method|loadNextProfile
+specifier|private
 name|boolean
 name|loadNextProfile
 parameter_list|()
@@ -766,9 +702,6 @@ return|return
 literal|false
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|hasNext
@@ -787,9 +720,6 @@ name|loadNextProfile
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|next
@@ -888,9 +818,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|remove
@@ -905,8 +832,8 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
-end_function
+block|}
+end_class
 
-unit|}
 end_unit
 
