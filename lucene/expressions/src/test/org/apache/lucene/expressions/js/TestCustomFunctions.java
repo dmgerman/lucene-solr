@@ -1116,7 +1116,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"is not public"
+literal|"not public"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1213,7 +1213,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"is not public"
+literal|"not public"
 argument_list|)
 argument_list|)
 expr_stmt|;
