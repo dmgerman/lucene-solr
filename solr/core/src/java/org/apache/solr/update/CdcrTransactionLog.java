@@ -237,6 +237,7 @@ name|globalStrings
 argument_list|)
 expr_stmt|;
 comment|// The starting version number will be used to seek more efficiently tlogs
+comment|// and to filter out tlog files during replication (in ReplicationHandler#getTlogFileList)
 name|String
 name|filename
 init|=
