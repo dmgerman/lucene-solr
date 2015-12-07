@@ -408,11 +408,15 @@ DECL|field|isMutable
 specifier|private
 name|boolean
 name|isMutable
+init|=
+literal|true
 decl_stmt|;
 DECL|field|managedSchemaResourceName
 specifier|private
 name|String
 name|managedSchemaResourceName
+init|=
+name|DEFAULT_MANAGED_SCHEMA_RESOURCE_NAME
 decl_stmt|;
 DECL|method|getManagedSchemaResourceName
 specifier|public
@@ -505,7 +509,7 @@ name|getBool
 argument_list|(
 literal|"mutable"
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 name|args

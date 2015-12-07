@@ -553,7 +553,7 @@ name|params
 argument_list|(
 literal|"file"
 argument_list|,
-literal|"schema.xml"
+literal|"managed-schema"
 argument_list|)
 argument_list|)
 decl_stmt|;
