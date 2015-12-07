@@ -216,6 +216,17 @@ name|lookupClass
 argument_list|()
 argument_list|)
 decl_stmt|;
+DECL|field|debug
+specifier|private
+specifier|static
+name|boolean
+name|debug
+init|=
+name|log
+operator|.
+name|isDebugEnabled
+argument_list|()
+decl_stmt|;
 DECL|method|CdcrTransactionLog
 name|CdcrTransactionLog
 parameter_list|(

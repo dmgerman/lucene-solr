@@ -533,7 +533,8 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 DECL|field|debug
-specifier|public
+specifier|private
+specifier|static
 name|boolean
 name|debug
 init|=
