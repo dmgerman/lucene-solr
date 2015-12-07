@@ -1945,7 +1945,7 @@ block|{
 name|double
 name|distanceMeters
 init|=
-name|SloppyMath
+name|GeoDistanceUtils
 operator|.
 name|haversin
 argument_list|(
@@ -1963,8 +1963,6 @@ index|[
 name|docID
 index|]
 argument_list|)
-operator|*
-literal|1000.0
 decl_stmt|;
 if|if
 condition|(
@@ -2025,7 +2023,7 @@ else|else
 block|{
 if|if
 condition|(
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectWithinCircle
 argument_list|(
@@ -2131,7 +2129,7 @@ block|}
 elseif|else
 if|if
 condition|(
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectWithin
 argument_list|(
@@ -2187,7 +2185,7 @@ block|}
 elseif|else
 if|if
 condition|(
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectCrossesCircle
 argument_list|(
@@ -2582,13 +2580,6 @@ block|}
 block|}
 block|}
 comment|/** Tests consistency of GeoUtils.rectWithinCircle, .rectCrossesCircle, .rectWithin and SloppyMath.haversine distance check */
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/LUCENE-6846"
-argument_list|)
 DECL|method|testGeoRelations
 specifier|public
 name|void
@@ -2605,12 +2596,14 @@ argument_list|(
 literal|1000
 argument_list|)
 decl_stmt|;
-comment|// boolean useSmallRanges = random().nextBoolean();
-comment|// TODO: the GeoUtils APIs have bugs if you use large distances:
 name|boolean
 name|useSmallRanges
 init|=
-literal|true
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -2903,9 +2896,30 @@ name|log
 operator|.
 name|println
 argument_list|(
-literal|"  circle crosses dateline; first right query"
+literal|"  circle crosses dateline; first left query"
 argument_list|)
 expr_stmt|;
+name|double
+name|unwrappedLon
+init|=
+name|centerLon
+decl_stmt|;
+if|if
+condition|(
+name|unwrappedLon
+operator|>
+name|bbox
+operator|.
+name|maxLon
+condition|)
+block|{
+comment|// unwrap left
+name|unwrappedLon
+operator|+=
+operator|-
+literal|360.0D
+expr_stmt|;
+block|}
 name|findMatches
 argument_list|(
 name|hits
@@ -2935,7 +2949,7 @@ argument_list|,
 literal|0
 argument_list|)
 argument_list|,
-name|centerLon
+name|unwrappedLon
 argument_list|,
 name|centerLat
 argument_list|,
@@ -2950,9 +2964,24 @@ name|log
 operator|.
 name|println
 argument_list|(
-literal|"  circle crosses dateline; now left query"
+literal|"  circle crosses dateline; now right query"
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|unwrappedLon
+operator|<
+name|bbox
+operator|.
+name|maxLon
+condition|)
+block|{
+comment|// unwrap right
+name|unwrappedLon
+operator|+=
+literal|360.0D
+expr_stmt|;
+block|}
 name|findMatches
 argument_list|(
 name|hits
@@ -2981,7 +3010,7 @@ argument_list|,
 literal|0
 argument_list|)
 argument_list|,
-name|centerLon
+name|unwrappedLon
 argument_list|,
 name|centerLat
 argument_list|,
@@ -3082,7 +3111,7 @@ block|{
 name|double
 name|distanceMeters
 init|=
-name|SloppyMath
+name|GeoDistanceUtils
 operator|.
 name|haversin
 argument_list|(
@@ -3100,8 +3129,6 @@ index|[
 name|docID
 index|]
 argument_list|)
-operator|*
-literal|1000.0
 decl_stmt|;
 name|boolean
 name|expected
@@ -3140,7 +3167,9 @@ literal|"doc="
 operator|+
 name|docID
 operator|+
-literal|" matched but should not"
+literal|" matched but should not on iteration "
+operator|+
+name|iter
 argument_list|)
 expr_stmt|;
 block|}
@@ -3154,7 +3183,9 @@ literal|"doc="
 operator|+
 name|docID
 operator|+
-literal|" did not match but should"
+literal|" did not match but should on iteration "
+operator|+
+name|iter
 argument_list|)
 expr_stmt|;
 block|}

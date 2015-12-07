@@ -106,6 +106,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|GeoRelationUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|GeoUtils
 import|;
 end_import
@@ -384,7 +398,7 @@ name|maxLat
 parameter_list|)
 block|{
 return|return
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectCrossesCircle
 argument_list|(
@@ -405,6 +419,8 @@ argument_list|,
 name|query
 operator|.
 name|radiusMeters
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}
@@ -433,7 +449,7 @@ name|maxLat
 parameter_list|)
 block|{
 return|return
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectWithinCircle
 argument_list|(
@@ -454,6 +470,8 @@ argument_list|,
 name|query
 operator|.
 name|radiusMeters
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}

@@ -180,6 +180,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|GeoRelationUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|GeoUtils
 import|;
 end_import
@@ -1197,9 +1211,9 @@ name|maxLon
 condition|)
 block|{
 return|return
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
-name|bboxContains
+name|pointInRect
 argument_list|(
 name|pointLon
 argument_list|,
@@ -1227,9 +1241,9 @@ else|else
 block|{
 comment|// Rect crosses dateline:
 return|return
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
-name|bboxContains
+name|pointInRect
 argument_list|(
 name|pointLon
 argument_list|,
@@ -1251,9 +1265,9 @@ operator|.
 name|maxLat
 argument_list|)
 operator|||
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
-name|bboxContains
+name|pointInRect
 argument_list|(
 name|pointLon
 argument_list|,
@@ -1596,7 +1610,7 @@ name|Exception
 block|{
 name|assertTrue
 argument_list|(
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectCrossesCircle
 argument_list|(
@@ -1910,7 +1924,7 @@ comment|//5;
 comment|// test cell crossing poly
 name|assertTrue
 argument_list|(
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectCrossesPoly
 argument_list|(
@@ -1938,7 +1952,7 @@ argument_list|)
 expr_stmt|;
 name|assertFalse
 argument_list|(
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectCrossesPoly
 argument_list|(
@@ -1967,7 +1981,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectWithinPoly
 argument_list|(

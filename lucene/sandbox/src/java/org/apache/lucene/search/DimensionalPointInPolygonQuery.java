@@ -148,6 +148,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|GeoRelationUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|GeoUtils
 import|;
 end_import
@@ -758,7 +772,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|pointInPolygon
 argument_list|(
@@ -899,7 +913,7 @@ block|}
 elseif|else
 if|if
 condition|(
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectWithinPoly
 argument_list|(
@@ -934,7 +948,7 @@ block|}
 elseif|else
 if|if
 condition|(
-name|GeoUtils
+name|GeoRelationUtils
 operator|.
 name|rectCrossesPoly
 argument_list|(

@@ -284,6 +284,49 @@ operator|)
 operator|)
 return|;
 block|}
+comment|/**    * Returns the trigonometric sine of an angle converted as a cos operation.    *<p>    * Error is around 1E-15.    *<p>    * Special cases:    *<ul>    *<li>If the argument is {@code NaN} or an infinity, then the result is {@code NaN}.    *</ul>    * @param a an angle, in radians.    * @return the sine of the argument.    * @see Math#cos(double)    */
+DECL|method|sin
+specifier|public
+specifier|static
+name|double
+name|sin
+parameter_list|(
+name|double
+name|a
+parameter_list|)
+block|{
+return|return
+name|cos
+argument_list|(
+name|a
+operator|-
+name|PIO2
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the trigonometric tangent of an angle converted in terms of a sin/cos operation.    *<p>    * Error is around 1E-15.    *<p>    * Special cases:    *<ul>    *<li>If the argument is {@code NaN} or an infinity, then the result is {@code NaN}.    *</ul>    * @param a an angle, in radians.    * @return the tangent of the argument.    * @see Math#sin(double) aand Math#cos(double)    */
+DECL|method|tan
+specifier|public
+specifier|static
+name|double
+name|tan
+parameter_list|(
+name|double
+name|a
+parameter_list|)
+block|{
+return|return
+name|sin
+argument_list|(
+name|a
+argument_list|)
+operator|/
+name|cos
+argument_list|(
+name|a
+argument_list|)
+return|;
+block|}
 comment|/**    * Returns the arc sine of a value.    *<p>    * The returned angle is in the range<i>-pi</i>/2 through<i>pi</i>/2.     * Error is around 1E-7.    *<p>    * Special cases:    *<ul>    *<li>If the argument is {@code NaN} or its absolute value is greater than 1, then the result is {@code NaN}.    *</ul>    * @param a the value whose arc sine is to be returned.    * @return arc sine of the argument    * @see Math#asin(double)    */
 comment|// because asin(-x) = -asin(x), asin(x) only needs to be computed on [0,1].
 comment|// ---> we only have to compute asin(x) on [0,1].
@@ -622,7 +665,6 @@ return|;
 block|}
 comment|// haversin
 DECL|field|TO_RADIANS
-specifier|private
 specifier|static
 specifier|final
 name|double
@@ -633,6 +675,18 @@ operator|.
 name|PI
 operator|/
 literal|180D
+decl_stmt|;
+DECL|field|TO_DEGREES
+specifier|static
+specifier|final
+name|double
+name|TO_DEGREES
+init|=
+literal|180D
+operator|/
+name|Math
+operator|.
+name|PI
 decl_stmt|;
 comment|// cos/asin
 DECL|field|ONE_DIV_F2
@@ -667,6 +721,18 @@ init|=
 literal|1
 operator|/
 literal|24.0
+decl_stmt|;
+DECL|field|PIO2
+specifier|static
+specifier|final
+name|double
+name|PIO2
+init|=
+name|Math
+operator|.
+name|PI
+operator|/
+literal|2D
 decl_stmt|;
 DECL|field|PIO2_HI
 specifier|private
