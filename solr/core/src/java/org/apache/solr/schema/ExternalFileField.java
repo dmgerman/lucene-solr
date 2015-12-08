@@ -406,17 +406,6 @@ return|return
 name|getFileFloatSource
 argument_list|(
 name|field
-argument_list|,
-name|parser
-operator|.
-name|getReq
-argument_list|()
-operator|.
-name|getCore
-argument_list|()
-operator|.
-name|getDataDir
-argument_list|()
 argument_list|)
 return|;
 block|}
