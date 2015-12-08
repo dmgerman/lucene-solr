@@ -11391,6 +11391,27 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
+name|AssertionError
+name|ex
+parameter_list|)
+block|{
+comment|// This is fine: we tripped IW's assert that all files it's about to fsync do exist:
+name|assertTrue
+argument_list|(
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|matches
+argument_list|(
+literal|"file .* does not exist; files=\\[.*\\]"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
 name|CorruptIndexException
 name|ex
 parameter_list|)
