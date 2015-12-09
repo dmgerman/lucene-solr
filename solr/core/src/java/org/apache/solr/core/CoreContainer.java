@@ -1780,7 +1780,7 @@ name|authenticationPlugin
 init|=
 literal|null
 decl_stmt|;
-comment|// Initialize the filter
+comment|// Initialize the plugin
 if|if
 condition|(
 name|pluginClassName
@@ -1809,6 +1809,24 @@ argument_list|,
 name|AuthenticationPlugin
 operator|.
 name|class
+argument_list|,
+literal|null
+argument_list|,
+operator|new
+name|Class
+index|[]
+block|{
+name|CoreContainer
+operator|.
+name|class
+block|}
+argument_list|,
+operator|new
+name|Object
+index|[]
+block|{
+name|this
+block|}
 argument_list|)
 argument_list|)
 expr_stmt|;
