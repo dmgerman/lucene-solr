@@ -2640,31 +2640,6 @@ condition|)
 block|{
 return|return;
 block|}
-try|try
-block|{
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|5000
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|InterruptedException
-name|e1
-parameter_list|)
-block|{
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|interrupt
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 block|}
 block|}
@@ -5590,7 +5565,7 @@ name|ErrorCode
 operator|.
 name|SERVICE_UNAVAILABLE
 argument_list|,
-literal|"CoreContainer is close"
+literal|"CoreContainer is closed"
 argument_list|)
 throw|;
 block|}
@@ -8777,6 +8752,8 @@ name|String
 name|coreZkNodeName
 parameter_list|)
 block|{
+comment|// try not to wait too long here - if we are waiting too long, we should probably
+comment|// move along and join the election
 name|CloudDescriptor
 name|cloudDesc
 init|=
@@ -8809,7 +8786,7 @@ decl_stmt|;
 name|int
 name|retries
 init|=
-literal|6
+literal|2
 decl_stmt|;
 for|for
 control|(
@@ -8845,7 +8822,7 @@ literal|"We have been closed"
 argument_list|)
 throw|;
 block|}
-comment|// go straight to zk, not the cloud state - we must have current info
+comment|// go straight to zk, not the cloud state - we want current info
 name|leaderProps
 operator|=
 name|getLeaderProps
@@ -8854,7 +8831,7 @@ name|collection
 argument_list|,
 name|shard
 argument_list|,
-literal|30000
+literal|5000
 argument_list|)
 expr_stmt|;
 break|break;
@@ -9138,7 +9115,7 @@ comment|// let's retry a couple times - perhaps the leader just went down,
 comment|// or perhaps he is just not quite ready for us yet
 name|retries
 operator|=
-literal|6
+literal|2
 expr_stmt|;
 for|for
 control|(
