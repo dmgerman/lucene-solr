@@ -2642,7 +2642,7 @@ name|assertNotNull
 argument_list|(
 name|s
 operator|.
-name|asTwoPhaseIterator
+name|twoPhaseIterator
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2702,7 +2702,7 @@ name|assertNotNull
 argument_list|(
 name|s
 operator|.
-name|asTwoPhaseIterator
+name|twoPhaseIterator
 argument_list|()
 argument_list|)
 expr_stmt|;

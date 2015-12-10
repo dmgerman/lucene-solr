@@ -1267,6 +1267,9 @@ name|newDoc
 init|=
 name|scorer
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|advance
 argument_list|(
 name|doc

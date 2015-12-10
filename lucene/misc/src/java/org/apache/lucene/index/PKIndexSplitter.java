@@ -104,6 +104,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|Scorer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|TermRangeQuery
 import|;
 end_import
@@ -785,8 +799,8 @@ argument_list|)
 decl_stmt|;
 comment|// ignore livedocs here, as we filter them later:
 specifier|final
-name|DocIdSetIterator
-name|preserveIt
+name|Scorer
+name|preverveScorer
 init|=
 name|preserveWeight
 operator|.
@@ -797,7 +811,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|preserveIt
+name|preverveScorer
 operator|!=
 literal|null
 condition|)
@@ -806,7 +820,10 @@ name|bits
 operator|.
 name|or
 argument_list|(
-name|preserveIt
+name|preverveScorer
+operator|.
+name|iterator
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -80,22 +80,6 @@ name|TwoPhaseIterator
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|similarities
-operator|.
-name|Similarity
-import|;
-end_import
-
 begin_comment
 comment|/**  * Common super class for multiple sub spans required in a document.  */
 end_comment
@@ -139,23 +123,8 @@ argument_list|<
 name|Spans
 argument_list|>
 name|subSpans
-parameter_list|,
-name|SpanWeight
-name|weight
-parameter_list|,
-name|Similarity
-operator|.
-name|SimScorer
-name|docScorer
 parameter_list|)
 block|{
-name|super
-argument_list|(
-name|weight
-argument_list|,
-name|docScorer
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|subSpans
@@ -203,7 +172,7 @@ name|conjunction
 operator|=
 name|ConjunctionDISI
 operator|.
-name|intersect
+name|intersectSpans
 argument_list|(
 name|subSpans
 argument_list|)

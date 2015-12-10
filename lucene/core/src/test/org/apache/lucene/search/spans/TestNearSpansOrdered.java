@@ -1370,6 +1370,9 @@ literal|1
 argument_list|,
 name|s
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|advance
 argument_list|(
 literal|1

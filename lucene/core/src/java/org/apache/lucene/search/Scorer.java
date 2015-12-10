@@ -47,7 +47,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Common scoring functionality for different types of queries.  *  *<p>  * A<code>Scorer</code> iterates over documents matching a  * query in increasing order of doc Id.  *</p>  *<p>  * Document scores are computed using a given<code>Similarity</code>  * implementation.  *</p>  *  *<p><b>NOTE</b>: The values Float.Nan,  * Float.NEGATIVE_INFINITY and Float.POSITIVE_INFINITY are  * not valid scores.  Certain collectors (eg {@link  * TopScoreDocCollector}) will not properly collect hits  * with these scores.  */
+comment|/**  * Expert: Common scoring functionality for different types of queries.  *  *<p>  * A<code>Scorer</code> exposes an {@link #iterator()} over documents  * matching a query in increasing order of doc Id.  *</p>  *<p>  * Document scores are computed using a given<code>Similarity</code>  * implementation.  *</p>  *  *<p><b>NOTE</b>: The values Float.Nan,  * Float.NEGATIVE_INFINITY and Float.POSITIVE_INFINITY are  * not valid scores.  Certain collectors (eg {@link  * TopScoreDocCollector}) will not properly collect hits  * with these scores.  */
 end_comment
 
 begin_class
@@ -56,8 +56,6 @@ specifier|public
 specifier|abstract
 class|class
 name|Scorer
-extends|extends
-name|DocIdSetIterator
 block|{
 comment|/** the Scorer's parent Weight. in some cases this may be null */
 comment|// TODO can we clean this up?
@@ -83,7 +81,15 @@ operator|=
 name|weight
 expr_stmt|;
 block|}
-comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link #nextDoc()} or {@link #advance(int)}    * is called the first time, or when called from within    * {@link LeafCollector#collect}.    */
+comment|/**    * Returns the doc ID that is currently being scored.    * This will return {@code -1} if the {@link #iterator()} is not positioned    * or {@link DocIdSetIterator#NO_MORE_DOCS} if it has been entirely consumed.    * @see DocIdSetIterator#docID()    */
+DECL|method|docID
+specifier|public
+specifier|abstract
+name|int
+name|docID
+parameter_list|()
+function_decl|;
+comment|/** Returns the score of the current document matching the query.    * Initially invalid, until {@link DocIdSetIterator#nextDoc()} or    * {@link DocIdSetIterator#advance(int)} is called on the {@link #iterator()}    * the first time, or when called from within {@link LeafCollector#collect}.    */
 DECL|method|score
 specifier|public
 specifier|abstract
@@ -178,11 +184,19 @@ name|relationship
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Optional method: Return a {@link TwoPhaseIterator} view of this    * {@link Scorer}. A return value of {@code null} indicates that    * two-phase iteration is not supported.    *    * Note that the returned {@link TwoPhaseIterator}'s    * {@link TwoPhaseIterator#approximation() approximation} must    * advance synchronously with this iterator: advancing the approximation must    * advance this iterator and vice-versa.    *    * Implementing this method is typically useful on {@link Scorer}s    * that have a high per-document overhead in order to confirm matches.    *    * The default implementation returns {@code null}.    */
-DECL|method|asTwoPhaseIterator
+comment|/**    * Return a {@link DocIdSetIterator} over matching documents.    *    * The returned iterator will either be positioned on {@code -1} if no    * documents have been scored yet, {@link DocIdSetIterator#NO_MORE_DOCS}    * if all documents have been scored already, or the last document id that    * has been scored otherwise.    *    * The returned iterator is a view: calling this method several times will    * return iterators that have the same state.    */
+DECL|method|iterator
+specifier|public
+specifier|abstract
+name|DocIdSetIterator
+name|iterator
+parameter_list|()
+function_decl|;
+comment|/**    * Optional method: Return a {@link TwoPhaseIterator} view of this    * {@link Scorer}. A return value of {@code null} indicates that    * two-phase iteration is not supported.    *    * Note that the returned {@link TwoPhaseIterator}'s    * {@link TwoPhaseIterator#approximation() approximation} must    * advance synchronously with the {@link #iterator()}: advancing the    * approximation must advance the iterator and vice-versa.    *    * Implementing this method is typically useful on {@link Scorer}s    * that have a high per-document overhead in order to confirm matches.    *    * The default implementation returns {@code null}.    */
+DECL|method|twoPhaseIterator
 specifier|public
 name|TwoPhaseIterator
-name|asTwoPhaseIterator
+name|twoPhaseIterator
 parameter_list|()
 block|{
 return|return

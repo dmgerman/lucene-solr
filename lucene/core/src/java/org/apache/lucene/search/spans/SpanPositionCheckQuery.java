@@ -425,11 +425,6 @@ operator|new
 name|FilterSpans
 argument_list|(
 name|matchSpans
-argument_list|,
-name|getSimScorer
-argument_list|(
-name|context
-argument_list|)
 argument_list|)
 block|{
 annotation|@

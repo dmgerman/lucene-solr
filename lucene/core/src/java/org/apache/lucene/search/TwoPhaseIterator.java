@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Returned by {@link Scorer#asTwoPhaseIterator()}  * to expose an approximation of a {@link DocIdSetIterator}.  * When the {@link #approximation()}'s  * {@link DocIdSetIterator#nextDoc()} or {@link DocIdSetIterator#advance(int)}  * return, {@link #matches()} needs to be checked in order to know whether the  * returned doc ID actually matches.  * @lucene.experimental  */
+comment|/**  * Returned by {@link Scorer#twoPhaseIterator()}  * to expose an approximation of a {@link DocIdSetIterator}.  * When the {@link #approximation()}'s  * {@link DocIdSetIterator#nextDoc()} or {@link DocIdSetIterator#advance(int)}  * return, {@link #matches()} needs to be checked in order to know whether the  * returned doc ID actually matches.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -250,37 +250,6 @@ name|float
 name|matchCost
 parameter_list|()
 function_decl|;
-comment|/**    * Returns a {@link TwoPhaseIterator} for this {@link DocIdSetIterator}    * when available, otherwise returns null.    */
-DECL|method|asTwoPhaseIterator
-specifier|public
-specifier|static
-name|TwoPhaseIterator
-name|asTwoPhaseIterator
-parameter_list|(
-name|DocIdSetIterator
-name|iter
-parameter_list|)
-block|{
-return|return
-operator|(
-name|iter
-operator|instanceof
-name|Scorer
-operator|)
-condition|?
-operator|(
-operator|(
-name|Scorer
-operator|)
-name|iter
-operator|)
-operator|.
-name|asTwoPhaseIterator
-argument_list|()
-else|:
-literal|null
-return|;
-block|}
 block|}
 end_class
 

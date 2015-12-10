@@ -751,7 +751,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Scorer
+name|SpanScorer
 name|scorer
 parameter_list|(
 name|LeafReaderContext

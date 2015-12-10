@@ -820,6 +820,9 @@ literal|"next did not return a doc"
 argument_list|,
 name|ts
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|nextDoc
 argument_list|()
 operator|!=
@@ -834,6 +837,9 @@ literal|"next did not return a doc"
 argument_list|,
 name|ts
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|nextDoc
 argument_list|()
 operator|!=
@@ -847,6 +853,9 @@ argument_list|(
 literal|"next returned a doc and it should not have"
 argument_list|,
 name|ts
+operator|.
+name|iterator
+argument_list|()
 operator|.
 name|nextDoc
 argument_list|()
@@ -933,6 +942,9 @@ argument_list|(
 literal|"Didn't skip"
 argument_list|,
 name|ts
+operator|.
+name|iterator
+argument_list|()
 operator|.
 name|advance
 argument_list|(
@@ -1115,6 +1127,9 @@ name|getContext
 argument_list|()
 argument_list|)
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|nextDoc
 argument_list|()
 expr_stmt|;
@@ -1153,6 +1168,9 @@ operator|.
 name|getContext
 argument_list|()
 argument_list|)
+operator|.
+name|iterator
+argument_list|()
 operator|.
 name|nextDoc
 argument_list|()

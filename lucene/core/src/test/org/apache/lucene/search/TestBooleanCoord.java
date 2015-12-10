@@ -7276,6 +7276,9 @@ literal|0
 argument_list|,
 name|scorer
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|nextDoc
 argument_list|()
 argument_list|)

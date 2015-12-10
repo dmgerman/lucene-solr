@@ -142,20 +142,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DocIdSetIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -171,6 +157,20 @@ operator|.
 name|search
 operator|.
 name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Scorer
 import|;
 end_import
 
@@ -269,16 +269,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Ignore
 import|;
 end_import
 
@@ -606,7 +596,7 @@ literal|false
 argument_list|)
 decl_stmt|;
 specifier|final
-name|DocIdSetIterator
+name|Scorer
 name|parents
 init|=
 name|weight
@@ -633,6 +623,9 @@ operator|.
 name|of
 argument_list|(
 name|parents
+operator|.
+name|iterator
+argument_list|()
 argument_list|,
 name|reader
 operator|.

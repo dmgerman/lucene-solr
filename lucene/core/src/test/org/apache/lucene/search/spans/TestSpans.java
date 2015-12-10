@@ -2031,6 +2031,9 @@ literal|"first doc"
 argument_list|,
 name|spanScorer
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|nextDoc
 argument_list|()
 operator|!=
@@ -2086,6 +2089,9 @@ operator|==
 literal|null
 operator|||
 name|spanScorer
+operator|.
+name|iterator
+argument_list|()
 operator|.
 name|nextDoc
 argument_list|()

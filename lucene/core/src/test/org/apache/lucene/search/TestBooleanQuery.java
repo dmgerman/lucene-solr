@@ -3077,6 +3077,9 @@ while|while
 condition|(
 name|scorer
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|nextDoc
 argument_list|()
 operator|!=
@@ -3250,6 +3253,9 @@ name|nextDoc
 operator|=
 name|scorer
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|nextDoc
 argument_list|()
 expr_stmt|;
@@ -3283,6 +3289,9 @@ expr_stmt|;
 name|nextDoc
 operator|=
 name|scorer
+operator|.
+name|iterator
+argument_list|()
 operator|.
 name|advance
 argument_list|(
@@ -5154,7 +5163,7 @@ name|assertNotNull
 argument_list|(
 name|scorer
 operator|.
-name|asTwoPhaseIterator
+name|twoPhaseIterator
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5374,7 +5383,7 @@ name|assertNotNull
 argument_list|(
 name|scorer
 operator|.
-name|asTwoPhaseIterator
+name|twoPhaseIterator
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5603,7 +5612,7 @@ name|assertNotNull
 argument_list|(
 name|scorer
 operator|.
-name|asTwoPhaseIterator
+name|twoPhaseIterator
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -5823,7 +5832,7 @@ name|assertNotNull
 argument_list|(
 name|scorer
 operator|.
-name|asTwoPhaseIterator
+name|twoPhaseIterator
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -6039,7 +6048,7 @@ name|assertNotNull
 argument_list|(
 name|scorer
 operator|.
-name|asTwoPhaseIterator
+name|twoPhaseIterator
 argument_list|()
 argument_list|)
 expr_stmt|;

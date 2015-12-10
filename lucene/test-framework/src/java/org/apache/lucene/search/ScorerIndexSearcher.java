@@ -189,6 +189,15 @@ literal|null
 condition|)
 block|{
 specifier|final
+name|DocIdSetIterator
+name|iterator
+init|=
+name|scorer
+operator|.
+name|iterator
+argument_list|()
+decl_stmt|;
+specifier|final
 name|LeafCollector
 name|leafCollector
 init|=
@@ -223,7 +232,7 @@ control|(
 name|int
 name|doc
 init|=
-name|scorer
+name|iterator
 operator|.
 name|nextDoc
 argument_list|()
@@ -236,7 +245,7 @@ name|NO_MORE_DOCS
 condition|;
 name|doc
 operator|=
-name|scorer
+name|iterator
 operator|.
 name|nextDoc
 argument_list|()

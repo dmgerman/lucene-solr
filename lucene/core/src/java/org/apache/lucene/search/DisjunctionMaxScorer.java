@@ -99,9 +99,6 @@ name|float
 name|score
 parameter_list|(
 name|DisiWrapper
-argument_list|<
-name|Scorer
-argument_list|>
 name|topList
 parameter_list|)
 throws|throws
@@ -120,9 +117,6 @@ decl_stmt|;
 for|for
 control|(
 name|DisiWrapper
-argument_list|<
-name|Scorer
-argument_list|>
 name|w
 init|=
 name|topList
@@ -144,7 +138,7 @@ name|subScore
 init|=
 name|w
 operator|.
-name|iterator
+name|scorer
 operator|.
 name|score
 argument_list|()

@@ -155,9 +155,6 @@ DECL|method|TermSpans
 specifier|public
 name|TermSpans
 parameter_list|(
-name|SpanWeight
-name|weight
-parameter_list|,
 name|Similarity
 operator|.
 name|SimScorer
@@ -173,13 +170,6 @@ name|float
 name|positionsCost
 parameter_list|)
 block|{
-name|super
-argument_list|(
-name|weight
-argument_list|,
-name|scorer
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|postings

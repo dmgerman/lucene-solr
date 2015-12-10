@@ -264,7 +264,7 @@ name|twoPhase
 init|=
 name|s
 operator|.
-name|asTwoPhaseIterator
+name|twoPhaseIterator
 argument_list|()
 decl_stmt|;
 if|if
@@ -277,6 +277,9 @@ block|{
 name|exists
 operator|=
 name|s
+operator|.
+name|iterator
+argument_list|()
 operator|.
 name|advance
 argument_list|(

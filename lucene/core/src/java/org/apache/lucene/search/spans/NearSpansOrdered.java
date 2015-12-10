@@ -38,22 +38,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|similarities
-operator|.
-name|Similarity
-import|;
-end_import
-
 begin_comment
 comment|/**  * A Spans that is formed from the ordered subspans of a SpanNearQuery  * where the subspans do not overlap and have a maximum slop between them.  *<p>  * The formed spans only contains minimum slop matches.<br>  * The matching slop is computed from the distance(s) between  * the non overlapping matching Spans.<br>  * Successive matches are always formed from the successive Spans  * of the SpanNearQuery.  *<p>  * The formed spans may contain overlaps when the slop is at least 1.  * For example, when querying using  *<pre>t1 t2 t3</pre>  * with slop at least 1, the fragment:  *<pre>t1 t2 t1 t3 t2 t3</pre>  * matches twice:  *<pre>t1 t2 .. t3</pre>  *<pre>      t1 .. t2 t3</pre>  *  * Expert:  * Only public for subclassing.  Most implementations should not need this class  */
 end_comment
@@ -100,9 +84,6 @@ DECL|method|NearSpansOrdered
 specifier|public
 name|NearSpansOrdered
 parameter_list|(
-name|SpanWeight
-name|weight
-parameter_list|,
 name|int
 name|allowedSlop
 parameter_list|,
@@ -111,11 +92,6 @@ argument_list|<
 name|Spans
 argument_list|>
 name|subSpans
-parameter_list|,
-name|Similarity
-operator|.
-name|SimScorer
-name|simScorer
 parameter_list|)
 throws|throws
 name|IOException
@@ -123,10 +99,6 @@ block|{
 name|super
 argument_list|(
 name|subSpans
-argument_list|,
-name|weight
-argument_list|,
-name|simScorer
 argument_list|)
 expr_stmt|;
 name|this
@@ -583,41 +555,6 @@ name|collector
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
-name|Override
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-return|return
-literal|"NearSpansOrdered("
-operator|+
-name|weight
-operator|.
-name|getQuery
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-operator|+
-literal|")@"
-operator|+
-name|docID
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|startPosition
-argument_list|()
-operator|+
-literal|" - "
-operator|+
-name|endPosition
-argument_list|()
-return|;
 block|}
 block|}
 end_class

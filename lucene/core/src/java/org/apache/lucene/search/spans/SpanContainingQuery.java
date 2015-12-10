@@ -329,13 +329,6 @@ return|return
 operator|new
 name|ContainSpans
 argument_list|(
-name|this
-argument_list|,
-name|getSimScorer
-argument_list|(
-name|context
-argument_list|)
-argument_list|,
 name|big
 argument_list|,
 name|little

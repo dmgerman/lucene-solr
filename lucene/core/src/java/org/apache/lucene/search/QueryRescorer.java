@@ -364,6 +364,9 @@ name|actualDoc
 operator|=
 name|scorer
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|advance
 argument_list|(
 name|targetDoc

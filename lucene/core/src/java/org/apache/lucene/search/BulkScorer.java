@@ -113,7 +113,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Same as {@link Scorer#cost()} for bulk scorers.    */
+comment|/**    * Same as {@link DocIdSetIterator#cost()} for bulk scorers.    */
 DECL|method|cost
 specifier|public
 specifier|abstract

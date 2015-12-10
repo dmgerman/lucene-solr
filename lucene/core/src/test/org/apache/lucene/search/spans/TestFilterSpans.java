@@ -32,26 +32,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -93,46 +73,6 @@ throws|throws
 name|Exception
 block|{
 comment|// verify that all methods of Spans are overridden by FilterSpans,
-comment|// except those under the 'exclude' list
-name|Set
-argument_list|<
-name|Method
-argument_list|>
-name|exclude
-init|=
-operator|new
-name|HashSet
-argument_list|<>
-argument_list|()
-decl_stmt|;
-name|exclude
-operator|.
-name|add
-argument_list|(
-name|FilterSpans
-operator|.
-name|class
-operator|.
-name|getMethod
-argument_list|(
-literal|"freq"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|exclude
-operator|.
-name|add
-argument_list|(
-name|FilterSpans
-operator|.
-name|class
-operator|.
-name|getMethod
-argument_list|(
-literal|"score"
-argument_list|)
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|Method
@@ -158,7 +98,7 @@ operator|.
 name|class
 condition|)
 block|{
-name|assertTrue
+name|fail
 argument_list|(
 literal|"method "
 operator|+
@@ -168,13 +108,6 @@ name|getName
 argument_list|()
 operator|+
 literal|" not overridden!"
-argument_list|,
-name|exclude
-operator|.
-name|contains
-argument_list|(
-name|m
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

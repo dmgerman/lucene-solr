@@ -1535,6 +1535,9 @@ control|)
 block|{
 name|valSrcScorer
 operator|.
+name|iterator
+argument_list|()
+operator|.
 name|advance
 argument_list|(
 name|doc

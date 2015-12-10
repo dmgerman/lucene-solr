@@ -758,11 +758,6 @@ operator|new
 name|FilterSpans
 argument_list|(
 name|includeSpans
-argument_list|,
-name|getSimScorer
-argument_list|(
-name|context
-argument_list|)
 argument_list|)
 block|{
 comment|// last document we have checked matches() against for the exclusion, and failed
