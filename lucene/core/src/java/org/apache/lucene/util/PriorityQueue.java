@@ -12,12 +12,32 @@ name|util
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|NoSuchElementException
+import|;
+end_import
+
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
 begin_comment
-comment|/**  * A PriorityQueue maintains a partial ordering of its elements such that the  * least element can always be found in constant time. Put()'s and pop()'s  * require log(size) time but the remove() cost implemented here is linear.  *  *<p>  *<b>NOTE</b>: This class will pre-allocate a full array of length  *<code>maxSize+1</code> if instantiated via the  * {@link #PriorityQueue(int,boolean)} constructor with<code>prepopulate</code>  * set to<code>true</code>.  *   * @lucene.internal  */
+comment|/**  * A PriorityQueue maintains a partial ordering of its elements such that the  * least element can always be found in constant time. Put()'s and pop()'s  * require log(size) time but the remove() cost implemented here is linear.  *  *<p>  *<b>NOTE</b>: This class will pre-allocate a full array of length  *<code>maxSize+1</code> if instantiated via the  * {@link #PriorityQueue(int,boolean)} constructor with<code>prepopulate</code>  * set to<code>true</code>.  *  *<b>NOTE</b>: Iteration order is not specified.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -29,6 +49,11 @@ name|PriorityQueue
 parameter_list|<
 name|T
 parameter_list|>
+implements|implements
+name|Iterable
+argument_list|<
+name|T
+argument_list|>
 block|{
 DECL|field|size
 specifier|private
@@ -241,7 +266,7 @@ name|T
 name|b
 parameter_list|)
 function_decl|;
-comment|/**    * This method can be overridden by extending classes to return a sentinel    * object which will be used by the {@link PriorityQueue#PriorityQueue(int,boolean)}     * constructor to fill the queue, so that the code which uses that queue can always    * assume it's full and only change the top without attempting to insert any new    * object.<br>    *     * Those sentinel values should always compare worse than any non-sentinel    * value (i.e., {@link #lessThan} should always favor the    * non-sentinel values).<br>    *     * By default, this method returns null, which means the queue will not be    * filled with sentinel values. Otherwise, the value returned will be used to    * pre-populate the queue. Adds sentinel values to the queue.<br>    *     * If this method is extended to return a non-null value, then the following    * usage pattern is recommended:    *     *<pre class="prettyprint">    * // extends getSentinelObject() to return a non-null value.    * PriorityQueue&lt;MyObject&gt; pq = new MyQueue&lt;MyObject&gt;(numHits);    * // save the 'top' element, which is guaranteed to not be null.    * MyObject pqTop = pq.top();    *&lt;...&gt;    * // now in order to add a new element, which is 'better' than top (after     * // you've verified it is better), it is as simple as:    * pqTop.change().    * pqTop = pq.updateTop();    *</pre>    *     *<b>NOTE:</b> if this method returns a non-null value, it will be called by    * the {@link PriorityQueue#PriorityQueue(int,boolean)} constructor     * {@link #size()} times, relying on a new object to be returned and will not    * check if it's null again. Therefore you should ensure any call to this    * method creates a new instance and behaves consistently, e.g., it cannot    * return null if it previously returned non-null.    *     * @return the sentinel object to use to pre-populate the queue, or null if    *         sentinel objects are not supported.    */
+comment|/**    * This method can be overridden by extending classes to return a sentinel    * object which will be used by the {@link PriorityQueue#PriorityQueue(int,boolean)}    * constructor to fill the queue, so that the code which uses that queue can always    * assume it's full and only change the top without attempting to insert any new    * object.<br>    *    * Those sentinel values should always compare worse than any non-sentinel    * value (i.e., {@link #lessThan} should always favor the    * non-sentinel values).<br>    *    * By default, this method returns null, which means the queue will not be    * filled with sentinel values. Otherwise, the value returned will be used to    * pre-populate the queue. Adds sentinel values to the queue.<br>    *    * If this method is extended to return a non-null value, then the following    * usage pattern is recommended:    *    *<pre class="prettyprint">    * // extends getSentinelObject() to return a non-null value.    * PriorityQueue&lt;MyObject&gt; pq = new MyQueue&lt;MyObject&gt;(numHits);    * // save the 'top' element, which is guaranteed to not be null.    * MyObject pqTop = pq.top();    *&lt;...&gt;    * // now in order to add a new element, which is 'better' than top (after    * // you've verified it is better), it is as simple as:    * pqTop.change().    * pqTop = pq.updateTop();    *</pre>    *    *<b>NOTE:</b> if this method returns a non-null value, it will be called by    * the {@link PriorityQueue#PriorityQueue(int,boolean)} constructor    * {@link #size()} times, relying on a new object to be returned and will not    * check if it's null again. Therefore you should ensure any call to this    * method creates a new instance and behaves consistently, e.g., it cannot    * return null if it previously returned non-null.    *    * @return the sentinel object to use to pre-populate the queue, or null if    *         sentinel objects are not supported.    */
 DECL|method|getSentinelObject
 specifier|protected
 name|T
@@ -252,7 +277,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Adds an Object to a PriorityQueue in log(size) time. If one tries to add    * more objects than maxSize from initialize an    * {@link ArrayIndexOutOfBoundsException} is thrown.    *     * @return the new 'top' element in the queue.    */
+comment|/**    * Adds an Object to a PriorityQueue in log(size) time. If one tries to add    * more objects than maxSize from initialize an    * {@link ArrayIndexOutOfBoundsException} is thrown.    *    * @return the new 'top' element in the queue.    */
 DECL|method|add
 specifier|public
 specifier|final
@@ -440,7 +465,7 @@ literal|null
 return|;
 block|}
 block|}
-comment|/**    * Should be called when the Object at top changes values. Still log(n) worst    * case, but it's at least twice as fast to    *     *<pre class="prettyprint">    * pq.top().change();    * pq.updateTop();    *</pre>    *     * instead of    *     *<pre class="prettyprint">    * o = pq.pop();    * o.change();    * pq.push(o);    *</pre>    *     * @return the new 'top' element.    */
+comment|/**    * Should be called when the Object at top changes values. Still log(n) worst    * case, but it's at least twice as fast to    *    *<pre class="prettyprint">    * pq.top().change();    * pq.updateTop();    *</pre>    *    * instead of    *    *<pre class="prettyprint">    * o = pq.pop();    * o.change();    * pq.push(o);    *</pre>    *    * @return the new 'top' element.    */
 DECL|method|updateTop
 specifier|public
 specifier|final
@@ -857,6 +882,75 @@ name|Object
 index|[]
 operator|)
 name|heap
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|iterator
+specifier|public
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Iterator
+argument_list|<
+name|T
+argument_list|>
+argument_list|()
+block|{
+name|int
+name|i
+init|=
+literal|1
+decl_stmt|;
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|hasNext
+parameter_list|()
+block|{
+return|return
+name|i
+operator|<=
+name|size
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|T
+name|next
+parameter_list|()
+block|{
+if|if
+condition|(
+name|hasNext
+argument_list|()
+operator|==
+literal|false
+condition|)
+block|{
+throw|throw
+operator|new
+name|NoSuchElementException
+argument_list|()
+throw|;
+block|}
+return|return
+name|heap
+index|[
+name|i
+operator|++
+index|]
+return|;
+block|}
+block|}
 return|;
 block|}
 block|}
