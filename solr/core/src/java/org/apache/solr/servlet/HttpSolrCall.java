@@ -4417,7 +4417,7 @@ name|solrResp
 operator|.
 name|getToLogAsString
 argument_list|(
-literal|"[admin] "
+literal|"[admin]"
 argument_list|)
 argument_list|)
 expr_stmt|;

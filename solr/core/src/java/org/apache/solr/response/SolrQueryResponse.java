@@ -458,6 +458,24 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+name|sb
+operator|.
+name|length
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|' '
+argument_list|)
+expr_stmt|;
+block|}
 name|String
 name|name
 init|=
@@ -503,11 +521,6 @@ operator|.
 name|append
 argument_list|(
 name|val
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|' '
 argument_list|)
 expr_stmt|;
 block|}
