@@ -476,7 +476,10 @@ argument_list|<
 name|Map
 argument_list|>
 name|getMaps
-parameter_list|()
+parameter_list|(
+name|Object
+name|key
+parameter_list|)
 block|{
 return|return
 operator|(
@@ -491,7 +494,7 @@ name|fields
 operator|.
 name|get
 argument_list|(
-literal|"_MAPS_"
+name|key
 argument_list|)
 return|;
 block|}
@@ -500,6 +503,9 @@ specifier|public
 name|void
 name|setMaps
 parameter_list|(
+name|Object
+name|key
+parameter_list|,
 name|List
 argument_list|<
 name|Map
@@ -513,7 +519,7 @@ name|fields
 operator|.
 name|put
 argument_list|(
-literal|"_MAPS_"
+name|key
 argument_list|,
 name|maps
 argument_list|)
