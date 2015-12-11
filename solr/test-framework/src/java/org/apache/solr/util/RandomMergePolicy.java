@@ -153,13 +153,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link MergePolicy} with a no-arg constructor that proxies to a   * wrapped instance retrieved from {@link LuceneTestCase#newMergePolicy}.  * Solr tests utilizing the Lucene randomized test framework can refer   * to this class in solrconfig.xml to get a fully randomized merge policy.  */
+comment|/**  * A {@link MergePolicy} with a no-arg constructor that proxies to an  * instance retrieved from {@link LuceneTestCase#newMergePolicy}.  * Solr tests utilizing the Lucene randomized test framework can refer   * to this class in solrconfig.xml to get a fully randomized merge policy.  */
 end_comment
 
 begin_class
 DECL|class|RandomMergePolicy
 specifier|public
-specifier|final
 class|class
 name|RandomMergePolicy
 extends|extends
@@ -206,7 +205,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|RandomMergePolicy
-specifier|private
+specifier|protected
 name|RandomMergePolicy
 parameter_list|(
 name|MergePolicy
