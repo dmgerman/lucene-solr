@@ -18,16 +18,6 @@ end_comment
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|*
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -64,7 +54,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DoubleField
+name|LegacyDoubleField
 import|;
 end_import
 
@@ -92,7 +82,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|FloatField
+name|LegacyFloatField
 import|;
 end_import
 
@@ -106,7 +96,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|LegacyIntField
 import|;
 end_import
 
@@ -120,7 +110,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|LegacyLongField
 import|;
 end_import
 
@@ -176,7 +166,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -190,7 +180,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LuceneTestCase
 import|;
 end_import
 
@@ -644,7 +634,7 @@ name|Exception
 block|{
 name|assertNull
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMinInt
 argument_list|(
@@ -654,7 +644,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMaxInt
 argument_list|(
@@ -769,7 +759,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -819,7 +809,7 @@ argument_list|(
 name|minValue
 argument_list|)
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMinInt
 argument_list|(
@@ -835,7 +825,7 @@ argument_list|(
 name|maxValue
 argument_list|)
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMaxInt
 argument_list|(
@@ -869,7 +859,7 @@ name|Exception
 block|{
 name|assertNull
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMinLong
 argument_list|(
@@ -879,7 +869,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMaxLong
 argument_list|(
@@ -994,7 +984,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -1044,7 +1034,7 @@ argument_list|(
 name|minValue
 argument_list|)
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMinLong
 argument_list|(
@@ -1060,7 +1050,7 @@ argument_list|(
 name|maxValue
 argument_list|)
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMaxLong
 argument_list|(
@@ -1190,7 +1180,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|FloatField
+name|LegacyFloatField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -1236,11 +1226,11 @@ name|assertEquals
 argument_list|(
 name|minValue
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|sortableIntToFloat
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMinInt
 argument_list|(
@@ -1255,11 +1245,11 @@ name|assertEquals
 argument_list|(
 name|maxValue
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|sortableIntToFloat
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMaxInt
 argument_list|(
@@ -1392,7 +1382,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleField
+name|LegacyDoubleField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -1438,11 +1428,11 @@ name|assertEquals
 argument_list|(
 name|minValue
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|sortableLongToDouble
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMinLong
 argument_list|(
@@ -1457,11 +1447,11 @@ name|assertEquals
 argument_list|(
 name|maxValue
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|sortableLongToDouble
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|getMaxLong
 argument_list|(

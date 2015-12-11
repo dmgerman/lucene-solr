@@ -54,87 +54,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|analysis
-operator|.
-name|NumericTokenStream
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
-name|DoubleField
+name|FieldType
 import|;
 end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FloatField
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|IntField
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|LongField
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
 
 begin_import
 import|import
@@ -148,7 +72,7 @@ name|document
 operator|.
 name|FieldType
 operator|.
-name|NumericType
+name|LegacyNumericType
 import|;
 end_import
 
@@ -232,7 +156,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -255,15 +179,17 @@ comment|// for javadocs
 end_comment
 
 begin_comment
-comment|/**  *<p>A {@link Query} that matches numeric values within a  * specified range.  To use this, you must first index the  * numeric values using {@link IntField}, {@link  * FloatField}, {@link LongField} or {@link DoubleField} (expert: {@link  * NumericTokenStream}).  If your terms are instead textual,  * you should use {@link TermRangeQuery}.</p>  *  *<p>You create a new NumericRangeQuery with the static  * factory methods, eg:  *  *<pre class="prettyprint">  * Query q = NumericRangeQuery.newFloatRange("weight", 0.03f, 0.10f, true, true);  *</pre>  *  * matches all documents whose float valued "weight" field  * ranges from 0.03 to 0.10, inclusive.  *  *<p>The performance of NumericRangeQuery is much better  * than the corresponding {@link TermRangeQuery} because the  * number of terms that must be searched is usually far  * fewer, thanks to trie indexing, described below.</p>  *  *<p>You can optionally specify a<a  * href="#precisionStepDesc"><code>precisionStep</code></a>  * when creating this query.  This is necessary if you've  * changed this configuration from its default (4) during  * indexing.  Lower values consume more disk space but speed  * up searching.  Suitable values are between<b>1</b> and  *<b>8</b>. A good starting point to test is<b>4</b>,  * which is the default value for all<code>Numeric*</code>  * classes.  See<a href="#precisionStepDesc">below</a> for  * details.  *  *<p>This query defaults to {@linkplain  * MultiTermQuery#CONSTANT_SCORE_REWRITE}.  * With precision steps of&le;4, this query can be run with  * one of the BooleanQuery rewrite methods without changing  * BooleanQuery's default max clause count.  *  *<br><h3>How it works</h3>  *  *<p>See the publication about<a target="_blank" href="http://www.panfmp.org">panFMP</a>,  * where this algorithm was described (referred to as<code>TrieRangeQuery</code>):  *  *<blockquote><strong>Schindler, U, Diepenbroek, M</strong>, 2008.  *<em>Generic XML-based Framework for Metadata Portals.</em>  * Computers&amp; Geosciences 34 (12), 1947-1955.  *<a href="http://dx.doi.org/10.1016/j.cageo.2008.02.023"  * target="_blank">doi:10.1016/j.cageo.2008.02.023</a></blockquote>  *  *<p><em>A quote from this paper:</em> Because Apache Lucene is a full-text  * search engine and not a conventional database, it cannot handle numerical ranges  * (e.g., field value is inside user defined bounds, even dates are numerical values).  * We have developed an extension to Apache Lucene that stores  * the numerical values in a special string-encoded format with variable precision  * (all numerical values like doubles, longs, floats, and ints are converted to  * lexicographic sortable string representations and stored with different precisions  * (for a more detailed description of how the values are stored,  * see {@link NumericUtils}). A range is then divided recursively into multiple intervals for searching:  * The center of the range is searched only with the lowest possible precision in the<em>trie</em>,  * while the boundaries are matched more exactly. This reduces the number of terms dramatically.</p>  *  *<p>For the variant that stores long values in 8 different precisions (each reduced by 8 bits) that  * uses a lowest precision of 1 byte, the index contains only a maximum of 256 distinct values in the  * lowest precision. Overall, a range could consist of a theoretical maximum of  *<code>7*255*2 + 255 = 3825</code> distinct terms (when there is a term for every distinct value of an  * 8-byte-number in the index and the range covers almost all of them; a maximum of 255 distinct values is used  * because it would always be possible to reduce the full 256 values to one term with degraded precision).  * In practice, we have seen up to 300 terms in most cases (index with 500,000 metadata records  * and a uniform value distribution).</p>  *  *<h3><a name="precisionStepDesc">Precision Step</a></h3>  *<p>You can choose any<code>precisionStep</code> when encoding values.  * Lower step values mean more precisions and so more terms in index (and index gets larger). The number  * of indexed terms per value is (those are generated by {@link NumericTokenStream}):  *<p style="font-family:serif">  *&nbsp;&nbsp;indexedTermsPerValue =<b>ceil</b><big>(</big>bitsPerValue / precisionStep<big>)</big>  *</p>  * As the lower precision terms are shared by many values, the additional terms only  * slightly grow the term dictionary (approx. 7% for<code>precisionStep=4</code>), but have a larger  * impact on the postings (the postings file will have  more entries, as every document is linked to  *<code>indexedTermsPerValue</code> terms instead of one). The formula to estimate the growth  * of the term dictionary in comparison to one term per value:  *<p>  *<!-- the formula in the alt attribute was transformed from latex to PNG with http://1.618034.com/latex.php (with 110 dpi): -->  *&nbsp;&nbsp;<img src="doc-files/nrq-formula-1.png" alt="\mathrm{termDictOverhead} = \sum\limits_{i=0}^{\mathrm{indexedTermsPerValue}-1} \frac{1}{2^{\mathrm{precisionStep}\cdot i}}">  *</p>  *<p>On the other hand, if the<code>precisionStep</code> is smaller, the maximum number of terms to match reduces,  * which optimizes query speed. The formula to calculate the maximum number of terms that will be visited while  * executing the query is:  *<p>  *<!-- the formula in the alt attribute was transformed from latex to PNG with http://1.618034.com/latex.php (with 110 dpi): -->  *&nbsp;&nbsp;<img src="doc-files/nrq-formula-2.png" alt="\mathrm{maxQueryTerms} = \left[ \left( \mathrm{indexedTermsPerValue} - 1 \right) \cdot \left(2^\mathrm{precisionStep} - 1 \right) \cdot 2 \right] + \left( 2^\mathrm{precisionStep} - 1 \right)">  *</p>  *<p>For longs stored using a precision step of 4,<code>maxQueryTerms = 15*15*2 + 15 = 465</code>, and for a precision  * step of 2,<code>maxQueryTerms = 31*3*2 + 3 = 189</code>. But the faster search speed is reduced by more seeking  * in the term enum of the index. Because of this, the ideal<code>precisionStep</code> value can only  * be found out by testing.<b>Important:</b> You can index with a lower precision step value and test search speed  * using a multiple of the original step value.</p>  *  *<p>Good values for<code>precisionStep</code> are depending on usage and data type:  *<ul>  *<li>The default for all data types is<b>4</b>, which is used, when no<code>precisionStep</code> is given.  *<li>Ideal value in most cases for<em>64 bit</em> data types<em>(long, double)</em> is<b>6</b> or<b>8</b>.  *<li>Ideal value in most cases for<em>32 bit</em> data types<em>(int, float)</em> is<b>4</b>.  *<li>For low cardinality fields larger precision steps are good. If the cardinality is&lt; 100, it is  *  fair to use {@link Integer#MAX_VALUE} (see below).  *<li>Steps<b>&ge;64</b> for<em>long/double</em> and<b>&ge;32</b> for<em>int/float</em> produces one token  *  per value in the index and querying is as slow as a conventional {@link TermRangeQuery}. But it can be used  *  to produce fields, that are solely used for sorting (in this case simply use {@link Integer#MAX_VALUE} as  *<code>precisionStep</code>). Using {@link IntField},  *  {@link LongField}, {@link FloatField} or {@link DoubleField} for sorting  *  is ideal, because building the field cache is much faster than with text-only numbers.  *  These fields have one term per value and therefore also work with term enumeration for building distinct lists  *  (e.g. facets / preselected values to search for).  *  Sorting is also possible with range query optimized fields using one of the above<code>precisionSteps</code>.  *</ul>  *  *<p>Comparisons of the different types of RangeQueries on an index with about 500,000 docs showed  * that {@link TermRangeQuery} in boolean rewrite mode (with raised {@link BooleanQuery} clause count)  * took about 30-40 secs to complete, {@link TermRangeQuery} in constant score filter rewrite mode took 5 secs  * and executing this class took&lt;100ms to complete (on an Opteron64 machine, Java 1.5, 8 bit  * precision step). This query type was developed for a geographic portal, where the performance for  * e.g. bounding boxes or exact date/time stamps is important.</p>  *  * @since 2.9  **/
+comment|/**  *<p>A {@link Query} that matches numeric values within a  * specified range.  To use this, you must first index the  * numeric values using {@link org.apache.lucene.document.LegacyIntField}, {@link  * org.apache.lucene.document.LegacyFloatField}, {@link org.apache.lucene.document.LegacyLongField} or {@link org.apache.lucene.document.LegacyDoubleField} (expert: {@link  * org.apache.lucene.analysis.LegacyNumericTokenStream}).  If your terms are instead textual,  * you should use {@link TermRangeQuery}.</p>  *  *<p>You create a new LegacyNumericRangeQuery with the static  * factory methods, eg:  *  *<pre class="prettyprint">  * Query q = LegacyNumericRangeQuery.newFloatRange("weight", 0.03f, 0.10f, true, true);  *</pre>  *  * matches all documents whose float valued "weight" field  * ranges from 0.03 to 0.10, inclusive.  *  *<p>The performance of LegacyNumericRangeQuery is much better  * than the corresponding {@link TermRangeQuery} because the  * number of terms that must be searched is usually far  * fewer, thanks to trie indexing, described below.</p>  *  *<p>You can optionally specify a<a  * href="#precisionStepDesc"><code>precisionStep</code></a>  * when creating this query.  This is necessary if you've  * changed this configuration from its default (4) during  * indexing.  Lower values consume more disk space but speed  * up searching.  Suitable values are between<b>1</b> and  *<b>8</b>. A good starting point to test is<b>4</b>,  * which is the default value for all<code>Numeric*</code>  * classes.  See<a href="#precisionStepDesc">below</a> for  * details.  *  *<p>This query defaults to {@linkplain  * MultiTermQuery#CONSTANT_SCORE_REWRITE}.  * With precision steps of&le;4, this query can be run with  * one of the BooleanQuery rewrite methods without changing  * BooleanQuery's default max clause count.  *  *<br><h3>How it works</h3>  *  *<p>See the publication about<a target="_blank" href="http://www.panfmp.org">panFMP</a>,  * where this algorithm was described (referred to as<code>TrieRangeQuery</code>):  *  *<blockquote><strong>Schindler, U, Diepenbroek, M</strong>, 2008.  *<em>Generic XML-based Framework for Metadata Portals.</em>  * Computers&amp; Geosciences 34 (12), 1947-1955.  *<a href="http://dx.doi.org/10.1016/j.cageo.2008.02.023"  * target="_blank">doi:10.1016/j.cageo.2008.02.023</a></blockquote>  *  *<p><em>A quote from this paper:</em> Because Apache Lucene is a full-text  * search engine and not a conventional database, it cannot handle numerical ranges  * (e.g., field value is inside user defined bounds, even dates are numerical values).  * We have developed an extension to Apache Lucene that stores  * the numerical values in a special string-encoded format with variable precision  * (all numerical values like doubles, longs, floats, and ints are converted to  * lexicographic sortable string representations and stored with different precisions  * (for a more detailed description of how the values are stored,  * see {@link org.apache.lucene.util.LegacyNumericUtils}). A range is then divided recursively into multiple intervals for searching:  * The center of the range is searched only with the lowest possible precision in the<em>trie</em>,  * while the boundaries are matched more exactly. This reduces the number of terms dramatically.</p>  *  *<p>For the variant that stores long values in 8 different precisions (each reduced by 8 bits) that  * uses a lowest precision of 1 byte, the index contains only a maximum of 256 distinct values in the  * lowest precision. Overall, a range could consist of a theoretical maximum of  *<code>7*255*2 + 255 = 3825</code> distinct terms (when there is a term for every distinct value of an  * 8-byte-number in the index and the range covers almost all of them; a maximum of 255 distinct values is used  * because it would always be possible to reduce the full 256 values to one term with degraded precision).  * In practice, we have seen up to 300 terms in most cases (index with 500,000 metadata records  * and a uniform value distribution).</p>  *  *<h3><a name="precisionStepDesc">Precision Step</a></h3>  *<p>You can choose any<code>precisionStep</code> when encoding values.  * Lower step values mean more precisions and so more terms in index (and index gets larger). The number  * of indexed terms per value is (those are generated by {@link org.apache.lucene.analysis.LegacyNumericTokenStream}):  *<p style="font-family:serif">  *&nbsp;&nbsp;indexedTermsPerValue =<b>ceil</b><big>(</big>bitsPerValue / precisionStep<big>)</big>  *</p>  * As the lower precision terms are shared by many values, the additional terms only  * slightly grow the term dictionary (approx. 7% for<code>precisionStep=4</code>), but have a larger  * impact on the postings (the postings file will have  more entries, as every document is linked to  *<code>indexedTermsPerValue</code> terms instead of one). The formula to estimate the growth  * of the term dictionary in comparison to one term per value:  *<p>  *<!-- the formula in the alt attribute was transformed from latex to PNG with http://1.618034.com/latex.php (with 110 dpi): -->  *&nbsp;&nbsp;<img src="doc-files/nrq-formula-1.png" alt="\mathrm{termDictOverhead} = \sum\limits_{i=0}^{\mathrm{indexedTermsPerValue}-1} \frac{1}{2^{\mathrm{precisionStep}\cdot i}}">  *</p>  *<p>On the other hand, if the<code>precisionStep</code> is smaller, the maximum number of terms to match reduces,  * which optimizes query speed. The formula to calculate the maximum number of terms that will be visited while  * executing the query is:  *<p>  *<!-- the formula in the alt attribute was transformed from latex to PNG with http://1.618034.com/latex.php (with 110 dpi): -->  *&nbsp;&nbsp;<img src="doc-files/nrq-formula-2.png" alt="\mathrm{maxQueryTerms} = \left[ \left( \mathrm{indexedTermsPerValue} - 1 \right) \cdot \left(2^\mathrm{precisionStep} - 1 \right) \cdot 2 \right] + \left( 2^\mathrm{precisionStep} - 1 \right)">  *</p>  *<p>For longs stored using a precision step of 4,<code>maxQueryTerms = 15*15*2 + 15 = 465</code>, and for a precision  * step of 2,<code>maxQueryTerms = 31*3*2 + 3 = 189</code>. But the faster search speed is reduced by more seeking  * in the term enum of the index. Because of this, the ideal<code>precisionStep</code> value can only  * be found out by testing.<b>Important:</b> You can index with a lower precision step value and test search speed  * using a multiple of the original step value.</p>  *  *<p>Good values for<code>precisionStep</code> are depending on usage and data type:  *<ul>  *<li>The default for all data types is<b>4</b>, which is used, when no<code>precisionStep</code> is given.  *<li>Ideal value in most cases for<em>64 bit</em> data types<em>(long, double)</em> is<b>6</b> or<b>8</b>.  *<li>Ideal value in most cases for<em>32 bit</em> data types<em>(int, float)</em> is<b>4</b>.  *<li>For low cardinality fields larger precision steps are good. If the cardinality is&lt; 100, it is  *  fair to use {@link Integer#MAX_VALUE} (see below).  *<li>Steps<b>&ge;64</b> for<em>long/double</em> and<b>&ge;32</b> for<em>int/float</em> produces one token  *  per value in the index and querying is as slow as a conventional {@link TermRangeQuery}. But it can be used  *  to produce fields, that are solely used for sorting (in this case simply use {@link Integer#MAX_VALUE} as  *<code>precisionStep</code>). Using {@link org.apache.lucene.document.LegacyIntField},  *  {@link org.apache.lucene.document.LegacyLongField}, {@link org.apache.lucene.document.LegacyFloatField} or {@link org.apache.lucene.document.LegacyDoubleField} for sorting  *  is ideal, because building the field cache is much faster than with text-only numbers.  *  These fields have one term per value and therefore also work with term enumeration for building distinct lists  *  (e.g. facets / preselected values to search for).  *  Sorting is also possible with range query optimized fields using one of the above<code>precisionSteps</code>.  *</ul>  *  *<p>Comparisons of the different types of RangeQueries on an index with about 500,000 docs showed  * that {@link TermRangeQuery} in boolean rewrite mode (with raised {@link BooleanQuery} clause count)  * took about 30-40 secs to complete, {@link TermRangeQuery} in constant score filter rewrite mode took 5 secs  * and executing this class took&lt;100ms to complete (on an Opteron64 machine, Java 1.5, 8 bit  * precision step). This query type was developed for a geographic portal, where the performance for  * e.g. bounding boxes or exact date/time stamps is important.</p>  *  * @deprecated Please use {@link DimensionalRangeQuery} instead  *  * @since 2.9  **/
 end_comment
 
 begin_class
-DECL|class|NumericRangeQuery
+annotation|@
+name|Deprecated
+DECL|class|LegacyNumericRangeQuery
 specifier|public
 specifier|final
 class|class
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 parameter_list|<
 name|T
 extends|extends
@@ -272,9 +198,9 @@ parameter_list|>
 extends|extends
 name|MultiTermQuery
 block|{
-DECL|method|NumericRangeQuery
+DECL|method|LegacyNumericRangeQuery
 specifier|private
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 parameter_list|(
 specifier|final
 name|String
@@ -285,7 +211,7 @@ name|int
 name|precisionStep
 parameter_list|,
 specifier|final
-name|NumericType
+name|LegacyNumericType
 name|dataType
 parameter_list|,
 name|T
@@ -337,7 +263,7 @@ name|requireNonNull
 argument_list|(
 name|dataType
 argument_list|,
-literal|"NumericType must not be null"
+literal|"LegacyNumericType must not be null"
 argument_list|)
 expr_stmt|;
 name|this
@@ -365,11 +291,11 @@ operator|=
 name|maxInclusive
 expr_stmt|;
 block|}
-comment|/**    * Factory that creates a<code>NumericRangeQuery</code>, that queries a<code>long</code>    * range using the given<a href="#precisionStepDesc"><code>precisionStep</code></a>.    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>. By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
+comment|/**    * Factory that creates a<code>LegacyNumericRangeQuery</code>, that queries a<code>long</code>    * range using the given<a href="#precisionStepDesc"><code>precisionStep</code></a>.    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>. By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
 DECL|method|newLongRange
 specifier|public
 specifier|static
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<
 name|Long
 argument_list|>
@@ -400,14 +326,16 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<>
 argument_list|(
 name|field
 argument_list|,
 name|precisionStep
 argument_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|LONG
 argument_list|,
@@ -421,11 +349,11 @@ name|maxInclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * Factory that creates a<code>NumericRangeQuery</code>, that queries a<code>long</code>    * range using the default<code>precisionStep</code> {@link NumericUtils#PRECISION_STEP_DEFAULT} (16).    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>. By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
+comment|/**    * Factory that creates a<code>LegacyNumericRangeQuery</code>, that queries a<code>long</code>    * range using the default<code>precisionStep</code> {@link org.apache.lucene.util.LegacyNumericUtils#PRECISION_STEP_DEFAULT} (16).    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>. By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
 DECL|method|newLongRange
 specifier|public
 specifier|static
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<
 name|Long
 argument_list|>
@@ -452,16 +380,18 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<>
 argument_list|(
 name|field
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT
 argument_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|LONG
 argument_list|,
@@ -475,11 +405,11 @@ name|maxInclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * Factory that creates a<code>NumericRangeQuery</code>, that queries a<code>int</code>    * range using the given<a href="#precisionStepDesc"><code>precisionStep</code></a>.    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>. By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
+comment|/**    * Factory that creates a<code>LegacyNumericRangeQuery</code>, that queries a<code>int</code>    * range using the given<a href="#precisionStepDesc"><code>precisionStep</code></a>.    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>. By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
 DECL|method|newIntRange
 specifier|public
 specifier|static
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<
 name|Integer
 argument_list|>
@@ -510,14 +440,16 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<>
 argument_list|(
 name|field
 argument_list|,
 name|precisionStep
 argument_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|INT
 argument_list|,
@@ -531,11 +463,11 @@ name|maxInclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * Factory that creates a<code>NumericRangeQuery</code>, that queries a<code>int</code>    * range using the default<code>precisionStep</code> {@link NumericUtils#PRECISION_STEP_DEFAULT_32} (8).    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>. By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
+comment|/**    * Factory that creates a<code>LegacyNumericRangeQuery</code>, that queries a<code>int</code>    * range using the default<code>precisionStep</code> {@link org.apache.lucene.util.LegacyNumericUtils#PRECISION_STEP_DEFAULT_32} (8).    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>. By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
 DECL|method|newIntRange
 specifier|public
 specifier|static
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<
 name|Integer
 argument_list|>
@@ -562,16 +494,18 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<>
 argument_list|(
 name|field
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT_32
 argument_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|INT
 argument_list|,
@@ -585,11 +519,11 @@ name|maxInclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * Factory that creates a<code>NumericRangeQuery</code>, that queries a<code>double</code>    * range using the given<a href="#precisionStepDesc"><code>precisionStep</code></a>.    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>.    * {@link Double#NaN} will never match a half-open range, to hit {@code NaN} use a query    * with {@code min == max == Double.NaN}.  By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
+comment|/**    * Factory that creates a<code>LegacyNumericRangeQuery</code>, that queries a<code>double</code>    * range using the given<a href="#precisionStepDesc"><code>precisionStep</code></a>.    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>.    * {@link Double#NaN} will never match a half-open range, to hit {@code NaN} use a query    * with {@code min == max == Double.NaN}.  By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
 DECL|method|newDoubleRange
 specifier|public
 specifier|static
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<
 name|Double
 argument_list|>
@@ -620,14 +554,16 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<>
 argument_list|(
 name|field
 argument_list|,
 name|precisionStep
 argument_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|DOUBLE
 argument_list|,
@@ -641,11 +577,11 @@ name|maxInclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * Factory that creates a<code>NumericRangeQuery</code>, that queries a<code>double</code>    * range using the default<code>precisionStep</code> {@link NumericUtils#PRECISION_STEP_DEFAULT} (16).    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>.    * {@link Double#NaN} will never match a half-open range, to hit {@code NaN} use a query    * with {@code min == max == Double.NaN}.  By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
+comment|/**    * Factory that creates a<code>LegacyNumericRangeQuery</code>, that queries a<code>double</code>    * range using the default<code>precisionStep</code> {@link org.apache.lucene.util.LegacyNumericUtils#PRECISION_STEP_DEFAULT} (16).    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>.    * {@link Double#NaN} will never match a half-open range, to hit {@code NaN} use a query    * with {@code min == max == Double.NaN}.  By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
 DECL|method|newDoubleRange
 specifier|public
 specifier|static
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<
 name|Double
 argument_list|>
@@ -672,16 +608,18 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<>
 argument_list|(
 name|field
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT
 argument_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|DOUBLE
 argument_list|,
@@ -695,11 +633,11 @@ name|maxInclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * Factory that creates a<code>NumericRangeQuery</code>, that queries a<code>float</code>    * range using the given<a href="#precisionStepDesc"><code>precisionStep</code></a>.    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>.    * {@link Float#NaN} will never match a half-open range, to hit {@code NaN} use a query    * with {@code min == max == Float.NaN}.  By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
+comment|/**    * Factory that creates a<code>LegacyNumericRangeQuery</code>, that queries a<code>float</code>    * range using the given<a href="#precisionStepDesc"><code>precisionStep</code></a>.    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>.    * {@link Float#NaN} will never match a half-open range, to hit {@code NaN} use a query    * with {@code min == max == Float.NaN}.  By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
 DECL|method|newFloatRange
 specifier|public
 specifier|static
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<
 name|Float
 argument_list|>
@@ -730,14 +668,16 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<>
 argument_list|(
 name|field
 argument_list|,
 name|precisionStep
 argument_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|FLOAT
 argument_list|,
@@ -751,11 +691,11 @@ name|maxInclusive
 argument_list|)
 return|;
 block|}
-comment|/**    * Factory that creates a<code>NumericRangeQuery</code>, that queries a<code>float</code>    * range using the default<code>precisionStep</code> {@link NumericUtils#PRECISION_STEP_DEFAULT_32} (8).    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>.    * {@link Float#NaN} will never match a half-open range, to hit {@code NaN} use a query    * with {@code min == max == Float.NaN}.  By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
+comment|/**    * Factory that creates a<code>LegacyNumericRangeQuery</code>, that queries a<code>float</code>    * range using the default<code>precisionStep</code> {@link org.apache.lucene.util.LegacyNumericUtils#PRECISION_STEP_DEFAULT_32} (8).    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the min or max value to<code>null</code>.    * {@link Float#NaN} will never match a half-open range, to hit {@code NaN} use a query    * with {@code min == max == Float.NaN}.  By setting inclusive to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    */
 DECL|method|newFloatRange
 specifier|public
 specifier|static
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<
 name|Float
 argument_list|>
@@ -782,16 +722,18 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<>
 argument_list|(
 name|field
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT_32
 argument_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|FLOAT
 argument_list|,
@@ -1082,15 +1024,15 @@ if|if
 condition|(
 name|o
 operator|instanceof
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 condition|)
 block|{
 specifier|final
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 name|q
 init|=
 operator|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|)
 name|o
 decl_stmt|;
@@ -1255,7 +1197,9 @@ name|precisionStep
 decl_stmt|;
 DECL|field|dataType
 specifier|final
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 name|dataType
 decl_stmt|;
 DECL|field|min
@@ -1281,7 +1225,7 @@ specifier|final
 name|long
 name|LONG_NEGATIVE_INFINITY
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1296,7 +1240,7 @@ specifier|final
 name|long
 name|LONG_POSITIVE_INFINITY
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1311,7 +1255,7 @@ specifier|final
 name|int
 name|INT_NEGATIVE_INFINITY
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -1326,7 +1270,7 @@ specifier|final
 name|int
 name|INT_POSITIVE_INFINITY
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -1335,7 +1279,7 @@ operator|.
 name|POSITIVE_INFINITY
 argument_list|)
 decl_stmt|;
-comment|/**    * Subclass of FilteredTermsEnum for enumerating all terms that match the    * sub-ranges for trie range queries, using flex API.    *<p>    * WARNING: This term enumeration is not guaranteed to be always ordered by    * {@link Term#compareTo}.    * The ordering depends on how {@link NumericUtils#splitLongRange} and    * {@link NumericUtils#splitIntRange} generates the sub-ranges. For    * {@link MultiTermQuery} ordering is not relevant.    */
+comment|/**    * Subclass of FilteredTermsEnum for enumerating all terms that match the    * sub-ranges for trie range queries, using flex API.    *<p>    * WARNING: This term enumeration is not guaranteed to be always ordered by    * {@link Term#compareTo}.    * The ordering depends on how {@link org.apache.lucene.util.LegacyNumericUtils#splitLongRange} and    * {@link org.apache.lucene.util.LegacyNumericUtils#splitIntRange} generates the sub-ranges. For    * {@link MultiTermQuery} ordering is not relevant.    */
 DECL|class|NumericRangeTermsEnum
 specifier|private
 specifier|final
@@ -1399,7 +1343,9 @@ if|if
 condition|(
 name|dataType
 operator|==
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|LONG
 condition|)
@@ -1427,7 +1373,9 @@ block|{
 assert|assert
 name|dataType
 operator|==
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|DOUBLE
 assert|;
@@ -1441,7 +1389,7 @@ operator|)
 condition|?
 name|LONG_NEGATIVE_INFINITY
 else|:
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1483,7 +1431,9 @@ if|if
 condition|(
 name|dataType
 operator|==
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|LONG
 condition|)
@@ -1511,7 +1461,9 @@ block|{
 assert|assert
 name|dataType
 operator|==
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|DOUBLE
 assert|;
@@ -1525,7 +1477,7 @@ operator|)
 condition|?
 name|LONG_POSITIVE_INFINITY
 else|:
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1559,12 +1511,12 @@ name|maxBound
 operator|--
 expr_stmt|;
 block|}
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|splitLongRange
 argument_list|(
 operator|new
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|LongRangeBuilder
 argument_list|()
@@ -1624,7 +1576,9 @@ if|if
 condition|(
 name|dataType
 operator|==
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|INT
 condition|)
@@ -1652,7 +1606,9 @@ block|{
 assert|assert
 name|dataType
 operator|==
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|FLOAT
 assert|;
@@ -1666,7 +1622,7 @@ operator|)
 condition|?
 name|INT_NEGATIVE_INFINITY
 else|:
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -1708,7 +1664,7 @@ if|if
 condition|(
 name|dataType
 operator|==
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|INT
 condition|)
@@ -1736,7 +1692,9 @@ block|{
 assert|assert
 name|dataType
 operator|==
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|FLOAT
 assert|;
@@ -1750,7 +1708,7 @@ operator|)
 condition|?
 name|INT_POSITIVE_INFINITY
 else|:
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -1784,12 +1742,12 @@ name|maxBound
 operator|--
 expr_stmt|;
 block|}
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|splitIntRange
 argument_list|(
 operator|new
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|IntRangeBuilder
 argument_list|()
@@ -1840,7 +1798,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid NumericType"
+literal|"Invalid LegacyNumericType"
 argument_list|)
 throw|;
 block|}

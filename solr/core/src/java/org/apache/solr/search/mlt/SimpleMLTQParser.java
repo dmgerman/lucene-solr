@@ -170,7 +170,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -1247,12 +1247,12 @@ name|bytesRefBuilder
 operator|.
 name|grow
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|BUF_SIZE_INT
 argument_list|)
 expr_stmt|;
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|intToPrefixCoded
 argument_list|(

@@ -30,7 +30,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 import|;
 end_import
 
@@ -58,7 +58,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -123,14 +123,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates a {@link NumericRangeQuery}. The table below specifies the required  * attributes and the defaults if optional attributes are omitted. For more  * detail on what each of the attributes actually do, consult the documentation  * for {@link NumericRangeQuery}:  *<table summary="supported attributes">  *<tr>  *<th>Attribute name</th>  *<th>Values</th>  *<th>Required</th>  *<th>Default</th>  *</tr>  *<tr>  *<td>fieldName</td>  *<td>String</td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>lowerTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>upperTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>type</td>  *<td>int, long, float, double</td>  *<td>No</td>  *<td>int</td>  *</tr>  *<tr>  *<td>includeLower</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>includeUpper</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>precisionStep</td>  *<td>Integer</td>  *<td>No</td>  *<td>4</td>  *</tr>  *</table>  *<p>  * A {@link ParserException} will be thrown if an error occurs parsing the  * supplied<tt>lowerTerm</tt> or<tt>upperTerm</tt> into the numeric type  * specified by<tt>type</tt>.  */
+comment|/**  * Creates a {@link org.apache.lucene.search.LegacyNumericRangeQuery}. The table below specifies the required  * attributes and the defaults if optional attributes are omitted. For more  * detail on what each of the attributes actually do, consult the documentation  * for {@link org.apache.lucene.search.LegacyNumericRangeQuery}:  *<table summary="supported attributes">  *<tr>  *<th>Attribute name</th>  *<th>Values</th>  *<th>Required</th>  *<th>Default</th>  *</tr>  *<tr>  *<td>fieldName</td>  *<td>String</td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>lowerTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>upperTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>type</td>  *<td>int, long, float, double</td>  *<td>No</td>  *<td>int</td>  *</tr>  *<tr>  *<td>includeLower</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>includeUpper</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>precisionStep</td>  *<td>Integer</td>  *<td>No</td>  *<td>4</td>  *</tr>  *</table>  *<p>  * A {@link ParserException} will be thrown if an error occurs parsing the  * supplied<tt>lowerTerm</tt> or<tt>upperTerm</tt> into the numeric type  * specified by<tt>type</tt>.  */
 end_comment
 
 begin_class
-DECL|class|NumericRangeQueryBuilder
+DECL|class|LegacyNumericRangeQueryBuilder
 specifier|public
 class|class
-name|NumericRangeQueryBuilder
+name|LegacyNumericRangeQueryBuilder
 implements|implements
 name|QueryBuilder
 block|{
@@ -222,7 +222,7 @@ name|e
 argument_list|,
 literal|"precisionStep"
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT
 argument_list|)
@@ -258,7 +258,7 @@ condition|)
 block|{
 name|filter
 operator|=
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -299,7 +299,7 @@ condition|)
 block|{
 name|filter
 operator|=
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newLongRange
 argument_list|(
@@ -340,7 +340,7 @@ condition|)
 block|{
 name|filter
 operator|=
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newDoubleRange
 argument_list|(
@@ -381,7 +381,7 @@ condition|)
 block|{
 name|filter
 operator|=
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newFloatRange
 argument_list|(

@@ -1766,6 +1766,68 @@ name|int
 name|dimensionNumBytes
 parameter_list|)
 block|{
+if|if
+condition|(
+name|dimensionNumBytes
+operator|>
+name|DimensionalValues
+operator|.
+name|MAX_NUM_BYTES
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"dimension numBytes must be<= DimensionalValues.MAX_NUM_BYTES (= "
+operator|+
+name|DimensionalValues
+operator|.
+name|MAX_NUM_BYTES
+operator|+
+literal|"); got "
+operator|+
+name|dimensionNumBytes
+operator|+
+literal|" for field=\""
+operator|+
+name|name
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|dimensionCount
+operator|>
+name|DimensionalValues
+operator|.
+name|MAX_DIMENSIONS
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"dimensionCount must be<= DimensionalValues.MAX_DIMENSIONS (= "
+operator|+
+name|DimensionalValues
+operator|.
+name|MAX_DIMENSIONS
+operator|+
+literal|"); got "
+operator|+
+name|dimensionCount
+operator|+
+literal|" for field=\""
+operator|+
+name|name
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+block|}
 name|verifyConsistentDimensions
 argument_list|(
 name|number

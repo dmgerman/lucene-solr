@@ -98,81 +98,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|DoubleField
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FloatField
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|IntField
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|LongField
-import|;
-end_import
-
-begin_comment
-comment|// for javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|NumericRangeQuery
+name|DimensionalValues
 import|;
 end_import
 
@@ -270,20 +198,22 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
 begin_comment
-comment|/**  *<b>Expert:</b> This class provides a {@link TokenStream}  * for indexing numeric values that can be used by {@link  * NumericRangeQuery}.  *  *<p>Note that for simple usage, {@link IntField}, {@link  * LongField}, {@link FloatField} or {@link DoubleField} is  * recommended.  These fields disable norms and  * term freqs, as they are not usually needed during  * searching.  If you need to change these settings, you  * should use this class.  *  *<p>Here's an example usage, for an<code>int</code> field:  *  *<pre class="prettyprint">  *  FieldType fieldType = new FieldType(TextField.TYPE_NOT_STORED);  *  fieldType.setOmitNorms(true);  *  fieldType.setIndexOptions(IndexOptions.DOCS_ONLY);  *  Field field = new Field(name, new NumericTokenStream(precisionStep).setIntValue(value), fieldType);  *  document.add(field);  *</pre>  *  *<p>For optimal performance, re-use the TokenStream and Field instance  * for more than one document:  *  *<pre class="prettyprint">  *  NumericTokenStream stream = new NumericTokenStream(precisionStep);  *  FieldType fieldType = new FieldType(TextField.TYPE_NOT_STORED);  *  fieldType.setOmitNorms(true);  *  fieldType.setIndexOptions(IndexOptions.DOCS_ONLY);  *  Field field = new Field(name, stream, fieldType);  *  Document document = new Document();  *  document.add(field);  *  *  for(all documents) {  *    stream.setIntValue(value)  *    writer.addDocument(document);  *  }  *</pre>  *  *<p>This stream is not intended to be used in analyzers;  * it's more for iterating the different precisions during  * indexing a specific numeric value.</p>   *<p><b>NOTE</b>: as token streams are only consumed once  * the document is added to the index, if you index more  * than one numeric field, use a separate<code>NumericTokenStream</code>  * instance for each.</p>  *  *<p>See {@link NumericRangeQuery} for more details on the  *<a  * href="../search/NumericRangeQuery.html#precisionStepDesc"><code>precisionStep</code></a>  * parameter as well as how numeric fields work under the hood.</p>  *  * @since 2.9  */
+comment|/**  *<b>Expert:</b> This class provides a {@link TokenStream}  * for indexing numeric values that can be used by {@link  * org.apache.lucene.search.LegacyNumericRangeQuery}.  *  *<p>Note that for simple usage, {@link org.apache.lucene.document.LegacyIntField}, {@link  * org.apache.lucene.document.LegacyLongField}, {@link org.apache.lucene.document.LegacyFloatField} or {@link org.apache.lucene.document.LegacyDoubleField} is  * recommended.  These fields disable norms and  * term freqs, as they are not usually needed during  * searching.  If you need to change these settings, you  * should use this class.  *  *<p>Here's an example usage, for an<code>int</code> field:  *  *<pre class="prettyprint">  *  FieldType fieldType = new FieldType(TextField.TYPE_NOT_STORED);  *  fieldType.setOmitNorms(true);  *  fieldType.setIndexOptions(IndexOptions.DOCS_ONLY);  *  Field field = new Field(name, new LegacyNumericTokenStream(precisionStep).setIntValue(value), fieldType);  *  document.add(field);  *</pre>  *  *<p>For optimal performance, re-use the TokenStream and Field instance  * for more than one document:  *  *<pre class="prettyprint">  *  LegacyNumericTokenStream stream = new LegacyNumericTokenStream(precisionStep);  *  FieldType fieldType = new FieldType(TextField.TYPE_NOT_STORED);  *  fieldType.setOmitNorms(true);  *  fieldType.setIndexOptions(IndexOptions.DOCS_ONLY);  *  Field field = new Field(name, stream, fieldType);  *  Document document = new Document();  *  document.add(field);  *  *  for(all documents) {  *    stream.setIntValue(value)  *    writer.addDocument(document);  *  }  *</pre>  *  *<p>This stream is not intended to be used in analyzers;  * it's more for iterating the different precisions during  * indexing a specific numeric value.</p>   *<p><b>NOTE</b>: as token streams are only consumed once  * the document is added to the index, if you index more  * than one numeric field, use a separate<code>LegacyNumericTokenStream</code>  * instance for each.</p>  *  *<p>See {@link org.apache.lucene.search.LegacyNumericRangeQuery} for more details on the  *<a  * href="../search/LegacyNumericRangeQuery.html#precisionStepDesc"><code>precisionStep</code></a>  * parameter as well as how numeric fields work under the hood.</p>  *  * @deprecated Please switch to {@link DimensionalValues} instead  *  * @since 2.9  */
 end_comment
 
 begin_class
-DECL|class|NumericTokenStream
+annotation|@
+name|Deprecated
+DECL|class|LegacyNumericTokenStream
 specifier|public
 specifier|final
 class|class
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 extends|extends
 name|TokenStream
 block|{
@@ -308,10 +238,10 @@ init|=
 literal|"lowerPrecNumeric"
 decl_stmt|;
 comment|/**<b>Expert:</b> Use this attribute to get the details of the currently generated token.    * @lucene.experimental    * @since 4.0    */
-DECL|interface|NumericTermAttribute
+DECL|interface|LegacyNumericTermAttribute
 specifier|public
 interface|interface
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 extends|extends
 name|Attribute
 block|{
@@ -428,7 +358,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"NumericTokenStream does not support CharTermAttribute."
+literal|"LegacyNumericTokenStream does not support CharTermAttribute."
 argument_list|)
 throw|;
 return|return
@@ -441,17 +371,17 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Implementation of {@link NumericTermAttribute}.    * @lucene.internal    * @since 4.0    */
-DECL|class|NumericTermAttributeImpl
+comment|/** Implementation of {@link org.apache.lucene.analysis.LegacyNumericTokenStream.LegacyNumericTermAttribute}.    * @lucene.internal    * @since 4.0    */
+DECL|class|LegacyNumericTermAttributeImpl
 specifier|public
 specifier|static
 specifier|final
 class|class
-name|NumericTermAttributeImpl
+name|LegacyNumericTermAttributeImpl
 extends|extends
 name|AttributeImpl
 implements|implements
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 implements|,
 name|TermToBytesRefAttribute
 block|{
@@ -489,9 +419,9 @@ name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
 comment|/**       * Creates, but does not yet initialize this attribute instance      * @see #init(long, int, int, int)      */
-DECL|method|NumericTermAttributeImpl
+DECL|method|LegacyNumericTermAttributeImpl
 specifier|public
-name|NumericTermAttributeImpl
+name|LegacyNumericTermAttributeImpl
 parameter_list|()
 block|{}
 annotation|@
@@ -518,7 +448,7 @@ operator|==
 literal|64
 condition|)
 block|{
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|longToPrefixCoded
 argument_list|(
@@ -532,7 +462,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|intToPrefixCoded
 argument_list|(
@@ -720,7 +650,7 @@ name|reflector
 operator|.
 name|reflect
 argument_list|(
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 operator|.
 name|class
 argument_list|,
@@ -733,7 +663,7 @@ name|reflector
 operator|.
 name|reflect
 argument_list|(
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 operator|.
 name|class
 argument_list|,
@@ -747,7 +677,7 @@ name|reflector
 operator|.
 name|reflect
 argument_list|(
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 operator|.
 name|class
 argument_list|,
@@ -769,11 +699,11 @@ name|target
 parameter_list|)
 block|{
 specifier|final
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 name|a
 init|=
 operator|(
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 operator|)
 name|target
 decl_stmt|;
@@ -795,15 +725,15 @@ annotation|@
 name|Override
 DECL|method|clone
 specifier|public
-name|NumericTermAttributeImpl
+name|LegacyNumericTermAttributeImpl
 name|clone
 parameter_list|()
 block|{
-name|NumericTermAttributeImpl
+name|LegacyNumericTermAttributeImpl
 name|t
 init|=
 operator|(
-name|NumericTermAttributeImpl
+name|LegacyNumericTermAttributeImpl
 operator|)
 name|super
 operator|.
@@ -898,11 +828,11 @@ condition|)
 return|return
 literal|false
 return|;
-name|NumericTermAttributeImpl
+name|LegacyNumericTermAttributeImpl
 name|other
 init|=
 operator|(
-name|NumericTermAttributeImpl
+name|LegacyNumericTermAttributeImpl
 operator|)
 name|obj
 decl_stmt|;
@@ -955,10 +885,10 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**    * Creates a token stream for numeric values using the default<code>precisionStep</code>    * {@link NumericUtils#PRECISION_STEP_DEFAULT} (16). The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
-DECL|method|NumericTokenStream
+comment|/**    * Creates a token stream for numeric values using the default<code>precisionStep</code>    * {@link org.apache.lucene.util.LegacyNumericUtils#PRECISION_STEP_DEFAULT} (16). The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
+DECL|method|LegacyNumericTokenStream
 specifier|public
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 parameter_list|()
 block|{
 name|this
@@ -967,16 +897,16 @@ name|AttributeFactory
 operator|.
 name|DEFAULT_ATTRIBUTE_FACTORY
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT
 argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates a token stream for numeric values with the specified    *<code>precisionStep</code>. The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
-DECL|method|NumericTokenStream
+DECL|method|LegacyNumericTokenStream
 specifier|public
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 parameter_list|(
 specifier|final
 name|int
@@ -994,9 +924,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Expert: Creates a token stream for numeric values with the specified    *<code>precisionStep</code> using the given    * {@link org.apache.lucene.util.AttributeFactory}.    * The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
-DECL|method|NumericTokenStream
+DECL|method|LegacyNumericTokenStream
 specifier|public
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 parameter_list|(
 name|AttributeFactory
 name|factory
@@ -1043,10 +973,10 @@ name|precisionStep
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Initializes the token stream with the supplied<code>long</code> value.    * @param value the value, for which this TokenStream should enumerate tokens.    * @return this instance, because of this you can use it the following way:    *<code>new Field(name, new NumericTokenStream(precisionStep).setLongValue(value))</code>    */
+comment|/**    * Initializes the token stream with the supplied<code>long</code> value.    * @param value the value, for which this TokenStream should enumerate tokens.    * @return this instance, because of this you can use it the following way:    *<code>new Field(name, new LegacyNumericTokenStream(precisionStep).setLongValue(value))</code>    */
 DECL|method|setLongValue
 specifier|public
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 name|setLongValue
 parameter_list|(
 specifier|final
@@ -1074,10 +1004,10 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Initializes the token stream with the supplied<code>int</code> value.    * @param value the value, for which this TokenStream should enumerate tokens.    * @return this instance, because of this you can use it the following way:    *<code>new Field(name, new NumericTokenStream(precisionStep).setIntValue(value))</code>    */
+comment|/**    * Initializes the token stream with the supplied<code>int</code> value.    * @param value the value, for which this TokenStream should enumerate tokens.    * @return this instance, because of this you can use it the following way:    *<code>new Field(name, new LegacyNumericTokenStream(precisionStep).setIntValue(value))</code>    */
 DECL|method|setIntValue
 specifier|public
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 name|setIntValue
 parameter_list|(
 specifier|final
@@ -1105,10 +1035,10 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Initializes the token stream with the supplied<code>double</code> value.    * @param value the value, for which this TokenStream should enumerate tokens.    * @return this instance, because of this you can use it the following way:    *<code>new Field(name, new NumericTokenStream(precisionStep).setDoubleValue(value))</code>    */
+comment|/**    * Initializes the token stream with the supplied<code>double</code> value.    * @param value the value, for which this TokenStream should enumerate tokens.    * @return this instance, because of this you can use it the following way:    *<code>new Field(name, new LegacyNumericTokenStream(precisionStep).setDoubleValue(value))</code>    */
 DECL|method|setDoubleValue
 specifier|public
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 name|setDoubleValue
 parameter_list|(
 specifier|final
@@ -1120,7 +1050,7 @@ name|numericAtt
 operator|.
 name|init
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1141,10 +1071,10 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Initializes the token stream with the supplied<code>float</code> value.    * @param value the value, for which this TokenStream should enumerate tokens.    * @return this instance, because of this you can use it the following way:    *<code>new Field(name, new NumericTokenStream(precisionStep).setFloatValue(value))</code>    */
+comment|/**    * Initializes the token stream with the supplied<code>float</code> value.    * @param value the value, for which this TokenStream should enumerate tokens.    * @return this instance, because of this you can use it the following way:    *<code>new Field(name, new LegacyNumericTokenStream(precisionStep).setFloatValue(value))</code>    */
 DECL|method|setFloatValue
 specifier|public
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 name|setFloatValue
 parameter_list|(
 specifier|final
@@ -1156,7 +1086,7 @@ name|numericAtt
 operator|.
 name|init
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -1331,12 +1261,12 @@ comment|// members
 DECL|field|numericAtt
 specifier|private
 specifier|final
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 name|numericAtt
 init|=
 name|addAttribute
 argument_list|(
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 operator|.
 name|class
 argument_list|)

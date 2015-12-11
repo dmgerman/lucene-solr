@@ -20,6 +20,16 @@ end_comment
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -28,7 +38,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|NumericTokenStream
+name|CannedTokenStream
 import|;
 end_import
 
@@ -61,16 +71,6 @@ operator|.
 name|util
 operator|.
 name|TokenFilterFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
 import|;
 end_import
 
@@ -226,20 +226,13 @@ argument_list|,
 literal|"stoptypes-1.txt, stoptypes-2.txt"
 argument_list|)
 decl_stmt|;
-name|NumericTokenStream
+name|CannedTokenStream
 name|input
 init|=
 operator|new
-name|NumericTokenStream
+name|CannedTokenStream
 argument_list|()
 decl_stmt|;
-name|input
-operator|.
-name|setIntValue
-argument_list|(
-literal|123
-argument_list|)
-expr_stmt|;
 name|factory
 operator|.
 name|create
@@ -272,20 +265,13 @@ argument_list|,
 literal|"true"
 argument_list|)
 decl_stmt|;
-name|NumericTokenStream
+name|CannedTokenStream
 name|input
 init|=
 operator|new
-name|NumericTokenStream
+name|CannedTokenStream
 argument_list|()
 decl_stmt|;
-name|input
-operator|.
-name|setIntValue
-argument_list|(
-literal|123
-argument_list|)
-expr_stmt|;
 name|factory
 operator|.
 name|create

@@ -320,7 +320,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|LegacyIntField
 import|;
 end_import
 
@@ -334,7 +334,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|LegacyLongField
 import|;
 end_import
 
@@ -476,7 +476,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 import|;
 end_import
 
@@ -672,6 +672,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|LegacyNumericUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LineFileDocs
 import|;
 end_import
@@ -687,20 +701,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|NumericUtils
 import|;
 end_import
 
@@ -6269,7 +6269,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"trieInt"
 argument_list|,
@@ -6288,7 +6288,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"trieLong"
 argument_list|,
@@ -7512,13 +7512,13 @@ name|searcher
 operator|.
 name|search
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
 literal|"trieInt"
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT_32
 argument_list|,
@@ -7595,13 +7595,13 @@ name|searcher
 operator|.
 name|search
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newLongRange
 argument_list|(
 literal|"trieLong"
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT
 argument_list|,
@@ -7681,13 +7681,13 @@ name|searcher
 operator|.
 name|search
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
 literal|"trieInt"
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT_32
 argument_list|,
@@ -7726,13 +7726,13 @@ name|searcher
 operator|.
 name|search
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newLongRange
 argument_list|(
 literal|"trieLong"
 argument_list|,
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT
 argument_list|,
@@ -7784,7 +7784,7 @@ decl_stmt|;
 name|TermsEnum
 name|termsEnum
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|filterPrefixCodedInts
 argument_list|(
@@ -7807,7 +7807,7 @@ block|{
 name|int
 name|val
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToInt
 argument_list|(
@@ -7847,7 +7847,7 @@ argument_list|)
 expr_stmt|;
 name|termsEnum
 operator|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|filterPrefixCodedLongs
 argument_list|(
@@ -7870,7 +7870,7 @@ block|{
 name|long
 name|val
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToLong
 argument_list|(

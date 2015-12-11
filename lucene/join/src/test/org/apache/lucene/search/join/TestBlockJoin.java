@@ -117,20 +117,6 @@ operator|.
 name|document
 operator|.
 name|Field
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
 operator|.
 name|Store
 import|;
@@ -146,7 +132,21 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|Field
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|LegacyIntField
 import|;
 end_import
 
@@ -399,6 +399,8 @@ operator|.
 name|search
 operator|.
 name|BooleanClause
+operator|.
+name|Occur
 import|;
 end_import
 
@@ -413,8 +415,6 @@ operator|.
 name|search
 operator|.
 name|BooleanClause
-operator|.
-name|Occur
 import|;
 end_import
 
@@ -512,6 +512,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|LegacyNumericRangeQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|MatchAllDocsQuery
 import|;
 end_import
@@ -541,20 +555,6 @@ operator|.
 name|search
 operator|.
 name|MultiTermQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|NumericRangeQuery
 import|;
 end_import
 
@@ -824,7 +824,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -838,7 +838,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LuceneTestCase
 import|;
 end_import
 
@@ -985,7 +985,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"year"
 argument_list|,
@@ -1059,7 +1059,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"year"
 argument_list|,
@@ -1338,7 +1338,7 @@ argument_list|(
 operator|new
 name|BooleanClause
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -1814,7 +1814,7 @@ argument_list|(
 operator|new
 name|BooleanClause
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -2426,7 +2426,7 @@ decl_stmt|;
 name|MultiTermQuery
 name|qc
 init|=
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -2953,7 +2953,7 @@ argument_list|(
 operator|new
 name|BooleanClause
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -4392,7 +4392,7 @@ name|Field
 name|id
 init|=
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"parentID"
 argument_list|,
@@ -4603,7 +4603,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"blockID"
 argument_list|,
@@ -4622,7 +4622,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"blockID"
 argument_list|,
@@ -4804,7 +4804,7 @@ name|Field
 name|childID
 init|=
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"childID"
 argument_list|,
@@ -5074,7 +5074,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"blockID"
 argument_list|,
@@ -5168,7 +5168,7 @@ name|deleteID
 argument_list|)
 expr_stmt|;
 block|}
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|intToPrefixCodedBytes
 argument_list|(
@@ -8696,7 +8696,7 @@ argument_list|(
 operator|new
 name|BooleanClause
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -8760,7 +8760,7 @@ argument_list|(
 operator|new
 name|BooleanClause
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -9974,7 +9974,7 @@ argument_list|(
 operator|new
 name|BooleanClause
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -13970,7 +13970,7 @@ init|=
 operator|new
 name|ToChildBlockJoinQuery
 argument_list|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(

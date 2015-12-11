@@ -233,7 +233,7 @@ name|assertTrue
 argument_list|(
 name|q
 operator|instanceof
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|)
 expr_stmt|;
 block|}

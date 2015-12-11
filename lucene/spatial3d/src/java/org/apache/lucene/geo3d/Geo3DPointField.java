@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|RamUsageEstimator
+name|NumericUtils
 import|;
 end_import
 
@@ -82,9 +82,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|bkd
-operator|.
-name|BKDUtil
+name|RamUsageEstimator
 import|;
 end_import
 
@@ -264,7 +262,7 @@ index|[
 literal|12
 index|]
 decl_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|intToBytes
 argument_list|(
@@ -282,7 +280,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|intToBytes
 argument_list|(
@@ -300,7 +298,7 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|intToBytes
 argument_list|(

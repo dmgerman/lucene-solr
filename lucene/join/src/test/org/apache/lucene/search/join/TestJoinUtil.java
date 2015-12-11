@@ -222,7 +222,7 @@ name|document
 operator|.
 name|FieldType
 operator|.
-name|NumericType
+name|LegacyNumericType
 import|;
 end_import
 
@@ -236,7 +236,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|LegacyIntField
 import|;
 end_import
 
@@ -250,7 +250,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|LegacyLongField
 import|;
 end_import
 
@@ -7892,7 +7892,7 @@ condition|)
 block|{
 comment|// numbers
 specifier|final
-name|NumericType
+name|LegacyNumericType
 name|numType
 init|=
 name|random
@@ -7901,11 +7901,11 @@ operator|.
 name|nextBoolean
 argument_list|()
 condition|?
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|INT
 else|:
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 decl_stmt|;
@@ -10379,11 +10379,11 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 name|fieldName
 operator|+
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|INT
 argument_list|,
@@ -10412,11 +10412,11 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 name|fieldName
 operator|+
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 argument_list|,
@@ -10461,7 +10461,7 @@ name|SortedNumericDocValuesField
 argument_list|(
 name|fieldName
 operator|+
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|INT
 argument_list|,
@@ -10478,7 +10478,7 @@ name|SortedNumericDocValuesField
 argument_list|(
 name|fieldName
 operator|+
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 argument_list|,
@@ -10515,7 +10515,7 @@ name|NumericDocValuesField
 argument_list|(
 name|fieldName
 operator|+
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|INT
 argument_list|,
@@ -10532,7 +10532,7 @@ name|NumericDocValuesField
 argument_list|(
 name|fieldName
 operator|+
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 argument_list|,

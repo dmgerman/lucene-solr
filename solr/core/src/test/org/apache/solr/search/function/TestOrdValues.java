@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|FloatField
+name|LegacyFloatField
 import|;
 end_import
 
@@ -112,7 +112,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|LegacyIntField
 import|;
 end_import
 
@@ -1641,7 +1641,7 @@ expr_stmt|;
 name|f
 operator|=
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 name|INT_FIELD
 argument_list|,
@@ -1676,7 +1676,7 @@ expr_stmt|;
 name|f
 operator|=
 operator|new
-name|FloatField
+name|LegacyFloatField
 argument_list|(
 name|FLOAT_FIELD
 argument_list|,

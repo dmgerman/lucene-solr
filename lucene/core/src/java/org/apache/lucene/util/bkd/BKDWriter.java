@@ -280,9 +280,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OfflineSorter
-operator|.
-name|ByteSequencesWriter
+name|NumericUtils
 import|;
 end_import
 
@@ -297,6 +295,22 @@ operator|.
 name|util
 operator|.
 name|OfflineSorter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|OfflineSorter
+operator|.
+name|ByteSequencesWriter
 import|;
 end_import
 
@@ -456,7 +470,7 @@ specifier|final
 name|int
 name|MAX_DIMS
 init|=
-literal|255
+literal|8
 decl_stmt|;
 comment|/** How many dimensions we are indexing */
 DECL|field|numDims
@@ -2791,7 +2805,7 @@ assert|;
 name|int
 name|cmp
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -3113,7 +3127,7 @@ decl_stmt|;
 name|int
 name|cmp
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -3473,7 +3487,7 @@ decl_stmt|;
 name|int
 name|cmp
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -4834,7 +4848,7 @@ control|)
 block|{
 if|if
 condition|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -4858,7 +4872,7 @@ return|;
 block|}
 if|if
 condition|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -4922,7 +4936,7 @@ name|dim
 operator|++
 control|)
 block|{
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|subtract
 argument_list|(
@@ -4944,7 +4958,7 @@ operator|==
 operator|-
 literal|1
 operator|||
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -6180,7 +6194,7 @@ name|ord
 operator|>
 literal|0
 operator|&&
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(

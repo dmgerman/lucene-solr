@@ -192,7 +192,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DoubleField
+name|LegacyDoubleField
 import|;
 end_import
 
@@ -222,7 +222,7 @@ name|document
 operator|.
 name|FieldType
 operator|.
-name|NumericType
+name|LegacyNumericType
 import|;
 end_import
 
@@ -250,7 +250,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|FloatField
+name|LegacyFloatField
 import|;
 end_import
 
@@ -264,7 +264,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|LegacyIntField
 import|;
 end_import
 
@@ -278,7 +278,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|LegacyLongField
 import|;
 end_import
 
@@ -1176,7 +1176,7 @@ name|randomNumberMap
 operator|.
 name|put
 argument_list|(
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 operator|.
@@ -1190,7 +1190,9 @@ name|randomNumberMap
 operator|.
 name|put
 argument_list|(
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|INT
 operator|.
@@ -1204,7 +1206,7 @@ name|randomNumberMap
 operator|.
 name|put
 argument_list|(
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|FLOAT
 operator|.
@@ -1218,7 +1220,7 @@ name|randomNumberMap
 operator|.
 name|put
 argument_list|(
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|DOUBLE
 operator|.
@@ -1336,10 +1338,10 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-name|NumericType
+name|LegacyNumericType
 name|type
 range|:
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|values
 argument_list|()
@@ -1371,7 +1373,7 @@ init|=
 operator|new
 name|FieldType
 argument_list|(
-name|IntField
+name|LegacyIntField
 operator|.
 name|TYPE_NOT_STORED
 argument_list|)
@@ -1417,7 +1419,7 @@ case|:
 name|field
 operator|=
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 name|type
 operator|.
@@ -1436,7 +1438,7 @@ case|:
 name|field
 operator|=
 operator|new
-name|FloatField
+name|LegacyFloatField
 argument_list|(
 name|type
 operator|.
@@ -1455,7 +1457,7 @@ case|:
 name|field
 operator|=
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 name|type
 operator|.
@@ -1474,7 +1476,7 @@ case|:
 name|field
 operator|=
 operator|new
-name|DoubleField
+name|LegacyDoubleField
 argument_list|(
 name|type
 operator|.
@@ -1529,7 +1531,7 @@ name|PRECISION_STEP
 argument_list|,
 name|DATE_FORMAT
 argument_list|,
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 argument_list|)
@@ -1541,7 +1543,7 @@ init|=
 operator|new
 name|FieldType
 argument_list|(
-name|LongField
+name|LegacyLongField
 operator|.
 name|TYPE_NOT_STORED
 argument_list|)
@@ -1560,11 +1562,11 @@ argument_list|(
 name|PRECISION_STEP
 argument_list|)
 expr_stmt|;
-name|LongField
+name|LegacyLongField
 name|dateField
 init|=
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 name|DATE_FIELD_NAME
 argument_list|,
@@ -1705,7 +1707,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 operator|.
@@ -1737,7 +1739,9 @@ block|}
 elseif|else
 if|if
 condition|(
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|DOUBLE
 operator|.
@@ -1762,7 +1766,9 @@ block|}
 elseif|else
 if|if
 condition|(
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|FLOAT
 operator|.
@@ -1787,7 +1793,7 @@ block|}
 elseif|else
 if|if
 condition|(
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|INT
 operator|.
@@ -1855,7 +1861,7 @@ name|getNumberType
 argument_list|(
 name|numberType
 argument_list|,
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|DOUBLE
 operator|.
@@ -1867,7 +1873,7 @@ name|numericFieldMap
 operator|.
 name|get
 argument_list|(
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|DOUBLE
 operator|.
@@ -1889,7 +1895,9 @@ name|getNumberType
 argument_list|(
 name|numberType
 argument_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|INT
 operator|.
@@ -1901,7 +1909,9 @@ name|numericFieldMap
 operator|.
 name|get
 argument_list|(
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|INT
 operator|.
@@ -1923,7 +1933,7 @@ name|getNumberType
 argument_list|(
 name|numberType
 argument_list|,
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 operator|.
@@ -1935,7 +1945,9 @@ name|numericFieldMap
 operator|.
 name|get
 argument_list|(
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|LONG
 operator|.
@@ -1957,7 +1969,9 @@ name|getNumberType
 argument_list|(
 name|numberType
 argument_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|FLOAT
 operator|.
@@ -1969,7 +1983,9 @@ name|numericFieldMap
 operator|.
 name|get
 argument_list|(
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|FLOAT
 operator|.
@@ -2804,10 +2820,10 @@ operator|)
 decl_stmt|;
 for|for
 control|(
-name|NumericType
+name|LegacyNumericType
 name|type
 range|:
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|values
 argument_list|()
@@ -3117,10 +3133,12 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|NumericType
+name|LegacyNumericType
 name|type
 range|:
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|values
 argument_list|()
@@ -3289,10 +3307,10 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|NumericType
+name|LegacyNumericType
 name|type
 range|:
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|values
 argument_list|()

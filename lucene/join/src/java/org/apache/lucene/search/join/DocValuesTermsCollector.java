@@ -47,8 +47,22 @@ operator|.
 name|document
 operator|.
 name|FieldType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|NumericType
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FieldType
+operator|.
+name|LegacyNumericType
 import|;
 end_import
 
@@ -202,7 +216,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -366,7 +380,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|NumericType
+name|LegacyNumericType
 name|numTyp
 parameter_list|)
 block|{
@@ -463,7 +477,7 @@ parameter_list|(
 name|BytesRefBuilder
 name|bytes
 parameter_list|,
-name|NumericType
+name|LegacyNumericType
 name|type
 parameter_list|,
 name|String
@@ -483,7 +497,7 @@ parameter_list|(
 name|l
 parameter_list|)
 lambda|->
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|intToPrefixCoded
 argument_list|(
@@ -505,7 +519,7 @@ parameter_list|(
 name|l
 parameter_list|)
 lambda|->
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|longToPrefixCoded
 argument_list|(
@@ -527,13 +541,15 @@ name|type
 operator|+
 literal|". Only "
 operator|+
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|INT
 operator|+
 literal|" and "
 operator|+
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|LONG
 operator|+
@@ -558,7 +574,9 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 name|numTyp
 parameter_list|)
 block|{

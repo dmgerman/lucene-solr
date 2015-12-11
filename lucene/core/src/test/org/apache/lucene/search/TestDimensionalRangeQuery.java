@@ -216,7 +216,21 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalField
+name|DimensionalBinaryField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|DimensionalLongField
 import|;
 end_import
 
@@ -273,6 +287,20 @@ operator|.
 name|document
 operator|.
 name|SortedNumericDocValuesField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DimensionalValues
 import|;
 end_import
 
@@ -482,7 +510,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestUtil
+name|NumericUtils
 import|;
 end_import
 
@@ -496,9 +524,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|bkd
-operator|.
-name|BKDUtil
+name|TestUtil
 import|;
 end_import
 
@@ -980,7 +1006,7 @@ index|[
 literal|8
 index|]
 decl_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|longToBytes
 argument_list|(
@@ -994,7 +1020,7 @@ expr_stmt|;
 name|long
 name|v2
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToLong
 argument_list|(
@@ -1440,7 +1466,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalLongField
 argument_list|(
 literal|"sn_value"
 argument_list|,
@@ -1461,7 +1487,7 @@ index|[
 literal|8
 index|]
 decl_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|longToBytes
 argument_list|(
@@ -1480,7 +1506,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalBinaryField
 argument_list|(
 literal|"ss_value"
 argument_list|,
@@ -1855,7 +1881,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|longToBytes
 argument_list|(
@@ -1890,7 +1916,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|longToBytes
 argument_list|(
@@ -1930,8 +1956,9 @@ condition|)
 block|{
 name|query
 operator|=
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"sn_value"
 argument_list|,
@@ -1973,7 +2000,7 @@ index|[
 literal|8
 index|]
 expr_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|longToBytes
 argument_list|(
@@ -2011,7 +2038,7 @@ index|[
 literal|8
 index|]
 expr_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|longToBytes
 argument_list|(
@@ -2025,8 +2052,9 @@ expr_stmt|;
 block|}
 name|query
 operator|=
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"ss_value"
 argument_list|,
@@ -2454,7 +2482,9 @@ argument_list|()
 argument_list|,
 literal|2
 argument_list|,
-literal|30
+name|DimensionalValues
+operator|.
+name|MAX_NUM_BYTES
 argument_list|)
 decl_stmt|;
 name|int
@@ -2469,7 +2499,9 @@ argument_list|()
 argument_list|,
 literal|1
 argument_list|,
-literal|5
+name|DimensionalValues
+operator|.
+name|MAX_DIMENSIONS
 argument_list|)
 decl_stmt|;
 name|int
@@ -3128,7 +3160,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalBinaryField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -3582,7 +3614,7 @@ index|]
 operator|!=
 literal|null
 operator|&&
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -4424,7 +4456,7 @@ else|else
 block|{
 name|cmp
 operator|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -4491,7 +4523,7 @@ else|else
 block|{
 name|cmp
 operator|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -4664,7 +4696,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalLongField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -4692,7 +4724,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalLongField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -4733,8 +4765,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -4759,8 +4792,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -4785,8 +4819,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -4977,7 +5012,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalBinaryField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5006,7 +5041,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalBinaryField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5048,8 +5083,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5078,8 +5114,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5112,8 +5149,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5146,8 +5184,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5173,8 +5212,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5205,8 +5245,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5237,8 +5278,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5264,8 +5306,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5298,8 +5341,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5388,7 +5432,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalLongField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5416,7 +5460,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalLongField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5457,8 +5501,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5485,8 +5530,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5513,8 +5559,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5541,8 +5588,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5569,8 +5617,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5655,7 +5704,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalLongField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5683,7 +5732,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalLongField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5727,8 +5776,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5755,8 +5805,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5783,8 +5834,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5811,8 +5863,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5839,8 +5892,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5924,7 +5978,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalBinaryField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5953,7 +6007,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalBinaryField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -5995,8 +6049,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -6025,8 +6080,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DBinaryRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -6177,8 +6233,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -6280,8 +6337,9 @@ name|s
 operator|.
 name|count
 argument_list|(
-operator|new
 name|DimensionalRangeQuery
+operator|.
+name|new1DLongRange
 argument_list|(
 literal|"value"
 argument_list|,
@@ -6362,7 +6420,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalLongField
 argument_list|(
 literal|"value"
 argument_list|,
@@ -6528,7 +6586,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalField
+name|DimensionalLongField
 argument_list|(
 literal|"value"
 argument_list|,

@@ -198,7 +198,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -475,7 +475,7 @@ literal|0L
 return|;
 block|}
 return|return
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToLong
 argument_list|(
@@ -581,7 +581,7 @@ name|mval
 operator|.
 name|exists
 condition|?
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToLong
 argument_list|(

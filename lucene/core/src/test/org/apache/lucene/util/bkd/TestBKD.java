@@ -232,6 +232,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|NumericUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|TestUtil
 import|;
 end_import
@@ -307,7 +321,7 @@ name|docID
 operator|++
 control|)
 block|{
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|intToBytes
 argument_list|(
@@ -472,7 +486,7 @@ block|{
 name|int
 name|x
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -540,7 +554,7 @@ block|{
 name|int
 name|min
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -552,7 +566,7 @@ decl_stmt|;
 name|int
 name|max
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -900,7 +914,7 @@ operator|.
 name|nextInt
 argument_list|()
 expr_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|intToBytes
 argument_list|(
@@ -1225,7 +1239,7 @@ block|{
 name|int
 name|x
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -1302,7 +1316,7 @@ block|{
 name|int
 name|min
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -1314,7 +1328,7 @@ decl_stmt|;
 name|int
 name|max
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -1701,7 +1715,7 @@ argument_list|(
 name|numBytesPerDim
 argument_list|)
 expr_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bigIntToBytes
 argument_list|(
@@ -2031,7 +2045,7 @@ block|{
 name|BigInteger
 name|x
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToBigInt
 argument_list|(
@@ -2120,7 +2134,7 @@ block|{
 name|BigInteger
 name|min
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToBigInt
 argument_list|(
@@ -2134,7 +2148,7 @@ decl_stmt|;
 name|BigInteger
 name|max
 init|=
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToBigInt
 argument_list|(
@@ -3539,10 +3553,10 @@ name|numBytesPerDim
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testBKDUtilAdd
+DECL|method|testNumericUtilsAdd
 specifier|public
 name|void
-name|testBKDUtilAdd
+name|testNumericUtilsAdd
 parameter_list|()
 throws|throws
 name|Exception
@@ -3725,7 +3739,7 @@ index|[
 name|numBytes
 index|]
 decl_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|add
 argument_list|(
@@ -3790,10 +3804,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testIllegalBKDUtilAdd
+DECL|method|testIllegalNumericUtilsAdd
 specifier|public
 name|void
-name|testIllegalBKDUtilAdd
+name|testIllegalNumericUtilsAdd
 parameter_list|()
 throws|throws
 name|Exception
@@ -3839,7 +3853,7 @@ literal|1
 expr_stmt|;
 try|try
 block|{
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|add
 argument_list|(
@@ -3877,10 +3891,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testBKDUtilSubtract
+DECL|method|testNumericUtilsSubtract
 specifier|public
 name|void
-name|testBKDUtilSubtract
+name|testNumericUtilsSubtract
 parameter_list|()
 throws|throws
 name|Exception
@@ -4116,7 +4130,7 @@ index|[
 name|numBytes
 index|]
 decl_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|subtract
 argument_list|(
@@ -4177,10 +4191,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testIllegalBKDUtilSubtract
+DECL|method|testIllegalNumericUtilsSubtract
 specifier|public
 name|void
-name|testIllegalBKDUtilSubtract
+name|testIllegalNumericUtilsSubtract
 parameter_list|()
 throws|throws
 name|Exception
@@ -4227,7 +4241,7 @@ literal|0xf1
 expr_stmt|;
 try|try
 block|{
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|subtract
 argument_list|(
@@ -5203,7 +5217,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -5322,7 +5336,7 @@ control|)
 block|{
 if|if
 condition|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -5342,7 +5356,7 @@ argument_list|)
 operator|<
 literal|0
 operator|||
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -5413,7 +5427,7 @@ control|)
 block|{
 if|if
 condition|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -5433,7 +5447,7 @@ argument_list|)
 operator|<
 literal|0
 operator|||
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -5463,7 +5477,7 @@ block|}
 elseif|else
 if|if
 condition|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -5483,7 +5497,7 @@ argument_list|)
 operator|<
 literal|0
 operator|||
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -5589,7 +5603,7 @@ index|]
 decl_stmt|;
 if|if
 condition|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(
@@ -5609,7 +5623,7 @@ argument_list|)
 operator|<
 literal|0
 operator|||
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|compare
 argument_list|(

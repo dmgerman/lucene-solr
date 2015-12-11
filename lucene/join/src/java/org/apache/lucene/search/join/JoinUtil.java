@@ -46,35 +46,7 @@ name|document
 operator|.
 name|FieldType
 operator|.
-name|NumericType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|IntField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|LongField
+name|LegacyNumericType
 import|;
 end_import
 
@@ -363,7 +335,7 @@ name|termsWithScoreCollector
 argument_list|)
 return|;
 block|}
-comment|/**    * Method for query time joining for numeric fields. It supports multi- and single- values longs and ints.     * All considerations from {@link JoinUtil#createJoinQuery(String, boolean, String, Query, IndexSearcher, ScoreMode)} are applicable here too,    * though memory consumption might be higher.    *<p>    *    * @param fromField                 The from field to join from    * @param multipleValuesPerDocument Whether the from field has multiple terms per document    *                                  when true fromField might be {@link DocValuesType#SORTED_NUMERIC},    *                                  otherwise fromField should be {@link DocValuesType#NUMERIC}    * @param toField                   The to field to join to, should be {@link IntField} or {@link LongField}    * @param numericType               either {@link NumericType#INT} or {@link NumericType#LONG}, it should correspond to fromField and toField types    * @param fromQuery                 The query to match documents on the from side    * @param fromSearcher              The searcher that executed the specified fromQuery    * @param scoreMode                 Instructs how scores from the fromQuery are mapped to the returned query    * @return a {@link Query} instance that can be used to join documents based on the    *         terms in the from and to field    * @throws IOException If I/O related errors occur    */
+comment|/**    * Method for query time joining for numeric fields. It supports multi- and single- values longs and ints.     * All considerations from {@link JoinUtil#createJoinQuery(String, boolean, String, Query, IndexSearcher, ScoreMode)} are applicable here too,    * though memory consumption might be higher.    *<p>    *    * @param fromField                 The from field to join from    * @param multipleValuesPerDocument Whether the from field has multiple terms per document    *                                  when true fromField might be {@link DocValuesType#SORTED_NUMERIC},    *                                  otherwise fromField should be {@link DocValuesType#NUMERIC}    * @param toField                   The to field to join to, should be {@link org.apache.lucene.document.LegacyIntField} or {@link org.apache.lucene.document.LegacyLongField}    * @param numericType               either {@link org.apache.lucene.document.FieldType.LegacyNumericType#INT} or {@link org.apache.lucene.document.FieldType.LegacyNumericType#LONG}, it should correspond to fromField and toField types    * @param fromQuery                 The query to match documents on the from side    * @param fromSearcher              The searcher that executed the specified fromQuery    * @param scoreMode                 Instructs how scores from the fromQuery are mapped to the returned query    * @return a {@link Query} instance that can be used to join documents based on the    *         terms in the from and to field    * @throws IOException If I/O related errors occur    */
 DECL|method|createJoinQuery
 specifier|public
 specifier|static
@@ -379,7 +351,7 @@ parameter_list|,
 name|String
 name|toField
 parameter_list|,
-name|NumericType
+name|LegacyNumericType
 name|numericType
 parameter_list|,
 name|Query

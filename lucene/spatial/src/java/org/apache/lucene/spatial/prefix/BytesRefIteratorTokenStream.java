@@ -87,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A TokenStream used internally by {@link org.apache.lucene.spatial.prefix.PrefixTreeStrategy}.  *  * This is modelled after {@link org.apache.lucene.analysis.NumericTokenStream}.  *  * @lucene.internal  */
+comment|/**  * A TokenStream used internally by {@link org.apache.lucene.spatial.prefix.PrefixTreeStrategy}.  *  * This is modelled after {@link org.apache.lucene.analysis.LegacyNumericTokenStream}.  *  * @lucene.internal  */
 end_comment
 
 begin_class

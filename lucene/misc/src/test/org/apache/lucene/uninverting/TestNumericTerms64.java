@@ -88,7 +88,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|LegacyLongField
 import|;
 end_import
 
@@ -144,7 +144,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 import|;
 end_import
 
@@ -448,7 +448,7 @@ init|=
 operator|new
 name|FieldType
 argument_list|(
-name|LongField
+name|LegacyLongField
 operator|.
 name|TYPE_NOT_STORED
 argument_list|)
@@ -533,11 +533,11 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
-name|LongField
+name|LegacyLongField
 name|field8
 init|=
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"field8"
 argument_list|,
@@ -549,7 +549,7 @@ decl_stmt|,
 name|field6
 init|=
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"field6"
 argument_list|,
@@ -561,7 +561,7 @@ decl_stmt|,
 name|field4
 init|=
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"field4"
 argument_list|,
@@ -573,7 +573,7 @@ decl_stmt|,
 name|field2
 init|=
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"field2"
 argument_list|,
@@ -928,7 +928,7 @@ block|}
 name|Query
 name|tq
 init|=
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newLongRange
 argument_list|(

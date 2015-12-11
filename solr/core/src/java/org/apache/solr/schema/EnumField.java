@@ -204,6 +204,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|LegacyIntField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|NumericDocValuesField
 import|;
 end_import
@@ -322,7 +336,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 import|;
 end_import
 
@@ -436,7 +450,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -1554,14 +1568,14 @@ DECL|method|getNumericType
 specifier|public
 name|FieldType
 operator|.
-name|NumericType
+name|LegacyNumericType
 name|getNumericType
 parameter_list|()
 block|{
 return|return
 name|FieldType
 operator|.
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|INT
 return|;
@@ -1726,7 +1740,7 @@ else|else
 block|{
 name|query
 operator|=
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -1861,7 +1875,7 @@ argument_list|(
 name|s
 argument_list|)
 decl_stmt|;
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|intToPrefixCoded
 argument_list|(
@@ -1967,7 +1981,7 @@ specifier|final
 name|Integer
 name|intValue
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToInt
 argument_list|(
@@ -2000,7 +2014,7 @@ specifier|final
 name|Integer
 name|intValue
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToInt
 argument_list|(
@@ -2081,7 +2095,7 @@ specifier|final
 name|Integer
 name|intValue
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToInt
 argument_list|(
@@ -2145,7 +2159,7 @@ operator|new
 name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|intToPrefixCoded
 argument_list|(
@@ -2402,7 +2416,7 @@ name|setNumericType
 argument_list|(
 name|FieldType
 operator|.
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|INT
 argument_list|)
@@ -2429,15 +2443,7 @@ decl_stmt|;
 name|f
 operator|=
 operator|new
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|IntField
+name|LegacyIntField
 argument_list|(
 name|field
 operator|.

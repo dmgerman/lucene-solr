@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DoubleField
+name|LegacyDoubleField
 import|;
 end_import
 
@@ -138,7 +138,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|FloatField
+name|LegacyFloatField
 import|;
 end_import
 
@@ -152,7 +152,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|LegacyIntField
 import|;
 end_import
 
@@ -166,7 +166,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|LegacyLongField
 import|;
 end_import
 
@@ -1350,7 +1350,7 @@ name|Field
 name|doubleField
 init|=
 operator|new
-name|DoubleField
+name|LegacyDoubleField
 argument_list|(
 literal|"double"
 argument_list|,
@@ -1392,7 +1392,7 @@ name|Field
 name|floatField
 init|=
 operator|new
-name|FloatField
+name|LegacyFloatField
 argument_list|(
 literal|"float"
 argument_list|,
@@ -1434,7 +1434,7 @@ name|Field
 name|intField
 init|=
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"int"
 argument_list|,
@@ -1476,7 +1476,7 @@ name|Field
 name|longField
 init|=
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"long"
 argument_list|,

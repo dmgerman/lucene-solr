@@ -110,7 +110,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 import|;
 end_import
 
@@ -1724,14 +1724,14 @@ if|if
 condition|(
 name|query
 operator|instanceof
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 condition|)
 block|{
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 name|q
 init|=
 operator|(
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|)
 name|query
 decl_stmt|;

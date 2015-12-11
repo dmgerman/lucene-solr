@@ -61,20 +61,6 @@ operator|.
 name|index
 operator|.
 name|DimensionalValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DimensionalValues
 operator|.
 name|IntersectVisitor
 import|;
@@ -93,6 +79,20 @@ operator|.
 name|DimensionalValues
 operator|.
 name|Relation
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DimensionalValues
 import|;
 end_import
 
@@ -176,9 +176,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|bkd
-operator|.
-name|BKDUtil
+name|NumericUtils
 import|;
 end_import
 
@@ -743,7 +741,7 @@ name|DimensionalLatLonField
 operator|.
 name|decodeLat
 argument_list|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -760,7 +758,7 @@ name|DimensionalLatLonField
 operator|.
 name|decodeLon
 argument_list|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -823,7 +821,7 @@ name|DimensionalLatLonField
 operator|.
 name|decodeLat
 argument_list|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -840,7 +838,7 @@ name|DimensionalLatLonField
 operator|.
 name|decodeLon
 argument_list|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -857,7 +855,7 @@ name|DimensionalLatLonField
 operator|.
 name|decodeLat
 argument_list|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -874,7 +872,7 @@ name|DimensionalLatLonField
 operator|.
 name|decodeLon
 argument_list|(
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(

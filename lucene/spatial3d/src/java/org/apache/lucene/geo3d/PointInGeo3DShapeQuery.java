@@ -37,20 +37,6 @@ operator|.
 name|index
 operator|.
 name|DimensionalValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DimensionalValues
 operator|.
 name|IntersectVisitor
 import|;
@@ -69,6 +55,20 @@ operator|.
 name|DimensionalValues
 operator|.
 name|Relation
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|DimensionalValues
 import|;
 end_import
 
@@ -208,9 +208,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|bkd
-operator|.
-name|BKDUtil
+name|NumericUtils
 import|;
 end_import
 
@@ -435,7 +433,7 @@ name|decodeValueCenter
 argument_list|(
 name|planetMax
 argument_list|,
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -454,7 +452,7 @@ name|decodeValueCenter
 argument_list|(
 name|planetMax
 argument_list|,
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -473,7 +471,7 @@ name|decodeValueCenter
 argument_list|(
 name|planetMax
 argument_list|,
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -540,7 +538,7 @@ name|decodeValueMin
 argument_list|(
 name|planetMax
 argument_list|,
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -559,7 +557,7 @@ name|decodeValueMax
 argument_list|(
 name|planetMax
 argument_list|,
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -578,7 +576,7 @@ name|decodeValueMin
 argument_list|(
 name|planetMax
 argument_list|,
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -597,7 +595,7 @@ name|decodeValueMax
 argument_list|(
 name|planetMax
 argument_list|,
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -616,7 +614,7 @@ name|decodeValueMin
 argument_list|(
 name|planetMax
 argument_list|,
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(
@@ -635,7 +633,7 @@ name|decodeValueMax
 argument_list|(
 name|planetMax
 argument_list|,
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|bytesToInt
 argument_list|(

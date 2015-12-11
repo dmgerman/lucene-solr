@@ -156,7 +156,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|LegacyFloatField
 import|;
 end_import
 
@@ -170,7 +170,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|LegacyIntField
 import|;
 end_import
 
@@ -184,7 +184,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|FloatField
+name|LegacyDoubleField
 import|;
 end_import
 
@@ -198,21 +198,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DoubleField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|IndexableField
+name|LegacyLongField
 import|;
 end_import
 
@@ -389,19 +375,19 @@ argument_list|()
 operator|||
 name|field
 operator|instanceof
-name|IntField
+name|LegacyIntField
 operator|||
 name|field
 operator|instanceof
-name|LongField
+name|LegacyLongField
 operator|||
 name|field
 operator|instanceof
-name|FloatField
+name|LegacyFloatField
 operator|||
 name|field
 operator|instanceof
-name|DoubleField
+name|LegacyDoubleField
 condition|)
 block|{
 continue|continue;

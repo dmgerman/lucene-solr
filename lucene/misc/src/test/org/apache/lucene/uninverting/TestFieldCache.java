@@ -178,7 +178,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DoubleField
+name|LegacyDoubleField
 import|;
 end_import
 
@@ -222,7 +222,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|FloatField
+name|LegacyFloatField
 import|;
 end_import
 
@@ -236,7 +236,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|LegacyIntField
 import|;
 end_import
 
@@ -250,7 +250,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LongField
+name|LegacyLongField
 import|;
 end_import
 
@@ -558,7 +558,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -572,7 +572,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LuceneTestCase
 import|;
 end_import
 
@@ -804,7 +804,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"theLong"
 argument_list|,
@@ -824,7 +824,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleField
+name|LegacyDoubleField
 argument_list|(
 literal|"theDouble"
 argument_list|,
@@ -844,7 +844,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"theInt"
 argument_list|,
@@ -864,7 +864,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|FloatField
+name|LegacyFloatField
 argument_list|(
 literal|"theFloat"
 argument_list|,
@@ -893,7 +893,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"sparse"
 argument_list|,
@@ -922,7 +922,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"numInt"
 argument_list|,
@@ -1225,7 +1225,7 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|filterPrefixCodedLongs
 argument_list|(
@@ -1252,7 +1252,7 @@ init|=
 operator|(
 name|int
 operator|)
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToLong
 argument_list|(
@@ -5216,11 +5216,11 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-name|LongField
+name|LegacyLongField
 name|field
 init|=
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"f"
 argument_list|,
@@ -5532,11 +5532,11 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-name|IntField
+name|LegacyIntField
 name|field
 init|=
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"f"
 argument_list|,

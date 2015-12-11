@@ -104,7 +104,7 @@ name|document
 operator|.
 name|FieldType
 operator|.
-name|NumericType
+name|LegacyNumericType
 import|;
 end_import
 
@@ -244,7 +244,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -828,7 +828,7 @@ name|getName
 argument_list|()
 decl_stmt|;
 specifier|final
-name|NumericType
+name|LegacyNumericType
 name|numericType
 init|=
 name|ft
@@ -2643,7 +2643,7 @@ name|FLOAT
 case|:
 name|startLimit
 operator|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -2669,7 +2669,7 @@ name|DOUBLE
 case|:
 name|startLimit
 operator|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -2822,7 +2822,7 @@ name|FLOAT
 case|:
 name|endLimit
 operator|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -2848,7 +2848,7 @@ name|DOUBLE
 case|:
 name|endLimit
 operator|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -3241,7 +3241,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * Method to use to check whether a document should be counted for      * an interval or not. Before calling this method on a multi-valued      * and/or non-numeric field make sure you call {@link #updateContext(SortedDocValues)}      * or {@link #updateContext(SortedSetDocValues)} (depending on the DV type). It      * is OK to call this method without other previous calls on numeric fields      * (with {@link NumericDocValues})      *      * @param value For numeric single value fields, this {@code value}      *              should be the {@code long} representation of the value of the document      *              in the specified field. For multi-valued and/or non-numeric fields, {@code value}      *              should be the ordinal of the term in the current segment      * @return<ul><li>{@link IntervalCompareResult#INCLUDED} if the value is included in the interval      *<li>{@link IntervalCompareResult#GREATER_THAN_END} if the value is greater than {@code endLimit}      *<li>{@link IntervalCompareResult#LOWER_THAN_START} if the value is lower than {@code startLimit}      *</ul>      * @see NumericUtils#floatToSortableInt(float)      * @see NumericUtils#doubleToSortableLong(double)      */
+comment|/**      * Method to use to check whether a document should be counted for      * an interval or not. Before calling this method on a multi-valued      * and/or non-numeric field make sure you call {@link #updateContext(SortedDocValues)}      * or {@link #updateContext(SortedSetDocValues)} (depending on the DV type). It      * is OK to call this method without other previous calls on numeric fields      * (with {@link NumericDocValues})      *      * @param value For numeric single value fields, this {@code value}      *              should be the {@code long} representation of the value of the document      *              in the specified field. For multi-valued and/or non-numeric fields, {@code value}      *              should be the ordinal of the term in the current segment      * @return<ul><li>{@link IntervalCompareResult#INCLUDED} if the value is included in the interval      *<li>{@link IntervalCompareResult#GREATER_THAN_END} if the value is greater than {@code endLimit}      *<li>{@link IntervalCompareResult#LOWER_THAN_START} if the value is lower than {@code startLimit}      *</ul>      * @see org.apache.lucene.util.LegacyNumericUtils#floatToSortableInt(float)      * @see org.apache.lucene.util.LegacyNumericUtils#doubleToSortableLong(double)      */
 DECL|method|includes
 specifier|public
 name|IntervalCompareResult

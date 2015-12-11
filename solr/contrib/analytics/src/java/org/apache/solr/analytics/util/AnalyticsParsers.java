@@ -72,7 +72,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -366,7 +366,7 @@ block|{
 return|return
 literal|""
 operator|+
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToInt
 argument_list|(
@@ -448,7 +448,7 @@ block|{
 return|return
 literal|""
 operator|+
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToLong
 argument_list|(
@@ -527,11 +527,11 @@ block|{
 return|return
 literal|""
 operator|+
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|sortableIntToFloat
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToInt
 argument_list|(
@@ -579,7 +579,7 @@ block|{
 return|return
 literal|""
 operator|+
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|sortableIntToFloat
 argument_list|(
@@ -619,11 +619,11 @@ block|{
 return|return
 literal|""
 operator|+
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|sortableLongToDouble
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToLong
 argument_list|(
@@ -671,7 +671,7 @@ block|{
 return|return
 literal|""
 operator|+
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|sortableLongToDouble
 argument_list|(
@@ -718,7 +718,7 @@ argument_list|(
 operator|new
 name|Date
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToLong
 argument_list|(

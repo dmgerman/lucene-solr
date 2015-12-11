@@ -88,7 +88,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 import|;
 end_import
 
@@ -102,9 +102,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 operator|.
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 import|;
 end_import
 
@@ -160,7 +160,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|LegacyIntField
 import|;
 end_import
 
@@ -202,7 +202,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -365,7 +365,7 @@ name|TokenStream
 name|bogus
 init|=
 operator|new
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 argument_list|()
 decl_stmt|;
 name|ts
@@ -421,11 +421,11 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|IntField
-name|intField
+name|LegacyIntField
+name|legacyIntField
 init|=
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -442,7 +442,7 @@ comment|// passing null
 name|TokenStream
 name|ts
 init|=
-name|intField
+name|legacyIntField
 operator|.
 name|tokenStream
 argument_list|(
@@ -455,18 +455,18 @@ name|assertTrue
 argument_list|(
 name|ts
 operator|instanceof
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT_32
 argument_list|,
 operator|(
 operator|(
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 operator|)
 name|ts
 operator|)
@@ -483,10 +483,10 @@ name|ts
 argument_list|)
 expr_stmt|;
 comment|// now reuse previous stream
-name|intField
+name|legacyIntField
 operator|=
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -502,7 +502,7 @@ expr_stmt|;
 name|TokenStream
 name|ts2
 init|=
-name|intField
+name|legacyIntField
 operator|.
 name|tokenStream
 argument_list|(
@@ -526,10 +526,10 @@ name|ts
 argument_list|)
 expr_stmt|;
 comment|// pass a bogus stream and ensure it's still ok
-name|intField
+name|legacyIntField
 operator|=
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -561,7 +561,7 @@ argument_list|)
 decl_stmt|;
 name|ts
 operator|=
-name|intField
+name|legacyIntField
 operator|.
 name|tokenStream
 argument_list|(
@@ -585,10 +585,10 @@ name|ts
 argument_list|)
 expr_stmt|;
 comment|// pass another bogus stream (numeric, but different precision step!)
-name|intField
+name|legacyIntField
 operator|=
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -604,21 +604,21 @@ expr_stmt|;
 assert|assert
 literal|3
 operator|!=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT
 assert|;
 name|bogus
 operator|=
 operator|new
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 argument_list|(
 literal|3
 argument_list|)
 expr_stmt|;
 name|ts
 operator|=
-name|intField
+name|legacyIntField
 operator|.
 name|tokenStream
 argument_list|(
@@ -932,17 +932,17 @@ name|assertTrue
 argument_list|(
 name|ts
 operator|instanceof
-name|NumericTokenStream
+name|LegacyNumericTokenStream
 argument_list|)
 expr_stmt|;
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 name|numericAtt
 init|=
 name|ts
 operator|.
 name|getAttribute
 argument_list|(
-name|NumericTermAttribute
+name|LegacyNumericTermAttribute
 operator|.
 name|class
 argument_list|)

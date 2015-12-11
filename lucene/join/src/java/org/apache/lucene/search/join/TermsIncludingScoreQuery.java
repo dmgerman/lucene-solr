@@ -292,7 +292,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -1647,7 +1647,7 @@ name|Long
 operator|.
 name|toHexString
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToLong
 argument_list|(
@@ -1675,7 +1675,7 @@ name|Integer
 operator|.
 name|toHexString
 argument_list|(
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|prefixCodedToInt
 argument_list|(

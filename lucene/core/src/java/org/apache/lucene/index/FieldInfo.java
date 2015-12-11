@@ -779,6 +779,37 @@ throw|;
 block|}
 if|if
 condition|(
+name|count
+operator|>
+name|DimensionalValues
+operator|.
+name|MAX_DIMENSIONS
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"dimension count must be< DimensionalValues.MAX_DIMENSIONS (= "
+operator|+
+name|DimensionalValues
+operator|.
+name|MAX_DIMENSIONS
+operator|+
+literal|"); got "
+operator|+
+name|count
+operator|+
+literal|" for field=\""
+operator|+
+name|name
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|numBytes
 operator|<=
 literal|0
@@ -789,6 +820,37 @@ operator|new
 name|IllegalArgumentException
 argument_list|(
 literal|"dimension numBytes must be>= 0; got "
+operator|+
+name|numBytes
+operator|+
+literal|" for field=\""
+operator|+
+name|name
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|numBytes
+operator|>
+name|DimensionalValues
+operator|.
+name|MAX_NUM_BYTES
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"dimension numBytes must be<= DimensionalValues.MAX_NUM_BYTES (= "
+operator|+
+name|DimensionalValues
+operator|.
+name|MAX_NUM_BYTES
+operator|+
+literal|"); got "
 operator|+
 name|numBytes
 operator|+

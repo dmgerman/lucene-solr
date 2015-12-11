@@ -235,7 +235,7 @@ name|Field
 index|[]
 block|{
 operator|new
-name|DoubleField
+name|LegacyDoubleField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -249,7 +249,7 @@ name|NO
 argument_list|)
 block|,
 operator|new
-name|DoubleField
+name|LegacyDoubleField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -574,7 +574,7 @@ name|Field
 index|[]
 block|{
 operator|new
-name|FloatField
+name|LegacyFloatField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -588,7 +588,7 @@ name|NO
 argument_list|)
 block|,
 operator|new
-name|FloatField
+name|LegacyFloatField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -707,7 +707,7 @@ name|Field
 index|[]
 block|{
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -721,7 +721,7 @@ name|NO
 argument_list|)
 block|,
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -934,7 +934,7 @@ name|Field
 index|[]
 block|{
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"foo"
 argument_list|,
@@ -948,7 +948,7 @@ name|NO
 argument_list|)
 block|,
 operator|new
-name|LongField
+name|LegacyLongField
 argument_list|(
 literal|"foo"
 argument_list|,

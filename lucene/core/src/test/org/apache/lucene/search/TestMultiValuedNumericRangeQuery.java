@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|IntField
+name|LegacyIntField
 import|;
 end_import
 
@@ -180,7 +180,7 @@ name|TestMultiValuedNumericRangeQuery
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/** Tests NumericRangeQuery on a multi-valued field (multiple numeric values per document).    * This test ensures, that a classical TermRangeQuery returns exactly the same document numbers as    * NumericRangeQuery (see SOLR-1322 for discussion) and the multiple precision terms per numeric value    * do not interfere with multiple numeric values.    */
+comment|/** Tests LegacyNumericRangeQuery on a multi-valued field (multiple numeric values per document).    * This test ensures, that a classical TermRangeQuery returns exactly the same document numbers as    * LegacyNumericRangeQuery (see SOLR-1322 for discussion) and the multiple precision terms per numeric value    * do not interfere with multiple numeric values.    */
 DECL|method|testMultiValuedNRQ
 specifier|public
 name|void
@@ -345,7 +345,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|IntField
+name|LegacyIntField
 argument_list|(
 literal|"trie"
 argument_list|,
@@ -486,13 +486,13 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<
 name|Integer
 argument_list|>
 name|tq
 init|=
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newIntRange
 argument_list|(
@@ -533,7 +533,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Returned count for NumericRangeQuery and TermRangeQuery must be equal"
+literal|"Returned count for LegacyNumericRangeQuery and TermRangeQuery must be equal"
 argument_list|,
 name|trTopDocs
 operator|.

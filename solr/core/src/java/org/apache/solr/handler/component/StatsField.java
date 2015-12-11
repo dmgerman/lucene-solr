@@ -153,8 +153,22 @@ operator|.
 name|document
 operator|.
 name|FieldType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|NumericType
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|FieldType
+operator|.
+name|LegacyNumericType
 import|;
 end_import
 
@@ -3017,7 +3031,9 @@ literal|null
 return|;
 block|}
 specifier|final
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 name|hashableNumType
 init|=
 name|getHashableNumericType
@@ -3040,7 +3056,7 @@ decl_stmt|;
 comment|// with decent hash, this is plenty for all valid long hashes
 if|if
 condition|(
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|FLOAT
 operator|.
@@ -3049,7 +3065,9 @@ argument_list|(
 name|hashableNumType
 argument_list|)
 operator|||
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|INT
 operator|.
@@ -3063,7 +3081,7 @@ comment|// for 32bit values, we can adjust our default regwidth down a bit
 name|regwidth
 operator|--
 expr_stmt|;
-comment|// NOTE: EnumField uses NumericType.INT, and in theory we could be super conservative
+comment|// NOTE: EnumField uses LegacyNumericType.INT, and in theory we could be super conservative
 comment|// with it, but there's no point - just let the EXPLICIT HLL handle it
 block|}
 comment|// TODO: we could attempt additional reductions in the default regwidth based on index
@@ -3341,7 +3359,9 @@ operator|==
 name|field
 operator|||
 operator|!
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|LONG
 operator|.
@@ -3451,11 +3471,11 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns the effective {@link NumericType} for the field for the purposes of hash values.      * ie: If the field has an explict NumericType that is returned; If the field has no explicit     * NumericType then {@link NumericType#LONG} is returned;  If field is null, then     * {@link NumericType#FLOAT} is assumed for ValueSource.    */
+comment|/**    * Returns the effective {@link org.apache.lucene.document.FieldType.LegacyNumericType} for the field for the purposes of hash values.    * ie: If the field has an explict LegacyNumericType that is returned; If the field has no explicit    * LegacyNumericType then {@link org.apache.lucene.document.FieldType.LegacyNumericType#LONG} is returned;  If field is null, then    * {@link org.apache.lucene.document.FieldType.LegacyNumericType#FLOAT} is assumed for ValueSource.    */
 DECL|method|getHashableNumericType
 specifier|private
 specifier|static
-name|NumericType
+name|LegacyNumericType
 name|getHashableNumericType
 parameter_list|(
 name|SchemaField
@@ -3470,13 +3490,13 @@ name|field
 condition|)
 block|{
 return|return
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|FLOAT
 return|;
 block|}
 specifier|final
-name|NumericType
+name|LegacyNumericType
 name|result
 init|=
 name|field
@@ -3492,7 +3512,9 @@ literal|null
 operator|==
 name|result
 condition|?
-name|NumericType
+name|FieldType
+operator|.
+name|LegacyNumericType
 operator|.
 name|LONG
 else|:

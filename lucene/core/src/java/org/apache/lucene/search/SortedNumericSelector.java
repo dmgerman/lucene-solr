@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -253,7 +253,7 @@ name|docID
 parameter_list|)
 block|{
 return|return
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|sortableFloatBits
 argument_list|(
@@ -290,7 +290,7 @@ name|docID
 parameter_list|)
 block|{
 return|return
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|sortableDoubleBits
 argument_list|(

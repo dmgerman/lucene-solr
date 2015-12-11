@@ -84,27 +84,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|NumericRangeQuery
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
-name|NumericUtils
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -121,10 +103,10 @@ implements|implements
 name|IndexableFieldType
 block|{
 comment|/** Data type of the numeric value    * @since 3.2    */
-DECL|enum|NumericType
+DECL|enum|LegacyNumericType
 specifier|public
 enum|enum
-name|NumericType
+name|LegacyNumericType
 block|{
 comment|/** 32-bit integer numeric type */
 DECL|enum constant|INT
@@ -190,7 +172,7 @@ name|NONE
 decl_stmt|;
 DECL|field|numericType
 specifier|private
-name|NumericType
+name|LegacyNumericType
 name|numericType
 decl_stmt|;
 DECL|field|frozen
@@ -203,7 +185,7 @@ specifier|private
 name|int
 name|numericPrecisionStep
 init|=
-name|NumericUtils
+name|LegacyNumericUtils
 operator|.
 name|PRECISION_STEP_DEFAULT
 decl_stmt|;
@@ -688,7 +670,7 @@ specifier|public
 name|void
 name|setNumericType
 parameter_list|(
-name|NumericType
+name|LegacyNumericType
 name|type
 parameter_list|)
 block|{
@@ -700,10 +682,10 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**     * NumericType: if non-null then the field's value will be indexed    * numerically so that {@link NumericRangeQuery} can be used at     * search time.     *<p>    * The default is<code>null</code> (no numeric type)     * @see #setNumericType(NumericType)    */
+comment|/**     * LegacyNumericType: if non-null then the field's value will be indexed    * numerically so that {@link org.apache.lucene.search.LegacyNumericRangeQuery} can be used at    * search time.     *<p>    * The default is<code>null</code> (no numeric type)     * @see #setNumericType(org.apache.lucene.document.FieldType.LegacyNumericType)    */
 DECL|method|numericType
 specifier|public
-name|NumericType
+name|LegacyNumericType
 name|numericType
 parameter_list|()
 block|{
@@ -750,7 +732,7 @@ operator|=
 name|precisionStep
 expr_stmt|;
 block|}
-comment|/**     * Precision step for numeric field.     *<p>    * This has no effect if {@link #numericType()} returns null.    *<p>    * The default is {@link NumericUtils#PRECISION_STEP_DEFAULT}    * @see #setNumericPrecisionStep(int)    */
+comment|/**     * Precision step for numeric field.     *<p>    * This has no effect if {@link #numericType()} returns null.    *<p>    * The default is {@link org.apache.lucene.util.LegacyNumericUtils#PRECISION_STEP_DEFAULT}    * @see #setNumericPrecisionStep(int)    */
 DECL|method|numericPrecisionStep
 specifier|public
 name|int

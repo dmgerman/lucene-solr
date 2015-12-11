@@ -99,6 +99,10 @@ operator|||
 name|query
 operator|instanceof
 name|MultiTermQueryConstantScoreWrapper
+operator|||
+name|query
+operator|instanceof
+name|DimensionalRangeQuery
 return|;
 block|}
 DECL|method|isCheap

@@ -30,22 +30,8 @@ name|DocValuesType
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|NumericUtils
-import|;
-end_import
-
 begin_comment
-comment|/**  *<p>  * Field that stores a per-document<code>long</code> values for scoring,   * sorting or value retrieval. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new SortedNumericDocValuesField(name, 5L));  *   document.add(new SortedNumericDocValuesField(name, 14L));  *</pre>  *   *<p>  * Note that if you want to encode doubles or floats with proper sort order,  * you will need to encode them with {@link NumericUtils}:  *   *<pre class="prettyprint">  *   document.add(new SortedNumericDocValuesField(name, NumericUtils.floatToSortableInt(-5.3f)));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  * */
+comment|/**  *<p>  * Field that stores a per-document<code>long</code> values for scoring,   * sorting or value retrieval. Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new SortedNumericDocValuesField(name, 5L));  *   document.add(new SortedNumericDocValuesField(name, 14L));  *</pre>  *   *<p>  * Note that if you want to encode doubles or floats with proper sort order,  * you will need to encode them with {@link org.apache.lucene.util.LegacyNumericUtils}:  *   *<pre class="prettyprint">  *   document.add(new SortedNumericDocValuesField(name, LegacyNumericUtils.floatToSortableInt(-5.3f)));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  * */
 end_comment
 
 begin_class

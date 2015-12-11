@@ -54,9 +54,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|bkd
-operator|.
-name|BKDUtil
+name|NumericUtils
 import|;
 end_import
 
@@ -181,7 +179,7 @@ index|[
 literal|8
 index|]
 decl_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|intToBytes
 argument_list|(
@@ -195,7 +193,7 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-name|BKDUtil
+name|NumericUtils
 operator|.
 name|intToBytes
 argument_list|(

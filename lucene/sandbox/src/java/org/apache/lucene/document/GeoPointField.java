@@ -132,7 +132,7 @@ name|setNumericType
 argument_list|(
 name|FieldType
 operator|.
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 argument_list|)
@@ -202,7 +202,7 @@ name|setNumericType
 argument_list|(
 name|FieldType
 operator|.
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 argument_list|)
@@ -272,7 +272,7 @@ name|lat
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Expert: allows you to customize the {@link    *  FieldType}.    *  @param name field name    *  @param lon longitude double value [-180.0 : 180.0]    *  @param lat latitude double value [-90.0 : 90.0]    *  @param type customized field type: must have {@link FieldType#numericType()}    *         of {@link FieldType.NumericType#LONG}.    *  @throws IllegalArgumentException if the field name or type is null, or    *          if the field type does not have a LONG numericType()    */
+comment|/** Expert: allows you to customize the {@link    *  FieldType}.    *  @param name field name    *  @param lon longitude double value [-180.0 : 180.0]    *  @param lat latitude double value [-90.0 : 90.0]    *  @param type customized field type: must have {@link FieldType#numericType()}    *         of {@link org.apache.lucene.document.FieldType.LegacyNumericType#LONG}.    *  @throws IllegalArgumentException if the field name or type is null, or    *          if the field type does not have a LONG numericType()    */
 DECL|method|GeoPointField
 specifier|public
 name|GeoPointField
@@ -306,7 +306,7 @@ argument_list|()
 operator|!=
 name|FieldType
 operator|.
-name|NumericType
+name|LegacyNumericType
 operator|.
 name|LONG
 condition|)

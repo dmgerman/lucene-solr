@@ -98,7 +98,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DoubleField
+name|LegacyDoubleField
 import|;
 end_import
 
@@ -214,7 +214,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 import|;
 end_import
 
@@ -295,7 +295,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple {@link SpatialStrategy} which represents Points in two numeric {@link  * DoubleField}s.  The Strategy's best feature is decent distance sort.  *  *<p>  *<b>Characteristics:</b>  *<br>  *<ul>  *<li>Only indexes points; just one per field value.</li>  *<li>Can query by a rectangle or circle.</li>  *<li>{@link  * org.apache.lucene.spatial.query.SpatialOperation#Intersects} and {@link  * SpatialOperation#IsWithin} is supported.</li>  *<li>Uses the FieldCache for  * {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point)} and for  * searching with a Circle.</li>  *</ul>  *  *<p>  *<b>Implementation:</b>  *<p>  * This is a simple Strategy.  Search works with {@link NumericRangeQuery}s on  * an x and y pair of fields.  A Circle query does the same bbox query but adds a  * ValueSource filter on  * {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point)}.  *<p>  * One performance shortcoming with this strategy is that a scenario involving  * both a search using a Circle and sort will result in calculations for the  * spatial distance being done twice -- once for the filter and second for the  * sort.  *  * @lucene.experimental  */
+comment|/**  * Simple {@link SpatialStrategy} which represents Points in two numeric {@link  * org.apache.lucene.document.LegacyDoubleField}s.  The Strategy's best feature is decent distance sort.  *  *<p>  *<b>Characteristics:</b>  *<br>  *<ul>  *<li>Only indexes points; just one per field value.</li>  *<li>Can query by a rectangle or circle.</li>  *<li>{@link  * org.apache.lucene.spatial.query.SpatialOperation#Intersects} and {@link  * SpatialOperation#IsWithin} is supported.</li>  *<li>Uses the FieldCache for  * {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point)} and for  * searching with a Circle.</li>  *</ul>  *  *<p>  *<b>Implementation:</b>  *<p>  * This is a simple Strategy.  Search works with {@link org.apache.lucene.search.LegacyNumericRangeQuery}s on  * an x and y pair of fields.  A Circle query does the same bbox query but adds a  * ValueSource filter on  * {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point)}.  *<p>  * One performance shortcoming with this strategy is that a scenario involving  * both a search using a Circle and sort will result in calculations for the  * spatial distance being done twice -- once for the filter and second for the  * sort.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -481,7 +481,7 @@ init|=
 operator|new
 name|FieldType
 argument_list|(
-name|DoubleField
+name|LegacyDoubleField
 operator|.
 name|TYPE_NOT_STORED
 argument_list|)
@@ -509,7 +509,7 @@ literal|0
 index|]
 operator|=
 operator|new
-name|DoubleField
+name|LegacyDoubleField
 argument_list|(
 name|fieldNameX
 argument_list|,
@@ -527,7 +527,7 @@ literal|1
 index|]
 operator|=
 operator|new
-name|DoubleField
+name|LegacyDoubleField
 argument_list|(
 name|fieldNameY
 argument_list|,
@@ -927,7 +927,7 @@ return|;
 block|}
 DECL|method|rangeQuery
 specifier|private
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 argument_list|<
 name|Double
 argument_list|>
@@ -944,7 +944,7 @@ name|max
 parameter_list|)
 block|{
 return|return
-name|NumericRangeQuery
+name|LegacyNumericRangeQuery
 operator|.
 name|newDoubleRange
 argument_list|(
