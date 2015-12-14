@@ -1549,8 +1549,9 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|coreState
-operator|=
+name|Replica
+name|replica
+init|=
 name|slice
 operator|.
 name|getReplicasMap
@@ -1560,6 +1561,17 @@ name|get
 argument_list|(
 name|coreNodeName
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|replica
+operator|!=
+literal|null
+condition|)
+block|{
+name|coreState
+operator|=
+name|replica
 operator|.
 name|getState
 argument_list|()
@@ -1572,6 +1584,7 @@ name|expectedState
 condition|)
 block|{
 return|return;
+block|}
 block|}
 block|}
 name|Thread
