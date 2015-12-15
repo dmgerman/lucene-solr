@@ -44,6 +44,24 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|DimensionalValues
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|DocValuesType
 import|;
 end_import
@@ -102,7 +120,9 @@ name|FieldType
 implements|implements
 name|IndexableFieldType
 block|{
-comment|/** Data type of the numeric value    * @since 3.2    */
+comment|/** Data type of the numeric value    * @since 3.2    *    * @deprecated Please switch to {@link DimensionalValues} instead    */
+annotation|@
+name|Deprecated
 DECL|enum|LegacyNumericType
 specifier|public
 enum|enum
@@ -664,7 +684,9 @@ operator|=
 name|value
 expr_stmt|;
 block|}
-comment|/**    * Specifies the field's numeric type.    * @param type numeric type, or null if the field has no numeric type.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #numericType()    */
+comment|/**    * Specifies the field's numeric type.    * @param type numeric type, or null if the field has no numeric type.    * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #numericType()    *    * @deprecated Please switch to {@link DimensionalValues} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setNumericType
 specifier|public
 name|void
@@ -682,7 +704,9 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**     * LegacyNumericType: if non-null then the field's value will be indexed    * numerically so that {@link org.apache.lucene.search.LegacyNumericRangeQuery} can be used at    * search time.     *<p>    * The default is<code>null</code> (no numeric type)     * @see #setNumericType(org.apache.lucene.document.FieldType.LegacyNumericType)    */
+comment|/**     * LegacyNumericType: if non-null then the field's value will be indexed    * numerically so that {@link org.apache.lucene.search.LegacyNumericRangeQuery} can be used at    * search time.     *<p>    * The default is<code>null</code> (no numeric type)     * @see #setNumericType(org.apache.lucene.document.FieldType.LegacyNumericType)    *    * @deprecated Please switch to {@link DimensionalValues} instead    */
+annotation|@
+name|Deprecated
 DECL|method|numericType
 specifier|public
 name|LegacyNumericType
@@ -693,7 +717,9 @@ return|return
 name|numericType
 return|;
 block|}
-comment|/**    * Sets the numeric precision step for the field.    * @param precisionStep numeric precision step for the field    * @throws IllegalArgumentException if precisionStep is less than 1.     * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #numericPrecisionStep()    */
+comment|/**    * Sets the numeric precision step for the field.    * @param precisionStep numeric precision step for the field    * @throws IllegalArgumentException if precisionStep is less than 1.     * @throws IllegalStateException if this FieldType is frozen against    *         future modifications.    * @see #numericPrecisionStep()    *    * @deprecated Please switch to {@link DimensionalValues} instead    */
+annotation|@
+name|Deprecated
 DECL|method|setNumericPrecisionStep
 specifier|public
 name|void
@@ -732,7 +758,9 @@ operator|=
 name|precisionStep
 expr_stmt|;
 block|}
-comment|/**     * Precision step for numeric field.     *<p>    * This has no effect if {@link #numericType()} returns null.    *<p>    * The default is {@link org.apache.lucene.util.LegacyNumericUtils#PRECISION_STEP_DEFAULT}    * @see #setNumericPrecisionStep(int)    */
+comment|/**     * Precision step for numeric field.     *<p>    * This has no effect if {@link #numericType()} returns null.    *<p>    * The default is {@link org.apache.lucene.util.LegacyNumericUtils#PRECISION_STEP_DEFAULT}    * @see #setNumericPrecisionStep(int)    *    * @deprecated Please switch to {@link DimensionalValues} instead    */
+annotation|@
+name|Deprecated
 DECL|method|numericPrecisionStep
 specifier|public
 name|int
