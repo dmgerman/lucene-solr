@@ -3188,7 +3188,7 @@ literal|"      path:'/update/*'},"
 operator|+
 literal|"    read :{"
 operator|+
-literal|"      path:['/select', '/get']},"
+literal|"      path:['/select', '/get','/browse','/tvrh','/terms','/clustering','/elevate', '/export','/spell','/clustering']},"
 operator|+
 literal|"    config-edit:{"
 operator|+
@@ -3223,7 +3223,7 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-name|getPredicate
+name|getCollectionActionPredicate
 argument_list|(
 literal|true
 argument_list|)
@@ -3250,7 +3250,7 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-name|getPredicate
+name|getCollectionActionPredicate
 argument_list|(
 literal|false
 argument_list|)
@@ -3260,14 +3260,14 @@ block|}
 end_static
 
 begin_function
-DECL|method|getPredicate
+DECL|method|getCollectionActionPredicate
 specifier|private
 specifier|static
 name|Predicate
 argument_list|<
 name|AuthorizationContext
 argument_list|>
-name|getPredicate
+name|getCollectionActionPredicate
 parameter_list|(
 specifier|final
 name|boolean
