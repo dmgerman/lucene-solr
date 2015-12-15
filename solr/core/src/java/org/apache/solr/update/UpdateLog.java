@@ -5455,14 +5455,8 @@ block|{
 comment|// recovery trips this assert under some race - even when
 comment|// it checks the state first
 comment|// assert state == State.ACTIVE;
-name|recoveryInfo
-operator|=
-operator|new
-name|RecoveryInfo
-argument_list|()
-expr_stmt|;
 comment|// block all updates to eliminate race conditions
-comment|// reading state and acting on it in the update processor
+comment|// reading state and acting on it in the distributed update processor
 name|versionInfo
 operator|.
 name|blockUpdates
@@ -5473,12 +5467,52 @@ block|{
 if|if
 condition|(
 name|state
+operator|==
+name|State
+operator|.
+name|BUFFERING
+condition|)
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Restarting buffering. previous="
+operator|+
+name|recoveryInfo
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|state
 operator|!=
 name|State
 operator|.
 name|ACTIVE
 condition|)
+block|{
+comment|// we don't currently have support for handling other states
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Unexpected state for bufferUpdates: "
+operator|+
+name|state
+operator|+
+literal|", Ignoring request."
+argument_list|)
+expr_stmt|;
 return|return;
+block|}
+name|recoveryInfo
+operator|=
+operator|new
+name|RecoveryInfo
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|log

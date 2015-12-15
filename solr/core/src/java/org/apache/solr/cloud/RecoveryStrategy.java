@@ -2712,32 +2712,18 @@ operator|!
 name|replayed
 condition|)
 block|{
-try|try
-block|{
-name|ulog
-operator|.
-name|dropBufferedUpdates
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|SolrException
-operator|.
+comment|// dropBufferedUpdate()s currently only supports returning to ACTIVE state, which risks additional updates
+comment|// being added w/o UpdateLog.FLAG_GAP, hence losing the info on restart that we are not up-to-date.
+comment|// For now, ulog will simply remain in BUFFERING state, and an additional call to bufferUpdates() will
+comment|// reset our starting point for playback.
 name|log
+operator|.
+name|info
 argument_list|(
-name|log
-argument_list|,
-literal|""
-argument_list|,
-name|e
+literal|"Replay not started, or was not successful... still buffering updates."
 argument_list|)
 expr_stmt|;
-block|}
+comment|/** this prev code is retained in case we want to switch strategies.           try {             ulog.dropBufferedUpdates();           } catch (Exception e) {             SolrException.log(log, "", e);           }           **/
 block|}
 if|if
 condition|(
