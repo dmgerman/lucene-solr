@@ -1072,6 +1072,10 @@ argument_list|(
 name|rewrittenInclude
 argument_list|,
 name|rewrittenExclude
+argument_list|,
+name|pre
+argument_list|,
+name|post
 argument_list|)
 return|;
 block|}
