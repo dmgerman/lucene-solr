@@ -1736,7 +1736,7 @@ name|endTrackingSearchers
 argument_list|(
 literal|120
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 expr_stmt|;
 name|String
