@@ -1161,6 +1161,14 @@ operator|.
 name|State
 operator|.
 name|DOWN
+operator|||
+name|state
+operator|==
+name|Replica
+operator|.
+name|State
+operator|.
+name|RECOVERY_FAILED
 operator|)
 operator|&&
 name|clusterState

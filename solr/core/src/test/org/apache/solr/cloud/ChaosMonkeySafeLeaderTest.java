@@ -231,6 +231,15 @@ operator|=
 literal|"schema15.xml"
 expr_stmt|;
 comment|// we need a string id
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.autoCommit.maxTime"
+argument_list|,
+literal|"15000"
+argument_list|)
+expr_stmt|;
 name|SolrCmdDistributor
 operator|.
 name|testing_errorHook
@@ -309,6 +318,13 @@ name|void
 name|afterSuperClass
 parameter_list|()
 block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"solr.autoCommit.maxTime"
+argument_list|)
+expr_stmt|;
 name|SolrCmdDistributor
 operator|.
 name|testing_errorHook

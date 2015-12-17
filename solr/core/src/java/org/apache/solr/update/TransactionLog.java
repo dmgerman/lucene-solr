@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|File
 import|;
 end_import
@@ -339,6 +349,8 @@ DECL|class|TransactionLog
 specifier|public
 class|class
 name|TransactionLog
+implements|implements
+name|Closeable
 block|{
 DECL|field|log
 specifier|private
@@ -2705,7 +2717,7 @@ throw|;
 block|}
 block|}
 DECL|method|close
-specifier|protected
+specifier|public
 name|void
 name|close
 parameter_list|()

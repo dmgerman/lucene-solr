@@ -12825,15 +12825,24 @@ argument_list|(
 name|confDir
 argument_list|)
 decl_stmt|;
-assert|assert
+if|if
+condition|(
 name|listeners
-operator|!=
+operator|==
 literal|null
-operator|:
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
 name|confDir
 operator|+
-literal|" has no more registered listeners, but a live one attempts to unregister!"
-assert|;
+literal|" has no more registered listeners, but a live one attempted to unregister!"
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 if|if
 condition|(
 name|listeners
