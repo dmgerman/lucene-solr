@@ -1732,6 +1732,13 @@ name|class
 argument_list|)
 condition|)
 block|{
+name|endTrackingSearchers
+argument_list|(
+literal|120
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 name|String
 name|orr
 init|=
@@ -1740,13 +1747,6 @@ operator|.
 name|clearObjectTrackerAndCheckEmpty
 argument_list|()
 decl_stmt|;
-name|endTrackingSearchers
-argument_list|(
-literal|120
-argument_list|,
-literal|true
-argument_list|)
-expr_stmt|;
 name|assertNull
 argument_list|(
 name|orr
