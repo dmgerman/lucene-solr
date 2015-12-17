@@ -232,6 +232,11 @@ argument_list|(
 name|dir2
 argument_list|)
 expr_stmt|;
+name|factory
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|dotestOpenSucceedForEmptyDir
 specifier|private
@@ -279,6 +284,11 @@ name|release
 argument_list|(
 name|dir
 argument_list|)
+expr_stmt|;
+name|factory
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 block|}
 block|}
