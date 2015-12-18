@@ -377,11 +377,6 @@ argument_list|(
 literal|"solr.autoSoftCommit.maxTime"
 argument_list|)
 expr_stmt|;
-name|TestInjection
-operator|.
-name|reset
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Test
