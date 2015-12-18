@@ -602,11 +602,17 @@ operator|.
 name|number
 argument_list|)
 decl_stmt|;
-assert|assert
+if|if
+condition|(
 name|reader
-operator|!=
+operator|==
 literal|null
-assert|;
+condition|)
+block|{
+comment|// Schema ghost corner case!  This field did index dimensional values in the past, but
+comment|// now all docs having this dimensional field were deleted in this segment:
+return|return;
+block|}
 name|reader
 operator|.
 name|intersect
