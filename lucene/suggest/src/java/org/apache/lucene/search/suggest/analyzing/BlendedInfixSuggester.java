@@ -590,7 +590,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// here we multiply the number of searched element by the defined factor
+comment|// Don't * numFactor here since we do it down below, once, in the call chain:
 return|return
 name|super
 operator|.
@@ -603,8 +603,6 @@ argument_list|,
 name|onlyMorePopular
 argument_list|,
 name|num
-operator|*
-name|numFactor
 argument_list|)
 return|;
 block|}
@@ -641,7 +639,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// here we multiply the number of searched element by the defined factor
+comment|// Don't * numFactor here since we do it down below, once, in the call chain:
 return|return
 name|super
 operator|.
@@ -652,8 +650,6 @@ argument_list|,
 name|contexts
 argument_list|,
 name|num
-operator|*
-name|numFactor
 argument_list|,
 name|allTermsRequired
 argument_list|,
@@ -698,7 +694,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// here we multiply the number of searched element by the defined factor
+comment|// Don't * numFactor here since we do it down below, once, in the call chain:
 return|return
 name|super
 operator|.
@@ -709,8 +705,6 @@ argument_list|,
 name|contextInfo
 argument_list|,
 name|num
-operator|*
-name|numFactor
 argument_list|,
 name|allTermsRequired
 argument_list|,
@@ -748,7 +742,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// here we multiply the number of searched element by the defined factor
+comment|/** We need to do num * numFactor here only because it is the last call in the lookup chain*/
 return|return
 name|super
 operator|.
