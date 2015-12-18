@@ -1629,7 +1629,7 @@ name|docIDBase
 return|;
 block|}
 block|}
-comment|/** More efficient bulk-add for incoming {@link BKDReader}s.  This does a merge sort of the already    *  sorted values and currently only works when numDims==1. */
+comment|/** More efficient bulk-add for incoming {@link BKDReader}s.  This does a merge sort of the already    *  sorted values and currently only works when numDims==1.  This returns -1 if all documents containing    *  dimensional values were deleted. */
 DECL|method|merge
 specifier|public
 name|long
@@ -1839,6 +1839,21 @@ name|reader
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|queue
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+operator|-
+literal|1
+return|;
 block|}
 name|int
 name|leafCount
