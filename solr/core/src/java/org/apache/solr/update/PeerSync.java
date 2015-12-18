@@ -1254,50 +1254,6 @@ operator|+
 name|nUpdates
 argument_list|)
 expr_stmt|;
-comment|// TODO: does it ever make sense to allow sync when buffering or applying buffered? Someone might request that we
-comment|// do it...
-if|if
-condition|(
-operator|!
-operator|(
-name|ulog
-operator|.
-name|getState
-argument_list|()
-operator|==
-name|UpdateLog
-operator|.
-name|State
-operator|.
-name|ACTIVE
-operator|||
-name|ulog
-operator|.
-name|getState
-argument_list|()
-operator|==
-name|UpdateLog
-operator|.
-name|State
-operator|.
-name|REPLAYING
-operator|)
-condition|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-name|msg
-argument_list|()
-operator|+
-literal|"ERROR, update log not in ACTIVE or REPLAY state. "
-operator|+
-name|ulog
-argument_list|)
-expr_stmt|;
-comment|// return false;
-block|}
 if|if
 condition|(
 name|debug
