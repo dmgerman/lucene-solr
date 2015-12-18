@@ -1570,7 +1570,7 @@ name|params
 operator|.
 name|put
 argument_list|(
-literal|"stream"
+literal|"expr"
 argument_list|,
 name|pushStream
 argument_list|)
