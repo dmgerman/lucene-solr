@@ -1348,6 +1348,16 @@ operator|.
 name|mergeStrategies
 return|;
 block|}
+DECL|method|getRankQuery
+specifier|public
+name|RankQuery
+name|getRankQuery
+parameter_list|()
+block|{
+return|return
+name|rankQuery
+return|;
+block|}
 DECL|method|setRankQuery
 specifier|public
 name|void
@@ -1985,7 +1995,9 @@ return|return
 name|cmd
 return|;
 block|}
+comment|/** Calls {@link RankQuery#wrap(Query)} if there's a rank query, otherwise just returns the query. */
 DECL|method|wrap
+specifier|public
 name|Query
 name|wrap
 parameter_list|(

@@ -2564,7 +2564,7 @@ name|query
 operator|.
 name|setQuery
 argument_list|(
-literal|"id:1"
+literal|"id:1 OR id:2"
 argument_list|)
 expr_stmt|;
 name|query
@@ -2572,8 +2572,31 @@ operator|.
 name|setFilterQueries
 argument_list|(
 literal|"id:[0 TO 10]"
+argument_list|,
+literal|"id:[0 TO 5]"
 argument_list|)
 expr_stmt|;
+name|query
+operator|.
+name|setRows
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+name|query
+operator|.
+name|setSort
+argument_list|(
+literal|"id"
+argument_list|,
+name|SolrQuery
+operator|.
+name|ORDER
+operator|.
+name|asc
+argument_list|)
+expr_stmt|;
+comment|// thus only return id:1 since rows 1
 name|query
 operator|.
 name|set
@@ -2597,8 +2620,39 @@ operator|.
 name|setFields
 argument_list|(
 literal|"id"
-argument_list|,
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+comment|// can affect rb.onePassDistributedQuery
+name|query
+operator|.
+name|addField
+argument_list|(
 literal|"text"
+argument_list|)
+expr_stmt|;
+block|}
+name|query
+operator|.
+name|set
+argument_list|(
+name|ShardParams
+operator|.
+name|DISTRIB_SINGLE_PASS
+argument_list|,
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|query
