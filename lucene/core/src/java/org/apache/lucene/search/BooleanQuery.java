@@ -667,6 +667,27 @@ return|return
 name|clauses
 return|;
 block|}
+comment|/** Return the collection of queries for the given {@link Occur}. */
+DECL|method|getClauses
+name|Collection
+argument_list|<
+name|Query
+argument_list|>
+name|getClauses
+parameter_list|(
+name|Occur
+name|occur
+parameter_list|)
+block|{
+return|return
+name|clauseSets
+operator|.
+name|get
+argument_list|(
+name|occur
+argument_list|)
+return|;
+block|}
 comment|/** Returns an iterator on the clauses in this query. It implements the {@link Iterable} interface to    * make it possible to do:    *<pre class="prettyprint">for (BooleanClause clause : booleanQuery) {}</pre>    */
 annotation|@
 name|Override
