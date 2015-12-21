@@ -755,10 +755,8 @@ argument_list|)
 expr_stmt|;
 name|rsp
 operator|.
-name|add
+name|addResponseHeader
 argument_list|(
-literal|"responseHeader"
-argument_list|,
 name|responseHeader
 argument_list|)
 expr_stmt|;

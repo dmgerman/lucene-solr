@@ -402,13 +402,8 @@ name|omitHeader
 condition|)
 name|response
 operator|.
-name|getValues
+name|removeResponseHeader
 argument_list|()
-operator|.
-name|remove
-argument_list|(
-literal|"responseHeader"
-argument_list|)
 expr_stmt|;
 operator|new
 name|JavaBinCodec

@@ -1800,13 +1800,8 @@ name|ResultContext
 operator|)
 name|response
 operator|.
-name|getValues
+name|getResponse
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"response"
-argument_list|)
 operator|)
 operator|.
 name|getDocList

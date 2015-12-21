@@ -1669,13 +1669,8 @@ name|rb
 operator|.
 name|rsp
 operator|.
-name|getValues
+name|getResponse
 argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"response"
-argument_list|)
 decl_stmt|;
 comment|// TODO: Currently, docIds is set to null in distributed environment.
 comment|// This causes CarrotParams.PRODUCE_SUMMARY doesn't work.

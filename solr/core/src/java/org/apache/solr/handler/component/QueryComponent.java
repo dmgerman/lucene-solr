@@ -2893,10 +2893,8 @@ argument_list|)
 decl_stmt|;
 name|rsp
 operator|.
-name|add
+name|addResponse
 argument_list|(
-literal|"response"
-argument_list|,
 name|ctx
 argument_list|)
 expr_stmt|;
@@ -3903,10 +3901,8 @@ argument_list|)
 decl_stmt|;
 name|rsp
 operator|.
-name|add
+name|addResponse
 argument_list|(
-literal|"response"
-argument_list|,
 name|ctx
 argument_list|)
 expr_stmt|;
@@ -4028,10 +4024,8 @@ argument_list|)
 decl_stmt|;
 name|rsp
 operator|.
-name|add
+name|addResponse
 argument_list|(
-literal|"response"
-argument_list|,
 name|ctx
 argument_list|)
 expr_stmt|;
@@ -5964,10 +5958,8 @@ name|rb
 operator|.
 name|rsp
 operator|.
-name|add
+name|addResponse
 argument_list|(
-literal|"response"
-argument_list|,
 name|rb
 operator|.
 name|_responseDocs

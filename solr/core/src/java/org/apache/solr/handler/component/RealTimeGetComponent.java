@@ -1553,10 +1553,8 @@ argument_list|)
 expr_stmt|;
 name|rsp
 operator|.
-name|add
+name|addResponse
 argument_list|(
-literal|"response"
-argument_list|,
 name|docList
 argument_list|)
 expr_stmt|;
@@ -3170,10 +3168,8 @@ name|rb
 operator|.
 name|rsp
 operator|.
-name|add
+name|addResponse
 argument_list|(
-literal|"response"
-argument_list|,
 name|docList
 argument_list|)
 expr_stmt|;
