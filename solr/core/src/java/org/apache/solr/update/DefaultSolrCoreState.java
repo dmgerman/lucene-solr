@@ -442,12 +442,6 @@ specifier|volatile
 name|RecoveryStrategy
 name|recoveryStrat
 decl_stmt|;
-DECL|field|future
-specifier|private
-specifier|volatile
-name|Future
-name|future
-decl_stmt|;
 DECL|field|lastReplicationSuccess
 specifier|private
 specifier|volatile
@@ -1408,8 +1402,12 @@ argument_list|(
 name|recoveringAfterStartup
 argument_list|)
 expr_stmt|;
+name|Future
+argument_list|<
+name|?
+argument_list|>
 name|future
-operator|=
+init|=
 name|cc
 operator|.
 name|getUpdateShardHandler
@@ -1422,7 +1420,7 @@ name|submit
 argument_list|(
 name|recoveryStrat
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 try|try
 block|{
 name|future
