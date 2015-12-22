@@ -806,7 +806,9 @@ name|header
 operator|.
 name|get
 argument_list|(
-literal|"partialResults"
+name|SolrQueryResponse
+operator|.
+name|RESPONSE_HEADER_PARTIAL_RESULTS_KEY
 argument_list|)
 decl_stmt|;
 name|boolean

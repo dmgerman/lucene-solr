@@ -84,6 +84,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|response
+operator|.
+name|SolrQueryResponse
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Test
@@ -496,7 +510,11 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"partialResults were expected"
+name|SolrQueryResponse
+operator|.
+name|RESPONSE_HEADER_PARTIAL_RESULTS_KEY
+operator|+
+literal|" were expected"
 argument_list|,
 literal|true
 argument_list|,
@@ -507,7 +525,9 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"partialResults"
+name|SolrQueryResponse
+operator|.
+name|RESPONSE_HEADER_PARTIAL_RESULTS_KEY
 argument_list|)
 argument_list|)
 expr_stmt|;

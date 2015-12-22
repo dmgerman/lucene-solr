@@ -159,6 +159,15 @@ name|NAME
 init|=
 literal|"response"
 decl_stmt|;
+DECL|field|RESPONSE_HEADER_PARTIAL_RESULTS_KEY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RESPONSE_HEADER_PARTIAL_RESULTS_KEY
+init|=
+literal|"partialResults"
+decl_stmt|;
 DECL|field|RESPONSE_HEADER_KEY
 specifier|private
 specifier|static

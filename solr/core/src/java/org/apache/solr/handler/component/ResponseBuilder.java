@@ -2067,7 +2067,9 @@ argument_list|()
 operator|.
 name|add
 argument_list|(
-literal|"partialResults"
+name|SolrQueryResponse
+operator|.
+name|RESPONSE_HEADER_PARTIAL_RESULTS_KEY
 argument_list|,
 name|Boolean
 operator|.

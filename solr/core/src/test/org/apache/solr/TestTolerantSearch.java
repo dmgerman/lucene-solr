@@ -950,7 +950,9 @@ argument_list|()
 operator|.
 name|getBooleanArg
 argument_list|(
-literal|"partialResults"
+name|SolrQueryResponse
+operator|.
+name|RESPONSE_HEADER_PARTIAL_RESULTS_KEY
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1338,7 +1340,9 @@ argument_list|()
 operator|.
 name|getBooleanArg
 argument_list|(
-literal|"partialResults"
+name|SolrQueryResponse
+operator|.
+name|RESPONSE_HEADER_PARTIAL_RESULTS_KEY
 argument_list|)
 argument_list|)
 expr_stmt|;
