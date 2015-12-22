@@ -359,6 +359,13 @@ name|LINEAR_COEF
 init|=
 literal|0.10
 decl_stmt|;
+DECL|field|exponent
+specifier|private
+name|Double
+name|exponent
+init|=
+literal|2.0
+decl_stmt|;
 comment|/**    * Default factor    */
 DECL|field|DEFAULT_NUM_FACTOR
 specifier|public
@@ -401,6 +408,9 @@ comment|/** weight/(1+position) */
 DECL|enum constant|POSITION_RECIPROCAL
 name|POSITION_RECIPROCAL
 block|,
+comment|/** weight/pow(1+position, exponent) */
+DECL|enum constant|POSITION_EXPONENTIAL_RECIPROCAL
+name|POSITION_EXPONENTIAL_RECIPROCAL
 comment|// TODO:
 comment|//SCORE
 block|}
@@ -495,7 +505,7 @@ operator|=
 name|numFactor
 expr_stmt|;
 block|}
-comment|/**    * Create a new instance, loading from a previously built    * directory, if it exists.    *    * @param blenderType Type of blending strategy, see BlenderType for more precisions    * @param numFactor   Factor to multiply the number of searched elements before ponderate    * @param commitOnBuild Call commit after the index has finished building. This would persist the    *                      suggester index to disk and future instances of this suggester can use this pre-built dictionary.    * @param allTermsRequired All terms in the suggest query must be matched.    * @param highlight Highlight suggest query in suggestions.    * @throws IOException If there are problems opening the underlying Lucene index.    */
+comment|/**    * Create a new instance, loading from a previously built    * directory, if it exists.    *    * @param blenderType Type of blending strategy, see BlenderType for more precisions    * @param numFactor   Factor to multiply the number of searched elements before ponderate    * @param exponent exponent used only when blenderType is  BlenderType.POSITION_EXPONENTIAL_RECIPROCAL    * @param commitOnBuild Call commit after the index has finished building. This would persist the    *                      suggester index to disk and future instances of this suggester can use this pre-built dictionary.    * @param allTermsRequired All terms in the suggest query must be matched.    * @param highlight Highlight suggest query in suggestions.    * @throws IOException If there are problems opening the underlying Lucene index.    */
 DECL|method|BlendedInfixSuggester
 specifier|public
 name|BlendedInfixSuggester
@@ -517,6 +527,9 @@ name|blenderType
 parameter_list|,
 name|int
 name|numFactor
+parameter_list|,
+name|Double
+name|exponent
 parameter_list|,
 name|boolean
 name|commitOnBuild
@@ -559,6 +572,20 @@ name|numFactor
 operator|=
 name|numFactor
 expr_stmt|;
+if|if
+condition|(
+name|exponent
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|exponent
+operator|=
+name|exponent
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -1390,6 +1417,27 @@ name|position
 operator|+
 literal|1
 operator|)
+expr_stmt|;
+break|break;
+case|case
+name|POSITION_EXPONENTIAL_RECIPROCAL
+case|:
+name|coefficient
+operator|=
+literal|1.
+operator|/
+name|Math
+operator|.
+name|pow
+argument_list|(
+operator|(
+name|position
+operator|+
+literal|1.0
+operator|)
+argument_list|,
+name|exponent
+argument_list|)
 expr_stmt|;
 break|break;
 default|default:
