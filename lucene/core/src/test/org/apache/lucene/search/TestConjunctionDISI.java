@@ -1462,12 +1462,7 @@ block|}
 name|TwoPhaseIterator
 name|twoPhaseIterator
 init|=
-operator|(
-operator|(
-name|Scorer
-operator|)
 name|conjunction
-operator|)
 operator|.
 name|twoPhaseIterator
 argument_list|()
