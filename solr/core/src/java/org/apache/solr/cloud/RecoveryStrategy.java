@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -283,22 +293,6 @@ operator|.
 name|SolrException
 operator|.
 name|ErrorCode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ClosableThread
 import|;
 end_import
 
@@ -700,8 +694,28 @@ name|RecoveryStrategy
 extends|extends
 name|Thread
 implements|implements
-name|ClosableThread
+name|Closeable
 block|{
+DECL|field|LOG
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|LOG
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|MethodHandles
+operator|.
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
+argument_list|)
+decl_stmt|;
 DECL|field|WAIT_FOR_UPDATES_WITH_STALE_STATE_PAUSE
 specifier|private
 specifier|static
@@ -744,26 +758,6 @@ name|String
 name|REPLICATION_HANDLER
 init|=
 literal|"/replication"
-decl_stmt|;
-DECL|field|log
-specifier|private
-specifier|static
-specifier|final
-name|Logger
-name|log
-init|=
-name|LoggerFactory
-operator|.
-name|getLogger
-argument_list|(
-name|MethodHandles
-operator|.
-name|lookup
-argument_list|()
-operator|.
-name|lookupClass
-argument_list|()
-argument_list|)
 decl_stmt|;
 DECL|interface|RecoveryListener
 specifier|public
@@ -950,7 +944,12 @@ name|close
 operator|=
 literal|true
 expr_stmt|;
-try|try
+if|if
+condition|(
+name|prevSendPreRecoveryHttpUriRequest
+operator|!=
+literal|null
+condition|)
 block|{
 name|prevSendPreRecoveryHttpUriRequest
 operator|.
@@ -958,19 +957,11 @@ name|abort
 argument_list|()
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|NullPointerException
-name|e
-parameter_list|)
-block|{
-comment|// okay
-block|}
-name|log
+name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Stopping recovery for core={} coreNodeName={}"
+literal|"Stopping recovery for core=[{}] coreNodeName=[{}]"
 argument_list|,
 name|coreName
 argument_list|,
@@ -1012,7 +1003,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"Recovery failed - I give up."
 argument_list|)
@@ -1081,15 +1072,13 @@ operator|.
 name|getCoreUrl
 argument_list|()
 decl_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Attempting to replicate from "
-operator|+
+literal|"Attempting to replicate from [{}]."
+argument_list|,
 name|leaderUrl
-operator|+
-literal|"."
 argument_list|)
 expr_stmt|;
 comment|// send commit
@@ -1198,7 +1187,7 @@ block|}
 comment|// solrcloud_debug
 if|if
 condition|(
-name|log
+name|LOG
 operator|.
 name|isDebugEnabled
 argument_list|()
@@ -1251,7 +1240,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|log
+name|LOG
 operator|.
 name|debug
 argument_list|(
@@ -1373,7 +1362,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|log
+name|LOG
 operator|.
 name|debug
 argument_list|(
@@ -1516,7 +1505,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"SolrCore not found - cannot recover:"
 operator|+
@@ -1532,7 +1521,7 @@ argument_list|(
 name|core
 argument_list|)
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -1567,7 +1556,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|""
 argument_list|,
@@ -1596,7 +1585,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|log
+name|LOG
 operator|.
 name|error
 argument_list|(
@@ -1679,7 +1668,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"No UpdateLog found - cannot recover."
 argument_list|)
@@ -1749,7 +1738,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"Corrupt tlog - ignoring."
 argument_list|,
@@ -1793,8 +1782,7 @@ name|oldIdx
 init|=
 literal|0
 decl_stmt|;
-comment|// index of the start of the old list in the current
-comment|// list
+comment|// index of the start of the old list in the current list
 name|long
 name|firstStartingVersion
 init|=
@@ -1848,31 +1836,31 @@ operator|>
 literal|0
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"####### Found new versions added after startup: num="
-operator|+
+literal|"####### Found new versions added after startup: num=[{}]"
+argument_list|,
 name|oldIdx
 argument_list|)
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"###### currentVersions="
-operator|+
+literal|"###### currentVersions=[{}]"
+argument_list|,
 name|recentVersions
 argument_list|)
 expr_stmt|;
 block|}
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"###### startupVersions="
-operator|+
+literal|"###### startupVersions=[{}]"
+argument_list|,
 name|startingVersions
 argument_list|)
 expr_stmt|;
@@ -1887,7 +1875,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"Error getting recent versions."
 argument_list|,
@@ -1938,7 +1926,7 @@ comment|// last operation at the time of startup had the GAP flag set...
 comment|// this means we were previously doing a full index replication
 comment|// that probably didn't complete and buffering updates in the
 comment|// meantime.
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -1962,7 +1950,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"Error trying to get ulog starting operation."
 argument_list|,
@@ -2122,14 +2110,14 @@ argument_list|()
 condition|)
 block|{
 comment|// we are now the leader - no one else must have been suitable
-name|log
+name|LOG
 operator|.
 name|warn
 argument_list|(
 literal|"We have not yet recovered - but we are now the leader!"
 argument_list|)
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2154,12 +2142,12 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Begin buffering updates. core="
-operator|+
+literal|"Begin buffering updates. core=[{}]"
+argument_list|,
 name|coreName
 argument_list|)
 expr_stmt|;
@@ -2172,23 +2160,19 @@ name|replayed
 operator|=
 literal|false
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Publishing state of core "
-operator|+
+literal|"Publishing state of core [{}] as recovering, leader is [{}] and I am [{}]"
+argument_list|,
 name|core
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|" as recovering, leader is "
-operator|+
+argument_list|,
 name|leaderUrl
-operator|+
-literal|" and I am "
-operator|+
+argument_list|,
 name|ourUrl
 argument_list|)
 expr_stmt|;
@@ -2252,7 +2236,7 @@ name|isClosed
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2276,7 +2260,7 @@ name|isClosed
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2325,16 +2309,14 @@ operator|=
 literal|false
 expr_stmt|;
 comment|// only try sync the first time through the loop
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Attempting to PeerSync from "
-operator|+
+literal|"Attempting to PeerSync from [{}] - recoveringAfterStartup=[{}]"
+argument_list|,
 name|leaderUrl
-operator|+
-literal|" - recoveringAfterStartup="
-operator|+
+argument_list|,
 name|recoveringAfterStartup
 argument_list|)
 expr_stmt|;
@@ -2415,7 +2397,7 @@ literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2423,101 +2405,14 @@ literal|"PeerSync stage of recovery was successful."
 argument_list|)
 expr_stmt|;
 comment|// solrcloud_debug
-if|if
-condition|(
-name|log
-operator|.
-name|isDebugEnabled
-argument_list|()
-condition|)
-block|{
-try|try
-block|{
-name|RefCounted
-argument_list|<
-name|SolrIndexSearcher
-argument_list|>
-name|searchHolder
-init|=
-name|core
-operator|.
-name|getNewestSearcher
-argument_list|(
-literal|false
-argument_list|)
-decl_stmt|;
-name|SolrIndexSearcher
-name|searcher
-init|=
-name|searchHolder
-operator|.
-name|get
-argument_list|()
-decl_stmt|;
-try|try
-block|{
-name|log
-operator|.
-name|debug
+name|cloudDebugLog
 argument_list|(
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
-name|getCoreContainer
-argument_list|()
-operator|.
-name|getZkController
-argument_list|()
-operator|.
-name|getNodeName
-argument_list|()
-operator|+
-literal|" synched "
-operator|+
-name|searcher
-operator|.
-name|search
-argument_list|(
-operator|new
-name|MatchAllDocsQuery
-argument_list|()
 argument_list|,
-literal|1
-argument_list|)
-operator|.
-name|totalHits
+literal|"synced"
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|searchHolder
-operator|.
-name|decref
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|log
-operator|.
-name|debug
-argument_list|(
-literal|"Error in solrcloud_debug block"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2540,7 +2435,7 @@ literal|true
 expr_stmt|;
 return|return;
 block|}
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2554,7 +2449,7 @@ name|isClosed
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2563,7 +2458,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2590,7 +2485,7 @@ name|isClosed
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2616,7 +2511,7 @@ name|isClosed
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2625,7 +2520,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2651,7 +2546,7 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|warn
 argument_list|(
@@ -2675,7 +2570,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"Error while trying to recover"
 argument_list|,
@@ -2694,7 +2589,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"Error while trying to recover. core="
 operator|+
@@ -2716,7 +2611,7 @@ comment|// dropBufferedUpdate()s currently only supports returning to ACTIVE sta
 comment|// being added w/o UpdateLog.FLAG_GAP, hence losing the info on restart that we are not up-to-date.
 comment|// For now, ulog will simply remain in BUFFERING state, and an additional call to bufferUpdates() will
 comment|// reset our starting point for playback.
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2730,7 +2625,7 @@ condition|(
 name|successfulRecovery
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2762,7 +2657,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|log
+name|LOG
 operator|.
 name|error
 argument_list|(
@@ -2810,7 +2705,7 @@ name|isClosed
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2819,7 +2714,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 block|}
-name|log
+name|LOG
 operator|.
 name|error
 argument_list|(
@@ -2844,7 +2739,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"Recovery failed - max retries exceeded ("
 operator|+
@@ -2882,7 +2777,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"Could not publish that recovery failed"
 argument_list|,
@@ -2903,9 +2798,9 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
-literal|""
+literal|"An error has occurred during recovery"
 argument_list|,
 name|e
 argument_list|)
@@ -2913,10 +2808,17 @@ expr_stmt|;
 block|}
 try|try
 block|{
-comment|// start at 1 sec and work up to a min
+comment|// Wait an exponential interval between retries, start at 5 seconds and work up to a minute.
+comment|// If we're at attempt>= 4, there's no point computing pow(2, retries) because the result
+comment|// will always be the minimum of the two (12). Since we sleep at 5 seconds sub-intervals in
+comment|// order to check if we were closed, 12 is chosen as the maximum loopCount (5s * 12 = 1m).
 name|double
 name|loopCount
 init|=
+name|retries
+operator|<
+literal|4
+condition|?
 name|Math
 operator|.
 name|min
@@ -2930,14 +2832,16 @@ argument_list|,
 name|retries
 argument_list|)
 argument_list|,
-literal|60
+literal|12
 argument_list|)
+else|:
+literal|12
 decl_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Wait {} seconds before trying to recover again ({})"
+literal|"Wait [{}] seconds before trying to recover again (attempt={})"
 argument_list|,
 name|loopCount
 argument_list|,
@@ -2965,7 +2869,7 @@ name|isClosed
 argument_list|()
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -2998,7 +2902,7 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|warn
 argument_list|(
@@ -3025,7 +2929,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -3038,11 +2942,11 @@ name|seedVersionBuckets
 argument_list|()
 expr_stmt|;
 block|}
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Finished recovery process, successful="
+literal|"Finished recovery process, successful=[{}]"
 argument_list|,
 name|Boolean
 operator|.
@@ -3094,7 +2998,7 @@ literal|null
 condition|)
 block|{
 comment|// no replay needed\
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -3104,7 +3008,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
@@ -3131,7 +3035,7 @@ name|SolrException
 operator|.
 name|log
 argument_list|(
-name|log
+name|LOG
 argument_list|,
 literal|"Replay failed"
 argument_list|)
@@ -3150,14 +3054,40 @@ throw|;
 block|}
 block|}
 comment|// solrcloud_debug
+name|cloudDebugLog
+argument_list|(
+name|core
+argument_list|,
+literal|"replayed"
+argument_list|)
+expr_stmt|;
+return|return
+name|future
+return|;
+block|}
+DECL|method|cloudDebugLog
+specifier|private
+name|void
+name|cloudDebugLog
+parameter_list|(
+name|SolrCore
+name|core
+parameter_list|,
+name|String
+name|op
+parameter_list|)
+block|{
 if|if
 condition|(
-name|log
+operator|!
+name|LOG
 operator|.
 name|isDebugEnabled
 argument_list|()
 condition|)
 block|{
+return|return;
+block|}
 try|try
 block|{
 name|RefCounted
@@ -3183,10 +3113,27 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-name|log
+specifier|final
+name|int
+name|totalHits
+init|=
+name|searcher
 operator|.
-name|debug
+name|search
 argument_list|(
+operator|new
+name|MatchAllDocsQuery
+argument_list|()
+argument_list|,
+literal|1
+argument_list|)
+operator|.
+name|totalHits
+decl_stmt|;
+specifier|final
+name|String
+name|nodeName
+init|=
 name|core
 operator|.
 name|getCoreDescriptor
@@ -3200,20 +3147,17 @@ argument_list|()
 operator|.
 name|getNodeName
 argument_list|()
-operator|+
-literal|" replayed "
-operator|+
-name|searcher
+decl_stmt|;
+name|LOG
 operator|.
-name|search
+name|debug
 argument_list|(
-operator|new
-name|MatchAllDocsQuery
-argument_list|()
+literal|"[{}] {} [{} total hits]"
 argument_list|,
-literal|1
-argument_list|)
-operator|.
+name|nodeName
+argument_list|,
+name|op
+argument_list|,
 name|totalHits
 argument_list|)
 expr_stmt|;
@@ -3233,7 +3177,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|log
+name|LOG
 operator|.
 name|debug
 argument_list|(
@@ -3244,12 +3188,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-return|return
-name|future
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|isClosed
 specifier|public
 name|boolean
@@ -3412,11 +3350,11 @@ name|mrr
 operator|.
 name|httpUriRequest
 expr_stmt|;
-name|log
+name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Sending prep recovery command to {}; {}"
+literal|"Sending prep recovery command to [{}]; [{}]"
 argument_list|,
 name|leaderBaseUrl
 argument_list|,
