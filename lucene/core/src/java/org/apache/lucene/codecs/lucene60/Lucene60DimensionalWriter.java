@@ -624,7 +624,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-comment|// We could have 0 points since all docs with dimensional fields may be deleted:
+comment|// We could have 0 points on merge since all docs with dimensional fields may be deleted:
 if|if
 condition|(
 name|writer
