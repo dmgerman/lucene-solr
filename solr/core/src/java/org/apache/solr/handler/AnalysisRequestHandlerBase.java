@@ -887,6 +887,8 @@ init|=
 operator|new
 name|ListBasedTokenStream
 argument_list|(
+name|tokenStream
+argument_list|,
 name|tokens
 argument_list|)
 decl_stmt|;
@@ -920,6 +922,7 @@ name|freezeStage
 argument_list|()
 expr_stmt|;
 block|}
+comment|// overwrite the vars "tokenStream", "tokens", and "listBasedTokenStream"
 name|tokenStream
 operator|=
 name|tokenFilterFactory
@@ -961,6 +964,8 @@ operator|=
 operator|new
 name|ListBasedTokenStream
 argument_list|(
+name|listBasedTokenStream
+argument_list|,
 name|tokens
 argument_list|)
 expr_stmt|;
@@ -1200,6 +1205,7 @@ operator|.
 name|end
 argument_list|()
 expr_stmt|;
+comment|// TODO should we capture?
 block|}
 catch|catch
 parameter_list|(
@@ -2005,10 +2011,13 @@ name|AttributeSource
 argument_list|>
 name|tokenIterator
 decl_stmt|;
-comment|/**      * Creates a new ListBasedTokenStream which uses the given tokens as its token source.      *      * @param tokens Source of tokens to be used      */
+comment|/**      * Creates a new ListBasedTokenStream which uses the given tokens as its token source.      *      * @param attributeSource source of the attribute factory and attribute impls      * @param tokens Source of tokens to be used      */
 DECL|method|ListBasedTokenStream
 name|ListBasedTokenStream
 parameter_list|(
+name|AttributeSource
+name|attributeSource
+parameter_list|,
 name|List
 argument_list|<
 name|AttributeSource
@@ -2016,11 +2025,41 @@ argument_list|>
 name|tokens
 parameter_list|)
 block|{
+name|super
+argument_list|(
+name|attributeSource
+operator|.
+name|getAttributeFactory
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|tokens
 operator|=
 name|tokens
+expr_stmt|;
+comment|// Make sure all the attributes of the source are here too
+name|addAttributes
+argument_list|(
+name|attributeSource
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|super
+operator|.
+name|reset
+argument_list|()
 expr_stmt|;
 name|tokenIterator
 operator|=
@@ -2057,38 +2096,12 @@ operator|.
 name|next
 argument_list|()
 decl_stmt|;
-name|Iterator
-argument_list|<
-name|Class
-argument_list|<
-name|?
-extends|extends
-name|Attribute
-argument_list|>
-argument_list|>
-name|atts
-init|=
-name|next
-operator|.
-name|getAttributeClassesIterator
-argument_list|()
-decl_stmt|;
-while|while
-condition|(
-name|atts
-operator|.
-name|hasNext
-argument_list|()
-condition|)
-comment|// make sure all att impls in the token exist here
-name|addAttribute
+name|addAttributes
 argument_list|(
-name|atts
-operator|.
 name|next
-argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// just in case there were delayed attribute additions
 name|next
 operator|.
 name|copyTo
@@ -2107,28 +2120,47 @@ literal|false
 return|;
 block|}
 block|}
-annotation|@
-name|Override
-DECL|method|reset
-specifier|public
+DECL|method|addAttributes
+specifier|protected
 name|void
-name|reset
-parameter_list|()
-throws|throws
-name|IOException
+name|addAttributes
+parameter_list|(
+name|AttributeSource
+name|attributeSource
+parameter_list|)
 block|{
-name|super
+comment|// note: ideally we wouldn't call addAttributeImpl which is marked internal. But nonetheless it's possible
+comment|//  this method is used by some custom attributes, especially since Solr doesn't provide a way to customize the
+comment|//  AttributeFactory which is the recommended way to choose which classes implement which attributes.
+name|Iterator
+argument_list|<
+name|AttributeImpl
+argument_list|>
+name|atts
+init|=
+name|attributeSource
 operator|.
-name|reset
+name|getAttributeImplsIterator
 argument_list|()
-expr_stmt|;
-name|tokenIterator
-operator|=
-name|tokens
+decl_stmt|;
+while|while
+condition|(
+name|atts
 operator|.
-name|iterator
+name|hasNext
 argument_list|()
+condition|)
+block|{
+name|addAttributeImpl
+argument_list|(
+name|atts
+operator|.
+name|next
+argument_list|()
+argument_list|)
 expr_stmt|;
+comment|// adds both impl& interfaces
+block|}
 block|}
 block|}
 comment|/** This is an {@link Attribute} used to track the positions of tokens    * in the analysis chain.    * @lucene.internal This class is only public for usage by the {@link AttributeSource} API.    */

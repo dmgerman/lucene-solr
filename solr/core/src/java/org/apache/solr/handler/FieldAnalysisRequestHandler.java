@@ -787,8 +787,8 @@ name|analysisResults
 return|;
 block|}
 comment|/**    * Analyzes the index value (if it exists) and the query value (if it exists) in the given AnalysisRequest, using    * the Analyzers of the given field type.    *    * @param analysisRequest AnalysisRequest from where the index and query values will be taken    * @param fieldType       Type of field whose analyzers will be used    * @param fieldName       Name of the field to be analyzed.  Can be {@code null}    *    * @return NamedList containing the tokens produced by the analyzers of the given field, separated into an index and    *         a query group    */
+comment|// package access for testing
 DECL|method|analyzeValues
-specifier|private
 name|NamedList
 argument_list|<
 name|NamedList
