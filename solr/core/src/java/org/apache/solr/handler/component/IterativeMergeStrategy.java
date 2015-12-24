@@ -407,18 +407,6 @@ operator|.
 name|getConfigurer
 argument_list|()
 decl_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"############### HttpClientConfigurer ##################:"
-operator|+
-name|configurer
-operator|.
-name|getClass
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|httpClient
 operator|=
 name|HttpClientUtil
@@ -587,6 +575,21 @@ name|QueryRequest
 name|req
 parameter_list|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"############### HttpClientConfigurer ##################:"
+operator|+
+name|HttpClientUtil
+operator|.
+name|getConfigurer
+argument_list|()
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|log
 operator|.
 name|info
