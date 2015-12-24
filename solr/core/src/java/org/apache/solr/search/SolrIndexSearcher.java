@@ -7540,6 +7540,7 @@ argument_list|()
 return|;
 block|}
 DECL|field|NO_CHECK_QCACHE
+specifier|public
 specifier|static
 specifier|final
 name|int

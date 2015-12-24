@@ -741,12 +741,67 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**     * Ascendant for {@link ToParentBlockJoinQuery}'s scorer.     * @lucene.experimental it might be removed at<b>6.0</b>    * */
+DECL|class|ChildrenMatchesScorer
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|ChildrenMatchesScorer
+extends|extends
+name|Scorer
+block|{
+comment|/** inherited constructor */
+DECL|method|ChildrenMatchesScorer
+specifier|protected
+name|ChildrenMatchesScorer
+parameter_list|(
+name|Weight
+name|weight
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|weight
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**       * enables children matches recording       * */
+DECL|method|trackPendingChildHits
+specifier|public
+specifier|abstract
+name|void
+name|trackPendingChildHits
+parameter_list|()
+function_decl|;
+comment|/**      * reports matched children       * @return number of recorded matched children docs       * */
+DECL|method|getChildCount
+specifier|public
+specifier|abstract
+name|int
+name|getChildCount
+parameter_list|()
+function_decl|;
+comment|/**      * reports matched children       * @param other array for recording matching children docs of next parent,      * it might be null (that's slower) or the same array which was returned       * from the previous call      * @return array with {@link #getChildCount()} matched children docnums      *  */
+DECL|method|swapChildDocs
+specifier|public
+specifier|abstract
+name|int
+index|[]
+name|swapChildDocs
+parameter_list|(
+name|int
+index|[]
+name|other
+parameter_list|)
+function_decl|;
+block|}
 DECL|class|BlockJoinScorer
 specifier|static
 class|class
 name|BlockJoinScorer
 extends|extends
-name|Scorer
+name|ChildrenMatchesScorer
 block|{
 DECL|field|childScorer
 specifier|private
@@ -886,7 +941,10 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|getChildCount
+specifier|public
 name|int
 name|getChildCount
 parameter_list|()
@@ -904,7 +962,10 @@ return|return
 name|parentDoc
 return|;
 block|}
+annotation|@
+name|Override
 DECL|method|swapChildDocs
+specifier|public
 name|int
 index|[]
 name|swapChildDocs
@@ -1605,6 +1666,8 @@ argument_list|)
 return|;
 block|}
 comment|/**      * Instructs this scorer to keep track of the child docIds and score ids for retrieval purposes.      */
+annotation|@
+name|Override
 DECL|method|trackPendingChildHits
 specifier|public
 name|void
