@@ -392,7 +392,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|SortedSetSelector
+name|SortedNumericSelector
 import|;
 end_import
 
@@ -406,7 +406,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|SortedNumericSelector
+name|SortedSetSelector
 import|;
 end_import
 
@@ -876,6 +876,23 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**    * Returns true if the fields' docValues should be used for obtaining stored value    */
+DECL|method|useDocValuesAsStored
+specifier|public
+name|boolean
+name|useDocValuesAsStored
+parameter_list|()
+block|{
+return|return
+operator|(
+name|properties
+operator|&
+name|USE_DOCVALUES_AS_STORED
+operator|)
+operator|!=
+literal|0
+return|;
+block|}
 comment|/** Returns true if a single field value of this type has multiple logical values    *  for the purposes of faceting, sorting, etc.  Text fields normally return    *  true since each token/word is a logical value.    */
 DECL|method|multiValuedFieldCache
 specifier|public
@@ -976,6 +993,16 @@ literal|"compressThreshold"
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|schemaVersion
+operator|>=
+literal|1.6f
+condition|)
+name|properties
+operator||=
+name|USE_DOCVALUES_AS_STORED
+expr_stmt|;
 name|this
 operator|.
 name|args

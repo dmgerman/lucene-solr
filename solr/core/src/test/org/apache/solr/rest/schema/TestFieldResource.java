@@ -66,7 +66,7 @@ literal|"/schema/fields/test_postv?indent=on&wt=xml&showDefaults=true"
 argument_list|,
 literal|"count(/response/lst[@name='field']) = 1"
 argument_list|,
-literal|"count(/response/lst[@name='field']/*) = 16"
+literal|"count(/response/lst[@name='field']/*) = 17"
 argument_list|,
 literal|"/response/lst[@name='field']/str[@name='name'] = 'test_postv'"
 argument_list|,
@@ -99,6 +99,8 @@ argument_list|,
 literal|"/response/lst[@name='field']/bool[@name='required'] = 'false'"
 argument_list|,
 literal|"/response/lst[@name='field']/bool[@name='tokenized'] = 'true'"
+argument_list|,
+literal|"/response/lst[@name='field']/bool[@name='useDocValuesAsStored'] = 'true'"
 argument_list|)
 expr_stmt|;
 block|}

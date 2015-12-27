@@ -203,6 +203,15 @@ name|STORE_TERMPAYLOADS
 init|=
 literal|0x00010000
 decl_stmt|;
+DECL|field|USE_DOCVALUES_AS_STORED
+specifier|protected
+specifier|final
+specifier|static
+name|int
+name|USE_DOCVALUES_AS_STORED
+init|=
+literal|0x00020000
+decl_stmt|;
 DECL|field|propertyNames
 specifier|static
 specifier|final
@@ -244,6 +253,8 @@ block|,
 literal|"docValues"
 block|,
 literal|"termPayloads"
+block|,
+literal|"useDocValuesAsStored"
 block|}
 decl_stmt|;
 DECL|field|propertyMap

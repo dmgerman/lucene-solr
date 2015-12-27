@@ -22,7 +22,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|*
+name|Set
 import|;
 end_import
 
@@ -63,6 +63,20 @@ name|String
 argument_list|>
 name|getLuceneFieldNames
 parameter_list|()
+function_decl|;
+comment|/**    * Set of field names with their exact names from the lucene index.    *    * @param ignoreWantsAll If true, it returns any additional specified field names, in spite of    *                       also wanting all fields. Example: when fl=*,field1, returns ["field1"].    *                       If false, the method returns null when all fields are wanted. Example: when fl=*,field1, returns null.    *                       Note that this method returns null regardless of ignoreWantsAll if all fields    *                       are requested and no explicit field names are specified.    */
+DECL|method|getLuceneFieldNames
+specifier|public
+specifier|abstract
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|getLuceneFieldNames
+parameter_list|(
+name|boolean
+name|ignoreWantsAll
+parameter_list|)
 function_decl|;
 comment|/**    * The requested field names (includes pseudo fields)    *<p>    * @return Set of field names or<code>null</code> (all fields).    */
 DECL|method|getRequestedFieldNames
