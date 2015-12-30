@@ -7083,7 +7083,7 @@ decl_stmt|;
 name|double
 name|maxMBSortInHeap
 init|=
-literal|2.0
+literal|3.0
 operator|+
 operator|(
 literal|3
