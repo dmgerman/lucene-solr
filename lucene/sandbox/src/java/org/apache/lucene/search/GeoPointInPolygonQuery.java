@@ -933,6 +933,8 @@ operator|.
 name|this
 operator|.
 name|maxLat
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}
