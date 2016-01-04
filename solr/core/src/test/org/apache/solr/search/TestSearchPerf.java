@@ -963,27 +963,6 @@ operator|new
 name|RTimer
 argument_list|()
 decl_stmt|;
-comment|// These aren't public in SolrIndexSearcher
-name|int
-name|NO_CHECK_QCACHE
-init|=
-literal|0x80000000
-decl_stmt|;
-name|int
-name|GET_DOCSET
-init|=
-literal|0x40000000
-decl_stmt|;
-name|int
-name|NO_CHECK_FILTERCACHE
-init|=
-literal|0x20000000
-decl_stmt|;
-name|int
-name|GET_SCORES
-init|=
-literal|0x01
-decl_stmt|;
 name|int
 name|ret
 init|=
@@ -1029,6 +1008,8 @@ name|cacheQuery
 condition|?
 literal|0
 else|:
+name|SolrIndexSearcher
+operator|.
 name|NO_CHECK_QCACHE
 operator|)
 operator||
@@ -1037,6 +1018,8 @@ name|cacheFilt
 condition|?
 literal|0
 else|:
+name|SolrIndexSearcher
+operator|.
 name|NO_CHECK_FILTERCACHE
 operator|)
 argument_list|)
