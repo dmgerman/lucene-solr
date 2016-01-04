@@ -3111,6 +3111,9 @@ specifier|public
 name|void
 name|test
 parameter_list|(
+name|AtomicBoolean
+name|failed
+parameter_list|,
 name|boolean
 name|small
 parameter_list|,
@@ -3468,6 +3471,13 @@ condition|(
 name|fail
 condition|)
 block|{
+name|failed
+operator|.
+name|set
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|fail
 argument_list|(
 literal|"some hits were wrong"
@@ -4706,6 +4716,8 @@ name|verifyHits
 operator|.
 name|test
 argument_list|(
+name|failed
+argument_list|,
 name|small
 argument_list|,
 name|s
@@ -4774,6 +4786,14 @@ argument_list|(
 name|r
 argument_list|,
 name|dir
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+name|failed
+operator|.
+name|get
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
