@@ -854,7 +854,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"mp is not TMP"
+literal|"mp is not TieredMergePolicy"
 argument_list|,
 name|iwc
 operator|.
