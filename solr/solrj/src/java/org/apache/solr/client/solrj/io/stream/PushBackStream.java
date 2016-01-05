@@ -167,6 +167,8 @@ class|class
 name|PushBackStream
 extends|extends
 name|TupleStream
+implements|implements
+name|Expressible
 block|{
 DECL|field|serialVersionUID
 specifier|private
