@@ -7849,6 +7849,7 @@ comment|// close again
 block|}
 DECL|method|testDoubleCloseOutput
 specifier|public
+specifier|final
 name|void
 name|testDoubleCloseOutput
 parameter_list|()

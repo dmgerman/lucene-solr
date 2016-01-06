@@ -793,10 +793,10 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testCreateTempOutput
+DECL|method|testCreateTempOutputSameName
 specifier|public
 name|void
-name|testCreateTempOutput
+name|testCreateTempOutputSameName
 parameter_list|()
 throws|throws
 name|Exception
