@@ -1067,6 +1067,8 @@ operator|.
 name|command
 operator|.
 name|QueryCommand
+operator|.
+name|Builder
 import|;
 end_import
 
@@ -3470,8 +3472,6 @@ operator|.
 name|addCommandField
 argument_list|(
 operator|new
-name|QueryCommand
-operator|.
 name|Builder
 argument_list|()
 operator|.
