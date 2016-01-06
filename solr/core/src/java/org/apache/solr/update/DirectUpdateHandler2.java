@@ -1316,7 +1316,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * This is the implementation of {@link #addDoc0(AddUpdateCommand)}. It is factored out to allow an exception    * handler to decorate RuntimeExceptions with information about the document being handled.    * @param cmd the command.    * @return the count.    */
+comment|/**    * This is the implementation of {@link #addDoc(AddUpdateCommand)}. It is factored out to allow an exception    * handler to decorate RuntimeExceptions with information about the document being handled.    * @param cmd the command.    * @return the count.    */
 DECL|method|addDoc0
 specifier|private
 name|int
