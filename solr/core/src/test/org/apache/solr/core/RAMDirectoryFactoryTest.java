@@ -188,7 +188,9 @@ name|DirContext
 operator|.
 name|DEFAULT
 argument_list|,
-literal|"single"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_SINGLE
 argument_list|)
 decl_stmt|;
 name|Directory
@@ -204,7 +206,9 @@ name|DirContext
 operator|.
 name|DEFAULT
 argument_list|,
-literal|"single"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_SINGLE
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -266,7 +270,9 @@ name|DirContext
 operator|.
 name|DEFAULT
 argument_list|,
-literal|"single"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_SINGLE
 argument_list|)
 decl_stmt|;
 name|assertNotNull

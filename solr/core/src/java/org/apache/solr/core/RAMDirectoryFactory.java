@@ -145,7 +145,9 @@ name|rawLockType
 operator|==
 literal|null
 operator|||
-literal|"single"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_SINGLE
 operator|.
 name|equalsIgnoreCase
 argument_list|(
@@ -165,7 +167,13 @@ name|ErrorCode
 operator|.
 name|FORBIDDEN
 argument_list|,
-literal|"RAMDirectory can only be used with the 'single' lock factory type."
+literal|"RAMDirectory can only be used with the '"
+operator|+
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_SINGLE
+operator|+
+literal|"' lock factory type."
 argument_list|)
 throw|;
 block|}

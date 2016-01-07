@@ -747,7 +747,7 @@ name|assertEquals
 argument_list|(
 literal|"default LockType"
 argument_list|,
-name|SolrIndexConfig
+name|DirectoryFactory
 operator|.
 name|LOCK_TYPE_NATIVE
 argument_list|,

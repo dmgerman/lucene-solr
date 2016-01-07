@@ -1060,7 +1060,9 @@ name|DirContext
 operator|.
 name|DEFAULT
 argument_list|,
-literal|"single"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_SINGLE
 argument_list|)
 expr_stmt|;
 name|dirs
@@ -1089,7 +1091,9 @@ name|DirContext
 operator|.
 name|DEFAULT
 argument_list|,
-literal|"single"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_SINGLE
 argument_list|)
 expr_stmt|;
 block|}

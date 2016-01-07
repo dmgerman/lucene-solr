@@ -116,6 +116,20 @@ name|solr
 operator|.
 name|core
 operator|.
+name|DirectoryFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
 name|SolrConfig
 import|;
 end_import
@@ -866,7 +880,7 @@ argument_list|)
 decl_stmt|;
 name|assertTrue
 argument_list|(
-name|SolrIndexConfig
+name|DirectoryFactory
 operator|.
 name|LOCK_TYPE_SIMPLE
 operator|.
@@ -875,7 +889,7 @@ argument_list|(
 name|lockType
 argument_list|)
 operator|||
-name|SolrIndexConfig
+name|DirectoryFactory
 operator|.
 name|LOCK_TYPE_NATIVE
 operator|.
@@ -884,7 +898,7 @@ argument_list|(
 name|lockType
 argument_list|)
 operator|||
-name|SolrIndexConfig
+name|DirectoryFactory
 operator|.
 name|LOCK_TYPE_SINGLE
 operator|.
@@ -893,7 +907,7 @@ argument_list|(
 name|lockType
 argument_list|)
 operator|||
-name|SolrIndexConfig
+name|DirectoryFactory
 operator|.
 name|LOCK_TYPE_NONE
 operator|.

@@ -322,17 +322,22 @@ operator|==
 name|rawLockType
 condition|)
 block|{
-comment|// we default to "native"
+name|rawLockType
+operator|=
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_NATIVE
+expr_stmt|;
 name|log
 operator|.
 name|warn
 argument_list|(
-literal|"No lockType configured, assuming 'native'."
-argument_list|)
-expr_stmt|;
+literal|"No lockType configured, assuming '"
+operator|+
 name|rawLockType
-operator|=
-literal|"native"
+operator|+
+literal|"'."
+argument_list|)
 expr_stmt|;
 block|}
 specifier|final
@@ -357,7 +362,9 @@ name|lockType
 condition|)
 block|{
 case|case
-literal|"simple"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_SIMPLE
 case|:
 return|return
 name|SimpleFSLockFactory
@@ -365,7 +372,9 @@ operator|.
 name|INSTANCE
 return|;
 case|case
-literal|"native"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_NATIVE
 case|:
 return|return
 name|NativeFSLockFactory
@@ -373,7 +382,9 @@ operator|.
 name|INSTANCE
 return|;
 case|case
-literal|"single"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_SINGLE
 case|:
 return|return
 operator|new
@@ -381,7 +392,9 @@ name|SingleInstanceLockFactory
 argument_list|()
 return|;
 case|case
-literal|"none"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_NONE
 case|:
 return|return
 name|NoLockFactory
