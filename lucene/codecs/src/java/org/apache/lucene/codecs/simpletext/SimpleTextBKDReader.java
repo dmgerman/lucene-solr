@@ -212,6 +212,14 @@ parameter_list|,
 name|byte
 index|[]
 name|splitPackedValues
+parameter_list|,
+name|byte
+index|[]
+name|minPackedValue
+parameter_list|,
+name|byte
+index|[]
+name|maxPackedValue
 parameter_list|)
 throws|throws
 name|IOException
@@ -229,6 +237,10 @@ argument_list|,
 name|leafBlockFPs
 argument_list|,
 name|splitPackedValues
+argument_list|,
+name|minPackedValue
+argument_list|,
+name|maxPackedValue
 argument_list|)
 expr_stmt|;
 block|}

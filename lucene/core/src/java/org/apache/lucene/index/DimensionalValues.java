@@ -145,7 +145,7 @@ name|BKDWriter
 operator|.
 name|MAX_DIMS
 decl_stmt|;
-comment|/** Defautl constructor */
+comment|/** Default constructor */
 DECL|method|DimensionalValues
 specifier|protected
 name|DimensionalValues
@@ -240,6 +240,60 @@ name|fieldName
 parameter_list|,
 name|IntersectVisitor
 name|visitor
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns minimum value for each dimension, packed, or null if no points were indexed */
+DECL|method|getMinPackedValue
+specifier|public
+specifier|abstract
+name|byte
+index|[]
+name|getMinPackedValue
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns maximum value for each dimension, packed, or null if no points were indexed */
+DECL|method|getMaxPackedValue
+specifier|public
+specifier|abstract
+name|byte
+index|[]
+name|getMaxPackedValue
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns how many dimensions were indexed */
+DECL|method|getNumDimensions
+specifier|public
+specifier|abstract
+name|int
+name|getNumDimensions
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns the number of bytes per dimension */
+DECL|method|getBytesPerDimension
+specifier|public
+specifier|abstract
+name|int
+name|getBytesPerDimension
+parameter_list|(
+name|String
+name|fieldName
 parameter_list|)
 throws|throws
 name|IOException
