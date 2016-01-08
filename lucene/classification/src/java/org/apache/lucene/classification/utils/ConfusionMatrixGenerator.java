@@ -887,7 +887,8 @@ decl_stmt|;
 name|double
 name|fp
 init|=
-literal|0
+operator|-
+literal|1
 decl_stmt|;
 if|if
 condition|(
@@ -1309,7 +1310,11 @@ decl_stmt|;
 name|double
 name|fp
 init|=
-literal|0
+operator|-
+name|linearizedMatrix
+operator|.
+name|size
+argument_list|()
 decl_stmt|;
 for|for
 control|(
