@@ -935,6 +935,15 @@ name|equals
 argument_list|(
 name|lockType
 argument_list|)
+operator|||
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_HDFS
+operator|.
+name|equals
+argument_list|(
+name|lockType
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

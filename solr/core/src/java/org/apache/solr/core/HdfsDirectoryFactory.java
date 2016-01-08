@@ -1153,16 +1153,22 @@ operator|==
 name|rawLockType
 condition|)
 block|{
+name|rawLockType
+operator|=
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_HDFS
+expr_stmt|;
 name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"No lockType configured, assuming 'hdfs'."
-argument_list|)
-expr_stmt|;
+literal|"No lockType configured, assuming '"
+operator|+
 name|rawLockType
-operator|=
-literal|"hdfs"
+operator|+
+literal|"'."
+argument_list|)
 expr_stmt|;
 block|}
 specifier|final
@@ -1187,7 +1193,9 @@ name|lockType
 condition|)
 block|{
 case|case
-literal|"hdfs"
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_HDFS
 case|:
 return|return
 name|HdfsLockFactory

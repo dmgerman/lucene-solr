@@ -350,6 +350,15 @@ name|LOCK_TYPE_NONE
 init|=
 literal|"none"
 decl_stmt|;
+DECL|field|LOCK_TYPE_HDFS
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|LOCK_TYPE_HDFS
+init|=
+literal|"hdfs"
+decl_stmt|;
 comment|/**    * Indicates a Directory will no longer be used, and when its ref count    * hits 0, it can be closed. On close all directories will be closed    * whether this has been called or not. This is simply to allow early cleanup.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|doneWithDirectory
 specifier|public

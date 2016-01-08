@@ -82,6 +82,15 @@ operator|.
 name|LOCK_TYPE_NONE
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"hdfs"
+argument_list|,
+name|DirectoryFactory
+operator|.
+name|LOCK_TYPE_HDFS
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
