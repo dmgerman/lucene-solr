@@ -3417,7 +3417,9 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<>
-argument_list|()
+argument_list|(
+literal|3
+argument_list|)
 decl_stmt|;
 name|resources
 operator|.
@@ -4097,12 +4099,9 @@ name|docID
 parameter_list|)
 block|{
 specifier|final
-name|int
+name|long
 name|pointer
 init|=
-operator|(
-name|int
-operator|)
 name|docToOffset
 operator|.
 name|get
@@ -4189,7 +4188,9 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<>
-argument_list|()
+argument_list|(
+literal|2
+argument_list|)
 decl_stmt|;
 name|resources
 operator|.
