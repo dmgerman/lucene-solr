@@ -14,6 +14,16 @@ name|solrj
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|BufferedOutputStream
+import|;
+end_import
+
 begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
@@ -44,7 +54,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|OutputStreamWriter
+name|OutputStream
 import|;
 end_import
 
@@ -54,7 +64,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|PrintWriter
+name|OutputStreamWriter
 import|;
 end_import
 
@@ -1354,7 +1364,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|whitespace
-name|char
+name|byte
 index|[]
 name|whitespace
 parameter_list|(
@@ -1362,12 +1372,12 @@ name|int
 name|n
 parameter_list|)
 block|{
-name|char
+name|byte
 index|[]
 name|arr
 init|=
 operator|new
-name|char
+name|byte
 index|[
 name|n
 index|]
@@ -1378,6 +1388,9 @@ name|fill
 argument_list|(
 name|arr
 argument_list|,
+operator|(
+name|byte
+operator|)
 literal|' '
 argument_list|)
 expr_stmt|;
@@ -1607,7 +1620,9 @@ operator|.
 name|getOutputStream
 argument_list|()
 argument_list|,
-literal|"UTF-8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|writer
@@ -1767,6 +1782,8 @@ operator|.
 name|getLocalPort
 argument_list|()
 decl_stmt|;
+try|try
+init|(
 name|Socket
 name|socket
 init|=
@@ -1777,42 +1794,43 @@ name|hostName
 argument_list|,
 name|port
 argument_list|)
-decl_stmt|;
-name|PrintWriter
+init|;
+name|OutputStream
 name|out
-init|=
+operator|=
 operator|new
-name|PrintWriter
-argument_list|(
-operator|new
-name|OutputStreamWriter
+name|BufferedOutputStream
 argument_list|(
 name|socket
 operator|.
 name|getOutputStream
 argument_list|()
-argument_list|,
-literal|"UTF-8"
 argument_list|)
-argument_list|,
-literal|true
-argument_list|)
-decl_stmt|;
-comment|// BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+init|;
 name|InputStream
 name|in
-init|=
+operator|=
 name|socket
 operator|.
 name|getInputStream
 argument_list|()
-decl_stmt|;
-name|String
+init|;
+init|)
+block|{
+name|byte
+index|[]
 name|body
 init|=
 name|getJsonDocs
 argument_list|(
 literal|100000
+argument_list|)
+operator|.
+name|getBytes
+argument_list|(
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 decl_stmt|;
 name|int
@@ -1821,10 +1839,9 @@ init|=
 name|body
 operator|.
 name|length
-argument_list|()
 decl_stmt|;
 comment|// bodyLen *= 10;  // make server wait for more
-name|char
+name|byte
 index|[]
 name|whitespace
 init|=
@@ -1863,18 +1880,26 @@ literal|"\n"
 operator|+
 literal|"Connection: Keep-Alive\n"
 decl_stmt|;
+comment|// Headers of HTTP connection are defined to be ASCII only:
 name|out
 operator|.
 name|write
 argument_list|(
 name|headers
+operator|.
+name|getBytes
+argument_list|(
+name|StandardCharsets
+operator|.
+name|US_ASCII
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|out
 operator|.
 name|write
 argument_list|(
-literal|"\n"
+literal|'\n'
 argument_list|)
 expr_stmt|;
 comment|// extra newline separates headers from body
@@ -1939,28 +1964,8 @@ literal|"unknown_field"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|/***     // can I reuse now?     // writing another request doesn't actually throw an exception, but the following read does     out.write(headers);     out.write("\n");  // extra newline separates headers from body     out.write(body);     out.flush();      rbody = getResponse(in);     log.info("RESPONSE BODY:" + rbody);     assertTrue(rbody.contains("unknown_field"));     ***/
-name|IOUtils
-operator|.
-name|closeQuietly
-argument_list|(
-name|out
-argument_list|)
-expr_stmt|;
-name|IOUtils
-operator|.
-name|closeQuietly
-argument_list|(
-name|in
-argument_list|)
-expr_stmt|;
-name|IOUtils
-operator|.
-name|closeQuietly
-argument_list|(
-name|socket
-argument_list|)
-expr_stmt|;
+comment|/***       // can I reuse now?       // writing another request doesn't actually throw an exception, but the following read does       out.write(headers);       out.write("\n");  // extra newline separates headers from body       out.write(body);       out.flush();        rbody = getResponse(in);       log.info("RESPONSE BODY:" + rbody);       assertTrue(rbody.contains("unknown_field"));       ***/
+block|}
 block|}
 block|}
 end_class
