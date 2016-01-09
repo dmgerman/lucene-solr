@@ -4902,9 +4902,15 @@ operator|.
 name|attributes
 argument_list|()
 argument_list|,
-literal|0
+name|fieldInfo
+operator|.
+name|getDimensionCount
+argument_list|()
 argument_list|,
-literal|0
+name|fieldInfo
+operator|.
+name|getDimensionNumBytes
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|newInfos

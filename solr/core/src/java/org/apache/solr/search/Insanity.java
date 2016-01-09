@@ -360,9 +360,15 @@ operator|.
 name|emptyMap
 argument_list|()
 argument_list|,
-literal|0
+name|fi
+operator|.
+name|getDimensionCount
+argument_list|()
 argument_list|,
-literal|0
+name|fi
+operator|.
+name|getDimensionNumBytes
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
