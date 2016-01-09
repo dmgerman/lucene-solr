@@ -199,7 +199,7 @@ specifier|final
 name|int
 name|TIMEOUT
 init|=
-literal|10000
+literal|45000
 decl_stmt|;
 DECL|field|DEBUG
 specifier|private
@@ -453,7 +453,9 @@ name|AbstractZkTestCase
 operator|.
 name|TIMEOUT
 argument_list|,
-literal|45000
+name|AbstractZkTestCase
+operator|.
+name|TIMEOUT
 argument_list|,
 literal|null
 argument_list|)

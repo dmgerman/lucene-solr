@@ -2154,7 +2154,9 @@ name|AbstractZkTestCase
 operator|.
 name|TIMEOUT
 argument_list|,
-literal|45000
+name|AbstractZkTestCase
+operator|.
+name|TIMEOUT
 argument_list|,
 literal|null
 argument_list|)
@@ -2419,7 +2421,9 @@ name|AbstractZkTestCase
 operator|.
 name|TIMEOUT
 argument_list|,
-literal|45000
+name|AbstractZkTestCase
+operator|.
+name|TIMEOUT
 argument_list|,
 literal|null
 argument_list|)

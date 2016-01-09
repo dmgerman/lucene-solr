@@ -367,7 +367,9 @@ name|AbstractZkTestCase
 operator|.
 name|TIMEOUT
 argument_list|,
-literal|60000
+name|AbstractZkTestCase
+operator|.
+name|TIMEOUT
 argument_list|,
 literal|null
 argument_list|,
