@@ -958,8 +958,6 @@ parameter_list|(
 name|int
 name|len
 parameter_list|,
-name|SolrIndexSearcher
-operator|.
 name|QueryCommand
 name|cmd
 parameter_list|,
@@ -1488,8 +1486,6 @@ parameter_list|,
 name|double
 name|reRankWeight
 parameter_list|,
-name|SolrIndexSearcher
-operator|.
 name|QueryCommand
 name|cmd
 parameter_list|,

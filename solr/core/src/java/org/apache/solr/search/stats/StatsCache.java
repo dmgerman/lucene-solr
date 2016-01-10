@@ -114,7 +114,7 @@ name|solr
 operator|.
 name|search
 operator|.
-name|SolrIndexSearcher
+name|QueryCommand
 import|;
 end_import
 
@@ -129,8 +129,6 @@ operator|.
 name|search
 operator|.
 name|SolrIndexSearcher
-operator|.
-name|QueryCommand
 import|;
 end_import
 

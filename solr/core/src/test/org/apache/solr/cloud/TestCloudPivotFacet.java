@@ -653,7 +653,7 @@ argument_list|(
 literal|30000
 argument_list|)
 expr_stmt|;
-comment|// TODO: why whould we have to wait?
+comment|// TODO: why would we have to wait?
 comment|//
 name|handle
 operator|.
@@ -1908,8 +1908,6 @@ parameter_list|,
 name|QueryResponse
 name|response
 parameter_list|)
-throws|throws
-name|SolrServerException
 block|{
 if|if
 condition|(
@@ -3774,8 +3772,6 @@ parameter_list|,
 name|QueryResponse
 name|response
 parameter_list|)
-throws|throws
-name|SolrServerException
 block|{
 name|countNumFoundChecks
 operator|++

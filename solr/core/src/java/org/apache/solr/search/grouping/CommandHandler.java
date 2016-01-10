@@ -348,6 +348,34 @@ name|solr
 operator|.
 name|search
 operator|.
+name|QueryCommand
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|QueryResult
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
 name|QueryUtils
 import|;
 end_import
@@ -440,8 +468,6 @@ name|Builder
 block|{
 DECL|field|queryCommand
 specifier|private
-name|SolrIndexSearcher
-operator|.
 name|QueryCommand
 name|queryCommand
 decl_stmt|;
@@ -489,8 +515,6 @@ specifier|public
 name|Builder
 name|setQueryCommand
 parameter_list|(
-name|SolrIndexSearcher
-operator|.
 name|QueryCommand
 name|queryCommand
 parameter_list|)
@@ -561,7 +585,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/**      * Sets whether to compute a {@link DocSet}.      * May override the value set by {@link #setQueryCommand(org.apache.solr.search.SolrIndexSearcher.QueryCommand)}.      *      * @param needDocSet Whether to compute a {@link DocSet}      * @return this      */
+comment|/**      * Sets whether to compute a {@link DocSet}.      * May override the value set by {@link #setQueryCommand(org.apache.solr.search.QueryCommand)}.      *      * @param needDocSet Whether to compute a {@link DocSet}      * @return this      */
 DECL|method|setNeedDocSet
 specifier|public
 name|Builder
@@ -686,8 +710,6 @@ decl_stmt|;
 DECL|field|queryCommand
 specifier|private
 specifier|final
-name|SolrIndexSearcher
-operator|.
 name|QueryCommand
 name|queryCommand
 decl_stmt|;
@@ -745,8 +767,6 @@ DECL|method|CommandHandler
 specifier|private
 name|CommandHandler
 parameter_list|(
-name|SolrIndexSearcher
-operator|.
 name|QueryCommand
 name|queryCommand
 parameter_list|,
@@ -1067,11 +1087,6 @@ name|vs
 argument_list|,
 operator|new
 name|HashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
 argument_list|()
 argument_list|,
 name|firstCommand
@@ -1200,10 +1215,6 @@ name|maxDoc
 argument_list|()
 decl_stmt|;
 specifier|final
-name|Collector
-name|collector
-decl_stmt|;
-specifier|final
 name|DocSetCollector
 name|docSetCollector
 init|=
@@ -1264,8 +1275,6 @@ specifier|public
 name|NamedList
 name|processResult
 parameter_list|(
-name|SolrIndexSearcher
-operator|.
 name|QueryResult
 name|queryResult
 parameter_list|,

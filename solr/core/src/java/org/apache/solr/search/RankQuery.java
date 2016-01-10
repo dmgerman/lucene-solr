@@ -106,8 +106,6 @@ parameter_list|(
 name|int
 name|len
 parameter_list|,
-name|SolrIndexSearcher
-operator|.
 name|QueryCommand
 name|cmd
 parameter_list|,

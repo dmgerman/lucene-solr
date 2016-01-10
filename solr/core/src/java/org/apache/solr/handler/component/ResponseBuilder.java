@@ -246,7 +246,21 @@ name|solr
 operator|.
 name|search
 operator|.
-name|SolrIndexSearcher
+name|QueryCommand
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|QueryResult
 import|;
 end_import
 
@@ -1912,20 +1926,14 @@ block|}
 comment|/**    * Creates a SolrIndexSearcher.QueryCommand from this    * ResponseBuilder.  TimeAllowed is left unset.    */
 DECL|method|getQueryCommand
 specifier|public
-name|SolrIndexSearcher
-operator|.
 name|QueryCommand
 name|getQueryCommand
 parameter_list|()
 block|{
-name|SolrIndexSearcher
-operator|.
 name|QueryCommand
 name|cmd
 init|=
 operator|new
-name|SolrIndexSearcher
-operator|.
 name|QueryCommand
 argument_list|()
 decl_stmt|;
@@ -2038,8 +2046,6 @@ specifier|public
 name|void
 name|setResult
 parameter_list|(
-name|SolrIndexSearcher
-operator|.
 name|QueryResult
 name|result
 parameter_list|)
