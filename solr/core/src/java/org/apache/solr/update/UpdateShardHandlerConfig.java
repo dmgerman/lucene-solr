@@ -47,7 +47,7 @@ specifier|final
 name|int
 name|DEFAULT_MAXUPDATECONNECTIONS
 init|=
-literal|10000
+literal|100000
 decl_stmt|;
 DECL|field|DEFAULT_MAXUPDATECONNECTIONSPERHOST
 specifier|public
@@ -56,7 +56,7 @@ specifier|final
 name|int
 name|DEFAULT_MAXUPDATECONNECTIONSPERHOST
 init|=
-literal|100
+literal|100000
 decl_stmt|;
 DECL|field|DEFAULT
 specifier|public
