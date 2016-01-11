@@ -28,6 +28,20 @@ name|Locale
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
+import|;
+end_import
+
 begin_comment
 comment|/**  * @since solr 1.3  */
 end_comment
@@ -58,16 +72,6 @@ name|String
 name|INDEX_INFO
 init|=
 literal|"indexInfo"
-decl_stmt|;
-comment|/** Persistent -- should it save the cores state? **/
-DECL|field|PERSISTENT
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|PERSISTENT
-init|=
-literal|"persistent"
 decl_stmt|;
 comment|/** If you rename something, what is the new name **/
 DECL|field|NAME
@@ -219,36 +223,6 @@ name|SHARD
 init|=
 literal|"shard"
 decl_stmt|;
-comment|/** The shard range in solr cloud */
-DECL|field|SHARD_RANGE
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|SHARD_RANGE
-init|=
-literal|"shard.range"
-decl_stmt|;
-comment|/** The shard range in solr cloud */
-DECL|field|SHARD_STATE
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|SHARD_STATE
-init|=
-literal|"shard.state"
-decl_stmt|;
-comment|/** The parent shard if applicable */
-DECL|field|SHARD_PARENT
-specifier|public
-specifier|final
-specifier|static
-name|String
-name|SHARD_PARENT
-init|=
-literal|"shard.parent"
-decl_stmt|;
 comment|/** The target core to which a split index should be written to    * Multiple targetCores can be specified by multiple targetCore parameters */
 DECL|field|TARGET_CORE
 specifier|public
@@ -370,9 +344,6 @@ block|{
 DECL|enum constant|STATUS
 name|STATUS
 block|,
-DECL|enum constant|LOAD
-name|LOAD
-block|,
 DECL|enum constant|UNLOAD
 name|UNLOAD
 block|,
@@ -381,9 +352,6 @@ name|RELOAD
 block|,
 DECL|enum constant|CREATE
 name|CREATE
-block|,
-DECL|enum constant|PERSIST
-name|PERSIST
 block|,
 DECL|enum constant|SWAP
 name|SWAP
@@ -406,9 +374,6 @@ block|,
 DECL|enum constant|REQUESTSYNCSHARD
 name|REQUESTSYNCSHARD
 block|,
-DECL|enum constant|CREATEALIAS
-name|CREATEALIAS
-block|,
 DECL|enum constant|DELETEALIAS
 name|DELETEALIAS
 block|,
@@ -417,12 +382,6 @@ name|REQUESTBUFFERUPDATES
 block|,
 DECL|enum constant|REQUESTAPPLYUPDATES
 name|REQUESTAPPLYUPDATES
-block|,
-DECL|enum constant|LOAD_ON_STARTUP
-name|LOAD_ON_STARTUP
-block|,
-DECL|enum constant|TRANSIENT
-name|TRANSIENT
 block|,
 DECL|enum constant|OVERSEEROP
 name|OVERSEEROP
@@ -477,10 +436,24 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|Exception
-name|ex
+name|IllegalArgumentException
+name|e
 parameter_list|)
-block|{}
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Wrong core admin action"
+argument_list|)
+throw|;
+block|}
 block|}
 return|return
 literal|null
