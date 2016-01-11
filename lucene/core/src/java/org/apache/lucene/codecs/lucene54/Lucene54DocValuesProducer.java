@@ -2826,6 +2826,8 @@ argument_list|(
 name|meta
 argument_list|,
 name|maxDoc
+operator|+
+literal|1
 argument_list|,
 name|blockShift
 argument_list|)
