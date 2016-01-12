@@ -686,6 +686,11 @@ specifier|final
 name|boolean
 name|streamDeletes
 decl_stmt|;
+DECL|field|internalHttpClient
+specifier|private
+name|boolean
+name|internalHttpClient
+decl_stmt|;
 comment|/**    * Uses an internally managed HttpClient instance.    *     * @param solrServerUrl    *          The Solr server URL    * @param queueSize    *          The buffer size before the documents are sent to the server    * @param threadCount    *          The number of background threads used to empty the queue    */
 DECL|method|ConcurrentUpdateSolrClient
 specifier|public
@@ -713,6 +718,10 @@ name|threadCount
 argument_list|)
 expr_stmt|;
 name|shutdownExecutor
+operator|=
+literal|true
+expr_stmt|;
+name|internalHttpClient
 operator|=
 literal|true
 expr_stmt|;
@@ -2486,6 +2495,10 @@ name|void
 name|close
 parameter_list|()
 block|{
+if|if
+condition|(
+name|internalHttpClient
+condition|)
 name|IOUtils
 operator|.
 name|closeQuietly
@@ -2621,6 +2634,10 @@ name|void
 name|shutdownNow
 parameter_list|()
 block|{
+if|if
+condition|(
+name|internalHttpClient
+condition|)
 name|IOUtils
 operator|.
 name|closeQuietly
