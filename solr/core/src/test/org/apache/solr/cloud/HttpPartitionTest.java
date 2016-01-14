@@ -612,6 +612,7 @@ name|sleepMsBeforeHealPartition
 init|=
 literal|2000L
 decl_stmt|;
+comment|// give plenty of time for replicas to recover when running in slow Jenkins test envs
 DECL|field|maxWaitSecsToSeeAllActive
 specifier|protected
 specifier|static
@@ -619,7 +620,7 @@ specifier|final
 name|int
 name|maxWaitSecsToSeeAllActive
 init|=
-literal|30
+literal|90
 decl_stmt|;
 DECL|method|HttpPartitionTest
 specifier|public
