@@ -11329,10 +11329,16 @@ operator|+
 literal|"']/lst[@name='between'])=0]"
 argument_list|)
 expr_stmt|;
-name|assertQ
-argument_list|(
-literal|"Test facet.range.other"
-argument_list|,
+comment|// these should have equivilent behavior (multivalued 'other' param: top level vs local)
+for|for
+control|(
+name|SolrQueryRequest
+name|req
+range|:
+operator|new
+name|SolrQueryRequest
+index|[]
+block|{
 name|req
 argument_list|(
 literal|"q"
@@ -11390,6 +11396,61 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
+block|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"id:[42 TO 47]"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,"
+operator|+
+name|field
+argument_list|,
+literal|"facet.range"
+argument_list|,
+literal|"{!facet.range.other=before facet.range.other=after}"
+operator|+
+name|field
+argument_list|,
+literal|"facet.range.method"
+argument_list|,
+name|method
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+literal|"facet.range.start"
+argument_list|,
+literal|"43"
+argument_list|,
+literal|"facet.range.end"
+argument_list|,
+literal|"45"
+argument_list|,
+literal|"facet.range.gap"
+argument_list|,
+literal|"1"
+argument_list|)
+block|}
+control|)
+block|{
+name|assertQ
+argument_list|(
+literal|"Test facet.range.other: "
+operator|+
+name|req
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|req
 argument_list|,
 literal|"*[count(//lst[@name='facet_ranges']/lst)=1]"
 argument_list|,
@@ -11430,6 +11491,7 @@ operator|+
 literal|"']/int[@name='before'][.='1']"
 argument_list|)
 expr_stmt|;
+block|}
 name|assertQ
 argument_list|(
 literal|"Test facet.range.other"

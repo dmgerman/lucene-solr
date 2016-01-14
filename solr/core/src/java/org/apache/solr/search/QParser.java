@@ -72,7 +72,7 @@ name|common
 operator|.
 name|params
 operator|.
-name|MapSolrParams
+name|ModifiableSolrParams
 import|;
 end_import
 
@@ -1257,7 +1257,7 @@ name|stringIncludingLocalParams
 init|=
 name|qstr
 decl_stmt|;
-name|SolrParams
+name|ModifiableSolrParams
 name|localParams
 init|=
 literal|null
@@ -1297,19 +1297,12 @@ name|LOCALPARAM_START
 argument_list|)
 condition|)
 block|{
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|String
-argument_list|>
-name|localMap
-init|=
+name|localParams
+operator|=
 operator|new
-name|HashMap
-argument_list|<>
+name|ModifiableSolrParams
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|localParamsEnd
 operator|=
 name|QueryParsing
@@ -1320,7 +1313,7 @@ name|qstr
 argument_list|,
 literal|0
 argument_list|,
-name|localMap
+name|localParams
 argument_list|,
 name|globalParams
 argument_list|)
@@ -1328,7 +1321,7 @@ expr_stmt|;
 name|String
 name|val
 init|=
-name|localMap
+name|localParams
 operator|.
 name|get
 argument_list|(
@@ -1366,9 +1359,9 @@ argument_list|(
 name|localParamsEnd
 argument_list|)
 expr_stmt|;
-name|localMap
+name|localParams
 operator|.
-name|put
+name|set
 argument_list|(
 name|QueryParsing
 operator|.
@@ -1378,14 +1371,6 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
-name|localParams
-operator|=
-operator|new
-name|MapSolrParams
-argument_list|(
-name|localMap
-argument_list|)
-expr_stmt|;
 block|}
 name|String
 name|parserName

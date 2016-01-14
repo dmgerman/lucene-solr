@@ -392,6 +392,20 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
+literal|"multi qf as local params"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!dismax qf=subject qf=features_t}cool"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='3']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
 literal|"boost query"
 argument_list|,
 name|req
