@@ -5178,7 +5178,7 @@ name|close
 condition|)
 name|core
 operator|.
-name|close
+name|closeAndWait
 argument_list|()
 expr_stmt|;
 if|if
