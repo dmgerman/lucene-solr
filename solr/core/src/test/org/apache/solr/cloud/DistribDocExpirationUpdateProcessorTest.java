@@ -436,9 +436,11 @@ block|}
 name|commit
 argument_list|()
 expr_stmt|;
-name|waitForThingsToLevelOut
+name|waitForRecoveriesToFinish
 argument_list|(
-literal|30
+literal|false
+argument_list|,
+literal|45
 argument_list|)
 expr_stmt|;
 comment|// this doc better not already exist
@@ -528,11 +530,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// verify only one shard changed
-name|waitForThingsToLevelOut
-argument_list|(
-literal|30
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Map
 argument_list|<
