@@ -138,7 +138,12 @@ throws|throws
 name|SQLException
 block|{
 return|return
-literal|null
+name|this
+operator|.
+name|connection
+operator|.
+name|getUrl
+argument_list|()
 return|;
 block|}
 annotation|@

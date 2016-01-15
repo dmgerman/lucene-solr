@@ -323,6 +323,8 @@ return|return
 operator|new
 name|ConnectionImpl
 argument_list|(
+name|url
+argument_list|,
 name|zkHost
 argument_list|,
 name|collection
