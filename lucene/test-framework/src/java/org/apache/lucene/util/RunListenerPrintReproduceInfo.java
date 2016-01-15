@@ -492,6 +492,9 @@ operator|+
 name|classEnvRule
 operator|.
 name|locale
+operator|.
+name|toLanguageTag
+argument_list|()
 operator|+
 literal|", timezone="
 operator|+
@@ -921,6 +924,9 @@ argument_list|,
 name|classEnvRule
 operator|.
 name|locale
+operator|.
+name|toLanguageTag
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
