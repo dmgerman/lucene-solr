@@ -1140,11 +1140,13 @@ parameter_list|()
 throws|throws
 name|SQLException
 block|{
-throw|throw
+return|return
 operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+name|ResultSetMetaDataImpl
+argument_list|(
+name|this
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Override

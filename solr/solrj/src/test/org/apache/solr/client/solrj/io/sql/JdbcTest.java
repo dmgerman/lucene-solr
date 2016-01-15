@@ -611,6 +611,16 @@ argument_list|(
 literal|"select id, a_i, a_s, a_f from collection1 order by a_i desc limit 2"
 argument_list|)
 decl_stmt|;
+name|assertTrue
+argument_list|(
+name|rs
+operator|.
+name|getMetaData
+argument_list|()
+operator|!=
+literal|null
+argument_list|)
+expr_stmt|;
 assert|assert
 operator|(
 name|rs
