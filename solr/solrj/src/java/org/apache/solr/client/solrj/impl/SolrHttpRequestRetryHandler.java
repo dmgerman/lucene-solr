@@ -625,7 +625,7 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"Do not retry, no rules matched"
+literal|"Do not retry, no allow rules matched"
 argument_list|)
 expr_stmt|;
 return|return
@@ -666,6 +666,9 @@ operator|.
 name|getMethod
 argument_list|()
 decl_stmt|;
+comment|// do not retry admin requests, even if they are GET as they are not idempotent
+if|if
+condition|(
 name|context
 operator|.
 name|getRequest
@@ -676,7 +679,24 @@ argument_list|()
 operator|.
 name|getUri
 argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"/admin/"
+argument_list|)
+condition|)
+block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Do not retry, this is an admin request"
+argument_list|)
 expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
 return|return
 name|method
 operator|.
