@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * {@link org.apache.lucene.analysis.sinks.TeeSinkTokenFilter} and implementations  * of {@link org.apache.lucene.analysis.sinks.TeeSinkTokenFilter.SinkFilter} that  * might be useful.  */
+comment|/**  * {@link org.apache.lucene.analysis.sinks.TeeSinkTokenFilter}.  */
 end_comment
 
 begin_package
