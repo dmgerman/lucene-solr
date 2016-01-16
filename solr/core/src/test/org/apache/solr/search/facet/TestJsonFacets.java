@@ -2810,10 +2810,9 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|client
-operator|.
-name|add
-argument_list|(
+name|SolrInputDocument
+name|doc
+init|=
 name|sdoc
 argument_list|(
 literal|"id"
@@ -2852,10 +2851,35 @@ name|sparse_s
 argument_list|,
 literal|"one"
 argument_list|)
+decl_stmt|;
+name|client
+operator|.
+name|add
+argument_list|(
+name|doc
 argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|client
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|client
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// a couple of deleted docs
 name|client
 operator|.
 name|add
@@ -4620,6 +4644,39 @@ expr_stmt|;
 comment|////////////////////////////////////////////////////////////////////////////////////////////
 comment|// multi-select / exclude tagged filters via excludeTags
 comment|////////////////////////////////////////////////////////////////////////////////////////////
+comment|// test uncached multi-select (see SOLR-8496)
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!cache=false}*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=doc3,allfilt}-id:3"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"f1:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc3} }  "
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:5, "
+operator|+
+literal|" f1:{ buckets:[ {val:B, count:3}, {val:A, count:2} ]  }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
 comment|// nested query facets on subset (with excludeTags)
 name|client
 operator|.
@@ -4691,7 +4748,7 @@ name|p
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"*:*"
+literal|"{!cache=false}*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
