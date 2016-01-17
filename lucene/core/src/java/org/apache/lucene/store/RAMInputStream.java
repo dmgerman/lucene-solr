@@ -398,7 +398,7 @@ throw|;
 block|}
 else|else
 block|{
-comment|// Force EOF if a read takes place at this position
+comment|// Force EOF if a read later takes place at this position
 name|currentBufferIndex
 operator|--
 expr_stmt|;
@@ -512,6 +512,22 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|pos
+operator|<
+name|BUFFER_SIZE
+operator|*
+operator|(
+name|long
+operator|)
+name|file
+operator|.
+name|numBuffers
+argument_list|()
+condition|)
+block|{
+comment|// do not overwrite bufferPosition if EOF should be thrown on the next read
 name|bufferPosition
 operator|=
 call|(
@@ -523,6 +539,7 @@ operator|%
 name|BUFFER_SIZE
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override

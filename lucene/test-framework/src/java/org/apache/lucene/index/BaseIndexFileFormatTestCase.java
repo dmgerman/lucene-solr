@@ -2214,9 +2214,15 @@ name|HashMap
 argument_list|<>
 argument_list|()
 argument_list|,
-literal|0
+name|proto
+operator|.
+name|getDimensionCount
+argument_list|()
 argument_list|,
-literal|0
+name|proto
+operator|.
+name|getDimensionNumBytes
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|FieldInfos
