@@ -1481,13 +1481,31 @@ operator|+
 name|pivot
 argument_list|)
 expr_stmt|;
-return|return
+name|double
+name|result
+init|=
 name|mean
 operator|+
 name|flip
 operator|*
 name|pivotResult
+decl_stmt|;
+return|return
+operator|(
+name|result
+argument_list|<
+literal|0
+operator|||
+name|result
+argument_list|>
+name|max
+operator|)
+condition|?
+name|mean
+else|:
+name|result
 return|;
+comment|// due this due to computational numerical precision
 block|}
 comment|// ================================================= Inner Classes =================================================
 DECL|class|SearchResults
