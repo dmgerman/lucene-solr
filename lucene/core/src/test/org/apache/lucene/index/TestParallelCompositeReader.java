@@ -2745,7 +2745,7 @@ argument_list|,
 literal|0.001f
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|docParallel
 init|=
 name|parallel
@@ -2760,7 +2760,7 @@ operator|.
 name|doc
 argument_list|)
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|docSingle
 init|=
 name|single

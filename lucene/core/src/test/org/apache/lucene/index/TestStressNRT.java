@@ -2282,7 +2282,7 @@ name|scoreDocs
 control|)
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|r
@@ -2344,7 +2344,7 @@ name|totalHits
 argument_list|)
 expr_stmt|;
 block|}
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher

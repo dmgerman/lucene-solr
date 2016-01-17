@@ -106,9 +106,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|StoredDocument
+name|Document
 import|;
 end_import
 
@@ -210,7 +210,7 @@ name|search
 operator|.
 name|join
 operator|.
-name|QueryBitSetProducer
+name|BitSetProducer
 import|;
 end_import
 
@@ -226,7 +226,7 @@ name|search
 operator|.
 name|join
 operator|.
-name|BitSetProducer
+name|QueryBitSetProducer
 import|;
 end_import
 
@@ -1548,7 +1548,7 @@ operator|++
 name|index
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher

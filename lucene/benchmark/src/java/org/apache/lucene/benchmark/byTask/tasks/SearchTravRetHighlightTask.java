@@ -112,9 +112,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|IndexReader
+name|Document
 import|;
 end_import
 
@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StoredDocument
+name|IndexReader
 import|;
 end_import
 
@@ -438,7 +438,7 @@ parameter_list|,
 name|String
 name|field
 parameter_list|,
-name|StoredDocument
+name|Document
 name|document
 parameter_list|,
 name|Analyzer
@@ -526,7 +526,7 @@ name|String
 argument_list|>
 name|getFieldsToHighlight
 parameter_list|(
-name|StoredDocument
+name|Document
 name|document
 parameter_list|)
 block|{

@@ -380,6 +380,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|LeafReader
 import|;
 end_import
@@ -492,51 +506,23 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|StoredDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|StoredFieldVisitor
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|StoredFieldVisitor
 operator|.
 name|Status
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|StoredFieldVisitor
 import|;
 end_import
 
@@ -607,6 +593,8 @@ operator|.
 name|search
 operator|.
 name|BooleanClause
+operator|.
+name|Occur
 import|;
 end_import
 
@@ -621,8 +609,6 @@ operator|.
 name|search
 operator|.
 name|BooleanClause
-operator|.
-name|Occur
 import|;
 end_import
 
@@ -1127,6 +1113,8 @@ operator|.
 name|common
 operator|.
 name|SolrException
+operator|.
+name|ErrorCode
 import|;
 end_import
 
@@ -1141,8 +1129,6 @@ operator|.
 name|common
 operator|.
 name|SolrException
-operator|.
-name|ErrorCode
 import|;
 end_import
 
@@ -1205,6 +1191,8 @@ operator|.
 name|core
 operator|.
 name|DirectoryFactory
+operator|.
+name|DirContext
 import|;
 end_import
 
@@ -1219,8 +1207,6 @@ operator|.
 name|core
 operator|.
 name|DirectoryFactory
-operator|.
-name|DirContext
 import|;
 end_import
 
@@ -1735,7 +1721,7 @@ name|SolrCache
 argument_list|<
 name|Integer
 argument_list|,
-name|StoredDocument
+name|Document
 argument_list|>
 name|documentCache
 decl_stmt|;
@@ -4143,7 +4129,7 @@ block|{
 DECL|field|doc
 specifier|private
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 decl_stmt|;
 DECL|field|lazyDoc
@@ -4244,7 +4230,7 @@ annotation|@
 name|Override
 DECL|method|doc
 specifier|public
-name|StoredDocument
+name|Document
 name|doc
 parameter_list|(
 name|int
@@ -4292,7 +4278,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|StoredDocument
+name|Document
 name|cached
 init|=
 name|documentCache
@@ -4336,7 +4322,7 @@ specifier|private
 name|void
 name|visitFromCached
 parameter_list|(
-name|StoredDocument
+name|Document
 name|document
 parameter_list|,
 name|StoredFieldVisitor
@@ -4347,7 +4333,7 @@ name|IOException
 block|{
 for|for
 control|(
-name|StorableField
+name|IndexableField
 name|f
 range|:
 name|document
@@ -4600,7 +4586,7 @@ annotation|@
 name|Override
 DECL|method|doc
 specifier|public
-name|StoredDocument
+name|Document
 name|doc
 parameter_list|(
 name|int
@@ -4615,7 +4601,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StoredDocument
+name|Document
 name|d
 decl_stmt|;
 if|if
@@ -5248,7 +5234,7 @@ specifier|public
 name|void
 name|readDocs
 parameter_list|(
-name|StoredDocument
+name|Document
 index|[]
 name|docs
 parameter_list|,
@@ -5274,7 +5260,7 @@ specifier|public
 name|void
 name|readDocs
 parameter_list|(
-name|StoredDocument
+name|Document
 index|[]
 name|docs
 parameter_list|,
@@ -12108,7 +12094,7 @@ block|}
 comment|/**    * Takes a list of document IDs, and returns an array of Documents containing all of the stored fields.    */
 DECL|method|readDocs
 specifier|public
-name|StoredDocument
+name|Document
 index|[]
 name|readDocs
 parameter_list|(
@@ -12119,12 +12105,12 @@ throws|throws
 name|IOException
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 index|[]
 name|docs
 init|=
 operator|new
-name|StoredDocument
+name|Document
 index|[
 name|ids
 operator|.

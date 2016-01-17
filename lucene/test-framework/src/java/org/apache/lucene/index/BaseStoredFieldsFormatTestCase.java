@@ -1272,7 +1272,7 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|r
@@ -1484,7 +1484,7 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc2
 init|=
 name|r
@@ -1496,7 +1496,7 @@ argument_list|)
 decl_stmt|;
 name|Iterator
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|it
 init|=
@@ -1821,7 +1821,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc2
 init|=
 name|ir
@@ -1831,7 +1831,7 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|StorableField
+name|IndexableField
 name|f2
 init|=
 name|doc2
@@ -2389,7 +2389,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|sub
@@ -2961,7 +2961,7 @@ name|name
 argument_list|()
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|sDoc
 init|=
 name|reader
@@ -2979,7 +2979,7 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|final
-name|StorableField
+name|IndexableField
 name|sField
 init|=
 name|sDoc
@@ -3203,7 +3203,7 @@ name|i
 control|)
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|rd
@@ -3583,7 +3583,7 @@ argument_list|)
 throw|;
 block|}
 specifier|final
-name|StoredDocument
+name|Document
 name|sdoc
 init|=
 name|rd
@@ -4407,7 +4407,7 @@ name|i
 control|)
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|ir
@@ -5106,7 +5106,7 @@ name|i
 control|)
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|reader
@@ -5790,7 +5790,7 @@ name|totalHits
 argument_list|)
 expr_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|rd
@@ -5813,7 +5813,7 @@ name|doc
 argument_list|)
 expr_stmt|;
 specifier|final
-name|StorableField
+name|IndexableField
 index|[]
 name|fieldValues
 init|=
@@ -6440,7 +6440,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|ir

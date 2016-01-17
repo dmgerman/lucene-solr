@@ -154,20 +154,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StoredDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -2619,7 +2605,7 @@ argument_list|)
 operator|.
 name|scoreDocs
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|bestDoc
 init|=
 name|searcher
@@ -2669,7 +2655,7 @@ operator|>
 literal|1
 condition|)
 block|{
-name|StoredDocument
+name|Document
 name|worstDoc
 init|=
 name|searcher
@@ -2936,7 +2922,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|bestDoc
 init|=
 name|searcher
@@ -2971,7 +2957,7 @@ name|rareSearchTerm
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|runnerUpDoc
 init|=
 name|searcher
@@ -3006,7 +2992,7 @@ literal|"cuttin"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|worstDoc
 init|=
 name|searcher

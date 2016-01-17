@@ -248,6 +248,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|RandomIndexWriter
 import|;
 end_import
@@ -894,7 +908,7 @@ name|w3
 operator|)
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|payloadField
 init|=
 name|doc
@@ -1237,7 +1251,7 @@ name|w3
 operator|)
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|payloadField
 init|=
 name|doc
@@ -1292,7 +1306,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|Field
+name|IndexableField
 name|ctxf
 range|:
 name|doc
@@ -2074,7 +2088,7 @@ operator|+
 name|w1
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|payloadField
 init|=
 name|doc
@@ -2334,7 +2348,7 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|payloadField
 init|=
 name|doc

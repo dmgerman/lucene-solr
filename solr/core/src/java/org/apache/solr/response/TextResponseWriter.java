@@ -106,9 +106,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|StorableField
+name|Document
 import|;
 end_import
 
@@ -122,7 +122,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StoredDocument
+name|IndexableField
 import|;
 end_import
 
@@ -771,14 +771,14 @@ if|if
 condition|(
 name|val
 operator|instanceof
-name|StorableField
+name|IndexableField
 condition|)
 block|{
-name|StorableField
+name|IndexableField
 name|f
 init|=
 operator|(
-name|StorableField
+name|IndexableField
 operator|)
 name|val
 decl_stmt|;
@@ -895,7 +895,7 @@ if|if
 condition|(
 name|val
 operator|instanceof
-name|StoredDocument
+name|Document
 condition|)
 block|{
 name|SolrDocument
@@ -906,7 +906,7 @@ operator|.
 name|getDoc
 argument_list|(
 operator|(
-name|StoredDocument
+name|Document
 operator|)
 name|val
 argument_list|,

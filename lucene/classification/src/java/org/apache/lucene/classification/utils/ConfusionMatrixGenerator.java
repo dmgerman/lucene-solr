@@ -164,9 +164,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|LeafReader
+name|Document
 import|;
 end_import
 
@@ -180,7 +180,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StoredDocument
+name|LeafReader
 import|;
 end_import
 
@@ -397,7 +397,7 @@ operator|.
 name|scoreDocs
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|reader

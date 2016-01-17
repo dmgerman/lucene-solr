@@ -429,7 +429,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|temp
 init|=
 name|reader

@@ -508,20 +508,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StoredDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -1415,7 +1401,7 @@ index|]
 operator|.
 name|doc
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -1577,7 +1563,7 @@ index|]
 operator|.
 name|doc
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -1776,7 +1762,7 @@ index|]
 operator|.
 name|doc
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -2113,7 +2099,7 @@ index|]
 operator|.
 name|doc
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -3217,7 +3203,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -3442,7 +3428,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -3667,7 +3653,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -3861,7 +3847,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -4046,7 +4032,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -4233,7 +4219,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -4984,7 +4970,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -5124,7 +5110,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -5381,7 +5367,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -5727,7 +5713,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -6156,7 +6142,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -7283,7 +7269,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -7450,7 +7436,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -7615,7 +7601,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -8670,7 +8656,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -8801,7 +8787,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -8903,7 +8889,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -9710,7 +9696,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -10612,7 +10598,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -12955,7 +12941,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -14902,7 +14888,7 @@ operator|.
 name|doc
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher

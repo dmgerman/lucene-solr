@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexableField
 import|;
 end_import
 
@@ -410,7 +410,7 @@ DECL|method|createFields
 specifier|public
 name|List
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|createFields
 parameter_list|(
@@ -446,7 +446,7 @@ decl_stmt|;
 comment|// TODO: this doesn't currently support polyFields as sub-field types
 name|List
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|f
 init|=
@@ -665,7 +665,7 @@ annotation|@
 name|Override
 DECL|method|createField
 specifier|public
-name|StorableField
+name|IndexableField
 name|createField
 parameter_list|(
 name|SchemaField
@@ -704,7 +704,7 @@ parameter_list|,
 name|String
 name|name
 parameter_list|,
-name|StorableField
+name|IndexableField
 name|f
 parameter_list|)
 throws|throws

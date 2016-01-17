@@ -166,20 +166,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StoredDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Terms
 import|;
 end_import
@@ -1135,7 +1121,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -1449,7 +1435,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -1822,7 +1808,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher

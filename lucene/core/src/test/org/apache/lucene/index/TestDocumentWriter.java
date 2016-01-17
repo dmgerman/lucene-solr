@@ -386,7 +386,7 @@ operator|!=
 literal|null
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|reader
@@ -404,7 +404,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("Document: " + doc);
-name|StorableField
+name|IndexableField
 index|[]
 name|fields
 init|=

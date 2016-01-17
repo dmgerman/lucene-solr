@@ -823,7 +823,7 @@ name|k
 operator|*
 name|M
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|prevItereationDoc
 init|=
 name|reader

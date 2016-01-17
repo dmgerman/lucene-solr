@@ -648,7 +648,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|sd
 init|=
 name|rd

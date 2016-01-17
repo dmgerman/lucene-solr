@@ -58,7 +58,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexableField
 import|;
 end_import
 
@@ -721,7 +721,7 @@ if|if
 condition|(
 name|val
 operator|instanceof
-name|StorableField
+name|IndexableField
 condition|)
 block|{
 comment|// delays holding it in memory
@@ -729,7 +729,7 @@ name|str
 operator|=
 operator|(
 operator|(
-name|StorableField
+name|IndexableField
 operator|)
 name|val
 operator|)

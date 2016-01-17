@@ -476,7 +476,7 @@ operator|instanceof
 name|StandardDirectoryReader
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|newDoc1
 init|=
 name|reader
@@ -517,7 +517,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|newDoc2
 init|=
 name|reader
@@ -2910,7 +2910,7 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc2
 init|=
 name|reader
@@ -2925,7 +2925,7 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
-name|StorableField
+name|IndexableField
 index|[]
 name|fields
 init|=
@@ -2950,7 +2950,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|StorableField
+name|IndexableField
 name|b1
 init|=
 name|fields
@@ -4337,7 +4337,7 @@ name|i
 argument_list|)
 condition|)
 block|{
-name|StoredDocument
+name|Document
 name|doc1
 init|=
 name|index1
@@ -4347,7 +4347,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc2
 init|=
 name|index2
@@ -4359,7 +4359,7 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|field1
 init|=
@@ -4370,7 +4370,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|field2
 init|=
@@ -4400,7 +4400,7 @@ argument_list|)
 expr_stmt|;
 name|Iterator
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|itField1
 init|=
@@ -4411,7 +4411,7 @@ argument_list|()
 decl_stmt|;
 name|Iterator
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|itField2
 init|=
@@ -7399,7 +7399,7 @@ argument_list|(
 literal|"field1"
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|doc2
 init|=
 name|r

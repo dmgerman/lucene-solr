@@ -88,7 +88,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexableField
 import|;
 end_import
 
@@ -423,7 +423,7 @@ parameter_list|,
 name|String
 name|name
 parameter_list|,
-name|StorableField
+name|IndexableField
 name|f
 parameter_list|)
 throws|throws

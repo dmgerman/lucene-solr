@@ -589,7 +589,7 @@ argument_list|,
 name|visitor
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|d
 init|=
 name|visitor
@@ -617,7 +617,7 @@ decl_stmt|;
 comment|// at this point, all FIELDS should be Lazy and unrealized
 for|for
 control|(
-name|StorableField
+name|IndexableField
 name|f
 range|:
 name|d
@@ -866,7 +866,7 @@ argument_list|)
 index|]
 decl_stmt|;
 specifier|final
-name|StorableField
+name|IndexableField
 index|[]
 name|fieldValues
 init|=
@@ -928,7 +928,7 @@ expr_stmt|;
 comment|// now every value of fieldName should be loaded
 for|for
 control|(
-name|StorableField
+name|IndexableField
 name|f
 range|:
 name|d
@@ -1109,7 +1109,7 @@ comment|// adding one more lazy field didn't "unload" the existing LazyField's
 comment|// we already loaded.
 for|for
 control|(
-name|StorableField
+name|IndexableField
 name|f
 range|:
 name|d
@@ -1263,11 +1263,11 @@ block|{
 DECL|field|doc
 specifier|public
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 operator|new
-name|StoredDocument
+name|Document
 argument_list|()
 decl_stmt|;
 DECL|field|lazyDoc

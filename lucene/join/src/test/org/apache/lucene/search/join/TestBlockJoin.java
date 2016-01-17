@@ -370,20 +370,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StoredDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -1518,7 +1504,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|childDoc
 init|=
 name|s
@@ -1554,7 +1540,7 @@ operator|.
 name|groupValue
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|parentDoc
 init|=
 name|s
@@ -2033,7 +2019,7 @@ name|score
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|childDoc
 init|=
 name|s
@@ -2070,7 +2056,7 @@ operator|.
 name|groupValue
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|parentDoc
 init|=
 name|s
@@ -3625,7 +3611,7 @@ block|}
 block|}
 DECL|method|getParentDoc
 specifier|private
-name|StoredDocument
+name|Document
 name|getParentDoc
 parameter_list|(
 name|IndexReader
@@ -6321,7 +6307,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|s
@@ -6749,7 +6735,7 @@ name|groupValue
 argument_list|)
 expr_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|parentDoc
 init|=
 name|joinS
@@ -6805,7 +6791,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|joinS
@@ -6929,7 +6915,7 @@ operator|.
 name|doc
 argument_list|)
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|document
 init|=
 name|joinS
@@ -7848,7 +7834,7 @@ name|scoreDocs
 control|)
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|s
@@ -7963,7 +7949,7 @@ name|scoreDocs
 control|)
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|joinS
@@ -7976,7 +7962,7 @@ name|doc
 argument_list|)
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|parentDoc
 init|=
 name|getParentDoc
@@ -8141,7 +8127,7 @@ index|[
 name|hitCount
 index|]
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc1
 init|=
 name|r
@@ -8153,7 +8139,7 @@ operator|.
 name|doc
 argument_list|)
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc2
 init|=
 name|joinR
@@ -8326,7 +8312,7 @@ name|groupValue
 argument_list|)
 expr_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|parentDoc
 init|=
 name|joinR
@@ -8382,7 +8368,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|StoredDocument
+name|Document
 name|nonJoinHit
 init|=
 name|r
@@ -8399,7 +8385,7 @@ name|doc
 argument_list|)
 decl_stmt|;
 specifier|final
-name|StoredDocument
+name|Document
 name|joinHit
 init|=
 name|joinR
@@ -8991,7 +8977,7 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|childJobDoc
 init|=
 name|s
@@ -9028,7 +9014,7 @@ operator|.
 name|groupValue
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|parentDoc
 init|=
 name|s
@@ -9119,7 +9105,7 @@ operator|.
 name|totalHits
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|childQualificationDoc
 init|=
 name|s
@@ -10191,7 +10177,7 @@ operator|.
 name|groupValue
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|parentDoc
 init|=
 name|s
@@ -10237,7 +10223,7 @@ operator|.
 name|scoreDocs
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|childDoc
 init|=
 name|s
@@ -10387,7 +10373,7 @@ operator|.
 name|groupValue
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|parentDoc
 init|=
 name|s
@@ -10433,7 +10419,7 @@ operator|.
 name|scoreDocs
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|childDoc
 init|=
 name|s
@@ -10981,7 +10967,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|r
@@ -11541,7 +11527,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|r

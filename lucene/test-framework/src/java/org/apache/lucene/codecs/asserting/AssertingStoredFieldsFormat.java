@@ -118,7 +118,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SegmentInfo
+name|IndexableField
 import|;
 end_import
 
@@ -132,7 +132,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|SegmentInfo
 import|;
 end_import
 
@@ -705,7 +705,7 @@ parameter_list|(
 name|FieldInfo
 name|info
 parameter_list|,
-name|StorableField
+name|IndexableField
 name|field
 parameter_list|)
 throws|throws

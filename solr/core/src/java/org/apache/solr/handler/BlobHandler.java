@@ -116,9 +116,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|StorableField
+name|Document
 import|;
 end_import
 
@@ -132,7 +132,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StoredDocument
+name|IndexableField
 import|;
 end_import
 
@@ -602,11 +602,11 @@ name|solr
 operator|.
 name|common
 operator|.
-name|util
+name|params
 operator|.
-name|Utils
+name|CommonParams
 operator|.
-name|makeMap
+name|JSON
 import|;
 end_import
 
@@ -620,11 +620,11 @@ name|solr
 operator|.
 name|common
 operator|.
-name|params
+name|util
 operator|.
-name|CommonParams
+name|Utils
 operator|.
-name|JSON
+name|makeMap
 import|;
 end_import
 
@@ -1086,7 +1086,7 @@ operator|>
 literal|0
 condition|)
 block|{
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|req
@@ -1467,7 +1467,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|req
@@ -1487,7 +1487,7 @@ operator|.
 name|doc
 argument_list|)
 decl_stmt|;
-name|StorableField
+name|IndexableField
 name|sf
 init|=
 name|doc

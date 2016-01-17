@@ -178,7 +178,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexableField
 import|;
 end_import
 
@@ -340,7 +340,7 @@ name|Document
 name|doc
 parameter_list|)
 block|{
-name|StorableField
+name|IndexableField
 name|titleField
 init|=
 name|doc

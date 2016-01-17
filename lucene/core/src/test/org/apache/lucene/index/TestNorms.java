@@ -802,7 +802,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|document
 init|=
 name|open

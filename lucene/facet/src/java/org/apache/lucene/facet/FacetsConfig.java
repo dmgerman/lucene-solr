@@ -310,6 +310,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexableFieldType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|ArrayUtil
@@ -901,9 +915,6 @@ name|IndexableField
 name|field
 range|:
 name|doc
-operator|.
-name|indexableFields
-argument_list|()
 control|)
 block|{
 if|if
@@ -1390,7 +1401,7 @@ expr_stmt|;
 comment|//System.out.println("add stored: " + addedStoredFields);
 for|for
 control|(
-name|Field
+name|IndexableField
 name|field
 range|:
 name|doc
@@ -1399,7 +1410,7 @@ name|getFields
 argument_list|()
 control|)
 block|{
-name|FieldType
+name|IndexableFieldType
 name|ft
 init|=
 name|field

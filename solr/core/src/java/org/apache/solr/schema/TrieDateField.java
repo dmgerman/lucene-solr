@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexableField
 import|;
 end_import
 
@@ -119,7 +119,7 @@ specifier|public
 name|Date
 name|toObject
 parameter_list|(
-name|StorableField
+name|IndexableField
 name|f
 parameter_list|)
 block|{

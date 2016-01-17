@@ -176,7 +176,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexableField
 import|;
 end_import
 
@@ -699,7 +699,7 @@ annotation|@
 name|Override
 DECL|method|createField
 specifier|public
-name|StorableField
+name|IndexableField
 name|createField
 parameter_list|(
 name|SchemaField
@@ -712,7 +712,7 @@ name|float
 name|boost
 parameter_list|)
 block|{
-name|StorableField
+name|IndexableField
 name|f
 init|=
 literal|null
@@ -864,7 +864,7 @@ parameter_list|,
 name|String
 name|name
 parameter_list|,
-name|StorableField
+name|IndexableField
 name|f
 parameter_list|)
 throws|throws
@@ -1187,7 +1187,7 @@ function_decl|;
 block|}
 DECL|method|fromString
 specifier|public
-name|StorableField
+name|IndexableField
 name|fromString
 parameter_list|(
 name|SchemaField

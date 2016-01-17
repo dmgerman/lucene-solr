@@ -166,15 +166,15 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
 operator|.
-name|google
+name|apache
 operator|.
-name|common
+name|lucene
 operator|.
-name|collect
+name|document
 operator|.
-name|ImmutableMap
+name|Document
 import|;
 end_import
 
@@ -188,35 +188,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|StoredDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|BooleanClause
+name|IndexableField
 import|;
 end_import
 
@@ -233,6 +205,20 @@ operator|.
 name|BooleanClause
 operator|.
 name|Occur
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|BooleanClause
 import|;
 end_import
 
@@ -863,6 +849,20 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|collect
+operator|.
+name|ImmutableMap
 import|;
 end_import
 
@@ -2461,7 +2461,7 @@ operator|.
 name|nextDoc
 argument_list|()
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|searcher
@@ -5044,7 +5044,7 @@ operator|.
 name|nextDoc
 argument_list|()
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|luceneDoc
 init|=
 name|searcher
@@ -5065,7 +5065,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|StorableField
+name|IndexableField
 name|field
 range|:
 name|luceneDoc

@@ -164,7 +164,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexableFieldType
+name|IndexableField
 import|;
 end_import
 
@@ -178,7 +178,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexableFieldType
 import|;
 end_import
 
@@ -207,8 +207,6 @@ class|class
 name|Field
 implements|implements
 name|IndexableField
-implements|,
-name|StorableField
 block|{
 comment|/**    * Field's type    */
 DECL|field|type

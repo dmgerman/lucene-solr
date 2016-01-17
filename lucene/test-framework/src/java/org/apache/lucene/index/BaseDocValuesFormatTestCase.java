@@ -1030,7 +1030,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|hitDoc
 init|=
 name|isearcher
@@ -1313,7 +1313,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|hitDoc
 init|=
 name|isearcher
@@ -1614,7 +1614,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|hitDoc
 init|=
 name|isearcher
@@ -1957,7 +1957,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|hitDoc
 init|=
 name|isearcher
@@ -2313,7 +2313,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|hitDoc
 init|=
 name|isearcher
@@ -2679,7 +2679,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|hitDoc
 init|=
 name|isearcher
@@ -3103,7 +3103,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|hitDoc
 init|=
 name|isearcher
@@ -3708,7 +3708,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|doc2
 init|=
 name|ireader
@@ -4405,7 +4405,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|hitDoc
 init|=
 name|isearcher
@@ -4736,7 +4736,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|doc2
 init|=
 name|ireader
@@ -5252,7 +5252,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|hitDoc
 init|=
 name|isearcher
@@ -6166,7 +6166,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|doc2
 init|=
 name|ireader

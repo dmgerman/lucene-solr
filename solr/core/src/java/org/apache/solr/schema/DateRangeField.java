@@ -90,7 +90,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexableField
 import|;
 end_import
 
@@ -392,7 +392,7 @@ DECL|method|createFields
 specifier|public
 name|List
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|createFields
 parameter_list|(

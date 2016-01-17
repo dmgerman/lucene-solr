@@ -232,6 +232,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|Document
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Field
 import|;
 end_import
@@ -316,6 +330,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexableField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|LeafReader
 import|;
 end_import
@@ -373,34 +401,6 @@ operator|.
 name|index
 operator|.
 name|SegmentReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|StorableField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|StoredDocument
 import|;
 end_import
 
@@ -571,6 +571,8 @@ operator|.
 name|common
 operator|.
 name|SolrException
+operator|.
+name|ErrorCode
 import|;
 end_import
 
@@ -585,8 +587,6 @@ operator|.
 name|common
 operator|.
 name|SolrException
-operator|.
-name|ErrorCode
 import|;
 end_import
 
@@ -1292,7 +1292,7 @@ literal|"missing doc param for doc style"
 argument_list|)
 throw|;
 block|}
-name|StoredDocument
+name|Document
 name|doc
 init|=
 literal|null
@@ -1499,7 +1499,7 @@ specifier|static
 name|String
 name|getFieldFlags
 parameter_list|(
-name|StorableField
+name|IndexableField
 name|f
 parameter_list|)
 block|{
@@ -2517,7 +2517,7 @@ name|Object
 argument_list|>
 name|getDocumentFieldsInfo
 parameter_list|(
-name|StoredDocument
+name|Document
 name|doc
 parameter_list|,
 name|int
@@ -3289,7 +3289,7 @@ literal|true
 argument_list|)
 condition|)
 block|{
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|getFirstLiveDoc
@@ -3309,7 +3309,7 @@ block|{
 comment|// Found a document with this field
 try|try
 block|{
-name|StorableField
+name|IndexableField
 name|fld
 init|=
 name|doc
@@ -3438,7 +3438,7 @@ comment|// to do it this way.
 DECL|method|getFirstLiveDoc
 specifier|private
 specifier|static
-name|StoredDocument
+name|Document
 name|getFirstLiveDoc
 parameter_list|(
 name|Terms

@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexableField
 import|;
 end_import
 
@@ -627,7 +627,7 @@ if|if
 condition|(
 name|o
 operator|instanceof
-name|StorableField
+name|IndexableField
 condition|)
 block|{
 if|if
@@ -643,11 +643,11 @@ operator|.
 name|getSchema
 argument_list|()
 expr_stmt|;
-name|StorableField
+name|IndexableField
 name|f
 init|=
 operator|(
-name|StorableField
+name|IndexableField
 operator|)
 name|o
 decl_stmt|;

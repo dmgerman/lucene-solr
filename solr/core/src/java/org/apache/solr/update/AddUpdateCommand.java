@@ -70,20 +70,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -214,7 +200,7 @@ name|UpdateCommand
 implements|implements
 name|Iterable
 argument_list|<
-name|IndexDocument
+name|Document
 argument_list|>
 block|{
 comment|// optional id in "internal" indexed form... if it is needed and not supplied,
@@ -774,7 +760,7 @@ DECL|method|iterator
 specifier|public
 name|Iterator
 argument_list|<
-name|IndexDocument
+name|Document
 argument_list|>
 name|iterator
 parameter_list|()
@@ -783,7 +769,7 @@ return|return
 operator|new
 name|Iterator
 argument_list|<
-name|IndexDocument
+name|Document
 argument_list|>
 argument_list|()
 block|{
@@ -868,7 +854,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|IndexDocument
+name|Document
 name|next
 parameter_list|()
 block|{

@@ -475,12 +475,17 @@ name|id
 argument_list|)
 expr_stmt|;
 block|}
+operator|(
+operator|(
+name|Field
+operator|)
 name|doc
 operator|.
 name|getField
 argument_list|(
 literal|"docid"
 argument_list|)
+operator|)
 operator|.
 name|setStringValue
 argument_list|(

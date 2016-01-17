@@ -4175,7 +4175,7 @@ name|i
 argument_list|)
 condition|)
 block|{
-name|StoredDocument
+name|Document
 name|d
 init|=
 name|reader
@@ -4187,7 +4187,7 @@ argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|fields
 init|=
@@ -4233,7 +4233,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|StorableField
+name|IndexableField
 name|f
 init|=
 name|d
@@ -4998,7 +4998,7 @@ operator|.
 name|scoreDocs
 decl_stmt|;
 comment|// First document should be #0
-name|StoredDocument
+name|Document
 name|d
 init|=
 name|searcher
@@ -5418,7 +5418,7 @@ argument_list|)
 operator|.
 name|scoreDocs
 decl_stmt|;
-name|StoredDocument
+name|Document
 name|d
 init|=
 name|searcher
@@ -5675,7 +5675,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|d
 init|=
 name|searcher
@@ -7561,7 +7561,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|d
 init|=
 name|searcher

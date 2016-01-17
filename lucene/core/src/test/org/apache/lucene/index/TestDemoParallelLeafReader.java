@@ -3526,7 +3526,7 @@ operator|++
 control|)
 block|{
 comment|// TODO: is this still O(blockSize^2)?
-name|StoredDocument
+name|Document
 name|oldDoc
 init|=
 name|reader
@@ -3821,7 +3821,7 @@ operator|++
 control|)
 block|{
 comment|// TODO: is this still O(blockSize^2)?
-name|StoredDocument
+name|Document
 name|oldDoc
 init|=
 name|reader
@@ -3938,7 +3938,7 @@ operator|++
 control|)
 block|{
 comment|// TODO: is this still O(blockSize^2)?
-name|StoredDocument
+name|Document
 name|oldDoc
 init|=
 name|reader
@@ -4124,7 +4124,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|oldDoc
 init|=
 name|r
@@ -4469,7 +4469,7 @@ operator|++
 control|)
 block|{
 comment|// TODO: is this still O(blockSize^2)?
-name|StoredDocument
+name|Document
 name|oldDoc
 init|=
 name|reader
@@ -4584,7 +4584,7 @@ operator|++
 control|)
 block|{
 comment|// TODO: is this still O(blockSize^2)?
-name|StoredDocument
+name|Document
 name|oldDoc
 init|=
 name|reader
@@ -4777,7 +4777,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|oldDoc
 init|=
 name|r
@@ -6717,7 +6717,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|doc
 init|=
 name|leaf
@@ -7825,7 +7825,7 @@ name|i
 operator|++
 control|)
 block|{
-name|StoredDocument
+name|Document
 name|oldDoc
 init|=
 name|r

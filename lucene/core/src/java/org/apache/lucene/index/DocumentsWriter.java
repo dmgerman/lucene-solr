@@ -1669,7 +1669,12 @@ name|Iterable
 argument_list|<
 name|?
 extends|extends
-name|IndexDocument
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|IndexableField
+argument_list|>
 argument_list|>
 name|docs
 parameter_list|,
@@ -1838,7 +1843,12 @@ name|boolean
 name|updateDocument
 parameter_list|(
 specifier|final
-name|IndexDocument
+name|Iterable
+argument_list|<
+name|?
+extends|extends
+name|IndexableField
+argument_list|>
 name|doc
 parameter_list|,
 specifier|final

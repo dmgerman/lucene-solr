@@ -343,7 +343,7 @@ operator|>=
 literal|1
 argument_list|)
 expr_stmt|;
-name|StoredDocument
+name|Document
 name|result
 init|=
 name|reader
@@ -387,7 +387,7 @@ argument_list|)
 expr_stmt|;
 name|List
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|fields
 init|=
@@ -399,7 +399,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|StorableField
+name|IndexableField
 name|field
 range|:
 name|fields

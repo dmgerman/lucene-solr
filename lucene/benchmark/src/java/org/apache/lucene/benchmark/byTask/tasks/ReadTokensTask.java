@@ -156,6 +156,20 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|LegacyDoubleField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|LegacyFloatField
 import|;
 end_import
@@ -184,7 +198,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LegacyDoubleField
+name|LegacyLongField
 import|;
 end_import
 
@@ -196,9 +210,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|LegacyLongField
+name|IndexableField
 import|;
 end_import
 
@@ -330,7 +344,7 @@ name|Exception
 block|{
 name|List
 argument_list|<
-name|Field
+name|IndexableField
 argument_list|>
 name|fields
 init|=
@@ -356,7 +370,7 @@ decl_stmt|;
 for|for
 control|(
 specifier|final
-name|Field
+name|IndexableField
 name|field
 range|:
 name|fields

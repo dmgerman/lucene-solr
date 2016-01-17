@@ -88,7 +88,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|IndexableField
 import|;
 end_import
 
@@ -984,7 +984,7 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
-name|StorableField
+name|IndexableField
 name|out
 init|=
 name|f

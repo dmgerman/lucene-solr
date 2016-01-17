@@ -266,7 +266,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|RandomIndexWriter
+name|IndexableField
 import|;
 end_import
 
@@ -280,7 +280,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|StorableField
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -781,7 +781,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|weightField
 init|=
 name|doc
@@ -815,7 +815,7 @@ else|:
 literal|0
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|payloadField
 init|=
 name|doc
@@ -1083,7 +1083,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|weightField
 init|=
 name|doc
@@ -1109,7 +1109,7 @@ name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|payloadField
 init|=
 name|doc
@@ -1365,7 +1365,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|weightField
 init|=
 name|doc
@@ -1668,7 +1668,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|weightField
 init|=
 name|doc
@@ -1702,7 +1702,7 @@ else|:
 literal|0
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|payloadField
 init|=
 name|doc
@@ -1768,7 +1768,7 @@ argument_list|()
 decl_stmt|;
 for|for
 control|(
-name|StorableField
+name|IndexableField
 name|ctxf
 range|:
 name|doc
@@ -1979,7 +1979,7 @@ name|values
 argument_list|()
 control|)
 block|{
-name|StorableField
+name|IndexableField
 name|f
 init|=
 name|doc
@@ -2228,7 +2228,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Field
+name|IndexableField
 name|weightField
 init|=
 name|doc

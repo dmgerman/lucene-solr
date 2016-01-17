@@ -34,11 +34,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|index
 operator|.
-name|function
-operator|.
-name|ValueSource
+name|IndexableField
 import|;
 end_import
 
@@ -50,9 +48,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|queries
 operator|.
-name|StorableField
+name|function
+operator|.
+name|ValueSource
 import|;
 end_import
 
@@ -118,9 +118,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
-name|SolrCore
+name|SolrException
 import|;
 end_import
 
@@ -132,9 +132,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
+name|core
 operator|.
-name|SolrException
+name|SolrCore
 import|;
 end_import
 
@@ -510,7 +510,7 @@ index|]
 decl_stmt|;
 name|List
 argument_list|<
-name|StorableField
+name|IndexableField
 argument_list|>
 name|fields
 init|=
