@@ -5574,8 +5574,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|Terms
@@ -6164,8 +6162,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|Terms
@@ -7716,8 +7712,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|Terms
@@ -9365,8 +9359,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|Terms
@@ -11067,8 +11059,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|Terms
@@ -12839,8 +12829,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|Terms

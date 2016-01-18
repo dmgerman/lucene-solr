@@ -3141,8 +3141,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|iw
@@ -3166,8 +3164,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|FieldCache

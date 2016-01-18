@@ -609,8 +609,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|false
 argument_list|)
 expr_stmt|;
 block|}

@@ -935,8 +935,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1237,8 +1235,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|writer
@@ -1427,8 +1423,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1776,8 +1770,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|writer
@@ -2086,8 +2078,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|writer
@@ -4176,8 +4166,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -4604,8 +4592,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -7226,8 +7212,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -7777,8 +7761,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 for|for
@@ -10310,8 +10292,6 @@ operator|.
 name|open
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 comment|// flush

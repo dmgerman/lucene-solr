@@ -669,7 +669,7 @@ return|return
 name|indexerThreadPool
 return|;
 block|}
-comment|/** By default, IndexWriter does not pool the    *  SegmentReaders it must open for deletions and    *  merging, unless a near-real-time reader has been    *  obtained by calling {@link DirectoryReader#open(IndexWriter, boolean)}.    *  This method lets you enable pooling without getting a    *  near-real-time reader.  NOTE: if you set this to    *  false, IndexWriter will still pool readers once    *  {@link DirectoryReader#open(IndexWriter, boolean)} is called.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/** By default, IndexWriter does not pool the    *  SegmentReaders it must open for deletions and    *  merging, unless a near-real-time reader has been    *  obtained by calling {@link DirectoryReader#open(IndexWriter)}.    *  This method lets you enable pooling without getting a    *  near-real-time reader.  NOTE: if you set this to    *  false, IndexWriter will still pool readers once    *  {@link DirectoryReader#open(IndexWriter)} is called.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setReaderPooling
 specifier|public
 name|IndexWriterConfig

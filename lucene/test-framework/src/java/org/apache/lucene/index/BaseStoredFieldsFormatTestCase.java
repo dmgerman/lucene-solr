@@ -6289,8 +6289,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 comment|// mix up fields explicitly
@@ -6417,8 +6415,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 decl_stmt|;

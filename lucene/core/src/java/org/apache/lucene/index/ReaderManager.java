@@ -98,7 +98,26 @@ argument_list|<
 name|DirectoryReader
 argument_list|>
 block|{
-comment|/**    * Creates and returns a new ReaderManager from the given    * {@link IndexWriter}.    *     * @param writer    *          the IndexWriter to open the IndexReader from.    * @param applyAllDeletes    *          If<code>true</code>, all buffered deletes will be applied (made    *          visible) in the {@link IndexSearcher} / {@link DirectoryReader}.    *          If<code>false</code>, the deletes may or may not be applied, but    *          remain buffered (in IndexWriter) so that they will be applied in    *          the future. Applying deletes can be costly, so if your app can    *          tolerate deleted documents being returned you might gain some    *          performance by passing<code>false</code>. See    *          {@link DirectoryReader#openIfChanged(DirectoryReader, IndexWriter, boolean)}.    *     * @throws IOException If there is a low-level I/O error    */
+comment|/**    * Creates and returns a new ReaderManager from the given    * {@link IndexWriter}.    *     * @param writer    *          the IndexWriter to open the IndexReader from.    *     * @throws IOException If there is a low-level I/O error    */
+DECL|method|ReaderManager
+specifier|public
+name|ReaderManager
+parameter_list|(
+name|IndexWriter
+name|writer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+argument_list|(
+name|writer
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Expert: creates and returns a new ReaderManager from the given    * {@link IndexWriter}, controlling whether past deletions should be applied.    *     * @param writer    *          the IndexWriter to open the IndexReader from.    * @param applyAllDeletes    *          If<code>true</code>, all buffered deletes will be applied (made    *          visible) in the {@link IndexSearcher} / {@link DirectoryReader}.    *          If<code>false</code>, the deletes may or may not be applied, but    *          remain buffered (in IndexWriter) so that they will be applied in    *          the future. Applying deletes can be costly, so if your app can    *          tolerate deleted documents being returned you might gain some    *          performance by passing<code>false</code>. See    *          {@link DirectoryReader#openIfChanged(DirectoryReader, IndexWriter, boolean)}.    *     * @throws IOException If there is a low-level I/O error    */
 DECL|method|ReaderManager
 specifier|public
 name|ReaderManager

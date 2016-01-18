@@ -104,7 +104,31 @@ specifier|final
 name|SearcherFactory
 name|searcherFactory
 decl_stmt|;
-comment|/**    * Creates and returns a new SearcherManager from the given    * {@link IndexWriter}.    *     * @param writer    *          the IndexWriter to open the IndexReader from.    * @param applyAllDeletes    *          If<code>true</code>, all buffered deletes will be applied (made    *          visible) in the {@link IndexSearcher} / {@link DirectoryReader}.    *          If<code>false</code>, the deletes may or may not be applied, but    *          remain buffered (in IndexWriter) so that they will be applied in    *          the future. Applying deletes can be costly, so if your app can    *          tolerate deleted documents being returned you might gain some    *          performance by passing<code>false</code>. See    *          {@link DirectoryReader#openIfChanged(DirectoryReader, IndexWriter, boolean)}.    * @param searcherFactory    *          An optional {@link SearcherFactory}. Pass<code>null</code> if you    *          don't require the searcher to be warmed before going live or other    *          custom behavior.    *     * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Creates and returns a new SearcherManager from the given    * {@link IndexWriter}.    *     * @param writer    *          the IndexWriter to open the IndexReader from.    * @param searcherFactory    *          An optional {@link SearcherFactory}. Pass<code>null</code> if you    *          don't require the searcher to be warmed before going live or other    *          custom behavior.    *     * @throws IOException if there is a low-level I/O error    */
+DECL|method|SearcherManager
+specifier|public
+name|SearcherManager
+parameter_list|(
+name|IndexWriter
+name|writer
+parameter_list|,
+name|SearcherFactory
+name|searcherFactory
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|this
+argument_list|(
+name|writer
+argument_list|,
+literal|true
+argument_list|,
+name|searcherFactory
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Expert: creates and returns a new SearcherManager from the given    * {@link IndexWriter}, controlling whether past deletions should be applied.    *     * @param writer    *          the IndexWriter to open the IndexReader from.    * @param applyAllDeletes    *          If<code>true</code>, all buffered deletes will be applied (made    *          visible) in the {@link IndexSearcher} / {@link DirectoryReader}.    *          If<code>false</code>, the deletes may or may not be applied, but    *          remain buffered (in IndexWriter) so that they will be applied in    *          the future. Applying deletes can be costly, so if your app can    *          tolerate deleted documents being returned you might gain some    *          performance by passing<code>false</code>. See    *          {@link DirectoryReader#openIfChanged(DirectoryReader, IndexWriter, boolean)}.    * @param searcherFactory    *          An optional {@link SearcherFactory}. Pass<code>null</code> if you    *          don't require the searcher to be warmed before going live or other    *          custom behavior.    *     * @throws IOException if there is a low-level I/O error    */
 DECL|method|SearcherManager
 specifier|public
 name|SearcherManager

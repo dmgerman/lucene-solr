@@ -792,7 +792,7 @@ return|return
 name|indexerThreadPool
 return|;
 block|}
-comment|/**    * Returns {@code true} if {@link IndexWriter} should pool readers even if    * {@link DirectoryReader#open(IndexWriter, boolean)} has not been called.    */
+comment|/**    * Returns {@code true} if {@link IndexWriter} should pool readers even if    * {@link DirectoryReader#open(IndexWriter)} has not been called.    */
 DECL|method|getReaderPooling
 specifier|public
 name|boolean

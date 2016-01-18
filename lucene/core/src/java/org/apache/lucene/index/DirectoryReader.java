@@ -158,7 +158,30 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/**    * Open a near real time IndexReader from the {@link org.apache.lucene.index.IndexWriter}.    *    * @param writer The IndexWriter to open from    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    * @return The new IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @see #openIfChanged(DirectoryReader,IndexWriter,boolean)    *    * @lucene.experimental    */
+comment|/**    * Open a near real time IndexReader from the {@link org.apache.lucene.index.IndexWriter}.    *    * @param writer The IndexWriter to open from    * @return The new IndexReader    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @see #openIfChanged(DirectoryReader,IndexWriter,boolean)    *    * @lucene.experimental    */
+DECL|method|open
+specifier|public
+specifier|static
+name|DirectoryReader
+name|open
+parameter_list|(
+specifier|final
+name|IndexWriter
+name|writer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|open
+argument_list|(
+name|writer
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
+comment|/**    * Expert: open a near real time IndexReader from the {@link org.apache.lucene.index.IndexWriter},    * controlling whether past deletions should be applied.    *    * @param writer The IndexWriter to open from    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    *    * @see #open(IndexWriter)    *    * @lucene.experimental    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -279,7 +302,34 @@ return|return
 name|newReader
 return|;
 block|}
-comment|/**    * Expert: If there changes (committed or not) in the    * {@link IndexWriter} versus what the provided reader is    * searching, then open and return a new    * IndexReader searching both committed and uncommitted    * changes from the writer; else, return null (though, the    * current implementation never returns null).    *    *<p>This provides "near real-time" searching, in that    * changes made during an {@link IndexWriter} session can be    * quickly made available for searching without closing    * the writer nor calling {@link IndexWriter#commit}.    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link IndexWriterConfig#setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far.</p>    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link org.apache.lucene.store.AlreadyClosedException}.</p>    *    * @return DirectoryReader that covers entire index plus all    * changes made so far by this IndexWriter instance, or    * null if there are no new changes    *    * @param writer The IndexWriter to open from    *    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    *    * @throws IOException if there is a low-level IO error    *    * @lucene.experimental    */
+comment|/**    * Expert: If there changes (committed or not) in the    * {@link IndexWriter} versus what the provided reader is    * searching, then open and return a new    * IndexReader searching both committed and uncommitted    * changes from the writer; else, return null (though, the    * current implementation never returns null).    *    *<p>This provides "near real-time" searching, in that    * changes made during an {@link IndexWriter} session can be    * quickly made available for searching without closing    * the writer nor calling {@link IndexWriter#commit}.    *    *<p>It's<i>near</i> real-time because there is no hard    * guarantee on how quickly you can get a new reader after    * making changes with IndexWriter.  You'll have to    * experiment in your situation to determine if it's    * fast enough.  As this is a new and experimental    * feature, please report back on your findings so we can    * learn, improve and iterate.</p>    *    *<p>The very first time this method is called, this    * writer instance will make every effort to pool the    * readers that it opens for doing merges, applying    * deletes, etc.  This means additional resources (RAM,    * file descriptors, CPU time) will be consumed.</p>    *    *<p>For lower latency on reopening a reader, you should    * call {@link IndexWriterConfig#setMergedSegmentWarmer} to    * pre-warm a newly merged segment before it's committed    * to the index.  This is important for minimizing    * index-to-search delay after a large merge.</p>    *    *<p>If an addIndexes* call is running in another thread,    * then this reader will only search those segments from    * the foreign index that have been successfully copied    * over, so far.</p>    *    *<p><b>NOTE</b>: Once the writer is closed, any    * outstanding readers may continue to be used.  However,    * if you attempt to reopen any of those readers, you'll    * hit an {@link org.apache.lucene.store.AlreadyClosedException}.</p>    *    * @return DirectoryReader that covers entire index plus all    * changes made so far by this IndexWriter instance, or    * null if there are no new changes    *    * @param writer The IndexWriter to open from    *    * @throws IOException if there is a low-level IO error    *    * @lucene.experimental    */
+DECL|method|openIfChanged
+specifier|public
+specifier|static
+name|DirectoryReader
+name|openIfChanged
+parameter_list|(
+name|DirectoryReader
+name|oldReader
+parameter_list|,
+name|IndexWriter
+name|writer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|openIfChanged
+argument_list|(
+name|oldReader
+argument_list|,
+name|writer
+argument_list|,
+literal|true
+argument_list|)
+return|;
+block|}
+comment|/**    * Expert: Opens a new reader, if there are any changes, controlling whether past deletions should be applied.    *    * @see #openIfChanged(DirectoryReader,IndexWriter)    *    * @param writer The IndexWriter to open from    *    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    *    * @throws IOException if there is a low-level IO error    *    * @lucene.experimental    */
 DECL|method|openIfChanged
 specifier|public
 specifier|static
@@ -687,7 +737,7 @@ name|long
 name|getVersion
 parameter_list|()
 function_decl|;
-comment|/**    * Check whether any new changes have occurred to the    * index since this reader was opened.    *    *<p>If this reader was created by calling {@link #open},      * then this method checks if any further commits     * (see {@link IndexWriter#commit}) have occurred in the     * directory.</p>    *    *<p>If instead this reader is a near real-time reader    * (ie, obtained by a call to {@link    * DirectoryReader#open(IndexWriter,boolean)}, or by calling {@link #openIfChanged}    * on a near real-time reader), then this method checks if    * either a new commit has occurred, or any new    * uncommitted changes have taken place via the writer.    * Note that even if the writer has only performed    * merging, this method will still return false.</p>    *    *<p>In any event, if this returns false, you should call    * {@link #openIfChanged} to get a new reader that sees the    * changes.</p>    *    * @throws IOException           if there is a low-level IO error    */
+comment|/**    * Check whether any new changes have occurred to the    * index since this reader was opened.    *    *<p>If this reader was created by calling {@link #open},      * then this method checks if any further commits     * (see {@link IndexWriter#commit}) have occurred in the     * directory.</p>    *    *<p>If instead this reader is a near real-time reader    * (ie, obtained by a call to {@link    * DirectoryReader#open(IndexWriter)}, or by calling {@link #openIfChanged}    * on a near real-time reader), then this method checks if    * either a new commit has occurred, or any new    * uncommitted changes have taken place via the writer.    * Note that even if the writer has only performed    * merging, this method will still return false.</p>    *    *<p>In any event, if this returns false, you should call    * {@link #openIfChanged} to get a new reader that sees the    * changes.</p>    *    * @throws IOException           if there is a low-level IO error    */
 DECL|method|isCurrent
 specifier|public
 specifier|abstract

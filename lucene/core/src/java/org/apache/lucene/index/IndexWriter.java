@@ -4328,7 +4328,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** Expert: attempts to delete by document ID, as long as    *  the provided reader is a near-real-time reader (from {@link    *  DirectoryReader#open(IndexWriter,boolean)}).  If the    *  provided reader is an NRT reader obtained from this    *  writer, and its segment has not been merged away, then    *  the delete succeeds and this method returns true; else, it    *  returns false the caller must then separately delete by    *  Term or Query.    *    *<b>NOTE</b>: this method can only delete documents    *  visible to the currently open NRT reader.  If you need    *  to delete documents indexed after opening the NRT    *  reader you must use {@link #deleteDocuments(Term...)}). */
+comment|/** Expert: attempts to delete by document ID, as long as    *  the provided reader is a near-real-time reader (from {@link    *  DirectoryReader#open(IndexWriter)}).  If the    *  provided reader is an NRT reader obtained from this    *  writer, and its segment has not been merged away, then    *  the delete succeeds and this method returns true; else, it    *  returns false the caller must then separately delete by    *  Term or Query.    *    *<b>NOTE</b>: this method can only delete documents    *  visible to the currently open NRT reader.  If you need    *  to delete documents indexed after opening the NRT    *  reader you must use {@link #deleteDocuments(Term...)}). */
 DECL|method|tryDeleteDocument
 specifier|public
 specifier|synchronized
@@ -16994,7 +16994,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/** If {@link DirectoryReader#open(IndexWriter,boolean)} has    *  been called (ie, this writer is in near real-time    *  mode), then after a merge completes, this class can be    *  invoked to warm the reader on the newly merged    *  segment, before the merge commits.  This is not    *  required for near real-time search, but will reduce    *  search latency on opening a new near real-time reader    *  after a merge completes.    *    * @lucene.experimental    *    *<p><b>NOTE</b>: warm is called before any deletes have    * been carried over to the merged segment. */
+comment|/** If {@link DirectoryReader#open(IndexWriter)} has    *  been called (ie, this writer is in near real-time    *  mode), then after a merge completes, this class can be    *  invoked to warm the reader on the newly merged    *  segment, before the merge commits.  This is not    *  required for near real-time search, but will reduce    *  search latency on opening a new near real-time reader    *  after a merge completes.    *    * @lucene.experimental    *    *<p><b>NOTE</b>: warm is called before any deletes have    * been carried over to the merged segment. */
 DECL|class|IndexReaderWarmer
 specifier|public
 specifier|static

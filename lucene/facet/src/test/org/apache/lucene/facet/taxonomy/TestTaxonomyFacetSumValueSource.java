@@ -1895,8 +1895,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|DirectoryTaxonomyReader
@@ -2164,8 +2162,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|DirectoryTaxonomyReader
@@ -2392,8 +2388,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|DirectoryTaxonomyReader
@@ -2781,8 +2775,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|DirectoryTaxonomyReader
@@ -3034,8 +3026,6 @@ operator|.
 name|open
 argument_list|(
 name|iw
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|DirectoryTaxonomyReader

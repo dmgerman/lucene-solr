@@ -507,12 +507,6 @@ operator|.
 name|open
 argument_list|(
 name|indexWriter
-argument_list|,
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|indexWriter
