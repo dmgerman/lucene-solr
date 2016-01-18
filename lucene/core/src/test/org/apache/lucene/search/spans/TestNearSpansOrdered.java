@@ -1822,7 +1822,7 @@ name|toString
 argument_list|()
 argument_list|,
 literal|0.0f
-operator|<
+operator|<=
 name|e
 operator|.
 name|getValue
