@@ -8777,7 +8777,6 @@ operator|<
 name|wordLength
 condition|)
 block|{
-empty_stmt|;
 if|if
 condition|(
 name|simple

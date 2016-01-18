@@ -765,6 +765,15 @@ literal|0.7f
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|sims
+operator|.
+name|add
+argument_list|(
+operator|new
+name|DFISimilarity
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// ------------------------------- Unit tests --------------------------------
 comment|/** The default number of documents in the unit tests. */

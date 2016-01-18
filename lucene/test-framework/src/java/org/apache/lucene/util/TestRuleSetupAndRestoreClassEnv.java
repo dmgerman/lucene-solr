@@ -286,7 +286,9 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|RandomSimilarityProvider
+name|similarities
+operator|.
+name|ClassicSimilarity
 import|;
 end_import
 
@@ -302,7 +304,7 @@ name|search
 operator|.
 name|similarities
 operator|.
-name|ClassicSimilarity
+name|RandomSimilarity
 import|;
 end_import
 
@@ -1526,7 +1528,7 @@ name|ClassicSimilarity
 argument_list|()
 else|:
 operator|new
-name|RandomSimilarityProvider
+name|RandomSimilarity
 argument_list|(
 name|random
 argument_list|()
