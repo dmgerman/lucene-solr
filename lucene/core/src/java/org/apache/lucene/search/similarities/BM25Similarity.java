@@ -487,7 +487,7 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|1
 init|;
 name|i
 operator|<
@@ -524,6 +524,19 @@ name|f
 operator|)
 expr_stmt|;
 block|}
+name|NORM_TABLE
+index|[
+literal|0
+index|]
+operator|=
+literal|1.0f
+operator|/
+name|NORM_TABLE
+index|[
+literal|255
+index|]
+expr_stmt|;
+comment|// otherwise inf
 block|}
 annotation|@
 name|Override

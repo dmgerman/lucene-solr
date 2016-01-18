@@ -2124,10 +2124,14 @@ index|]
 operator|.
 name|score
 decl_stmt|;
-name|assertTrue
+name|assertFalse
 argument_list|(
+literal|"negative score for "
+operator|+
+name|sim
+argument_list|,
 name|score
-operator|>=
+operator|<
 literal|0.0f
 argument_list|)
 expr_stmt|;
@@ -2140,6 +2144,20 @@ argument_list|,
 name|Float
 operator|.
 name|isInfinite
+argument_list|(
+name|score
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertFalse
+argument_list|(
+literal|"nan score for "
+operator|+
+name|sim
+argument_list|,
+name|Float
+operator|.
+name|isNaN
 argument_list|(
 name|score
 argument_list|)
