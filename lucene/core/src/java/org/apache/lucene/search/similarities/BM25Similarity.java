@@ -184,7 +184,7 @@ specifier|final
 name|float
 name|b
 decl_stmt|;
-comment|/**    * BM25 with the supplied parameter values.    * @param k1 Controls non-linear term frequency normalization (saturation).    * @param b Controls to what degree document length normalizes tf values.    */
+comment|/**    * BM25 with the supplied parameter values.    * @param k1 Controls non-linear term frequency normalization (saturation).    * @param b Controls to what degree document length normalizes tf values.    * @throws IllegalArgumentException if {@code k1} is infinite or negative, or if {@code b} is     *         not within the range {@code [0..1]}    */
 DECL|method|BM25Similarity
 specifier|public
 name|BM25Similarity
@@ -196,6 +196,64 @@ name|float
 name|b
 parameter_list|)
 block|{
+if|if
+condition|(
+name|Float
+operator|.
+name|isFinite
+argument_list|(
+name|k1
+argument_list|)
+operator|==
+literal|false
+operator|||
+name|k1
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"illegal k1 value: "
+operator|+
+name|k1
+operator|+
+literal|", must be a non-negative finite value"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|Float
+operator|.
+name|isNaN
+argument_list|(
+name|b
+argument_list|)
+operator|||
+name|b
+argument_list|<
+literal|0
+operator|||
+name|b
+argument_list|>
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"illegal b value: "
+operator|+
+name|b
+operator|+
+literal|", must be between 0 and 1"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|k1
@@ -216,16 +274,11 @@ name|BM25Similarity
 parameter_list|()
 block|{
 name|this
-operator|.
-name|k1
-operator|=
+argument_list|(
 literal|1.2f
-expr_stmt|;
-name|this
-operator|.
-name|b
-operator|=
+argument_list|,
 literal|0.75f
+argument_list|)
 expr_stmt|;
 block|}
 comment|/** Implemented as<code>log(1 + (docCount - docFreq + 0.5)/(docFreq + 0.5))</code>. */
