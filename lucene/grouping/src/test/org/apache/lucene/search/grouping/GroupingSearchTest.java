@@ -1079,7 +1079,7 @@ literal|0
 index|]
 operator|.
 name|score
-operator|>
+operator|>=
 name|group
 operator|.
 name|scoreDocs
@@ -1169,7 +1169,7 @@ literal|0
 index|]
 operator|.
 name|score
-operator|>
+operator|>=
 name|group
 operator|.
 name|scoreDocs
@@ -1190,7 +1190,7 @@ literal|1
 index|]
 operator|.
 name|score
-operator|>
+operator|>=
 name|group
 operator|.
 name|scoreDocs
