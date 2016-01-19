@@ -465,6 +465,16 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|scores
+index|[
+name|i
+index|]
+operator|!=
+literal|0.0
+condition|)
+block|{
 name|assertTrue
 argument_list|(
 literal|"score: "
@@ -486,6 +496,7 @@ operator|>
 name|lastScore
 argument_list|)
 expr_stmt|;
+block|}
 name|lastScore
 operator|=
 name|scores
