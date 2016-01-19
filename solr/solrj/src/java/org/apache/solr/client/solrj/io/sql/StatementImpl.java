@@ -325,6 +325,18 @@ operator|=
 name|connection
 expr_stmt|;
 block|}
+DECL|method|getSolrStream
+specifier|public
+name|SolrStream
+name|getSolrStream
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|solrStream
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|executeQuery
@@ -394,8 +406,6 @@ operator|new
 name|ResultSetImpl
 argument_list|(
 name|this
-operator|.
-name|solrStream
 argument_list|)
 return|;
 block|}

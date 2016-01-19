@@ -2057,6 +2057,15 @@ name|collection
 operator|+
 literal|"&username=&password=&testKey1=testValue&testKey2"
 decl_stmt|;
+name|String
+name|sql
+init|=
+literal|"select id, a_i, a_s, a_f from "
+operator|+
+name|collection
+operator|+
+literal|" order by a_i desc limit 2"
+decl_stmt|;
 try|try
 init|(
 name|Connection
@@ -2124,6 +2133,30 @@ name|getConnection
 argument_list|()
 argument_list|)
 expr_stmt|;
+try|try
+init|(
+name|ResultSet
+name|rs
+init|=
+name|statement
+operator|.
+name|executeQuery
+argument_list|(
+name|sql
+argument_list|)
+init|)
+block|{
+name|assertEquals
+argument_list|(
+name|statement
+argument_list|,
+name|rs
+operator|.
+name|getStatement
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
