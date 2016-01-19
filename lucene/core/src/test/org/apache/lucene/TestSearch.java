@@ -329,7 +329,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"score is not negative: "
+literal|"score is positive: "
 operator|+
 name|hits
 index|[
@@ -344,7 +344,7 @@ literal|0
 index|]
 operator|.
 name|score
-operator|<
+operator|<=
 literal|0
 argument_list|)
 expr_stmt|;
