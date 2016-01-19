@@ -175,7 +175,11 @@ init|=
 operator|new
 name|HashMap
 argument_list|<>
-argument_list|()
+argument_list|(
+literal|7
+argument_list|,
+literal|1.0f
+argument_list|)
 decl_stmt|;
 static|static
 block|{
