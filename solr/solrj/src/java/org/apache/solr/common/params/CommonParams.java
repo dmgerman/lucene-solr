@@ -138,6 +138,15 @@ name|START
 init|=
 literal|"start"
 decl_stmt|;
+DECL|field|START_DEFAULT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|START_DEFAULT
+init|=
+literal|0
+decl_stmt|;
 comment|/** number of documents to return starting at "start" */
 DECL|field|ROWS
 specifier|public
@@ -147,6 +156,15 @@ name|String
 name|ROWS
 init|=
 literal|"rows"
+decl_stmt|;
+DECL|field|ROWS_DEFAULT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|ROWS_DEFAULT
+init|=
+literal|10
 decl_stmt|;
 comment|// SOLR-4228 start
 comment|/** handler value for SolrPing */

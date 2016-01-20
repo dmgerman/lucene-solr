@@ -1110,7 +1110,9 @@ argument_list|(
 name|startS
 argument_list|)
 else|:
-literal|0
+name|CommonParams
+operator|.
+name|START_DEFAULT
 decl_stmt|;
 name|int
 name|rows
@@ -1126,7 +1128,9 @@ argument_list|(
 name|rowsS
 argument_list|)
 else|:
-literal|10
+name|CommonParams
+operator|.
+name|ROWS_DEFAULT
 decl_stmt|;
 name|SortSpec
 name|sort

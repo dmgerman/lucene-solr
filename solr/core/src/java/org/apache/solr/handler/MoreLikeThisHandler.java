@@ -1264,7 +1264,9 @@ name|CommonParams
 operator|.
 name|START
 argument_list|,
-literal|0
+name|CommonParams
+operator|.
+name|START_DEFAULT
 argument_list|)
 decl_stmt|;
 name|int
@@ -1278,7 +1280,9 @@ name|CommonParams
 operator|.
 name|ROWS
 argument_list|,
-literal|10
+name|CommonParams
+operator|.
+name|ROWS_DEFAULT
 argument_list|)
 decl_stmt|;
 comment|// Find documents MoreLikeThis - either with a reader or a query

@@ -122,7 +122,7 @@ name|TERMS_PREFIX
 operator|+
 literal|"lower.incl"
 decl_stmt|;
-comment|/**    * Optional.  The number of results to return.  If not specified, looks for {@link org.apache.solr.common.params.CommonParams#ROWS}.  If that's not specified, uses 10.    */
+comment|/**    * Optional.  The number of results to return.  If not specified, looks for {@link org.apache.solr.common.params.CommonParams#ROWS}.  If that's not specified, uses {@link org.apache.solr.common.params.CommonParams#ROWS_DEFAULT}.    */
 DECL|field|TERMS_LIMIT
 specifier|public
 specifier|static
