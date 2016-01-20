@@ -183,6 +183,17 @@ operator|=
 name|docScorer
 expr_stmt|;
 block|}
+comment|/** return the Spans for this Scorer **/
+DECL|method|getSpans
+specifier|public
+name|Spans
+name|getSpans
+parameter_list|()
+block|{
+return|return
+name|spans
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|docID
