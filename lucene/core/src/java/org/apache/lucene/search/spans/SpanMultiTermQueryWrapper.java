@@ -214,7 +214,7 @@ specifier|private
 name|SpanRewriteMethod
 name|rewriteMethod
 decl_stmt|;
-comment|/**    * Create a new SpanMultiTermQueryWrapper.     *     * @param query Query to wrap.    *<p>    * NOTE: This will call {@link MultiTermQuery#setRewriteMethod(MultiTermQuery.RewriteMethod)}    * on the wrapped<code>query</code>, changing its rewrite method to a suitable one for spans.    * Be sure to not change the rewrite method on the wrapped query afterwards! Doing so will    * throw {@link UnsupportedOperationException} on rewriting this query!    */
+comment|/**    * Create a new SpanMultiTermQueryWrapper.     *     * @param query Query to wrap.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
