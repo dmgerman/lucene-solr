@@ -1156,7 +1156,7 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Failed to load stop words from storage due to: "
+literal|"Failed to load data from storage due to: "
 operator|+
 name|reloadExc
 argument_list|)
@@ -1361,7 +1361,11 @@ init|=
 operator|new
 name|LinkedHashMap
 argument_list|<>
-argument_list|()
+argument_list|(
+literal|4
+argument_list|,
+literal|1.0f
+argument_list|)
 decl_stmt|;
 name|toStore
 operator|.
