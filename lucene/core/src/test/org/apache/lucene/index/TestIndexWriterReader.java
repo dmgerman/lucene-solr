@@ -6544,8 +6544,6 @@ argument_list|(
 name|r3
 argument_list|,
 name|w
-argument_list|,
-literal|true
 argument_list|)
 decl_stmt|;
 name|assertNull

@@ -12285,9 +12285,7 @@ init|=
 name|w
 operator|.
 name|getReader
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 decl_stmt|;
 comment|// Sometimes we will make it here (we only randomly
 comment|// throw the exc):

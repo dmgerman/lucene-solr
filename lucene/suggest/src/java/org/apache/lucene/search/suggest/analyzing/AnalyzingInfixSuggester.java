@@ -1282,8 +1282,6 @@ name|SearcherManager
 argument_list|(
 name|writer
 argument_list|,
-literal|true
-argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
@@ -1520,8 +1518,6 @@ name|SearcherManager
 argument_list|(
 name|writer
 argument_list|,
-literal|true
-argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
@@ -1740,8 +1736,6 @@ operator|new
 name|SearcherManager
 argument_list|(
 name|writer
-argument_list|,
-literal|true
 argument_list|,
 literal|null
 argument_list|)

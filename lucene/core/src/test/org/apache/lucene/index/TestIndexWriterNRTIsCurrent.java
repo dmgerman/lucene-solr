@@ -557,9 +557,7 @@ operator|=
 name|writer
 operator|.
 name|getReader
-argument_list|(
-literal|true
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|Term
 name|term

@@ -337,8 +337,6 @@ name|SearcherManager
 argument_list|(
 name|w
 argument_list|,
-literal|true
-argument_list|,
 operator|new
 name|SearcherFactory
 argument_list|()
