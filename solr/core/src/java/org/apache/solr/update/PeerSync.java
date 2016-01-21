@@ -534,7 +534,6 @@ argument_list|)
 decl_stmt|;
 DECL|field|debug
 specifier|private
-specifier|static
 name|boolean
 name|debug
 init|=

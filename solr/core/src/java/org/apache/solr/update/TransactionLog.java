@@ -374,7 +374,6 @@ argument_list|)
 decl_stmt|;
 DECL|field|debug
 specifier|private
-specifier|static
 name|boolean
 name|debug
 init|=
@@ -385,7 +384,6 @@ argument_list|()
 decl_stmt|;
 DECL|field|trace
 specifier|private
-specifier|static
 name|boolean
 name|trace
 init|=
