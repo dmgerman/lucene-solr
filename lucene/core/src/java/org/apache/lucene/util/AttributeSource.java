@@ -1139,6 +1139,25 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Removes all attributes and their implementations from this AttributeSource.    */
+DECL|method|removeAllAttributes
+specifier|public
+specifier|final
+name|void
+name|removeAllAttributes
+parameter_list|()
+block|{
+name|attributes
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|attributeImpls
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 comment|/**    * Captures the state of all Attributes. The return value can be passed to    * {@link #restoreState} to restore the state of this or another AttributeSource.    */
 DECL|method|captureState
 specifier|public
