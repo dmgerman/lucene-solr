@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalFormat
+name|PointFormat
 import|;
 end_import
 
@@ -670,15 +670,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|dimensionalFormat
+DECL|method|pointFormat
 specifier|public
 specifier|final
-name|DimensionalFormat
-name|dimensionalFormat
+name|PointFormat
+name|pointFormat
 parameter_list|()
 block|{
 return|return
-name|DimensionalFormat
+name|PointFormat
 operator|.
 name|EMPTY
 return|;

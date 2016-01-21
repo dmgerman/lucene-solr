@@ -362,12 +362,12 @@ argument_list|()
 argument_list|,
 name|fi
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 argument_list|,
 name|fi
 operator|.
-name|getDimensionNumBytes
+name|getPointNumBytes
 argument_list|()
 argument_list|)
 argument_list|)

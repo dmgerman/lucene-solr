@@ -63,11 +63,10 @@ comment|/** Add this to a document to index lat/lon point dimensionally */
 end_comment
 
 begin_class
-DECL|class|DimensionalLatLonField
+DECL|class|LatLonPoint
 specifier|public
-specifier|final
 class|class
-name|DimensionalLatLonField
+name|LatLonPoint
 extends|extends
 name|Field
 block|{
@@ -99,10 +98,10 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**     * Creates a new DimensionalLatLonField with the specified lat and lon    * @param name field name    * @param lat double latitude    * @param lon double longitude    * @throws IllegalArgumentException if the field name is null or lat or lon are out of bounds    */
-DECL|method|DimensionalLatLonField
+comment|/**     * Creates a new LatLonPoint with the specified lat and lon    * @param name field name    * @param lat double latitude    * @param lon double longitude    * @throws IllegalArgumentException if the field name is null or lat or lon are out of bounds    */
+DECL|method|LatLonPoint
 specifier|public
-name|DimensionalLatLonField
+name|LatLonPoint
 parameter_list|(
 name|String
 name|name

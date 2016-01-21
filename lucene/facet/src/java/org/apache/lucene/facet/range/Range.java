@@ -62,24 +62,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DimensionalRangeQuery
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|Query
 import|;
 end_import
@@ -133,7 +115,7 @@ operator|=
 name|label
 expr_stmt|;
 block|}
-comment|/** Returns a new {@link Query} accepting only documents    *  in this range.  This query might not be very efficient    *  when run on its own since it is optimized towards    *  random-access, so it is best used either with    *  {@link DrillDownQuery#add(String, Query) DrillDownQuery}    *  or when intersected with another query that can lead the    *  iteration.  If the {@link ValueSource} is static, e.g. an    *  indexed numeric field, then it may be more efficient to use    *  {@link DimensionalRangeQuery}. The provided fastMatchQuery,    *  if non-null, will first be consulted, and only if    *  that is set for each document will the range then be    *  checked. */
+comment|/** Returns a new {@link Query} accepting only documents    *  in this range.  This query might not be very efficient    *  when run on its own since it is optimized towards    *  random-access, so it is best used either with    *  {@link DrillDownQuery#add(String, Query) DrillDownQuery}    *  or when intersected with another query that can lead the    *  iteration.  If the {@link ValueSource} is static, e.g. an    *  indexed numeric field, then it may be more efficient to use    *  {@link org.apache.lucene.search.PointRangeQuery}. The provided fastMatchQuery,    *  if non-null, will first be consulted, and only if    *  that is set for each document will the range then be    *  checked. */
 DECL|method|getQuery
 specifier|public
 specifier|abstract
@@ -147,7 +129,7 @@ name|ValueSource
 name|valueSource
 parameter_list|)
 function_decl|;
-comment|/** Returns a new {@link Query} accepting only documents    *  in this range.  This query might not be very efficient    *  when run on its own since it is optimized towards    *  random-access, so it is best used either with    *  {@link DrillDownQuery#add(String, Query) DrillDownQuery}    *  or when intersected with another query that can lead the    *  iteration.  If the {@link ValueSource} is static, e.g. an    *  indexed numeric field, then it may be more efficient to    *  use {@link DimensionalRangeQuery}. */
+comment|/** Returns a new {@link Query} accepting only documents    *  in this range.  This query might not be very efficient    *  when run on its own since it is optimized towards    *  random-access, so it is best used either with    *  {@link DrillDownQuery#add(String, Query) DrillDownQuery}    *  or when intersected with another query that can lead the    *  iteration.  If the {@link ValueSource} is static, e.g. an    *  indexed numeric field, then it may be more efficient to    *  use {@link org.apache.lucene.search.PointRangeQuery}. */
 DECL|method|getQuery
 specifier|public
 name|Query

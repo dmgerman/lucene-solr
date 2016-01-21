@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalFormat
+name|PointFormat
 import|;
 end_import
 
@@ -52,7 +52,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalReader
+name|PointReader
 import|;
 end_import
 
@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalWriter
+name|PointWriter
 import|;
 end_import
 
@@ -103,19 +103,19 @@ comment|/** For debugging, curiosity, transparency only!!  Do not  *  use this c
 end_comment
 
 begin_class
-DECL|class|SimpleTextDimensionalFormat
+DECL|class|SimpleTextPointFormat
 specifier|public
 specifier|final
 class|class
-name|SimpleTextDimensionalFormat
+name|SimpleTextPointFormat
 extends|extends
-name|DimensionalFormat
+name|PointFormat
 block|{
 annotation|@
 name|Override
 DECL|method|fieldsWriter
 specifier|public
-name|DimensionalWriter
+name|PointWriter
 name|fieldsWriter
 parameter_list|(
 name|SegmentWriteState
@@ -126,7 +126,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|SimpleTextDimensionalWriter
+name|SimpleTextPointWriter
 argument_list|(
 name|state
 argument_list|)
@@ -136,7 +136,7 @@ annotation|@
 name|Override
 DECL|method|fieldsReader
 specifier|public
-name|DimensionalReader
+name|PointReader
 name|fieldsReader
 parameter_list|(
 name|SegmentReadState
@@ -147,27 +147,27 @@ name|IOException
 block|{
 return|return
 operator|new
-name|SimpleTextDimensionalReader
+name|SimpleTextPointReader
 argument_list|(
 name|state
 argument_list|)
 return|;
 block|}
-comment|/** Extension of dimensional data file */
-DECL|field|DIMENSIONAL_EXTENSION
+comment|/** Extension of points data file */
+DECL|field|POINT_EXTENSION
 specifier|static
 specifier|final
 name|String
-name|DIMENSIONAL_EXTENSION
+name|POINT_EXTENSION
 init|=
 literal|"dim"
 decl_stmt|;
-comment|/** Extension of dimensional index file */
-DECL|field|DIMENSIONAL_INDEX_EXTENSION
+comment|/** Extension of points index file */
+DECL|field|POINT_INDEX_EXTENSION
 specifier|static
 specifier|final
 name|String
-name|DIMENSIONAL_INDEX_EXTENSION
+name|POINT_INDEX_EXTENSION
 init|=
 literal|"dii"
 decl_stmt|;

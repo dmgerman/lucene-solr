@@ -35,11 +35,11 @@ comment|/** A binary field that is indexed dimensionally such that finding  *  a
 end_comment
 
 begin_class
-DECL|class|DimensionalBinaryField
+DECL|class|BinaryPoint
 specifier|public
 specifier|final
 class|class
-name|DimensionalBinaryField
+name|BinaryPoint
 extends|extends
 name|Field
 block|{
@@ -455,10 +455,10 @@ name|packed
 argument_list|)
 return|;
 block|}
-comment|/** General purpose API: creates a new DimensionalField, indexing the    *  provided N-dimensional binary point.    *    *  @param name field name    *  @param point byte[][] value    *  @throws IllegalArgumentException if the field name or value is null.    */
-DECL|method|DimensionalBinaryField
+comment|/** General purpose API: creates a new BinaryPoint, indexing the    *  provided N-dimensional binary point.    *    *  @param name field name    *  @param point byte[][] value    *  @throws IllegalArgumentException if the field name or value is null.    */
+DECL|method|BinaryPoint
 specifier|public
-name|DimensionalBinaryField
+name|BinaryPoint
 parameter_list|(
 name|String
 name|name
@@ -486,9 +486,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** Expert API */
-DECL|method|DimensionalBinaryField
+DECL|method|BinaryPoint
 specifier|public
-name|DimensionalBinaryField
+name|BinaryPoint
 parameter_list|(
 name|String
 name|name
@@ -518,12 +518,12 @@ name|length
 operator|!=
 name|type
 operator|.
-name|dimensionCount
+name|pointDimensionCount
 argument_list|()
 operator|*
 name|type
 operator|.
-name|dimensionNumBytes
+name|pointNumBytes
 argument_list|()
 condition|)
 block|{
@@ -537,18 +537,18 @@ name|packedPoint
 operator|.
 name|length
 operator|+
-literal|" but type.dimensionCount()="
+literal|" but type.pointDimensionCount()="
 operator|+
 name|type
 operator|.
-name|dimensionCount
+name|pointDimensionCount
 argument_list|()
 operator|+
-literal|" and type.dimensionNumBytes()="
+literal|" and type.pointNumBytes()="
 operator|+
 name|type
 operator|.
-name|dimensionNumBytes
+name|pointNumBytes
 argument_list|()
 argument_list|)
 throw|;

@@ -60,7 +60,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalDoubleField
+name|DoublePoint
 import|;
 end_import
 
@@ -74,7 +74,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalFloatField
+name|FloatPoint
 import|;
 end_import
 
@@ -88,7 +88,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalIntField
+name|IntPoint
 import|;
 end_import
 
@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalLongField
+name|LongPoint
 import|;
 end_import
 
@@ -131,62 +131,6 @@ operator|.
 name|document
 operator|.
 name|Field
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|LegacyDoubleField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|LegacyFloatField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|LegacyIntField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|LegacyLongField
 import|;
 end_import
 
@@ -778,7 +722,7 @@ name|Field
 name|intIdField
 init|=
 operator|new
-name|DimensionalIntField
+name|IntPoint
 argument_list|(
 literal|"id_int"
 argument_list|,
@@ -800,7 +744,7 @@ name|Field
 name|floatIdField
 init|=
 operator|new
-name|DimensionalFloatField
+name|FloatPoint
 argument_list|(
 literal|"id_float"
 argument_list|,
@@ -822,7 +766,7 @@ name|Field
 name|longIdField
 init|=
 operator|new
-name|DimensionalLongField
+name|LongPoint
 argument_list|(
 literal|"id_long"
 argument_list|,
@@ -844,7 +788,7 @@ name|Field
 name|doubleIdField
 init|=
 operator|new
-name|DimensionalDoubleField
+name|DoublePoint
 argument_list|(
 literal|"id_double"
 argument_list|,

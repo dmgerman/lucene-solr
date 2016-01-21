@@ -59,15 +59,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** A long field that is indexed dimensionally such that finding  *  all documents within an N-dimensional shape or range at search time is  *  efficient.  Muliple values for the same field in one documents  *  is allowed. */
+comment|/** An int field that is indexed dimensionally such that finding  *  all documents within an N-dimensional shape or range at search time is  *  efficient.  Muliple values for the same field in one documents  *  is allowed. */
 end_comment
 
 begin_class
-DECL|class|DimensionalLongField
+DECL|class|IntPoint
 specifier|public
 specifier|final
 class|class
-name|DimensionalLongField
+name|IntPoint
 extends|extends
 name|Field
 block|{
@@ -96,7 +96,7 @@ name|numDims
 argument_list|,
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_LONG
+name|NUM_BYTES_INT
 argument_list|)
 expr_stmt|;
 name|type
@@ -110,28 +110,28 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setLongValue
+DECL|method|setIntValue
 specifier|public
 name|void
-name|setLongValue
+name|setIntValue
 parameter_list|(
-name|long
+name|int
 name|value
 parameter_list|)
 block|{
-name|setLongValues
+name|setIntValues
 argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
 block|}
 comment|/** Change the values of this field */
-DECL|method|setLongValues
+DECL|method|setIntValues
 specifier|public
 name|void
-name|setLongValues
+name|setIntValues
 parameter_list|(
-name|long
+name|int
 modifier|...
 name|point
 parameter_list|)
@@ -159,7 +159,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"cannot change value type from long to BytesRef"
+literal|"cannot change value type from int to BytesRef"
 argument_list|)
 throw|;
 block|}
@@ -186,12 +186,12 @@ name|length
 operator|==
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_LONG
+name|NUM_BYTES_INT
 assert|;
 return|return
 name|NumericUtils
 operator|.
-name|bytesToLong
+name|bytesToInt
 argument_list|(
 name|bytes
 operator|.
@@ -209,7 +209,7 @@ specifier|static
 name|BytesRef
 name|pack
 parameter_list|(
-name|long
+name|int
 modifier|...
 name|point
 parameter_list|)
@@ -259,7 +259,7 @@ name|length
 operator|*
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_LONG
+name|NUM_BYTES_INT
 index|]
 decl_stmt|;
 for|for
@@ -281,7 +281,7 @@ control|)
 block|{
 name|NumericUtils
 operator|.
-name|longToBytes
+name|intToBytes
 argument_list|(
 name|point
 index|[
@@ -302,15 +302,15 @@ name|packed
 argument_list|)
 return|;
 block|}
-comment|/** Creates a new DimensionalLongField, indexing the    *  provided N-dimensional int point.    *    *  @param name field name    *  @param point int[] value    *  @throws IllegalArgumentException if the field name or value is null.    */
-DECL|method|DimensionalLongField
+comment|/** Creates a new IntPoint, indexing the    *  provided N-dimensional int point.    *    *  @param name field name    *  @param point int[] value    *  @throws IllegalArgumentException if the field name or value is null.    */
+DECL|method|IntPoint
 specifier|public
-name|DimensionalLongField
+name|IntPoint
 parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|long
+name|int
 modifier|...
 name|point
 parameter_list|)

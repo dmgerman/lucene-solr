@@ -36,20 +36,6 @@ name|Objects
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|DimensionalFormat
-import|;
-end_import
-
 begin_comment
 comment|/**  *  Access to the Field Info file that describes document fields and whether or  *  not they are indexed. Each segment has a separate Field Info file. Objects  *  of this class are thread-safe for multiple readers, but only one thread can  *  be adding documents at a time, with no other reader or writer threads  *  accessing this object.  **/
 end_comment
@@ -127,16 +113,16 @@ specifier|private
 name|long
 name|dvGen
 decl_stmt|;
-comment|/** If both of these are positive it means this is a dimensionally indexed    *  field (see {@link DimensionalFormat}). */
-DECL|field|dimensionCount
+comment|/** If both of these are positive it means this field indexed points    *  (see {@link org.apache.lucene.codecs.PointFormat}). */
+DECL|field|pointDimensionCount
 specifier|private
 name|int
-name|dimensionCount
+name|pointDimensionCount
 decl_stmt|;
-DECL|field|dimensionNumBytes
+DECL|field|pointNumBytes
 specifier|private
 name|int
-name|dimensionNumBytes
+name|pointNumBytes
 decl_stmt|;
 comment|/**    * Sole constructor.    *    * @lucene.experimental    */
 DECL|method|FieldInfo
@@ -176,10 +162,10 @@ argument_list|>
 name|attributes
 parameter_list|,
 name|int
-name|dimensionCount
+name|pointDimensionCount
 parameter_list|,
 name|int
-name|dimensionNumBytes
+name|pointNumBytes
 parameter_list|)
 block|{
 name|this
@@ -302,15 +288,15 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|dimensionCount
+name|pointDimensionCount
 operator|=
-name|dimensionCount
+name|pointDimensionCount
 expr_stmt|;
 name|this
 operator|.
-name|dimensionNumBytes
+name|pointNumBytes
 operator|=
-name|dimensionNumBytes
+name|pointNumBytes
 expr_stmt|;
 assert|assert
 name|checkConsistency
@@ -419,7 +405,7 @@ block|}
 block|}
 if|if
 condition|(
-name|dimensionCount
+name|pointDimensionCount
 operator|<
 literal|0
 condition|)
@@ -428,15 +414,15 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"dimensionCount must be>= 0; got "
+literal|"pointDimensionCount must be>= 0; got "
 operator|+
-name|dimensionCount
+name|pointDimensionCount
 argument_list|)
 throw|;
 block|}
 if|if
 condition|(
-name|dimensionNumBytes
+name|pointNumBytes
 operator|<
 literal|0
 condition|)
@@ -445,19 +431,19 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"dimensionNumBytes must be>= 0; got "
+literal|"pointNumBytes must be>= 0; got "
 operator|+
-name|dimensionNumBytes
+name|pointNumBytes
 argument_list|)
 throw|;
 block|}
 if|if
 condition|(
-name|dimensionCount
+name|pointDimensionCount
 operator|!=
 literal|0
 operator|&&
-name|dimensionNumBytes
+name|pointNumBytes
 operator|==
 literal|0
 condition|)
@@ -466,19 +452,19 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"dimensionNumBytes must be> 0 when dimensionCount="
+literal|"pointNumBytes must be> 0 when pointDimensionCount="
 operator|+
-name|dimensionCount
+name|pointDimensionCount
 argument_list|)
 throw|;
 block|}
 if|if
 condition|(
-name|dimensionNumBytes
+name|pointNumBytes
 operator|!=
 literal|0
 operator|&&
-name|dimensionCount
+name|pointDimensionCount
 operator|==
 literal|0
 condition|)
@@ -487,9 +473,9 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"dimensionCount must be> 0 when dimensionNumBytes="
+literal|"pointDimensionCount must be> 0 when pointNumBytes="
 operator|+
-name|dimensionNumBytes
+name|pointNumBytes
 argument_list|)
 throw|;
 block|}
@@ -632,7 +618,7 @@ if|if
 condition|(
 name|this
 operator|.
-name|dimensionCount
+name|pointDimensionCount
 operator|==
 literal|0
 operator|&&
@@ -643,13 +629,13 @@ condition|)
 block|{
 name|this
 operator|.
-name|dimensionCount
+name|pointDimensionCount
 operator|=
 name|dimensionCount
 expr_stmt|;
 name|this
 operator|.
-name|dimensionNumBytes
+name|pointNumBytes
 operator|=
 name|dimensionNumBytes
 expr_stmt|;
@@ -741,11 +727,11 @@ name|checkConsistency
 argument_list|()
 assert|;
 block|}
-comment|/** Record that this field is indexed dimensionally, with the    *  specified number of dimensions and bytes per dimension. */
-DECL|method|setDimensions
+comment|/** Record that this field is indexed with points, with the    *  specified number of dimensions and bytes per dimension. */
+DECL|method|setPointDimensions
 specifier|public
 name|void
-name|setDimensions
+name|setPointDimensions
 parameter_list|(
 name|int
 name|count
@@ -765,7 +751,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"dimension count must be>= 0; got "
+literal|"point dimension count must be>= 0; got "
 operator|+
 name|count
 operator|+
@@ -781,7 +767,7 @@ if|if
 condition|(
 name|count
 operator|>
-name|DimensionalValues
+name|PointValues
 operator|.
 name|MAX_DIMENSIONS
 condition|)
@@ -790,9 +776,9 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"dimension count must be< DimensionalValues.MAX_DIMENSIONS (= "
+literal|"point dimension count must be< PointValues.MAX_DIMENSIONS (= "
 operator|+
-name|DimensionalValues
+name|PointValues
 operator|.
 name|MAX_DIMENSIONS
 operator|+
@@ -819,7 +805,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"dimension numBytes must be>= 0; got "
+literal|"point numBytes must be>= 0; got "
 operator|+
 name|numBytes
 operator|+
@@ -835,7 +821,7 @@ if|if
 condition|(
 name|numBytes
 operator|>
-name|DimensionalValues
+name|PointValues
 operator|.
 name|MAX_NUM_BYTES
 condition|)
@@ -844,9 +830,9 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"dimension numBytes must be<= DimensionalValues.MAX_NUM_BYTES (= "
+literal|"point numBytes must be<= PointValues.MAX_NUM_BYTES (= "
 operator|+
-name|DimensionalValues
+name|PointValues
 operator|.
 name|MAX_NUM_BYTES
 operator|+
@@ -864,11 +850,11 @@ throw|;
 block|}
 if|if
 condition|(
-name|dimensionCount
+name|pointDimensionCount
 operator|!=
 literal|0
 operator|&&
-name|dimensionCount
+name|pointDimensionCount
 operator|!=
 name|count
 condition|)
@@ -877,9 +863,9 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"cannot change dimension count from "
+literal|"cannot change point dimension count from "
 operator|+
-name|dimensionCount
+name|pointDimensionCount
 operator|+
 literal|" to "
 operator|+
@@ -895,11 +881,11 @@ throw|;
 block|}
 if|if
 condition|(
-name|dimensionNumBytes
+name|pointNumBytes
 operator|!=
 literal|0
 operator|&&
-name|dimensionNumBytes
+name|pointNumBytes
 operator|!=
 name|numBytes
 condition|)
@@ -908,9 +894,9 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"cannot change dimension numBytes from "
+literal|"cannot change point numBytes from "
 operator|+
-name|dimensionNumBytes
+name|pointNumBytes
 operator|+
 literal|" to "
 operator|+
@@ -924,35 +910,35 @@ literal|"\""
 argument_list|)
 throw|;
 block|}
-name|dimensionCount
+name|pointDimensionCount
 operator|=
 name|count
 expr_stmt|;
-name|dimensionNumBytes
+name|pointNumBytes
 operator|=
 name|numBytes
 expr_stmt|;
 block|}
-comment|/** Return dimension count */
-DECL|method|getDimensionCount
+comment|/** Return point dimension count */
+DECL|method|getPointDimensionCount
 specifier|public
 name|int
-name|getDimensionCount
+name|getPointDimensionCount
 parameter_list|()
 block|{
 return|return
-name|dimensionCount
+name|pointDimensionCount
 return|;
 block|}
 comment|/** Return number of bytes per dimension */
-DECL|method|getDimensionNumBytes
+DECL|method|getPointNumBytes
 specifier|public
 name|int
-name|getDimensionNumBytes
+name|getPointNumBytes
 parameter_list|()
 block|{
 return|return
-name|dimensionNumBytes
+name|pointNumBytes
 return|;
 block|}
 DECL|method|setDocValuesType

@@ -4904,12 +4904,12 @@ argument_list|()
 argument_list|,
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 argument_list|,
 name|fieldInfo
 operator|.
-name|getDimensionNumBytes
+name|getPointNumBytes
 argument_list|()
 argument_list|)
 decl_stmt|;

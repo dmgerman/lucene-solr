@@ -34,20 +34,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|DimensionalReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|IndexReader
@@ -847,12 +833,12 @@ name|Bits
 name|getLiveDocs
 parameter_list|()
 function_decl|;
-comment|/** Returns the {@link DimensionalReader} used for numeric or    *  spatial searches, or null if there are no dimensional fields. */
-DECL|method|getDimensionalValues
+comment|/** Returns the {@link org.apache.lucene.codecs.PointReader} used for numeric or    *  spatial searches, or null if there are no point fields. */
+DECL|method|getPointValues
 specifier|public
 specifier|abstract
-name|DimensionalValues
-name|getDimensionalValues
+name|PointValues
+name|getPointValues
 parameter_list|()
 function_decl|;
 comment|/**    * Checks consistency of this reader.    *<p>    * Note that this may be costly in terms of I/O, e.g.    * may involve computing a checksum value against large data files.    * @lucene.internal    */

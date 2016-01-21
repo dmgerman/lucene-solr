@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalReader
+name|PointReader
 import|;
 end_import
 
@@ -116,7 +116,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalWriter
+name|PointWriter
 import|;
 end_import
 
@@ -130,7 +130,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DimensionalValues
+name|PointValues
 operator|.
 name|IntersectVisitor
 import|;
@@ -146,7 +146,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DimensionalValues
+name|PointValues
 operator|.
 name|Relation
 import|;
@@ -287,12 +287,12 @@ comment|/** Writes dimensional values */
 end_comment
 
 begin_class
-DECL|class|Lucene60DimensionalWriter
+DECL|class|Lucene60PointWriter
 specifier|public
 class|class
-name|Lucene60DimensionalWriter
+name|Lucene60PointWriter
 extends|extends
-name|DimensionalWriter
+name|PointWriter
 implements|implements
 name|Closeable
 block|{
@@ -337,9 +337,9 @@ name|boolean
 name|closed
 decl_stmt|;
 comment|/** Full constructor */
-DECL|method|Lucene60DimensionalWriter
+DECL|method|Lucene60PointWriter
 specifier|public
-name|Lucene60DimensionalWriter
+name|Lucene60PointWriter
 parameter_list|(
 name|SegmentWriteState
 name|writeState
@@ -358,7 +358,7 @@ name|writeState
 operator|.
 name|fieldInfos
 operator|.
-name|hasDimensionalValues
+name|hasPointValues
 argument_list|()
 assert|;
 name|this
@@ -396,7 +396,7 @@ name|writeState
 operator|.
 name|segmentSuffix
 argument_list|,
-name|Lucene60DimensionalFormat
+name|Lucene60PointFormat
 operator|.
 name|DATA_EXTENSION
 argument_list|)
@@ -429,11 +429,11 @@ name|writeIndexHeader
 argument_list|(
 name|dataOut
 argument_list|,
-name|Lucene60DimensionalFormat
+name|Lucene60PointFormat
 operator|.
 name|CODEC_NAME
 argument_list|,
-name|Lucene60DimensionalFormat
+name|Lucene60PointFormat
 operator|.
 name|DATA_VERSION_CURRENT
 argument_list|,
@@ -474,9 +474,9 @@ block|}
 block|}
 block|}
 comment|/** Uses the defaults values for {@code maxPointsInLeafNode} (1024) and {@code maxMBSortInHeap} (16.0) */
-DECL|method|Lucene60DimensionalWriter
+DECL|method|Lucene60PointWriter
 specifier|public
-name|Lucene60DimensionalWriter
+name|Lucene60PointWriter
 parameter_list|(
 name|SegmentWriteState
 name|writeState
@@ -508,7 +508,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|DimensionalReader
+name|PointReader
 name|values
 parameter_list|)
 throws|throws
@@ -534,12 +534,12 @@ name|name
 argument_list|,
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 argument_list|,
 name|fieldInfo
 operator|.
-name|getDimensionNumBytes
+name|getPointNumBytes
 argument_list|()
 argument_list|,
 name|maxPointsInLeafNode
@@ -669,19 +669,19 @@ name|IOException
 block|{
 for|for
 control|(
-name|DimensionalReader
+name|PointReader
 name|reader
 range|:
 name|mergeState
 operator|.
-name|dimensionalReaders
+name|pointReaders
 control|)
 block|{
 if|if
 condition|(
 name|reader
 operator|instanceof
-name|Lucene60DimensionalReader
+name|Lucene60PointReader
 operator|==
 literal|false
 condition|)
@@ -711,7 +711,7 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 operator|!=
 literal|0
@@ -721,7 +721,7 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 operator|==
 literal|1
@@ -751,12 +751,12 @@ name|name
 argument_list|,
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 argument_list|,
 name|fieldInfo
 operator|.
-name|getDimensionNumBytes
+name|getPointNumBytes
 argument_list|()
 argument_list|,
 name|maxPointsInLeafNode
@@ -811,7 +811,7 @@ name|i
 operator|<
 name|mergeState
 operator|.
-name|dimensionalReaders
+name|pointReaders
 operator|.
 name|length
 condition|;
@@ -819,21 +819,21 @@ name|i
 operator|++
 control|)
 block|{
-name|DimensionalReader
+name|PointReader
 name|reader
 init|=
 name|mergeState
 operator|.
-name|dimensionalReaders
+name|pointReaders
 index|[
 name|i
 index|]
 decl_stmt|;
-name|Lucene60DimensionalReader
+name|Lucene60PointReader
 name|reader60
 init|=
 operator|(
-name|Lucene60DimensionalReader
+name|Lucene60PointReader
 operator|)
 name|reader
 decl_stmt|;
@@ -1033,7 +1033,7 @@ name|writeState
 operator|.
 name|segmentSuffix
 argument_list|,
-name|Lucene60DimensionalFormat
+name|Lucene60PointFormat
 operator|.
 name|INDEX_EXTENSION
 argument_list|)
@@ -1064,11 +1064,11 @@ name|writeIndexHeader
 argument_list|(
 name|indexOut
 argument_list|,
-name|Lucene60DimensionalFormat
+name|Lucene60PointFormat
 operator|.
 name|CODEC_NAME
 argument_list|,
-name|Lucene60DimensionalFormat
+name|Lucene60PointFormat
 operator|.
 name|INDEX_VERSION_CURRENT
 argument_list|,

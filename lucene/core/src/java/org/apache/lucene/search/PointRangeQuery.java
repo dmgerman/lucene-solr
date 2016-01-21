@@ -54,65 +54,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|index
 operator|.
-name|DimensionalBinaryField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DimensionalDoubleField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DimensionalFloatField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DimensionalIntField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DimensionalLongField
+name|PointValues
 import|;
 end_import
 
@@ -126,21 +70,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DimensionalValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|DimensionalValues
+name|PointValues
 operator|.
 name|IntersectVisitor
 import|;
@@ -156,7 +86,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DimensionalValues
+name|PointValues
 operator|.
 name|Relation
 import|;
@@ -261,14 +191,14 @@ import|;
 end_import
 
 begin_comment
-comment|/** Searches for ranges in fields previously indexed using dimensional  *  fields, e.g. {@link DimensionalLongField}.  In a 1D field this is  *  a simple range query; in a multi-dimensional field it's a box shape. */
+comment|/** Searches for ranges in fields previously indexed using points e.g.  *  {@link org.apache.lucene.document.LongPoint}.  In a 1D field this is  *  a simple range query; in a multi-dimensional field it's a box shape. */
 end_comment
 
 begin_class
-DECL|class|DimensionalRangeQuery
+DECL|class|PointRangeQuery
 specifier|public
 class|class
-name|DimensionalRangeQuery
+name|PointRangeQuery
 extends|extends
 name|Query
 block|{
@@ -314,9 +244,9 @@ specifier|final
 name|Integer
 name|bytesPerDim
 decl_stmt|;
-DECL|method|DimensionalRangeQuery
+DECL|method|PointRangeQuery
 specifier|public
-name|DimensionalRangeQuery
+name|PointRangeQuery
 parameter_list|(
 name|String
 name|field
@@ -580,11 +510,11 @@ name|bytesPerDim
 expr_stmt|;
 block|}
 block|}
-comment|/** Use in the 1D case when you indexed 1D int values using {@link DimensionalIntField} */
+comment|/** Use in the 1D case when you indexed 1D int values using {@link org.apache.lucene.document.IntPoint} */
 DECL|method|new1DIntRange
 specifier|public
 specifier|static
-name|DimensionalRangeQuery
+name|PointRangeQuery
 name|new1DIntRange
 parameter_list|(
 name|String
@@ -605,7 +535,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DimensionalRangeQuery
+name|PointRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -635,11 +565,11 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/** Use in the 1D case when you indexed 1D long values using {@link DimensionalLongField} */
+comment|/** Use in the 1D case when you indexed 1D long values using {@link org.apache.lucene.document.LongPoint} */
 DECL|method|new1DLongRange
 specifier|public
 specifier|static
-name|DimensionalRangeQuery
+name|PointRangeQuery
 name|new1DLongRange
 parameter_list|(
 name|String
@@ -660,7 +590,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DimensionalRangeQuery
+name|PointRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -690,11 +620,11 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/** Use in the 1D case when you indexed 1D float values using {@link DimensionalFloatField} */
+comment|/** Use in the 1D case when you indexed 1D float values using {@link org.apache.lucene.document.FloatPoint} */
 DECL|method|new1DFloatRange
 specifier|public
 specifier|static
-name|DimensionalRangeQuery
+name|PointRangeQuery
 name|new1DFloatRange
 parameter_list|(
 name|String
@@ -715,7 +645,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DimensionalRangeQuery
+name|PointRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -745,11 +675,11 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/** Use in the 1D case when you indexed 1D double values using {@link DimensionalDoubleField} */
+comment|/** Use in the 1D case when you indexed 1D double values using {@link org.apache.lucene.document.DoublePoint} */
 DECL|method|new1DDoubleRange
 specifier|public
 specifier|static
-name|DimensionalRangeQuery
+name|PointRangeQuery
 name|new1DDoubleRange
 parameter_list|(
 name|String
@@ -770,7 +700,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DimensionalRangeQuery
+name|PointRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -800,11 +730,11 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/** Use in the 1D case when you indexed binary values using {@link DimensionalBinaryField} */
+comment|/** Use in the 1D case when you indexed binary values using {@link org.apache.lucene.document.BinaryPoint} */
 DECL|method|new1DBinaryRange
 specifier|public
 specifier|static
-name|DimensionalRangeQuery
+name|PointRangeQuery
 name|new1DBinaryRange
 parameter_list|(
 name|String
@@ -827,7 +757,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DimensionalRangeQuery
+name|PointRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -1182,12 +1112,12 @@ operator|.
 name|reader
 argument_list|()
 decl_stmt|;
-name|DimensionalValues
+name|PointValues
 name|values
 init|=
 name|reader
 operator|.
-name|getDimensionalValues
+name|getPointValues
 argument_list|()
 decl_stmt|;
 if|if
@@ -1197,7 +1127,7 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// No docs in this segment indexed any field dimensionally
+comment|// No docs in this segment indexed any points
 return|return
 literal|null
 return|;
@@ -1231,7 +1161,7 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 operator|!=
 name|numDims
@@ -1249,7 +1179,7 @@ literal|"\" was indexed with numDims="
 operator|+
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 operator|+
 literal|" but this query has numDims="
@@ -1271,7 +1201,7 @@ argument_list|()
 operator|!=
 name|fieldInfo
 operator|.
-name|getDimensionNumBytes
+name|getPointNumBytes
 argument_list|()
 condition|)
 block|{
@@ -1287,7 +1217,7 @@ literal|"\" was indexed with bytesPerDim="
 operator|+
 name|fieldInfo
 operator|.
-name|getDimensionNumBytes
+name|getPointNumBytes
 argument_list|()
 operator|+
 literal|" but this query has bytesPerDim="
@@ -1301,7 +1231,7 @@ name|bytesPerDim
 init|=
 name|fieldInfo
 operator|.
-name|getDimensionNumBytes
+name|getPointNumBytes
 argument_list|()
 decl_stmt|;
 name|byte
@@ -2092,11 +2022,11 @@ argument_list|)
 condition|)
 block|{
 specifier|final
-name|DimensionalRangeQuery
+name|PointRangeQuery
 name|q
 init|=
 operator|(
-name|DimensionalRangeQuery
+name|PointRangeQuery
 operator|)
 name|other
 decl_stmt|;

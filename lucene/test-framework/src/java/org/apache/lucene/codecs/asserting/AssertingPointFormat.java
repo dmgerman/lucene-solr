@@ -48,7 +48,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalFormat
+name|PointFormat
 import|;
 end_import
 
@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalReader
+name|PointReader
 import|;
 end_import
 
@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalWriter
+name|PointWriter
 import|;
 end_import
 
@@ -165,22 +165,22 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Just like the default dimensional format but with additional asserts.  */
+comment|/**  * Just like the default point format but with additional asserts.  */
 end_comment
 
 begin_class
-DECL|class|AssertingDimensionalFormat
+DECL|class|AssertingPointFormat
 specifier|public
 specifier|final
 class|class
-name|AssertingDimensionalFormat
+name|AssertingPointFormat
 extends|extends
-name|DimensionalFormat
+name|PointFormat
 block|{
 DECL|field|in
 specifier|private
 specifier|final
-name|DimensionalFormat
+name|PointFormat
 name|in
 init|=
 name|TestUtil
@@ -188,14 +188,14 @@ operator|.
 name|getDefaultCodec
 argument_list|()
 operator|.
-name|dimensionalFormat
+name|pointFormat
 argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
 DECL|method|fieldsWriter
 specifier|public
-name|DimensionalWriter
+name|PointWriter
 name|fieldsWriter
 parameter_list|(
 name|SegmentWriteState
@@ -206,7 +206,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|AssertingDimensionalWriter
+name|AssertingPointWriter
 argument_list|(
 name|state
 argument_list|,
@@ -223,7 +223,7 @@ annotation|@
 name|Override
 DECL|method|fieldsReader
 specifier|public
-name|DimensionalReader
+name|PointReader
 name|fieldsReader
 parameter_list|(
 name|SegmentReadState
@@ -234,7 +234,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|AssertingDimensionalReader
+name|AssertingPointReader
 argument_list|(
 name|in
 operator|.
@@ -245,23 +245,23 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-DECL|class|AssertingDimensionalReader
+DECL|class|AssertingPointReader
 specifier|static
 class|class
-name|AssertingDimensionalReader
+name|AssertingPointReader
 extends|extends
-name|DimensionalReader
+name|PointReader
 block|{
 DECL|field|in
 specifier|private
 specifier|final
-name|DimensionalReader
+name|PointReader
 name|in
 decl_stmt|;
-DECL|method|AssertingDimensionalReader
-name|AssertingDimensionalReader
+DECL|method|AssertingPointReader
+name|AssertingPointReader
 parameter_list|(
-name|DimensionalReader
+name|PointReader
 name|in
 parameter_list|)
 block|{
@@ -418,7 +418,7 @@ annotation|@
 name|Override
 DECL|method|getMergeInstance
 specifier|public
-name|DimensionalReader
+name|PointReader
 name|getMergeInstance
 parameter_list|()
 throws|throws
@@ -426,7 +426,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|AssertingDimensionalReader
+name|AssertingPointReader
 argument_list|(
 name|in
 operator|.
@@ -551,26 +551,26 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|class|AssertingDimensionalWriter
+DECL|class|AssertingPointWriter
 specifier|static
 class|class
-name|AssertingDimensionalWriter
+name|AssertingPointWriter
 extends|extends
-name|DimensionalWriter
+name|PointWriter
 block|{
 DECL|field|in
 specifier|private
 specifier|final
-name|DimensionalWriter
+name|PointWriter
 name|in
 decl_stmt|;
-DECL|method|AssertingDimensionalWriter
-name|AssertingDimensionalWriter
+DECL|method|AssertingPointWriter
+name|AssertingPointWriter
 parameter_list|(
 name|SegmentWriteState
 name|writeState
 parameter_list|,
-name|DimensionalWriter
+name|PointWriter
 name|in
 parameter_list|)
 block|{
@@ -591,7 +591,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|DimensionalReader
+name|PointReader
 name|values
 parameter_list|)
 throws|throws
@@ -601,7 +601,7 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 operator|==
 literal|0
@@ -617,7 +617,7 @@ name|fieldInfo
 operator|.
 name|name
 operator|+
-literal|"\" but dimensionalCount is 0"
+literal|"\" but pointDimensionalCount is 0"
 argument_list|)
 throw|;
 block|}

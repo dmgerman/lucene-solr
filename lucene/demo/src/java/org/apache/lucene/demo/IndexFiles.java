@@ -192,7 +192,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalLongField
+name|LongPoint
 import|;
 end_import
 
@@ -910,8 +910,8 @@ name|pathField
 argument_list|)
 expr_stmt|;
 comment|// Add the last modified date of the file a field named "modified".
-comment|// Use a DimensionalLongField that is indexed (i.e. efficiently filterable with
-comment|// DimensionalRangeQuery).  This indexes to milli-second resolution, which
+comment|// Use a LongPoint that is indexed (i.e. efficiently filterable with
+comment|// PointRangeQuery).  This indexes to milli-second resolution, which
 comment|// is often too fine.  You could instead create a number based on
 comment|// year/month/day/hour/minutes/seconds, down the resolution you require.
 comment|// For example the long value 2011021714 would mean
@@ -921,7 +921,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalLongField
+name|LongPoint
 argument_list|(
 literal|"modified"
 argument_list|,

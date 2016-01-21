@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalFormat
+name|PointFormat
 import|;
 end_import
 
@@ -275,14 +275,14 @@ operator|new
 name|SimpleTextCompoundFormat
 argument_list|()
 decl_stmt|;
-DECL|field|dimensionalFormat
+DECL|field|pointFormat
 specifier|private
 specifier|final
-name|DimensionalFormat
-name|dimensionalFormat
+name|PointFormat
+name|pointFormat
 init|=
 operator|new
-name|SimpleTextDimensionalFormat
+name|SimpleTextPointFormat
 argument_list|()
 decl_stmt|;
 DECL|method|SimpleTextCodec
@@ -406,14 +406,14 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|dimensionalFormat
+DECL|method|pointFormat
 specifier|public
-name|DimensionalFormat
-name|dimensionalFormat
+name|PointFormat
+name|pointFormat
 parameter_list|()
 block|{
 return|return
-name|dimensionalFormat
+name|pointFormat
 return|;
 block|}
 block|}

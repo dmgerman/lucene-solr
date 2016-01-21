@@ -86,20 +86,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DimensionalRangeQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|PrefixQuery
 import|;
 end_import
@@ -119,7 +105,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides support for converting dates to strings and vice-versa.  * The strings are structured so that lexicographic sorting orders   * them by date, which makes them suitable for use as field values   * and search terms.  *   *<P>This class also helps you to limit the resolution of your dates. Do not  * save dates with a finer resolution than you really need, as then  * {@link TermRangeQuery} and {@link PrefixQuery} will require more memory and become slower.  *   *<P>  * Another approach is {@link DimensionalLongField}, which indexes the  * values in sorted order.  * For indexing a {@link Date} or {@link Calendar}, just get the unix timestamp as  *<code>long</code> using {@link Date#getTime} or {@link Calendar#getTimeInMillis} and  * index this as a numeric value with {@link DimensionalLongField}  * and use {@link DimensionalRangeQuery} to query it.  */
+comment|/**  * Provides support for converting dates to strings and vice-versa.  * The strings are structured so that lexicographic sorting orders   * them by date, which makes them suitable for use as field values   * and search terms.  *   *<P>This class also helps you to limit the resolution of your dates. Do not  * save dates with a finer resolution than you really need, as then  * {@link TermRangeQuery} and {@link PrefixQuery} will require more memory and become slower.  *   *<P>  * Another approach is {@link LongPoint}, which indexes the  * values in sorted order.  * For indexing a {@link Date} or {@link Calendar}, just get the unix timestamp as  *<code>long</code> using {@link Date#getTime} or {@link Calendar#getTimeInMillis} and  * index this as a numeric value with {@link LongPoint}  * and use {@link org.apache.lucene.search.PointRangeQuery} to query it.  */
 end_comment
 
 begin_class

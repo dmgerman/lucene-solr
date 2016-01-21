@@ -59,15 +59,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** A double field that is indexed dimensionally such that finding  *  all documents within an N-dimensional shape or range at search time is  *  efficient.  Muliple values for the same field in one documents  *  is allowed. */
+comment|/** A field that is indexed dimensionally such that finding  *  all documents within an N-dimensional at search time is  *  efficient.  Muliple values for the same field in one documents  *  is allowed. */
 end_comment
 
 begin_class
-DECL|class|DimensionalDoubleField
+DECL|class|FloatPoint
 specifier|public
 specifier|final
 class|class
-name|DimensionalDoubleField
+name|FloatPoint
 extends|extends
 name|Field
 block|{
@@ -96,7 +96,7 @@ name|numDims
 argument_list|,
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_LONG
+name|NUM_BYTES_INT
 argument_list|)
 expr_stmt|;
 name|type
@@ -110,28 +110,28 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|setDoubleValue
+DECL|method|setFloatValue
 specifier|public
 name|void
-name|setDoubleValue
+name|setFloatValue
 parameter_list|(
-name|double
+name|float
 name|value
 parameter_list|)
 block|{
-name|setDoubleValues
+name|setFloatValues
 argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
 block|}
 comment|/** Change the values of this field */
-DECL|method|setDoubleValues
+DECL|method|setFloatValues
 specifier|public
 name|void
-name|setDoubleValues
+name|setFloatValues
 parameter_list|(
-name|double
+name|float
 modifier|...
 name|point
 parameter_list|)
@@ -159,7 +159,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"cannot change value type from double to BytesRef"
+literal|"cannot change value type from float to BytesRef"
 argument_list|)
 throw|;
 block|}
@@ -186,16 +186,16 @@ name|length
 operator|==
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_LONG
+name|NUM_BYTES_INT
 assert|;
 return|return
 name|NumericUtils
 operator|.
-name|sortableLongToDouble
+name|sortableIntToFloat
 argument_list|(
 name|NumericUtils
 operator|.
-name|bytesToLongDirect
+name|bytesToIntDirect
 argument_list|(
 name|bytes
 operator|.
@@ -214,7 +214,7 @@ specifier|static
 name|BytesRef
 name|pack
 parameter_list|(
-name|double
+name|float
 modifier|...
 name|point
 parameter_list|)
@@ -264,7 +264,7 @@ name|length
 operator|*
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_LONG
+name|NUM_BYTES_INT
 index|]
 decl_stmt|;
 for|for
@@ -286,11 +286,11 @@ control|)
 block|{
 name|NumericUtils
 operator|.
-name|longToBytesDirect
+name|intToBytesDirect
 argument_list|(
 name|NumericUtils
 operator|.
-name|doubleToSortableLong
+name|floatToSortableInt
 argument_list|(
 name|point
 index|[
@@ -312,15 +312,15 @@ name|packed
 argument_list|)
 return|;
 block|}
-comment|/** Creates a new DimensionalDoubleField, indexing the    *  provided N-dimensional int point.    *    *  @param name field name    *  @param point double[] value    *  @throws IllegalArgumentException if the field name or value is null.    */
-DECL|method|DimensionalDoubleField
+comment|/** Creates a new FloatPoint, indexing the    *  provided N-dimensional float point.    *    *  @param name field name    *  @param point int[] value    *  @throws IllegalArgumentException if the field name or value is null.    */
+DECL|method|FloatPoint
 specifier|public
-name|DimensionalDoubleField
+name|FloatPoint
 parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|double
+name|float
 modifier|...
 name|point
 parameter_list|)

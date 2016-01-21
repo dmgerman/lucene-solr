@@ -184,7 +184,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalReader
+name|PointReader
 import|;
 end_import
 
@@ -873,11 +873,11 @@ specifier|public
 name|DocValuesStatus
 name|docValuesStatus
 decl_stmt|;
-comment|/** Status for testing of DimensionalValues (null if DimensionalValues could not be tested). */
-DECL|field|dimensionalValuesStatus
+comment|/** Status for testing of PointValues (null if PointValues could not be tested). */
+DECL|field|pointsStatus
 specifier|public
-name|DimensionalValuesStatus
-name|dimensionalValuesStatus
+name|PointsStatus
+name|pointsStatus
 decl_stmt|;
 block|}
 comment|/**      * Status from testing livedocs      */
@@ -1165,25 +1165,25 @@ init|=
 literal|null
 decl_stmt|;
 block|}
-comment|/**      * Status from testing DimensionalValues      */
-DECL|class|DimensionalValuesStatus
+comment|/**      * Status from testing PointValues      */
+DECL|class|PointsStatus
 specifier|public
 specifier|static
 specifier|final
 class|class
-name|DimensionalValuesStatus
+name|PointsStatus
 block|{
-DECL|method|DimensionalValuesStatus
-name|DimensionalValuesStatus
+DECL|method|PointsStatus
+name|PointsStatus
 parameter_list|()
 block|{       }
-comment|/** Total number of dimensional values points tested. */
+comment|/** Total number of values points tested. */
 DECL|field|totalValuePoints
 specifier|public
 name|long
 name|totalValuePoints
 decl_stmt|;
-comment|/** Total number of fields with dimensional values. */
+comment|/** Total number of fields with points. */
 DECL|field|totalValueFields
 specifier|public
 name|int
@@ -3095,12 +3095,12 @@ argument_list|,
 name|failFast
 argument_list|)
 expr_stmt|;
-comment|// Test DimensionalValues
+comment|// Test PointValues
 name|segInfoStat
 operator|.
-name|dimensionalValuesStatus
+name|pointsStatus
 operator|=
-name|testDimensionalValues
+name|testPoints
 argument_list|(
 name|reader
 argument_list|,
@@ -8648,14 +8648,14 @@ return|return
 name|status
 return|;
 block|}
-comment|/**    * Test the dimensional values index.    * @lucene.experimental    */
-DECL|method|testDimensionalValues
+comment|/**    * Test the points index    * @lucene.experimental    */
+DECL|method|testPoints
 specifier|public
 specifier|static
 name|Status
 operator|.
-name|DimensionalValuesStatus
-name|testDimensionalValues
+name|PointsStatus
+name|testPoints
 parameter_list|(
 name|CodecReader
 name|reader
@@ -8679,13 +8679,13 @@ argument_list|()
 decl_stmt|;
 name|Status
 operator|.
-name|DimensionalValuesStatus
+name|PointsStatus
 name|status
 init|=
 operator|new
 name|Status
 operator|.
-name|DimensionalValuesStatus
+name|PointsStatus
 argument_list|()
 decl_stmt|;
 try|try
@@ -8694,16 +8694,16 @@ if|if
 condition|(
 name|fieldInfos
 operator|.
-name|hasDimensionalValues
+name|hasPointValues
 argument_list|()
 condition|)
 block|{
-name|DimensionalReader
+name|PointReader
 name|values
 init|=
 name|reader
 operator|.
-name|getDimensionalReader
+name|getPointReader
 argument_list|()
 decl_stmt|;
 if|if
@@ -8717,7 +8717,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"there are fields with dimensional values, but reader.getDimensionalRader() is null"
+literal|"there are fields with points, but reader.getPointReader() is null"
 argument_list|)
 throw|;
 block|}
@@ -8733,7 +8733,7 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 operator|>
 literal|0
@@ -8749,7 +8749,7 @@ name|dimCount
 init|=
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 decl_stmt|;
 name|int
@@ -8757,7 +8757,7 @@ name|bytesPerDim
 init|=
 name|fieldInfo
 operator|.
-name|getDimensionNumBytes
+name|getPointNumBytes
 argument_list|()
 decl_stmt|;
 name|byte
@@ -8836,7 +8836,7 @@ operator|.
 name|name
 argument_list|,
 operator|new
-name|DimensionalValues
+name|PointValues
 operator|.
 name|IntersectVisitor
 argument_list|()
@@ -9047,7 +9047,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|DimensionalValues
+name|PointValues
 operator|.
 name|Relation
 name|compare
@@ -9118,7 +9118,7 @@ expr_stmt|;
 comment|// We always pretend the query shape is so complex that it crosses every cell, so
 comment|// that packedValue is passed for every document
 return|return
-name|DimensionalValues
+name|PointValues
 operator|.
 name|Relation
 operator|.

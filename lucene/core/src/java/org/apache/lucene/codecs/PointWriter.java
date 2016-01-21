@@ -65,22 +65,22 @@ import|;
 end_import
 
 begin_comment
-comment|/** Abstract API to write dimensional values  *  * @lucene.experimental  */
+comment|/** Abstract API to write points  *  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|DimensionalWriter
+DECL|class|PointWriter
 specifier|public
 specifier|abstract
 class|class
-name|DimensionalWriter
+name|PointWriter
 implements|implements
 name|Closeable
 block|{
 comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
-DECL|method|DimensionalWriter
+DECL|method|PointWriter
 specifier|protected
-name|DimensionalWriter
+name|PointWriter
 parameter_list|()
 block|{   }
 comment|/** Write all values contained in the provided reader */
@@ -93,7 +93,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|DimensionalReader
+name|PointReader
 name|values
 parameter_list|)
 throws|throws
@@ -119,7 +119,7 @@ argument_list|(
 name|fieldInfo
 argument_list|,
 operator|new
-name|DimensionalReader
+name|PointReader
 argument_list|()
 block|{
 annotation|@
@@ -170,7 +170,7 @@ name|i
 operator|<
 name|mergeState
 operator|.
-name|dimensionalReaders
+name|pointReaders
 operator|.
 name|length
 condition|;
@@ -178,24 +178,24 @@ name|i
 operator|++
 control|)
 block|{
-name|DimensionalReader
-name|dimensionalReader
+name|PointReader
+name|pointReader
 init|=
 name|mergeState
 operator|.
-name|dimensionalReaders
+name|pointReaders
 index|[
 name|i
 index|]
 decl_stmt|;
 if|if
 condition|(
-name|dimensionalReader
+name|pointReader
 operator|==
 literal|null
 condition|)
 block|{
-comment|// This segment has no dimensional values
+comment|// This segment has no points
 continue|continue;
 block|}
 name|MergeState
@@ -220,7 +220,7 @@ index|[
 name|i
 index|]
 decl_stmt|;
-name|dimensionalReader
+name|pointReader
 operator|.
 name|intersect
 argument_list|(
@@ -312,7 +312,7 @@ index|[]
 name|maxPackedValue
 parameter_list|)
 block|{
-comment|// Forces this segment's DimensionalReader to always visit all docs + values:
+comment|// Forces this segment's PointReader to always visit all docs + values:
 return|return
 name|Relation
 operator|.
@@ -425,7 +425,7 @@ block|}
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Default merge implementation to merge incoming dimensional readers by visiting all their points and    *  adding to this writer */
+comment|/** Default merge implementation to merge incoming points readers by visiting all their points and    *  adding to this writer */
 DECL|method|merge
 specifier|public
 name|void
@@ -451,7 +451,7 @@ if|if
 condition|(
 name|fieldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 operator|!=
 literal|0

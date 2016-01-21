@@ -87,15 +87,15 @@ import|;
 end_import
 
 begin_comment
-comment|/** Add this to a document to index lat/lon or x/y/z point, indexed as a dimensional value.  *  Multiple values are allowed: just add multiple Geo3DPointField to the document with the  *  same field name.  *  *  @lucene.experimental */
+comment|/** Add this to a document to index lat/lon or x/y/z point, indexed as a dimensional value.  *  Multiple values are allowed: just add multiple Geo3DPoint to the document with the  *  same field name.  *  *  @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|Geo3DPointField
+DECL|class|Geo3DPoint
 specifier|public
 specifier|final
 class|class
-name|Geo3DPointField
+name|Geo3DPoint
 extends|extends
 name|Field
 block|{
@@ -130,10 +130,10 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**     * Creates a new Geo3DPointField field with the specified lat, lon (in radians), given a planet model.    *    * @throws IllegalArgumentException if the field name is null or lat or lon are out of bounds    */
-DECL|method|Geo3DPointField
+comment|/**     * Creates a new Geo3DPoint field with the specified lat, lon (in radians), given a planet model.    *    * @throws IllegalArgumentException if the field name is null or lat or lon are out of bounds    */
+DECL|method|Geo3DPoint
 specifier|public
-name|Geo3DPointField
+name|Geo3DPoint
 parameter_list|(
 name|String
 name|name
@@ -191,10 +191,10 @@ name|z
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Creates a new Geo3DPointField field with the specified x,y,z.    *    * @throws IllegalArgumentException if the field name is null or lat or lon are out of bounds    */
-DECL|method|Geo3DPointField
+comment|/**     * Creates a new Geo3DPoint field with the specified x,y,z.    *    * @throws IllegalArgumentException if the field name is null or lat or lon are out of bounds    */
+DECL|method|Geo3DPoint
 specifier|public
-name|Geo3DPointField
+name|Geo3DPoint
 parameter_list|(
 name|String
 name|name

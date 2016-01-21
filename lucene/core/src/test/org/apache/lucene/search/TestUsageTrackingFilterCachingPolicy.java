@@ -112,7 +112,7 @@ name|UsageTrackingQueryCachingPolicy
 operator|.
 name|isCostly
 argument_list|(
-name|DimensionalRangeQuery
+name|PointRangeQuery
 operator|.
 name|new1DIntRange
 argument_list|(

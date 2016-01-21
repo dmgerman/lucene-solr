@@ -55,27 +55,27 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Encodes/decodes indexed dimensional data.  *  * @lucene.experimental */
+comment|/**   * Encodes/decodes indexed points.  *  * @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|DimensionalFormat
+DECL|class|PointFormat
 specifier|public
 specifier|abstract
 class|class
-name|DimensionalFormat
+name|PointFormat
 block|{
-comment|/**    * Creates a new dimensional format.    */
-DECL|method|DimensionalFormat
+comment|/**    * Creates a new point format.    */
+DECL|method|PointFormat
 specifier|protected
-name|DimensionalFormat
+name|PointFormat
 parameter_list|()
 block|{   }
 comment|/** Writes a new segment */
 DECL|method|fieldsWriter
 specifier|public
 specifier|abstract
-name|DimensionalWriter
+name|PointWriter
 name|fieldsWriter
 parameter_list|(
 name|SegmentWriteState
@@ -88,7 +88,7 @@ comment|/** Reads a segment.  NOTE: by the time this call    *  returns, it must
 DECL|method|fieldsReader
 specifier|public
 specifier|abstract
-name|DimensionalReader
+name|PointReader
 name|fieldsReader
 parameter_list|(
 name|SegmentReadState
@@ -97,22 +97,22 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** A {@code DimensionalFormat} that has nothing indexed */
+comment|/** A {@code PointFormat} that has nothing indexed */
 DECL|field|EMPTY
 specifier|public
 specifier|static
 specifier|final
-name|DimensionalFormat
+name|PointFormat
 name|EMPTY
 init|=
 operator|new
-name|DimensionalFormat
+name|PointFormat
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
-name|DimensionalWriter
+name|PointWriter
 name|fieldsWriter
 parameter_list|(
 name|SegmentWriteState
@@ -128,7 +128,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|DimensionalReader
+name|PointReader
 name|fieldsReader
 parameter_list|(
 name|SegmentReadState
@@ -137,7 +137,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DimensionalReader
+name|PointReader
 argument_list|()
 block|{
 annotation|@
@@ -186,7 +186,7 @@ literal|"field=\""
 operator|+
 name|fieldName
 operator|+
-literal|"\" was not indexed with dimensional values"
+literal|"\" was not indexed with points"
 argument_list|)
 throw|;
 block|}
@@ -209,7 +209,7 @@ literal|"field=\""
 operator|+
 name|fieldName
 operator|+
-literal|"\" was not indexed with dimensional values"
+literal|"\" was not indexed with points"
 argument_list|)
 throw|;
 block|}
@@ -232,7 +232,7 @@ literal|"field=\""
 operator|+
 name|fieldName
 operator|+
-literal|"\" was not indexed with dimensional values"
+literal|"\" was not indexed with points"
 argument_list|)
 throw|;
 block|}
@@ -254,7 +254,7 @@ literal|"field=\""
 operator|+
 name|fieldName
 operator|+
-literal|"\" was not indexed with dimensional values"
+literal|"\" was not indexed with points"
 argument_list|)
 throw|;
 block|}
@@ -276,7 +276,7 @@ literal|"field=\""
 operator|+
 name|fieldName
 operator|+
-literal|"\" was not indexed with dimensional values"
+literal|"\" was not indexed with points"
 argument_list|)
 throw|;
 block|}

@@ -230,7 +230,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DimensionalValues
+name|PointValues
 import|;
 end_import
 
@@ -3247,10 +3247,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getDimensionalValues
+DECL|method|getPointValues
 specifier|public
-name|DimensionalValues
-name|getDimensionalValues
+name|PointValues
+name|getPointValues
 parameter_list|()
 block|{
 return|return

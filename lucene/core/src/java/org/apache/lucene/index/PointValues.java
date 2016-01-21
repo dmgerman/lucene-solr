@@ -30,76 +30,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|DimensionalBinaryField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DimensionalDoubleField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DimensionalFloatField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DimensionalIntField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DimensionalLongField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|bkd
@@ -113,15 +43,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Allows recursively visiting dimensional values indexed with {@link DimensionalIntField},  *  {@link DimensionalFloatField}, {@link DimensionalLongField}, {@link DimensionalDoubleField}  *  or {@link DimensionalBinaryField}.  *  *  @lucene.experimental */
+comment|/** Allows recursively visiting point values indexed with {@link org.apache.lucene.document.IntPoint},  *  {@link org.apache.lucene.document.FloatPoint}, {@link org.apache.lucene.document.LongPoint}, {@link org.apache.lucene.document.DoublePoint}  *  or {@link org.apache.lucene.document.BinaryPoint}.  *  *  @lucene.experimental */
 end_comment
 
 begin_class
-DECL|class|DimensionalValues
+DECL|class|PointValues
 specifier|public
 specifier|abstract
 class|class
-name|DimensionalValues
+name|PointValues
 block|{
 comment|/** Maximum number of bytes for each dimension */
 DECL|field|MAX_NUM_BYTES
@@ -146,9 +76,9 @@ operator|.
 name|MAX_DIMS
 decl_stmt|;
 comment|/** Default constructor */
-DECL|method|DimensionalValues
+DECL|method|PointValues
 specifier|protected
-name|DimensionalValues
+name|PointValues
 parameter_list|()
 block|{   }
 comment|/** Used by {@link #intersect} to check how each recursive cell corresponds to the query. */

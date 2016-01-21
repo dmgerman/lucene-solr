@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DimensionalValues
+name|PointValues
 import|;
 end_import
 
@@ -1848,8 +1848,8 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|DimensionalValues
-name|getDimensionalValues
+name|PointValues
+name|getPointValues
 parameter_list|()
 block|{
 return|return

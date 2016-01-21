@@ -44,7 +44,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalLongField
+name|LongPoint
 import|;
 end_import
 
@@ -246,7 +246,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DimensionalRangeQuery
+name|PointRangeQuery
 import|;
 end_import
 
@@ -537,7 +537,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalLongField
+name|LongPoint
 argument_list|(
 literal|"timestamp"
 argument_list|,
@@ -678,7 +678,7 @@ name|add
 argument_list|(
 literal|"timestamp"
 argument_list|,
-name|DimensionalRangeQuery
+name|PointRangeQuery
 operator|.
 name|new1DLongRange
 argument_list|(

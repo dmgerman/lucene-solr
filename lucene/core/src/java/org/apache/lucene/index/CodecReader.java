@@ -96,7 +96,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalReader
+name|PointReader
 import|;
 end_import
 
@@ -301,12 +301,12 @@ name|FieldsProducer
 name|getPostingsReader
 parameter_list|()
 function_decl|;
-comment|/**    * Expert: retrieve underlying DimensionalReader    * @lucene.internal    */
-DECL|method|getDimensionalReader
+comment|/**    * Expert: retrieve underlying PointReader    * @lucene.internal    */
+DECL|method|getPointReader
 specifier|public
 specifier|abstract
-name|DimensionalReader
-name|getDimensionalReader
+name|PointReader
+name|getPointReader
 parameter_list|()
 function_decl|;
 annotation|@
@@ -1520,10 +1520,10 @@ name|ramBytesUsed
 argument_list|()
 expr_stmt|;
 block|}
-comment|// dimensional values
+comment|// points
 if|if
 condition|(
-name|getDimensionalReader
+name|getPointReader
 argument_list|()
 operator|!=
 literal|null
@@ -1531,7 +1531,7 @@ condition|)
 block|{
 name|ramBytesUsed
 operator|+=
-name|getDimensionalReader
+name|getPointReader
 argument_list|()
 operator|.
 name|ramBytesUsed
@@ -1686,10 +1686,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// dimensional values
+comment|// points
 if|if
 condition|(
-name|getDimensionalReader
+name|getPointReader
 argument_list|()
 operator|!=
 literal|null
@@ -1703,9 +1703,9 @@ name|Accountables
 operator|.
 name|namedAccountable
 argument_list|(
-literal|"dimensional values"
+literal|"points"
 argument_list|,
-name|getDimensionalReader
+name|getPointReader
 argument_list|()
 argument_list|)
 argument_list|)

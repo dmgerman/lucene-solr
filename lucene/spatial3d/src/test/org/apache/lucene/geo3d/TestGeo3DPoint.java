@@ -136,7 +136,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalFormat
+name|PointFormat
 import|;
 end_import
 
@@ -150,7 +150,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalReader
+name|PointReader
 import|;
 end_import
 
@@ -164,7 +164,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalWriter
+name|PointWriter
 import|;
 end_import
 
@@ -194,7 +194,7 @@ name|codecs
 operator|.
 name|lucene60
 operator|.
-name|Lucene60DimensionalReader
+name|Lucene60PointReader
 import|;
 end_import
 
@@ -210,7 +210,7 @@ name|codecs
 operator|.
 name|lucene60
 operator|.
-name|Lucene60DimensionalWriter
+name|Lucene60PointWriter
 import|;
 end_import
 
@@ -547,10 +547,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestGeo3DPointField
+DECL|class|TestGeo3DPoint
 specifier|public
 class|class
-name|TestGeo3DPointField
+name|TestGeo3DPoint
 extends|extends
 name|LuceneTestCase
 block|{
@@ -659,7 +659,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: using Lucene60DimensionalFormat with maxPointsInLeafNode="
+literal|"TEST: using Lucene60PointFormat with maxPointsInLeafNode="
 operator|+
 name|maxPointsInLeafNode
 operator|+
@@ -684,19 +684,19 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|DimensionalFormat
-name|dimensionalFormat
+name|PointFormat
+name|pointFormat
 parameter_list|()
 block|{
 return|return
 operator|new
-name|DimensionalFormat
+name|PointFormat
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
-name|DimensionalWriter
+name|PointWriter
 name|fieldsWriter
 parameter_list|(
 name|SegmentWriteState
@@ -707,7 +707,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene60DimensionalWriter
+name|Lucene60PointWriter
 argument_list|(
 name|writeState
 argument_list|,
@@ -720,7 +720,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|DimensionalReader
+name|PointReader
 name|fieldsReader
 parameter_list|(
 name|SegmentReadState
@@ -731,7 +731,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene60DimensionalReader
+name|Lucene60PointReader
 argument_list|(
 name|readState
 argument_list|)
@@ -804,7 +804,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Geo3DPointField
+name|Geo3DPoint
 argument_list|(
 literal|"field"
 argument_list|,
@@ -4169,7 +4169,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|Geo3DPointField
+name|Geo3DPoint
 argument_list|(
 literal|"point"
 argument_list|,

@@ -176,7 +176,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalBinaryField
+name|BinaryPoint
 import|;
 end_import
 
@@ -332,7 +332,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DimensionalValues
+name|PointValues
 operator|.
 name|IntersectVisitor
 import|;
@@ -348,7 +348,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DimensionalValues
+name|PointValues
 operator|.
 name|Relation
 import|;
@@ -1360,7 +1360,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalBinaryField
+name|BinaryPoint
 argument_list|(
 name|DIMENSIONAL_FIELD
 argument_list|,
@@ -3009,20 +3009,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testDimensionalValues
+DECL|method|testPoints
 specifier|public
 name|void
-name|testDimensionalValues
+name|testPoints
 parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|DimensionalValues
+name|PointValues
 name|values
 init|=
 name|sortedReader
 operator|.
-name|getDimensionalValues
+name|getPointValues
 argument_list|()
 decl_stmt|;
 name|values

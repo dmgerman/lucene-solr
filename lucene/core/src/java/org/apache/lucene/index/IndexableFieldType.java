@@ -109,18 +109,18 @@ name|DocValuesType
 name|docValuesType
 parameter_list|()
 function_decl|;
-comment|/**    * If this is positive, the field is indexed dimensionally.    */
-DECL|method|dimensionCount
+comment|/**    * If this is positive, the field is indexed as a point.    */
+DECL|method|pointDimensionCount
 specifier|public
 name|int
-name|dimensionCount
+name|pointDimensionCount
 parameter_list|()
 function_decl|;
 comment|/**    * The number of bytes in each dimension's values.    */
-DECL|method|dimensionNumBytes
+DECL|method|pointNumBytes
 specifier|public
 name|int
-name|dimensionNumBytes
+name|pointNumBytes
 parameter_list|()
 function_decl|;
 block|}

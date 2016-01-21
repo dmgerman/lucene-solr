@@ -180,7 +180,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalLongField
+name|LongPoint
 import|;
 end_import
 
@@ -236,7 +236,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|DimensionalRangeQuery
+name|PointRangeQuery
 import|;
 end_import
 
@@ -3582,7 +3582,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalLongField
+name|LongPoint
 argument_list|(
 literal|"number"
 argument_list|,
@@ -3879,7 +3879,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalLongField
+name|LongPoint
 argument_list|(
 literal|"number"
 argument_list|,
@@ -4527,7 +4527,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalLongField
+name|LongPoint
 argument_list|(
 literal|"number"
 argument_list|,
@@ -6930,7 +6930,7 @@ argument_list|(
 name|s
 argument_list|)
 expr_stmt|;
-name|testDimensionalRangeQuery
+name|testPointRangeQuery
 argument_list|(
 name|s
 argument_list|)
@@ -7071,7 +7071,7 @@ argument_list|(
 name|s
 argument_list|)
 expr_stmt|;
-name|testDimensionalRangeQuery
+name|testPointRangeQuery
 argument_list|(
 name|s
 argument_list|)
@@ -7193,7 +7193,7 @@ argument_list|(
 name|s
 argument_list|)
 expr_stmt|;
-name|testDimensionalRangeQuery
+name|testPointRangeQuery
 argument_list|(
 name|s
 argument_list|)
@@ -7536,7 +7536,7 @@ argument_list|(
 name|s
 argument_list|)
 expr_stmt|;
-name|testDimensionalRangeQuery
+name|testPointRangeQuery
 argument_list|(
 name|s
 argument_list|)
@@ -8178,11 +8178,11 @@ name|value
 expr_stmt|;
 block|}
 block|}
-DECL|method|testDimensionalRangeQuery
+DECL|method|testPointRangeQuery
 specifier|private
 specifier|static
 name|void
-name|testDimensionalRangeQuery
+name|testPointRangeQuery
 parameter_list|(
 name|IndexSearcher
 name|s
@@ -8267,7 +8267,7 @@ name|s
 operator|.
 name|search
 argument_list|(
-name|DimensionalRangeQuery
+name|PointRangeQuery
 operator|.
 name|new1DLongRange
 argument_list|(

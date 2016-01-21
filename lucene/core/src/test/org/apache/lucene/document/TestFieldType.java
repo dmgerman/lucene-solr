@@ -560,7 +560,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"setDimensions"
+literal|"setPointDimensions"
 argument_list|)
 condition|)
 block|{

@@ -496,7 +496,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalBinaryField
+name|BinaryPoint
 import|;
 end_import
 
@@ -7671,7 +7671,7 @@ operator|.
 name|fieldType
 argument_list|()
 operator|.
-name|dimensionCount
+name|pointDimensionCount
 argument_list|()
 decl_stmt|;
 specifier|final
@@ -7827,7 +7827,7 @@ expr_stmt|;
 name|field2
 operator|=
 operator|new
-name|DimensionalBinaryField
+name|BinaryPoint
 argument_list|(
 name|field1
 operator|.

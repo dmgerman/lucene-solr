@@ -26,7 +26,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DimensionalLatLonField
+name|LatLonPoint
 import|;
 end_import
 
@@ -41,20 +41,6 @@ operator|.
 name|document
 operator|.
 name|Document
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|Directory
 import|;
 end_import
 
@@ -100,25 +86,11 @@ name|GeoRect
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|SloppyMath
-import|;
-end_import
-
 begin_class
-DECL|class|TestDimensionalQueries
+DECL|class|TestLatLonPointQueries
 specifier|public
 class|class
-name|TestDimensionalQueries
+name|TestLatLonPointQueries
 extends|extends
 name|BaseGeoPointTestCase
 block|{
@@ -147,7 +119,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DimensionalLatLonField
+name|LatLonPoint
 argument_list|(
 name|field
 argument_list|,
@@ -174,7 +146,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DimensionalPointInRectQuery
+name|PointInRectQuery
 argument_list|(
 name|field
 argument_list|,
@@ -269,7 +241,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DimensionalPointInPolygonQuery
+name|PointInPolygonQuery
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -309,7 +281,7 @@ assert|;
 name|int
 name|rectLatMinEnc
 init|=
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|encodeLat
 argument_list|(
@@ -321,7 +293,7 @@ decl_stmt|;
 name|int
 name|rectLatMaxEnc
 init|=
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|encodeLat
 argument_list|(
@@ -333,7 +305,7 @@ decl_stmt|;
 name|int
 name|rectLonMinEnc
 init|=
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|encodeLon
 argument_list|(
@@ -345,7 +317,7 @@ decl_stmt|;
 name|int
 name|rectLonMaxEnc
 init|=
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|encodeLon
 argument_list|(
@@ -357,7 +329,7 @@ decl_stmt|;
 name|int
 name|pointLatEnc
 init|=
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|encodeLat
 argument_list|(
@@ -367,7 +339,7 @@ decl_stmt|;
 name|int
 name|pointLonEnc
 init|=
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|encodeLon
 argument_list|(
@@ -682,11 +654,11 @@ decl_stmt|;
 name|double
 name|latQuantized
 init|=
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|decodeLat
 argument_list|(
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|encodeLat
 argument_list|(
@@ -700,7 +672,7 @@ name|lat
 argument_list|,
 name|latQuantized
 argument_list|,
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|TOLERANCE
 argument_list|)
@@ -716,11 +688,11 @@ decl_stmt|;
 name|double
 name|lonQuantized
 init|=
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|decodeLon
 argument_list|(
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|encodeLon
 argument_list|(
@@ -734,7 +706,7 @@ name|lon
 argument_list|,
 name|lonQuantized
 argument_list|,
-name|DimensionalLatLonField
+name|LatLonPoint
 operator|.
 name|TOLERANCE
 argument_list|)

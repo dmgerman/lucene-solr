@@ -292,13 +292,13 @@ argument_list|,
 comment|// attributes
 name|oldInfo
 operator|.
-name|getDimensionCount
+name|getPointDimensionCount
 argument_list|()
 argument_list|,
 comment|// dimension count
 name|oldInfo
 operator|.
-name|getDimensionNumBytes
+name|getPointNumBytes
 argument_list|()
 argument_list|)
 decl_stmt|;

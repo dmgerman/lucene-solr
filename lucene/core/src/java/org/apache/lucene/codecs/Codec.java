@@ -288,12 +288,12 @@ name|CompoundFormat
 name|compoundFormat
 parameter_list|()
 function_decl|;
-comment|/** Encodes/decodes dimensional index */
-DECL|method|dimensionalFormat
+comment|/** Encodes/decodes points index */
+DECL|method|pointFormat
 specifier|public
 specifier|abstract
-name|DimensionalFormat
-name|dimensionalFormat
+name|PointFormat
+name|pointFormat
 parameter_list|()
 function_decl|;
 comment|/** looks up a codec by name */

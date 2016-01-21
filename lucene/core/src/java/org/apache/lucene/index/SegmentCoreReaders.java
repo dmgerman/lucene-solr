@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|DimensionalReader
+name|PointReader
 import|;
 end_import
 
@@ -302,10 +302,10 @@ specifier|final
 name|TermVectorsReader
 name|termVectorsReaderOrig
 decl_stmt|;
-DECL|field|dimensionalReader
+DECL|field|pointReader
 specifier|final
-name|DimensionalReader
-name|dimensionalReader
+name|PointReader
+name|pointReader
 decl_stmt|;
 DECL|field|cfsReader
 specifier|final
@@ -661,15 +661,15 @@ if|if
 condition|(
 name|coreFieldInfos
 operator|.
-name|hasDimensionalValues
+name|hasPointValues
 argument_list|()
 condition|)
 block|{
-name|dimensionalReader
+name|pointReader
 operator|=
 name|codec
 operator|.
-name|dimensionalFormat
+name|pointFormat
 argument_list|()
 operator|.
 name|fieldsReader
@@ -680,7 +680,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|dimensionalReader
+name|pointReader
 operator|=
 literal|null
 expr_stmt|;
@@ -806,7 +806,7 @@ name|cfsReader
 argument_list|,
 name|normsProducer
 argument_list|,
-name|dimensionalReader
+name|pointReader
 argument_list|)
 expr_stmt|;
 block|}

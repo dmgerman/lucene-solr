@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DimensionalValues
+name|PointValues
 import|;
 end_import
 
@@ -65,26 +65,26 @@ import|;
 end_import
 
 begin_comment
-comment|/** Abstract API to visit dimensional values.  *  * @lucene.experimental  */
+comment|/** Abstract API to visit point values.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|DimensionalReader
+DECL|class|PointReader
 specifier|public
 specifier|abstract
 class|class
-name|DimensionalReader
+name|PointReader
 extends|extends
-name|DimensionalValues
+name|PointValues
 implements|implements
 name|Closeable
 implements|,
 name|Accountable
 block|{
 comment|/** Sole constructor. (For invocation by subclass constructors, typically implicit.) */
-DECL|method|DimensionalReader
+DECL|method|PointReader
 specifier|protected
-name|DimensionalReader
+name|PointReader
 parameter_list|()
 block|{}
 comment|/**     * Checks consistency of this reader.    *<p>    * Note that this may be costly in terms of I/O, e.g.     * may involve computing a checksum value against large data files.    * @lucene.internal    */
@@ -100,7 +100,7 @@ function_decl|;
 comment|/**     * Returns an instance optimized for merging.    *<p>    * The default implementation returns {@code this} */
 DECL|method|getMergeInstance
 specifier|public
-name|DimensionalReader
+name|PointReader
 name|getMergeInstance
 parameter_list|()
 throws|throws
