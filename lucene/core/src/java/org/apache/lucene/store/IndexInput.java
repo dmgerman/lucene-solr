@@ -110,7 +110,7 @@ name|long
 name|getFilePointer
 parameter_list|()
 function_decl|;
-comment|/** Sets current position in this file, where the next read will occur.    * @see #getFilePointer()    */
+comment|/** Sets current position in this file, where the next read will occur.  If this is    *  beyond the end of the file then this will throw {@code EOFException} and then the    *  stream is in an undetermined state.    *    * @see #getFilePointer()    */
 DECL|method|seek
 specifier|public
 specifier|abstract

@@ -66,16 +66,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Arrays
 import|;
 end_import
@@ -934,6 +924,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|threads
 index|[
 name|i
@@ -942,6 +933,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
+block|}
 for|for
 control|(
 name|int
@@ -956,6 +948,7 @@ condition|;
 name|i
 operator|++
 control|)
+block|{
 name|threads
 index|[
 name|i
@@ -964,6 +957,7 @@ operator|.
 name|join
 argument_list|()
 expr_stmt|;
+block|}
 name|writer
 operator|.
 name|forceMerge
