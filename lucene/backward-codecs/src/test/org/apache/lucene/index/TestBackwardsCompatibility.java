@@ -1596,6 +1596,10 @@ literal|"5.3.1-cfs"
 block|,
 literal|"5.3.1-nocfs"
 block|,
+literal|"5.3.2-cfs"
+block|,
+literal|"5.3.2-nocfs"
+block|,
 literal|"5.4.0-cfs"
 block|,
 literal|"5.4.0-nocfs"
