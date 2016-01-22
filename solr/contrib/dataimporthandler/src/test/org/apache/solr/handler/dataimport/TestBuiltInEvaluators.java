@@ -758,6 +758,9 @@ argument_list|(
 literal|"'NOW-2DAYS','yyyy-MM-dd HH','"
 operator|+
 name|defaultLocale
+operator|.
+name|toLanguageTag
+argument_list|()
 operator|+
 literal|"'"
 argument_list|,
@@ -822,6 +825,9 @@ argument_list|(
 literal|"'NOW-2DAYS','yyyy-MM-dd HH','"
 operator|+
 name|defaultLocale
+operator|.
+name|toLanguageTag
+argument_list|()
 operator|+
 literal|"','"
 operator|+
@@ -926,6 +932,9 @@ argument_list|(
 literal|"A.key, 'yyyy-MM-dd HH:mm','"
 operator|+
 name|defaultLocale
+operator|.
+name|toLanguageTag
+argument_list|()
 operator|+
 literal|"'"
 argument_list|,
@@ -988,6 +997,9 @@ argument_list|(
 literal|"A.key, 'yyyy-MM-dd HH:mm','"
 operator|+
 name|defaultLocale
+operator|.
+name|toLanguageTag
+argument_list|()
 operator|+
 literal|"', '"
 operator|+

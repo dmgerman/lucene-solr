@@ -1391,7 +1391,7 @@ name|config
 argument_list|,
 literal|"locale"
 argument_list|,
-literal|""
+literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2501,11 +2501,6 @@ condition|(
 name|name
 operator|==
 literal|null
-operator|||
-name|name
-operator|.
-name|isEmpty
-argument_list|()
 condition|)
 block|{
 return|return
