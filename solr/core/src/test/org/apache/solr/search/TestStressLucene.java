@@ -707,8 +707,6 @@ argument_list|(
 name|writer
 operator|.
 name|w
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 for|for
