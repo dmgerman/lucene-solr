@@ -702,9 +702,39 @@ name|void
 name|seekInternal
 parameter_list|(
 name|long
-name|position
+name|pos
 parameter_list|)
-block|{     }
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|pos
+operator|>
+name|length
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|EOFException
+argument_list|(
+literal|"read past EOF: pos="
+operator|+
+name|pos
+operator|+
+literal|" vs length="
+operator|+
+name|length
+argument_list|()
+operator|+
+literal|": "
+operator|+
+name|this
+argument_list|)
+throw|;
+block|}
+block|}
 DECL|method|isFDValid
 name|boolean
 name|isFDValid
