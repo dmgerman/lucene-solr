@@ -806,35 +806,7 @@ name|pos
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-if|if
-condition|(
-name|pos
-operator|>
-name|length
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|EOFException
-argument_list|(
-literal|"read past EOF: pos="
-operator|+
-name|pos
-operator|+
-literal|" vs length="
-operator|+
-name|length
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|this
-argument_list|)
-throw|;
-block|}
-block|}
+block|{}
 block|}
 block|}
 end_class
