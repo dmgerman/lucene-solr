@@ -314,6 +314,24 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|response
+operator|.
+name|RequestStatusState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|SolrInputDocument
@@ -1060,12 +1078,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|assertEquals
-argument_list|(
-literal|"did not see async createCollection completion"
-argument_list|,
-literal|"completed"
-argument_list|,
+specifier|final
+name|RequestStatusState
+name|state
+init|=
 name|AbstractFullDistribZkTestBase
 operator|.
 name|getRequestStateAfterCompletion
@@ -1076,6 +1092,16 @@ literal|330
 argument_list|,
 name|cloudSolrClient
 argument_list|)
+decl_stmt|;
+name|assertSame
+argument_list|(
+literal|"did not see async createCollection completion"
+argument_list|,
+name|RequestStatusState
+operator|.
+name|COMPLETED
+argument_list|,
+name|state
 argument_list|)
 expr_stmt|;
 block|}
@@ -1547,12 +1573,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|assertEquals
-argument_list|(
-literal|"did not see async createCollection completion"
-argument_list|,
-literal|"completed"
-argument_list|,
+specifier|final
+name|RequestStatusState
+name|state
+init|=
 name|AbstractFullDistribZkTestBase
 operator|.
 name|getRequestStateAfterCompletion
@@ -1563,6 +1587,16 @@ literal|330
 argument_list|,
 name|cloudSolrClient
 argument_list|)
+decl_stmt|;
+name|assertSame
+argument_list|(
+literal|"did not see async createCollection completion"
+argument_list|,
+name|RequestStatusState
+operator|.
+name|COMPLETED
+argument_list|,
+name|state
 argument_list|)
 expr_stmt|;
 block|}
@@ -2115,12 +2149,10 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|assertEquals
-argument_list|(
-literal|"did not see async createCollection completion"
-argument_list|,
-literal|"completed"
-argument_list|,
+specifier|final
+name|RequestStatusState
+name|state
+init|=
 name|AbstractFullDistribZkTestBase
 operator|.
 name|getRequestStateAfterCompletion
@@ -2131,6 +2163,16 @@ literal|330
 argument_list|,
 name|cloudSolrClient
 argument_list|)
+decl_stmt|;
+name|assertSame
+argument_list|(
+literal|"did not see async createCollection completion"
+argument_list|,
+name|RequestStatusState
+operator|.
+name|COMPLETED
+argument_list|,
+name|state
 argument_list|)
 expr_stmt|;
 block|}

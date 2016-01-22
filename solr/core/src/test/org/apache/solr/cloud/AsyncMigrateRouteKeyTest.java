@@ -92,6 +92,24 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|response
+operator|.
+name|RequestStatusState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|params
@@ -284,11 +302,11 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"found "
+literal|"found ["
 operator|+
 name|asyncId
 operator|+
-literal|" in running tasks"
+literal|"] in running tasks"
 argument_list|,
 name|message
 argument_list|)
@@ -311,11 +329,11 @@ name|asyncId
 operator|+
 literal|" not found in completed tasks."
 argument_list|,
-literal|"found "
+literal|"found ["
 operator|+
 name|asyncId
 operator|+
-literal|" in completed tasks"
+literal|"] in completed tasks"
 argument_list|,
 name|message
 argument_list|)
@@ -452,7 +470,7 @@ name|status
 init|=
 literal|null
 decl_stmt|;
-name|String
+name|RequestStatusState
 name|state
 init|=
 literal|null
@@ -494,6 +512,10 @@ argument_list|)
 expr_stmt|;
 name|state
 operator|=
+name|RequestStatusState
+operator|.
+name|fromKey
+argument_list|(
 operator|(
 name|String
 operator|)
@@ -502,6 +524,7 @@ operator|.
 name|get
 argument_list|(
 literal|"state"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|message
@@ -519,19 +542,18 @@ expr_stmt|;
 if|if
 condition|(
 name|state
+operator|==
+name|RequestStatusState
 operator|.
-name|equals
-argument_list|(
-literal|"completed"
-argument_list|)
+name|COMPLETED
 operator|||
 name|state
+operator|==
+name|RequestStatusState
 operator|.
-name|equals
-argument_list|(
-literal|"failed"
-argument_list|)
+name|FAILED
 condition|)
+block|{
 return|return
 operator|(
 name|String
@@ -543,6 +565,7 @@ argument_list|(
 literal|"msg"
 argument_list|)
 return|;
+block|}
 try|try
 block|{
 name|Thread
@@ -578,6 +601,7 @@ name|SolrServerException
 throws|,
 name|IOException
 block|{
+specifier|final
 name|SolrRequest
 name|request
 init|=

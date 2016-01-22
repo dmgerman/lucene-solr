@@ -188,6 +188,24 @@ name|solrj
 operator|.
 name|response
 operator|.
+name|RequestStatusState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|response
+operator|.
 name|CollectionAdminResponse
 import|;
 end_import
@@ -233,22 +251,6 @@ operator|.
 name|cloud
 operator|.
 name|Slice
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|ModifiableSolrParams
 import|;
 end_import
 
@@ -370,7 +372,7 @@ argument_list|(
 name|client
 argument_list|)
 expr_stmt|;
-name|String
+name|RequestStatusState
 name|state
 init|=
 name|getRequestStateAfterCompletion
@@ -382,11 +384,13 @@ argument_list|,
 name|client
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"CreateCollection task did not complete!"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -435,11 +439,13 @@ argument_list|,
 name|client
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
-literal|"Recreating a collection with the same name didn't fail, should have."
+literal|"Recreating a collection with the same should have failed."
 argument_list|,
-literal|"failed"
+name|RequestStatusState
+operator|.
+name|FAILED
 argument_list|,
 name|state
 argument_list|)
@@ -488,11 +494,13 @@ argument_list|,
 name|client
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"Add replica did not complete"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -545,7 +553,9 @@ literal|"Shard split did not complete. Last recorded state: "
 operator|+
 name|state
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -629,7 +639,7 @@ literal|"requestid"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|String
+name|RequestStatusState
 name|state
 init|=
 name|getRequestStateAfterCompletion
@@ -641,11 +651,13 @@ argument_list|,
 name|cloudClient
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"CreateCollection task did not complete!"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -839,11 +851,13 @@ argument_list|,
 name|cloudClient
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"ReloadCollection did not complete"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -909,11 +923,13 @@ argument_list|,
 name|cloudClient
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"CreateShard did not complete"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -1060,11 +1076,13 @@ argument_list|,
 name|cloudClient
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"DeleteShard did not complete"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -1130,11 +1148,13 @@ argument_list|,
 name|cloudClient
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"AddReplica did not complete"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -1259,11 +1279,13 @@ argument_list|,
 name|cloudClient
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"CreateAlias did not complete"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -1361,11 +1383,13 @@ argument_list|,
 name|cloudClient
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"DeleteAlias did not complete"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -1478,11 +1502,13 @@ argument_list|,
 name|cloudClient
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"DeleteReplica did not complete"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
@@ -1543,11 +1569,13 @@ argument_list|,
 name|cloudClient
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertSame
 argument_list|(
 literal|"DeleteCollection did not complete"
 argument_list|,
-literal|"completed"
+name|RequestStatusState
+operator|.
+name|COMPLETED
 argument_list|,
 name|state
 argument_list|)
