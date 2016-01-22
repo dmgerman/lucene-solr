@@ -476,6 +476,27 @@ name|LambdaTTF
 argument_list|()
 block|}
 decl_stmt|;
+comment|/** Independence measures for DFI */
+DECL|field|INDEPENDENCE_MEASURES
+specifier|static
+name|Independence
+index|[]
+name|INDEPENDENCE_MEASURES
+init|=
+block|{
+operator|new
+name|IndependenceStandardized
+argument_list|()
+block|,
+operator|new
+name|IndependenceSaturated
+argument_list|()
+block|,
+operator|new
+name|IndependenceChiSquared
+argument_list|()
+block|}
+decl_stmt|;
 DECL|field|searcher
 specifier|private
 name|IndexSearcher
@@ -765,15 +786,26 @@ literal|0.7f
 argument_list|)
 argument_list|)
 expr_stmt|;
+for|for
+control|(
+name|Independence
+name|independence
+range|:
+name|INDEPENDENCE_MEASURES
+control|)
+block|{
 name|sims
 operator|.
 name|add
 argument_list|(
 operator|new
 name|DFISimilarity
-argument_list|()
+argument_list|(
+name|independence
+argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// ------------------------------- Unit tests --------------------------------
 comment|/** The default number of documents in the unit tests. */
