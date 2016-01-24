@@ -397,7 +397,7 @@ name|BUFFER_SIZE
 argument_list|)
 expr_stmt|;
 comment|// This is not>= because seeking to exact end of file is OK: this is where
-comment|// you'd also be if you did a readBytes of all bytes in the file)
+comment|// you'd also be if you did a readBytes of all bytes in the file
 if|if
 condition|(
 name|getFilePointer
@@ -411,7 +411,7 @@ throw|throw
 operator|new
 name|EOFException
 argument_list|(
-literal|"read past EOF: pos="
+literal|"seek beyond EOF: pos="
 operator|+
 name|getFilePointer
 argument_list|()
@@ -450,7 +450,7 @@ throw|throw
 operator|new
 name|EOFException
 argument_list|(
-literal|"read past EOF: pos="
+literal|"cannot read another byte at EOF: pos="
 operator|+
 name|getFilePointer
 argument_list|()
@@ -569,7 +569,7 @@ name|offset
 parameter_list|,
 specifier|final
 name|long
-name|length
+name|sliceLength
 parameter_list|)
 throws|throws
 name|IOException
@@ -580,13 +580,13 @@ name|offset
 operator|<
 literal|0
 operator|||
-name|length
+name|sliceLength
 argument_list|<
 literal|0
 operator|||
 name|offset
 operator|+
-name|length
+name|sliceLength
 argument_list|>
 name|this
 operator|.
@@ -620,7 +620,7 @@ name|file
 argument_list|,
 name|offset
 operator|+
-name|length
+name|sliceLength
 argument_list|)
 block|{
 block|{
@@ -693,12 +693,7 @@ name|length
 parameter_list|()
 block|{
 return|return
-name|super
-operator|.
-name|length
-argument_list|()
-operator|-
-name|offset
+name|sliceLength
 return|;
 block|}
 annotation|@
