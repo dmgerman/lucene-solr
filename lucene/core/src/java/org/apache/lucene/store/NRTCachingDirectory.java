@@ -745,12 +745,29 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// NOTE: uncache is unnecessary for lucene's usage, as we always sync() before renaming.
 name|unCache
 argument_list|(
 name|source
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+name|cache
+operator|.
+name|deleteFile
+argument_list|(
+name|dest
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|FileNotFoundException
+name|fnfe
+parameter_list|)
+block|{
+comment|// OK -- it may not exist
+block|}
 name|in
 operator|.
 name|renameFile

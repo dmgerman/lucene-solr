@@ -178,10 +178,12 @@ argument_list|(
 name|writer
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Expert: open a near real time IndexReader from the {@link org.apache.lucene.index.IndexWriter},    * controlling whether past deletions should be applied.    *    * @param writer The IndexWriter to open from    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    *    * @see #open(IndexWriter)    *    * @lucene.experimental    */
+comment|/**    * Expert: open a near real time IndexReader from the {@link org.apache.lucene.index.IndexWriter},    * controlling whether past deletions should be applied.    *    * @param writer The IndexWriter to open from    * @param applyAllDeletes If true, all buffered deletes will    * be applied (made visible) in the returned reader.  If    * false, the deletes are not applied but remain buffered    * (in IndexWriter) so that they will be applied in the    * future.  Applying deletes can be costly, so if your app    * can tolerate deleted documents being returned you might    * gain some performance by passing false.    * @param writeAllDeletes If true, new deletes will be written    * down to index files instead of carried over from writer to    * reader in heap    *    * @see #open(IndexWriter)    *    * @lucene.experimental    */
 DECL|method|open
 specifier|public
 specifier|static
@@ -194,6 +196,9 @@ name|writer
 parameter_list|,
 name|boolean
 name|applyAllDeletes
+parameter_list|,
+name|boolean
+name|writeAllDeletes
 parameter_list|)
 throws|throws
 name|IOException
@@ -204,6 +209,8 @@ operator|.
 name|getReader
 argument_list|(
 name|applyAllDeletes
+argument_list|,
+name|writeAllDeletes
 argument_list|)
 return|;
 block|}

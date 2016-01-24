@@ -124,11 +124,13 @@ name|writer
 argument_list|,
 literal|true
 argument_list|,
+literal|false
+argument_list|,
 name|searcherFactory
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: creates and returns a new SearcherManager from the given    * {@link IndexWriter}, controlling whether past deletions should be applied.    *     * @param writer    *          the IndexWriter to open the IndexReader from.    * @param applyAllDeletes    *          If<code>true</code>, all buffered deletes will be applied (made    *          visible) in the {@link IndexSearcher} / {@link DirectoryReader}.    *          If<code>false</code>, the deletes may or may not be applied, but    *          remain buffered (in IndexWriter) so that they will be applied in    *          the future. Applying deletes can be costly, so if your app can    *          tolerate deleted documents being returned you might gain some    *          performance by passing<code>false</code>. See    *          {@link DirectoryReader#openIfChanged(DirectoryReader, IndexWriter, boolean)}.    * @param searcherFactory    *          An optional {@link SearcherFactory}. Pass<code>null</code> if you    *          don't require the searcher to be warmed before going live or other    *          custom behavior.    *     * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Expert: creates and returns a new SearcherManager from the given    * {@link IndexWriter}, controlling whether past deletions should be applied.    *     * @param writer    *          the IndexWriter to open the IndexReader from.    * @param applyAllDeletes    *          If<code>true</code>, all buffered deletes will be applied (made    *          visible) in the {@link IndexSearcher} / {@link DirectoryReader}.    *          If<code>false</code>, the deletes may or may not be applied, but    *          remain buffered (in IndexWriter) so that they will be applied in    *          the future. Applying deletes can be costly, so if your app can    *          tolerate deleted documents being returned you might gain some    *          performance by passing<code>false</code>. See    *          {@link DirectoryReader#openIfChanged(DirectoryReader, IndexWriter, boolean)}.    * @param writeAllDeletes    *          If<code>true</code>, new deletes will be forcefully written to index files.    * @param searcherFactory    *          An optional {@link SearcherFactory}. Pass<code>null</code> if you    *          don't require the searcher to be warmed before going live or other    *          custom behavior.    *     * @throws IOException if there is a low-level I/O error    */
 DECL|method|SearcherManager
 specifier|public
 name|SearcherManager
@@ -138,6 +140,9 @@ name|writer
 parameter_list|,
 name|boolean
 name|applyAllDeletes
+parameter_list|,
+name|boolean
+name|writeAllDeletes
 parameter_list|,
 name|SearcherFactory
 name|searcherFactory
@@ -178,6 +183,8 @@ argument_list|(
 name|writer
 argument_list|,
 name|applyAllDeletes
+argument_list|,
+name|writeAllDeletes
 argument_list|)
 argument_list|,
 literal|null

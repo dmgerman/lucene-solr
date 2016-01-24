@@ -493,6 +493,23 @@ modifier|...
 name|objects
 parameter_list|)
 block|{
+if|if
+condition|(
+name|objects
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"pass at least one Closeable"
+argument_list|)
+throw|;
+block|}
 name|closeWhileHandlingException
 argument_list|(
 name|Arrays

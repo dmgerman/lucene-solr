@@ -5482,6 +5482,27 @@ name|r
 argument_list|)
 condition|)
 block|{
+name|IndexWriter
+operator|.
+name|IndexReaderWarmer
+name|curWarmer
+init|=
+name|c
+operator|.
+name|getMergedSegmentWarmer
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|curWarmer
+operator|==
+literal|null
+operator|||
+name|curWarmer
+operator|instanceof
+name|SimpleMergedSegmentWarmer
+condition|)
+block|{
 comment|// change warmer parameters
 if|if
 condition|(
@@ -5515,6 +5536,7 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|didChange
 operator|=
