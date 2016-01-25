@@ -306,6 +306,16 @@ literal|"facet"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// JDBC requires metadata like field names from the SQLHandler. Force this property to be true.
+name|props
+operator|.
+name|setProperty
+argument_list|(
+literal|"includeMetadata"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
 name|String
 name|zkHost
 init|=

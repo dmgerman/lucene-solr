@@ -2299,6 +2299,16 @@ argument_list|(
 name|resultSetMetaData
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|4
+argument_list|,
+name|resultSetMetaData
+operator|.
+name|getColumnCount
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|checkResultSet
 specifier|private
