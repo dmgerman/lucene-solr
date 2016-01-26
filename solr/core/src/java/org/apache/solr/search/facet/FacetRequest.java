@@ -808,7 +808,7 @@ name|BAD_REQUEST
 argument_list|,
 name|msg
 operator|+
-literal|" ,path="
+literal|" , path="
 operator|+
 name|getPathStr
 argument_list|()
@@ -987,12 +987,29 @@ block|}
 else|else
 block|{
 throw|throw
-operator|new
-name|RuntimeException
+name|err
 argument_list|(
-literal|"Huh? TODO: "
+literal|"Unknown facet type key="
 operator|+
+name|key
+operator|+
+literal|" class="
+operator|+
+operator|(
 name|parsedValue
+operator|==
+literal|null
+condition|?
+literal|"null"
+else|:
+name|parsedValue
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|)
 argument_list|)
 throw|;
 block|}
@@ -1275,7 +1292,9 @@ name|args
 argument_list|)
 return|;
 block|}
-return|return
+name|AggValueSource
+name|stat
+init|=
 name|parseStat
 argument_list|(
 name|key
@@ -1284,6 +1303,33 @@ name|type
 argument_list|,
 name|args
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|stat
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+name|err
+argument_list|(
+literal|"Unknown facet or stat. key="
+operator|+
+name|key
+operator|+
+literal|" type="
+operator|+
+name|type
+operator|+
+literal|" args="
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
+return|return
+name|stat
 return|;
 block|}
 DECL|method|parseFieldFacet
