@@ -1327,9 +1327,6 @@ argument_list|()
 index|[
 name|i
 index|]
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1364,12 +1361,12 @@ name|tuple
 return|;
 block|}
 block|}
-name|String
+name|Object
 index|[]
 name|bucketValues
 init|=
 operator|new
-name|String
+name|Object
 index|[
 name|buckets
 operator|.
@@ -1526,9 +1523,6 @@ argument_list|()
 index|[
 name|i
 index|]
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
