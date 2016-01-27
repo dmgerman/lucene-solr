@@ -829,7 +829,7 @@ block|{
 return|return
 name|GeoRelationUtils
 operator|.
-name|rectCrossesPoly
+name|rectCrossesPolyApprox
 argument_list|(
 name|minLon
 argument_list|,
@@ -896,7 +896,7 @@ block|{
 return|return
 name|GeoRelationUtils
 operator|.
-name|rectWithinPoly
+name|rectWithinPolyApprox
 argument_list|(
 name|minLon
 argument_list|,
@@ -933,8 +933,6 @@ operator|.
 name|this
 operator|.
 name|maxLat
-argument_list|,
-literal|true
 argument_list|)
 return|;
 block|}

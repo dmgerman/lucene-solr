@@ -110,6 +110,22 @@ name|RandomInts
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|GeoDistanceUtils
+operator|.
+name|DISTANCE_PCT_ERR
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests class for methods in GeoUtils  *  * @lucene.experimental  */
 end_comment
@@ -1658,13 +1674,7 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-name|unscaleLat
-argument_list|(
-name|scaleLat
-argument_list|(
 name|result
-argument_list|)
-argument_list|)
 return|;
 block|}
 DECL|method|randomLon
@@ -1723,13 +1733,7 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-name|unscaleLon
-argument_list|(
-name|scaleLon
-argument_list|(
 name|result
-argument_list|)
-argument_list|)
 return|;
 block|}
 DECL|method|findMatches
@@ -2769,7 +2773,8 @@ comment|// So the circle covers at most 50% of the earth's surface:
 name|double
 name|radiusMeters
 decl_stmt|;
-comment|// TODO: GeoUtils APIs are still buggy for large distances:
+comment|// TODO: large exotic rectangles created by BKD may be inaccurate up to 2 times DISTANCE_PCT_ERR.
+comment|// restricting size until LUCENE-6994 can be addressed
 if|if
 condition|(
 literal|true
@@ -3130,13 +3135,46 @@ name|docID
 index|]
 argument_list|)
 decl_stmt|;
-name|boolean
+specifier|final
+name|Boolean
 name|expected
+decl_stmt|;
+specifier|final
+name|double
+name|percentError
 init|=
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|distanceMeters
+operator|-
+name|radiusMeters
+argument_list|)
+operator|/
+name|distanceMeters
+decl_stmt|;
+if|if
+condition|(
+name|percentError
+operator|<=
+name|DISTANCE_PCT_ERR
+condition|)
+block|{
+name|expected
+operator|=
+literal|null
+expr_stmt|;
+block|}
+else|else
+block|{
+name|expected
+operator|=
 name|distanceMeters
 operator|<=
 name|radiusMeters
-decl_stmt|;
+expr_stmt|;
+block|}
 name|boolean
 name|actual
 init|=
@@ -3149,6 +3187,10 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|expected
+operator|!=
+literal|null
+operator|&&
 name|actual
 operator|!=
 name|expected
@@ -3167,7 +3209,11 @@ literal|"doc="
 operator|+
 name|docID
 operator|+
-literal|" matched but should not on iteration "
+literal|" matched but should not with distance error "
+operator|+
+name|percentError
+operator|+
+literal|" on iteration "
 operator|+
 name|iter
 argument_list|)
@@ -3183,7 +3229,11 @@ literal|"doc="
 operator|+
 name|docID
 operator|+
-literal|" did not match but should on iteration "
+literal|" did not match but should with distance error "
+operator|+
+name|percentError
+operator|+
+literal|" on iteration "
 operator|+
 name|iter
 argument_list|)

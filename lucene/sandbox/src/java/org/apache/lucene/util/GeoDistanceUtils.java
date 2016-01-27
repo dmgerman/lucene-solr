@@ -42,6 +42,16 @@ specifier|public
 class|class
 name|GeoDistanceUtils
 block|{
+comment|/** error threshold for point-distance queries (in percent) NOTE: Guideline from USGS is 0.005 **/
+DECL|field|DISTANCE_PCT_ERR
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|DISTANCE_PCT_ERR
+init|=
+literal|0.005
+decl_stmt|;
 comment|/**    * Compute the great-circle distance using original haversine implementation published by Sinnot in:    * R.W. Sinnott, "Virtues of the Haversine", Sky and Telescope, vol. 68, no. 2, 1984, p. 159    *    * NOTE: this differs from {@link org.apache.lucene.util.SloppyMath#haversin} in that it uses the semi-major axis    * of the earth instead of an approximation based on the average latitude of the two points (which can introduce an    * additional error up to .337%, or ~67.6 km at the equator)    */
 DECL|method|haversin
 specifier|public

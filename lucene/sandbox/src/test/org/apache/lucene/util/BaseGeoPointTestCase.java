@@ -2767,15 +2767,8 @@ name|nextDouble
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO: we should not do this here!  it weakens the test, and users don't pre-quantize the lat/lons they send us:
 return|return
-name|unscaleLat
-argument_list|(
-name|scaleLat
-argument_list|(
 name|result
-argument_list|)
-argument_list|)
 return|;
 block|}
 DECL|method|randomLon
@@ -2833,15 +2826,8 @@ name|nextDouble
 argument_list|()
 expr_stmt|;
 block|}
-comment|// TODO: we should not do this here!  it weakens the test, and users don't pre-quantize the lat/lons they send us:
 return|return
-name|unscaleLon
-argument_list|(
-name|scaleLon
-argument_list|(
 name|result
-argument_list|)
-argument_list|)
 return|;
 block|}
 DECL|method|randomRect
