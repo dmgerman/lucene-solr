@@ -418,6 +418,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|similarities
+operator|.
+name|BM25Similarity
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -3341,6 +3357,17 @@ argument_list|(
 name|r
 argument_list|)
 decl_stmt|;
+comment|// don't use a randomized similarity, e.g. stopwords for DFI can get scored as 0,
+comment|// so boosting them is kind of crazy
+name|s
+operator|.
+name|setSimilarity
+argument_list|(
+operator|new
+name|BM25Similarity
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|{
 name|CommonTermsQuery
 name|query
