@@ -594,6 +594,24 @@ name|solrj
 operator|.
 name|request
 operator|.
+name|RequestWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|request
+operator|.
 name|UpdateRequest
 import|;
 end_import
@@ -3739,7 +3757,7 @@ expr_stmt|;
 comment|//content type
 name|assertEquals
 argument_list|(
-literal|"application/xml; charset=UTF-8"
+literal|"application/javabin"
 argument_list|,
 name|DebugServlet
 operator|.
@@ -3785,13 +3803,22 @@ literal|0
 index|]
 argument_list|)
 expr_stmt|;
-comment|//XML response
+comment|//XML response and writer
 name|client
 operator|.
 name|setParser
 argument_list|(
 operator|new
 name|XMLResponseParser
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|client
+operator|.
+name|setRequestWriter
+argument_list|(
+operator|new
+name|RequestWriter
 argument_list|()
 argument_list|)
 expr_stmt|;

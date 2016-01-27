@@ -950,7 +950,7 @@ name|RequestWriter
 name|requestWriter
 init|=
 operator|new
-name|RequestWriter
+name|BinaryRequestWriter
 argument_list|()
 decl_stmt|;
 DECL|field|httpClient
