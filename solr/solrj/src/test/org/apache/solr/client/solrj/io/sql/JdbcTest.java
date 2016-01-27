@@ -2911,6 +2911,14 @@ name|rs
 argument_list|)
 expr_stmt|;
 block|}
+name|assertFalse
+argument_list|(
+name|statement
+operator|.
+name|getMoreResults
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}

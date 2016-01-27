@@ -1133,11 +1133,31 @@ parameter_list|()
 throws|throws
 name|SQLException
 block|{
+if|if
+condition|(
+name|isClosed
+argument_list|()
+condition|)
+block|{
 throw|throw
 operator|new
-name|UnsupportedOperationException
-argument_list|()
+name|SQLException
+argument_list|(
+literal|"Statement is closed"
+argument_list|)
 throw|;
+block|}
+comment|// Currently multiple result sets are not possible yet
+name|this
+operator|.
+name|currentResultSet
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 annotation|@
 name|Override
