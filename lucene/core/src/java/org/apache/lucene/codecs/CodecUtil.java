@@ -1253,6 +1253,37 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|in
+operator|.
+name|length
+argument_list|()
+operator|<
+name|footerLength
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"misplaced codec footer (file truncated?): length="
+operator|+
+name|in
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|" but footerLength=="
+operator|+
+name|footerLength
+argument_list|()
+argument_list|,
+name|in
+argument_list|)
+throw|;
+block|}
 name|in
 operator|.
 name|seek

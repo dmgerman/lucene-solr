@@ -125,13 +125,21 @@ name|Lucene60PointFormat
 extends|extends
 name|PointFormat
 block|{
-DECL|field|CODEC_NAME
+DECL|field|DATA_CODEC_NAME
 specifier|static
 specifier|final
 name|String
-name|CODEC_NAME
+name|DATA_CODEC_NAME
 init|=
-literal|"Lucene60PointFormat"
+literal|"Lucene60PointFormatData"
+decl_stmt|;
+DECL|field|META_CODEC_NAME
+specifier|static
+specifier|final
+name|String
+name|META_CODEC_NAME
+init|=
+literal|"Lucene60PointFormatMeta"
 decl_stmt|;
 comment|/**    * Filename extension for the leaf blocks    */
 DECL|field|DATA_EXTENSION
