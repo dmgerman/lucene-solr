@@ -181,15 +181,6 @@ name|NAME
 init|=
 literal|"xport"
 decl_stmt|;
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|NamedList
-name|namedList
-parameter_list|)
-block|{   }
 DECL|method|createParser
 specifier|public
 name|QParser

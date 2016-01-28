@@ -203,17 +203,6 @@ literal|"surround"
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|NamedList
-name|args
-parameter_list|)
-block|{   }
-annotation|@
-name|Override
 DECL|method|createParser
 specifier|public
 name|QParser

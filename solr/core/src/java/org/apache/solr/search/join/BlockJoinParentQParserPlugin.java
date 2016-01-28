@@ -199,17 +199,6 @@ name|req
 argument_list|)
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|NamedList
-name|args
-parameter_list|)
-block|{   }
 block|}
 end_class
 

@@ -496,18 +496,6 @@ name|NEAR_OPERATOR
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** No initialization is necessary so this method is empty. */
-annotation|@
-name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|NamedList
-name|args
-parameter_list|)
-block|{   }
 comment|/** Returns a QParser that will create a query by using Lucene's SimpleQueryParser. */
 annotation|@
 name|Override

@@ -495,15 +495,6 @@ operator|new
 name|MatchAllDocsQuery
 argument_list|()
 decl_stmt|;
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|NamedList
-name|args
-parameter_list|)
-block|{   }
 DECL|method|createParser
 specifier|public
 name|QParser
