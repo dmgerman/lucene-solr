@@ -165,6 +165,22 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressFileSystems
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -187,6 +203,11 @@ comment|/**  * Test that the same file name, but from a different index, is dete
 end_comment
 
 begin_class
+annotation|@
+name|SuppressFileSystems
+argument_list|(
+literal|"ExtrasFS"
+argument_list|)
 DECL|class|TestSwappedIndexFiles
 specifier|public
 class|class
