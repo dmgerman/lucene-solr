@@ -485,7 +485,7 @@ expr_stmt|;
 block|}
 DECL|method|getDocSet
 specifier|public
-name|DocSet
+name|BitDocSet
 name|getDocSet
 parameter_list|()
 block|{
