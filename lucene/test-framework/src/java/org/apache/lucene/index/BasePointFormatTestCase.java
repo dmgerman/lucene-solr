@@ -6199,6 +6199,20 @@ return|return
 name|dir
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|mergeIsStable
+specifier|protected
+name|boolean
+name|mergeIsStable
+parameter_list|()
+block|{
+comment|// suppress this test from base class: merges for BKD trees are not stable because the tree created by merge will have a different
+comment|// structure than the tree created by adding points separately
+return|return
+literal|false
+return|;
+block|}
 block|}
 end_class
 

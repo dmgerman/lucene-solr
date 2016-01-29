@@ -1329,6 +1329,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeTrue
+argument_list|(
+literal|"merge is not stable"
+argument_list|,
+name|mergeIsStable
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -1598,6 +1606,16 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
+DECL|method|mergeIsStable
+specifier|protected
+name|boolean
+name|mergeIsStable
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
 block|}
 comment|/** Test the accuracy of the ramBytesUsed estimations. */
 annotation|@
