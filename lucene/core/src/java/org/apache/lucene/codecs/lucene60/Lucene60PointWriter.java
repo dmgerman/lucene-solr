@@ -829,6 +829,19 @@ index|[
 name|i
 index|]
 decl_stmt|;
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// we confirmed this up above
+assert|assert
+name|reader
+operator|instanceof
+name|Lucene60PointReader
+assert|;
 name|Lucene60PointReader
 name|reader60
 init|=
@@ -837,16 +850,9 @@ name|Lucene60PointReader
 operator|)
 name|reader
 decl_stmt|;
-if|if
-condition|(
-name|reader60
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// TODO: I could just use the merged fieldInfo.number instead of resolving to this
-comment|// reader's FieldInfo, right?  Field numbers are always consistent across segments,
-comment|// since when?
+comment|// NOTE: we cannot just use the merged fieldInfo.number (instead of resolving to this
+comment|// reader's FieldInfo as we do below) because field numbers can easily be different
+comment|// when addIndexes(Directory...) copies over segments from another index:
 name|FieldInfos
 name|readerFieldInfos
 init|=
