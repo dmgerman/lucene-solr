@@ -842,15 +842,6 @@ name|HINT_MULTI_DOCVALUES
 init|=
 literal|"multi_docvalues"
 decl_stmt|;
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|NamedList
-name|namedList
-parameter_list|)
-block|{    }
 DECL|method|createParser
 specifier|public
 name|QParser

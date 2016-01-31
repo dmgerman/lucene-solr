@@ -325,17 +325,6 @@ name|METHOD
 init|=
 literal|"method"
 decl_stmt|;
-annotation|@
-name|Override
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|NamedList
-name|args
-parameter_list|)
-block|{   }
 DECL|enum|Method
 specifier|private
 specifier|static

@@ -136,6 +136,43 @@ modifier|...
 name|point
 parameter_list|)
 block|{
+if|if
+condition|(
+name|type
+operator|.
+name|pointDimensionCount
+argument_list|()
+operator|!=
+name|point
+operator|.
+name|length
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"this field (name="
+operator|+
+name|name
+operator|+
+literal|") uses "
+operator|+
+name|type
+operator|.
+name|pointDimensionCount
+argument_list|()
+operator|+
+literal|" dimensions; cannot change to (incoming) "
+operator|+
+name|point
+operator|.
+name|length
+operator|+
+literal|" dimensions"
+argument_list|)
+throw|;
+block|}
 name|fieldsData
 operator|=
 name|pack
@@ -171,6 +208,35 @@ name|Number
 name|numericValue
 parameter_list|()
 block|{
+if|if
+condition|(
+name|type
+operator|.
+name|pointDimensionCount
+argument_list|()
+operator|!=
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"this field (name="
+operator|+
+name|name
+operator|+
+literal|") uses "
+operator|+
+name|type
+operator|.
+name|pointDimensionCount
+argument_list|()
+operator|+
+literal|" dimensions; cannot convert to a single numeric value"
+argument_list|)
+throw|;
+block|}
 name|BytesRef
 name|bytes
 init|=

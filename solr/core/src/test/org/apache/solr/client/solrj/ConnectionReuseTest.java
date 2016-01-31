@@ -545,9 +545,14 @@ decl_stmt|;
 name|int
 name|rndClient
 init|=
-literal|0
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+literal|3
+argument_list|)
 decl_stmt|;
-comment|//random().nextInt(3);
 if|if
 condition|(
 name|rndClient

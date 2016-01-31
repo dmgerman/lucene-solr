@@ -466,7 +466,20 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|finish
+argument_list|()
+expr_stmt|;
 block|}
+comment|/** Called once at the end before close */
+DECL|method|finish
+specifier|public
+specifier|abstract
+name|void
+name|finish
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_class
 
