@@ -518,7 +518,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":1, \"docs\":[{\"floatdv\":2.1,\"intdv\":7,\"stringdv\":\"\",\"longdv\":323223232323,\"doubledv\":2344.345}]}}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":1, \"docs\":[{\"floatdv\":2.1,\"intdv\":7,\"longdv\":323223232323,\"doubledv\":2344.345}]}}"
 argument_list|)
 expr_stmt|;
 comment|//Test multiValue docValues output
@@ -586,7 +586,7 @@ name|assertEquals
 argument_list|(
 name|s
 argument_list|,
-literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":1, \"docs\":[{\"intdv_m\":[],\"floatdv_m\":[123.321,345.123],\"doubledv_m\":[3444.222,23232.2],\"longdv_m\":[343332,43434343434],\"stringdv_m\":[]}]}}"
+literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":1, \"docs\":[{\"floatdv_m\":[123.321,345.123],\"doubledv_m\":[3444.222,23232.2],\"longdv_m\":[343332,43434343434]}]}}"
 argument_list|)
 expr_stmt|;
 comment|//Test single sort param is working
