@@ -377,7 +377,7 @@ return|return
 name|this
 return|;
 block|}
-comment|/** Returns the current maxMergedSegmentMB setting.    *    * @see #getMaxMergedSegmentMB */
+comment|/** Returns the current maxMergedSegmentMB setting.    *    * @see #setMaxMergedSegmentMB */
 DECL|method|getMaxMergedSegmentMB
 specifier|public
 name|double
@@ -461,7 +461,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"floorSegmentMB must be>= 0.0 (got "
+literal|"floorSegmentMB must be> 0.0 (got "
 operator|+
 name|v
 operator|+
