@@ -72,6 +72,16 @@ name|SQLException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|sql
+operator|.
+name|Statement
+import|;
+end_import
+
 begin_class
 DECL|class|DatabaseMetaDataImpl
 class|class
@@ -85,11 +95,21 @@ specifier|final
 name|ConnectionImpl
 name|connection
 decl_stmt|;
+DECL|field|connectionStatement
+specifier|private
+specifier|final
+name|Statement
+name|connectionStatement
+decl_stmt|;
 DECL|method|DatabaseMetaDataImpl
+specifier|public
 name|DatabaseMetaDataImpl
 parameter_list|(
 name|ConnectionImpl
 name|connection
+parameter_list|,
+name|Statement
+name|connectionStatement
 parameter_list|)
 block|{
 name|this
@@ -97,6 +117,12 @@ operator|.
 name|connection
 operator|=
 name|connection
+expr_stmt|;
+name|this
+operator|.
+name|connectionStatement
+operator|=
+name|connectionStatement
 expr_stmt|;
 block|}
 annotation|@
@@ -1862,7 +1888,14 @@ throws|throws
 name|SQLException
 block|{
 return|return
-literal|null
+name|this
+operator|.
+name|connectionStatement
+operator|.
+name|executeQuery
+argument_list|(
+literal|"select TABLE_CAT from _CATALOGS_"
+argument_list|)
 return|;
 block|}
 annotation|@
