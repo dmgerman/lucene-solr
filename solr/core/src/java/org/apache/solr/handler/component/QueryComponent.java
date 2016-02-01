@@ -2101,7 +2101,7 @@ throw|;
 block|}
 block|}
 DECL|method|prepareGrouping
-specifier|private
+specifier|protected
 name|void
 name|prepareGrouping
 parameter_list|(
@@ -5007,7 +5007,7 @@ return|;
 block|}
 block|}
 DECL|method|groupedDistributedProcess
-specifier|private
+specifier|protected
 name|int
 name|groupedDistributedProcess
 parameter_list|(
@@ -5237,7 +5237,7 @@ name|nextStage
 return|;
 block|}
 DECL|method|regularDistributedProcess
-specifier|private
+specifier|protected
 name|int
 name|regularDistributedProcess
 parameter_list|(
@@ -5409,7 +5409,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|handleGroupedResponses
-specifier|private
+specifier|protected
 name|void
 name|handleGroupedResponses
 parameter_list|(
@@ -5512,7 +5512,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|handleRegularResponses
-specifier|private
+specifier|protected
 name|void
 name|handleRegularResponses
 parameter_list|(
@@ -5641,7 +5641,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|field|MAIN_END_RESULT_TRANSFORMER
-specifier|private
+specifier|protected
 specifier|static
 specifier|final
 name|EndResultTransformer
@@ -5652,7 +5652,7 @@ name|MainEndResultTransformer
 argument_list|()
 decl_stmt|;
 DECL|field|SIMPLE_END_RESULT_TRANSFORMER
-specifier|private
+specifier|protected
 specifier|static
 specifier|final
 name|EndResultTransformer
@@ -5668,7 +5668,7 @@ argument_list|(
 literal|"unchecked"
 argument_list|)
 DECL|method|groupedFinishStage
-specifier|private
+specifier|protected
 name|void
 name|groupedFinishStage
 parameter_list|(
@@ -5911,7 +5911,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|regularFinishStage
-specifier|private
+specifier|protected
 name|void
 name|regularFinishStage
 parameter_list|(
@@ -5931,7 +5931,8 @@ name|iter
 init|=
 name|rb
 operator|.
-name|_responseDocs
+name|getResponseDocs
+argument_list|()
 operator|.
 name|iterator
 argument_list|()
@@ -5960,13 +5961,15 @@ argument_list|()
 expr_stmt|;
 name|rb
 operator|.
-name|_responseDocs
+name|getResponseDocs
+argument_list|()
 operator|.
 name|setNumFound
 argument_list|(
 name|rb
 operator|.
-name|_responseDocs
+name|getResponseDocs
+argument_list|()
 operator|.
 name|getNumFound
 argument_list|()
@@ -5984,7 +5987,8 @@ name|addResponse
 argument_list|(
 name|rb
 operator|.
-name|_responseDocs
+name|getResponseDocs
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -6019,7 +6023,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|createDistributedStats
-specifier|private
+specifier|protected
 name|void
 name|createDistributedStats
 parameter_list|(
@@ -6094,7 +6098,7 @@ block|}
 block|}
 block|}
 DECL|method|updateStats
-specifier|private
+specifier|protected
 name|void
 name|updateStats
 parameter_list|(
@@ -6133,7 +6137,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|createMainQuery
-specifier|private
+specifier|protected
 name|void
 name|createMainQuery
 parameter_list|(
@@ -6689,7 +6693,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|addFL
-specifier|private
+specifier|protected
 name|boolean
 name|addFL
 parameter_list|(
@@ -6726,7 +6730,7 @@ literal|true
 return|;
 block|}
 DECL|method|mergeIds
-specifier|private
+specifier|protected
 name|void
 name|mergeIds
 parameter_list|(
@@ -7741,9 +7745,10 @@ name|resultIds
 expr_stmt|;
 name|rb
 operator|.
-name|_responseDocs
-operator|=
+name|setResponseDocs
+argument_list|(
 name|responseDocs
+argument_list|)
 expr_stmt|;
 name|populateNextCursorMarkFromMergedShards
 argument_list|(
@@ -7797,7 +7802,7 @@ block|}
 block|}
 comment|/**    * Inspects the state of the {@link ResponseBuilder} and populates the next     * {@link ResponseBuilder#setNextCursorMark} as appropriate based on the merged     * sort values from individual shards    *    * @param rb A<code>ResponseBuilder</code> that already contains merged     *<code>ShardDocs</code> in<code>resultIds</code>, may or may not be     *           part of a Cursor based request (method will NOOP if not needed)    */
 DECL|method|populateNextCursorMarkFromMergedShards
-specifier|private
+specifier|protected
 name|void
 name|populateNextCursorMarkFromMergedShards
 parameter_list|(
@@ -8046,7 +8051,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|unmarshalSortValues
-specifier|private
+specifier|protected
 name|NamedList
 name|unmarshalSortValues
 parameter_list|(
@@ -8298,7 +8303,7 @@ name|unmarshalledSortValsPerField
 return|;
 block|}
 DECL|method|createRetrieveDocs
-specifier|private
+specifier|protected
 name|void
 name|createRetrieveDocs
 parameter_list|(
@@ -8613,7 +8618,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|returnFields
-specifier|private
+specifier|protected
 name|void
 name|returnFields
 parameter_list|(
@@ -8979,7 +8984,8 @@ expr_stmt|;
 block|}
 name|rb
 operator|.
-name|_responseDocs
+name|getResponseDocs
+argument_list|()
 operator|.
 name|set
 argument_list|(
@@ -9025,7 +9031,7 @@ return|;
 block|}
 comment|/**    * Fake scorer for a single document    *    * TODO: when SOLR-5595 is fixed, this wont be needed, as we dont need to recompute sort values here from the comparator    */
 DECL|class|FakeScorer
-specifier|private
+specifier|protected
 specifier|static
 class|class
 name|FakeScorer
