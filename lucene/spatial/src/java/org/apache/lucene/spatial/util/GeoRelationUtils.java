@@ -1172,7 +1172,7 @@ literal|0
 index|]
 argument_list|)
 operator|-
-name|GeoUtils
+name|GeoEncodingUtils
 operator|.
 name|TOLERANCE
 expr_stmt|;
@@ -1201,7 +1201,7 @@ literal|0
 index|]
 argument_list|)
 operator|+
-name|GeoUtils
+name|GeoEncodingUtils
 operator|.
 name|TOLERANCE
 expr_stmt|;
@@ -1230,7 +1230,7 @@ literal|1
 index|]
 argument_list|)
 operator|-
-name|GeoUtils
+name|GeoEncodingUtils
 operator|.
 name|TOLERANCE
 expr_stmt|;
@@ -1259,7 +1259,7 @@ literal|1
 index|]
 argument_list|)
 operator|+
-name|GeoUtils
+name|GeoEncodingUtils
 operator|.
 name|TOLERANCE
 expr_stmt|;
@@ -1282,7 +1282,7 @@ literal|1
 index|]
 argument_list|)
 operator|-
-name|GeoUtils
+name|GeoEncodingUtils
 operator|.
 name|TOLERANCE
 expr_stmt|;
@@ -1305,7 +1305,7 @@ literal|1
 index|]
 argument_list|)
 operator|+
-name|GeoUtils
+name|GeoEncodingUtils
 operator|.
 name|TOLERANCE
 expr_stmt|;
@@ -1328,7 +1328,7 @@ literal|1
 index|]
 argument_list|)
 operator|-
-name|GeoUtils
+name|GeoEncodingUtils
 operator|.
 name|TOLERANCE
 expr_stmt|;
@@ -1351,7 +1351,7 @@ literal|1
 index|]
 argument_list|)
 operator|+
-name|GeoUtils
+name|GeoEncodingUtils
 operator|.
 name|TOLERANCE
 expr_stmt|;

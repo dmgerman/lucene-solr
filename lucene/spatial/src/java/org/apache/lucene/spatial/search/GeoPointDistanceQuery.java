@@ -84,6 +84,24 @@ name|lucene
 operator|.
 name|spatial
 operator|.
+name|document
+operator|.
+name|GeoPointField
+operator|.
+name|TermEncoding
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
 name|util
 operator|.
 name|GeoDistanceUtils
@@ -123,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements a simple point distance query on a GeoPoint field. This is based on  * {@link GeoPointInBBoxQuery} and is implemented using a two phase approach. First,  * like {@code GeoPointInBBoxQueryImpl} candidate terms are queried using the numeric ranges based on  * the morton codes of the min and max lat/lon pairs that intersect the boundary of the point-radius  * circle. Terms  * passing this initial filter are then passed to a secondary {@code postFilter} method that verifies whether the  * decoded lat/lon point fall within the specified query distance (see {@link org.apache.lucene.util.SloppyMath#haversin}.  * All morton value comparisons are subject to the same precision tolerance defined in  * {@value org.apache.lucene.spatial.util.GeoUtils#TOLERANCE} and distance comparisons are subject to the accuracy of the  * haversine formula (from R.W. Sinnott, "Virtues of the Haversine", Sky and Telescope, vol. 68, no. 2, 1984, p. 159)  *  *<p>Note: This query currently uses haversine which is a sloppy distance calculation (see above reference). For large  * queries one can expect upwards of 400m error. Vincenty shrinks this to ~40m error but pays a penalty for computing  * using the spheroid  *  * @lucene.experimental */
+comment|/** Implements a simple point distance query on a GeoPoint field. This is based on  * {@link GeoPointInBBoxQuery} and is implemented using a two phase approach. First,  * like {@code GeoPointInBBoxQueryImpl} candidate terms are queried using the numeric ranges based on  * the morton codes of the min and max lat/lon pairs that intersect the boundary of the point-radius  * circle. Terms  * passing this initial filter are then passed to a secondary {@code postFilter} method that verifies whether the  * decoded lat/lon point fall within the specified query distance (see {@link org.apache.lucene.util.SloppyMath#haversin}.  * All morton value comparisons are subject to the same precision tolerance defined in  * {@value org.apache.lucene.spatial.util.GeoEncodingUtils#TOLERANCE} and distance comparisons are subject to the accuracy of the  * haversine formula (from R.W. Sinnott, "Virtues of the Haversine", Sky and Telescope, vol. 68, no. 2, 1984, p. 159)  *  *<p>Note: This query currently uses haversine which is a sloppy distance calculation (see above reference). For large  * queries one can expect upwards of 400m error. Vincenty shrinks this to ~40m error but pays a penalty for computing  * using the spheroid  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -181,6 +199,49 @@ name|this
 argument_list|(
 name|field
 argument_list|,
+name|TermEncoding
+operator|.
+name|PREFIX
+argument_list|,
+name|centerLon
+argument_list|,
+name|centerLat
+argument_list|,
+name|radiusMeters
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|GeoPointDistanceQuery
+specifier|public
+name|GeoPointDistanceQuery
+parameter_list|(
+specifier|final
+name|String
+name|field
+parameter_list|,
+specifier|final
+name|TermEncoding
+name|termEncoding
+parameter_list|,
+specifier|final
+name|double
+name|centerLon
+parameter_list|,
+specifier|final
+name|double
+name|centerLat
+parameter_list|,
+specifier|final
+name|double
+name|radiusMeters
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|field
+argument_list|,
+name|termEncoding
+argument_list|,
 name|GeoUtils
 operator|.
 name|circleToBBox
@@ -208,6 +269,11 @@ specifier|final
 name|String
 name|field
 parameter_list|,
+specifier|final
+name|TermEncoding
+name|termEncoding
+parameter_list|,
+specifier|final
 name|GeoRect
 name|bbox
 parameter_list|,
@@ -228,6 +294,8 @@ name|super
 argument_list|(
 name|field
 argument_list|,
+name|termEncoding
+argument_list|,
 name|bbox
 operator|.
 name|minLon
@@ -246,7 +314,9 @@ name|maxLat
 argument_list|)
 expr_stmt|;
 block|{
-comment|// check longitudinal overlap (limits radius)
+comment|// check longitudinal overlap (restrict distance to maximum longitudinal radius)
+comment|// todo this restriction technically shouldn't be needed,
+comment|// its only purpose is to ensure the bounding box doesn't self overlap.
 specifier|final
 name|double
 name|maxRadius
@@ -430,6 +500,8 @@ name|GeoPointDistanceQueryImpl
 argument_list|(
 name|field
 argument_list|,
+name|termEncoding
+argument_list|,
 name|this
 argument_list|,
 name|unwrappedLon
@@ -487,6 +559,8 @@ name|GeoPointDistanceQueryImpl
 argument_list|(
 name|field
 argument_list|,
+name|termEncoding
+argument_list|,
 name|this
 argument_list|,
 name|unwrappedLon
@@ -535,6 +609,8 @@ operator|new
 name|GeoPointDistanceQueryImpl
 argument_list|(
 name|field
+argument_list|,
+name|termEncoding
 argument_list|,
 name|this
 argument_list|,
