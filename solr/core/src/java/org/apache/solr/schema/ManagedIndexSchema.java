@@ -2497,7 +2497,9 @@ literal|null
 operator|!=
 name|newSchema
 operator|.
-name|getFieldOrNull
+name|fields
+operator|.
+name|get
 argument_list|(
 name|newField
 operator|.
@@ -7759,7 +7761,9 @@ block|}
 name|SchemaField
 name|existingFieldWithTheSameName
 init|=
-name|getFieldOrNull
+name|fields
+operator|.
+name|get
 argument_list|(
 name|fieldName
 argument_list|)
