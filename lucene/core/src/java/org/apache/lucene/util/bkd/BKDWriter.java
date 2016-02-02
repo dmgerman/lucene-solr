@@ -74,6 +74,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Comparator
 import|;
 end_import
@@ -295,6 +305,8 @@ operator|.
 name|util
 operator|.
 name|OfflineSorter
+operator|.
+name|ByteSequencesWriter
 import|;
 end_import
 
@@ -309,8 +321,6 @@ operator|.
 name|util
 operator|.
 name|OfflineSorter
-operator|.
-name|ByteSequencesWriter
 import|;
 end_import
 
@@ -4341,12 +4351,17 @@ condition|)
 block|{
 name|tempDir
 operator|.
-name|deleteFile
+name|deleteFiles
+argument_list|(
+name|Collections
+operator|.
+name|singleton
 argument_list|(
 name|tempInput
 operator|.
 name|getName
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|tempInput
@@ -4839,12 +4854,17 @@ finally|finally
 block|{
 name|tempDir
 operator|.
-name|deleteFile
+name|deleteFiles
+argument_list|(
+name|Collections
+operator|.
+name|singleton
 argument_list|(
 name|tempInput
 operator|.
 name|getName
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|tempInput

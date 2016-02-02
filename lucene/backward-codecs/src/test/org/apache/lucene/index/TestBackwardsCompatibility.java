@@ -8449,28 +8449,6 @@ name|name
 argument_list|)
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// we need to ensure we delete old commits for this test,
-comment|// otherwise IndexUpgrader gets angry
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|assertEquals
 argument_list|(
 literal|"Original index must be single segment"

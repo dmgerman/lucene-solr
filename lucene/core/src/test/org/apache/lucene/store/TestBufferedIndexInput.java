@@ -1184,8 +1184,6 @@ name|random
 argument_list|()
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|IndexWriter
 name|writer
 init|=
@@ -1556,17 +1554,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|IOUtils
-operator|.
-name|rm
-argument_list|(
-name|indexDir
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 DECL|class|MockFSDirectory
 specifier|private

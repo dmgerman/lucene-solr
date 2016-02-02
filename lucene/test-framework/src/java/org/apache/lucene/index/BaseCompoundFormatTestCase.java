@@ -1267,28 +1267,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// test lists files manually and tries to verify every .cfs it finds,
-comment|// but a virus scanner could leave some trash.
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 comment|// riw should sometimes create docvalues fields, etc
 name|RandomIndexWriter
 name|riw
@@ -1757,9 +1735,14 @@ try|try
 block|{
 name|cfs
 operator|.
-name|deleteFile
+name|deleteFiles
+argument_list|(
+name|Collections
+operator|.
+name|singleton
 argument_list|(
 name|testfile
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|fail

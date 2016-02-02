@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -121,6 +131,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressFileSystems
 import|;
 end_import
 
@@ -135,8 +147,20 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|SuppressFileSystems
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
@@ -183,22 +207,6 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
-comment|// don't act like windows either, or the test won't simulate the condition
-name|dir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// Allow deletion of still open files:
-name|dir
-operator|.
-name|setNoDeleteOpenFile
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 comment|// Allow writing to same file more than once:
 name|dir
 operator|.
@@ -315,25 +323,21 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// Blow away index and make a new writer:
-for|for
-control|(
-name|String
-name|fileName
-range|:
+name|dir
+operator|.
+name|deleteFiles
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
 name|dir
 operator|.
 name|listAll
 argument_list|()
-control|)
-block|{
-name|dir
-operator|.
-name|deleteFile
-argument_list|(
-name|fileName
+argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|w
 operator|=
 operator|new

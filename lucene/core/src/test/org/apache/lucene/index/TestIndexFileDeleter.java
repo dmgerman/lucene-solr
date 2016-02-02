@@ -236,6 +236,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/*   Verify we can read the pre-2.1 file format, do searches   against it, and add documents to it. */
 end_comment
@@ -277,19 +291,6 @@ name|dir
 operator|)
 operator|.
 name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// ensure we actually delete files
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setEnableVirusScanner
 argument_list|(
 literal|false
 argument_list|)
@@ -1371,14 +1372,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|// we arent trying to test this
-name|dir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// we have our own to make test reproduce always
 comment|// add empty commit
 operator|new
 name|IndexWriter

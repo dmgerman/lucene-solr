@@ -140,6 +140,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
+import|;
+end_import
+
 begin_comment
 comment|/** Tests that&gt; 64k affixes actually works and doesnt overflow some internal int */
 end_comment
@@ -310,26 +324,6 @@ name|newDirectory
 argument_list|()
 init|)
 block|{
-if|if
-condition|(
-name|tempDir2
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|tempDir2
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|Dictionary
 name|dictionary
 init|=

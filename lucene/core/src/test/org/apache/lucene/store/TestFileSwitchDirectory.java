@@ -678,15 +678,6 @@ argument_list|(
 literal|"bar"
 argument_list|)
 decl_stmt|;
-name|IOUtils
-operator|.
-name|rm
-argument_list|(
-name|primDir
-argument_list|,
-name|secondDir
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=

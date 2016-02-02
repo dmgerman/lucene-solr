@@ -110,14 +110,17 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Removes an existing file in the directory. */
-DECL|method|deleteFile
+comment|/** Removes the specified files from the directory.  If an exception is thrown, behavior is undefined    *  (none, some or all of the files may have in fact been deleted). */
+DECL|method|deleteFiles
 specifier|public
 specifier|abstract
 name|void
-name|deleteFile
+name|deleteFiles
 parameter_list|(
+name|Collection
+argument_list|<
 name|String
+argument_list|>
 name|name
 parameter_list|)
 throws|throws

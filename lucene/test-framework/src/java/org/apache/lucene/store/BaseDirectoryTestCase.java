@@ -1089,9 +1089,14 @@ argument_list|)
 expr_stmt|;
 name|dir
 operator|.
-name|deleteFile
+name|deleteFiles
+argument_list|(
+name|Collections
+operator|.
+name|singleton
 argument_list|(
 literal|"foo.txt"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -4303,6 +4308,18 @@ argument_list|(
 literal|"doesnotexist"
 argument_list|)
 decl_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"test directly deletes files"
+argument_list|,
+name|TestUtil
+operator|.
+name|hasVirusChecker
+argument_list|(
+name|tempDir
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|IOUtils
 operator|.
 name|rm
@@ -4833,16 +4850,21 @@ argument_list|()
 expr_stmt|;
 name|dir
 operator|.
-name|deleteFile
+name|deleteFiles
 argument_list|(
-literal|"test"
-argument_list|)
-expr_stmt|;
-name|dir
+name|Arrays
 operator|.
-name|deleteFile
+name|asList
 argument_list|(
+operator|new
+name|String
+index|[]
+block|{
+literal|"test"
+block|,
 literal|"test2"
+block|}
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|dir
@@ -5298,6 +5320,18 @@ argument_list|(
 literal|"nocreate"
 argument_list|)
 decl_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"we directly delete files"
+argument_list|,
+name|TestUtil
+operator|.
+name|hasVirusChecker
+argument_list|(
+name|path
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Directory
 name|fsdir
 init|=
@@ -8159,7 +8193,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// In case ExtraFS struck:
+comment|// In case ExtrasFS struck:
 name|files
 operator|.
 name|remove

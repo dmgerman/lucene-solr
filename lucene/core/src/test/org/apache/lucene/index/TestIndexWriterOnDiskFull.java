@@ -414,14 +414,6 @@ argument_list|)
 decl_stmt|;
 name|dir
 operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// currently uses the IW unreferenced files method, unaware of retries
-name|dir
-operator|.
 name|setMaxSizeInBytes
 argument_list|(
 name|diskFree

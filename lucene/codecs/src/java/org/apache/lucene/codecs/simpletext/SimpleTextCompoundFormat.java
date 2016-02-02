@@ -954,9 +954,12 @@ annotation|@
 name|Override
 specifier|public
 name|void
-name|deleteFile
+name|deleteFiles
 parameter_list|(
+name|Collection
+argument_list|<
 name|String
+argument_list|>
 name|name
 parameter_list|)
 block|{

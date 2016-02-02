@@ -6804,14 +6804,6 @@ name|RAMDirectory
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|dir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// we check for specific list of files
 name|IndexWriterConfig
 name|conf
 init|=

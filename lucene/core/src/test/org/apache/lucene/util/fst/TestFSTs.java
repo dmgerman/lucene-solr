@@ -633,6 +633,22 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressFileSystems
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -662,7 +678,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|CompiledAutomaton
+name|Automaton
 import|;
 end_import
 
@@ -678,7 +694,7 @@ name|util
 operator|.
 name|automaton
 operator|.
-name|Automaton
+name|CompiledAutomaton
 import|;
 end_import
 
@@ -871,6 +887,13 @@ literal|"Direct"
 block|}
 argument_list|)
 annotation|@
+name|SuppressFileSystems
+argument_list|(
+block|{
+literal|"VirusCheckingFS"
+block|}
+argument_list|)
+annotation|@
 name|Slow
 DECL|class|TestFSTs
 specifier|public
@@ -907,13 +930,6 @@ expr_stmt|;
 name|dir
 operator|.
 name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|dir
-operator|.
-name|setEnableVirusScanner
 argument_list|(
 literal|false
 argument_list|)

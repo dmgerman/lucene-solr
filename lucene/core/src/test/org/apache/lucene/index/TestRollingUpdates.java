@@ -204,27 +204,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// test checks for no unref'ed files with the IW helper method, which isn't aware of "tried to delete files"
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 specifier|final
 name|LineFileDocs
 name|docs

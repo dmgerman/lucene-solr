@@ -28,6 +28,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -279,38 +289,21 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-for|for
-control|(
-name|String
-name|fileName
-range|:
+name|d
+operator|.
+name|deleteFiles
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
 name|d
 operator|.
 name|listAll
 argument_list|()
-control|)
-block|{
-try|try
-block|{
-name|d
-operator|.
-name|deleteFile
-argument_list|(
-name|fileName
+argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// may succeed, e.g. if the file is completely read into RAM.
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-comment|// ignore: this means codec (correctly) is holding
-comment|// the file open
-block|}
-block|}
 for|for
 control|(
 name|LeafReaderContext

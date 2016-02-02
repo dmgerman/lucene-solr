@@ -3220,6 +3220,18 @@ argument_list|(
 literal|"TestIndexReader.testFilesOpenClose"
 argument_list|)
 decl_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"test directly deletes files"
+argument_list|,
+name|TestUtil
+operator|.
+name|hasVirusChecker
+argument_list|(
+name|dirFile
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -3384,6 +3396,18 @@ argument_list|(
 name|dirFile
 argument_list|)
 decl_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"test deletes files directly"
+argument_list|,
+name|TestUtil
+operator|.
+name|hasVirusChecker
+argument_list|(
+name|dir
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|dir
@@ -5179,13 +5203,6 @@ argument_list|(
 literal|"doesnotexist"
 argument_list|)
 decl_stmt|;
-name|IOUtils
-operator|.
-name|rm
-argument_list|(
-name|tempDir
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=

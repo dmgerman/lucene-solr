@@ -2035,9 +2035,14 @@ argument_list|()
 expr_stmt|;
 name|dir
 operator|.
-name|deleteFile
+name|deleteFiles
+argument_list|(
+name|Collections
+operator|.
+name|singleton
 argument_list|(
 literal|"fst.bin"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

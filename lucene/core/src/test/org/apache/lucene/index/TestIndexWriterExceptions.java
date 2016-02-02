@@ -5834,7 +5834,7 @@ name|getClassName
 argument_list|()
 argument_list|)
 operator|&&
-literal|"deleteFile"
+literal|"deleteFiles"
 operator|.
 name|equals
 argument_list|(
@@ -6017,14 +6017,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-name|dir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// we check for specific list of files
 name|int
 name|fileCount
 init|=
@@ -6126,6 +6118,18 @@ comment|// Expected
 block|}
 name|assertTrue
 argument_list|(
+literal|"failOnCommit="
+operator|+
+name|failure
+operator|.
+name|failOnCommit
+operator|+
+literal|" failOnDeleteFile="
+operator|+
+name|failure
+operator|.
+name|failOnDeleteFile
+argument_list|,
 name|failure
 operator|.
 name|failOnCommit
@@ -7209,27 +7213,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|// we are corrupting it!
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// we want to ensure our corruption always succeeds!
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|IndexWriter
 name|writer
 init|=
@@ -7410,9 +7393,14 @@ argument_list|()
 expr_stmt|;
 name|dir
 operator|.
-name|deleteFile
+name|deleteFiles
+argument_list|(
+name|Collections
+operator|.
+name|singleton
 argument_list|(
 name|fileNameIn
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|IndexReader
@@ -7487,27 +7475,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|// we are corrupting it!
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// we want to ensure our corruption always succeeds!
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|IndexWriter
 name|writer
 init|=
@@ -7686,13 +7653,18 @@ argument_list|)
 expr_stmt|;
 name|dir
 operator|.
-name|deleteFile
+name|deleteFiles
+argument_list|(
+name|Collections
+operator|.
+name|singleton
 argument_list|(
 name|victims
 operator|.
 name|get
 argument_list|(
 literal|0
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

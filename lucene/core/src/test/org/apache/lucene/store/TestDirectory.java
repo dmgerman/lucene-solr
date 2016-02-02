@@ -66,6 +66,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -98,6 +108,20 @@ name|LuceneTestCase
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
+import|;
+end_import
+
 begin_class
 DECL|class|TestDirectory
 specifier|public
@@ -125,6 +149,18 @@ argument_list|(
 literal|"testDirectInstantiation"
 argument_list|)
 decl_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"test deletes files through different FSDir instances"
+argument_list|,
+name|TestUtil
+operator|.
+name|hasVirusChecker
+argument_list|(
+name|path
+argument_list|)
+argument_list|)
+expr_stmt|;
 specifier|final
 name|byte
 index|[]
@@ -500,9 +536,14 @@ operator|.
 name|length
 index|]
 operator|.
-name|deleteFile
+name|deleteFiles
+argument_list|(
+name|Collections
+operator|.
+name|singleton
 argument_list|(
 name|fname
+argument_list|)
 argument_list|)
 expr_stmt|;
 for|for
@@ -658,13 +699,6 @@ name|isOpen
 argument_list|)
 expr_stmt|;
 block|}
-name|IOUtils
-operator|.
-name|rm
-argument_list|(
-name|path
-argument_list|)
-expr_stmt|;
 block|}
 comment|// LUCENE-1468
 annotation|@
@@ -688,8 +722,6 @@ argument_list|(
 literal|"testsubdir"
 argument_list|)
 decl_stmt|;
-try|try
-block|{
 name|Files
 operator|.
 name|createDirectory
@@ -752,17 +784,6 @@ literal|"subdir"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
-finally|finally
-block|{
-name|IOUtils
-operator|.
-name|rm
-argument_list|(
-name|path
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 comment|// LUCENE-1468
 DECL|method|testNotDirectory
@@ -857,13 +878,6 @@ name|fsDir
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|IOUtils
-operator|.
-name|rm
-argument_list|(
-name|path
-argument_list|)
 expr_stmt|;
 block|}
 block|}
