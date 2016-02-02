@@ -263,7 +263,7 @@ literal|null
 expr_stmt|;
 block|}
 block|}
-comment|/** Copy the current contents of this buffer to the named output. */
+comment|/** Copy the current contents of this buffer to the provided {@link DataOutput}. */
 DECL|method|writeTo
 specifier|public
 name|void
