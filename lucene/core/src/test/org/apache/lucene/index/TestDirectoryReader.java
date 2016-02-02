@@ -3396,18 +3396,29 @@ argument_list|(
 name|dirFile
 argument_list|)
 decl_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"test deletes files directly"
-argument_list|,
+if|if
+condition|(
 name|TestUtil
 operator|.
 name|hasVirusChecker
 argument_list|(
 name|dir
 argument_list|)
+condition|)
+block|{
+name|dir
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|assumeTrue
+argument_list|(
+literal|"test deletes files directly"
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|dir
@@ -7480,13 +7491,6 @@ argument_list|(
 literal|"testIndexExistsOnNonExistentDirectory"
 argument_list|)
 decl_stmt|;
-name|IOUtils
-operator|.
-name|rm
-argument_list|(
-name|tempDir
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=

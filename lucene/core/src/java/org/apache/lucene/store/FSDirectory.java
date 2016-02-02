@@ -646,7 +646,6 @@ name|pendingDeletes
 argument_list|)
 return|;
 block|}
-comment|/** Returns the length in bytes of a file in the directory. */
 annotation|@
 name|Override
 DECL|method|fileLength
@@ -677,7 +676,6 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/** Removes an existing file in the directory. */
 annotation|@
 name|Override
 DECL|method|deleteFiles
@@ -697,6 +695,7 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+comment|// nocommit isn't it an error if they were already pending delete?
 name|pendingDeletes
 operator|.
 name|addAll
@@ -708,7 +707,6 @@ name|deletePendingFiles
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Creates an IndexOutput for the file with the given name. */
 annotation|@
 name|Override
 DECL|method|createOutput
@@ -912,7 +910,7 @@ literal|"file \""
 operator|+
 name|name
 operator|+
-literal|"\" is pending delete and cannot be overwritten"
+literal|"\" is pending delete and cannot be opened for read"
 argument_list|)
 throw|;
 block|}
@@ -1005,7 +1003,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Closes the store to future operations. */
 annotation|@
 name|Override
 DECL|method|close
@@ -1039,7 +1036,6 @@ return|return
 name|directory
 return|;
 block|}
-comment|/** For debug output. */
 annotation|@
 name|Override
 DECL|method|toString
@@ -1098,6 +1094,7 @@ block|}
 comment|/** Returns true if the file was successfully removed. */
 DECL|method|deleteFile
 specifier|private
+specifier|synchronized
 name|boolean
 name|deleteFile
 parameter_list|(
@@ -1107,6 +1104,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|pendingDeletes
+operator|.
+name|remove
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|Files
@@ -1119,13 +1123,6 @@ name|resolve
 argument_list|(
 name|name
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|pendingDeletes
-operator|.
-name|remove
-argument_list|(
-name|name
 argument_list|)
 expr_stmt|;
 return|return
@@ -1141,13 +1138,6 @@ name|e
 parameter_list|)
 block|{
 comment|// We were asked to delete a non-existent file:
-name|pendingDeletes
-operator|.
-name|remove
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
 throw|throw
 name|e
 throw|;
@@ -1200,9 +1190,10 @@ operator|==
 literal|false
 return|;
 block|}
-comment|/** Try to delete any pending files that we had previously tried to delete but failed    *  because we are on Windows and the files were still    *  held open. */
+comment|/** Try to delete any pending files that we had previously tried to delete but failed    *  because we are on Windows and the files were still held open. */
 DECL|method|deletePendingFiles
 specifier|public
+specifier|synchronized
 name|void
 name|deletePendingFiles
 parameter_list|()
@@ -1224,9 +1215,25 @@ argument_list|(
 name|pendingDeletes
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"del pending: "
+operator|+
+name|pendingDeletes
+argument_list|)
+expr_stmt|;
 comment|// First pass: delete any segments_N files.  We do these first to be certain stale commit points are removed
 comment|// before we remove any files they reference.  If any delete of segments_N fails, we leave all other files
 comment|// undeleted so index is never in a corrupt state:
+name|Throwable
+name|firstException
+init|=
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|String
@@ -1247,6 +1254,8 @@ name|SEGMENTS
 argument_list|)
 condition|)
 block|{
+try|try
+block|{
 if|if
 condition|(
 name|deleteFile
@@ -1257,7 +1266,77 @@ operator|==
 literal|false
 condition|)
 block|{
+comment|// nocommit
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  false on "
+operator|+
+name|fileName
+operator|+
+literal|"; skipping the rest"
+argument_list|)
+expr_stmt|;
 return|return;
+block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|firstException
+operator|==
+literal|null
+condition|)
+block|{
+name|firstException
+operator|=
+name|t
+expr_stmt|;
+block|}
+else|else
+block|{
+name|firstException
+operator|.
+name|addSuppressed
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+comment|// nocommit
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  fail on "
+operator|+
+name|fileName
+operator|+
+literal|":"
+argument_list|)
+expr_stmt|;
+name|t
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+throw|throw
+name|t
+throw|;
 block|}
 block|}
 block|}
@@ -1285,13 +1364,79 @@ operator|==
 literal|false
 condition|)
 block|{
+try|try
+block|{
 name|deleteFile
 argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
 block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+if|if
+condition|(
+name|firstException
+operator|==
+literal|null
+condition|)
+block|{
+name|firstException
+operator|=
+name|t
+expr_stmt|;
 block|}
+else|else
+block|{
+name|firstException
+operator|.
+name|addSuppressed
+argument_list|(
+name|t
+argument_list|)
+expr_stmt|;
+block|}
+comment|// nocommit
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"  fail on "
+operator|+
+name|fileName
+operator|+
+literal|":"
+argument_list|)
+expr_stmt|;
+name|t
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+throw|throw
+name|t
+throw|;
+block|}
+block|}
+block|}
+comment|// Does nothing if firstException is null:
+name|IOUtils
+operator|.
+name|reThrow
+argument_list|(
+name|firstException
+argument_list|)
+expr_stmt|;
 block|}
 DECL|class|FSIndexOutput
 specifier|final

@@ -98,6 +98,20 @@ name|IndexWriter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
 begin_comment
 comment|/**   * Acts like Windows, where random programs may open the files you just wrote in an unfriendly  * way preventing deletion (e.g. not passing FILE_SHARE_DELETE) or renaming or overwriting etc.  */
 end_comment
@@ -221,6 +235,27 @@ operator|==
 literal|1
 condition|)
 block|{
+if|if
+condition|(
+literal|true
+operator|||
+name|LuceneTestCase
+operator|.
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"NOTE: VirusCheckingFS now refusing to delete "
+operator|+
+name|path
+argument_list|)
+expr_stmt|;
+block|}
 throw|throw
 operator|new
 name|AccessDeniedException
