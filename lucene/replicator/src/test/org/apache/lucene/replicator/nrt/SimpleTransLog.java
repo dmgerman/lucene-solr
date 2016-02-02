@@ -1198,7 +1198,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|//System.out.println("xlog: replay marker=" + id);
+comment|//TestStressNRTReplication.message("xlog: replay marker=" + id);
 name|doc
 operator|.
 name|add

@@ -481,7 +481,27 @@ import|;
 end_import
 
 begin_comment
-comment|/*   TODO     - fangs       - sometimes have one replica be really slow at copying / have random pauses (fake GC) / etc.     - why do we do the "rename temp to actual" all at the end...?  what really does that buy us?     - replica should also track maxSegmentName its seen, and tap into inflateGens if it's later promoted to primary?     - test should not print scary exceptions and then succeed!     - since all nodes are local, we could have a different test only impl that just does local file copies instead of via tcp...     - are the pre-copied-completed-merged files not being cleared in primary?       - hmm the logic isn't right today?  a replica may skip pulling a given copy state, that recorded the finished merged segments?     - beast& fix bugs     - graceful cluster restart     - better translog integration     - get "graceful primary shutdown" working     - there is still some global state we rely on for "correctness", e.g. lastPrimaryVersion     - clean up how version is persisted in commit data     - why am i not using hashes here?  how does ES use them?     - get all other "single shard" functions working too: this cluster should "act like" a single shard       - SLM       - controlled nrt reopen thread / returning long gen on write       - live field values       - add indexes     - make cluster level APIs to search, index, that deal w/ primary failover, etc.     - must prune xlog       - refuse to start primary unless we have quorum     - later       - if we named index files using segment's ID we wouldn't have file name conflicts after primary crash / rollback?       - back pressure on indexing if replicas can't keep up?       - get xlog working on top?  needs to be checkpointed, so we can correlate IW ops to NRT reader version and prune xlog based on commit         quorum         - maybe fix IW to return "gen" or "seq id" or "segment name" or something?       - replica can copy files from other replicas too / use multicast / rsync / something       - each replica could also pre-open a SegmentReader after pre-copy when warming a merge       - we can pre-copy newly flushed files too, for cases where reopen rate is low vs IW's flushing because RAM buffer is full       - opto: pre-copy files as they are written; if they will become CFS, we can build CFS on the replica?       - what about multiple commit points?       - fix primary to init directly from an open replica, instead of having to commit/close the replica first */
+comment|// nocommit why so many "hit SocketException during commit with R0"?
+end_comment
+
+begin_comment
+comment|// nocommit why so much time when so many nodes are down
+end_comment
+
+begin_comment
+comment|// nocommit indexing is too fast?  (xlog replay fails to finish before primary crashes itself)
+end_comment
+
+begin_comment
+comment|// nocommit why all these NodeCommunicationExcs?
+end_comment
+
+begin_comment
+comment|// nocommit the sockets are a pita on jvm crashing ...
+end_comment
+
+begin_comment
+comment|/*   TODO     - fangs       - sometimes have one replica be really slow at copying / have random pauses (fake GC) / etc.       - graceful primary close     - why do we do the "rename temp to actual" all at the end...?  what really does that buy us?     - replica should also track maxSegmentName its seen, and tap into inflateGens if it's later promoted to primary?     - test should not print scary exceptions and then succeed!     - since all nodes are local, we could have a different test only impl that just does local file copies instead of via tcp...     - are the pre-copied-completed-merged files not being cleared in primary?       - hmm the logic isn't right today?  a replica may skip pulling a given copy state, that recorded the finished merged segments?     - beast& fix bugs     - graceful cluster restart     - better translog integration     - get "graceful primary shutdown" working     - there is still some global state we rely on for "correctness", e.g. lastPrimaryVersion     - clean up how version is persisted in commit data     - why am i not using hashes here?  how does ES use them?     - get all other "single shard" functions working too: this cluster should "act like" a single shard       - SLM       - controlled nrt reopen thread / returning long gen on write       - live field values       - add indexes     - make cluster level APIs to search, index, that deal w/ primary failover, etc.     - must prune xlog       - refuse to start primary unless we have quorum     - later       - if we named index files using segment's ID we wouldn't have file name conflicts after primary crash / rollback?       - back pressure on indexing if replicas can't keep up?       - get xlog working on top?  needs to be checkpointed, so we can correlate IW ops to NRT reader version and prune xlog based on commit         quorum         - maybe fix IW to return "gen" or "seq id" or "segment name" or something?       - replica can copy files from other replicas too / use multicast / rsync / something       - each replica could also pre-open a SegmentReader after pre-copy when warming a merge       - we can pre-copy newly flushed files too, for cases where reopen rate is low vs IW's flushing because RAM buffer is full       - opto: pre-copy files as they are written; if they will become CFS, we can build CFS on the replica?       - what about multiple commit points?       - fix primary to init directly from an open replica, instead of having to commit/close the replica first */
 end_comment
 
 begin_comment
@@ -580,6 +600,15 @@ name|DO_CLOSE_REPLICA
 init|=
 literal|true
 decl_stmt|;
+comment|/** Randomly gracefully close the primary; it will later be restarted and sync itself. */
+DECL|field|DO_CLOSE_PRIMARY
+specifier|static
+specifier|final
+name|boolean
+name|DO_CLOSE_PRIMARY
+init|=
+literal|true
+decl_stmt|;
 comment|/** If false, all child + parent output is interleaved into single stdout/err */
 DECL|field|SEPARATE_CHILD_OUTPUT
 specifier|static
@@ -589,7 +618,6 @@ name|SEPARATE_CHILD_OUTPUT
 init|=
 literal|false
 decl_stmt|;
-comment|// nocommit DO_CLOSE_PRIMARY?
 comment|/** Randomly crash whole cluster and then restart it */
 DECL|field|DO_FULL_CLUSTER_CRASH
 specifier|static
@@ -616,14 +644,6 @@ name|Integer
 name|NUM_NODES
 init|=
 literal|null
-decl_stmt|;
-DECL|field|DO_RANDOM_XLOG_REPLAY
-specifier|static
-specifier|final
-name|boolean
-name|DO_RANDOM_XLOG_REPLAY
-init|=
-literal|false
 decl_stmt|;
 DECL|field|failed
 specifier|final
@@ -698,6 +718,15 @@ DECL|field|markerUpto
 specifier|final
 name|AtomicInteger
 name|markerUpto
+init|=
+operator|new
+name|AtomicInteger
+argument_list|()
+decl_stmt|;
+DECL|field|markerID
+specifier|final
+name|AtomicInteger
+name|markerID
 init|=
 operator|new
 name|AtomicInteger
@@ -836,13 +865,15 @@ argument_list|,
 literal|0L
 argument_list|)
 expr_stmt|;
-name|versionToTransLogLocation
+comment|// nocommit why also 1?
+comment|//versionToTransLogLocation.put(1L, 0L);
+name|versionToMarker
 operator|.
 name|put
 argument_list|(
-literal|1L
-argument_list|,
 literal|0L
+argument_list|,
+literal|0
 argument_list|)
 expr_stmt|;
 name|int
@@ -1326,11 +1357,6 @@ name|nextBoolean
 argument_list|()
 condition|)
 block|{
-name|message
-argument_list|(
-literal|"top: now flush primary"
-argument_list|)
-expr_stmt|;
 name|NodeProcess
 name|curPrimary
 init|=
@@ -1360,6 +1386,13 @@ operator|.
 name|get
 argument_list|()
 decl_stmt|;
+name|message
+argument_list|(
+literal|"top: now flush primary; at least marker count="
+operator|+
+name|markerUptoSav
+argument_list|)
+expr_stmt|;
 name|long
 name|result
 decl_stmt|;
@@ -1370,7 +1403,9 @@ operator|=
 name|primary
 operator|.
 name|flush
-argument_list|()
+argument_list|(
+name|markerUptoSav
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -1403,6 +1438,13 @@ literal|0
 condition|)
 block|{
 comment|// There were changes
+name|message
+argument_list|(
+literal|"top: flush finished with changed; new primary version="
+operator|+
+name|result
+argument_list|)
+expr_stmt|;
 name|lastPrimaryVersion
 operator|=
 name|result
@@ -1575,6 +1617,15 @@ condition|(
 name|node
 operator|!=
 literal|null
+operator|&&
+name|node
+operator|.
+name|nodeIsClosing
+operator|.
+name|get
+argument_list|()
+operator|==
+literal|false
 condition|)
 block|{
 comment|// TODO: if this node is primary, it means we committed a "partial" version (not exposed as an NRT point)... not sure it matters.
@@ -2185,6 +2236,10 @@ operator|+
 name|newPrimary
 operator|.
 name|initInfosVersion
+operator|+
+literal|"; startup marker count "
+operator|+
+name|markerCount
 argument_list|)
 expr_stmt|;
 name|lastPrimaryVersion
@@ -2192,23 +2247,6 @@ operator|=
 name|newPrimary
 operator|.
 name|initInfosVersion
-expr_stmt|;
-comment|// Publish new primary, before replaying xlog.  This means other indexing ops can come in at the same time as we catch up indexing
-comment|// previous ops.  Effectively, we have "forked" the indexing ops, by rolling back in time a bit, and replaying old indexing ops (from
-comment|// translog) concurrently with new incoming ops.
-name|nodes
-index|[
-name|id
-index|]
-operator|=
-name|newPrimary
-expr_stmt|;
-name|primary
-operator|=
-name|newPrimary
-expr_stmt|;
-name|sendReplicasToPrimary
-argument_list|()
 expr_stmt|;
 name|long
 name|nextTransLogLoc
@@ -2218,17 +2256,17 @@ operator|.
 name|getNextLocation
 argument_list|()
 decl_stmt|;
-name|int
-name|nextMarkerUpto
+name|long
+name|t0
 init|=
-name|markerUpto
+name|System
 operator|.
-name|get
+name|nanoTime
 argument_list|()
 decl_stmt|;
 name|message
 argument_list|(
-literal|"top: replay trans log "
+literal|"top: start translog replay "
 operator|+
 name|startTransLogLoc
 operator|+
@@ -2265,6 +2303,7 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
+comment|// nocommit what if primary node is still running here, and we failed for some other reason?
 name|message
 argument_list|(
 literal|"top: replay xlog failed; abort"
@@ -2272,10 +2311,49 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+name|long
+name|t1
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
 name|message
 argument_list|(
-literal|"top: done replay trans log"
+literal|"top: done translog replay; took "
+operator|+
+operator|(
+operator|(
+name|t1
+operator|-
+name|t0
+operator|)
+operator|/
+literal|1000000.0
+operator|)
+operator|+
+literal|" msec; now publish primary"
 argument_list|)
+expr_stmt|;
+comment|// Publish new primary only after translog has succeeded in replaying; this is important, for this test anyway, so we keep a "linear"
+comment|// history so enforcing marker counts is correct.  E.g., if we publish first and replay translog concurrently with incoming ops, then
+comment|// a primary commit that happens while translog is still replaying will incorrectly record the translog loc into the commit user data
+comment|// when in fact that commit did NOT reflect all prior ops.  So if we crash and start up again from that commit point, we are missing
+comment|// ops.
+name|nodes
+index|[
+name|id
+index|]
+operator|=
+name|newPrimary
+expr_stmt|;
+name|primary
+operator|=
+name|newPrimary
+expr_stmt|;
+name|sendReplicasToPrimary
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** Launches a child "server" (separate JVM), which is either primary or replica node */
@@ -2461,6 +2539,19 @@ operator|.
 name|add
 argument_list|(
 literal|"-Dtests.nrtreplication.doRandomCrash=true"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|DO_CLOSE_PRIMARY
+condition|)
+block|{
+name|cmd
+operator|.
+name|add
+argument_list|(
+literal|"-Dtests.nrtreplication.doRandomClose=true"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2669,13 +2760,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|message
-argument_list|(
-literal|"child process command: "
-operator|+
-name|cmd
-argument_list|)
-expr_stmt|;
+comment|//message("child process command: " + cmd);
 name|ProcessBuilder
 name|pb
 init|=
@@ -2849,6 +2934,25 @@ name|exitValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|p
+operator|.
+name|exitValue
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"zero exit status; assuming failed to remove segments_N; skipping"
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
 comment|// Hackity hack, in case primary crashed/closed and we haven't noticed (reaped the process) yet:
 if|if
 condition|(
@@ -2882,21 +2986,33 @@ literal|0
 init|;
 name|i
 operator|<
-literal|10
+literal|100
 condition|;
 name|i
 operator|++
 control|)
 block|{
+name|NodeProcess
+name|primary2
+init|=
+name|primary
+decl_stmt|;
 if|if
 condition|(
 name|primaryGen
 operator|!=
 name|myPrimaryGen
 operator|||
-name|primary
+name|primary2
 operator|==
 literal|null
+operator|||
+name|primary2
+operator|.
+name|nodeIsClosing
+operator|.
+name|get
+argument_list|()
 condition|)
 block|{
 comment|// OK: primary crashed while we were trying to start, so it's expected/allowed that we could not start the replica:
@@ -3169,6 +3285,14 @@ name|finalWillCrash
 init|=
 name|willCrash
 decl_stmt|;
+specifier|final
+name|AtomicBoolean
+name|nodeIsClosing
+init|=
+operator|new
+name|AtomicBoolean
+argument_list|()
+decl_stmt|;
 comment|// Baby sits the child process, pulling its stdout and printing to our stdout, calling nodeClosed once it exits:
 name|Thread
 name|pumper
@@ -3371,6 +3495,8 @@ operator|.
 name|out
 argument_list|,
 name|childLog
+argument_list|,
+name|nodeIsClosing
 argument_list|)
 decl_stmt|;
 name|pumper
@@ -3418,6 +3544,8 @@ argument_list|,
 name|initCommitVersion
 argument_list|,
 name|initInfosVersion
+argument_list|,
+name|nodeIsClosing
 argument_list|)
 return|;
 block|}
@@ -3887,7 +4015,7 @@ argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-literal|50
+literal|500
 argument_list|)
 operator|==
 literal|17
@@ -4959,6 +5087,7 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+comment|// nocommit not anymore?
 comment|// This can be null if we got the new primary after crash and that primary is still catching up (replaying xlog):
 name|Integer
 name|expectedAtLeastHitCount
@@ -4970,6 +5099,15 @@ argument_list|(
 name|version
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"version="
+operator|+
+name|version
+argument_list|,
+name|expectedAtLeastHitCount
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|expectedAtLeastHitCount
@@ -5002,6 +5140,15 @@ argument_list|(
 name|SimplePrimaryNode
 operator|.
 name|CMD_MARKER_SEARCH
+argument_list|)
+expr_stmt|;
+name|c
+operator|.
+name|out
+operator|.
+name|writeVInt
+argument_list|(
+name|expectedAtLeastHitCount
 argument_list|)
 expr_stmt|;
 name|c
@@ -5474,7 +5621,7 @@ decl_stmt|;
 name|int
 name|id
 init|=
-name|markerUpto
+name|markerID
 operator|.
 name|getAndIncrement
 argument_list|()
@@ -5542,27 +5689,13 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
-name|message
-argument_list|(
-literal|"index marker="
-operator|+
-name|idString
-operator|+
-literal|"; translog is "
-operator|+
-name|Node
+comment|// Only increment after primary replies:
+name|markerUpto
 operator|.
-name|bytesToString
-argument_list|(
-name|Files
-operator|.
-name|size
-argument_list|(
-name|transLogPath
-argument_list|)
-argument_list|)
-argument_list|)
+name|getAndIncrement
+argument_list|()
 expr_stmt|;
+comment|//message("index marker=" + idString + "; translog is " + Node.bytesToString(Files.size(transLogPath)));
 block|}
 if|if
 condition|(
@@ -5736,57 +5869,6 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|DO_RANDOM_XLOG_REPLAY
-operator|&&
-name|random
-argument_list|()
-operator|.
-name|nextInt
-argument_list|(
-literal|10
-argument_list|)
-operator|==
-literal|7
-condition|)
-block|{
-name|long
-name|curLoc
-init|=
-name|transLog
-operator|.
-name|getNextLocation
-argument_list|()
-decl_stmt|;
-comment|// randomly replay chunks of translog just to test replay:
-name|message
-argument_list|(
-literal|"now randomly replay translog from "
-operator|+
-name|lastTransLogLoc
-operator|+
-literal|" to "
-operator|+
-name|curLoc
-argument_list|)
-expr_stmt|;
-name|transLog
-operator|.
-name|replay
-argument_list|(
-name|curPrimary
-argument_list|,
-name|lastTransLogLoc
-argument_list|,
-name|curLoc
-argument_list|)
-expr_stmt|;
-name|lastTransLogLoc
-operator|=
-name|curLoc
-expr_stmt|;
-block|}
 block|}
 block|}
 catch|catch
@@ -5841,7 +5923,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|1
+literal|10
 argument_list|)
 expr_stmt|;
 block|}
@@ -5858,19 +5940,9 @@ operator|==
 literal|17
 condition|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"Indexer: now pause for a bit..."
-argument_list|)
-expr_stmt|;
-name|Thread
-operator|.
-name|sleep
-argument_list|(
+name|int
+name|pauseMS
+init|=
 name|TestUtil
 operator|.
 name|nextInt
@@ -5882,6 +5954,25 @@ literal|500
 argument_list|,
 literal|2000
 argument_list|)
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"Indexer: now pause for "
+operator|+
+name|pauseMS
+operator|+
+literal|" msec..."
+argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+name|pauseMS
 argument_list|)
 expr_stmt|;
 name|System

@@ -76,6 +76,16 @@ name|java
 operator|.
 name|net
 operator|.
+name|InetAddress
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|net
+operator|.
 name|InetSocketAddress
 import|;
 end_import
@@ -303,20 +313,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
 operator|.
 name|SuppressCodecs
 import|;
@@ -335,6 +331,20 @@ operator|.
 name|LuceneTestCase
 operator|.
 name|SuppressSysoutChecks
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 import|;
 end_import
 
@@ -687,7 +697,7 @@ name|node
 operator|.
 name|message
 argument_list|(
-literal|"unexpected exception handling client connection:"
+literal|"unexpected exception handling client connection; now failing test:"
 argument_list|)
 expr_stmt|;
 name|t
@@ -697,6 +707,13 @@ argument_list|(
 name|System
 operator|.
 name|out
+argument_list|)
+expr_stmt|;
+name|IOUtils
+operator|.
+name|closeWhileHandlingException
+argument_list|(
+name|ss
 argument_list|)
 expr_stmt|;
 comment|// Test should fail with this:
@@ -1449,7 +1466,7 @@ argument_list|()
 operator|.
 name|setName
 argument_list|(
-literal|"init child "
+literal|"main child "
 operator|+
 name|id
 argument_list|)
@@ -1623,6 +1640,13 @@ operator|new
 name|ServerSocket
 argument_list|(
 literal|0
+argument_list|,
+literal|0
+argument_list|,
+name|InetAddress
+operator|.
+name|getLoopbackAddress
+argument_list|()
 argument_list|)
 init|)
 block|{
@@ -1707,6 +1731,8 @@ expr_stmt|;
 block|}
 else|else
 block|{
+try|try
+block|{
 name|node
 operator|=
 operator|new
@@ -1728,6 +1754,42 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|re
+parameter_list|)
+block|{
+if|if
+condition|(
+name|re
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"replica cannot start"
+argument_list|)
+condition|)
+block|{
+comment|// this is "OK": it means MDW's refusal to delete a segments_N commit point means we cannot start:
+name|assumeTrue
+argument_list|(
+name|re
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+throw|throw
+name|re
+throw|;
+block|}
 block|}
 name|System
 operator|.
