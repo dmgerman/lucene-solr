@@ -1874,7 +1874,14 @@ throws|throws
 name|SQLException
 block|{
 return|return
-literal|null
+name|this
+operator|.
+name|connectionStatement
+operator|.
+name|executeQuery
+argument_list|(
+literal|"select TABLE_SCHEM, TABLE_CATALOG from _SCHEMAS_"
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -2150,9 +2157,11 @@ parameter_list|()
 throws|throws
 name|SQLException
 block|{
-return|return
-literal|null
-return|;
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
 annotation|@
 name|Override

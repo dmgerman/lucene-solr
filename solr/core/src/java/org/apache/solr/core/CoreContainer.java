@@ -184,6 +184,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|regex
+operator|.
+name|Pattern
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|google
@@ -2077,7 +2089,7 @@ name|intValue
 argument_list|()
 return|;
 block|}
-comment|/**    * This method allows subclasses to construct a CoreContainer    * without any default init behavior.    *     * @param testConstructor pass (Object)null.    * @lucene.experimental    */
+comment|/**    * This method allows subclasses to construct a CoreContainer    * without any default init behavior.    *    * @param testConstructor pass (Object)null.    * @lucene.experimental    */
 DECL|method|CoreContainer
 specifier|protected
 name|CoreContainer
@@ -3658,6 +3670,60 @@ return|return
 name|coresLocator
 return|;
 block|}
+comment|// Insure that the core name won't cause problems later on.
+DECL|field|corePattern
+specifier|final
+specifier|static
+name|Pattern
+name|corePattern
+init|=
+name|Pattern
+operator|.
+name|compile
+argument_list|(
+literal|"^[\\._A-Za-z0-9]*$"
+argument_list|)
+decl_stmt|;
+DECL|method|validateCoreName
+specifier|public
+name|void
+name|validateCoreName
+parameter_list|(
+name|String
+name|name
+parameter_list|)
+block|{
+if|if
+condition|(
+name|name
+operator|==
+literal|null
+operator|||
+operator|!
+name|corePattern
+operator|.
+name|matcher
+argument_list|(
+name|name
+argument_list|)
+operator|.
+name|matches
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Invalid core name: '"
+operator|+
+name|name
+operator|+
+literal|"' Names must consist entirely of periods, underscores and alphanumerics"
+argument_list|)
+throw|;
+block|}
+block|}
 DECL|method|registerCore
 specifier|protected
 name|SolrCore
@@ -3688,42 +3754,7 @@ literal|"Can not register a null core."
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-name|name
-operator|==
-literal|null
-operator|||
-name|name
-operator|.
-name|indexOf
-argument_list|(
-literal|'/'
-argument_list|)
-operator|>=
-literal|0
-operator|||
-name|name
-operator|.
-name|indexOf
-argument_list|(
-literal|'\\'
-argument_list|)
-operator|>=
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Invalid core name: "
-operator|+
-name|name
-argument_list|)
-throw|;
-block|}
-comment|// We can register a core when creating them via the admin UI, so we need to insure that the dynamic descriptors
+comment|// We can register a core when creating them via the admin UI, so we need to ensure that the dynamic descriptors
 comment|// are up to date
 name|CoreDescriptor
 name|cd
@@ -4331,6 +4362,14 @@ operator|.
 name|setCore
 argument_list|(
 name|core
+argument_list|)
+expr_stmt|;
+name|validateCoreName
+argument_list|(
+name|dcore
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -5274,6 +5313,11 @@ name|String
 name|toName
 parameter_list|)
 block|{
+name|validateCoreName
+argument_list|(
+name|toName
+argument_list|)
+expr_stmt|;
 try|try
 init|(
 name|SolrCore
