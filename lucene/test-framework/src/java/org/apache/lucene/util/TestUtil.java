@@ -1186,7 +1186,7 @@ parameter_list|()
 block|{
 comment|//
 block|}
-comment|/**     * Convenience method unzipping zipName into destDir, cleaning up     * destDir first.    * Closes the given InputStream after extracting!     */
+comment|/**     * Convenience method unzipping zipName into destDir. You must pass it a clean destDir.    *    * Closes the given InputStream after extracting!     */
 DECL|method|unzip
 specifier|public
 specifier|static
@@ -1208,20 +1208,6 @@ operator|new
 name|BufferedInputStream
 argument_list|(
 name|in
-argument_list|)
-expr_stmt|;
-name|IOUtils
-operator|.
-name|rm
-argument_list|(
-name|destDir
-argument_list|)
-expr_stmt|;
-name|Files
-operator|.
-name|createDirectory
-argument_list|(
-name|destDir
 argument_list|)
 expr_stmt|;
 try|try

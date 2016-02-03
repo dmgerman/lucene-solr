@@ -100,7 +100,6 @@ implements|implements
 name|Closeable
 block|{
 comment|/**    * Returns an array of strings, one for each entry in the directory.    *     * @throws IOException in case of IO error    */
-comment|// nocommit should this sort?
 DECL|method|listAll
 specifier|public
 specifier|abstract
