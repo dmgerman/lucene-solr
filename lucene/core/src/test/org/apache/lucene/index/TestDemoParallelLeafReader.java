@@ -2724,7 +2724,7 @@ specifier|private
 class|class
 name|ReindexingMergePolicy
 extends|extends
-name|MergePolicy
+name|MergePolicyWrapper
 block|{
 DECL|class|ReindexingOneMerge
 class|class
@@ -3124,11 +3124,6 @@ return|return
 name|wrapped
 return|;
 block|}
-DECL|field|in
-specifier|final
-name|MergePolicy
-name|in
-decl_stmt|;
 comment|/** Create a new {@code MergePolicy} that sorts documents with the given {@code sort}. */
 DECL|method|ReindexingMergePolicy
 specifier|public
@@ -3138,11 +3133,10 @@ name|MergePolicy
 name|in
 parameter_list|)
 block|{
-name|this
-operator|.
+name|super
+argument_list|(
 name|in
-operator|=
-name|in
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@

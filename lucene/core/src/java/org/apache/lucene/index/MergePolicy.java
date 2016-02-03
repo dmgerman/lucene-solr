@@ -1466,7 +1466,6 @@ block|}
 comment|/** Returns current {@code noCFSRatio}.    *    *  @see #setNoCFSRatio */
 DECL|method|getNoCFSRatio
 specifier|public
-specifier|final
 name|double
 name|getNoCFSRatio
 parameter_list|()
@@ -1478,7 +1477,6 @@ block|}
 comment|/** If a merged segment will be more than this percentage    *  of the total size of the index, leave the segment as    *  non-compound file even if compound file is enabled.    *  Set to 1.0 to always use CFS regardless of merge    *  size. */
 DECL|method|setNoCFSRatio
 specifier|public
-specifier|final
 name|void
 name|setNoCFSRatio
 parameter_list|(
@@ -1533,7 +1531,6 @@ block|}
 comment|/** If a merged segment will be more than this value,    *  leave the segment as    *  non-compound file even if compound file is enabled.    *  Set this to Double.POSITIVE_INFINITY (default) and noCFSRatio to 1.0    *  to always use CFS regardless of merge size. */
 DECL|method|setMaxCFSSegmentSizeMB
 specifier|public
-specifier|final
 name|void
 name|setMaxCFSSegmentSizeMB
 parameter_list|(
