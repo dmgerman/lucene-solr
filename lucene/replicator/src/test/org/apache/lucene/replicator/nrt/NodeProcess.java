@@ -757,21 +757,9 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"top: shutdown failed; skipping"
+literal|"top: shutdown failed; ignoring"
 argument_list|)
 expr_stmt|;
-name|t
-operator|.
-name|printStackTrace
-argument_list|(
-name|System
-operator|.
-name|out
-argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
 block|}
 try|try
 block|{

@@ -227,6 +227,10 @@ import|;
 end_import
 
 begin_comment
+comment|// nocommit make some explicit failure tests
+end_comment
+
+begin_comment
 comment|// MockRandom's .sd file has no index header/footer:
 end_comment
 
