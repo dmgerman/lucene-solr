@@ -972,7 +972,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit true:
 if|if
 condition|(
 name|allowed
@@ -984,9 +983,6 @@ operator|.
 name|class
 argument_list|)
 operator|&&
-operator|(
-literal|true
-operator|||
 name|random
 operator|.
 name|nextInt
@@ -995,7 +991,6 @@ literal|10
 argument_list|)
 operator|==
 literal|1
-operator|)
 condition|)
 block|{
 comment|// 10% of the time we swap in virus checking (acts-like-windows) FS:
