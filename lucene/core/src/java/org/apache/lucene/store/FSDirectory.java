@@ -588,11 +588,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|ensureCanWrite
-argument_list|(
-name|name
-argument_list|)
-expr_stmt|;
 return|return
 operator|new
 name|FSIndexOutput
@@ -689,31 +684,6 @@ block|{
 comment|// Retry with next random name
 block|}
 block|}
-block|}
-DECL|method|ensureCanWrite
-specifier|protected
-name|void
-name|ensureCanWrite
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|Files
-operator|.
-name|deleteIfExists
-argument_list|(
-name|directory
-operator|.
-name|resolve
-argument_list|(
-name|name
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// delete existing, if any
 block|}
 annotation|@
 name|Override
