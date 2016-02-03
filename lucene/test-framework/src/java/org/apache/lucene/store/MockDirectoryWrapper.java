@@ -3689,7 +3689,6 @@ literal|"\nNOTE: MockDirectoryWrapper: now run CheckIndex"
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit: we should also confirm all prior segments_N are not corrupt?
 name|TestUtil
 operator|.
 name|checkIndex
