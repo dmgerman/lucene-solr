@@ -930,15 +930,12 @@ block|}
 comment|/** Not implemented    * @throws UnsupportedOperationException always: not supported by CFS */
 annotation|@
 name|Override
-DECL|method|deleteFiles
+DECL|method|deleteFile
 specifier|public
 name|void
-name|deleteFiles
+name|deleteFile
 parameter_list|(
-name|Collection
-argument_list|<
 name|String
-argument_list|>
 name|name
 parameter_list|)
 block|{

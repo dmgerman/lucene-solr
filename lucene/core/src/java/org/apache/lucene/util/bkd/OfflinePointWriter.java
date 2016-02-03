@@ -30,16 +30,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -380,17 +370,12 @@ name|IOException
 block|{
 name|tempDir
 operator|.
-name|deleteFiles
-argument_list|(
-name|Collections
-operator|.
-name|singleton
+name|deleteFile
 argument_list|(
 name|out
 operator|.
 name|getName
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

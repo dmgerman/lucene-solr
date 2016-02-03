@@ -42,16 +42,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -232,9 +222,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|store
+name|util
 operator|.
-name|MockDirectoryWrapper
+name|LuceneTestCase
 import|;
 end_import
 
@@ -251,20 +241,6 @@ operator|.
 name|LuceneTestCase
 operator|.
 name|SuppressFileSystems
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
 import|;
 end_import
 
@@ -1711,11 +1687,7 @@ break|break;
 block|}
 name|dir
 operator|.
-name|deleteFiles
-argument_list|(
-name|Collections
-operator|.
-name|singleton
+name|deleteFile
 argument_list|(
 name|IndexFileNames
 operator|.
@@ -1728,7 +1700,6 @@ argument_list|,
 literal|""
 argument_list|,
 name|gen
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2162,11 +2133,7 @@ argument_list|()
 expr_stmt|;
 name|dir
 operator|.
-name|deleteFiles
-argument_list|(
-name|Collections
-operator|.
-name|singleton
+name|deleteFile
 argument_list|(
 name|IndexFileNames
 operator|.
@@ -2179,7 +2146,6 @@ argument_list|,
 literal|""
 argument_list|,
 name|gen
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3451,11 +3417,7 @@ condition|)
 block|{
 name|dir
 operator|.
-name|deleteFiles
-argument_list|(
-name|Collections
-operator|.
-name|singleton
+name|deleteFile
 argument_list|(
 name|IndexFileNames
 operator|.
@@ -3468,7 +3430,6 @@ argument_list|,
 literal|""
 argument_list|,
 name|gen
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4179,11 +4140,7 @@ condition|)
 block|{
 name|dir
 operator|.
-name|deleteFiles
-argument_list|(
-name|Collections
-operator|.
-name|singleton
+name|deleteFile
 argument_list|(
 name|IndexFileNames
 operator|.
@@ -4196,7 +4153,6 @@ argument_list|,
 literal|""
 argument_list|,
 name|gen
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -1735,14 +1735,9 @@ try|try
 block|{
 name|cfs
 operator|.
-name|deleteFiles
-argument_list|(
-name|Collections
-operator|.
-name|singleton
+name|deleteFile
 argument_list|(
 name|testfile
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|fail

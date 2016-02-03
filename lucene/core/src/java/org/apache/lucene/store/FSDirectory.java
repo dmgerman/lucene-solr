@@ -318,7 +318,7 @@ name|Path
 name|directory
 decl_stmt|;
 comment|// The underlying filesystem directory
-comment|/** Files we previously tried to delete, but hit exception (on Windows) last time we tried.    *  These files are in "pending delete" state, where we refuse to openInput or createOutput    *  them, nor include them in .listAll. */
+comment|/** Maps files that we are trying to delete (or we tried already but failed)    *  before attempting to delete that key. */
 DECL|field|pendingDeletes
 specifier|protected
 specifier|final
@@ -494,7 +494,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Lists all files (including subdirectories) in the    *  directory.    *    *  @throws IOException if there was an I/O error during listing */
+comment|/** Lists all files (including subdirectories) in the directory.    *    *  @throws IOException if there was an I/O error during listing */
 DECL|method|listAll
 specifier|public
 specifier|static
@@ -513,10 +513,7 @@ name|listAll
 argument_list|(
 name|dir
 argument_list|,
-name|Collections
-operator|.
-name|emptySet
-argument_list|()
+literal|null
 argument_list|)
 return|;
 block|}
@@ -587,6 +584,10 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|skipNames
+operator|!=
+literal|null
+operator|&&
 name|skipNames
 operator|.
 name|contains
@@ -678,37 +679,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|deleteFiles
-specifier|public
-name|void
-name|deleteFiles
-parameter_list|(
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|names
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-comment|// nocommit isn't it an error if they were already pending delete?
-name|pendingDeletes
-operator|.
-name|addAll
-argument_list|(
-name|names
-argument_list|)
-expr_stmt|;
-name|deletePendingFiles
-argument_list|()
-expr_stmt|;
-block|}
-annotation|@
-name|Override
 DECL|method|createOutput
 specifier|public
 name|IndexOutput
@@ -726,10 +696,9 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|ensureCanWrite
-argument_list|(
-name|name
-argument_list|)
+comment|// nocommit do we need to check pending deletes?
+name|deletePendingFiles
+argument_list|()
 expr_stmt|;
 return|return
 operator|new
@@ -827,56 +796,6 @@ block|{
 comment|// Retry with next random name
 block|}
 block|}
-block|}
-DECL|method|ensureCanWrite
-specifier|protected
-name|void
-name|ensureCanWrite
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|deletePendingFiles
-argument_list|()
-expr_stmt|;
-if|if
-condition|(
-name|pendingDeletes
-operator|.
-name|contains
-argument_list|(
-name|name
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"file \""
-operator|+
-name|name
-operator|+
-literal|"\" is pending delete and cannot be overwritten"
-argument_list|)
-throw|;
-block|}
-name|Files
-operator|.
-name|deleteIfExists
-argument_list|(
-name|directory
-operator|.
-name|resolve
-argument_list|(
-name|name
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// delete existing, if any
 block|}
 DECL|method|ensureCanRead
 specifier|protected
@@ -1091,11 +1010,11 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Returns true if the file was successfully removed. */
+annotation|@
+name|Override
 DECL|method|deleteFile
-specifier|private
-specifier|synchronized
-name|boolean
+specifier|public
+name|void
 name|deleteFile
 parameter_list|(
 name|String
@@ -1125,9 +1044,6 @@ name|name
 argument_list|)
 argument_list|)
 expr_stmt|;
-return|return
-literal|true
-return|;
 block|}
 catch|catch
 parameter_list|(
@@ -1156,7 +1072,6 @@ comment|// it should only happen on filesystems that can do this, so really we s
 comment|// move this logic to WindowsDirectory or something
 comment|// TODO: can/should we do if (Constants.WINDOWS) here, else throw the exc?
 comment|// but what about a Linux box with a CIFS mount?
-comment|//System.out.println("FS.deleteFile failed (" + ioe + "): will retry later");
 name|pendingDeletes
 operator|.
 name|add
@@ -1164,9 +1079,6 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
-return|return
-literal|false
-return|;
 block|}
 block|}
 comment|/** Tries to delete any pending deleted files, and returns true if    *  there are still files that could not be deleted. */
@@ -1193,250 +1105,42 @@ block|}
 comment|/** Try to delete any pending files that we had previously tried to delete but failed    *  because we are on Windows and the files were still held open. */
 DECL|method|deletePendingFiles
 specifier|public
-specifier|synchronized
 name|void
 name|deletePendingFiles
 parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// nocommit do we need exponential backoff here for windows?
 comment|// TODO: we could fix IndexInputs from FSDirectory subclasses to call this when they are closed?
-comment|// Clone the set because it will change as we iterate:
-name|List
+name|Set
 argument_list|<
 name|String
 argument_list|>
 name|toDelete
 init|=
 operator|new
-name|ArrayList
+name|HashSet
 argument_list|<>
 argument_list|(
 name|pendingDeletes
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"del pending: "
-operator|+
-name|pendingDeletes
-argument_list|)
-expr_stmt|;
-comment|// First pass: delete any segments_N files.  We do these first to be certain stale commit points are removed
-comment|// before we remove any files they reference.  If any delete of segments_N fails, we leave all other files
-comment|// undeleted so index is never in a corrupt state:
-name|Throwable
-name|firstException
-init|=
-literal|null
-decl_stmt|;
+comment|// nocommit heroic exceptions here or not?
 for|for
 control|(
 name|String
-name|fileName
+name|name
 range|:
 name|toDelete
 control|)
 block|{
-if|if
-condition|(
-name|fileName
-operator|.
-name|startsWith
-argument_list|(
-name|IndexFileNames
-operator|.
-name|SEGMENTS
-argument_list|)
-condition|)
-block|{
-try|try
-block|{
-if|if
-condition|(
 name|deleteFile
 argument_list|(
-name|fileName
-argument_list|)
-operator|==
-literal|false
-condition|)
-block|{
-comment|// nocommit
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  false on "
-operator|+
-name|fileName
-operator|+
-literal|"; skipping the rest"
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-if|if
-condition|(
-name|firstException
-operator|==
-literal|null
-condition|)
-block|{
-name|firstException
-operator|=
-name|t
-expr_stmt|;
-block|}
-else|else
-block|{
-name|firstException
-operator|.
-name|addSuppressed
-argument_list|(
-name|t
+name|name
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  fail on "
-operator|+
-name|fileName
-operator|+
-literal|":"
-argument_list|)
-expr_stmt|;
-name|t
-operator|.
-name|printStackTrace
-argument_list|(
-name|System
-operator|.
-name|out
-argument_list|)
-expr_stmt|;
-throw|throw
-name|t
-throw|;
-block|}
-block|}
-block|}
-comment|// Only delete other files if we were able to remove the segments_N files; this way we never
-comment|// leave a corrupt commit in the index even in the presense of virus checkers:
-for|for
-control|(
-name|String
-name|fileName
-range|:
-name|toDelete
-control|)
-block|{
-if|if
-condition|(
-name|fileName
-operator|.
-name|startsWith
-argument_list|(
-name|IndexFileNames
-operator|.
-name|SEGMENTS
-argument_list|)
-operator|==
-literal|false
-condition|)
-block|{
-try|try
-block|{
-name|deleteFile
-argument_list|(
-name|fileName
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-if|if
-condition|(
-name|firstException
-operator|==
-literal|null
-condition|)
-block|{
-name|firstException
-operator|=
-name|t
-expr_stmt|;
-block|}
-else|else
-block|{
-name|firstException
-operator|.
-name|addSuppressed
-argument_list|(
-name|t
-argument_list|)
-expr_stmt|;
-block|}
-comment|// nocommit
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  fail on "
-operator|+
-name|fileName
-operator|+
-literal|":"
-argument_list|)
-expr_stmt|;
-name|t
-operator|.
-name|printStackTrace
-argument_list|(
-name|System
-operator|.
-name|out
-argument_list|)
-expr_stmt|;
-throw|throw
-name|t
-throw|;
-block|}
-block|}
-block|}
-comment|// Does nothing if firstException is null:
-name|IOUtils
-operator|.
-name|reThrow
-argument_list|(
-name|firstException
-argument_list|)
-expr_stmt|;
 block|}
 DECL|class|FSIndexOutput
 specifier|final

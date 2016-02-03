@@ -42,16 +42,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collection
 import|;
 end_import
@@ -293,8 +283,6 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
-operator|.
-name|FakeIOException
 import|;
 end_import
 
@@ -309,6 +297,8 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
+operator|.
+name|FakeIOException
 import|;
 end_import
 
@@ -4150,14 +4140,9 @@ control|)
 block|{
 name|dir
 operator|.
-name|deleteFiles
-argument_list|(
-name|Collections
-operator|.
-name|singleton
+name|deleteFile
 argument_list|(
 name|fileName
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -4490,21 +4475,25 @@ name|dir
 argument_list|)
 decl_stmt|;
 comment|// Blow away the index:
-name|dir
-operator|.
-name|deleteFiles
-argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
+for|for
+control|(
+name|String
+name|name
+range|:
 name|dir
 operator|.
 name|listAll
 argument_list|()
-argument_list|)
+control|)
+block|{
+name|dir
+operator|.
+name|deleteFile
+argument_list|(
+name|name
 argument_list|)
 expr_stmt|;
+block|}
 name|w
 operator|=
 operator|new

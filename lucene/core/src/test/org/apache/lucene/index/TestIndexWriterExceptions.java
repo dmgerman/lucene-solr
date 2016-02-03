@@ -535,8 +535,6 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
-operator|.
-name|FakeIOException
 import|;
 end_import
 
@@ -551,6 +549,8 @@ operator|.
 name|store
 operator|.
 name|MockDirectoryWrapper
+operator|.
+name|FakeIOException
 import|;
 end_import
 
@@ -621,8 +621,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressCodecs
 import|;
 end_import
 
@@ -637,6 +635,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+operator|.
+name|SuppressCodecs
 import|;
 end_import
 
@@ -5834,7 +5834,7 @@ name|getClassName
 argument_list|()
 argument_list|)
 operator|&&
-literal|"deleteFiles"
+literal|"deleteFile"
 operator|.
 name|equals
 argument_list|(
@@ -7393,14 +7393,9 @@ argument_list|()
 expr_stmt|;
 name|dir
 operator|.
-name|deleteFiles
-argument_list|(
-name|Collections
-operator|.
-name|singleton
+name|deleteFile
 argument_list|(
 name|fileNameIn
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|IndexReader
@@ -7653,18 +7648,13 @@ argument_list|)
 expr_stmt|;
 name|dir
 operator|.
-name|deleteFiles
-argument_list|(
-name|Collections
-operator|.
-name|singleton
+name|deleteFile
 argument_list|(
 name|victims
 operator|.
 name|get
 argument_list|(
 literal|0
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

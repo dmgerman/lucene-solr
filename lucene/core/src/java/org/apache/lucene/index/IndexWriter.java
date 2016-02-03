@@ -17374,6 +17374,7 @@ name|closed
 return|;
 block|}
 comment|/** Expert: remove any index files that are no longer    *  used.    *    *<p> IndexWriter normally deletes unused files itself,    *  during indexing.  However, on Windows, which disallows    *  deletion of open files, if there is a reader open on    *  the index then those files cannot be deleted.  This is    *  fine, because IndexWriter will periodically retry    *  the deletion.</p>    *    *<p> However, IndexWriter doesn't try that often: only    *  on open, close, flushing a new segment, and finishing    *  a merge.  If you don't do any of these actions with your    *  IndexWriter, you'll see the unused files linger.  If    *  that's a problem, call this method to delete them    *  (once you've closed the open readers that were    *  preventing their deletion).     *      *<p> In addition, you can call this method to delete     *  unreferenced index commits. This might be useful if you     *  are using an {@link IndexDeletionPolicy} which holds    *  onto index commits until some criteria are met, but those    *  commits are no longer needed. Otherwise, those commits will    *  be deleted the next time commit() is called.    */
+comment|// nocommit remove this
 DECL|method|deleteUnusedFiles
 specifier|public
 specifier|synchronized

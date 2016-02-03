@@ -3040,18 +3040,6 @@ argument_list|()
 expr_stmt|;
 if|if
 condition|(
-name|names
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-return|return;
-block|}
-try|try
-block|{
-if|if
-condition|(
 name|infoStream
 operator|.
 name|isEnabled
@@ -3074,11 +3062,22 @@ literal|"\""
 argument_list|)
 expr_stmt|;
 block|}
+comment|// nocommit put annoying windows-specific segments_N heroics back?
+for|for
+control|(
+name|String
+name|name
+range|:
+name|names
+control|)
+block|{
+try|try
+block|{
 name|directory
 operator|.
-name|deleteFiles
+name|deleteFile
 argument_list|(
-name|names
+name|name
 argument_list|)
 expr_stmt|;
 block|}
@@ -3090,7 +3089,6 @@ name|FileNotFoundException
 name|e
 parameter_list|)
 block|{
-comment|// if delete fails
 comment|// IndexWriter should only ask us to delete files it knows it wrote, so if we hit this, something is wrong!
 if|if
 condition|(
@@ -3099,13 +3097,15 @@ operator|.
 name|WINDOWS
 condition|)
 block|{
-comment|// LUCENE-6684: we suppress this assert for Windows, since a file could be in a confusing "pending delete" state:
+comment|// LUCENE-6684: we suppress this assert for Windows, since a file could be in a confusing "pending delete" state, and falsely
+comment|// return NSFE/FNFE
 block|}
 else|else
 block|{
 throw|throw
 name|e
 throw|;
+block|}
 block|}
 block|}
 block|}

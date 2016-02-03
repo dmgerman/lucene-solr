@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -131,8 +121,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressFileSystems
 import|;
 end_import
 
@@ -147,20 +135,8 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
+name|SuppressFileSystems
 import|;
 end_import
 
@@ -323,21 +299,25 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|// Blow away index and make a new writer:
-name|dir
-operator|.
-name|deleteFiles
-argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
+for|for
+control|(
+name|String
+name|name
+range|:
 name|dir
 operator|.
 name|listAll
 argument_list|()
-argument_list|)
+control|)
+block|{
+name|dir
+operator|.
+name|deleteFile
+argument_list|(
+name|name
 argument_list|)
 expr_stmt|;
+block|}
 name|w
 operator|=
 operator|new
