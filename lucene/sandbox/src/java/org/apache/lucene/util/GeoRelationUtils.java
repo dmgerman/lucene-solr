@@ -136,7 +136,7 @@ name|x
 index|[
 name|i
 index|]
-operator|<
+operator|<=
 name|lon
 operator|&&
 name|x
@@ -154,7 +154,7 @@ name|i
 operator|-
 literal|1
 index|]
-operator|<
+operator|<=
 name|lon
 operator|&&
 name|x
@@ -208,7 +208,7 @@ index|[
 name|i
 index|]
 operator|)
-operator|<
+operator|<=
 name|lat
 condition|)
 block|{
