@@ -17793,7 +17793,7 @@ parameter_list|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"Directory still has pending deleted files"
+literal|"Directory still has pending deleted files; cannot initialize IndexWriter"
 argument_list|,
 name|iae
 operator|.

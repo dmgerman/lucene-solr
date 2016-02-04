@@ -3062,7 +3062,6 @@ literal|"\""
 argument_list|)
 expr_stmt|;
 block|}
-comment|// nocommit put annoying windows-specific segments_N heroics back?
 for|for
 control|(
 name|String
@@ -3097,6 +3096,8 @@ operator|.
 name|WINDOWS
 condition|)
 block|{
+comment|// TODO: can we remove this OS-specific hacky logic?  If windows deleteFile is buggy, we should instead contain this workaround in
+comment|// a WindowsFSDirectory ...
 comment|// LUCENE-6684: we suppress this assert for Windows, since a file could be in a confusing "pending delete" state, and falsely
 comment|// return NSFE/FNFE
 block|}

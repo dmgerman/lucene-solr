@@ -99,7 +99,7 @@ name|Directory
 implements|implements
 name|Closeable
 block|{
-comment|/**    * Returns an array of strings, one for each entry in the directory.    *     * @throws IOException in case of IO error    */
+comment|/**    * Returns an array of strings, one for each entry in the directory, in sorted (UTF16, java's String.compare) order.    *     * @throws IOException in case of IO error    */
 DECL|method|listAll
 specifier|public
 specifier|abstract
