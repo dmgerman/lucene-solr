@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.facet.taxonomy
 package|package
@@ -71,10 +75,6 @@ operator|.
 name|AlreadyClosedException
 import|;
 end_import
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/**  * TaxonomyReader is the read-only interface with which the faceted-search  * library uses the taxonomy during search time.  *<P>  * A TaxonomyReader holds a list of categories. Each category has a serial  * number which we call an "ordinal", and a hierarchical "path" name:  *<UL>  *<LI>  * The ordinal is an integer that starts at 0 for the first category (which is  * always the root category), and grows contiguously as more categories are  * added; Note that once a category is added, it can never be deleted.  *<LI>  * The path is a CategoryPath object specifying the category's position in the  * hierarchy.  *</UL>  *<B>Notes about concurrent access to the taxonomy:</B>  *<P>  * An implementation must allow multiple readers to be active concurrently  * with a single writer. Readers follow so-called "point in time" semantics,  * i.e., a TaxonomyReader object will only see taxonomy entries which were  * available at the time it was created. What the writer writes is only  * available to (new) readers after the writer's commit() is called.  *<P>  * In faceted search, two separate indices are used: the main Lucene index,  * and the taxonomy. Because the main index refers to the categories listed  * in the taxonomy, it is important to open the taxonomy *after* opening the  * main index, and it is also necessary to reopen() the taxonomy after  * reopen()ing the main index.  *<P>  * This order is important, otherwise it would be possible for the main index  * to refer to a category which is not yet visible in the old snapshot of  * the taxonomy. Note that it is indeed fine for the the taxonomy to be opened  * after the main index - even a long time after. The reason is that once  * a category is added to the taxonomy, it can never be changed or deleted,  * so there is no danger that a "too new" taxonomy not being consistent with  * an older index.  *   * @lucene.experimental  */

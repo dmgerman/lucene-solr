@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.facet.taxonomy
 package|package
@@ -57,10 +61,6 @@ operator|.
 name|TwoPhaseCommit
 import|;
 end_import
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/**  * TaxonomyWriter is the interface which the faceted-search library uses  * to dynamically build the taxonomy at indexing time.  *<P>  * Notes about concurrent access to the taxonomy:  *<P>  * An implementation must allow multiple readers and a single writer to be  * active concurrently. Readers follow so-called "point in time" semantics,  * i.e., a reader object will only see taxonomy entries which were available  * at the time it was created. What the writer writes is only available to  * (new) readers after the writer's commit() is called.  *<P>  * Faceted search keeps two indices - namely Lucene's main index, and this  * taxonomy index. When one or more readers are active concurrently with the  * writer, care must be taken to avoid an inconsistency between the state of  * these two indices: When writing to the indices, the taxonomy must always  * be committed to disk *before* the main index, because the main index  * refers to categories listed in the taxonomy.  * Such control can best be achieved by turning off the main index's  * "autocommit" feature, and explicitly calling commit() for both indices  * (first for the taxonomy, then for the main index).  * In old versions of Lucene (2.2 or earlier), when autocommit could not be  * turned off, a more complicated solution needs to be used. E.g., use  * some sort of (possibly inter-process) locking to ensure that a reader  * is being opened only right after both indices have been flushed (and  * before anything else is written to them).  *   * @lucene.experimental  */
