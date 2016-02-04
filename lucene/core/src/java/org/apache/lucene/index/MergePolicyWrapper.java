@@ -54,7 +54,7 @@ specifier|final
 name|MergePolicy
 name|in
 decl_stmt|;
-comment|/**    * Creates a new merge policy instance.    */
+comment|/**    * Creates a new merge policy instance.    *    * @param in the wrapped {@link MergePolicy}    */
 DECL|method|MergePolicyWrapper
 specifier|public
 name|MergePolicyWrapper
