@@ -48,6 +48,7 @@ name|MergePolicyWrapper
 extends|extends
 name|MergePolicy
 block|{
+comment|/** The wrapped {@link MergePolicy}. */
 DECL|field|in
 specifier|protected
 specifier|final
