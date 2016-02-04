@@ -1008,6 +1008,8 @@ argument_list|,
 literal|true
 argument_list|,
 name|peerSyncOnlyWithActive
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 return|return

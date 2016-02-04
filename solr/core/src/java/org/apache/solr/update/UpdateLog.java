@@ -2889,7 +2889,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/** Opens a new realtime searcher and clears the id caches */
+comment|/** Opens a new realtime searcher and clears the id caches.    * This may also be called when we updates are being buffered (from PeerSync/IndexFingerprint)    */
 DECL|method|openRealtimeSearcher
 specifier|public
 name|void
