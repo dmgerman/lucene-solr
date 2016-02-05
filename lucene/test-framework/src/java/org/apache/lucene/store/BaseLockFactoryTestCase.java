@@ -401,18 +401,6 @@ init|=
 name|createTempDir
 argument_list|()
 decl_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"test works with lock files"
-argument_list|,
-name|TestUtil
-operator|.
-name|hasVirusChecker
-argument_list|(
-name|tempPath
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -493,18 +481,6 @@ init|=
 name|createTempDir
 argument_list|()
 decl_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"test works with lock files"
-argument_list|,
-name|TestUtil
-operator|.
-name|hasVirusChecker
-argument_list|(
-name|tempPath
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -555,18 +531,6 @@ init|=
 name|createTempDir
 argument_list|()
 decl_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"test works with lock files"
-argument_list|,
-name|TestUtil
-operator|.
-name|hasVirusChecker
-argument_list|(
-name|tempPath
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -617,18 +581,6 @@ init|=
 name|createTempDir
 argument_list|()
 decl_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"test works with lock files"
-argument_list|,
-name|TestUtil
-operator|.
-name|hasVirusChecker
-argument_list|(
-name|tempPath
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -693,18 +645,6 @@ init|=
 name|createTempDir
 argument_list|()
 decl_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"test works with lock files"
-argument_list|,
-name|TestUtil
-operator|.
-name|hasVirusChecker
-argument_list|(
-name|tempPath
-argument_list|)
-argument_list|)
-expr_stmt|;
 specifier|final
 name|Directory
 name|directory
@@ -982,18 +922,6 @@ init|=
 name|createTempDir
 argument_list|()
 decl_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"test works with lock files"
-argument_list|,
-name|TestUtil
-operator|.
-name|hasVirusChecker
-argument_list|(
-name|tempPath
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Directory
 name|dir
 init|=

@@ -376,18 +376,6 @@ name|dir
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"we must be able to delete an open file"
-argument_list|,
-name|TestUtil
-operator|.
-name|hasVirusChecker
-argument_list|(
-name|dir
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Lock
 name|lock
 init|=

@@ -383,22 +383,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressFileSystems
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
 import|;
 end_import
 
@@ -427,11 +411,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SuppressFileSystems
-argument_list|(
-literal|"VirusCheckingFS"
-argument_list|)
 DECL|class|AnalyzingInfixSuggesterTest
 specifier|public
 class|class

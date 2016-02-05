@@ -660,7 +660,8 @@ argument_list|()
 index|]
 argument_list|)
 decl_stmt|;
-comment|// Don't let filesystem specifics leak out of this abstraction:
+comment|// Directory.listAll javadocs state that we sort the results here, so we don't let filesystem
+comment|// specifics leak out of this abstraction:
 name|Arrays
 operator|.
 name|sort
@@ -711,6 +712,28 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|pendingDeletes
+operator|.
+name|contains
+argument_list|(
+name|name
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|NoSuchFileException
+argument_list|(
+literal|"file \""
+operator|+
+name|name
+operator|+
+literal|"\" is pending delete"
+argument_list|)
+throw|;
+block|}
 return|return
 name|Files
 operator|.
@@ -957,6 +980,28 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|pendingDeletes
+operator|.
+name|contains
+argument_list|(
+name|source
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|NoSuchFileException
+argument_list|(
+literal|"file \""
+operator|+
+name|source
+operator|+
+literal|"\" is pending delete and cannot be moved"
+argument_list|)
+throw|;
+block|}
 name|maybeDeletePendingFiles
 argument_list|()
 expr_stmt|;
@@ -1010,7 +1055,7 @@ name|isOpen
 operator|=
 literal|false
 expr_stmt|;
-name|maybeDeletePendingFiles
+name|deletePendingFiles
 argument_list|()
 expr_stmt|;
 block|}
@@ -1145,11 +1190,22 @@ block|}
 comment|/** Try to delete any pending files that we had previously tried to delete but failed    *  because we are on Windows and the files were still held open. */
 DECL|method|deletePendingFiles
 specifier|public
+specifier|synchronized
 name|void
 name|deletePendingFiles
 parameter_list|()
 throws|throws
 name|IOException
+block|{
+if|if
+condition|(
+name|pendingDeletes
+operator|.
+name|isEmpty
+argument_list|()
+operator|==
+literal|false
+condition|)
 block|{
 comment|// TODO: we could fix IndexInputs from FSDirectory subclasses to call this when they are closed?
 comment|// Clone the set since we mutate it in privateDeleteFile:
@@ -1173,6 +1229,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 DECL|method|maybeDeletePendingFiles
 specifier|private
 name|void
@@ -1191,7 +1248,7 @@ operator|==
 literal|false
 condition|)
 block|{
-comment|// This is a silly heuristic to try to avoid O(N^2), where N = number of files pending deletion, behavior:
+comment|// This is a silly heuristic to try to avoid O(N^2), where N = number of files pending deletion, behaviour on Windows:
 name|int
 name|count
 init|=

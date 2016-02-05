@@ -633,22 +633,6 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
-operator|.
-name|SuppressFileSystems
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
 import|;
 end_import
 
@@ -884,13 +868,6 @@ block|,
 literal|"Memory"
 block|,
 literal|"Direct"
-block|}
-argument_list|)
-annotation|@
-name|SuppressFileSystems
-argument_list|(
-block|{
-literal|"VirusCheckingFS"
 block|}
 argument_list|)
 annotation|@

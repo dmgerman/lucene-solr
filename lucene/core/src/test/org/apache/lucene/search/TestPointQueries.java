@@ -1214,7 +1214,7 @@ condition|)
 block|{
 name|dir
 operator|=
-name|newFSDirectory
+name|newMaybeVirusCheckingFSDirectory
 argument_list|(
 name|createTempDir
 argument_list|(
@@ -1227,7 +1227,7 @@ else|else
 block|{
 name|dir
 operator|=
-name|getDirectory
+name|newMaybeVirusCheckingDirectory
 argument_list|()
 expr_stmt|;
 block|}
@@ -2905,7 +2905,7 @@ else|else
 block|{
 name|dir
 operator|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 expr_stmt|;
 block|}
@@ -4731,7 +4731,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -5047,7 +5047,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -5467,7 +5467,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -5739,7 +5739,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -6013,7 +6013,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -6202,7 +6202,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -6351,7 +6351,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -6455,7 +6455,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -6621,7 +6621,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -6794,7 +6794,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig
@@ -7043,18 +7043,6 @@ name|dir
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|getDirectory
-specifier|private
-specifier|static
-name|Directory
-name|getDirectory
-parameter_list|()
-block|{
-return|return
-name|newDirectory
-argument_list|()
-return|;
-block|}
 DECL|method|getCodec
 specifier|private
 specifier|static
@@ -7224,7 +7212,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|getDirectory
+name|newDirectory
 argument_list|()
 decl_stmt|;
 name|IndexWriterConfig

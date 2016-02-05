@@ -174,22 +174,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressFileSystems
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|OfflineSorter
 operator|.
 name|BufferSize
@@ -233,11 +217,6 @@ comment|/**  * Tests for on-disk merge sorting.  */
 end_comment
 
 begin_class
-annotation|@
-name|SuppressFileSystems
-argument_list|(
-literal|"VirusCheckingFS"
-argument_list|)
 DECL|class|TestOfflineSorter
 specifier|public
 class|class

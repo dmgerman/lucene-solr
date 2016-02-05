@@ -122,18 +122,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|assumeFalse
-argument_list|(
-literal|"test directly deletes lock files"
-argument_list|,
-name|TestUtil
-operator|.
-name|hasVirusChecker
-argument_list|(
-name|dir
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|Lock
 name|lock
 init|=

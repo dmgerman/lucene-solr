@@ -238,22 +238,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
-operator|.
-name|SuppressFileSystems
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|TestUtil
 import|;
 end_import
@@ -277,11 +261,6 @@ comment|/*   Verify we can read the pre-2.1 file format, do searches   against i
 end_comment
 
 begin_class
-annotation|@
-name|SuppressFileSystems
-argument_list|(
-literal|"VirusCheckingFS"
-argument_list|)
 DECL|class|TestDeletionPolicy
 specifier|public
 class|class

@@ -8817,18 +8817,6 @@ init|=
 name|createTempDir
 argument_list|()
 decl_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"test directly deletes files"
-argument_list|,
-name|TestUtil
-operator|.
-name|hasVirusChecker
-argument_list|(
-name|path
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|FileSystem
 name|fs
 init|=

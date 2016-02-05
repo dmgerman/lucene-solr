@@ -54,6 +54,18 @@ name|nio
 operator|.
 name|file
 operator|.
+name|FileSystem
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|nio
+operator|.
+name|file
+operator|.
 name|NoSuchFileException
 import|;
 end_import
@@ -289,6 +301,34 @@ operator|.
 name|index
 operator|.
 name|NoDeletionPolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|mockfile
+operator|.
+name|FilterFileSystem
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|mockfile
+operator|.
+name|VirusCheckingFS
 import|;
 end_import
 
@@ -1188,6 +1228,17 @@ name|ignored
 parameter_list|)
 block|{}
 block|}
+comment|// Maybe disable virus checker so it doesn't interfere with our efforts to corrupt files below:
+name|boolean
+name|virusCheckerWasEnabled
+init|=
+name|TestUtil
+operator|.
+name|disableVirusChecker
+argument_list|(
+name|in
+argument_list|)
+decl_stmt|;
 while|while
 condition|(
 name|it
@@ -1505,43 +1556,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-comment|// VirusCheckingFS may have blocked the delete, at which point FSDir cannot overwrite here
-if|if
-condition|(
-name|ioe
-operator|.
-name|getMessage
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"file \""
-operator|+
-name|name
-operator|+
-literal|"\" is pending delete and cannot be overwritten"
-argument_list|)
-condition|)
-block|{
-comment|// OK
-name|action
-operator|=
-literal|"deleted"
-expr_stmt|;
-block|}
-else|else
-block|{
-throw|throw
-name|ioe
-throw|;
-block|}
-block|}
 name|deleteFile
 argument_list|(
 name|tempFileName
@@ -1594,43 +1608,20 @@ argument_list|)
 argument_list|)
 init|)
 block|{         }
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-comment|// VirusCheckingFS may have blocked the delete, at which point FSDir cannot overwrite here
+block|}
+comment|// Re-enable
 if|if
 condition|(
-name|ioe
-operator|.
-name|getMessage
-argument_list|()
-operator|.
-name|equals
-argument_list|(
-literal|"file \""
-operator|+
-name|name
-operator|+
-literal|"\" is pending delete and cannot be overwritten"
-argument_list|)
+name|virusCheckerWasEnabled
 condition|)
 block|{
-comment|// OK
-name|action
-operator|=
-literal|"deleted"
+name|TestUtil
+operator|.
+name|enableVirusChecker
+argument_list|(
+name|in
+argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-throw|throw
-name|ioe
-throw|;
-block|}
-block|}
 block|}
 if|if
 condition|(
@@ -3758,6 +3749,14 @@ argument_list|(
 name|NoDeletionPolicy
 operator|.
 name|INSTANCE
+argument_list|)
+expr_stmt|;
+comment|// We must do this before opening writer otherwise writer will be angry if there are pending deletions:
+name|TestUtil
+operator|.
+name|disableVirusChecker
+argument_list|(
+name|in
 argument_list|)
 expr_stmt|;
 operator|new

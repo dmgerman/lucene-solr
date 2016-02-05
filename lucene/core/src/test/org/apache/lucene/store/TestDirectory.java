@@ -125,18 +125,6 @@ argument_list|(
 literal|"testDirectInstantiation"
 argument_list|)
 decl_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"test deletes files through different FSDir instances"
-argument_list|,
-name|TestUtil
-operator|.
-name|hasVirusChecker
-argument_list|(
-name|path
-argument_list|)
-argument_list|)
-expr_stmt|;
 specifier|final
 name|byte
 index|[]
