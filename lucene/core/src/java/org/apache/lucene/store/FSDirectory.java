@@ -943,9 +943,6 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
-name|maybeDeletePendingFiles
-argument_list|()
-expr_stmt|;
 for|for
 control|(
 name|String
@@ -960,6 +957,9 @@ name|name
 argument_list|)
 expr_stmt|;
 block|}
+name|maybeDeletePendingFiles
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -1002,8 +1002,12 @@ literal|"\" is pending delete and cannot be moved"
 argument_list|)
 throw|;
 block|}
-name|maybeDeletePendingFiles
-argument_list|()
+name|pendingDeletes
+operator|.
+name|remove
+argument_list|(
+name|dest
+argument_list|)
 expr_stmt|;
 name|Files
 operator|.
@@ -1038,6 +1042,9 @@ name|directory
 argument_list|,
 literal|true
 argument_list|)
+expr_stmt|;
+name|maybeDeletePendingFiles
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -1164,6 +1171,9 @@ name|privateDeleteFile
 argument_list|(
 name|name
 argument_list|)
+expr_stmt|;
+name|maybeDeletePendingFiles
+argument_list|()
 expr_stmt|;
 block|}
 comment|/** Tries to delete any pending deleted files, and returns true if    *  there are still files that could not be deleted. */

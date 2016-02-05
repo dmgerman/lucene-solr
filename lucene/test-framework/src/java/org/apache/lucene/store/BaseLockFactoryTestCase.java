@@ -922,6 +922,18 @@ init|=
 name|createTempDir
 argument_list|()
 decl_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"cannot handle buggy Files.delete"
+argument_list|,
+name|TestUtil
+operator|.
+name|hasWindowsFS
+argument_list|(
+name|tempPath
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Directory
 name|dir
 init|=

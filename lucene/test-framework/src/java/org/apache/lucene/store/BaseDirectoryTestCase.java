@@ -8657,6 +8657,49 @@ parameter_list|)
 block|{
 comment|// expected
 block|}
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+try|try
+init|(
+name|IndexOutput
+name|out
+init|=
+name|fsDir
+operator|.
+name|createOutput
+argument_list|(
+name|fileName
+operator|+
+literal|"z"
+argument_list|,
+name|IOContext
+operator|.
+name|DEFAULT
+argument_list|)
+init|)
+block|{         }
+comment|// Make sure we can rename onto the deleted file:
+name|fsDir
+operator|.
+name|renameFile
+argument_list|(
+name|fileName
+operator|+
+literal|"z"
+argument_list|,
+name|fileName
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|// write the file again
 try|try
 init|(
@@ -8674,7 +8717,8 @@ operator|.
 name|DEFAULT
 argument_list|)
 init|)
-block|{       }
+block|{         }
+block|}
 name|assertEquals
 argument_list|(
 literal|0

@@ -17779,14 +17779,17 @@ name|IllegalArgumentException
 name|iae
 parameter_list|)
 block|{
-name|assertEquals
+name|assertTrue
 argument_list|(
-literal|"Directory still has pending deleted files; cannot initialize IndexWriter"
-argument_list|,
 name|iae
 operator|.
 name|getMessage
 argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"still has pending deleted files; cannot initialize IndexWriter"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
