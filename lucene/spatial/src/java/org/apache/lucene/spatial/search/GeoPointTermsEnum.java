@@ -4,13 +4,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.search
+DECL|package|org.apache.lucene.spatial.search
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|spatial
 operator|.
 name|search
 package|;
@@ -53,6 +55,8 @@ operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|spatial
 operator|.
 name|document
 operator|.
@@ -124,6 +128,8 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|spatial
+operator|.
 name|util
 operator|.
 name|GeoRelationUtils
@@ -137,6 +143,8 @@ operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|spatial
 operator|.
 name|util
 operator|.

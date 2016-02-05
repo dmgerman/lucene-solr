@@ -4,13 +4,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.lucene.spatial.util
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|spatial
 operator|.
 name|util
 package|;
@@ -90,6 +92,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -117,6 +133,8 @@ operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|spatial
 operator|.
 name|util
 operator|.

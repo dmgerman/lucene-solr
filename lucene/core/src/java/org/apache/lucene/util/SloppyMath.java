@@ -665,6 +665,7 @@ return|;
 block|}
 comment|// haversin
 DECL|field|TO_RADIANS
+specifier|public
 specifier|static
 specifier|final
 name|double
@@ -677,6 +678,7 @@ operator|/
 literal|180D
 decl_stmt|;
 DECL|field|TO_DEGREES
+specifier|public
 specifier|static
 specifier|final
 name|double
@@ -723,6 +725,7 @@ operator|/
 literal|24.0
 decl_stmt|;
 DECL|field|PIO2
+specifier|public
 specifier|static
 specifier|final
 name|double

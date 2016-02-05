@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.lucene.spatial.util
 package|package
 name|org
 operator|.
@@ -12,9 +12,25 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|spatial
+operator|.
 name|util
 package|;
 end_package
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
+import|;
+end_import
 
 begin_comment
 comment|/**  * Reusable geo-relation utility methods  */
@@ -26,6 +42,12 @@ specifier|public
 class|class
 name|GeoRelationUtils
 block|{
+comment|// No instance:
+DECL|method|GeoRelationUtils
+specifier|private
+name|GeoRelationUtils
+parameter_list|()
+block|{   }
 comment|/**    * Determine if a bbox (defined by minLon, minLat, maxLon, maxLat) contains the provided point (defined by lon, lat)    * NOTE: this is a basic method that does not handle dateline or pole crossing. Unwrapping must be done before    * calling this method.    */
 DECL|method|pointInRectPrecise
 specifier|public
@@ -227,6 +249,7 @@ block|}
 comment|/////////////////////////
 comment|// Rectangle relations
 comment|/////////////////////////
+comment|/**    * Computes whether two rectangles are disjoint    */
 DECL|method|rectDisjoint
 specifier|public
 specifier|static
@@ -347,6 +370,7 @@ name|bMaxY
 operator|)
 return|;
 block|}
+comment|/**    * Computes whether two rectangles cross    */
 DECL|method|rectCrosses
 specifier|public
 specifier|static
@@ -3223,6 +3247,7 @@ operator|>
 name|radiusMeters
 return|;
 block|}
+comment|/**    * Convenience method for computing whether a rectangle is within a circle using additional precision checks    */
 DECL|method|rectWithinCircle
 specifier|public
 specifier|static
@@ -3279,6 +3304,7 @@ literal|false
 argument_list|)
 return|;
 block|}
+comment|/**    * Computes whether a rectangle is within a circle. Note: approx == true will be faster but less precise and may    * fail on large rectangles    */
 DECL|method|rectWithinCircle
 specifier|public
 specifier|static
@@ -3398,6 +3424,7 @@ literal|false
 argument_list|)
 return|;
 block|}
+comment|/**    * Computes whether a rectangle crosses a circle. Note: approx == true will be faster but less precise and may    * fail on large rectangles    */
 DECL|method|rectCrossesCircle
 specifier|public
 specifier|static

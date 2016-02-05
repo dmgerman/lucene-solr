@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.lucene.spatial.util
 package|package
 name|org
 operator|.
@@ -12,9 +12,87 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|spatial
+operator|.
 name|util
 package|;
 end_package
+
+begin_import
+import|import static
+name|java
+operator|.
+name|lang
+operator|.
+name|StrictMath
+operator|.
+name|sqrt
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
+operator|.
+name|asin
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
+operator|.
+name|cos
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
+operator|.
+name|sin
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
+operator|.
+name|tan
+import|;
+end_import
 
 begin_import
 import|import static
@@ -64,6 +142,114 @@ name|TO_RADIANS
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|util
+operator|.
+name|GeoUtils
+operator|.
+name|MAX_LAT_INCL
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|util
+operator|.
+name|GeoUtils
+operator|.
+name|MAX_LON_INCL
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|util
+operator|.
+name|GeoUtils
+operator|.
+name|MIN_LAT_INCL
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|util
+operator|.
+name|GeoUtils
+operator|.
+name|MIN_LON_INCL
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|util
+operator|.
+name|GeoUtils
+operator|.
+name|normalizeLat
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|util
+operator|.
+name|GeoUtils
+operator|.
+name|normalizeLon
+import|;
+end_import
+
 begin_comment
 comment|/**  * Reusable geo-spatial projection utility methods.  *  * @lucene.experimental  */
 end_comment
@@ -74,7 +260,8 @@ specifier|public
 class|class
 name|GeoProjectionUtils
 block|{
-comment|// WGS84 earth-ellipsoid major (a) minor (b) radius, (f) flattening and eccentricity (e)
+comment|// WGS84 earth-ellipsoid parameters
+comment|/** major (a) axis in meters */
 DECL|field|SEMIMAJOR_AXIS
 specifier|public
 specifier|static
@@ -85,6 +272,7 @@ init|=
 literal|6_378_137
 decl_stmt|;
 comment|// [m]
+comment|/** earth flattening factor (f) */
 DECL|field|FLATTENING
 specifier|public
 specifier|static
@@ -96,6 +284,7 @@ literal|1.0
 operator|/
 literal|298.257223563
 decl_stmt|;
+comment|/** minor (b) axis in meters */
 DECL|field|SEMIMINOR_AXIS
 specifier|public
 specifier|static
@@ -112,6 +301,7 @@ name|FLATTENING
 operator|)
 decl_stmt|;
 comment|//6_356_752.31420; // [m]
+comment|/** first eccentricity (e) */
 DECL|field|ECCENTRICITY
 specifier|public
 specifier|static
@@ -119,8 +309,6 @@ specifier|final
 name|double
 name|ECCENTRICITY
 init|=
-name|StrictMath
-operator|.
 name|sqrt
 argument_list|(
 operator|(
@@ -132,7 +320,9 @@ operator|*
 name|FLATTENING
 argument_list|)
 decl_stmt|;
+comment|/** major axis squared (a2) */
 DECL|field|SEMIMAJOR_AXIS2
+specifier|public
 specifier|static
 specifier|final
 name|double
@@ -142,7 +332,9 @@ name|SEMIMAJOR_AXIS
 operator|*
 name|SEMIMAJOR_AXIS
 decl_stmt|;
+comment|/** minor axis squared (b2) */
 DECL|field|SEMIMINOR_AXIS2
+specifier|public
 specifier|static
 specifier|final
 name|double
@@ -151,58 +343,6 @@ init|=
 name|SEMIMINOR_AXIS
 operator|*
 name|SEMIMINOR_AXIS
-decl_stmt|;
-DECL|field|MIN_LON_RADIANS
-specifier|public
-specifier|static
-specifier|final
-name|double
-name|MIN_LON_RADIANS
-init|=
-name|TO_RADIANS
-operator|*
-name|GeoUtils
-operator|.
-name|MIN_LON_INCL
-decl_stmt|;
-DECL|field|MIN_LAT_RADIANS
-specifier|public
-specifier|static
-specifier|final
-name|double
-name|MIN_LAT_RADIANS
-init|=
-name|TO_RADIANS
-operator|*
-name|GeoUtils
-operator|.
-name|MIN_LAT_INCL
-decl_stmt|;
-DECL|field|MAX_LON_RADIANS
-specifier|public
-specifier|static
-specifier|final
-name|double
-name|MAX_LON_RADIANS
-init|=
-name|TO_RADIANS
-operator|*
-name|GeoUtils
-operator|.
-name|MAX_LON_INCL
-decl_stmt|;
-DECL|field|MAX_LAT_RADIANS
-specifier|public
-specifier|static
-specifier|final
-name|double
-name|MAX_LAT_RADIANS
-init|=
-name|TO_RADIANS
-operator|*
-name|GeoUtils
-operator|.
-name|MAX_LAT_INCL
 decl_stmt|;
 DECL|field|E2
 specifier|private
@@ -238,6 +378,60 @@ operator|(
 name|SEMIMINOR_AXIS2
 operator|)
 decl_stmt|;
+comment|/** min longitude value in radians */
+DECL|field|MIN_LON_RADIANS
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MIN_LON_RADIANS
+init|=
+name|TO_RADIANS
+operator|*
+name|MIN_LON_INCL
+decl_stmt|;
+comment|/** min latitude value in radians */
+DECL|field|MIN_LAT_RADIANS
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MIN_LAT_RADIANS
+init|=
+name|TO_RADIANS
+operator|*
+name|MIN_LAT_INCL
+decl_stmt|;
+comment|/** max longitude value in radians */
+DECL|field|MAX_LON_RADIANS
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MAX_LON_RADIANS
+init|=
+name|TO_RADIANS
+operator|*
+name|MAX_LON_INCL
+decl_stmt|;
+comment|/** max latitude value in radians */
+DECL|field|MAX_LAT_RADIANS
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MAX_LAT_RADIANS
+init|=
+name|TO_RADIANS
+operator|*
+name|MAX_LAT_INCL
+decl_stmt|;
+comment|// No instance:
+DECL|method|GeoProjectionUtils
+specifier|private
+name|GeoProjectionUtils
+parameter_list|()
+block|{   }
 comment|/**    * Converts from geocentric earth-centered earth-fixed to geodesic lat/lon/alt    * @param x Cartesian x coordinate    * @param y Cartesian y coordinate    * @param z Cartesian z coordinate    * @param lla 0: longitude 1: latitude: 2: altitude    * @return double array as 0: longitude 1: latitude 2: altitude    */
 DECL|method|ecfToLLA
 specifier|public
@@ -722,8 +916,6 @@ specifier|final
 name|double
 name|sl
 init|=
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|lat
@@ -741,8 +933,6 @@ specifier|final
 name|double
 name|cl
 init|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|lat
@@ -868,8 +1058,6 @@ operator|)
 operator|*
 name|cl
 operator|*
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|lon
@@ -888,8 +1076,6 @@ operator|)
 operator|*
 name|cl
 operator|*
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|lon
@@ -1780,8 +1966,6 @@ specifier|final
 name|double
 name|sLon
 init|=
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|originLon
@@ -1791,8 +1975,6 @@ specifier|final
 name|double
 name|cLon
 init|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|originLon
@@ -1802,8 +1984,6 @@ specifier|final
 name|double
 name|sLat
 init|=
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|originLat
@@ -1813,8 +1993,6 @@ specifier|final
 name|double
 name|cLat
 init|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|originLat
@@ -1981,8 +2159,6 @@ specifier|final
 name|double
 name|sLat
 init|=
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|originLat
@@ -1992,8 +2168,6 @@ specifier|final
 name|double
 name|cLat
 init|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|originLat
@@ -2003,8 +2177,6 @@ specifier|final
 name|double
 name|sLon
 init|=
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|originLon
@@ -2014,8 +2186,6 @@ specifier|final
 name|double
 name|cLon
 init|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|originLon
@@ -2180,8 +2350,6 @@ specifier|final
 name|double
 name|cosA1
 init|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|alpha1
@@ -2191,8 +2359,6 @@ specifier|final
 name|double
 name|sinA1
 init|=
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|alpha1
@@ -2208,8 +2374,6 @@ operator|-
 name|FLATTENING
 operator|)
 operator|*
-name|SloppyMath
-operator|.
 name|tan
 argument_list|(
 name|TO_RADIANS
@@ -2370,8 +2534,6 @@ do|do
 block|{
 name|cos2SigmaM
 operator|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 literal|2
@@ -2383,8 +2545,6 @@ argument_list|)
 expr_stmt|;
 name|sinSigma
 operator|=
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|sigma
@@ -2392,8 +2552,6 @@ argument_list|)
 expr_stmt|;
 name|cosSigma
 operator|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|sigma
@@ -2640,8 +2798,6 @@ index|[
 literal|0
 index|]
 operator|=
-name|GeoUtils
-operator|.
 name|normalizeLon
 argument_list|(
 name|lon
@@ -2656,8 +2812,6 @@ index|[
 literal|1
 index|]
 operator|=
-name|GeoUtils
-operator|.
 name|normalizeLat
 argument_list|(
 name|TO_DEGREES
@@ -2727,8 +2881,6 @@ specifier|final
 name|double
 name|cLat
 init|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|lat
@@ -2738,8 +2890,6 @@ specifier|final
 name|double
 name|sLat
 init|=
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|lat
@@ -2749,8 +2899,6 @@ specifier|final
 name|double
 name|sinDoR
 init|=
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|dist
@@ -2764,8 +2912,6 @@ specifier|final
 name|double
 name|cosDoR
 init|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|dist
@@ -2780,8 +2926,6 @@ index|[
 literal|1
 index|]
 operator|=
-name|SloppyMath
-operator|.
 name|asin
 argument_list|(
 name|sLat
@@ -2792,8 +2936,6 @@ name|cLat
 operator|*
 name|sinDoR
 operator|*
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|bearing
@@ -2814,8 +2956,6 @@ name|Math
 operator|.
 name|atan2
 argument_list|(
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|bearing
@@ -2829,8 +2969,6 @@ name|cosDoR
 operator|-
 name|sLat
 operator|*
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|pt
@@ -2894,15 +3032,11 @@ expr_stmt|;
 name|double
 name|y
 init|=
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|dLon
 argument_list|)
 operator|*
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|lat2
@@ -2911,36 +3045,26 @@ decl_stmt|;
 name|double
 name|x
 init|=
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|lat1
 argument_list|)
 operator|*
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|lat2
 argument_list|)
 operator|-
-name|SloppyMath
-operator|.
 name|sin
 argument_list|(
 name|lat1
 argument_list|)
 operator|*
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|lat2
 argument_list|)
 operator|*
-name|SloppyMath
-operator|.
 name|cos
 argument_list|(
 name|dLon

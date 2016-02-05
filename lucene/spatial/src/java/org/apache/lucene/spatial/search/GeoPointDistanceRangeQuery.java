@@ -4,13 +4,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.search
+DECL|package|org.apache.lucene.spatial.search
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|spatial
 operator|.
 name|search
 package|;
@@ -38,14 +40,42 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|search
 operator|.
-name|GeoProjectionUtils
+name|BooleanClause
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|BooleanQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Query
 import|;
 end_import
 
 begin_comment
-comment|/** Implements a point distance range query on a GeoPoint field. This is based on  * {@code org.apache.lucene.search.GeoPointDistanceQuery} and is implemented using a  * {@code org.apache.lucene.search.BooleanClause.MUST_NOT} clause to exclude any points that fall within  * minRadiusMeters from the provided point.  *  *    @lucene.experimental  */
+comment|/** Implements a point distance range query on a GeoPoint field. This is based on  * {@code org.apache.lucene.spatial.search.GeoPointDistanceQuery} and is implemented using a  * {@code org.apache.lucene.search.BooleanClause.MUST_NOT} clause to exclude any points that fall within  * minRadiusMeters from the provided point.  *  *    @lucene.experimental  */
 end_comment
 
 begin_class
@@ -63,6 +93,7 @@ specifier|final
 name|double
 name|minRadiusMeters
 decl_stmt|;
+comment|/**    * Constructs a query for all {@link org.apache.lucene.spatial.document.GeoPointField} types within a minimum / maximum    * distance (in meters) range from a given point    */
 DECL|method|GeoPointDistanceRangeQuery
 specifier|public
 name|GeoPointDistanceRangeQuery
@@ -398,6 +429,7 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/** getter method for minimum distance */
 DECL|method|getMinRadiusMeters
 specifier|public
 name|double
@@ -410,6 +442,7 @@ operator|.
 name|minRadiusMeters
 return|;
 block|}
+comment|/** getter method for maximum distance */
 DECL|method|getMaxRadiusMeters
 specifier|public
 name|double

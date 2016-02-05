@@ -152,7 +152,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|GeoUtils
+name|NumericUtils
 import|;
 end_import
 
@@ -164,9 +164,11 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|spatial
+operator|.
 name|util
 operator|.
-name|NumericUtils
+name|GeoUtils
 import|;
 end_import
 

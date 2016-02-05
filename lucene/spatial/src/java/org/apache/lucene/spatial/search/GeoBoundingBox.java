@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.lucene.spatial.search
 package|package
 name|org
 operator|.
@@ -12,47 +12,69 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|spatial
+operator|.
+name|search
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|util
+operator|.
+name|GeoUtils
+import|;
+end_import
+
 begin_comment
-comment|/** Represents a lat/lon rectangle. */
+comment|/** NOTE: package private; just used so {@link GeoPointInPolygonQuery} can communicate its bounding box to {@link GeoPointInBBoxQuery}. */
 end_comment
 
 begin_class
-DECL|class|GeoRect
-specifier|public
+DECL|class|GeoBoundingBox
 class|class
-name|GeoRect
+name|GeoBoundingBox
 block|{
+comment|/** minimum longitude value (in degrees) */
 DECL|field|minLon
 specifier|public
 specifier|final
 name|double
 name|minLon
 decl_stmt|;
+comment|/** minimum latitude value (in degrees) */
 DECL|field|maxLon
 specifier|public
 specifier|final
 name|double
 name|maxLon
 decl_stmt|;
+comment|/** maximum longitude value (in degrees) */
 DECL|field|minLat
 specifier|public
 specifier|final
 name|double
 name|minLat
 decl_stmt|;
+comment|/** maximum latitude value (in degrees) */
 DECL|field|maxLat
 specifier|public
 specifier|final
 name|double
 name|maxLat
 decl_stmt|;
-DECL|method|GeoRect
+comment|/**    * Constructs a bounding box by first validating the provided latitude and longitude coordinates    */
+DECL|method|GeoBoundingBox
 specifier|public
-name|GeoRect
+name|GeoBoundingBox
 parameter_list|(
 name|double
 name|minLon
@@ -107,7 +129,7 @@ name|IllegalArgumentException
 argument_list|(
 literal|"invalid maxLon "
 operator|+
-name|maxLon
+name|minLon
 argument_list|)
 throw|;
 block|}
@@ -151,7 +173,7 @@ name|IllegalArgumentException
 argument_list|(
 literal|"invalid maxLat "
 operator|+
-name|maxLat
+name|minLat
 argument_list|)
 throw|;
 block|}
@@ -179,112 +201,6 @@ name|maxLat
 operator|=
 name|maxLat
 expr_stmt|;
-assert|assert
-name|maxLat
-operator|>=
-name|minLat
-assert|;
-comment|// NOTE: cannot assert maxLon>= minLon since this rect could cross the dateline
-block|}
-annotation|@
-name|Override
-DECL|method|toString
-specifier|public
-name|String
-name|toString
-parameter_list|()
-block|{
-name|StringBuilder
-name|b
-init|=
-operator|new
-name|StringBuilder
-argument_list|()
-decl_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-literal|"GeoRect(lon="
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-name|minLon
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-literal|" TO "
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-name|maxLon
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|maxLon
-operator|<
-name|minLon
-condition|)
-block|{
-name|b
-operator|.
-name|append
-argument_list|(
-literal|" (crosses dateline!)"
-argument_list|)
-expr_stmt|;
-block|}
-name|b
-operator|.
-name|append
-argument_list|(
-literal|" lat="
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-name|minLat
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-literal|" TO "
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-name|maxLat
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-literal|")"
-argument_list|)
-expr_stmt|;
-return|return
-name|b
-operator|.
-name|toString
-argument_list|()
-return|;
 block|}
 block|}
 end_class

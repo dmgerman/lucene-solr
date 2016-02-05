@@ -4,13 +4,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.lucene.spatial.util
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|spatial
 operator|.
 name|util
 package|;
@@ -36,6 +38,20 @@ name|Collection
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BitUtil
+import|;
+end_import
+
 begin_comment
 comment|/**  * Utilities for converting to/from the GeoHash standard  *  * The geohash long format is represented as lon/lat (x/y) interleaved with the 4 least significant bits  * representing the level (1-12) [xyxy...xyxyllll]  *  * This differs from a morton encoded value which interleaves lat/lon (y/x).  *  * @lucene.experimental  */
 end_comment
@@ -47,7 +63,7 @@ class|class
 name|GeoHashUtils
 block|{
 DECL|field|BASE_32
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|char
@@ -121,7 +137,7 @@ literal|'z'
 block|}
 decl_stmt|;
 DECL|field|BASE_32_STRING
-specifier|public
+specifier|private
 specifier|static
 specifier|final
 name|String
@@ -133,6 +149,7 @@ argument_list|(
 name|BASE_32
 argument_list|)
 decl_stmt|;
+comment|/** maximum precision for geohash strings */
 DECL|field|PRECISION
 specifier|public
 specifier|static
@@ -163,6 +180,12 @@ operator|*
 literal|5
 operator|)
 decl_stmt|;
+comment|// No instance:
+DECL|method|GeoHashUtils
+specifier|private
+name|GeoHashUtils
+parameter_list|()
+block|{   }
 comment|/**    * Encode lon/lat to the geohash based long format (lon/lat interleaved, 4 least significant bits = level)    */
 DECL|method|longEncode
 specifier|public
@@ -413,6 +436,7 @@ name|level
 operator|)
 return|;
 block|}
+comment|/**    * Convert from a morton encoded long from a geohash encoded long    */
 DECL|method|fromMorton
 specifier|public
 specifier|static

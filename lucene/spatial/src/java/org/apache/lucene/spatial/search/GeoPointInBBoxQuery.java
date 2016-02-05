@@ -4,13 +4,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.search
+DECL|package|org.apache.lucene.spatial.search
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
+operator|.
+name|spatial
 operator|.
 name|search
 package|;
@@ -38,6 +40,78 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|BooleanClause
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|BooleanQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|FieldValueQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|LegacyNumericRangeQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
 name|util
 operator|.
 name|GeoUtils
@@ -45,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements a simple bounding box query on a GeoPoint field. This is inspired by  * {@link LegacyNumericRangeQuery} and is implemented using a  * two phase approach. First, candidate terms are queried using a numeric  * range based on the morton codes of the min and max lat/lon pairs. Terms  * passing this initial filter are passed to a final check that verifies whether  * the decoded lat/lon falls within (or on the boundary) of the query bounding box.  * The value comparisons are subject to a precision tolerance defined in  * {@value org.apache.lucene.util.GeoUtils#TOLERANCE}  *  * NOTES:  *    1.  All latitude/longitude values must be in decimal degrees.  *    2.  Complex computational geometry (e.g., dateline wrapping) is not supported  *    3.  For more advanced GeoSpatial indexing and query operations see spatial module  *    4.  This is well suited for small rectangles, large bounding boxes may result  *        in many terms, depending whether the bounding box falls on the boundary of  *        many cells (degenerate case)  *  * @lucene.experimental  */
+comment|/** Implements a simple bounding box query on a GeoPoint field. This is inspired by  * {@link LegacyNumericRangeQuery} and is implemented using a  * two phase approach. First, candidate terms are queried using a numeric  * range based on the morton codes of the min and max lat/lon pairs. Terms  * passing this initial filter are passed to a final check that verifies whether  * the decoded lat/lon falls within (or on the boundary) of the query bounding box.  * The value comparisons are subject to a precision tolerance defined in  * {@value org.apache.lucene.spatial.util.GeoUtils#TOLERANCE}  *  * NOTES:  *    1.  All latitude/longitude values must be in decimal degrees.  *    2.  Complex computational geometry (e.g., dateline wrapping) is not supported  *    3.  For more advanced GeoSpatial indexing and query operations see spatial module  *    4.  This is well suited for small rectangles, large bounding boxes may result  *        in many terms, depending whether the bounding box falls on the boundary of  *        many cells (degenerate case)  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -86,6 +160,7 @@ specifier|final
 name|double
 name|maxLat
 decl_stmt|;
+comment|/**    * Constructs a query for all {@link org.apache.lucene.spatial.document.GeoPointField} types that fall within a    * defined bounding box    */
 DECL|method|GeoPointInBBoxQuery
 specifier|public
 name|GeoPointInBBoxQuery
@@ -721,6 +796,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/** getter method for retrieving the field name */
 DECL|method|getField
 specifier|public
 specifier|final
@@ -734,6 +810,7 @@ operator|.
 name|field
 return|;
 block|}
+comment|/** getter method for retrieving the minimum longitude (in degrees) */
 DECL|method|getMinLon
 specifier|public
 specifier|final
@@ -747,6 +824,7 @@ operator|.
 name|minLon
 return|;
 block|}
+comment|/** getter method for retrieving the minimum latitude (in degrees) */
 DECL|method|getMinLat
 specifier|public
 specifier|final
@@ -760,6 +838,7 @@ operator|.
 name|minLat
 return|;
 block|}
+comment|/** getter method for retrieving the maximum longitude (in degrees) */
 DECL|method|getMaxLon
 specifier|public
 specifier|final
@@ -773,6 +852,7 @@ operator|.
 name|maxLon
 return|;
 block|}
+comment|/** getter method for retrieving the maximum latitude (in degrees) */
 DECL|method|getMaxLat
 specifier|public
 specifier|final
