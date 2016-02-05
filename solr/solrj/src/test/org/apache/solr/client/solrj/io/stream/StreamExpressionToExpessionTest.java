@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.solr.client.solrj.io.stream
 package|package
@@ -17,10 +21,6 @@ operator|.
 name|stream
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -1797,6 +1797,104 @@ operator|.
 name|contains
 argument_list|(
 literal|"on=\"a_f,a_s\""
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testCloudSolrStreamWithEscapedQuote
+specifier|public
+name|void
+name|testCloudSolrStreamWithEscapedQuote
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// The purpose of this test is to ensure that a parameter with a contained " character is properly
+comment|// escaped when it is turned back into an expression. This is important when an expression is passed
+comment|// to a worker (parallel stream) or even for other reasons when an expression is string-ified.
+comment|// Basic test
+name|String
+name|originalExpressionString
+init|=
+literal|"search(collection1,fl=\"id,first\",sort=\"first asc\",q=\"presentTitles:\\\"chief, executive officer\\\" AND age:[36 TO *]\")"
+decl_stmt|;
+name|CloudSolrStream
+name|firstStream
+init|=
+operator|new
+name|CloudSolrStream
+argument_list|(
+name|StreamExpressionParser
+operator|.
+name|parse
+argument_list|(
+name|originalExpressionString
+argument_list|)
+argument_list|,
+name|factory
+argument_list|)
+decl_stmt|;
+name|String
+name|firstExpressionString
+init|=
+name|firstStream
+operator|.
+name|toExpression
+argument_list|(
+name|factory
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
+name|CloudSolrStream
+name|secondStream
+init|=
+operator|new
+name|CloudSolrStream
+argument_list|(
+name|StreamExpressionParser
+operator|.
+name|parse
+argument_list|(
+name|firstExpressionString
+argument_list|)
+argument_list|,
+name|factory
+argument_list|)
+decl_stmt|;
+name|String
+name|secondExpressionString
+init|=
+name|secondStream
+operator|.
+name|toExpression
+argument_list|(
+name|factory
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|firstExpressionString
+operator|.
+name|contains
+argument_list|(
+literal|"q=\"presentTitles:\\\"chief, executive officer\\\" AND age:[36 TO *]\""
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|secondExpressionString
+operator|.
+name|contains
+argument_list|(
+literal|"q=\"presentTitles:\\\"chief, executive officer\\\" AND age:[36 TO *]\""
 argument_list|)
 argument_list|)
 expr_stmt|;

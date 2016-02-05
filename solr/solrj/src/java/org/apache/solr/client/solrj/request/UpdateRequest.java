@@ -1313,6 +1313,17 @@ name|getPath
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|updateRequest
+operator|.
+name|setBasicAuthCredentials
+argument_list|(
+name|getBasicAuthUser
+argument_list|()
+argument_list|,
+name|getBasicAuthPassword
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|request
 operator|=
 operator|new

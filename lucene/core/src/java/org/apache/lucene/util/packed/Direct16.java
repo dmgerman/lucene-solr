@@ -3,6 +3,10 @@ begin_comment
 comment|// This file has been automatically generated, DO NOT EDIT
 end_comment
 
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.util.packed
 package|package
@@ -17,10 +21,6 @@ operator|.
 name|packed
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -156,6 +156,56 @@ operator|=
 name|in
 operator|.
 name|readShort
+argument_list|()
+expr_stmt|;
+block|}
+comment|// because packed ints have not always been byte-aligned
+specifier|final
+name|int
+name|remaining
+init|=
+call|(
+name|int
+call|)
+argument_list|(
+name|PackedInts
+operator|.
+name|Format
+operator|.
+name|PACKED
+operator|.
+name|byteCount
+argument_list|(
+name|packedIntsVersion
+argument_list|,
+name|valueCount
+argument_list|,
+literal|16
+argument_list|)
+operator|-
+literal|2L
+operator|*
+name|valueCount
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|remaining
+condition|;
+operator|++
+name|i
+control|)
+block|{
+name|in
+operator|.
+name|readByte
 argument_list|()
 expr_stmt|;
 block|}

@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.facet.taxonomy.writercache
 package|package
@@ -49,10 +53,6 @@ operator|.
 name|DirectoryTaxonomyWriter
 import|;
 end_import
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/**  * TaxonomyWriterCache is a relatively simple interface for a cache of  * category-&gt;ordinal mappings, used in TaxonomyWriter implementations (such as  * {@link DirectoryTaxonomyWriter}).  *<p>  * It basically has put() methods for adding a mapping, and get() for looking a  * mapping up the cache. The cache does<B>not</B> guarantee to hold everything  * that has been put into it, and might in fact selectively delete some of the  * mappings (e.g., the ones least recently used). This means that if get()  * returns a negative response, it does not necessarily mean that the category  * doesn't exist - just that it is not in the cache. The caller can only infer  * that the category doesn't exist if it knows the cache to be complete (because  * all the categories were loaded into the cache, and since then no put()  * returned true).  *<p>  * However, if it does so, it should clear out large parts of the cache at once,  * because the user will typically need to work hard to recover from every cache  * cleanup (see {@link #put(FacetLabel, int)}'s return value).  *<p>  *<b>NOTE:</b> the cache may be accessed concurrently by multiple threads,  * therefore cache implementations should take this into consideration.  *   * @lucene.experimental  */

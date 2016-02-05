@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.analysis
 package|package
@@ -21,10 +25,6 @@ operator|.
 name|Reader
 import|;
 end_import
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/**  * An analyzer wrapper, that doesn't allow to wrap components or readers.  * By disallowing it, it means that the thread local resources can be delegated  * to the delegate analyzer, and not also be allocated on this analyzer.  * This wrapper class is the base class of all analyzers that just delegate to  * another analyzer, e.g. per field name.  *   *<p>This solves the problem of per field analyzer wrapper, where it also  * maintains a thread local per field token stream components, while it can  * safely delegate those and not also hold these data structures, which can  * become expensive memory wise.  *   *<p><b>Please note:</b> This analyzer uses a private {@link Analyzer.ReuseStrategy},  * which is returned by {@link #getReuseStrategy()}. This strategy is used when  * delegating. If you wrap this analyzer again and reuse this strategy, no  * delegation is done and the given fallback is used.  */

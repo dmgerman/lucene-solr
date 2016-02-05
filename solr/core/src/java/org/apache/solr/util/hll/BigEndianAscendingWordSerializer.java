@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.solr.util.hll
 package|package
@@ -13,10 +17,6 @@ operator|.
 name|hll
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/**  * A serializer that writes a sequence of fixed bit-width 'words' to a byte array.  * Bitwise OR is used to write words into bytes, so a low bit in a word is also  * a low bit in a byte. However, a high byte in a word is written at a lower index  * in the array than a low byte in a word. The first word is written at the lowest  * array index. Each serializer is one time use and returns its backing byte  * array.<p/>  *  * This encoding was chosen so that when reading bytes as octets in the typical  * first-octet-is-the-high-nibble fashion, an octet-to-binary conversion  * would yield a high-to-low, left-to-right view of the "short words".<p/>  *  * Example:<p/>  *  * Say short words are 5 bits wide. Our word sequence is the values  *<code>[31, 1, 5]</code>. In big-endian binary format, the values are  *<code>[0b11111, 0b00001, 0b00101]</code>. We use 15 of 16 bits in two bytes  * and pad the last (lowest) bit of the last byte with a zero:  *  *<code>  *  [0b11111000, 0b01001010] = [0xF8, 0x4A]  *</code>.  */
