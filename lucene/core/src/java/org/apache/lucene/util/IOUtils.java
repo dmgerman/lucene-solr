@@ -789,7 +789,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Deletes all given file names.  Some of the    * file names may be null; they are    * ignored.  After everything is deleted, the method either    * throws the first exception it hit while deleting, or    * completes normally if there were no exceptions.    *     * @param dir Directory to delete files from    * @param files file names to delete    */
+comment|/**    * Deletes all given file names.  Some of the    * file names may be null; they are    * ignored.  After everything is deleted, the method either    * throws the first exception it hit while deleting, or    * completes normally if there were no exceptions.    *     * @param dir Directory to delete files from    * @param names file names to delete    */
 DECL|method|deleteFiles
 specifier|public
 specifier|static
@@ -803,7 +803,7 @@ name|Collection
 argument_list|<
 name|String
 argument_list|>
-name|files
+name|names
 parameter_list|)
 throws|throws
 name|IOException
@@ -818,7 +818,7 @@ control|(
 name|String
 name|name
 range|:
-name|files
+name|names
 control|)
 block|{
 if|if

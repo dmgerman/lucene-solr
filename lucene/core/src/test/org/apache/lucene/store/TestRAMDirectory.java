@@ -515,13 +515,6 @@ argument_list|(
 name|fsDir
 argument_list|)
 expr_stmt|;
-name|IOUtils
-operator|.
-name|rm
-argument_list|(
-name|path
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 DECL|method|testRAMDirectory

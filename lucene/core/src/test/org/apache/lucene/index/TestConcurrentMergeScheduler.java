@@ -1037,27 +1037,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|directory
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// test uses IW unref'ed helper which is unaware of retries
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|directory
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|IndexWriter
 name|writer
 init|=

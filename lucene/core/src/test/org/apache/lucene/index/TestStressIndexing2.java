@@ -361,7 +361,7 @@ block|{
 name|Directory
 name|dir
 init|=
-name|newDirectory
+name|newMaybeVirusCheckingDirectory
 argument_list|()
 decl_stmt|;
 comment|// TODO: verify equals using IW.getReader
@@ -437,13 +437,13 @@ block|{
 name|Directory
 name|dir1
 init|=
-name|newDirectory
+name|newMaybeVirusCheckingDirectory
 argument_list|()
 decl_stmt|;
 name|Directory
 name|dir2
 init|=
-name|newDirectory
+name|newMaybeVirusCheckingDirectory
 argument_list|()
 decl_stmt|;
 comment|// mergeFactor=2; maxBufferedDocs=2; Map docs = indexRandom(1, 3, 2, dir1);

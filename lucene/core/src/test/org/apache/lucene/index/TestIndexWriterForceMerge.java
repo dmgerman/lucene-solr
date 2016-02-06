@@ -769,13 +769,6 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
-name|dir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 comment|// don't use MockAnalyzer, variable length payloads can cause merge to make things bigger,
 comment|// since things are optimized for fixed length case. this is a problem for MemoryPF's encoding.
 comment|// (it might have other problems too)

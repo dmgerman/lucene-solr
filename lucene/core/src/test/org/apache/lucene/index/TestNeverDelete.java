@@ -202,29 +202,6 @@ argument_list|(
 name|tmpDir
 argument_list|)
 decl_stmt|;
-comment|// We want to "see" files removed if Lucene removed
-comment|// them.  This is still worth running on Windows since
-comment|// some files the IR opens and closes.
-if|if
-condition|(
-name|d
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|d
-operator|)
-operator|.
-name|setNoDeleteOpenFile
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 specifier|final
 name|RandomIndexWriter
 name|w
@@ -633,13 +610,6 @@ name|d
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-name|IOUtils
-operator|.
-name|rm
-argument_list|(
-name|tmpDir
-argument_list|)
 expr_stmt|;
 block|}
 block|}

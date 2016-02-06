@@ -248,6 +248,22 @@ name|FilterPath
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressFileSystems
+import|;
+end_import
+
 begin_comment
 comment|/** Simple test methods for IOUtils */
 end_comment

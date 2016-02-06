@@ -183,22 +183,6 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
-comment|// don't act like windows either, or the test won't simulate the condition
-name|dir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// Allow deletion of still open files:
-name|dir
-operator|.
-name|setNoDeleteOpenFile
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 comment|// Allow writing to same file more than once:
 name|dir
 operator|.
@@ -318,7 +302,7 @@ comment|// Blow away index and make a new writer:
 for|for
 control|(
 name|String
-name|fileName
+name|name
 range|:
 name|dir
 operator|.
@@ -330,7 +314,7 @@ name|dir
 operator|.
 name|deleteFile
 argument_list|(
-name|fileName
+name|name
 argument_list|)
 expr_stmt|;
 block|}

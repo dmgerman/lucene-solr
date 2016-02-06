@@ -3660,22 +3660,6 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// ensure we produce enough of our exceptions
-name|dir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|IndexWriterConfig
 name|iwc
 init|=
@@ -4494,7 +4478,7 @@ comment|// Blow away the index:
 for|for
 control|(
 name|String
-name|fileName
+name|name
 range|:
 name|dir
 operator|.
@@ -4506,7 +4490,7 @@ name|dir
 operator|.
 name|deleteFile
 argument_list|(
-name|fileName
+name|name
 argument_list|)
 expr_stmt|;
 block|}
