@@ -2509,7 +2509,7 @@ literal|"Directory "
 operator|+
 name|d
 operator|+
-literal|" is still has pending deleted files; cannot initialize IndexWriter"
+literal|" still has pending deleted files; cannot initialize IndexWriter"
 argument_list|)
 throw|;
 block|}
