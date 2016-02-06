@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.store
 package|package
@@ -11,10 +15,6 @@ operator|.
 name|store
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -61,6 +61,20 @@ operator|.
 name|util
 operator|.
 name|IOUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
@@ -338,6 +352,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|Directory
 name|dir
 init|=
@@ -346,9 +362,20 @@ argument_list|(
 name|createTempDir
 argument_list|()
 argument_list|)
-decl_stmt|;
-try|try
+init|)
 block|{
+name|assumeFalse
+argument_list|(
+literal|"we must be able to delete an open file"
+argument_list|,
+name|TestUtil
+operator|.
+name|hasWindowsFS
+argument_list|(
+name|dir
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|Lock
 name|lock
 init|=
@@ -364,8 +391,6 @@ operator|.
 name|ensureValid
 argument_list|()
 expr_stmt|;
-try|try
-block|{
 name|dir
 operator|.
 name|deleteFile
@@ -373,29 +398,6 @@ argument_list|(
 literal|"test.lock"
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-comment|// we can't delete a file for some reason, just clean up and assume the test.
-name|IOUtils
-operator|.
-name|closeWhileHandlingException
-argument_list|(
-name|lock
-argument_list|)
-expr_stmt|;
-name|assumeNoException
-argument_list|(
-literal|"test requires the ability to delete a locked file"
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
 try|try
 block|{
 name|lock
@@ -427,15 +429,6 @@ name|lock
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-finally|finally
-block|{
-comment|// Do this in finally clause in case the assumeNoException is false:
-name|dir
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 block|}

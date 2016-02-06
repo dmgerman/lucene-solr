@@ -2085,13 +2085,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|Files
-operator|.
-name|delete
-argument_list|(
-name|lineFile
-argument_list|)
-expr_stmt|;
 block|}
 comment|/**    * Test ReadTokensTask    */
 DECL|method|testReadTokens

@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.facet.taxonomy.directory
 package|package
@@ -627,10 +631,6 @@ operator|.
 name|BytesRef
 import|;
 end_import
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/**  * {@link TaxonomyWriter} which uses a {@link Directory} to store the taxonomy  * information on disk, and keeps an additional in-memory cache of some or all  * categories.  *<p>  * In addition to the permanently-stored information in the {@link Directory},  * efficiency dictates that we also keep an in-memory cache of<B>recently  * seen</B> or<B>all</B> categories, so that we do not need to go back to disk  * for every category addition to see which ordinal this category already has,  * if any. A {@link TaxonomyWriterCache} object determines the specific caching  * algorithm used.  *<p>  * This class offers some hooks for extending classes to control the  * {@link IndexWriter} instance that is used. See {@link #openIndexWriter}.  *   * @lucene.experimental  */

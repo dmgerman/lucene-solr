@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.analysis.lv
 package|package
@@ -31,10 +35,6 @@ operator|.
 name|*
 import|;
 end_import
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/**  * Light stemmer for Latvian.  *<p>  * This is a light version of the algorithm in Karlis Kreslin's PhD thesis  *<i>A stemming algorithm for Latvian</i> with the following modifications:  *<ul>  *<li>Only explicitly stems noun and adjective morphology  *<li>Stricter length/vowel checks for the resulting stems (verb etc suffix stripping is removed)  *<li>Removes only the primary inflectional suffixes: case and number for nouns ;   *       case, number, gender, and definitiveness for adjectives.  *<li>Palatalization is only handled when a declension II,V,VI noun suffix is removed.  *</ul>  */

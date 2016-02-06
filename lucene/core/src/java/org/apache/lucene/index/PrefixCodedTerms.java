@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.index
 package|package
@@ -11,10 +15,6 @@ operator|.
 name|index
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -313,6 +313,33 @@ name|Term
 name|term
 parameter_list|)
 block|{
+name|add
+argument_list|(
+name|term
+operator|.
+name|field
+argument_list|()
+argument_list|,
+name|term
+operator|.
+name|bytes
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** add a term */
+DECL|method|add
+specifier|public
+name|void
+name|add
+parameter_list|(
+name|String
+name|field
+parameter_list|,
+name|BytesRef
+name|bytes
+parameter_list|)
+block|{
 assert|assert
 name|lastTerm
 operator|.
@@ -325,7 +352,13 @@ literal|""
 argument_list|)
 argument_list|)
 operator|||
-name|term
+operator|new
+name|Term
+argument_list|(
+name|field
+argument_list|,
+name|bytes
+argument_list|)
 operator|.
 name|compareTo
 argument_list|(
@@ -345,16 +378,12 @@ name|lastTerm
 operator|.
 name|bytes
 argument_list|,
-name|term
-operator|.
 name|bytes
 argument_list|)
 decl_stmt|;
 name|int
 name|suffix
 init|=
-name|term
-operator|.
 name|bytes
 operator|.
 name|length
@@ -363,8 +392,6 @@ name|prefix
 decl_stmt|;
 if|if
 condition|(
-name|term
-operator|.
 name|field
 operator|.
 name|equals
@@ -402,8 +429,6 @@ name|output
 operator|.
 name|writeString
 argument_list|(
-name|term
-operator|.
 name|field
 argument_list|)
 expr_stmt|;
@@ -419,14 +444,10 @@ name|output
 operator|.
 name|writeBytes
 argument_list|(
-name|term
-operator|.
 name|bytes
 operator|.
 name|bytes
 argument_list|,
-name|term
-operator|.
 name|bytes
 operator|.
 name|offset
@@ -440,8 +461,6 @@ name|lastTermBytes
 operator|.
 name|copyBytes
 argument_list|(
-name|term
-operator|.
 name|bytes
 argument_list|)
 expr_stmt|;
@@ -458,8 +477,6 @@ name|lastTerm
 operator|.
 name|field
 operator|=
-name|term
-operator|.
 name|field
 expr_stmt|;
 name|size

@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.replicator
 package|package
@@ -11,10 +15,6 @@ operator|.
 name|replicator
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -339,20 +339,6 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SegmentInfos
 import|;
 end_import
 
@@ -2504,69 +2490,6 @@ parameter_list|)
 block|{
 comment|// ok: we fallback below
 block|}
-block|}
-if|if
-condition|(
-name|indexStatus
-operator|==
-literal|null
-operator|||
-name|indexStatus
-operator|.
-name|clean
-operator|==
-literal|false
-condition|)
-block|{
-comment|// Because segments file for taxo index is replicated after
-comment|// main index's segments file, if there's an error while replicating
-comment|// main index's segments file and if virus checker prevents
-comment|// deletion of taxo index's segments file, it can look like corruption.
-comment|// But it should be "false" meaning if we remove the latest segments
-comment|// file then the index is intact.  It's like pulling a hideous
-comment|// looking rock out of the ground, but then you pull the cruft
-comment|// off the outside of it and discover it's actually a beautiful
-comment|// diamond:
-name|String
-name|segmentsFileName
-init|=
-name|SegmentInfos
-operator|.
-name|getLastCommitSegmentsFileName
-argument_list|(
-name|handlerTaxoDir
-argument_list|)
-decl_stmt|;
-name|assertTrue
-argument_list|(
-name|handlerTaxoDir
-operator|.
-name|didTryToDelete
-argument_list|(
-name|segmentsFileName
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|handlerTaxoDir
-operator|.
-name|getDelegate
-argument_list|()
-operator|.
-name|deleteFile
-argument_list|(
-name|segmentsFileName
-argument_list|)
-expr_stmt|;
-name|TestUtil
-operator|.
-name|checkIndex
-argument_list|(
-name|handlerTaxoDir
-operator|.
-name|getDelegate
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 catch|catch

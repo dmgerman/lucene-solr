@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.solr.search.facet
 package|package
@@ -13,10 +17,6 @@ operator|.
 name|facet
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -808,7 +808,7 @@ name|BAD_REQUEST
 argument_list|,
 name|msg
 operator|+
-literal|" ,path="
+literal|" , path="
 operator|+
 name|getPathStr
 argument_list|()
@@ -987,12 +987,29 @@ block|}
 else|else
 block|{
 throw|throw
-operator|new
-name|RuntimeException
+name|err
 argument_list|(
-literal|"Huh? TODO: "
+literal|"Unknown facet type key="
 operator|+
+name|key
+operator|+
+literal|" class="
+operator|+
+operator|(
 name|parsedValue
+operator|==
+literal|null
+condition|?
+literal|"null"
+else|:
+name|parsedValue
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|)
 argument_list|)
 throw|;
 block|}
@@ -1275,7 +1292,9 @@ name|args
 argument_list|)
 return|;
 block|}
-return|return
+name|AggValueSource
+name|stat
+init|=
 name|parseStat
 argument_list|(
 name|key
@@ -1284,6 +1303,33 @@ name|type
 argument_list|,
 name|args
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|stat
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+name|err
+argument_list|(
+literal|"Unknown facet or stat. key="
+operator|+
+name|key
+operator|+
+literal|" type="
+operator|+
+name|type
+operator|+
+literal|" args="
+operator|+
+name|args
+argument_list|)
+throw|;
+block|}
+return|return
+name|stat
 return|;
 block|}
 DECL|method|parseFieldFacet

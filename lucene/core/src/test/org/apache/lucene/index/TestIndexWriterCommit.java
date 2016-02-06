@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.index
 package|package
@@ -11,10 +15,6 @@ operator|.
 name|index
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -578,27 +578,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// test uses IW unref'ed check which is unaware of retries
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|IndexWriter
 name|writer
 init|=
@@ -1154,23 +1133,6 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// the virus scanner can use up too much disk space :)
-comment|// an alternative is to expose MDW.triedToDelete and discount it
-name|dir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|Analyzer
 name|analyzer
 decl_stmt|;
@@ -1579,27 +1541,6 @@ name|dir
 operator|)
 operator|.
 name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// test uses IW unref'ed check which is unaware of retries
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setEnableVirusScanner
 argument_list|(
 literal|false
 argument_list|)
@@ -3373,42 +3314,11 @@ name|numDocs
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// We need to let IW delete the partial segments_N that was written in prepareCommit, else we get a false fail below:
-if|if
-condition|(
-name|mockDir
-operator|!=
-literal|null
-condition|)
-block|{
-name|mockDir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|writer
 operator|.
 name|rollback
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|mockDir
-operator|!=
-literal|null
-condition|)
-block|{
-name|mockDir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-block|}
 name|IndexReader
 name|reader3
 init|=

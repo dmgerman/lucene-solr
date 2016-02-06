@@ -581,6 +581,19 @@ specifier|private
 name|ShardHandler
 name|shardHandler
 decl_stmt|;
+DECL|field|requests
+specifier|private
+name|List
+argument_list|<
+name|SyncShardRequest
+argument_list|>
+name|requests
+init|=
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|()
+decl_stmt|;
 DECL|field|startingVersions
 specifier|private
 name|List
@@ -625,6 +638,12 @@ name|long
 name|ourHighThreshold
 decl_stmt|;
 comment|// 80th percentile
+DECL|field|ourHighest
+specifier|private
+name|long
+name|ourHighest
+decl_stmt|;
+comment|// currently just used for logging/debugging purposes
 DECL|field|cantReachIsSuccess
 specifier|private
 specifier|final
@@ -636,6 +655,12 @@ specifier|private
 specifier|final
 name|boolean
 name|getNoVersionsIsSuccess
+decl_stmt|;
+DECL|field|doFingerprint
+specifier|private
+specifier|final
+name|boolean
+name|doFingerprint
 decl_stmt|;
 DECL|field|client
 specifier|private
@@ -876,6 +901,14 @@ name|Long
 argument_list|>
 name|reportedVersions
 decl_stmt|;
+DECL|field|fingerprint
+name|IndexFingerprint
+name|fingerprint
+decl_stmt|;
+DECL|field|doFingerprintComparison
+name|boolean
+name|doFingerprintComparison
+decl_stmt|;
 DECL|field|requestedUpdates
 name|List
 argument_list|<
@@ -955,6 +988,8 @@ argument_list|,
 name|getNoVersionsIsSuccess
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -982,6 +1017,9 @@ name|getNoVersionsIsSuccess
 parameter_list|,
 name|boolean
 name|onlyIfActive
+parameter_list|,
+name|boolean
+name|doFingerprint
 parameter_list|)
 block|{
 name|this
@@ -1019,6 +1057,12 @@ operator|.
 name|getNoVersionsIsSuccess
 operator|=
 name|getNoVersionsIsSuccess
+expr_stmt|;
+name|this
+operator|.
+name|doFingerprint
+operator|=
+name|doFingerprint
 expr_stmt|;
 name|this
 operator|.
@@ -1210,7 +1254,7 @@ operator|+
 literal|" "
 return|;
 block|}
-comment|/** Returns true if peer sync was successful, meaning that this core may not be considered to have the latest updates    *  when considering the last N updates between it and its peers.    *  A commit is not performed.    */
+comment|/** Returns true if peer sync was successful, meaning that this core may be considered to have the latest updates.    * It does not mean that the remote replica is in sync with us.    */
 DECL|method|sync
 specifier|public
 name|boolean
@@ -1491,6 +1535,15 @@ name|ourUpdates
 operator|=
 name|newList
 expr_stmt|;
+name|Collections
+operator|.
+name|sort
+argument_list|(
+name|ourUpdates
+argument_list|,
+name|absComparator
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
@@ -1542,6 +1595,15 @@ literal|false
 return|;
 block|}
 block|}
+name|ourHighest
+operator|=
+name|ourUpdates
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+expr_stmt|;
 name|ourUpdateSet
 operator|=
 operator|new
@@ -1556,9 +1618,7 @@ operator|=
 operator|new
 name|HashSet
 argument_list|<>
-argument_list|(
-name|ourUpdates
-argument_list|)
+argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -1615,6 +1675,42 @@ literal|false
 return|;
 block|}
 block|}
+comment|// finish up any comparisons with other shards that we deferred
+name|boolean
+name|success
+init|=
+literal|true
+decl_stmt|;
+for|for
+control|(
+name|SyncShardRequest
+name|sreq
+range|:
+name|requests
+control|)
+block|{
+if|if
+condition|(
+name|sreq
+operator|.
+name|doFingerprintComparison
+condition|)
+block|{
+name|success
+operator|=
+name|compareFingerprint
+argument_list|(
+name|sreq
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|success
+condition|)
+break|break;
+block|}
+block|}
 name|log
 operator|.
 name|info
@@ -1622,11 +1718,19 @@ argument_list|(
 name|msg
 argument_list|()
 operator|+
-literal|"DONE. sync succeeded"
+literal|"DONE. sync "
+operator|+
+operator|(
+name|success
+condition|?
+literal|"succeeded"
+else|:
+literal|"failed"
+operator|)
 argument_list|)
 expr_stmt|;
 return|return
-literal|true
+name|success
 return|;
 block|}
 finally|finally
@@ -1654,6 +1758,13 @@ operator|new
 name|SyncShardRequest
 argument_list|()
 decl_stmt|;
+name|requests
+operator|.
+name|add
+argument_list|(
+name|sreq
+argument_list|)
+expr_stmt|;
 name|sreq
 operator|.
 name|purpose
@@ -1718,6 +1829,17 @@ argument_list|(
 literal|"getVersions"
 argument_list|,
 name|nUpdates
+argument_list|)
+expr_stmt|;
+name|sreq
+operator|.
+name|params
+operator|.
+name|set
+argument_list|(
+literal|"fingerprint"
+argument_list|,
+name|doFingerprint
 argument_list|)
 expr_stmt|;
 name|shardHandler
@@ -2150,6 +2272,22 @@ name|reportedVersions
 operator|=
 name|otherVersions
 expr_stmt|;
+name|Object
+name|fingerprint
+init|=
+name|srsp
+operator|.
+name|getSolrResponse
+argument_list|()
+operator|.
+name|getResponse
+argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|"fingerprint"
+argument_list|)
+decl_stmt|;
 name|log
 operator|.
 name|info
@@ -2172,8 +2310,31 @@ name|shards
 index|[
 literal|0
 index|]
+operator|+
+literal|" fingerprint:"
+operator|+
+name|fingerprint
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|fingerprint
+operator|!=
+literal|null
+condition|)
+block|{
+name|sreq
+operator|.
+name|fingerprint
+operator|=
+name|IndexFingerprint
+operator|.
+name|fromObject
+argument_list|(
+name|fingerprint
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|otherVersions
@@ -2255,6 +2416,16 @@ argument_list|,
 literal|.8f
 argument_list|)
 decl_stmt|;
+name|long
+name|otherHighest
+init|=
+name|otherVersions
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|ourHighThreshold
@@ -2280,6 +2451,14 @@ operator|+
 literal|" otherLowThreshold="
 operator|+
 name|otherLow
+operator|+
+literal|" ourHighest="
+operator|+
+name|ourHighest
+operator|+
+literal|" otherHighest="
+operator|+
+name|otherHighest
 argument_list|)
 expr_stmt|;
 return|return
@@ -2310,8 +2489,18 @@ operator|+
 literal|" otherHigh="
 operator|+
 name|otherHigh
+operator|+
+literal|" ourHighest="
+operator|+
+name|ourHighest
+operator|+
+literal|" otherHighest="
+operator|+
+name|otherHighest
 argument_list|)
 expr_stmt|;
+comment|// Because our versions are newer, IndexFingerprint with the remote would not match us.
+comment|// We return true on our side, but the remote peersync with us should fail.
 return|return
 literal|true
 return|;
@@ -2409,16 +2598,37 @@ argument_list|(
 name|msg
 argument_list|()
 operator|+
-literal|" Our versions are newer. ourLowThreshold="
+literal|" No additional versions requested. ourLowThreshold="
 operator|+
 name|ourLowThreshold
 operator|+
 literal|" otherHigh="
 operator|+
 name|otherHigh
+operator|+
+literal|" ourHighest="
+operator|+
+name|ourHighest
+operator|+
+literal|" otherHighest="
+operator|+
+name|otherHighest
 argument_list|)
 expr_stmt|;
 comment|// we had (or already requested) all the updates referenced by the replica
+comment|// If we requested updates from another replica, we can't compare fingerprints yet with this replica, we need to defer
+if|if
+condition|(
+name|doFingerprint
+condition|)
+block|{
+name|sreq
+operator|.
+name|doFingerprintComparison
+operator|=
+literal|true
+expr_stmt|;
+block|}
 return|return
 literal|true
 return|;
@@ -2457,6 +2667,95 @@ argument_list|,
 name|toRequest
 argument_list|)
 return|;
+block|}
+DECL|method|compareFingerprint
+specifier|private
+name|boolean
+name|compareFingerprint
+parameter_list|(
+name|SyncShardRequest
+name|sreq
+parameter_list|)
+block|{
+if|if
+condition|(
+name|sreq
+operator|.
+name|fingerprint
+operator|==
+literal|null
+condition|)
+return|return
+literal|true
+return|;
+try|try
+block|{
+name|IndexFingerprint
+name|ourFingerprint
+init|=
+name|IndexFingerprint
+operator|.
+name|getFingerprint
+argument_list|(
+name|core
+argument_list|,
+name|Long
+operator|.
+name|MAX_VALUE
+argument_list|)
+decl_stmt|;
+name|int
+name|cmp
+init|=
+name|IndexFingerprint
+operator|.
+name|compare
+argument_list|(
+name|ourFingerprint
+argument_list|,
+name|sreq
+operator|.
+name|fingerprint
+argument_list|)
+decl_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Fingerprint comparison: "
+operator|+
+name|cmp
+argument_list|)
+expr_stmt|;
+return|return
+name|cmp
+operator|==
+literal|0
+return|;
+comment|// currently, we only check for equality...
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+name|msg
+argument_list|()
+operator|+
+literal|"Error getting index fingerprint"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+return|return
+literal|false
+return|;
+block|}
 block|}
 DECL|method|requestUpdates
 specifier|private
@@ -3318,7 +3617,10 @@ return|;
 block|}
 block|}
 return|return
-literal|true
+name|compareFingerprint
+argument_list|(
+name|sreq
+argument_list|)
 return|;
 block|}
 comment|/** Requests and applies recent updates from peers */

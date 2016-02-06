@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.util
 package|package
@@ -11,10 +15,6 @@ operator|.
 name|util
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -806,7 +806,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Deletes all given file names.  Some of the    * file names may be null; they are    * ignored.  After everything is deleted, the method either    * throws the first exception it hit while deleting, or    * completes normally if there were no exceptions.    *     * @param dir Directory to delete files from    * @param files file names to delete    */
+comment|/**    * Deletes all given file names.  Some of the    * file names may be null; they are    * ignored.  After everything is deleted, the method either    * throws the first exception it hit while deleting, or    * completes normally if there were no exceptions.    *     * @param dir Directory to delete files from    * @param names file names to delete    */
 DECL|method|deleteFiles
 specifier|public
 specifier|static
@@ -820,7 +820,7 @@ name|Collection
 argument_list|<
 name|String
 argument_list|>
-name|files
+name|names
 parameter_list|)
 throws|throws
 name|IOException
@@ -835,7 +835,7 @@ control|(
 name|String
 name|name
 range|:
-name|files
+name|names
 control|)
 block|{
 if|if

@@ -674,15 +674,6 @@ name|TestRankQueryPlugin
 extends|extends
 name|QParserPlugin
 block|{
-DECL|method|init
-specifier|public
-name|void
-name|init
-parameter_list|(
-name|NamedList
-name|params
-parameter_list|)
-block|{    }
 DECL|method|createParser
 specifier|public
 name|QParser

@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.util
 package|package
@@ -11,10 +15,6 @@ operator|.
 name|util
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/* some code derived from jodk: http://code.google.com/p/jodk/ (apache 2.0)  * asin() derived from fdlibm: http://www.netlib.org/fdlibm/e_asin.c (public domain):  * =============================================================================  * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.  *  * Developed at SunSoft, a Sun Microsystems, Inc. business.  * Permission to use, copy, modify, and distribute this  * software is freely granted, provided that this notice   * is preserved.  * =============================================================================  */
@@ -665,6 +665,7 @@ return|;
 block|}
 comment|// haversin
 DECL|field|TO_RADIANS
+specifier|public
 specifier|static
 specifier|final
 name|double
@@ -677,6 +678,7 @@ operator|/
 literal|180D
 decl_stmt|;
 DECL|field|TO_DEGREES
+specifier|public
 specifier|static
 specifier|final
 name|double
@@ -723,6 +725,7 @@ operator|/
 literal|24.0
 decl_stmt|;
 DECL|field|PIO2
+specifier|public
 specifier|static
 specifier|final
 name|double

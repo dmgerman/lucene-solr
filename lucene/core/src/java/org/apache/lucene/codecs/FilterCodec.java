@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.codecs
 package|package
@@ -11,10 +15,6 @@ operator|.
 name|codecs
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_comment
 comment|/**  * A codec that forwards all its method calls to another codec.  *<p>  * Extend this class when you need to reuse the functionality of an existing  * codec. For example, if you want to build a codec that redefines LuceneMN's  * {@link LiveDocsFormat}:  *<pre class="prettyprint">  *   public final class CustomCodec extends FilterCodec {  *  *     public CustomCodec() {  *       super("CustomCodec", new LuceneMNCodec());  *     }  *  *     public LiveDocsFormat liveDocsFormat() {  *       return new CustomLiveDocsFormat();  *     }  *  *   }  *</pre>  *   *<p><em>Please note:</em> Don't call {@link Codec#forName} from  * the no-arg constructor of your own codec. When the SPI framework  * loads your own Codec as SPI component, SPI has not yet fully initialized!  * If you want to extend another Codec, instantiate it directly by calling  * its constructor.  *   * @lucene.experimental  */
