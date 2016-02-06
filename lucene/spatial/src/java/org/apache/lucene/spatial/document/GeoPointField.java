@@ -147,7 +147,7 @@ specifier|public
 enum|enum
 name|TermEncoding
 block|{
-comment|/**      * encodes prefix terms only resulting in a small index and faster queries - use with      * {@link GeoPointTokenStream}      */
+comment|/**      * encodes prefix terms only resulting in a small index and faster queries - use with      * {@code GeoPointTokenStream}      */
 DECL|enum constant|PREFIX
 name|PREFIX
 block|,

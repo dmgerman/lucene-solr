@@ -264,7 +264,7 @@ name|isInit
 init|=
 literal|false
 decl_stmt|;
-comment|/**    * Expert: Creates a token stream for geo point fields with the specified    *<code>precisionStep</code> using the given    * {@link org.apache.lucene.util.AttributeFactory}.    * The stream is not yet initialized,    * before using set a value using the various set<em>???</em>Value() methods.    */
+comment|/**    * Expert: Creates a token stream for geo point fields with the specified    *<code>precisionStep</code> using the given    * {@link org.apache.lucene.util.AttributeFactory}.    * The stream is not yet initialized,    * before using set a value using the various setGeoCode method.    */
 DECL|method|GeoPointTokenStream
 specifier|public
 name|GeoPointTokenStream
