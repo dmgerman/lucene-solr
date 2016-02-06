@@ -496,6 +496,9 @@ name|primaryTCPPort
 parameter_list|,
 name|SearcherFactory
 name|searcherFactory
+parameter_list|,
+name|boolean
+name|doCheckIndexOnClose
 parameter_list|)
 throws|throws
 name|IOException
@@ -511,6 +514,8 @@ argument_list|,
 name|id
 argument_list|,
 name|indexPath
+argument_list|,
+name|doCheckIndexOnClose
 argument_list|)
 argument_list|,
 name|searcherFactory
@@ -885,6 +890,9 @@ name|id
 parameter_list|,
 name|Path
 name|path
+parameter_list|,
+name|boolean
+name|doCheckIndexOnClose
 parameter_list|)
 throws|throws
 name|IOException
@@ -906,8 +914,11 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-comment|// This is very costly (takes more time to check than it did to index); we do this ourselves in the end instead of each time a replica
-comment|// is restarted:
+if|if
+condition|(
+name|doCheckIndexOnClose
+condition|)
+block|{
 name|dir
 operator|.
 name|setCheckIndexOnClose
@@ -915,6 +926,7 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Corrupt any index files not referenced by current commit point; this is important (increases test evilness) because we may have done
 comment|// a hard crash of the previous JVM writing to this directory and so MDW's corrupt-unknown-files-on-close never ran:
 name|Node

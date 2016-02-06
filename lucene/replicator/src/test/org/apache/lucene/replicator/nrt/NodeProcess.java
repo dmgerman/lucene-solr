@@ -303,6 +303,11 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+name|p
+operator|.
+name|waitFor
+argument_list|()
+expr_stmt|;
 name|pumper
 operator|.
 name|join
@@ -404,6 +409,7 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
+comment|// nocommit throw this
 comment|// Something wrong with this replica; skip it:
 name|System
 operator|.
@@ -468,6 +474,7 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
+comment|// nocommit throw this
 comment|// Something wrong with this replica; skip it:
 name|System
 operator|.
@@ -544,6 +551,7 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
+comment|// nocommit throw this
 comment|// Something wrong with this replica; skip it:
 name|System
 operator|.
@@ -660,21 +668,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PARENT: now shutdown node="
-operator|+
-name|id
-operator|+
-literal|" isOpen="
-operator|+
-name|isOpen
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("PARENT: now shutdown node=" + id + " isOpen=" + isOpen);
 if|if
 condition|(
 name|isOpen
@@ -685,17 +679,7 @@ name|isOpen
 operator|=
 literal|false
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PARENT: send CMD_CLOSE to node="
-operator|+
-name|id
-argument_list|)
-expr_stmt|;
+comment|//System.out.println("PARENT: send CMD_CLOSE to node=" + id);
 try|try
 init|(
 name|Connection
@@ -806,6 +790,68 @@ block|{
 name|lock
 operator|.
 name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+DECL|method|newNRTPoint
+specifier|public
+name|void
+name|newNRTPoint
+parameter_list|(
+name|long
+name|version
+parameter_list|,
+name|int
+name|primaryTCPPort
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+try|try
+init|(
+name|Connection
+name|c
+init|=
+operator|new
+name|Connection
+argument_list|(
+name|tcpPort
+argument_list|)
+init|)
+block|{
+name|c
+operator|.
+name|out
+operator|.
+name|writeByte
+argument_list|(
+name|SimpleReplicaNode
+operator|.
+name|CMD_NEW_NRT_POINT
+argument_list|)
+expr_stmt|;
+name|c
+operator|.
+name|out
+operator|.
+name|writeVLong
+argument_list|(
+name|version
+argument_list|)
+expr_stmt|;
+name|c
+operator|.
+name|out
+operator|.
+name|writeInt
+argument_list|(
+name|primaryTCPPort
+argument_list|)
+expr_stmt|;
+name|c
+operator|.
+name|flush
 argument_list|()
 expr_stmt|;
 block|}

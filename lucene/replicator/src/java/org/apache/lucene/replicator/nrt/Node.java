@@ -347,12 +347,13 @@ name|VERBOSE_FILES
 init|=
 literal|true
 decl_stmt|;
+comment|// nocommit
 DECL|field|VERBOSE_CONNECTIONS
 specifier|static
 name|boolean
 name|VERBOSE_CONNECTIONS
 init|=
-literal|false
+literal|true
 decl_stmt|;
 comment|// Keys we store into IndexWriter's commit user data:
 comment|/** Key to store the primary gen in the commit data, which increments every time we promote a new primary, so replicas can detect when the    *  primary they were talking to is changed */

@@ -1629,6 +1629,21 @@ literal|"tests.nrtreplication.doFlipBitsDuringCopy"
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|boolean
+name|doCheckIndexOnClose
+init|=
+literal|"true"
+operator|.
+name|equals
+argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.nrtreplication.checkonclose"
+argument_list|)
+argument_list|)
+decl_stmt|;
 comment|// Create server socket that we listen for incoming requests on:
 try|try
 init|(
@@ -1707,6 +1722,8 @@ argument_list|,
 literal|null
 argument_list|,
 name|doFlipBitsDuringCopy
+argument_list|,
+name|doCheckIndexOnClose
 argument_list|)
 expr_stmt|;
 name|System
@@ -1752,6 +1769,8 @@ argument_list|,
 name|primaryTCPPort
 argument_list|,
 literal|null
+argument_list|,
+name|doCheckIndexOnClose
 argument_list|)
 expr_stmt|;
 block|}
