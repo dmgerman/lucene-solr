@@ -679,19 +679,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// this test itself deletes files (has no retry mechanism)
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|directory
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 name|IndexWriter
 name|writer
@@ -905,19 +892,6 @@ name|directory
 operator|)
 operator|.
 name|setAssertNoUnrefencedFilesOnClose
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// this test itself deletes files (has no retry mechanism)
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|directory
-operator|)
-operator|.
-name|setEnableVirusScanner
 argument_list|(
 literal|false
 argument_list|)
@@ -1428,9 +1402,8 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-specifier|final
 name|String
-name|fileToDelete
+name|name
 range|:
 name|filesToDelete
 control|)
@@ -1443,7 +1416,7 @@ name|dir
 operator|.
 name|deleteFile
 argument_list|(
-name|fileToDelete
+name|name
 argument_list|)
 expr_stmt|;
 block|}

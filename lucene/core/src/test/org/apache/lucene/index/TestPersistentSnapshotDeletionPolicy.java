@@ -88,6 +88,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|After
@@ -206,14 +220,6 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
-name|dir
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-comment|// test relies on files actually being deleted
 name|IndexWriter
 name|writer
 init|=

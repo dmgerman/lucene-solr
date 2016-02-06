@@ -742,7 +742,7 @@ decl_stmt|;
 name|Directory
 name|dir
 init|=
-name|newDirectory
+name|newMaybeVirusCheckingDirectory
 argument_list|()
 decl_stmt|;
 specifier|final

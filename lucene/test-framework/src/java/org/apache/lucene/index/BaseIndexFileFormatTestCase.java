@@ -1343,28 +1343,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// Else, the virus checker may prevent deletion of files and cause
-comment|// us to see too many bytes used by extension in the end:
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 comment|// do not use newMergePolicy that might return a MockMergePolicy that ignores the no-CFS ratio
 comment|// do not use RIW which will change things up!
 name|MergePolicy
@@ -1492,28 +1470,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|dir2
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// Else, the virus checker may prevent deletion of files and cause
-comment|// us to see too many bytes used by extension in the end:
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir2
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|mp
 operator|=
 name|newTieredMergePolicy

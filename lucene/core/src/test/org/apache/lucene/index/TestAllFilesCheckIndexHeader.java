@@ -243,27 +243,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|dir
-operator|instanceof
-name|MockDirectoryWrapper
-condition|)
-block|{
-comment|// otherwise we can have unref'd files left in the index that won't be visited when opening a reader and lead to scary looking false failures:
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setEnableVirusScanner
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-block|}
 name|IndexWriterConfig
 name|conf
 init|=
