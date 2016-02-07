@@ -914,19 +914,15 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|doCheckIndexOnClose
-condition|)
-block|{
+comment|// nocommit
+comment|//dir.setCheckIndexOnClose(doCheckIndexOnClose);
 name|dir
 operator|.
 name|setCheckIndexOnClose
 argument_list|(
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
-block|}
 comment|// Corrupt any index files not referenced by current commit point; this is important (increases test evilness) because we may have done
 comment|// a hard crash of the previous JVM writing to this directory and so MDW's corrupt-unknown-files-on-close never ran:
 name|Node

@@ -339,6 +339,15 @@ operator|+
 name|t2
 argument_list|)
 expr_stmt|;
+name|t2
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 block|}
 continue|continue;
 block|}

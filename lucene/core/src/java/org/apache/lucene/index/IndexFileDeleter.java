@@ -3062,6 +3062,8 @@ literal|"\""
 argument_list|)
 expr_stmt|;
 block|}
+comment|// We make two passes, first deleting any segments_N files, second deleting all the rest.  We do this so that if we throw exc or JVM
+comment|// crashes during deletions, we don't leave the index in an "apparently corrupt" state:
 for|for
 control|(
 name|String
@@ -3070,6 +3072,85 @@ range|:
 name|names
 control|)
 block|{
+if|if
+condition|(
+name|name
+operator|.
+name|startsWith
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS
+argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+continue|continue;
+block|}
+try|try
+block|{
+name|directory
+operator|.
+name|deleteFile
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchFileException
+decl||
+name|FileNotFoundException
+name|e
+parameter_list|)
+block|{
+comment|// IndexWriter should only ask us to delete files it knows it wrote, so if we hit this, something is wrong!
+if|if
+condition|(
+name|Constants
+operator|.
+name|WINDOWS
+condition|)
+block|{
+comment|// TODO: can we remove this OS-specific hacky logic?  If windows deleteFile is buggy, we should instead contain this workaround in
+comment|// a WindowsFSDirectory ...
+comment|// LUCENE-6684: we suppress this assert for Windows, since a file could be in a confusing "pending delete" state, and falsely
+comment|// return NSFE/FNFE
+block|}
+else|else
+block|{
+throw|throw
+name|e
+throw|;
+block|}
+block|}
+block|}
+for|for
+control|(
+name|String
+name|name
+range|:
+name|names
+control|)
+block|{
+if|if
+condition|(
+name|name
+operator|.
+name|startsWith
+argument_list|(
+name|IndexFileNames
+operator|.
+name|SEGMENTS
+argument_list|)
+operator|==
+literal|true
+condition|)
+block|{
+continue|continue;
+block|}
 try|try
 block|{
 name|directory

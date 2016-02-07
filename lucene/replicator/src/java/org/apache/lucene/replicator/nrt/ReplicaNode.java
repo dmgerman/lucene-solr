@@ -590,7 +590,6 @@ operator|.
 name|WRITE_LOCK_NAME
 argument_list|)
 expr_stmt|;
-comment|// nocommit must check for no pending deletes here, like IW does
 name|state
 operator|=
 literal|"init"

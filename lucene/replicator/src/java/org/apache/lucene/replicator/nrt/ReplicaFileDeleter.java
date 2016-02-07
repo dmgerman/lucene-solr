@@ -594,6 +594,7 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
+comment|// nocommit remove this retry logic!  it's Directory's job now...
 if|if
 condition|(
 name|Node

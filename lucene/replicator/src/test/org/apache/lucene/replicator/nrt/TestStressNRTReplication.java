@@ -637,13 +637,14 @@ init|=
 literal|true
 decl_stmt|;
 comment|/** Set to a non-null value to force exactly that many nodes; else, it's random. */
+comment|// nocommit
 DECL|field|NUM_NODES
 specifier|static
 specifier|final
 name|Integer
 name|NUM_NODES
 init|=
-literal|null
+literal|2
 decl_stmt|;
 DECL|field|failed
 specifier|final
@@ -5053,8 +5054,9 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
-comment|// nocommit not anymore?
-comment|// This can be null if we got the new primary after crash and that primary is still catching up (replaying xlog):
+comment|// This can be null if primary is flushing, has already refreshed its searcher, but is e.g. still notifying replicas and hasn't
+comment|// yet returned the version to us, in which case this searcher thread can see the version before the main thread has added it to
+comment|// versionToMarker:
 name|Integer
 name|expectedAtLeastHitCount
 init|=
@@ -5065,15 +5067,6 @@ argument_list|(
 name|version
 argument_list|)
 decl_stmt|;
-name|assertNotNull
-argument_list|(
-literal|"version="
-operator|+
-name|version
-argument_list|,
-name|expectedAtLeastHitCount
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|expectedAtLeastHitCount

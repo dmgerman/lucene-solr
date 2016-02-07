@@ -1071,28 +1071,6 @@ literal|true
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-name|createdFiles
-operator|.
-name|contains
-argument_list|(
-name|dest
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"MockDirectoryWrapper: dest file \""
-operator|+
-name|dest
-operator|+
-literal|"\" already exists: cannot rename"
-argument_list|)
-throw|;
-block|}
 name|boolean
 name|success
 init|=
@@ -1302,10 +1280,13 @@ operator|+
 literal|" to gather files it references"
 argument_list|)
 expr_stmt|;
-name|knownFiles
-operator|.
-name|addAll
-argument_list|(
+name|SegmentInfos
+name|infos
+decl_stmt|;
+try|try
+block|{
+name|infos
+operator|=
 name|SegmentInfos
 operator|.
 name|readCommit
@@ -1314,6 +1295,44 @@ name|this
 argument_list|,
 name|fileName
 argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|ioe
+parameter_list|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"MDW: exception reading segment infos "
+operator|+
+name|fileName
+operator|+
+literal|"; files: "
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|listAll
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+throw|throw
+name|ioe
+throw|;
+block|}
+name|knownFiles
+operator|.
+name|addAll
+argument_list|(
+name|infos
 operator|.
 name|files
 argument_list|(
@@ -2126,10 +2145,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|crashed
-operator|=
-literal|true
-expr_stmt|;
 name|openFiles
 operator|=
 operator|new
@@ -2198,6 +2213,10 @@ name|corruptFiles
 argument_list|(
 name|unSyncedFiles
 argument_list|)
+expr_stmt|;
+name|crashed
+operator|=
+literal|true
 expr_stmt|;
 name|unSyncedFiles
 operator|=
@@ -2680,6 +2699,13 @@ expr_stmt|;
 name|in
 operator|.
 name|deleteFile
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
+name|createdFiles
+operator|.
+name|remove
 argument_list|(
 name|name
 argument_list|)
@@ -4248,6 +4274,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|// TODO: factor this out / share w/ TestIW.assertNoUnreferencedFiles
+comment|// nocommit pull this outside of "getCheckIndexOnClose"
 if|if
 condition|(
 name|assertNoUnreferencedFilesOnClose
