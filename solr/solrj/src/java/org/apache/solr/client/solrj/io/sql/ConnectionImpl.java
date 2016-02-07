@@ -293,12 +293,6 @@ specifier|final
 name|CloudSolrClient
 name|client
 decl_stmt|;
-DECL|field|collection
-specifier|private
-specifier|final
-name|String
-name|collection
-decl_stmt|;
 DECL|field|properties
 specifier|private
 specifier|final
@@ -316,6 +310,11 @@ specifier|private
 specifier|final
 name|Statement
 name|connectionStatement
+decl_stmt|;
+DECL|field|collection
+specifier|private
+name|String
+name|collection
 decl_stmt|;
 DECL|field|closed
 specifier|private
@@ -355,6 +354,8 @@ name|this
 operator|.
 name|client
 operator|=
+name|this
+operator|.
 name|solrClientCache
 operator|.
 name|getCloudSolrClient
@@ -364,9 +365,10 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
+name|setSchema
+argument_list|(
 name|collection
-operator|=
-name|collection
+argument_list|)
 expr_stmt|;
 name|this
 operator|.
@@ -689,13 +691,7 @@ name|catalog
 parameter_list|)
 throws|throws
 name|SQLException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
+block|{    }
 annotation|@
 name|Override
 DECL|method|getCatalog
@@ -1268,7 +1264,7 @@ parameter_list|)
 throws|throws
 name|SQLException
 block|{
-comment|// check that the connection isn't close and able to connect within the timeout
+comment|// check that the connection isn't closed and able to connect within the timeout
 try|try
 block|{
 if|if
@@ -1445,11 +1441,12 @@ parameter_list|)
 throws|throws
 name|SQLException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+name|this
+operator|.
+name|collection
+operator|=
+name|schema
+expr_stmt|;
 block|}
 annotation|@
 name|Override

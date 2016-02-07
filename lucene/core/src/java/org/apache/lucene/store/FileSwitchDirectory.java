@@ -66,6 +66,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collection
 import|;
 end_import
@@ -412,7 +422,10 @@ throw|throw
 name|exc
 throw|;
 block|}
-return|return
+name|String
+index|[]
+name|result
+init|=
 name|files
 operator|.
 name|toArray
@@ -426,6 +439,16 @@ name|size
 argument_list|()
 index|]
 argument_list|)
+decl_stmt|;
+name|Arrays
+operator|.
+name|sort
+argument_list|(
+name|result
+argument_list|)
+expr_stmt|;
+return|return
+name|result
 return|;
 block|}
 comment|/** Utility method to return a file's extension. */
