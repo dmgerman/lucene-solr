@@ -1284,14 +1284,14 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//Test simple loop. Since limit is set it will override the statement maxRows
+comment|//Test simple loop. Since limit is set it will override the statement maxRows.
 name|rs
 operator|=
 name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select id, a_i, a_s, a_f from collection1 order by a_i asc limit 100"
+literal|"select id, a_i, a_s, a_f from collection1 order by a_i asc    LIMIT   100"
 argument_list|)
 expr_stmt|;
 name|int

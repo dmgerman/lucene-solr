@@ -1625,6 +1625,14 @@ operator|.
 name|equals
 argument_list|(
 name|secondToLastToken
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|getDefault
+argument_list|()
+argument_list|)
 argument_list|)
 return|;
 block|}
