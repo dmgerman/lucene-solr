@@ -1170,6 +1170,8 @@ block|}
 name|privateDeleteFile
 argument_list|(
 name|name
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|maybeDeletePendingFiles
@@ -1235,6 +1237,8 @@ block|{
 name|privateDeleteFile
 argument_list|(
 name|name
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -1298,6 +1302,9 @@ name|privateDeleteFile
 parameter_list|(
 name|String
 name|name
+parameter_list|,
+name|boolean
+name|isPendingDelete
 parameter_list|)
 throws|throws
 name|IOException
@@ -1340,9 +1347,26 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isPendingDelete
+operator|&&
+name|Constants
+operator|.
+name|WINDOWS
+condition|)
+block|{
+comment|// TODO: can we remove this OS-specific hacky logic?  If windows deleteFile is buggy, we should instead contain this workaround in
+comment|// a WindowsFSDirectory ...
+comment|// LUCENE-6684: we suppress this check for Windows, since a file could be in a confusing "pending delete" state, failing the first
+comment|// delete attempt with access denied and then apparently falsely failing here when we try ot delete it again, with NSFE/FNFE
+block|}
+else|else
+block|{
 throw|throw
 name|e
 throw|;
+block|}
 block|}
 catch|catch
 parameter_list|(
