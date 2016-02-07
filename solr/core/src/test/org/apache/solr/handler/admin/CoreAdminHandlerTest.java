@@ -921,7 +921,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"Invalid core name"
+literal|"Invalid name"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1409,8 +1409,8 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalArgumentException
-name|iae
+name|SolrException
+name|e
 parameter_list|)
 block|{
 comment|// why the heck does create return a SolrException (admittedly wrapping an IAE)
@@ -1418,14 +1418,14 @@ name|assertTrue
 argument_list|(
 literal|"Expected error message for bad core name."
 argument_list|,
-name|iae
+name|e
 operator|.
 name|getMessage
 argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"Invalid core name"
+literal|"Invalid name"
 argument_list|)
 argument_list|)
 expr_stmt|;
