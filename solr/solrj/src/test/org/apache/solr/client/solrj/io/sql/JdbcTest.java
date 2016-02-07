@@ -1190,13 +1190,20 @@ name|close
 argument_list|()
 expr_stmt|;
 comment|//Test statement reuse
+name|stmt
+operator|.
+name|setMaxRows
+argument_list|(
+literal|2
+argument_list|)
+expr_stmt|;
 name|rs
 operator|=
 name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select id, a_i, a_s, a_f from collection1 order by a_i asc limit 2"
+literal|"select id, a_i, a_s, a_f from collection1 order by a_i asc"
 argument_list|)
 expr_stmt|;
 assert|assert
@@ -1277,7 +1284,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-comment|//Test simple loop
+comment|//Test simple loop. Since limit is set it will override the statement maxRows
 name|rs
 operator|=
 name|stmt
