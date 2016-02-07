@@ -622,11 +622,9 @@ argument_list|()
 expr_stmt|;
 name|termEncoding
 operator|=
-name|TermEncoding
-operator|.
-name|PREFIX
+name|randomTermEncoding
+argument_list|()
 expr_stmt|;
-comment|// randomTermEncoding();
 name|fieldType
 operator|=
 name|randomFieldType
