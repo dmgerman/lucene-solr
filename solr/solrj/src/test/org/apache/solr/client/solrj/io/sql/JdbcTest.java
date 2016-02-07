@@ -2895,6 +2895,46 @@ name|getCatalog
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|con
+operator|.
+name|setCatalog
+argument_list|(
+name|zkServer
+operator|.
+name|getZkAddress
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|zkServer
+operator|.
+name|getZkAddress
+argument_list|()
+argument_list|,
+name|con
+operator|.
+name|getCatalog
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|collection
+argument_list|,
+name|con
+operator|.
+name|getSchema
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|con
+operator|.
+name|setSchema
+argument_list|(
+name|collection
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 name|collection
@@ -2938,6 +2978,44 @@ name|getURL
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|4
+argument_list|,
+name|databaseMetaData
+operator|.
+name|getJDBCMajorVersion
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|0
+argument_list|,
+name|databaseMetaData
+operator|.
+name|getJDBCMinorVersion
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Apache Solr"
+argument_list|,
+name|databaseMetaData
+operator|.
+name|getDatabaseProductName
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// The following tests require package information that is not available when running via Maven
+comment|//      assertEquals(this.getClass().getPackage().getSpecificationVersion(), databaseMetaData.getDatabaseProductVersion());
+comment|//      assertEquals(0, databaseMetaData.getDatabaseMajorVersion());
+comment|//      assertEquals(0, databaseMetaData.getDatabaseMinorVersion());
+comment|//      assertEquals(this.getClass().getPackage().getSpecificationTitle(), databaseMetaData.getDriverName());
+comment|//      assertEquals(this.getClass().getPackage().getSpecificationVersion(), databaseMetaData.getDriverVersion());
+comment|//      assertEquals(0, databaseMetaData.getDriverMajorVersion());
+comment|//      assertEquals(0, databaseMetaData.getDriverMinorVersion());
 try|try
 init|(
 name|ResultSet
