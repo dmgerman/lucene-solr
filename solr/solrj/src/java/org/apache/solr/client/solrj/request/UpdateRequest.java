@@ -1652,6 +1652,14 @@ argument_list|,
 name|version
 argument_list|)
 expr_stmt|;
+name|urequest
+operator|.
+name|setCommitWithin
+argument_list|(
+name|getCommitWithin
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|request
 operator|=
 operator|new
