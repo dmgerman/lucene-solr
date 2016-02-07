@@ -926,6 +926,8 @@ parameter_list|,
 name|Throwable
 name|exc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(

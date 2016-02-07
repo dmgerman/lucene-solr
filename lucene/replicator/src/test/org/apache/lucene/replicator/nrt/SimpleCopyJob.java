@@ -1126,25 +1126,6 @@ operator|.
 name|getKey
 argument_list|()
 decl_stmt|;
-comment|// Tricky: if primary crashes while warming (pre-copying) a merged segment _X, the new primary can easily flush or merge to _X (since we don't
-comment|// have a distributed inflateGens for the new primary) and _X file names will be reused.  In this case, our local deleter will be
-comment|// thinking it must remove _X's files (from the warmed merge that never went live), but this is dangerous when virus checker is active
-comment|// since deleter may finally succeed in deleting the file after we have copied the new _X flushed files.  So at this point was ask the
-comment|// deleter to NOT delete the file anymore:
-name|dest
-operator|.
-name|deleter
-operator|.
-name|clearPending
-argument_list|(
-name|Collections
-operator|.
-name|singleton
-argument_list|(
-name|fileName
-argument_list|)
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|Node
@@ -1452,6 +1433,8 @@ parameter_list|,
 name|Throwable
 name|exc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 try|try
 block|{

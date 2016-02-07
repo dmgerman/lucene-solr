@@ -1081,15 +1081,23 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|deleter
+name|dir
+operator|instanceof
+name|FSDirectory
+operator|&&
+operator|(
+operator|(
+name|FSDirectory
+operator|)
+name|dir
+operator|)
 operator|.
-name|isPending
-argument_list|(
-name|segmentsFileName
-argument_list|)
+name|checkPendingDeletions
+argument_list|()
 condition|)
 block|{
-comment|// If e.g. virus checker blocks us from deleting, we absolutely cannot start this node else we can cause corruption:
+comment|// If e.g. virus checker blocks us from deleting, we absolutely cannot start this node else there is a definite window during
+comment|// which if we carsh, we cause corruption:
 throw|throw
 operator|new
 name|RuntimeException
@@ -2268,12 +2276,6 @@ operator|=
 name|copyState
 operator|.
 name|files
-expr_stmt|;
-comment|// It's a good time to delete pending files, since we just refreshed and some previously open files are now closed:
-name|deleter
-operator|.
-name|deletePending
-argument_list|()
 expr_stmt|;
 block|}
 name|int
@@ -3638,41 +3640,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|deleter
-operator|.
-name|isPending
-argument_list|(
-name|fileName
-argument_list|)
-condition|)
-block|{
-comment|// This was a file we had wanted to delete yet a virus checker prevented us, and now we need to overwrite it.
-comment|// Such files are in an unknown state, and even if their header and footer and length all
-comment|// match, since they may not have been fsync'd by the previous node instance on this directory,
-comment|// they could in theory have corruption internally.  So we always force ourselves to copy them here:
-if|if
-condition|(
-name|Node
-operator|.
-name|VERBOSE_FILES
-condition|)
-block|{
-name|message
-argument_list|(
-literal|"file "
-operator|+
-name|fileName
-operator|+
-literal|": will copy [we had wanted to delete this file on init, but failed]"
-argument_list|)
-expr_stmt|;
-block|}
-return|return
-literal|false
-return|;
-block|}
 name|FileMetaData
 name|destMetaData
 init|=
