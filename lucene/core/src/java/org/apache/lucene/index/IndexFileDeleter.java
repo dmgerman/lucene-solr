@@ -3088,8 +3088,6 @@ condition|)
 block|{
 continue|continue;
 block|}
-name|directory
-operator|.
 name|deleteFile
 argument_list|(
 name|name
@@ -3120,13 +3118,60 @@ condition|)
 block|{
 continue|continue;
 block|}
-name|directory
-operator|.
 name|deleteFile
 argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
+block|}
+block|}
+DECL|method|deleteFile
+specifier|private
+name|void
+name|deleteFile
+parameter_list|(
+name|String
+name|fileName
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+try|try
+block|{
+name|directory
+operator|.
+name|deleteFile
+argument_list|(
+name|fileName
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|NoSuchFileException
+decl||
+name|FileNotFoundException
+name|e
+parameter_list|)
+block|{
+if|if
+condition|(
+name|Constants
+operator|.
+name|WINDOWS
+condition|)
+block|{
+comment|// TODO: can we remove this OS-specific hacky logic?  If windows deleteFile is buggy, we should instead contain this workaround in
+comment|// a WindowsFSDirectory ...
+comment|// LUCENE-6684: we suppress this assert for Windows, since a file could be in a confusing "pending delete" state, where we already
+comment|// deleted it once, yet it still shows up in directory listings, and if you try to delete it again you'll hit NSFE/FNFE:
+block|}
+else|else
+block|{
+throw|throw
+name|e
+throw|;
+block|}
 block|}
 block|}
 comment|/**    * Tracks the reference count for a single index file:    */

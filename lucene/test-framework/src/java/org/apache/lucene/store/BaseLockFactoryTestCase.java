@@ -1333,19 +1333,6 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|LockObtainFailedException
-name|e
-parameter_list|)
-block|{
-comment|// lock obtain timed out
-comment|// NOTE: we should at some point
-comment|// consider this a failure?  The lock
-comment|// obtains, across IndexReader&
-comment|// IndexWriters should be "fair" (ie
-comment|// FIFO).
-block|}
-catch|catch
-parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
@@ -1365,6 +1352,20 @@ comment|// LUCENE-6684: suppress this: on Windows, a file in the curious "pendin
 comment|// cause this exc on IW init, where one thread/process deleted an old
 comment|// segments_N, but the delete hasn't finished yet because other threads/processes
 comment|// still have it open
+name|printStream
+operator|.
+name|println
+argument_list|(
+literal|"TEST: AccessDeniedException on init witer"
+argument_list|)
+expr_stmt|;
+name|t
+operator|.
+name|printStackTrace
+argument_list|(
+name|printStream
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
