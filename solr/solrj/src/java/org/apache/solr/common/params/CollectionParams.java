@@ -154,6 +154,12 @@ argument_list|(
 literal|false
 argument_list|)
 block|,
+DECL|enum constant|DELETESTATUS
+name|DELETESTATUS
+argument_list|(
+literal|false
+argument_list|)
+block|,
 DECL|enum constant|ADDREPLICA
 name|ADDREPLICA
 argument_list|(

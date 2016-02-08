@@ -905,9 +905,10 @@ name|getNumChildren
 argument_list|()
 return|;
 block|}
+comment|/**    * return true if the znode was successfully deleted    *        false if the node didn't exist and therefore not deleted    *        exception an exception occurred while deleting    */
 DECL|method|remove
 specifier|public
-name|void
+name|boolean
 name|remove
 parameter_list|(
 name|String
@@ -917,6 +918,8 @@ throws|throws
 name|KeeperException
 throws|,
 name|InterruptedException
+block|{
+try|try
 block|{
 name|zookeeper
 operator|.
@@ -936,6 +939,22 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|KeeperException
+operator|.
+name|NoNodeException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+return|return
+literal|true
+return|;
 block|}
 comment|/**    * Helper method to clear all child nodes for a parent node.    */
 DECL|method|clear
