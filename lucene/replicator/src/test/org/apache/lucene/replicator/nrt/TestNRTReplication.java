@@ -2014,6 +2014,8 @@ name|newNRTPoint
 argument_list|(
 name|primaryVersion1
 argument_list|,
+literal|0
+argument_list|,
 name|primary
 operator|.
 name|tcpPort
@@ -2566,6 +2568,8 @@ operator|.
 name|newNRTPoint
 argument_list|(
 name|primaryVersion2
+argument_list|,
+literal|0
 argument_list|,
 name|primary
 operator|.
@@ -4064,6 +4068,8 @@ operator|.
 name|newNRTPoint
 argument_list|(
 name|primaryVersion2
+argument_list|,
+literal|0
 argument_list|,
 name|primary
 operator|.
