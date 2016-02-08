@@ -485,19 +485,7 @@ comment|// nocommit why so many "hit SocketException during commit with R0"?
 end_comment
 
 begin_comment
-comment|// nocommit why so much time when so many nodes are down
-end_comment
-
-begin_comment
-comment|// nocommit indexing is too fast?  (xlog replay fails to finish before primary crashes itself)
-end_comment
-
-begin_comment
 comment|// nocommit why all these NodeCommunicationExcs?
-end_comment
-
-begin_comment
-comment|// nocommit the sockets are a pita on jvm crashing ...
 end_comment
 
 begin_comment
@@ -637,14 +625,13 @@ init|=
 literal|true
 decl_stmt|;
 comment|/** Set to a non-null value to force exactly that many nodes; else, it's random. */
-comment|// nocommit
 DECL|field|NUM_NODES
 specifier|static
 specifier|final
 name|Integer
 name|NUM_NODES
 init|=
-literal|2
+literal|null
 decl_stmt|;
 DECL|field|failed
 specifier|final
@@ -866,8 +853,6 @@ argument_list|,
 literal|0L
 argument_list|)
 expr_stmt|;
-comment|// nocommit why also 1?
-comment|//versionToTransLogLocation.put(1L, 0L);
 name|versionToMarker
 operator|.
 name|put
@@ -1629,7 +1614,7 @@ operator|==
 literal|false
 condition|)
 block|{
-comment|// TODO: if this node is primary, it means we committed a "partial" version (not exposed as an NRT point)... not sure it matters.
+comment|// TODO: if this node is primary, it means we committed an unpublished version (not exposed as an NRT point)... not sure it matters.
 comment|// maybe we somehow allow IW to commit a specific sis (the one we just flushed)?
 name|message
 argument_list|(
@@ -1638,11 +1623,41 @@ operator|+
 name|node
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|node
 operator|.
 name|commitAsync
 argument_list|()
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|message
+argument_list|(
+literal|"top: hit exception during commit with R"
+operator|+
+name|node
+operator|.
+name|id
+operator|+
+literal|"; skipping"
+argument_list|)
+expr_stmt|;
+name|t
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1917,12 +1932,45 @@ argument_list|)
 expr_stmt|;
 name|long
 name|searchingVersion
-init|=
+decl_stmt|;
+try|try
+block|{
+name|searchingVersion
+operator|=
 name|node
 operator|.
 name|getSearchingVersion
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|message
+argument_list|(
+literal|"top: hit SocketException during getSearchingVersion with R"
+operator|+
+name|node
+operator|.
+name|id
+operator|+
+literal|"; skipping"
+argument_list|)
+expr_stmt|;
+name|t
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+continue|continue;
+block|}
 name|message
 argument_list|(
 name|node
@@ -1977,19 +2025,39 @@ operator|+
 literal|"; now commit"
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
+try|try
+block|{
 name|replicaToPromote
 operator|.
 name|commit
 argument_list|()
-operator|==
-literal|false
-condition|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
 block|{
+comment|// Something wrong with this replica; skip it:
 name|message
 argument_list|(
-literal|"top: commit failed; skipping primary promotion"
+literal|"top: hit exception during commit with R"
+operator|+
+name|replicaToPromote
+operator|.
+name|id
+operator|+
+literal|"; skipping"
+argument_list|)
+expr_stmt|;
+name|t
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
 argument_list|)
 expr_stmt|;
 return|return;
@@ -2304,11 +2372,24 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// nocommit what if primary node is still running here, and we failed for some other reason?
 name|message
 argument_list|(
-literal|"top: replay xlog failed; abort"
+literal|"top: replay xlog failed; shutdown new primary"
 argument_list|)
+expr_stmt|;
+name|ioe
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
+name|newPrimary
+operator|.
+name|shutdown
+argument_list|()
 expr_stmt|;
 return|return;
 block|}
@@ -6093,6 +6174,73 @@ operator|-
 name|Node
 operator|.
 name|globalStartNS
+operator|)
+operator|/
+literal|1000000000.
+argument_list|,
+name|Thread
+operator|.
+name|currentThread
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|message
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|message
+specifier|static
+name|void
+name|message
+parameter_list|(
+name|String
+name|message
+parameter_list|,
+name|long
+name|localStartNS
+parameter_list|)
+block|{
+name|long
+name|now
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+literal|"%5.3fs %5.1fs:     parent [%11s] %s"
+argument_list|,
+operator|(
+name|now
+operator|-
+name|Node
+operator|.
+name|globalStartNS
+operator|)
+operator|/
+literal|1000000000.
+argument_list|,
+operator|(
+name|now
+operator|-
+name|localStartNS
 operator|)
 operator|/
 literal|1000000000.

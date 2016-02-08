@@ -343,6 +343,8 @@ specifier|public
 name|boolean
 name|commit
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 try|try
 init|(
@@ -403,41 +405,14 @@ return|return
 literal|true
 return|;
 block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|// nocommit throw this
-comment|// Something wrong with this replica; skip it:
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PARENT: top: hit SocketException during commit with R"
-operator|+
-name|id
-operator|+
-literal|": "
-operator|+
-name|t
-operator|+
-literal|"; skipping"
-argument_list|)
-expr_stmt|;
-return|return
-literal|false
-return|;
-block|}
 block|}
 DECL|method|commitAsync
 specifier|public
 name|void
 name|commitAsync
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 try|try
 init|(
@@ -468,38 +443,14 @@ name|flush
 argument_list|()
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|// nocommit throw this
-comment|// Something wrong with this replica; skip it:
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PARENT: top: hit SocketException during commit with R"
-operator|+
-name|id
-operator|+
-literal|": "
-operator|+
-name|t
-operator|+
-literal|"; skipping"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 DECL|method|getSearchingVersion
 specifier|public
 name|long
 name|getSearchingVersion
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 try|try
 init|(
@@ -543,32 +494,6 @@ name|in
 operator|.
 name|readVLong
 argument_list|()
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-comment|// nocommit throw this
-comment|// Something wrong with this replica; skip it:
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"PARENT: top: hit SocketException during getSearchingVersion with R"
-operator|+
-name|id
-operator|+
-literal|"; skipping"
-argument_list|)
-expr_stmt|;
-return|return
-operator|-
-literal|1L
 return|;
 block|}
 block|}
@@ -744,6 +669,15 @@ argument_list|(
 literal|"top: shutdown failed; ignoring"
 argument_list|)
 expr_stmt|;
+name|t
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
+argument_list|)
+expr_stmt|;
 block|}
 try|try
 block|{
@@ -802,6 +736,9 @@ parameter_list|(
 name|long
 name|version
 parameter_list|,
+name|long
+name|primaryGen
+parameter_list|,
 name|int
 name|primaryTCPPort
 parameter_list|)
@@ -838,6 +775,15 @@ operator|.
 name|writeVLong
 argument_list|(
 name|version
+argument_list|)
+expr_stmt|;
+name|c
+operator|.
+name|out
+operator|.
+name|writeVLong
+argument_list|(
+name|primaryGen
 argument_list|)
 expr_stmt|;
 name|c

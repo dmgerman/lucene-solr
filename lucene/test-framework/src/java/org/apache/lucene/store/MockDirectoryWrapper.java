@@ -4287,6 +4287,15 @@ condition|(
 name|assertNoUnreferencedFilesOnClose
 condition|)
 block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"MDW: now assert no unref'd files at close"
+argument_list|)
+expr_stmt|;
 comment|// now look for unreferenced files: discount ones that we tried to delete but could not
 name|Set
 argument_list|<

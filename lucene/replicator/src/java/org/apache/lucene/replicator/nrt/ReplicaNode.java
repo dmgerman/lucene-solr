@@ -2427,6 +2427,9 @@ name|CopyJob
 name|newNRTPoint
 parameter_list|(
 name|long
+name|newPrimaryGen
+parameter_list|,
+name|long
 name|version
 parameter_list|)
 throws|throws
@@ -2448,6 +2451,16 @@ name|state
 argument_list|)
 throw|;
 block|}
+comment|// Cutover (possibly) to new primary first, so we discard any pre-copied merged segments up front, before checking for which files need
+comment|// copying.  While it's possible the pre-copied merged segments could still be useful to us, in the case that the new primary is either
+comment|// the same primary (just e.g. rebooted), or a promoted replica that had a newer NRT point than we did that included the pre-copied
+comment|// merged segments, it's still a bit risky to rely solely on checksum/file length to catch the difference, so we defensively discard
+comment|// here and re-copy in that case:
+name|maybeNewPrimary
+argument_list|(
+name|newPrimaryGen
+argument_list|)
+expr_stmt|;
 comment|// Caller should not "publish" us until we have finished .start():
 assert|assert
 name|mgr
@@ -2638,6 +2651,16 @@ return|return
 literal|null
 return|;
 block|}
+assert|assert
+name|newPrimaryGen
+operator|==
+name|job
+operator|.
+name|getCopyState
+argument_list|()
+operator|.
+name|primaryGen
+assert|;
 name|Collection
 argument_list|<
 name|String
@@ -2649,21 +2672,6 @@ operator|.
 name|getFileNames
 argument_list|()
 decl_stmt|;
-name|long
-name|newPrimaryGen
-init|=
-name|job
-operator|.
-name|getCopyState
-argument_list|()
-operator|.
-name|primaryGen
-decl_stmt|;
-name|maybeNewPrimary
-argument_list|(
-name|newPrimaryGen
-argument_list|)
-expr_stmt|;
 name|message
 argument_list|(
 literal|"top: newNRTPoint: job files="
@@ -3032,6 +3040,8 @@ parameter_list|(
 name|long
 name|newPrimaryGen
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -3055,6 +3065,29 @@ operator|+
 name|pendingMergeFiles
 argument_list|)
 expr_stmt|;
+name|message
+argument_list|(
+literal|"top: delete if no ref pendingMergeFiles="
+operator|+
+name|pendingMergeFiles
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|String
+name|fileName
+range|:
+name|pendingMergeFiles
+control|)
+block|{
+name|deleter
+operator|.
+name|deleteIfNoRef
+argument_list|(
+name|fileName
+argument_list|)
+expr_stmt|;
+block|}
 assert|assert
 name|newPrimaryGen
 operator|>
