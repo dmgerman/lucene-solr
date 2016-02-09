@@ -1010,6 +1010,9 @@ argument_list|,
 name|solrResponse
 argument_list|)
 expr_stmt|;
+name|addDeprecatedWarning
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|log
@@ -1044,6 +1047,22 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+DECL|method|addDeprecatedWarning
+specifier|protected
+name|void
+name|addDeprecatedWarning
+parameter_list|()
+block|{
+name|solrResponse
+operator|.
+name|add
+argument_list|(
+literal|"warn"
+argument_list|,
+literal|"This API is deprecated"
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * If there is an exception on the SolrResponse:    *<ul>    *<li>error info is added to the SolrResponse;</li>    *<li>the response status code is set to the error code from the exception; and</li>    *<li>the exception message is added to the list of things to be logged.</li>    *</ul>    */
 DECL|method|handleException

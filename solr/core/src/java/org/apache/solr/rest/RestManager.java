@@ -2023,6 +2023,16 @@ return|return
 name|parsedJson
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|addDeprecatedWarning
+specifier|protected
+name|void
+name|addDeprecatedWarning
+parameter_list|()
+block|{
+comment|//this is not deprecated
+block|}
 block|}
 comment|// end ManagedEndpoint class
 comment|/**    * The RestManager itself supports some endpoints for creating and listing managed resources.    * Effectively, this resource provides the API endpoint for doing CRUD on the registry.    */
