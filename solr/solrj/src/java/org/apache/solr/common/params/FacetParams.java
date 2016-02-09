@@ -126,6 +126,16 @@ name|FACET_METHOD_fcs
 init|=
 literal|"fcs"
 decl_stmt|;
+comment|/**    * Value for FACET_METHOD param to indicate that Solr should use an UnInvertedField    */
+DECL|field|FACET_METHOD_uif
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_METHOD_uif
+init|=
+literal|"uif"
+decl_stmt|;
 comment|/**    * Any lucene formated queries the user would like to use for    * Facet Constraint Counts (multi-value)    */
 DECL|field|FACET_QUERY
 specifier|public
