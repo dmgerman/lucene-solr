@@ -3285,6 +3285,39 @@ operator|.
 name|optimize
 condition|)
 block|{
+if|if
+condition|(
+name|cmd
+operator|.
+name|maxOptimizeSegments
+operator|==
+literal|1
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Starting optimize... Reading and rewriting the entire index! Use with care."
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Starting optimize... Reading and rewriting a potentially large percent of the entire index, reducing to "
+operator|+
+name|cmd
+operator|.
+name|maxOptimizeSegments
+operator|+
+literal|" segments"
+argument_list|)
+expr_stmt|;
+block|}
 name|writer
 operator|.
 name|forceMerge
@@ -3303,6 +3336,13 @@ operator|.
 name|expungeDeletes
 condition|)
 block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Starting expungeDeletes... Reading and rewriting segments with enough deletes, potentially the entire index"
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|forceMergeDeletes
