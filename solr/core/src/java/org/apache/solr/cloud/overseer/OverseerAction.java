@@ -72,6 +72,9 @@ name|STATE
 block|,
 DECL|enum constant|QUIT
 name|QUIT
+block|,
+DECL|enum constant|DOWNNODE
+name|DOWNNODE
 block|;
 DECL|method|get
 specifier|public
