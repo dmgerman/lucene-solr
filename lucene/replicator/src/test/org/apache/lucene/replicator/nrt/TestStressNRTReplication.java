@@ -630,8 +630,6 @@ specifier|static
 specifier|final
 name|Integer
 name|NUM_NODES
-init|=
-literal|null
 decl_stmt|;
 DECL|field|failed
 specifier|final
@@ -1581,6 +1579,18 @@ name|sb
 argument_list|)
 expr_stmt|;
 comment|// Commit a random node, primary or replica
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|(
+literal|10
+argument_list|)
+operator|==
+literal|1
+condition|)
 block|{
 name|NodeProcess
 name|node
@@ -3850,9 +3860,26 @@ parameter_list|)
 block|{
 name|message
 argument_list|(
-literal|"top: ignore exc sending replicas to primary: "
+literal|"top: ignore exc sending replicas to primary P"
 operator|+
+name|curPrimary
+operator|.
+name|id
+operator|+
+literal|" at tcpPort="
+operator|+
+name|curPrimary
+operator|.
+name|tcpPort
+argument_list|)
+expr_stmt|;
 name|t
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
 argument_list|)
 expr_stmt|;
 block|}
