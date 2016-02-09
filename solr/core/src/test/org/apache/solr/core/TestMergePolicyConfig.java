@@ -568,7 +568,15 @@ argument_list|)
 decl_stmt|;
 name|initCore
 argument_list|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
 literal|"solrconfig-tieredmergepolicy.xml"
+else|:
+literal|"solrconfig-tieredmergepolicyfactory.xml"
 argument_list|,
 literal|"schema-minimal.xml"
 argument_list|)
