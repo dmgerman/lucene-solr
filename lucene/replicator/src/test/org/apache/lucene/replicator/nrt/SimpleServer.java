@@ -731,11 +731,16 @@ name|node
 operator|.
 name|message
 argument_list|(
-literal|"exception "
-operator|+
+literal|"exception handling client connection; ignoring:"
+argument_list|)
+expr_stmt|;
 name|t
-operator|+
-literal|" handling client connection; ignoring"
+operator|.
+name|printStackTrace
+argument_list|(
+name|System
+operator|.
+name|out
 argument_list|)
 expr_stmt|;
 block|}
