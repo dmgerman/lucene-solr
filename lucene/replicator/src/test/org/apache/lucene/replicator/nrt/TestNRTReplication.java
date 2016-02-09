@@ -238,6 +238,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|TestUtil
 import|;
 end_import
@@ -316,6 +330,13 @@ name|LineFileDocs
 name|docs
 decl_stmt|;
 comment|/** Launches a child "server" (separate JVM), which is either primary or replica node */
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"ProcessBuilder requires java.io.File for CWD"
+argument_list|)
 DECL|method|startNode
 specifier|private
 name|NodeProcess

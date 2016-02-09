@@ -1388,15 +1388,6 @@ name|writeAllDeletes
 condition|)
 block|{
 comment|// Must move the deletes to disk:
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"IW: now readerPool.commit"
-argument_list|)
-expr_stmt|;
 name|readerPool
 operator|.
 name|commit
@@ -4131,7 +4122,7 @@ name|totalMaxDoc
 argument_list|()
 return|;
 block|}
-comment|/** If {@link SegmentInfos#getVersion} is below {@code newVersion} then update it to this value. */
+comment|/** If {@link SegmentInfos#getVersion} is below {@code newVersion} then update it to this value.    *    * @lucene.internal */
 DECL|method|advanceSegmentInfosVersion
 specifier|public
 specifier|synchronized
@@ -9714,6 +9705,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Sets the commit user data map, controlling whether to advance the {@link SegmentInfos#getVersion}.    *    * @see #setCommitData(Map)    *    * @lucene.internal */
 DECL|method|setCommitData
 specifier|public
 specifier|final

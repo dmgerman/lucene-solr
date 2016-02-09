@@ -3762,29 +3762,7 @@ literal|")"
 argument_list|)
 throw|;
 block|}
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": SIS.setVersion change from "
-operator|+
-name|version
-operator|+
-literal|" to "
-operator|+
-name|newVersion
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(Thread.currentThread().getName() + ": SIS.setVersion change from " + version + " to " + newVersion);
 name|version
 operator|=
 name|newVersion
