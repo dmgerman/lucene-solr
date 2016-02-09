@@ -1284,8 +1284,7 @@ name|toUpperCase
 argument_list|(
 name|Locale
 operator|.
-name|getDefault
-argument_list|()
+name|ROOT
 argument_list|)
 operator|.
 name|contains
@@ -1335,8 +1334,7 @@ name|toUpperCase
 argument_list|(
 name|Locale
 operator|.
-name|getDefault
-argument_list|()
+name|ROOT
 argument_list|)
 operator|.
 name|contains
@@ -4230,8 +4228,7 @@ name|toLowerCase
 argument_list|(
 name|Locale
 operator|.
-name|getDefault
-argument_list|()
+name|ROOT
 argument_list|)
 operator|.
 name|contains
@@ -4242,8 +4239,7 @@ name|toLowerCase
 argument_list|(
 name|Locale
 operator|.
-name|getDefault
-argument_list|()
+name|ROOT
 argument_list|)
 argument_list|)
 condition|)
@@ -5423,8 +5419,7 @@ name|toLowerCase
 argument_list|(
 name|Locale
 operator|.
-name|getDefault
-argument_list|()
+name|ROOT
 argument_list|)
 operator|.
 name|contains
@@ -5462,8 +5457,7 @@ name|toLowerCase
 argument_list|(
 name|Locale
 operator|.
-name|getDefault
-argument_list|()
+name|ROOT
 argument_list|)
 operator|.
 name|contains
