@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Handles copying one set of files, e.g. all files for a new NRT point, or files for pre-copying a merged segment.  *  This notifies the caller via OnceDone when the job finishes or failed. */
+comment|/** Handles copying one set of files, e.g. all files for a new NRT point, or files for pre-copying a merged segment.  *  This notifies the caller via OnceDone when the job finishes or failed.  *  * @lucene.experimental */
 end_comment
 
 begin_class

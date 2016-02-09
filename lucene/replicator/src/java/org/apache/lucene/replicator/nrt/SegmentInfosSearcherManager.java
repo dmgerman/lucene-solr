@@ -231,7 +231,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A SearcherManager that refreshes via an externally provided (NRT) SegmentInfos, either from {@link IndexWriter} or via  *  nrt replication to another index. */
+comment|/** A SearcherManager that refreshes via an externally provided (NRT) SegmentInfos, either from {@link IndexWriter} or via  *  nrt replication to another index.  *  * @lucene.experimental */
 end_comment
 
 begin_class

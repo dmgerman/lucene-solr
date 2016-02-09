@@ -2143,32 +2143,7 @@ operator|.
 name|bugfix
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": now write "
-operator|+
-name|out
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|" with version="
-operator|+
-name|version
-argument_list|)
-expr_stmt|;
+comment|//System.out.println(Thread.currentThread().getName() + ": now write " + out.getName() + " with version=" + version);
 name|out
 operator|.
 name|writeLong

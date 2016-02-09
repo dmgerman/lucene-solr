@@ -19,7 +19,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/** Holds metadata details about a single file that we use to confirm two files (one remote, one local) are in fact "identical". */
+comment|/** Holds metadata details about a single file that we use to confirm two files (one remote, one local) are in fact "identical".  *  * @lucene.experimental */
 end_comment
 
 begin_class

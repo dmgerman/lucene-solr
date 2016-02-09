@@ -405,7 +405,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Replica node, that pulls index changes from the primary node by copying newly flushed or merged index files */
+comment|/** Replica node, that pulls index changes from the primary node by copying newly flushed or merged index files.  *   *  @lucene.experimental */
 end_comment
 
 begin_class

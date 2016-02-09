@@ -481,14 +481,6 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit why so many "hit SocketException during commit with R0"?
-end_comment
-
-begin_comment
-comment|// nocommit why all these NodeCommunicationExcs?
-end_comment
-
-begin_comment
 comment|/*   TODO     - fangs       - sometimes have one replica be really slow at copying / have random pauses (fake GC) / etc.       - graceful primary close     - why do we do the "rename temp to actual" all at the end...?  what really does that buy us?     - replica should also track maxSegmentName its seen, and tap into inflateGens if it's later promoted to primary?     - test should not print scary exceptions and then succeed!     - since all nodes are local, we could have a different test only impl that just does local file copies instead of via tcp...     - are the pre-copied-completed-merged files not being cleared in primary?       - hmm the logic isn't right today?  a replica may skip pulling a given copy state, that recorded the finished merged segments?     - beast& fix bugs     - graceful cluster restart     - better translog integration     - get "graceful primary shutdown" working     - there is still some global state we rely on for "correctness", e.g. lastPrimaryVersion     - clean up how version is persisted in commit data     - why am i not using hashes here?  how does ES use them?     - get all other "single shard" functions working too: this cluster should "act like" a single shard       - SLM       - controlled nrt reopen thread / returning long gen on write       - live field values       - add indexes     - make cluster level APIs to search, index, that deal w/ primary failover, etc.     - must prune xlog       - refuse to start primary unless we have quorum     - later       - if we named index files using segment's ID we wouldn't have file name conflicts after primary crash / rollback?       - back pressure on indexing if replicas can't keep up?       - get xlog working on top?  needs to be checkpointed, so we can correlate IW ops to NRT reader version and prune xlog based on commit         quorum         - maybe fix IW to return "gen" or "seq id" or "segment name" or something?       - replica can copy files from other replicas too / use multicast / rsync / something       - each replica could also pre-open a SegmentReader after pre-copy when warming a merge       - we can pre-copy newly flushed files too, for cases where reopen rate is low vs IW's flushing because RAM buffer is full       - opto: pre-copy files as they are written; if they will become CFS, we can build CFS on the replica?       - what about multiple commit points?       - fix primary to init directly from an open replica, instead of having to commit/close the replica first */
 end_comment
 
@@ -5977,11 +5969,19 @@ name|se
 parameter_list|)
 block|{
 comment|// Assume primary crashed
+if|if
+condition|(
+name|c
+operator|!=
+literal|null
+condition|)
+block|{
 name|message
 argument_list|(
 literal|"top: indexer lost connection to primary"
 argument_list|)
 expr_stmt|;
+block|}
 try|try
 block|{
 name|c

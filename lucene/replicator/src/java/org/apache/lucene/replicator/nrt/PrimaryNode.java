@@ -279,7 +279,7 @@ comment|/*  * This just asks IndexWriter to open new NRT reader, in order to pub
 end_comment
 
 begin_comment
-comment|/** Node that holds an IndexWriter, indexing documents into its local index. */
+comment|/** Node that holds an IndexWriter, indexing documents into its local index.  *  * @lucene.experimental */
 end_comment
 
 begin_class

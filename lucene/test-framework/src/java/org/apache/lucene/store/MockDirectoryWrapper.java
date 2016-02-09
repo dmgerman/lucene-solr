@@ -2110,8 +2110,6 @@ throw|;
 block|}
 if|if
 condition|(
-literal|true
-operator|||
 name|LuceneTestCase
 operator|.
 name|VERBOSE

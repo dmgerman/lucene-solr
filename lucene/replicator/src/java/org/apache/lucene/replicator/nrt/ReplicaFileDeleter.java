@@ -166,10 +166,6 @@ begin_comment
 comment|// TODO: can we factor/share with IFD: this is doing exactly the same thing, but on the replica side
 end_comment
 
-begin_comment
-comment|// TODO: once LUCENE-6835 is in, this class becomes a lot simpler?
-end_comment
-
 begin_class
 DECL|class|ReplicaFileDeleter
 class|class
@@ -235,6 +231,7 @@ expr_stmt|;
 block|}
 comment|/** Used only by asserts: returns true if the file exists    *  (can be opened), false if it cannot be opened, and    *  (unlike Java's File.exists) throws IOException if    *  there's some unexpected error. */
 DECL|method|slowFileExists
+specifier|private
 specifier|static
 name|boolean
 name|slowFileExists
