@@ -58,6 +58,20 @@ name|SolrResourceLoader
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|IndexSchema
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link MergePolicyFactory} for {@link LogDocMergePolicy} objects.  */
 end_comment
@@ -79,6 +93,9 @@ name|resourceLoader
 parameter_list|,
 name|MergePolicyFactoryArgs
 name|args
+parameter_list|,
+name|IndexSchema
+name|schema
 parameter_list|)
 block|{
 name|super
@@ -86,6 +103,8 @@ argument_list|(
 name|resourceLoader
 argument_list|,
 name|args
+argument_list|,
+name|schema
 argument_list|)
 expr_stmt|;
 block|}
