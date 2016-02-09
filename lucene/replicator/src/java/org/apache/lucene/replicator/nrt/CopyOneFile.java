@@ -124,6 +124,7 @@ end_comment
 
 begin_class
 DECL|class|CopyOneFile
+specifier|public
 class|class
 name|CopyOneFile
 implements|implements

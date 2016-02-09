@@ -888,6 +888,10 @@ argument_list|,
 name|forcePrimaryVersion
 argument_list|,
 name|searcherFactory
+argument_list|,
+name|System
+operator|.
+name|out
 argument_list|)
 expr_stmt|;
 name|this

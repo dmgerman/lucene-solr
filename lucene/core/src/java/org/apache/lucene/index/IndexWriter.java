@@ -17836,7 +17836,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** @lucene.internal */
+comment|/** Record that the files referenced by this {@link SegmentInfos} are still in use.    *    * @lucene.internal */
 DECL|method|incRefDeleter
 specifier|public
 specifier|synchronized
@@ -17894,7 +17894,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** @lucene.internal */
+comment|/** Record that the files referenced by this {@link SegmentInfos} are no longer in use.  Only call this if you are sure you previously    *  called {@link #incRefDeleter}.    *   * @lucene.internal */
 DECL|method|decRefDeleter
 specifier|public
 specifier|synchronized

@@ -142,6 +142,10 @@ name|IOUtils
 import|;
 end_import
 
+begin_comment
+comment|/** Default implementation of {@link DirectoryReader}. */
+end_comment
+
 begin_class
 DECL|class|StandardDirectoryReader
 specifier|public
@@ -1758,7 +1762,7 @@ name|getVersion
 argument_list|()
 return|;
 block|}
-comment|/** @lucene.internal */
+comment|/** Return the {@link SegmentInfos} for this reader.    *    * @lucene.internal */
 DECL|method|getSegmentInfos
 specifier|public
 name|SegmentInfos
