@@ -4048,11 +4048,7 @@ literal|500
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|message
-argument_list|(
-literal|"top: restarter cycle"
-argument_list|)
-expr_stmt|;
+comment|//message("top: restarter cycle");
 comment|// Randomly crash full cluster:
 if|if
 condition|(
@@ -4804,6 +4800,13 @@ block|{
 comment|// Node is in the process of closing or crashing or something
 continue|continue;
 block|}
+name|boolean
+name|nodeIsPrimary
+init|=
+name|node
+operator|==
+name|primary
+decl_stmt|;
 try|try
 block|{
 name|Thread
@@ -5041,6 +5044,33 @@ operator|+
 name|node
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|nodeIsPrimary
+operator|&&
+name|version
+operator|>
+name|lastPrimaryVersion
+condition|)
+block|{
+comment|// It's possible a search request sees a new primary version because it's in the process of flushing, but then the primary
+comment|// crashes.  In this case we need to ensure new primary forces its version beyond this:
+name|message
+argument_list|(
+literal|"top: searcher: set lastPrimaryVersion="
+operator|+
+name|lastPrimaryVersion
+operator|+
+literal|" vs "
+operator|+
+name|version
+argument_list|)
+expr_stmt|;
+name|lastPrimaryVersion
+operator|=
+name|version
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
