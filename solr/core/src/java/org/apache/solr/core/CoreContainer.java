@@ -3766,7 +3766,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"This CoreContainer has been close"
+literal|"This CoreContainer has been closed"
 argument_list|)
 throw|;
 block|}
