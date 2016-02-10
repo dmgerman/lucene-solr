@@ -743,23 +743,27 @@ argument_list|(
 name|source
 argument_list|)
 expr_stmt|;
-try|try
-block|{
+if|if
+condition|(
 name|cache
 operator|.
-name|deleteFile
+name|fileNameExists
 argument_list|(
 name|dest
 argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|FileNotFoundException
-name|fnfe
-parameter_list|)
+condition|)
 block|{
-comment|// OK -- it may not exist
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"target file "
+operator|+
+name|dest
+operator|+
+literal|" already exists"
+argument_list|)
+throw|;
 block|}
 name|in
 operator|.
