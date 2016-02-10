@@ -4,11 +4,11 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Geospatial Field Implementations for Core Lucene  */
+comment|/**  * Geospatial Query Implementations for Core Lucene  */
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.spatial.document
+DECL|package|org.apache.lucene.spatial.geopoint.search
 package|package
 name|org
 operator|.
@@ -18,7 +18,9 @@ name|lucene
 operator|.
 name|spatial
 operator|.
-name|document
+name|geopoint
+operator|.
+name|search
 package|;
 end_package
 

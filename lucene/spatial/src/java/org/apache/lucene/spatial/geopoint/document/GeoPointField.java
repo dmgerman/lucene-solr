@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.spatial.document
+DECL|package|org.apache.lucene.spatial.geopoint.document
 package|package
 name|org
 operator|.
@@ -13,6 +13,8 @@ operator|.
 name|lucene
 operator|.
 name|spatial
+operator|.
+name|geopoint
 operator|.
 name|document
 package|;
@@ -119,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Field that indexes<code>latitude</code><code>longitude</code> decimal-degree values  * for efficient encoding, sorting, and querying. This Geo capability is intended  * to provide a basic and efficient out of the box field type for indexing and  * querying 2 dimensional points in WGS-84 decimal degrees. An example usage is as follows:  *  *<pre class="prettyprint">  *  document.add(new GeoPointField(name, -96.33, 32.66, Field.Store.NO));  *</pre>  *  *<p>To perform simple geospatial queries against a<code>GeoPointField</code>,  * see {@link org.apache.lucene.spatial.search.GeoPointInBBoxQuery}, {@link org.apache.lucene.spatial.search.GeoPointInPolygonQuery},  * or {@link org.apache.lucene.spatial.search.GeoPointDistanceQuery}  *  * NOTE: This indexes only high precision encoded terms which may result in visiting a high number  * of terms for large queries. See LUCENE-6481 for a future improvement.  *  * @lucene.experimental  */
+comment|/**  *<p>  * Field that indexes<code>latitude</code><code>longitude</code> decimal-degree values  * for efficient encoding, sorting, and querying. This Geo capability is intended  * to provide a basic and efficient out of the box field type for indexing and  * querying 2 dimensional points in WGS-84 decimal degrees. An example usage is as follows:  *  *<pre class="prettyprint">  *  document.add(new GeoPointField(name, -96.33, 32.66, Field.Store.NO));  *</pre>  *  *<p>To perform simple geospatial queries against a<code>GeoPointField</code>,  * see {@link org.apache.lucene.spatial.geopoint.search.GeoPointInBBoxQuery}, {@link org.apache.lucene.spatial.geopoint.search.GeoPointInPolygonQuery},  * or {@link org.apache.lucene.spatial.geopoint.search.GeoPointDistanceQuery}  *  * NOTE: This indexes only high precision encoded terms which may result in visiting a high number  * of terms for large queries. See LUCENE-6481 for a future improvement.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

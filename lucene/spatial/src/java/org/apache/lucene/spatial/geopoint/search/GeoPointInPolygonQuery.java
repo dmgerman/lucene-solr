@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.spatial.search
+DECL|package|org.apache.lucene.spatial.geopoint.search
 package|package
 name|org
 operator|.
@@ -13,6 +13,8 @@ operator|.
 name|lucene
 operator|.
 name|spatial
+operator|.
+name|geopoint
 operator|.
 name|search
 package|;
@@ -65,6 +67,8 @@ operator|.
 name|lucene
 operator|.
 name|spatial
+operator|.
+name|geopoint
 operator|.
 name|document
 operator|.
@@ -193,7 +197,7 @@ name|polyLats
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Constructs a new GeoPolygonQuery that will match encoded {@link org.apache.lucene.spatial.document.GeoPointField} terms    * that fall within or on the boundary of the polygon defined by the input parameters.    */
+comment|/**    * Constructs a new GeoPolygonQuery that will match encoded {@link org.apache.lucene.spatial.geopoint.document.GeoPointField} terms    * that fall within or on the boundary of the polygon defined by the input parameters.    */
 DECL|method|GeoPointInPolygonQuery
 specifier|public
 name|GeoPointInPolygonQuery
