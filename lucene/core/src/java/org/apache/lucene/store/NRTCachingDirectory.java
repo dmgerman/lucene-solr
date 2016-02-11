@@ -738,12 +738,33 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// NOTE: uncache is unnecessary for lucene's usage, as we always sync() before renaming.
 name|unCache
 argument_list|(
 name|source
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|cache
+operator|.
+name|fileNameExists
+argument_list|(
+name|dest
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"target file "
+operator|+
+name|dest
+operator|+
+literal|" already exists"
+argument_list|)
+throw|;
+block|}
 name|in
 operator|.
 name|renameFile

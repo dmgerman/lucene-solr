@@ -374,6 +374,8 @@ argument_list|(
 name|writer
 argument_list|,
 name|applyAllDeletes
+argument_list|,
+literal|false
 argument_list|)
 argument_list|,
 literal|null
