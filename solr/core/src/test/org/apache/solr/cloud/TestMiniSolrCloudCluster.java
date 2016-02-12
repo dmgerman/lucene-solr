@@ -3171,11 +3171,11 @@ init|=
 literal|"testSegmentTerminateEarlyCollection"
 decl_stmt|;
 specifier|final
-name|TestSegmentTerminateEarlyState
+name|SegmentTerminateEarlyTestState
 name|tstes
 init|=
 operator|new
-name|TestSegmentTerminateEarlyState
+name|SegmentTerminateEarlyTestState
 argument_list|()
 decl_stmt|;
 name|File

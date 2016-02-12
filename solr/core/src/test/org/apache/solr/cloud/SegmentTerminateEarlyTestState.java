@@ -189,9 +189,9 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestSegmentTerminateEarlyState
+DECL|class|SegmentTerminateEarlyTestState
 class|class
-name|TestSegmentTerminateEarlyState
+name|SegmentTerminateEarlyTestState
 block|{
 DECL|field|keyField
 specifier|final
