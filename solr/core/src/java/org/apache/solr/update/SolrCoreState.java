@@ -72,6 +72,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Sort
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|cloud
@@ -429,6 +443,16 @@ parameter_list|(
 name|SolrCore
 name|core
 parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Get the current Sort of the current IndexWriter's MergePolicy..    *    * @throws IOException If there is a low-level I/O error.    */
+DECL|method|getMergePolicySort
+specifier|public
+specifier|abstract
+name|Sort
+name|getMergePolicySort
+parameter_list|()
 throws|throws
 name|IOException
 function_decl|;

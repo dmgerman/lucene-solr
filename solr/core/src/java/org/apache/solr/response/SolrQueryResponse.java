@@ -168,6 +168,15 @@ name|RESPONSE_HEADER_PARTIAL_RESULTS_KEY
 init|=
 literal|"partialResults"
 decl_stmt|;
+DECL|field|RESPONSE_HEADER_SEGMENT_TERMINATED_EARLY_KEY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|RESPONSE_HEADER_SEGMENT_TERMINATED_EARLY_KEY
+init|=
+literal|"segmentTerminatedEarly"
+decl_stmt|;
 DECL|field|RESPONSE_HEADER_KEY
 specifier|private
 specifier|static

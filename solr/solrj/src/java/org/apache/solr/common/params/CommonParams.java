@@ -388,6 +388,25 @@ name|STREAM_CONTENTTYPE
 init|=
 literal|"stream.contentType"
 decl_stmt|;
+comment|/**    * Whether or not the search may be terminated early within a segment.    */
+DECL|field|SEGMENT_TERMINATE_EARLY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SEGMENT_TERMINATE_EARLY
+init|=
+literal|"segmentTerminateEarly"
+decl_stmt|;
+DECL|field|SEGMENT_TERMINATE_EARLY_DEFAULT
+specifier|public
+specifier|static
+specifier|final
+name|boolean
+name|SEGMENT_TERMINATE_EARLY_DEFAULT
+init|=
+literal|false
+decl_stmt|;
 comment|/**    * Timeout value in milliseconds.  If not set, or the value is&gt;= 0, there is no timeout.    */
 DECL|field|TIME_ALLOWED
 specifier|public
