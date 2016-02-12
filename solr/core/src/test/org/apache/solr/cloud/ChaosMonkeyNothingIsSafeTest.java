@@ -72,6 +72,20 @@ name|solr
 operator|.
 name|SolrTestCaseJ4
 operator|.
+name|SuppressObjectReleaseTracker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
+operator|.
 name|SuppressSSL
 import|;
 end_import
@@ -368,6 +382,13 @@ argument_list|(
 name|linger
 operator|=
 literal|60000
+argument_list|)
+annotation|@
+name|SuppressObjectReleaseTracker
+argument_list|(
+name|bugUrl
+operator|=
+literal|"Testing purposes"
 argument_list|)
 DECL|class|ChaosMonkeyNothingIsSafeTest
 specifier|public

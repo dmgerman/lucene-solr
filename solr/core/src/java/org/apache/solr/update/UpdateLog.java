@@ -578,6 +578,20 @@ name|solr
 operator|.
 name|util
 operator|.
+name|TestInjection
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
 name|plugin
 operator|.
 name|PluginInfoInitialized
@@ -6367,7 +6381,7 @@ name|csize
 argument_list|,
 name|Math
 operator|.
-name|round
+name|floor
 argument_list|(
 name|cpos
 operator|/
@@ -6937,6 +6951,11 @@ argument_list|)
 expr_stmt|;
 comment|// something wrong with the request?
 block|}
+name|TestInjection
+operator|.
+name|injectUpdateLogReplayRandomPause
+argument_list|()
+expr_stmt|;
 block|}
 name|CommitUpdateCommand
 name|cmd
