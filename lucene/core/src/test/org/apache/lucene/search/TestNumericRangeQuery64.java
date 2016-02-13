@@ -3023,7 +3023,7 @@ argument_list|()
 decl_stmt|;
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|lower
 argument_list|,
@@ -3041,7 +3041,7 @@ argument_list|()
 expr_stmt|;
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|upper
 argument_list|,

@@ -3304,7 +3304,7 @@ argument_list|()
 decl_stmt|;
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|LegacyNumericUtils
 operator|.

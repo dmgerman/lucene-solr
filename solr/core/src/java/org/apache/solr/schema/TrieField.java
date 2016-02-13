@@ -2908,7 +2908,7 @@ name|INTEGER
 case|:
 name|LegacyNumericUtils
 operator|.
-name|intToPrefixCodedBytes
+name|intToPrefixCoded
 argument_list|(
 name|Integer
 operator|.
@@ -2928,7 +2928,7 @@ name|FLOAT
 case|:
 name|LegacyNumericUtils
 operator|.
-name|intToPrefixCodedBytes
+name|intToPrefixCoded
 argument_list|(
 name|LegacyNumericUtils
 operator|.
@@ -2953,7 +2953,7 @@ name|LONG
 case|:
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|Long
 operator|.
@@ -2973,7 +2973,7 @@ name|DOUBLE
 case|:
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|LegacyNumericUtils
 operator|.
@@ -2998,7 +2998,7 @@ name|DATE
 case|:
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|DateFormatUtil
 operator|.
@@ -3651,7 +3651,7 @@ name|INTEGER
 case|:
 name|LegacyNumericUtils
 operator|.
-name|intToPrefixCodedBytes
+name|intToPrefixCoded
 argument_list|(
 name|val
 operator|.
@@ -3669,7 +3669,7 @@ name|FLOAT
 case|:
 name|LegacyNumericUtils
 operator|.
-name|intToPrefixCodedBytes
+name|intToPrefixCoded
 argument_list|(
 name|LegacyNumericUtils
 operator|.
@@ -3696,7 +3696,7 @@ name|DATE
 case|:
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|val
 operator|.
@@ -3714,7 +3714,7 @@ name|DOUBLE
 case|:
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|LegacyNumericUtils
 operator|.
@@ -3799,7 +3799,7 @@ name|INTEGER
 case|:
 name|LegacyNumericUtils
 operator|.
-name|intToPrefixCodedBytes
+name|intToPrefixCoded
 argument_list|(
 name|toInt
 argument_list|(
@@ -3851,7 +3851,7 @@ literal|0x7fffffff
 expr_stmt|;
 name|LegacyNumericUtils
 operator|.
-name|intToPrefixCodedBytes
+name|intToPrefixCoded
 argument_list|(
 name|v
 argument_list|,
@@ -3871,7 +3871,7 @@ name|DATE
 case|:
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|toLong
 argument_list|(
@@ -3923,7 +3923,7 @@ literal|0x7fffffffffffffffL
 expr_stmt|;
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|v
 argument_list|,

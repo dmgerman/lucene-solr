@@ -105,7 +105,7 @@ control|)
 block|{
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|l
 argument_list|,
@@ -238,7 +238,7 @@ control|)
 block|{
 name|LegacyNumericUtils
 operator|.
-name|intToPrefixCodedBytes
+name|intToPrefixCoded
 argument_list|(
 name|i
 argument_list|,
@@ -450,7 +450,7 @@ argument_list|()
 expr_stmt|;
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|vals
 index|[
@@ -610,7 +610,7 @@ control|)
 block|{
 name|LegacyNumericUtils
 operator|.
-name|longToPrefixCodedBytes
+name|longToPrefixCoded
 argument_list|(
 name|vals
 index|[
@@ -794,7 +794,7 @@ argument_list|()
 expr_stmt|;
 name|LegacyNumericUtils
 operator|.
-name|intToPrefixCodedBytes
+name|intToPrefixCoded
 argument_list|(
 name|vals
 index|[
@@ -954,7 +954,7 @@ control|)
 block|{
 name|LegacyNumericUtils
 operator|.
-name|intToPrefixCodedBytes
+name|intToPrefixCoded
 argument_list|(
 name|vals
 index|[

@@ -5150,7 +5150,7 @@ expr_stmt|;
 block|}
 name|LegacyNumericUtils
 operator|.
-name|intToPrefixCodedBytes
+name|intToPrefixCoded
 argument_list|(
 name|deleteID
 argument_list|,
