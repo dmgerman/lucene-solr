@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link MergePolicyFactory} for {@link SortingMergePolicy} objects.  */
+comment|/**  * A {@link MergePolicyFactory} for {@code SortingMergePolicy} objects.  */
 end_comment
 
 begin_class
