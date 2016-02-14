@@ -87,6 +87,31 @@ return|return
 name|m
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|setUp
+specifier|public
+name|void
+name|setUp
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|setUp
+argument_list|()
+expr_stmt|;
+name|assumeTrue
+argument_list|(
+literal|"test requires a jre that supports unmapping"
+argument_list|,
+name|MMapDirectory
+operator|.
+name|UNMAP_SUPPORTED
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
