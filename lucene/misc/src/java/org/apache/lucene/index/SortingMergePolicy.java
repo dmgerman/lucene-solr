@@ -959,6 +959,27 @@ block|}
 block|}
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SortingMergePolicy.SortingOneMerge(segments="
+operator|+
+name|segString
+argument_list|()
+operator|+
+literal|" sort="
+operator|+
+name|sort
+operator|+
+literal|")"
+return|;
+block|}
 block|}
 DECL|class|SortingMergeSpecification
 class|class

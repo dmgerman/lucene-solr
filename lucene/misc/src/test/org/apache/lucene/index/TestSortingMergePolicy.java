@@ -765,6 +765,29 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// wrap it with a sorting mp
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: return SortingMergePolicy(mp="
+operator|+
+name|mp
+operator|+
+literal|" sort="
+operator|+
+name|sort
+operator|+
+literal|")"
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 operator|new
 name|SortingMergePolicy
