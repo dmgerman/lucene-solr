@@ -3952,11 +3952,6 @@ argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
-name|os
-operator|.
-name|flush
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 catch|catch

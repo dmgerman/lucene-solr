@@ -194,12 +194,55 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|OutputStream
+name|out
+init|=
+operator|new
+name|OutputStream
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|write
+parameter_list|(
+name|int
+name|b
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|outputStream
+operator|.
+name|write
+argument_list|(
+name|b
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|void
+name|flush
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// We don't flush here, which allows us to flush below
+comment|// and only flush internal buffers, not the response.
+comment|// If we flush the response early, we trigger chunked encoding.
+comment|// See SOLR-8669.
+block|}
+block|}
+decl_stmt|;
 name|Writer
 name|writer
 init|=
 name|buildWriter
 argument_list|(
-name|outputStream
+name|out
 argument_list|,
 name|ContentStreamBase
 operator|.
