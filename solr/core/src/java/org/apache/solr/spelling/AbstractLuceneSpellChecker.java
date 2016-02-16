@@ -286,6 +286,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|FilterDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|FSDirectory
 import|;
 end_import
@@ -1479,8 +1493,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// TODO: this is a workaround for SpellChecker repeatedly closing and opening a new IndexWriter while leaving readers open, which on
+comment|// Windows causes problems because deleted files can't be opened.  It would be better for SpellChecker to hold a single IW instance,
+comment|// and close it on close, but Solr never seems to close its spell checkers.  Wrapping as FilterDirectory prevents IndexWriter from
+comment|// catching the pending deletions:
 name|index
 operator|=
+operator|new
+name|FilterDirectory
+argument_list|(
 name|FSDirectory
 operator|.
 name|open
@@ -1494,6 +1515,8 @@ operator|.
 name|toPath
 argument_list|()
 argument_list|)
+argument_list|)
+block|{       }
 expr_stmt|;
 block|}
 else|else
