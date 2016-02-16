@@ -52,6 +52,16 @@ name|javax
 operator|.
 name|servlet
 operator|.
+name|ServletInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
 name|ServletRequest
 import|;
 end_import
@@ -1117,6 +1127,8 @@ name|HttpServletRequest
 operator|)
 condition|)
 return|return;
+try|try
+block|{
 if|if
 condition|(
 name|cores
@@ -1172,7 +1184,8 @@ name|wrappedRequest
 argument_list|)
 condition|)
 block|{
-comment|// the response and status code have already been sent
+comment|// the response and status code have already been
+comment|// sent
 return|return;
 block|}
 if|if
@@ -1262,7 +1275,8 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// In embedded mode, servlet path is empty - include all post-context path here for testing
+comment|// In embedded mode, servlet path is empty - include all post-context path here for
+comment|// testing
 name|requestPath
 operator|+=
 name|extraPath
@@ -1412,6 +1426,75 @@ operator|.
 name|setServerThreadFlag
 argument_list|(
 literal|null
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+finally|finally
+block|{
+name|consumeInputFully
+argument_list|(
+operator|(
+name|HttpServletRequest
+operator|)
+name|request
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|// we make sure we read the full client request so that the client does
+comment|// not hit a connection reset and we can reuse the
+comment|// connection - see SOLR-8453 and SOLR-8683
+DECL|method|consumeInputFully
+specifier|private
+name|void
+name|consumeInputFully
+parameter_list|(
+name|HttpServletRequest
+name|req
+parameter_list|)
+block|{
+try|try
+block|{
+name|ServletInputStream
+name|is
+init|=
+name|req
+operator|.
+name|getInputStream
+argument_list|()
+decl_stmt|;
+while|while
+condition|(
+operator|!
+name|is
+operator|.
+name|isFinished
+argument_list|()
+operator|&&
+name|is
+operator|.
+name|read
+argument_list|()
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{}
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
+parameter_list|)
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Could not consume full client request"
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
