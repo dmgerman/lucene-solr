@@ -921,7 +921,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"Invalid name"
+literal|"Invalid core"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1425,7 +1425,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"Invalid name"
+literal|"Invalid core"
 argument_list|)
 argument_list|)
 expr_stmt|;
