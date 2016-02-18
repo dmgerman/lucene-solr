@@ -3750,6 +3750,43 @@ operator|+
 literal|"'f1':{ 'buckets':[]} } "
 argument_list|)
 expr_stmt|;
+comment|// test prefix on where field
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|" f1:{${terms} type:terms, field:${where_s}, prefix:N  }"
+operator|+
+literal|",f2:{${terms} type:terms, field:${where_s}, prefix:NY }"
+operator|+
+literal|",f3:{${terms} type:terms, field:${where_s}, prefix:NJ }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ 'count':6 "
+operator|+
+literal|",f1:{ 'buckets':[ {val:NJ,count:3}, {val:NY,count:2} ]}"
+operator|+
+literal|",f2:{ 'buckets':[ {val:NY,count:2} ]}"
+operator|+
+literal|",f3:{ 'buckets':[ {val:NJ,count:3} ]}"
+operator|+
+literal|" } "
+argument_list|)
+expr_stmt|;
 comment|//
 comment|// missing
 comment|//
