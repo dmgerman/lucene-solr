@@ -982,6 +982,9 @@ block|}
 comment|// if we can't reach a replica for sync, we still consider the overall sync a success
 comment|// TODO: as an assurance, we should still try and tell the sync nodes that we couldn't reach
 comment|// to recover once more?
+comment|// Fingerprinting here is off because the we currently rely on having at least one of the nodes return "true", and if replicas are out-of-sync
+comment|// we still need to pick one as leader.  A followup sync from the replica to the new leader (with fingerprinting on) should then fail and
+comment|// initiate recovery-by-replication.
 name|PeerSync
 name|peerSync
 init|=
