@@ -318,6 +318,16 @@ name|PrintStreamInfoStream
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|AfterClass
+import|;
+end_import
+
 begin_comment
 comment|/**  * Holds tests cases to verify external APIs are accessible  * while not being in org.apache.lucene.index package.  */
 end_comment
@@ -622,6 +632,20 @@ throw|;
 block|}
 block|}
 block|}
+block|}
+annotation|@
+name|AfterClass
+DECL|method|afterClass
+specifier|public
+specifier|static
+name|void
+name|afterClass
+parameter_list|()
+block|{
+name|infoStream
+operator|=
+literal|null
+expr_stmt|;
 block|}
 DECL|method|testSubclassConcurrentMergeScheduler
 specifier|public
