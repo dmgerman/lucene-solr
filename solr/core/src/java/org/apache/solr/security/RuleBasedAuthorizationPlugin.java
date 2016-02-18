@@ -274,6 +274,24 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|Utils
+operator|.
+name|fromJSONResource
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|handler
 operator|.
 name|admin
@@ -3148,76 +3166,20 @@ name|well_known_permissions
 init|=
 operator|(
 name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+argument_list|>
 operator|)
-name|Utils
-operator|.
-name|fromJSONString
+name|fromJSONResource
 argument_list|(
-literal|"    { "
-operator|+
-literal|"    security-edit :{"
-operator|+
-literal|"      path:['/admin/authentication','/admin/authorization'],"
-operator|+
-literal|"      collection:null,"
-operator|+
-literal|"      method:POST },"
-operator|+
-literal|"    security-read :{"
-operator|+
-literal|"      path:['/admin/authentication','/admin/authorization'],"
-operator|+
-literal|"      collection:null,"
-operator|+
-literal|"      method:GET},"
-operator|+
-literal|"    schema-edit :{"
-operator|+
-literal|"      method:POST,"
-operator|+
-literal|"      path:'/schema/*'},"
-operator|+
-literal|"    collection-admin-edit :{"
-operator|+
-literal|"  collection:null,"
-operator|+
-literal|"      path:'/admin/collections'},"
-operator|+
-literal|"    collection-admin-read :{"
-operator|+
-literal|"      collection:null,"
-operator|+
-literal|"      path:'/admin/collections'},"
-operator|+
-literal|"    schema-read :{"
-operator|+
-literal|"      method:GET,"
-operator|+
-literal|"      path:'/schema/*'},"
-operator|+
-literal|"    config-read :{"
-operator|+
-literal|"      method:GET,"
-operator|+
-literal|"      path:'/config/*'},"
-operator|+
-literal|"    update :{"
-operator|+
-literal|"      path:'/update/*'},"
-operator|+
-literal|"    read :{"
-operator|+
-literal|"      path:['/select', '/get','/browse','/tvrh','/terms','/clustering','/elevate', '/export','/spell','/clustering']},"
-operator|+
-literal|"    config-edit:{"
-operator|+
-literal|"      method:POST,"
-operator|+
-literal|"      path:'/config/*'},"
-operator|+
-literal|"    all:{collection:['*', null]}"
-operator|+
-literal|"}"
+literal|"WellKnownPermissions.json"
 argument_list|)
 decl_stmt|;
 end_decl_stmt

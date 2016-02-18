@@ -1086,181 +1086,24 @@ init|=
 literal|"configoverlay.json"
 decl_stmt|;
 comment|/*private static final Long STR_ATTR = 0L;   private static final Long STR_NODE = 1L;   private static final Long BOOL_ATTR = 10L;   private static final Long BOOL_NODE = 11L;   private static final Long INT_ATTR = 20L;   private static final Long INT_NODE = 21L;   private static final Long FLOAT_ATTR = 30L;   private static final Long FLOAT_NODE = 31L;*/
+comment|//The path maps to the xml xpath and value of 1 means it is a tag with a string value and value
+comment|// of 0 means it is an attribute with string value
 DECL|field|editable_prop_map
 specifier|private
 specifier|static
 name|Map
 name|editable_prop_map
-decl_stmt|;
-comment|//The path maps to the xml xpath and value of 1 means it is a tag with a string value and value
-comment|// of 0 means it is an attribute with string value
-DECL|field|MAPPING
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|MAPPING
 init|=
-literal|"{"
-operator|+
-literal|"  updateHandler:{"
-operator|+
-literal|"    autoCommit:{"
-operator|+
-literal|"      maxDocs:20,"
-operator|+
-literal|"      maxTime:20,"
-operator|+
-literal|"      openSearcher:11},"
-operator|+
-literal|"    autoSoftCommit:{"
-operator|+
-literal|"      maxDocs:20,"
-operator|+
-literal|"      maxTime:20},"
-operator|+
-literal|"    commitWithin:{softCommit:11},"
-operator|+
-literal|"    indexWriter:{closeWaitsForMerges:11}},"
-operator|+
-literal|"  query:{"
-operator|+
-literal|"    filterCache:{"
-operator|+
-literal|"      class:0,"
-operator|+
-literal|"      size:0,"
-operator|+
-literal|"      initialSize:20,"
-operator|+
-literal|"      autowarmCount:20,"
-operator|+
-literal|"      maxRamMB:20,"
-operator|+
-literal|"      regenerator:0},"
-operator|+
-literal|"    queryResultCache:{"
-operator|+
-literal|"      class:0,"
-operator|+
-literal|"      size:20,"
-operator|+
-literal|"      initialSize:20,"
-operator|+
-literal|"      autowarmCount:20,"
-operator|+
-literal|"      maxRamMB:20,"
-operator|+
-literal|"      regenerator:0},"
-operator|+
-literal|"    documentCache:{"
-operator|+
-literal|"      class:0,"
-operator|+
-literal|"      size:20,"
-operator|+
-literal|"      initialSize:20,"
-operator|+
-literal|"      autowarmCount:20,"
-operator|+
-literal|"      regenerator:0},"
-operator|+
-literal|"    fieldValueCache:{"
-operator|+
-literal|"      class:0,"
-operator|+
-literal|"      size:20,"
-operator|+
-literal|"      initialSize:20,"
-operator|+
-literal|"      autowarmCount:20,"
-operator|+
-literal|"      regenerator:0},"
-operator|+
-literal|"    useFilterForSortedQuery:1,"
-operator|+
-literal|"    queryResultWindowSize:1,"
-operator|+
-literal|"    queryResultMaxDocsCached:1,"
-operator|+
-literal|"    enableLazyFieldLoading:1,"
-operator|+
-literal|"    boolTofilterOptimizer:1,"
-operator|+
-literal|"    maxBooleanClauses:1},"
-operator|+
-literal|"  jmx:{"
-operator|+
-literal|"    agentId:0,"
-operator|+
-literal|"    serviceUrl:0,"
-operator|+
-literal|"    rootName:0},"
-operator|+
-literal|"  requestDispatcher:{"
-operator|+
-literal|"    handleSelect:0,"
-operator|+
-literal|"    requestParsers:{"
-operator|+
-literal|"      multipartUploadLimitInKB:0,"
-operator|+
-literal|"      formdataUploadLimitInKB:0,"
-operator|+
-literal|"      enableRemoteStreaming:0,"
-operator|+
-literal|"      addHttpRequestToContext:0}}}"
-decl_stmt|;
-static|static
-block|{
-try|try
-block|{
-name|editable_prop_map
-operator|=
 operator|(
 name|Map
 operator|)
-operator|new
-name|ObjectBuilder
-argument_list|(
-operator|new
-name|JSONParser
-argument_list|(
-operator|new
-name|StringReader
-argument_list|(
-name|MAPPING
-argument_list|)
-argument_list|)
-argument_list|)
+name|Utils
 operator|.
-name|getObject
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|SolrException
+name|fromJSONResource
 argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|"error parsing mapping "
-argument_list|,
-name|e
+literal|"EditableSolrConfigAttributes.json"
 argument_list|)
-throw|;
-block|}
-block|}
+decl_stmt|;
 DECL|method|isEditableProp
 specifier|public
 specifier|static
@@ -1942,7 +1785,22 @@ name|String
 index|[]
 name|args
 parameter_list|)
-block|{   }
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+name|Utils
+operator|.
+name|toJSONString
+argument_list|(
+name|editable_prop_map
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
