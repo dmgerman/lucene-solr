@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This file contains unicode properties used by various {@link CharTokenizer}s.  * The data was created using ICU4J v54.1.0.0  *<p>  * Unicode version: 7.0.0.0  */
+comment|/**  * This file contains unicode properties used by various {@link CharTokenizer}s.  * The data was created using ICU4J v56.1.0.0  *<p>  * Unicode version: 8.0.0.0  */
 end_comment
 
 begin_class
@@ -74,7 +74,7 @@ specifier|final
 name|String
 name|UNICODE_VERSION
 init|=
-literal|"7.0.0.0"
+literal|"8.0.0.0"
 decl_stmt|;
 comment|/** Bitset with Unicode WHITESPACE code points. */
 DECL|field|WHITESPACE
