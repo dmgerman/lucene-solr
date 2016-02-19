@@ -470,6 +470,14 @@ specifier|private
 name|StreamingSolrClients
 name|clients
 decl_stmt|;
+DECL|field|finished
+specifier|private
+name|boolean
+name|finished
+init|=
+literal|false
+decl_stmt|;
+comment|// see finish()
 DECL|field|retryPause
 specifier|private
 name|int
@@ -662,6 +670,16 @@ parameter_list|()
 block|{
 try|try
 block|{
+assert|assert
+operator|!
+name|finished
+operator|:
+literal|"lifecycle sanity check"
+assert|;
+name|finished
+operator|=
+literal|true
+expr_stmt|;
 name|blockAndDoRetries
 argument_list|()
 expr_stmt|;
@@ -1466,7 +1484,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|blockAndDoRetries
-specifier|private
+specifier|public
 name|void
 name|blockAndDoRetries
 parameter_list|()

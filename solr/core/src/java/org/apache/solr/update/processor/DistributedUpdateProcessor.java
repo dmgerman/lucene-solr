@@ -1616,6 +1616,14 @@ name|LOG_REPLAY
 init|=
 literal|"log_replay"
 decl_stmt|;
+comment|// used to assert we don't call finish more than once, see finish()
+DECL|field|finished
+specifier|private
+name|boolean
+name|finished
+init|=
+literal|false
+decl_stmt|;
 DECL|field|req
 specifier|private
 specifier|final
@@ -8698,7 +8706,7 @@ condition|)
 block|{
 name|cmdDistrib
 operator|.
-name|finish
+name|blockAndDoRetries
 argument_list|()
 expr_stmt|;
 block|}
@@ -10006,7 +10014,9 @@ argument_list|,
 name|params
 argument_list|)
 expr_stmt|;
-name|finish
+name|cmdDistrib
+operator|.
+name|blockAndDoRetries
 argument_list|()
 expr_stmt|;
 block|}
@@ -10138,6 +10148,16 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+assert|assert
+operator|!
+name|finished
+operator|:
+literal|"lifecycle sanity check"
+assert|;
+name|finished
+operator|=
+literal|true
+expr_stmt|;
 if|if
 condition|(
 name|zkEnabled
