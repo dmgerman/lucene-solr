@@ -1015,6 +1015,11 @@ name|InterruptedException
 throws|,
 name|KeeperException
 block|{
+name|super
+operator|.
+name|cancelElection
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|leaderZkNodeParentVersion
@@ -1180,11 +1185,6 @@ literal|"No version found for ephemeral leader parent node, won't remove previou
 argument_list|)
 expr_stmt|;
 block|}
-name|super
-operator|.
-name|cancelElection
-argument_list|()
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -1272,9 +1272,11 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Creating leader registration node"
+literal|"Creating leader registration node {} after winning as {}"
 argument_list|,
 name|leaderPath
+argument_list|,
+name|leaderSeqPath
 argument_list|)
 expr_stmt|;
 name|List
