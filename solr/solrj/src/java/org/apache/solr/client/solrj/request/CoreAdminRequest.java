@@ -785,7 +785,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid collection: "
+literal|"Invalid core: "
 operator|+
 name|coreName
 operator|+
@@ -2740,7 +2740,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid collection: "
+literal|"Invalid core: "
 operator|+
 name|newName
 operator|+
