@@ -842,6 +842,17 @@ name|core
 operator|.
 name|getCoreDescriptor
 argument_list|()
+argument_list|,
+name|core
+operator|.
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getUpdateLog
+argument_list|()
+operator|.
+name|getNumRecordsToKeep
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1041,6 +1052,9 @@ name|leaderProps
 parameter_list|,
 name|CoreDescriptor
 name|cd
+parameter_list|,
+name|int
+name|nUpdates
 parameter_list|)
 block|{
 comment|// sync everyone else
@@ -1155,6 +1169,8 @@ name|node
 operator|.
 name|getCoreName
 argument_list|()
+argument_list|,
+name|nUpdates
 argument_list|)
 expr_stmt|;
 block|}
@@ -1433,6 +1449,9 @@ name|leaderUrl
 parameter_list|,
 name|String
 name|coreName
+parameter_list|,
+name|int
+name|nUpdates
 parameter_list|)
 block|{
 name|ShardCoreRequest
@@ -1521,7 +1540,7 @@ name|Integer
 operator|.
 name|toString
 argument_list|(
-literal|100
+name|nUpdates
 argument_list|)
 argument_list|)
 expr_stmt|;
