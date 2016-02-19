@@ -5479,8 +5479,6 @@ argument_list|(
 name|zkClient
 argument_list|,
 literal|"/overseer/collection-map-running"
-argument_list|,
-literal|null
 argument_list|)
 return|;
 block|}
@@ -5507,8 +5505,6 @@ argument_list|(
 name|zkClient
 argument_list|,
 literal|"/overseer/collection-map-completed"
-argument_list|,
-literal|null
 argument_list|,
 name|NUM_RESPONSES_TO_STORE
 argument_list|)
@@ -5537,8 +5533,6 @@ argument_list|(
 name|zkClient
 argument_list|,
 literal|"/overseer/collection-map-failure"
-argument_list|,
-literal|null
 argument_list|,
 name|NUM_RESPONSES_TO_STORE
 argument_list|)
