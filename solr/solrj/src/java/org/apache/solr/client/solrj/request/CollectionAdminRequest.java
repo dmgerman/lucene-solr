@@ -1710,7 +1710,7 @@ return|return
 name|stateFormat
 return|;
 block|}
-comment|/**      * Provide the name of the shards to be created, separated by commas      *       * Shard names must consist entirely of periods, underscores and alphanumerics.  Other characters are not allowed.      *       * @throws IllegalArgumentException if any of the shard names contain invalid characters.      */
+comment|/**      * Provide the name of the shards to be created, separated by commas      *       * Shard names must consist entirely of periods, underscores, and alphanumerics.  Other characters are not allowed.      *       * @throws IllegalArgumentException if any of the shard names contain invalid characters.      */
 DECL|method|setShards
 specifier|public
 name|Create
@@ -1752,7 +1752,7 @@ literal|"Invalid shard: "
 operator|+
 name|shard
 operator|+
-literal|". Shard names must consist entirely of periods, underscores and alphanumerics"
+literal|". Shard names must consist entirely of periods, underscores, and alphanumerics"
 argument_list|)
 throw|;
 block|}
@@ -2280,7 +2280,7 @@ operator|.
 name|CREATESHARD
 expr_stmt|;
 block|}
-comment|/**      * Provide the name of the shard to be created.      *       * Shard names must consist entirely of periods, underscores and alphanumerics.  Other characters are not allowed.      *       * @throws IllegalArgumentException if the shard name contains invalid characters.      */
+comment|/**      * Provide the name of the shard to be created.      *       * Shard names must consist entirely of periods, underscores, and alphanumerics.  Other characters are not allowed.      *       * @throws IllegalArgumentException if the shard name contains invalid characters.      */
 annotation|@
 name|Override
 DECL|method|setShardName
@@ -2311,7 +2311,7 @@ literal|"Invalid shard: "
 operator|+
 name|shardName
 operator|+
-literal|". Shard names must consist entirely of periods, underscores and alphanumerics"
+literal|". Shard names must consist entirely of periods, underscores, and alphanumerics"
 argument_list|)
 throw|;
 block|}
