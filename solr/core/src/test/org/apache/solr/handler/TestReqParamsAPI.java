@@ -605,7 +605,7 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'create-requesthandler' : { 'name' : '/dump', 'class': 'org.apache.solr.handler.DumpRequestHandler' }\n"
+literal|"'create-requesthandler' : { 'name' : '/dump0', 'class': 'org.apache.solr.handler.DumpRequestHandler' }\n"
 operator|+
 literal|"}"
 expr_stmt|;
@@ -652,12 +652,12 @@ literal|"overlay"
 argument_list|,
 literal|"requestHandler"
 argument_list|,
-literal|"/dump"
+literal|"/dump0"
 argument_list|,
 literal|"name"
 argument_list|)
 argument_list|,
-literal|"/dump"
+literal|"/dump0"
 argument_list|,
 literal|10
 argument_list|)
@@ -686,7 +686,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 argument_list|,
-literal|"/dump?wt=json&useParams=x"
+literal|"/dump0?wt=json&useParams=x"
 argument_list|,
 name|cloudClient
 argument_list|,
@@ -740,7 +740,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 argument_list|,
-literal|"/dump?wt=json&useParams=x&a=fomrequest"
+literal|"/dump0?wt=json&useParams=x&a=fomrequest"
 argument_list|,
 name|cloudClient
 argument_list|,
@@ -992,7 +992,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 argument_list|,
-literal|"/dump?wt=json&useParams=y"
+literal|"/dump1?wt=json&useParams=y"
 argument_list|,
 name|cloudClient
 argument_list|,
