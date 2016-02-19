@@ -690,17 +690,26 @@ name|WatchedEvent
 name|event
 parameter_list|)
 block|{
+comment|// session events are not change events, and do not remove the watcher
+if|if
+condition|(
 name|Event
 operator|.
 name|EventType
-name|eventType
-init|=
+operator|.
+name|None
+operator|.
+name|equals
+argument_list|(
 name|event
 operator|.
 name|getType
 argument_list|()
-decl_stmt|;
-comment|// None events are ignored
+argument_list|)
+condition|)
+block|{
+return|return;
+block|}
 comment|// If latchEventType is not null, only fire if the type matches
 name|LOG
 operator|.
@@ -708,7 +717,10 @@ name|info
 argument_list|(
 literal|"{} fired on path {} state {} latchEventType {}"
 argument_list|,
-name|eventType
+name|event
+operator|.
+name|getType
+argument_list|()
 argument_list|,
 name|event
 operator|.
@@ -725,23 +737,16 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|eventType
-operator|!=
-name|Event
-operator|.
-name|EventType
-operator|.
-name|None
-operator|&&
-operator|(
 name|latchEventType
 operator|==
 literal|null
 operator|||
-name|eventType
+name|event
+operator|.
+name|getType
+argument_list|()
 operator|==
 name|latchEventType
-operator|)
 condition|)
 block|{
 synchronized|synchronized

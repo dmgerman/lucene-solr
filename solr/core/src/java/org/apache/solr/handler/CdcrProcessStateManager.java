@@ -739,6 +739,7 @@ argument_list|,
 name|shard
 argument_list|)
 expr_stmt|;
+comment|// session events are not change events, and do not remove the watcher
 if|if
 condition|(
 name|Event

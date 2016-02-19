@@ -1582,6 +1582,26 @@ name|WatchedEvent
 name|event
 parameter_list|)
 block|{
+comment|// session events are not change events, and do not remove the watcher
+if|if
+condition|(
+name|Event
+operator|.
+name|EventType
+operator|.
+name|None
+operator|.
+name|equals
+argument_list|(
+name|event
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+condition|)
+block|{
+return|return;
+block|}
 synchronized|synchronized
 init|(
 name|this
