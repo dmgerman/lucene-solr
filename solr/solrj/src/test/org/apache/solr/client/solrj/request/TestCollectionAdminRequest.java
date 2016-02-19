@@ -318,7 +318,7 @@ name|exceptionMessage
 operator|.
 name|contains
 argument_list|(
-literal|"Invalid collection"
+literal|"Invalid alias"
 argument_list|)
 argument_list|)
 expr_stmt|;
