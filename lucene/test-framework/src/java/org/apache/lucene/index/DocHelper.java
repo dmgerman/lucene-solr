@@ -40,6 +40,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|HashMap
@@ -1205,24 +1217,17 @@ literal|"Lazily loading lengths of language in lieu of laughing "
 argument_list|)
 expr_stmt|;
 block|}
-try|try
-block|{
 name|LAZY_FIELD_BINARY_BYTES
 operator|=
 literal|"These are some binary field bytes"
 operator|.
 name|getBytes
 argument_list|(
-literal|"UTF8"
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedEncodingException
-name|e
-parameter_list|)
-block|{     }
 name|lazyFieldBinary
 operator|=
 operator|new

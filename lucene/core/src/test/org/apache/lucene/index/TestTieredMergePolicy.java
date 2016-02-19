@@ -1115,7 +1115,14 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|tmp
 operator|.
@@ -1125,20 +1132,9 @@ operator|-
 literal|2.0
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Didn't throw IllegalArgumentException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// pass
-block|}
 name|tmp
 operator|.
 name|setFloorSegmentMB
@@ -1224,7 +1220,14 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|tmp
 operator|.
@@ -1234,20 +1237,9 @@ operator|-
 literal|2.0
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Didn't throw IllegalArgumentException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// pass
-block|}
 name|tmp
 operator|.
 name|setMaxCFSSegmentSizeMB
@@ -1333,7 +1325,14 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|tmp
 operator|.
@@ -1343,20 +1342,9 @@ operator|-
 literal|2.0
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Didn't throw IllegalArgumentException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// pass
-block|}
 comment|// TODO: Add more checks for other non-double setters!
 block|}
 comment|// LUCENE-5668

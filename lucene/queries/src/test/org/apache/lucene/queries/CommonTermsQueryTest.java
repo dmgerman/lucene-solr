@@ -1685,7 +1685,15 @@ name|nextFloat
 argument_list|()
 argument_list|)
 decl_stmt|;
-try|try
+comment|// null values are not supported
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|query
 operator|.
@@ -1694,18 +1702,9 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"null values are not supported"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|ex
-parameter_list|)
-block|{            }
 block|}
 DECL|method|testMinShouldMatch
 specifier|public
@@ -3132,6 +3131,7 @@ name|analyzer
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** MUST_NOT is not supported */
 DECL|method|testIllegalOccur
 specifier|public
 name|void
@@ -3144,7 +3144,14 @@ init|=
 name|random
 argument_list|()
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|CommonTermsQuery
@@ -3165,19 +3172,17 @@ name|nextFloat
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"MUST_NOT is not supproted"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|IllegalArgumentException
-name|ex
-parameter_list|)
-block|{            }
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|CommonTermsQuery
@@ -3198,18 +3203,9 @@ name|nextFloat
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"MUST_NOT is not supproted"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|ex
-parameter_list|)
-block|{            }
 block|}
 annotation|@
 name|Test

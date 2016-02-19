@@ -967,13 +967,18 @@ argument_list|,
 name|greedy
 argument_list|)
 decl_stmt|;
-comment|// search
+comment|// search: must get exception
 name|TimeExceededException
 name|timeoutException
 init|=
-literal|null
-decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|TimeExceededException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|search
 argument_list|(
@@ -981,42 +986,8 @@ name|tlCollector
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|TimeExceededException
-name|x
-parameter_list|)
-block|{
-name|timeoutException
-operator|=
-name|x
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|assertTrue
-argument_list|(
-literal|"Unexpected exception: "
-operator|+
-name|e
-argument_list|,
-literal|false
 argument_list|)
-expr_stmt|;
-comment|//==fail
-block|}
-comment|// must get exception
-name|assertNotNull
-argument_list|(
-literal|"Timeout expected!"
-argument_list|,
-name|timeoutException
-argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// greediness affect last doc collected
 name|int
 name|exceptionDoc
@@ -1460,13 +1431,15 @@ name|nextBoolean
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// search
+comment|// search: must get exception
+name|expectThrows
+argument_list|(
 name|TimeExceededException
-name|timeoutException
-init|=
-literal|null
-decl_stmt|;
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|BooleanQuery
 operator|.
@@ -1539,23 +1512,6 @@ name|collector
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|TimeExceededException
-name|x
-parameter_list|)
-block|{
-name|timeoutException
-operator|=
-name|x
-expr_stmt|;
-block|}
-comment|// must get exception
-name|assertNotNull
-argument_list|(
-literal|"Timeout expected!"
-argument_list|,
-name|timeoutException
 argument_list|)
 expr_stmt|;
 name|assertEquals

@@ -722,7 +722,14 @@ argument_list|(
 name|analyzer
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|sug
 operator|.
@@ -735,20 +742,9 @@ name|keys
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|analyzer
 operator|.
 name|close
@@ -814,7 +810,14 @@ name|keys
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|sug
 operator|.
@@ -825,20 +828,9 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|analyzer
 operator|.
 name|close
@@ -1355,7 +1347,14 @@ name|keys
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|sug
 operator|.
@@ -1366,20 +1365,9 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|a
 operator|.
 name|close

@@ -1204,10 +1204,16 @@ block|{
 literal|"blah"
 block|}
 decl_stmt|;
-try|try
+comment|// expected exception, array length differs
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|q
-operator|=
 name|MultiFieldQueryParser
 operator|.
 name|parse
@@ -1224,18 +1230,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// expected exception, array length differs
-block|}
 comment|// check also with stop words for this static form (qtxts[], fields[]).
 name|TestQueryParser
 operator|.
@@ -1414,7 +1411,15 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+comment|// expected exception, array length differs
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|BooleanClause
 operator|.
@@ -1429,9 +1434,7 @@ name|Occur
 operator|.
 name|MUST
 block|}
-decl_stmt|;
-name|q
-operator|=
+empty_stmt|;
 name|MultiFieldQueryParser
 operator|.
 name|parse
@@ -1450,18 +1453,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// expected exception, array length differs
-block|}
 block|}
 DECL|method|testStaticMethod2Old
 specifier|public
@@ -1564,7 +1558,15 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+comment|// expected exception, array length differs
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|BooleanClause
 operator|.
@@ -1579,9 +1581,7 @@ name|Occur
 operator|.
 name|MUST
 block|}
-decl_stmt|;
-name|q
-operator|=
+empty_stmt|;
 name|MultiFieldQueryParser
 operator|.
 name|parse
@@ -1600,18 +1600,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// expected exception, array length differs
-block|}
 block|}
 DECL|method|testStaticMethod3
 specifier|public
@@ -1702,7 +1693,15 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+comment|// expected exception, array length differs
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|BooleanClause
 operator|.
@@ -1717,9 +1716,7 @@ name|Occur
 operator|.
 name|MUST
 block|}
-decl_stmt|;
-name|q
-operator|=
+empty_stmt|;
 name|MultiFieldQueryParser
 operator|.
 name|parse
@@ -1738,18 +1735,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// expected exception, array length differs
-block|}
 block|}
 DECL|method|testStaticMethod3Old
 specifier|public
@@ -1830,7 +1818,15 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+comment|// expected exception, array length differs
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|BooleanClause
 operator|.
@@ -1845,9 +1841,7 @@ name|Occur
 operator|.
 name|MUST
 block|}
-decl_stmt|;
-name|q
-operator|=
+empty_stmt|;
 name|MultiFieldQueryParser
 operator|.
 name|parse
@@ -1866,18 +1860,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// expected exception, array length differs
-block|}
 block|}
 DECL|method|testAnalyzerReturningNull
 specifier|public

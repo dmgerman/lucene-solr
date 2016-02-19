@@ -611,7 +611,15 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+comment|// keySet() should not allow adding new keys
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|cs
 operator|.
@@ -620,20 +628,9 @@ argument_list|(
 literal|"test"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"keySet() allows adding new keys"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|ue
-parameter_list|)
-block|{
-comment|// pass
-block|}
 name|cm
 operator|.
 name|putAll
@@ -946,6 +943,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|// TODO: break this up into simpler test methods vs. "telling a story"
 DECL|method|testModifyOnUnmodifiable
 specifier|public
 name|void

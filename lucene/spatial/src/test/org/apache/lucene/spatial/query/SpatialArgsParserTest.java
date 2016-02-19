@@ -221,7 +221,15 @@ name|getOperation
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+comment|// spatial operations need args
+name|expectThrows
+argument_list|(
+name|Exception
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|parser
 operator|.
@@ -236,21 +244,18 @@ argument_list|,
 name|ctx
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"spatial operations need args"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+comment|// unknown operation
+name|expectThrows
+argument_list|(
 name|Exception
-name|ex
-parameter_list|)
-block|{
-comment|//expected
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|parser
 operator|.
@@ -261,20 +266,9 @@ argument_list|,
 name|ctx
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"unknown operation!"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|ex
-parameter_list|)
-block|{
-comment|//expected
-block|}
 name|assertAlias
 argument_list|(
 name|SpatialOperation

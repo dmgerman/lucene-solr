@@ -6961,29 +6961,25 @@ name|hasNext
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+name|LuceneTestCase
+operator|.
+name|expectThrows
+argument_list|(
+name|NoSuchElementException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|iterator
 operator|.
 name|next
 argument_list|()
 expr_stmt|;
-throw|throw
-operator|new
-name|AssertionError
-argument_list|(
-literal|"Fields.iterator() doesn't throw NoSuchElementException when past the end"
+block|}
 argument_list|)
-throw|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchElementException
-name|expected
-parameter_list|)
-block|{
-comment|// expected
-block|}
+expr_stmt|;
 block|}
 comment|/** Indexes all fields/terms at the specified    *  IndexOptions, and fully tests at that IndexOptions. */
 DECL|method|testFull

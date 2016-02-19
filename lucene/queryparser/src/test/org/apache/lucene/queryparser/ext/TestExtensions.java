@@ -330,7 +330,15 @@ literal|"abc:?{}[]\\()+-!~"
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+comment|// should throw NPE - escape string is null
+name|expectThrows
+argument_list|(
+name|NullPointerException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|ext
 operator|.
@@ -339,20 +347,9 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should throw NPE - escape string is null"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NullPointerException
-name|e
-parameter_list|)
-block|{
-comment|//
-block|}
 block|}
 block|}
 end_class

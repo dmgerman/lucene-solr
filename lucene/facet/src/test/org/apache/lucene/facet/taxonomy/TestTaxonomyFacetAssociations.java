@@ -971,7 +971,14 @@ argument_list|,
 name|fc
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|facets
 operator|.
@@ -980,21 +987,17 @@ argument_list|(
 literal|"float"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should have hit exc"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|facets
 operator|.
@@ -1005,20 +1008,9 @@ argument_list|,
 literal|"float"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should have hit exc"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 DECL|method|testMixedTypesInSameIndexField
 specifier|public
@@ -1105,7 +1097,14 @@ literal|"y"
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|writer
 operator|.
@@ -1121,20 +1120,9 @@ name|doc
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|exc
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|writer
 operator|.
 name|close
@@ -1231,7 +1219,14 @@ literal|"x"
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|writer
 operator|.
@@ -1247,20 +1242,9 @@ name|doc
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|exc
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|writer
 operator|.
 name|close
@@ -1357,7 +1341,14 @@ literal|"x"
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|writer
 operator|.
@@ -1373,20 +1364,9 @@ name|doc
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|exc
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|writer
 operator|.
 name|close

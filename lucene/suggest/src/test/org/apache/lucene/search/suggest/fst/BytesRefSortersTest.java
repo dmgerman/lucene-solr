@@ -301,7 +301,14 @@ name|iterator
 argument_list|()
 decl_stmt|;
 comment|// Verify sorter contract.
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|sorter
 operator|.
@@ -318,20 +325,9 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"expected contract violation."
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|e
-parameter_list|)
-block|{
-comment|// Expected.
-block|}
 name|BytesRef
 name|spare1
 decl_stmt|;

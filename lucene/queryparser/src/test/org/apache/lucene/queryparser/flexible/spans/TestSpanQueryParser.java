@@ -617,153 +617,132 @@ parameter_list|()
 throws|throws
 name|QueryNodeException
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|QueryNodeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|getSpanQuery
 argument_list|(
 literal|"term*"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"QueryNodeException was expected, wildcard queries should not be supported"
+comment|// wildcard queries should not be supported
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|QueryNodeException
-name|ex
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|getSpanQuery
 argument_list|(
 literal|"[a TO z]"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"QueryNodeException was expected, range queries should not be supported"
+comment|// range queries should not be supported
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|QueryNodeException
-name|ex
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|getSpanQuery
 argument_list|(
 literal|"a~0.5"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"QueryNodeException was expected, boost queries should not be supported"
+comment|// boost queries should not be supported
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|QueryNodeException
-name|ex
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|getSpanQuery
 argument_list|(
 literal|"a^0.5"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"QueryNodeException was expected, fuzzy queries should not be supported"
+comment|// fuzzy queries should not be supported
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|QueryNodeException
-name|ex
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|getSpanQuery
 argument_list|(
 literal|"\"a b\""
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"QueryNodeException was expected, quoted queries should not be supported"
+comment|// quoted queries should not be supported
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|QueryNodeException
-name|ex
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|getSpanQuery
 argument_list|(
 literal|"(a b)"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"QueryNodeException was expected, parenthesized queries should not be supported"
+comment|// parenthesized queries should not be supported
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|QueryNodeException
-name|ex
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|getSpanQuery
 argument_list|(
 literal|"a AND b"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"QueryNodeException was expected, and queries should not be supported"
+comment|// AND queries should not be supported
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|QueryNodeException
-name|ex
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 block|}
 block|}
 end_class

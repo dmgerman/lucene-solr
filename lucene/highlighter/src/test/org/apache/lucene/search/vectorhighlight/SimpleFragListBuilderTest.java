@@ -118,7 +118,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|SimpleFragListBuilder
 name|sflb
@@ -155,18 +162,9 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"IllegalArgumentException must be thrown"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{     }
 block|}
 DECL|method|testSmallerFragSizeThanTermQuery
 specifier|public

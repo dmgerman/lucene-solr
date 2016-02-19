@@ -329,28 +329,24 @@ name|getDocument
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 comment|// tries to write segments_2 but hits fake exc:
+name|expectThrows
+argument_list|(
+name|CrashingException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
+block|{
 name|indexWriter
 operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should have hit CrashingException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|CrashingException
-name|e
-parameter_list|)
-block|{
-comment|// expected
-block|}
 comment|// writes segments_3
 name|indexWriter
 operator|.

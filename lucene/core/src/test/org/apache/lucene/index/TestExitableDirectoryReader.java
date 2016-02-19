@@ -639,17 +639,25 @@ argument_list|(
 name|exitableDirectoryReader
 argument_list|)
 expr_stmt|;
-name|searcher
-operator|=
+name|IndexSearcher
+name|slowSearcher
+init|=
 operator|new
 name|IndexSearcher
 argument_list|(
 name|reader
 argument_list|)
-expr_stmt|;
-try|try
+decl_stmt|;
+name|expectThrows
+argument_list|(
+name|ExitingReaderException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|searcher
+name|slowSearcher
 operator|.
 name|search
 argument_list|(
@@ -658,22 +666,9 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"This query should have led to an ExitingReaderException!"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ExitingReaderException
-name|ex
-parameter_list|)
-block|{
-comment|// Do nothing, we expect this!
-block|}
-finally|finally
-block|{
 name|reader
 operator|.
 name|close
@@ -684,7 +679,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-block|}
 comment|// Set maximum time out and expect the query to complete.
 comment|// Not checking the validity of the result, all we are bothered about in this test is the timing out.
 name|directoryReader

@@ -2373,6 +2373,7 @@ name|totalHits
 argument_list|)
 expr_stmt|;
 block|}
+comment|// GeoBoundingBox should not accept invalid lat/lon
 DECL|method|testInvalidBBox
 specifier|public
 name|void
@@ -2381,7 +2382,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|Exception
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|bboxQuery
 argument_list|(
@@ -2399,21 +2407,8 @@ literal|20
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-return|return;
-block|}
-throw|throw
-operator|new
-name|Exception
-argument_list|(
-literal|"GeoBoundingBox should not accept invalid lat/lon"
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 DECL|method|testGeoDistanceQuery
 specifier|public
@@ -2534,7 +2529,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+name|IllegalArgumentException
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|geoDistanceQuery
 argument_list|(
@@ -2548,13 +2553,11 @@ literal|20
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-name|e
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|expected
 operator|.
 name|getMessage
 argument_list|()
@@ -2563,8 +2566,8 @@ name|contains
 argument_list|(
 literal|"exceeds maxRadius"
 argument_list|)
+argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|/**    * Explicitly large    */
 DECL|method|testGeoDistanceQueryHuge
@@ -2637,6 +2640,7 @@ name|totalHits
 argument_list|)
 expr_stmt|;
 block|}
+comment|// GeoDistanceQuery should not accept invalid lat/lon as origin
 DECL|method|testInvalidGeoDistanceQuery
 specifier|public
 name|void
@@ -2645,7 +2649,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|Exception
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|geoDistanceQuery
 argument_list|(
@@ -2659,21 +2670,8 @@ literal|20
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-return|return;
-block|}
-throw|throw
-operator|new
-name|Exception
-argument_list|(
-literal|"GeoDistanceQuery should not accept invalid lat/lon as origin"
 argument_list|)
-throw|;
+expr_stmt|;
 block|}
 DECL|method|testMaxDistanceRangeQuery
 specifier|public

@@ -946,25 +946,23 @@ name|hasNext
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|NoSuchElementException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|it
 operator|.
 name|next
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Should throw NoSuchElementException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchElementException
-name|nse
-parameter_list|)
-block|{     }
 name|key1
 operator|=
 operator|new

@@ -1362,42 +1362,23 @@ operator|=
 literal|0
 expr_stmt|;
 comment|// 3. execute the algorithm  (required in every "logic" test)
-try|try
+name|expectThrows
+argument_list|(
+name|Exception
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|Benchmark
-name|benchmark
-init|=
 name|execBenchmark
 argument_list|(
 name|algLines
 argument_list|)
-decl_stmt|;
-name|assertTrue
-argument_list|(
-literal|"CountingHighlighterTest should have thrown an exception"
-argument_list|,
-literal|false
-argument_list|)
-expr_stmt|;
-name|assertNotNull
-argument_list|(
-name|benchmark
-argument_list|)
-expr_stmt|;
-comment|// (avoid compile warning on unused variable)
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|assertTrue
-argument_list|(
-literal|true
-argument_list|)
 expr_stmt|;
 block|}
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Test Exhasting Doc Maker logic    */
 DECL|method|testExhaustContentSource

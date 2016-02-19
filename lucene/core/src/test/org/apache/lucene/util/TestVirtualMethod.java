@@ -395,7 +395,15 @@ name|void
 name|testExceptions
 parameter_list|()
 block|{
-try|try
+comment|// LuceneTestCase is not a subclass and can never override publicTest(String)
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 comment|// cast to Class to remove generics:
 name|publicTestMethod
@@ -410,21 +418,18 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"LuceneTestCase is not a subclass and can never override publicTest(String)"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+comment|// Method bogus() does not exist, so IAE should be thrown
+name|expectThrows
+argument_list|(
 name|IllegalArgumentException
-name|arg
-parameter_list|)
-block|{
-comment|// pass
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|VirtualMethod
@@ -437,21 +442,18 @@ argument_list|,
 literal|"bogus"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Method bogus() does not exist, so IAE should be thrown"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+comment|// Method publicTest(String) is not declared in TestClass2, so IAE should be thrown
+name|expectThrows
+argument_list|(
 name|IllegalArgumentException
-name|arg
-parameter_list|)
-block|{
-comment|// pass
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|VirtualMethod
@@ -468,23 +470,19 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Method publicTest(String) is not declared in TestClass2, so IAE should be thrown"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|arg
-parameter_list|)
-block|{
-comment|// pass
-block|}
-try|try
-block|{
 comment|// try to create a second instance of the same baseClass / method combination
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
+block|{
 operator|new
 name|VirtualMethod
 argument_list|<>
@@ -500,20 +498,9 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Violating singleton status succeeded"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|arg
-parameter_list|)
-block|{
-comment|// pass
-block|}
 block|}
 block|}
 end_class

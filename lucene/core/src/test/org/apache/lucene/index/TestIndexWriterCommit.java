@@ -2803,7 +2803,14 @@ argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IndexNotFoundException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|DirectoryReader
 operator|.
@@ -2812,20 +2819,9 @@ argument_list|(
 name|dir
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"listCommits should have thrown an exception over empty index"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IndexNotFoundException
-name|e
-parameter_list|)
-block|{
-comment|// that's expected !
-block|}
 comment|// No changes still should generate a commit, because it's a new index.
 name|writer
 operator|.
@@ -3869,27 +3865,23 @@ operator|.
 name|prepareCommit
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|w
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't hit exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|ise
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|w
 operator|.
 name|commit

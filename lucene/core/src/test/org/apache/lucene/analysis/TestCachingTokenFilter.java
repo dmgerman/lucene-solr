@@ -713,7 +713,17 @@ name|reset
 argument_list|()
 expr_stmt|;
 comment|//ok
-try|try
+name|IllegalStateException
+name|e
+init|=
+name|expectThrows
+argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|buffer
 operator|.
@@ -721,18 +731,9 @@ name|reset
 argument_list|()
 expr_stmt|;
 comment|//bad (this used to work which we don't want)
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
-argument_list|)
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|e
-parameter_list|)
-block|{
+argument_list|)
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"double reset()"
@@ -743,7 +744,6 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|checkTokens
 specifier|private

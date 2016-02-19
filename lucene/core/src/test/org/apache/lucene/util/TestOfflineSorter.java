@@ -1183,7 +1183,14 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|BufferSize
 operator|.
@@ -1192,19 +1199,17 @@ argument_list|(
 literal|2048
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"max mb is 2047"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{     }
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|BufferSize
 operator|.
@@ -1213,19 +1218,17 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"min mb is 0.5"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{     }
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|BufferSize
 operator|.
@@ -1235,18 +1238,9 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"min mb is 0.5"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{     }
 block|}
 DECL|method|testThreadSafety
 specifier|public

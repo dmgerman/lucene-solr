@@ -2090,7 +2090,14 @@ name|getPrefixLength
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|ParseException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|getQuery
 argument_list|(
@@ -2100,18 +2107,9 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|// value> 1, throws exception
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|pe
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 name|assertTrue
 argument_list|(
 name|getQuery
@@ -3894,7 +3892,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|QueryNodeParseException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|assertQueryEquals
 argument_list|(
@@ -3905,19 +3910,11 @@ argument_list|,
 literal|"abc"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"ParseException expected, not thrown"
+block|}
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|QueryNodeParseException
-name|expected
-parameter_list|)
-block|{     }
-block|}
+comment|// ParseException expected due to too many boolean clauses
 DECL|method|testBooleanQuery
 specifier|public
 name|void
@@ -3933,7 +3930,14 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|QueryNodeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|getParser
 argument_list|(
@@ -3958,20 +3962,9 @@ argument_list|,
 literal|"field"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"ParseException expected due to too many boolean clauses"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|QueryNodeException
-name|expected
-parameter_list|)
-block|{
-comment|// too many boolean clauses, so ParseException is expected
-block|}
 block|}
 comment|// LUCENE-792
 DECL|method|testNOT

@@ -4022,7 +4022,14 @@ literal|"[A TO C]"
 argument_list|)
 expr_stmt|;
 comment|// Test suffix queries: first disallow
-try|try
+name|expectThrows
+argument_list|(
+name|QueryNodeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|assertWildcardQueryEquals
 argument_list|(
@@ -4033,19 +4040,17 @@ argument_list|,
 literal|"*term"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|QueryNodeException
-name|pe
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|assertWildcardQueryEquals
 argument_list|(
@@ -4056,18 +4061,9 @@ argument_list|,
 literal|"?term"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|QueryNodeException
-name|pe
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 comment|// Test suffix queries: then allow
 name|assertWildcardQueryEquals
 argument_list|(
@@ -6392,7 +6388,14 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|QueryNodeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|getQuery
 argument_list|(
@@ -6402,17 +6405,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|QueryNodeException
-name|expected
-parameter_list|)
-block|{
-return|return;
-block|}
-name|fail
-argument_list|(
-literal|"ParseException expected, not thrown"
 argument_list|)
 expr_stmt|;
 block|}
@@ -6461,13 +6453,21 @@ literal|"secret AND illegal) AND access:confidential"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Wildcard queries should not be allowed
 DECL|method|testCustomQueryParserWildcard
 specifier|public
 name|void
 name|testCustomQueryParserWildcard
 parameter_list|()
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|QueryNodeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|QPTestParser
@@ -6493,21 +6493,11 @@ argument_list|,
 literal|"contents"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Wildcard queries should not be allowed"
+block|}
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|QueryNodeException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
-block|}
+comment|// Fuzzy queries should not be allowed"
 DECL|method|testCustomQueryParserFuzzy
 specifier|public
 name|void
@@ -6516,7 +6506,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|QueryNodeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|QPTestParser
@@ -6542,21 +6539,11 @@ argument_list|,
 literal|"contents"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Fuzzy queries should not be allowed"
+block|}
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|QueryNodeException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
-block|}
+comment|// too many boolean clauses, so ParseException is expected
 DECL|method|testBooleanQuery
 specifier|public
 name|void
@@ -6572,7 +6559,14 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|QueryNodeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|StandardQueryParser
 name|qp
@@ -6608,20 +6602,9 @@ argument_list|,
 literal|"field"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"ParseException expected due to too many boolean clauses"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|QueryNodeException
-name|expected
-parameter_list|)
-block|{
-comment|// too many boolean clauses, so ParseException is expected
-block|}
 block|}
 comment|/**    * This test differs from TestPrecedenceQueryParser    */
 DECL|method|testPrecedence

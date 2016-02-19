@@ -6257,7 +6257,17 @@ literal|"aa bb"
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|IllegalArgumentException
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|SynonymFilter
@@ -6278,30 +6288,19 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
-argument_list|)
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
+argument_list|)
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"fst must be non-null"
 argument_list|,
-name|iae
+name|expected
 operator|.
 name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 end_class

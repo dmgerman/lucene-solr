@@ -359,7 +359,14 @@ argument_list|,
 name|ext
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|ParseException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|parser
 operator|.
@@ -368,18 +375,9 @@ argument_list|(
 literal|"aField:testExt:\"foo \\& bar\""
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"extension field delimiter is not escaped"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|e
-parameter_list|)
-block|{     }
 block|}
 DECL|method|testExtFieldUnqoted
 specifier|public

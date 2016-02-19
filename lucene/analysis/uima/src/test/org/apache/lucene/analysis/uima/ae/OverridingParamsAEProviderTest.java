@@ -26,6 +26,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|uima
 operator|.
 name|analysis_engine
@@ -78,42 +92,6 @@ name|Map
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertEquals
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|assertNotNull
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|junit
-operator|.
-name|Assert
-operator|.
-name|fail
-import|;
-end_import
-
 begin_comment
 comment|/**  * TestCase for {@link OverridingParamsAEProvider}  */
 end_comment
@@ -123,6 +101,8 @@ DECL|class|OverridingParamsAEProviderTest
 specifier|public
 class|class
 name|OverridingParamsAEProviderTest
+extends|extends
+name|LuceneTestCase
 block|{
 annotation|@
 name|Test
@@ -134,7 +114,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|ResourceInitializationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|AEProvider
 name|aeProvider
@@ -152,20 +139,9 @@ operator|.
 name|getAE
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should fail due to null Map passed"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ResourceInitializationException
-name|e
-parameter_list|)
-block|{
-comment|// everything ok
-block|}
 block|}
 annotation|@
 name|Test

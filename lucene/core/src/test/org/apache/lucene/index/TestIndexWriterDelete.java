@@ -4919,13 +4919,6 @@ comment|// a new segments file won't be created but in this
 comment|// case, creation of the cfs file happens next so we
 comment|// need the doc (to test that it's okay that we don't
 comment|// lose deletes if failing while creating the cfs file)
-name|boolean
-name|failed
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
 if|if
 condition|(
 name|VERBOSE
@@ -4941,19 +4934,26 @@ literal|"TEST: now commit for failure"
 argument_list|)
 expr_stmt|;
 block|}
+name|RuntimeException
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|RuntimeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
+block|{
 name|modifier
 operator|.
 name|commit
 argument_list|()
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|RuntimeException
-name|ioe
-parameter_list|)
-block|{
-comment|// expected
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|VERBOSE
@@ -4968,7 +4968,7 @@ argument_list|(
 literal|"TEST: hit exc:"
 argument_list|)
 expr_stmt|;
-name|ioe
+name|expected
 operator|.
 name|printStackTrace
 argument_list|(
@@ -4978,16 +4978,6 @@ name|out
 argument_list|)
 expr_stmt|;
 block|}
-name|failed
-operator|=
-literal|true
-expr_stmt|;
-block|}
-name|assertTrue
-argument_list|(
-name|failed
-argument_list|)
-expr_stmt|;
 comment|// The commit above failed, so we need to retry it (which will
 comment|// succeed, because the failure is a one-shot)
 name|boolean

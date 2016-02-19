@@ -468,7 +468,14 @@ name|int
 name|maxItemsInBlock
 parameter_list|)
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|Lucene50PostingsFormat
@@ -478,20 +485,9 @@ argument_list|,
 name|maxItemsInBlock
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 DECL|method|testInvalidBlockSizes
 specifier|public

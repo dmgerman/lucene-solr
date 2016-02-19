@@ -628,7 +628,14 @@ argument_list|(
 literal|"nonexistent"
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|IOUtils
 operator|.
@@ -637,18 +644,9 @@ argument_list|(
 name|fake
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
 block|}
 comment|// fake up a filestore to test some underlying methods
 DECL|class|MockFileStore

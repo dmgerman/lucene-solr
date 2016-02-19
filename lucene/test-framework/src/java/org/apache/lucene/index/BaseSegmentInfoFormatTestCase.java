@@ -576,7 +576,15 @@ name|files
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+comment|// files set should be immutable
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|info2
 operator|.
@@ -588,20 +596,9 @@ argument_list|(
 literal|"bogus"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"files set should be immutable"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
 name|dir
 operator|.
 name|close
@@ -761,7 +758,15 @@ name|getDiagnostics
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+comment|// diagnostics map should be immutable
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|info2
 operator|.
@@ -775,20 +780,9 @@ argument_list|,
 literal|"bogus"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"diagnostics map should be immutable"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
 name|dir
 operator|.
 name|close
@@ -948,7 +942,15 @@ name|getAttributes
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+comment|// attributes map should be immutable
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|info2
 operator|.
@@ -962,20 +964,9 @@ argument_list|,
 literal|"bogus"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"attributes map should be immutable"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
 name|dir
 operator|.
 name|close
@@ -1413,7 +1404,14 @@ operator|.
 name|setDoFail
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|FakeIOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|codec
 operator|.
@@ -1431,28 +1429,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|FakeIOException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
-finally|finally
-block|{
 name|fail
 operator|.
 name|clearDoFail
 argument_list|()
 expr_stmt|;
-block|}
 name|dir
 operator|.
 name|close
@@ -1612,7 +1596,14 @@ operator|.
 name|setDoFail
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|FakeIOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|codec
 operator|.
@@ -1630,28 +1621,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|FakeIOException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
-finally|finally
-block|{
 name|fail
 operator|.
 name|clearDoFail
 argument_list|()
 expr_stmt|;
-block|}
 name|dir
 operator|.
 name|close
@@ -1827,7 +1804,14 @@ operator|.
 name|setDoFail
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|FakeIOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|codec
 operator|.
@@ -1847,28 +1831,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|FakeIOException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
-finally|finally
-block|{
 name|fail
 operator|.
 name|clearDoFail
 argument_list|()
 expr_stmt|;
-block|}
 name|dir
 operator|.
 name|close
@@ -2044,7 +2014,14 @@ operator|.
 name|setDoFail
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|FakeIOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|codec
 operator|.
@@ -2064,28 +2041,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|FakeIOException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
-finally|finally
-block|{
 name|fail
 operator|.
 name|clearDoFail
 argument_list|()
 expr_stmt|;
-block|}
 name|dir
 operator|.
 name|close

@@ -232,7 +232,14 @@ throws|throws
 name|Exception
 block|{
 comment|// Tests that the collector rejects all null collectors.
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|MultiCollector
 operator|.
@@ -243,20 +250,9 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"only null collectors should not be supported"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// expected
-block|}
 comment|// Tests that the collector handles some null collectors well. If it
 comment|// doesn't, an NPE would be thrown.
 name|Collector
@@ -632,7 +628,14 @@ argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|AssertionError
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|collector
 argument_list|(
@@ -655,20 +658,9 @@ name|FakeScorer
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"The collector was configured to expect a ScoreCachingWrappingScorer and did not fail when pass in a FakeScorer"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|AssertionError
-name|e
-parameter_list|)
-block|{
-comment|// expected
-block|}
 comment|// no collector needs scores => no caching
 name|Collector
 name|c1

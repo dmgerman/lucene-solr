@@ -169,29 +169,23 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
-try|try
+name|expectThrows
+argument_list|(
+name|IOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|lock
 operator|.
 name|ensureValid
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"no exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
-finally|finally
-block|{
 name|IOUtils
 operator|.
 name|closeWhileHandlingException
@@ -199,7 +193,6 @@ argument_list|(
 name|lock
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 finally|finally
 block|{

@@ -394,7 +394,14 @@ argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|ParseException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|parser
 operator|.
@@ -407,20 +414,9 @@ name|testFile
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exc
-block|}
 name|analyzer
 operator|.
 name|close
@@ -470,7 +466,14 @@ argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|ParseException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|parser
 operator|.
@@ -483,20 +486,9 @@ name|testFile
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exc
-block|}
 name|analyzer
 operator|.
 name|close
@@ -546,7 +538,14 @@ argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|ParseException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|parser
 operator|.
@@ -559,20 +558,9 @@ name|testFile
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exc
-block|}
 name|analyzer
 operator|.
 name|close
@@ -613,7 +601,14 @@ argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|ParseException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|parser
 operator|.
@@ -626,20 +621,9 @@ name|testFile
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exc
-block|}
 name|analyzer
 operator|.
 name|close
@@ -680,7 +664,14 @@ argument_list|,
 name|analyzer
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|ParseException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|parser
 operator|.
@@ -693,20 +684,9 @@ name|testFile
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exc
-block|}
 name|analyzer
 operator|.
 name|close

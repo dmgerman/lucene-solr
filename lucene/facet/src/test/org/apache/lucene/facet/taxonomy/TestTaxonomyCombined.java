@@ -2432,7 +2432,14 @@ expr_stmt|;
 block|}
 block|}
 comment|// check parent of of invalid ordinals:
-try|try
+name|expectThrows
+argument_list|(
+name|ArrayIndexOutOfBoundsException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|tw
 operator|.
@@ -2442,21 +2449,17 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"getParent for -1 should throw exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|ArrayIndexOutOfBoundsException
-name|e
-parameter_list|)
-block|{
-comment|// ok
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|tw
 operator|.
@@ -2467,25 +2470,18 @@ operator|.
 name|INVALID_ORDINAL
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"getParent for INVALID_ORDINAL should throw exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|ArrayIndexOutOfBoundsException
-name|e
-parameter_list|)
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-comment|// ok
-block|}
-try|try
-block|{
-name|int
-name|parent
-init|=
 name|tw
 operator|.
 name|getParent
@@ -2495,23 +2491,10 @@ operator|.
 name|getSize
 argument_list|()
 argument_list|)
-decl_stmt|;
-name|fail
-argument_list|(
-literal|"getParent for getSize() should throw exception, but returned "
-operator|+
-name|parent
-argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|ArrayIndexOutOfBoundsException
-name|e
-parameter_list|)
-block|{
-comment|// ok
-block|}
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Test TaxonomyReader's child browsing method, getChildrenArrays()    * This only tests for correctness of the data on one example - we have    * below further tests on data refresh etc.    */
 annotation|@

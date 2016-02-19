@@ -1560,7 +1560,14 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|Exception
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|doIndexAndSearchTest
 argument_list|(
@@ -1571,27 +1578,9 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Some exception should have been thrown for: ["
-operator|+
-name|testCases
-index|[
-name|i
-index|]
-operator|+
-literal|"]"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-comment|// expected.
-block|}
 block|}
 block|}
 comment|/** Doc Name is not part of the default header */

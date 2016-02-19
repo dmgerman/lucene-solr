@@ -446,7 +446,14 @@ name|storedTextType
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|BadNews
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|writer
 operator|.
@@ -455,18 +462,9 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Failed to fail."
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|BadNews
-name|badNews
-parameter_list|)
-block|{
 name|infoPrintStream
 operator|.
 name|flush
@@ -498,7 +496,6 @@ literal|"distinctiveFieldName"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|writer
 operator|.
 name|close

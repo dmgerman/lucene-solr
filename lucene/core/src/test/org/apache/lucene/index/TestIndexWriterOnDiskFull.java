@@ -2717,26 +2717,23 @@ argument_list|(
 name|ftdm
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|w
 operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"fake disk full IOExceptions not hit"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-comment|// expected
 name|assertTrue
 argument_list|(
 name|ftdm
@@ -2748,7 +2745,6 @@ operator|.
 name|didFail2
 argument_list|)
 expr_stmt|;
-block|}
 name|TestUtil
 operator|.
 name|checkIndex
@@ -2761,7 +2757,14 @@ operator|.
 name|clearDoFail
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|AlreadyClosedException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|w
 operator|.
@@ -2770,20 +2773,9 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"writer was not closed by merge exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|AlreadyClosedException
-name|ace
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|dir
 operator|.
 name|close
@@ -2899,7 +2891,14 @@ name|customType
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|writer
 operator|.
@@ -2908,18 +2907,9 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit disk full"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
 name|assertTrue
 argument_list|(
 name|writer
@@ -2938,7 +2928,6 @@ name|isClosed
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 name|dir
 operator|.
 name|close

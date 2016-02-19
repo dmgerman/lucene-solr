@@ -831,7 +831,14 @@ operator|new
 name|MultiPhraseQuery
 argument_list|()
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|query4
 operator|.
@@ -859,18 +866,9 @@ literal|"foobar"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// okay, all terms must belong to the same field
-block|}
 name|writer
 operator|.
 name|close
@@ -3856,7 +3854,14 @@ literal|"one"
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|query
 operator|.
@@ -3866,20 +3871,9 @@ operator|-
 literal|2
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 block|}
 block|}
 end_class

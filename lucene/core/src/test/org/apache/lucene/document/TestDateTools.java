@@ -157,10 +157,15 @@ name|d
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|ParseException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|d
-operator|=
 name|DateTools
 operator|.
 name|stringToDate
@@ -169,22 +174,18 @@ literal|"97"
 argument_list|)
 expr_stmt|;
 comment|// no date
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|ParseException
-name|e
-parameter_list|)
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-comment|/* expected exception */
-block|}
-try|try
-block|{
-name|d
-operator|=
 name|DateTools
 operator|.
 name|stringToDate
@@ -193,22 +194,18 @@ literal|"200401011235009999"
 argument_list|)
 expr_stmt|;
 comment|// no date
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|ParseException
-name|e
-parameter_list|)
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-comment|/* expected exception */
-block|}
-try|try
-block|{
-name|d
-operator|=
 name|DateTools
 operator|.
 name|stringToDate
@@ -217,18 +214,9 @@ literal|"aaaa"
 argument_list|)
 expr_stmt|;
 comment|// no date
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|ParseException
-name|e
-parameter_list|)
-block|{
-comment|/* expected exception */
-block|}
 block|}
 DECL|method|testStringtoTime
 specifier|public

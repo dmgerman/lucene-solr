@@ -73,7 +73,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|Exception
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|execBenchmark
 argument_list|(
@@ -83,22 +90,9 @@ literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertFalse
-argument_list|(
-literal|"Should have failed to run the algorithm"
-argument_list|,
-literal|true
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-comment|// expected exception, do nothing
-block|}
 block|}
 comment|/** Benchmark should be able to load the algorithm when alt is specified */
 DECL|method|testWithAlt

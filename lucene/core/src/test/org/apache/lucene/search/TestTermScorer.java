@@ -1115,7 +1115,14 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|AssertionError
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|weight
 operator|.
@@ -1133,22 +1140,12 @@ operator|.
 name|nextDoc
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Should load norms"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|AssertionError
-name|e
-parameter_list|)
-block|{
-comment|// ok
-block|}
-name|weight
-operator|=
+name|Weight
+name|weight2
+init|=
 name|indexSearcher
 operator|.
 name|createNormalizedWeight
@@ -1157,9 +1154,9 @@ name|termQuery
 argument_list|,
 literal|false
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|// should not fail this time since norms are not necessary
-name|weight
+name|weight2
 operator|.
 name|scorer
 argument_list|(

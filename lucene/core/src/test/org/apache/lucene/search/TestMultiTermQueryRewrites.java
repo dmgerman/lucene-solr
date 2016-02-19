@@ -1445,6 +1445,22 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|BooleanQuery
+operator|.
+name|TooManyClauses
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|BooleanQuery
+operator|.
+name|TooManyClauses
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
+block|{
 name|multiSearcherDupls
 operator|.
 name|rewrite
@@ -1452,20 +1468,9 @@ argument_list|(
 name|mtq
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Should throw BooleanQuery.TooManyClauses"
-argument_list|)
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|BooleanQuery
-operator|.
-name|TooManyClauses
-name|e
-parameter_list|)
-block|{
+argument_list|)
+decl_stmt|;
 comment|//  Maybe remove this assert in later versions, when internal API changes:
 name|assertEquals
 argument_list|(
@@ -1473,7 +1478,7 @@ literal|"Should throw BooleanQuery.TooManyClauses with a stacktrace containing c
 argument_list|,
 literal|"checkMaxClauseCount"
 argument_list|,
-name|e
+name|expected
 operator|.
 name|getStackTrace
 argument_list|()

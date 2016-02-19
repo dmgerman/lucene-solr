@@ -1718,7 +1718,14 @@ name|void
 name|testException
 parameter_list|()
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|BooleanQuery
 operator|.
@@ -1727,18 +1734,9 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
+block|}
+argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// okay
-block|}
 block|}
 comment|// LUCENE-1630
 DECL|method|testNullOrSubScorer

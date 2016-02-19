@@ -1608,27 +1608,23 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|mgr
 operator|.
 name|maybeRefresh
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should have hit exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|ise
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|w
 operator|.
 name|close

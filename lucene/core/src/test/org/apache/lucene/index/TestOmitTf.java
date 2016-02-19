@@ -1920,7 +1920,17 @@ name|bytes
 argument_list|()
 argument_list|)
 decl_stmt|;
-try|try
+name|Exception
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|Exception
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|searcher
 operator|.
@@ -1931,22 +1941,13 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
-argument_list|)
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
+argument_list|)
+decl_stmt|;
 name|Throwable
 name|cause
 init|=
-name|e
+name|expected
 decl_stmt|;
 comment|// If the searcher uses an executor service, the IAE is wrapped into other exceptions
 while|while
@@ -1978,7 +1979,6 @@ operator|instanceof
 name|IllegalStateException
 argument_list|)
 expr_stmt|;
-block|}
 name|searcher
 operator|.
 name|search

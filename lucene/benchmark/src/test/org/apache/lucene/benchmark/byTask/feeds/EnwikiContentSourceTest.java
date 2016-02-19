@@ -268,7 +268,14 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|NoMoreDataException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|stdm
 operator|.
@@ -277,20 +284,9 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Expecting NoMoreDataException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NoMoreDataException
-name|e
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 DECL|field|PAGE1
 specifier|private

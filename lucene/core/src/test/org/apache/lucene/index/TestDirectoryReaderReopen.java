@@ -3917,33 +3917,25 @@ argument_list|)
 expr_stmt|;
 comment|// Now reopen:
 comment|//System.out.println("TEST: now reopen");
-try|try
+name|expectThrows
+argument_list|(
+name|FakeIOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|IndexReader
-name|r2
-init|=
 name|DirectoryReader
 operator|.
 name|openIfChanged
 argument_list|(
 name|r
 argument_list|)
-decl_stmt|;
-comment|//System.out.println("got " + r2);
-name|fail
-argument_list|(
-literal|"didn't hit exception"
-argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|FakeIOException
-name|fio
-parameter_list|)
-block|{
-comment|// expected
-block|}
+argument_list|)
+expr_stmt|;
 name|IndexSearcher
 name|s
 init|=
@@ -4303,7 +4295,14 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|DirectoryReader
 operator|.
@@ -4312,20 +4311,9 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|ise
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|r
 operator|.
 name|close
@@ -4603,7 +4591,14 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|DirectoryReader
 operator|.
@@ -4612,20 +4607,9 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|ise
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|r
 operator|.
 name|close

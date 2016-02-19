@@ -2585,7 +2585,7 @@ name|Set
 argument_list|<
 name|String
 argument_list|>
-name|set
+name|set1
 init|=
 name|input
 operator|.
@@ -2601,39 +2601,40 @@ argument_list|,
 literal|"test2"
 argument_list|)
 argument_list|,
-name|set
+name|set1
 argument_list|)
 expr_stmt|;
-try|try
+comment|// set should be immutable
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|set
+name|set1
 operator|.
 name|add
 argument_list|(
 literal|"bogus"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"set should be immutable"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
-name|set
-operator|=
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|set2
+init|=
 name|input
 operator|.
 name|readSetOfStrings
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 name|Collections
@@ -2641,39 +2642,40 @@ operator|.
 name|emptySet
 argument_list|()
 argument_list|,
-name|set
+name|set2
 argument_list|)
 expr_stmt|;
-try|try
+comment|// set should be immutable
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|set
+name|set2
 operator|.
 name|add
 argument_list|(
 literal|"bogus"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"set should be immutable"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
-name|set
-operator|=
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|set3
+init|=
 name|input
 operator|.
 name|readSetOfStrings
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 name|Collections
@@ -2683,32 +2685,29 @@ argument_list|(
 literal|"test3"
 argument_list|)
 argument_list|,
-name|set
+name|set3
 argument_list|)
 expr_stmt|;
-try|try
+comment|// set should be immutable
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|set
+name|set3
 operator|.
 name|add
 argument_list|(
 literal|"bogus"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"set should be immutable"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
 name|assertEquals
 argument_list|(
 name|input
@@ -2857,7 +2856,7 @@ name|String
 argument_list|,
 name|String
 argument_list|>
-name|map
+name|map1
 init|=
 name|input
 operator|.
@@ -2868,12 +2867,20 @@ name|assertEquals
 argument_list|(
 name|m
 argument_list|,
-name|map
+name|map1
 argument_list|)
 expr_stmt|;
-try|try
+comment|// map should be immutable
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|map
+name|map1
 operator|.
 name|put
 argument_list|(
@@ -2882,27 +2889,22 @@ argument_list|,
 literal|"bogus2"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"map should be immutable"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
-name|map
-operator|=
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|map2
+init|=
 name|input
 operator|.
 name|readMapOfStrings
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 name|Collections
@@ -2910,12 +2912,20 @@ operator|.
 name|emptyMap
 argument_list|()
 argument_list|,
-name|map
+name|map2
 argument_list|)
 expr_stmt|;
-try|try
+comment|// map should be immutable
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|map
+name|map2
 operator|.
 name|put
 argument_list|(
@@ -2924,27 +2934,22 @@ argument_list|,
 literal|"bogus2"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"map should be immutable"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
-name|map
-operator|=
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|map3
+init|=
 name|input
 operator|.
 name|readMapOfStrings
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 name|Collections
@@ -2956,12 +2961,20 @@ argument_list|,
 literal|"value"
 argument_list|)
 argument_list|,
-name|map
+name|map3
 argument_list|)
 expr_stmt|;
-try|try
+comment|// map should be immutable
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|map
+name|map3
 operator|.
 name|put
 argument_list|(
@@ -2970,20 +2983,9 @@ argument_list|,
 literal|"bogus2"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"map should be immutable"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
 name|assertEquals
 argument_list|(
 name|input
@@ -3177,7 +3179,14 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|AlreadyClosedException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|dir
 operator|.
@@ -3192,20 +3201,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|AlreadyClosedException
-name|ace
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 DECL|method|testThreadSafety
 specifier|public
@@ -4035,7 +4033,14 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|EOFException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|i
 operator|.
@@ -4057,20 +4062,9 @@ operator|.
 name|readByte
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Did not get EOFException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|eof
-parameter_list|)
-block|{
-comment|// pass
-block|}
 name|i
 operator|.
 name|close
@@ -4173,7 +4167,14 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|i
 operator|.
@@ -4188,21 +4189,17 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Did not get IllegalArgumentException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// pass
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|i
 operator|.
@@ -4216,20 +4213,9 @@ argument_list|,
 name|len
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Did not get IllegalArgumentException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// pass
-block|}
 name|IndexInput
 name|slice
 init|=
@@ -4246,7 +4232,14 @@ operator|/
 literal|2
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|slice
 operator|.
@@ -4261,20 +4254,9 @@ operator|/
 literal|2
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Did not get IllegalArgumentException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// pass
-block|}
 name|i
 operator|.
 name|close
@@ -8403,7 +8385,14 @@ name|getFilePointer
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|EOFException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|in
 operator|.
@@ -8412,20 +8401,9 @@ argument_list|(
 literal|1025
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|eofe
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 block|}
 block|}
@@ -8471,6 +8449,7 @@ operator|)
 name|dir
 decl_stmt|;
 comment|// Keep trying until virus checker refuses to delete:
+specifier|final
 name|String
 name|fileName
 decl_stmt|;
@@ -8479,8 +8458,9 @@ condition|(
 literal|true
 condition|)
 block|{
-name|fileName
-operator|=
+name|String
+name|candidate
+init|=
 name|TestUtil
 operator|.
 name|randomSimpleString
@@ -8488,10 +8468,10 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 if|if
 condition|(
-name|fileName
+name|candidate
 operator|.
 name|length
 argument_list|()
@@ -8510,7 +8490,7 @@ name|dir
 operator|.
 name|createOutput
 argument_list|(
-name|fileName
+name|candidate
 argument_list|,
 name|IOContext
 operator|.
@@ -8522,7 +8502,7 @@ name|fsDir
 operator|.
 name|deleteFile
 argument_list|(
-name|fileName
+name|candidate
 argument_list|)
 expr_stmt|;
 if|if
@@ -8534,6 +8514,10 @@ argument_list|()
 condition|)
 block|{
 comment|// good: virus checker struck and prevented deletion of fileName
+name|fileName
+operator|=
+name|candidate
+expr_stmt|;
 break|break;
 block|}
 block|}
@@ -8557,7 +8541,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Make sure fileLength claims it's deleted:
-try|try
+name|expectThrows
+argument_list|(
+name|NoSuchFileException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|fsDir
 operator|.
@@ -8566,22 +8557,18 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchFileException
-name|nsfe
-parameter_list|)
-block|{
-comment|// expected
-block|}
 comment|// Make sure rename fails:
-try|try
+name|expectThrows
+argument_list|(
+name|NoSuchFileException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|fsDir
 operator|.
@@ -8592,22 +8579,18 @@ argument_list|,
 literal|"file2"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchFileException
-name|nsfe
-parameter_list|)
-block|{
-comment|// expected
-block|}
 comment|// Make sure delete fails:
-try|try
+name|expectThrows
+argument_list|(
+name|NoSuchFileException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|fsDir
 operator|.
@@ -8616,21 +8599,17 @@ argument_list|(
 name|fileName
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|NoSuchFileException
-name|nsfe
-parameter_list|)
-block|{
-comment|// expected
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|fsDir
 operator|.
@@ -8643,20 +8622,9 @@ operator|.
 name|DEFAULT
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchFileException
-name|nsfe
-parameter_list|)
-block|{
-comment|// expected
-block|}
 if|if
 condition|(
 name|random

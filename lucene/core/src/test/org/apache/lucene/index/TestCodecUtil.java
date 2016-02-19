@@ -336,7 +336,14 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -352,20 +359,9 @@ argument_list|,
 literal|5
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 DECL|method|testWriteNonAsciiHeader
 specifier|public
@@ -393,7 +389,14 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -406,20 +409,9 @@ argument_list|,
 literal|5
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 DECL|method|testReadHeaderWrongMagic
 specifier|public
@@ -470,7 +462,14 @@ argument_list|,
 name|file
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|CorruptIndexException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -485,20 +484,9 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|CorruptIndexException
-name|expected
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 DECL|method|testChecksumEntireFile
 specifier|public
@@ -660,7 +648,17 @@ argument_list|(
 literal|"fake exception"
 argument_list|)
 decl_stmt|;
-try|try
+name|RuntimeException
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|RuntimeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -671,18 +669,9 @@ argument_list|,
 name|mine
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
-argument_list|)
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|RuntimeException
-name|expected
-parameter_list|)
-block|{
+argument_list|)
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"fake exception"
@@ -727,7 +716,6 @@ literal|"checksum passed"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|input
 operator|.
 name|close
@@ -837,7 +825,17 @@ argument_list|(
 literal|"fake exception"
 argument_list|)
 decl_stmt|;
-try|try
+name|RuntimeException
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|RuntimeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -848,18 +846,9 @@ argument_list|,
 name|mine
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
-argument_list|)
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|RuntimeException
-name|expected
-parameter_list|)
-block|{
+argument_list|)
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"fake exception"
@@ -904,7 +893,6 @@ literal|"checksum passed"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|input
 operator|.
 name|close
@@ -1020,7 +1008,17 @@ argument_list|(
 literal|"fake exception"
 argument_list|)
 decl_stmt|;
-try|try
+name|RuntimeException
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|RuntimeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -1031,18 +1029,9 @@ argument_list|,
 name|mine
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
-argument_list|)
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|RuntimeException
-name|expected
-parameter_list|)
-block|{
+argument_list|)
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"fake exception"
@@ -1087,7 +1076,6 @@ literal|"checksum status indeterminate"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|input
 operator|.
 name|close
@@ -1214,7 +1202,17 @@ argument_list|(
 literal|"fake exception"
 argument_list|)
 decl_stmt|;
-try|try
+name|RuntimeException
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|RuntimeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -1225,18 +1223,9 @@ argument_list|,
 name|mine
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
-argument_list|)
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|RuntimeException
-name|expected
-parameter_list|)
-block|{
+argument_list|)
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"fake exception"
@@ -1281,7 +1270,6 @@ literal|"checksum failed"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 name|input
 operator|.
 name|close
@@ -1441,7 +1429,14 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -1464,20 +1459,9 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 DECL|method|testWriteVeryLongSuffix
 specifier|public
@@ -1663,7 +1647,14 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -1683,20 +1674,9 @@ argument_list|,
 literal|"\u1234"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 DECL|method|testReadBogusCRC
 specifier|public
@@ -1802,7 +1782,14 @@ name|i
 operator|++
 control|)
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|CorruptIndexException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -1811,20 +1798,9 @@ argument_list|(
 name|input
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|CorruptIndexException
-name|expected
-parameter_list|)
-block|{
-comment|// expected
-block|}
 block|}
 comment|// good value
 name|CodecUtil
@@ -1988,7 +1964,14 @@ literal|1L
 argument_list|)
 expr_stmt|;
 comment|// bad
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -1997,20 +1980,9 @@ argument_list|(
 name|fakeOutput
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 name|fakeChecksum
 operator|.
 name|set
@@ -2021,7 +1993,14 @@ literal|32
 argument_list|)
 expr_stmt|;
 comment|// bad
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -2030,20 +2009,9 @@ argument_list|(
 name|fakeOutput
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 name|fakeChecksum
 operator|.
 name|set
@@ -2057,7 +2025,14 @@ operator|)
 argument_list|)
 expr_stmt|;
 comment|// bad
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|CodecUtil
 operator|.
@@ -2066,20 +2041,9 @@ argument_list|(
 name|fakeOutput
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 name|fakeChecksum
 operator|.
 name|set

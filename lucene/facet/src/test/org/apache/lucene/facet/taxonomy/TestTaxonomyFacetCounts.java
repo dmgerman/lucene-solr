@@ -1771,7 +1771,14 @@ name|isEmpty
 argument_list|()
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|facets
 operator|.
@@ -1780,21 +1787,17 @@ argument_list|(
 literal|"a"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should have hit exc"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
-try|try
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|facets
 operator|.
@@ -1805,20 +1808,9 @@ argument_list|,
 literal|"a"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should have hit exc"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|writer
 operator|.
 name|close
@@ -2219,7 +2211,14 @@ argument_list|,
 name|c
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|facets
 operator|.
@@ -2228,20 +2227,9 @@ argument_list|(
 literal|"a"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|FacetResult
 name|result
 init|=
@@ -2876,34 +2864,25 @@ operator|.
 name|value
 argument_list|)
 expr_stmt|;
-try|try
-block|{
-name|assertEquals
+name|expectThrows
 argument_list|(
-literal|1
+name|IllegalArgumentException
+operator|.
+name|class
 argument_list|,
+parameter_list|()
+lambda|->
+block|{
 name|facets
 operator|.
 name|getSpecificValue
 argument_list|(
 literal|"dim"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't hit expected exception"
-argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|1
@@ -3386,7 +3365,14 @@ literal|"other"
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|config
 operator|.
@@ -3397,20 +3383,9 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|writer
 operator|.
 name|close
@@ -3535,7 +3510,14 @@ literal|"path2"
 argument_list|)
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|config
 operator|.
@@ -3546,20 +3528,9 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"did not hit expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|iae
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|writer
 operator|.
 name|close

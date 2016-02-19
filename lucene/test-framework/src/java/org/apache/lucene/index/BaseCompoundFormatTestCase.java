@@ -1585,7 +1585,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|cfs
 operator|.
@@ -1598,20 +1605,9 @@ operator|.
 name|DEFAULT
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// expected UOE
-block|}
 name|cfs
 operator|.
 name|close
@@ -1731,7 +1727,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|cfs
 operator|.
@@ -1740,20 +1743,9 @@ argument_list|(
 name|testfile
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// expected UOE
-block|}
 name|cfs
 operator|.
 name|close
@@ -1873,7 +1865,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|cfs
 operator|.
@@ -1884,20 +1883,9 @@ argument_list|,
 literal|"bogus"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// expected UOE
-block|}
 name|cfs
 operator|.
 name|close
@@ -2017,7 +2005,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|cfs
 operator|.
@@ -2031,20 +2026,9 @@ name|testfile
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// expected UOE
-block|}
 name|cfs
 operator|.
 name|close
@@ -2164,7 +2148,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|UnsupportedOperationException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|cfs
 operator|.
@@ -2173,20 +2164,9 @@ argument_list|(
 literal|"foobar"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|UnsupportedOperationException
-name|expected
-parameter_list|)
-block|{
-comment|// expected UOE
-block|}
 name|cfs
 operator|.
 name|close
@@ -3906,7 +3886,14 @@ name|dir
 argument_list|)
 decl_stmt|;
 comment|// Open bogus file
-try|try
+name|expectThrows
+argument_list|(
+name|IOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|cr
 operator|.
@@ -3921,21 +3908,9 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"File not found"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|/* success */
-empty_stmt|;
-block|}
 name|cr
 operator|.
 name|close
@@ -4018,27 +3993,24 @@ argument_list|,
 literal|10
 argument_list|)
 expr_stmt|;
-try|try
+comment|// Single byte read past end of file
+name|expectThrows
+argument_list|(
+name|IOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|is
 operator|.
 name|readByte
 argument_list|()
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Single byte read past end of file"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|/* success */
-block|}
 name|is
 operator|.
 name|seek
@@ -4051,7 +4023,15 @@ operator|-
 literal|10
 argument_list|)
 expr_stmt|;
-try|try
+comment|// Block read past end of file
+name|expectThrows
+argument_list|(
+name|IOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|is
 operator|.
@@ -4064,20 +4044,9 @@ argument_list|,
 literal|50
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Block read past end of file"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-comment|/* success */
-block|}
 name|is
 operator|.
 name|close

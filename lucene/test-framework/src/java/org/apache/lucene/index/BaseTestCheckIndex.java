@@ -1296,8 +1296,15 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-comment|// keep IW open...
-try|try
+comment|// keep IW open... should not be able to obtain write lock
+name|expectThrows
+argument_list|(
+name|LockObtainFailedException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|CheckIndex
@@ -1305,20 +1312,9 @@ argument_list|(
 name|dir
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should not have obtained write lock"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|LockObtainFailedException
-name|expected
-parameter_list|)
-block|{
-comment|// ok
-block|}
 name|iw
 operator|.
 name|close

@@ -4800,7 +4800,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|PhraseQuery
@@ -4815,20 +4822,9 @@ argument_list|,
 literal|"one"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 block|}
 DECL|method|testNegativePosition
 specifier|public
@@ -4849,7 +4845,14 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|builder
 operator|.
@@ -4867,20 +4870,9 @@ operator|-
 literal|42
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 block|}
 DECL|method|testBackwardPositions
 specifier|public
@@ -4931,7 +4923,14 @@ argument_list|,
 literal|5
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|builder
 operator|.
@@ -4948,20 +4947,9 @@ argument_list|,
 literal|4
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{
-comment|// expected exception
-block|}
 block|}
 block|}
 end_class

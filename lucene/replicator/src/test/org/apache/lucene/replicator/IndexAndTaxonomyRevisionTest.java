@@ -400,10 +400,16 @@ argument_list|(
 name|taxoDir
 argument_list|)
 decl_stmt|;
-try|try
-block|{
-name|assertNotNull
+comment|// should fail when there are no commits to snapshot
+name|expectThrows
 argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
+block|{
 operator|new
 name|IndexAndTaxonomyRevision
 argument_list|(
@@ -411,24 +417,10 @@ name|indexWriter
 argument_list|,
 name|taxoWriter
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|(
-literal|"should have failed when there are no commits to snapshot"
-argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|e
-parameter_list|)
-block|{
-comment|// expected
-block|}
-finally|finally
-block|{
+argument_list|)
+expr_stmt|;
 name|indexWriter
 operator|.
 name|close
@@ -445,7 +437,6 @@ argument_list|,
 name|indexDir
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Test

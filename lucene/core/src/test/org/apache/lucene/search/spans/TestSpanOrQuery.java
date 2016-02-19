@@ -242,7 +242,17 @@ literal|"bar"
 argument_list|)
 argument_list|)
 decl_stmt|;
-try|try
+name|IllegalArgumentException
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 operator|new
 name|SpanOrQuery
@@ -252,18 +262,9 @@ argument_list|,
 name|q2
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"didn't get expected exception"
-argument_list|)
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
 name|expected
@@ -277,7 +278,6 @@ literal|"must have same field"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 end_class

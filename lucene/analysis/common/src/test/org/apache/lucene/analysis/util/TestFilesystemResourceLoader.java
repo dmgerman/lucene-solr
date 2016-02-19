@@ -131,7 +131,15 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-try|try
+comment|// the resource does not exist, should fail!
+name|expectThrows
+argument_list|(
+name|IOException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|IOUtils
 operator|.
@@ -145,21 +153,18 @@ literal|"this-directory-really-really-really-should-not-exist/foo/bar.txt"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"The resource does not exist, should fail!"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|ioe
-parameter_list|)
-block|{
-comment|// pass
-block|}
-try|try
+comment|// the class does not exist, should fail!
+name|expectThrows
+argument_list|(
+name|RuntimeException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|rl
 operator|.
@@ -172,20 +177,9 @@ operator|.
 name|class
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"The class does not exist, should fail!"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|RuntimeException
-name|iae
-parameter_list|)
-block|{
-comment|// pass
-block|}
 block|}
 DECL|method|assertClasspathDelegation
 specifier|private

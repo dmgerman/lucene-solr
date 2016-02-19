@@ -2947,10 +2947,15 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-name|query
-operator|=
 operator|new
 name|SlowFuzzyQuery
 argument_list|(
@@ -2965,24 +2970,18 @@ argument_list|,
 literal|1.1f
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Expected IllegalArgumentException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
+name|expectThrows
+argument_list|(
 name|IllegalArgumentException
-name|e
-parameter_list|)
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
-comment|// expecting exception
-block|}
-try|try
-block|{
-name|query
-operator|=
 operator|new
 name|SlowFuzzyQuery
 argument_list|(
@@ -2998,20 +2997,9 @@ operator|-
 literal|0.1f
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"Expected IllegalArgumentException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// expecting exception
-block|}
 name|reader
 operator|.
 name|close

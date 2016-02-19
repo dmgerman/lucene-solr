@@ -288,27 +288,24 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+comment|// not supplying 'types' parameter should cause an IllegalArgumentException
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|tokenFilterFactory
 argument_list|(
 literal|"Type"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"not supplying 'types' parameter should cause an IllegalArgumentException"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|e
-parameter_list|)
-block|{
-comment|// everything ok
-block|}
 block|}
 comment|/** Test that bogus arguments result in exception */
 DECL|method|testBogusArguments
@@ -319,7 +316,17 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-try|try
+name|IllegalArgumentException
+name|expected
+init|=
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|tokenFilterFactory
 argument_list|(
@@ -334,16 +341,9 @@ argument_list|,
 literal|"bogusValue"
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IllegalArgumentException
-name|expected
-parameter_list|)
-block|{
+argument_list|)
+decl_stmt|;
 name|assertTrue
 argument_list|(
 name|expected
@@ -357,7 +357,6 @@ literal|"Unknown parameters"
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 end_class

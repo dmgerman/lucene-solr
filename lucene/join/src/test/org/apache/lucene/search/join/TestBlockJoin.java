@@ -11967,7 +11967,14 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-try|try
+name|expectThrows
+argument_list|(
+name|IllegalStateException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
 block|{
 name|newSearcher
 argument_list|(
@@ -11984,20 +11991,9 @@ argument_list|,
 name|c
 argument_list|)
 expr_stmt|;
-name|fail
-argument_list|(
-literal|"should have hit exception"
+block|}
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|IllegalStateException
-name|ise
-parameter_list|)
-block|{
-comment|// expected
-block|}
 name|r
 operator|.
 name|close
