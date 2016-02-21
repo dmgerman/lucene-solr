@@ -823,6 +823,8 @@ block|,
 literal|"rest.schema.analysis."
 block|,
 literal|"security."
+block|,
+literal|"handler.admin."
 block|}
 decl_stmt|;
 DECL|field|classLoader

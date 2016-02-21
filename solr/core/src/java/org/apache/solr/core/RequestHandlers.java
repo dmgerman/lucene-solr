@@ -359,12 +359,10 @@ name|PluginInfo
 argument_list|>
 name|implicits
 init|=
-name|ImplicitPlugins
-operator|.
-name|getHandlers
-argument_list|(
 name|core
-argument_list|)
+operator|.
+name|getImplicitHandlers
+argument_list|()
 decl_stmt|;
 comment|// use link map so we iterate in the same order
 name|Map
