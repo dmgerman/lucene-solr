@@ -6951,11 +6951,12 @@ argument_list|)
 expr_stmt|;
 comment|// something wrong with the request?
 block|}
+assert|assert
 name|TestInjection
 operator|.
 name|injectUpdateLogReplayRandomPause
 argument_list|()
-expr_stmt|;
+assert|;
 block|}
 name|CommitUpdateCommand
 name|cmd
