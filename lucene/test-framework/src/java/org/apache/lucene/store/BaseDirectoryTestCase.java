@@ -8497,7 +8497,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 init|)
-block|{         }
+block|{
+name|out
+operator|.
+name|getFilePointer
+argument_list|()
+expr_stmt|;
+comment|// just fake access to prevent compiler warning
+block|}
 name|fsDir
 operator|.
 name|deleteFile
@@ -8652,7 +8659,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 init|)
-block|{         }
+block|{
+name|out
+operator|.
+name|getFilePointer
+argument_list|()
+expr_stmt|;
+comment|// just fake access to prevent compiler warning
+block|}
 comment|// Make sure we can rename onto the deleted file:
 name|fsDir
 operator|.
@@ -8685,7 +8699,14 @@ operator|.
 name|DEFAULT
 argument_list|)
 init|)
-block|{         }
+block|{
+name|out
+operator|.
+name|getFilePointer
+argument_list|()
+expr_stmt|;
+comment|// just fake access to prevent compiler warning
+block|}
 block|}
 name|assertEquals
 argument_list|(
