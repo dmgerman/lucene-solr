@@ -114,7 +114,7 @@ name|isCostly
 argument_list|(
 name|PointRangeQuery
 operator|.
-name|new1DIntRange
+name|newIntRange
 argument_list|(
 literal|"intField"
 argument_list|,

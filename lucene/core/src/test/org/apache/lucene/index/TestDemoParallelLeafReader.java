@@ -8268,7 +8268,7 @@ name|search
 argument_list|(
 name|PointRangeQuery
 operator|.
-name|new1DLongRange
+name|newLongRange
 argument_list|(
 literal|"number"
 argument_list|,
