@@ -99,7 +99,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Default naive merge implemenation for one field: it just re-indexes all the values    *  from the incoming segment.  The default codec overrides this for 1D fields and uses    *  a faster but more complex implementation. */
+comment|/** Default naive merge implementation for one field: it just re-indexes all the values    *  from the incoming segment.  The default codec overrides this for 1D fields and uses    *  a faster but more complex implementation. */
 DECL|method|mergeOneField
 specifier|protected
 name|void

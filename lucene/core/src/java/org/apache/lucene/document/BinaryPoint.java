@@ -31,7 +31,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A binary field that is indexed dimensionally such that finding  *  all documents within an N-dimensional shape or range at search time is  *  efficient.  Muliple values for the same field in one documents  *  is allowed. */
+comment|/** A binary field that is indexed dimensionally such that finding  *  all documents within an N-dimensional shape or range at search time is  *  efficient.  Multiple values for the same field in one documents  *  is allowed. */
 end_comment
 
 begin_class
