@@ -2489,14 +2489,14 @@ index|[
 name|dim
 index|]
 argument_list|,
+name|numBytesPerDim
+argument_list|,
 name|bytes
 index|[
 name|dim
 index|]
 argument_list|,
 literal|0
-argument_list|,
-name|numBytesPerDim
 argument_list|)
 expr_stmt|;
 if|if
@@ -2831,6 +2831,8 @@ argument_list|(
 name|packedValue
 argument_list|,
 name|dim
+operator|*
+name|numBytesPerDim
 argument_list|,
 name|numBytesPerDim
 argument_list|)
@@ -2920,6 +2922,8 @@ argument_list|(
 name|minPacked
 argument_list|,
 name|dim
+operator|*
+name|numBytesPerDim
 argument_list|,
 name|numBytesPerDim
 argument_list|)
@@ -2934,6 +2938,8 @@ argument_list|(
 name|maxPacked
 argument_list|,
 name|dim
+operator|*
+name|numBytesPerDim
 argument_list|,
 name|numBytesPerDim
 argument_list|)

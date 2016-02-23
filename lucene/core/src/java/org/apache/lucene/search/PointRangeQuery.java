@@ -550,9 +550,9 @@ name|bytesPerDim
 expr_stmt|;
 block|}
 block|}
-comment|/** Check preconditions for all factory methods */
+comment|/**     * Check preconditions for all factory methods    * @throws IllegalArgumentException if {@code field}, {@code lowerPoint} or {@code upperPoint} are null.    */
 DECL|method|checkArgs
-specifier|private
+specifier|public
 specifier|static
 name|void
 name|checkArgs
