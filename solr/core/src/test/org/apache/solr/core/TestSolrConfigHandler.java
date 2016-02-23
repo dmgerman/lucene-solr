@@ -3114,7 +3114,7 @@ argument_list|,
 literal|"a"
 argument_list|)
 argument_list|,
-literal|null
+literal|"A val"
 argument_list|,
 literal|5
 argument_list|)
