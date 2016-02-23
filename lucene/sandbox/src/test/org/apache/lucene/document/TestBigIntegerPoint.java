@@ -212,7 +212,7 @@ name|count
 argument_list|(
 name|BigIntegerPoint
 operator|.
-name|newBigIntegerExact
+name|newExactQuery
 argument_list|(
 literal|"field"
 argument_list|,
@@ -231,7 +231,7 @@ name|count
 argument_list|(
 name|BigIntegerPoint
 operator|.
-name|newBigIntegerRange
+name|newRangeQuery
 argument_list|(
 literal|"field"
 argument_list|,
@@ -383,7 +383,7 @@ name|count
 argument_list|(
 name|BigIntegerPoint
 operator|.
-name|newBigIntegerExact
+name|newExactQuery
 argument_list|(
 literal|"field"
 argument_list|,
@@ -402,7 +402,7 @@ name|count
 argument_list|(
 name|BigIntegerPoint
 operator|.
-name|newBigIntegerRange
+name|newRangeQuery
 argument_list|(
 literal|"field"
 argument_list|,
