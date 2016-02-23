@@ -457,6 +457,14 @@ index|[]
 name|sortPostings
 parameter_list|()
 block|{
+name|long
+name|t0
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
 name|sortedTermIDs
 operator|=
 name|bytesHash
@@ -467,6 +475,44 @@ name|BytesRef
 operator|.
 name|getUTF8SortedAsUnicodeComparator
 argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// nocommit
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"MKM: field "
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|" has "
+operator|+
+name|bytesHash
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" unique terms "
+operator|+
+operator|(
+operator|(
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+operator|-
+name|t0
+operator|)
+operator|/
+literal|1000000.0
+operator|)
+operator|+
+literal|" msec to sort"
 argument_list|)
 expr_stmt|;
 return|return
