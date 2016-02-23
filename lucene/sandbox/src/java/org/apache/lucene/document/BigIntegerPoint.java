@@ -69,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A 128-bit integer field that is indexed dimensionally such that finding  *  all documents within an N-dimensional shape or range at search time is  *  efficient.  Multiple values for the same field in one documents  *  is allowed. */
+comment|/**   * A 128-bit integer field that is indexed dimensionally such that finding  * all documents within an N-dimensional shape or range at search time is  * efficient.  Multiple values for the same field in one documents  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact 1D point.  *<li>{@link #newRangeQuery newRangeQuery()} for matching a 1D range.  *<li>{@link #newMultiRangeQuery newMultiRangeQuery()} for matching points/ranges in n-dimensional space.  *</ul>  */
 end_comment
 
 begin_class
@@ -80,7 +80,9 @@ name|BigIntegerPoint
 extends|extends
 name|Field
 block|{
+comment|/** The number of bytes per dimension: 128 bits. */
 DECL|field|BYTES
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -513,10 +515,9 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|// public helper methods (e.g. for queries)
-comment|/** Encode n-dimensional BigInteger values into binary encoding */
+comment|/** sugar: Encode n-dimensional BigInteger values into binary encoding */
 DECL|method|encode
-specifier|public
+specifier|private
 specifier|static
 name|byte
 index|[]
@@ -601,6 +602,7 @@ return|return
 name|encoded
 return|;
 block|}
+comment|// public helper methods (e.g. for queries)
 comment|/** Encode single BigInteger dimension */
 DECL|method|encodeDimension
 specifier|public
@@ -662,12 +664,12 @@ argument_list|)
 return|;
 block|}
 comment|// static methods for generating queries
-comment|/**     * Create a range query for matching an exact big integer value.    *<p>    * This is for simple one-dimension points, for multidimensional points use    * {@link #newMultiBigIntegerRange newMultiBigIntegerRange()} instead.    *    * @param field field name. must not be {@code null}.    * @param value exact value    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents with this exact value    */
-DECL|method|newBigIntegerExact
+comment|/**     * Create a query for matching an exact big integer value.    *<p>    * This is for simple one-dimension points, for multidimensional points use    * {@link #newMultiRangeQuery newMultiRangeQuery()} instead.    *    * @param field field name. must not be {@code null}.    * @param value exact value    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents with this exact value    */
+DECL|method|newExactQuery
 specifier|public
 specifier|static
 name|PointRangeQuery
-name|newBigIntegerExact
+name|newExactQuery
 parameter_list|(
 name|String
 name|field
@@ -677,7 +679,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|newBigIntegerRange
+name|newRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -691,12 +693,12 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**     * Create a range query for big integer values indexed with {@link BigIntegerPoint}.    *<p>    * This is for simple one-dimension ranges, for multidimensional ranges use    * {@link #newMultiBigIntegerRange newMultiBigIntegerRange()} instead.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the {@code lowerValue} or {@code upperValue} to {@code null}.     *<p>    * By setting inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} means "open".    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} means "open".    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents within this range.    */
-DECL|method|newBigIntegerRange
+comment|/**     * Create a range query for big integer values.    *<p>    * This is for simple one-dimension ranges, for multidimensional ranges use    * {@link #newMultiRangeQuery newMultiRangeQuery()} instead.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the {@code lowerValue} or {@code upperValue} to {@code null}.     *<p>    * By setting inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} means "open".    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} means "open".    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents within this range.    */
+DECL|method|newRangeQuery
 specifier|public
 specifier|static
 name|PointRangeQuery
-name|newBigIntegerRange
+name|newRangeQuery
 parameter_list|(
 name|String
 name|field
@@ -715,7 +717,7 @@ name|upperInclusive
 parameter_list|)
 block|{
 return|return
-name|newMultiBigIntegerRange
+name|newMultiRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -749,12 +751,12 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**     * Create a multidimensional range query for big integer values indexed with {@link BigIntegerPoint}.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting a {@code lowerValue} element or {@code upperValue} element to {@code null}.     *<p>    * By setting a dimension's inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} values mean "open" for that dimension.    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} values mean "open" for that dimension.    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null, or if {@code lowerValue.length != upperValue.length}    * @return a query matching documents within this range.    */
-DECL|method|newMultiBigIntegerRange
+comment|/**     * Create a multidimensional range query for big integer values.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting a {@code lowerValue} element or {@code upperValue} element to {@code null}.     *<p>    * By setting a dimension's inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} values mean "open" for that dimension.    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} values mean "open" for that dimension.    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null, or if {@code lowerValue.length != upperValue.length}    * @return a query matching documents within this range.    */
+DECL|method|newMultiRangeQuery
 specifier|public
 specifier|static
 name|PointRangeQuery
-name|newMultiBigIntegerRange
+name|newMultiRangeQuery
 parameter_list|(
 name|String
 name|field

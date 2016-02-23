@@ -65,7 +65,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A field indexing {@link InetAddress} dimensionally such that finding  *  all documents within a range at search time is  *  efficient.  Multiple values for the same field in one document  *  is allowed.   *<p>  *  This field supports both IPv4 and IPv6 addresses: IPv4 addresses are converted  *  to<a href="https://tools.ietf.org/html/rfc4291#section-2.5.5">IPv4-Mapped IPv6 Addresses</a>:  *  indexing {@code 1.2.3.4} is the same as indexing {@code ::FFFF:1.2.3.4}.  */
+comment|/**   * A field indexing {@link InetAddress} dimensionally such that finding  * all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact network address.  *<li>{@link #newPrefixQuery newPrefixQuery()} for matching a network based on CIDR prefix.  *<li>{@link #newRangeQuery newRangeQuery()} for matching arbitrary network address ranges.  *</ul>  *<p>  * This field supports both IPv4 and IPv6 addresses: IPv4 addresses are converted  * to<a href="https://tools.ietf.org/html/rfc4291#section-2.5.5">IPv4-Mapped IPv6 Addresses</a>:  * indexing {@code 1.2.3.4} is the same as indexing {@code ::FFFF:1.2.3.4}.  */
 end_comment
 
 begin_class
@@ -78,7 +78,9 @@ name|Field
 block|{
 comment|// implementation note: we convert all addresses to IPv6: we expect prefix compression of values,
 comment|// so its not wasteful, but allows one field to handle both IPv4 and IPv6.
+comment|/** The number of bytes per dimension: 128 bits */
 DECL|field|BYTES
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -282,6 +284,7 @@ argument_list|(
 literal|':'
 argument_list|)
 expr_stmt|;
+comment|// IPv6 addresses are bracketed, to not cause confusion with historic field:value representation
 name|BytesRef
 name|bytes
 init|=
@@ -290,11 +293,10 @@ name|BytesRef
 operator|)
 name|fieldsData
 decl_stmt|;
-name|result
-operator|.
-name|append
-argument_list|(
-name|decodeToString
+name|InetAddress
+name|address
+init|=
+name|decode
 argument_list|(
 name|BytesRef
 operator|.
@@ -305,8 +307,57 @@ argument_list|)
 operator|.
 name|bytes
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|address
+operator|.
+name|getAddress
+argument_list|()
+operator|.
+name|length
+operator|==
+literal|16
+condition|)
+block|{
+name|result
+operator|.
+name|append
+argument_list|(
+literal|'['
 argument_list|)
 expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+name|address
+operator|.
+name|getHostAddress
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|result
+operator|.
+name|append
+argument_list|(
+literal|']'
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|result
+operator|.
+name|append
+argument_list|(
+name|address
+operator|.
+name|getHostAddress
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|result
 operator|.
 name|append
@@ -467,66 +518,13 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** decodes from binary encoding to a friendly format: IPv6 addresses are bracketed,     *  to not cause confusion with historic field:value representation, etc */
-DECL|method|decodeToString
-specifier|public
-specifier|static
-name|String
-name|decodeToString
-parameter_list|(
-name|byte
-name|value
-index|[]
-parameter_list|)
-block|{
-name|InetAddress
-name|address
-init|=
-name|decode
-argument_list|(
-name|value
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|address
-operator|.
-name|getAddress
-argument_list|()
-operator|.
-name|length
-operator|==
-literal|16
-condition|)
-block|{
-return|return
-literal|"["
-operator|+
-name|address
-operator|.
-name|getHostAddress
-argument_list|()
-operator|+
-literal|"]"
-return|;
-block|}
-else|else
-block|{
-return|return
-name|address
-operator|.
-name|getHostAddress
-argument_list|()
-return|;
-block|}
-block|}
 comment|// static methods for generating queries
-comment|/**     * Create a range query for matching an address.    *    * @param field field name. must not be {@code null}.    * @param value exact value    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents with this exact value    */
-DECL|method|newInetAddressExact
+comment|/**     * Create a query for matching a network address.    *    * @param field field name. must not be {@code null}.    * @param value exact value    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents with this exact value    */
+DECL|method|newExactQuery
 specifier|public
 specifier|static
 name|PointRangeQuery
-name|newInetAddressExact
+name|newExactQuery
 parameter_list|(
 name|String
 name|field
@@ -536,7 +534,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|newInetAddressRange
+name|newRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -550,12 +548,12 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**     * Create a range query for matching a CIDR network range.    *    * @param field field name. must not be {@code null}.    * @param value any host address    * @param prefixLength the network prefix length for this address. This is also known as the subnet mask in the context of IPv4 addresses.    * @throws IllegalArgumentException if {@code field} is null, or prefixLength is invalid.    * @return a query matching documents with addresses contained within this network    */
-DECL|method|newInetAddressPrefix
+comment|/**     * Create a prefix query for matching a CIDR network range.    *    * @param field field name. must not be {@code null}.    * @param value any host address    * @param prefixLength the network prefix length for this address. This is also known as the subnet mask in the context of IPv4 addresses.    * @throws IllegalArgumentException if {@code field} is null, or prefixLength is invalid.    * @return a query matching documents with addresses contained within this network    */
+DECL|method|newPrefixQuery
 specifier|public
 specifier|static
 name|PointRangeQuery
-name|newInetAddressPrefix
+name|newPrefixQuery
 parameter_list|(
 name|String
 name|field
@@ -672,7 +670,7 @@ block|}
 try|try
 block|{
 return|return
-name|newInetAddressRange
+name|newRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -712,12 +710,12 @@ throw|;
 comment|// values are coming from InetAddress
 block|}
 block|}
-comment|/**     * Create a range query for addresses indexed with {@link InetAddressPoint}.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the {@code lowerValue} or {@code upperValue} to {@code null}.     *<p>    * By setting inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} means "open".    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} means "open".    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents within this range.    */
-DECL|method|newInetAddressRange
+comment|/**     * Create a range query for network addresses.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the {@code lowerValue} or {@code upperValue} to {@code null}.     *<p>    * By setting inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} means "open".    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} means "open".    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents within this range.    */
+DECL|method|newRangeQuery
 specifier|public
 specifier|static
 name|PointRangeQuery
-name|newInetAddressRange
+name|newRangeQuery
 parameter_list|(
 name|String
 name|field
