@@ -106,7 +106,7 @@ specifier|private
 name|long
 name|version
 init|=
-literal|1
+literal|0
 decl_stmt|;
 DECL|field|watchedVal
 specifier|private
@@ -186,7 +186,7 @@ argument_list|()
 decl_stmt|;
 name|RequestParams
 operator|.
-name|VersionedParams
+name|ParamSet
 name|v
 init|=
 name|p
@@ -228,8 +228,12 @@ name|watchedVal
 operator|=
 name|v
 operator|.
-name|getMap
-argument_list|()
+name|getParams
+argument_list|(
+name|PluginInfo
+operator|.
+name|DEFAULTS
+argument_list|)
 operator|.
 name|get
 argument_list|(

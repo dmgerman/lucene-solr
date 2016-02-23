@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|math
+operator|.
+name|BigInteger
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -59,18 +69,27 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * A double field that is indexed dimensionally such that finding  * all documents within an N-dimensional shape or range at search time is  * efficient.  Multiple values for the same field in one documents  * is allowed.  *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact 1D point.  *<li>{@link #newRangeQuery newRangeQuery()} for matching a 1D range.  *<li>{@link #newMultiRangeQuery newMultiRangeQuery()} for matching points/ranges in n-dimensional space.  *</ul>   */
+comment|/**   * A 128-bit integer field that is indexed dimensionally such that finding  * all documents within an N-dimensional shape or range at search time is  * efficient.  Multiple values for the same field in one documents  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact 1D point.  *<li>{@link #newRangeQuery newRangeQuery()} for matching a 1D range.  *<li>{@link #newMultiRangeQuery newMultiRangeQuery()} for matching points/ranges in n-dimensional space.  *</ul>  */
 end_comment
 
 begin_class
-DECL|class|DoublePoint
+DECL|class|BigIntegerPoint
 specifier|public
-specifier|final
 class|class
-name|DoublePoint
+name|BigIntegerPoint
 extends|extends
 name|Field
 block|{
+comment|/** The number of bytes per dimension: 128 bits. */
+DECL|field|BYTES
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|BYTES
+init|=
+literal|16
+decl_stmt|;
 DECL|method|getType
 specifier|private
 specifier|static
@@ -94,8 +113,6 @@ name|setDimensions
 argument_list|(
 name|numDims
 argument_list|,
-name|Double
-operator|.
 name|BYTES
 argument_list|)
 expr_stmt|;
@@ -108,30 +125,13 @@ return|return
 name|type
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|setDoubleValue
-specifier|public
-name|void
-name|setDoubleValue
-parameter_list|(
-name|double
-name|value
-parameter_list|)
-block|{
-name|setDoubleValues
-argument_list|(
-name|value
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** Change the values of this field */
-DECL|method|setDoubleValues
+DECL|method|setBigIntegerValues
 specifier|public
 name|void
-name|setDoubleValues
+name|setBigIntegerValues
 parameter_list|(
-name|double
+name|BigInteger
 modifier|...
 name|point
 parameter_list|)
@@ -196,7 +196,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"cannot change value type from double to BytesRef"
+literal|"cannot change value type from BigInteger to BytesRef"
 argument_list|)
 throw|;
 block|}
@@ -250,8 +250,6 @@ name|bytes
 operator|.
 name|length
 operator|==
-name|Double
-operator|.
 name|BYTES
 assert|;
 return|return
@@ -273,7 +271,7 @@ specifier|static
 name|BytesRef
 name|pack
 parameter_list|(
-name|double
+name|BigInteger
 modifier|...
 name|point
 parameter_list|)
@@ -321,8 +319,6 @@ name|point
 operator|.
 name|length
 operator|*
-name|Double
-operator|.
 name|BYTES
 index|]
 decl_stmt|;
@@ -354,8 +350,6 @@ name|packed
 argument_list|,
 name|dim
 operator|*
-name|Double
-operator|.
 name|BYTES
 argument_list|)
 expr_stmt|;
@@ -368,15 +362,15 @@ name|packed
 argument_list|)
 return|;
 block|}
-comment|/** Creates a new DoublePoint, indexing the    *  provided N-dimensional double point.    *    *  @param name field name    *  @param point double[] value    *  @throws IllegalArgumentException if the field name or value is null.    */
-DECL|method|DoublePoint
+comment|/** Creates a new BigIntegerPoint, indexing the    *  provided N-dimensional big integer point.    *    *  @param name field name    *  @param point BigInteger[] value    *  @throws IllegalArgumentException if the field name or value is null.    */
+DECL|method|BigIntegerPoint
 specifier|public
-name|DoublePoint
+name|BigIntegerPoint
 parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|double
+name|BigInteger
 modifier|...
 name|point
 parameter_list|)
@@ -502,8 +496,6 @@ name|offset
 operator|+
 name|dim
 operator|*
-name|Double
-operator|.
 name|BYTES
 argument_list|)
 argument_list|)
@@ -523,7 +515,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/** Encode n-dimensional double point into binary encoding */
+comment|/** sugar: Encode n-dimensional BigInteger values into binary encoding */
 DECL|method|encode
 specifier|private
 specifier|static
@@ -532,7 +524,7 @@ index|[]
 index|[]
 name|encode
 parameter_list|(
-name|Double
+name|BigInteger
 name|value
 index|[]
 parameter_list|)
@@ -586,8 +578,6 @@ operator|=
 operator|new
 name|byte
 index|[
-name|Double
-operator|.
 name|BYTES
 index|]
 expr_stmt|;
@@ -613,14 +603,14 @@ name|encoded
 return|;
 block|}
 comment|// public helper methods (e.g. for queries)
-comment|/** Encode single double dimension */
+comment|/** Encode single BigInteger dimension */
 DECL|method|encodeDimension
 specifier|public
 specifier|static
 name|void
 name|encodeDimension
 parameter_list|(
-name|Double
+name|BigInteger
 name|value
 parameter_list|,
 name|byte
@@ -633,14 +623,11 @@ parameter_list|)
 block|{
 name|NumericUtils
 operator|.
-name|longToBytesDirect
-argument_list|(
-name|NumericUtils
-operator|.
-name|doubleToSortableLong
+name|bigIntToBytes
 argument_list|(
 name|value
-argument_list|)
+argument_list|,
+name|BYTES
 argument_list|,
 name|dest
 argument_list|,
@@ -648,11 +635,11 @@ name|offset
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Decode single double dimension */
+comment|/** Decode single BigInteger dimension */
 DECL|method|decodeDimension
 specifier|public
 specifier|static
-name|Double
+name|BigInteger
 name|decodeDimension
 parameter_list|(
 name|byte
@@ -666,21 +653,18 @@ block|{
 return|return
 name|NumericUtils
 operator|.
-name|sortableLongToDouble
-argument_list|(
-name|NumericUtils
-operator|.
-name|bytesToLongDirect
+name|bytesToBigInt
 argument_list|(
 name|value
 argument_list|,
 name|offset
-argument_list|)
+argument_list|,
+name|BYTES
 argument_list|)
 return|;
 block|}
 comment|// static methods for generating queries
-comment|/**     * Create a query for matching an exact double value.    *<p>    * This is for simple one-dimension points, for multidimensional points use    * {@link #newMultiRangeQuery newMultiRangeQuery()} instead.    *    * @param field field name. must not be {@code null}.    * @param value double value    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents with this exact value    */
+comment|/**     * Create a query for matching an exact big integer value.    *<p>    * This is for simple one-dimension points, for multidimensional points use    * {@link #newMultiRangeQuery newMultiRangeQuery()} instead.    *    * @param field field name. must not be {@code null}.    * @param value exact value    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents with this exact value    */
 DECL|method|newExactQuery
 specifier|public
 specifier|static
@@ -690,7 +674,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|double
+name|BigInteger
 name|value
 parameter_list|)
 block|{
@@ -709,7 +693,7 @@ literal|true
 argument_list|)
 return|;
 block|}
-comment|/**     * Create a range query for double values.    *<p>    * This is for simple one-dimension ranges, for multidimensional ranges use    * {@link #newMultiRangeQuery newMultiRangeQuery()} instead.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the {@code lowerValue} or {@code upperValue} to {@code null}.     *<p>    * By setting inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} means "open".    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} means "open".    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents within this range.    */
+comment|/**     * Create a range query for big integer values.    *<p>    * This is for simple one-dimension ranges, for multidimensional ranges use    * {@link #newMultiRangeQuery newMultiRangeQuery()} instead.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the {@code lowerValue} or {@code upperValue} to {@code null}.     *<p>    * By setting inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} means "open".    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} means "open".    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents within this range.    */
 DECL|method|newRangeQuery
 specifier|public
 specifier|static
@@ -719,13 +703,13 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|Double
+name|BigInteger
 name|lowerValue
 parameter_list|,
 name|boolean
 name|lowerInclusive
 parameter_list|,
-name|Double
+name|BigInteger
 name|upperValue
 parameter_list|,
 name|boolean
@@ -738,7 +722,7 @@ argument_list|(
 name|field
 argument_list|,
 operator|new
-name|Double
+name|BigInteger
 index|[]
 block|{
 name|lowerValue
@@ -752,7 +736,7 @@ name|lowerInclusive
 block|}
 argument_list|,
 operator|new
-name|Double
+name|BigInteger
 index|[]
 block|{
 name|upperValue
@@ -767,7 +751,7 @@ block|}
 argument_list|)
 return|;
 block|}
-comment|/**     * Create a multidimensional range query for double values.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting a {@code lowerValue} element or {@code upperValue} element to {@code null}.     *<p>    * By setting a dimension's inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} values mean "open" for that dimension.    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} values mean "open" for that dimension.    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null, or if {@code lowerValue.length != upperValue.length}    * @return a query matching documents within this range.    */
+comment|/**     * Create a multidimensional range query for big integer values.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting a {@code lowerValue} element or {@code upperValue} element to {@code null}.     *<p>    * By setting a dimension's inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} values mean "open" for that dimension.    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} values mean "open" for that dimension.    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null, or if {@code lowerValue.length != upperValue.length}    * @return a query matching documents within this range.    */
 DECL|method|newMultiRangeQuery
 specifier|public
 specifier|static
@@ -777,7 +761,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|Double
+name|BigInteger
 index|[]
 name|lowerValue
 parameter_list|,
@@ -785,7 +769,7 @@ name|boolean
 name|lowerInclusive
 index|[]
 parameter_list|,
-name|Double
+name|BigInteger
 index|[]
 name|upperValue
 parameter_list|,
@@ -811,7 +795,7 @@ name|PointRangeQuery
 argument_list|(
 name|field
 argument_list|,
-name|DoublePoint
+name|BigIntegerPoint
 operator|.
 name|encode
 argument_list|(
@@ -820,7 +804,7 @@ argument_list|)
 argument_list|,
 name|lowerInclusive
 argument_list|,
-name|DoublePoint
+name|BigIntegerPoint
 operator|.
 name|encode
 argument_list|(
@@ -842,7 +826,7 @@ name|value
 parameter_list|)
 block|{
 return|return
-name|DoublePoint
+name|BigIntegerPoint
 operator|.
 name|decodeDimension
 argument_list|(

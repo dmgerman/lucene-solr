@@ -1089,14 +1089,14 @@ specifier|private
 name|String
 name|hostName
 decl_stmt|;
-DECL|field|jarRepository
+DECL|field|blobRepository
 specifier|private
 specifier|final
-name|JarRepository
-name|jarRepository
+name|BlobRepository
+name|blobRepository
 init|=
 operator|new
-name|JarRepository
+name|BlobRepository
 argument_list|(
 name|this
 argument_list|)
@@ -5632,14 +5632,14 @@ return|return
 name|core
 return|;
 block|}
-DECL|method|getJarRepository
+DECL|method|getBlobRepository
 specifier|public
-name|JarRepository
-name|getJarRepository
+name|BlobRepository
+name|getBlobRepository
 parameter_list|()
 block|{
 return|return
-name|jarRepository
+name|blobRepository
 return|;
 block|}
 comment|/**    * If using asyncSolrCoreLoad=true, calling this after {@link #load()} will    * not return until all cores have finished loading.    *     * @param timeoutMs timeout, upon which method simply returns    */
