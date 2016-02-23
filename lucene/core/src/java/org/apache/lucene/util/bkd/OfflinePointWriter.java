@@ -70,20 +70,6 @@ name|IndexOutput
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|/** Writes points to disk in a fixed-with format. */
 end_comment
@@ -175,13 +161,13 @@ name|bytesPerDoc
 operator|=
 name|packedBytesLength
 operator|+
-name|RamUsageEstimator
+name|Long
 operator|.
-name|NUM_BYTES_LONG
+name|BYTES
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 expr_stmt|;
 block|}
 comment|/** Initializes on an already written/closed file, just so consumers can use {@link #getReader} to read the file. */
@@ -224,13 +210,13 @@ name|bytesPerDoc
 operator|=
 name|packedBytesLength
 operator|+
-name|RamUsageEstimator
+name|Long
 operator|.
-name|NUM_BYTES_LONG
+name|BYTES
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 expr_stmt|;
 name|this
 operator|.

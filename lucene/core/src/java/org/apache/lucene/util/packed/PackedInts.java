@@ -2262,9 +2262,9 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_HEADER
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 return|;
 block|}

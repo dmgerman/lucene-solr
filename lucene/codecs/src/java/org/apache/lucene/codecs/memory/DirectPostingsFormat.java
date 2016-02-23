@@ -829,9 +829,9 @@ operator|.
 name|length
 argument_list|()
 operator|*
-name|RamUsageEstimator
+name|Character
 operator|.
-name|NUM_BYTES_CHAR
+name|BYTES
 expr_stmt|;
 name|sizeInBytes
 operator|+=

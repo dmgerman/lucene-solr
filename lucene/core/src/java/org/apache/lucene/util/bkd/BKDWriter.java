@@ -308,37 +308,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|OfflineSorter
-operator|.
-name|ByteSequencesWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|PriorityQueue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
 import|;
 end_import
 
@@ -753,13 +723,13 @@ name|bytesPerDoc
 operator|=
 name|packedBytesLength
 operator|+
-name|RamUsageEstimator
+name|Long
 operator|.
-name|NUM_BYTES_LONG
+name|BYTES
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 expr_stmt|;
 comment|// As we recurse, we compute temporary partitions of the data, halving the
 comment|// number of points at each recursion.  Once there are few enough points,

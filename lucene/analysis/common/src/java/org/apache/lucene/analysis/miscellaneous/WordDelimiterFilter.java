@@ -202,20 +202,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -1595,9 +1581,9 @@ operator|.
 name|length
 argument_list|()
 argument_list|,
-name|RamUsageEstimator
+name|Character
 operator|.
-name|NUM_BYTES_CHAR
+name|BYTES
 argument_list|)
 index|]
 expr_stmt|;

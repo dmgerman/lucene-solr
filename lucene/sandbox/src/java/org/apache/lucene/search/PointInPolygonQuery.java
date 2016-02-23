@@ -768,7 +768,9 @@ name|bytesToInt
 argument_list|(
 name|packedValue
 argument_list|,
-literal|1
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -848,7 +850,9 @@ name|bytesToInt
 argument_list|(
 name|minPackedValue
 argument_list|,
-literal|1
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -882,7 +886,9 @@ name|bytesToInt
 argument_list|(
 name|maxPackedValue
 argument_list|,
-literal|1
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 argument_list|)
 decl_stmt|;

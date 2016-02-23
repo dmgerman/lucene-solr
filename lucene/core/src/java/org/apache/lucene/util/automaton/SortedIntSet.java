@@ -52,20 +52,6 @@ name|ArrayUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|// Just holds a set of int[] states, plus a corresponding
 end_comment
@@ -642,9 +628,9 @@ operator|.
 name|size
 argument_list|()
 argument_list|,
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 decl_stmt|;
 name|values

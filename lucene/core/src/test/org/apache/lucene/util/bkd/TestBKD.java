@@ -1016,6 +1016,10 @@ argument_list|,
 name|scratch
 argument_list|,
 name|dim
+operator|*
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 expr_stmt|;
 if|if
@@ -1170,6 +1174,10 @@ argument_list|(
 name|minPackedValue
 argument_list|,
 name|dim
+operator|*
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1187,6 +1195,10 @@ argument_list|(
 name|maxPackedValue
 argument_list|,
 name|dim
+operator|*
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1404,6 +1416,10 @@ argument_list|(
 name|packedValue
 argument_list|,
 name|dim
+operator|*
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 decl_stmt|;
 if|if
@@ -1481,6 +1497,10 @@ argument_list|(
 name|minPacked
 argument_list|,
 name|dim
+operator|*
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 decl_stmt|;
 name|int
@@ -1493,6 +1513,10 @@ argument_list|(
 name|maxPacked
 argument_list|,
 name|dim
+operator|*
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 decl_stmt|;
 assert|assert

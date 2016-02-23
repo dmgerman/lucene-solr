@@ -2817,9 +2817,9 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_REF
 operator|+
-name|RamUsageEstimator
+name|Long
 operator|.
-name|NUM_BYTES_LONG
+name|BYTES
 return|;
 block|}
 block|}
@@ -3392,9 +3392,9 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_REF
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 return|;
 block|}
 annotation|@

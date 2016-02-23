@@ -52,20 +52,6 @@ name|ArrayUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|/** Acts like a forever growing char[] as you read  *  characters into it from the provided reader, but  *  internally it uses a circular buffer to only hold the  *  characters that haven't been freed yet.  This is like a  *  PushbackReader, except you don't have to specify  *  up-front the max size of the buffer, but you do have to  *  periodically call {@link #freeBefore}. */
 end_comment
@@ -207,9 +193,9 @@ literal|1
 operator|+
 name|count
 argument_list|,
-name|RamUsageEstimator
+name|Character
 operator|.
-name|NUM_BYTES_CHAR
+name|BYTES
 argument_list|)
 index|]
 decl_stmt|;

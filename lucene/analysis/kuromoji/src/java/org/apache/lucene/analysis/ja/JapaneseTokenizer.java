@@ -5299,9 +5299,9 @@ name|oversize
 argument_list|(
 name|size
 argument_list|,
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 decl_stmt|;
 name|lRoot
@@ -5388,9 +5388,9 @@ name|oversize
 argument_list|(
 name|n
 argument_list|,
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 decl_stmt|;
 name|nodeDicType

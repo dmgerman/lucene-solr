@@ -1346,9 +1346,9 @@ argument_list|()
 operator|+
 literal|3
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 return|;
 block|}
 block|}

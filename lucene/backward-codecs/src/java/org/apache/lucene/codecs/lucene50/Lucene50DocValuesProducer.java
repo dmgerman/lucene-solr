@@ -3955,9 +3955,9 @@ operator|.
 name|ramBytesUsed
 argument_list|()
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 expr_stmt|;
 block|}
@@ -4247,9 +4247,9 @@ operator|.
 name|ramBytesUsed
 argument_list|()
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 expr_stmt|;
 block|}
@@ -4794,9 +4794,9 @@ operator|.
 name|ramBytesUsed
 argument_list|()
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 expr_stmt|;
 block|}

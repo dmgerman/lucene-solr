@@ -84,20 +84,6 @@ name|ArrayUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|/**  * Caches all docs, and optionally also scores, coming from  * a search, and is then able to replay them to another  * collector.  You specify the max RAM this class may use.  * Once the collection is done, call {@link #isCached}. If  * this returns true, you can use {@link #replay(Collector)}  * against a new collector.  If it returns false, this means  * too much RAM was required and you must instead re-run the  * original search.  *  *<p><b>NOTE</b>: this class consumes 4 (or 8 bytes, if  * scoring is cached) per collected document.  If the result  * set is large this can easily be a very substantial amount  * of RAM!  *  *<p>See the Lucene<tt>modules/grouping</tt> module for more  * details including a full code example.</p>  *  * @lucene.experimental  */
 end_comment
@@ -1006,9 +992,9 @@ name|docCount
 operator|+
 literal|1
 argument_list|,
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 argument_list|,
 name|maxDocsToCache
@@ -1330,9 +1316,9 @@ block|{
 name|int
 name|bytesPerDoc
 init|=
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 decl_stmt|;
 if|if
 condition|(
@@ -1341,9 +1327,9 @@ condition|)
 block|{
 name|bytesPerDoc
 operator|+=
-name|RamUsageEstimator
+name|Float
 operator|.
-name|NUM_BYTES_FLOAT
+name|BYTES
 expr_stmt|;
 block|}
 specifier|final

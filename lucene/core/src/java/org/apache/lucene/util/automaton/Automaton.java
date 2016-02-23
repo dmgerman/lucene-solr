@@ -4345,13 +4345,11 @@ name|NUM_BYTES_OBJECT_REF
 operator|+
 literal|3
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 operator|+
-name|RamUsageEstimator
-operator|.
-name|NUM_BYTES_BOOLEAN
+literal|1
 return|;
 block|}
 block|}

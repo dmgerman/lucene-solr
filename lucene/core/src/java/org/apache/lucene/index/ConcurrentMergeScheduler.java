@@ -2374,6 +2374,18 @@ name|void
 name|setSuppressExceptions
 parameter_list|()
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"will suppress merge exceptions"
+argument_list|)
+expr_stmt|;
+block|}
 name|suppressExceptions
 operator|=
 literal|true
@@ -2385,6 +2397,18 @@ name|void
 name|clearSuppressExceptions
 parameter_list|()
 block|{
+if|if
+condition|(
+name|verbose
+argument_list|()
+condition|)
+block|{
+name|message
+argument_list|(
+literal|"will not suppress merge exceptions"
+argument_list|)
+expr_stmt|;
+block|}
 name|suppressExceptions
 operator|=
 literal|false

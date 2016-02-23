@@ -2421,7 +2421,7 @@ name|deleteDocuments
 argument_list|(
 name|PointRangeQuery
 operator|.
-name|new1DIntRange
+name|newIntRange
 argument_list|(
 literal|"weight_fld"
 argument_list|,

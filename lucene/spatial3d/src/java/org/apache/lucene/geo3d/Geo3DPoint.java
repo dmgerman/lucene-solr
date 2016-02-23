@@ -119,9 +119,9 @@ name|setDimensions
 argument_list|(
 literal|3
 argument_list|,
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 expr_stmt|;
 name|TYPE
@@ -295,7 +295,9 @@ argument_list|)
 argument_list|,
 name|bytes
 argument_list|,
-literal|1
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 expr_stmt|;
 name|NumericUtils
@@ -314,6 +316,10 @@ argument_list|,
 name|bytes
 argument_list|,
 literal|2
+operator|*
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 expr_stmt|;
 name|fieldsData

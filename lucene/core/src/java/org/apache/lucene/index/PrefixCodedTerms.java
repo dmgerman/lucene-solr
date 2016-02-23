@@ -134,20 +134,6 @@ name|BytesRefBuilder
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|/**  * Prefix codes term instances (prefixes are shared)  * @lucene.internal  */
 end_comment
@@ -221,9 +207,9 @@ argument_list|()
 operator|+
 literal|2
 operator|*
-name|RamUsageEstimator
+name|Long
 operator|.
-name|NUM_BYTES_LONG
+name|BYTES
 return|;
 block|}
 comment|/** Records del gen for this packet. */

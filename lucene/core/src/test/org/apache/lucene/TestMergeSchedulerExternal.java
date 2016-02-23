@@ -468,6 +468,26 @@ name|excCalled
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"IW"
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"IW"
+argument_list|,
+literal|"TEST: now handleMergeException"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
