@@ -277,15 +277,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|LuceneTestCase
-operator|.
-name|BadApple
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-7362"
-argument_list|)
 DECL|class|TestReqParamsAPI
 specifier|public
 class|class
