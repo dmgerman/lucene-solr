@@ -1305,14 +1305,14 @@ name|NUM_BYTES_OBJECT_HEADER
 operator|+
 literal|3
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 comment|// bpvMinusBlockSize,valueCount,bitsPerValue
 operator|+
-name|RamUsageEstimator
+name|Long
 operator|.
-name|NUM_BYTES_LONG
+name|BYTES
 comment|// maskRight
 operator|+
 name|RamUsageEstimator

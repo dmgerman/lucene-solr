@@ -91,7 +91,9 @@ name|setDimensions
 argument_list|(
 literal|2
 argument_list|,
-literal|4
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 expr_stmt|;
 name|TYPE
@@ -205,7 +207,9 @@ argument_list|)
 argument_list|,
 name|bytes
 argument_list|,
-literal|1
+name|Integer
+operator|.
+name|BYTES
 argument_list|)
 expr_stmt|;
 name|fieldsData

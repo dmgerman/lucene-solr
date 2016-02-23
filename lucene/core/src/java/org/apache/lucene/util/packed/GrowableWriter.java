@@ -594,13 +594,13 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_REF
 operator|+
-name|RamUsageEstimator
+name|Long
 operator|.
-name|NUM_BYTES_LONG
+name|BYTES
 operator|+
-name|RamUsageEstimator
+name|Float
 operator|.
-name|NUM_BYTES_FLOAT
+name|BYTES
 argument_list|)
 operator|+
 name|current

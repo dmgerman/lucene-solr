@@ -28,20 +28,6 @@ name|ArrayUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|/**  * This is the rev 502 of the Snowball SVN trunk,  * now located at<a target="_blank" href="https://github.com/snowballstem/snowball/tree/e103b5c257383ee94a96e7fc58cab3c567bf079b">GitHub</a>,  * but modified:  *<ul>  *<li>made abstract and introduced abstract method stem to avoid expensive reflection in filter class.  *<li>refactored StringBuffers to StringBuilder  *<li>uses char[] as buffer instead of StringBuffer/StringBuilder  *<li>eq_s,eq_s_b,insert,replace_s take CharSequence like eq_v and eq_v_b  *<li>use MethodHandles and fix<a target="_blank" href="http://article.gmane.org/gmane.comp.search.snowball/1139">method visibility bug</a>.  *</ul>  */
 end_comment
@@ -1744,9 +1730,9 @@ name|oversize
 argument_list|(
 name|newLength
 argument_list|,
-name|RamUsageEstimator
+name|Character
 operator|.
-name|NUM_BYTES_CHAR
+name|BYTES
 argument_list|)
 index|]
 decl_stmt|;

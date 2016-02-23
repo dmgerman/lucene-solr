@@ -78,20 +78,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|/**  * tests basic {@link IntBlockPool} functionality  */
 end_comment
@@ -308,9 +294,9 @@ name|IntBlockPool
 operator|.
 name|INT_BLOCK_SIZE
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|,
 name|bytesUsed
 operator|.
@@ -652,9 +638,9 @@ name|IntBlockPool
 operator|.
 name|INT_BLOCK_SIZE
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|,
 name|bytesUsed
 operator|.
@@ -737,9 +723,9 @@ name|addAndGet
 argument_list|(
 name|blockSize
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 expr_stmt|;
 return|return
@@ -783,9 +769,9 @@ operator|)
 operator|*
 name|blockSize
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 operator|)
 argument_list|)
 expr_stmt|;

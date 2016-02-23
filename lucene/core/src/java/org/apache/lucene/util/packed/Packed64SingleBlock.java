@@ -276,9 +276,9 @@ name|NUM_BYTES_OBJECT_HEADER
 operator|+
 literal|2
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 comment|// valueCount,bitsPerValue
 operator|+
 name|RamUsageEstimator

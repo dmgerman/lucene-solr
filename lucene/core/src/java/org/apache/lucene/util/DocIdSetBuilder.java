@@ -240,9 +240,9 @@ name|oversize
 argument_list|(
 name|minSize
 argument_list|,
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 argument_list|)
 decl_stmt|;

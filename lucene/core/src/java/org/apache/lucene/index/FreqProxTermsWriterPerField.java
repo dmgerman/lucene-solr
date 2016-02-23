@@ -72,20 +72,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|// TODO: break into separate freq and prox writers as
 end_comment
@@ -1513,9 +1499,9 @@ name|BYTES_PER_POSTING
 operator|+
 literal|2
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 decl_stmt|;
 if|if
 condition|(
@@ -1526,9 +1512,9 @@ condition|)
 block|{
 name|bytes
 operator|+=
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 expr_stmt|;
 block|}
 if|if
@@ -1540,9 +1526,9 @@ condition|)
 block|{
 name|bytes
 operator|+=
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 expr_stmt|;
 block|}
 if|if
@@ -1554,9 +1540,9 @@ condition|)
 block|{
 name|bytes
 operator|+=
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 expr_stmt|;
 block|}
 return|return

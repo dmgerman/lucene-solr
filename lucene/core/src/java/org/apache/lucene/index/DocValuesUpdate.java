@@ -44,38 +44,6 @@ name|util
 operator|.
 name|RamUsageEstimator
 operator|.
-name|NUM_BYTES_CHAR
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-operator|.
-name|NUM_BYTES_INT
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-operator|.
 name|NUM_BYTES_OBJECT_HEADER
 import|;
 end_import
@@ -124,20 +92,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|/** An in-place update to a DocValues field. */
 end_comment
@@ -166,7 +120,9 @@ name|NUM_BYTES_OBJECT_REF
 operator|+
 literal|8
 operator|*
-name|NUM_BYTES_INT
+name|Integer
+operator|.
+name|BYTES
 decl_stmt|;
 DECL|field|type
 specifier|final
@@ -265,7 +221,9 @@ operator|.
 name|length
 argument_list|()
 operator|*
-name|NUM_BYTES_CHAR
+name|Character
+operator|.
+name|BYTES
 expr_stmt|;
 name|sizeInBytes
 operator|+=
@@ -284,7 +242,9 @@ operator|.
 name|length
 argument_list|()
 operator|*
-name|NUM_BYTES_CHAR
+name|Character
+operator|.
+name|BYTES
 expr_stmt|;
 name|sizeInBytes
 operator|+=
@@ -338,7 +298,9 @@ name|NUM_BYTES_ARRAY_HEADER
 operator|+
 literal|2
 operator|*
-name|NUM_BYTES_INT
+name|Integer
+operator|.
+name|BYTES
 operator|+
 name|NUM_BYTES_OBJECT_REF
 decl_stmt|;
@@ -436,9 +398,9 @@ name|valueSizeInBytes
 parameter_list|()
 block|{
 return|return
-name|RamUsageEstimator
+name|Long
 operator|.
-name|NUM_BYTES_LONG
+name|BYTES
 return|;
 block|}
 block|}

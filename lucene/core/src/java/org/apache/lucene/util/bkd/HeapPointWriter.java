@@ -52,20 +52,6 @@ name|ArrayUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_class
 DECL|class|HeapPointWriter
 specifier|final
@@ -605,9 +591,9 @@ name|nextWrite
 operator|+
 literal|1
 argument_list|,
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 argument_list|)
 argument_list|)
 decl_stmt|;

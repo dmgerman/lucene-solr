@@ -30,20 +30,6 @@ name|ArrayUtil
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_class
 DECL|class|ParallelPostingsArray
 class|class
@@ -57,9 +43,9 @@ name|BYTES_PER_POSTING
 init|=
 literal|3
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 decl_stmt|;
 DECL|field|size
 specifier|final

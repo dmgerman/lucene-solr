@@ -699,9 +699,9 @@ init|=
 operator|new
 name|byte
 index|[
-name|RamUsageEstimator
+name|Long
 operator|.
-name|NUM_BYTES_LONG
+name|BYTES
 index|]
 decl_stmt|;
 name|NumericUtils

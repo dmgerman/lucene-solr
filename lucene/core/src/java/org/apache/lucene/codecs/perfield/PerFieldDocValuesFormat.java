@@ -350,20 +350,6 @@ name|IOUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|/**  * Enables per field docvalues support.  *<p>  * Note, when extending this class, the name ({@link #getName}) is   * written into the index. In order for the field to be read, the  * name must resolve to your implementation via {@link #forName(String)}.  * This method uses Java's   * {@link ServiceLoader Service Provider Interface} to resolve format names.  *<p>  * Files written by each docvalues format have an additional suffix containing the   * format name. For example, in a per-field configuration instead of<tt>_1.dat</tt>   * filenames would look like<tt>_1_Lucene40_0.dat</tt>.  * @see ServiceLoader  * @lucene.experimental  */
 end_comment
@@ -1907,9 +1893,9 @@ operator|.
 name|length
 argument_list|()
 operator|*
-name|RamUsageEstimator
+name|Character
 operator|.
-name|NUM_BYTES_CHAR
+name|BYTES
 operator|)
 operator|+
 name|entry

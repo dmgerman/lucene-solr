@@ -196,9 +196,9 @@ name|NUM_BYTES_OBJECT_HEADER
 operator|+
 literal|10
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 decl_stmt|;
 comment|/* Rough logic: del docIDs are List<Integer>.  Say list      allocates ~2X size (2*POINTER).  Integer is OBJ_HEADER      + int */
 DECL|field|BYTES_PER_DEL_DOCID
@@ -217,9 +217,9 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_HEADER
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 decl_stmt|;
 comment|/* Rough logic: HashMap has an array[Entry] w/ varying      load factor (say 2 * POINTER).  Entry is object w/      Query key, Integer val, int hash, Entry next      (OBJ_HEADER + 3*POINTER + INT).  Query we often      undercount (say 24 bytes).  Integer is OBJ_HEADER + INT. */
 DECL|field|BYTES_PER_DEL_QUERY
@@ -242,9 +242,9 @@ name|NUM_BYTES_OBJECT_HEADER
 operator|+
 literal|2
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 operator|+
 literal|24
 decl_stmt|;
@@ -273,13 +273,13 @@ name|NUM_BYTES_ARRAY_HEADER
 operator|+
 literal|5
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 operator|+
-name|RamUsageEstimator
+name|Float
 operator|.
-name|NUM_BYTES_FLOAT
+name|BYTES
 decl_stmt|;
 comment|/* Rough logic: Incremented when we see another Term for an already updated    * field.    * LinkedHashMap has an array[Entry] w/ varying load factor     * (say 2*POINTER). Entry is an object w/ Term key, NumericUpdate val,     * int hash, Entry next, Entry before, Entry after (OBJ_HEADER + 5*POINTER + INT).    *     * Term (key) is counted only as POINTER.    * NumericUpdate (val) counts its own size and isn't accounted for here.    */
 DECL|field|BYTES_PER_NUMERIC_UPDATE_ENTRY
@@ -298,9 +298,9 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_HEADER
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 decl_stmt|;
 comment|/* Rough logic: BinaryUpdate calculates its actual size,    * including the update Term and DV field (String). The     * per-field map holds a reference to the updated field, and    * therefore we only account for the object reference and     * map space itself. This is incremented when we first see    * an updated field.    *     * HashMap has an array[Entry] w/ varying load    * factor (say 2*POINTER). Entry is an object w/ String key,     * LinkedHashMap val, int hash, Entry next (OBJ_HEADER + 3*POINTER + INT).    *     * LinkedHashMap (val) is counted as OBJ_HEADER, array[Entry] ref + header, 4*INT, 1*FLOAT,    * Set (entrySet) (2*OBJ_HEADER + ARRAY_HEADER + 2*POINTER + 4*INT + FLOAT)    */
 DECL|field|BYTES_PER_BINARY_FIELD_ENTRY
@@ -327,13 +327,13 @@ name|NUM_BYTES_ARRAY_HEADER
 operator|+
 literal|5
 operator|*
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 operator|+
-name|RamUsageEstimator
+name|Float
 operator|.
-name|NUM_BYTES_FLOAT
+name|BYTES
 decl_stmt|;
 comment|/* Rough logic: Incremented when we see another Term for an already updated    * field.    * LinkedHashMap has an array[Entry] w/ varying load factor     * (say 2*POINTER). Entry is an object w/ Term key, BinaryUpdate val,     * int hash, Entry next, Entry before, Entry after (OBJ_HEADER + 5*POINTER + INT).    *     * Term (key) is counted only as POINTER.    * BinaryUpdate (val) counts its own size and isn't accounted for here.    */
 DECL|field|BYTES_PER_BINARY_UPDATE_ENTRY
@@ -352,9 +352,9 @@ name|RamUsageEstimator
 operator|.
 name|NUM_BYTES_OBJECT_HEADER
 operator|+
-name|RamUsageEstimator
+name|Integer
 operator|.
-name|NUM_BYTES_INT
+name|BYTES
 decl_stmt|;
 DECL|field|numTermDeletes
 specifier|final
@@ -895,9 +895,9 @@ operator|.
 name|length
 operator|+
 operator|(
-name|RamUsageEstimator
+name|Character
 operator|.
-name|NUM_BYTES_CHAR
+name|BYTES
 operator|*
 name|term
 operator|.
