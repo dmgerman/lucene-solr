@@ -294,10 +294,6 @@ begin_comment
 comment|/** Finds all documents whose point value, previously indexed with e.g. {@link org.apache.lucene.document.LongPoint}, is contained in the  *  specified set */
 end_comment
 
-begin_comment
-comment|// nocommit make abstract
-end_comment
-
 begin_class
 DECL|class|PointInSetQuery
 specifier|public
@@ -358,13 +354,70 @@ name|field
 operator|=
 name|field
 expr_stmt|;
-comment|// nocommit validate these:
+if|if
+condition|(
+name|bytesPerDim
+argument_list|<
+literal|1
+operator|||
+name|bytesPerDim
+argument_list|>
+name|PointValues
+operator|.
+name|MAX_NUM_BYTES
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"bytesPerDim must be> 0 and<= "
+operator|+
+name|PointValues
+operator|.
+name|MAX_NUM_BYTES
+operator|+
+literal|"; got "
+operator|+
+name|bytesPerDim
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|bytesPerDim
 operator|=
 name|bytesPerDim
 expr_stmt|;
+if|if
+condition|(
+name|numDims
+argument_list|<
+literal|1
+operator|||
+name|bytesPerDim
+argument_list|>
+name|PointValues
+operator|.
+name|MAX_DIMENSIONS
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"numDims must be> 0 and<= "
+operator|+
+name|PointValues
+operator|.
+name|MAX_DIMENSIONS
+operator|+
+literal|"; got "
+operator|+
+name|numDims
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|numDims
@@ -406,7 +459,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// nocommit make sure a test tests this:
 if|if
 condition|(
 name|current
@@ -440,7 +492,7 @@ literal|"; field=\""
 operator|+
 name|field
 operator|+
-literal|"\", numDims="
+literal|"\" numDims="
 operator|+
 name|numDims
 operator|+
@@ -636,12 +688,12 @@ throw|;
 block|}
 if|if
 condition|(
-name|bytesPerDim
-operator|!=
 name|fieldInfo
 operator|.
 name|getPointNumBytes
 argument_list|()
+operator|!=
+name|bytesPerDim
 condition|)
 block|{
 throw|throw
