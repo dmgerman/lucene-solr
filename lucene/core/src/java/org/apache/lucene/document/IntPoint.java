@@ -896,7 +896,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Returns a query efficiently finding all documents indexed with any of the specified 1D values.    *     * @param field field name. must not be {@code null}.    * @param valuesIn all int values to search for    */
+comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param valuesIn all int values to match    */
 DECL|method|newSetQuery
 specifier|public
 specifier|static
@@ -913,7 +913,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Don't unexpectedly change the user's incoming array:
+comment|// Don't unexpectedly change the user's incoming values array:
 name|int
 index|[]
 name|values

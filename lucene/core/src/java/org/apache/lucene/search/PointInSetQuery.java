@@ -1683,24 +1683,6 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-name|getClass
-argument_list|()
-operator|.
-name|getSimpleName
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|':'
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|this
@@ -1715,13 +1697,6 @@ operator|==
 literal|false
 condition|)
 block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|" field="
-argument_list|)
-expr_stmt|;
 name|sb
 operator|.
 name|append
@@ -1743,7 +1718,7 @@ name|sb
 operator|.
 name|append
 argument_list|(
-literal|" points:"
+literal|"{"
 argument_list|)
 expr_stmt|;
 name|TermIterator
@@ -1765,6 +1740,11 @@ name|numDims
 operator|*
 name|bytesPerDim
 index|]
+decl_stmt|;
+name|boolean
+name|first
+init|=
+literal|true
 decl_stmt|;
 for|for
 control|(
@@ -1788,12 +1768,24 @@ name|next
 argument_list|()
 control|)
 block|{
+if|if
+condition|(
+name|first
+operator|==
+literal|false
+condition|)
+block|{
 name|sb
 operator|.
 name|append
 argument_list|(
-literal|' '
+literal|" "
 argument_list|)
+expr_stmt|;
+block|}
+name|first
+operator|=
+literal|false
 expr_stmt|;
 name|System
 operator|.
@@ -1827,6 +1819,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|sb
+operator|.
+name|append
+argument_list|(
+literal|"}"
+argument_list|)
+expr_stmt|;
 return|return
 name|sb
 operator|.
