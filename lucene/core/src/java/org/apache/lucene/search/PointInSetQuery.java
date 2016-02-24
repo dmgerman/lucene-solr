@@ -752,14 +752,6 @@ name|bytesPerDim
 argument_list|)
 throw|;
 block|}
-name|int
-name|bytesPerDim
-init|=
-name|fieldInfo
-operator|.
-name|getPointNumBytes
-argument_list|()
-decl_stmt|;
 name|DocIdSetBuilder
 name|result
 init|=
