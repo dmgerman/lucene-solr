@@ -338,7 +338,7 @@ operator|=
 literal|"solrCore"
 argument_list|)
 DECL|field|core
-specifier|private
+specifier|public
 name|SolrCore
 name|core
 decl_stmt|;
@@ -354,7 +354,7 @@ operator|=
 literal|"solrFieldNames"
 argument_list|)
 DECL|field|fieldNames
-specifier|private
+specifier|public
 name|Set
 argument_list|<
 name|String
@@ -379,7 +379,7 @@ argument_list|()
 decl_stmt|;
 comment|/**    * Carrot2's default lexical resources to use in addition to Solr's stop    * words.    */
 DECL|field|carrot2LexicalDataFactory
-specifier|private
+specifier|public
 name|DefaultLexicalDataFactory
 name|carrot2LexicalDataFactory
 init|=
