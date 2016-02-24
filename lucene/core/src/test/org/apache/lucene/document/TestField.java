@@ -303,7 +303,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<foo:6.0>"
+literal|"DoublePoint<foo:6.0>"
 argument_list|,
 name|field
 operator|.
@@ -438,7 +438,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<foo:6.0,7.0>"
+literal|"DoublePoint<foo:6.0,7.0>"
 argument_list|,
 name|field
 operator|.
@@ -885,7 +885,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<foo:6.0>"
+literal|"FloatPoint<foo:6.0>"
 argument_list|,
 name|field
 operator|.
@@ -1020,7 +1020,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<foo:6.0,7.0>"
+literal|"FloatPoint<foo:6.0,7.0>"
 argument_list|,
 name|field
 operator|.
@@ -1259,7 +1259,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<foo:6>"
+literal|"IntPoint<foo:6>"
 argument_list|,
 name|field
 operator|.
@@ -1394,7 +1394,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<foo:6,7>"
+literal|"IntPoint<foo:6,7>"
 argument_list|,
 name|field
 operator|.
@@ -1727,7 +1727,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<foo:6>"
+literal|"LongPoint<foo:6>"
 argument_list|,
 name|field
 operator|.
@@ -1862,7 +1862,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"<foo:6,7>"
+literal|"LongPoint<foo:6,7>"
 argument_list|,
 name|field
 operator|.
