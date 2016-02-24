@@ -406,7 +406,7 @@ name|polyLons
 operator|=
 name|polyLons
 expr_stmt|;
-comment|// TODO: we could also compute the maximal innner bounding box, to make relations faster to compute?
+comment|// TODO: we could also compute the maximal inner bounding box, to make relations faster to compute?
 name|double
 name|minLon
 init|=

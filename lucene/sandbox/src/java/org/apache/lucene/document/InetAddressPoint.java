@@ -58,6 +58,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -523,7 +537,7 @@ comment|/**     * Create a query for matching a network address.    *    * @para
 DECL|method|newExactQuery
 specifier|public
 specifier|static
-name|PointRangeQuery
+name|Query
 name|newExactQuery
 parameter_list|(
 name|String
@@ -552,7 +566,7 @@ comment|/**     * Create a prefix query for matching a CIDR network range.    * 
 DECL|method|newPrefixQuery
 specifier|public
 specifier|static
-name|PointRangeQuery
+name|Query
 name|newPrefixQuery
 parameter_list|(
 name|String
@@ -714,7 +728,7 @@ comment|/**     * Create a range query for network addresses.    *<p>    * You c
 DECL|method|newRangeQuery
 specifier|public
 specifier|static
-name|PointRangeQuery
+name|Query
 name|newRangeQuery
 parameter_list|(
 name|String
@@ -828,6 +842,9 @@ specifier|protected
 name|String
 name|toString
 parameter_list|(
+name|int
+name|dimension
+parameter_list|,
 name|byte
 index|[]
 name|value

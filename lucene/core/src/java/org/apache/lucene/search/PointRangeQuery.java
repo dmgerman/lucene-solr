@@ -1788,6 +1788,8 @@ name|append
 argument_list|(
 name|toString
 argument_list|(
+name|i
+argument_list|,
 name|lowerPoint
 index|[
 name|i
@@ -1829,6 +1831,8 @@ name|append
 argument_list|(
 name|toString
 argument_list|(
+name|i
+argument_list|,
 name|upperPoint
 index|[
 name|i
@@ -1871,13 +1875,16 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns a string of a single value in a human-readable format for debugging.    * This is used by {@link #toString()}.    *    * @param value single value, never null    * @return human readable value for debugging    */
+comment|/**    * Returns a string of a single value in a human-readable format for debugging.    * This is used by {@link #toString()}.    *    * @param dimension dimension of the particular value    * @param value single value, never null    * @return human readable value for debugging    */
 DECL|method|toString
 specifier|protected
 specifier|abstract
 name|String
 name|toString
 parameter_list|(
+name|int
+name|dimension
+parameter_list|,
 name|byte
 index|[]
 name|value
