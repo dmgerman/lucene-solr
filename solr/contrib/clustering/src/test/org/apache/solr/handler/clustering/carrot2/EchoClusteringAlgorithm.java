@@ -223,7 +223,7 @@ operator|.
 name|DOCUMENTS
 argument_list|)
 DECL|field|documents
-specifier|private
+specifier|public
 name|List
 argument_list|<
 name|Document
@@ -244,7 +244,7 @@ operator|.
 name|CLUSTERS
 argument_list|)
 DECL|field|clusters
-specifier|private
+specifier|public
 name|List
 argument_list|<
 name|Cluster
@@ -263,7 +263,7 @@ operator|=
 literal|"custom-fields"
 argument_list|)
 DECL|field|customFields
-specifier|private
+specifier|public
 name|String
 name|customFields
 init|=

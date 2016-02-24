@@ -267,7 +267,7 @@ operator|.
 name|CLUSTERS
 argument_list|)
 DECL|field|clusters
-specifier|private
+specifier|public
 name|List
 argument_list|<
 name|Cluster
@@ -281,12 +281,12 @@ name|Processing
 annotation|@
 name|Attribute
 DECL|field|wordsToCheck
-specifier|private
+specifier|public
 name|String
 name|wordsToCheck
 decl_stmt|;
 DECL|field|preprocessing
-specifier|private
+specifier|public
 name|BasicPreprocessingPipeline
 name|preprocessing
 init|=
