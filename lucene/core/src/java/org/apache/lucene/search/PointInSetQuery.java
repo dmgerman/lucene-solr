@@ -294,10 +294,6 @@ begin_comment
 comment|/** Finds all documents whose point value, previously indexed with e.g. {@link org.apache.lucene.document.LongPoint}, is contained in the  *  specified set */
 end_comment
 
-begin_comment
-comment|// nocommit explain that the 1D case must be pre-sorted
-end_comment
-
 begin_class
 DECL|class|PointInSetQuery
 specifier|public
@@ -332,7 +328,7 @@ specifier|final
 name|int
 name|bytesPerDim
 decl_stmt|;
-comment|/** {@code packedPoints} must already be sorted! */
+comment|/** In the 1D case, the {@code packedPoints} iterator must be in sorted order. */
 DECL|method|PointInSetQuery
 specifier|protected
 name|PointInSetQuery
@@ -519,24 +515,58 @@ operator|new
 name|BytesRefBuilder
 argument_list|()
 expr_stmt|;
-comment|// nocommit detect out-of-order 1D case
 block|}
-elseif|else
-if|if
-condition|(
+else|else
+block|{
+name|int
+name|cmp
+init|=
 name|previous
 operator|.
 name|get
 argument_list|()
 operator|.
-name|equals
+name|compareTo
 argument_list|(
 name|current
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|cmp
+operator|==
+literal|0
 condition|)
 block|{
 continue|continue;
 comment|// deduplicate
+block|}
+elseif|else
+if|if
+condition|(
+name|numDims
+operator|==
+literal|1
+operator|&&
+name|cmp
+operator|>
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"numDims=1 and values are out of order: saw "
+operator|+
+name|previous
+operator|+
+literal|" before "
+operator|+
+name|current
+argument_list|)
+throw|;
+block|}
 block|}
 name|builder
 operator|.
