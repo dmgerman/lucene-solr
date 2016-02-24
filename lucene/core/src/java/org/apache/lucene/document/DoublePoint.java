@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * A double field that is indexed dimensionally such that finding  * all documents within an N-dimensional shape or range at search time is  * efficient.  Multiple values for the same field in one documents  * is allowed.  *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact 1D point.  *<li>{@link #newRangeQuery newRangeQuery()} for matching a 1D range.  *<li>{@link #newMultiRangeQuery newMultiRangeQuery()} for matching points/ranges in n-dimensional space.  *</ul>   */
+comment|/**   * A double field that is indexed dimensionally such that finding  * all documents within an N-dimensional shape or range at search time is  * efficient.  Multiple values for the same field in one documents  * is allowed.  *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact 1D point.  *<li>{@link #newRangeQuery newRangeQuery()} for matching a 1D range.  *<li>{@link #newMultiRangeQuery newMultiRangeQuery()} for matching points/ranges in n-dimensional space.  *<li>{@link #newSetQuery newSetQuery()} for matching a set of 1D values.  *</ul>   */
 end_comment
 
 begin_class
@@ -696,7 +696,7 @@ parameter_list|)
 block|{
 name|NumericUtils
 operator|.
-name|longToBytesDirect
+name|longToBytes
 argument_list|(
 name|NumericUtils
 operator|.
@@ -733,7 +733,7 @@ name|sortableLongToDouble
 argument_list|(
 name|NumericUtils
 operator|.
-name|bytesToLongDirect
+name|bytesToLong
 argument_list|(
 name|value
 argument_list|,
@@ -926,7 +926,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param valuesIn all int values to match    */
+comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param valuesIn all values to match    */
 DECL|method|newSetQuery
 specifier|public
 specifier|static

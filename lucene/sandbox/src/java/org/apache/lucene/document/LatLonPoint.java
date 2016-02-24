@@ -668,7 +668,6 @@ operator|/
 name|LON_SCALE
 return|;
 block|}
-comment|// nocommit newSetQuery
 comment|/** Turns quantized value from byte array back into a double. */
 DECL|method|decodeLon
 specifier|public

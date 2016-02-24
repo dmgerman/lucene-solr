@@ -294,6 +294,10 @@ begin_comment
 comment|/** Finds all documents whose point value, previously indexed with e.g. {@link org.apache.lucene.document.LongPoint}, is contained in the  *  specified set */
 end_comment
 
+begin_comment
+comment|// nocommit explain that the 1D case must be pre-sorted
+end_comment
+
 begin_class
 DECL|class|PointInSetQuery
 specifier|public
@@ -395,7 +399,7 @@ name|numDims
 argument_list|<
 literal|1
 operator|||
-name|bytesPerDim
+name|numDims
 argument_list|>
 name|PointValues
 operator|.
@@ -515,6 +519,7 @@ operator|new
 name|BytesRefBuilder
 argument_list|()
 expr_stmt|;
+comment|// nocommit detect out-of-order 1D case
 block|}
 elseif|else
 if|if

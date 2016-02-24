@@ -20,6 +20,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|net
 operator|.
 name|InetAddress
@@ -33,6 +43,30 @@ operator|.
 name|net
 operator|.
 name|UnknownHostException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|PointInSetQuery
 import|;
 end_import
 
@@ -78,8 +112,22 @@ name|BytesRef
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefIterator
+import|;
+end_import
+
 begin_comment
-comment|/**   * A field indexing {@link InetAddress} dimensionally such that finding  * all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact network address.  *<li>{@link #newPrefixQuery newPrefixQuery()} for matching a network based on CIDR prefix.  *<li>{@link #newRangeQuery newRangeQuery()} for matching arbitrary network address ranges.  *<li>{@link #newSetQuery newSetQuery()} for matching a set of addresses.  *</ul>  *<p>  * This field supports both IPv4 and IPv6 addresses: IPv4 addresses are converted  * to<a href="https://tools.ietf.org/html/rfc4291#section-2.5.5">IPv4-Mapped IPv6 Addresses</a>:  * indexing {@code 1.2.3.4} is the same as indexing {@code ::FFFF:1.2.3.4}.  */
+comment|/**   * A field indexing {@link InetAddress} dimensionally such that finding  * all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact network address.  *<li>{@link #newPrefixQuery newPrefixQuery()} for matching a network based on CIDR prefix.  *<li>{@link #newRangeQuery newRangeQuery()} for matching arbitrary network address ranges.  *<li>{@link #newSetQuery newSetQuery()} for matching a set of 1D values.  *</ul>  *<p>  * This field supports both IPv4 and IPv6 addresses: IPv4 addresses are converted  * to<a href="https://tools.ietf.org/html/rfc4291#section-2.5.5">IPv4-Mapped IPv6 Addresses</a>:  * indexing {@code 1.2.3.4} is the same as indexing {@code ::FFFF:1.2.3.4}.  */
 end_comment
 
 begin_class
@@ -861,7 +909,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param valuesIn all int values to match    */
+comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param valuesIn all values to match    */
 DECL|method|newSetQuery
 specifier|public
 specifier|static
@@ -948,20 +996,29 @@ return|;
 block|}
 else|else
 block|{
+name|value
+operator|.
+name|bytes
+operator|=
 name|encode
 argument_list|(
 name|values
 index|[
 name|upto
 index|]
-argument_list|,
+argument_list|)
+expr_stmt|;
+assert|assert
 name|value
 operator|.
 name|bytes
-argument_list|,
-literal|0
-argument_list|)
-expr_stmt|;
+operator|.
+name|length
+operator|==
+name|value
+operator|.
+name|length
+assert|;
 name|upto
 operator|++
 expr_stmt|;

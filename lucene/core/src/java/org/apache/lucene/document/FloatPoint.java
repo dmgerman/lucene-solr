@@ -121,7 +121,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * A float field that is indexed dimensionally such that finding  * all documents within an N-dimensional at search time is  * efficient.  Multiple values for the same field in one documents  * is allowed.  *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact 1D point.  *<li>{@link #newRangeQuery newRangeQuery()} for matching a 1D range.  *<li>{@link #newMultiRangeQuery newMultiRangeQuery()} for matching points/ranges in n-dimensional space.  *</ul>  */
+comment|/**   * A float field that is indexed dimensionally such that finding  * all documents within an N-dimensional at search time is  * efficient.  Multiple values for the same field in one documents  * is allowed.  *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact 1D point.  *<li>{@link #newRangeQuery newRangeQuery()} for matching a 1D range.  *<li>{@link #newMultiRangeQuery newMultiRangeQuery()} for matching points/ranges in n-dimensional space.  *<li>{@link #newSetQuery newSetQuery()} for matching a set of 1D values.  *</ul>  */
 end_comment
 
 begin_class
@@ -696,7 +696,7 @@ parameter_list|)
 block|{
 name|NumericUtils
 operator|.
-name|intToBytesDirect
+name|intToBytes
 argument_list|(
 name|NumericUtils
 operator|.
@@ -733,7 +733,7 @@ name|sortableIntToFloat
 argument_list|(
 name|NumericUtils
 operator|.
-name|bytesToIntDirect
+name|bytesToInt
 argument_list|(
 name|value
 argument_list|,
@@ -926,7 +926,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param valuesIn all int values to match    */
+comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param valuesIn all values to match    */
 DECL|method|newSetQuery
 specifier|public
 specifier|static
@@ -958,22 +958,6 @@ operator|.
 name|sort
 argument_list|(
 name|values
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"VALUES: "
-operator|+
-name|Arrays
-operator|.
-name|toString
-argument_list|(
-name|values
-argument_list|)
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -1049,17 +1033,6 @@ argument_list|)
 expr_stmt|;
 name|upto
 operator|++
-expr_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"ret: "
-operator|+
-name|value
-argument_list|)
 expr_stmt|;
 return|return
 name|value
