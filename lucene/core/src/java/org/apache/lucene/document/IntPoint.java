@@ -900,7 +900,7 @@ comment|/**    * Create a query matching any of the specified 1D values.  This i
 DECL|method|newSetQuery
 specifier|public
 specifier|static
-name|PointInSetQuery
+name|Query
 name|newSetQuery
 parameter_list|(
 name|String
@@ -946,14 +946,6 @@ name|BYTES
 index|]
 argument_list|)
 decl_stmt|;
-name|value
-operator|.
-name|length
-operator|=
-name|Integer
-operator|.
-name|BYTES
-expr_stmt|;
 return|return
 operator|new
 name|PointInSetQuery
@@ -995,8 +987,6 @@ return|;
 block|}
 else|else
 block|{
-name|IntPoint
-operator|.
 name|encodeDimension
 argument_list|(
 name|values
