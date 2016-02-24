@@ -228,7 +228,7 @@ block|{
 comment|// looks crazy due to lossiness
 name|assertEquals
 argument_list|(
-literal|"<field:18.313693958334625,-65.22744392976165>"
+literal|"LatLonPoint<field:18.313693958334625,-65.22744392976165>"
 argument_list|,
 operator|(
 operator|new

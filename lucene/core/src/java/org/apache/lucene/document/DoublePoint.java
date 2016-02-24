@@ -480,9 +480,10 @@ name|result
 operator|.
 name|append
 argument_list|(
-name|type
+name|getClass
+argument_list|()
 operator|.
-name|toString
+name|getSimpleName
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -490,7 +491,7 @@ name|result
 operator|.
 name|append
 argument_list|(
-literal|'<'
+literal|"<"
 argument_list|)
 expr_stmt|;
 name|result
@@ -682,7 +683,7 @@ specifier|static
 name|void
 name|encodeDimension
 parameter_list|(
-name|Double
+name|double
 name|value
 parameter_list|,
 name|byte
@@ -714,7 +715,7 @@ comment|/** Decode single double dimension */
 DECL|method|decodeDimension
 specifier|public
 specifier|static
-name|Double
+name|double
 name|decodeDimension
 parameter_list|(
 name|byte
@@ -907,6 +908,10 @@ name|value
 parameter_list|)
 block|{
 return|return
+name|Double
+operator|.
+name|toString
+argument_list|(
 name|DoublePoint
 operator|.
 name|decodeDimension
@@ -915,9 +920,7 @@ name|value
 argument_list|,
 literal|0
 argument_list|)
-operator|.
-name|toString
-argument_list|()
+argument_list|)
 return|;
 block|}
 block|}
