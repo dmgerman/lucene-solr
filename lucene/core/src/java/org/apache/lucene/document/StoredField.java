@@ -42,20 +42,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexableField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|IndexSearcher
@@ -81,7 +67,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A field whose value is stored so that {@link  *  IndexSearcher#doc} and {@link IndexReader#document} will  *  return the field and its value. */
+comment|/** A field whose value is stored so that {@link  *  IndexSearcher#doc} and {@link IndexReader#document IndexReader.document()} will  *  return the field and its value. */
 end_comment
 
 begin_class

@@ -101,7 +101,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A {@link StoredFieldVisitor} that creates a {@link  *  Document} containing all stored fields, or only specific  *  requested fields provided to {@link #DocumentStoredFieldVisitor(Set)}.  *<p>  *  This is used by {@link IndexReader#document(int)} to load a  *  document.  *  * @lucene.experimental */
+comment|/** A {@link StoredFieldVisitor} that creates a {@link  *  Document} from stored fields.  *<p>  *  This visitor supports loading all stored fields, or only specific  *  requested fields provided from a {@link Set}.  *<p>  *  This is used by {@link IndexReader#document(int)} to load a  *  document.  *  * @lucene.experimental */
 end_comment
 
 begin_class

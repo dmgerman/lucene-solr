@@ -79,7 +79,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * A field indexing {@link InetAddress} dimensionally such that finding  * all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact network address.  *<li>{@link #newPrefixQuery newPrefixQuery()} for matching a network based on CIDR prefix.  *<li>{@link #newRangeQuery newRangeQuery()} for matching arbitrary network address ranges.  *</ul>  *<p>  * This field supports both IPv4 and IPv6 addresses: IPv4 addresses are converted  * to<a href="https://tools.ietf.org/html/rfc4291#section-2.5.5">IPv4-Mapped IPv6 Addresses</a>:  * indexing {@code 1.2.3.4} is the same as indexing {@code ::FFFF:1.2.3.4}.  */
+comment|/**   * An indexed 128-bit {@code InetAddress} field.  *<p>  * Finding all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact network address.  *<li>{@link #newPrefixQuery newPrefixQuery()} for matching a network based on CIDR prefix.  *<li>{@link #newRangeQuery newRangeQuery()} for matching arbitrary network address ranges.  *</ul>  *<p>  * This field supports both IPv4 and IPv6 addresses: IPv4 addresses are converted  * to<a href="https://tools.ietf.org/html/rfc4291#section-2.5.5">IPv4-Mapped IPv6 Addresses</a>:  * indexing {@code 1.2.3.4} is the same as indexing {@code ::FFFF:1.2.3.4}.  */
 end_comment
 
 begin_class
