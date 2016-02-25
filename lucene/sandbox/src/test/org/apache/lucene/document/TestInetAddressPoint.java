@@ -328,22 +328,23 @@ argument_list|(
 literal|"field"
 argument_list|)
 argument_list|)
-argument_list|;
+argument_list|)
+expr_stmt|;
 name|reader
 operator|.
 name|close
 argument_list|()
-argument_list|;
+expr_stmt|;
 name|writer
 operator|.
 name|close
 argument_list|()
-argument_list|;
+expr_stmt|;
 name|dir
 operator|.
 name|close
 argument_list|()
-argument_list|;
+expr_stmt|;
 block|}
 comment|/** Add a single address and search for it */
 DECL|method|testBasicsV6
