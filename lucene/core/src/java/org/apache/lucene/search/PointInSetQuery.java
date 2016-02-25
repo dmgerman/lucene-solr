@@ -328,7 +328,7 @@ specifier|final
 name|int
 name|bytesPerDim
 decl_stmt|;
-comment|/** In the 1D case, the {@code packedPoints} iterator must be in sorted order. */
+comment|/** The {@code packedPoints} iterator must be in sorted order. */
 DECL|method|PointInSetQuery
 specifier|protected
 name|PointInSetQuery
@@ -544,10 +544,6 @@ block|}
 elseif|else
 if|if
 condition|(
-name|numDims
-operator|==
-literal|1
-operator|&&
 name|cmp
 operator|>
 literal|0
@@ -557,7 +553,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"numDims=1 and values are out of order: saw "
+literal|"values are out of order: saw "
 operator|+
 name|previous
 operator|+
@@ -1258,11 +1254,6 @@ name|int
 index|[]
 name|hitCount
 decl_stmt|;
-DECL|field|point
-specifier|public
-name|BytesRef
-name|point
-decl_stmt|;
 DECL|field|pointBytes
 specifier|private
 specifier|final
@@ -1412,7 +1403,7 @@ name|packedValue
 operator|.
 name|length
 operator|==
-name|point
+name|pointBytes
 operator|.
 name|length
 assert|;
@@ -1579,7 +1570,6 @@ return|;
 block|}
 else|else
 block|{
-comment|// nocommit make sure tests hit this case:
 comment|// NOTE: we only hit this if we are on a cell whose min and max values are exactly equal to our point,
 comment|// which can easily happen if many docs share this one value
 return|return

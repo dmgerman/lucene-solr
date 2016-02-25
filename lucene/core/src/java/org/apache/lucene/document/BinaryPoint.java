@@ -56,6 +56,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|MatchNoDocsQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|PointInSetQuery
 import|;
 end_import
@@ -993,6 +1007,21 @@ argument_list|)
 throw|;
 block|}
 block|}
+if|if
+condition|(
+name|bytesPerDim
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+comment|// There are no points, and we cannot guess the bytesPerDim here, so we return an equivalent query:
+return|return
+operator|new
+name|MatchNoDocsQuery
+argument_list|()
+return|;
+block|}
 comment|// Don't unexpectedly change the user's incoming values array:
 name|byte
 index|[]
@@ -1055,21 +1084,6 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-comment|// Silliness:
-if|if
-condition|(
-name|bytesPerDim
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-comment|// nocommit make sure this is tested
-name|bytesPerDim
-operator|=
-literal|1
-expr_stmt|;
-block|}
 specifier|final
 name|BytesRef
 name|value
