@@ -394,6 +394,56 @@ name|length
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|lowerInclusive
+operator|.
+name|length
+operator|!=
+name|numDims
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"lowerInclusive has length="
+operator|+
+name|lowerInclusive
+operator|.
+name|length
+operator|+
+literal|" but expected="
+operator|+
+name|numDims
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|upperInclusive
+operator|.
+name|length
+operator|!=
+name|numDims
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"upperInclusive has length="
+operator|+
+name|upperInclusive
+operator|.
+name|length
+operator|+
+literal|" but expected="
+operator|+
+name|numDims
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|lowerPoint
