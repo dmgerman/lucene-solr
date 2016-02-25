@@ -313,7 +313,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** add a term */
+comment|/** add a term.  This fully consumes in the incoming {@link BytesRef}. */
 DECL|method|add
 specifier|public
 name|void
