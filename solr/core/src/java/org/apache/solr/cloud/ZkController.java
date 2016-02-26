@@ -11539,7 +11539,8 @@ operator|)
 name|context
 operator|)
 operator|.
-name|leaderZkNodeParentVersion
+name|getLeaderZkNodeParentVersion
+argument_list|()
 decl_stmt|;
 comment|// TODO: should we do this optimistically to avoid races?
 if|if
