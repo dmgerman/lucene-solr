@@ -3166,7 +3166,7 @@ argument_list|()
 operator|.
 name|getResourceAsStream
 argument_list|(
-literal|"SystemCollectionSolrCOnfig.xml"
+literal|"SystemCollectionSolrConfig.xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
