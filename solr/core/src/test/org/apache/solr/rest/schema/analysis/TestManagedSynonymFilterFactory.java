@@ -902,7 +902,7 @@ name|endpoint
 operator|+
 literal|"/funny"
 argument_list|,
-literal|"/funny==['entertaining','jocular','whimiscal']"
+literal|"/funny==['entertaining','funny','jocular','whimiscal']"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -911,7 +911,7 @@ name|endpoint
 operator|+
 literal|"/entertaining"
 argument_list|,
-literal|"/entertaining==['funny','jocular','whimiscal']"
+literal|"/entertaining==['entertaining','funny','jocular','whimiscal']"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -920,7 +920,7 @@ name|endpoint
 operator|+
 literal|"/jocular"
 argument_list|,
-literal|"/jocular==['entertaining','funny','whimiscal']"
+literal|"/jocular==['entertaining','funny','jocular','whimiscal']"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -929,7 +929,7 @@ name|endpoint
 operator|+
 literal|"/whimiscal"
 argument_list|,
-literal|"/whimiscal==['entertaining','funny','jocular']"
+literal|"/whimiscal==['entertaining','funny','jocular','whimiscal']"
 argument_list|)
 expr_stmt|;
 block|}
