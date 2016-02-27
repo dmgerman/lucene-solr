@@ -1175,7 +1175,7 @@ name|q
 init|=
 name|Overseer
 operator|.
-name|getInQueue
+name|getStateUpdateQueue
 argument_list|(
 name|zkClient
 argument_list|)
@@ -1275,7 +1275,7 @@ name|q
 init|=
 name|Overseer
 operator|.
-name|getInQueue
+name|getStateUpdateQueue
 argument_list|(
 name|zkClient
 argument_list|)
@@ -3892,7 +3892,7 @@ name|q
 init|=
 name|Overseer
 operator|.
-name|getInQueue
+name|getStateUpdateQueue
 argument_list|(
 name|zkClient
 argument_list|)
@@ -6526,7 +6526,7 @@ name|q
 init|=
 name|Overseer
 operator|.
-name|getInQueue
+name|getStateUpdateQueue
 argument_list|(
 name|controllerClient
 argument_list|)
@@ -6664,7 +6664,7 @@ name|q
 init|=
 name|Overseer
 operator|.
-name|getInQueue
+name|getStateUpdateQueue
 argument_list|(
 name|controllerClient
 argument_list|)
@@ -6804,7 +6804,7 @@ name|q
 init|=
 name|Overseer
 operator|.
-name|getInQueue
+name|getStateUpdateQueue
 argument_list|(
 name|controllerClient
 argument_list|)
@@ -7358,7 +7358,7 @@ name|queue
 init|=
 name|Overseer
 operator|.
-name|getInternalQueue
+name|getInternalWorkQueue
 argument_list|(
 name|zkClient
 argument_list|,
@@ -7536,7 +7536,7 @@ name|queue
 operator|=
 name|Overseer
 operator|.
-name|getInQueue
+name|getStateUpdateQueue
 argument_list|(
 name|zkClient
 argument_list|)
@@ -7875,7 +7875,7 @@ name|q
 init|=
 name|Overseer
 operator|.
-name|getInQueue
+name|getStateUpdateQueue
 argument_list|(
 name|zkClient
 argument_list|)
@@ -8854,7 +8854,7 @@ name|q
 init|=
 name|Overseer
 operator|.
-name|getInQueue
+name|getStateUpdateQueue
 argument_list|(
 name|zkClient
 argument_list|)

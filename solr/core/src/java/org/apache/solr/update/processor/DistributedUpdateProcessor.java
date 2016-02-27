@@ -3914,7 +3914,7 @@ name|queue
 init|=
 name|Overseer
 operator|.
-name|getInQueue
+name|getStateUpdateQueue
 argument_list|(
 name|zkClient
 argument_list|)
