@@ -2588,7 +2588,7 @@ literal|"//date[@name='min'][.='2015-12-14T09:00:00Z']"
 argument_list|,
 literal|"//date[@name='max'][.='2015-12-14T09:00:00Z']"
 argument_list|,
-literal|"//date[@name='sum'][.='2015-12-14T09:00:00Z']"
+literal|"//double[@name='sum'][.='1.4500836E12']"
 argument_list|,
 literal|"//date[@name='mean'][.='2015-12-14T09:00:00Z']"
 argument_list|,
@@ -2650,7 +2650,7 @@ literal|"//date[@name='min'][.='2015-12-14T09:00:00Z']"
 argument_list|,
 literal|"//date[@name='max'][.='2215-12-14T09:00:00Z']"
 argument_list|,
-literal|"//date[@name='sum'][.='2407-11-08T03:00:00Z']"
+literal|"//double[@name='sum'][.='1.38172716E13']"
 argument_list|,
 literal|"//date[@name='mean'][.='2115-12-14T09:00:00Z']"
 argument_list|,
@@ -4302,7 +4302,7 @@ literal|"//lst[@name='active_dt']/null[@name='max']"
 argument_list|,
 literal|"//lst[@name='active_dt']/null[@name='mean']"
 argument_list|,
-literal|"//lst[@name='active_dt']/date[@name='sum'][.='1970-01-01T00:00:00Z']"
+literal|"//lst[@name='active_dt']/double[@name='sum'][.='0.0']"
 argument_list|,
 literal|"//lst[@name='active_dt']/double[@name='sumOfSquares'][.='0.0']"
 argument_list|,
