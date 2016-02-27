@@ -1300,6 +1300,21 @@ name|propValue
 argument_list|)
 expr_stmt|;
 block|}
+name|substitutableProperties
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.core.instanceDir"
+argument_list|,
+name|instanceDir
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Is this property a Solr-standard property, or is it an extra property    * defined per-core by the user?    * @param propName the Property name    * @return {@code true} if this property is user-defined    */
 DECL|method|isUserDefinedProperty
