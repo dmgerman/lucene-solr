@@ -462,12 +462,7 @@ operator|=
 name|bytesHash
 operator|.
 name|sort
-argument_list|(
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
 argument_list|()
-argument_list|)
 expr_stmt|;
 return|return
 name|sortedTermIDs

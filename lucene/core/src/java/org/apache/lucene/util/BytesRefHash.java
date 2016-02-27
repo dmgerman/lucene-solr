@@ -490,21 +490,26 @@ return|return
 name|ids
 return|;
 block|}
-comment|/**    * Returns the values array sorted by the referenced byte values.    *<p>    * Note: This is a destructive operation. {@link #clear()} must be called in    * order to reuse this {@link BytesRefHash} instance.    *</p>    *     * @param comp    *          the {@link Comparator} used for sorting    */
+comment|/**    * Returns the values array sorted by the referenced byte values.    *<p>    * Note: This is a destructive operation. {@link #clear()} must be called in    * order to reuse this {@link BytesRefHash} instance.    *</p>    */
 DECL|method|sort
 specifier|public
 name|int
 index|[]
 name|sort
-parameter_list|(
+parameter_list|()
+block|{
 specifier|final
 name|Comparator
 argument_list|<
 name|BytesRef
 argument_list|>
 name|comp
-parameter_list|)
-block|{
+init|=
+name|BytesRef
+operator|.
+name|getUTF8SortedAsUnicodeComparator
+argument_list|()
+decl_stmt|;
 specifier|final
 name|int
 index|[]
