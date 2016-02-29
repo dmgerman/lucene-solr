@@ -214,7 +214,8 @@ name|double
 name|radiusMeters
 parameter_list|)
 block|{
-comment|// return new BKDDistanceQuery(field, centerLat, centerLon, radiusMeters);
+comment|// TODO: fix this to be debuggable before enabling!
+comment|// return LatLonPoint.newDistanceQuery(field, centerLat, centerLon, radiusMeters);
 return|return
 literal|null
 return|;
