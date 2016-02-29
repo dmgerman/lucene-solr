@@ -338,7 +338,7 @@ name|contexts
 init|=
 literal|null
 decl_stmt|;
-comment|/**    * Creates a new sorted wrapper, using {@link    * BytesRef#getUTF8SortedAsUnicodeComparator} for    * sorting. */
+comment|/**    * Creates a new sorted wrapper, using {@linkplain Comparator#naturalOrder() natural order}    * for sorting. */
 DECL|method|SortedInputIterator
 specifier|public
 name|SortedInputIterator
@@ -363,9 +363,9 @@ name|tempFileNamePrefix
 argument_list|,
 name|source
 argument_list|,
-name|BytesRef
+name|Comparator
 operator|.
-name|getUTF8SortedAsUnicodeComparator
+name|naturalOrder
 argument_list|()
 argument_list|)
 expr_stmt|;

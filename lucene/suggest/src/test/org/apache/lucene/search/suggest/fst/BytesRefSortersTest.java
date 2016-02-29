@@ -22,6 +22,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -47,20 +57,6 @@ operator|.
 name|store
 operator|.
 name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|MockDirectoryWrapper
 import|;
 end_import
 
@@ -213,9 +209,9 @@ argument_list|(
 operator|new
 name|InMemorySorter
 argument_list|(
-name|BytesRef
+name|Comparator
 operator|.
-name|getUTF8SortedAsUnicodeComparator
+name|naturalOrder
 argument_list|()
 argument_list|)
 argument_list|)

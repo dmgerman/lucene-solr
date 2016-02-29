@@ -759,11 +759,6 @@ operator|.
 name|sort
 argument_list|(
 name|termsList
-argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUTF16Comparator
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|System
@@ -772,7 +767,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: terms in UTF16 order:"
+literal|"TEST: terms in UTF-8 order:"
 argument_list|)
 expr_stmt|;
 for|for

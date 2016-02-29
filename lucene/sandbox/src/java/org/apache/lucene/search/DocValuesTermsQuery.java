@@ -276,11 +276,6 @@ argument_list|(
 name|this
 operator|.
 name|terms
-argument_list|,
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -593,6 +593,10 @@ operator|.
 name|sort
 argument_list|(
 name|stringList
+argument_list|,
+name|TestUtil
+operator|.
+name|STRING_CODEPOINT_COMPARATOR
 argument_list|)
 expr_stmt|;
 name|BytesRefIterator
@@ -602,9 +606,9 @@ name|list
 operator|.
 name|iterator
 argument_list|(
-name|BytesRef
+name|Comparator
 operator|.
-name|getUTF8SortedAsUTF16Comparator
+name|naturalOrder
 argument_list|()
 argument_list|)
 decl_stmt|;
