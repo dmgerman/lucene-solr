@@ -152,36 +152,42 @@ name|GeoPointInBBoxQuery
 extends|extends
 name|Query
 block|{
+comment|/** field name */
 DECL|field|field
 specifier|protected
 specifier|final
 name|String
 name|field
 decl_stmt|;
+comment|/** minimum longitude value (in degrees) */
 DECL|field|minLon
 specifier|protected
 specifier|final
 name|double
 name|minLon
 decl_stmt|;
+comment|/** minimum latitude value (in degrees) */
 DECL|field|minLat
 specifier|protected
 specifier|final
 name|double
 name|minLat
 decl_stmt|;
+comment|/** maximum longitude value (in degrees) */
 DECL|field|maxLon
 specifier|protected
 specifier|final
 name|double
 name|maxLon
 decl_stmt|;
+comment|/** maximum latitude value (in degrees) */
 DECL|field|maxLat
 specifier|protected
 specifier|final
 name|double
 name|maxLat
 decl_stmt|;
+comment|/** term encoding enum to define how the points are encoded (PREFIX or NUMERIC) */
 DECL|field|termEncoding
 specifier|protected
 specifier|final
@@ -232,6 +238,7 @@ name|maxLat
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Constructs a query for all {@link org.apache.lucene.spatial.geopoint.document.GeoPointField} types that fall within a    * defined bounding box. Accepts optional {@link org.apache.lucene.spatial.geopoint.document.GeoPointField.TermEncoding} parameter    */
 DECL|method|GeoPointInBBoxQuery
 specifier|public
 name|GeoPointInBBoxQuery

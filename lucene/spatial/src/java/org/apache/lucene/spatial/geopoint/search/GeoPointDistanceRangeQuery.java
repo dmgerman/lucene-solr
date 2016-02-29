@@ -109,6 +109,7 @@ name|GeoPointDistanceRangeQuery
 extends|extends
 name|GeoPointDistanceQuery
 block|{
+comment|/** minimum distance range (in meters) from lon, lat center location, maximum is inherited */
 DECL|field|minRadiusMeters
 specifier|protected
 specifier|final
@@ -159,6 +160,7 @@ name|maxRadiusMeters
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Constructs a query for all {@link org.apache.lucene.spatial.geopoint.document.GeoPointField} types within a minimum / maximum    * distance (in meters) range from a given point. Accepts an optional    * {@link org.apache.lucene.spatial.geopoint.document.GeoPointField.TermEncoding}    */
 DECL|method|GeoPointDistanceRangeQuery
 specifier|public
 name|GeoPointDistanceRangeQuery

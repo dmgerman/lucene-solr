@@ -28,30 +28,35 @@ specifier|public
 class|class
 name|GeoRect
 block|{
+comment|/** minimum longitude value (in degrees) */
 DECL|field|minLon
 specifier|public
 specifier|final
 name|double
 name|minLon
 decl_stmt|;
+comment|/** minimum latitude value (in degrees) */
 DECL|field|maxLon
 specifier|public
 specifier|final
 name|double
 name|maxLon
 decl_stmt|;
+comment|/** maximum longitude value (in degrees) */
 DECL|field|minLat
 specifier|public
 specifier|final
 name|double
 name|minLat
 decl_stmt|;
+comment|/** maximum latitude value (in degrees) */
 DECL|field|maxLat
 specifier|public
 specifier|final
 name|double
 name|maxLat
 decl_stmt|;
+comment|/**    * Constructs a bounding box by first validating the provided latitude and longitude coordinates    */
 DECL|method|GeoRect
 specifier|public
 name|GeoRect
