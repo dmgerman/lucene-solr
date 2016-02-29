@@ -2723,7 +2723,10 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
+name|quantizeLat
+argument_list|(
 name|result
+argument_list|)
 return|;
 block|}
 DECL|method|randomLon
@@ -2782,7 +2785,38 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
+name|quantizeLon
+argument_list|(
 name|result
+argument_list|)
+return|;
+block|}
+comment|/** Override this to quantize randomly generated lat, so the test won't fail due to quantization errors, which are 1) annoying to debug,    *  and 2) should never affect "real" usage terribly. */
+DECL|method|quantizeLat
+specifier|protected
+name|double
+name|quantizeLat
+parameter_list|(
+name|double
+name|lat
+parameter_list|)
+block|{
+return|return
+name|lat
+return|;
+block|}
+comment|/** Override this to quantize randomly generated lon, so the test won't fail due to quantization errors, which are 1) annoying to debug,    *  and 2) should never affect "real" usage terribly. */
+DECL|method|quantizeLon
+specifier|protected
+name|double
+name|quantizeLon
+parameter_list|(
+name|double
+name|lon
+parameter_list|)
+block|{
+return|return
+name|lon
 return|;
 block|}
 DECL|method|randomRect
@@ -4406,9 +4440,9 @@ name|pointLon
 parameter_list|)
 block|{
 name|double
-name|distanceKM
+name|distanceMeters
 init|=
-name|SloppyMath
+name|GeoDistanceUtils
 operator|.
 name|haversin
 argument_list|(
@@ -4449,11 +4483,7 @@ name|pointLat
 operator|+
 literal|" distanceMeters="
 operator|+
-operator|(
-name|distanceKM
-operator|*
-literal|1000
-operator|)
+name|distanceMeters
 operator|+
 literal|" vs"
 operator|+
