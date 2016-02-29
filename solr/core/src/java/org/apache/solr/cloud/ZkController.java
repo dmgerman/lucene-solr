@@ -1735,6 +1735,11 @@ argument_list|)
 expr_stmt|;
 try|try
 block|{
+name|zkStateReader
+operator|.
+name|createClusterStateWatchersAndUpdate
+argument_list|()
+expr_stmt|;
 comment|// this is troublesome - we dont want to kill anything the old
 comment|// leader accepted
 comment|// though I guess sync will likely get those updates back? But
@@ -1814,11 +1819,6 @@ name|registerOnReconnect
 argument_list|,
 literal|false
 argument_list|)
-expr_stmt|;
-name|zkStateReader
-operator|.
-name|createClusterStateWatchersAndUpdate
-argument_list|()
 expr_stmt|;
 comment|// we have to register as live first to pick up docs in the buffer
 name|createEphemeralLiveNode
@@ -3344,6 +3344,11 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+name|zkStateReader
+operator|.
+name|createClusterStateWatchersAndUpdate
+argument_list|()
+expr_stmt|;
 comment|// start the overseer first as following code may need it's processing
 if|if
 condition|(
@@ -3421,11 +3426,6 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-name|zkStateReader
-operator|.
-name|createClusterStateWatchersAndUpdate
-argument_list|()
-expr_stmt|;
 name|Stat
 name|stat
 init|=
@@ -3456,11 +3456,6 @@ operator|>
 literal|0
 condition|)
 block|{
-name|zkStateReader
-operator|.
-name|createClusterStateWatchersAndUpdate
-argument_list|()
-expr_stmt|;
 name|publishAndWaitForDownStates
 argument_list|()
 expr_stmt|;
