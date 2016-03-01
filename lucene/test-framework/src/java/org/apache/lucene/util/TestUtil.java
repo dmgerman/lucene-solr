@@ -2351,6 +2351,17 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|CheckIndex
+operator|.
+name|testPoints
+argument_list|(
+name|codecReader
+argument_list|,
+name|infoStream
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 comment|// some checks really against the reader API
 name|checkReaderSanity
 argument_list|(
