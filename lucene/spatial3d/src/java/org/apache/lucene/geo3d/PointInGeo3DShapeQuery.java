@@ -358,16 +358,6 @@ name|maxDoc
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|int
-index|[]
-name|hitCount
-init|=
-operator|new
-name|int
-index|[
-literal|1
-index|]
-decl_stmt|;
 name|values
 operator|.
 name|intersect
@@ -394,12 +384,6 @@ name|add
 argument_list|(
 name|docID
 argument_list|)
-expr_stmt|;
-name|hitCount
-index|[
-literal|0
-index|]
-operator|++
 expr_stmt|;
 block|}
 annotation|@
@@ -491,12 +475,6 @@ name|add
 argument_list|(
 name|docID
 argument_list|)
-expr_stmt|;
-name|hitCount
-index|[
-literal|0
-index|]
-operator|++
 expr_stmt|;
 block|}
 block|}
@@ -760,7 +738,6 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
-comment|// NOTE: hitCount[0] will be over-estimate in multi-valued case
 return|return
 operator|new
 name|ConstantScoreScorer
@@ -773,12 +750,7 @@ argument_list|,
 name|result
 operator|.
 name|build
-argument_list|(
-name|hitCount
-index|[
-literal|0
-index|]
-argument_list|)
+argument_list|()
 operator|.
 name|iterator
 argument_list|()

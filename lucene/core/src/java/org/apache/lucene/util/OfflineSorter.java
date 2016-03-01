@@ -659,9 +659,9 @@ name|BytesRef
 argument_list|>
 name|DEFAULT_COMPARATOR
 init|=
-name|BytesRef
+name|Comparator
 operator|.
-name|getUTF8SortedAsUnicodeComparator
+name|naturalOrder
 argument_list|()
 decl_stmt|;
 comment|/**    * Defaults constructor.    *     * @see BufferSize#automatic()    */

@@ -141,6 +141,7 @@ name|GeoPointInBBoxQuery
 block|{
 comment|// polygon position arrays - this avoids the use of any objects or
 comment|// or geo library dependencies
+comment|/** array of x (longitude) values (in degrees) */
 DECL|field|x
 specifier|protected
 specifier|final
@@ -148,6 +149,7 @@ name|double
 index|[]
 name|x
 decl_stmt|;
+comment|/** array of y (latitude) values (in degrees) */
 DECL|field|y
 specifier|protected
 specifier|final
@@ -155,6 +157,7 @@ name|double
 index|[]
 name|y
 decl_stmt|;
+comment|/**    * Constructs a new GeoPolygonQuery that will match encoded {@link org.apache.lucene.spatial.geopoint.document.GeoPointField} terms    * that fall within or on the boundary of the polygon defined by the input parameters.    */
 DECL|method|GeoPointInPolygonQuery
 specifier|public
 name|GeoPointInPolygonQuery

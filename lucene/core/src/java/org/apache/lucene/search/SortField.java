@@ -1108,9 +1108,9 @@ name|BytesRef
 argument_list|>
 name|bytesComparator
 init|=
-name|BytesRef
+name|Comparator
 operator|.
-name|getUTF8SortedAsUnicodeComparator
+name|naturalOrder
 argument_list|()
 decl_stmt|;
 DECL|method|setBytesComparator

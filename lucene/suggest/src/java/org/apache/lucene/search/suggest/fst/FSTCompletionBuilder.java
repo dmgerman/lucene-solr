@@ -42,6 +42,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -218,7 +228,7 @@ specifier|final
 name|int
 name|shareMaxTailLength
 decl_stmt|;
-comment|/**    * Creates an {@link FSTCompletion} with default options: 10 buckets, exact match    * promoted to first position and {@link InMemorySorter} with a comparator obtained from    * {@link BytesRef#getUTF8SortedAsUnicodeComparator()}.    */
+comment|/**    * Creates an {@link FSTCompletion} with default options: 10 buckets, exact match    * promoted to first position and {@link InMemorySorter} with a comparator obtained from    * {@link Comparator#naturalOrder()}.    */
 DECL|method|FSTCompletionBuilder
 specifier|public
 name|FSTCompletionBuilder
@@ -231,9 +241,9 @@ argument_list|,
 operator|new
 name|InMemorySorter
 argument_list|(
-name|BytesRef
+name|Comparator
 operator|.
-name|getUTF8SortedAsUnicodeComparator
+name|naturalOrder
 argument_list|()
 argument_list|)
 argument_list|,

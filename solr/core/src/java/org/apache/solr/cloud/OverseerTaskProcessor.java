@@ -400,12 +400,15 @@ name|Runnable
 implements|,
 name|Closeable
 block|{
-DECL|field|maxParallelThreads
+comment|/**    * Maximum number of overseer collection operations which can be    * executed concurrently    */
+DECL|field|MAX_PARALLEL_TASKS
 specifier|public
+specifier|static
+specifier|final
 name|int
-name|maxParallelThreads
+name|MAX_PARALLEL_TASKS
 init|=
-literal|10
+literal|100
 decl_stmt|;
 DECL|field|tpe
 specifier|public
@@ -833,7 +836,7 @@ name|MDCAwareThreadPoolExecutor
 argument_list|(
 literal|5
 argument_list|,
-literal|100
+name|MAX_PARALLEL_TASKS
 argument_list|,
 literal|0L
 argument_list|,
@@ -935,7 +938,7 @@ operator|.
 name|size
 argument_list|()
 operator|>
-name|maxParallelThreads
+name|MAX_PARALLEL_TASKS
 condition|)
 block|{
 synchronized|synchronized
@@ -974,7 +977,7 @@ name|workQueue
 operator|.
 name|peekTopN
 argument_list|(
-name|maxParallelThreads
+name|MAX_PARALLEL_TASKS
 argument_list|,
 name|runningZKTasks
 argument_list|,

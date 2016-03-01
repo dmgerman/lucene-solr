@@ -215,6 +215,7 @@ name|radiusMeters
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Constructs a Query for all {@link org.apache.lucene.spatial.geopoint.document.GeoPointField} types within a    * distance (in meters) from a given point. Accepts optional    * {@link org.apache.lucene.spatial.geopoint.document.GeoPointField.TermEncoding} parameter    **/
 DECL|method|GeoPointDistanceQuery
 specifier|public
 name|GeoPointDistanceQuery

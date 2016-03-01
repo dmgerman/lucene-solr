@@ -2551,7 +2551,7 @@ return|return
 name|path
 return|;
 block|}
-comment|/**    * Test only method for inspecting the cache    * @return paths in the cache which have not been marked "done"    *    * @see #doneWithDirectory    * @lucene.internal    */
+comment|/**    * Method for inspecting the cache    * @return paths in the cache which have not been marked "done"    *    * @see #doneWithDirectory    */
 DECL|method|getLivePaths
 specifier|public
 specifier|synchronized

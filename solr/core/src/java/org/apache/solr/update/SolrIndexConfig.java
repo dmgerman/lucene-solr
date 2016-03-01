@@ -970,7 +970,7 @@ name|solrConfig
 argument_list|,
 name|def
 operator|.
-name|mergePolicyInfo
+name|mergePolicyFactoryInfo
 argument_list|)
 expr_stmt|;
 if|if
@@ -992,6 +992,48 @@ literal|"<mergePolicy> and<mergePolicyFactory> are mutually exclusive."
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|maxMergeDocs
+operator|!=
+name|def
+operator|.
+name|maxMergeDocs
+operator|&&
+name|mergePolicyFactoryInfo
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"<maxMergeDocs> and<mergePolicyFactory> are mutually exclusive."
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|mergeFactor
+operator|!=
+name|def
+operator|.
+name|mergeFactor
+operator|&&
+name|mergePolicyFactoryInfo
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"<mergeFactor> and<mergePolicyFactory> are mutually exclusive."
+argument_list|)
+throw|;
+block|}
 name|assertWarnOrFail
 argument_list|(
 literal|"Beginning with Solr 5.5,<mergePolicy> is deprecated, use<mergePolicyFactory> instead."
@@ -1010,10 +1052,6 @@ argument_list|(
 literal|"Beginning with Solr 5.5,<maxMergeDocs> is deprecated, configure it on the relevant<mergePolicyFactory> instead."
 argument_list|,
 operator|(
-name|mergePolicyFactoryInfo
-operator|!=
-literal|null
-operator|&&
 name|maxMergeDocs
 operator|==
 name|def
@@ -1029,10 +1067,6 @@ argument_list|(
 literal|"Beginning with Solr 5.5,<mergeFactor> is deprecated, configure it on the relevant<mergePolicyFactory> instead."
 argument_list|,
 operator|(
-name|mergePolicyFactoryInfo
-operator|!=
-literal|null
-operator|&&
 name|mergeFactor
 operator|==
 name|def

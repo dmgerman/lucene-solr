@@ -16,6 +16,16 @@ name|util
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Comparator
+import|;
+end_import
+
 begin_class
 DECL|class|TestIntroSorter
 specifier|public
@@ -54,12 +64,9 @@ argument_list|<>
 argument_list|(
 name|arr
 argument_list|,
-name|ArrayUtil
+name|Comparator
 operator|.
-expr|<
-name|Entry
-operator|>
-name|naturalComparator
+name|naturalOrder
 argument_list|()
 argument_list|)
 return|;

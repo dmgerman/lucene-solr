@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A size limited distributed map maintained in zk.  * Oldest znodes (as per modification time) are evicted as newer ones come in.   */
+comment|/**  * A size limited distributed map maintained in zk.  * Oldest znodes (as per modification time) are evicted as newer ones come in.  *  * When the map hits the specified maximum size, the oldest<code>maxSize / 10</code> items  * are evicted on the next {@link #put(String, byte[])} invocation.  */
 end_comment
 
 begin_class

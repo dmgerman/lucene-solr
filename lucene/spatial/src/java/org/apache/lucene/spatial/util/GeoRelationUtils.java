@@ -1919,6 +1919,7 @@ return|return
 literal|false
 return|;
 block|}
+comment|/**    * Computes whether a rectangle is within a polygon (shared boundaries not allowed) with more rigor than the    * {@link GeoRelationUtils#rectWithinPolyApprox} counterpart    */
 DECL|method|rectWithinPolyPrecise
 specifier|public
 specifier|static

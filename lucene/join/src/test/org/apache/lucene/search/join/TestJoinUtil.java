@@ -9964,12 +9964,7 @@ init|=
 operator|new
 name|TreeSet
 argument_list|<>
-argument_list|(
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|joinValues
 operator|.

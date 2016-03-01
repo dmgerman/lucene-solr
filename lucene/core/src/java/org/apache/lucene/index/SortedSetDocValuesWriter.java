@@ -851,12 +851,7 @@ init|=
 name|hash
 operator|.
 name|sort
-argument_list|(
-name|BytesRef
-operator|.
-name|getUTF8SortedAsUnicodeComparator
 argument_list|()
-argument_list|)
 decl_stmt|;
 specifier|final
 name|int

@@ -1041,7 +1041,7 @@ argument_list|>
 operator|)
 name|MMapDirectory
 operator|::
-name|initUnmapHack
+name|unmapHackImpl
 argument_list|)
 decl_stmt|;
 if|if
@@ -1093,11 +1093,11 @@ name|reason
 operator|=
 literal|"Needs access to private APIs in DirectBuffer and sun.misc.Cleaner to enable hack"
 argument_list|)
-DECL|method|initUnmapHack
+DECL|method|unmapHackImpl
 specifier|private
 specifier|static
 name|Object
-name|initUnmapHack
+name|unmapHackImpl
 parameter_list|()
 block|{
 specifier|final
@@ -1492,13 +1492,15 @@ name|e
 parameter_list|)
 block|{
 return|return
-literal|"Unmapping is not supported, because not all required permissions are given to the Lucene JAR file. "
+literal|"Unmapping is not supported, because not all required permissions are given to the Lucene JAR file: "
 operator|+
-literal|"Please grant at least the following permissions: RuntimePermission(\"accessClassInPackage.sun.misc\"), "
+name|e
+operator|+
+literal|" [Please grant at least the following permissions: RuntimePermission(\"accessClassInPackage.sun.misc\"), "
 operator|+
 literal|"RuntimePermission(\"accessClassInPackage.jdk.internal.ref\"), and "
 operator|+
-literal|"ReflectPermission(\"suppressAccessChecks\")"
+literal|"ReflectPermission(\"suppressAccessChecks\")]"
 return|;
 block|}
 end_catch
