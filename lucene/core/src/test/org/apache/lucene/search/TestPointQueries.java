@@ -3541,7 +3541,7 @@ name|Exception
 block|{
 name|doTestRandomBinary
 argument_list|(
-literal|200000
+literal|100000
 argument_list|)
 expr_stmt|;
 block|}
