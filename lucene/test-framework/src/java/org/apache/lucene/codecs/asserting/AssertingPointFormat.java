@@ -182,7 +182,15 @@ specifier|private
 specifier|final
 name|PointFormat
 name|in
-init|=
+decl_stmt|;
+comment|/** Create a new AssertingPointFormat */
+DECL|method|AssertingPointFormat
+specifier|public
+name|AssertingPointFormat
+parameter_list|()
+block|{
+name|this
+argument_list|(
 name|TestUtil
 operator|.
 name|getDefaultCodec
@@ -190,7 +198,27 @@ argument_list|()
 operator|.
 name|pointFormat
 argument_list|()
-decl_stmt|;
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Expert: Create an AssertingPointFormat.    * This is only intended to pass special parameters for testing.    */
+comment|// TODO: can we randomize this a cleaner way? e.g. stored fields and vectors do
+comment|// this with a separate codec...
+DECL|method|AssertingPointFormat
+specifier|public
+name|AssertingPointFormat
+parameter_list|(
+name|PointFormat
+name|in
+parameter_list|)
+block|{
+name|this
+operator|.
+name|in
+operator|=
+name|in
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|fieldsWriter
