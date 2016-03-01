@@ -4723,7 +4723,7 @@ index|]
 operator|!=
 literal|null
 operator|&&
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
@@ -5566,7 +5566,7 @@ else|else
 block|{
 name|cmp
 operator|=
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
@@ -5633,7 +5633,7 @@ else|else
 block|{
 name|cmp
 operator|=
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(

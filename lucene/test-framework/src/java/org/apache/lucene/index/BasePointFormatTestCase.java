@@ -4821,7 +4821,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
@@ -5041,7 +5041,7 @@ block|{
 comment|//System.out.println("  dim=" + dim + " value=" + new BytesRef(packedValue, dim*numBytesPerDim, numBytesPerDim));
 if|if
 condition|(
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
@@ -5050,6 +5050,8 @@ argument_list|,
 name|packedValue
 argument_list|,
 name|dim
+operator|*
+name|numBytesPerDim
 argument_list|,
 name|queryMin
 index|[
@@ -5061,7 +5063,7 @@ argument_list|)
 operator|<
 literal|0
 operator|||
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
@@ -5070,6 +5072,8 @@ argument_list|,
 name|packedValue
 argument_list|,
 name|dim
+operator|*
+name|numBytesPerDim
 argument_list|,
 name|queryMax
 index|[
@@ -5141,7 +5145,7 @@ control|)
 block|{
 if|if
 condition|(
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
@@ -5150,6 +5154,8 @@ argument_list|,
 name|maxPacked
 argument_list|,
 name|dim
+operator|*
+name|numBytesPerDim
 argument_list|,
 name|queryMin
 index|[
@@ -5161,7 +5167,7 @@ argument_list|)
 operator|<
 literal|0
 operator|||
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
@@ -5170,6 +5176,8 @@ argument_list|,
 name|minPacked
 argument_list|,
 name|dim
+operator|*
+name|numBytesPerDim
 argument_list|,
 name|queryMax
 index|[
@@ -5192,7 +5200,7 @@ block|}
 elseif|else
 if|if
 condition|(
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
@@ -5201,6 +5209,8 @@ argument_list|,
 name|minPacked
 argument_list|,
 name|dim
+operator|*
+name|numBytesPerDim
 argument_list|,
 name|queryMin
 index|[
@@ -5212,7 +5222,7 @@ argument_list|)
 operator|<
 literal|0
 operator|||
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
@@ -5221,6 +5231,8 @@ argument_list|,
 name|maxPacked
 argument_list|,
 name|dim
+operator|*
+name|numBytesPerDim
 argument_list|,
 name|queryMax
 index|[
@@ -5320,7 +5332,7 @@ index|]
 decl_stmt|;
 if|if
 condition|(
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
@@ -5340,7 +5352,7 @@ argument_list|)
 operator|<
 literal|0
 operator|||
-name|NumericUtils
+name|StringHelper
 operator|.
 name|compare
 argument_list|(
