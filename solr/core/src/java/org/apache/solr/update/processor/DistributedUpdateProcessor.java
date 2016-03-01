@@ -8077,9 +8077,14 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|StdNode
+name|RetryNode
 argument_list|(
 name|coreLeaderProps
+argument_list|,
+name|zkController
+operator|.
+name|getZkStateReader
+argument_list|()
 argument_list|,
 name|collection
 argument_list|,
