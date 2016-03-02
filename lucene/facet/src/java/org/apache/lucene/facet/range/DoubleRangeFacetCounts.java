@@ -535,7 +535,7 @@ name|doubleToSortableLong
 argument_list|(
 name|range
 operator|.
-name|minIncl
+name|min
 argument_list|)
 argument_list|,
 literal|true
@@ -546,7 +546,7 @@ name|doubleToSortableLong
 argument_list|(
 name|range
 operator|.
-name|maxIncl
+name|max
 argument_list|)
 argument_list|,
 literal|true

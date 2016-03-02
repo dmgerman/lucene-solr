@@ -252,7 +252,7 @@ expr_stmt|;
 comment|// looks crazy due to lossiness
 name|assertEquals
 argument_list|(
-literal|"field:[17.99999997485429 TO 18.999999999068677},[-65.9999999217689 TO -64.99999998137355}"
+literal|"field:[17.99999997485429 TO 18.999999999068677],[-65.9999999217689 TO -64.99999998137355]"
 argument_list|,
 name|LatLonPoint
 operator|.

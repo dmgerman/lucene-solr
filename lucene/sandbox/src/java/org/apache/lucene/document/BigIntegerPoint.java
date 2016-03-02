@@ -20,16 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|math
 operator|.
 name|BigInteger
@@ -112,26 +102,12 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BytesRefIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|NumericUtils
 import|;
 end_import
 
 begin_comment
-comment|/**   * An indexed 128-bit {@code BigInteger} field.  *<p>  * Finding all documents within an N-dimensional shape or range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact 1D point.  *<li>{@link #newRangeQuery newRangeQuery()} for matching a 1D range.  *<li>{@link #newMultiRangeQuery newMultiRangeQuery()} for matching points/ranges in n-dimensional space.  *<li>{@link #newSetQuery newSetQuery()} for matching a set of 1D values.  *</ul>  */
+comment|/**   * An indexed 128-bit {@code BigInteger} field.  *<p>  * Finding all documents within an N-dimensional shape or range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery(String, BigInteger)} for matching an exact 1D point.  *<li>{@link #newSetQuery(String, BigInteger...)} for matching a set of 1D values.  *<li>{@link #newRangeQuery(String, BigInteger, BigInteger)} for matching a 1D range.  *<li>{@link #newRangeQuery(String, BigInteger[], BigInteger[])} for matching points/ranges in n-dimensional space.  *</ul>  */
 end_comment
 
 begin_class
@@ -151,6 +127,58 @@ name|int
 name|BYTES
 init|=
 literal|16
+decl_stmt|;
+comment|/** A constant holding the minimum value a BigIntegerPoint can have, -2<sup>127</sup>. */
+DECL|field|MIN_VALUE
+specifier|public
+specifier|static
+specifier|final
+name|BigInteger
+name|MIN_VALUE
+init|=
+name|BigInteger
+operator|.
+name|ONE
+operator|.
+name|shiftLeft
+argument_list|(
+name|BYTES
+operator|*
+literal|8
+operator|-
+literal|1
+argument_list|)
+operator|.
+name|negate
+argument_list|()
+decl_stmt|;
+comment|/** A constant holding the maximum value a BigIntegerPoint can have, 2<sup>127</sup>-1. */
+DECL|field|MAX_VALUE
+specifier|public
+specifier|static
+specifier|final
+name|BigInteger
+name|MAX_VALUE
+init|=
+name|BigInteger
+operator|.
+name|ONE
+operator|.
+name|shiftLeft
+argument_list|(
+name|BYTES
+operator|*
+literal|8
+operator|-
+literal|1
+argument_list|)
+operator|.
+name|subtract
+argument_list|(
+name|BigInteger
+operator|.
+name|ONE
+argument_list|)
 decl_stmt|;
 DECL|method|getType
 specifier|private
@@ -623,16 +651,6 @@ name|i
 operator|++
 control|)
 block|{
-if|if
-condition|(
-name|value
-index|[
-name|i
-index|]
-operator|!=
-literal|null
-condition|)
-block|{
 name|encoded
 index|[
 name|i
@@ -659,7 +677,6 @@ argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|encoded
@@ -727,7 +744,7 @@ argument_list|)
 return|;
 block|}
 comment|// static methods for generating queries
-comment|/**     * Create a query for matching an exact big integer value.    *<p>    * This is for simple one-dimension points, for multidimensional points use    * {@link #newMultiRangeQuery newMultiRangeQuery()} instead.    *    * @param field field name. must not be {@code null}.    * @param value exact value    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents with this exact value    */
+comment|/**     * Create a query for matching an exact big integer value.    *<p>    * This is for simple one-dimension points, for multidimensional points use    * {@link #newRangeQuery(String, BigInteger[], BigInteger[])} instead.    *    * @param field field name. must not be {@code null}.    * @param value exact value. must not be {@code null}.    * @throws IllegalArgumentException if {@code field} is null or {@code value} is null.    * @return a query matching documents with this exact value    */
 DECL|method|newExactQuery
 specifier|public
 specifier|static
@@ -748,15 +765,11 @@ name|field
 argument_list|,
 name|value
 argument_list|,
-literal|true
-argument_list|,
 name|value
-argument_list|,
-literal|true
 argument_list|)
 return|;
 block|}
-comment|/**     * Create a range query for big integer values.    *<p>    * This is for simple one-dimension ranges, for multidimensional ranges use    * {@link #newMultiRangeQuery newMultiRangeQuery()} instead.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the {@code lowerValue} or {@code upperValue} to {@code null}.     *<p>    * By setting inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} means "open".    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} means "open".    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents within this range.    */
+comment|/**     * Create a range query for big integer values.    *<p>    * This is for simple one-dimension ranges, for multidimensional ranges use    * {@link #newRangeQuery(String, BigInteger[], BigInteger[])} instead.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting {@code lowerValue = BigIntegerPoint.MIN_VALUE}     * or {@code upperValue = BigIntegerPoint.MAX_VALUE}.     *<p>    * Ranges are inclusive. For exclusive ranges, pass {@code lowerValue.add(BigInteger.ONE)}     * or {@code upperValue.subtract(BigInteger.ONE)}    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range (inclusive). must not be {@code null}.    * @param upperValue upper portion of the range (inclusive). must not be {@code null}.    * @throws IllegalArgumentException if {@code field} is null, {@code lowerValue} is null, or {@code upperValue} is null.    * @return a query matching documents within this range.    */
 DECL|method|newRangeQuery
 specifier|public
 specifier|static
@@ -769,18 +782,23 @@ parameter_list|,
 name|BigInteger
 name|lowerValue
 parameter_list|,
-name|boolean
-name|lowerInclusive
-parameter_list|,
 name|BigInteger
 name|upperValue
-parameter_list|,
-name|boolean
-name|upperInclusive
 parameter_list|)
 block|{
+name|PointRangeQuery
+operator|.
+name|checkArgs
+argument_list|(
+name|field
+argument_list|,
+name|lowerValue
+argument_list|,
+name|upperValue
+argument_list|)
+expr_stmt|;
 return|return
-name|newMultiRangeQuery
+name|newRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -792,34 +810,20 @@ name|lowerValue
 block|}
 argument_list|,
 operator|new
-name|boolean
-index|[]
-block|{
-name|lowerInclusive
-block|}
-argument_list|,
-operator|new
 name|BigInteger
 index|[]
 block|{
 name|upperValue
 block|}
-argument_list|,
-operator|new
-name|boolean
-index|[]
-block|{
-name|upperInclusive
-block|}
 argument_list|)
 return|;
 block|}
-comment|/**     * Create a multidimensional range query for big integer values.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting a {@code lowerValue} element or {@code upperValue} element to {@code null}.     *<p>    * By setting a dimension's inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} values mean "open" for that dimension.    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} values mean "open" for that dimension.    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null, or if {@code lowerValue.length != upperValue.length}    * @return a query matching documents within this range.    */
-DECL|method|newMultiRangeQuery
+comment|/**     * Create a range query for n-dimensional big integer values.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting {@code lowerValue[i] = BigIntegerPoint.MIN_VALUE}     * or {@code upperValue[i] = BigIntegerPoint.MAX_VALUE}.     *<p>    * Ranges are inclusive. For exclusive ranges, pass {@code lowerValue[i].add(BigInteger.ONE)}     * or {@code upperValue[i].subtract(BigInteger.ONE)}    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range (inclusive). must not be {@code null}.    * @param upperValue upper portion of the range (inclusive). must not be {@code null}.    * @throws IllegalArgumentException if {@code field} is null, if {@code lowerValue} is null, if {@code upperValue} is null,     *                                  or if {@code lowerValue.length != upperValue.length}    * @return a query matching documents within this range.    */
+DECL|method|newRangeQuery
 specifier|public
 specifier|static
 name|Query
-name|newMultiRangeQuery
+name|newRangeQuery
 parameter_list|(
 name|String
 name|field
@@ -828,17 +832,9 @@ name|BigInteger
 index|[]
 name|lowerValue
 parameter_list|,
-name|boolean
-name|lowerInclusive
-index|[]
-parameter_list|,
 name|BigInteger
 index|[]
 name|upperValue
-parameter_list|,
-name|boolean
-name|upperInclusive
-index|[]
 parameter_list|)
 block|{
 name|PointRangeQuery
@@ -865,16 +861,12 @@ argument_list|(
 name|lowerValue
 argument_list|)
 argument_list|,
-name|lowerInclusive
-argument_list|,
 name|BigIntegerPoint
 operator|.
 name|encode
 argument_list|(
 name|upperValue
 argument_list|)
-argument_list|,
-name|upperInclusive
 argument_list|)
 block|{
 annotation|@
@@ -908,7 +900,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param valuesIn all values to match    */
+comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param values all values to match    */
 DECL|method|newSetQuery
 specifier|public
 specifier|static
@@ -920,17 +912,15 @@ name|field
 parameter_list|,
 name|BigInteger
 modifier|...
-name|valuesIn
+name|values
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|// Don't unexpectedly change the user's incoming values array:
 name|BigInteger
 index|[]
-name|values
+name|sortedValues
 init|=
-name|valuesIn
+name|values
 operator|.
 name|clone
 argument_list|()
@@ -939,12 +929,12 @@ name|Arrays
 operator|.
 name|sort
 argument_list|(
-name|values
+name|sortedValues
 argument_list|)
 expr_stmt|;
 specifier|final
 name|BytesRef
-name|value
+name|encoded
 init|=
 operator|new
 name|BytesRef
@@ -967,7 +957,9 @@ argument_list|,
 name|BYTES
 argument_list|,
 operator|new
-name|BytesRefIterator
+name|PointInSetQuery
+operator|.
+name|Stream
 argument_list|()
 block|{
 name|int
@@ -984,7 +976,7 @@ if|if
 condition|(
 name|upto
 operator|==
-name|values
+name|sortedValues
 operator|.
 name|length
 condition|)
@@ -997,12 +989,12 @@ else|else
 block|{
 name|encodeDimension
 argument_list|(
-name|values
+name|sortedValues
 index|[
 name|upto
 index|]
 argument_list|,
-name|value
+name|encoded
 operator|.
 name|bytes
 argument_list|,
@@ -1013,7 +1005,7 @@ name|upto
 operator|++
 expr_stmt|;
 return|return
-name|value
+name|encoded
 return|;
 block|}
 block|}

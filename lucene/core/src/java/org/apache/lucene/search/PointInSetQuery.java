@@ -333,6 +333,28 @@ specifier|final
 name|int
 name|bytesPerDim
 decl_stmt|;
+comment|/**     * Iterator of encoded point values.    */
+comment|// TODO: if we want to stream, maybe we should use jdk stream class?
+DECL|class|Stream
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|Stream
+implements|implements
+name|BytesRefIterator
+block|{
+annotation|@
+name|Override
+DECL|method|next
+specifier|public
+specifier|abstract
+name|BytesRef
+name|next
+parameter_list|()
+function_decl|;
+block|}
+empty_stmt|;
 comment|/** The {@code packedPoints} iterator must be in sorted order. */
 DECL|method|PointInSetQuery
 specifier|protected
@@ -347,11 +369,9 @@ parameter_list|,
 name|int
 name|bytesPerDim
 parameter_list|,
-name|BytesRefIterator
+name|Stream
 name|packedPoints
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.

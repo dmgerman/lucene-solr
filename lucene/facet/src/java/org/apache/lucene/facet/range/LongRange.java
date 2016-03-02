@@ -233,43 +233,19 @@ name|LongRange
 extends|extends
 name|Range
 block|{
-DECL|field|minIncl
-specifier|final
-name|long
-name|minIncl
-decl_stmt|;
-DECL|field|maxIncl
-specifier|final
-name|long
-name|maxIncl
-decl_stmt|;
-comment|/** Minimum. */
+comment|/** Minimum (inclusive). */
 DECL|field|min
 specifier|public
 specifier|final
 name|long
 name|min
 decl_stmt|;
-comment|/** Maximum. */
+comment|/** Maximum (inclusive). */
 DECL|field|max
 specifier|public
 specifier|final
 name|long
 name|max
-decl_stmt|;
-comment|/** True if the minimum value is inclusive. */
-DECL|field|minInclusive
-specifier|public
-specifier|final
-name|boolean
-name|minInclusive
-decl_stmt|;
-comment|/** True if the maximum value is inclusive. */
-DECL|field|maxInclusive
-specifier|public
-specifier|final
-name|boolean
-name|maxInclusive
 decl_stmt|;
 comment|// TODO: can we require fewer args? (same for
 comment|// Double/FloatRange too)
@@ -298,30 +274,6 @@ name|super
 argument_list|(
 name|label
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|min
-operator|=
-name|minIn
-expr_stmt|;
-name|this
-operator|.
-name|max
-operator|=
-name|maxIn
-expr_stmt|;
-name|this
-operator|.
-name|minInclusive
-operator|=
-name|minInclusive
-expr_stmt|;
-name|this
-operator|.
-name|maxInclusive
-operator|=
-name|maxInclusive
 expr_stmt|;
 if|if
 condition|(
@@ -388,13 +340,13 @@ expr_stmt|;
 block|}
 name|this
 operator|.
-name|minIncl
+name|min
 operator|=
 name|minIn
 expr_stmt|;
 name|this
 operator|.
-name|maxIncl
+name|max
 operator|=
 name|maxIn
 expr_stmt|;
@@ -412,11 +364,11 @@ block|{
 return|return
 name|value
 operator|>=
-name|minIncl
+name|min
 operator|&&
 name|value
 operator|<=
-name|maxIncl
+name|max
 return|;
 block|}
 annotation|@
@@ -430,11 +382,11 @@ block|{
 return|return
 literal|"LongRange("
 operator|+
-name|minIncl
+name|min
 operator|+
 literal|" to "
 operator|+
-name|maxIncl
+name|max
 operator|+
 literal|")"
 return|;
