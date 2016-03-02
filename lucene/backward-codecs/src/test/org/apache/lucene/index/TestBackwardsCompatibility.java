@@ -8756,7 +8756,7 @@ specifier|final
 name|String
 name|moreTermsIndex
 init|=
-literal|"moreterms.5.0.0.zip"
+literal|"moreterms.6.0.0.zip"
 decl_stmt|;
 DECL|method|testMoreTerms
 specifier|public
