@@ -477,19 +477,6 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|getVersion
-argument_list|()
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_4_0
-argument_list|)
-condition|)
-block|{
 name|result
 operator|=
 operator|new
@@ -498,7 +485,6 @@ argument_list|(
 name|result
 argument_list|)
 expr_stmt|;
-block|}
 name|result
 operator|=
 operator|new
