@@ -8822,7 +8822,7 @@ specifier|final
 name|String
 name|dvUpdatesIndex
 init|=
-literal|"dvupdates.5.0.0.zip"
+literal|"dvupdates.6.0.0.zip"
 decl_stmt|;
 DECL|method|assertNumericDocValues
 specifier|private
