@@ -172,6 +172,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|reader
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals

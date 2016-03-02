@@ -187,7 +187,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Called for all documents in a leaf cell that crosses the query.  The consumer      *  should scrutinize the packedValue to decide whether to accept it. */
+comment|/** Called for all documents in a leaf cell that crosses the query.  The consumer      *  should scrutinize the packedValue to decide whether to accept it.  In the 1D case,      *  values are visited in increasing order, and in the case of ties, in increasing      *  docID order. */
 DECL|method|visit
 name|void
 name|visit

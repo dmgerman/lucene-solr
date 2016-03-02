@@ -484,6 +484,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|MultiReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|NumericDocValues
 import|;
 end_import
@@ -541,6 +555,20 @@ operator|.
 name|index
 operator|.
 name|SegmentWriteState
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SlowCompositeReaderWrapper
 import|;
 end_import
 
@@ -2678,6 +2706,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|int
@@ -4389,6 +4419,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|int
@@ -5865,6 +5897,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -6183,6 +6217,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -6601,6 +6637,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -6867,7 +6905,6 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-comment|// We can't wrap with "exotic" readers because the query must see the RangeTreeDVFormat:
 name|IndexSearcher
 name|s
 init|=
@@ -7149,6 +7186,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -7437,6 +7476,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -8699,6 +8740,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -9702,6 +9745,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|int
@@ -10550,6 +10595,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -10766,6 +10813,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -11087,6 +11136,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -11534,6 +11585,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -12572,6 +12625,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -13385,6 +13440,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -13685,6 +13742,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -14447,6 +14506,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertEquals

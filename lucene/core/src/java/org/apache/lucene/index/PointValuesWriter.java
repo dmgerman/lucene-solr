@@ -228,6 +228,7 @@ argument_list|()
 index|]
 expr_stmt|;
 block|}
+comment|// TODO: if exactly the same value is added to exactly the same doc, should we dedup?
 DECL|method|addPackedValue
 specifier|public
 name|void

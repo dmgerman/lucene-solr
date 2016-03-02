@@ -473,6 +473,11 @@ specifier|final
 name|String
 name|tempFileNamePrefix
 decl_stmt|;
+DECL|field|maxMBSortInHeap
+specifier|final
+name|double
+name|maxMBSortInHeap
+decl_stmt|;
 DECL|field|scratchDiff
 specifier|final
 name|byte
@@ -802,6 +807,12 @@ name|maxPointsSortInHeap
 argument_list|,
 name|packedBytesLength
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|maxMBSortInHeap
+operator|=
+name|maxMBSortInHeap
 expr_stmt|;
 block|}
 DECL|method|verifyParams
@@ -2875,7 +2886,7 @@ name|MAX_VALUE
 assert|;
 comment|//int[] swapCount = new int[1];
 comment|//int[] cmpCount = new int[1];
-comment|//System.out.println("SORT length=" + length);
+comment|// System.out.println("SORT length=" + length);
 comment|// All buffered points are still in heap; just do in-place sort:
 operator|new
 name|IntroSorter
@@ -3403,9 +3414,10 @@ return|return
 name|cmp
 return|;
 block|}
-comment|// Tie-break
-name|cmp
-operator|=
+comment|// Tie-break by docID:
+comment|// No need to tie break on ord, for the case where the same doc has the same value in a given dimension indexed more than once: it
+comment|// can't matter at search time since we don't write ords into the index:
+return|return
 name|Integer
 operator|.
 name|compare
@@ -3420,37 +3432,6 @@ argument_list|,
 name|writer
 operator|.
 name|docIDs
-index|[
-name|j
-index|]
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|cmp
-operator|!=
-literal|0
-condition|)
-block|{
-return|return
-name|cmp
-return|;
-block|}
-return|return
-name|Long
-operator|.
-name|compare
-argument_list|(
-name|writer
-operator|.
-name|ords
-index|[
-name|i
-index|]
-argument_list|,
-name|writer
-operator|.
-name|ords
 index|[
 name|j
 index|]
@@ -3653,7 +3634,7 @@ return|return
 name|cmp
 return|;
 block|}
-comment|// Tie-break by docID and then ord:
+comment|// Tie-break by docID:
 name|reader
 operator|.
 name|reset
@@ -3667,6 +3648,10 @@ operator|.
 name|offset
 operator|+
 name|packedBytesLength
+operator|+
+name|Long
+operator|.
+name|BYTES
 argument_list|,
 name|a
 operator|.
@@ -3679,16 +3664,7 @@ name|docIDA
 init|=
 name|reader
 operator|.
-name|readVInt
-argument_list|()
-decl_stmt|;
-specifier|final
-name|long
-name|ordA
-init|=
-name|reader
-operator|.
-name|readVLong
+name|readInt
 argument_list|()
 decl_stmt|;
 name|reader
@@ -3704,6 +3680,10 @@ operator|.
 name|offset
 operator|+
 name|packedBytesLength
+operator|+
+name|Long
+operator|.
+name|BYTES
 argument_list|,
 name|b
 operator|.
@@ -3716,20 +3696,12 @@ name|docIDB
 init|=
 name|reader
 operator|.
-name|readVInt
+name|readInt
 argument_list|()
 decl_stmt|;
-specifier|final
-name|long
-name|ordB
-init|=
-name|reader
-operator|.
-name|readVLong
-argument_list|()
-decl_stmt|;
-name|cmp
-operator|=
+comment|// No need to tie break on ord, for the case where the same doc has the same value in a given dimension indexed more than once: it
+comment|// can't matter at search time since we don't write ords into the index:
+return|return
 name|Integer
 operator|.
 name|compare
@@ -3737,28 +3709,6 @@ argument_list|(
 name|docIDA
 argument_list|,
 name|docIDB
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|cmp
-operator|!=
-literal|0
-condition|)
-block|{
-return|return
-name|cmp
-return|;
-block|}
-comment|// TODO: is this really necessary?  If OfflineSorter is stable, we can safely return 0 here, and avoid writing ords?
-return|return
-name|Long
-operator|.
-name|compare
-argument_list|(
-name|ordA
-argument_list|,
-name|ordB
 argument_list|)
 return|;
 block|}
@@ -3786,6 +3736,29 @@ argument_list|,
 name|tempFileNamePrefix
 argument_list|,
 name|cmp
+argument_list|,
+name|OfflineSorter
+operator|.
+name|BufferSize
+operator|.
+name|megabytes
+argument_list|(
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|1
+argument_list|,
+operator|(
+name|long
+operator|)
+name|maxMBSortInHeap
+argument_list|)
+argument_list|)
+argument_list|,
+name|OfflineSorter
+operator|.
+name|MAX_TEMPFILES
 argument_list|)
 block|{
 comment|/** We write/read fixed-byte-width file that {@link OfflinePointReader} can read. */
@@ -4038,7 +4011,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("\nBKDTreeWriter.finish pointCount=" + pointCount + " out=" + out + " heapWriter=" + heapWriter);
+comment|// System.out.println("\nBKDTreeWriter.finish pointCount=" + pointCount + " out=" + out + " heapWriter=" + heapPointWriter);
 comment|// TODO: specialize the 1D case?  it's much faster at indexing time (no partitioning on recruse...)
 comment|// Catch user silliness:
 if|if
