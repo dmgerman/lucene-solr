@@ -359,6 +359,27 @@ throw|throw
 name|exc
 throw|;
 block|}
+DECL|method|fileExists
+specifier|public
+specifier|static
+name|boolean
+name|fileExists
+parameter_list|(
+name|String
+name|filePathString
+parameter_list|)
+block|{
+return|return
+operator|new
+name|File
+argument_list|(
+name|filePathString
+argument_list|)
+operator|.
+name|exists
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
