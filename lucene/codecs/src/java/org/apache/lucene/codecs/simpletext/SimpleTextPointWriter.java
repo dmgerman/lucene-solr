@@ -407,6 +407,18 @@ argument_list|(
 literal|"max value "
 argument_list|)
 decl_stmt|;
+DECL|field|POINT_COUNT
+specifier|final
+specifier|static
+name|BytesRef
+name|POINT_COUNT
+init|=
+operator|new
+name|BytesRef
+argument_list|(
+literal|"point count "
+argument_list|)
+decl_stmt|;
 DECL|field|dataOut
 specifier|private
 name|IndexOutput
@@ -713,6 +725,25 @@ name|br
 operator|.
 name|toString
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|newline
+argument_list|(
+name|out
+argument_list|)
+expr_stmt|;
+name|write
+argument_list|(
+name|out
+argument_list|,
+name|POINT_COUNT
+argument_list|)
+expr_stmt|;
+name|writeLong
+argument_list|(
+name|out
+argument_list|,
+name|pointCount
 argument_list|)
 expr_stmt|;
 name|newline

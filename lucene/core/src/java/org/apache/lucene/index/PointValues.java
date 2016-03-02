@@ -244,7 +244,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns minimum value for each dimension, packed, or null if no points were indexed */
+comment|/** Returns minimum value for each dimension, packed, or null if {@link #size} is<code>0</code> */
 DECL|method|getMinPackedValue
 specifier|public
 specifier|abstract
@@ -258,7 +258,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns maximum value for each dimension, packed, or null if no points were indexed */
+comment|/** Returns maximum value for each dimension, packed, or null if {@link #size} is<code>0</code> */
 DECL|method|getMaxPackedValue
 specifier|public
 specifier|abstract
@@ -298,6 +298,18 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/** Returns the total number of indexed points across all documents in this field. */
+DECL|method|size
+specifier|public
+specifier|abstract
+name|long
+name|size
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
+function_decl|;
+comment|// nocommit make "delete all point docs then force merge" and then check stats test
 block|}
 end_class
 

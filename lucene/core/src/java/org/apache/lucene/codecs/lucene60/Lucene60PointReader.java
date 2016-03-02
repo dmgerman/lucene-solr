@@ -1074,6 +1074,45 @@ name|getBytesPerDimension
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|size
+specifier|public
+name|long
+name|size
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
+block|{
+name|BKDReader
+name|bkdReader
+init|=
+name|getBKDReader
+argument_list|(
+name|fieldName
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|bkdReader
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Schema ghost corner case!  This field did index points in the past, but
+comment|// now all docs having this point field were deleted in this segment:
+return|return
+literal|0
+return|;
+block|}
+return|return
+name|bkdReader
+operator|.
+name|getPointCount
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 
