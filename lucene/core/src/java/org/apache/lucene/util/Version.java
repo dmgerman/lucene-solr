@@ -267,9 +267,7 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|/**    * Match settings and bugs in Lucene's 7.0.0 release.    * @deprecated Use latest    */
-annotation|@
-name|Deprecated
+comment|/**    * Match settings and bugs in Lucene's 7.0.0 release.    */
 DECL|field|LUCENE_7_0_0
 specifier|public
 specifier|static
