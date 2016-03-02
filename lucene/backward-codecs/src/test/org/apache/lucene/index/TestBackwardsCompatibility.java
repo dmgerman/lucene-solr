@@ -752,7 +752,7 @@ name|LuceneTestCase
 block|{
 comment|// Backcompat index generation, described below, is mostly automated in:
 comment|//
-comment|//    dev-tools/scripts/addBackCompatIndexes.py
+comment|//    dev-tools/scripts/addBackcompatIndexes.py
 comment|//
 comment|// For usage information, see:
 comment|//
@@ -1766,6 +1766,10 @@ literal|"5x-with-4x-segments-cfs"
 block|,
 literal|"5x-with-4x-segments-nocfs"
 block|,
+literal|"5.0.0.singlesegment-cfs"
+block|,
+literal|"5.0.0.singlesegment-nocfs"
+block|,
 literal|"5.0.0-cfs"
 block|,
 literal|"5.0.0-nocfs"
@@ -1814,11 +1818,7 @@ name|String
 index|[]
 name|oldSingleSegmentNames
 init|=
-block|{
-literal|"5.0.0.singlesegment-cfs"
-block|,
-literal|"5.0.0.singlesegment-nocfs"
-block|}
+block|{   }
 decl_stmt|;
 DECL|field|oldIndexDirs
 specifier|static
@@ -2282,7 +2282,9 @@ operator|.
 name|LATEST
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 name|Matcher
 name|constant
 init|=
@@ -2305,7 +2307,9 @@ argument_list|()
 operator|==
 literal|false
 condition|)
+block|{
 continue|continue;
+block|}
 name|expectedVersions
 operator|.
 name|add
@@ -2497,7 +2501,9 @@ argument_list|)
 operator|==
 literal|false
 condition|)
+block|{
 continue|continue;
+block|}
 name|testedVersions
 operator|.
 name|add
@@ -5250,18 +5256,6 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|nameVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_3_0
-argument_list|)
-condition|)
-block|{
 name|assertEquals
 argument_list|(
 name|nameVersion
@@ -5272,7 +5266,6 @@ name|getCommitLuceneVersion
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 name|assertEquals
 argument_list|(
 name|nameVersion
@@ -8699,7 +8692,7 @@ specifier|final
 name|String
 name|emptyIndex
 init|=
-literal|"empty.5.0.0.zip"
+literal|"empty.6.0.0.zip"
 decl_stmt|;
 DECL|method|testUpgradeEmptyOldIndex
 specifier|public
