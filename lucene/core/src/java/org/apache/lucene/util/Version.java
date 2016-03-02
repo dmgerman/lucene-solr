@@ -247,7 +247,9 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|/** Match settings and bugs in Lucene's 6.0 release.    *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
+comment|/** Match settings and bugs in Lucene's 6.0 release.    *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    * @deprecated (7.0.0) Use latest    */
+annotation|@
+name|Deprecated
 DECL|field|LUCENE_6_0_0
 specifier|public
 specifier|static
@@ -265,6 +267,26 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|/**    * Match settings and bugs in Lucene's 7.0.0 release.    * @deprecated Use latest    */
+annotation|@
+name|Deprecated
+DECL|field|LUCENE_7_0_0
+specifier|public
+specifier|static
+specifier|final
+name|Version
+name|LUCENE_7_0_0
+init|=
+operator|new
+name|Version
+argument_list|(
+literal|7
+argument_list|,
+literal|0
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
 comment|// To add a new version:
 comment|//  * Only add above this comment
 comment|//  * If the new version is the newest, change LATEST below and deprecate the previous LATEST
@@ -276,7 +298,7 @@ specifier|final
 name|Version
 name|LATEST
 init|=
-name|LUCENE_6_0_0
+name|LUCENE_7_0_0
 decl_stmt|;
 comment|/**    * Constant for backwards compatibility.    * @deprecated Use {@link #LATEST}    */
 annotation|@
