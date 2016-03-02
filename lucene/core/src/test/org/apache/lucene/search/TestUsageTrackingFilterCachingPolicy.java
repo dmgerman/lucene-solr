@@ -134,11 +134,7 @@ literal|"intField"
 argument_list|,
 literal|1
 argument_list|,
-literal|true
-argument_list|,
 literal|1000
-argument_list|,
-literal|true
 argument_list|)
 argument_list|)
 argument_list|)

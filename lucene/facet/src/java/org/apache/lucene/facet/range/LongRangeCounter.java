@@ -172,7 +172,7 @@ name|get
 argument_list|(
 name|range
 operator|.
-name|minIncl
+name|min
 argument_list|)
 decl_stmt|;
 if|if
@@ -188,7 +188,7 @@ name|put
 argument_list|(
 name|range
 operator|.
-name|minIncl
+name|min
 argument_list|,
 literal|1
 argument_list|)
@@ -202,7 +202,7 @@ name|put
 argument_list|(
 name|range
 operator|.
-name|minIncl
+name|min
 argument_list|,
 name|cur
 operator|.
@@ -221,7 +221,7 @@ name|get
 argument_list|(
 name|range
 operator|.
-name|maxIncl
+name|max
 argument_list|)
 expr_stmt|;
 if|if
@@ -237,7 +237,7 @@ name|put
 argument_list|(
 name|range
 operator|.
-name|maxIncl
+name|max
 argument_list|,
 literal|2
 argument_list|)
@@ -251,7 +251,7 @@ name|put
 argument_list|(
 name|range
 operator|.
-name|maxIncl
+name|max
 argument_list|,
 name|cur
 operator|.
@@ -1251,13 +1251,13 @@ name|start
 operator|>=
 name|range
 operator|.
-name|minIncl
+name|min
 operator|&&
 name|end
 operator|<=
 name|range
 operator|.
-name|maxIncl
+name|max
 condition|)
 block|{
 comment|// Our range is fully included in the incoming

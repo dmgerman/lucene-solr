@@ -8260,11 +8260,7 @@ literal|"number"
 argument_list|,
 name|min
 argument_list|,
-literal|true
-argument_list|,
 name|max
-argument_list|,
-literal|true
 argument_list|)
 argument_list|,
 literal|100

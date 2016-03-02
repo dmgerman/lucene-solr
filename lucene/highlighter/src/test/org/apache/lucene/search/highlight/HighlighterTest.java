@@ -4329,11 +4329,7 @@ name|NUMERIC_FIELD_NAME
 argument_list|,
 literal|2
 argument_list|,
-literal|true
-argument_list|,
 literal|6
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|searcher

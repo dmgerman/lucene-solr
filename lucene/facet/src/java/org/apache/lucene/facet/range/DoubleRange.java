@@ -247,43 +247,19 @@ name|DoubleRange
 extends|extends
 name|Range
 block|{
-DECL|field|minIncl
-specifier|final
-name|double
-name|minIncl
-decl_stmt|;
-DECL|field|maxIncl
-specifier|final
-name|double
-name|maxIncl
-decl_stmt|;
-comment|/** Minimum. */
+comment|/** Minimum (inclusive). */
 DECL|field|min
 specifier|public
 specifier|final
 name|double
 name|min
 decl_stmt|;
-comment|/** Maximum. */
+comment|/** Maximum (inclusive. */
 DECL|field|max
 specifier|public
 specifier|final
 name|double
 name|max
-decl_stmt|;
-comment|/** True if the minimum value is inclusive. */
-DECL|field|minInclusive
-specifier|public
-specifier|final
-name|boolean
-name|minInclusive
-decl_stmt|;
-comment|/** True if the maximum value is inclusive. */
-DECL|field|maxInclusive
-specifier|public
-specifier|final
-name|boolean
-name|maxInclusive
 decl_stmt|;
 comment|/** Create a DoubleRange. */
 DECL|method|DoubleRange
@@ -311,30 +287,6 @@ argument_list|(
 name|label
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|min
-operator|=
-name|minIn
-expr_stmt|;
-name|this
-operator|.
-name|max
-operator|=
-name|maxIn
-expr_stmt|;
-name|this
-operator|.
-name|minInclusive
-operator|=
-name|minInclusive
-expr_stmt|;
-name|this
-operator|.
-name|maxInclusive
-operator|=
-name|maxInclusive
-expr_stmt|;
 comment|// TODO: if DoubleDocValuesField used
 comment|// LegacyNumericUtils.doubleToSortableLong format (instead of
 comment|// Double.doubleToRawLongBits) we could do comparisons
@@ -345,7 +297,7 @@ name|Double
 operator|.
 name|isNaN
 argument_list|(
-name|min
+name|minIn
 argument_list|)
 condition|)
 block|{
@@ -379,7 +331,7 @@ name|Double
 operator|.
 name|isNaN
 argument_list|(
-name|max
+name|maxIn
 argument_list|)
 condition|)
 block|{
@@ -425,13 +377,13 @@ expr_stmt|;
 block|}
 name|this
 operator|.
-name|minIncl
+name|min
 operator|=
 name|minIn
 expr_stmt|;
 name|this
 operator|.
-name|maxIncl
+name|max
 operator|=
 name|maxIn
 expr_stmt|;
@@ -449,11 +401,11 @@ block|{
 return|return
 name|value
 operator|>=
-name|minIncl
+name|min
 operator|&&
 name|value
 operator|<=
-name|maxIncl
+name|max
 return|;
 block|}
 DECL|method|toLongRange
@@ -471,7 +423,7 @@ name|LegacyNumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
-name|minIncl
+name|min
 argument_list|)
 argument_list|,
 literal|true
@@ -480,7 +432,7 @@ name|LegacyNumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
-name|maxIncl
+name|max
 argument_list|)
 argument_list|,
 literal|true
@@ -498,11 +450,11 @@ block|{
 return|return
 literal|"DoubleRange("
 operator|+
-name|minIncl
+name|min
 operator|+
 literal|" to "
 operator|+
-name|maxIncl
+name|max
 operator|+
 literal|")"
 return|;
