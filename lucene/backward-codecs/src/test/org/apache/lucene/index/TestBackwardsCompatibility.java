@@ -1550,6 +1550,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|// TODO: on 6.0.0 release, gen the indices and add here:
 DECL|field|oldNames
 specifier|final
 specifier|static
@@ -1811,6 +1812,7 @@ block|,
 literal|"5.5.0-nocfs"
 block|}
 decl_stmt|;
+comment|// TODO: on 6.0.0 release, gen the single segment indices and add here:
 DECL|field|oldSingleSegmentNames
 specifier|final
 specifier|static
