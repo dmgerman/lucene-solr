@@ -309,7 +309,17 @@ name|String
 name|fieldName
 parameter_list|)
 function_decl|;
-comment|// nocommit make "delete all point docs then force merge" and then check stats test
+comment|/** Returns the total number of documents that have indexed at least one point for this field. */
+DECL|method|getDocCount
+specifier|public
+specifier|abstract
+name|int
+name|getDocCount
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
+function_decl|;
 block|}
 end_class
 

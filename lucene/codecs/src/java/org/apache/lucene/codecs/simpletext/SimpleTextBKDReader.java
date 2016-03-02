@@ -223,6 +223,9 @@ name|maxPackedValue
 parameter_list|,
 name|long
 name|pointCount
+parameter_list|,
+name|int
+name|docCount
 parameter_list|)
 throws|throws
 name|IOException
@@ -246,6 +249,8 @@ argument_list|,
 name|maxPackedValue
 argument_list|,
 name|pointCount
+argument_list|,
+name|docCount
 argument_list|)
 expr_stmt|;
 block|}

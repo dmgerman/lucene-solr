@@ -1197,6 +1197,27 @@ name|fieldName
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getDocCount
+specifier|public
+name|int
+name|getDocCount
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
+block|{
+comment|// TODO: what to assert?
+return|return
+name|in
+operator|.
+name|getDocCount
+argument_list|(
+name|fieldName
+argument_list|)
+return|;
+block|}
 block|}
 DECL|class|AssertingPointWriter
 specifier|static
