@@ -193,28 +193,6 @@ argument_list|,
 literal|1.0
 argument_list|)
 decl_stmt|;
-comment|// Previously, distance based filtering was done with km, but scores were based on degrees
-annotation|@
-name|Deprecated
-DECL|field|BACKCOMPAT
-specifier|public
-specifier|final
-specifier|static
-name|DistanceUnits
-name|BACKCOMPAT
-init|=
-operator|new
-name|DistanceUnits
-argument_list|(
-literal|"backcompat"
-argument_list|,
-name|DistanceUtils
-operator|.
-name|EARTH_MEAN_RADIUS_KM
-argument_list|,
-literal|1.0
-argument_list|)
-decl_stmt|;
 comment|//volatile so other threads see when we replace when copy-on-write
 DECL|field|instances
 specifier|private

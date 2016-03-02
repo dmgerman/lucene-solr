@@ -446,14 +446,6 @@ name|rptFieldType
 operator|.
 name|distanceUnits
 expr_stmt|;
-name|this
-operator|.
-name|units
-operator|=
-name|rptFieldType
-operator|.
-name|units
-expr_stmt|;
 block|}
 annotation|@
 name|Override

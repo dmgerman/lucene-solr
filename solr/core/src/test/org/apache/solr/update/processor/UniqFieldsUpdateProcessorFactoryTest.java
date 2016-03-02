@@ -345,11 +345,13 @@ name|UniqFieldsUpdateProcessorFactory
 operator|)
 name|chained
 operator|.
-name|getFactories
+name|getProcessors
 argument_list|()
-index|[
+operator|.
+name|get
+argument_list|(
 literal|0
-index|]
+argument_list|)
 operator|)
 decl_stmt|;
 name|assertNotNull

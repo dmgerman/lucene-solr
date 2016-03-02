@@ -4718,32 +4718,6 @@ name|v
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * @deprecated use {@link #getIndexInfo(DirectoryReader)} since you now have to explicitly pass the "fl" prameter    * and this was always called with "false" anyway from CoreAdminHandler    */
-DECL|method|getIndexInfo
-specifier|public
-specifier|static
-name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
-name|getIndexInfo
-parameter_list|(
-name|DirectoryReader
-name|reader
-parameter_list|,
-name|boolean
-name|detail
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-name|getIndexInfo
-argument_list|(
-name|reader
-argument_list|)
-return|;
-block|}
 comment|// This method just gets the top-most level of information. This was conflated with getting detailed info
 comment|// for *all* the fields, called from CoreAdminHandler etc.
 DECL|method|getIndexInfo

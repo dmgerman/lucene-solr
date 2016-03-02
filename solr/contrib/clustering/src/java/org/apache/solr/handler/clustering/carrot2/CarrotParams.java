@@ -183,20 +183,7 @@ name|CARROT_PREFIX
 operator|+
 literal|"lcmap"
 decl_stmt|;
-comment|/**    * Use {@link #RESOURCES_DIR}.    */
-annotation|@
-name|Deprecated
-DECL|field|LEXICAL_RESOURCES_DIR
-specifier|public
-specifier|static
-name|String
-name|LEXICAL_RESOURCES_DIR
-init|=
-name|CARROT_PREFIX
-operator|+
-literal|"lexicalResourcesDir"
-decl_stmt|;
-comment|/**    * A replacement property pointing to Carrot<sup>2</sup> resources    * (a more generic version of the deprecated {@link #LEXICAL_RESOURCES_DIR}).    */
+comment|/**    * Points to Carrot<sup>2</sup> resources    */
 DECL|field|RESOURCES_DIR
 specifier|public
 specifier|static
@@ -241,8 +228,6 @@ argument_list|,
 name|NUM_DESCRIPTIONS
 argument_list|,
 name|OUTPUT_SUB_CLUSTERS
-argument_list|,
-name|LEXICAL_RESOURCES_DIR
 argument_list|,
 name|RESOURCES_DIR
 argument_list|,

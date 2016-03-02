@@ -237,10 +237,11 @@ literal|3
 argument_list|,
 name|chained
 operator|.
-name|getFactories
+name|getProcessors
 argument_list|()
 operator|.
-name|length
+name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// first one should be log, and it should be configured properly
@@ -249,11 +250,13 @@ name|first
 init|=
 name|chained
 operator|.
-name|getFactories
+name|getProcessors
 argument_list|()
-index|[
+operator|.
+name|get
+argument_list|(
 literal|0
-index|]
+argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -317,11 +320,13 @@ name|CustomUpdateRequestProcessorFactory
 operator|)
 name|custom
 operator|.
-name|getFactories
+name|getProcessors
 argument_list|()
-index|[
+operator|.
+name|get
+argument_list|(
 literal|0
-index|]
+argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -461,10 +466,11 @@ name|EXPECTED_CHAIN_LENGTH
 argument_list|,
 name|chain
 operator|.
-name|getFactories
+name|getProcessors
 argument_list|()
 operator|.
-name|length
+name|size
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// test a basic (non distrib) chain
