@@ -233,10 +233,14 @@ operator|)
 name|queryNode
 decl_stmt|;
 name|MultiPhraseQuery
-name|phraseQuery
+operator|.
+name|Builder
+name|phraseQueryBuilder
 init|=
 operator|new
 name|MultiPhraseQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 name|List
@@ -382,7 +386,7 @@ argument_list|(
 name|positionIncrement
 argument_list|)
 decl_stmt|;
-name|phraseQuery
+name|phraseQueryBuilder
 operator|.
 name|add
 argument_list|(
@@ -406,7 +410,10 @@ expr_stmt|;
 block|}
 block|}
 return|return
-name|phraseQuery
+name|phraseQueryBuilder
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 block|}

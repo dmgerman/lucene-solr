@@ -1458,12 +1458,14 @@ throws|throws
 name|IOException
 block|{
 name|MultiPhraseQuery
-name|mpq
+operator|.
+name|Builder
+name|mpqb
 init|=
-name|newMultiPhraseQuery
+name|newMultiPhraseQueryBuilder
 argument_list|()
 decl_stmt|;
-name|mpq
+name|mpqb
 operator|.
 name|setSlop
 argument_list|(
@@ -1551,7 +1553,7 @@ condition|(
 name|enablePositionIncrements
 condition|)
 block|{
-name|mpq
+name|mpqb
 operator|.
 name|add
 argument_list|(
@@ -1572,7 +1574,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|mpq
+name|mpqb
 operator|.
 name|add
 argument_list|(
@@ -1621,7 +1623,7 @@ condition|(
 name|enablePositionIncrements
 condition|)
 block|{
-name|mpq
+name|mpqb
 operator|.
 name|add
 argument_list|(
@@ -1642,7 +1644,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|mpq
+name|mpqb
 operator|.
 name|add
 argument_list|(
@@ -1660,7 +1662,10 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|mpq
+name|mpqb
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 comment|/**    * Builds a new BooleanQuery instance.    *<p>    * This is intended for subclasses that wish to customize the generated queries.    * @return new BooleanQuery instance    */
@@ -1718,15 +1723,19 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Builds a new MultiPhraseQuery instance.    *<p>    * This is intended for subclasses that wish to customize the generated queries.    * @return new MultiPhraseQuery instance    */
-DECL|method|newMultiPhraseQuery
+DECL|method|newMultiPhraseQueryBuilder
 specifier|protected
 name|MultiPhraseQuery
-name|newMultiPhraseQuery
+operator|.
+name|Builder
+name|newMultiPhraseQueryBuilder
 parameter_list|()
 block|{
 return|return
 operator|new
 name|MultiPhraseQuery
+operator|.
+name|Builder
 argument_list|()
 return|;
 block|}

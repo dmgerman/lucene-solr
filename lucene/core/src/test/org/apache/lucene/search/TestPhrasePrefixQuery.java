@@ -398,21 +398,29 @@ argument_list|)
 decl_stmt|;
 comment|// PhrasePrefixQuery query1 = new PhrasePrefixQuery();
 name|MultiPhraseQuery
-name|query1
+operator|.
+name|Builder
+name|query1builder
 init|=
 operator|new
 name|MultiPhraseQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
 comment|// PhrasePrefixQuery query2 = new PhrasePrefixQuery();
 name|MultiPhraseQuery
-name|query2
+operator|.
+name|Builder
+name|query2builder
 init|=
 operator|new
 name|MultiPhraseQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
-name|query1
+name|query1builder
 operator|.
 name|add
 argument_list|(
@@ -425,7 +433,7 @@ literal|"blueberry"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|query2
+name|query2builder
 operator|.
 name|add
 argument_list|(
@@ -536,7 +544,7 @@ operator|!=
 literal|null
 condition|)
 do|;
-name|query1
+name|query1builder
 operator|.
 name|add
 argument_list|(
@@ -552,7 +560,7 @@ index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|query2
+name|query2builder
 operator|.
 name|add
 argument_list|(
@@ -578,7 +586,10 @@ name|searcher
 operator|.
 name|search
 argument_list|(
-name|query1
+name|query1builder
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|1000
 argument_list|)
@@ -600,7 +611,10 @@ name|searcher
 operator|.
 name|search
 argument_list|(
-name|query2
+name|query2builder
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|1000
 argument_list|)

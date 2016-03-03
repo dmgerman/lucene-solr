@@ -1248,13 +1248,17 @@ expr_stmt|;
 comment|// multi-phrase query should succed for non existing searched term
 comment|// because there exist another searched terms in the same searched position.
 name|MultiPhraseQuery
-name|mq
+operator|.
+name|Builder
+name|mqb
 init|=
 operator|new
 name|MultiPhraseQuery
+operator|.
+name|Builder
 argument_list|()
 decl_stmt|;
-name|mq
+name|mqb
 operator|.
 name|add
 argument_list|(
@@ -1288,7 +1292,10 @@ name|searcher
 operator|.
 name|search
 argument_list|(
-name|mq
+name|mqb
+operator|.
+name|build
+argument_list|()
 argument_list|,
 literal|1000
 argument_list|)
