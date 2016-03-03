@@ -32,11 +32,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -46,11 +46,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -60,11 +60,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -74,11 +74,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -88,11 +88,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -102,11 +102,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -116,11 +116,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A SpatialPrefixTree for single-dimensional numbers and number ranges of fixed precision values (not floating point).  * Despite its name, the indexed values (and queries) need not actually be ranges, they can be unit instance/values.  *<p>  * Why might you use this instead of Lucene's built-in integer/long support?  Here are some reasons with features based  * on code in this class,<em>or are possible based on this class but require a subclass to fully realize it</em>.  *<ul>  *<li>Index ranges, not just unit instances. This is especially useful when the requirement calls for a  *   multi-valued range.</li>  *<li>Instead of a fixed "precisionStep", this prefixTree can have a customizable number of child values for any  *   prefix (up to 32768). This allows exact alignment of the prefix-tree with typical/expected values, which  *   results in better performance.  For example in a Date implementation, every month can get its own dedicated prefix,  *   every day, etc., even though months vary in duration.</li>  *<li>Arbitrary precision, like {@link java.math.BigDecimal}.</li>  *<li>Standard Lucene integer/long indexing always indexes the full precision of those data types but this one  *   is customizable.</li>  *</ul>  *  * Unlike "normal" spatial components in this module, this special-purpose one only works with {@link Shape}s  * created by the methods on this class, not from any {@link com.spatial4j.core.context.SpatialContext}.  *  * @see org.apache.lucene.spatial.prefix.NumberRangePrefixTreeStrategy  * @see<a href="https://issues.apache.org/jira/browse/LUCENE-5648">LUCENE-5648</a>  * @lucene.experimental  */
+comment|/**  * A SpatialPrefixTree for single-dimensional numbers and number ranges of fixed precision values (not floating point).  * Despite its name, the indexed values (and queries) need not actually be ranges, they can be unit instance/values.  *<p>  * Why might you use this instead of Lucene's built-in integer/long support?  Here are some reasons with features based  * on code in this class,<em>or are possible based on this class but require a subclass to fully realize it</em>.  *<ul>  *<li>Index ranges, not just unit instances. This is especially useful when the requirement calls for a  *   multi-valued range.</li>  *<li>Instead of a fixed "precisionStep", this prefixTree can have a customizable number of child values for any  *   prefix (up to 32768). This allows exact alignment of the prefix-tree with typical/expected values, which  *   results in better performance.  For example in a Date implementation, every month can get its own dedicated prefix,  *   every day, etc., even though months vary in duration.</li>  *<li>Arbitrary precision, like {@link java.math.BigDecimal}.</li>  *<li>Standard Lucene integer/long indexing always indexes the full precision of those data types but this one  *   is customizable.</li>  *</ul>  *  * Unlike "normal" spatial components in this module, this special-purpose one only works with {@link Shape}s  * created by the methods on this class, not from any {@link org.locationtech.spatial4j.context.SpatialContext}.  *  * @see org.apache.lucene.spatial.prefix.NumberRangePrefixTreeStrategy  * @see<a href="https://issues.apache.org/jira/browse/LUCENE-5648">LUCENE-5648</a>  * @lucene.experimental  */
 end_comment
 
 begin_class

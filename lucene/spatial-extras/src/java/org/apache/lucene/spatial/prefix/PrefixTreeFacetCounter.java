@@ -30,11 +30,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -163,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Computes facets on cells for {@link org.apache.lucene.spatial.prefix.PrefixTreeStrategy}.  *<p>  *<em>NOTE:</em> If for a given document and a given field using  * {@link org.apache.lucene.spatial.prefix.RecursivePrefixTreeStrategy}  * multiple values are indexed (i.e. multi-valued) and at least one of them is a non-point, then there is a possibility  * of double-counting the document in the facet results.  Since each shape is independently turned into grid cells at  * a resolution chosen by the shape's size, it's possible they will be indexed at different resolutions.  This means  * the document could be present in BOTH the postings for a cell in both its prefix and leaf variants.  To avoid this,  * use a single valued field with a {@link com.spatial4j.core.shape.ShapeCollection} (or WKT equivalent).  Or  * calculate a suitable level/distErr to index both and call  * {@link org.apache.lucene.spatial.prefix.PrefixTreeStrategy#createIndexableFields(com.spatial4j.core.shape.Shape, int)}  * with the same value for all shapes for a given document/field.  *  * @lucene.experimental  */
+comment|/**  * Computes facets on cells for {@link org.apache.lucene.spatial.prefix.PrefixTreeStrategy}.  *<p>  *<em>NOTE:</em> If for a given document and a given field using  * {@link org.apache.lucene.spatial.prefix.RecursivePrefixTreeStrategy}  * multiple values are indexed (i.e. multi-valued) and at least one of them is a non-point, then there is a possibility  * of double-counting the document in the facet results.  Since each shape is independently turned into grid cells at  * a resolution chosen by the shape's size, it's possible they will be indexed at different resolutions.  This means  * the document could be present in BOTH the postings for a cell in both its prefix and leaf variants.  To avoid this,  * use a single valued field with a {@link org.locationtech.spatial4j.shape.ShapeCollection} (or WKT equivalent).  Or  * calculate a suitable level/distErr to index both and call  * {@link org.apache.lucene.spatial.prefix.PrefixTreeStrategy#createIndexableFields(org.locationtech.spatial4j.shape.Shape, int)}  * with the same value for all shapes for a given document/field.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

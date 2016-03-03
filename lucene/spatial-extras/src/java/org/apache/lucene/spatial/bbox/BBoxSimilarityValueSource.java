@@ -146,11 +146,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A base class for calculating a spatial relevance rank per document from a provided  * {@link ValueSource} in which {@link FunctionValues#objectVal(int)} returns a {@link  * com.spatial4j.core.shape.Rectangle}.  *<p>  * Implementers: remember to implement equals and hashCode if you have  * fields!  *  * @lucene.experimental  */
+comment|/**  * A base class for calculating a spatial relevance rank per document from a provided  * {@link ValueSource} in which {@link FunctionValues#objectVal(int)} returns a {@link  * org.locationtech.spatial4j.shape.Rectangle}.  *<p>  * Implementers: remember to implement equals and hashCode if you have  * fields!  *  * @lucene.experimental  */
 end_comment
 
 begin_class

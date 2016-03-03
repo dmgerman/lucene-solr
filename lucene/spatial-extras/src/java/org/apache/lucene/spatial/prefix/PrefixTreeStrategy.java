@@ -62,11 +62,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -76,11 +76,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -257,7 +257,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An abstract SpatialStrategy based on {@link SpatialPrefixTree}. The two  * subclasses are {@link RecursivePrefixTreeStrategy} and {@link  * TermQueryPrefixTreeStrategy}.  This strategy is most effective as a fast  * approximate spatial search filter.  *<p>  *<b>Characteristics:</b>  *<br>  *<ul>  *<li>Can index any shape; however only {@link RecursivePrefixTreeStrategy}  * can effectively search non-point shapes.</li>  *<li>Can index a variable number of shapes per field value. This strategy  * can do it via multiple calls to {@link #createIndexableFields(com.spatial4j.core.shape.Shape)}  * for a document or by giving it some sort of Shape aggregate (e.g. JTS  * WKT MultiPoint).  The shape's boundary is approximated to a grid precision.  *</li>  *<li>Can query with any shape.  The shape's boundary is approximated to a grid  * precision.</li>  *<li>Only {@link org.apache.lucene.spatial.query.SpatialOperation#Intersects}  * is supported.  If only points are indexed then this is effectively equivalent  * to IsWithin.</li>  *<li>The strategy supports {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point,double)}  * even for multi-valued data, so long as the indexed data is all points; the  * behavior is undefined otherwise.  However,<em>it will likely be removed in  * the future</em> in lieu of using another strategy with a more scalable  * implementation.  Use of this call is the only  * circumstance in which a cache is used.  The cache is simple but as such  * it doesn't scale to large numbers of points nor is it real-time-search  * friendly.</li>  *</ul>  *<p>  *<b>Implementation:</b>  *<p>  * The {@link SpatialPrefixTree} does most of the work, for example returning  * a list of terms representing grids of various sizes for a supplied shape.  * An important  * configuration item is {@link #setDistErrPct(double)} which balances  * shape precision against scalability.  See those javadocs.  *  * @lucene.experimental  */
+comment|/**  * An abstract SpatialStrategy based on {@link SpatialPrefixTree}. The two  * subclasses are {@link RecursivePrefixTreeStrategy} and {@link  * TermQueryPrefixTreeStrategy}.  This strategy is most effective as a fast  * approximate spatial search filter.  *<p>  *<b>Characteristics:</b>  *<br>  *<ul>  *<li>Can index any shape; however only {@link RecursivePrefixTreeStrategy}  * can effectively search non-point shapes.</li>  *<li>Can index a variable number of shapes per field value. This strategy  * can do it via multiple calls to {@link #createIndexableFields(org.locationtech.spatial4j.shape.Shape)}  * for a document or by giving it some sort of Shape aggregate (e.g. JTS  * WKT MultiPoint).  The shape's boundary is approximated to a grid precision.  *</li>  *<li>Can query with any shape.  The shape's boundary is approximated to a grid  * precision.</li>  *<li>Only {@link org.apache.lucene.spatial.query.SpatialOperation#Intersects}  * is supported.  If only points are indexed then this is effectively equivalent  * to IsWithin.</li>  *<li>The strategy supports {@link #makeDistanceValueSource(org.locationtech.spatial4j.shape.Point,double)}  * even for multi-valued data, so long as the indexed data is all points; the  * behavior is undefined otherwise.  However,<em>it will likely be removed in  * the future</em> in lieu of using another strategy with a more scalable  * implementation.  Use of this call is the only  * circumstance in which a cache is used.  The cache is simple but as such  * it doesn't scale to large numbers of points nor is it real-time-search  * friendly.</li>  *</ul>  *<p>  *<b>Implementation:</b>  *<p>  * The {@link SpatialPrefixTree} does most of the work, for example returning  * a list of terms representing grids of various sizes for a supplied shape.  * An important  * configuration item is {@link #setDistErrPct(double)} which balances  * shape precision against scalability.  See those javadocs.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -354,7 +354,7 @@ return|return
 name|grid
 return|;
 block|}
-comment|/**    * A memory hint used by {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point)}    * for how big the initial size of each Document's array should be. The    * default is 2.  Set this to slightly more than the default expected number    * of points per document.    */
+comment|/**    * A memory hint used by {@link #makeDistanceValueSource(org.locationtech.spatial4j.shape.Point)}    * for how big the initial size of each Document's array should be. The    * default is 2.  Set this to slightly more than the default expected number    * of points per document.    */
 DECL|method|setDefaultFieldValuesArrayLen
 specifier|public
 name|void
