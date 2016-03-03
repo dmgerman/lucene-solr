@@ -8910,6 +8910,39 @@ throw|;
 block|}
 if|if
 condition|(
+name|docCount
+operator|>
+name|reader
+operator|.
+name|maxDoc
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"point values for field \""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\" claims to have docCount="
+operator|+
+name|docCount
+operator|+
+literal|" but that's greater than maxDoc="
+operator|+
+name|reader
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|globalMinPackedValue
 operator|==
 literal|null
