@@ -4755,7 +4755,7 @@ name|errorMessage
 operator|.
 name|contains
 argument_list|(
-literal|"Collection names must consist entirely of"
+literal|"collection names must consist entirely of"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4910,7 +4910,7 @@ name|errorMessage
 operator|.
 name|contains
 argument_list|(
-literal|"Shard names must consist entirely of"
+literal|"shard names must consist entirely of"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5047,7 +5047,7 @@ name|errorMessage
 operator|.
 name|contains
 argument_list|(
-literal|"Aliases must consist entirely of"
+literal|"alias names must consist entirely of"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -5261,7 +5261,7 @@ name|errorMessage
 operator|.
 name|contains
 argument_list|(
-literal|"Shard names must consist entirely of"
+literal|"shard names must consist entirely of"
 argument_list|)
 argument_list|)
 expr_stmt|;

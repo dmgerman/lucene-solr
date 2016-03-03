@@ -1665,7 +1665,7 @@ return|return
 name|stateFormat
 return|;
 block|}
-comment|/**      * Provide the name of the shards to be created, separated by commas      *       * Shard names must consist entirely of periods, underscores, and alphanumerics.  Other characters are not allowed.      *       * @throws IllegalArgumentException if any of the shard names contain invalid characters.      */
+comment|/**      * Provide the name of the shards to be created, separated by commas      *       * Shard names must consist entirely of periods, underscores, hyphens, and alphanumerics.  Other characters are not allowed.      *       * @throws IllegalArgumentException if any of the shard names contain invalid characters.      */
 DECL|method|setShards
 specifier|public
 name|Create
@@ -1703,11 +1703,18 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid shard: "
-operator|+
+name|SolrIdentifierValidator
+operator|.
+name|getIdentifierMessage
+argument_list|(
+name|SolrIdentifierValidator
+operator|.
+name|IdentifierType
+operator|.
+name|SHARD
+argument_list|,
 name|shard
-operator|+
-literal|". Shard names must consist entirely of periods, underscores, and alphanumerics"
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -1751,11 +1758,18 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid collection: "
-operator|+
+name|SolrIdentifierValidator
+operator|.
+name|getIdentifierMessage
+argument_list|(
+name|SolrIdentifierValidator
+operator|.
+name|IdentifierType
+operator|.
+name|COLLECTION
+argument_list|,
 name|collectionName
-operator|+
-literal|". Collection names must consist entirely of periods, underscores, and alphanumerics"
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -2235,7 +2249,7 @@ operator|.
 name|CREATESHARD
 expr_stmt|;
 block|}
-comment|/**      * Provide the name of the shard to be created.      *       * Shard names must consist entirely of periods, underscores, and alphanumerics.  Other characters are not allowed.      *       * @throws IllegalArgumentException if the shard name contains invalid characters.      */
+comment|/**      * Provide the name of the shard to be created.      *       * Shard names must consist entirely of periods, underscores, hyphens, and alphanumerics.  Other characters are not allowed.      *       * @throws IllegalArgumentException if the shard name contains invalid characters.      */
 annotation|@
 name|Override
 DECL|method|setShardName
@@ -2262,11 +2276,18 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid shard: "
-operator|+
+name|SolrIdentifierValidator
+operator|.
+name|getIdentifierMessage
+argument_list|(
+name|SolrIdentifierValidator
+operator|.
+name|IdentifierType
+operator|.
+name|SHARD
+argument_list|,
 name|shardName
-operator|+
-literal|". Shard names must consist entirely of periods, underscores, and alphanumerics"
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -2965,11 +2986,18 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Invalid alias: "
-operator|+
+name|SolrIdentifierValidator
+operator|.
+name|getIdentifierMessage
+argument_list|(
+name|SolrIdentifierValidator
+operator|.
+name|IdentifierType
+operator|.
+name|ALIAS
+argument_list|,
 name|aliasName
-operator|+
-literal|". Aliases must consist entirely of periods, underscores, and alphanumerics"
+argument_list|)
 argument_list|)
 throw|;
 block|}

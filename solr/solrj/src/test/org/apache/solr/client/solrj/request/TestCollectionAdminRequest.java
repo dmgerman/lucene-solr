@@ -186,7 +186,7 @@ name|exceptionMessage
 operator|.
 name|contains
 argument_list|(
-literal|"must consist entirely of periods, underscores, and alphanumerics"
+literal|"must consist entirely of periods, underscores, hyphens, and alphanumerics"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -262,7 +262,7 @@ name|exceptionMessage
 operator|.
 name|contains
 argument_list|(
-literal|"must consist entirely of periods, underscores, and alphanumerics"
+literal|"must consist entirely of periods, underscores, hyphens, and alphanumerics"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -338,7 +338,7 @@ name|exceptionMessage
 operator|.
 name|contains
 argument_list|(
-literal|"must consist entirely of periods, underscores, and alphanumerics"
+literal|"must consist entirely of periods, underscores, hyphens, and alphanumerics"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -414,7 +414,7 @@ name|exceptionMessage
 operator|.
 name|contains
 argument_list|(
-literal|"must consist entirely of periods, underscores, and alphanumerics"
+literal|"must consist entirely of periods, underscores, hyphens, and alphanumerics"
 argument_list|)
 argument_list|)
 expr_stmt|;

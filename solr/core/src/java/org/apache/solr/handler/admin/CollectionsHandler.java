@@ -2865,11 +2865,18 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Invalid collection: "
-operator|+
+name|SolrIdentifierValidator
+operator|.
+name|getIdentifierMessage
+argument_list|(
+name|SolrIdentifierValidator
+operator|.
+name|IdentifierType
+operator|.
+name|COLLECTION
+argument_list|,
 name|collectionName
-operator|+
-literal|". Collection names must consist entirely of periods, underscores, and alphanumerics"
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -2897,26 +2904,8 @@ name|shardsParam
 argument_list|)
 condition|)
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Validating shards param!!!!!!!!"
-operator|+
-name|shardsParam
-argument_list|)
-expr_stmt|;
 name|verifyShardsParam
 argument_list|(
-name|shardsParam
-argument_list|)
-expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Validating shards param!!!!!!! done"
-operator|+
 name|shardsParam
 argument_list|)
 expr_stmt|;
@@ -3496,11 +3485,18 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Invalid alias: "
-operator|+
+name|SolrIdentifierValidator
+operator|.
+name|getIdentifierMessage
+argument_list|(
+name|SolrIdentifierValidator
+operator|.
+name|IdentifierType
+operator|.
+name|ALIAS
+argument_list|,
 name|aliasName
-operator|+
-literal|". Aliases must consist entirely of periods, underscores, and alphanumerics"
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -3971,11 +3967,18 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Invalid shard: "
-operator|+
+name|SolrIdentifierValidator
+operator|.
+name|getIdentifierMessage
+argument_list|(
+name|SolrIdentifierValidator
+operator|.
+name|IdentifierType
+operator|.
+name|SHARD
+argument_list|,
 name|newShardName
-operator|+
-literal|". Shard names must consist entirely of periods, underscores, and alphanumerics"
+argument_list|)
 argument_list|)
 throw|;
 block|}
@@ -7488,14 +7491,20 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"Invalid shard: "
-operator|+
+name|SolrIdentifierValidator
+operator|.
+name|getIdentifierMessage
+argument_list|(
+name|SolrIdentifierValidator
+operator|.
+name|IdentifierType
+operator|.
+name|SHARD
+argument_list|,
 name|shard
-operator|+
-literal|". Shard names must consist entirely of periods, underscores, and alphanumerics"
+argument_list|)
 argument_list|)
 throw|;
-empty_stmt|;
 block|}
 block|}
 DECL|field|MODIFIABLE_COLL_PROPS
