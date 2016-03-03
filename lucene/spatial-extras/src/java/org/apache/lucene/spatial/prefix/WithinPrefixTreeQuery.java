@@ -30,11 +30,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -44,11 +44,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|distance
 operator|.
@@ -58,11 +58,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -72,11 +72,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -86,11 +86,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -100,11 +100,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -114,11 +114,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -260,7 +260,7 @@ name|Shape
 name|bufferedQueryShape
 decl_stmt|;
 comment|//if null then the whole world
-comment|/**    * See {@link AbstractVisitingPrefixTreeQuery#AbstractVisitingPrefixTreeQuery(com.spatial4j.core.shape.Shape, String, org.apache.lucene.spatial.prefix.tree.SpatialPrefixTree, int, int)}.    * {@code queryBuffer} is the (minimum) distance beyond the query shape edge    * where non-matching documents are looked for so they can be excluded. If    * -1 is used then the whole world is examined (a good default for correctness).    */
+comment|/**    * See {@link AbstractVisitingPrefixTreeQuery#AbstractVisitingPrefixTreeQuery(org.locationtech.spatial4j.shape.Shape, String, org.apache.lucene.spatial.prefix.tree.SpatialPrefixTree, int, int)}.    * {@code queryBuffer} is the (minimum) distance beyond the query shape edge    * where non-matching documents are looked for so they can be excluded. If    * -1 is used then the whole world is examined (a good default for correctness).    */
 DECL|method|WithinPrefixTreeQuery
 specifier|public
 name|WithinPrefixTreeQuery

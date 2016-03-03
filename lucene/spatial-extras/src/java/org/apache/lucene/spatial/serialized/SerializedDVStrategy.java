@@ -90,11 +90,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -104,11 +104,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|io
 operator|.
@@ -118,11 +118,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -132,11 +132,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -421,7 +421,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A SpatialStrategy based on serializing a Shape stored into BinaryDocValues.  * This is not at all fast; it's designed to be used in conjunction with another index based  * SpatialStrategy that is approximated (like {@link org.apache.lucene.spatial.prefix.RecursivePrefixTreeStrategy})  * to add precision or eventually make more specific / advanced calculations on the per-document  * geometry.  * The serialization uses Spatial4j's {@link com.spatial4j.core.io.BinaryCodec}.  *  * @lucene.experimental  */
+comment|/**  * A SpatialStrategy based on serializing a Shape stored into BinaryDocValues.  * This is not at all fast; it's designed to be used in conjunction with another index based  * SpatialStrategy that is approximated (like {@link org.apache.lucene.spatial.prefix.RecursivePrefixTreeStrategy})  * to add precision or eventually make more specific / advanced calculations on the per-document  * geometry.  * The serialization uses Spatial4j's {@link org.locationtech.spatial4j.io.BinaryCodec}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

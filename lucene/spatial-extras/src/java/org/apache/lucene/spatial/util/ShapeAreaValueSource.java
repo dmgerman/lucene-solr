@@ -70,11 +70,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -84,11 +84,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -189,7 +189,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The area of a Shape retrieved from a ValueSource via  * {@link org.apache.lucene.queries.function.FunctionValues#objectVal(int)}.  *  * @see Shape#getArea(com.spatial4j.core.context.SpatialContext)  *  * @lucene.experimental  */
+comment|/**  * The area of a Shape retrieved from a ValueSource via  * {@link org.apache.lucene.queries.function.FunctionValues#objectVal(int)}.  *  * @see Shape#getArea(org.locationtech.spatial4j.context.SpatialContext)  *  * @lucene.experimental  */
 end_comment
 
 begin_class

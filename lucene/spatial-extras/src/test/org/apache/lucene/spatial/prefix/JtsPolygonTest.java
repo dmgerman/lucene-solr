@@ -20,11 +20,11 @@ end_package
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -34,11 +34,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -48,11 +48,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -336,7 +336,7 @@ name|put
 argument_list|(
 literal|"spatialContextFactory"
 argument_list|,
-literal|"com.spatial4j.core.context.jts.JtsSpatialContextFactory"
+literal|"org.locationtech.spatial4j.context.jts.JtsSpatialContextFactory"
 argument_list|)
 expr_stmt|;
 name|ctx

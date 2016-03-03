@@ -40,11 +40,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|TestLog
 import|;
@@ -52,11 +52,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -66,11 +66,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|distance
 operator|.
@@ -80,11 +80,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -94,11 +94,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -108,11 +108,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -268,11 +268,11 @@ end_import
 
 begin_import
 import|import static
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|distance
 operator|.
@@ -596,13 +596,6 @@ return|;
 block|}
 block|}
 annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/LUCENE-6867"
-argument_list|)
-annotation|@
 name|Test
 DECL|method|testGeoCircleRect
 specifier|public
@@ -725,13 +718,6 @@ name|testRelateWithRectangle
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/LUCENE-6867"
-argument_list|)
 annotation|@
 name|Test
 DECL|method|testGeoBBoxRect
@@ -885,13 +871,6 @@ name|testRelateWithRectangle
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/LUCENE-6867"
-argument_list|)
 annotation|@
 name|Test
 DECL|method|testGeoPolygonRect
@@ -1125,13 +1104,6 @@ name|testRelateWithRectangle
 argument_list|()
 expr_stmt|;
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/LUCENE-6867"
-argument_list|)
 annotation|@
 name|Test
 DECL|method|testGeoPathRect

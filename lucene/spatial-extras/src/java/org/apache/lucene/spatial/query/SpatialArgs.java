@@ -20,11 +20,11 @@ end_package
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -34,11 +34,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -48,11 +48,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -62,11 +62,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -425,7 +425,7 @@ operator|=
 name|shape
 expr_stmt|;
 block|}
-comment|/**    * A measure of acceptable error of the shape as a fraction.  This effectively    * inflates the size of the shape but should not shrink it.    *    * @return 0 to 0.5    * @see #calcDistanceFromErrPct(com.spatial4j.core.shape.Shape, double,    *      com.spatial4j.core.context.SpatialContext)    */
+comment|/**    * A measure of acceptable error of the shape as a fraction.  This effectively    * inflates the size of the shape but should not shrink it.    *    * @return 0 to 0.5    * @see #calcDistanceFromErrPct(org.locationtech.spatial4j.shape.Shape, double,    *      org.locationtech.spatial4j.context.SpatialContext)    */
 DECL|method|getDistErrPct
 specifier|public
 name|Double

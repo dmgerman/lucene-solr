@@ -20,11 +20,11 @@ end_package
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -34,11 +34,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|exception
 operator|.
@@ -48,11 +48,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -111,7 +111,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parses a string that usually looks like "OPERATION(SHAPE)" into a {@link SpatialArgs}  * object. The set of operations supported are defined in {@link SpatialOperation}, such  * as "Intersects" being a common one. The shape portion is defined by WKT {@link com.spatial4j.core.io.WktShapeParser},  * but it can be overridden/customized via {@link #parseShape(String, com.spatial4j.core.context.SpatialContext)}.  * There are some optional name-value pair parameters that follow the closing parenthesis.  Example:  *<pre>  *   Intersects(ENVELOPE(-10,-8,22,20)) distErrPct=0.025  *</pre>  *<p>  * In the future it would be good to support something at least semi-standardized like a  * variant of<a href="http://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate">  *   [E]CQL</a>.  *  * @lucene.experimental  */
+comment|/**  * Parses a string that usually looks like "OPERATION(SHAPE)" into a {@link SpatialArgs}  * object. The set of operations supported are defined in {@link SpatialOperation}, such  * as "Intersects" being a common one. The shape portion is defined by WKT {@link org.locationtech.spatial4j.io.WktShapeParser},  * but it can be overridden/customized via {@link #parseShape(String, org.locationtech.spatial4j.context.SpatialContext)}.  * There are some optional name-value pair parameters that follow the closing parenthesis.  Example:  *<pre>  *   Intersects(ENVELOPE(-10,-8,22,20)) distErrPct=0.025  *</pre>  *<p>  * In the future it would be good to support something at least semi-standardized like a  * variant of<a href="http://docs.geoserver.org/latest/en/user/filter/ecql_reference.html#spatial-predicate">  *   [E]CQL</a>.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
