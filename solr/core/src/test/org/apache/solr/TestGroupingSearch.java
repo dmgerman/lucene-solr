@@ -449,7 +449,7 @@ specifier|final
 name|String
 name|EMPTY_FACETS
 init|=
-literal|"'facet_dates':{},'facet_ranges':{},'facet_intervals':{},'facet_heatmaps':{}"
+literal|"'facet_ranges':{},'facet_intervals':{},'facet_heatmaps':{}"
 decl_stmt|;
 annotation|@
 name|BeforeClass
