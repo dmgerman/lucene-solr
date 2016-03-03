@@ -295,6 +295,28 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/**    * Get the regex flags    */
+DECL|method|getFlags
+specifier|public
+name|int
+name|getFlags
+parameter_list|()
+block|{
+return|return
+name|flags
+return|;
+block|}
+comment|/**    * Get the maximum number of states permitted in the determinized automaton    */
+DECL|method|getMaxDeterminizedStates
+specifier|public
+name|int
+name|getMaxDeterminizedStates
+parameter_list|()
+block|{
+return|return
+name|maxDeterminizedStates
+return|;
+block|}
 block|}
 end_class
 

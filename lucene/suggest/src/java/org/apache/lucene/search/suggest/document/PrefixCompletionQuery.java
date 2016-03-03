@@ -248,6 +248,17 @@ argument_list|()
 argument_list|)
 return|;
 block|}
+comment|/**    * Gets the analyzer used to analyze the prefix.    */
+DECL|method|getAnalyzer
+specifier|public
+name|Analyzer
+name|getAnalyzer
+parameter_list|()
+block|{
+return|return
+name|analyzer
+return|;
+block|}
 block|}
 end_class
 

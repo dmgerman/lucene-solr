@@ -263,6 +263,17 @@ name|maxDeterminizedStates
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Returns the regexp of this query wrapped in a Term. */
+DECL|method|getRegexp
+specifier|public
+name|Term
+name|getRegexp
+parameter_list|()
+block|{
+return|return
+name|term
+return|;
+block|}
 comment|/** Prints a user-readable version of this query. */
 annotation|@
 name|Override

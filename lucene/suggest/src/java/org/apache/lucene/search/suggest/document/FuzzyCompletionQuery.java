@@ -874,6 +874,72 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**    * Get the maximum edit distance for fuzzy matches    */
+DECL|method|getMaxEdits
+specifier|public
+name|int
+name|getMaxEdits
+parameter_list|()
+block|{
+return|return
+name|maxEdits
+return|;
+block|}
+comment|/**    * Return whether transpositions count as a single edit    */
+DECL|method|isTranspositions
+specifier|public
+name|boolean
+name|isTranspositions
+parameter_list|()
+block|{
+return|return
+name|transpositions
+return|;
+block|}
+comment|/**    * Get the length of a prefix where no edits are permitted    */
+DECL|method|getNonFuzzyPrefix
+specifier|public
+name|int
+name|getNonFuzzyPrefix
+parameter_list|()
+block|{
+return|return
+name|nonFuzzyPrefix
+return|;
+block|}
+comment|/**    * Get the minimum length of a term considered for matching    */
+DECL|method|getMinFuzzyLength
+specifier|public
+name|int
+name|getMinFuzzyLength
+parameter_list|()
+block|{
+return|return
+name|minFuzzyLength
+return|;
+block|}
+comment|/**    * Return true if lengths are measured in unicode code-points rather than bytes    */
+DECL|method|isUnicodeAware
+specifier|public
+name|boolean
+name|isUnicodeAware
+parameter_list|()
+block|{
+return|return
+name|unicodeAware
+return|;
+block|}
+comment|/**    * Get the maximum number of determinized states permitted    */
+DECL|method|getMaxDeterminizedStates
+specifier|public
+name|int
+name|getMaxDeterminizedStates
+parameter_list|()
+block|{
+return|return
+name|maxDeterminizedStates
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString

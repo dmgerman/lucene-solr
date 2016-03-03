@@ -396,6 +396,17 @@ return|return
 name|h
 return|;
 block|}
+comment|/** Return the n in n-gram */
+DECL|method|getN
+specifier|public
+name|int
+name|getN
+parameter_list|()
+block|{
+return|return
+name|n
+return|;
+block|}
 comment|/** Return the list of terms. */
 DECL|method|getTerms
 specifier|public
