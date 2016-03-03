@@ -2031,12 +2031,6 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
-comment|// force update the cluster state
-name|zkStateReader
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|CollectionParams
 operator|.
 name|CollectionAction
@@ -15865,6 +15859,15 @@ argument_list|,
 name|asyncId
 argument_list|,
 name|requestMap
+argument_list|)
+expr_stmt|;
+name|waitForCoreNodeName
+argument_list|(
+name|collection
+argument_list|,
+name|node
+argument_list|,
+name|coreName
 argument_list|)
 expr_stmt|;
 block|}
