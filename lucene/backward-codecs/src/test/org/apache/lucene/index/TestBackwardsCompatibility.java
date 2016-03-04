@@ -4137,7 +4137,6 @@ decl_stmt|;
 assert|assert
 name|is40Index
 assert|;
-comment|// NOTE: currently we can only do this on trunk!
 specifier|final
 name|Bits
 name|liveDocs
