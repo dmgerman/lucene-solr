@@ -1294,18 +1294,9 @@ literal|30000
 argument_list|,
 literal|30000
 argument_list|,
-operator|new
-name|OnReconnect
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|command
 parameter_list|()
-block|{}
-block|}
+lambda|->
+block|{             }
 argument_list|)
 expr_stmt|;
 if|if

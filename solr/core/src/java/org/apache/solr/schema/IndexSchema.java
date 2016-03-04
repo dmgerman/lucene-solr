@@ -7499,25 +7499,12 @@ name|sort
 argument_list|(
 name|copyFields
 argument_list|,
-operator|new
-name|Comparator
-argument_list|<
-name|CopyField
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|int
-name|compare
 parameter_list|(
-name|CopyField
 name|cf1
 parameter_list|,
-name|CopyField
 name|cf2
 parameter_list|)
+lambda|->
 block|{
 comment|// sources are all the same, just sorting by destination here
 return|return
@@ -7540,7 +7527,6 @@ name|getName
 argument_list|()
 argument_list|)
 return|;
-block|}
 block|}
 argument_list|)
 expr_stmt|;

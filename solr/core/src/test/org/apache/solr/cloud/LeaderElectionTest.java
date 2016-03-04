@@ -905,16 +905,8 @@ operator|=
 operator|new
 name|ElectorSetup
 argument_list|(
-operator|new
-name|OnReconnect
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|command
 parameter_list|()
+lambda|->
 block|{
 try|try
 block|{
@@ -927,8 +919,7 @@ parameter_list|(
 name|Throwable
 name|t
 parameter_list|)
-block|{             }
-block|}
+block|{           }
 block|}
 argument_list|)
 expr_stmt|;

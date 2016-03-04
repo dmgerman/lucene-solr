@@ -659,23 +659,12 @@ name|sort
 argument_list|(
 name|xmlFiles
 argument_list|,
-operator|new
-name|Comparator
-argument_list|<
-name|File
-argument_list|>
-argument_list|()
-block|{
-specifier|public
-name|int
-name|compare
 parameter_list|(
-name|File
 name|o1
 parameter_list|,
-name|File
 name|o2
 parameter_list|)
+lambda|->
 block|{
 comment|// don't rely on File.compareTo, it's behavior varies by OS
 return|return
@@ -692,7 +681,6 @@ name|getName
 argument_list|()
 argument_list|)
 return|;
-block|}
 block|}
 argument_list|)
 expr_stmt|;
