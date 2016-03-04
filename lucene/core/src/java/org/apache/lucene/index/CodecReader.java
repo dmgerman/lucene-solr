@@ -1804,6 +1804,22 @@ name|checkIntegrity
 argument_list|()
 expr_stmt|;
 block|}
+comment|// points
+if|if
+condition|(
+name|getPointReader
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|getPointReader
+argument_list|()
+operator|.
+name|checkIntegrity
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 end_class
