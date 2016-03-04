@@ -470,12 +470,12 @@ argument_list|>
 argument_list|>
 name|shardVsNodes
 decl_stmt|;
-DECL|field|liveNodes
+DECL|field|participatingLiveNodes
 name|List
 argument_list|<
 name|String
 argument_list|>
-name|liveNodes
+name|participatingLiveNodes
 decl_stmt|;
 DECL|field|tagNames
 name|Set
@@ -641,7 +641,7 @@ name|List
 argument_list|<
 name|String
 argument_list|>
-name|liveNodes
+name|participatingLiveNodes
 parameter_list|,
 name|CoreContainer
 name|cc
@@ -682,13 +682,13 @@ name|shardVsReplicaCount
 expr_stmt|;
 name|this
 operator|.
-name|liveNodes
+name|participatingLiveNodes
 operator|=
 operator|new
 name|ArrayList
 argument_list|<>
 argument_list|(
-name|liveNodes
+name|participatingLiveNodes
 argument_list|)
 expr_stmt|;
 name|this
@@ -1471,7 +1471,7 @@ argument_list|<>
 argument_list|(
 name|this
 operator|.
-name|liveNodes
+name|participatingLiveNodes
 argument_list|)
 decl_stmt|;
 name|Collections
@@ -2735,7 +2735,7 @@ control|(
 name|String
 name|node
 range|:
-name|liveNodes
+name|participatingLiveNodes
 control|)
 block|{
 comment|//now use the Snitch to get the tags
@@ -2900,7 +2900,7 @@ argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
-name|liveNodes
+name|participatingLiveNodes
 operator|.
 name|remove
 argument_list|(
@@ -3013,7 +3013,7 @@ block|}
 block|}
 if|if
 condition|(
-name|liveNodes
+name|participatingLiveNodes
 operator|.
 name|isEmpty
 argument_list|()
