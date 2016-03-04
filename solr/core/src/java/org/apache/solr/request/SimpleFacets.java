@@ -2151,27 +2151,6 @@ name|base
 return|;
 block|}
 block|}
-comment|/**    * Looks at various Params to determining if any simple Facet Constraint count    * computations are desired.    *    * @return a NamedList of Facet Count info or null    * @deprecated use {@link org.apache.solr.handler.component.FacetComponent#getFacetCounts(SimpleFacets)} instead    */
-annotation|@
-name|Deprecated
-DECL|method|getFacetCounts
-specifier|public
-name|NamedList
-argument_list|<
-name|Object
-argument_list|>
-name|getFacetCounts
-parameter_list|()
-block|{
-return|return
-name|FacetComponent
-operator|.
-name|getFacetCounts
-argument_list|(
-name|this
-argument_list|)
-return|;
-block|}
 comment|/**    * Returns a list of facet counts for each of the facet queries    * specified in the params    *    * @see FacetParams#FACET_QUERY    */
 DECL|method|getFacetQueryCounts
 specifier|public

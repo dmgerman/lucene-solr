@@ -62,11 +62,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|distance
 operator|.
@@ -189,28 +189,6 @@ operator|/
 name|Math
 operator|.
 name|PI
-argument_list|,
-literal|1.0
-argument_list|)
-decl_stmt|;
-comment|// Previously, distance based filtering was done with km, but scores were based on degrees
-annotation|@
-name|Deprecated
-DECL|field|BACKCOMPAT
-specifier|public
-specifier|final
-specifier|static
-name|DistanceUnits
-name|BACKCOMPAT
-init|=
-operator|new
-name|DistanceUnits
-argument_list|(
-literal|"backcompat"
-argument_list|,
-name|DistanceUtils
-operator|.
-name|EARTH_MEAN_RADIUS_KM
 argument_list|,
 literal|1.0
 argument_list|)

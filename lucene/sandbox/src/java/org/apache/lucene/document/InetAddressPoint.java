@@ -20,16 +20,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|net
 operator|.
 name|InetAddress
@@ -112,22 +102,8 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRefIterator
-import|;
-end_import
-
 begin_comment
-comment|/**   * An indexed 128-bit {@code InetAddress} field.  *<p>  * Finding all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery newExactQuery()} for matching an exact network address.  *<li>{@link #newPrefixQuery newPrefixQuery()} for matching a network based on CIDR prefix.  *<li>{@link #newRangeQuery newRangeQuery()} for matching arbitrary network address ranges.  *<li>{@link #newSetQuery newSetQuery()} for matching a set of 1D values.  *</ul>  *<p>  * This field supports both IPv4 and IPv6 addresses: IPv4 addresses are converted  * to<a href="https://tools.ietf.org/html/rfc4291#section-2.5.5">IPv4-Mapped IPv6 Addresses</a>:  * indexing {@code 1.2.3.4} is the same as indexing {@code ::FFFF:1.2.3.4}.  */
+comment|/**   * An indexed 128-bit {@code InetAddress} field.  *<p>  * Finding all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery(String, InetAddress)} for matching an exact network address.  *<li>{@link #newPrefixQuery(String, InetAddress, int)} for matching a network based on CIDR prefix.  *<li>{@link #newRangeQuery(String, InetAddress, InetAddress)} for matching arbitrary network address ranges.  *<li>{@link #newSetQuery(String, InetAddress...)} for matching a set of 1D values.  *</ul>  *<p>  * This field supports both IPv4 and IPv6 addresses: IPv4 addresses are converted  * to<a href="https://tools.ietf.org/html/rfc4291#section-2.5.5">IPv4-Mapped IPv6 Addresses</a>:  * indexing {@code 1.2.3.4} is the same as indexing {@code ::FFFF:1.2.3.4}.  */
 end_comment
 
 begin_class
@@ -603,11 +579,7 @@ name|field
 argument_list|,
 name|value
 argument_list|,
-literal|true
-argument_list|,
 name|value
-argument_list|,
-literal|true
 argument_list|)
 return|;
 block|}
@@ -628,6 +600,21 @@ name|int
 name|prefixLength
 parameter_list|)
 block|{
+if|if
+condition|(
+name|value
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"InetAddress cannot be null"
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|prefixLength
@@ -744,16 +731,12 @@ argument_list|(
 name|lower
 argument_list|)
 argument_list|,
-literal|true
-argument_list|,
 name|InetAddress
 operator|.
 name|getByAddress
 argument_list|(
 name|upper
 argument_list|)
-argument_list|,
-literal|true
 argument_list|)
 return|;
 block|}
@@ -773,7 +756,7 @@ throw|;
 comment|// values are coming from InetAddress
 block|}
 block|}
-comment|/**     * Create a range query for network addresses.    *<p>    * You can have half-open ranges (which are in fact&lt;/&le; or&gt;/&ge; queries)    * by setting the {@code lowerValue} or {@code upperValue} to {@code null}.     *<p>    * By setting inclusive ({@code lowerInclusive} or {@code upperInclusive}) to false, it will    * match all documents excluding the bounds, with inclusive on, the boundaries are hits, too.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range. {@code null} means "open".    * @param lowerInclusive {@code true} if the lower portion of the range is inclusive, {@code false} if it should be excluded.    * @param upperValue upper portion of the range. {@code null} means "open".    * @param upperInclusive {@code true} if the upper portion of the range is inclusive, {@code false} if it should be excluded.    * @throws IllegalArgumentException if {@code field} is null.    * @return a query matching documents within this range.    */
+comment|/**     * Create a range query for network addresses.    *    * @param field field name. must not be {@code null}.    * @param lowerValue lower portion of the range (inclusive). must not be null.    * @param upperValue upper portion of the range (inclusive). must not be null.    * @throws IllegalArgumentException if {@code field} is null, {@code lowerValue} is null,     *                                  or {@code upperValue} is null    * @return a query matching documents within this range.    */
 DECL|method|newRangeQuery
 specifier|public
 specifier|static
@@ -786,16 +769,21 @@ parameter_list|,
 name|InetAddress
 name|lowerValue
 parameter_list|,
-name|boolean
-name|lowerInclusive
-parameter_list|,
 name|InetAddress
 name|upperValue
-parameter_list|,
-name|boolean
-name|upperInclusive
 parameter_list|)
 block|{
+name|PointRangeQuery
+operator|.
+name|checkArgs
+argument_list|(
+name|field
+argument_list|,
+name|lowerValue
+argument_list|,
+name|upperValue
+argument_list|)
+expr_stmt|;
 name|byte
 index|[]
 index|[]
@@ -808,13 +796,6 @@ literal|1
 index|]
 index|[]
 decl_stmt|;
-if|if
-condition|(
-name|lowerValue
-operator|!=
-literal|null
-condition|)
-block|{
 name|lowerBytes
 index|[
 literal|0
@@ -825,7 +806,6 @@ argument_list|(
 name|lowerValue
 argument_list|)
 expr_stmt|;
-block|}
 name|byte
 index|[]
 index|[]
@@ -838,13 +818,6 @@ literal|1
 index|]
 index|[]
 decl_stmt|;
-if|if
-condition|(
-name|upperValue
-operator|!=
-literal|null
-condition|)
-block|{
 name|upperBytes
 index|[
 literal|0
@@ -855,7 +828,6 @@ argument_list|(
 name|upperValue
 argument_list|)
 expr_stmt|;
-block|}
 return|return
 operator|new
 name|PointRangeQuery
@@ -864,21 +836,7 @@ name|field
 argument_list|,
 name|lowerBytes
 argument_list|,
-operator|new
-name|boolean
-index|[]
-block|{
-name|lowerInclusive
-block|}
-argument_list|,
 name|upperBytes
-argument_list|,
-operator|new
-name|boolean
-index|[]
-block|{
-name|upperInclusive
-block|}
 argument_list|)
 block|{
 annotation|@
@@ -909,7 +867,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param valuesIn all values to match    */
+comment|/**    * Create a query matching any of the specified 1D values.  This is the points equivalent of {@code TermsQuery}.    *     * @param field field name. must not be {@code null}.    * @param values all values to match    */
 DECL|method|newSetQuery
 specifier|public
 specifier|static
@@ -921,17 +879,15 @@ name|field
 parameter_list|,
 name|InetAddress
 modifier|...
-name|valuesIn
+name|values
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|// Don't unexpectedly change the user's incoming values array:
 name|InetAddress
 index|[]
-name|values
+name|sortedValues
 init|=
-name|valuesIn
+name|values
 operator|.
 name|clone
 argument_list|()
@@ -940,12 +896,12 @@ name|Arrays
 operator|.
 name|sort
 argument_list|(
-name|values
+name|sortedValues
 argument_list|)
 expr_stmt|;
 specifier|final
 name|BytesRef
-name|value
+name|encoded
 init|=
 operator|new
 name|BytesRef
@@ -968,7 +924,9 @@ argument_list|,
 name|BYTES
 argument_list|,
 operator|new
-name|BytesRefIterator
+name|PointInSetQuery
+operator|.
+name|Stream
 argument_list|()
 block|{
 name|int
@@ -985,7 +943,7 @@ if|if
 condition|(
 name|upto
 operator|==
-name|values
+name|sortedValues
 operator|.
 name|length
 condition|)
@@ -996,26 +954,26 @@ return|;
 block|}
 else|else
 block|{
-name|value
+name|encoded
 operator|.
 name|bytes
 operator|=
 name|encode
 argument_list|(
-name|values
+name|sortedValues
 index|[
 name|upto
 index|]
 argument_list|)
 expr_stmt|;
 assert|assert
-name|value
+name|encoded
 operator|.
 name|bytes
 operator|.
 name|length
 operator|==
-name|value
+name|encoded
 operator|.
 name|length
 assert|;
@@ -1023,7 +981,7 @@ name|upto
 operator|++
 expr_stmt|;
 return|return
-name|value
+name|encoded
 return|;
 block|}
 block|}

@@ -188,6 +188,20 @@ name|LegacyNumericUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|NumericUtils
+import|;
+end_import
+
 begin_comment
 comment|/**  *<b>Expert:</b> This class provides a {@link TokenStream}  * for indexing numeric values that can be used by {@link  * org.apache.lucene.search.LegacyNumericRangeQuery}.  *  *<p>Note that for simple usage, {@link org.apache.lucene.document.LegacyIntField}, {@link  * org.apache.lucene.document.LegacyLongField}, {@link org.apache.lucene.document.LegacyFloatField} or {@link org.apache.lucene.document.LegacyDoubleField} is  * recommended.  These fields disable norms and  * term freqs, as they are not usually needed during  * searching.  If you need to change these settings, you  * should use this class.  *  *<p>Here's an example usage, for an<code>int</code> field:  *  *<pre class="prettyprint">  *  FieldType fieldType = new FieldType(TextField.TYPE_NOT_STORED);  *  fieldType.setOmitNorms(true);  *  fieldType.setIndexOptions(IndexOptions.DOCS_ONLY);  *  Field field = new Field(name, new LegacyNumericTokenStream(precisionStep).setIntValue(value), fieldType);  *  document.add(field);  *</pre>  *  *<p>For optimal performance, re-use the TokenStream and Field instance  * for more than one document:  *  *<pre class="prettyprint">  *  LegacyNumericTokenStream stream = new LegacyNumericTokenStream(precisionStep);  *  FieldType fieldType = new FieldType(TextField.TYPE_NOT_STORED);  *  fieldType.setOmitNorms(true);  *  fieldType.setIndexOptions(IndexOptions.DOCS_ONLY);  *  Field field = new Field(name, stream, fieldType);  *  Document document = new Document();  *  document.add(field);  *  *  for(all documents) {  *    stream.setIntValue(value)  *    writer.addDocument(document);  *  }  *</pre>  *  *<p>This stream is not intended to be used in analyzers;  * it's more for iterating the different precisions during  * indexing a specific numeric value.</p>   *<p><b>NOTE</b>: as token streams are only consumed once  * the document is added to the index, if you index more  * than one numeric field, use a separate<code>LegacyNumericTokenStream</code>  * instance for each.</p>  *  *<p>See {@link org.apache.lucene.search.LegacyNumericRangeQuery} for more details on the  *<a  * href="../search/LegacyNumericRangeQuery.html#precisionStepDesc"><code>precisionStep</code></a>  * parameter as well as how numeric fields work under the hood.</p>  *  * @deprecated Please switch to {@link org.apache.lucene.index.PointValues} instead  *  * @since 2.9  */
 end_comment
@@ -1050,7 +1064,7 @@ name|numericAtt
 operator|.
 name|init
 argument_list|(
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1086,7 +1100,7 @@ name|numericAtt
 operator|.
 name|init
 argument_list|(
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(

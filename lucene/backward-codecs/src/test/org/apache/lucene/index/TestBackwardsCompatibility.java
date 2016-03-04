@@ -752,7 +752,7 @@ name|LuceneTestCase
 block|{
 comment|// Backcompat index generation, described below, is mostly automated in:
 comment|//
-comment|//    dev-tools/scripts/addBackCompatIndexes.py
+comment|//    dev-tools/scripts/addBackcompatIndexes.py
 comment|//
 comment|// For usage information, see:
 comment|//
@@ -1550,6 +1550,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+comment|// TODO: on 6.0.0 release, gen the indices and add here:
 DECL|field|oldNames
 specifier|final
 specifier|static
@@ -1557,47 +1558,7 @@ name|String
 index|[]
 name|oldNames
 init|=
-block|{
-literal|"5.0.0-cfs"
-block|,
-literal|"5.0.0-nocfs"
-block|,
-literal|"5.1.0-cfs"
-block|,
-literal|"5.1.0-nocfs"
-block|,
-literal|"5.2.0-cfs"
-block|,
-literal|"5.2.0-nocfs"
-block|,
-literal|"5.2.1-cfs"
-block|,
-literal|"5.2.1-nocfs"
-block|,
-literal|"5.3.0-cfs"
-block|,
-literal|"5.3.0-nocfs"
-block|,
-literal|"5.3.1-cfs"
-block|,
-literal|"5.3.1-nocfs"
-block|,
-literal|"5.3.2-cfs"
-block|,
-literal|"5.3.2-nocfs"
-block|,
-literal|"5.4.0-cfs"
-block|,
-literal|"5.4.0-nocfs"
-block|,
-literal|"5.4.1-cfs"
-block|,
-literal|"5.4.1-nocfs"
-block|,
-literal|"5.5.0-cfs"
-block|,
-literal|"5.5.0-nocfs"
-block|}
+block|{   }
 decl_stmt|;
 DECL|field|unsupportedNames
 specifier|final
@@ -1805,8 +1766,53 @@ block|,
 literal|"5x-with-4x-segments-cfs"
 block|,
 literal|"5x-with-4x-segments-nocfs"
+block|,
+literal|"5.0.0.singlesegment-cfs"
+block|,
+literal|"5.0.0.singlesegment-nocfs"
+block|,
+literal|"5.0.0-cfs"
+block|,
+literal|"5.0.0-nocfs"
+block|,
+literal|"5.1.0-cfs"
+block|,
+literal|"5.1.0-nocfs"
+block|,
+literal|"5.2.0-cfs"
+block|,
+literal|"5.2.0-nocfs"
+block|,
+literal|"5.2.1-cfs"
+block|,
+literal|"5.2.1-nocfs"
+block|,
+literal|"5.3.0-cfs"
+block|,
+literal|"5.3.0-nocfs"
+block|,
+literal|"5.3.1-cfs"
+block|,
+literal|"5.3.1-nocfs"
+block|,
+literal|"5.3.2-cfs"
+block|,
+literal|"5.3.2-nocfs"
+block|,
+literal|"5.4.0-cfs"
+block|,
+literal|"5.4.0-nocfs"
+block|,
+literal|"5.4.1-cfs"
+block|,
+literal|"5.4.1-nocfs"
+block|,
+literal|"5.5.0-cfs"
+block|,
+literal|"5.5.0-nocfs"
 block|}
 decl_stmt|;
+comment|// TODO: on 6.0.0 release, gen the single segment indices and add here:
 DECL|field|oldSingleSegmentNames
 specifier|final
 specifier|static
@@ -1814,11 +1820,7 @@ name|String
 index|[]
 name|oldSingleSegmentNames
 init|=
-block|{
-literal|"5.0.0.singlesegment-cfs"
-block|,
-literal|"5.0.0.singlesegment-nocfs"
-block|}
+block|{   }
 decl_stmt|;
 DECL|field|oldIndexDirs
 specifier|static
@@ -2282,7 +2284,9 @@ operator|.
 name|LATEST
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 name|Matcher
 name|constant
 init|=
@@ -2305,7 +2309,9 @@ argument_list|()
 operator|==
 literal|false
 condition|)
+block|{
 continue|continue;
+block|}
 name|expectedVersions
 operator|.
 name|add
@@ -2497,7 +2503,9 @@ argument_list|)
 operator|==
 literal|false
 condition|)
+block|{
 continue|continue;
+block|}
 name|testedVersions
 operator|.
 name|add
@@ -5250,18 +5258,6 @@ argument_list|(
 name|dir
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|nameVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_3_0
-argument_list|)
-condition|)
-block|{
 name|assertEquals
 argument_list|(
 name|nameVersion
@@ -5272,7 +5268,6 @@ name|getCommitLuceneVersion
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 name|assertEquals
 argument_list|(
 name|nameVersion
@@ -8699,7 +8694,7 @@ specifier|final
 name|String
 name|emptyIndex
 init|=
-literal|"empty.5.0.0.zip"
+literal|"empty.6.0.0.zip"
 decl_stmt|;
 DECL|method|testUpgradeEmptyOldIndex
 specifier|public
@@ -8763,7 +8758,7 @@ specifier|final
 name|String
 name|moreTermsIndex
 init|=
-literal|"moreterms.5.0.0.zip"
+literal|"moreterms.6.0.0.zip"
 decl_stmt|;
 DECL|method|testMoreTerms
 specifier|public
@@ -8829,7 +8824,7 @@ specifier|final
 name|String
 name|dvUpdatesIndex
 init|=
-literal|"dvupdates.5.0.0.zip"
+literal|"dvupdates.6.0.0.zip"
 decl_stmt|;
 DECL|method|assertNumericDocValues
 specifier|private

@@ -676,15 +676,7 @@ name|min
 argument_list|,
 name|range
 operator|.
-name|minInclusive
-argument_list|,
-name|range
-operator|.
 name|max
-argument_list|,
-name|range
-operator|.
-name|maxInclusive
 argument_list|)
 argument_list|)
 expr_stmt|;

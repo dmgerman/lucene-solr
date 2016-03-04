@@ -52,11 +52,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -203,7 +203,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Reads spatial data from the body field docs from an internally created {@link LineDocSource}.  * It's parsed by {@link com.spatial4j.core.context.SpatialContext#readShapeFromWkt(String)} (String)} and then  * further manipulated via a configurable {@link SpatialDocMaker.ShapeConverter}. When using point  * data, it's likely you'll want to configure the shape converter so that the query shapes actually  * cover a region. The queries are all created and cached in advance. This query maker works in  * conjunction with {@link SpatialDocMaker}.  See spatial.alg for a listing of options, in  * particular the options starting with "query.".  */
+comment|/**  * Reads spatial data from the body field docs from an internally created {@link LineDocSource}.  * It's parsed by {@link org.locationtech.spatial4j.context.SpatialContext#readShapeFromWkt(String)} (String)} and then  * further manipulated via a configurable {@link SpatialDocMaker.ShapeConverter}. When using point  * data, it's likely you'll want to configure the shape converter so that the query shapes actually  * cover a region. The queries are all created and cached in advance. This query maker works in  * conjunction with {@link SpatialDocMaker}.  See spatial.alg for a listing of options, in  * particular the options starting with "query.".  */
 end_comment
 
 begin_class

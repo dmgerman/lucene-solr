@@ -187,7 +187,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Called for all documents in a leaf cell that crosses the query.  The consumer      *  should scrutinize the packedValue to decide whether to accept it. */
+comment|/** Called for all documents in a leaf cell that crosses the query.  The consumer      *  should scrutinize the packedValue to decide whether to accept it.  In the 1D case,      *  values are visited in increasing order, and in the case of ties, in increasing      *  docID order. */
 DECL|method|visit
 name|void
 name|visit
@@ -244,7 +244,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns minimum value for each dimension, packed, or null if no points were indexed */
+comment|/** Returns minimum value for each dimension, packed, or null if {@link #size} is<code>0</code> */
 DECL|method|getMinPackedValue
 specifier|public
 specifier|abstract
@@ -258,7 +258,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns maximum value for each dimension, packed, or null if no points were indexed */
+comment|/** Returns maximum value for each dimension, packed, or null if {@link #size} is<code>0</code> */
 DECL|method|getMaxPackedValue
 specifier|public
 specifier|abstract
@@ -297,6 +297,28 @@ name|fieldName
 parameter_list|)
 throws|throws
 name|IOException
+function_decl|;
+comment|/** Returns the total number of indexed points across all documents in this field. */
+DECL|method|size
+specifier|public
+specifier|abstract
+name|long
+name|size
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
+function_decl|;
+comment|/** Returns the total number of documents that have indexed at least one point for this field. */
+DECL|method|getDocCount
+specifier|public
+specifier|abstract
+name|int
+name|getDocCount
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
 function_decl|;
 block|}
 end_class

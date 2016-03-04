@@ -1144,6 +1144,17 @@ operator|+
 name|termDataHashCode
 return|;
 block|}
+comment|/** Returns the terms wrapped in a PrefixCodedTerms. */
+DECL|method|getTermData
+specifier|public
+name|PrefixCodedTerms
+name|getTermData
+parameter_list|()
+block|{
+return|return
+name|termData
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString

@@ -360,7 +360,7 @@ argument_list|()
 operator|.
 name|openResource
 argument_list|(
-literal|"solrj/sampleDateFacetResponse.xml"
+literal|"solrj/sampleRangeFacetResponse.xml"
 argument_list|)
 return|;
 block|}

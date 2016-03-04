@@ -269,7 +269,7 @@ name|dir
 argument_list|,
 name|Version
 operator|.
-name|LUCENE_5_0_0
+name|LUCENE_6_0_0
 argument_list|,
 literal|"_0"
 argument_list|,
@@ -381,7 +381,7 @@ name|assertEquals
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_5_0_0
+name|LUCENE_6_0_0
 argument_list|,
 name|sis
 operator|.
@@ -463,7 +463,7 @@ name|dir
 argument_list|,
 name|Version
 operator|.
-name|LUCENE_5_0_0
+name|LUCENE_6_0_0
 argument_list|,
 literal|"_0"
 argument_list|,
@@ -564,7 +564,7 @@ name|dir
 argument_list|,
 name|Version
 operator|.
-name|LUCENE_5_1_0
+name|LUCENE_6_0_0
 argument_list|,
 literal|"_1"
 argument_list|,
@@ -675,7 +675,7 @@ name|assertEquals
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_5_0_0
+name|LUCENE_6_0_0
 argument_list|,
 name|sis
 operator|.

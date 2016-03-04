@@ -1226,12 +1226,6 @@ throw|;
 block|}
 else|else
 block|{
-name|defaultIndexConfig
-operator|=
-name|mainIndexConfig
-operator|=
-literal|null
-expr_stmt|;
 name|indexConfigPrefix
 operator|=
 literal|"indexConfig"
@@ -1294,7 +1288,7 @@ name|this
 argument_list|,
 literal|"indexConfig"
 argument_list|,
-name|mainIndexConfig
+literal|null
 argument_list|)
 expr_stmt|;
 name|booleanQueryMaxClauseCount
@@ -3009,23 +3003,6 @@ specifier|public
 specifier|final
 name|int
 name|hashDocSetMaxSize
-decl_stmt|;
-comment|// default& main index configurations, deprecated as of 3.6
-annotation|@
-name|Deprecated
-DECL|field|defaultIndexConfig
-specifier|public
-specifier|final
-name|SolrIndexConfig
-name|defaultIndexConfig
-decl_stmt|;
-annotation|@
-name|Deprecated
-DECL|field|mainIndexConfig
-specifier|public
-specifier|final
-name|SolrIndexConfig
-name|mainIndexConfig
 decl_stmt|;
 comment|// IndexConfig settings
 DECL|field|indexConfig

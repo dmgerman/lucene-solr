@@ -2413,11 +2413,9 @@ literal|"weight_fld"
 argument_list|,
 literal|2
 argument_list|,
-literal|true
-argument_list|,
-literal|null
-argument_list|,
-literal|false
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|)
 argument_list|)
 expr_stmt|;

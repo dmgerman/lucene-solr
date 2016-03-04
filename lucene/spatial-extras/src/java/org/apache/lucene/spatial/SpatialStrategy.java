@@ -18,11 +18,11 @@ end_package
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -32,11 +32,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -46,11 +46,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -60,11 +60,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -264,7 +264,7 @@ name|Shape
 name|shape
 parameter_list|)
 function_decl|;
-comment|/**    * See {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point, double)} called with    * a multiplier of 1.0 (i.e. units of degrees).    */
+comment|/**    * See {@link #makeDistanceValueSource(org.locationtech.spatial4j.shape.Point, double)} called with    * a multiplier of 1.0 (i.e. units of degrees).    */
 DECL|method|makeDistanceValueSource
 specifier|public
 name|ValueSource
@@ -308,7 +308,7 @@ name|SpatialArgs
 name|args
 parameter_list|)
 function_decl|;
-comment|/**    * Returns a ValueSource with values ranging from 1 to 0, depending inversely    * on the distance from {@link #makeDistanceValueSource(com.spatial4j.core.shape.Point,double)}.    * The formula is {@code c/(d + c)} where 'd' is the distance and 'c' is    * one tenth the distance to the farthest edge from the center. Thus the    * scores will be 1 for indexed points at the center of the query shape and as    * low as ~0.1 at its furthest edges.    */
+comment|/**    * Returns a ValueSource with values ranging from 1 to 0, depending inversely    * on the distance from {@link #makeDistanceValueSource(org.locationtech.spatial4j.shape.Point,double)}.    * The formula is {@code c/(d + c)} where 'd' is the distance and 'c' is    * one tenth the distance to the farthest edge from the center. Thus the    * scores will be 1 for indexed points at the center of the query shape and as    * low as ~0.1 at its furthest edges.    */
 DECL|method|makeRecipDistanceValueSource
 specifier|public
 specifier|final

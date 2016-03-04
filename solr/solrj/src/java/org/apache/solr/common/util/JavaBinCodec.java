@@ -253,7 +253,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The class is designed to optimaly serialize/deserialize any supported types in Solr response. As we know there are only a limited type of  * items this class can do it with very minimal amount of payload and code. There are 15 known types and if there is an  * object in the object tree which does not fall into these types, It must be converted to one of these. Implement an  * ObjectResolver and pass it over It is expected that this class is used on both end of the pipes. The class has one  * read method and one write method for each of the datatypes  *<p>  * Note -- Never re-use an instance of this class for more than one marshal or unmarshall operation. Always create a new  * instance.  */
+comment|/**  * Defines a space-efficient serialization/deserialization format for transferring data.  *<p>  * JavaBinCodec has built in support many commonly used types.  This includes primitive types (boolean, byte,  * short, double, int, long, float), common Java containers/utilities (Date, Map, Collection, Iterator, String,  * Object[], byte[]), and frequently used Solr types ({@link NamedList}, {@link SolrDocument},  * {@link SolrDocumentList}). Each of the above types has a pair of associated methods which read and write  * that type to a stream.  *<p>  * Classes that aren't supported natively can still be serialized/deserialized by providing  * an {@link JavaBinCodec.ObjectResolver} object that knows how to work with the unsupported class.  * This allows {@link JavaBinCodec} to be used to marshall/unmarshall arbitrary content.  *<p>  * NOTE -- {@link JavaBinCodec} instances cannot be reused for more than one marshall or unmarshall operation.  */
 end_comment
 
 begin_class
@@ -505,6 +505,16 @@ specifier|private
 name|WritableDocFields
 name|writableDocFields
 decl_stmt|;
+DECL|field|alreadyMarshalled
+specifier|private
+name|boolean
+name|alreadyMarshalled
+decl_stmt|;
+DECL|field|alreadyUnmarshalled
+specifier|private
+name|boolean
+name|alreadyUnmarshalled
+decl_stmt|;
 DECL|method|JavaBinCodec
 specifier|public
 name|JavaBinCodec
@@ -602,6 +612,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+operator|!
+name|alreadyMarshalled
+assert|;
 name|init
 argument_list|(
 name|FastOutputStream
@@ -633,6 +647,10 @@ name|daos
 operator|.
 name|flushBuffer
 argument_list|()
+expr_stmt|;
+name|alreadyMarshalled
+operator|=
+literal|true
 expr_stmt|;
 block|}
 block|}
@@ -666,6 +684,10 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+operator|!
+name|alreadyUnmarshalled
+assert|;
 name|FastInputStream
 name|dis
 init|=
@@ -706,6 +728,10 @@ literal|") or the data in not in 'javabin' format"
 argument_list|)
 throw|;
 block|}
+name|alreadyUnmarshalled
+operator|=
+literal|true
+expr_stmt|;
 return|return
 name|readVal
 argument_list|(
@@ -4957,12 +4983,14 @@ name|s
 return|;
 block|}
 block|}
+comment|/**    * Allows extension of {@link JavaBinCodec} to support serialization of arbitrary data types.    *<p>    * Implementors of this interface write a method to serialize a given object using an existing {@link JavaBinCodec}    */
 DECL|interface|ObjectResolver
 specifier|public
 specifier|static
 interface|interface
 name|ObjectResolver
 block|{
+comment|/**      * Examine and attempt to serialize the given object, using a {@link JavaBinCodec} to write it to a stream.      *      * @param o     the object that the caller wants serialized.      * @param codec used to actually serialize {@code o}.      * @return the object {@code o} itself if it could not be serialized, or {@code null} if the whole object was successfully serialized.      * @see JavaBinCodec      */
 DECL|method|resolve
 specifier|public
 name|Object

@@ -366,13 +366,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|JavaBinCodec
-name|javabin
-init|=
-operator|new
-name|JavaBinCodec
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -408,7 +401,9 @@ operator|new
 name|ByteArrayOutputStream
 argument_list|()
 decl_stmt|;
-name|javabin
+operator|new
+name|JavaBinCodec
+argument_list|()
 operator|.
 name|marshal
 argument_list|(
@@ -432,7 +427,9 @@ decl_stmt|;
 name|Object
 name|o
 init|=
-name|javabin
+operator|new
+name|JavaBinCodec
+argument_list|()
 operator|.
 name|unmarshal
 argument_list|(

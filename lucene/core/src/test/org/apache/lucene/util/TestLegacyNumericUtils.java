@@ -1128,7 +1128,7 @@ index|[
 name|i
 index|]
 operator|=
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1151,7 +1151,7 @@ index|[
 name|i
 index|]
 argument_list|,
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|sortableLongToDouble
 argument_list|(
@@ -1255,7 +1255,7 @@ specifier|final
 name|long
 name|plusInf
 init|=
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1286,7 +1286,7 @@ specifier|final
 name|long
 name|sortable
 init|=
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1417,7 +1417,7 @@ index|[
 name|i
 index|]
 operator|=
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -1440,7 +1440,7 @@ index|[
 name|i
 index|]
 argument_list|,
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|sortableIntToFloat
 argument_list|(
@@ -1544,7 +1544,7 @@ specifier|final
 name|int
 name|plusInf
 init|=
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -1575,7 +1575,7 @@ specifier|final
 name|int
 name|sortable
 init|=
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(

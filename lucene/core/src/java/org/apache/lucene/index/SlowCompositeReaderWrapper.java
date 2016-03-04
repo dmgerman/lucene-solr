@@ -1116,12 +1116,7 @@ name|ensureOpen
 argument_list|()
 expr_stmt|;
 return|return
-name|MultiPointValues
-operator|.
-name|get
-argument_list|(
-name|in
-argument_list|)
+literal|null
 return|;
 block|}
 annotation|@

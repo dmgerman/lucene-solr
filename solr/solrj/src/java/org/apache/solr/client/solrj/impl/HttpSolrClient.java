@@ -3631,16 +3631,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * @deprecated retries should be implemented in client code, and should be considered carefully per-request    */
-DECL|method|setMaxRetries
-specifier|public
-name|void
-name|setMaxRetries
-parameter_list|(
-name|int
-name|maxRetries
-parameter_list|)
-block|{ }
 DECL|method|setRequestWriter
 specifier|public
 name|void

@@ -333,6 +333,28 @@ specifier|final
 name|int
 name|bytesPerDim
 decl_stmt|;
+comment|/**     * Iterator of encoded point values.    */
+comment|// TODO: if we want to stream, maybe we should use jdk stream class?
+DECL|class|Stream
+specifier|public
+specifier|static
+specifier|abstract
+class|class
+name|Stream
+implements|implements
+name|BytesRefIterator
+block|{
+annotation|@
+name|Override
+DECL|method|next
+specifier|public
+specifier|abstract
+name|BytesRef
+name|next
+parameter_list|()
+function_decl|;
+block|}
+empty_stmt|;
 comment|/** The {@code packedPoints} iterator must be in sorted order. */
 DECL|method|PointInSetQuery
 specifier|protected
@@ -347,11 +369,9 @@ parameter_list|,
 name|int
 name|bytesPerDim
 parameter_list|,
-name|BytesRefIterator
+name|Stream
 name|packedPoints
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -959,16 +979,6 @@ name|length
 operator|=
 name|bytesPerDim
 expr_stmt|;
-name|resetIterator
-argument_list|()
-expr_stmt|;
-block|}
-DECL|method|resetIterator
-specifier|private
-name|void
-name|resetIterator
-parameter_list|()
-block|{
 name|this
 operator|.
 name|iterator
@@ -1119,48 +1129,6 @@ index|[]
 name|maxPackedValue
 parameter_list|)
 block|{
-comment|// NOTE: this is messy ... we need it in cases where a single vistor (us) is shared across multiple leaf readers
-comment|// (e.g. SlowCompositeReaderWrapper), in which case we need to reset our iterator to re-start the merge sort.  Maybe we should instead
-comment|// add an explicit .start() to IntersectVisitor, and clarify the semantics that in the 1D case all cells will be visited in order?
-if|if
-condition|(
-name|StringHelper
-operator|.
-name|compare
-argument_list|(
-name|bytesPerDim
-argument_list|,
-name|lastMaxPackedValue
-argument_list|,
-literal|0
-argument_list|,
-name|minPackedValue
-argument_list|,
-literal|0
-argument_list|)
-operator|>
-literal|0
-condition|)
-block|{
-name|resetIterator
-argument_list|()
-expr_stmt|;
-block|}
-name|System
-operator|.
-name|arraycopy
-argument_list|(
-name|maxPackedValue
-argument_list|,
-literal|0
-argument_list|,
-name|lastMaxPackedValue
-argument_list|,
-literal|0
-argument_list|,
-name|bytesPerDim
-argument_list|)
-expr_stmt|;
 while|while
 condition|(
 name|nextQueryPoint

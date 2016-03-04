@@ -360,7 +360,7 @@ parameter_list|)
 block|{
 name|NumericUtils
 operator|.
-name|intToBytes
+name|intToSortableBytes
 argument_list|(
 name|Geo3DUtil
 operator|.
@@ -410,7 +410,7 @@ argument_list|()
 argument_list|,
 name|NumericUtils
 operator|.
-name|bytesToInt
+name|sortableBytesToInt
 argument_list|(
 name|value
 argument_list|,

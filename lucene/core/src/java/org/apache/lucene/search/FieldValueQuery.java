@@ -118,6 +118,16 @@ name|field
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|getField
+specifier|public
+name|String
+name|getField
+parameter_list|()
+block|{
+return|return
+name|field
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|equals

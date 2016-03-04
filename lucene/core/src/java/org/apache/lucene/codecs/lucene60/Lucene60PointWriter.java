@@ -524,6 +524,13 @@ name|BKDWriter
 argument_list|(
 name|writeState
 operator|.
+name|segmentInfo
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|,
+name|writeState
+operator|.
 name|directory
 argument_list|,
 name|writeState
@@ -739,6 +746,13 @@ init|=
 operator|new
 name|BKDWriter
 argument_list|(
+name|writeState
+operator|.
+name|segmentInfo
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|,
 name|writeState
 operator|.
 name|directory

@@ -52,11 +52,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|context
 operator|.
@@ -66,11 +66,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|distance
 operator|.
@@ -80,11 +80,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|org
+operator|.
+name|locationtech
 operator|.
 name|spatial4j
-operator|.
-name|core
 operator|.
 name|shape
 operator|.
@@ -323,7 +323,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parses "geodist" creating {@link HaversineConstFunction} or {@link HaversineFunction}  * or calling {@link SpatialStrategy#makeDistanceValueSource(com.spatial4j.core.shape.Point,double)}.  */
+comment|/**  * Parses "geodist" creating {@link HaversineConstFunction} or {@link HaversineFunction}  * or calling {@link SpatialStrategy#makeDistanceValueSource(org.locationtech.spatial4j.shape.Point,double)}.  */
 end_comment
 
 begin_class
@@ -872,20 +872,6 @@ literal|0
 index|]
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|distanceUnits
-operator|==
-name|DistanceUnits
-operator|.
-name|BACKCOMPAT
-condition|)
-name|distanceUnits
-operator|=
-name|DistanceUnits
-operator|.
-name|KILOMETERS
-expr_stmt|;
 return|return
 name|strategy
 operator|.

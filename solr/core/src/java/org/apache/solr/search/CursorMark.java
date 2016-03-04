@@ -277,17 +277,6 @@ name|values
 init|=
 literal|null
 decl_stmt|;
-comment|/**    * for serializing this CursorMark as a String    */
-DECL|field|codec
-specifier|private
-specifier|final
-name|JavaBinCodec
-name|codec
-init|=
-operator|new
-name|JavaBinCodec
-argument_list|()
-decl_stmt|;
 comment|/**    * Generates an empty CursorMark bound for use with the     * specified schema and {@link SortSpec}.    *    * @param schema used for basic validation    * @param sortSpec bound to this totem (un)marshalling serialized values    */
 DECL|method|CursorMark
 specifier|public
@@ -759,7 +748,9 @@ argument_list|<
 name|Object
 argument_list|>
 operator|)
-name|codec
+operator|new
+name|JavaBinCodec
+argument_list|()
 operator|.
 name|unmarshal
 argument_list|(
@@ -819,7 +810,9 @@ argument_list|<
 name|Object
 argument_list|>
 operator|)
-name|codec
+operator|new
+name|JavaBinCodec
+argument_list|()
 operator|.
 name|unmarshal
 argument_list|(
@@ -1150,7 +1143,9 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|codec
+operator|new
+name|JavaBinCodec
+argument_list|()
 operator|.
 name|marshal
 argument_list|(

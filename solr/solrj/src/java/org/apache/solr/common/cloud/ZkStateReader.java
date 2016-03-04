@@ -2486,12 +2486,7 @@ name|LOG
 operator|.
 name|debug
 argument_list|(
-literal|"clusterStateSet: version [{}] legacy [{}] interesting [{}] watched [{}] lazy [{}] total [{}]"
-argument_list|,
-name|clusterState
-operator|.
-name|getZkClusterStateVersion
-argument_list|()
+literal|"clusterStateSet: legacy [{}] interesting [{}] watched [{}] lazy [{}] total [{}]"
 argument_list|,
 name|legacyCollectionStates
 operator|.
@@ -2543,12 +2538,7 @@ name|LOG
 operator|.
 name|trace
 argument_list|(
-literal|"clusterStateSet: version [{}] legacy [{}] interesting [{}] watched [{}] lazy [{}] total [{}]"
-argument_list|,
-name|clusterState
-operator|.
-name|getZkClusterStateVersion
-argument_list|()
+literal|"clusterStateSet: legacy [{}] interesting [{}] watched [{}] lazy [{}] total [{}]"
 argument_list|,
 name|legacyCollectionStates
 operator|.

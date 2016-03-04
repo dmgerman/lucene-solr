@@ -2359,26 +2359,6 @@ block|{
 comment|// for distributed queries that don't include shards.qt, use the original path
 comment|// as the default but operators need to update their luceneMatchVersion to enable
 comment|// this behavior since it did not work this way prior to 5.1
-if|if
-condition|(
-name|req
-operator|.
-name|getCore
-argument_list|()
-operator|.
-name|getSolrConfig
-argument_list|()
-operator|.
-name|luceneMatchVersion
-operator|.
-name|onOrAfter
-argument_list|(
-name|Version
-operator|.
-name|LUCENE_5_1_0
-argument_list|)
-condition|)
-block|{
 name|String
 name|reqPath
 init|=
@@ -2419,20 +2399,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// else if path is /select, then the qt gets passed thru if set
-block|}
-else|else
-block|{
-comment|// this is the pre-5.1 behavior, which translates to sending the shard request to /select
-name|params
-operator|.
-name|remove
-argument_list|(
-name|CommonParams
-operator|.
-name|QT
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 name|shardHandler1
 operator|.

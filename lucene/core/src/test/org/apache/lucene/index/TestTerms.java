@@ -194,6 +194,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|NumericUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|TestUtil
 import|;
 end_import
@@ -1226,7 +1240,7 @@ name|assertEquals
 argument_list|(
 name|minValue
 argument_list|,
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|sortableIntToFloat
 argument_list|(
@@ -1245,7 +1259,7 @@ name|assertEquals
 argument_list|(
 name|maxValue
 argument_list|,
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|sortableIntToFloat
 argument_list|(
@@ -1428,7 +1442,7 @@ name|assertEquals
 argument_list|(
 name|minValue
 argument_list|,
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|sortableLongToDouble
 argument_list|(
@@ -1447,7 +1461,7 @@ name|assertEquals
 argument_list|(
 name|maxValue
 argument_list|,
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|sortableLongToDouble
 argument_list|(

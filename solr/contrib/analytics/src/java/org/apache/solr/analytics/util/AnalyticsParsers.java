@@ -82,6 +82,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|NumericUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|schema
@@ -527,7 +541,7 @@ block|{
 return|return
 literal|""
 operator|+
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|sortableIntToFloat
 argument_list|(
@@ -579,7 +593,7 @@ block|{
 return|return
 literal|""
 operator|+
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|sortableIntToFloat
 argument_list|(
@@ -619,7 +633,7 @@ block|{
 return|return
 literal|""
 operator|+
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|sortableLongToDouble
 argument_list|(
@@ -671,7 +685,7 @@ block|{
 return|return
 literal|""
 operator|+
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|sortableLongToDouble
 argument_list|(

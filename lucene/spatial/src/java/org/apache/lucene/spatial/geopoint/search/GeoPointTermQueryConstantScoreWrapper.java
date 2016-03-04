@@ -356,6 +356,17 @@ operator|=
 name|query
 expr_stmt|;
 block|}
+comment|/**    * Returns the encapsulated query.    */
+DECL|method|getQuery
+specifier|public
+name|Q
+name|getQuery
+parameter_list|()
+block|{
+return|return
+name|query
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|toString

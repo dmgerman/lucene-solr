@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.solr.client.solrj.util
 package|package
@@ -22,6 +26,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|regex
 operator|.
 name|Pattern
@@ -29,11 +43,7 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
-
-begin_comment
-comment|/**  * Ensures that provided identifiers align with Solr's recommendations/requirements for choosing  * collection, core, etc identifiers.  *    * Identifiers are allowed to contain underscores, periods, and alphanumeric characters.   */
+comment|/**  * Ensures that provided identifiers align with Solr's recommendations/requirements for choosing  * collection, core, etc identifiers.  *    * Identifiers are allowed to contain underscores, periods, hyphens, and alphanumeric characters.  */
 end_comment
 
 begin_class
@@ -52,9 +62,26 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"^[\\._A-Za-z0-9]*$"
+literal|"^(?!\\-)[\\._A-Za-z0-9\\-]*$"
 argument_list|)
 decl_stmt|;
+DECL|enum|IdentifierType
+specifier|public
+enum|enum
+name|IdentifierType
+block|{
+DECL|enum constant|SHARD
+DECL|enum constant|COLLECTION
+DECL|enum constant|CORE
+DECL|enum constant|ALIAS
+name|SHARD
+block|,
+name|COLLECTION
+block|,
+name|CORE
+block|,
+name|ALIAS
+block|}
 DECL|method|validateShardName
 specifier|public
 specifier|static
@@ -140,6 +167,55 @@ return|;
 block|}
 return|return
 literal|true
+return|;
+block|}
+DECL|method|getIdentifierMessage
+specifier|public
+specifier|static
+name|String
+name|getIdentifierMessage
+parameter_list|(
+name|IdentifierType
+name|identifierType
+parameter_list|,
+name|String
+name|name
+parameter_list|)
+block|{
+return|return
+literal|"Invalid "
+operator|+
+name|identifierType
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
+operator|+
+literal|": "
+operator|+
+name|name
+operator|+
+literal|". "
+operator|+
+name|identifierType
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
+operator|+
+literal|" names must consist entirely of periods, underscores, hyphens, and alphanumerics"
 return|;
 block|}
 block|}
