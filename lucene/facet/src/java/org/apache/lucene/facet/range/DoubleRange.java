@@ -234,6 +234,20 @@ name|LegacyNumericUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|NumericUtils
+import|;
+end_import
+
 begin_comment
 comment|/** Represents a range over double values.  *  * @lucene.experimental */
 end_comment
@@ -419,7 +433,7 @@ name|LongRange
 argument_list|(
 name|label
 argument_list|,
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -428,7 +442,7 @@ argument_list|)
 argument_list|,
 literal|true
 argument_list|,
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(

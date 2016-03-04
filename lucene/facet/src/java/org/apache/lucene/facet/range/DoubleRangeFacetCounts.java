@@ -322,7 +322,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LegacyNumericUtils
+name|NumericUtils
 import|;
 end_import
 
@@ -529,7 +529,7 @@ name|range
 operator|.
 name|label
 argument_list|,
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -540,7 +540,7 @@ argument_list|)
 argument_list|,
 literal|true
 argument_list|,
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -782,7 +782,7 @@ name|counter
 operator|.
 name|add
 argument_list|(
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(

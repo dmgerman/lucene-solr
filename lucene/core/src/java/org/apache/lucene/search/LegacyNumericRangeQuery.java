@@ -168,6 +168,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|NumericUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|Term
@@ -1221,7 +1235,7 @@ specifier|final
 name|long
 name|LONG_NEGATIVE_INFINITY
 init|=
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1236,7 +1250,7 @@ specifier|final
 name|long
 name|LONG_POSITIVE_INFINITY
 init|=
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1251,7 +1265,7 @@ specifier|final
 name|int
 name|INT_NEGATIVE_INFINITY
 init|=
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -1266,7 +1280,7 @@ specifier|final
 name|int
 name|INT_POSITIVE_INFINITY
 init|=
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -1385,7 +1399,7 @@ operator|)
 condition|?
 name|LONG_NEGATIVE_INFINITY
 else|:
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1473,7 +1487,7 @@ operator|)
 condition|?
 name|LONG_POSITIVE_INFINITY
 else|:
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|doubleToSortableLong
 argument_list|(
@@ -1618,7 +1632,7 @@ operator|)
 condition|?
 name|INT_NEGATIVE_INFINITY
 else|:
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(
@@ -1704,7 +1718,7 @@ operator|)
 condition|?
 name|INT_POSITIVE_INFINITY
 else|:
-name|LegacyNumericUtils
+name|NumericUtils
 operator|.
 name|floatToSortableInt
 argument_list|(

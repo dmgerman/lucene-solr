@@ -703,7 +703,7 @@ parameter_list|)
 block|{
 name|NumericUtils
 operator|.
-name|bigIntToBytes
+name|bigIntToSortableBytes
 argument_list|(
 name|value
 argument_list|,
@@ -733,7 +733,7 @@ block|{
 return|return
 name|NumericUtils
 operator|.
-name|bytesToBigInt
+name|sortableBytesToBigInt
 argument_list|(
 name|value
 argument_list|,
