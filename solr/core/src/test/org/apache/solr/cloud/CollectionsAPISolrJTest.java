@@ -437,10 +437,10 @@ annotation|@
 name|LuceneTestCase
 operator|.
 name|Slow
-DECL|class|CollectionsAPISolrJTests
+DECL|class|CollectionsAPISolrJTest
 specifier|public
 class|class
-name|CollectionsAPISolrJTests
+name|CollectionsAPISolrJTest
 extends|extends
 name|AbstractFullDistribZkTestBase
 block|{
