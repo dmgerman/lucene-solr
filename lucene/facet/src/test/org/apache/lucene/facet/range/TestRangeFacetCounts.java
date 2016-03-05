@@ -3227,13 +3227,23 @@ decl_stmt|;
 name|boolean
 name|maxIncl
 decl_stmt|;
+comment|// NOTE: max - min>= 0 is here to handle the common overflow case!
 if|if
 condition|(
-name|min
-operator|==
 name|max
+operator|-
+name|min
+operator|>=
+literal|0
+operator|&&
+name|max
+operator|-
+name|min
+operator|<
+literal|2
 condition|)
 block|{
+comment|// If max == min or max == min+1, we always do inclusive, else we might pass an empty range and hit exc from LongRange's ctor:
 name|minIncl
 operator|=
 literal|true
