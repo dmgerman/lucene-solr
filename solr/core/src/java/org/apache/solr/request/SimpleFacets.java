@@ -3410,51 +3410,15 @@ argument_list|,
 name|missing
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|prefix
-operator|!=
-literal|null
-condition|)
-block|{
-comment|// presumably it supports single-value, but at least now returns wrong results on multi-value
-throw|throw
-operator|new
-name|SolrException
+name|jsonFacet
+operator|.
+name|put
 argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
+literal|"prefix"
 argument_list|,
-name|FacetParams
-operator|.
-name|FACET_PREFIX
-operator|+
-literal|"="
-operator|+
 name|prefix
-operator|+
-literal|" are not supported by "
-operator|+
-name|FacetParams
-operator|.
-name|FACET_METHOD
-operator|+
-literal|"="
-operator|+
-name|FacetParams
-operator|.
-name|FACET_METHOD_uif
-operator|+
-literal|" for field:"
-operator|+
-name|field
-comment|//jsonFacet.put("prefix", prefix);
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 name|jsonFacet
 operator|.
 name|put

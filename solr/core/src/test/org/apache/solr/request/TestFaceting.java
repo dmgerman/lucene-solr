@@ -2789,48 +2789,7 @@ modifier|...
 name|tests
 parameter_list|)
 block|{
-specifier|final
-name|String
-name|paramString
-init|=
-name|request
-operator|.
-name|getParamString
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|paramString
-operator|.
-name|contains
-argument_list|(
-literal|"uif"
-argument_list|)
-operator|&&
-name|paramString
-operator|.
-name|contains
-argument_list|(
-literal|"prefix"
-argument_list|)
-condition|)
-block|{
-name|assertQEx
-argument_list|(
-literal|"uif prohibits prefix"
-argument_list|,
-literal|"not supported"
-argument_list|,
-name|request
-argument_list|,
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
+comment|// handle any differences for uif here, like skipping unsupported options
 name|assertQ
 argument_list|(
 name|message
@@ -2840,7 +2799,6 @@ argument_list|,
 name|tests
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|add50ocs
 specifier|private

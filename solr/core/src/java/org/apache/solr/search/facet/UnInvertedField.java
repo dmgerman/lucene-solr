@@ -2669,10 +2669,10 @@ decl_stmt|;
 if|if
 condition|(
 name|arrIdx
-operator|<
+operator|>=
 literal|0
 condition|)
-continue|continue;
+block|{
 if|if
 condition|(
 name|arrIdx
@@ -2698,6 +2698,7 @@ argument_list|,
 name|arrIdx
 argument_list|)
 expr_stmt|;
+block|}
 name|delta
 operator|=
 literal|0

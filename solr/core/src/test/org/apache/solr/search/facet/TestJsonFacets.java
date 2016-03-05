@@ -3773,6 +3773,55 @@ operator|+
 literal|" } "
 argument_list|)
 expr_stmt|;
+comment|// test prefix on real multi-valued field
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|" f1:{${terms} type:terms, field:${multi_ss}, prefix:A  }"
+operator|+
+literal|",f2:{${terms} type:terms, field:${multi_ss}, prefix:z }"
+operator|+
+literal|",f3:{${terms} type:terms, field:${multi_ss}, prefix:aa }"
+operator|+
+literal|",f4:{${terms} type:terms, field:${multi_ss}, prefix:bb }"
+operator|+
+literal|",f5:{${terms} type:terms, field:${multi_ss}, prefix:a }"
+operator|+
+literal|",f6:{${terms} type:terms, field:${multi_ss}, prefix:b }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ 'count':6 "
+operator|+
+literal|",f1:{buckets:[]}"
+operator|+
+literal|",f2:{buckets:[]}"
+operator|+
+literal|",f3:{buckets:[]}"
+operator|+
+literal|",f4:{buckets:[]}"
+operator|+
+literal|",f5:{buckets:[ {val:a,count:3} ]}"
+operator|+
+literal|",f6:{buckets:[ {val:b,count:3} ]}"
+operator|+
+literal|" } "
+argument_list|)
+expr_stmt|;
 comment|//
 comment|// missing
 comment|//
