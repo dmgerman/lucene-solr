@@ -468,11 +468,8 @@ if|if
 condition|(
 name|box
 operator|.
-name|maxLon
-operator|<
-name|box
-operator|.
-name|minLon
+name|crossesDateline
+argument_list|()
 condition|)
 block|{
 name|box1

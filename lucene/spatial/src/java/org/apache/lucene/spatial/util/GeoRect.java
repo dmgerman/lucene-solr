@@ -293,6 +293,19 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/** Returns true if this bounding box crosses the dateline */
+DECL|method|crossesDateline
+specifier|public
+name|boolean
+name|crossesDateline
+parameter_list|()
+block|{
+return|return
+name|maxLon
+operator|<
+name|minLon
+return|;
+block|}
 block|}
 end_class
 

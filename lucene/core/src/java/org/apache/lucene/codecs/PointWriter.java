@@ -469,6 +469,32 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// check each incoming reader
+for|for
+control|(
+name|PointReader
+name|reader
+range|:
+name|mergeState
+operator|.
+name|pointReaders
+control|)
+block|{
+if|if
+condition|(
+name|reader
+operator|!=
+literal|null
+condition|)
+block|{
+name|reader
+operator|.
+name|checkIntegrity
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+comment|// merge field at a time
 for|for
 control|(
 name|FieldInfo
