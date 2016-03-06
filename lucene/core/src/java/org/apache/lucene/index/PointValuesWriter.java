@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
+name|PointsReader
 import|;
 end_import
 
@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointWriter
+name|PointsWriter
 import|;
 end_import
 
@@ -377,7 +377,7 @@ parameter_list|(
 name|SegmentWriteState
 name|state
 parameter_list|,
-name|PointWriter
+name|PointsWriter
 name|writer
 parameter_list|)
 throws|throws
@@ -390,7 +390,7 @@ argument_list|(
 name|fieldInfo
 argument_list|,
 operator|new
-name|PointReader
+name|PointsReader
 argument_list|()
 block|{
 annotation|@

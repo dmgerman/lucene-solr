@@ -96,20 +96,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|DocValuesProducer
 import|;
 end_import
@@ -139,6 +125,20 @@ operator|.
 name|codecs
 operator|.
 name|NormsProducer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|PointsReader
 import|;
 end_import
 
@@ -301,12 +301,12 @@ name|FieldsProducer
 name|getPostingsReader
 parameter_list|()
 function_decl|;
-comment|/**    * Expert: retrieve underlying PointReader    * @lucene.internal    */
-DECL|method|getPointReader
+comment|/**    * Expert: retrieve underlying PointsReader    * @lucene.internal    */
+DECL|method|getPointsReader
 specifier|public
 specifier|abstract
-name|PointReader
-name|getPointReader
+name|PointsReader
+name|getPointsReader
 parameter_list|()
 function_decl|;
 annotation|@
@@ -1523,7 +1523,7 @@ block|}
 comment|// points
 if|if
 condition|(
-name|getPointReader
+name|getPointsReader
 argument_list|()
 operator|!=
 literal|null
@@ -1531,7 +1531,7 @@ condition|)
 block|{
 name|ramBytesUsed
 operator|+=
-name|getPointReader
+name|getPointsReader
 argument_list|()
 operator|.
 name|ramBytesUsed
@@ -1689,7 +1689,7 @@ block|}
 comment|// points
 if|if
 condition|(
-name|getPointReader
+name|getPointsReader
 argument_list|()
 operator|!=
 literal|null
@@ -1705,7 +1705,7 @@ name|namedAccountable
 argument_list|(
 literal|"points"
 argument_list|,
-name|getPointReader
+name|getPointsReader
 argument_list|()
 argument_list|)
 argument_list|)
@@ -1807,13 +1807,13 @@ block|}
 comment|// points
 if|if
 condition|(
-name|getPointReader
+name|getPointsReader
 argument_list|()
 operator|!=
 literal|null
 condition|)
 block|{
-name|getPointReader
+name|getPointsReader
 argument_list|()
 operator|.
 name|checkIntegrity

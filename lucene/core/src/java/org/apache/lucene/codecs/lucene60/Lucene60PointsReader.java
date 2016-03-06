@@ -122,7 +122,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
+name|PointsReader
 import|;
 end_import
 
@@ -255,16 +255,16 @@ import|;
 end_import
 
 begin_comment
-comment|/** Reads point values previously written with {@link Lucene60PointWriter} */
+comment|/** Reads point values previously written with {@link Lucene60PointsWriter} */
 end_comment
 
 begin_class
-DECL|class|Lucene60PointReader
+DECL|class|Lucene60PointsReader
 specifier|public
 class|class
-name|Lucene60PointReader
+name|Lucene60PointsReader
 extends|extends
-name|PointReader
+name|PointsReader
 implements|implements
 name|Closeable
 block|{
@@ -294,9 +294,9 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/** Sole constructor */
-DECL|method|Lucene60PointReader
+DECL|method|Lucene60PointsReader
 specifier|public
-name|Lucene60PointReader
+name|Lucene60PointsReader
 parameter_list|(
 name|SegmentReadState
 name|readState
@@ -327,7 +327,7 @@ name|readState
 operator|.
 name|segmentSuffix
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|INDEX_EXTENSION
 argument_list|)
@@ -378,15 +378,15 @@ name|checkIndexHeader
 argument_list|(
 name|indexIn
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|META_CODEC_NAME
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|INDEX_VERSION_START
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|INDEX_VERSION_START
 argument_list|,
@@ -493,7 +493,7 @@ name|readState
 operator|.
 name|segmentSuffix
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|DATA_EXTENSION
 argument_list|)
@@ -526,15 +526,15 @@ name|checkIndexHeader
 argument_list|(
 name|dataIn
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|DATA_CODEC_NAME
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|DATA_VERSION_START
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|DATA_VERSION_START
 argument_list|,

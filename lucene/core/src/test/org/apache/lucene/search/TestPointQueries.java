@@ -186,7 +186,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointFormat
+name|PointsFormat
 import|;
 end_import
 
@@ -200,7 +200,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
+name|PointsReader
 import|;
 end_import
 
@@ -214,23 +214,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene60
-operator|.
-name|Lucene60PointReader
+name|PointsWriter
 import|;
 end_import
 
@@ -246,7 +230,23 @@ name|codecs
 operator|.
 name|lucene60
 operator|.
-name|Lucene60PointWriter
+name|Lucene60PointsReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene60
+operator|.
+name|Lucene60PointsWriter
 import|;
 end_import
 
@@ -8775,7 +8775,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: using Lucene60PointFormat with maxPointsInLeafNode="
+literal|"TEST: using Lucene60PointsFormat with maxPointsInLeafNode="
 operator|+
 name|maxPointsInLeafNode
 operator|+
@@ -8800,19 +8800,19 @@ block|{
 annotation|@
 name|Override
 specifier|public
-name|PointFormat
-name|pointFormat
+name|PointsFormat
+name|pointsFormat
 parameter_list|()
 block|{
 return|return
 operator|new
-name|PointFormat
+name|PointsFormat
 argument_list|()
 block|{
 annotation|@
 name|Override
 specifier|public
-name|PointWriter
+name|PointsWriter
 name|fieldsWriter
 parameter_list|(
 name|SegmentWriteState
@@ -8823,7 +8823,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene60PointWriter
+name|Lucene60PointsWriter
 argument_list|(
 name|writeState
 argument_list|,
@@ -8836,7 +8836,7 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|PointReader
+name|PointsReader
 name|fieldsReader
 parameter_list|(
 name|SegmentReadState
@@ -8847,7 +8847,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene60PointReader
+name|Lucene60PointsReader
 argument_list|(
 name|readState
 argument_list|)

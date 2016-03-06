@@ -42,7 +42,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BasePointFormatTestCase
+name|BasePointsFormatTestCase
 import|;
 end_import
 
@@ -51,12 +51,12 @@ comment|/**  * Tests SimpleText's point format  */
 end_comment
 
 begin_class
-DECL|class|TestSimpleTextPointFormat
+DECL|class|TestSimpleTextPointsFormat
 specifier|public
 class|class
-name|TestSimpleTextPointFormat
+name|TestSimpleTextPointsFormat
 extends|extends
-name|BasePointFormatTestCase
+name|BasePointsFormatTestCase
 block|{
 DECL|field|codec
 specifier|private

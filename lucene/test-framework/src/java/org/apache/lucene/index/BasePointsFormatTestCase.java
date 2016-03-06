@@ -347,15 +347,15 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract class to do basic tests for a points format.  * NOTE: This test focuses on the points impl, nothing else.  * The [stretch] goal is for this test to be  * so thorough in testing a new PointFormat that if this  * test passes, then all Lucene/Solr tests should also pass.  Ie,  * if there is some bug in a given PointFormat that this  * test fails to catch then this test needs to be improved! */
+comment|/**  * Abstract class to do basic tests for a points format.  * NOTE: This test focuses on the points impl, nothing else.  * The [stretch] goal is for this test to be  * so thorough in testing a new PointsFormat that if this  * test passes, then all Lucene/Solr tests should also pass.  Ie,  * if there is some bug in a given PointsFormat that this  * test fails to catch then this test needs to be improved! */
 end_comment
 
 begin_class
-DECL|class|BasePointFormatTestCase
+DECL|class|BasePointsFormatTestCase
 specifier|public
 specifier|abstract
 class|class
-name|BasePointFormatTestCase
+name|BasePointsFormatTestCase
 extends|extends
 name|BaseIndexFileFormatTestCase
 block|{

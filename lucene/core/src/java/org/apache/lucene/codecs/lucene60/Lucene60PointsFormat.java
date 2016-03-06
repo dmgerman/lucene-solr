@@ -52,7 +52,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointFormat
+name|PointsFormat
 import|;
 end_import
 
@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
+name|PointsReader
 import|;
 end_import
 
@@ -80,7 +80,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointWriter
+name|PointsWriter
 import|;
 end_import
 
@@ -117,13 +117,13 @@ comment|/**  * Lucene 6.0 point format, which encodes dimensional values in a bl
 end_comment
 
 begin_class
-DECL|class|Lucene60PointFormat
+DECL|class|Lucene60PointsFormat
 specifier|public
 specifier|final
 class|class
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 extends|extends
-name|PointFormat
+name|PointsFormat
 block|{
 DECL|field|DATA_CODEC_NAME
 specifier|static
@@ -131,7 +131,7 @@ specifier|final
 name|String
 name|DATA_CODEC_NAME
 init|=
-literal|"Lucene60PointFormatData"
+literal|"Lucene60PointsFormatData"
 decl_stmt|;
 DECL|field|META_CODEC_NAME
 specifier|static
@@ -139,7 +139,7 @@ specifier|final
 name|String
 name|META_CODEC_NAME
 init|=
-literal|"Lucene60PointFormatMeta"
+literal|"Lucene60PointsFormatMeta"
 decl_stmt|;
 comment|/**    * Filename extension for the leaf blocks    */
 DECL|field|DATA_EXTENSION
@@ -194,16 +194,16 @@ init|=
 name|INDEX_VERSION_START
 decl_stmt|;
 comment|/** Sole constructor */
-DECL|method|Lucene60PointFormat
+DECL|method|Lucene60PointsFormat
 specifier|public
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 parameter_list|()
 block|{   }
 annotation|@
 name|Override
 DECL|method|fieldsWriter
 specifier|public
-name|PointWriter
+name|PointsWriter
 name|fieldsWriter
 parameter_list|(
 name|SegmentWriteState
@@ -214,7 +214,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene60PointWriter
+name|Lucene60PointsWriter
 argument_list|(
 name|state
 argument_list|)
@@ -224,7 +224,7 @@ annotation|@
 name|Override
 DECL|method|fieldsReader
 specifier|public
-name|PointReader
+name|PointsReader
 name|fieldsReader
 parameter_list|(
 name|SegmentReadState
@@ -235,7 +235,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene60PointReader
+name|Lucene60PointsReader
 argument_list|(
 name|state
 argument_list|)

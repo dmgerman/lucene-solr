@@ -289,11 +289,11 @@ name|compoundFormat
 parameter_list|()
 function_decl|;
 comment|/** Encodes/decodes points index */
-DECL|method|pointFormat
+DECL|method|pointsFormat
 specifier|public
 specifier|abstract
-name|PointFormat
-name|pointFormat
+name|PointsFormat
+name|pointsFormat
 parameter_list|()
 function_decl|;
 comment|/** looks up a codec by name */

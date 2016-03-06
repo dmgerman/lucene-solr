@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.codecs.asserting
+DECL|package|org.apache.lucene.codecs
 package|package
 name|org
 operator|.
@@ -13,22 +13,26 @@ operator|.
 name|lucene
 operator|.
 name|codecs
-operator|.
-name|asserting
 package|;
 end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|codecs
+name|io
 operator|.
-name|Codec
+name|IOException
 import|;
 end_import
 
@@ -42,42 +46,68 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BasePointFormatTestCase
+name|PointValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Accountable
 import|;
 end_import
 
 begin_comment
-comment|/** Test AssertingPointFormat directly */
+comment|/** Abstract API to visit point values.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|TestAssertingPointFormat
+DECL|class|PointsReader
 specifier|public
+specifier|abstract
 class|class
-name|TestAssertingPointFormat
+name|PointsReader
 extends|extends
-name|BasePointFormatTestCase
+name|PointValues
+implements|implements
+name|Closeable
+implements|,
+name|Accountable
 block|{
-DECL|field|codec
-specifier|private
-specifier|final
-name|Codec
-name|codec
-init|=
-operator|new
-name|AssertingCodec
-argument_list|()
-decl_stmt|;
-annotation|@
-name|Override
-DECL|method|getCodec
+comment|/** Sole constructor. (For invocation by subclass constructors, typically implicit.) */
+DECL|method|PointsReader
 specifier|protected
-name|Codec
-name|getCodec
+name|PointsReader
 parameter_list|()
+block|{}
+comment|/**     * Checks consistency of this reader.    *<p>    * Note that this may be costly in terms of I/O, e.g.     * may involve computing a checksum value against large data files.    * @lucene.internal    */
+DECL|method|checkIntegrity
+specifier|public
+specifier|abstract
+name|void
+name|checkIntegrity
+parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/**     * Returns an instance optimized for merging.    *<p>    * The default implementation returns {@code this} */
+DECL|method|getMergeInstance
+specifier|public
+name|PointsReader
+name|getMergeInstance
+parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
-name|codec
+name|this
 return|;
 block|}
 block|}

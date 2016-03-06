@@ -70,7 +70,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
+name|PointsReader
 import|;
 end_import
 
@@ -270,7 +270,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|BLOCK_FP
 import|;
@@ -288,7 +288,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|BYTES_PER_DIM
 import|;
@@ -306,7 +306,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|DOC_COUNT
 import|;
@@ -324,7 +324,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|FIELD_COUNT
 import|;
@@ -342,7 +342,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|FIELD_FP
 import|;
@@ -360,7 +360,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|FIELD_FP_NAME
 import|;
@@ -378,7 +378,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|INDEX_COUNT
 import|;
@@ -396,7 +396,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|MAX_LEAF_POINTS
 import|;
@@ -414,7 +414,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|MAX_VALUE
 import|;
@@ -432,7 +432,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|MIN_VALUE
 import|;
@@ -450,7 +450,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|NUM_DIMS
 import|;
@@ -468,7 +468,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|POINT_COUNT
 import|;
@@ -486,7 +486,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|SPLIT_COUNT
 import|;
@@ -504,7 +504,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|SPLIT_DIM
 import|;
@@ -522,18 +522,18 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|SPLIT_VALUE
 import|;
 end_import
 
 begin_class
-DECL|class|SimpleTextPointReader
+DECL|class|SimpleTextPointsReader
 class|class
-name|SimpleTextPointReader
+name|SimpleTextPointsReader
 extends|extends
-name|PointReader
+name|PointsReader
 block|{
 DECL|field|dataIn
 specifier|private
@@ -570,9 +570,9 @@ operator|new
 name|BytesRefBuilder
 argument_list|()
 decl_stmt|;
-DECL|method|SimpleTextPointReader
+DECL|method|SimpleTextPointsReader
 specifier|public
-name|SimpleTextPointReader
+name|SimpleTextPointsReader
 parameter_list|(
 name|SegmentReadState
 name|readState
@@ -612,7 +612,7 @@ name|readState
 operator|.
 name|segmentSuffix
 argument_list|,
-name|SimpleTextPointFormat
+name|SimpleTextPointsFormat
 operator|.
 name|POINT_INDEX_EXTENSION
 argument_list|)
@@ -730,7 +730,7 @@ name|readState
 operator|.
 name|segmentSuffix
 argument_list|,
-name|SimpleTextPointFormat
+name|SimpleTextPointsFormat
 operator|.
 name|POINT_EXTENSION
 argument_list|)
@@ -830,7 +830,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// NOTE: matches what writeIndex does in SimpleTextPointWriter
+comment|// NOTE: matches what writeIndex does in SimpleTextPointsWriter
 name|dataIn
 operator|.
 name|seek
@@ -1603,7 +1603,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"SimpleTextPointReader(segment="
+literal|"SimpleTextPointsReader(segment="
 operator|+
 name|readState
 operator|.

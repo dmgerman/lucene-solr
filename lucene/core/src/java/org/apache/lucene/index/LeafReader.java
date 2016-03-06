@@ -833,7 +833,7 @@ name|Bits
 name|getLiveDocs
 parameter_list|()
 function_decl|;
-comment|/** Returns the {@link org.apache.lucene.codecs.PointReader} used for numeric or    *  spatial searches, or null if there are no point fields. */
+comment|/** Returns the {@link PointValues} used for numeric or    *  spatial searches, or null if there are no point fields. */
 DECL|method|getPointValues
 specifier|public
 specifier|abstract

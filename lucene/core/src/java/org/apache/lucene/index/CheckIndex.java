@@ -184,20 +184,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|DocValuesProducer
 import|;
 end_import
@@ -213,6 +199,20 @@ operator|.
 name|codecs
 operator|.
 name|NormsProducer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|PointsReader
 import|;
 end_import
 
@@ -8701,12 +8701,12 @@ name|hasPointValues
 argument_list|()
 condition|)
 block|{
-name|PointReader
+name|PointsReader
 name|values
 init|=
 name|reader
 operator|.
-name|getPointReader
+name|getPointsReader
 argument_list|()
 decl_stmt|;
 if|if
@@ -8720,7 +8720,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"there are fields with points, but reader.getPointReader() is null"
+literal|"there are fields with points, but reader.getPointsReader() is null"
 argument_list|)
 throw|;
 block|}

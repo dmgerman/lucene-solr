@@ -58,7 +58,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointFormat
+name|PointsFormat
 import|;
 end_import
 
@@ -72,7 +72,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
+name|PointsReader
 import|;
 end_import
 
@@ -86,7 +86,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointWriter
+name|PointsWriter
 import|;
 end_import
 
@@ -253,24 +253,24 @@ comment|/**  * Just like the default point format but with additional asserts.  
 end_comment
 
 begin_class
-DECL|class|AssertingPointFormat
+DECL|class|AssertingPointsFormat
 specifier|public
 specifier|final
 class|class
-name|AssertingPointFormat
+name|AssertingPointsFormat
 extends|extends
-name|PointFormat
+name|PointsFormat
 block|{
 DECL|field|in
 specifier|private
 specifier|final
-name|PointFormat
+name|PointsFormat
 name|in
 decl_stmt|;
-comment|/** Create a new AssertingPointFormat */
-DECL|method|AssertingPointFormat
+comment|/** Create a new AssertingPointsFormat */
+DECL|method|AssertingPointsFormat
 specifier|public
-name|AssertingPointFormat
+name|AssertingPointsFormat
 parameter_list|()
 block|{
 name|this
@@ -280,19 +280,19 @@ operator|.
 name|getDefaultCodec
 argument_list|()
 operator|.
-name|pointFormat
+name|pointsFormat
 argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Expert: Create an AssertingPointFormat.    * This is only intended to pass special parameters for testing.    */
+comment|/**    * Expert: Create an AssertingPointsFormat.    * This is only intended to pass special parameters for testing.    */
 comment|// TODO: can we randomize this a cleaner way? e.g. stored fields and vectors do
 comment|// this with a separate codec...
-DECL|method|AssertingPointFormat
+DECL|method|AssertingPointsFormat
 specifier|public
-name|AssertingPointFormat
+name|AssertingPointsFormat
 parameter_list|(
-name|PointFormat
+name|PointsFormat
 name|in
 parameter_list|)
 block|{
@@ -307,7 +307,7 @@ annotation|@
 name|Override
 DECL|method|fieldsWriter
 specifier|public
-name|PointWriter
+name|PointsWriter
 name|fieldsWriter
 parameter_list|(
 name|SegmentWriteState
@@ -318,7 +318,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|AssertingPointWriter
+name|AssertingPointsWriter
 argument_list|(
 name|state
 argument_list|,
@@ -335,7 +335,7 @@ annotation|@
 name|Override
 DECL|method|fieldsReader
 specifier|public
-name|PointReader
+name|PointsReader
 name|fieldsReader
 parameter_list|(
 name|SegmentReadState
@@ -346,7 +346,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|AssertingPointReader
+name|AssertingPointsReader
 argument_list|(
 name|state
 operator|.
@@ -861,17 +861,17 @@ name|lastCompareResult
 return|;
 block|}
 block|}
-DECL|class|AssertingPointReader
+DECL|class|AssertingPointsReader
 specifier|static
 class|class
-name|AssertingPointReader
+name|AssertingPointsReader
 extends|extends
-name|PointReader
+name|PointsReader
 block|{
 DECL|field|in
 specifier|private
 specifier|final
-name|PointReader
+name|PointsReader
 name|in
 decl_stmt|;
 DECL|field|maxDoc
@@ -880,13 +880,13 @@ specifier|final
 name|int
 name|maxDoc
 decl_stmt|;
-DECL|method|AssertingPointReader
-name|AssertingPointReader
+DECL|method|AssertingPointsReader
+name|AssertingPointsReader
 parameter_list|(
 name|int
 name|maxDoc
 parameter_list|,
-name|PointReader
+name|PointsReader
 name|in
 parameter_list|)
 block|{
@@ -1066,7 +1066,7 @@ annotation|@
 name|Override
 DECL|method|getMergeInstance
 specifier|public
-name|PointReader
+name|PointsReader
 name|getMergeInstance
 parameter_list|()
 throws|throws
@@ -1074,7 +1074,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|AssertingPointReader
+name|AssertingPointsReader
 argument_list|(
 name|maxDoc
 argument_list|,
@@ -1326,26 +1326,26 @@ name|maxDoc
 assert|;
 block|}
 block|}
-DECL|class|AssertingPointWriter
+DECL|class|AssertingPointsWriter
 specifier|static
 class|class
-name|AssertingPointWriter
+name|AssertingPointsWriter
 extends|extends
-name|PointWriter
+name|PointsWriter
 block|{
 DECL|field|in
 specifier|private
 specifier|final
-name|PointWriter
+name|PointsWriter
 name|in
 decl_stmt|;
-DECL|method|AssertingPointWriter
-name|AssertingPointWriter
+DECL|method|AssertingPointsWriter
+name|AssertingPointsWriter
 parameter_list|(
 name|SegmentWriteState
 name|writeState
 parameter_list|,
-name|PointWriter
+name|PointsWriter
 name|in
 parameter_list|)
 block|{
@@ -1366,7 +1366,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|PointReader
+name|PointsReader
 name|values
 parameter_list|)
 throws|throws

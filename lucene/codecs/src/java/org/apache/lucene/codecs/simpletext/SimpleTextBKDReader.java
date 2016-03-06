@@ -140,7 +140,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|BLOCK_COUNT
 import|;
@@ -158,7 +158,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|BLOCK_DOC_ID
 import|;
@@ -176,7 +176,7 @@ name|codecs
 operator|.
 name|simpletext
 operator|.
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 operator|.
 name|BLOCK_VALUE
 import|;

@@ -66,20 +66,6 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
 name|DocValuesFormat
 import|;
 end_import
@@ -137,6 +123,20 @@ operator|.
 name|codecs
 operator|.
 name|NormsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|PointsFormat
 import|;
 end_import
 
@@ -273,6 +273,8 @@ operator|.
 name|lucene50
 operator|.
 name|Lucene50StoredFieldsFormat
+operator|.
+name|Mode
 import|;
 end_import
 
@@ -289,8 +291,6 @@ operator|.
 name|lucene50
 operator|.
 name|Lucene50StoredFieldsFormat
-operator|.
-name|Mode
 import|;
 end_import
 
@@ -670,15 +670,15 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|pointFormat
+DECL|method|pointsFormat
 specifier|public
 specifier|final
-name|PointFormat
-name|pointFormat
+name|PointsFormat
+name|pointsFormat
 parameter_list|()
 block|{
 return|return
-name|PointFormat
+name|PointsFormat
 operator|.
 name|EMPTY
 return|;

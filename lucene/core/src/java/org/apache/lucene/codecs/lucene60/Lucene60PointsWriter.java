@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
+name|PointsReader
 import|;
 end_import
 
@@ -116,7 +116,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointWriter
+name|PointsWriter
 import|;
 end_import
 
@@ -287,12 +287,12 @@ comment|/** Writes dimensional values */
 end_comment
 
 begin_class
-DECL|class|Lucene60PointWriter
+DECL|class|Lucene60PointsWriter
 specifier|public
 class|class
-name|Lucene60PointWriter
+name|Lucene60PointsWriter
 extends|extends
-name|PointWriter
+name|PointsWriter
 implements|implements
 name|Closeable
 block|{
@@ -337,9 +337,9 @@ name|boolean
 name|finished
 decl_stmt|;
 comment|/** Full constructor */
-DECL|method|Lucene60PointWriter
+DECL|method|Lucene60PointsWriter
 specifier|public
-name|Lucene60PointWriter
+name|Lucene60PointsWriter
 parameter_list|(
 name|SegmentWriteState
 name|writeState
@@ -396,7 +396,7 @@ name|writeState
 operator|.
 name|segmentSuffix
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|DATA_EXTENSION
 argument_list|)
@@ -429,11 +429,11 @@ name|writeIndexHeader
 argument_list|(
 name|dataOut
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|DATA_CODEC_NAME
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|DATA_VERSION_CURRENT
 argument_list|,
@@ -474,9 +474,9 @@ block|}
 block|}
 block|}
 comment|/** Uses the defaults values for {@code maxPointsInLeafNode} (1024) and {@code maxMBSortInHeap} (16.0) */
-DECL|method|Lucene60PointWriter
+DECL|method|Lucene60PointsWriter
 specifier|public
-name|Lucene60PointWriter
+name|Lucene60PointsWriter
 parameter_list|(
 name|SegmentWriteState
 name|writeState
@@ -508,7 +508,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|PointReader
+name|PointsReader
 name|values
 parameter_list|)
 throws|throws
@@ -676,19 +676,19 @@ name|IOException
 block|{
 for|for
 control|(
-name|PointReader
+name|PointsReader
 name|reader
 range|:
 name|mergeState
 operator|.
-name|pointReaders
+name|pointsReaders
 control|)
 block|{
 if|if
 condition|(
 name|reader
 operator|instanceof
-name|Lucene60PointReader
+name|Lucene60PointsReader
 operator|==
 literal|false
 condition|)
@@ -706,12 +706,12 @@ block|}
 block|}
 for|for
 control|(
-name|PointReader
+name|PointsReader
 name|reader
 range|:
 name|mergeState
 operator|.
-name|pointReaders
+name|pointsReaders
 control|)
 block|{
 if|if
@@ -849,7 +849,7 @@ name|i
 operator|<
 name|mergeState
 operator|.
-name|pointReaders
+name|pointsReaders
 operator|.
 name|length
 condition|;
@@ -857,12 +857,12 @@ name|i
 operator|++
 control|)
 block|{
-name|PointReader
+name|PointsReader
 name|reader
 init|=
 name|mergeState
 operator|.
-name|pointReaders
+name|pointsReaders
 index|[
 name|i
 index|]
@@ -878,13 +878,13 @@ comment|// we confirmed this up above
 assert|assert
 name|reader
 operator|instanceof
-name|Lucene60PointReader
+name|Lucene60PointsReader
 assert|;
-name|Lucene60PointReader
+name|Lucene60PointsReader
 name|reader60
 init|=
 operator|(
-name|Lucene60PointReader
+name|Lucene60PointsReader
 operator|)
 name|reader
 decl_stmt|;
@@ -1081,7 +1081,7 @@ name|writeState
 operator|.
 name|segmentSuffix
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|INDEX_EXTENSION
 argument_list|)
@@ -1112,11 +1112,11 @@ name|writeIndexHeader
 argument_list|(
 name|indexOut
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|META_CODEC_NAME
 argument_list|,
-name|Lucene60PointFormat
+name|Lucene60PointsFormat
 operator|.
 name|INDEX_VERSION_CURRENT
 argument_list|,

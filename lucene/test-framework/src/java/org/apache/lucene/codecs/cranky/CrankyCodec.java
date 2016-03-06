@@ -136,7 +136,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointFormat
+name|PointsFormat
 import|;
 end_import
 
@@ -435,19 +435,19 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|pointFormat
+DECL|method|pointsFormat
 specifier|public
-name|PointFormat
-name|pointFormat
+name|PointsFormat
+name|pointsFormat
 parameter_list|()
 block|{
 return|return
 operator|new
-name|CrankyPointFormat
+name|CrankyPointsFormat
 argument_list|(
 name|delegate
 operator|.
-name|pointFormat
+name|pointsFormat
 argument_list|()
 argument_list|,
 name|random

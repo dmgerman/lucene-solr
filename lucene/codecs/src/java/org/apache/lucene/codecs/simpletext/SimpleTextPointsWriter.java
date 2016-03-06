@@ -58,7 +58,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
+name|PointsReader
 import|;
 end_import
 
@@ -72,7 +72,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointWriter
+name|PointsWriter
 import|;
 end_import
 
@@ -209,11 +209,11 @@ import|;
 end_import
 
 begin_class
-DECL|class|SimpleTextPointWriter
+DECL|class|SimpleTextPointsWriter
 class|class
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 extends|extends
-name|PointWriter
+name|PointsWriter
 block|{
 DECL|field|NUM_DIMS
 specifier|final
@@ -477,9 +477,9 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-DECL|method|SimpleTextPointWriter
+DECL|method|SimpleTextPointsWriter
 specifier|public
-name|SimpleTextPointWriter
+name|SimpleTextPointsWriter
 parameter_list|(
 name|SegmentWriteState
 name|writeState
@@ -504,7 +504,7 @@ name|writeState
 operator|.
 name|segmentSuffix
 argument_list|,
-name|SimpleTextPointFormat
+name|SimpleTextPointsFormat
 operator|.
 name|POINT_EXTENSION
 argument_list|)
@@ -541,7 +541,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|PointReader
+name|PointsReader
 name|values
 parameter_list|)
 throws|throws
@@ -1487,7 +1487,7 @@ name|writeState
 operator|.
 name|segmentSuffix
 argument_list|,
-name|SimpleTextPointFormat
+name|SimpleTextPointsFormat
 operator|.
 name|POINT_INDEX_EXTENSION
 argument_list|)

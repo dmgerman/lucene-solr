@@ -48,7 +48,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointFormat
+name|PointsFormat
 import|;
 end_import
 
@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
+name|PointsReader
 import|;
 end_import
 
@@ -76,7 +76,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointWriter
+name|PointsWriter
 import|;
 end_import
 
@@ -179,24 +179,24 @@ import|;
 end_import
 
 begin_class
-DECL|class|CrankyPointFormat
+DECL|class|CrankyPointsFormat
 class|class
-name|CrankyPointFormat
+name|CrankyPointsFormat
 extends|extends
-name|PointFormat
+name|PointsFormat
 block|{
 DECL|field|delegate
-name|PointFormat
+name|PointsFormat
 name|delegate
 decl_stmt|;
 DECL|field|random
 name|Random
 name|random
 decl_stmt|;
-DECL|method|CrankyPointFormat
-name|CrankyPointFormat
+DECL|method|CrankyPointsFormat
+name|CrankyPointsFormat
 parameter_list|(
-name|PointFormat
+name|PointsFormat
 name|delegate
 parameter_list|,
 name|Random
@@ -220,7 +220,7 @@ annotation|@
 name|Override
 DECL|method|fieldsWriter
 specifier|public
-name|PointWriter
+name|PointsWriter
 name|fieldsWriter
 parameter_list|(
 name|SegmentWriteState
@@ -231,7 +231,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|CrankyPointWriter
+name|CrankyPointsWriter
 argument_list|(
 name|delegate
 operator|.
@@ -248,7 +248,7 @@ annotation|@
 name|Override
 DECL|method|fieldsReader
 specifier|public
-name|PointReader
+name|PointsReader
 name|fieldsReader
 parameter_list|(
 name|SegmentReadState
@@ -259,7 +259,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|CrankyPointReader
+name|CrankyPointsReader
 argument_list|(
 name|delegate
 operator|.
@@ -272,16 +272,16 @@ name|random
 argument_list|)
 return|;
 block|}
-DECL|class|CrankyPointWriter
+DECL|class|CrankyPointsWriter
 specifier|static
 class|class
-name|CrankyPointWriter
+name|CrankyPointsWriter
 extends|extends
-name|PointWriter
+name|PointsWriter
 block|{
 DECL|field|delegate
 specifier|final
-name|PointWriter
+name|PointsWriter
 name|delegate
 decl_stmt|;
 DECL|field|random
@@ -289,11 +289,11 @@ specifier|final
 name|Random
 name|random
 decl_stmt|;
-DECL|method|CrankyPointWriter
+DECL|method|CrankyPointsWriter
 specifier|public
-name|CrankyPointWriter
+name|CrankyPointsWriter
 parameter_list|(
-name|PointWriter
+name|PointsWriter
 name|delegate
 parameter_list|,
 name|Random
@@ -323,7 +323,7 @@ parameter_list|(
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
-name|PointReader
+name|PointsReader
 name|values
 parameter_list|)
 throws|throws
@@ -513,16 +513,16 @@ throw|;
 block|}
 block|}
 block|}
-DECL|class|CrankyPointReader
+DECL|class|CrankyPointsReader
 specifier|static
 class|class
-name|CrankyPointReader
+name|CrankyPointsReader
 extends|extends
-name|PointReader
+name|PointsReader
 block|{
 DECL|field|delegate
 specifier|final
-name|PointReader
+name|PointsReader
 name|delegate
 decl_stmt|;
 DECL|field|random
@@ -530,11 +530,11 @@ specifier|final
 name|Random
 name|random
 decl_stmt|;
-DECL|method|CrankyPointReader
+DECL|method|CrankyPointsReader
 specifier|public
-name|CrankyPointReader
+name|CrankyPointsReader
 parameter_list|(
-name|PointReader
+name|PointsReader
 name|delegate
 parameter_list|,
 name|Random

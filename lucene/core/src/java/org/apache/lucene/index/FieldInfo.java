@@ -113,7 +113,7 @@ specifier|private
 name|long
 name|dvGen
 decl_stmt|;
-comment|/** If both of these are positive it means this field indexed points    *  (see {@link org.apache.lucene.codecs.PointFormat}). */
+comment|/** If both of these are positive it means this field indexed points    *  (see {@link org.apache.lucene.codecs.PointsFormat}). */
 DECL|field|pointDimensionCount
 specifier|private
 name|int

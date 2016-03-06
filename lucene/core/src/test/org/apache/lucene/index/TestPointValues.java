@@ -78,7 +78,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointFormat
+name|PointsFormat
 import|;
 end_import
 
@@ -92,7 +92,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointReader
+name|PointsReader
 import|;
 end_import
 
@@ -106,23 +106,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|PointWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene60
-operator|.
-name|Lucene60PointReader
+name|PointsWriter
 import|;
 end_import
 
@@ -138,7 +122,23 @@ name|codecs
 operator|.
 name|lucene60
 operator|.
-name|Lucene60PointWriter
+name|Lucene60PointsReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene60
+operator|.
+name|Lucene60PointsWriter
 import|;
 end_import
 
