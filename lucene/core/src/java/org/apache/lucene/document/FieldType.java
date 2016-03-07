@@ -84,6 +84,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|PointValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|LegacyNumericUtils
@@ -322,12 +336,16 @@ name|this
 operator|.
 name|dimensionCount
 operator|=
+name|ref
+operator|.
 name|dimensionCount
 expr_stmt|;
 name|this
 operator|.
 name|dimensionNumBytes
 operator|=
+name|ref
+operator|.
 name|dimensionNumBytes
 expr_stmt|;
 comment|// Do not copy frozen!
@@ -777,7 +795,32 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"pointDimensionCount must be>= 0; got "
+literal|"dimensionCount must be>= 0; got "
+operator|+
+name|dimensionCount
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|dimensionCount
+operator|>
+name|PointValues
+operator|.
+name|MAX_DIMENSIONS
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"dimensionCount must be<= "
+operator|+
+name|PointValues
+operator|.
+name|MAX_DIMENSIONS
+operator|+
+literal|"; got "
 operator|+
 name|dimensionCount
 argument_list|)
@@ -794,7 +837,32 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"pointNumBytes must be>= 0; got "
+literal|"dimensionNumBytes must be>= 0; got "
+operator|+
+name|dimensionNumBytes
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|dimensionCount
+operator|>
+name|PointValues
+operator|.
+name|MAX_NUM_BYTES
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"dimensionNumBytes must be<= "
+operator|+
+name|PointValues
+operator|.
+name|MAX_NUM_BYTES
+operator|+
+literal|"; got "
 operator|+
 name|dimensionNumBytes
 argument_list|)
@@ -818,7 +886,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"when pointDimensionCount is 0 pointNumBytes must 0; got "
+literal|"when dimensionCount is 0, dimensionNumBytes must 0; got "
 operator|+
 name|dimensionNumBytes
 argument_list|)
@@ -844,7 +912,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"when pointNumBytes is 0 pointDimensionCount must 0; got "
+literal|"when dimensionNumBytes is 0, dimensionCount must 0; got "
 operator|+
 name|dimensionCount
 argument_list|)
@@ -1270,6 +1338,22 @@ name|prime
 operator|*
 name|result
 operator|+
+name|dimensionCount
+expr_stmt|;
+name|result
+operator|=
+name|prime
+operator|*
+name|result
+operator|+
+name|dimensionNumBytes
+expr_stmt|;
+name|result
+operator|=
+name|prime
+operator|*
+name|result
+operator|+
 operator|(
 operator|(
 name|docValuesType
@@ -1477,6 +1561,28 @@ name|FieldType
 operator|)
 name|obj
 decl_stmt|;
+if|if
+condition|(
+name|dimensionCount
+operator|!=
+name|other
+operator|.
+name|dimensionCount
+condition|)
+return|return
+literal|false
+return|;
+if|if
+condition|(
+name|dimensionNumBytes
+operator|!=
+name|other
+operator|.
+name|dimensionNumBytes
+condition|)
+return|return
+literal|false
+return|;
 if|if
 condition|(
 name|docValuesType

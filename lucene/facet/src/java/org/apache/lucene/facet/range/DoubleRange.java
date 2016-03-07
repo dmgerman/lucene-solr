@@ -230,20 +230,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LegacyNumericUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|NumericUtils
 import|;
 end_import
@@ -302,7 +288,7 @@ name|label
 argument_list|)
 expr_stmt|;
 comment|// TODO: if DoubleDocValuesField used
-comment|// LegacyNumericUtils.doubleToSortableLong format (instead of
+comment|// NumericUtils.doubleToSortableLong format (instead of
 comment|// Double.doubleToRawLongBits) we could do comparisons
 comment|// in long space
 if|if
