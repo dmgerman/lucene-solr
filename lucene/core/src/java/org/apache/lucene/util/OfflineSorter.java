@@ -1129,13 +1129,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|BytesRefArray
-name|data
-init|=
-name|this
-operator|.
-name|buffer
-decl_stmt|;
 try|try
 init|(
 name|IndexOutput
@@ -1230,7 +1223,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Clean up the buffer for the next partition.
-name|data
+name|buffer
 operator|.
 name|clear
 argument_list|()
