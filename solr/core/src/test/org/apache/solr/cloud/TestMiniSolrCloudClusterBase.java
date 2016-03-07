@@ -1102,6 +1102,11 @@ name|zkClient
 argument_list|)
 init|)
 block|{
+name|zkStateReader
+operator|.
+name|createClusterStateWatchersAndUpdate
+argument_list|()
+expr_stmt|;
 name|AbstractDistribZkTestBase
 operator|.
 name|waitForRecoveriesToFinish
@@ -1193,8 +1198,10 @@ expr_stmt|;
 comment|// remove a server not hosting any replicas
 name|zkStateReader
 operator|.
-name|updateClusterState
-argument_list|()
+name|forceUpdateCollection
+argument_list|(
+name|collectionName
+argument_list|)
 expr_stmt|;
 name|ClusterState
 name|clusterState

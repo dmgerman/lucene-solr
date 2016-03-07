@@ -4500,8 +4500,10 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|updateClusterState
-argument_list|()
+name|forceUpdateCollection
+argument_list|(
+literal|"multiunload2"
+argument_list|)
 expr_stmt|;
 try|try
 block|{
@@ -6333,8 +6335,10 @@ argument_list|()
 decl_stmt|;
 name|zkStateReader
 operator|.
-name|updateClusterState
-argument_list|()
+name|forceUpdateCollection
+argument_list|(
+name|oneInstanceCollection2
+argument_list|)
 expr_stmt|;
 name|Map
 argument_list|<

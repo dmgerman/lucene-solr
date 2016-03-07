@@ -1121,14 +1121,6 @@ name|lastFailMsg
 operator|=
 literal|""
 expr_stmt|;
-name|client
-operator|.
-name|getZkStateReader
-argument_list|()
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|ClusterState
 name|clusterState
 init|=

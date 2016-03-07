@@ -1907,14 +1907,6 @@ name|goAgain
 operator|=
 literal|false
 expr_stmt|;
-name|cloudClient
-operator|.
-name|getZkStateReader
-argument_list|()
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|Map
 argument_list|<
 name|String

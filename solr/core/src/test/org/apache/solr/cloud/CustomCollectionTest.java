@@ -2936,11 +2936,6 @@ argument_list|(
 literal|"Not enough active replicas in the shard 'x'"
 argument_list|)
 expr_stmt|;
-name|zkStateReader
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|attempts
 operator|++
 expr_stmt|;

@@ -990,11 +990,6 @@ name|sawLiveRecovering
 init|=
 literal|false
 decl_stmt|;
-name|zkStateReader
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|ClusterState
 name|clusterState
 init|=
@@ -1372,11 +1367,6 @@ argument_list|(
 literal|"-"
 argument_list|)
 expr_stmt|;
-name|zkStateReader
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|ClusterState
 name|clusterState
 init|=
@@ -1640,8 +1630,10 @@ name|InterruptedException
 block|{
 name|zkStateReader
 operator|.
-name|updateClusterState
-argument_list|()
+name|forceUpdateCollection
+argument_list|(
+name|collection
+argument_list|)
 expr_stmt|;
 name|ClusterState
 name|clusterState

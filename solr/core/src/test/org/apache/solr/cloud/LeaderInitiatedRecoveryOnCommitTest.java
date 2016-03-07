@@ -429,8 +429,10 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|updateClusterState
-argument_list|()
+name|forceUpdateCollection
+argument_list|(
+name|testCollectionName
+argument_list|)
 expr_stmt|;
 comment|// get the latest state
 name|leader
@@ -702,8 +704,10 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|updateClusterState
-argument_list|()
+name|forceUpdateCollection
+argument_list|(
+name|testCollectionName
+argument_list|)
 expr_stmt|;
 comment|// get the latest state
 name|leader

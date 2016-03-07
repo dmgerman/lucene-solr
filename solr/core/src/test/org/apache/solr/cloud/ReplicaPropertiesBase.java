@@ -417,14 +417,6 @@ operator|++
 name|idx
 control|)
 block|{
-name|client
-operator|.
-name|getZkStateReader
-argument_list|()
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|clusterState
 operator|=
 name|client
@@ -577,14 +569,6 @@ name|idx
 control|)
 block|{
 comment|// Keep trying while Overseer writes the ZK state for up to 30 seconds.
-name|client
-operator|.
-name|getZkStateReader
-argument_list|()
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|clusterState
 operator|=
 name|client
@@ -797,14 +781,6 @@ operator|++
 name|idx
 control|)
 block|{
-name|client
-operator|.
-name|getZkStateReader
-argument_list|()
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|ClusterState
 name|clusterState
 init|=

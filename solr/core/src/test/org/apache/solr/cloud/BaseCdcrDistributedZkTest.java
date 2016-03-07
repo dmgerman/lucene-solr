@@ -3598,11 +3598,6 @@ operator|.
 name|getZkStateReader
 argument_list|()
 decl_stmt|;
-name|zkStateReader
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|ClusterState
 name|clusterState
 init|=

@@ -584,8 +584,10 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|updateClusterState
-argument_list|()
+name|forceUpdateCollection
+argument_list|(
+literal|"b1x1"
+argument_list|)
 expr_stmt|;
 name|ClusterState
 name|clusterState
@@ -933,8 +935,10 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|updateClusterState
-argument_list|()
+name|forceUpdateCollection
+argument_list|(
+literal|"football"
+argument_list|)
 expr_stmt|;
 name|Replica
 name|leader

@@ -4574,14 +4574,6 @@ argument_list|(
 literal|200
 argument_list|)
 expr_stmt|;
-name|cloudClient
-operator|.
-name|getZkStateReader
-argument_list|()
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 block|}
 if|if
 condition|(

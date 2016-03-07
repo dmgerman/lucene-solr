@@ -2690,8 +2690,10 @@ argument_list|()
 decl_stmt|;
 name|zkStateReader
 operator|.
-name|updateClusterState
-argument_list|()
+name|forceUpdateCollection
+argument_list|(
+name|collection
+argument_list|)
 expr_stmt|;
 name|ClusterState
 name|clusterState

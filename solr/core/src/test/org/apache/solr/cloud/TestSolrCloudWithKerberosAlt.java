@@ -1317,6 +1317,11 @@ name|zkClient
 argument_list|)
 init|)
 block|{
+name|zkStateReader
+operator|.
+name|createClusterStateWatchersAndUpdate
+argument_list|()
+expr_stmt|;
 name|AbstractDistribZkTestBase
 operator|.
 name|waitForRecoveriesToFinish

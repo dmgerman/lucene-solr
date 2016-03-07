@@ -4701,8 +4701,10 @@ block|}
 comment|// make sure we have an update cluster state right away
 name|zkStateReader
 operator|.
-name|updateClusterState
-argument_list|()
+name|forceUpdateCollection
+argument_list|(
+name|collection
+argument_list|)
 expr_stmt|;
 return|return
 name|shardId

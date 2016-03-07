@@ -1167,7 +1167,7 @@ expr_stmt|;
 comment|// TODO: assert we didnt kill everyone
 name|zkStateReader
 operator|.
-name|updateClusterState
+name|updateLiveNodes
 argument_list|()
 expr_stmt|;
 name|assertTrue

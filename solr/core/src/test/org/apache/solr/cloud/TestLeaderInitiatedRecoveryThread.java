@@ -1134,14 +1134,6 @@ name|hasTimedOut
 argument_list|()
 condition|)
 block|{
-name|cloudClient
-operator|.
-name|getZkStateReader
-argument_list|()
-operator|.
-name|updateClusterState
-argument_list|()
-expr_stmt|;
 name|Replica
 name|r
 init|=
