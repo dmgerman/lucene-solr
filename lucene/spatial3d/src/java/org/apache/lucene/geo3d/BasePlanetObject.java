@@ -51,6 +51,17 @@ operator|=
 name|planetModel
 expr_stmt|;
 block|}
+comment|/** Returns the {@link PlanetModel} provided when this shape was created. */
+DECL|method|getPlanetModel
+specifier|public
+name|PlanetModel
+name|getPlanetModel
+parameter_list|()
+block|{
+return|return
+name|planetModel
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|hashCode
