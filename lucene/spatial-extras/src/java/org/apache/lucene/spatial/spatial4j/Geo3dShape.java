@@ -126,7 +126,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|LatLonBounds
 import|;
@@ -140,7 +142,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|GeoArea
 import|;
@@ -154,7 +158,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|GeoAreaFactory
 import|;
@@ -168,7 +174,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|GeoPoint
 import|;
@@ -182,7 +190,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|GeoShape
 import|;
@@ -196,7 +206,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|PlanetModel
 import|;

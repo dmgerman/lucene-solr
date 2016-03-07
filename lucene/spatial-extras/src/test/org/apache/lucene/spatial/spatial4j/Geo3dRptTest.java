@@ -242,7 +242,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|GeoBBoxFactory
 import|;
@@ -256,7 +258,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|GeoStandardCircle
 import|;
@@ -270,7 +274,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|GeoPath
 import|;
@@ -284,7 +290,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|GeoPoint
 import|;
@@ -298,7 +306,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|GeoPolygonFactory
 import|;
@@ -312,7 +322,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|GeoShape
 import|;
@@ -326,7 +338,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|geo3d
+name|spatial3d
+operator|.
+name|geom
 operator|.
 name|PlanetModel
 import|;
