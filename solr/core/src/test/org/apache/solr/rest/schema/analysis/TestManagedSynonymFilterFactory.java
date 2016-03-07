@@ -635,16 +635,11 @@ literal|"/response/lst[@name='error']/int[@name='code'] = '404'"
 argument_list|)
 expr_stmt|;
 comment|// add the new field
-name|assertJPut
+name|assertJPost
 argument_list|(
-literal|"/schema/fields/"
-operator|+
-name|newFieldName
+literal|"/schema"
 argument_list|,
-name|json
-argument_list|(
-literal|"{'type':'managed_en'}"
-argument_list|)
+literal|"{ add-field :  { name: managed_en_field, type : managed_en}}"
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)

@@ -98,99 +98,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testGetTwoFields
-specifier|public
-name|void
-name|testGetTwoFields
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|assertQ
-argument_list|(
-literal|"/schema/fields?indent=on&wt=xml&fl=id,_version_"
-argument_list|,
-literal|"count(/response/arr[@name='fields']/lst/str[@name='name']) = 2"
-argument_list|,
-literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[1] = 'id'"
-argument_list|,
-literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[2] = '_version_'"
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|testGetThreeFieldsDontIncludeDynamic
-specifier|public
-name|void
-name|testGetThreeFieldsDontIncludeDynamic
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-comment|//
-name|assertQ
-argument_list|(
-literal|"/schema/fields?indent=on&wt=xml&fl=id,_version_,price_i"
-argument_list|,
-literal|"count(/response/arr[@name='fields']/lst/str[@name='name']) = 2"
-argument_list|,
-literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[1] = 'id'"
-argument_list|,
-literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[2] = '_version_'"
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|testGetThreeFieldsIncludeDynamic
-specifier|public
-name|void
-name|testGetThreeFieldsIncludeDynamic
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|assertQ
-argument_list|(
-literal|"/schema/fields?indent=on&wt=xml&fl=id,_version_,price_i&includeDynamic=on"
-argument_list|,
-literal|"count(/response/arr[@name='fields']/lst/str[@name='name']) = 3"
-argument_list|,
-literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[1] = 'id'"
-argument_list|,
-literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[2] = '_version_'"
-argument_list|,
-literal|"(/response/arr[@name='fields']/lst/str[@name='name'])[3] = 'price_i'"
-argument_list|,
-literal|"/response/arr[@name='fields']/lst[    str[@name='name']='price_i'    "
-operator|+
-literal|"                                  and str[@name='dynamicBase']='*_i']"
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|testNotFoundFields
-specifier|public
-name|void
-name|testNotFoundFields
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|assertQ
-argument_list|(
-literal|"/schema/fields?indent=on&wt=xml&fl=not_in_there,this_one_either"
-argument_list|,
-literal|"count(/response/arr[@name='fields']) = 1"
-argument_list|,
-literal|"count(/response/arr[@name='fields']/lst/str[@name='name']) = 0"
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
 DECL|method|testJsonGetAllFields
 specifier|public
 name|void
@@ -208,27 +115,6 @@ argument_list|,
 literal|"/fields/[1]/name=='HTMLwhitetok'"
 argument_list|,
 literal|"/fields/[2]/name=='_version_'"
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|testJsonGetTwoFields
-specifier|public
-name|void
-name|testJsonGetTwoFields
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|assertJQ
-argument_list|(
-literal|"/schema/fields?indent=on&fl=id,_version_&wt=xml"
-argument_list|,
-comment|// assertJQ should fix the wt param to be json
-literal|"/fields/[0]/name=='id'"
-argument_list|,
-literal|"/fields/[1]/name=='_version_'"
 argument_list|)
 expr_stmt|;
 block|}

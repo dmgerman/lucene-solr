@@ -66,7 +66,7 @@ literal|"/schema/fieldtypes/float?indent=on&wt=xml&showDefaults=true"
 argument_list|,
 literal|"count(/response/lst[@name='fieldType']) = 1"
 argument_list|,
-literal|"count(/response/lst[@name='fieldType']/*) = 18"
+literal|"count(/response/lst[@name='fieldType']/*) = 16"
 argument_list|,
 literal|"/response/lst[@name='fieldType']/str[@name='name'] = 'float'"
 argument_list|,
@@ -97,10 +97,6 @@ argument_list|,
 literal|"/response/lst[@name='fieldType']/bool[@name='multiValued'] = 'false'"
 argument_list|,
 literal|"/response/lst[@name='fieldType']/bool[@name='tokenized'] = 'false'"
-argument_list|,
-literal|"/response/lst[@name='fieldType']/arr[@name='fields']/str = 'weight'"
-argument_list|,
-literal|"/response/lst[@name='fieldType']/arr[@name='dynamicFields']/str = '*_f'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -170,10 +166,6 @@ argument_list|,
 literal|"/fieldType/multiValued==false"
 argument_list|,
 literal|"/fieldType/tokenized==false"
-argument_list|,
-literal|"/fieldType/fields==['weight']"
-argument_list|,
-literal|"/fieldType/dynamicFields==['*_f']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -191,7 +183,7 @@ name|assertQ
 argument_list|(
 literal|"/schema/fieldtypes/teststop?wt=xml&indent=on"
 argument_list|,
-literal|"count(/response/lst[@name='fieldType']/*) = 5"
+literal|"count(/response/lst[@name='fieldType']/*) = 3"
 argument_list|,
 literal|"/response/lst[@name='fieldType']/str[@name='name'] = 'teststop'"
 argument_list|,
@@ -204,10 +196,6 @@ argument_list|,
 literal|"/response/lst[@name='fieldType']/lst[@name='analyzer']/arr[@name='filters']/lst/str[@name='class'][.='solr.StopFilterFactory']"
 argument_list|,
 literal|"/response/lst[@name='fieldType']/lst[@name='analyzer']/arr[@name='filters']/lst/str[@name='words'][.='stopwords.txt']"
-argument_list|,
-literal|"/response/lst[@name='fieldType']/arr[@name='fields']/str[.='teststop']"
-argument_list|,
-literal|"/response/lst[@name='fieldType']/arr[@name='dynamicFields']"
 argument_list|)
 expr_stmt|;
 block|}

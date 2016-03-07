@@ -176,26 +176,6 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testGetFieldIncludeDynamic
-specifier|public
-name|void
-name|testGetFieldIncludeDynamic
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|assertQ
-argument_list|(
-literal|"/schema/fields/some_crazy_name_i?indent=on&wt=xml&includeDynamic=true"
-argument_list|,
-literal|"/response/lst[@name='field']/str[@name='name'] = 'some_crazy_name_i'"
-argument_list|,
-literal|"/response/lst[@name='field']/str[@name='dynamicBase'] = '*_i'"
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
 DECL|method|testGetFieldDontShowDefaults
 specifier|public
 name|void
@@ -211,7 +191,7 @@ init|=
 block|{
 literal|"count(/response/lst[@name='field']) = 1"
 block|,
-literal|"count(/response/lst[@name='field']/*) = 7"
+literal|"count(/response/lst[@name='field']/*) = 6"
 block|,
 literal|"/response/lst[@name='field']/str[@name='name'] = 'id'"
 block|,
@@ -238,46 +218,6 @@ argument_list|(
 literal|"/schema/fields/id?indent=on&wt=xml&showDefaults=false"
 argument_list|,
 name|tests
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|testJsonPutFieldToNonMutableIndexSchema
-specifier|public
-name|void
-name|testJsonPutFieldToNonMutableIndexSchema
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|assertJPut
-argument_list|(
-literal|"/schema/fields/newfield"
-argument_list|,
-literal|"{\"type\":\"text_general\", \"stored\":\"false\"}"
-argument_list|,
-literal|"/error/msg=='This IndexSchema is not mutable.'"
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Test
-DECL|method|testJsonPostFieldsToNonMutableIndexSchema
-specifier|public
-name|void
-name|testJsonPostFieldsToNonMutableIndexSchema
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|assertJPost
-argument_list|(
-literal|"/schema/fields"
-argument_list|,
-literal|"[{\"name\":\"foobarbaz\", \"type\":\"text_general\", \"stored\":\"false\"}]"
-argument_list|,
-literal|"/error/msg=='This IndexSchema is not mutable.'"
 argument_list|)
 expr_stmt|;
 block|}

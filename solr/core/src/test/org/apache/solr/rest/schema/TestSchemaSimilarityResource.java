@@ -50,7 +50,7 @@ name|TestSchemaSimilarityResource
 extends|extends
 name|SolrRestletTestBase
 block|{
-comment|/**    * NOTE: schema used by parent class doesn't define a global sim, so we get the implicit default    * which causes the FQN of the class to be returned    *     * @see TestClassNameShortening#testShortenedGlobalSimilarityStaysShortened    */
+comment|/**    * NOTE: schema used by parent class doesn't define a global sim, so we get the implicit default    * which causes the FQN of the class to be returned    *     */
 annotation|@
 name|Test
 DECL|method|testGetSchemaSimilarity

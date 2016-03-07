@@ -166,26 +166,6 @@ literal|"/dynamicField/tokenized==false"
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Test
-DECL|method|testJsonPutFieldToNonMutableIndexSchema
-specifier|public
-name|void
-name|testJsonPutFieldToNonMutableIndexSchema
-parameter_list|()
-throws|throws
-name|Exception
-block|{
-name|assertJPut
-argument_list|(
-literal|"/schema/dynamicfields/newfield_*"
-argument_list|,
-literal|"{\"type\":\"text_general\", \"stored\":\"false\"}"
-argument_list|,
-literal|"/error/msg=='This IndexSchema is not mutable.'"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 end_class
 
