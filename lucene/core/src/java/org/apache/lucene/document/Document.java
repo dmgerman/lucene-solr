@@ -588,7 +588,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|/**    * Returns an array of values of the field specified as the method parameter.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    * For {@link LegacyIntField}, {@link LegacyLongField}, {@link    * LegacyFloatField} and {@link LegacyDoubleField} it returns the string value of the number. If you want    * the actual numeric field instances back, use {@link #getFields}.    * @param name the name of the field    * @return a<code>String[]</code> of field values    */
+comment|/**    * Returns an array of values of the field specified as the method parameter.    * This method returns an empty array when there are no    * matching fields.  It never returns null.    * For a numeric {@link StoredField} it returns the string value of the number. If you want    * the actual numeric field instances back, use {@link #getFields}.    * @param name the name of the field    * @return a<code>String[]</code> of field values    */
 DECL|method|getValues
 specifier|public
 specifier|final
@@ -681,7 +681,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/** Returns the string value of the field with the given name if any exist in    * this document, or null.  If multiple fields exist with this name, this    * method returns the first value added. If only binary fields with this name    * exist, returns null.    * For {@link LegacyIntField}, {@link LegacyLongField}, {@link    * LegacyFloatField} and {@link LegacyDoubleField} it returns the string value of the number. If you want    * the actual numeric field instance back, use {@link #getField}.    */
+comment|/** Returns the string value of the field with the given name if any exist in    * this document, or null.  If multiple fields exist with this name, this    * method returns the first value added. If only binary fields with this name    * exist, returns null.    * For a numeric {@link StoredField} it returns the string value of the number. If you want    * the actual numeric field instance back, use {@link #getField}.    */
 DECL|method|get
 specifier|public
 specifier|final
