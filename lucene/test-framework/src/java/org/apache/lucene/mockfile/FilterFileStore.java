@@ -83,6 +83,7 @@ end_comment
 begin_class
 DECL|class|FilterFileStore
 specifier|public
+specifier|abstract
 class|class
 name|FilterFileStore
 extends|extends

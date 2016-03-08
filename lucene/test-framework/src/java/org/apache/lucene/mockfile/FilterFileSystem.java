@@ -508,6 +508,7 @@ operator|.
 name|getScheme
 argument_list|()
 argument_list|)
+block|{}
 return|;
 block|}
 annotation|@

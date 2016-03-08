@@ -109,6 +109,7 @@ end_comment
 begin_class
 DECL|class|FilterLeafReader
 specifier|public
+specifier|abstract
 class|class
 name|FilterLeafReader
 extends|extends
@@ -151,6 +152,7 @@ block|}
 comment|/** Base class for filtering {@link Fields}    *  implementations. */
 DECL|class|FilterFields
 specifier|public
+specifier|abstract
 specifier|static
 class|class
 name|FilterFields
@@ -254,6 +256,7 @@ block|}
 comment|/** Base class for filtering {@link Terms} implementations.    *<p><b>NOTE</b>: If the order of terms and documents is not changed, and if    * these terms are going to be intersected with automata, you could consider    * overriding {@link #intersect} for better performance.    */
 DECL|class|FilterTerms
 specifier|public
+specifier|abstract
 specifier|static
 class|class
 name|FilterTerms
@@ -464,6 +467,7 @@ block|}
 comment|/** Base class for filtering {@link TermsEnum} implementations. */
 DECL|class|FilterTermsEnum
 specifier|public
+specifier|abstract
 specifier|static
 class|class
 name|FilterTermsEnum
@@ -682,6 +686,7 @@ block|}
 comment|/** Base class for filtering {@link PostingsEnum} implementations. */
 DECL|class|FilterPostingsEnum
 specifier|public
+specifier|abstract
 specifier|static
 class|class
 name|FilterPostingsEnum

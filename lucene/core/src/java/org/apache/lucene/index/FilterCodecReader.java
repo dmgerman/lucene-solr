@@ -131,6 +131,7 @@ end_comment
 begin_class
 DECL|class|FilterCodecReader
 specifier|public
+specifier|abstract
 class|class
 name|FilterCodecReader
 extends|extends

@@ -47,6 +47,7 @@ end_comment
 begin_class
 DECL|class|FilterCollector
 specifier|public
+specifier|abstract
 class|class
 name|FilterCollector
 implements|implements

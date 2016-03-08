@@ -109,6 +109,7 @@ operator|new
 name|RAMDirectory
 argument_list|()
 argument_list|)
+block|{}
 return|;
 block|}
 annotation|@
@@ -260,6 +261,7 @@ name|FilterDirectory
 argument_list|(
 name|dir
 argument_list|)
+block|{}
 decl_stmt|;
 name|assertEquals
 argument_list|(
