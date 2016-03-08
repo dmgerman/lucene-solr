@@ -98,34 +98,6 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LegacyFloatField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|LegacyIntField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|NumericDocValuesField
 import|;
 end_import
@@ -154,7 +126,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|TextField
+name|StoredField
 import|;
 end_import
 
@@ -168,9 +140,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
-operator|.
-name|Store
+name|TextField
 import|;
 end_import
 
@@ -851,15 +821,11 @@ expr_stmt|;
 name|f
 operator|=
 operator|new
-name|LegacyIntField
+name|StoredField
 argument_list|(
 name|INT_FIELD
 argument_list|,
 name|scoreAndID
-argument_list|,
-name|Store
-operator|.
-name|YES
 argument_list|)
 expr_stmt|;
 comment|// for function scoring
@@ -886,15 +852,11 @@ expr_stmt|;
 name|f
 operator|=
 operator|new
-name|LegacyFloatField
+name|StoredField
 argument_list|(
 name|FLOAT_FIELD
 argument_list|,
 name|scoreAndID
-argument_list|,
-name|Store
-operator|.
-name|YES
 argument_list|)
 expr_stmt|;
 comment|// for function scoring
