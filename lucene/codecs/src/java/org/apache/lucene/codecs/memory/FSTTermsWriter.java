@@ -679,8 +679,6 @@ decl_stmt|;
 name|TermsWriter
 name|termsWriter
 init|=
-name|termsWriter
-operator|=
 operator|new
 name|TermsWriter
 argument_list|(

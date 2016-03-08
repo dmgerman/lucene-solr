@@ -1693,8 +1693,6 @@ argument_list|)
 expr_stmt|;
 name|r
 operator|=
-name|r
-operator|=
 name|sr
 operator|.
 name|getSearcher
