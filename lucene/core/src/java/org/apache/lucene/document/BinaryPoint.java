@@ -44,6 +44,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|PointValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|MatchNoDocsQuery
@@ -121,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * An indexed binary field.  *<p>  * Finding all documents within an N-dimensional shape or range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.  *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery(String, byte[])} for matching an exact 1D point.  *<li>{@link #newSetQuery(String, byte[][]) newSetQuery(String, byte[]...)} for matching a set of 1D values.  *<li>{@link #newRangeQuery(String, byte[], byte[])} for matching a 1D range.  *<li>{@link #newRangeQuery(String, byte[][], byte[][])} for matching points/ranges in n-dimensional space.  *</ul>   */
+comment|/**   * An indexed binary field.  *<p>  * Finding all documents within an N-dimensional shape or range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.  *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery(String, byte[])} for matching an exact 1D point.  *<li>{@link #newSetQuery(String, byte[][]) newSetQuery(String, byte[]...)} for matching a set of 1D values.  *<li>{@link #newRangeQuery(String, byte[], byte[])} for matching a 1D range.  *<li>{@link #newRangeQuery(String, byte[][], byte[][])} for matching points/ranges in n-dimensional space.  *</ul>   * @see PointValues  */
 end_comment
 
 begin_class

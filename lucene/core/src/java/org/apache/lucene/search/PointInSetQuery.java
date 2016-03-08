@@ -46,63 +46,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|BinaryPoint
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DoublePoint
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FloatPoint
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|IntPoint
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|LongPoint
 import|;
 end_import
 
@@ -295,7 +239,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Abstract query class to find all documents whose single or multi-dimensional point values, previously indexed with e.g. {@link IntPoint},  * is contained in the specified set.  *  *<p>  * This is for subclasses and works on the underlying binary encoding: to  * create range queries for lucene's standard {@code Point} types, refer to factory  * methods on those classes, e.g. {@link IntPoint#newSetQuery IntPoint.newSetQuery()} for   * fields indexed with {@link IntPoint}.   * @see IntPoint  * @see LongPoint  * @see FloatPoint  * @see DoublePoint  * @see BinaryPoint   *  * @lucene.experimental */
+comment|/**  * Abstract query class to find all documents whose single or multi-dimensional point values, previously indexed with e.g. {@link IntPoint},  * is contained in the specified set.  *  *<p>  * This is for subclasses and works on the underlying binary encoding: to  * create range queries for lucene's standard {@code Point} types, refer to factory  * methods on those classes, e.g. {@link IntPoint#newSetQuery IntPoint.newSetQuery()} for   * fields indexed with {@link IntPoint}.  * @see PointValues  * @lucene.experimental */
 end_comment
 
 begin_class

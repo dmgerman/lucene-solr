@@ -54,6 +54,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|PointValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|PointInSetQuery
@@ -103,7 +117,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * An indexed 128-bit {@code InetAddress} field.  *<p>  * Finding all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery(String, InetAddress)} for matching an exact network address.  *<li>{@link #newPrefixQuery(String, InetAddress, int)} for matching a network based on CIDR prefix.  *<li>{@link #newRangeQuery(String, InetAddress, InetAddress)} for matching arbitrary network address ranges.  *<li>{@link #newSetQuery(String, InetAddress...)} for matching a set of 1D values.  *</ul>  *<p>  * This field supports both IPv4 and IPv6 addresses: IPv4 addresses are converted  * to<a href="https://tools.ietf.org/html/rfc4291#section-2.5.5">IPv4-Mapped IPv6 Addresses</a>:  * indexing {@code 1.2.3.4} is the same as indexing {@code ::FFFF:1.2.3.4}.  */
+comment|/**   * An indexed 128-bit {@code InetAddress} field.  *<p>  * Finding all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for creating common queries:  *<ul>  *<li>{@link #newExactQuery(String, InetAddress)} for matching an exact network address.  *<li>{@link #newPrefixQuery(String, InetAddress, int)} for matching a network based on CIDR prefix.  *<li>{@link #newRangeQuery(String, InetAddress, InetAddress)} for matching arbitrary network address ranges.  *<li>{@link #newSetQuery(String, InetAddress...)} for matching a set of 1D values.  *</ul>  *<p>  * This field supports both IPv4 and IPv6 addresses: IPv4 addresses are converted  * to<a href="https://tools.ietf.org/html/rfc4291#section-2.5.5">IPv4-Mapped IPv6 Addresses</a>:  * indexing {@code 1.2.3.4} is the same as indexing {@code ::FFFF:1.2.3.4}.  * @see PointValues  */
 end_comment
 
 begin_class
