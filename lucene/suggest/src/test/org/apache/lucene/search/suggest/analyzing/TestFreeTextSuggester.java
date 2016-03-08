@@ -857,8 +857,6 @@ argument_list|(
 literal|null
 argument_list|,
 literal|"/lucenedata/enwiki/enwiki-20120502-lines-1k.txt"
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 comment|// Skip header:
