@@ -198,6 +198,31 @@ block|{
 comment|// This segment has no points
 continue|continue;
 block|}
+name|FieldInfo
+name|readerFieldInfo
+init|=
+name|mergeState
+operator|.
+name|fieldInfos
+index|[
+name|i
+index|]
+operator|.
+name|fieldInfo
+argument_list|(
+name|fieldName
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|readerFieldInfo
+operator|==
+literal|null
+condition|)
+block|{
+comment|// This segment never saw this field
+continue|continue;
+block|}
 name|MergeState
 operator|.
 name|DocMap
