@@ -73,13 +73,6 @@ name|in
 operator|=
 name|in
 expr_stmt|;
-assert|assert
-name|NO_MORE_ORDS
-operator|==
-operator|-
-literal|1
-assert|;
-comment|// this allows our nextOrd() to work for missing values without a check
 block|}
 comment|/** Return the wrapped {@link SortedDocValues} */
 DECL|method|getSortedDocValues
