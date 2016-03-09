@@ -42,16 +42,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collections
 import|;
 end_import
@@ -137,20 +127,6 @@ operator|.
 name|store
 operator|.
 name|IndexOutput
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|MockDirectoryWrapper
 import|;
 end_import
 
@@ -754,6 +730,8 @@ argument_list|,
 literal|true
 argument_list|,
 literal|true
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|fail
