@@ -21,32 +21,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|hamcrest
-operator|.
-name|CoreMatchers
-operator|.
-name|notNullValue
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|hamcrest
-operator|.
-name|core
-operator|.
-name|Is
-operator|.
-name|is
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -65,6 +39,34 @@ operator|.
 name|invoke
 operator|.
 name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ThreadLeakFilters
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|rules
+operator|.
+name|SystemPropertiesRestoreRule
 import|;
 end_import
 
@@ -343,30 +345,28 @@ import|;
 end_import
 
 begin_import
-import|import
-name|com
+import|import static
+name|org
 operator|.
-name|carrotsearch
+name|hamcrest
 operator|.
-name|randomizedtesting
+name|CoreMatchers
 operator|.
-name|annotations
-operator|.
-name|ThreadLeakFilters
+name|notNullValue
 import|;
 end_import
 
 begin_import
-import|import
-name|com
+import|import static
+name|org
 operator|.
-name|carrotsearch
+name|hamcrest
 operator|.
-name|randomizedtesting
+name|core
 operator|.
-name|rules
+name|Is
 operator|.
-name|SystemPropertiesRestoreRule
+name|is
 import|;
 end_import
 
@@ -992,7 +992,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalArgumentException
+name|SolrException
 name|e
 parameter_list|)
 block|{
@@ -1066,7 +1066,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|IllegalArgumentException
+name|SolrException
 name|e
 parameter_list|)
 block|{
