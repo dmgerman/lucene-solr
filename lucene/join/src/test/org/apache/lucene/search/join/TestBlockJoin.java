@@ -1647,6 +1647,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// Create a filter that defines "parent" documents in the index - in this case resumes
@@ -2325,6 +2327,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// Hacky: this causes the query to need 2 rewrite
@@ -2797,6 +2801,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// Create a filter that defines "parent" documents in the index - in this case resumes
@@ -5240,6 +5246,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -8463,6 +8471,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// Create a filter that defines "parent" documents in the index - in this case resumes
@@ -12771,6 +12781,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// Create a filter that defines "parent" documents in the index - in this case resumes
@@ -13057,6 +13069,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// Create a filter that defines "parent" documents in the index - in this case resumes
@@ -13281,6 +13295,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|w
@@ -13666,6 +13682,8 @@ init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|w

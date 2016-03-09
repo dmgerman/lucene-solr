@@ -651,6 +651,8 @@ operator|=
 name|newSearcher
 argument_list|(
 name|reader
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
