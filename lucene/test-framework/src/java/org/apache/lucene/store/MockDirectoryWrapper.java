@@ -342,6 +342,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|CollectionUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|IOUtils
 import|;
 end_import
@@ -1410,17 +1424,35 @@ name|IOException
 block|{
 comment|// Must make a copy because we change the incoming unsyncedFiles
 comment|// when we create temp files, delete, etc., below:
-for|for
-control|(
+specifier|final
+name|List
+argument_list|<
 name|String
-name|name
-range|:
+argument_list|>
+name|filesToCorrupt
+init|=
 operator|new
 name|ArrayList
 argument_list|<>
 argument_list|(
 name|files
 argument_list|)
+decl_stmt|;
+comment|// sort the files otherwise we have reproducibility issues
+comment|// across JVMs if the incoming collection is a hashSet etc.
+name|CollectionUtil
+operator|.
+name|timSort
+argument_list|(
+name|filesToCorrupt
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|String
+name|name
+range|:
+name|filesToCorrupt
 control|)
 block|{
 name|int
