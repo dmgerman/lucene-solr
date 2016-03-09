@@ -304,6 +304,17 @@ name|queryFactory
 operator|.
 name|addBuilder
 argument_list|(
+literal|"PointRangeQuery"
+argument_list|,
+operator|new
+name|PointRangeQueryBuilder
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|queryFactory
+operator|.
+name|addBuilder
+argument_list|(
 literal|"RangeQuery"
 argument_list|,
 operator|new
