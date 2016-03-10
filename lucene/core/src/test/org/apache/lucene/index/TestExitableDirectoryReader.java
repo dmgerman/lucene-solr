@@ -341,7 +341,7 @@ DECL|method|TestReader
 specifier|public
 name|TestReader
 parameter_list|(
-name|IndexReader
+name|LeafReader
 name|reader
 parameter_list|)
 throws|throws
@@ -349,12 +349,7 @@ name|IOException
 block|{
 name|super
 argument_list|(
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
-argument_list|(
 name|reader
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -512,6 +507,13 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+name|writer
+operator|.
 name|commit
 argument_list|()
 expr_stmt|;
@@ -577,7 +579,10 @@ operator|=
 operator|new
 name|TestReader
 argument_list|(
+name|getOnlyLeafReader
+argument_list|(
 name|exitableDirectoryReader
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|searcher
@@ -598,11 +603,6 @@ literal|10
 argument_list|)
 expr_stmt|;
 name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|exitableDirectoryReader
 operator|.
 name|close
 argument_list|()
@@ -636,7 +636,10 @@ operator|=
 operator|new
 name|TestReader
 argument_list|(
+name|getOnlyLeafReader
+argument_list|(
 name|exitableDirectoryReader
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|IndexSearcher
@@ -674,11 +677,6 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|exitableDirectoryReader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 comment|// Set maximum time out and expect the query to complete.
 comment|// Not checking the validity of the result, all we are bothered about in this test is the timing out.
 name|directoryReader
@@ -711,7 +709,10 @@ operator|=
 operator|new
 name|TestReader
 argument_list|(
+name|getOnlyLeafReader
+argument_list|(
 name|exitableDirectoryReader
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|searcher
@@ -732,11 +733,6 @@ literal|10
 argument_list|)
 expr_stmt|;
 name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|exitableDirectoryReader
 operator|.
 name|close
 argument_list|()
@@ -772,7 +768,10 @@ operator|=
 operator|new
 name|TestReader
 argument_list|(
+name|getOnlyLeafReader
+argument_list|(
 name|exitableDirectoryReader
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|searcher
@@ -793,11 +792,6 @@ literal|10
 argument_list|)
 expr_stmt|;
 name|reader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-name|exitableDirectoryReader
 operator|.
 name|close
 argument_list|()

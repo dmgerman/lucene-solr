@@ -2857,7 +2857,7 @@ name|shouldCache
 argument_list|(
 name|query
 argument_list|,
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|reader
 argument_list|)
@@ -2890,7 +2890,7 @@ name|shouldCache
 argument_list|(
 name|query
 argument_list|,
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|reader
 argument_list|)

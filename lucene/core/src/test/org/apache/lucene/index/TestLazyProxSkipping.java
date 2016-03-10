@@ -582,10 +582,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|SegmentReader
+name|LeafReader
 name|reader
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|DirectoryReader
 operator|.

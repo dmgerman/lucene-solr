@@ -325,12 +325,7 @@ specifier|final
 name|IndexReader
 name|r2
 init|=
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
-argument_list|(
 name|r
-argument_list|)
 decl_stmt|;
 name|Thread
 name|thread
@@ -388,7 +383,7 @@ name|IOUtils
 operator|.
 name|close
 argument_list|(
-name|r2
+name|r
 argument_list|,
 name|dir
 argument_list|)

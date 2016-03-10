@@ -773,6 +773,13 @@ name|doc
 argument_list|)
 expr_stmt|;
 block|}
+name|writer
+operator|.
+name|forceMerge
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
 name|reader
 operator|=
 name|DirectoryReader
@@ -794,7 +801,12 @@ name|LuceneTestCase
 operator|.
 name|newSearcher
 argument_list|(
+name|LuceneTestCase
+operator|.
+name|getOnlyLeafReader
+argument_list|(
 name|reader
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|searcher

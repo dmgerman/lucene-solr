@@ -279,7 +279,7 @@ expr_stmt|;
 name|PostingsEnum
 name|p1
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|ir
 argument_list|)
@@ -302,7 +302,7 @@ decl_stmt|;
 name|PostingsEnum
 name|p2
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|ir
 argument_list|)
@@ -585,7 +585,7 @@ expr_stmt|;
 name|PostingsEnum
 name|p1
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|ir
 argument_list|)
@@ -608,7 +608,7 @@ decl_stmt|;
 name|PostingsEnum
 name|p2
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|ir
 argument_list|)

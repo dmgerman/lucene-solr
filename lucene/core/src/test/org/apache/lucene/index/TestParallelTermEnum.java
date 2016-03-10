@@ -368,9 +368,7 @@ name|this
 operator|.
 name|ir1
 operator|=
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
+name|getOnlyLeafReader
 argument_list|(
 name|DirectoryReader
 operator|.
@@ -384,9 +382,7 @@ name|this
 operator|.
 name|ir2
 operator|=
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
+name|getOnlyLeafReader
 argument_list|(
 name|DirectoryReader
 operator|.

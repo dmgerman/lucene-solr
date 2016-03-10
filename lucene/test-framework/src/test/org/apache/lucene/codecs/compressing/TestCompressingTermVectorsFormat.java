@@ -136,6 +136,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|BaseTermVectorsFormatTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|CodecReader
 import|;
 end_import
@@ -206,20 +220,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|BaseTermVectorsFormatTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|LeafReaderContext
 import|;
 end_import
@@ -277,6 +277,8 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
+operator|.
+name|SeekStatus
 import|;
 end_import
 
@@ -291,8 +293,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-operator|.
-name|SeekStatus
 import|;
 end_import
 
@@ -427,7 +427,7 @@ expr_stmt|;
 name|LeafReader
 name|ir
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|iw
 operator|.
@@ -805,7 +805,10 @@ expr_stmt|;
 name|CodecReader
 name|sr
 init|=
-name|getOnlySegmentReader
+operator|(
+name|CodecReader
+operator|)
+name|getOnlyLeafReader
 argument_list|(
 name|ir
 argument_list|)

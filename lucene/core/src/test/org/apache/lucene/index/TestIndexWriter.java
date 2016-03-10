@@ -4992,7 +4992,7 @@ decl_stmt|;
 name|LeafReader
 name|subreader
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|reader
 argument_list|)
@@ -5211,7 +5211,7 @@ decl_stmt|;
 name|LeafReader
 name|subreader
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|reader
 argument_list|)
@@ -16657,7 +16657,7 @@ name|assertEquals
 argument_list|(
 literal|0
 argument_list|,
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|r
 argument_list|)

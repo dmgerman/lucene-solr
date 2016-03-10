@@ -3330,13 +3330,15 @@ name|testMethodName
 return|;
 block|}
 comment|/**    * Some tests expect the directory to contain a single segment, and want to     * do tests on that segment's reader. This is an utility method to help them.    */
-DECL|method|getOnlySegmentReader
+comment|/*   public static SegmentReader getOnlySegmentReader(DirectoryReader reader) {     List<LeafReaderContext> subReaders = reader.leaves();     if (subReaders.size() != 1) {       throw new IllegalArgumentException(reader + " has " + subReaders.size() + " segments instead of exactly one");     }     final LeafReader r = subReaders.get(0).reader();     assertTrue("expected a SegmentReader but got " + r, r instanceof SegmentReader);     return (SegmentReader) r;   }     */
+comment|/**    * Some tests expect the directory to contain a single segment, and want to     * do tests on that segment's reader. This is an utility method to help them.    */
+DECL|method|getOnlyLeafReader
 specifier|public
 specifier|static
-name|SegmentReader
-name|getOnlySegmentReader
+name|LeafReader
+name|getOnlyLeafReader
 parameter_list|(
-name|DirectoryReader
+name|IndexReader
 name|reader
 parameter_list|)
 block|{
@@ -3378,10 +3380,7 @@ literal|" segments instead of exactly one"
 argument_list|)
 throw|;
 block|}
-specifier|final
-name|LeafReader
-name|r
-init|=
+return|return
 name|subReaders
 operator|.
 name|get
@@ -3391,19 +3390,6 @@ argument_list|)
 operator|.
 name|reader
 argument_list|()
-decl_stmt|;
-name|assertTrue
-argument_list|(
-name|r
-operator|instanceof
-name|SegmentReader
-argument_list|)
-expr_stmt|;
-return|return
-operator|(
-name|SegmentReader
-operator|)
-name|r
 return|;
 block|}
 comment|/**    * Returns true if and only if the calling thread is the primary thread     * executing the test case.     */
@@ -8225,44 +8211,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-return|return
-name|wrapReader
-argument_list|(
-name|r
-argument_list|,
-literal|true
-argument_list|)
-return|;
-block|}
-DECL|method|wrapReader
-specifier|public
-specifier|static
-name|IndexReader
-name|wrapReader
-parameter_list|(
-name|IndexReader
-name|r
-parameter_list|,
-name|boolean
-name|allowSlowCompositeReader
-parameter_list|)
-throws|throws
-name|IOException
-block|{
 name|Random
 name|random
 init|=
 name|random
 argument_list|()
-decl_stmt|;
-comment|// TODO: remove this, and fix those tests to wrap before putting slow around:
-specifier|final
-name|boolean
-name|wasOriginallyAtomic
-init|=
-name|r
-operator|instanceof
-name|LeafReader
 decl_stmt|;
 for|for
 control|(
@@ -8296,50 +8249,12 @@ name|random
 operator|.
 name|nextInt
 argument_list|(
-literal|6
+literal|5
 argument_list|)
 condition|)
 block|{
 case|case
 literal|0
-case|:
-if|if
-condition|(
-name|allowSlowCompositeReader
-condition|)
-block|{
-if|if
-condition|(
-name|VERBOSE
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"NOTE: LuceneTestCase.wrapReader: wrapping previous reader="
-operator|+
-name|r
-operator|+
-literal|" with SlowCompositeReaderWrapper.wrap"
-argument_list|)
-expr_stmt|;
-block|}
-name|r
-operator|=
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
-argument_list|(
-name|r
-argument_list|)
-expr_stmt|;
-block|}
-break|break;
-case|case
-literal|1
 case|:
 comment|// will create no FC insanity in atomic case, as ParallelLeafReader has own cache key:
 if|if
@@ -8389,7 +8304,7 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-literal|2
+literal|1
 case|:
 comment|// HÃ¤ckidy-Hick-Hack: a standard MultiReader will cause FC insanity, so we use
 comment|// QueryUtils' reader with a fake cache key, so insanity checker cannot walk
@@ -8423,23 +8338,23 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
-literal|3
+literal|2
 case|:
 if|if
 condition|(
-name|allowSlowCompositeReader
+name|r
+operator|instanceof
+name|LeafReader
 condition|)
 block|{
 specifier|final
 name|LeafReader
 name|ar
 init|=
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
-argument_list|(
+operator|(
+name|LeafReader
+operator|)
 name|r
-argument_list|)
 decl_stmt|;
 specifier|final
 name|List
@@ -8541,7 +8456,7 @@ literal|"NOTE: LuceneTestCase.wrapReader: wrapping previous reader="
 operator|+
 name|r
 operator|+
-literal|" with ParallelLeafReader(SlowCompositeReaderWapper)"
+literal|" with ParallelLeafReader"
 argument_list|)
 expr_stmt|;
 block|}
@@ -8574,7 +8489,7 @@ expr_stmt|;
 block|}
 break|break;
 case|case
-literal|4
+literal|3
 case|:
 comment|// HÃ¤ckidy-Hick-Hack: a standard Reader will cause FC insanity, so we use
 comment|// QueryUtils' reader with a fake cache key, so insanity checker cannot walk
@@ -8639,7 +8554,7 @@ expr_stmt|;
 block|}
 break|break;
 case|case
-literal|5
+literal|4
 case|:
 if|if
 condition|(
@@ -8712,28 +8627,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-if|if
-condition|(
-name|wasOriginallyAtomic
-condition|)
-block|{
-if|if
-condition|(
-name|allowSlowCompositeReader
-condition|)
-block|{
-name|r
-operator|=
-name|SlowCompositeReaderWrapper
-operator|.
-name|wrap
-argument_list|(
-name|r
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-elseif|else
 if|if
 condition|(
 operator|(

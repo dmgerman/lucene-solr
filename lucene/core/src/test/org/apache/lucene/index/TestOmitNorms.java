@@ -345,10 +345,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|SegmentReader
+name|LeafReader
 name|reader
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|DirectoryReader
 operator|.
@@ -630,10 +630,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|SegmentReader
+name|LeafReader
 name|reader
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|DirectoryReader
 operator|.
@@ -875,10 +875,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|SegmentReader
+name|LeafReader
 name|reader
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|DirectoryReader
 operator|.
@@ -1705,7 +1705,7 @@ decl_stmt|;
 name|NumericDocValues
 name|norms2
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|ir2
 argument_list|)

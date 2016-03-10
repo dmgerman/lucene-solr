@@ -1747,7 +1747,7 @@ argument_list|()
 expr_stmt|;
 name|reader1
 operator|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|DirectoryReader
 operator|.
@@ -1779,7 +1779,7 @@ expr_stmt|;
 name|LeafReader
 name|reader2
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|DirectoryReader
 operator|.
@@ -2054,7 +2054,7 @@ expr_stmt|;
 name|LeafReader
 name|oneDocReader
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|DirectoryReader
 operator|.

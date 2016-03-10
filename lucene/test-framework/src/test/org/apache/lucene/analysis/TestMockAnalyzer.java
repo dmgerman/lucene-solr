@@ -2155,7 +2155,7 @@ specifier|final
 name|LeafReader
 name|reader
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|writer
 operator|.

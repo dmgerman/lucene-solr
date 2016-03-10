@@ -647,7 +647,7 @@ argument_list|)
 expr_stmt|;
 name|reader
 operator|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|r
 argument_list|)

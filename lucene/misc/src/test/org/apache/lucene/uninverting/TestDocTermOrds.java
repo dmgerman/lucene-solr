@@ -3172,7 +3172,7 @@ name|DEFAULT
 operator|.
 name|getDocTermOrds
 argument_list|(
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|r2
 argument_list|)
@@ -3191,7 +3191,7 @@ name|DEFAULT
 operator|.
 name|getDocTermOrds
 argument_list|(
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|r1
 argument_list|)
@@ -3387,7 +3387,7 @@ decl_stmt|;
 name|LeafReader
 name|ar
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|ir
 argument_list|)
@@ -3681,7 +3681,7 @@ decl_stmt|;
 name|LeafReader
 name|ar
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|ir
 argument_list|)
@@ -4031,7 +4031,7 @@ expr_stmt|;
 name|LeafReader
 name|ar
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|ireader
 argument_list|)
@@ -4781,7 +4781,7 @@ decl_stmt|;
 name|LeafReader
 name|ar
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|ir
 argument_list|)

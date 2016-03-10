@@ -1368,7 +1368,7 @@ expr_stmt|;
 name|LeafReader
 name|ar
 init|=
-name|getOnlySegmentReader
+name|getOnlyLeafReader
 argument_list|(
 name|ir
 argument_list|)
