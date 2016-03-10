@@ -115,14 +115,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This listener is used to listen to {@link FieldConfig} requests in  * {@link QueryConfigHandler} and add {@link ConfigurationKeys#NUMERIC_CONFIG}  * based on the {@link ConfigurationKeys#NUMERIC_CONFIG_MAP} set in the  * {@link QueryConfigHandler}.  *   * @see NumericConfig  * @see QueryConfigHandler  * @see ConfigurationKeys#NUMERIC_CONFIG  * @see ConfigurationKeys#NUMERIC_CONFIG_MAP  */
+comment|/**  * This listener is used to listen to {@link FieldConfig} requests in  * {@link QueryConfigHandler} and add {@link ConfigurationKeys#POINTS_CONFIG}  * based on the {@link ConfigurationKeys#POINTS_CONFIG_MAP} set in the  * {@link QueryConfigHandler}.  *   * @see PointsConfig  * @see QueryConfigHandler  * @see ConfigurationKeys#POINTS_CONFIG  * @see ConfigurationKeys#POINTS_CONFIG_MAP  */
 end_comment
 
 begin_class
-DECL|class|NumericFieldConfigListener
+DECL|class|PointsConfigListener
 specifier|public
 class|class
-name|NumericFieldConfigListener
+name|PointsConfigListener
 implements|implements
 name|FieldConfigListener
 block|{
@@ -132,10 +132,10 @@ specifier|private
 name|QueryConfigHandler
 name|config
 decl_stmt|;
-comment|/**    * Construcs a {@link NumericFieldConfigListener} object using the given {@link QueryConfigHandler}.    *     * @param config the {@link QueryConfigHandler} it will listen too    */
-DECL|method|NumericFieldConfigListener
+comment|/**    * Constructs a {@link PointsConfigListener} object using the given {@link QueryConfigHandler}.    *     * @param config the {@link QueryConfigHandler} it will listen too    */
+DECL|method|PointsConfigListener
 specifier|public
-name|NumericFieldConfigListener
+name|PointsConfigListener
 parameter_list|(
 name|QueryConfigHandler
 name|config
@@ -178,9 +178,9 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|NumericConfig
+name|PointsConfig
 argument_list|>
-name|numericConfigMap
+name|pointsConfigMap
 init|=
 name|config
 operator|.
@@ -188,20 +188,20 @@ name|get
 argument_list|(
 name|ConfigurationKeys
 operator|.
-name|NUMERIC_CONFIG_MAP
+name|POINTS_CONFIG_MAP
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|numericConfigMap
+name|pointsConfigMap
 operator|!=
 literal|null
 condition|)
 block|{
-name|NumericConfig
-name|numericConfig
+name|PointsConfig
+name|pointsConfig
 init|=
-name|numericConfigMap
+name|pointsConfigMap
 operator|.
 name|get
 argument_list|(
@@ -213,7 +213,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|numericConfig
+name|pointsConfig
 operator|!=
 literal|null
 condition|)
@@ -224,9 +224,9 @@ name|set
 argument_list|(
 name|ConfigurationKeys
 operator|.
-name|NUMERIC_CONFIG
+name|POINTS_CONFIG
 argument_list|,
-name|numericConfig
+name|pointsConfig
 argument_list|)
 expr_stmt|;
 block|}

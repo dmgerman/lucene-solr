@@ -124,39 +124,41 @@ name|standard
 operator|.
 name|config
 operator|.
-name|NumericConfig
+name|LegacyNumericConfig
 import|;
 end_import
 
 begin_comment
-comment|/**  * This query node represents a range query composed by {@link NumericQueryNode}  * bounds, which means the bound values are {@link Number}s.  *   * @see NumericQueryNode  * @see AbstractRangeQueryNode  */
+comment|/**  * This query node represents a range query composed by {@link LegacyNumericQueryNode}  * bounds, which means the bound values are {@link Number}s.  *   * @see LegacyNumericQueryNode  * @see AbstractRangeQueryNode  * @deprecated Index with Points instead and use {@link PointRangeQueryNode} instead.  */
 end_comment
 
 begin_class
-DECL|class|NumericRangeQueryNode
+annotation|@
+name|Deprecated
+DECL|class|LegacyNumericRangeQueryNode
 specifier|public
 class|class
-name|NumericRangeQueryNode
+name|LegacyNumericRangeQueryNode
 extends|extends
 name|AbstractRangeQueryNode
 argument_list|<
-name|NumericQueryNode
+name|LegacyNumericQueryNode
 argument_list|>
 block|{
 DECL|field|numericConfig
 specifier|public
-name|NumericConfig
+name|LegacyNumericConfig
 name|numericConfig
 decl_stmt|;
-comment|/**    * Constructs a {@link NumericRangeQueryNode} object using the given    * {@link NumericQueryNode} as its bounds and {@link NumericConfig}.    *     * @param lower the lower bound    * @param upper the upper bound    * @param lowerInclusive<code>true</code> if the lower bound is inclusive, otherwise,<code>false</code>    * @param upperInclusive<code>true</code> if the upper bound is inclusive, otherwise,<code>false</code>    * @param numericConfig the {@link NumericConfig} that represents associated with the upper and lower bounds    *     * @see #setBounds(NumericQueryNode, NumericQueryNode, boolean, boolean, NumericConfig)    */
-DECL|method|NumericRangeQueryNode
+comment|/**    * Constructs a {@link LegacyNumericRangeQueryNode} object using the given    * {@link LegacyNumericQueryNode} as its bounds and {@link LegacyNumericConfig}.    *     * @param lower the lower bound    * @param upper the upper bound    * @param lowerInclusive<code>true</code> if the lower bound is inclusive, otherwise,<code>false</code>    * @param upperInclusive<code>true</code> if the upper bound is inclusive, otherwise,<code>false</code>    * @param numericConfig the {@link LegacyNumericConfig} that represents associated with the upper and lower bounds    *     * @see #setBounds(LegacyNumericQueryNode, LegacyNumericQueryNode, boolean, boolean, LegacyNumericConfig)    */
+DECL|method|LegacyNumericRangeQueryNode
 specifier|public
-name|NumericRangeQueryNode
+name|LegacyNumericRangeQueryNode
 parameter_list|(
-name|NumericQueryNode
+name|LegacyNumericQueryNode
 name|lower
 parameter_list|,
-name|NumericQueryNode
+name|LegacyNumericQueryNode
 name|upper
 parameter_list|,
 name|boolean
@@ -165,7 +167,7 @@ parameter_list|,
 name|boolean
 name|upperInclusive
 parameter_list|,
-name|NumericConfig
+name|LegacyNumericConfig
 name|numericConfig
 parameter_list|)
 throws|throws
@@ -280,16 +282,16 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Sets the upper and lower bounds of this range query node and the    * {@link NumericConfig} associated with these bounds.    *     * @param lower the lower bound    * @param upper the upper bound    * @param lowerInclusive<code>true</code> if the lower bound is inclusive, otherwise,<code>false</code>    * @param upperInclusive<code>true</code> if the upper bound is inclusive, otherwise,<code>false</code>    * @param numericConfig the {@link NumericConfig} that represents associated with the upper and lower bounds    *     */
+comment|/**    * Sets the upper and lower bounds of this range query node and the    * {@link LegacyNumericConfig} associated with these bounds.    *     * @param lower the lower bound    * @param upper the upper bound    * @param lowerInclusive<code>true</code> if the lower bound is inclusive, otherwise,<code>false</code>    * @param upperInclusive<code>true</code> if the upper bound is inclusive, otherwise,<code>false</code>    * @param numericConfig the {@link LegacyNumericConfig} that represents associated with the upper and lower bounds    *     */
 DECL|method|setBounds
 specifier|public
 name|void
 name|setBounds
 parameter_list|(
-name|NumericQueryNode
+name|LegacyNumericQueryNode
 name|lower
 parameter_list|,
-name|NumericQueryNode
+name|LegacyNumericQueryNode
 name|upper
 parameter_list|,
 name|boolean
@@ -298,7 +300,7 @@ parameter_list|,
 name|boolean
 name|upperInclusive
 parameter_list|,
-name|NumericConfig
+name|LegacyNumericConfig
 name|numericConfig
 parameter_list|)
 throws|throws
@@ -478,10 +480,10 @@ operator|=
 name|numericConfig
 expr_stmt|;
 block|}
-comment|/**    * Returns the {@link NumericConfig} associated with the lower and upper bounds.    *     * @return the {@link NumericConfig} associated with the lower and upper bounds    */
+comment|/**    * Returns the {@link LegacyNumericConfig} associated with the lower and upper bounds.    *     * @return the {@link LegacyNumericConfig} associated with the lower and upper bounds    */
 DECL|method|getNumericConfig
 specifier|public
-name|NumericConfig
+name|LegacyNumericConfig
 name|getNumericConfig
 parameter_list|()
 block|{

@@ -160,19 +160,21 @@ name|standard
 operator|.
 name|config
 operator|.
-name|NumericConfig
+name|LegacyNumericConfig
 import|;
 end_import
 
 begin_comment
-comment|/**  * This query node represents a field query that holds a numeric value. It is  * similar to {@link FieldQueryNode}, however the {@link #getValue()} returns a  * {@link Number}.  *   * @see NumericConfig  */
+comment|/**  * This query node represents a field query that holds a numeric value. It is  * similar to {@link FieldQueryNode}, however the {@link #getValue()} returns a  * {@link Number}.  *   * @see LegacyNumericConfig  * @deprecated Index with Points instead and use {@link PointQueryNode} instead.  */
 end_comment
 
 begin_class
-DECL|class|NumericQueryNode
+annotation|@
+name|Deprecated
+DECL|class|LegacyNumericQueryNode
 specifier|public
 class|class
-name|NumericQueryNode
+name|LegacyNumericQueryNode
 extends|extends
 name|QueryNodeImpl
 implements|implements
@@ -196,10 +198,10 @@ specifier|private
 name|Number
 name|value
 decl_stmt|;
-comment|/**    * Creates a {@link NumericQueryNode} object using the given field,    * {@link Number} value and {@link NumberFormat} used to convert the value to    * {@link String}.    *     * @param field the field associated with this query node    * @param value the value hold by this node    * @param numberFormat the {@link NumberFormat} used to convert the value to {@link String}    */
-DECL|method|NumericQueryNode
+comment|/**    * Creates a {@link LegacyNumericQueryNode} object using the given field,    * {@link Number} value and {@link NumberFormat} used to convert the value to    * {@link String}.    *     * @param field the field associated with this query node    * @param value the value hold by this node    * @param numberFormat the {@link NumberFormat} used to convert the value to {@link String}    */
+DECL|method|LegacyNumericQueryNode
 specifier|public
-name|NumericQueryNode
+name|LegacyNumericQueryNode
 parameter_list|(
 name|CharSequence
 name|field

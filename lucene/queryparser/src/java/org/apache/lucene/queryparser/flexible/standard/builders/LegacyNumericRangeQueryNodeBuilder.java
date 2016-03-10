@@ -148,7 +148,7 @@ name|standard
 operator|.
 name|config
 operator|.
-name|NumericConfig
+name|LegacyNumericConfig
 import|;
 end_import
 
@@ -168,7 +168,7 @@ name|standard
 operator|.
 name|nodes
 operator|.
-name|NumericQueryNode
+name|LegacyNumericQueryNode
 import|;
 end_import
 
@@ -188,7 +188,7 @@ name|standard
 operator|.
 name|nodes
 operator|.
-name|NumericRangeQueryNode
+name|LegacyNumericRangeQueryNode
 import|;
 end_import
 
@@ -207,21 +207,23 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Builds {@link org.apache.lucene.search.LegacyNumericRangeQuery}s out of {@link NumericRangeQueryNode}s.  *  * @see org.apache.lucene.search.LegacyNumericRangeQuery  * @see NumericRangeQueryNode  */
+comment|/**  * Builds {@link org.apache.lucene.search.LegacyNumericRangeQuery}s out of {@link LegacyNumericRangeQueryNode}s.  *  * @see org.apache.lucene.search.LegacyNumericRangeQuery  * @see LegacyNumericRangeQueryNode  * @deprecated Index with points and use {@link PointRangeQueryNodeBuilder} instead.  */
 end_comment
 
 begin_class
-DECL|class|NumericRangeQueryNodeBuilder
+annotation|@
+name|Deprecated
+DECL|class|LegacyNumericRangeQueryNodeBuilder
 specifier|public
 class|class
-name|NumericRangeQueryNodeBuilder
+name|LegacyNumericRangeQueryNodeBuilder
 implements|implements
 name|StandardQueryBuilder
 block|{
-comment|/**    * Constructs a {@link NumericRangeQueryNodeBuilder} object.    */
-DECL|method|NumericRangeQueryNodeBuilder
+comment|/**    * Constructs a {@link LegacyNumericRangeQueryNodeBuilder} object.    */
+DECL|method|LegacyNumericRangeQueryNodeBuilder
 specifier|public
-name|NumericRangeQueryNodeBuilder
+name|LegacyNumericRangeQueryNodeBuilder
 parameter_list|()
 block|{
 comment|// empty constructor
@@ -244,15 +246,15 @@ parameter_list|)
 throws|throws
 name|QueryNodeException
 block|{
-name|NumericRangeQueryNode
+name|LegacyNumericRangeQueryNode
 name|numericRangeNode
 init|=
 operator|(
-name|NumericRangeQueryNode
+name|LegacyNumericRangeQueryNode
 operator|)
 name|queryNode
 decl_stmt|;
-name|NumericQueryNode
+name|LegacyNumericQueryNode
 name|lowerNumericNode
 init|=
 name|numericRangeNode
@@ -260,7 +262,7 @@ operator|.
 name|getLowerBound
 argument_list|()
 decl_stmt|;
-name|NumericQueryNode
+name|LegacyNumericQueryNode
 name|upperNumericNode
 init|=
 name|numericRangeNode
@@ -284,7 +286,7 @@ operator|.
 name|getValue
 argument_list|()
 decl_stmt|;
-name|NumericConfig
+name|LegacyNumericConfig
 name|numericConfig
 init|=
 name|numericRangeNode
