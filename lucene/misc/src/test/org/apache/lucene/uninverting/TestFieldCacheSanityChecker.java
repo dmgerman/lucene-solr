@@ -678,7 +678,7 @@ literal|"theDouble"
 argument_list|,
 name|FieldCache
 operator|.
-name|NUMERIC_UTILS_DOUBLE_PARSER
+name|LEGACY_DOUBLE_PARSER
 argument_list|,
 literal|false
 argument_list|)
@@ -693,7 +693,7 @@ literal|"theDouble"
 argument_list|,
 name|FieldCache
 operator|.
-name|NUMERIC_UTILS_DOUBLE_PARSER
+name|LEGACY_DOUBLE_PARSER
 argument_list|,
 literal|false
 argument_list|)
@@ -708,7 +708,7 @@ literal|"theDouble"
 argument_list|,
 name|FieldCache
 operator|.
-name|NUMERIC_UTILS_DOUBLE_PARSER
+name|LEGACY_DOUBLE_PARSER
 argument_list|,
 literal|false
 argument_list|)
@@ -723,7 +723,7 @@ literal|"theInt"
 argument_list|,
 name|FieldCache
 operator|.
-name|NUMERIC_UTILS_INT_PARSER
+name|LEGACY_INT_PARSER
 argument_list|,
 literal|false
 argument_list|)
@@ -820,7 +820,7 @@ literal|"theInt"
 argument_list|,
 name|FieldCache
 operator|.
-name|NUMERIC_UTILS_INT_PARSER
+name|LEGACY_INT_PARSER
 argument_list|,
 literal|false
 argument_list|)

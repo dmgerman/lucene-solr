@@ -710,7 +710,7 @@ literal|"field2"
 argument_list|,
 name|Type
 operator|.
-name|LONG
+name|LEGACY_LONG
 argument_list|)
 expr_stmt|;
 name|map
@@ -721,7 +721,7 @@ literal|"field4"
 argument_list|,
 name|Type
 operator|.
-name|LONG
+name|LEGACY_LONG
 argument_list|)
 expr_stmt|;
 name|map
@@ -732,7 +732,7 @@ literal|"field6"
 argument_list|,
 name|Type
 operator|.
-name|LONG
+name|LEGACY_LONG
 argument_list|)
 expr_stmt|;
 name|map
@@ -743,7 +743,7 @@ literal|"field8"
 argument_list|,
 name|Type
 operator|.
-name|LONG
+name|LEGACY_LONG
 argument_list|)
 expr_stmt|;
 name|reader

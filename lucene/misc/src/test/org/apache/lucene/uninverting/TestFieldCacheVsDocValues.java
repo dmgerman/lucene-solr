@@ -3185,6 +3185,8 @@ argument_list|(
 name|r
 argument_list|,
 literal|"indexed"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|Bits
@@ -3199,6 +3201,8 @@ argument_list|(
 name|r
 argument_list|,
 literal|"dv"
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertEquals
