@@ -2528,7 +2528,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// first check if it's a "fixed-length" terms dict
+comment|// first check if it's a "fixed-length" terms dict, and compressibility if so
 name|int
 name|minLength
 init|=
@@ -2548,6 +2548,19 @@ name|numValues
 init|=
 literal|0
 decl_stmt|;
+name|BytesRefBuilder
+name|previousValue
+init|=
+operator|new
+name|BytesRefBuilder
+argument_list|()
+decl_stmt|;
+name|long
+name|prefixSum
+init|=
+literal|0
+decl_stmt|;
+comment|// only valid for fixed-width data, as we have a choice there
 for|for
 control|(
 name|BytesRef
@@ -2582,10 +2595,6 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
-name|numValues
-operator|++
-expr_stmt|;
-block|}
 if|if
 condition|(
 name|minLength
@@ -2593,7 +2602,86 @@ operator|==
 name|maxLength
 condition|)
 block|{
-comment|// no index needed: direct addressing by mult
+name|int
+name|termPosition
+init|=
+call|(
+name|int
+call|)
+argument_list|(
+name|numValues
+operator|&
+name|INTERVAL_MASK
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|termPosition
+operator|==
+literal|0
+condition|)
+block|{
+comment|// first term in block, save it away to compare against the last term later
+name|previousValue
+operator|.
+name|copyBytes
+argument_list|(
+name|v
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|termPosition
+operator|==
+name|INTERVAL_COUNT
+operator|-
+literal|1
+condition|)
+block|{
+comment|// last term in block, accumulate shared prefix against first term
+name|prefixSum
+operator|+=
+name|StringHelper
+operator|.
+name|bytesDifference
+argument_list|(
+name|previousValue
+operator|.
+name|get
+argument_list|()
+argument_list|,
+name|v
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+name|numValues
+operator|++
+expr_stmt|;
+block|}
+comment|// for fixed width data, look at the avg(shared prefix) before deciding how to encode:
+comment|// prefix compression "costs" worst case 2 bytes per term because we must store suffix lengths.
+comment|// so if we share at least 3 bytes on average, always compress.
+if|if
+condition|(
+name|minLength
+operator|==
+name|maxLength
+operator|&&
+name|prefixSum
+operator|<=
+literal|3
+operator|*
+operator|(
+name|numValues
+operator|>>
+name|INTERVAL_SHIFT
+operator|)
+condition|)
+block|{
+comment|// no index needed: not very compressible, direct addressing by mult
 name|addBinaryField
 argument_list|(
 name|field
