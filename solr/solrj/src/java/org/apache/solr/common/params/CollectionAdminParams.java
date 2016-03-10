@@ -35,6 +35,15 @@ name|FLUSH
 init|=
 literal|"flush"
 decl_stmt|;
+DECL|field|COLLECTION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|COLLECTION
+init|=
+literal|"collection"
+decl_stmt|;
 block|}
 end_class
 
