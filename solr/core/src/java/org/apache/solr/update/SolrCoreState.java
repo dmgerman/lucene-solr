@@ -269,7 +269,7 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IllegalStateException
+name|CoreIsClosedException
 argument_list|(
 literal|"IndexWriter has been closed"
 argument_list|)
@@ -536,6 +536,29 @@ name|boolean
 name|success
 parameter_list|)
 function_decl|;
+DECL|class|CoreIsClosedException
+specifier|public
+specifier|static
+class|class
+name|CoreIsClosedException
+extends|extends
+name|IllegalStateException
+block|{
+DECL|method|CoreIsClosedException
+specifier|public
+name|CoreIsClosedException
+parameter_list|(
+name|String
+name|s
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|s
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 end_class
 

@@ -261,15 +261,6 @@ comment|/**  * Emulates bin/solr -e cloud -noprompt; bin/post -c gettingstarted 
 end_comment
 
 begin_class
-annotation|@
-name|LuceneTestCase
-operator|.
-name|BadApple
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-8135"
-argument_list|)
 DECL|class|SolrCloudExampleTest
 specifier|public
 class|class

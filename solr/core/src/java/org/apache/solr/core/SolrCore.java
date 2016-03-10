@@ -12240,6 +12240,8 @@ argument_list|,
 name|coreName
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|cc
 operator|.
 name|reload
@@ -12247,6 +12249,17 @@ argument_list|(
 name|coreName
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|SolrCoreState
+operator|.
+name|CoreIsClosedException
+name|e
+parameter_list|)
+block|{
+comment|/*no problem this core is already closed*/
+block|}
 return|return;
 block|}
 comment|//some files in conf directory may have  other than managedschema, overlay, params
