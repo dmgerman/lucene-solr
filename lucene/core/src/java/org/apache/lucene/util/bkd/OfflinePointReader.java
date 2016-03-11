@@ -119,11 +119,6 @@ specifier|private
 name|int
 name|docID
 decl_stmt|;
-DECL|field|bytesPerDoc
-specifier|final
-name|int
-name|bytesPerDoc
-decl_stmt|;
 DECL|method|OfflinePointReader
 name|OfflinePointReader
 parameter_list|(
@@ -191,8 +186,9 @@ name|in
 operator|=
 name|in
 expr_stmt|;
+name|int
 name|bytesPerDoc
-operator|=
+init|=
 name|packedBytesLength
 operator|+
 name|Long
@@ -202,7 +198,7 @@ operator|+
 name|Integer
 operator|.
 name|BYTES
-expr_stmt|;
+decl_stmt|;
 name|long
 name|seekFP
 init|=
