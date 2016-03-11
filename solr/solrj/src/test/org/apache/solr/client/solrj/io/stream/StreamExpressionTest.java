@@ -4125,7 +4125,7 @@ name|parse
 argument_list|(
 literal|"daemon(rollup("
 operator|+
-literal|"search(collection1, q=*:*, fl=\"a_i,a_s\", sort=\"a_s asc\"),"
+literal|"search(collection1, q=\"*:*\", fl=\"a_i,a_s\", sort=\"a_s asc\"),"
 operator|+
 literal|"over=\"a_s\","
 operator|+
@@ -17745,6 +17745,25 @@ name|id
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|dstream
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
+name|tuple
+operator|=
+name|dstream
+operator|.
+name|read
+argument_list|()
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|tuple
+operator|.
+name|EOF
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -17757,17 +17776,17 @@ block|}
 block|}
 finally|finally
 block|{
-name|cache
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 name|del
 argument_list|(
 literal|"*:*"
 argument_list|)
 expr_stmt|;
 name|commit
+argument_list|()
+expr_stmt|;
+name|cache
+operator|.
+name|close
 argument_list|()
 expr_stmt|;
 block|}

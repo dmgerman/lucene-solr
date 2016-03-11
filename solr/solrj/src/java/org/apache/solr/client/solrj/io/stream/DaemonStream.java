@@ -1060,6 +1060,20 @@ name|streamContext
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|shutdown
+specifier|public
+name|void
+name|shutdown
+parameter_list|()
+block|{
+name|streamRunner
+operator|.
+name|setShutdown
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|close
 specifier|public
 name|void
@@ -1079,6 +1093,12 @@ name|setShutdown
 argument_list|(
 literal|true
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|closed
+operator|=
+literal|true
 expr_stmt|;
 block|}
 DECL|method|children
@@ -1323,10 +1343,6 @@ name|shutdown
 operator|=
 name|shutdown
 expr_stmt|;
-name|interrupt
-argument_list|()
-expr_stmt|;
-comment|//We could be blocked on the queue or sleeping
 block|}
 DECL|method|getShutdown
 specifier|public
