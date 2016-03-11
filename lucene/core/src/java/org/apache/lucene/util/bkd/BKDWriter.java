@@ -5622,8 +5622,6 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
-comment|// TODO: we should delta compress / only write suffix bytes, like terms dict (the values will all be "close together" since we are at
-comment|// a leaf cell):
 comment|// First pass: find the per-dim common prefix for all values in this block:
 name|Arrays
 operator|.
