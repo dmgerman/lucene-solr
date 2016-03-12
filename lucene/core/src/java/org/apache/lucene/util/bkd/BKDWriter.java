@@ -5104,25 +5104,6 @@ throws|throws
 name|IOException
 block|{
 comment|// Now we mark ords that fall into the right half, so we can partition on all other dims that are not the split dim:
-assert|assert
-name|numDims
-operator|==
-literal|1
-operator|||
-name|ordBitSet
-operator|.
-name|cardinality
-argument_list|()
-operator|==
-literal|0
-operator|:
-literal|"cardinality="
-operator|+
-name|ordBitSet
-operator|.
-name|cardinality
-argument_list|()
-assert|;
 comment|// Read the split value, then mark all ords in the right tree (larger than the split value):
 try|try
 init|(
@@ -5232,25 +5213,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-assert|assert
-name|rightCount
-operator|==
-name|ordBitSet
-operator|.
-name|cardinality
-argument_list|()
-operator|:
-literal|"rightCount="
-operator|+
-name|rightCount
-operator|+
-literal|" cardinality="
-operator|+
-name|ordBitSet
-operator|.
-name|cardinality
-argument_list|()
-assert|;
 block|}
 block|}
 return|return
