@@ -590,6 +590,15 @@ argument_list|,
 name|BKDWriter
 operator|.
 name|DEFAULT_MAX_MB_SORT_IN_HEAP
+argument_list|,
+name|values
+operator|.
+name|size
+argument_list|(
+name|fieldInfo
+operator|.
+name|name
+argument_list|)
 argument_list|)
 block|{
 annotation|@

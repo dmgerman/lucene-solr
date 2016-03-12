@@ -576,6 +576,20 @@ specifier|protected
 name|long
 name|pointCount
 decl_stmt|;
+comment|/** true if we have so many values that we must write ords using long (8 bytes) instead of int (4 bytes) */
+DECL|field|longOrds
+specifier|private
+specifier|final
+name|boolean
+name|longOrds
+decl_stmt|;
+comment|/** An upper bound on how many points the caller will add (includes deletions) */
+DECL|field|totalPointCount
+specifier|private
+specifier|final
+name|long
+name|totalPointCount
+decl_stmt|;
 DECL|method|BKDWriter
 specifier|public
 name|BKDWriter
@@ -594,6 +608,9 @@ name|numDims
 parameter_list|,
 name|int
 name|bytesPerDim
+parameter_list|,
+name|long
+name|totalPointCount
 parameter_list|)
 throws|throws
 name|IOException
@@ -613,6 +630,8 @@ argument_list|,
 name|DEFAULT_MAX_POINTS_IN_LEAF_NODE
 argument_list|,
 name|DEFAULT_MAX_MB_SORT_IN_HEAP
+argument_list|,
+name|totalPointCount
 argument_list|)
 expr_stmt|;
 block|}
@@ -640,6 +659,9 @@ name|maxPointsInLeafNode
 parameter_list|,
 name|double
 name|maxMBSortInHeap
+parameter_list|,
+name|long
+name|totalPointCount
 parameter_list|)
 throws|throws
 name|IOException
@@ -651,6 +673,8 @@ argument_list|,
 name|maxPointsInLeafNode
 argument_list|,
 name|maxMBSortInHeap
+argument_list|,
+name|totalPointCount
 argument_list|)
 expr_stmt|;
 comment|// We use tracking dir to deal with removing files on exception, so each place that
@@ -688,6 +712,12 @@ operator|.
 name|bytesPerDim
 operator|=
 name|bytesPerDim
+expr_stmt|;
+name|this
+operator|.
+name|totalPointCount
+operator|=
+name|totalPointCount
 expr_stmt|;
 name|docsSeen
 operator|=
@@ -759,7 +789,21 @@ index|[
 name|packedBytesLength
 index|]
 expr_stmt|;
-comment|// dimensional values (numDims * bytesPerDim) + ord (long) + docID (int)
+comment|// If we may have more than 1+Integer.MAX_VALUE values, then we must encode ords with long (8 bytes), else we can use int (4 bytes).
+name|longOrds
+operator|=
+name|totalPointCount
+operator|>
+name|Integer
+operator|.
+name|MAX_VALUE
+expr_stmt|;
+comment|// dimensional values (numDims * bytesPerDim) + ord (int or long) + docID (int)
+if|if
+condition|(
+name|longOrds
+condition|)
+block|{
 name|bytesPerDoc
 operator|=
 name|packedBytesLength
@@ -772,6 +816,22 @@ name|Integer
 operator|.
 name|BYTES
 expr_stmt|;
+block|}
+else|else
+block|{
+name|bytesPerDoc
+operator|=
+name|packedBytesLength
+operator|+
+name|Integer
+operator|.
+name|BYTES
+operator|+
+name|Integer
+operator|.
+name|BYTES
+expr_stmt|;
+block|}
 comment|// As we recurse, we compute temporary partitions of the data, halving the
 comment|// number of points at each recursion.  Once there are few enough points,
 comment|// we can switch to sorting in heap instead of offline (on disk).  At any
@@ -842,6 +902,8 @@ argument_list|,
 name|maxPointsSortInHeap
 argument_list|,
 name|packedBytesLength
+argument_list|,
+name|longOrds
 argument_list|)
 expr_stmt|;
 name|this
@@ -865,6 +927,9 @@ name|maxPointsInLeafNode
 parameter_list|,
 name|double
 name|maxMBSortInHeap
+parameter_list|,
+name|long
+name|totalPointCount
 parameter_list|)
 block|{
 comment|// We encode dim in a single byte in the splitPackedValues, but we only expose 4 bits for it now, in case we want to use
@@ -957,6 +1022,25 @@ literal|")"
 argument_list|)
 throw|;
 block|}
+if|if
+condition|(
+name|totalPointCount
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"totalPointCount must be>=0 (got: "
+operator|+
+name|totalPointCount
+operator|+
+literal|")"
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/** If the current segment has too many points then we switchover to temp files / offline sort. */
 DECL|method|switchToOffline
@@ -978,6 +1062,8 @@ argument_list|,
 name|tempFileNamePrefix
 argument_list|,
 name|packedBytesLength
+argument_list|,
+name|longOrds
 argument_list|)
 expr_stmt|;
 name|tempInput
@@ -1274,6 +1360,29 @@ block|}
 name|pointCount
 operator|++
 expr_stmt|;
+if|if
+condition|(
+name|pointCount
+operator|>
+name|totalPointCount
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"totalPointCount="
+operator|+
+name|totalPointCount
+operator|+
+literal|" was passed when we were created, but we just hit "
+operator|+
+name|pointCount
+operator|+
+literal|" values"
+argument_list|)
+throw|;
+block|}
 name|docsSeen
 operator|.
 name|set
@@ -2310,6 +2419,29 @@ operator|++
 expr_stmt|;
 if|if
 condition|(
+name|pointCount
+operator|>
+name|totalPointCount
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"totalPointCount="
+operator|+
+name|totalPointCount
+operator|+
+literal|" was passed when we were created, but we just hit "
+operator|+
+name|pointCount
+operator|+
+literal|" values"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
 name|leafCount
 operator|==
 literal|0
@@ -2969,10 +3101,6 @@ specifier|private
 name|int
 name|pivotDocID
 decl_stmt|;
-specifier|private
-name|long
-name|pivotOrd
-decl_stmt|;
 annotation|@
 name|Override
 specifier|protected
@@ -2988,15 +3116,6 @@ operator|=
 name|writer
 operator|.
 name|docIDs
-index|[
-name|i
-index|]
-expr_stmt|;
-name|pivotOrd
-operator|=
-name|writer
-operator|.
-name|ords
 index|[
 name|i
 index|]
@@ -3135,8 +3254,7 @@ name|cmp
 return|;
 block|}
 comment|// Tie-break
-name|cmp
-operator|=
+return|return
 name|Integer
 operator|.
 name|compare
@@ -3146,32 +3264,6 @@ argument_list|,
 name|writer
 operator|.
 name|docIDs
-index|[
-name|j
-index|]
-argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|cmp
-operator|!=
-literal|0
-condition|)
-block|{
-return|return
-name|cmp
-return|;
-block|}
-return|return
-name|Long
-operator|.
-name|compare
-argument_list|(
-name|pivotOrd
-argument_list|,
-name|writer
-operator|.
-name|ords
 index|[
 name|j
 index|]
@@ -3224,7 +3316,48 @@ index|]
 operator|=
 name|docID
 expr_stmt|;
+if|if
+condition|(
+name|longOrds
+condition|)
+block|{
 name|long
+name|ord
+init|=
+name|writer
+operator|.
+name|ordsLong
+index|[
+name|i
+index|]
+decl_stmt|;
+name|writer
+operator|.
+name|ordsLong
+index|[
+name|i
+index|]
+operator|=
+name|writer
+operator|.
+name|ordsLong
+index|[
+name|j
+index|]
+expr_stmt|;
+name|writer
+operator|.
+name|ordsLong
+index|[
+name|j
+index|]
+operator|=
+name|ord
+expr_stmt|;
+block|}
+else|else
+block|{
+name|int
 name|ord
 init|=
 name|writer
@@ -3257,6 +3390,7 @@ index|]
 operator|=
 name|ord
 expr_stmt|;
+block|}
 name|byte
 index|[]
 name|blockI
@@ -3571,6 +3705,8 @@ operator|)
 name|pointCount
 argument_list|,
 name|packedBytesLength
+argument_list|,
+name|longOrds
 argument_list|)
 expr_stmt|;
 name|sorted
@@ -3696,6 +3832,30 @@ name|cmp
 return|;
 block|}
 comment|// Tie-break by docID:
+name|int
+name|offset
+decl_stmt|;
+if|if
+condition|(
+name|longOrds
+condition|)
+block|{
+name|offset
+operator|=
+name|Long
+operator|.
+name|BYTES
+expr_stmt|;
+block|}
+else|else
+block|{
+name|offset
+operator|=
+name|Integer
+operator|.
+name|BYTES
+expr_stmt|;
+block|}
 name|reader
 operator|.
 name|reset
@@ -3710,9 +3870,7 @@ name|offset
 operator|+
 name|packedBytesLength
 operator|+
-name|Long
-operator|.
-name|BYTES
+name|offset
 argument_list|,
 name|a
 operator|.
@@ -3742,9 +3900,7 @@ name|offset
 operator|+
 name|packedBytesLength
 operator|+
-name|Long
-operator|.
-name|BYTES
+name|offset
 argument_list|,
 name|b
 operator|.
@@ -4016,6 +4172,8 @@ argument_list|,
 name|packedBytesLength
 argument_list|,
 name|pointCount
+argument_list|,
+name|longOrds
 argument_list|)
 return|;
 block|}
@@ -5333,6 +5491,8 @@ argument_list|,
 name|count
 argument_list|,
 name|packedBytesLength
+argument_list|,
+name|longOrds
 argument_list|)
 init|;
 name|PointReader
@@ -6626,6 +6786,8 @@ argument_list|,
 name|size
 argument_list|,
 name|packedBytesLength
+argument_list|,
+name|longOrds
 argument_list|)
 return|;
 block|}
@@ -6640,6 +6802,8 @@ argument_list|,
 name|tempFileNamePrefix
 argument_list|,
 name|packedBytesLength
+argument_list|,
+name|longOrds
 argument_list|)
 return|;
 block|}
