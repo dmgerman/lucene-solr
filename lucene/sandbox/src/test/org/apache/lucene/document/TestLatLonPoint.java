@@ -311,6 +311,26 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// sort field
+name|assertEquals
+argument_list|(
+literal|"<distance:\"field\" latitude=18.0 longitude=19.0>"
+argument_list|,
+name|LatLonPoint
+operator|.
+name|newDistanceSort
+argument_list|(
+literal|"field"
+argument_list|,
+literal|18.0
+argument_list|,
+literal|19.0
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|/** Valid values that should not cause exception */
 DECL|method|testExtremeValues
