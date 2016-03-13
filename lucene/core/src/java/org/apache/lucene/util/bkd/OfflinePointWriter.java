@@ -98,7 +98,6 @@ name|int
 name|packedBytesLength
 decl_stmt|;
 DECL|field|count
-specifier|private
 name|long
 name|count
 decl_stmt|;

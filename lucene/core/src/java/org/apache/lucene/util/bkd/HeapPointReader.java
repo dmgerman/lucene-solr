@@ -28,26 +28,12 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|PagedBytes
-import|;
-end_import
-
 begin_class
 DECL|class|HeapPointReader
 specifier|final
 class|class
 name|HeapPointReader
-implements|implements
+extends|extends
 name|PointReader
 block|{
 DECL|field|curRead
