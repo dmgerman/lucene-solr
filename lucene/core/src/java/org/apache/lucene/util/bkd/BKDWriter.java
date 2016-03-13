@@ -6367,7 +6367,7 @@ decl_stmt|;
 block|)
 block|{
 comment|// Partition this source according to how the splitDim split the values:
-name|int
+name|long
 name|nextRightCount
 init|=
 literal|0
