@@ -826,44 +826,13 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-name|sf
-operator|.
-name|hasDocValues
-argument_list|()
-operator|&&
-name|ntype
-operator|==
-literal|null
-condition|)
-block|{
-comment|// single and multi-valued string docValues
-return|return
-operator|new
-name|FacetFieldProcessorDV
-argument_list|(
-name|fcontext
-argument_list|,
-name|this
-argument_list|,
-name|sf
-argument_list|)
-return|;
-block|}
-if|if
-condition|(
 operator|!
 name|multiToken
 condition|)
 block|{
 if|if
 condition|(
-name|sf
-operator|.
-name|getType
-argument_list|()
-operator|.
-name|getNumericType
-argument_list|()
+name|ntype
 operator|!=
 literal|null
 condition|)
@@ -897,9 +866,14 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|// multivalued but field doesn't have docValues
+comment|// multi-valued after this point
 if|if
 condition|(
+name|sf
+operator|.
+name|hasDocValues
+argument_list|()
+operator|||
 name|method
 operator|==
 name|FacetMethod
@@ -907,6 +881,7 @@ operator|.
 name|DV
 condition|)
 block|{
+comment|// single and multi-valued string docValues
 return|return
 operator|new
 name|FacetFieldProcessorDV
