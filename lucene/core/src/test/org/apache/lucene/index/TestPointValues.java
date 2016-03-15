@@ -3850,8 +3850,6 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-literal|false
-operator|&&
 name|random
 argument_list|()
 operator|.
