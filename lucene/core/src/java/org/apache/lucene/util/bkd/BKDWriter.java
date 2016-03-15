@@ -1043,11 +1043,11 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** If the current segment has too many points then we switchover to temp files / offline sort. */
-DECL|method|switchToOffline
+comment|/** If the current segment has too many points then we spill over to temp files / offline sort. */
+DECL|method|spillToOffline
 specifier|private
 name|void
-name|switchToOffline
+name|spillToOffline
 parameter_list|()
 throws|throws
 name|IOException
@@ -1066,7 +1066,7 @@ name|packedBytesLength
 argument_list|,
 name|longOrds
 argument_list|,
-literal|"switch"
+literal|"spill"
 argument_list|)
 expr_stmt|;
 name|tempInput
@@ -1192,7 +1192,7 @@ operator|==
 literal|null
 condition|)
 block|{
-name|switchToOffline
+name|spillToOffline
 argument_list|()
 expr_stmt|;
 block|}
@@ -3958,6 +3958,10 @@ argument_list|(
 name|tempDir
 argument_list|,
 name|tempFileNamePrefix
+operator|+
+literal|"_bkd"
+operator|+
+name|dim
 argument_list|,
 name|cmp
 argument_list|,
@@ -4029,17 +4033,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
+assert|assert
 name|len
-operator|!=
+operator|==
 name|bytesPerDoc
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
+operator|:
 literal|"len="
 operator|+
 name|len
@@ -4047,9 +4045,7 @@ operator|+
 literal|" bytesPerDoc="
 operator|+
 name|bytesPerDoc
-argument_list|)
-throw|;
-block|}
+assert|;
 name|out
 operator|.
 name|writeBytes

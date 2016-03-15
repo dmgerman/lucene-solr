@@ -501,7 +501,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|3
 argument_list|,
 name|sortInfo
 operator|.
