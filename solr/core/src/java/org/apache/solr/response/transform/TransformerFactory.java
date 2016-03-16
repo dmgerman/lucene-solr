@@ -264,6 +264,17 @@ literal|"xml"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|defaultFactories
+operator|.
+name|put
+argument_list|(
+literal|"geo"
+argument_list|,
+operator|new
+name|GeoTransformerFactory
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

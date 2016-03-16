@@ -10153,7 +10153,7 @@ operator|new
 name|HashMap
 argument_list|<>
 argument_list|(
-literal|14
+literal|15
 argument_list|,
 literal|1
 argument_list|)
@@ -10193,6 +10193,17 @@ name|JSON
 argument_list|,
 operator|new
 name|JSONResponseWriter
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|m
+operator|.
+name|put
+argument_list|(
+literal|"geojson"
+argument_list|,
+operator|new
+name|GeoJSONResponseWriter
 argument_list|()
 argument_list|)
 expr_stmt|;

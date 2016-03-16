@@ -2241,6 +2241,17 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/**    * @return The Spatial Context for this field type    */
+DECL|method|getSpatialContext
+specifier|public
+name|SpatialContext
+name|getSpatialContext
+parameter_list|()
+block|{
+return|return
+name|ctx
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|write
