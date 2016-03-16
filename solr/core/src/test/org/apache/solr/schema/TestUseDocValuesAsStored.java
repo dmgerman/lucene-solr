@@ -456,7 +456,6 @@ argument_list|)
 decl_stmt|;
 static|static
 block|{
-comment|// Copy of DateTimeFormatter.ISO_INSTANT with fixed 3 digit milliseconds
 name|START_RANDOM_EPOCH_MILLIS
 operator|=
 name|LocalDateTime
