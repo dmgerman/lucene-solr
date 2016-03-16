@@ -524,7 +524,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|parseShape
-specifier|protected
+specifier|public
 name|NRShape
 name|parseShape
 parameter_list|(
@@ -727,7 +727,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|shapeToString
-specifier|protected
+specifier|public
 name|String
 name|shapeToString
 parameter_list|(
