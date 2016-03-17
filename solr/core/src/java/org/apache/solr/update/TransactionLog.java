@@ -547,9 +547,27 @@ return|return
 literal|null
 return|;
 block|}
-return|return
+comment|// Fallback: we have no idea how to serialize this.  Be noisy to prevent insidious bugs
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"TransactionLog doesn't know how to serialize "
+operator|+
 name|o
-return|;
+operator|.
+name|getClass
+argument_list|()
+operator|+
+literal|"; try implementing ObjectResolver?"
+argument_list|)
+throw|;
 block|}
 block|}
 decl_stmt|;

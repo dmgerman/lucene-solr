@@ -1070,6 +1070,9 @@ condition|)
 return|return;
 block|}
 block|}
+comment|// Fallback to do *something*.
+comment|// note: if the user of this codec doesn't want this (e.g. UpdateLog) it can supply an ObjectResolver that does
+comment|//  something else like throw an exception.
 name|writeVal
 argument_list|(
 name|val
