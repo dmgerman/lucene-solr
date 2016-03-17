@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|LeafReaderContext
 import|;
 end_import
 
@@ -115,13 +115,12 @@ specifier|final
 name|DocIdSetIterator
 name|disi
 decl_stmt|;
-comment|//TODO use LeafReaderContext not IndexReader?
 DECL|method|ValueSourceScorer
 specifier|protected
 name|ValueSourceScorer
 parameter_list|(
-name|IndexReader
-name|reader
+name|LeafReaderContext
+name|readerContext
 parameter_list|,
 name|FunctionValues
 name|values
@@ -147,7 +146,10 @@ name|DocIdSetIterator
 operator|.
 name|all
 argument_list|(
+name|readerContext
+operator|.
 name|reader
+argument_list|()
 operator|.
 name|maxDoc
 argument_list|()

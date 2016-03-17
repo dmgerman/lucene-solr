@@ -371,9 +371,6 @@ operator|.
 name|getRangeScorer
 argument_list|(
 name|readerContext
-operator|.
-name|reader
-argument_list|()
 argument_list|,
 name|lowerVal
 argument_list|,

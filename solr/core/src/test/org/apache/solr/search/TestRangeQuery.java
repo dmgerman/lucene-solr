@@ -1861,6 +1861,7 @@ specifier|final
 name|int
 name|l
 init|=
+operator|-
 literal|5
 decl_stmt|;
 specifier|final
@@ -1887,6 +1888,18 @@ name|SolrInputDocument
 name|doc
 parameter_list|)
 block|{
+comment|// 10% of the docs have missing values
+if|if
+condition|(
+name|r
+operator|.
+name|nextInt
+argument_list|(
+literal|10
+argument_list|)
+operator|!=
+literal|0
+condition|)
 name|addInt
 argument_list|(
 name|doc

@@ -1078,9 +1078,6 @@ operator|.
 name|getRangeScorer
 argument_list|(
 name|leaf
-operator|.
-name|reader
-argument_list|()
 argument_list|,
 literal|"4"
 argument_list|,
@@ -1160,9 +1157,6 @@ operator|.
 name|getRangeScorer
 argument_list|(
 name|leaf
-operator|.
-name|reader
-argument_list|()
 argument_list|,
 literal|"4"
 argument_list|,
