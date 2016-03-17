@@ -1229,10 +1229,6 @@ name|Utils
 operator|.
 name|makeMap
 argument_list|(
-literal|"name"
-argument_list|,
-literal|"x-update"
-argument_list|,
 literal|"collection"
 argument_list|,
 literal|"x"
