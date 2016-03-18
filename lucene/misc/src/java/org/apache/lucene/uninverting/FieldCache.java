@@ -1298,7 +1298,9 @@ name|b
 init|=
 operator|new
 name|StringBuilder
-argument_list|()
+argument_list|(
+literal|250
+argument_list|)
 decl_stmt|;
 name|b
 operator|.
