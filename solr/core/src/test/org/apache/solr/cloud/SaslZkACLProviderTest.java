@@ -359,6 +359,15 @@ parameter_list|()
 block|{
 name|assumeFalse
 argument_list|(
+literal|"FIXME: This test fails on Java 9 (https://issues.apache.org/jira/browse/SOLR-8052)"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA9
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
 literal|"FIXME: SOLR-7040: This test fails under IBM J9"
 argument_list|,
 name|Constants

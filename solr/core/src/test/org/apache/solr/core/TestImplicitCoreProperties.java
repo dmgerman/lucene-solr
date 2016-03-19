@@ -120,10 +120,16 @@ name|cc
 operator|!=
 literal|null
 condition|)
+block|{
 name|cc
 operator|.
 name|shutdown
 argument_list|()
+expr_stmt|;
+block|}
+name|cc
+operator|=
+literal|null
 expr_stmt|;
 block|}
 annotation|@

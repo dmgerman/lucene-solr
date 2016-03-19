@@ -2770,6 +2770,24 @@ literal|"org.slf4j.Logger"
 argument_list|,
 literal|"org.apache.solr.SolrLogFormatter"
 argument_list|,
+literal|"java.io.File"
+argument_list|,
+comment|// Solr sometimes refers to this in a static way, but it has a "java.nio.fs.Path" inside
+name|Path
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+comment|// causes problems because interface is implemented by hidden classes
+name|Class
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|,
 name|EnumSet
 operator|.
 name|class

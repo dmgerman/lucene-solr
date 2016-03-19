@@ -321,6 +321,10 @@ operator|=
 literal|null
 expr_stmt|;
 comment|// Release it or the test harness complains.
+name|solrHomeDirectory
+operator|=
+literal|null
+expr_stmt|;
 block|}
 DECL|method|setupCore
 specifier|private
