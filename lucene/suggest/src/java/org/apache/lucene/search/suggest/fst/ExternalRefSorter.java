@@ -46,17 +46,21 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
+name|Comparator
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Comparator
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|CodecUtil
 import|;
 end_import
 
@@ -387,7 +391,7 @@ operator|.
 name|getDirectory
 argument_list|()
 operator|.
-name|openInput
+name|openChecksumInput
 argument_list|(
 name|sortedFileName
 argument_list|,
@@ -395,6 +399,8 @@ name|IOContext
 operator|.
 name|READONCE
 argument_list|)
+argument_list|,
+name|sortedFileName
 argument_list|)
 argument_list|)
 return|;
@@ -414,6 +420,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|CodecUtil
+operator|.
+name|writeFooter
+argument_list|(
+name|input
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|close

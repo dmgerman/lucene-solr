@@ -150,6 +150,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|codecs
+operator|.
+name|CodecUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|suggest
@@ -521,22 +535,6 @@ operator|.
 name|fst
 operator|.
 name|FST
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|fst
-operator|.
-name|FST
 operator|.
 name|BytesReader
 import|;
@@ -554,7 +552,7 @@ name|util
 operator|.
 name|fst
 operator|.
-name|PairOutputs
+name|FST
 import|;
 end_import
 
@@ -588,7 +586,7 @@ name|util
 operator|.
 name|fst
 operator|.
-name|PositiveIntOutputs
+name|PairOutputs
 import|;
 end_import
 
@@ -604,7 +602,7 @@ name|util
 operator|.
 name|fst
 operator|.
-name|Util
+name|PositiveIntOutputs
 import|;
 end_import
 
@@ -641,6 +639,22 @@ operator|.
 name|Util
 operator|.
 name|TopResults
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|fst
+operator|.
+name|Util
 import|;
 end_import
 
@@ -2348,6 +2362,13 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+name|CodecUtil
+operator|.
+name|writeFooter
+argument_list|(
+name|tempInput
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|close
@@ -2386,7 +2407,7 @@ name|ByteSequencesReader
 argument_list|(
 name|tempDir
 operator|.
-name|openInput
+name|openChecksumInput
 argument_list|(
 name|tempSortedFileName
 argument_list|,
@@ -2394,6 +2415,8 @@ name|IOContext
 operator|.
 name|READONCE
 argument_list|)
+argument_list|,
+name|tempSortedFileName
 argument_list|)
 expr_stmt|;
 name|PairOutputs

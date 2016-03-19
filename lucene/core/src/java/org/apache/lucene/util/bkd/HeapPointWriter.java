@@ -853,8 +853,34 @@ name|getReader
 parameter_list|(
 name|long
 name|start
+parameter_list|,
+name|long
+name|length
 parameter_list|)
 block|{
+assert|assert
+name|start
+operator|+
+name|length
+operator|<=
+name|docIDs
+operator|.
+name|length
+operator|:
+literal|"start="
+operator|+
+name|start
+operator|+
+literal|" length="
+operator|+
+name|length
+operator|+
+literal|" docIDs.length="
+operator|+
+name|docIDs
+operator|.
+name|length
+assert|;
 return|return
 operator|new
 name|HeapPointReader
@@ -916,7 +942,7 @@ name|nextWrite
 operator|+
 literal|" alloc="
 operator|+
-name|ords
+name|docIDs
 operator|.
 name|length
 operator|+

@@ -34,16 +34,6 @@ name|java
 operator|.
 name|io
 operator|.
-name|EOFException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
 import|;
 end_import
@@ -140,6 +130,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|ChecksumIndexInput
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|Directory
 import|;
 end_import
@@ -154,7 +158,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexInput
+name|IOContext
 import|;
 end_import
 
@@ -1083,6 +1087,8 @@ operator|.
 name|getReader
 argument_list|(
 literal|0
+argument_list|,
+name|pointCount
 argument_list|)
 decl_stmt|;
 for|for
@@ -4068,8 +4074,11 @@ specifier|protected
 name|ByteSequencesReader
 name|getReader
 parameter_list|(
-name|IndexInput
+name|ChecksumIndexInput
 name|in
+parameter_list|,
+name|String
+name|name
 parameter_list|)
 throws|throws
 name|IOException
@@ -4079,6 +4088,8 @@ operator|new
 name|ByteSequencesReader
 argument_list|(
 name|in
+argument_list|,
+name|name
 argument_list|)
 block|{
 annotation|@
@@ -4093,6 +4104,20 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|in
+operator|.
+name|getFilePointer
+argument_list|()
+operator|>=
+name|end
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 name|ref
 operator|.
 name|grow
@@ -4100,8 +4125,6 @@ argument_list|(
 name|bytesPerDoc
 argument_list|)
 expr_stmt|;
-try|try
-block|{
 name|in
 operator|.
 name|readBytes
@@ -4116,17 +4139,6 @@ argument_list|,
 name|bytesPerDoc
 argument_list|)
 expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|EOFException
-name|eofe
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
 name|ref
 operator|.
 name|setLength
@@ -4234,7 +4246,7 @@ throws|throws
 name|IOException
 block|{
 comment|// System.out.println("\nBKDTreeWriter.finish pointCount=" + pointCount + " out=" + out + " heapWriter=" + heapPointWriter);
-comment|// TODO: specialize the 1D case?  it's much faster at indexing time (no partitioning on recruse...)
+comment|// TODO: specialize the 1D case?  it's much faster at indexing time (no partitioning on recurse...)
 comment|// Catch user silliness:
 if|if
 condition|(
@@ -5089,6 +5101,88 @@ literal|")"
 return|;
 block|}
 block|}
+comment|/** Called on exception, to check whether the checksum is also corrupt in this source, and add that     *  information (checksum matched or didn't) as a suppressed exception. */
+DECL|method|verifyChecksum
+specifier|private
+name|void
+name|verifyChecksum
+parameter_list|(
+name|Throwable
+name|priorException
+parameter_list|,
+name|PointWriter
+name|writer
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// TODO: we could improve this, to always validate checksum as we recurse, if we shared left and
+comment|// right reader after recursing to children, and possibly within recursed children,
+comment|// since all together they make a single pass through the file.  But this is a sizable re-org,
+comment|// and would mean leaving readers (IndexInputs) open for longer:
+if|if
+condition|(
+name|writer
+operator|instanceof
+name|OfflinePointWriter
+condition|)
+block|{
+comment|// We are reading from a temp file; go verify the checksum:
+name|String
+name|tempFileName
+init|=
+operator|(
+operator|(
+name|OfflinePointWriter
+operator|)
+name|writer
+operator|)
+operator|.
+name|out
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
+try|try
+init|(
+name|ChecksumIndexInput
+name|in
+init|=
+name|tempDir
+operator|.
+name|openChecksumInput
+argument_list|(
+name|tempFileName
+argument_list|,
+name|IOContext
+operator|.
+name|READONCE
+argument_list|)
+init|)
+block|{
+name|CodecUtil
+operator|.
+name|checkFooter
+argument_list|(
+name|in
+argument_list|,
+name|priorException
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
+comment|// We are reading from heap; nothing to add:
+name|IOUtils
+operator|.
+name|reThrow
+argument_list|(
+name|priorException
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/** Marks bits for the ords (points) that belong in the right sub tree (those docs that have values>= the splitValue). */
 DECL|method|markRightTree
 specifier|private
@@ -5132,6 +5226,8 @@ name|source
 operator|.
 name|count
 operator|-
+name|rightCount
+argument_list|,
 name|rightCount
 argument_list|)
 init|)
@@ -5220,9 +5316,23 @@ operator|.
 name|next
 argument_list|()
 expr_stmt|;
-assert|assert
+if|if
+condition|(
 name|result
-assert|;
+operator|==
+literal|false
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"did not see enough points from reader="
+operator|+
+name|reader
+argument_list|)
+throw|;
+block|}
 assert|assert
 name|ordBitSet
 operator|.
@@ -5235,6 +5345,19 @@ argument_list|()
 argument_list|)
 operator|==
 literal|false
+operator|:
+literal|"ord="
+operator|+
+name|reader
+operator|.
+name|ord
+argument_list|()
+operator|+
+literal|" was seen twice from "
+operator|+
+name|source
+operator|.
+name|writer
 assert|;
 name|ordBitSet
 operator|.
@@ -5248,6 +5371,22 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|verifyChecksum
+argument_list|(
+name|t
+argument_list|,
+name|source
+operator|.
+name|writer
+argument_list|)
+expr_stmt|;
 block|}
 return|return
 name|scratch1
@@ -5461,7 +5600,7 @@ return|return
 name|splitDim
 return|;
 block|}
-comment|/** Only called in the 1D case, to pull a partition back into heap once    *  the point count is low enough while recursing. */
+comment|/** Pull a partition back into heap once the point count is low enough while recursing. */
 DECL|method|switchToHeap
 specifier|private
 name|PathSlice
@@ -5514,6 +5653,10 @@ argument_list|(
 name|source
 operator|.
 name|start
+argument_list|,
+name|source
+operator|.
+name|count
 argument_list|)
 init|;
 init|)
@@ -5575,6 +5718,26 @@ literal|0
 argument_list|,
 name|count
 argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|verifyChecksum
+argument_list|(
+name|t
+argument_list|,
+name|source
+operator|.
+name|writer
+argument_list|)
+expr_stmt|;
+comment|// Dead code but javac disagrees:
+return|return
+literal|null
 return|;
 block|}
 block|}
@@ -6392,6 +6555,13 @@ name|dim
 index|]
 operator|.
 name|start
+argument_list|,
+name|slices
+index|[
+name|dim
+index|]
+operator|.
+name|count
 argument_list|)
 decl_stmt|;
 block|)
@@ -6418,6 +6588,27 @@ operator|==
 name|dimToClear
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|rightCount
+operator|!=
+name|nextRightCount
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"wrong number of points in split: expected="
+operator|+
+name|rightCount
+operator|+
+literal|" but actual="
+operator|+
+name|nextRightCount
+argument_list|)
+throw|;
+block|}
 name|leftSlices
 index|[
 name|dim
@@ -6448,19 +6639,25 @@ argument_list|,
 name|rightCount
 argument_list|)
 expr_stmt|;
-assert|assert
-name|rightCount
-operator|==
-name|nextRightCount
-operator|:
-literal|"rightCount="
-operator|+
-name|rightCount
-operator|+
-literal|" nextRightCount="
-operator|+
-name|nextRightCount
-assert|;
+block|}
+catch|catch
+parameter_list|(
+name|Throwable
+name|t
+parameter_list|)
+block|{
+name|verifyChecksum
+argument_list|(
+name|t
+argument_list|,
+name|slices
+index|[
+name|dim
+index|]
+operator|.
+name|writer
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|// Recurse on left tree:
