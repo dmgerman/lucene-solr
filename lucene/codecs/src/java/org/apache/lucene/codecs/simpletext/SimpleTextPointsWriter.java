@@ -547,6 +547,27 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|boolean
+name|singleValuePerDoc
+init|=
+name|values
+operator|.
+name|size
+argument_list|(
+name|fieldInfo
+operator|.
+name|name
+argument_list|)
+operator|==
+name|values
+operator|.
+name|getDocCount
+argument_list|(
+name|fieldInfo
+operator|.
+name|name
+argument_list|)
+decl_stmt|;
 comment|// We use the normal BKDWriter, but subclass to customize how it writes the index and blocks to disk:
 try|try
 init|(
@@ -599,6 +620,8 @@ name|fieldInfo
 operator|.
 name|name
 argument_list|)
+argument_list|,
+name|singleValuePerDoc
 argument_list|)
 block|{
 annotation|@
