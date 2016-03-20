@@ -3872,23 +3872,13 @@ if|if
 condition|(
 name|rb
 operator|.
-name|doHighlights
+name|isNeedDocList
+argument_list|()
 operator|||
 name|rb
 operator|.
 name|isDebug
 argument_list|()
-operator|||
-name|params
-operator|.
-name|getBool
-argument_list|(
-name|MoreLikeThisParams
-operator|.
-name|MLT
-argument_list|,
-literal|false
-argument_list|)
 condition|)
 block|{
 comment|// we need a single list of the returned docs

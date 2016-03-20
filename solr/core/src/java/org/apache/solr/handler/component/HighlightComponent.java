@@ -505,6 +505,13 @@ operator|.
 name|doHighlights
 condition|)
 block|{
+name|rb
+operator|.
+name|setNeedDocList
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|String
 name|hlq
 init|=
