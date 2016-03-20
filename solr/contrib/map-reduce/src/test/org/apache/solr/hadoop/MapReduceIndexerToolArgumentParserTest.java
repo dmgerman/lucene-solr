@@ -363,6 +363,15 @@ parameter_list|()
 block|{
 name|assumeFalse
 argument_list|(
+literal|"This test fails on Java 9 (https://issues.apache.org/jira/browse/SOLR-8876)"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA9
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
 literal|"Does not work on Windows, because it uses UNIX shell commands or POSIX paths"
 argument_list|,
 name|Constants

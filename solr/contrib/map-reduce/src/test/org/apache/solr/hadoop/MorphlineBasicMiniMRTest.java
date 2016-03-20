@@ -837,6 +837,15 @@ argument_list|)
 expr_stmt|;
 name|assumeFalse
 argument_list|(
+literal|"This test fails on Java 9 (https://issues.apache.org/jira/browse/SOLR-8876)"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA9
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
 literal|"FIXME: This test does not work with Windows because of native library requirements"
 argument_list|,
 name|Constants
