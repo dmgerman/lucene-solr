@@ -250,22 +250,16 @@ name|this
 operator|.
 name|includeLower
 operator|=
-name|lowerVal
-operator|!=
-literal|null
-operator|&&
 name|includeLower
 expr_stmt|;
 name|this
 operator|.
 name|includeUpper
 operator|=
-name|upperVal
-operator|!=
-literal|null
-operator|&&
 name|includeUpper
 expr_stmt|;
+comment|//    this.includeLower = lowerVal != null&& includeLower;
+comment|//    this.includeUpper = upperVal != null&& includeUpper;
 block|}
 DECL|method|getValueSource
 specifier|public
