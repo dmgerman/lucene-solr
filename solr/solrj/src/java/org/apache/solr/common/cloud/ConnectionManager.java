@@ -176,9 +176,9 @@ specifier|final
 name|ZkClientConnectionStrategy
 name|connectionStrategy
 decl_stmt|;
-comment|//expert: mutable for testing
 DECL|field|zkServerAddress
 specifier|private
+specifier|final
 name|String
 name|zkServerAddress
 decl_stmt|;
@@ -1231,23 +1231,6 @@ name|e
 argument_list|)
 throw|;
 block|}
-block|}
-comment|//expert: mutable for testing
-DECL|method|setZkServerAddress
-specifier|public
-name|void
-name|setZkServerAddress
-parameter_list|(
-name|String
-name|zkServerAddress
-parameter_list|)
-block|{
-name|this
-operator|.
-name|zkServerAddress
-operator|=
-name|zkServerAddress
-expr_stmt|;
 block|}
 block|}
 end_class
