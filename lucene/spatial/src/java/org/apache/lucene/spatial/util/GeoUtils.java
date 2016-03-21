@@ -29,6 +29,20 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
+import|;
+end_import
+
+begin_import
 import|import static
 name|java
 operator|.
@@ -105,22 +119,6 @@ operator|.
 name|SloppyMath
 operator|.
 name|cos
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|SloppyMath
-operator|.
-name|sin
 import|;
 end_import
 
@@ -808,7 +806,7 @@ name|deltaLon
 init|=
 name|asin
 argument_list|(
-name|sin
+name|sloppySin
 argument_list|(
 name|radDistance
 argument_list|)
@@ -1145,6 +1143,63 @@ name|TOLERANCE
 argument_list|,
 name|MAX_LAT_INCL
 argument_list|)
+argument_list|)
+return|;
+block|}
+comment|// some sloppyish stuff, do we really need this to be done in a sloppy way?
+comment|// unless it is performance sensitive, we should try to remove.
+DECL|field|PIO2
+specifier|static
+specifier|final
+name|double
+name|PIO2
+init|=
+name|Math
+operator|.
+name|PI
+operator|/
+literal|2D
+decl_stmt|;
+comment|/**    * Returns the trigonometric sine of an angle converted as a cos operation.    *<p>    * Note that this is not quite right... e.g. sin(0) != 0    *<p>    * Special cases:    *<ul>    *<li>If the argument is {@code NaN} or an infinity, then the result is {@code NaN}.    *</ul>    * @param a an angle, in radians.    * @return the sine of the argument.    * @see Math#sin(double)    */
+comment|// TODO: deprecate/remove this? at least its no longer public.
+DECL|method|sloppySin
+specifier|static
+name|double
+name|sloppySin
+parameter_list|(
+name|double
+name|a
+parameter_list|)
+block|{
+return|return
+name|cos
+argument_list|(
+name|a
+operator|-
+name|PIO2
+argument_list|)
+return|;
+block|}
+comment|/**    * Returns the trigonometric tangent of an angle converted in terms of a sin/cos operation.    *<p>    * Note that this is probably not quite right (untested)    *<p>    * Special cases:    *<ul>    *<li>If the argument is {@code NaN} or an infinity, then the result is {@code NaN}.    *</ul>    * @param a an angle, in radians.    * @return the tangent of the argument.    * @see Math#sin(double) aand Math#cos(double)    */
+comment|// TODO: deprecate/remove this? at least its no longer public.
+DECL|method|sloppyTan
+specifier|static
+name|double
+name|sloppyTan
+parameter_list|(
+name|double
+name|a
+parameter_list|)
+block|{
+return|return
+name|sloppySin
+argument_list|(
+name|a
+argument_list|)
+operator|/
+name|cos
+argument_list|(
+name|a
 argument_list|)
 return|;
 block|}

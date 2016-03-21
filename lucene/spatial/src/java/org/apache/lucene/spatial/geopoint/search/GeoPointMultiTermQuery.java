@@ -601,7 +601,7 @@ if|if
 condition|(
 name|SloppyMath
 operator|.
-name|haversin
+name|haversinMeters
 argument_list|(
 name|minLat
 argument_list|,
@@ -611,8 +611,6 @@ name|midLat
 argument_list|,
 name|midLon
 argument_list|)
-operator|*
-literal|1000
 operator|>
 literal|1000000
 condition|)

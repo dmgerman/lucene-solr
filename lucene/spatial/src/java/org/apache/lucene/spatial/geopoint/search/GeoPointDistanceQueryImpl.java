@@ -377,7 +377,7 @@ name|maxLat
 argument_list|)
 return|;
 block|}
-comment|/**      * The two-phase query approach. The parent {@link GeoPointTermsEnum} class matches      * encoded terms that fall within the minimum bounding box of the point-radius circle. Those documents that pass      * the initial bounding box filter are then post filter compared to the provided distance using the      * {@link org.apache.lucene.util.SloppyMath#haversin} method.      */
+comment|/**      * The two-phase query approach. The parent {@link GeoPointTermsEnum} class matches      * encoded terms that fall within the minimum bounding box of the point-radius circle. Those documents that pass      * the initial bounding box filter are then post filter compared to the provided distance using the      * {@link org.apache.lucene.util.SloppyMath#haversinMeters(double, double, double, double)} method.      */
 annotation|@
 name|Override
 DECL|method|postFilter
@@ -395,10 +395,9 @@ name|lat
 parameter_list|)
 block|{
 return|return
-operator|(
 name|SloppyMath
 operator|.
-name|haversin
+name|haversinMeters
 argument_list|(
 name|distanceQuery
 operator|.
@@ -410,13 +409,10 @@ name|lat
 argument_list|,
 name|lon
 argument_list|)
-operator|*
-literal|1000.0
 operator|<=
 name|distanceQuery
 operator|.
 name|radiusMeters
-operator|)
 return|;
 block|}
 block|}

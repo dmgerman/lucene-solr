@@ -1541,7 +1541,7 @@ block|{
 return|return
 name|SloppyMath
 operator|.
-name|haversin
+name|haversinMeters
 argument_list|(
 name|centerLat
 argument_list|,
@@ -1551,8 +1551,6 @@ name|pointLat
 argument_list|,
 name|pointLon
 argument_list|)
-operator|*
-literal|1000.0
 operator|<=
 name|radiusMeters
 return|;
@@ -1625,7 +1623,7 @@ name|d
 init|=
 name|SloppyMath
 operator|.
-name|haversin
+name|haversinMeters
 argument_list|(
 name|centerLat
 argument_list|,
@@ -1635,8 +1633,6 @@ name|pointLat
 argument_list|,
 name|pointLon
 argument_list|)
-operator|*
-literal|1000.0
 decl_stmt|;
 return|return
 name|d
@@ -1739,7 +1735,7 @@ name|ptDistance
 init|=
 name|SloppyMath
 operator|.
-name|haversin
+name|haversinMeters
 argument_list|(
 name|centerLat
 argument_list|,
@@ -1749,8 +1745,6 @@ name|ptLat
 argument_list|,
 name|ptLon
 argument_list|)
-operator|*
-literal|1000.0
 decl_stmt|;
 name|double
 name|delta
