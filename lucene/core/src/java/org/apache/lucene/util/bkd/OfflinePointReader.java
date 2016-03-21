@@ -190,6 +190,12 @@ specifier|private
 name|boolean
 name|checked
 decl_stmt|;
+comment|// File name we are reading
+DECL|field|name
+specifier|final
+name|String
+name|name
+decl_stmt|;
 DECL|method|OfflinePointReader
 name|OfflinePointReader
 parameter_list|(
@@ -375,6 +381,10 @@ name|READONCE
 argument_list|)
 expr_stmt|;
 block|}
+name|name
+operator|=
+name|tempFileName
+expr_stmt|;
 name|long
 name|seekFP
 init|=
@@ -590,6 +600,7 @@ operator|==
 literal|false
 condition|)
 block|{
+comment|//System.out.println("NOW CHECK: " + name);
 name|checked
 operator|=
 literal|true

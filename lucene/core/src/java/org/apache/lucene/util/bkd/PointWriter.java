@@ -38,6 +38,16 @@ name|IOException
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
 begin_comment
 comment|/** Appends many points, and then at the end provides a {@link PointReader} to iterate  *  those points.  This abstracts away whether we write to disk, or use simple arrays  *  in heap. */
 end_comment
@@ -77,6 +87,26 @@ name|startPoint
 parameter_list|,
 name|long
 name|length
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Returns the single shared reader, used at multiple times during the recursion, to read previously added points */
+DECL|method|getSharedReader
+name|PointReader
+name|getSharedReader
+parameter_list|(
+name|long
+name|startPoint
+parameter_list|,
+name|long
+name|length
+parameter_list|,
+name|List
+argument_list|<
+name|Closeable
+argument_list|>
+name|toCloseHeroically
 parameter_list|)
 throws|throws
 name|IOException

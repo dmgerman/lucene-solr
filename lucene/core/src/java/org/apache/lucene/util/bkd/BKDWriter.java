@@ -1128,6 +1128,8 @@ name|longOrds
 argument_list|,
 literal|"spill"
 argument_list|,
+literal|0
+argument_list|,
 name|singleValuePerDoc
 argument_list|)
 expr_stmt|;
@@ -4530,6 +4532,18 @@ index|[
 name|numDims
 index|]
 decl_stmt|;
+comment|// This is only used on exception; on normal code paths we close all files we opened:
+name|List
+argument_list|<
+name|Closeable
+argument_list|>
+name|toCloseHeroically
+init|=
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|()
+decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -4627,6 +4641,8 @@ argument_list|,
 name|splitPackedValues
 argument_list|,
 name|leafBlockFPs
+argument_list|,
+name|toCloseHeroically
 argument_list|)
 expr_stmt|;
 for|for
@@ -4671,21 +4687,6 @@ operator|==
 literal|false
 condition|)
 block|{
-if|if
-condition|(
-name|tempInput
-operator|!=
-literal|null
-condition|)
-block|{
-name|IOUtils
-operator|.
-name|closeWhileHandlingException
-argument_list|(
-name|tempInput
-argument_list|)
-expr_stmt|;
-block|}
 name|IOUtils
 operator|.
 name|deleteFilesIgnoringExceptions
@@ -4698,9 +4699,12 @@ name|getCreatedFiles
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|tempInput
-operator|=
-literal|null
+name|IOUtils
+operator|.
+name|closeWhileHandlingException
+argument_list|(
+name|toCloseHeroically
+argument_list|)
 expr_stmt|;
 block|}
 block|}
@@ -5324,6 +5328,7 @@ name|IOException
 block|{
 comment|// Now we mark ords that fall into the right half, so we can partition on all other dims that are not the split dim:
 comment|// Read the split value, then mark all ords in the right tree (larger than the split value):
+comment|// TODO: find a way to also checksum this reader?  If we changed to markLeftTree, and scanned the final chunk, it could work?
 try|try
 init|(
 name|PointReader
@@ -5725,6 +5730,12 @@ name|switchToHeap
 parameter_list|(
 name|PathSlice
 name|source
+parameter_list|,
+name|List
+argument_list|<
+name|Closeable
+argument_list|>
+name|toCloseHeroically
 parameter_list|)
 throws|throws
 name|IOException
@@ -5739,6 +5750,27 @@ argument_list|(
 name|source
 operator|.
 name|count
+argument_list|)
+decl_stmt|;
+comment|// Not inside the try because we don't want to close it here:
+name|PointReader
+name|reader
+init|=
+name|source
+operator|.
+name|writer
+operator|.
+name|getSharedReader
+argument_list|(
+name|source
+operator|.
+name|start
+argument_list|,
+name|source
+operator|.
+name|count
+argument_list|,
+name|toCloseHeroically
 argument_list|)
 decl_stmt|;
 try|try
@@ -5759,25 +5791,6 @@ name|longOrds
 argument_list|,
 name|singleValuePerDoc
 argument_list|)
-init|;
-name|PointReader
-name|reader
-operator|=
-name|source
-operator|.
-name|writer
-operator|.
-name|getReader
-argument_list|(
-name|source
-operator|.
-name|start
-argument_list|,
-name|source
-operator|.
-name|count
-argument_list|)
-init|;
 init|)
 block|{
 for|for
@@ -5897,6 +5910,12 @@ parameter_list|,
 name|long
 index|[]
 name|leafBlockFPs
+parameter_list|,
+name|List
+argument_list|<
+name|Closeable
+argument_list|>
+name|toCloseHeroically
 parameter_list|)
 throws|throws
 name|IOException
@@ -5959,6 +5978,8 @@ name|slices
 index|[
 literal|0
 index|]
+argument_list|,
+name|toCloseHeroically
 argument_list|)
 expr_stmt|;
 block|}
@@ -6012,6 +6033,8 @@ name|slices
 index|[
 name|dim
 index|]
+argument_list|,
+name|toCloseHeroically
 argument_list|)
 expr_stmt|;
 block|}
@@ -6562,7 +6585,8 @@ operator|==
 name|splitDim
 condition|)
 block|{
-comment|// No need to partition on this dim since it's a simple slice of the incoming already sorted slice.
+comment|// No need to partition on this dim since it's a simple slice of the incoming already sorted slice, and we
+comment|// will re-use its shared reader when visiting it as we recurse:
 name|leftSlices
 index|[
 name|dim
@@ -6639,6 +6663,37 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
+comment|// Not inside the try because we don't want to close this one now, so that after recursion is done,
+comment|// we will have done a singel full sweep of the file:
+name|PointReader
+name|reader
+init|=
+name|slices
+index|[
+name|dim
+index|]
+operator|.
+name|writer
+operator|.
+name|getSharedReader
+argument_list|(
+name|slices
+index|[
+name|dim
+index|]
+operator|.
+name|start
+argument_list|,
+name|slices
+index|[
+name|dim
+index|]
+operator|.
+name|count
+argument_list|,
+name|toCloseHeroically
+argument_list|)
+decl_stmt|;
 try|try
 init|(
 name|PointWriter
@@ -6655,34 +6710,6 @@ argument_list|)
 init|;              PointWriter rightPointWriter = getPointWriter(source.count - leftCount
 operator|,
 init|"right" + dim)
-empty_stmt|;
-name|PointReader
-name|reader
-init|=
-name|slices
-index|[
-name|dim
-index|]
-operator|.
-name|writer
-operator|.
-name|getReader
-argument_list|(
-name|slices
-index|[
-name|dim
-index|]
-operator|.
-name|start
-argument_list|,
-name|slices
-index|[
-name|dim
-index|]
-operator|.
-name|count
-argument_list|)
-decl_stmt|;
 block|)
 block|{
 name|long
@@ -6801,6 +6828,8 @@ argument_list|,
 name|splitPackedValues
 argument_list|,
 name|leafBlockFPs
+argument_list|,
+name|toCloseHeroically
 argument_list|)
 expr_stmt|;
 for|for
@@ -6863,6 +6892,8 @@ argument_list|,
 name|splitPackedValues
 argument_list|,
 name|leafBlockFPs
+argument_list|,
+name|toCloseHeroically
 argument_list|)
 expr_stmt|;
 for|for
@@ -7066,6 +7097,8 @@ argument_list|,
 name|longOrds
 argument_list|,
 name|desc
+argument_list|,
+name|count
 argument_list|,
 name|singleValuePerDoc
 argument_list|)
