@@ -19,30 +19,6 @@ package|;
 end_package
 
 begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|SloppyMath
-import|;
-end_import
-
-begin_import
 import|import static
 name|java
 operator|.
@@ -172,96 +148,6 @@ name|TOLERANCE
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|util
-operator|.
-name|GeoProjectionUtils
-operator|.
-name|MAX_LAT_RADIANS
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|util
-operator|.
-name|GeoProjectionUtils
-operator|.
-name|MAX_LON_RADIANS
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|util
-operator|.
-name|GeoProjectionUtils
-operator|.
-name|MIN_LAT_RADIANS
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|util
-operator|.
-name|GeoProjectionUtils
-operator|.
-name|MIN_LON_RADIANS
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|util
-operator|.
-name|GeoProjectionUtils
-operator|.
-name|SEMIMAJOR_AXIS
-import|;
-end_import
-
 begin_comment
 comment|/**  * Basic reusable geo-spatial utility methods  *  * @lucene.experimental  */
 end_comment
@@ -315,6 +201,66 @@ name|MAX_LAT_INCL
 init|=
 literal|90.0D
 decl_stmt|;
+comment|/** min longitude value in radians */
+DECL|field|MIN_LON_RADIANS
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MIN_LON_RADIANS
+init|=
+name|TO_RADIANS
+operator|*
+name|MIN_LON_INCL
+decl_stmt|;
+comment|/** min latitude value in radians */
+DECL|field|MIN_LAT_RADIANS
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MIN_LAT_RADIANS
+init|=
+name|TO_RADIANS
+operator|*
+name|MIN_LAT_INCL
+decl_stmt|;
+comment|/** max longitude value in radians */
+DECL|field|MAX_LON_RADIANS
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MAX_LON_RADIANS
+init|=
+name|TO_RADIANS
+operator|*
+name|MAX_LON_INCL
+decl_stmt|;
+comment|/** max latitude value in radians */
+DECL|field|MAX_LAT_RADIANS
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MAX_LAT_RADIANS
+init|=
+name|TO_RADIANS
+operator|*
+name|MAX_LAT_INCL
+decl_stmt|;
+comment|// WGS84 earth-ellipsoid parameters
+comment|/** major (a) axis in meters */
+DECL|field|SEMIMAJOR_AXIS
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|SEMIMAJOR_AXIS
+init|=
+literal|6_378_137
+decl_stmt|;
+comment|// [m]
 comment|// No instance:
 DECL|method|GeoUtils
 specifier|private
@@ -939,6 +885,7 @@ block|}
 comment|// some sloppyish stuff, do we really need this to be done in a sloppy way?
 comment|// unless it is performance sensitive, we should try to remove.
 DECL|field|PIO2
+specifier|private
 specifier|static
 specifier|final
 name|double
@@ -953,6 +900,7 @@ decl_stmt|;
 comment|/**    * Returns the trigonometric sine of an angle converted as a cos operation.    *<p>    * Note that this is not quite right... e.g. sin(0) != 0    *<p>    * Special cases:    *<ul>    *<li>If the argument is {@code NaN} or an infinity, then the result is {@code NaN}.    *</ul>    * @param a an angle, in radians.    * @return the sine of the argument.    * @see Math#sin(double)    */
 comment|// TODO: deprecate/remove this? at least its no longer public.
 DECL|method|sloppySin
+specifier|private
 specifier|static
 name|double
 name|sloppySin
@@ -967,29 +915,6 @@ argument_list|(
 name|a
 operator|-
 name|PIO2
-argument_list|)
-return|;
-block|}
-comment|/**    * Returns the trigonometric tangent of an angle converted in terms of a sin/cos operation.    *<p>    * Note that this is probably not quite right (untested)    *<p>    * Special cases:    *<ul>    *<li>If the argument is {@code NaN} or an infinity, then the result is {@code NaN}.    *</ul>    * @param a an angle, in radians.    * @return the tangent of the argument.    * @see Math#sin(double) aand Math#cos(double)    */
-comment|// TODO: deprecate/remove this? at least its no longer public.
-DECL|method|sloppyTan
-specifier|static
-name|double
-name|sloppyTan
-parameter_list|(
-name|double
-name|a
-parameter_list|)
-block|{
-return|return
-name|sloppySin
-argument_list|(
-name|a
-argument_list|)
-operator|/
-name|cos
-argument_list|(
-name|a
 argument_list|)
 return|;
 block|}

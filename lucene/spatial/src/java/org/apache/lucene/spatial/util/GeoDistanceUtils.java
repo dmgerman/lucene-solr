@@ -32,22 +32,6 @@ name|SloppyMath
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|SloppyMath
-operator|.
-name|TO_RADIANS
-import|;
-end_import
-
 begin_comment
 comment|/**  * Reusable geo-spatial distance utility methods.  *  * @lucene.experimental  */
 end_comment
@@ -58,16 +42,6 @@ specifier|public
 class|class
 name|GeoDistanceUtils
 block|{
-comment|/** error threshold for point-distance queries (in percent) NOTE: Guideline from USGS is 0.005 **/
-DECL|field|DISTANCE_PCT_ERR
-specifier|public
-specifier|static
-specifier|final
-name|double
-name|DISTANCE_PCT_ERR
-init|=
-literal|0.005
-decl_stmt|;
 comment|// No instance:
 DECL|method|GeoDistanceUtils
 specifier|private
@@ -229,7 +203,7 @@ name|diameter
 init|=
 literal|2
 operator|*
-name|GeoProjectionUtils
+name|GeoUtils
 operator|.
 name|SEMIMAJOR_AXIS
 decl_stmt|;
@@ -581,7 +555,7 @@ name|diameter
 init|=
 literal|2
 operator|*
-name|GeoProjectionUtils
+name|GeoUtils
 operator|.
 name|SEMIMAJOR_AXIS
 decl_stmt|;
