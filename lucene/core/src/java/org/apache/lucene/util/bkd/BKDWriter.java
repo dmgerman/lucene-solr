@@ -3134,12 +3134,6 @@ name|HeapPointWriter
 name|writer
 parameter_list|,
 name|int
-name|start
-parameter_list|,
-name|int
-name|length
-parameter_list|,
-name|int
 name|dim
 parameter_list|)
 block|{
@@ -3718,11 +3712,14 @@ block|}
 operator|.
 name|sort
 argument_list|(
-name|start
+literal|0
 argument_list|,
-name|start
-operator|+
-name|length
+name|Math
+operator|.
+name|toIntExact
+argument_list|(
+name|pointCount
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("LEN=" + length + " SWAP=" + swapCount[0] + " CMP=" + cmpCount[0]);
@@ -3804,13 +3801,6 @@ comment|//long t0 = System.nanoTime();
 name|sortHeapPointWriter
 argument_list|(
 name|sorted
-argument_list|,
-literal|0
-argument_list|,
-operator|(
-name|int
-operator|)
-name|pointCount
 argument_list|,
 name|dim
 argument_list|)
