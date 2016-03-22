@@ -117,21 +117,6 @@ name|BITS
 init|=
 literal|31
 decl_stmt|;
-DECL|field|LON_SCALE
-specifier|private
-specifier|static
-specifier|final
-name|double
-name|LON_SCALE
-init|=
-operator|(
-literal|0x1L
-operator|<<
-name|BITS
-operator|)
-operator|/
-literal|360.0D
-decl_stmt|;
 DECL|field|LAT_SCALE
 specifier|private
 specifier|static
@@ -146,6 +131,21 @@ name|BITS
 operator|)
 operator|/
 literal|180.0D
+decl_stmt|;
+DECL|field|LON_SCALE
+specifier|private
+specifier|static
+specifier|final
+name|double
+name|LON_SCALE
+init|=
+operator|(
+literal|0x1L
+operator|<<
+name|BITS
+operator|)
+operator|/
+literal|360.0D
 decl_stmt|;
 comment|/**    * The maximum term length (used for<code>byte[]</code> buffer size)    * for encoding<code>geoEncoded</code> values.    * @see #geoCodedToPrefixCodedBytes(long, int, BytesRefBuilder)    */
 DECL|field|BUF_SIZE_LONG
@@ -179,7 +179,7 @@ specifier|private
 name|GeoEncodingUtils
 parameter_list|()
 block|{   }
-comment|/**    * encode longitude, latitude geopoint values using morton encoding method    * https://en.wikipedia.org/wiki/Z-order_curve    */
+comment|/**    * encode latitude, longitude geopoint values using morton encoding method    * https://en.wikipedia.org/wiki/Z-order_curve    */
 DECL|method|mortonHash
 specifier|public
 specifier|static
@@ -189,11 +189,11 @@ name|mortonHash
 parameter_list|(
 specifier|final
 name|double
-name|lon
+name|lat
 parameter_list|,
 specifier|final
 name|double
-name|lat
+name|lon
 parameter_list|)
 block|{
 return|return

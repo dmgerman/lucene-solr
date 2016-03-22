@@ -127,11 +127,11 @@ name|field
 parameter_list|,
 specifier|final
 name|double
-name|centerLon
+name|centerLat
 parameter_list|,
 specifier|final
 name|double
-name|centerLat
+name|centerLon
 parameter_list|,
 specifier|final
 name|double
@@ -150,9 +150,9 @@ name|TermEncoding
 operator|.
 name|PREFIX
 argument_list|,
-name|centerLon
-argument_list|,
 name|centerLat
+argument_list|,
+name|centerLon
 argument_list|,
 name|minRadiusMeters
 argument_list|,
@@ -175,11 +175,11 @@ name|termEncoding
 parameter_list|,
 specifier|final
 name|double
-name|centerLon
+name|centerLat
 parameter_list|,
 specifier|final
 name|double
-name|centerLat
+name|centerLon
 parameter_list|,
 specifier|final
 name|double
@@ -196,9 +196,9 @@ name|field
 argument_list|,
 name|termEncoding
 argument_list|,
-name|centerLon
-argument_list|,
 name|centerLat
+argument_list|,
+name|centerLon
 argument_list|,
 name|maxRadius
 argument_list|)
@@ -265,9 +265,9 @@ name|field
 argument_list|,
 name|termEncoding
 argument_list|,
-name|centerLon
-argument_list|,
 name|centerLat
+argument_list|,
+name|centerLon
 argument_list|,
 name|minRadiusMeters
 argument_list|)
@@ -402,7 +402,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|centerLon
+name|centerLat
 argument_list|)
 operator|.
 name|append
@@ -412,7 +412,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|centerLat
+name|centerLon
 argument_list|)
 operator|.
 name|append
@@ -457,7 +457,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|minLon
+name|minLat
 argument_list|)
 operator|.
 name|append
@@ -467,7 +467,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|minLat
+name|minLon
 argument_list|)
 operator|.
 name|append
@@ -482,7 +482,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|maxLon
+name|maxLat
 argument_list|)
 operator|.
 name|append
@@ -492,7 +492,7 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|maxLat
+name|maxLon
 argument_list|)
 operator|.
 name|append

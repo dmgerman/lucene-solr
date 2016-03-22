@@ -832,12 +832,12 @@ name|termsEnum
 operator|.
 name|postFilter
 argument_list|(
-name|mortonUnhashLon
+name|mortonUnhashLat
 argument_list|(
 name|hash
 argument_list|)
 argument_list|,
-name|mortonUnhashLat
+name|mortonUnhashLon
 argument_list|(
 name|hash
 argument_list|)

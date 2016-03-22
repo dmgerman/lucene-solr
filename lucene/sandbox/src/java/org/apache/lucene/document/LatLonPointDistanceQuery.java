@@ -586,9 +586,9 @@ name|GeoUtils
 operator|.
 name|circleToBBox
 argument_list|(
-name|longitude
-argument_list|,
 name|latitude
+argument_list|,
+name|longitude
 argument_list|,
 name|radiusMeters
 argument_list|)

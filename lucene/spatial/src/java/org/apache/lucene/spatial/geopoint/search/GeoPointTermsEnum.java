@@ -422,11 +422,11 @@ name|postFilter
 parameter_list|(
 specifier|final
 name|double
-name|lon
+name|lat
 parameter_list|,
 specifier|final
 name|double
-name|lat
+name|lon
 parameter_list|)
 block|{
 return|return
@@ -434,9 +434,9 @@ name|relationImpl
 operator|.
 name|postFilter
 argument_list|(
-name|lon
-argument_list|,
 name|lat
+argument_list|,
+name|lon
 argument_list|)
 return|;
 block|}
