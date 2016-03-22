@@ -569,7 +569,7 @@ name|short
 name|computeMaxShift
 parameter_list|()
 block|{
-comment|// in this case a factor of 4 brings the detail level to ~0.002/0.001 degrees lon/lat respectively (or ~222m/111m)
+comment|// in this case a factor of 4 brings the detail level to ~0.001/0.002 degrees lat/lon respectively (or ~111m/222m)
 specifier|final
 name|short
 name|shiftFactor

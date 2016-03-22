@@ -109,7 +109,7 @@ name|GeoPointDistanceRangeQuery
 extends|extends
 name|GeoPointDistanceQuery
 block|{
-comment|/** minimum distance range (in meters) from lon, lat center location, maximum is inherited */
+comment|/** minimum distance range (in meters) from lat, lon center location, maximum is inherited */
 DECL|field|minRadiusMeters
 specifier|protected
 specifier|final
