@@ -359,6 +359,12 @@ name|LOCK_TYPE_HDFS
 init|=
 literal|"hdfs"
 decl_stmt|;
+DECL|field|coreContainer
+specifier|protected
+specifier|volatile
+name|CoreContainer
+name|coreContainer
+decl_stmt|;
 comment|/**    * Indicates a Directory will no longer be used, and when its ref count    * hits 0, it can be closed. On close all directories will be closed    * whether this has been called or not. This is simply to allow early cleanup.    *     * @throws IOException If there is a low-level I/O error.    */
 DECL|method|doneWithDirectory
 specifier|public
@@ -1135,6 +1141,22 @@ operator|.
 name|isDirectory
 argument_list|()
 return|;
+block|}
+DECL|method|initCoreContainer
+specifier|public
+name|void
+name|initCoreContainer
+parameter_list|(
+name|CoreContainer
+name|cc
+parameter_list|)
+block|{
+name|this
+operator|.
+name|coreContainer
+operator|=
+name|cc
+expr_stmt|;
 block|}
 block|}
 end_class
