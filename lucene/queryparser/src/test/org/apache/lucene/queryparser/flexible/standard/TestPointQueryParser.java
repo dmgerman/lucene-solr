@@ -568,7 +568,7 @@ name|DoublePoint
 operator|.
 name|newRangeQuery
 argument_list|(
-literal|"floatField"
+literal|"doubleField"
 argument_list|,
 literal|1.5D
 argument_list|,

@@ -245,7 +245,7 @@ name|LatLonPoint
 operator|.
 name|newPolygonQuery
 argument_list|(
-name|FIELD_NAME
+name|field
 argument_list|,
 name|lats
 argument_list|,

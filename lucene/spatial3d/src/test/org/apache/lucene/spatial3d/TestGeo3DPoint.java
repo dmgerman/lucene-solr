@@ -5223,6 +5223,23 @@ name|shape
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assertFalse
+argument_list|(
+name|q
+operator|.
+name|equals
+argument_list|(
+name|Geo3DPoint
+operator|.
+name|newShapeQuery
+argument_list|(
+literal|"point2"
+argument_list|,
+name|shape
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// make a different random shape:
 name|GeoShape
 name|shape2
