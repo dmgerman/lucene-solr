@@ -484,7 +484,7 @@ name|this
 operator|.
 name|connection
 operator|.
-name|getSchema
+name|getCollection
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -505,7 +505,7 @@ name|this
 operator|.
 name|connection
 operator|.
-name|getSchema
+name|getCollection
 argument_list|()
 argument_list|)
 throw|;

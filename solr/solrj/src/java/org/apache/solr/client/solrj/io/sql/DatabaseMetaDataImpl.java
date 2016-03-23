@@ -2324,7 +2324,14 @@ throws|throws
 name|SQLException
 block|{
 return|return
-literal|null
+name|this
+operator|.
+name|connectionStatement
+operator|.
+name|executeQuery
+argument_list|(
+literal|"select TABLE_CAT, TABLE_SCHEM, TABLE_NAME, TABLE_TYPE, REMARKS from _TABLES_"
+argument_list|)
 return|;
 block|}
 annotation|@
