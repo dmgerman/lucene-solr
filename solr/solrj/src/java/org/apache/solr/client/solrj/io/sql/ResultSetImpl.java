@@ -2528,11 +2528,11 @@ parameter_list|()
 throws|throws
 name|SQLException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+return|return
+name|ResultSet
+operator|.
+name|TYPE_FORWARD_ONLY
+return|;
 block|}
 annotation|@
 name|Override

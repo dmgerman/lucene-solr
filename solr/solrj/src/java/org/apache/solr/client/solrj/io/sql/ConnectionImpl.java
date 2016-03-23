@@ -666,13 +666,7 @@ name|readOnly
 parameter_list|)
 throws|throws
 name|SQLException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
+block|{    }
 annotation|@
 name|Override
 DECL|method|isReadOnly

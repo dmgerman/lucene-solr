@@ -128,16 +128,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Locale
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Map
 import|;
 end_import
@@ -1149,13 +1139,7 @@ name|rows
 parameter_list|)
 throws|throws
 name|SQLException
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
-block|}
+block|{    }
 annotation|@
 name|Override
 DECL|method|getFetchSize
@@ -1166,11 +1150,9 @@ parameter_list|()
 throws|throws
 name|SQLException
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+return|return
+literal|0
+return|;
 block|}
 annotation|@
 name|Override
