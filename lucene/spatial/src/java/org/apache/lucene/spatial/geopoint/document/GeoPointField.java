@@ -438,7 +438,7 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Creates a stored or un-stored GeoPointField    *  @param name field name    *  @param lat latitude double value [-90.0 : 90.0]    *  @param lon longitude double value [-180.0 : 180.0]    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name is null.    */
+comment|/** Creates a stored or un-stored GeoPointField    *  @param name field name    *  @param latitude latitude double value [-90.0 : 90.0]    *  @param longitude longitude double value [-180.0 : 180.0]    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name is null.    */
 DECL|method|GeoPointField
 specifier|public
 name|GeoPointField
@@ -447,10 +447,10 @@ name|String
 name|name
 parameter_list|,
 name|double
-name|lat
+name|latitude
 parameter_list|,
 name|double
-name|lon
+name|longitude
 parameter_list|,
 name|Store
 name|stored
@@ -460,9 +460,9 @@ name|this
 argument_list|(
 name|name
 argument_list|,
-name|lat
+name|latitude
 argument_list|,
-name|lon
+name|longitude
 argument_list|,
 name|getFieldType
 argument_list|(
@@ -471,7 +471,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Creates a stored or un-stored GeoPointField using the specified {@link TermEncoding} method    *  @param name field name    *  @param lat latitude double value [-90.0 : 90.0]    *  @param lon longitude double value [-180.0 : 180.0]    *  @param termEncoding encoding type to use ({@link TermEncoding#NUMERIC} Terms, or {@link TermEncoding#PREFIX} only Terms)    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name is null.    */
+comment|/** Creates a stored or un-stored GeoPointField using the specified {@link TermEncoding} method    *  @param name field name    *  @param latitude latitude double value [-90.0 : 90.0]    *  @param longitude longitude double value [-180.0 : 180.0]    *  @param termEncoding encoding type to use ({@link TermEncoding#NUMERIC} Terms, or {@link TermEncoding#PREFIX} only Terms)    *  @param stored Store.YES if the content should also be stored    *  @throws IllegalArgumentException if the field name is null.    */
 annotation|@
 name|Deprecated
 DECL|method|GeoPointField
@@ -482,10 +482,10 @@ name|String
 name|name
 parameter_list|,
 name|double
-name|lat
+name|latitude
 parameter_list|,
 name|double
-name|lon
+name|longitude
 parameter_list|,
 name|TermEncoding
 name|termEncoding
@@ -498,9 +498,9 @@ name|this
 argument_list|(
 name|name
 argument_list|,
-name|lat
+name|latitude
 argument_list|,
-name|lon
+name|longitude
 argument_list|,
 name|getFieldType
 argument_list|(
@@ -511,7 +511,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Expert: allows you to customize the {@link    *  FieldType}.    *  @param name field name    *  @param lat latitude double value [-90.0 : 90.0]    *  @param lon longitude double value [-180.0 : 180.0]    *  @param type customized field type: must have {@link FieldType#numericType()}    *         of {@link org.apache.lucene.document.FieldType.LegacyNumericType#LONG}.    *  @throws IllegalArgumentException if the field name or type is null, or    *          if the field type does not have a LONG numericType()    */
+comment|/** Expert: allows you to customize the {@link    *  FieldType}.    *  @param name field name    *  @param latitude latitude double value [-90.0 : 90.0]    *  @param longitude longitude double value [-180.0 : 180.0]    *  @param type customized field type: must have {@link FieldType#numericType()}    *         of {@link org.apache.lucene.document.FieldType.LegacyNumericType#LONG}.    *  @throws IllegalArgumentException if the field name or type is null, or    *          if the field type does not have a LONG numericType()    */
 DECL|method|GeoPointField
 specifier|public
 name|GeoPointField
@@ -520,10 +520,10 @@ name|String
 name|name
 parameter_list|,
 name|double
-name|lat
+name|latitude
 parameter_list|,
 name|double
-name|lon
+name|longitude
 parameter_list|,
 name|FieldType
 name|type
@@ -542,7 +542,7 @@ name|GeoUtils
 operator|.
 name|isValidLat
 argument_list|(
-name|lat
+name|latitude
 argument_list|)
 operator|==
 literal|false
@@ -552,9 +552,9 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"invalid lat="
+literal|"invalid latitude="
 operator|+
-name|lat
+name|latitude
 operator|+
 literal|" for field \""
 operator|+
@@ -570,7 +570,7 @@ name|GeoUtils
 operator|.
 name|isValidLon
 argument_list|(
-name|lon
+name|longitude
 argument_list|)
 operator|==
 literal|false
@@ -580,9 +580,9 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"invalid lon="
+literal|"invalid longitude="
 operator|+
-name|lon
+name|longitude
 operator|+
 literal|" for field \""
 operator|+
@@ -721,9 +721,9 @@ name|GeoEncodingUtils
 operator|.
 name|mortonHash
 argument_list|(
-name|lat
+name|latitude
 argument_list|,
-name|lon
+name|longitude
 argument_list|)
 expr_stmt|;
 block|}
