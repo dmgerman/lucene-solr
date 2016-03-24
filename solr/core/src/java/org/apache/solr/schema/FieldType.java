@@ -1873,11 +1873,35 @@ block|{
 comment|// currently used in writing XML of the search result (but perhaps
 comment|// a more efficient toXML(IndexableField f, Writer w) should be used
 comment|// in the future.
-return|return
+name|String
+name|val
+init|=
 name|f
 operator|.
 name|stringValue
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|val
+operator|==
+literal|null
+condition|)
+block|{
+comment|// docValues will use the binary value
+name|val
+operator|=
+name|f
+operator|.
+name|binaryValue
+argument_list|()
+operator|.
+name|utf8ToString
+argument_list|()
+expr_stmt|;
+block|}
+return|return
+name|val
 return|;
 block|}
 comment|/**    * Convert the stored-field format to an external object.    * @see #toInternal    * @since solr 1.3    */
