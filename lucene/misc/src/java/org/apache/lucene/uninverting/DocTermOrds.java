@@ -425,6 +425,14 @@ specifier|protected
 name|PostingsEnum
 name|postingsEnum
 decl_stmt|;
+comment|/** If true, check and throw an exception if the field has docValues enabled.    * Normally, docValues should be used in preference to DocTermOrds. */
+DECL|field|checkForDocValues
+specifier|protected
+name|boolean
+name|checkForDocValues
+init|=
+literal|true
+decl_stmt|;
 comment|/** Returns total bytes used. */
 DECL|method|ramBytesUsed
 specifier|public
@@ -840,6 +848,8 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|checkForDocValues
+operator|&&
 name|info
 operator|!=
 literal|null
