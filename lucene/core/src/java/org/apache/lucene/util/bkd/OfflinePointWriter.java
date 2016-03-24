@@ -370,6 +370,13 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+name|out
+operator|.
+name|writeInt
+argument_list|(
+name|docID
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|singleValuePerDoc
@@ -411,13 +418,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|out
-operator|.
-name|writeInt
-argument_list|(
-name|docID
-argument_list|)
-expr_stmt|;
 name|count
 operator|++
 expr_stmt|;
