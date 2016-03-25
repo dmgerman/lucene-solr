@@ -838,6 +838,29 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+operator|!
+name|_wantsAllFields
+operator|&&
+operator|!
+name|globs
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+comment|// TODO??? need to fill up the fields with matching field names in the index
+comment|// and add them to okFieldNames?
+comment|// maybe just get all fields?
+comment|// this would disable field selection optimization... i think thatis OK
+name|fields
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+comment|// this will get all fields, and use wantsField to limit
+block|}
+if|if
+condition|(
 name|augmenters
 operator|.
 name|size
