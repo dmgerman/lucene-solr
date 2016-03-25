@@ -487,6 +487,7 @@ argument_list|,
 literal|1e-6
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Now try some WGS84 points (taken randomly and compared against a known-good implementation)
 name|assertEquals
 argument_list|(
@@ -648,7 +649,6 @@ argument_list|,
 literal|1e-6
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 annotation|@
 name|Test
