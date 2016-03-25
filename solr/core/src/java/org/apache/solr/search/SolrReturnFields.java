@@ -387,6 +387,7 @@ literal|1
 argument_list|)
 decl_stmt|;
 comment|// The lucene field names to request from the SolrIndexSearcher
+comment|// This *may* include fields that will not be in the final response
 DECL|field|fields
 specifier|private
 specifier|final
@@ -832,40 +833,6 @@ name|to
 argument_list|,
 name|copy
 argument_list|)
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-operator|!
-name|_wantsAllFields
-condition|)
-block|{
-if|if
-condition|(
-operator|!
-name|globs
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-comment|// TODO??? need to fill up the fields with matching field names in the index
-comment|// and add them to okFieldNames?
-comment|// maybe just get all fields?
-comment|// this would disable field selection optimization... i think thatis OK
-name|fields
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
-comment|// this will get all fields, and use wantsField to limit
-block|}
-name|okFieldNames
-operator|.
-name|addAll
-argument_list|(
-name|fields
 argument_list|)
 expr_stmt|;
 block|}
