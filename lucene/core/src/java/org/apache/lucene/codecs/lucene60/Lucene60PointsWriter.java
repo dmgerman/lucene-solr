@@ -296,12 +296,14 @@ name|PointsWriter
 implements|implements
 name|Closeable
 block|{
+comment|/** Output used to write the BKD tree data file */
 DECL|field|dataOut
 specifier|protected
 specifier|final
 name|IndexOutput
 name|dataOut
 decl_stmt|;
+comment|/** Maps field name to file pointer in the data file where the BKD index is located. */
 DECL|field|indexFPs
 specifier|protected
 specifier|final
