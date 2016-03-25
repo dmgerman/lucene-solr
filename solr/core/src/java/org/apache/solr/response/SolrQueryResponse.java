@@ -356,7 +356,7 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Causes an error to be returned instead of the results.    */
+comment|/**    * Causes an error to be returned instead of the results.    *     * In general, new calls to this method should not be added. In most cases    * you should simply throw an exception and let it bubble out to     * RequestHandlerBase, which will set the exception thrown.    */
 DECL|method|setException
 specifier|public
 name|void

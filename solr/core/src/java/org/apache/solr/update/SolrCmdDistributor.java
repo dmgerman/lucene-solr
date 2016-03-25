@@ -108,6 +108,28 @@ name|client
 operator|.
 name|solrj
 operator|.
+name|impl
+operator|.
+name|ConcurrentUpdateSolrClient
+import|;
+end_import
+
+begin_comment
+comment|// jdoc
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
 name|request
 operator|.
 name|AbstractUpdateRequest
@@ -919,7 +941,10 @@ name|err
 operator|.
 name|req
 operator|.
-name|cmdString
+name|cmd
+operator|.
+name|toString
+argument_list|()
 operator|+
 literal|" params:"
 operator|+
@@ -1201,9 +1226,6 @@ operator|new
 name|Req
 argument_list|(
 name|cmd
-operator|.
-name|toString
-argument_list|()
 argument_list|,
 name|node
 argument_list|,
@@ -1314,14 +1336,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|String
-name|cmdStr
-init|=
-name|cmd
-operator|.
-name|toString
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|Node
@@ -1377,7 +1391,7 @@ argument_list|(
 operator|new
 name|Req
 argument_list|(
-name|cmdStr
+name|cmd
 argument_list|,
 name|node
 argument_list|,
@@ -1467,9 +1481,6 @@ operator|new
 name|Req
 argument_list|(
 name|cmd
-operator|.
-name|toString
-argument_list|()
 argument_list|,
 name|node
 argument_list|,
@@ -1750,7 +1761,7 @@ literal|" "
 operator|+
 name|req
 operator|.
-name|cmdString
+name|cmd
 operator|+
 literal|" params:"
 operator|+
@@ -1941,10 +1952,10 @@ specifier|public
 name|boolean
 name|synchronous
 decl_stmt|;
-DECL|field|cmdString
+DECL|field|cmd
 specifier|public
-name|String
-name|cmdString
+name|UpdateCommand
+name|cmd
 decl_stmt|;
 DECL|field|rfTracker
 specifier|public
@@ -1960,8 +1971,8 @@ DECL|method|Req
 specifier|public
 name|Req
 parameter_list|(
-name|String
-name|cmdString
+name|UpdateCommand
+name|cmd
 parameter_list|,
 name|Node
 name|node
@@ -1975,7 +1986,7 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|cmdString
+name|cmd
 argument_list|,
 name|node
 argument_list|,
@@ -1993,8 +2004,8 @@ DECL|method|Req
 specifier|public
 name|Req
 parameter_list|(
-name|String
-name|cmdString
+name|UpdateCommand
+name|cmd
 parameter_list|,
 name|Node
 name|node
@@ -2032,9 +2043,9 @@ name|synchronous
 expr_stmt|;
 name|this
 operator|.
-name|cmdString
+name|cmd
 operator|=
-name|cmdString
+name|cmd
 expr_stmt|;
 name|this
 operator|.
@@ -2071,12 +2082,10 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|String
+name|cmd
 operator|.
-name|valueOf
-argument_list|(
-name|cmdString
-argument_list|)
+name|toString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|sb
@@ -2350,6 +2359,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|/**      * NOTE: This is the request that happened to be executed when this error was<b>triggered</b> the error,       * but because of how {@link StreamingSolrClients} uses {@link ConcurrentUpdateSolrClient} it might not       * actaully be the request that<b>caused</b> the error -- multiple requests are merged&amp; processed as       * a sequential batch.      */
 DECL|field|req
 specifier|public
 name|Req

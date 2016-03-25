@@ -362,6 +362,24 @@ literal|"Unexpected arg(s): {bogusParam=bogusValue}"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testTolerantUpdateProcessorNoUniqueKey
+specifier|public
+name|void
+name|testTolerantUpdateProcessorNoUniqueKey
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertConfigs
+argument_list|(
+literal|"solrconfig-tolerant-update-minimal.xml"
+argument_list|,
+literal|"schema-minimal.xml"
+argument_list|,
+literal|"requires a schema that includes a uniqueKey field"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
