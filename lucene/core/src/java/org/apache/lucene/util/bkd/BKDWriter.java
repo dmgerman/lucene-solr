@@ -5469,9 +5469,8 @@ return|return
 literal|true
 return|;
 block|}
-comment|// TODO: make this protected when we want to subclass to play with different splitting criteria
 DECL|method|split
-specifier|private
+specifier|protected
 name|int
 name|split
 parameter_list|(

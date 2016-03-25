@@ -297,11 +297,13 @@ implements|implements
 name|Closeable
 block|{
 DECL|field|dataOut
+specifier|protected
 specifier|final
 name|IndexOutput
 name|dataOut
 decl_stmt|;
 DECL|field|indexFPs
+specifier|protected
 specifier|final
 name|Map
 argument_list|<
