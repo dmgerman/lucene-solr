@@ -578,30 +578,13 @@ name|double
 name|latitude
 parameter_list|)
 block|{
-if|if
-condition|(
 name|GeoUtils
 operator|.
-name|isValidLat
+name|checkLatitude
 argument_list|(
 name|latitude
 argument_list|)
-operator|==
-literal|false
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"invalid latitude: "
-operator|+
-name|latitude
-operator|+
-literal|", must be -90 to 90"
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 comment|// the maximum possible value cannot be encoded without overflow
 if|if
 condition|(
@@ -647,30 +630,13 @@ name|double
 name|longitude
 parameter_list|)
 block|{
-if|if
-condition|(
 name|GeoUtils
 operator|.
-name|isValidLon
+name|checkLongitude
 argument_list|(
 name|longitude
 argument_list|)
-operator|==
-literal|false
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"invalid longitude: "
-operator|+
-name|longitude
-operator|+
-literal|", must be -180 to 180"
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 comment|// the maximum possible value cannot be encoded without overflow
 if|if
 condition|(
@@ -724,12 +690,17 @@ operator|*
 name|LATITUDE_DECODE
 decl_stmt|;
 assert|assert
+name|result
+operator|>=
 name|GeoUtils
 operator|.
-name|isValidLat
-argument_list|(
+name|MIN_LAT_INCL
+operator|&&
 name|result
-argument_list|)
+operator|<=
+name|GeoUtils
+operator|.
+name|MAX_LAT_INCL
 assert|;
 return|return
 name|result
@@ -783,12 +754,17 @@ operator|*
 name|LONGITUDE_DECODE
 decl_stmt|;
 assert|assert
+name|result
+operator|>=
 name|GeoUtils
 operator|.
-name|isValidLon
-argument_list|(
+name|MIN_LON_INCL
+operator|&&
 name|result
-argument_list|)
+operator|<=
+name|GeoUtils
+operator|.
+name|MAX_LON_INCL
 assert|;
 return|return
 name|result

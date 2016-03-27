@@ -536,62 +536,20 @@ argument_list|,
 name|type
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
 name|GeoUtils
 operator|.
-name|isValidLat
+name|checkLatitude
 argument_list|(
 name|latitude
 argument_list|)
-operator|==
-literal|false
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"invalid latitude="
-operator|+
-name|latitude
-operator|+
-literal|" for field \""
-operator|+
-name|name
-operator|+
-literal|"\""
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
+expr_stmt|;
 name|GeoUtils
 operator|.
-name|isValidLon
+name|checkLongitude
 argument_list|(
 name|longitude
 argument_list|)
-operator|==
-literal|false
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"invalid longitude="
-operator|+
-name|longitude
-operator|+
-literal|" for field \""
-operator|+
-name|name
-operator|+
-literal|"\""
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 comment|// field must be indexed
 comment|// todo does it make sense here to provide the ability to store a GeoPointField but not index?
 if|if
