@@ -4899,6 +4899,7 @@ throws|throws
 name|Exception
 block|{
 comment|// quantize each value the same way the index does
+comment|// NaN means missing for the doc!!!!!
 for|for
 control|(
 name|int
@@ -4916,6 +4917,20 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+operator|!
+name|Double
+operator|.
+name|isNaN
+argument_list|(
+name|lats
+index|[
+name|i
+index|]
+argument_list|)
+condition|)
+block|{
 name|lats
 index|[
 name|i
@@ -4929,6 +4944,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 for|for
 control|(
@@ -4947,6 +4963,20 @@ name|i
 operator|++
 control|)
 block|{
+if|if
+condition|(
+operator|!
+name|Double
+operator|.
+name|isNaN
+argument_list|(
+name|lons
+index|[
+name|i
+index|]
+argument_list|)
+condition|)
+block|{
 name|lons
 index|[
 name|i
@@ -4960,6 +4990,7 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|verifyRandomRectangles
 argument_list|(
