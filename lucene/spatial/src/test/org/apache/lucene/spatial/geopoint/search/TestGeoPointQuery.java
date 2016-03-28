@@ -307,35 +307,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|newDistanceRangeQuery
-specifier|protected
-name|Query
-name|newDistanceRangeQuery
-parameter_list|(
-name|String
-name|field
-parameter_list|,
-name|double
-name|centerLat
-parameter_list|,
-name|double
-name|centerLon
-parameter_list|,
-name|double
-name|minRadiusMeters
-parameter_list|,
-name|double
-name|radiusMeters
-parameter_list|)
-block|{
-comment|// LUCENE-7126: currently not valid for multi-valued documents, because it rewrites to a BooleanQuery!
-comment|// return new GeoPointDistanceRangeQuery(field, TermEncoding.PREFIX, centerLat, centerLon, minRadiusMeters, radiusMeters);
-return|return
-literal|null
-return|;
-block|}
-annotation|@
-name|Override
 DECL|method|newPolygonQuery
 specifier|protected
 name|Query
