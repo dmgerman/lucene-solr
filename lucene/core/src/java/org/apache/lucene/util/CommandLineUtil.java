@@ -410,7 +410,7 @@ operator|.
 name|getSimpleName
 argument_list|()
 operator|+
-literal|" implementation cannot be null or empty"
+literal|" implementation must not be null or empty"
 argument_list|)
 throw|;
 block|}

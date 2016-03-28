@@ -271,7 +271,7 @@ name|fieldInfo
 operator|.
 name|name
 operator|+
-literal|": point value cannot be null"
+literal|": point value must not be null"
 argument_list|)
 throw|;
 block|}

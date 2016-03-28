@@ -112,7 +112,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"prefix cannot be null"
+literal|"prefix must not be null"
 argument_list|)
 throw|;
 block|}

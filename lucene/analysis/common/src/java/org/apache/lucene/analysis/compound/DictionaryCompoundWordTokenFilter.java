@@ -90,7 +90,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"dictionary cannot be null"
+literal|"dictionary must not be null"
 argument_list|)
 throw|;
 block|}
@@ -145,7 +145,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"dictionary cannot be null"
+literal|"dictionary must not be null"
 argument_list|)
 throw|;
 block|}

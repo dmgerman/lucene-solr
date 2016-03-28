@@ -152,7 +152,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"type cannot be null!"
+literal|"type must not be null!"
 argument_list|)
 throw|;
 block|}
@@ -220,7 +220,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**    * Sets the {@link NumberFormat} used to parse a {@link String} to    * {@link Number}    *     * @param format    *          the {@link NumberFormat} used to parse a {@link String} to    *          {@link Number}, cannot be<code>null</code>    */
+comment|/**    * Sets the {@link NumberFormat} used to parse a {@link String} to    * {@link Number}    *     * @param format    *          the {@link NumberFormat} used to parse a {@link String} to    *          {@link Number}, must not be<code>null</code>    */
 DECL|method|setNumberFormat
 specifier|public
 name|void
@@ -241,7 +241,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"format cannot be null!"
+literal|"format must not be null!"
 argument_list|)
 throw|;
 block|}

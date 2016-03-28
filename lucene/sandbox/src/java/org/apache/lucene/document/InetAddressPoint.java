@@ -254,7 +254,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"point cannot be null"
+literal|"point must not be null"
 argument_list|)
 throw|;
 block|}
@@ -649,7 +649,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"InetAddress cannot be null"
+literal|"InetAddress must not be null"
 argument_list|)
 throw|;
 block|}

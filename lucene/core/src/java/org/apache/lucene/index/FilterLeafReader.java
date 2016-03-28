@@ -186,7 +186,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"incoming Fields cannot be null"
+literal|"incoming Fields must not be null"
 argument_list|)
 throw|;
 block|}
@@ -290,7 +290,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"incoming Terms cannot be null"
+literal|"incoming Terms must not be null"
 argument_list|)
 throw|;
 block|}
@@ -501,7 +501,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"incoming TermsEnum cannot be null"
+literal|"incoming TermsEnum must not be null"
 argument_list|)
 throw|;
 block|}
@@ -720,7 +720,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"incoming PostingsEnum cannot be null"
+literal|"incoming PostingsEnum must not be null"
 argument_list|)
 throw|;
 block|}
@@ -931,7 +931,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"incoming LeafReader cannot be null"
+literal|"incoming LeafReader must not be null"
 argument_list|)
 throw|;
 block|}

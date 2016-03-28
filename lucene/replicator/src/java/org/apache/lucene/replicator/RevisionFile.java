@@ -67,7 +67,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"fileName cannot be null or empty"
+literal|"fileName must not be null or empty"
 argument_list|)
 throw|;
 block|}

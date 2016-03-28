@@ -392,7 +392,7 @@ return|return
 name|openMode
 return|;
 block|}
-comment|/**    * Expert: allows an optional {@link IndexDeletionPolicy} implementation to be    * specified. You can use this to control when prior commits are deleted from    * the index. The default policy is {@link KeepOnlyLastCommitDeletionPolicy}    * which removes all prior commits as soon as a new commit is done (this    * matches behavior before 2.2). Creating your own policy can allow you to    * explicitly keep previous "point in time" commits alive in the index for    * some time, to allow readers to refresh to the new commit without having the    * old commit deleted out from under them. This is necessary on filesystems    * like NFS that do not support "delete on last close" semantics, which    * Lucene's "point in time" search normally relies on.    *<p>    *<b>NOTE:</b> the deletion policy cannot be null.    *    *<p>Only takes effect when IndexWriter is first created.     */
+comment|/**    * Expert: allows an optional {@link IndexDeletionPolicy} implementation to be    * specified. You can use this to control when prior commits are deleted from    * the index. The default policy is {@link KeepOnlyLastCommitDeletionPolicy}    * which removes all prior commits as soon as a new commit is done (this    * matches behavior before 2.2). Creating your own policy can allow you to    * explicitly keep previous "point in time" commits alive in the index for    * some time, to allow readers to refresh to the new commit without having the    * old commit deleted out from under them. This is necessary on filesystems    * like NFS that do not support "delete on last close" semantics, which    * Lucene's "point in time" search normally relies on.    *<p>    *<b>NOTE:</b> the deletion policy must not be null.    *    *<p>Only takes effect when IndexWriter is first created.     */
 DECL|method|setIndexDeletionPolicy
 specifier|public
 name|IndexWriterConfig
@@ -471,7 +471,7 @@ return|return
 name|commit
 return|;
 block|}
-comment|/**    * Expert: set the {@link Similarity} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity cannot be null.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/**    * Expert: set the {@link Similarity} implementation used by this IndexWriter.    *<p>    *<b>NOTE:</b> the similarity must not be null.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setSimilarity
 specifier|public
 name|IndexWriterConfig
@@ -518,7 +518,7 @@ return|return
 name|similarity
 return|;
 block|}
-comment|/**    * Expert: sets the merge scheduler used by this writer. The default is    * {@link ConcurrentMergeScheduler}.    *<p>    *<b>NOTE:</b> the merge scheduler cannot be null.    *    *<p>Only takes effect when IndexWriter is first created. */
+comment|/**    * Expert: sets the merge scheduler used by this writer. The default is    * {@link ConcurrentMergeScheduler}.    *<p>    *<b>NOTE:</b> the merge scheduler must not be null.    *    *<p>Only takes effect when IndexWriter is first created. */
 DECL|method|setMergeScheduler
 specifier|public
 name|IndexWriterConfig

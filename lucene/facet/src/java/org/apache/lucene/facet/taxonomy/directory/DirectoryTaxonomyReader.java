@@ -787,7 +787,7 @@ name|t2
 argument_list|)
 condition|)
 block|{
-comment|// t1 != null and t2 cannot be null b/c DirTaxoWriter always puts the commit data.
+comment|// t1 != null and t2 must not be null b/c DirTaxoWriter always puts the commit data.
 comment|// it's ok to use String.equals because we require the two epoch values to be the same.
 name|recreated
 operator|=

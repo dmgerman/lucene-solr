@@ -100,7 +100,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"key cannot be null!"
+literal|"key must not be null!"
 argument_list|)
 throw|;
 block|}
@@ -145,7 +145,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"key cannot be null!"
+literal|"key must not be null!"
 argument_list|)
 throw|;
 block|}
@@ -190,7 +190,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"key cannot be null!"
+literal|"key must not be null!"
 argument_list|)
 throw|;
 block|}
@@ -249,7 +249,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"key cannot be null!"
+literal|"key must not be null!"
 argument_list|)
 throw|;
 block|}

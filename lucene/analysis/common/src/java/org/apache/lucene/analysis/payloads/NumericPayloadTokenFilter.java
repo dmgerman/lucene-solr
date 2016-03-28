@@ -180,7 +180,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"typeMatch cannot be null"
+literal|"typeMatch must not be null"
 argument_list|)
 throw|;
 block|}

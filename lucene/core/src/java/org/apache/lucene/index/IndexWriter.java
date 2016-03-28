@@ -5281,7 +5281,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"DocValuesType cannot be null (field: \""
+literal|"DocValuesType must not be null (field: \""
 operator|+
 name|f
 operator|.

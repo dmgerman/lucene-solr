@@ -152,7 +152,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"config cannot be null!"
+literal|"config must not be null!"
 argument_list|)
 throw|;
 block|}

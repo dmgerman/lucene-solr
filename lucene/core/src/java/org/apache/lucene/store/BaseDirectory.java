@@ -77,7 +77,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"LockFactory cannot be null, use an explicit instance!"
+literal|"LockFactory must not be null, use an explicit instance!"
 argument_list|)
 throw|;
 block|}

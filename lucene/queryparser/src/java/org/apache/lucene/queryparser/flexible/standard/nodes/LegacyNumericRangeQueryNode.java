@@ -317,7 +317,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"numericConfig cannot be null!"
+literal|"numericConfig must not be null!"
 argument_list|)
 throw|;
 block|}

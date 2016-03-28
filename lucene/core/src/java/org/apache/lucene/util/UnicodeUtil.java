@@ -2116,7 +2116,7 @@ index|[]
 name|ints
 parameter_list|)
 block|{
-comment|// TODO: ints cannot be null, should be an assert
+comment|// TODO: ints must not be null, should be an assert
 name|int
 name|utf32Count
 init|=

@@ -2384,7 +2384,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"docValuesType cannot be null (field: \""
+literal|"docValuesType must not be null (field: \""
 operator|+
 name|fieldName
 operator|+

@@ -104,7 +104,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"label cannot be null"
+literal|"label must not be null"
 argument_list|)
 throw|;
 block|}

@@ -1936,7 +1936,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"PassageFormatter cannot be null"
+literal|"PassageFormatter must not be null"
 argument_list|)
 throw|;
 block|}
@@ -2412,7 +2412,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"PassageScorer cannot be null"
+literal|"PassageScorer must not be null"
 argument_list|)
 throw|;
 block|}

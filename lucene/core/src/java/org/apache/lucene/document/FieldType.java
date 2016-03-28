@@ -673,7 +673,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"IndexOptions cannot be null"
+literal|"IndexOptions must not be null"
 argument_list|)
 throw|;
 block|}
@@ -1304,7 +1304,7 @@ throw|throw
 operator|new
 name|NullPointerException
 argument_list|(
-literal|"DocValuesType cannot be null"
+literal|"DocValuesType must not be null"
 argument_list|)
 throw|;
 block|}

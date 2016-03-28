@@ -170,7 +170,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"point cannot be null"
+literal|"point must not be null"
 argument_list|)
 throw|;
 block|}
@@ -187,7 +187,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"point cannot be 0 dimensions"
+literal|"point must not be 0 dimensions"
 argument_list|)
 throw|;
 block|}
@@ -234,7 +234,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"point cannot have null values"
+literal|"point must not have null values"
 argument_list|)
 throw|;
 block|}
@@ -251,7 +251,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"point cannot have 0-length values"
+literal|"point must not have 0-length values"
 argument_list|)
 throw|;
 block|}
@@ -369,7 +369,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"point cannot be null"
+literal|"point must not be null"
 argument_list|)
 throw|;
 block|}
@@ -386,7 +386,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"point cannot be 0 dimensions"
+literal|"point must not be 0 dimensions"
 argument_list|)
 throw|;
 block|}
@@ -436,7 +436,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"point cannot have null values"
+literal|"point must not have null values"
 argument_list|)
 throw|;
 block|}
@@ -461,7 +461,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"point cannot have 0-length values"
+literal|"point must not have 0-length values"
 argument_list|)
 throw|;
 block|}

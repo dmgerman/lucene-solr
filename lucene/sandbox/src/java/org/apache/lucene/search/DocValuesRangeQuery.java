@@ -715,7 +715,7 @@ throw|throw
 operator|new
 name|IllegalStateException
 argument_list|(
-literal|"Both min and max values cannot be null, call rewrite first"
+literal|"Both min and max values must not be null, call rewrite first"
 argument_list|)
 throw|;
 block|}

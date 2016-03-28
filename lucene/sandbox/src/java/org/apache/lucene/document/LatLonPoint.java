@@ -1021,7 +1021,7 @@ throw|;
 block|}
 block|}
 comment|// static methods for generating queries
-comment|/**    * Create a query for matching a bounding box.    *<p>    * The box may cross over the dateline.    * @param field field name. cannot be null.    * @param minLatitude latitude lower bound: must be within standard +/-90 coordinate bounds.    * @param maxLatitude latitude upper bound: must be within standard +/-90 coordinate bounds.    * @param minLongitude longitude lower bound: must be within standard +/-180 coordinate bounds.    * @param maxLongitude longitude upper bound: must be within standard +/-180 coordinate bounds.    * @return query matching points within this box    * @throws IllegalArgumentException if {@code field} is null, or the box has invalid coordinates.    */
+comment|/**    * Create a query for matching a bounding box.    *<p>    * The box may cross over the dateline.    * @param field field name. must not be null.    * @param minLatitude latitude lower bound: must be within standard +/-90 coordinate bounds.    * @param maxLatitude latitude upper bound: must be within standard +/-90 coordinate bounds.    * @param minLongitude longitude lower bound: must be within standard +/-180 coordinate bounds.    * @param maxLongitude longitude upper bound: must be within standard +/-180 coordinate bounds.    * @return query matching points within this box    * @throws IllegalArgumentException if {@code field} is null, or the box has invalid coordinates.    */
 DECL|method|newBoxQuery
 specifier|public
 specifier|static
@@ -1327,7 +1327,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Create a query for matching points within the specified distance of the supplied location.    * @param field field name. cannot be null.    * @param latitude latitude at the center: must be within standard +/-90 coordinate bounds.    * @param longitude longitude at the center: must be within standard +/-180 coordinate bounds.    * @param radiusMeters maximum distance from the center in meters: must be non-negative and finite.    * @return query matching points within this distance    * @throws IllegalArgumentException if {@code field} is null, location has invalid coordinates, or radius is invalid.    */
+comment|/**    * Create a query for matching points within the specified distance of the supplied location.    * @param field field name. must not be null.    * @param latitude latitude at the center: must be within standard +/-90 coordinate bounds.    * @param longitude longitude at the center: must be within standard +/-180 coordinate bounds.    * @param radiusMeters maximum distance from the center in meters: must be non-negative and finite.    * @return query matching points within this distance    * @throws IllegalArgumentException if {@code field} is null, location has invalid coordinates, or radius is invalid.    */
 DECL|method|newDistanceQuery
 specifier|public
 specifier|static
@@ -1361,7 +1361,7 @@ name|radiusMeters
 argument_list|)
 return|;
 block|}
-comment|/**     * Create a query for matching a polygon.    *<p>    * The supplied {@code polyLats}/{@code polyLons} must be clockwise or counter-clockwise.    * @param field field name. cannot be null.    * @param polyLats latitude values for points of the polygon: must be within standard +/-90 coordinate bounds.    * @param polyLons longitude values for points of the polygon: must be within standard +/-180 coordinate bounds.    * @return query matching points within this polygon    * @throws IllegalArgumentException if {@code field} is null, {@code polyLats} is null or has invalid coordinates,     *                                  {@code polyLons} is null or has invalid coordinates, if {@code polyLats} has a different    *                                  length than {@code polyLons}, if the polygon has less than 4 points, or if polygon is     *                                  not closed (first and last points should be the same)    */
+comment|/**     * Create a query for matching a polygon.    *<p>    * The supplied {@code polyLats}/{@code polyLons} must be clockwise or counter-clockwise.    * @param field field name. must not be null.    * @param polyLats latitude values for points of the polygon: must be within standard +/-90 coordinate bounds.    * @param polyLons longitude values for points of the polygon: must be within standard +/-180 coordinate bounds.    * @return query matching points within this polygon    * @throws IllegalArgumentException if {@code field} is null, {@code polyLats} is null or has invalid coordinates,     *                                  {@code polyLons} is null or has invalid coordinates, if {@code polyLats} has a different    *                                  length than {@code polyLons}, if the polygon has less than 4 points, or if polygon is     *                                  not closed (first and last points should be the same)    */
 DECL|method|newPolygonQuery
 specifier|public
 specifier|static
@@ -1392,7 +1392,7 @@ name|polyLons
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a SortField for sorting by distance from a location.    *<p>    * This sort orders documents by ascending distance from the location. The value returned in {@link FieldDoc} for    * the hits contains a Double instance with the distance in meters.    *<p>    * If a document is missing the field, then by default it is treated as having {@link Double#POSITIVE_INFINITY} distance    * (missing values sort last).    *<p>    * If a document contains multiple values for the field, the<i>closest</i> distance to the location is used.    *     * @param field field name. cannot be null.    * @param latitude latitude at the center: must be within standard +/-90 coordinate bounds.    * @param longitude longitude at the center: must be within standard +/-180 coordinate bounds.    * @return SortField ordering documents by distance    * @throws IllegalArgumentException if {@code field} is null or location has invalid coordinates.    */
+comment|/**    * Creates a SortField for sorting by distance from a location.    *<p>    * This sort orders documents by ascending distance from the location. The value returned in {@link FieldDoc} for    * the hits contains a Double instance with the distance in meters.    *<p>    * If a document is missing the field, then by default it is treated as having {@link Double#POSITIVE_INFINITY} distance    * (missing values sort last).    *<p>    * If a document contains multiple values for the field, the<i>closest</i> distance to the location is used.    *     * @param field field name. must not be null.    * @param latitude latitude at the center: must be within standard +/-90 coordinate bounds.    * @param longitude longitude at the center: must be within standard +/-180 coordinate bounds.    * @return SortField ordering documents by distance    * @throws IllegalArgumentException if {@code field} is null or location has invalid coordinates.    */
 DECL|method|newDistanceSort
 specifier|public
 specifier|static
