@@ -607,10 +607,17 @@ name|TO_RADIANS
 operator|*
 name|centerLon
 decl_stmt|;
+comment|// LUCENE-7143
 name|double
 name|radDistance
 init|=
+operator|(
 name|radiusMeters
+operator|+
+literal|7E
+operator|-
+literal|2
+operator|)
 operator|/
 name|SEMIMAJOR_AXIS
 decl_stmt|;
@@ -919,6 +926,161 @@ name|a
 operator|-
 name|PIO2
 argument_list|)
+return|;
+block|}
+comment|/** maximum error from {@link #axisLat(double, double)}. logic must be prepared to handle this */
+DECL|field|AXISLAT_ERROR
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|AXISLAT_ERROR
+init|=
+literal|0.1D
+operator|/
+name|SEMIMAJOR_AXIS
+operator|*
+name|TO_DEGREES
+decl_stmt|;
+comment|/**    * Calculate the latitude of a circle's intersections with its bbox meridians.    *<p>    *<b>NOTE:</b> the returned value will be +/- {@link #AXISLAT_ERROR} of the actual value.    * @param centerLat The latitude of the circle center    * @param radiusMeters The radius of the circle in meters    * @return A latitude    */
+DECL|method|axisLat
+specifier|public
+specifier|static
+name|double
+name|axisLat
+parameter_list|(
+name|double
+name|centerLat
+parameter_list|,
+name|double
+name|radiusMeters
+parameter_list|)
+block|{
+comment|// A spherical triangle with:
+comment|// r is the radius of the circle in radians
+comment|// l1 is the latitude of the circle center
+comment|// l2 is the latitude of the point at which the circle intersect's its bbox longitudes
+comment|// We know r is tangent to the bbox meridians at l2, therefore it is a right angle.
+comment|// So from the law of cosines, with the angle of l1 being 90, we have:
+comment|// cos(l1) = cos(r) * cos(l2) + sin(r) * sin(l2) * cos(90)
+comment|// The second part cancels out because cos(90) == 0, so we have:
+comment|// cos(l1) = cos(r) * cos(l2)
+comment|// Solving for l2, we get:
+comment|// l2 = acos( cos(l1) / cos(r) )
+comment|// We ensure r is in the range (0, PI/2) and l1 in the range (0, PI/2]. This means we
+comment|// cannot divide by 0, and we will always get a positive value in the range [0, 1) as
+comment|// the argument to arc cosine, resulting in a range (0, PI/2].
+name|double
+name|l1
+init|=
+name|TO_RADIANS
+operator|*
+name|centerLat
+decl_stmt|;
+name|double
+name|r
+init|=
+operator|(
+name|radiusMeters
+operator|+
+literal|7E
+operator|-
+literal|2
+operator|)
+operator|/
+name|SEMIMAJOR_AXIS
+decl_stmt|;
+comment|// if we are within radius range of a pole, the lat is the pole itself
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|l1
+argument_list|)
+operator|+
+name|r
+operator|>=
+name|MAX_LAT_RADIANS
+condition|)
+block|{
+return|return
+name|centerLat
+operator|>=
+literal|0
+condition|?
+name|MAX_LAT_INCL
+else|:
+name|MIN_LAT_INCL
+return|;
+block|}
+comment|// adjust l1 as distance from closest pole, to form a right triangle with bbox meridians
+comment|// and ensure it is in the range (0, PI/2]
+name|l1
+operator|=
+name|centerLat
+operator|>=
+literal|0
+condition|?
+name|PIO2
+operator|-
+name|l1
+else|:
+name|l1
+operator|+
+name|PIO2
+expr_stmt|;
+name|double
+name|l2
+init|=
+name|Math
+operator|.
+name|acos
+argument_list|(
+name|Math
+operator|.
+name|cos
+argument_list|(
+name|l1
+argument_list|)
+operator|/
+name|Math
+operator|.
+name|cos
+argument_list|(
+name|r
+argument_list|)
+argument_list|)
+decl_stmt|;
+assert|assert
+operator|!
+name|Double
+operator|.
+name|isNaN
+argument_list|(
+name|l2
+argument_list|)
+assert|;
+comment|// now adjust back to range [-pi/2, pi/2], ie latitude in radians
+name|l2
+operator|=
+name|centerLat
+operator|>=
+literal|0
+condition|?
+name|PIO2
+operator|-
+name|l2
+else|:
+name|l2
+operator|-
+name|PIO2
+expr_stmt|;
+return|return
+name|TO_DEGREES
+operator|*
+name|l2
 return|;
 block|}
 block|}
