@@ -379,6 +379,24 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|testSamePointManyTimes
+specifier|public
+name|void
+name|testSamePointManyTimes
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assumeTrue
+argument_list|(
+literal|"legacy encoding goes OOM on this test"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
