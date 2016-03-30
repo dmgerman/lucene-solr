@@ -36,104 +36,6 @@ name|Comparator
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ArrayUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ByteBlockPool
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRefIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Counter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|IntroSorter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RamUsageEstimator
-import|;
-end_import
-
 begin_comment
 comment|/**  * A simple append only random-access {@link BytesRef} array that stores full  * copies of the appended bytes in a {@link ByteBlockPool}.  *   *   *<b>Note: This class is not Thread-Safe!</b>  *   * @lucene.internal  * @lucene.experimental  */
 end_comment
@@ -144,6 +46,8 @@ specifier|public
 specifier|final
 class|class
 name|BytesRefArray
+implements|implements
+name|SortableBytesRefArray
 block|{
 DECL|field|pool
 specifier|private
@@ -234,6 +138,8 @@ name|bytesUsed
 expr_stmt|;
 block|}
 comment|/**    * Clears this {@link BytesRefArray}    */
+annotation|@
+name|Override
 DECL|method|clear
 specifier|public
 name|void
@@ -248,6 +154,7 @@ name|currentOffset
 operator|=
 literal|0
 expr_stmt|;
+comment|// TODO: it's trappy that this does not return storage held by int[] offsets array!
 name|Arrays
 operator|.
 name|fill
@@ -269,6 +176,8 @@ expr_stmt|;
 comment|// no need to 0 fill the buffers we control the allocator
 block|}
 comment|/**    * Appends a copy of the given {@link BytesRef} to this {@link BytesRefArray}.    * @param bytes the bytes to append    * @return the index of the appended bytes    */
+annotation|@
+name|Override
 DECL|method|append
 specifier|public
 name|int
@@ -355,6 +264,8 @@ literal|1
 return|;
 block|}
 comment|/**    * Returns the current size of this {@link BytesRefArray}    * @return the current size of this {@link BytesRefArray}    */
+annotation|@
+name|Override
 DECL|method|size
 specifier|public
 name|int
@@ -868,6 +779,8 @@ argument_list|)
 return|;
 block|}
 comment|/**    *<p>    * Returns a {@link BytesRefIterator} with point in time semantics. The    * iterator provides access to all so far appended {@link BytesRef} instances.    *</p>    *<p>    * If a non<code>null</code> {@link Comparator} is provided the iterator will    * iterate the byte values in the order specified by the comparator. Otherwise    * the order is the same as the values were appended.    *</p>    *<p>    * This is a non-destructive operation.    *</p>    */
+annotation|@
+name|Override
 DECL|method|iterator
 specifier|public
 name|BytesRefIterator
