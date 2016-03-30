@@ -34,9 +34,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
+name|time
 operator|.
-name|ParseException
+name|Instant
 import|;
 end_import
 
@@ -156,20 +156,6 @@ name|AnalyticsParams
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|DateFormatUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  *<code>ConstDateSource</code> returns a constant date for all documents  */
 end_comment
@@ -200,8 +186,6 @@ parameter_list|(
 name|Date
 name|constant
 parameter_list|)
-throws|throws
-name|ParseException
 block|{
 name|super
 argument_list|(
@@ -245,16 +229,12 @@ argument_list|()
 operator|+
 literal|"("
 operator|+
-name|DateFormatUtil
+name|Instant
 operator|.
-name|formatExternal
-argument_list|(
-operator|new
-name|Date
+name|ofEpochMilli
 argument_list|(
 name|getLong
 argument_list|()
-argument_list|)
 argument_list|)
 operator|+
 literal|")"
@@ -405,19 +385,18 @@ name|doc
 parameter_list|)
 block|{
 return|return
-name|DateFormatUtil
+name|Instant
 operator|.
-name|formatExternal
-argument_list|(
-operator|new
-name|Date
+name|ofEpochMilli
 argument_list|(
 name|longVal
 argument_list|(
 name|doc
 argument_list|)
 argument_list|)
-argument_list|)
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 annotation|@

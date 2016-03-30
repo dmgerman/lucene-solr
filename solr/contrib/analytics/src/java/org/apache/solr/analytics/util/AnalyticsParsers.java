@@ -32,9 +32,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|time
 operator|.
-name|Arrays
+name|Instant
 import|;
 end_import
 
@@ -44,7 +44,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Date
+name|Arrays
 import|;
 end_import
 
@@ -171,20 +171,6 @@ operator|.
 name|schema
 operator|.
 name|TrieLongField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|DateFormatUtil
 import|;
 end_import
 
@@ -725,12 +711,9 @@ block|{
 try|try
 block|{
 return|return
-name|DateFormatUtil
+name|Instant
 operator|.
-name|formatExternal
-argument_list|(
-operator|new
-name|Date
+name|ofEpochMilli
 argument_list|(
 name|LegacyNumericUtils
 operator|.
@@ -739,7 +722,9 @@ argument_list|(
 name|bytes
 argument_list|)
 argument_list|)
-argument_list|)
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 catch|catch
@@ -784,18 +769,15 @@ name|l
 parameter_list|)
 block|{
 return|return
-literal|""
-operator|+
-name|DateFormatUtil
+name|Instant
 operator|.
-name|formatExternal
-argument_list|(
-operator|new
-name|Date
+name|ofEpochMilli
 argument_list|(
 name|l
 argument_list|)
-argument_list|)
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 block|}

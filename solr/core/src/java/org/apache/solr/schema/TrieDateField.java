@@ -56,24 +56,6 @@ name|TimestampUpdateProcessorFactory
 import|;
 end_import
 
-begin_comment
-comment|//jdoc
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|DateFormatUtil
-import|;
-end_import
-
 begin_import
 import|import
 name|org
@@ -154,7 +136,7 @@ name|String
 condition|)
 block|{
 return|return
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(

@@ -34,6 +34,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|time
+operator|.
+name|Instant
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Date
@@ -60,7 +70,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|DocValues
 import|;
 end_import
 
@@ -74,7 +84,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|LeafReaderContext
 import|;
 end_import
 
@@ -218,20 +228,6 @@ name|MutableValueDate
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|DateFormatUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  * Extends {@link LongFieldSource} to have a field source that takes in   * and returns {@link Date} values while working with long values internally.  */
 end_comment
@@ -312,18 +308,15 @@ name|val
 parameter_list|)
 block|{
 return|return
-name|DateFormatUtil
+name|Instant
 operator|.
-name|formatExternal
-argument_list|(
-operator|(
-name|Date
-operator|)
-name|longToObject
+name|ofEpochMilli
 argument_list|(
 name|val
 argument_list|)
-argument_list|)
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 annotation|@

@@ -16,6 +16,30 @@ end_package
 
 begin_import
 import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|DocumentBuilder
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|xml
+operator|.
+name|parsers
+operator|.
+name|DocumentBuilderFactory
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -93,30 +117,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|DocumentBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|javax
-operator|.
-name|xml
-operator|.
-name|parsers
-operator|.
-name|DocumentBuilderFactory
 import|;
 end_import
 
@@ -4818,81 +4818,19 @@ literal|"*[count(//doc)=0]"
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testDateRoundtrip
-specifier|public
-name|void
-name|testDateRoundtrip
-parameter_list|()
-block|{
-name|assertU
-argument_list|(
-name|adoc
-argument_list|(
-literal|"id"
-argument_list|,
-literal|"99"
-argument_list|,
-literal|"bday"
-argument_list|,
-literal|"99-01-01T12:34:56.789Z"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertU
-argument_list|(
-name|commit
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertQ
-argument_list|(
-literal|"year should be canonicallized to 4 digits"
-argument_list|,
-name|req
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"id:99"
-argument_list|)
-argument_list|,
-literal|"//date[@name='bday'][.='0099-01-01T12:34:56.789Z']"
-argument_list|)
-expr_stmt|;
-name|assertU
-argument_list|(
-name|adoc
-argument_list|(
-literal|"id"
-argument_list|,
-literal|"99"
-argument_list|,
-literal|"bday"
-argument_list|,
-literal|"1999-01-01T12:34:56.900Z"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertU
-argument_list|(
-name|commit
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertQ
-argument_list|(
-literal|"millis should be canonicallized to no trailing zeros"
-argument_list|,
-name|req
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"id:99"
-argument_list|)
-argument_list|,
-literal|"//date[@name='bday'][.='1999-01-01T12:34:56.9Z']"
-argument_list|)
-expr_stmt|;
-block|}
+comment|// commented after SOLR-8904; both are false
+comment|//  public void testDateRoundtrip() {
+comment|//    assertU(adoc("id", "99",  "bday", "99-01-01T12:34:56.789Z"));
+comment|//    assertU(commit());
+comment|//    assertQ("year should be canonicallized to 4 digits",
+comment|//            req("q", "id:99"),
+comment|//            "//date[@name='bday'][.='0099-01-01T12:34:56.789Z']");
+comment|//    assertU(adoc("id", "99",  "bday", "1999-01-01T12:34:56.900Z"));
+comment|//    assertU(commit());
+comment|//    assertQ("millis should be canonicallized to no trailing zeros",
+comment|//            req("q", "id:99"),
+comment|//            "//date[@name='bday'][.='1999-01-01T12:34:56.9Z']");
+comment|//  }
 annotation|@
 name|Test
 DECL|method|testPatternReplaceFilter

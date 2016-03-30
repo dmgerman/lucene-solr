@@ -6654,7 +6654,7 @@ literal|4352
 argument_list|,
 literal|"hiredate_dt"
 argument_list|,
-literal|"2012-1-01T12:30:00Z"
+literal|"2012-01-01T12:30:00Z"
 argument_list|,
 literal|"special_s"
 argument_list|,

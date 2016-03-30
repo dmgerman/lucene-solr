@@ -112,7 +112,7 @@ name|solr
 operator|.
 name|util
 operator|.
-name|DateFormatUtil
+name|DateMathParser
 import|;
 end_import
 
@@ -4371,7 +4371,7 @@ decl_stmt|;
 name|Date
 name|tempDate
 init|=
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4390,7 +4390,7 @@ operator|new
 name|Date
 index|[]
 block|{
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4399,7 +4399,7 @@ argument_list|,
 literal|"2014-02-01T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4408,7 +4408,7 @@ argument_list|,
 literal|"2014-07-02T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4417,7 +4417,7 @@ argument_list|,
 literal|"2014-02-03T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4426,7 +4426,7 @@ argument_list|,
 literal|"2014-02-03T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4470,7 +4470,7 @@ operator|new
 name|Date
 index|[]
 block|{
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4479,7 +4479,7 @@ argument_list|,
 literal|"2014-02-01T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4488,7 +4488,7 @@ argument_list|,
 literal|"2014-07-02T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4497,7 +4497,7 @@ argument_list|,
 literal|"2014-02-02T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4506,7 +4506,7 @@ argument_list|,
 literal|"2014-02-03T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4550,7 +4550,7 @@ operator|new
 name|Date
 index|[]
 block|{
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4559,7 +4559,7 @@ argument_list|,
 literal|"2014-02-01T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4568,7 +4568,7 @@ argument_list|,
 literal|"2014-02-03T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4612,7 +4612,7 @@ operator|new
 name|Date
 index|[]
 block|{
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4621,7 +4621,7 @@ argument_list|,
 literal|"2014-02-01T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4630,7 +4630,7 @@ argument_list|,
 literal|"2014-02-02T12:00:00Z"
 argument_list|)
 block|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4674,7 +4674,7 @@ expr_stmt|;
 name|String
 name|dateString
 init|=
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4738,7 +4738,7 @@ name|removeList
 operator|.
 name|add
 argument_list|(
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4752,7 +4752,7 @@ name|removeList
 operator|.
 name|add
 argument_list|(
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4853,7 +4853,7 @@ name|removeList
 operator|.
 name|add
 argument_list|(
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4867,7 +4867,7 @@ name|removeList
 operator|.
 name|add
 argument_list|(
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(
@@ -4967,7 +4967,7 @@ name|of
 argument_list|(
 literal|"remove"
 argument_list|,
-name|DateFormatUtil
+name|DateMathParser
 operator|.
 name|parseMath
 argument_list|(

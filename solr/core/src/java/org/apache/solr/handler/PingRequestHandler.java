@@ -64,9 +64,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|time
 operator|.
-name|Date
+name|Instant
 import|;
 end_import
 
@@ -241,20 +241,6 @@ operator|.
 name|response
 operator|.
 name|SolrQueryResponse
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|DateFormatUtil
 import|;
 end_import
 
@@ -1177,14 +1163,13 @@ name|write
 argument_list|(
 name|healthcheck
 argument_list|,
-name|DateFormatUtil
+name|Instant
 operator|.
-name|formatExternal
-argument_list|(
-operator|new
-name|Date
+name|now
 argument_list|()
-argument_list|)
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 literal|"UTF-8"
 argument_list|)

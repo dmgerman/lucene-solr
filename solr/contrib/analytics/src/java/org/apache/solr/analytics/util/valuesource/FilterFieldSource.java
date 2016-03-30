@@ -128,20 +128,6 @@ name|AnalyticsParams
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|DateFormatUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  *<code>DefaultIsMissingFieldSource</code> wraps a field source to return missing values   * if the value is equal to the default value.  */
 end_comment
@@ -252,15 +238,15 @@ argument_list|()
 operator|+
 literal|","
 operator|+
-name|DateFormatUtil
-operator|.
-name|formatExternal
-argument_list|(
+operator|(
 operator|(
 name|Date
 operator|)
 name|missValue
-argument_list|)
+operator|)
+operator|.
+name|toInstant
+argument_list|()
 operator|+
 literal|")"
 return|;
