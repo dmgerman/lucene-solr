@@ -34,16 +34,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
-operator|.
-name|DateFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayDeque
@@ -167,22 +157,6 @@ operator|.
 name|params
 operator|.
 name|SolrParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|DateUtil
 import|;
 end_import
 
@@ -489,7 +463,7 @@ name|params
 argument_list|,
 name|schema
 argument_list|,
-name|DateUtil
+name|ExtractionDateUtil
 operator|.
 name|DEFAULT_DATE_FORMATS
 argument_list|)
@@ -1647,7 +1621,7 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Can be used to transform input values based on their {@link org.apache.solr.schema.SchemaField}    *<p>    * This implementation only formats dates using the {@link org.apache.solr.common.util.DateUtil}.    *    * @param val    The value to transform    * @param schFld The {@link org.apache.solr.schema.SchemaField}    * @return The potentially new value.    */
+comment|/**    * Can be used to transform input values based on their {@link org.apache.solr.schema.SchemaField}    *<p>    * This implementation only formats dates using the {@link ExtractionDateUtil}.    *    * @param val    The value to transform    * @param schFld The {@link org.apache.solr.schema.SchemaField}    * @return The potentially new value.    */
 DECL|method|transformValue
 specifier|protected
 name|String
@@ -1685,7 +1659,7 @@ block|{
 name|Date
 name|date
 init|=
-name|DateUtil
+name|ExtractionDateUtil
 operator|.
 name|parseDate
 argument_list|(
@@ -1694,23 +1668,18 @@ argument_list|,
 name|dateFormats
 argument_list|)
 decl_stmt|;
-name|DateFormat
-name|df
-init|=
-name|DateUtil
-operator|.
-name|getThreadLocalDateFormat
-argument_list|()
-decl_stmt|;
+comment|// may throw
 name|result
 operator|=
-name|df
-operator|.
-name|format
-argument_list|(
 name|date
-argument_list|)
+operator|.
+name|toInstant
+argument_list|()
+operator|.
+name|toString
+argument_list|()
 expr_stmt|;
+comment|//ISO format
 block|}
 catch|catch
 parameter_list|(

@@ -124,11 +124,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
+name|handler
 operator|.
-name|util
+name|extraction
 operator|.
-name|DateUtil
+name|ExtractionDateUtil
 import|;
 end_import
 
@@ -1534,7 +1534,7 @@ init|=
 operator|new
 name|StripNonCharSolrContentHandlerFactory
 argument_list|(
-name|DateUtil
+name|ExtractionDateUtil
 operator|.
 name|DEFAULT_DATE_FORMATS
 argument_list|)
