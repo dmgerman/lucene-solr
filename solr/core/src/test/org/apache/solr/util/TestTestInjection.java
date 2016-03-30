@@ -85,7 +85,13 @@ specifier|static
 name|void
 name|cleanup
 parameter_list|()
-block|{      }
+block|{
+name|TestInjection
+operator|.
+name|reset
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|testBasics
 specifier|public
 name|void
