@@ -954,16 +954,10 @@ name|Geo3DPoint
 argument_list|(
 literal|"field"
 argument_list|,
-name|toRadians
-argument_list|(
 literal|50.7345267
-argument_list|)
 argument_list|,
-name|toRadians
-argument_list|(
 operator|-
 literal|97.5303555
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1076,7 +1070,7 @@ operator|*
 operator|(
 name|degrees
 operator|/
-literal|360.0
+literal|180.0
 operator|)
 return|;
 block|}
@@ -3319,11 +3313,8 @@ index|[
 name|docID
 index|]
 operator|=
-name|toRadians
-argument_list|(
 name|randomLon
 argument_list|()
-argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -3377,11 +3368,8 @@ index|[
 name|docID
 index|]
 operator|=
-name|toRadians
-argument_list|(
 name|randomLat
 argument_list|()
-argument_list|)
 expr_stmt|;
 name|lons
 index|[
@@ -3505,22 +3493,16 @@ index|[
 name|docID
 index|]
 operator|=
-name|toRadians
-argument_list|(
 name|randomLat
 argument_list|()
-argument_list|)
 expr_stmt|;
 name|lons
 index|[
 name|docID
 index|]
 operator|=
-name|toRadians
-argument_list|(
 name|randomLon
 argument_list|()
-argument_list|)
 expr_stmt|;
 name|haveRealDoc
 operator|=
@@ -4814,15 +4796,21 @@ name|PlanetModel
 operator|.
 name|WGS84
 argument_list|,
+name|toRadians
+argument_list|(
 name|lats
 index|[
 name|id
 index|]
+argument_list|)
 argument_list|,
+name|toRadians
+argument_list|(
 name|lons
 index|[
 name|id
 index|]
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// Quantized point (32 bits per dim):
@@ -5104,20 +5092,14 @@ name|Geo3DPoint
 argument_list|(
 literal|"point"
 argument_list|,
-name|toRadians
-argument_list|(
 literal|44.244272
-argument_list|)
 argument_list|,
-name|toRadians
-argument_list|(
 literal|7.769736
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Geo3DPoint<point: x=0.9248467864160119 y=0.06280434265368656 z=0.37682349005486243>"
+literal|"Geo3DPoint<point: x=0.709426287693908 y=0.09679758561541502 z=0.6973564369288621>"
 argument_list|,
 name|point
 operator|.
@@ -5134,7 +5116,7 @@ parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
-literal|"PointInGeo3DShapeQuery: field=point: Shape: GeoStandardCircle: {planetmodel=PlanetModel.WGS84, center=[lat=0.3861041107739683, lon=0.06780373760536706], radius=0.1(5.729577951308232)}"
+literal|"PointInGeo3DShapeQuery: field=point: Shape: GeoStandardCircle: {planetmodel=PlanetModel.WGS84, center=[lat=0.7722082215479366, lon=0.13560747521073413], radius=0.1(5.729577951308232)}"
 argument_list|,
 name|Geo3DPoint
 operator|.
