@@ -104,11 +104,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
+name|geo
 operator|.
-name|util
-operator|.
-name|GeoRect
+name|Rectangle
 import|;
 end_import
 
@@ -321,7 +319,7 @@ name|field
 argument_list|,
 name|termEncoding
 argument_list|,
-name|GeoRect
+name|Rectangle
 operator|.
 name|fromPointDistance
 argument_list|(
@@ -356,7 +354,7 @@ name|TermEncoding
 name|termEncoding
 parameter_list|,
 specifier|final
-name|GeoRect
+name|Rectangle
 name|bbox
 parameter_list|,
 specifier|final
@@ -479,7 +477,7 @@ argument_list|,
 name|unwrappedLon
 argument_list|,
 operator|new
-name|GeoRect
+name|Rectangle
 argument_list|(
 name|minLat
 argument_list|,
@@ -538,7 +536,7 @@ argument_list|,
 name|unwrappedLon
 argument_list|,
 operator|new
-name|GeoRect
+name|Rectangle
 argument_list|(
 name|minLat
 argument_list|,
@@ -589,7 +587,7 @@ argument_list|,
 name|centerLon
 argument_list|,
 operator|new
-name|GeoRect
+name|Rectangle
 argument_list|(
 name|this
 operator|.

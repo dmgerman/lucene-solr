@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.spatial.util
+DECL|package|org.apache.lucene.geo
 package|package
 name|org
 operator|.
@@ -12,9 +12,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
-operator|.
-name|util
+name|geo
 package|;
 end_package
 
@@ -45,20 +43,6 @@ operator|.
 name|util
 operator|.
 name|Random
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|geo
-operator|.
-name|GeoUtils
 import|;
 end_import
 
@@ -206,7 +190,7 @@ literal|0.5
 argument_list|)
 return|;
 block|}
-comment|/**     * returns next pseudorandom latitude, kinda close to {@code minLatitude/maxLatitude}    *<b>NOTE:</b>minLatitude/maxLatitude are merely guidelines. the returned value is sometimes    * outside of that range! this is to facilitate edge testing.    */
+comment|/**    * returns next pseudorandom latitude, kinda close to {@code minLatitude/maxLatitude}    *<b>NOTE:</b>minLatitude/maxLatitude are merely guidelines. the returned value is sometimes    * outside of that range! this is to facilitate edge testing.    */
 DECL|method|nextLatitudeAround
 specifier|public
 specifier|static
@@ -246,7 +230,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**     * returns next pseudorandom longitude, kinda close to {@code minLongitude/maxLongitude}    *<b>NOTE:</b>minLongitude/maxLongitude are merely guidelines. the returned value is sometimes    * outside of that range! this is to facilitate edge testing.    */
+comment|/**    * returns next pseudorandom longitude, kinda close to {@code minLongitude/maxLongitude}    *<b>NOTE:</b>minLongitude/maxLongitude are merely guidelines. the returned value is sometimes    * outside of that range! this is to facilitate edge testing.    */
 DECL|method|nextLongitudeAround
 specifier|public
 specifier|static
@@ -290,7 +274,7 @@ comment|/** returns next pseudorandom box: can cross the 180th meridian */
 DECL|method|nextBox
 specifier|public
 specifier|static
-name|GeoRect
+name|Rectangle
 name|nextBox
 parameter_list|()
 block|{
@@ -317,7 +301,7 @@ comment|/** returns next pseudorandom box, can cross the 180th meridian, kinda c
 DECL|method|nextBoxNear
 specifier|public
 specifier|static
-name|GeoRect
+name|Rectangle
 name|nextBoxNear
 parameter_list|(
 name|double
@@ -394,7 +378,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-name|GeoRect
+name|Rectangle
 name|box
 init|=
 name|nextBoxInternal
@@ -474,7 +458,7 @@ name|otherLongitude
 argument_list|)
 return|;
 block|}
-name|GeoRect
+name|Rectangle
 name|box
 init|=
 name|nextBoxInternal
@@ -533,7 +517,7 @@ block|}
 DECL|method|nextBoxInternal
 specifier|private
 specifier|static
-name|GeoRect
+name|Rectangle
 name|nextBoxInternal
 parameter_list|(
 name|double
@@ -600,7 +584,7 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|GeoRect
+name|Rectangle
 argument_list|(
 name|lat0
 argument_list|,
@@ -618,7 +602,7 @@ specifier|static
 name|Polygon
 name|boxPolygon
 parameter_list|(
-name|GeoRect
+name|Rectangle
 name|box
 parameter_list|)
 block|{
@@ -758,7 +742,7 @@ specifier|static
 name|Polygon
 name|trianglePolygon
 parameter_list|(
-name|GeoRect
+name|Rectangle
 name|box
 parameter_list|)
 block|{
@@ -2636,10 +2620,10 @@ name|double
 name|radiusMeters
 parameter_list|)
 block|{
-name|GeoRect
+name|Rectangle
 name|box
 init|=
-name|GeoRect
+name|Rectangle
 operator|.
 name|fromPointDistance
 argument_list|(
@@ -2891,7 +2875,7 @@ literal|"axisLat"
 argument_list|,
 literal|"#00ff00"
 argument_list|,
-name|GeoRect
+name|Rectangle
 operator|.
 name|axisLat
 argument_list|(

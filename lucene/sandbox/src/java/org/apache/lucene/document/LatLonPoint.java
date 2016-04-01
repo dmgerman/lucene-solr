@@ -206,9 +206,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
-operator|.
-name|util
+name|geo
 operator|.
 name|Polygon
 import|;

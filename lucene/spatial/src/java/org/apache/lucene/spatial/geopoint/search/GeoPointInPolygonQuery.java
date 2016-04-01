@@ -120,11 +120,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
+name|geo
 operator|.
-name|util
-operator|.
-name|GeoRect
+name|Rectangle
 import|;
 end_import
 
@@ -136,9 +134,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
-operator|.
-name|util
+name|geo
 operator|.
 name|Polygon
 import|;
@@ -289,7 +285,7 @@ name|field
 argument_list|,
 name|termEncoding
 argument_list|,
-name|GeoRect
+name|Rectangle
 operator|.
 name|fromPolygon
 argument_list|(
@@ -311,7 +307,7 @@ parameter_list|,
 name|TermEncoding
 name|termEncoding
 parameter_list|,
-name|GeoRect
+name|Rectangle
 name|boundingBox
 parameter_list|,
 name|Polygon
