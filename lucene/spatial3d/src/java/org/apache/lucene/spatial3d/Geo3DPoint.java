@@ -90,6 +90,22 @@ name|spatial3d
 operator|.
 name|geom
 operator|.
+name|Vector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial3d
+operator|.
+name|geom
+operator|.
 name|GeoPoint
 import|;
 end_import
@@ -747,15 +763,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// We don't know what the sense of the polygon is without providing the index of one vertex we know to be convex.
-comment|// Since that doesn't fit with the "super-simple API" requirements, we just use the index of the first one, and people have to just
-comment|// know to do it that way.
-specifier|final
-name|int
-name|convexPointIndex
-init|=
-literal|0
-decl_stmt|;
+comment|// We use the polygon constructor that looks at point order.
 specifier|final
 name|GeoShape
 name|shape
@@ -770,7 +778,7 @@ name|WGS84
 argument_list|,
 name|polyPoints
 argument_list|,
-name|convexPointIndex
+literal|null
 argument_list|)
 decl_stmt|;
 return|return
