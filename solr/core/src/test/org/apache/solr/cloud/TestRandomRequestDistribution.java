@@ -668,6 +668,8 @@ name|baseUrl
 operator|+=
 literal|"/"
 expr_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -678,7 +680,8 @@ name|baseUrl
 operator|+
 literal|"a1x2"
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|client
 operator|.
 name|setSoTimeout
@@ -730,6 +733,7 @@ literal|"*:*"
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|Map
 argument_list|<
@@ -1208,6 +1212,8 @@ operator|+
 name|path
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|client
 init|=
@@ -1216,7 +1222,8 @@ name|HttpSolrClient
 argument_list|(
 name|path
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|client
 operator|.
 name|setSoTimeout
@@ -1296,10 +1303,11 @@ argument_list|(
 name|leaderCore
 argument_list|)
 expr_stmt|;
-comment|//All queries should be served by the active replica
-comment|//To make sure that's true we keep querying the down replica
-comment|//If queries are getting processed by the down replica then the cluster state hasn't updated for that replica locally
-comment|//So we keep trying till it has updated and then verify if ALL queries go to the active reploca
+comment|// All queries should be served by the active replica
+comment|// To make sure that's true we keep querying the down replica
+comment|// If queries are getting processed by the down replica then the cluster state hasn't updated for that replica
+comment|// locally
+comment|// So we keep trying till it has updated and then verify if ALL queries go to the active reploca
 name|long
 name|count
 init|=
@@ -1358,7 +1366,7 @@ literal|1
 condition|)
 block|{
 break|break;
-comment|//cluster state has got update locally
+comment|// cluster state has got update locally
 block|}
 else|else
 block|{
@@ -1384,8 +1392,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|//Now we fire a few additional queries and make sure ALL of them
-comment|//are served by the active replica
+comment|// Now we fire a few additional queries and make sure ALL of them
+comment|// are served by the active replica
 name|int
 name|moreQueries
 init|=
@@ -1405,7 +1413,7 @@ name|count
 operator|=
 literal|1
 expr_stmt|;
-comment|//Since 1 query has already hit the leader
+comment|// Since 1 query has already hit the leader
 for|for
 control|(
 name|int
@@ -1470,6 +1478,7 @@ argument_list|,
 name|c
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

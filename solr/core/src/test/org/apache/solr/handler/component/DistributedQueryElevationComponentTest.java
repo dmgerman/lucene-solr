@@ -879,6 +879,11 @@ argument_list|(
 name|solrQuery
 argument_list|)
 expr_stmt|;
+name|client
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|assertTrue
 argument_list|(
 name|response

@@ -1012,6 +1012,15 @@ name|randomDelayInCoreCreation
 operator|=
 literal|"true:20"
 expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"validateAfterInactivity"
+argument_list|,
+literal|"200"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -7704,6 +7713,8 @@ argument_list|(
 name|newReplica
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|HttpSolrClient
 name|coreclient
 init|=
@@ -7719,7 +7730,8 @@ operator|.
 name|BASE_URL_PROP
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|CoreAdminResponse
 name|status
 init|=
@@ -7783,6 +7795,7 @@ argument_list|,
 name|instancePathStr
 argument_list|)
 expr_stmt|;
+block|}
 comment|//Test to make sure we can't create another replica with an existing core_name of that collection
 name|String
 name|coreName

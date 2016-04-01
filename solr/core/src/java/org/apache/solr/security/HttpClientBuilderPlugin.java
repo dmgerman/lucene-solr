@@ -30,22 +30,29 @@ name|solrj
 operator|.
 name|impl
 operator|.
-name|HttpClientConfigurer
+name|SolrHttpClientBuilder
 import|;
 end_import
 
+begin_comment
+comment|/**  * Plugin interface for configuring internal HttpClients. This  * relies on the internal HttpClient implementation and is subject to  * change.  *   * @lucene.experimental  */
+end_comment
+
 begin_interface
-DECL|interface|HttpClientInterceptorPlugin
+DECL|interface|HttpClientBuilderPlugin
 specifier|public
 interface|interface
-name|HttpClientInterceptorPlugin
+name|HttpClientBuilderPlugin
 block|{
-comment|/**    *    * @return Returns an instance of a HttpClientConfigurer to be used for configuring the    * httpclients for use with SolrJ clients.    *    * @lucene.experimental    */
-DECL|method|getClientConfigurer
+comment|/**    *    * @return Returns an instance of a SolrHttpClientBuilder to be used for configuring the    * HttpClients for use with SolrJ clients.    *    * @lucene.experimental    */
+DECL|method|getHttpClientBuilder
 specifier|public
-name|HttpClientConfigurer
-name|getClientConfigurer
-parameter_list|()
+name|SolrHttpClientBuilder
+name|getHttpClientBuilder
+parameter_list|(
+name|SolrHttpClientBuilder
+name|builder
+parameter_list|)
 function_decl|;
 block|}
 end_interface

@@ -894,6 +894,8 @@ name|getJettySolrRunners
 argument_list|()
 control|)
 block|{
+try|try
+init|(
 name|SolrClient
 name|solrClient
 init|=
@@ -908,7 +910,10 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|)
+block|{
+try|try
+init|(
 name|SolrClient
 name|solrClient_local
 init|=
@@ -923,7 +928,8 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|SolrQuery
 name|query
 init|=
@@ -1181,6 +1187,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+block|}
 annotation|@
 name|Test
 DECL|method|testMultiCollectionQuery
@@ -1242,6 +1250,8 @@ name|getJettySolrRunners
 argument_list|()
 control|)
 block|{
+try|try
+init|(
 name|SolrClient
 name|solrClient
 init|=
@@ -1256,7 +1266,10 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|)
+block|{
+try|try
+init|(
 name|SolrClient
 name|solrClient_local
 init|=
@@ -1271,7 +1284,8 @@ operator|.
 name|toString
 argument_list|()
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|SolrQuery
 name|query
 init|=
@@ -1534,6 +1548,8 @@ name|score2_local
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 DECL|method|createCollection

@@ -588,6 +588,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|BeforeClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Test
 import|;
 end_import
@@ -717,6 +727,29 @@ block|{
 return|return
 literal|"solr-trackingshardhandler.xml"
 return|;
+block|}
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
+specifier|public
+specifier|static
+name|void
+name|beforeClass
+parameter_list|()
+block|{
+comment|// we shutdown a jetty and start it and try to use
+comment|// the same http client pretty fast - this lowered setting makes sure
+comment|// we validate the connection before use on the restarted
+comment|// server so that we don't use a bad one
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"validateAfterInactivity"
+argument_list|,
+literal|"200"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -7643,10 +7676,12 @@ range|:
 name|downJettys
 control|)
 block|{
-name|downJetty
+name|ChaosMonkey
 operator|.
 name|start
-argument_list|()
+argument_list|(
+name|downJetty
+argument_list|)
 expr_stmt|;
 block|}
 block|}

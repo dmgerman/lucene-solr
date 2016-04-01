@@ -1836,11 +1836,6 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|cc
-operator|.
-name|load
-argument_list|()
-expr_stmt|;
 name|assertThat
 argument_list|(
 name|cc

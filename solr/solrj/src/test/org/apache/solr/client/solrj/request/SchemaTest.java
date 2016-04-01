@@ -846,10 +846,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|client
-operator|=
-literal|null
-expr_stmt|;
 if|if
 condition|(
 name|restTestHarness
@@ -3248,6 +3244,12 @@ argument_list|(
 name|fieldAttributes
 argument_list|)
 decl_stmt|;
+name|SolrClient
+name|client
+init|=
+name|getSolrClient
+argument_list|()
+decl_stmt|;
 name|SchemaResponse
 operator|.
 name|UpdateResponse
@@ -3257,8 +3259,7 @@ name|addDFieldUpdateSchemaRequest
 operator|.
 name|process
 argument_list|(
-name|getSolrClient
-argument_list|()
+name|client
 argument_list|)
 decl_stmt|;
 name|assertValidSchemaResponse
@@ -5255,6 +5256,12 @@ argument_list|(
 name|fieldTypeDefinition
 argument_list|)
 decl_stmt|;
+name|SolrClient
+name|c
+init|=
+name|getSolrClient
+argument_list|()
+decl_stmt|;
 name|SchemaResponse
 operator|.
 name|UpdateResponse
@@ -5264,8 +5271,7 @@ name|addFieldTypeRequest
 operator|.
 name|process
 argument_list|(
-name|getSolrClient
-argument_list|()
+name|c
 argument_list|)
 decl_stmt|;
 name|assertValidSchemaResponse
