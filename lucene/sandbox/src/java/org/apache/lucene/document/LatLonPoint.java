@@ -200,6 +200,22 @@ name|GeoUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|spatial
+operator|.
+name|util
+operator|.
+name|Polygon
+import|;
+end_import
+
 begin_comment
 comment|/**   * An indexed location field.  *<p>  * Finding all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for common operations:  *<ul>  *<li>{@link #newBoxQuery newBoxQuery()} for matching points within a bounding box.  *<li>{@link #newDistanceQuery newDistanceQuery()} for matching points within a specified distance.  *<li>{@link #newDistanceSort newDistanceSort()} for ordering documents by distance from a specified location.   *<li>{@link #newPolygonQuery newPolygonQuery()} for matching points within an arbitrary polygon.  *</ul>  *<p>  *<b>WARNING</b>: Values are indexed with some loss of precision, incurring up to 1E-7 error from the  * original {@code double} values.   * @see PointValues  */
 end_comment
@@ -1361,7 +1377,7 @@ name|radiusMeters
 argument_list|)
 return|;
 block|}
-comment|/**     * Create a query for matching a polygon.    *<p>    * The supplied {@code polyLats}/{@code polyLons} must be clockwise or counter-clockwise.    * @param field field name. must not be null.    * @param polyLats latitude values for points of the polygon: must be within standard +/-90 coordinate bounds.    * @param polyLons longitude values for points of the polygon: must be within standard +/-180 coordinate bounds.    * @return query matching points within this polygon    * @throws IllegalArgumentException if {@code field} is null, {@code polyLats} is null or has invalid coordinates,     *                                  {@code polyLons} is null or has invalid coordinates, if {@code polyLats} has a different    *                                  length than {@code polyLons}, if the polygon has less than 4 points, or if polygon is     *                                  not closed (first and last points should be the same)    */
+comment|/**     * Create a query for matching a polygon.    *<p>    * The supplied {@code polygon} must be clockwise or counter-clockwise.    * @param field field name. must not be null.    * @param polygons array of polygons. must not be null or empty    * @return query matching points within this polygon    * @throws IllegalArgumentException if {@code field} is null, {@code polygons} is null or empty    */
 DECL|method|newPolygonQuery
 specifier|public
 specifier|static
@@ -1371,13 +1387,9 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|double
-index|[]
-name|polyLats
-parameter_list|,
-name|double
-index|[]
-name|polyLons
+name|Polygon
+modifier|...
+name|polygons
 parameter_list|)
 block|{
 return|return
@@ -1386,9 +1398,7 @@ name|LatLonPointInPolygonQuery
 argument_list|(
 name|field
 argument_list|,
-name|polyLats
-argument_list|,
-name|polyLons
+name|polygons
 argument_list|)
 return|;
 block|}
