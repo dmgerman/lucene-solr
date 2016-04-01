@@ -377,7 +377,7 @@ name|maxLon
 argument_list|)
 return|;
 block|}
-comment|/**      * The two-phase query approach. The parent      * {@link org.apache.lucene.spatial.geopoint.search.GeoPointTermsEnum#accept} method is called to match      * encoded terms that fall within the bounding box of the polygon. Those documents that pass the initial      * bounding box filter are then compared to the provided polygon using the      * {@link org.apache.lucene.spatial.util.GeoRelationUtils#pointInPolygon} method.      */
+comment|/**      * The two-phase query approach. The parent      * {@link org.apache.lucene.spatial.geopoint.search.GeoPointTermsEnum#accept} method is called to match      * encoded terms that fall within the bounding box of the polygon. Those documents that pass the initial      * bounding box filter are then compared to the provided polygon using the      * {@link Polygon#contains(Polygon[], double, double)} method.      */
 annotation|@
 name|Override
 DECL|method|postFilter
