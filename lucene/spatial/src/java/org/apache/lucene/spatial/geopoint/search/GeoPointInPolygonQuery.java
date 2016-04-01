@@ -289,9 +289,9 @@ name|field
 argument_list|,
 name|termEncoding
 argument_list|,
-name|Polygon
+name|GeoRect
 operator|.
-name|getBoundingBox
+name|fromPolygon
 argument_list|(
 name|polygons
 argument_list|)

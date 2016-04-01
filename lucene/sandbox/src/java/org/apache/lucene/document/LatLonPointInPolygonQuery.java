@@ -558,9 +558,9 @@ specifier|final
 name|GeoRect
 name|box
 init|=
-name|Polygon
+name|GeoRect
 operator|.
-name|getBoundingBox
+name|fromPolygon
 argument_list|(
 name|polygons
 argument_list|)
