@@ -448,6 +448,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|SerialMergeScheduler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|Term
 import|;
 end_import
@@ -3401,19 +3415,22 @@ init|=
 name|newIndexWriterConfig
 argument_list|()
 decl_stmt|;
-name|initIndexWriterConfig
-argument_list|(
-name|FIELD_NAME
-argument_list|,
-name|iwc
-argument_list|)
-expr_stmt|;
 comment|// We rely on docID order:
 name|iwc
 operator|.
 name|setMergePolicy
 argument_list|(
 name|newLogMergePolicy
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// and on seeds being able to reproduce:
+name|iwc
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -4843,21 +4860,6 @@ block|}
 block|}
 end_function
 
-begin_function
-DECL|method|initIndexWriterConfig
-specifier|protected
-name|void
-name|initIndexWriterConfig
-parameter_list|(
-name|String
-name|field
-parameter_list|,
-name|IndexWriterConfig
-name|iwc
-parameter_list|)
-block|{   }
-end_function
-
 begin_function_decl
 DECL|method|addPointToDoc
 specifier|protected
@@ -5234,6 +5236,16 @@ init|=
 name|newIndexWriterConfig
 argument_list|()
 decl_stmt|;
+comment|// Else seeds may not reproduce:
+name|iwc
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Else we can get O(N^2) merging:
 name|int
 name|mbd
@@ -5928,6 +5940,17 @@ name|b
 operator|.
 name|append
 argument_list|(
+literal|"  box="
+operator|+
+name|rect
+operator|+
+literal|"\n"
+argument_list|)
+expr_stmt|;
+name|b
+operator|.
+name|append
+argument_list|(
 literal|"  query="
 operator|+
 name|query
@@ -6066,6 +6089,16 @@ init|=
 name|newIndexWriterConfig
 argument_list|()
 decl_stmt|;
+comment|// Else seeds may not reproduce:
+name|iwc
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Else we can get O(N^2) merging:
 name|int
 name|mbd
@@ -7017,6 +7050,16 @@ init|=
 name|newIndexWriterConfig
 argument_list|()
 decl_stmt|;
+comment|// Else seeds may not reproduce:
+name|iwc
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Else we can get O(N^2) merging:
 name|int
 name|mbd
@@ -7863,6 +7906,16 @@ init|=
 name|newIndexWriterConfig
 argument_list|()
 decl_stmt|;
+comment|// Else seeds may not reproduce:
+name|iwc
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|RandomIndexWriter
 name|w
 init|=
@@ -8221,6 +8274,16 @@ init|=
 name|newIndexWriterConfig
 argument_list|()
 decl_stmt|;
+comment|// Else seeds may not reproduce:
+name|iwc
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|int
 name|pointsInLeaf
 init|=
@@ -9291,17 +9354,10 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-name|RandomIndexWriter
-name|writer
+comment|// TODO: must these simple tests really rely on docid order?
+name|IndexWriterConfig
+name|iwc
 init|=
-operator|new
-name|RandomIndexWriter
-argument_list|(
-name|random
-argument_list|()
-argument_list|,
-name|directory
-argument_list|,
 name|newIndexWriterConfig
 argument_list|(
 operator|new
@@ -9311,6 +9367,8 @@ name|random
 argument_list|()
 argument_list|)
 argument_list|)
+decl_stmt|;
+name|iwc
 operator|.
 name|setMaxBufferedDocs
 argument_list|(
@@ -9326,12 +9384,37 @@ argument_list|,
 literal|1000
 argument_list|)
 argument_list|)
+expr_stmt|;
+name|iwc
 operator|.
 name|setMergePolicy
 argument_list|(
 name|newLogMergePolicy
 argument_list|()
 argument_list|)
+expr_stmt|;
+comment|// Else seeds may not reproduce:
+name|iwc
+operator|.
+name|setMergeScheduler
+argument_list|(
+operator|new
+name|SerialMergeScheduler
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|RandomIndexWriter
+name|writer
+init|=
+operator|new
+name|RandomIndexWriter
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+name|directory
+argument_list|,
+name|iwc
 argument_list|)
 decl_stmt|;
 for|for
