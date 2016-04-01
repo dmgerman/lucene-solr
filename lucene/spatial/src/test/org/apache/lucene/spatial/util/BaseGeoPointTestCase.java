@@ -6489,7 +6489,7 @@ argument_list|()
 operator|*
 name|GeoUtils
 operator|.
-name|SEMIMAJOR_AXIS
+name|EARTH_MEAN_RADIUS_METERS
 operator|*
 name|Math
 operator|.

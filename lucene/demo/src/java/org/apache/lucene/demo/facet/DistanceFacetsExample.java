@@ -616,7 +616,8 @@ init|=
 operator|-
 literal|74.0059731
 decl_stmt|;
-comment|/** Radius of the Earth in KM    *    * NOTE: this is approximate, because the earth is a bit    * wider at the equator than the poles.  See    * http://en.wikipedia.org/wiki/Earth_radius */
+comment|/** Mean radius of the Earth in KM    *    * NOTE: this is approximate, because the earth is a bit    * wider at the equator than the poles.  See    * http://en.wikipedia.org/wiki/Earth_radius */
+comment|// see http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf
 DECL|field|EARTH_RADIUS_KM
 specifier|public
 specifier|final
@@ -624,7 +625,7 @@ specifier|static
 name|double
 name|EARTH_RADIUS_KM
 init|=
-literal|6371.01
+literal|6_371.0087714
 decl_stmt|;
 comment|/** Empty constructor */
 DECL|method|DistanceFacetsExample

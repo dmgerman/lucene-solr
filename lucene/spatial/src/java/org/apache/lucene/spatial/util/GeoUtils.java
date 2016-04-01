@@ -220,17 +220,17 @@ operator|*
 name|MAX_LAT_INCL
 decl_stmt|;
 comment|// WGS84 earth-ellipsoid parameters
-comment|/** major (a) axis in meters */
-DECL|field|SEMIMAJOR_AXIS
+comment|/** mean earth axis in meters */
+comment|// see http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf
+DECL|field|EARTH_MEAN_RADIUS_METERS
 specifier|public
 specifier|static
 specifier|final
 name|double
-name|SEMIMAJOR_AXIS
+name|EARTH_MEAN_RADIUS_METERS
 init|=
-literal|6_378_137
+literal|6_371_008.7714
 decl_stmt|;
-comment|// [m]
 comment|// No instance:
 DECL|method|GeoUtils
 specifier|private
@@ -381,7 +381,7 @@ operator|-
 literal|2
 operator|)
 operator|/
-name|SEMIMAJOR_AXIS
+name|EARTH_MEAN_RADIUS_METERS
 decl_stmt|;
 name|double
 name|minLat
@@ -569,7 +569,7 @@ name|AXISLAT_ERROR
 init|=
 literal|0.1D
 operator|/
-name|SEMIMAJOR_AXIS
+name|EARTH_MEAN_RADIUS_METERS
 operator|*
 name|TO_DEGREES
 decl_stmt|;
@@ -619,7 +619,7 @@ operator|-
 literal|2
 operator|)
 operator|/
-name|SEMIMAJOR_AXIS
+name|EARTH_MEAN_RADIUS_METERS
 decl_stmt|;
 comment|// if we are within radius range of a pole, the lat is the pole itself
 if|if

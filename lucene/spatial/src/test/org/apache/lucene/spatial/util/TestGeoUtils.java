@@ -1659,7 +1659,7 @@ name|PI
 operator|*
 name|GeoUtils
 operator|.
-name|SEMIMAJOR_AXIS
+name|EARTH_MEAN_RADIUS_METERS
 decl_stmt|;
 name|assertEquals
 argument_list|(

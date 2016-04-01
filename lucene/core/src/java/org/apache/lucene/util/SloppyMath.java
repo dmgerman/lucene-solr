@@ -694,6 +694,7 @@ name|Math
 operator|.
 name|PI
 decl_stmt|;
+comment|// Earth's mean radius, in meters and kilometers; see http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf
 DECL|field|TO_METERS
 specifier|private
 specifier|static
@@ -701,7 +702,7 @@ specifier|final
 name|double
 name|TO_METERS
 init|=
-literal|6_378_137D
+literal|6_371_008.7714D
 decl_stmt|;
 comment|// equatorial radius
 DECL|field|TO_KILOMETERS
@@ -711,7 +712,7 @@ specifier|final
 name|double
 name|TO_KILOMETERS
 init|=
-literal|6_378.137D
+literal|6_371.0087714D
 decl_stmt|;
 comment|// equatorial radius
 comment|// cos/asin

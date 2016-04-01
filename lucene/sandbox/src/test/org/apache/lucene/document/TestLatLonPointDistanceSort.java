@@ -419,7 +419,7 @@ index|]
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|462.6174876948475D
+literal|462.1004647449412
 argument_list|,
 operator|(
 name|Double
@@ -448,7 +448,7 @@ index|]
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1056.163041670945D
+literal|1054.9826700985088
 argument_list|,
 operator|(
 name|Double
@@ -477,7 +477,7 @@ index|]
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|5291.798081190281D
+literal|5285.883948830351
 argument_list|,
 operator|(
 name|Double
@@ -674,7 +674,7 @@ index|]
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|462.6174876948475D
+literal|462.1004647449412D
 argument_list|,
 operator|(
 name|Double
@@ -703,7 +703,7 @@ index|]
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1056.163041670945D
+literal|1054.9826700985088
 argument_list|,
 operator|(
 name|Double

@@ -1082,7 +1082,7 @@ name|assertEvaluatesTo
 argument_list|(
 literal|"haversin(40.7143528,-74.0059731,40.759011,-73.9844722)"
 argument_list|,
-literal|5.291799723323441
+literal|5.285885589128259
 argument_list|)
 expr_stmt|;
 block|}

@@ -245,16 +245,6 @@ name|Geo3DPoint
 extends|extends
 name|Field
 block|{
-comment|/** Mean radius of the earth, in meters */
-DECL|field|MEAN_EARTH_RADIUS_METERS
-specifier|protected
-specifier|final
-specifier|static
-name|double
-name|MEAN_EARTH_RADIUS_METERS
-init|=
-literal|6371008.7714
-decl_stmt|;
 comment|/** How many radians are in one earth surface meter */
 DECL|field|RADIANS_PER_METER
 specifier|protected
@@ -265,7 +255,9 @@ name|RADIANS_PER_METER
 init|=
 literal|1.0
 operator|/
-name|MEAN_EARTH_RADIUS_METERS
+name|PlanetModel
+operator|.
+name|WGS84_MEAN
 decl_stmt|;
 comment|/** Indexing {@link FieldType}. */
 DECL|field|TYPE

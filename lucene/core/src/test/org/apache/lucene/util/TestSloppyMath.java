@@ -1017,11 +1017,11 @@ argument_list|,
 literal|0D
 argument_list|)
 expr_stmt|;
-comment|// Test half a circle on the equator, using WGS84 equatorial earth radius
+comment|// Test half a circle on the equator, using WGS84 mean earth radius in meters
 name|double
 name|earthRadiusMs
 init|=
-literal|6_378_137D
+literal|6_371_008.7714
 decl_stmt|;
 name|double
 name|halfCircle
@@ -1132,7 +1132,7 @@ literal|360
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|8_581.7047
+literal|8_572.1137
 argument_list|,
 name|haversinMeters
 argument_list|(
@@ -1171,7 +1171,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|5_291.80
+literal|5_285.89
 argument_list|,
 name|haversinMeters
 argument_list|(
@@ -1191,7 +1191,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|462.62
+literal|462.10
 argument_list|,
 name|haversinMeters
 argument_list|(
@@ -1211,7 +1211,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1_056.16
+literal|1_054.98
 argument_list|,
 name|haversinMeters
 argument_list|(
@@ -1231,7 +1231,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1_259.53
+literal|1_258.12
 argument_list|,
 name|haversinMeters
 argument_list|(
@@ -1251,7 +1251,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2_030.79
+literal|2_028.52
 argument_list|,
 name|haversinMeters
 argument_list|(
@@ -1271,7 +1271,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|8_581.70
+literal|8_572.11
 argument_list|,
 name|haversinMeters
 argument_list|(
@@ -1761,7 +1761,7 @@ decl_stmt|;
 return|return
 literal|2
 operator|*
-literal|6378137
+literal|6371008.7714
 operator|*
 name|StrictMath
 operator|.

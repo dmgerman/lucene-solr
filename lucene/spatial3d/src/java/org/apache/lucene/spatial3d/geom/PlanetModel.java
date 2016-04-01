@@ -45,6 +45,7 @@ literal|1.0
 argument_list|)
 decl_stmt|;
 comment|/** Mean radius */
+comment|// see http://earth-info.nga.mil/GandG/publications/tr8350.2/wgs84fin.pdf
 DECL|field|WGS84_MEAN
 specifier|public
 specifier|static
@@ -52,7 +53,7 @@ specifier|final
 name|double
 name|WGS84_MEAN
 init|=
-literal|6371009.0
+literal|6371008.7714
 decl_stmt|;
 comment|/** Polar radius */
 DECL|field|WGS84_POLAR

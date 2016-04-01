@@ -5099,7 +5099,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Geo3DPoint<point: x=0.709426287693908 y=0.09679758561541502 z=0.6973564369288621>"
+literal|"Geo3DPoint<point: x=0.709426313149037 y=0.09679758908863707 z=0.6973564619509093>"
 argument_list|,
 name|point
 operator|.
