@@ -434,7 +434,35 @@ name|b
 operator|.
 name|append
 argument_list|(
-literal|"GeoRect(lon="
+literal|"GeoRect(lat="
+argument_list|)
+expr_stmt|;
+name|b
+operator|.
+name|append
+argument_list|(
+name|minLat
+argument_list|)
+expr_stmt|;
+name|b
+operator|.
+name|append
+argument_list|(
+literal|" TO "
+argument_list|)
+expr_stmt|;
+name|b
+operator|.
+name|append
+argument_list|(
+name|maxLat
+argument_list|)
+expr_stmt|;
+name|b
+operator|.
+name|append
+argument_list|(
+literal|" lon="
 argument_list|)
 expr_stmt|;
 name|b
@@ -469,38 +497,10 @@ name|b
 operator|.
 name|append
 argument_list|(
-literal|" (crosses dateline!)"
+literal|" [crosses dateline!]"
 argument_list|)
 expr_stmt|;
 block|}
-name|b
-operator|.
-name|append
-argument_list|(
-literal|" lat="
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-name|minLat
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-literal|" TO "
-argument_list|)
-expr_stmt|;
-name|b
-operator|.
-name|append
-argument_list|(
-name|maxLat
-argument_list|)
-expr_stmt|;
 name|b
 operator|.
 name|append
