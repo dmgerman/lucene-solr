@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.spatial.util
+DECL|package|org.apache.lucene.geo
 package|package
 name|org
 operator|.
@@ -12,9 +12,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|spatial
-operator|.
-name|util
+name|geo
 package|;
 end_package
 
