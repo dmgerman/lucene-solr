@@ -24,7 +24,6 @@ end_comment
 
 begin_class
 DECL|class|GeoWideDegenerateHorizontalLine
-specifier|public
 class|class
 name|GeoWideDegenerateHorizontalLine
 extends|extends

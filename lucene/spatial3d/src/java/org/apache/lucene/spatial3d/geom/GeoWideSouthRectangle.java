@@ -24,7 +24,6 @@ end_comment
 
 begin_class
 DECL|class|GeoWideSouthRectangle
-specifier|public
 class|class
 name|GeoWideSouthRectangle
 extends|extends

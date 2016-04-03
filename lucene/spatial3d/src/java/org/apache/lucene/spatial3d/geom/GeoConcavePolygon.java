@@ -69,12 +69,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GeoConcavePolygon objects are generic building blocks of more complex structures.  * The only restrictions on these objects are: (1) they must be concave; (2) they must have  * a maximum extent larger than PI.  Violating either one of these limits will  * cause the logic to fail.  *  * @lucene.experimental  */
+comment|/**  * GeoConcavePolygon objects are generic building blocks of more complex structures.  * The only restrictions on these objects are: (1) they must be concave; (2) they must have  * a maximum extent larger than PI.  Violating either one of these limits will  * cause the logic to fail.  *  * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|GeoConcavePolygon
-specifier|public
 class|class
 name|GeoConcavePolygon
 extends|extends

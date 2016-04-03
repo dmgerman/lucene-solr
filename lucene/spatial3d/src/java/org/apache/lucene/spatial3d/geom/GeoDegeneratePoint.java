@@ -24,7 +24,6 @@ end_comment
 
 begin_class
 DECL|class|GeoDegeneratePoint
-specifier|public
 class|class
 name|GeoDegeneratePoint
 extends|extends

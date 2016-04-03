@@ -24,7 +24,6 @@ end_comment
 
 begin_class
 DECL|class|GeoStandardCircle
-specifier|public
 class|class
 name|GeoStandardCircle
 extends|extends

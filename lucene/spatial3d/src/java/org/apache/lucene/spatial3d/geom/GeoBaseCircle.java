@@ -24,7 +24,6 @@ end_comment
 
 begin_class
 DECL|class|GeoBaseCircle
-specifier|public
 specifier|abstract
 class|class
 name|GeoBaseCircle

@@ -24,7 +24,6 @@ end_comment
 
 begin_class
 DECL|class|GeoWorld
-specifier|public
 class|class
 name|GeoWorld
 extends|extends

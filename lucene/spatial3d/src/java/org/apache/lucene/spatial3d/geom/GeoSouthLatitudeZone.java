@@ -24,7 +24,6 @@ end_comment
 
 begin_class
 DECL|class|GeoSouthLatitudeZone
-specifier|public
 class|class
 name|GeoSouthLatitudeZone
 extends|extends
