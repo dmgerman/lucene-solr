@@ -2809,30 +2809,35 @@ specifier|static
 class|class
 name|Edge
 block|{
+comment|/** Plane */
 DECL|field|plane
 specifier|public
 specifier|final
 name|SidedPlane
 name|plane
 decl_stmt|;
+comment|/** Start point */
 DECL|field|startPoint
 specifier|public
 specifier|final
 name|GeoPoint
 name|startPoint
 decl_stmt|;
+comment|/** End point */
 DECL|field|endPoint
 specifier|public
 specifier|final
 name|GeoPoint
 name|endPoint
 decl_stmt|;
+comment|/** Internal edge flag */
 DECL|field|isInternal
 specifier|public
 specifier|final
 name|boolean
 name|isInternal
 decl_stmt|;
+comment|/** Constructor.       * @param startPoint the edge start point       * @param endPoint the edge end point       * @param plane the edge plane       * @param isInternal true if internal edge       */
 DECL|method|Edge
 specifier|public
 name|Edge
@@ -2927,23 +2932,27 @@ argument_list|<
 name|Edge
 argument_list|>
 block|{
+comment|/** Edge buffer */
 DECL|field|edgeBuffer
 specifier|protected
 specifier|final
 name|EdgeBuffer
 name|edgeBuffer
 decl_stmt|;
+comment|/** First edge */
 DECL|field|firstEdge
 specifier|protected
 specifier|final
 name|Edge
 name|firstEdge
 decl_stmt|;
+comment|/** Current edge */
 DECL|field|currentEdge
 specifier|protected
 name|Edge
 name|currentEdge
 decl_stmt|;
+comment|/** Constructor.       * @param edgeBuffer the edge buffer       */
 DECL|method|EdgeBufferIterator
 specifier|public
 name|EdgeBufferIterator
@@ -3060,11 +3069,13 @@ specifier|static
 class|class
 name|EdgeBuffer
 block|{
+comment|/** Starting edge */
 DECL|field|oneEdge
 specifier|protected
 name|Edge
 name|oneEdge
 decl_stmt|;
+comment|/** Full set of edges */
 DECL|field|edges
 specifier|protected
 specifier|final
@@ -3079,6 +3090,7 @@ name|HashSet
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|/** Map to previous edge */
 DECL|field|previousEdges
 specifier|protected
 specifier|final
@@ -3095,6 +3107,7 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|/** Map to next edge */
 DECL|field|nextEdges
 specifier|protected
 specifier|final
