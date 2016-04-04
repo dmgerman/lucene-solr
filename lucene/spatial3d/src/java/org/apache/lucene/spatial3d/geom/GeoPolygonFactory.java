@@ -1024,6 +1024,7 @@ operator|>
 literal|0.0
 return|;
 block|}
+comment|/** Compute the angle for a point given rotation information.     * @param point is the point to assess     * @param sinLatitude the sine of the latitude     * @param cosLatitude the cosine of the latitude     * @param sinLongitude the sine of the longitude     * @param cosLongitude the cosine of the longitude     * @return the angle of rotation, or null if not computable     */
 DECL|method|computeAngle
 specifier|protected
 specifier|static
@@ -2640,6 +2641,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/** Check if a point is within a set of edges.     * @param point is the point     * @param edgeSet is the set of edges     * @param extension is the new edge     * @param returnBoundary is the return edge     * @return true if within     */
 DECL|method|isWithin
 specifier|protected
 specifier|static
@@ -2711,6 +2713,7 @@ name|edgeSet
 argument_list|)
 return|;
 block|}
+comment|/** Check if a point is within a set of edges.     * @param point is the point     * @param edgeSet is the set of edges     * @return true if within     */
 DECL|method|isWithin
 specifier|protected
 specifier|static
