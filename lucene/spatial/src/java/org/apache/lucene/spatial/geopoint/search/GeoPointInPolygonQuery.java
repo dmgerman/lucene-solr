@@ -141,7 +141,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Implements a simple point in polygon query on a GeoPoint field. This is based on  * {@code GeoPointInBBoxQueryImpl} and is implemented using a  * three phase approach. First, like {@code GeoPointInBBoxQueryImpl}  * candidate terms are queried using a numeric range based on the morton codes  * of the min and max lat/lon pairs. Terms passing this initial filter are passed  * to a secondary filter that verifies whether the decoded lat/lon point falls within  * (or on the boundary) of the bounding box query. Finally, the remaining candidate  * term is passed to the final point in polygon check. All value comparisons are subject  * to the same precision tolerance defined in {@value GeoEncodingUtils#TOLERANCE}  *  *<p>NOTES:  *    1.  The polygon coordinates need to be in either clockwise or counter-clockwise order.  *    2.  The polygon must not be self-crossing, otherwise the query may result in unexpected behavior  *    3.  All latitude/longitude values must be in decimal degrees.  *    4.  Complex computational geometry (e.g., dateline wrapping) is not supported  *    5.  For more advanced GeoSpatial indexing and query operations see spatial module  *  * @lucene.experimental  */
+comment|/** Implements a simple point in polygon query on a GeoPoint field. This is based on  * {@code GeoPointInBBoxQueryImpl} and is implemented using a  * three phase approach. First, like {@code GeoPointInBBoxQueryImpl}  * candidate terms are queried using a numeric range based on the morton codes  * of the min and max lat/lon pairs. Terms passing this initial filter are passed  * to a secondary filter that verifies whether the decoded lat/lon point falls within  * (or on the boundary) of the bounding box query. Finally, the remaining candidate  * term is passed to the final point in polygon check. All value comparisons are subject  * to the same precision tolerance defined in {@value GeoEncodingUtils#TOLERANCE}  *  * @see Polygon  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -263,7 +263,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Constructs a new GeoPolygonQuery that will match encoded {@link org.apache.lucene.spatial.geopoint.document.GeoPointField} terms    * that fall within or on the boundary of the polygon defined by the input parameters.     */
+comment|/**     * Constructs a new GeoPolygonQuery that will match encoded {@link org.apache.lucene.spatial.geopoint.document.GeoPointField} terms    * that fall within or on the boundary of the polygons defined by the input parameters.     */
 DECL|method|GeoPointInPolygonQuery
 specifier|public
 name|GeoPointInPolygonQuery

@@ -413,9 +413,7 @@ name|Polygon
 index|[]
 name|polygons
 decl_stmt|;
-comment|/** The lats/lons must be clockwise or counter-clockwise. */
 DECL|method|LatLonPointInPolygonQuery
-specifier|public
 name|LatLonPointInPolygonQuery
 parameter_list|(
 name|String
