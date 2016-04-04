@@ -3111,6 +3111,7 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|/** Constructor.       * @param pointList is the list of points.       * @param startPlaneStartIndex is the index of the startPlane's starting point       * @param startPlaneEndIndex is the index of the startPlane's ending point       * @param startPlane is the starting plane       * @param startPlaneIsInternal signals whether the startPlane is an internal edge       */
 DECL|method|EdgeBuffer
 specifier|public
 name|EdgeBuffer
@@ -3372,6 +3373,7 @@ comment|// Verify the structure.
 comment|//verify();
 block|}
 comment|/*     protected void verify() {       if (edges.size() != previousEdges.size() || edges.size() != nextEdges.size()) {         throw new IllegalStateException("broken structure");       }       // Confirm each edge       for (final Edge e : edges) {         final Edge previousEdge = getPrevious(e);         final Edge nextEdge = getNext(e);         if (e.endPoint != nextEdge.startPoint) {           throw new IllegalStateException("broken structure");         }         if (e.startPoint != previousEdge.endPoint) {           throw new IllegalStateException("broken structure");         }         if (getNext(previousEdge) != e) {           throw new IllegalStateException("broken structure");         }         if (getPrevious(nextEdge) != e) {           throw new IllegalStateException("broken structure");         }       }       if (oneEdge != null&& !edges.contains(oneEdge)) {         throw new IllegalStateException("broken structure");       }       if (oneEdge == null&& edges.size()> 0) {         throw new IllegalStateException("broken structure");       }     }     */
+comment|/** Get the previous edge.       * @param currentEdge is the current edge.       * @return the previous edge, if found.       */
 DECL|method|getPrevious
 specifier|public
 name|Edge
@@ -3391,6 +3393,7 @@ name|currentEdge
 argument_list|)
 return|;
 block|}
+comment|/** Get the next edge.       * @param currentEdge is the current edge.       * @return the next edge, if found.       */
 DECL|method|getNext
 specifier|public
 name|Edge
@@ -3410,6 +3413,7 @@ name|currentEdge
 argument_list|)
 return|;
 block|}
+comment|/** Replace a list of edges with a new edge.       * @param removeList is the list of edges to remove.       * @param newEdge is the edge to add.       */
 DECL|method|replace
 specifier|public
 name|void
@@ -3553,6 +3557,7 @@ expr_stmt|;
 block|}
 comment|//verify();
 block|}
+comment|/** Clear all edges.       */
 DECL|method|clear
 specifier|public
 name|void
@@ -3579,6 +3584,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+comment|/** Get the size of the edge buffer.       * @return the size.       */
 DECL|method|size
 specifier|public
 name|int
@@ -3592,6 +3598,7 @@ name|size
 argument_list|()
 return|;
 block|}
+comment|/** Get an iterator to iterate over edges.       * @return the iterator.       */
 DECL|method|iterator
 specifier|public
 name|Iterator
@@ -3609,6 +3616,7 @@ name|this
 argument_list|)
 return|;
 block|}
+comment|/** Return a first edge.       * @return the edge.       */
 DECL|method|pickOne
 specifier|public
 name|Edge
