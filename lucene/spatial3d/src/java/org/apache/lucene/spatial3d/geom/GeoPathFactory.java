@@ -19,18 +19,55 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface describing a path.  *  * @lucene.experimental  */
+comment|/**  * Class which constructs a GeoPath representing an arbitrary path.  *  * @lucene.experimental  */
 end_comment
 
-begin_interface
-DECL|interface|GeoPath
+begin_class
+DECL|class|GeoPathFactory
 specifier|public
-interface|interface
+class|class
+name|GeoPathFactory
+block|{
+DECL|method|GeoPathFactory
+specifier|private
+name|GeoPathFactory
+parameter_list|()
+block|{   }
+comment|/**    * Create a GeoPath of the right kind given the specified information.    * @param planetModel is the planet model.    * @param maxCutoffAngle is the width of the path, measured as an angle.    * @param pathPoints are the points in the path.    * @return a GeoPath corresponding to what was specified.    */
+DECL|method|makeGeoPath
+specifier|public
+specifier|static
 name|GeoPath
-extends|extends
-name|GeoDistanceShape
-block|{ }
-end_interface
+name|makeGeoPath
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
+specifier|final
+name|double
+name|maxCutoffAngle
+parameter_list|,
+specifier|final
+name|GeoPoint
+index|[]
+name|pathPoints
+parameter_list|)
+block|{
+return|return
+operator|new
+name|GeoStandardPath
+argument_list|(
+name|planetModel
+argument_list|,
+name|maxCutoffAngle
+argument_list|,
+name|pathPoints
+argument_list|)
+return|;
+block|}
+block|}
+end_class
 
 end_unit
 

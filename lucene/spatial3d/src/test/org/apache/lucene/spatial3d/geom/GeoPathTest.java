@@ -91,7 +91,7 @@ name|testPathDistance
 parameter_list|()
 block|{
 comment|// Start with a really simple case
-name|GeoPath
+name|GeoStandardPath
 name|p
 decl_stmt|;
 name|GeoPoint
@@ -100,7 +100,7 @@ decl_stmt|;
 name|p
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|PlanetModel
 operator|.
@@ -355,7 +355,7 @@ comment|// Compute path distances now
 name|p
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|PlanetModel
 operator|.
@@ -466,7 +466,7 @@ comment|// Now try a vertical path, and make sure distances are as expected
 name|p
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|PlanetModel
 operator|.
@@ -676,7 +676,7 @@ name|testPathPointWithin
 parameter_list|()
 block|{
 comment|// Tests whether we can properly detect whether a point is within a path or not
-name|GeoPath
+name|GeoStandardPath
 name|p
 decl_stmt|;
 name|GeoPoint
@@ -685,7 +685,7 @@ decl_stmt|;
 name|p
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|PlanetModel
 operator|.
@@ -905,7 +905,7 @@ comment|// Repeat the test, but across the terminator
 name|p
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|PlanetModel
 operator|.
@@ -1157,10 +1157,10 @@ block|{
 name|GeoArea
 name|rect
 decl_stmt|;
-name|GeoPath
+name|GeoStandardPath
 name|p
 decl_stmt|;
-name|GeoPath
+name|GeoStandardPath
 name|c
 decl_stmt|;
 name|GeoPoint
@@ -1191,7 +1191,7 @@ expr_stmt|;
 name|c
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|planetModel
 argument_list|,
@@ -1285,7 +1285,7 @@ comment|// Start by testing the basic kinds of relationship, increasing in order
 name|p
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|PlanetModel
 operator|.
@@ -1607,7 +1607,7 @@ name|void
 name|testPathBounds
 parameter_list|()
 block|{
-name|GeoPath
+name|GeoStandardPath
 name|c
 decl_stmt|;
 name|LatLonBounds
@@ -1641,7 +1641,7 @@ expr_stmt|;
 name|c
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|planetModel
 argument_list|,
@@ -1793,12 +1793,12 @@ name|point
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// No longer true due to fixed GeoPath waypoints.
+comment|// No longer true due to fixed GeoStandardPath waypoints.
 comment|//assertTrue(c.isWithin(point));
 name|c
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|PlanetModel
 operator|.
@@ -1970,7 +1970,7 @@ expr_stmt|;
 name|c
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|PlanetModel
 operator|.
@@ -2124,7 +2124,7 @@ expr_stmt|;
 name|c
 operator|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|PlanetModel
 operator|.
@@ -2255,11 +2255,11 @@ name|testCoLinear
 parameter_list|()
 block|{
 comment|// p1: (12,-90), p2: (11, -55), (129, -90)
-name|GeoPath
+name|GeoStandardPath
 name|p
 init|=
 operator|new
-name|GeoPath
+name|GeoStandardPath
 argument_list|(
 name|PlanetModel
 operator|.

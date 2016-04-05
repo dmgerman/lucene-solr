@@ -19,7 +19,7 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * GeoCircles have all the characteristics of GeoBaseDistanceShapes, plus GeoSizeable.  *  * @lucene.experimental  */
+comment|/**  * GeoCircles have all the characteristics of GeoBaseDistanceShapes, plus GeoSizeable.  *  * @lucene.internal  */
 end_comment
 
 begin_class
