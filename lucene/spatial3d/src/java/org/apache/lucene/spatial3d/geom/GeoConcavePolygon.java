@@ -69,13 +69,13 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * GeoConvexPolygon objects are generic building blocks of more complex structures.  * The only restrictions on these objects are: (1) they must be convex; (2) they must have  * a maximum extent no larger than PI.  Violating either one of these limits will  * cause the logic to fail.  *  * @lucene.internal  */
+comment|/**  * GeoConcavePolygon objects are generic building blocks of more complex structures.  * The only restrictions on these objects are: (1) they must be concave; (2) they must have  * a maximum extent larger than PI.  Violating either one of these limits will  * cause the logic to fail.  *  * @lucene.internal  */
 end_comment
 
 begin_class
-DECL|class|GeoConvexPolygon
+DECL|class|GeoConcavePolygon
 class|class
-name|GeoConvexPolygon
+name|GeoConcavePolygon
 extends|extends
 name|GeoBasePolygon
 block|{
@@ -112,6 +112,15 @@ specifier|protected
 name|SidedPlane
 index|[]
 name|edges
+init|=
+literal|null
+decl_stmt|;
+comment|/** A list of inverted edges */
+DECL|field|invertedEdges
+specifier|protected
+name|SidedPlane
+index|[]
+name|invertedEdges
 init|=
 literal|null
 decl_stmt|;
@@ -163,10 +172,10 @@ name|eitherBounds
 init|=
 literal|null
 decl_stmt|;
-comment|/**    * Create a convex polygon from a list of points.  The first point must be on the    * external edge.    *@param planetModel is the planet model.    *@param pointList is the list of points to create the polygon from.    */
-DECL|method|GeoConvexPolygon
+comment|/**    * Create a concave polygon from a list of points.  The first point must be on the    * external edge.    *@param planetModel is the planet model.    *@param pointList is the list of points to create the polygon from.    */
+DECL|method|GeoConcavePolygon
 specifier|public
-name|GeoConvexPolygon
+name|GeoConcavePolygon
 parameter_list|(
 specifier|final
 name|PlanetModel
@@ -190,10 +199,10 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a convex polygon from a list of points.  The first point must be on the    * external edge.    *@param planetModel is the planet model.    *@param pointList is the list of points to create the polygon from.    *@param holes is the list of GeoPolygon objects that describe holes in the complex polygon.  Null == no holes.    */
-DECL|method|GeoConvexPolygon
+comment|/**    * Create a concave polygon from a list of points.  The first point must be on the    * external edge.    *@param planetModel is the planet model.    *@param pointList is the list of points to create the polygon from.    *@param holes is the list of GeoPolygon objects that describe holes in the concave polygon.  Null == no holes.    */
+DECL|method|GeoConcavePolygon
 specifier|public
-name|GeoConvexPolygon
+name|GeoConcavePolygon
 parameter_list|(
 specifier|final
 name|PlanetModel
@@ -245,10 +254,10 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a convex polygon from a list of points, keeping track of which boundaries    * are internal.  This is used when creating a polygon as a building block for another shape.    *@param planetModel is the planet model.    *@param pointList is the set of points to create the polygon from.    *@param internalEdgeFlags is a bitset describing whether each edge is internal or not.    *@param returnEdgeInternal is true when the final return edge is an internal one.    */
-DECL|method|GeoConvexPolygon
+comment|/**    * Create a concave polygon from a list of points, keeping track of which boundaries    * are internal.  This is used when creating a polygon as a building block for another shape.    *@param planetModel is the planet model.    *@param pointList is the set of points to create the polygon from.    *@param internalEdgeFlags is a bitset describing whether each edge is internal or not.    *@param returnEdgeInternal is true when the final return edge is an internal one.    */
+DECL|method|GeoConcavePolygon
 specifier|public
-name|GeoConvexPolygon
+name|GeoConcavePolygon
 parameter_list|(
 specifier|final
 name|PlanetModel
@@ -284,10 +293,10 @@ name|returnEdgeInternal
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a convex polygon from a list of points, keeping track of which boundaries    * are internal.  This is used when creating a polygon as a building block for another shape.    *@param planetModel is the planet model.    *@param pointList is the set of points to create the polygon from.    *@param holes is the list of GeoPolygon objects that describe holes in the complex polygon.  Null == no holes.    *@param internalEdgeFlags is a bitset describing whether each edge is internal or not.    *@param returnEdgeInternal is true when the final return edge is an internal one.    */
-DECL|method|GeoConvexPolygon
+comment|/**    * Create a concave polygon from a list of points, keeping track of which boundaries    * are internal.  This is used when creating a polygon as a building block for another shape.    *@param planetModel is the planet model.    *@param pointList is the set of points to create the polygon from.    *@param holes is the list of GeoPolygon objects that describe holes in the concave polygon.  Null == no holes.    *@param internalEdgeFlags is a bitset describing whether each edge is internal or not.    *@param returnEdgeInternal is true when the final return edge is an internal one.    */
+DECL|method|GeoConcavePolygon
 specifier|public
-name|GeoConvexPolygon
+name|GeoConcavePolygon
 parameter_list|(
 specifier|final
 name|PlanetModel
@@ -345,10 +354,10 @@ name|returnEdgeInternal
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a convex polygon, with a starting latitude and longitude.    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}    *@param planetModel is the planet model.    *@param startLatitude is the latitude of the first point.    *@param startLongitude is the longitude of the first point.    */
-DECL|method|GeoConvexPolygon
+comment|/**    * Create a concave polygon, with a starting latitude and longitude.    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}    *@param planetModel is the planet model.    *@param startLatitude is the latitude of the first point.    *@param startLongitude is the longitude of the first point.    */
+DECL|method|GeoConcavePolygon
 specifier|public
-name|GeoConvexPolygon
+name|GeoConcavePolygon
 parameter_list|(
 specifier|final
 name|PlanetModel
@@ -375,10 +384,10 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Create a convex polygon, with a starting latitude and longitude.    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}    *@param planetModel is the planet model.    *@param startLatitude is the latitude of the first point.    *@param startLongitude is the longitude of the first point.    *@param holes is the list of GeoPolygon objects that describe holes in the complex polygon.  Null == no holes.    */
-DECL|method|GeoConvexPolygon
+comment|/**    * Create a concave polygon, with a starting latitude and longitude.    * Accepts only values in the following ranges: lat: {@code -PI/2 -> PI/2}, lon: {@code -PI -> PI}    *@param planetModel is the planet model.    *@param startLatitude is the latitude of the first point.    *@param startLongitude is the longitude of the first point.    *@param holes is the list of GeoPolygon objects that describe holes in the concave polygon.  Null == no holes.    */
+DECL|method|GeoConcavePolygon
 specifier|public
-name|GeoConvexPolygon
+name|GeoConcavePolygon
 parameter_list|(
 specifier|final
 name|PlanetModel
@@ -561,9 +570,21 @@ name|isDone
 operator|=
 literal|true
 expr_stmt|;
-comment|// Time to construct the planes.  If the polygon is truly convex, then any adjacent point
-comment|// to a segment can provide an interior measurement.
+comment|// Time to construct the planes.  If the polygon is truly concave then any adjacent point
+comment|// to a segment can provide an exterior measurement.  Note: We build the true planes
+comment|// here and use the logic to return what *isn't* inside all of them.
 name|edges
+operator|=
+operator|new
+name|SidedPlane
+index|[
+name|points
+operator|.
+name|size
+argument_list|()
+index|]
+expr_stmt|;
+name|invertedEdges
 operator|=
 operator|new
 name|SidedPlane
@@ -668,6 +689,7 @@ literal|2
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// Here note the flip of the sense of the sided plane!!
 specifier|final
 name|SidedPlane
 name|sp
@@ -676,6 +698,8 @@ operator|new
 name|SidedPlane
 argument_list|(
 name|check
+argument_list|,
+literal|false
 argument_list|,
 name|start
 argument_list|,
@@ -689,6 +713,17 @@ name|i
 index|]
 operator|=
 name|sp
+expr_stmt|;
+name|invertedEdges
+index|[
+name|i
+index|]
+operator|=
+operator|new
+name|SidedPlane
+argument_list|(
+name|sp
+argument_list|)
 expr_stmt|;
 name|notableEdgePoints
 index|[
@@ -705,7 +740,7 @@ name|end
 block|}
 expr_stmt|;
 block|}
-comment|// In order to naively confirm that the polygon is convex, I would need to
+comment|// In order to naively confirm that the polygon is concave, I would need to
 comment|// check every edge, and verify that every point (other than the edge endpoints)
 comment|// is within the edge's sided plane.  This is an order n^2 operation.  That's still
 comment|// not wrong, though, because everything else about polygons has a similar cost.
@@ -771,7 +806,6 @@ condition|)
 block|{
 if|if
 condition|(
-operator|!
 name|edge
 operator|.
 name|isWithin
@@ -788,7 +822,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Polygon is not convex: Point "
+literal|"Polygon is not concave: Point "
 operator|+
 name|points
 operator|.
@@ -819,23 +853,37 @@ argument_list|)
 expr_stmt|;
 for|for
 control|(
-specifier|final
-name|SidedPlane
-name|edge
-range|:
+name|int
+name|edgeIndex
+init|=
+literal|0
+init|;
+name|edgeIndex
+operator|<
 name|edges
+operator|.
+name|length
+condition|;
+name|edgeIndex
+operator|++
 control|)
 block|{
 name|eitherBounds
 operator|.
 name|put
 argument_list|(
-name|edge
+name|edges
+index|[
+name|edgeIndex
+index|]
 argument_list|,
 operator|new
 name|EitherBound
 argument_list|(
-name|edge
+name|invertedEdges
+index|[
+name|edgeIndex
+index|]
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -906,6 +954,12 @@ name|double
 name|z
 parameter_list|)
 block|{
+comment|// If present within *any* plane, then it is a member, except where there are holes.
+name|boolean
+name|isMember
+init|=
+literal|false
+decl_stmt|;
 for|for
 control|(
 specifier|final
@@ -917,7 +971,6 @@ control|)
 block|{
 if|if
 condition|(
-operator|!
 name|edge
 operator|.
 name|isWithin
@@ -929,6 +982,21 @@ argument_list|,
 name|z
 argument_list|)
 condition|)
+block|{
+name|isMember
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+block|}
+block|}
+if|if
+condition|(
+name|isMember
+operator|==
+literal|false
+condition|)
+block|{
 return|return
 literal|false
 return|;
@@ -1008,7 +1076,8 @@ modifier|...
 name|bounds
 parameter_list|)
 block|{
-comment|//System.err.println("Checking for polygon intersection with plane "+p+"...");
+comment|// The bounding planes are inverted and complementary.  For intersection computation, we
+comment|// cannot use them as bounds.  They are independent hemispheres.
 for|for
 control|(
 name|int
@@ -1181,7 +1250,7 @@ specifier|final
 name|SidedPlane
 name|edge
 range|:
-name|edges
+name|invertedEdges
 control|)
 block|{
 if|if
@@ -1234,7 +1303,7 @@ specifier|final
 name|SidedPlane
 name|edge
 range|:
-name|edges
+name|invertedEdges
 control|)
 block|{
 if|if
@@ -1283,6 +1352,11 @@ name|getBounds
 argument_list|(
 name|bounds
 argument_list|)
+expr_stmt|;
+name|bounds
+operator|.
+name|isWide
+argument_list|()
 expr_stmt|;
 comment|// Add all the points
 for|for
@@ -1469,17 +1543,17 @@ operator|!
 operator|(
 name|o
 operator|instanceof
-name|GeoConvexPolygon
+name|GeoConcavePolygon
 operator|)
 condition|)
 return|return
 literal|false
 return|;
-name|GeoConvexPolygon
+name|GeoConcavePolygon
 name|other
 init|=
 operator|(
-name|GeoConvexPolygon
+name|GeoConcavePolygon
 operator|)
 name|o
 decl_stmt|;
@@ -1631,7 +1705,7 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"GeoConvexPolygon: {planetmodel="
+literal|"GeoConcavePolygon: {planetmodel="
 operator|+
 name|planetModel
 operator|+

@@ -24,7 +24,6 @@ end_comment
 
 begin_class
 DECL|class|GeoNorthLatitudeZone
-specifier|public
 class|class
 name|GeoNorthLatitudeZone
 extends|extends

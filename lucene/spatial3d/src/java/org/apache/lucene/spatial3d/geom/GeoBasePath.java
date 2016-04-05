@@ -19,18 +19,37 @@ package|;
 end_package
 
 begin_comment
-comment|/**  * Interface describing a path.  *  * @lucene.experimental  */
+comment|/**  * GeoPaths have all the characteristics of GeoBaseDistanceShapes.  *  * @lucene.internal  */
 end_comment
 
-begin_interface
-DECL|interface|GeoPath
-specifier|public
-interface|interface
-name|GeoPath
+begin_class
+DECL|class|GeoBasePath
+specifier|abstract
+class|class
+name|GeoBasePath
 extends|extends
-name|GeoDistanceShape
-block|{ }
-end_interface
+name|GeoBaseDistanceShape
+implements|implements
+name|GeoPath
+block|{
+comment|/** Constructor.    *@param planetModel is the planet model to use.    */
+DECL|method|GeoBasePath
+specifier|public
+name|GeoBasePath
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|planetModel
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+end_class
 
 end_unit
 

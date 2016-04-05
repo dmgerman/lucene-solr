@@ -24,7 +24,6 @@ end_comment
 
 begin_class
 DECL|class|GeoWideLongitudeSlice
-specifier|public
 class|class
 name|GeoWideLongitudeSlice
 extends|extends

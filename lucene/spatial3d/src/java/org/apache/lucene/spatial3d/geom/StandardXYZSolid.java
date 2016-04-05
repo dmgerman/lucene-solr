@@ -24,7 +24,6 @@ end_comment
 
 begin_class
 DECL|class|StandardXYZSolid
-specifier|public
 class|class
 name|StandardXYZSolid
 extends|extends
