@@ -5347,8 +5347,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|Ignore
 DECL|method|testComplexPolygons
 specifier|public
 name|void
@@ -5402,6 +5400,8 @@ argument_list|,
 name|randomPole
 argument_list|,
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// Create a polygon that's greater than 180 degrees
@@ -5416,6 +5416,8 @@ argument_list|,
 name|randomPole
 argument_list|,
 literal|false
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 block|}
@@ -5462,6 +5464,10 @@ parameter_list|,
 specifier|final
 name|boolean
 name|clockwiseDesired
+parameter_list|,
+specifier|final
+name|boolean
+name|createHoles
 parameter_list|)
 block|{
 comment|// Polygon edges will be arranged around the provided pole, and holes will each have a pole selected within the parent
@@ -5508,6 +5514,12 @@ index|[
 name|pointCount
 index|]
 decl_stmt|;
+comment|// Pick a set of points
+while|while
+condition|(
+literal|true
+condition|)
+block|{
 name|double
 name|accumulatedAngle
 init|=
@@ -5711,9 +5723,14 @@ name|arcDistance
 argument_list|)
 decl_stmt|;
 comment|// Create the geo3d polygon, so we can test out our poles.
+specifier|final
 name|GeoPolygon
 name|poly
-init|=
+decl_stmt|;
+try|try
+block|{
+name|poly
+operator|=
 name|GeoPolygonFactory
 operator|.
 name|makeGeoPolygon
@@ -5724,13 +5741,25 @@ name|polyPoints
 argument_list|,
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+comment|// This is what happens when three adjacent points are colinear, so try again.
+continue|continue;
+block|}
 comment|// Next, do some holes.  No more than 2 of these.  The poles for holes must always be within the polygon, so we're
 comment|// going to use Geo3D to help us select those given the points we just made.
 specifier|final
 name|int
 name|holeCount
 init|=
+name|createHoles
+condition|?
 name|TestUtil
 operator|.
 name|nextInt
@@ -5742,17 +5771,20 @@ literal|0
 argument_list|,
 literal|2
 argument_list|)
+else|:
+literal|0
 decl_stmt|;
 specifier|final
+name|List
+argument_list|<
 name|Polygon
-index|[]
-name|holes
+argument_list|>
+name|holeList
 init|=
 operator|new
-name|Polygon
-index|[
-name|holeCount
-index|]
+name|ArrayList
+argument_list|<>
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -5770,11 +5802,21 @@ operator|++
 control|)
 block|{
 comment|// Choose a pole.  The poly has to be within the polygon, but it also cannot be on the polygon edge.
-comment|// We try indefinitely to find a good pole...
-while|while
-condition|(
-literal|true
-condition|)
+comment|// If we can't find a good pole we have to give it up and not do the hole.
+for|for
+control|(
+name|int
+name|k
+init|=
+literal|0
+init|;
+name|k
+operator|<
+literal|500
+condition|;
+name|k
+operator|++
+control|)
 block|{
 specifier|final
 name|GeoPoint
@@ -5845,6 +5887,8 @@ name|poleChoice
 argument_list|,
 operator|!
 name|clockwiseDesired
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// Verify that the inside polygon is OK.  If not, discard and repeat.
@@ -5863,12 +5907,12 @@ condition|)
 block|{
 continue|continue;
 block|}
-name|holes
-index|[
-name|i
-index|]
-operator|=
+name|holeList
+operator|.
+name|add
+argument_list|(
 name|insidePoly
+argument_list|)
 expr_stmt|;
 name|foundOne
 operator|=
@@ -5884,6 +5928,22 @@ break|break;
 block|}
 block|}
 block|}
+specifier|final
+name|Polygon
+index|[]
+name|holes
+init|=
+name|holeList
+operator|.
+name|toArray
+argument_list|(
+operator|new
+name|Polygon
+index|[
+literal|0
+index|]
+argument_list|)
+decl_stmt|;
 comment|// Finally, build the polygon and return it
 specifier|final
 name|double
@@ -6015,6 +6075,7 @@ argument_list|,
 name|holes
 argument_list|)
 return|;
+block|}
 block|}
 DECL|method|convertToPoints
 specifier|protected
@@ -6698,7 +6759,7 @@ block|{
 if|if
 condition|(
 name|index
-operator|>
+operator|>=
 name|size
 condition|)
 block|{
