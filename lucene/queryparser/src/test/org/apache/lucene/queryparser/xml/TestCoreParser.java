@@ -698,10 +698,10 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-DECL|method|testSimpleXML
+DECL|method|testTermQueryXML
 specifier|public
 name|void
-name|testSimpleXML
+name|testTermQueryXML
 parameter_list|()
 throws|throws
 name|ParserException
@@ -726,10 +726,10 @@ literal|5
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testSimpleTermsQueryXML
+DECL|method|testTermsQueryXML
 specifier|public
 name|void
-name|testSimpleTermsQueryXML
+name|testTermsQueryXML
 parameter_list|()
 throws|throws
 name|ParserException
@@ -1214,6 +1214,8 @@ name|ParserException
 throws|,
 name|IOException
 block|{
+try|try
+init|(
 name|InputStream
 name|xmlStream
 init|=
@@ -1225,7 +1227,19 @@ name|getResourceAsStream
 argument_list|(
 name|xmlFileName
 argument_list|)
-decl_stmt|;
+init|)
+block|{
+name|assertNotNull
+argument_list|(
+literal|"Test XML file "
+operator|+
+name|xmlFileName
+operator|+
+literal|" cannot be found"
+argument_list|,
+name|xmlStream
+argument_list|)
+expr_stmt|;
 name|Query
 name|result
 init|=
@@ -1237,14 +1251,10 @@ argument_list|(
 name|xmlStream
 argument_list|)
 decl_stmt|;
-name|xmlStream
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 return|return
 name|result
 return|;
+block|}
 block|}
 DECL|method|rewrite
 specifier|protected
@@ -1294,9 +1304,17 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"TEST: query="
+literal|"TEST: qType="
+operator|+
+name|qType
+operator|+
+literal|" query="
 operator|+
 name|q
+operator|+
+literal|" numDocs="
+operator|+
+name|numDocs
 argument_list|)
 expr_stmt|;
 block|}

@@ -22,6 +22,18 @@ begin_import
 import|import
 name|java
 operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|HashMap
@@ -224,18 +236,6 @@ name|singletonMap
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|lang
-operator|.
-name|invoke
-operator|.
-name|MethodHandles
-import|;
-end_import
-
 begin_comment
 comment|/**  * ZkStateWriter is responsible for writing updates to the cluster state stored in ZooKeeper for  * both stateFormat=1 collection (stored in shared /clusterstate.json in ZK) and stateFormat=2 collections  * each of which get their own individual state.json in ZK.  *  * Updates to the cluster state are specified using the  * {@link #enqueueUpdate(ClusterState, ZkWriteCommand, ZkWriteCallback)} method. The class buffers updates  * to reduce the number of writes to ZK. The buffered updates are flushed during<code>enqueueUpdate</code>  * automatically if necessary. The {@link #writePendingUpdates()} can be used to force flush any pending updates.  *  * If either {@link #enqueueUpdate(ClusterState, ZkWriteCommand, ZkWriteCallback)} or {@link #writePendingUpdates()}  * throws a {@link org.apache.zookeeper.KeeperException.BadVersionException} then the internal buffered state of the  * class is suspect and the current instance of the class should be discarded and a new instance should be created  * and used for any future updates.  */
 end_comment
@@ -404,6 +404,15 @@ operator|.
 name|stats
 operator|=
 name|stats
+expr_stmt|;
+name|this
+operator|.
+name|clusterState
+operator|=
+name|zkStateReader
+operator|.
+name|getClusterState
+argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Applies the given {@link ZkWriteCommand} on the<code>prevState</code>. The modified    * {@link ClusterState} is returned and it is expected that the caller will use the returned    * cluster state for the subsequent invocation of this method.    *<p>    * The modified state may be buffered or flushed to ZooKeeper depending on the internal buffering    * logic of this class. The {@link #hasPendingUpdates()} method may be used to determine if the    * last enqueue operation resulted in buffered state. The method {@link #writePendingUpdates()} can    * be used to force an immediate flush of pending cluster state changes.    *    * @param prevState the cluster state information on which the given<code>cmd</code> is applied    * @param cmd       the {@link ZkWriteCommand} which specifies the change to be applied to cluster state    * @param callback  a {@link org.apache.solr.cloud.overseer.ZkStateWriter.ZkWriteCallback} object to be used    *                  for any callbacks    * @return modified cluster state created after applying<code>cmd</code> to<code>prevState</code>. If    *<code>cmd</code> is a no-op ({@link #NO_OP}) then the<code>prevState</code> is returned unmodified.    * @throws IllegalStateException if the current instance is no longer usable. The current instance must be    *                               discarded.    * @throws Exception             on an error in ZK operations or callback. If a flush to ZooKeeper results    *                               in a {@link org.apache.zookeeper.KeeperException.BadVersionException} this instance becomes unusable and    *                               must be discarded    */

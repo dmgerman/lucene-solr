@@ -669,21 +669,8 @@ name|SegFacet
 argument_list|>
 name|task
 init|=
-operator|new
-name|Callable
-argument_list|<
-name|SegFacet
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|SegFacet
-name|call
 parameter_list|()
-throws|throws
-name|Exception
+lambda|->
 block|{
 name|segFacet
 operator|.
@@ -693,7 +680,6 @@ expr_stmt|;
 return|return
 name|segFacet
 return|;
-block|}
 block|}
 decl_stmt|;
 comment|// TODO: if limiting threads, submit by largest segment first?

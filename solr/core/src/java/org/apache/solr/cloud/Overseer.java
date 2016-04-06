@@ -1110,6 +1110,7 @@ expr_stmt|;
 continue|continue;
 comment|// not a no, not a yes, try ask again
 block|}
+comment|//TODO consider removing 'refreshClusterState' and simply check if clusterState is null
 if|if
 condition|(
 name|refreshClusterState

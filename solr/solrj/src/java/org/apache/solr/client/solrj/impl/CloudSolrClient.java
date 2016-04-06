@@ -2876,29 +2876,8 @@ name|threadPool
 operator|.
 name|submit
 argument_list|(
-operator|new
-name|Callable
-argument_list|<
-name|NamedList
-argument_list|<
-name|?
-argument_list|>
-argument_list|>
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|NamedList
-argument_list|<
-name|?
-argument_list|>
-name|call
 parameter_list|()
-throws|throws
-name|Exception
-block|{
-return|return
+lambda|->
 name|lbClient
 operator|.
 name|request
@@ -2908,12 +2887,9 @@ argument_list|)
 operator|.
 name|getResponse
 argument_list|()
-return|;
-block|}
-block|}
-block|)
-block|)
-empty_stmt|;
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -3105,9 +3081,6 @@ throw|;
 block|}
 block|}
 block|}
-end_class
-
-begin_else
 else|else
 block|{
 for|for
@@ -3209,17 +3182,11 @@ block|}
 block|}
 block|}
 block|}
-end_else
-
-begin_decl_stmt
 name|UpdateRequest
 name|nonRoutableRequest
 init|=
 literal|null
 decl_stmt|;
-end_decl_stmt
-
-begin_decl_stmt
 name|List
 argument_list|<
 name|String
@@ -3231,9 +3198,6 @@ operator|.
 name|getDeleteQuery
 argument_list|()
 decl_stmt|;
-end_decl_stmt
-
-begin_if
 if|if
 condition|(
 name|deleteQuery
@@ -3267,9 +3231,6 @@ operator|=
 name|deleteQueryRequest
 expr_stmt|;
 block|}
-end_if
-
-begin_decl_stmt
 name|Set
 argument_list|<
 name|String
@@ -3281,9 +3242,6 @@ operator|.
 name|getParameterNames
 argument_list|()
 decl_stmt|;
-end_decl_stmt
-
-begin_decl_stmt
 name|Set
 argument_list|<
 name|String
@@ -3297,9 +3255,6 @@ argument_list|(
 name|paramNames
 argument_list|)
 decl_stmt|;
-end_decl_stmt
-
-begin_expr_stmt
 name|intersection
 operator|.
 name|retainAll
@@ -3307,9 +3262,6 @@ argument_list|(
 name|NON_ROUTABLE_PARAMS
 argument_list|)
 expr_stmt|;
-end_expr_stmt
-
-begin_if
 if|if
 condition|(
 name|nonRoutableRequest
@@ -3448,9 +3400,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-end_if
-
-begin_decl_stmt
 name|long
 name|end
 init|=
@@ -3459,9 +3408,6 @@ operator|.
 name|nanoTime
 argument_list|()
 decl_stmt|;
-end_decl_stmt
-
-begin_decl_stmt
 name|RouteResponse
 name|rr
 init|=
@@ -3488,9 +3434,6 @@ name|NANOSECONDS
 argument_list|)
 argument_list|)
 decl_stmt|;
-end_decl_stmt
-
-begin_expr_stmt
 name|rr
 operator|.
 name|setRouteResponses
@@ -3498,9 +3441,6 @@ argument_list|(
 name|shardResponses
 argument_list|)
 expr_stmt|;
-end_expr_stmt
-
-begin_expr_stmt
 name|rr
 operator|.
 name|setRoutes
@@ -3508,17 +3448,12 @@ argument_list|(
 name|routes
 argument_list|)
 expr_stmt|;
-end_expr_stmt
-
-begin_return
 return|return
 name|rr
 return|;
-end_return
-
-begin_function
-unit|}    private
+block|}
 DECL|method|buildUrlMap
+specifier|private
 name|Map
 argument_list|<
 name|String
@@ -3760,9 +3695,6 @@ return|return
 name|urlMap
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|condenseResponse
 specifier|public
 name|RouteResponse
@@ -4298,9 +4230,6 @@ return|return
 name|condensed
 return|;
 block|}
-end_function
-
-begin_class
 DECL|class|RouteResponse
 specifier|public
 specifier|static
@@ -4393,9 +4322,6 @@ name|routes
 return|;
 block|}
 block|}
-end_class
-
-begin_class
 DECL|class|RouteException
 specifier|public
 specifier|static
@@ -4619,9 +4545,6 @@ name|routes
 return|;
 block|}
 block|}
-end_class
-
-begin_function
 annotation|@
 name|Override
 DECL|method|request
@@ -4689,9 +4612,6 @@ name|collection
 argument_list|)
 return|;
 block|}
-end_function
-
-begin_decl_stmt
 DECL|field|ADMIN_PATHS
 specifier|private
 specifier|static
@@ -4722,13 +4642,7 @@ name|AUTHZ_PATH
 argument_list|)
 argument_list|)
 decl_stmt|;
-end_decl_stmt
-
-begin_comment
 comment|/**    * As this class doesn't watch external collections on the client side,    * there's a chance that the request will fail due to cached stale state,    * which means the state must be refreshed from ZK and retried.    */
-end_comment
-
-begin_function
 DECL|method|requestWithRetryOnStaleState
 specifier|protected
 name|NamedList
@@ -5523,9 +5437,6 @@ return|return
 name|resp
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|sendRequest
 specifier|protected
 name|NamedList
@@ -6317,9 +6228,6 @@ name|getResponse
 argument_list|()
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|getCollectionNames
 specifier|private
 name|Set
@@ -6461,9 +6369,6 @@ return|return
 name|collectionNames
 return|;
 block|}
-end_function
-
-begin_function
 annotation|@
 name|Override
 DECL|method|close
@@ -6557,9 +6462,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-end_function
-
-begin_function
 DECL|method|getLbClient
 specifier|public
 name|LBHttpSolrClient
@@ -6570,9 +6472,6 @@ return|return
 name|lbClient
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|isUpdatesToLeaders
 specifier|public
 name|boolean
@@ -6583,13 +6482,7 @@ return|return
 name|updatesToLeaders
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**If caches are expired they are refreshed after acquiring a lock.    * use this to set the number of locks    */
-end_comment
-
-begin_function
 DECL|method|setParallelCacheRefreshes
 specifier|public
 name|void
@@ -6607,9 +6500,6 @@ name|n
 argument_list|)
 expr_stmt|;
 block|}
-end_function
-
-begin_function
 DECL|method|objectList
 specifier|private
 specifier|static
@@ -6663,9 +6553,6 @@ return|return
 name|l
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|getDocCollection
 specifier|protected
 name|DocCollection
@@ -6916,9 +6803,6 @@ return|return
 name|col
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|getFromCache
 specifier|private
 name|DocCollection
@@ -6950,13 +6834,7 @@ else|:
 literal|null
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Useful for determining the minimum achieved replication factor across    * all shards involved in processing an update request, typically useful    * for gauging the replication factor of a batch.     */
-end_comment
-
-begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -7075,13 +6953,7 @@ operator|-
 literal|1
 return|;
 block|}
-end_function
-
-begin_comment
 comment|/**    * Walks the NamedList response after performing an update request looking for    * the replication factor that was achieved in each shard involved in the request.    * For single doc updates, there will be only one shard in the return value.     */
-end_comment
-
-begin_function
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -7431,9 +7303,6 @@ return|return
 name|results
 return|;
 block|}
-end_function
-
-begin_function
 DECL|method|setConnectionTimeout
 specifier|public
 name|void
@@ -7453,9 +7322,6 @@ name|timeout
 argument_list|)
 expr_stmt|;
 block|}
-end_function
-
-begin_function
 DECL|method|setSoTimeout
 specifier|public
 name|void
@@ -7475,8 +7341,8 @@ name|timeout
 argument_list|)
 expr_stmt|;
 block|}
-end_function
+block|}
+end_class
 
-unit|}
 end_unit
 

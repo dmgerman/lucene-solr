@@ -213,7 +213,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * An indexed location field.  *<p>  * Finding all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for common operations:  *<ul>  *<li>{@link #newBoxQuery newBoxQuery()} for matching points within a bounding box.  *<li>{@link #newDistanceQuery newDistanceQuery()} for matching points within a specified distance.  *<li>{@link #newDistanceSort newDistanceSort()} for ordering documents by distance from a specified location.   *<li>{@link #newPolygonQuery newPolygonQuery()} for matching points within an arbitrary polygon.  *</ul>  *<p>  *<b>WARNING</b>: Values are indexed with some loss of precision, incurring up to 1E-7 error from the  * original {@code double} values.   * @see PointValues  */
+comment|/**   * An indexed location field.  *<p>  * Finding all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for common operations:  *<ul>  *<li>{@link #newBoxQuery newBoxQuery()} for matching points within a bounding box.  *<li>{@link #newDistanceQuery newDistanceQuery()} for matching points within a specified distance.  *<li>{@link #newDistanceSort newDistanceSort()} for ordering documents by distance from a specified location.   *<li>{@link #newPolygonQuery newPolygonQuery()} for matching points within an arbitrary polygon.  *</ul>  *<p>  *<b>WARNING</b>: Values are indexed with some loss of precision from the  * original {@code double} values (4.190951585769653E-8 for the latitude component  * and 8.381903171539307E-8 for longitude).  * @see PointValues  */
 end_comment
 
 begin_comment
@@ -427,7 +427,6 @@ operator|/
 literal|360.0D
 decl_stmt|;
 DECL|field|LONGITUDE_DECODE
-specifier|private
 specifier|static
 specifier|final
 name|double
@@ -453,7 +452,6 @@ operator|/
 literal|180.0D
 decl_stmt|;
 DECL|field|LATITUDE_DECODE
-specifier|private
 specifier|static
 specifier|final
 name|double
