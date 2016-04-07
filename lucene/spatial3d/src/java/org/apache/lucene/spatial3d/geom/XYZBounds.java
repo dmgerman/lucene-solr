@@ -32,7 +32,7 @@ name|Bounds
 block|{
 comment|/** A 'fudge factor', which is added to maximums and subtracted from minimums,    * in order to compensate for potential error deltas.  This would not be necessary    * except that our 'bounds' is defined as always equaling or exceeding the boundary    * of the shape, and we cannot guarantee that without making MINIMUM_RESOLUTION    * unacceptably large.    */
 DECL|field|FUDGE_FACTOR
-specifier|protected
+specifier|private
 specifier|static
 specifier|final
 name|double
@@ -46,7 +46,7 @@ literal|2.0
 decl_stmt|;
 comment|/** Minimum x */
 DECL|field|minX
-specifier|protected
+specifier|private
 name|Double
 name|minX
 init|=
@@ -54,7 +54,7 @@ literal|null
 decl_stmt|;
 comment|/** Maximum x */
 DECL|field|maxX
-specifier|protected
+specifier|private
 name|Double
 name|maxX
 init|=
@@ -62,7 +62,7 @@ literal|null
 decl_stmt|;
 comment|/** Minimum y */
 DECL|field|minY
-specifier|protected
+specifier|private
 name|Double
 name|minY
 init|=
@@ -70,7 +70,7 @@ literal|null
 decl_stmt|;
 comment|/** Maximum y */
 DECL|field|maxY
-specifier|protected
+specifier|private
 name|Double
 name|maxY
 init|=
@@ -78,7 +78,7 @@ literal|null
 decl_stmt|;
 comment|/** Minimum z */
 DECL|field|minZ
-specifier|protected
+specifier|private
 name|Double
 name|minZ
 init|=
@@ -86,7 +86,7 @@ literal|null
 decl_stmt|;
 comment|/** Maximum z */
 DECL|field|maxZ
-specifier|protected
+specifier|private
 name|Double
 name|maxZ
 init|=
@@ -94,7 +94,7 @@ literal|null
 decl_stmt|;
 comment|/** Set to true if no longitude bounds can be stated */
 DECL|field|noLongitudeBound
-specifier|protected
+specifier|private
 name|boolean
 name|noLongitudeBound
 init|=
@@ -102,7 +102,7 @@ literal|false
 decl_stmt|;
 comment|/** Set to true if no top latitude bound can be stated */
 DECL|field|noTopLatitudeBound
-specifier|protected
+specifier|private
 name|boolean
 name|noTopLatitudeBound
 init|=
@@ -110,7 +110,7 @@ literal|false
 decl_stmt|;
 comment|/** Set to true if no bottom latitude bound can be stated */
 DECL|field|noBottomLatitudeBound
-specifier|protected
+specifier|private
 name|boolean
 name|noBottomLatitudeBound
 init|=

@@ -683,7 +683,7 @@ block|}
 block|}
 comment|/** For a specified point and a list of poly points, determine based on point order whether the    * point should be considered in or out of the polygon.    * @param point is the point to check.    * @param polyPoints is the list of points comprising the polygon.    * @return null if the point is illegal, otherwise false if the point is inside and true if the point is outside    * of the polygon.    */
 DECL|method|isInsidePolygon
-specifier|protected
+specifier|private
 specifier|static
 name|Boolean
 name|isInsidePolygon
@@ -1090,7 +1090,7 @@ return|;
 block|}
 comment|/** Compute the angle for a point given rotation information.     * @param point is the point to assess     * @param sinLatitude the sine of the latitude     * @param cosLatitude the cosine of the latitude     * @param sinLongitude the sine of the longitude     * @param cosLongitude the cosine of the longitude     * @return the angle of rotation, or null if not computable     */
 DECL|method|computeAngle
-specifier|protected
+specifier|private
 specifier|static
 name|Double
 name|computeAngle
@@ -2020,7 +2020,7 @@ return|;
 block|}
 comment|/** Look for a concave polygon in the remainder of the edgebuffer.    * By this point, if there are any edges in the edgebuffer, they represent a concave polygon.    * @param planetModel is the planet model.    * @param rval is the composite polygon we're building.    * @param edgeBuffer is the edge buffer.    * @param holes is the optional list of holes.    * @param testPoint is the optional test point.    * @return true unless the testPoint caused failure.    */
 DECL|method|makeConcavePolygon
-specifier|protected
+specifier|private
 specifier|static
 name|boolean
 name|makeConcavePolygon
@@ -2328,7 +2328,7 @@ return|;
 block|}
 comment|/** Look for a convex polygon at the specified edge.  If we find it, create one and adjust the edge buffer.    * @param planetModel is the planet model.    * @param currentEdge is the current edge to use starting the search.    * @param rval is the composite polygon to build.    * @param edgeBuffer is the edge buffer.    * @param holes is the optional list of holes.    * @param testPoint is the optional test point.    * @return null if the testPoint is within any polygon detected, otherwise true if a convex polygon was created.    */
 DECL|method|findConvexPolygon
-specifier|protected
+specifier|private
 specifier|static
 name|Boolean
 name|findConvexPolygon
@@ -3287,7 +3287,7 @@ return|;
 block|}
 comment|/** Check if a point is within a set of edges.     * @param point is the point     * @param edgeSet is the set of edges     * @param extension is the new edge     * @param returnBoundary is the return edge     * @return true if within     */
 DECL|method|isWithin
-specifier|protected
+specifier|private
 specifier|static
 name|boolean
 name|isWithin
@@ -3359,7 +3359,7 @@ return|;
 block|}
 comment|/** Check if a point is within a set of edges.     * @param point is the point     * @param edgeSet is the set of edges     * @return true if within     */
 DECL|method|isWithin
-specifier|protected
+specifier|private
 specifier|static
 name|boolean
 name|isWithin
@@ -3409,7 +3409,7 @@ return|;
 block|}
 comment|/** Convert raw point index into valid array position.    *@param index is the array index.    *@param size is the array size.    *@return an updated index.    */
 DECL|method|getLegalIndex
-specifier|protected
+specifier|private
 specifier|static
 name|int
 name|getLegalIndex
@@ -3451,7 +3451,7 @@ return|;
 block|}
 comment|/** Class representing a single (unused) edge.    */
 DECL|class|Edge
-specifier|protected
+specifier|private
 specifier|static
 class|class
 name|Edge
@@ -3569,7 +3569,7 @@ block|}
 block|}
 comment|/** Class representing an iterator over an EdgeBuffer.    */
 DECL|class|EdgeBufferIterator
-specifier|protected
+specifier|private
 specifier|static
 class|class
 name|EdgeBufferIterator
@@ -3711,7 +3711,7 @@ block|}
 block|}
 comment|/** Class representing a pool of unused edges, all linked together by vertices.    */
 DECL|class|EdgeBuffer
-specifier|protected
+specifier|private
 specifier|static
 class|class
 name|EdgeBuffer
