@@ -4153,8 +4153,7 @@ init|(
 name|ConcurrentUpdateSolrClient
 name|concurrentClient
 init|=
-operator|new
-name|ConcurrentUpdateSolrClient
+name|getConcurrentUpdateSolrClient
 argument_list|(
 operator|(
 operator|(

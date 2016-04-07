@@ -716,9 +716,14 @@ name|server
 init|=
 operator|new
 name|HttpSolrClient
+operator|.
+name|Builder
 argument_list|(
 name|leaderUrl
 argument_list|)
+operator|.
+name|build
+argument_list|()
 decl_stmt|;
 name|server
 operator|.

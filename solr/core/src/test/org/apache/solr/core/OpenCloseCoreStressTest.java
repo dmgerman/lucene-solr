@@ -818,8 +818,7 @@ block|{
 name|HttpSolrClient
 name|client
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|url
 argument_list|)
@@ -864,8 +863,7 @@ block|{
 name|HttpSolrClient
 name|client
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|url
 argument_list|)

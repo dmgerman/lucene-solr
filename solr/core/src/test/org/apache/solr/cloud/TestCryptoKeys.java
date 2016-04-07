@@ -735,8 +735,7 @@ name|TestBlobHandler
 operator|.
 name|createSystemCollection
 argument_list|(
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|baseURL
 argument_list|,

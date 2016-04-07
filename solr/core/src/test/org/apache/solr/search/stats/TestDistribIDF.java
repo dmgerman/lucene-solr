@@ -899,8 +899,7 @@ init|(
 name|SolrClient
 name|solrClient
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|jettySolrRunner
 operator|.
@@ -917,8 +916,7 @@ init|(
 name|SolrClient
 name|solrClient_local
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|jettySolrRunner
 operator|.
@@ -1255,8 +1253,7 @@ init|(
 name|SolrClient
 name|solrClient
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|jettySolrRunner
 operator|.
@@ -1273,8 +1270,7 @@ init|(
 name|SolrClient
 name|solrClient_local
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|jettySolrRunner
 operator|.

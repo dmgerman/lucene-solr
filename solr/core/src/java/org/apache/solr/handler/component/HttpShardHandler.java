@@ -257,6 +257,8 @@ operator|.
 name|impl
 operator|.
 name|HttpSolrClient
+operator|.
+name|Builder
 import|;
 end_import
 
@@ -543,20 +545,6 @@ operator|.
 name|core
 operator|.
 name|CoreDescriptor
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrCore
 import|;
 end_import
 
@@ -1229,12 +1217,18 @@ name|SolrClient
 name|client
 init|=
 operator|new
-name|HttpSolrClient
+name|Builder
 argument_list|(
 name|url
-argument_list|,
+argument_list|)
+operator|.
+name|withHttpClient
+argument_list|(
 name|httpClient
 argument_list|)
+operator|.
+name|build
+argument_list|()
 init|)
 block|{
 name|ssr

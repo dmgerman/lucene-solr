@@ -765,12 +765,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Force javabin format
-name|HttpSolrClient
-name|client
+specifier|final
+name|String
+name|clientUrl
 init|=
-operator|new
-name|HttpSolrClient
-argument_list|(
 operator|(
 operator|(
 name|HttpSolrClient
@@ -785,6 +783,13 @@ operator|)
 operator|.
 name|getBaseURL
 argument_list|()
+decl_stmt|;
+name|HttpSolrClient
+name|client
+init|=
+name|getHttpSolrClient
+argument_list|(
+name|clientUrl
 argument_list|)
 decl_stmt|;
 name|client

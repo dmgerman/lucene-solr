@@ -888,8 +888,7 @@ init|(
 name|SolrClient
 name|queryClient
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|replica1
 operator|.

@@ -778,8 +778,7 @@ init|(
 name|HttpSolrClient
 name|client
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|solrInstance
 operator|.
@@ -927,8 +926,7 @@ block|}
 name|LBHttpSolrClient
 name|client
 init|=
-operator|new
-name|LBHttpSolrClient
+name|getLBHttpSolrClient
 argument_list|(
 name|httpClient
 argument_list|,
@@ -1228,8 +1226,7 @@ block|{
 name|LBHttpSolrClient
 name|client
 init|=
-operator|new
-name|LBHttpSolrClient
+name|getLBHttpSolrClient
 argument_list|(
 name|httpClient
 argument_list|,
@@ -1533,8 +1530,7 @@ block|{
 name|LBHttpSolrClient
 name|client
 init|=
-operator|new
-name|LBHttpSolrClient
+name|getLBHttpSolrClient
 argument_list|(
 name|myHttpClient
 argument_list|,

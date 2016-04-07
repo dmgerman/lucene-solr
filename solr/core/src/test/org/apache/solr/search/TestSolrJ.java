@@ -309,8 +309,7 @@ name|client
 operator|=
 name|concurrentClient
 operator|=
-operator|new
-name|ConcurrentUpdateSolrClient
+name|getConcurrentUpdateSolrClient
 argument_list|(
 name|addr
 argument_list|,
@@ -956,8 +955,7 @@ init|(
 name|HttpSolrClient
 name|client
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 literal|"http://127.0.0.1:8983/solr"
 argument_list|)

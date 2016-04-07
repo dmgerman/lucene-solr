@@ -1830,8 +1830,7 @@ init|(
 name|HttpSolrClient
 name|adminClient
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|url
 argument_list|)

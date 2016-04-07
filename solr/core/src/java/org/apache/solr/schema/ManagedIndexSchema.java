@@ -2202,9 +2202,14 @@ name|solr
 init|=
 operator|new
 name|HttpSolrClient
+operator|.
+name|Builder
 argument_list|(
 name|coreUrl
 argument_list|)
+operator|.
+name|build
+argument_list|()
 init|)
 block|{
 comment|// eventually, this loop will get killed by the ExecutorService's timeout

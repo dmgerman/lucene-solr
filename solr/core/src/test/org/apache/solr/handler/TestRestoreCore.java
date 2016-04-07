@@ -573,12 +573,10 @@ block|{
 try|try
 block|{
 comment|// setup the client...
-name|HttpSolrClient
-name|client
+specifier|final
+name|String
+name|baseUrl
 init|=
-operator|new
-name|HttpSolrClient
-argument_list|(
 name|buildUrl
 argument_list|(
 name|port
@@ -589,6 +587,13 @@ operator|+
 literal|"/"
 operator|+
 name|DEFAULT_TEST_CORENAME
+decl_stmt|;
+name|HttpSolrClient
+name|client
+init|=
+name|getHttpSolrClient
+argument_list|(
+name|baseUrl
 argument_list|)
 decl_stmt|;
 name|client

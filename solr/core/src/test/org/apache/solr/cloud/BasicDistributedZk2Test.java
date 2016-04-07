@@ -779,8 +779,7 @@ init|(
 name|HttpSolrClient
 name|client
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|baseUrl
 argument_list|)
@@ -983,8 +982,7 @@ init|(
 name|HttpSolrClient
 name|qclient
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|baseUrl
 operator|+
@@ -1060,8 +1058,7 @@ init|(
 name|HttpSolrClient
 name|qclient
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|baseUrl
 operator|+

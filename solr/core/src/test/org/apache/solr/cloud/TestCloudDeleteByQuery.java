@@ -1092,8 +1092,7 @@ condition|)
 block|{
 name|S_ONE_LEADER_CLIENT
 operator|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|leaderUrl
 operator|+
@@ -1106,8 +1105,7 @@ argument_list|)
 expr_stmt|;
 name|S_ONE_NON_LEADER_CLIENT
 operator|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|passiveUrl
 operator|+
@@ -1132,8 +1130,7 @@ condition|)
 block|{
 name|S_TWO_LEADER_CLIENT
 operator|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|leaderUrl
 operator|+
@@ -1146,8 +1143,7 @@ argument_list|)
 expr_stmt|;
 name|S_TWO_NON_LEADER_CLIENT
 operator|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|passiveUrl
 operator|+
@@ -1184,8 +1180,7 @@ argument_list|)
 expr_stmt|;
 name|NO_COLLECTION_CLIENT
 operator|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|urlMap
 operator|.

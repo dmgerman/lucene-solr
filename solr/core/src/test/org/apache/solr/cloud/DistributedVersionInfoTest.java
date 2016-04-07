@@ -809,8 +809,7 @@ init|(
 name|SolrClient
 name|client
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|replica
 operator|.
@@ -1740,8 +1739,7 @@ init|(
 name|SolrClient
 name|client
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|replica
 operator|.
@@ -2148,8 +2146,7 @@ throws|throws
 name|Exception
 block|{
 return|return
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|replica
 operator|.
@@ -2421,8 +2418,7 @@ init|(
 name|HttpSolrClient
 name|client
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|coreProps
 operator|.

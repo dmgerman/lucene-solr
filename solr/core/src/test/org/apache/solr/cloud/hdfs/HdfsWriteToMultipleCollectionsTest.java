@@ -703,8 +703,7 @@ block|{
 name|CloudSolrClient
 name|client
 init|=
-operator|new
-name|CloudSolrClient
+name|getCloudSolrClient
 argument_list|(
 name|zkServer
 operator|.
