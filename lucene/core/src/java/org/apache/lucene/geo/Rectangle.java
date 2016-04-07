@@ -418,7 +418,7 @@ name|b
 operator|.
 name|append
 argument_list|(
-literal|"GeoRect(lat="
+literal|"Rectangle(lat="
 argument_list|)
 expr_stmt|;
 name|b

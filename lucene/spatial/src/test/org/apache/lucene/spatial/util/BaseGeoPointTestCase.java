@@ -4985,7 +4985,7 @@ condition|(
 name|rect
 operator|.
 name|minLon
-operator|<
+operator|<=
 name|rect
 operator|.
 name|maxLon
@@ -8157,53 +8157,17 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// expand 1 ulp in each direction
-name|assumeFalse
-argument_list|(
-literal|"can't expand box, its too big already"
-argument_list|,
+comment|// expand 1 ulp in each direction if possible and test a slightly larger box!
+if|if
+condition|(
 name|rect
 operator|.
 name|minLat
-operator|==
+operator|!=
 operator|-
 literal|90
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"can't expand box, its too big already"
-argument_list|,
-name|rect
-operator|.
-name|maxLat
-operator|==
-literal|90
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"can't expand box, its too big already"
-argument_list|,
-name|rect
-operator|.
-name|minLon
-operator|==
-operator|-
-literal|180
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"can't expand box, its too big already"
-argument_list|,
-name|rect
-operator|.
-name|maxLon
-operator|==
-literal|180
-argument_list|)
-expr_stmt|;
+condition|)
+block|{
 name|assertEquals
 argument_list|(
 literal|8
@@ -8240,6 +8204,16 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|rect
+operator|.
+name|maxLat
+operator|!=
+literal|90
+condition|)
+block|{
 name|assertEquals
 argument_list|(
 literal|8
@@ -8276,6 +8250,17 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|rect
+operator|.
+name|minLon
+operator|!=
+operator|-
+literal|180
+condition|)
+block|{
 name|assertEquals
 argument_list|(
 literal|8
@@ -8312,6 +8297,16 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|rect
+operator|.
+name|maxLon
+operator|!=
+literal|180
+condition|)
+block|{
 name|assertEquals
 argument_list|(
 literal|8
@@ -8348,53 +8343,37 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// now shrink 1 ulp in each direction: it should not include bogus stuff
-name|assumeFalse
-argument_list|(
-literal|"can't shrink box, its too small already"
-argument_list|,
+block|}
+comment|// now shrink 1 ulp in each direction if possible: it should not include bogus stuff
+if|if
+condition|(
 name|rect
 operator|.
 name|minLat
-operator|==
+operator|!=
 literal|90
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"can't shrink box, its too small already"
-argument_list|,
+operator|&&
 name|rect
 operator|.
 name|maxLat
-operator|==
+operator|!=
 operator|-
 literal|90
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"can't shrink box, its too small already"
-argument_list|,
+operator|&&
 name|rect
 operator|.
 name|minLon
-operator|==
-literal|180
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"can't shrink box, its too small already"
-argument_list|,
+operator|!=
+literal|80
+operator|&&
 name|rect
 operator|.
 name|maxLon
-operator|==
+operator|!=
 operator|-
 literal|180
-argument_list|)
-expr_stmt|;
+condition|)
+block|{
 comment|// note we put points on "sides" not just "corners" so we just shrink all 4 at once for now: it should exclude all points!
 name|assertEquals
 argument_list|(
@@ -8447,6 +8426,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|r
 operator|.
 name|close
