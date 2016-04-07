@@ -253,6 +253,29 @@ name|long
 operator|)
 name|minLon
 decl_stmt|;
+if|if
+condition|(
+name|latitudeRange
+operator|<
+name|GRID_SIZE
+operator|||
+name|longitudeRange
+operator|<
+name|GRID_SIZE
+condition|)
+block|{
+comment|// don't complicate fill right now if you pass e.g. emptyish stuff: make an "empty grid"
+name|latPerCell
+operator|=
+name|lonPerCell
+operator|=
+name|Long
+operator|.
+name|MAX_VALUE
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|// we spill over the edge of the bounding box in each direction a bit,
 comment|// but it prevents edge case bugs.
 name|latPerCell
@@ -288,6 +311,7 @@ argument_list|,
 name|GRID_SIZE
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/** fills a 2D range of grid cells [minLatIndex .. maxLatIndex) X [minLonIndex .. maxLonIndex) */
 DECL|method|fill
