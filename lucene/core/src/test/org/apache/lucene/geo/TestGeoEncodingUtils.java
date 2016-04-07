@@ -350,7 +350,7 @@ expr_stmt|;
 comment|// test within the range
 if|if
 condition|(
-name|i
+name|encoded
 operator|!=
 name|Integer
 operator|.
@@ -663,7 +663,7 @@ expr_stmt|;
 comment|// test within the range
 if|if
 condition|(
-name|i
+name|encoded
 operator|!=
 name|Integer
 operator|.
