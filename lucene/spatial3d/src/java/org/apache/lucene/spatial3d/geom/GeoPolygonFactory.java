@@ -191,12 +191,19 @@ parameter_list|)
 block|{
 comment|// The basic operation uses a set of points, two points determining one particular edge, and a sided plane
 comment|// describing membership.
-return|return
-name|buildPolygonShape
-argument_list|(
+specifier|final
+name|GeoCompositePolygon
+name|rval
+init|=
 operator|new
 name|GeoCompositePolygon
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|buildPolygonShape
+argument_list|(
+name|rval
 argument_list|,
 name|planetModel
 argument_list|,
@@ -269,6 +276,16 @@ name|holes
 argument_list|,
 literal|null
 argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+return|return
+name|rval
 return|;
 block|}
 comment|/** Create a GeoPolygon using the specified points and holes, using order to determine     * siding of the polygon.  Much like ESRI, this method uses clockwise to indicate the space    * on the same side of the shape as being inside, and counter-clockwise to indicate the    * space on the opposite side as being inside.    * @param pointList is a list of the GeoPoints to build an arbitrary polygon out of.  If points go    *  clockwise from a given pole, then that pole should be within the polygon.  If points go    *  counter-clockwise, then that pole should be outside the polygon.    * @return a GeoPolygon corresponding to what was specified.    */
@@ -498,15 +515,18 @@ argument_list|)
 decl_stmt|;
 comment|// We don't know if this is the correct siding choice.  We will only know as we build the complex polygon.
 comment|// So we need to be prepared to try both possibilities.
-specifier|final
-name|GeoPolygon
-name|trial
+name|GeoCompositePolygon
+name|rval
 init|=
-name|buildPolygonShape
-argument_list|(
 operator|new
 name|GeoCompositePolygon
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|buildPolygonShape
+argument_list|(
+name|rval
 argument_list|,
 name|planetModel
 argument_list|,
@@ -526,12 +546,8 @@ name|holes
 argument_list|,
 name|testPoint
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|trial
 operator|==
-literal|null
+literal|false
 condition|)
 block|{
 comment|// The testPoint was within the shape.  Was that intended?
@@ -541,12 +557,15 @@ name|testPointInside
 condition|)
 block|{
 comment|// Yes: build it for real
-return|return
-name|buildPolygonShape
-argument_list|(
+name|rval
+operator|=
 operator|new
 name|GeoCompositePolygon
 argument_list|()
+expr_stmt|;
+name|buildPolygonShape
+argument_list|(
+name|rval
 argument_list|,
 name|planetModel
 argument_list|,
@@ -566,15 +585,21 @@ name|holes
 argument_list|,
 literal|null
 argument_list|)
+expr_stmt|;
+return|return
+name|rval
 return|;
 block|}
 comment|// No: do the complement and return that.
-return|return
-name|buildPolygonShape
-argument_list|(
+name|rval
+operator|=
 operator|new
 name|GeoCompositePolygon
 argument_list|()
+expr_stmt|;
+name|buildPolygonShape
+argument_list|(
+name|rval
 argument_list|,
 name|planetModel
 argument_list|,
@@ -598,6 +623,9 @@ name|holes
 argument_list|,
 literal|null
 argument_list|)
+expr_stmt|;
+return|return
+name|rval
 return|;
 block|}
 else|else
@@ -611,16 +639,19 @@ condition|)
 block|{
 comment|// Yes: return what we just built
 return|return
-name|trial
+name|rval
 return|;
 block|}
 comment|// No: return the complement
-return|return
-name|buildPolygonShape
-argument_list|(
+name|rval
+operator|=
 operator|new
 name|GeoCompositePolygon
 argument_list|()
+expr_stmt|;
+name|buildPolygonShape
+argument_list|(
+name|rval
 argument_list|,
 name|planetModel
 argument_list|,
@@ -644,6 +675,9 @@ name|holes
 argument_list|,
 literal|null
 argument_list|)
+expr_stmt|;
+return|return
+name|rval
 return|;
 block|}
 block|}
@@ -1191,11 +1225,11 @@ name|y2
 argument_list|)
 return|;
 block|}
-comment|/** Build a GeoPolygon out of one concave part and multiple convex parts given points, starting edge, and whether starting edge is internal or not.    * @param rval is the composite polygon to add to.    * @param planetModel is the planet model.    * @param pointsList is a list of the GeoPoints to build an arbitrary polygon out of.    * @param internalEdges specifies which edges are internal.    * @param startPointIndex is the first of the points, constituting the starting edge.    * @param startingEdge is the plane describing the starting edge.    * @param holes is the list of holes in the polygon, or null if none.    * @param testPoint is an (optional) test point, which will be used to determine if we are generating    *  a shape with the proper sidedness.  It is passed in only when the test point is supposed to be outside    *  of the generated polygon.  In this case, if the generated polygon is found to contain the point, the    *  method exits early with a null return value.    *  This only makes sense in the context of evaluating both possible choices and using logic to determine    *  which result to use.  If the test point is supposed to be within the shape, then it must be outside of the    *  complement shape.  If the test point is supposed to be outside the shape, then it must be outside of the    *  original shape.  Either way, we can figure out the right thing to use.    * @return the GeoPolygon passed in in the rval parameter, or null if what was specified    *  was inconsistent with what we generated.  Specifically, if we specify an exterior point that is    *  found in the interior of the shape we create here we return null, which is a signal that we chose    *  our initial plane sidedness backwards.    */
+comment|/** Build a GeoPolygon out of one concave part and multiple convex parts given points, starting edge, and whether starting edge is internal or not.    * @param rval is the composite polygon to add to.    * @param planetModel is the planet model.    * @param pointsList is a list of the GeoPoints to build an arbitrary polygon out of.    * @param internalEdges specifies which edges are internal.    * @param startPointIndex is the first of the points, constituting the starting edge.    * @param startingEdge is the plane describing the starting edge.    * @param holes is the list of holes in the polygon, or null if none.    * @param testPoint is an (optional) test point, which will be used to determine if we are generating    *  a shape with the proper sidedness.  It is passed in only when the test point is supposed to be outside    *  of the generated polygon.  In this case, if the generated polygon is found to contain the point, the    *  method exits early with a null return value.    *  This only makes sense in the context of evaluating both possible choices and using logic to determine    *  which result to use.  If the test point is supposed to be within the shape, then it must be outside of the    *  complement shape.  If the test point is supposed to be outside the shape, then it must be outside of the    *  original shape.  Either way, we can figure out the right thing to use.    * @return false if what was specified    *  was inconsistent with what we generated.  Specifically, if we specify an exterior point that is    *  found in the interior of the shape we create here we return false, which is a signal that we chose    *  our initial plane sidedness backwards.    */
 DECL|method|buildPolygonShape
 specifier|public
 specifier|static
-name|GeoPolygon
+name|boolean
 name|buildPolygonShape
 parameter_list|(
 specifier|final
@@ -1330,7 +1364,7 @@ literal|null
 condition|)
 block|{
 return|return
-literal|null
+literal|false
 return|;
 block|}
 if|if
@@ -1633,10 +1667,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("Doing convex part...");
-specifier|final
-name|GeoPolygon
-name|thirdPoly
-init|=
+if|if
+condition|(
 name|buildPolygonShape
 argument_list|(
 name|rval
@@ -1659,19 +1691,15 @@ name|holes
 argument_list|,
 name|testPoint
 argument_list|)
-decl_stmt|;
-comment|//System.out.println("...done convex part.");
-if|if
-condition|(
-name|thirdPoly
 operator|==
-literal|null
+literal|false
 condition|)
 block|{
 return|return
-literal|null
+literal|false
 return|;
 block|}
+comment|//System.out.println("...done convex part.");
 comment|// The part preceding the bad edge, back to thePoint, needs to be recursively
 comment|// processed.  So, assemble what we need, which is basically a list of edges.
 name|Edge
@@ -1766,10 +1794,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("Doing first part...");
-specifier|final
-name|GeoPolygon
-name|firstPoly
-init|=
+if|if
+condition|(
 name|buildPolygonShape
 argument_list|(
 name|rval
@@ -1809,19 +1835,15 @@ name|holes
 argument_list|,
 name|testPoint
 argument_list|)
-decl_stmt|;
-comment|//System.out.println("...done first part.");
-if|if
-condition|(
-name|firstPoly
 operator|==
-literal|null
+literal|false
 condition|)
 block|{
 return|return
-literal|null
+literal|false
 return|;
 block|}
+comment|//System.out.println("...done first part.");
 specifier|final
 name|List
 argument_list|<
@@ -1912,10 +1934,8 @@ literal|true
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("Doing second part...");
-specifier|final
-name|GeoPolygon
-name|secondPoly
-init|=
+if|if
+condition|(
 name|buildPolygonShape
 argument_list|(
 name|rval
@@ -1955,21 +1975,17 @@ name|holes
 argument_list|,
 name|testPoint
 argument_list|)
-decl_stmt|;
-comment|//System.out.println("... done second part");
-if|if
-condition|(
-name|secondPoly
 operator|==
-literal|null
+literal|false
 condition|)
 block|{
 return|return
-literal|null
+literal|false
 return|;
 block|}
+comment|//System.out.println("... done second part");
 return|return
-name|rval
+literal|true
 return|;
 block|}
 block|}
@@ -1995,11 +2011,11 @@ literal|false
 condition|)
 block|{
 return|return
-literal|null
+literal|false
 return|;
 block|}
 return|return
-name|rval
+literal|true
 return|;
 block|}
 comment|/** Look for a concave polygon in the remainder of the edgebuffer.    * By this point, if there are any edges in the edgebuffer, they represent a concave polygon.    * @param planetModel is the planet model.    * @param rval is the composite polygon we're building.    * @param edgeBuffer is the edge buffer.    * @param holes is the optional list of holes.    * @param testPoint is the optional test point.    * @return true unless the testPoint caused failure.    */
