@@ -86,6 +86,70 @@ name|TestUtil
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|decodeLatitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|decodeLongitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|encodeLatitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|encodeLongitude
+import|;
+end_import
+
 begin_comment
 comment|/** tests against LatLonGrid (avoiding indexing/queries) */
 end_comment
@@ -148,8 +212,6 @@ decl_stmt|;
 name|int
 name|minLat
 init|=
-name|LatLonPoint
-operator|.
 name|encodeLatitude
 argument_list|(
 name|box
@@ -160,8 +222,6 @@ decl_stmt|;
 name|int
 name|maxLat
 init|=
-name|LatLonPoint
-operator|.
 name|encodeLatitude
 argument_list|(
 name|box
@@ -172,8 +232,6 @@ decl_stmt|;
 name|int
 name|minLon
 init|=
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|box
@@ -184,8 +242,6 @@ decl_stmt|;
 name|int
 name|maxLon
 init|=
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|box
@@ -263,15 +319,11 @@ name|polygon
 operator|.
 name|contains
 argument_list|(
-name|LatLonPoint
-operator|.
 name|decodeLatitude
 argument_list|(
 name|lat
 argument_list|)
 argument_list|,
-name|LatLonPoint
-operator|.
 name|decodeLongitude
 argument_list|(
 name|lon

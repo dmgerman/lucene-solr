@@ -246,6 +246,70 @@ name|TestUtil
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|decodeLatitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|decodeLongitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|encodeLatitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|encodeLongitude
+import|;
+end_import
+
 begin_comment
 comment|/** Simple tests for {@link LatLonPoint#newDistanceSort} */
 end_comment
@@ -445,7 +509,7 @@ index|]
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|462.1028401330432
+literal|462.1028401330431
 argument_list|,
 operator|(
 name|Double
@@ -700,7 +764,7 @@ index|]
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|462.1028401330432D
+literal|462.1028401330431D
 argument_list|,
 operator|(
 name|Double
@@ -1246,12 +1310,8 @@ comment|// pre-normalize up front, so we can just use quantized value for testin
 name|double
 name|lat
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLatitude
 argument_list|(
-name|LatLonPoint
-operator|.
 name|encodeLatitude
 argument_list|(
 name|latRaw
@@ -1261,12 +1321,8 @@ decl_stmt|;
 name|double
 name|lon
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLongitude
 argument_list|(
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|lonRaw

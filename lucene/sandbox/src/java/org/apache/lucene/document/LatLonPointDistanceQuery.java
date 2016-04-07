@@ -394,6 +394,70 @@ name|StringHelper
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|decodeLatitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|decodeLongitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|encodeLatitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|encodeLongitude
+import|;
+end_import
+
 begin_comment
 comment|/**  * Distance query for {@link LatLonPoint}.  */
 end_comment
@@ -627,8 +691,6 @@ name|NumericUtils
 operator|.
 name|intToSortableBytes
 argument_list|(
-name|LatLonPoint
-operator|.
 name|encodeLatitude
 argument_list|(
 name|box
@@ -645,8 +707,6 @@ name|NumericUtils
 operator|.
 name|intToSortableBytes
 argument_list|(
-name|LatLonPoint
-operator|.
 name|encodeLatitude
 argument_list|(
 name|box
@@ -686,8 +746,6 @@ name|NumericUtils
 operator|.
 name|intToSortableBytes
 argument_list|(
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|box
@@ -705,8 +763,6 @@ name|NumericUtils
 operator|.
 name|intToSortableBytes
 argument_list|(
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|box
@@ -726,8 +782,6 @@ name|NumericUtils
 operator|.
 name|intToSortableBytes
 argument_list|(
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|box
@@ -744,8 +798,6 @@ name|NumericUtils
 operator|.
 name|intToSortableBytes
 argument_list|(
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|box
@@ -1337,8 +1389,6 @@ block|}
 name|double
 name|latMin
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLatitude
 argument_list|(
 name|minPackedValue
@@ -1349,8 +1399,6 @@ decl_stmt|;
 name|double
 name|lonMin
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLongitude
 argument_list|(
 name|minPackedValue
@@ -1363,8 +1411,6 @@ decl_stmt|;
 name|double
 name|latMax
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLatitude
 argument_list|(
 name|maxPackedValue
@@ -1375,8 +1421,6 @@ decl_stmt|;
 name|double
 name|lonMax
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLongitude
 argument_list|(
 name|maxPackedValue
@@ -1710,8 +1754,6 @@ decl_stmt|;
 name|double
 name|docLatitude
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLatitude
 argument_list|(
 call|(
@@ -1727,8 +1769,6 @@ decl_stmt|;
 name|double
 name|docLongitude
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLongitude
 argument_list|(
 call|(

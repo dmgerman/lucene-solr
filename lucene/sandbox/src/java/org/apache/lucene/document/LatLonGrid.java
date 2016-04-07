@@ -60,6 +60,70 @@ name|FixedBitSet
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|decodeLatitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|decodeLongitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|encodeLatitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|encodeLongitude
+import|;
+end_import
+
 begin_comment
 comment|/**  * This is a temporary hack, until some polygon methods have better performance!  *<p>  * When this file is removed then we have made good progress! In general we don't call  * the point-in-polygon algorithm that much, because of how BKD divides up the data. But  * today the method is very slow (general to all polygons, linear with the number of vertices).  * At the same time polygon-rectangle relation operations are also slow in the same way, this  * just really ensures they are the bottleneck by removing most of the point-in-polygon calls.  *<p>  * See the "grid" algorithm description here: http://erich.realtimerendering.com/ptinpoly/  * A few differences:  *<ul>  *<li> We work in an integer encoding, so edge cases are simpler.  *<li> We classify each grid cell as "contained", "not contained", or "don't know".  *<li> We form a grid over a potentially complex multipolygon with holes.  *<li> Construction is less efficient because we do not do anything "smart" such  *        as following polygon edges.   *<li> Instead we construct a baby tree to reduce the number of relation operations,  *        which are currently expensive.  *</ul>  */
 end_comment
@@ -426,8 +490,6 @@ name|relate
 argument_list|(
 name|polygons
 argument_list|,
-name|LatLonPoint
-operator|.
 name|decodeLatitude
 argument_list|(
 operator|(
@@ -436,8 +498,6 @@ operator|)
 name|cellMinLat
 argument_list|)
 argument_list|,
-name|LatLonPoint
-operator|.
 name|decodeLatitude
 argument_list|(
 operator|(
@@ -446,8 +506,6 @@ operator|)
 name|cellMaxLat
 argument_list|)
 argument_list|,
-name|LatLonPoint
-operator|.
 name|decodeLongitude
 argument_list|(
 operator|(
@@ -456,8 +514,6 @@ operator|)
 name|cellMinLon
 argument_list|)
 argument_list|,
-name|LatLonPoint
-operator|.
 name|decodeLongitude
 argument_list|(
 operator|(
@@ -705,8 +761,6 @@ comment|// the grid is unsure (boundary): do a real test.
 name|double
 name|docLatitude
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLatitude
 argument_list|(
 name|latitude
@@ -715,8 +769,6 @@ decl_stmt|;
 name|double
 name|docLongitude
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLongitude
 argument_list|(
 name|longitude

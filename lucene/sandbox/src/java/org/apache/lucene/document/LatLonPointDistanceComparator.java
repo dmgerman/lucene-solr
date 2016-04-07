@@ -166,6 +166,70 @@ name|SloppyMath
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|decodeLatitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|decodeLongitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|encodeLatitude
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoEncodingUtils
+operator|.
+name|encodeLongitude
+import|;
+end_import
+
 begin_comment
 comment|/**  * Compares documents by distance from an origin point  *<p>  * When the least competitive item on the priority queue changes (setBottom), we recompute  * a bounding box representing competitive distance to the top-N. Then in compareBottom, we can  * quickly reject hits based on bounding box alone without computing distance for every element.  */
 end_comment
@@ -411,8 +475,6 @@ comment|// pre-encode our box to our integer encoding, so we don't have to decod
 comment|// to double values for uncompetitive hits. This has some cost!
 name|minLat
 operator|=
-name|LatLonPoint
-operator|.
 name|encodeLatitude
 argument_list|(
 name|box
@@ -422,8 +484,6 @@ argument_list|)
 expr_stmt|;
 name|maxLat
 operator|=
-name|LatLonPoint
-operator|.
 name|encodeLatitude
 argument_list|(
 name|box
@@ -448,8 +508,6 @@ name|MIN_VALUE
 expr_stmt|;
 name|maxLon
 operator|=
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|box
@@ -460,8 +518,6 @@ expr_stmt|;
 comment|// box2
 name|minLon2
 operator|=
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|box
@@ -474,8 +530,6 @@ else|else
 block|{
 name|minLon
 operator|=
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|box
@@ -485,8 +539,6 @@ argument_list|)
 expr_stmt|;
 name|maxLon
 operator|=
-name|LatLonPoint
-operator|.
 name|encodeLongitude
 argument_list|(
 name|box
@@ -668,8 +720,6 @@ comment|// only compute actual distance if its inside "competitive bounding box"
 name|double
 name|docLatitude
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLatitude
 argument_list|(
 name|latitudeBits
@@ -678,8 +728,6 @@ decl_stmt|;
 name|double
 name|docLongitude
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLongitude
 argument_list|(
 name|longitudeBits
@@ -938,8 +986,6 @@ decl_stmt|;
 name|double
 name|docLatitude
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLatitude
 argument_list|(
 call|(
@@ -955,8 +1001,6 @@ decl_stmt|;
 name|double
 name|docLongitude
 init|=
-name|LatLonPoint
-operator|.
 name|decodeLongitude
 argument_list|(
 call|(
