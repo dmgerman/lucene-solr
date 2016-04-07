@@ -445,7 +445,7 @@ index|]
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|462.1028401330432
+literal|462.1028401330431
 argument_list|,
 operator|(
 name|Double
@@ -700,7 +700,7 @@ index|]
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|462.1028401330432D
+literal|462.1028401330431D
 argument_list|,
 operator|(
 name|Double
