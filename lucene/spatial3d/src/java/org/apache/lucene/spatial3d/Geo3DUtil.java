@@ -313,6 +313,56 @@ return|return
 name|result
 return|;
 block|}
+comment|/** Returns smallest double that would encode to int x. */
+comment|// NOTE: keep this package private!!
+DECL|method|decodeValueFloor
+specifier|static
+name|double
+name|decodeValueFloor
+parameter_list|(
+name|int
+name|x
+parameter_list|)
+block|{
+return|return
+name|x
+operator|*
+name|DECODE
+return|;
+block|}
+comment|/** Returns largest double that would encode to int x. */
+comment|// NOTE: keep this package private!!
+DECL|method|decodeValueCeil
+specifier|static
+name|double
+name|decodeValueCeil
+parameter_list|(
+name|int
+name|x
+parameter_list|)
+block|{
+assert|assert
+name|x
+operator|<
+name|Integer
+operator|.
+name|MAX_VALUE
+assert|;
+return|return
+name|Math
+operator|.
+name|nextDown
+argument_list|(
+operator|(
+name|x
+operator|+
+literal|1
+operator|)
+operator|*
+name|DECODE
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 
