@@ -319,6 +319,7 @@ argument_list|(
 name|enc
 argument_list|)
 decl_stmt|;
+comment|// todo remove tolerance
 name|assertEquals
 argument_list|(
 literal|"lat="
@@ -341,9 +342,7 @@ name|lat
 argument_list|,
 name|latEnc
 argument_list|,
-name|GeoEncodingUtils
-operator|.
-name|TOLERANCE
+literal|1e-6
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -368,9 +367,7 @@ name|lon
 argument_list|,
 name|lonEnc
 argument_list|,
-name|GeoEncodingUtils
-operator|.
-name|TOLERANCE
+literal|1e-6
 argument_list|)
 expr_stmt|;
 block|}
