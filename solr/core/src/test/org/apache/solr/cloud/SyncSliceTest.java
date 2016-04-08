@@ -726,8 +726,7 @@ init|(
 name|HttpSolrClient
 name|baseClient
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|baseUrl
 argument_list|)

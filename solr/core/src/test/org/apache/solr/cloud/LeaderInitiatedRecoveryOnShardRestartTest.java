@@ -555,8 +555,7 @@ decl_stmt|;
 name|HttpSolrClient
 name|delClient
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|baseUrl
 operator|.

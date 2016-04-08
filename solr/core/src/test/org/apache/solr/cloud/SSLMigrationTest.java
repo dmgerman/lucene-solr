@@ -917,8 +917,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|//Create new SolrServer to configure new HttpClient w/ SSL config
-operator|new
-name|LBHttpSolrClient
+name|getLBHttpSolrClient
 argument_list|(
 name|urls
 operator|.

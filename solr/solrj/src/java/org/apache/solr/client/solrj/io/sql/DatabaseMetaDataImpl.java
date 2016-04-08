@@ -183,6 +183,8 @@ operator|.
 name|impl
 operator|.
 name|HttpSolrClient
+operator|.
+name|Builder
 import|;
 end_import
 
@@ -557,10 +559,13 @@ decl_stmt|;
 name|solrClient
 operator|=
 operator|new
-name|HttpSolrClient
+name|Builder
 argument_list|(
 name|nodeURL
 argument_list|)
+operator|.
+name|build
+argument_list|()
 expr_stmt|;
 name|QueryResponse
 name|rsp

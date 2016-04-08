@@ -883,8 +883,7 @@ comment|//solrServer = new ConcurrentUpdateSolrServer(EXTERNAL_SOLR_SERVER_URL, 
 comment|//solrServer = new SafeConcurrentUpdateSolrServer(EXTERNAL_SOLR_SERVER_URL, 2, 2);
 name|solrClient
 operator|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|EXTERNAL_SOLR_SERVER_URL
 argument_list|)

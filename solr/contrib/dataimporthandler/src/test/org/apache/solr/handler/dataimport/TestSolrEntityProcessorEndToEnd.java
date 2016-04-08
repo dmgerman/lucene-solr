@@ -1639,8 +1639,7 @@ init|(
 name|HttpSolrClient
 name|solrServer
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|getSourceUrl
 argument_list|()

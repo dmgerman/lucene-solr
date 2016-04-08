@@ -19,6 +19,20 @@ package|;
 end_package
 
 begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
+operator|.
+name|getHttpSolrClient
+import|;
+end_import
+
+begin_import
 import|import
 name|org
 operator|.
@@ -135,8 +149,7 @@ init|(
 name|HttpSolrClient
 name|client
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 literal|"http://[ff01::114]:11235/solr/"
 argument_list|,

@@ -841,8 +841,7 @@ name|NODE_CLIENTS
 operator|.
 name|add
 argument_list|(
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|jettyURL
 operator|.

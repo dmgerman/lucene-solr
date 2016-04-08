@@ -601,8 +601,7 @@ condition|)
 block|{
 name|client
 operator|=
-operator|new
-name|ConcurrentUpdateSolrClient
+name|getConcurrentUpdateSolrClient
 argument_list|(
 name|url
 operator|.
@@ -629,8 +628,7 @@ condition|)
 block|{
 name|client
 operator|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|url
 operator|.
@@ -651,8 +649,7 @@ condition|)
 block|{
 name|client
 operator|=
-operator|new
-name|CloudSolrClient
+name|getCloudSolrClient
 argument_list|(
 name|zkServer
 operator|.

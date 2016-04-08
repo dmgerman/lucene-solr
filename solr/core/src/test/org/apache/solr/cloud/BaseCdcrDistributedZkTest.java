@@ -1121,8 +1121,7 @@ block|{
 name|CloudSolrClient
 name|server
 init|=
-operator|new
-name|CloudSolrClient
+name|getCloudSolrClient
 argument_list|(
 name|zkServer
 operator|.
@@ -4243,8 +4242,7 @@ comment|// setup the server...
 name|HttpSolrClient
 name|s
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|baseUrl
 argument_list|)
