@@ -20,15 +20,21 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|analysis
+name|util
 operator|.
-name|Analyzer
+name|Random
 import|;
 end_import
 
@@ -98,7 +104,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|TextField
+name|SortedDocValuesField
 import|;
 end_import
 
@@ -110,9 +116,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|document
 operator|.
-name|LeafReader
+name|TextField
 import|;
 end_import
 
@@ -141,6 +147,20 @@ operator|.
 name|index
 operator|.
 name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReader
 import|;
 end_import
 
@@ -196,7 +216,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|TestUtil
+name|BytesRef
 import|;
 end_import
 
@@ -211,6 +231,20 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|TestUtil
 import|;
 end_import
 
@@ -244,26 +278,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Random
-import|;
-end_import
-
 begin_comment
 comment|/**  * Testcase for {@link org.apache.lucene.classification.utils.DatasetSplitter}  */
 end_comment
@@ -293,6 +307,8 @@ name|dir
 decl_stmt|;
 DECL|field|textFieldName
 specifier|private
+specifier|static
+specifier|final
 name|String
 name|textFieldName
 init|=
@@ -300,6 +316,8 @@ literal|"text"
 decl_stmt|;
 DECL|field|classFieldName
 specifier|private
+specifier|static
+specifier|final
 name|String
 name|classFieldName
 init|=
@@ -307,6 +325,8 @@ literal|"class"
 decl_stmt|;
 DECL|field|idFieldName
 specifier|private
+specifier|static
+specifier|final
 name|String
 name|idFieldName
 init|=
@@ -395,7 +415,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
+literal|1000
 condition|;
 name|i
 operator|++
@@ -416,6 +436,8 @@ name|Field
 argument_list|(
 name|idFieldName
 argument_list|,
+literal|"id"
+operator|+
 name|Integer
 operator|.
 name|toString
@@ -458,13 +480,16 @@ name|Field
 argument_list|(
 name|classFieldName
 argument_list|,
-name|TestUtil
+name|Integer
 operator|.
-name|randomUnicodeString
+name|toString
 argument_list|(
 name|rnd
-argument_list|,
+operator|.
+name|nextInt
+argument_list|(
 literal|10
+argument_list|)
 argument_list|)
 argument_list|,
 name|ft
@@ -651,6 +676,10 @@ name|random
 argument_list|()
 argument_list|)
 argument_list|,
+literal|true
+argument_list|,
+name|classFieldName
+argument_list|,
 name|fieldNames
 argument_list|)
 expr_stmt|;
@@ -679,7 +708,7 @@ argument_list|(
 name|trainingIndex
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 call|(
 name|int
@@ -698,11 +727,13 @@ operator|-
 name|crossValidationRatio
 operator|)
 argument_list|)
-operator|==
+argument_list|,
 name|trainingReader
 operator|.
 name|maxDoc
 argument_list|()
+argument_list|,
+literal|20
 argument_list|)
 expr_stmt|;
 name|DirectoryReader
@@ -715,7 +746,7 @@ argument_list|(
 name|testIndex
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 call|(
 name|int
@@ -728,11 +759,13 @@ argument_list|()
 operator|*
 name|testRatio
 argument_list|)
-operator|==
+argument_list|,
 name|testReader
 operator|.
 name|maxDoc
 argument_list|()
+argument_list|,
+literal|20
 argument_list|)
 expr_stmt|;
 name|DirectoryReader
@@ -745,7 +778,7 @@ argument_list|(
 name|crossValidationIndex
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 call|(
 name|int
@@ -758,11 +791,13 @@ argument_list|()
 operator|*
 name|crossValidationRatio
 argument_list|)
-operator|==
+argument_list|,
 name|cvReader
 operator|.
 name|maxDoc
 argument_list|()
+argument_list|,
+literal|20
 argument_list|)
 expr_stmt|;
 name|trainingReader
