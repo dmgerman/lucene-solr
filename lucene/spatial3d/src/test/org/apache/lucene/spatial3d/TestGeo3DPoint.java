@@ -3506,6 +3506,114 @@ name|lons
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testPolygonOrdering
+specifier|public
+name|void
+name|testPolygonOrdering
+parameter_list|()
+block|{
+specifier|final
+name|double
+index|[]
+name|lats
+init|=
+operator|new
+name|double
+index|[]
+block|{
+literal|51.204382859999996
+block|,
+literal|50.89947531437482
+block|,
+literal|50.8093624806861
+block|,
+literal|50.8093624806861
+block|,
+literal|50.89947531437482
+block|,
+literal|51.204382859999996
+block|,
+literal|51.51015366140113
+block|,
+literal|51.59953838204167
+block|,
+literal|51.59953838204167
+block|,
+literal|51.51015366140113
+block|,
+literal|51.204382859999996
+block|}
+decl_stmt|;
+specifier|final
+name|double
+index|[]
+name|lons
+init|=
+operator|new
+name|double
+index|[]
+block|{
+literal|0.8747711978759765
+block|,
+literal|0.6509219832137298
+block|,
+literal|0.35960265165247807
+block|,
+literal|0.10290284834752167
+block|,
+operator|-
+literal|0.18841648321373008
+block|,
+operator|-
+literal|0.41226569787597667
+block|,
+operator|-
+literal|0.18960465285650027
+block|,
+literal|0.10285893781346236
+block|,
+literal|0.35964656218653757
+block|,
+literal|0.6521101528565002
+block|,
+literal|0.8747711978759765
+block|}
+decl_stmt|;
+specifier|final
+name|Query
+name|q
+init|=
+name|Geo3DPoint
+operator|.
+name|newPolygonQuery
+argument_list|(
+literal|"point"
+argument_list|,
+operator|new
+name|Polygon
+argument_list|(
+name|lats
+argument_list|,
+name|lons
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|//System.out.println(q);
+name|assertTrue
+argument_list|(
+operator|!
+name|q
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"GeoConcavePolygon"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 DECL|field|MEAN_EARTH_RADIUS_METERS
 specifier|private
 specifier|static
@@ -6368,20 +6476,20 @@ comment|// Coordinate rotation formula:
 comment|// x1 = x0 cos T - y0 sin T
 comment|// y1 = x0 sin T + y0 cos T
 comment|// We're in essence undoing the following transformation (from GeoPolygonFactory):
-comment|// x1 = x0 cos az - y0 sin az
-comment|// y1 = x0 sin az + y0 cos az
+comment|// x1 = x0 cos az + y0 sin az
+comment|// y1 = - x0 sin az + y0 cos az
 comment|// z1 = z0
-comment|// x2 = x1 cos al - z1 sin al
+comment|// x2 = x1 cos al + z1 sin al
 comment|// y2 = y1
-comment|// z2 = x1 sin al + z1 cos al
+comment|// z2 = - x1 sin al + z1 cos al
 comment|// So, we reverse the order of the transformations, AND we transform backwards.
 comment|// Transforming backwards means using these identities: sin(-angle) = -sin(angle), cos(-angle) = cos(angle)
 comment|// So:
-comment|// x1 = x0 cos al + z0 sin al
+comment|// x1 = x0 cos al - z0 sin al
 comment|// y1 = y0
-comment|// z1 = - x0 sin al + z0 cos al
-comment|// x2 = x1 cos az + y1 sin az
-comment|// y2 = - x1 sin az + y1 cos az
+comment|// z1 = x0 sin al + z0 cos al
+comment|// x2 = x1 cos az - y1 sin az
+comment|// y2 = x1 sin az + y1 cos az
 comment|// z2 = z1
 specifier|final
 name|double
@@ -6390,7 +6498,7 @@ init|=
 name|x
 operator|*
 name|cosLatitude
-operator|+
+operator|-
 name|z
 operator|*
 name|sinLatitude
@@ -6405,7 +6513,6 @@ specifier|final
 name|double
 name|z1
 init|=
-operator|-
 name|x
 operator|*
 name|sinLatitude
@@ -6421,7 +6528,7 @@ init|=
 name|x1
 operator|*
 name|cosLongitude
-operator|+
+operator|-
 name|y1
 operator|*
 name|sinLongitude
@@ -6430,7 +6537,6 @@ specifier|final
 name|double
 name|y2
 init|=
-operator|-
 name|x1
 operator|*
 name|sinLongitude
