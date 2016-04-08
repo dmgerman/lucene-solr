@@ -488,6 +488,9 @@ argument_list|,
 name|categoryFieldName
 argument_list|,
 name|textFieldName
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 decl_stmt|;
 name|assertNotNull
