@@ -18,6 +18,16 @@ name|geom
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
 begin_comment
 comment|/**  * 3D rectangle, bounded on six sides by X,Y,Z limits  *  * @lucene.internal  */
 end_comment
@@ -856,6 +866,10 @@ argument_list|,
 name|maxYmaxZ
 argument_list|)
 expr_stmt|;
+comment|//System.err.println(
+comment|//  " notableMinXPoints="+Arrays.asList(notableMinXPoints)+" notableMaxXPoints="+Arrays.asList(notableMaxXPoints)+
+comment|//  " notableMinYPoints="+Arrays.asList(notableMinYPoints)+" notableMaxYPoints="+Arrays.asList(notableMaxYPoints)+
+comment|//  " notableMinZPoints="+Arrays.asList(notableMinZPoints)+" notableMaxZPoints="+Arrays.asList(notableMaxZPoints));
 comment|// Now, compute the edge points.
 comment|// This is the trickiest part of setting up an XYZSolid.  We've computed intersections already, so
 comment|// we'll start there.
@@ -988,6 +1002,9 @@ argument_list|,
 name|maxZ
 argument_list|)
 decl_stmt|;
+comment|//System.err.println("Outside world: minXminYminZ="+minXminYminZ+" minXminYmaxZ="+minXminYmaxZ+" minXmaxYminZ="+minXmaxYminZ+
+comment|//  " minXmaxYmaxZ="+minXmaxYmaxZ+" maxXminYminZ="+maxXminYminZ+" maxXminYmaxZ="+maxXminYmaxZ+" maxXmaxYminZ="+maxXmaxYminZ+
+comment|//  " maxXmaxYmaxZ="+maxXmaxYmaxZ);
 comment|// Look at single-plane/world intersections.
 comment|// We detect these by looking at the world model and noting its x, y, and z bounds.
 specifier|final
@@ -1579,6 +1596,10 @@ operator|=
 name|EMPTY_POINTS
 expr_stmt|;
 block|}
+comment|//System.err.println(
+comment|//  " minXEdges="+Arrays.asList(minXEdges)+" maxXEdges="+Arrays.asList(maxXEdges)+
+comment|//  " minYEdges="+Arrays.asList(minYEdges)+" maxYEdges="+Arrays.asList(maxYEdges)+
+comment|//  " minZEdges="+Arrays.asList(minZEdges)+" maxZEdges="+Arrays.asList(maxZEdges));
 comment|// Glue everything together.  This is not a minimal set of edgepoints, as of now, but it does completely describe all shapes on the
 comment|// planet.
 name|this

@@ -1454,6 +1454,7 @@ condition|)
 block|{
 continue|continue;
 block|}
+comment|// Look for a point that is on the wrong side of the check edge.  This means that we can't build the polygon.
 specifier|final
 name|GeoPoint
 name|thePoint
@@ -1545,7 +1546,11 @@ operator|!=
 literal|null
 condition|)
 block|{
-comment|// Found a split!!
+comment|// thePoint is on the wrong side of the complementary plane.  That means we cannot build a concave polygon, because the complement would not
+comment|// be a legal convex polygon.
+comment|// But we can take advantage of the fact that the distance between the edge and thePoint is less than 180 degrees, and so we can split the
+comment|// would-be concave polygon into three segments.  The first segment includes the edge and thePoint, and uses the sense of the edge to determine the sense
+comment|// of the polygon.
 comment|// This should be the only problematic part of the polygon.
 comment|// We know that thePoint is on the "wrong" side of the edge -- that is, it's on the side that the
 comment|// edge is pointing at.
@@ -1657,6 +1662,7 @@ literal|false
 return|;
 block|}
 comment|//System.out.println("...done convex part.");
+comment|// ??? check if we get the sense right
 comment|// The part preceding the bad edge, back to thePoint, needs to be recursively
 comment|// processed.  So, assemble what we need, which is basically a list of edges.
 name|Edge
@@ -1917,13 +1923,13 @@ name|SidedPlane
 argument_list|(
 name|checkEdge
 operator|.
-name|endPoint
+name|startPoint
 argument_list|,
-literal|true
+literal|false
 argument_list|,
 name|checkEdge
 operator|.
-name|startPoint
+name|endPoint
 argument_list|,
 name|thePoint
 argument_list|)

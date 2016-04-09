@@ -5120,6 +5120,18 @@ operator|!=
 name|expected
 condition|)
 block|{
+name|GeoPoint
+name|scaledPoint
+init|=
+name|PlanetModel
+operator|.
+name|WGS84
+operator|.
+name|createSurfacePoint
+argument_list|(
+name|point
+argument_list|)
+decl_stmt|;
 name|StringBuilder
 name|b
 init|=
@@ -5172,6 +5184,69 @@ name|query
 operator|)
 operator|.
 name|getShape
+argument_list|()
+operator|+
+literal|"\n"
+argument_list|)
+expr_stmt|;
+name|b
+operator|.
+name|append
+argument_list|(
+literal|"  world bounds=("
+operator|+
+literal|" minX="
+operator|+
+name|PlanetModel
+operator|.
+name|WGS84
+operator|.
+name|getMinimumXValue
+argument_list|()
+operator|+
+literal|" maxX="
+operator|+
+name|PlanetModel
+operator|.
+name|WGS84
+operator|.
+name|getMaximumXValue
+argument_list|()
+operator|+
+literal|" minY="
+operator|+
+name|PlanetModel
+operator|.
+name|WGS84
+operator|.
+name|getMinimumYValue
+argument_list|()
+operator|+
+literal|" maxY="
+operator|+
+name|PlanetModel
+operator|.
+name|WGS84
+operator|.
+name|getMaximumYValue
+argument_list|()
+operator|+
+literal|" minZ="
+operator|+
+name|PlanetModel
+operator|.
+name|WGS84
+operator|.
+name|getMinimumZValue
+argument_list|()
+operator|+
+literal|" maxZ="
+operator|+
+name|PlanetModel
+operator|.
+name|WGS84
+operator|.
+name|getMaximumZValue
 argument_list|()
 operator|+
 literal|"\n"
@@ -5240,6 +5315,8 @@ name|getShape
 argument_list|()
 argument_list|,
 name|point
+argument_list|,
+name|scaledPoint
 argument_list|,
 name|r
 argument_list|,
@@ -5337,7 +5414,7 @@ parameter_list|()
 block|{
 name|assertEquals
 argument_list|(
-literal|"PointInGeo3DShapeQuery: field=point: Shape: GeoStandardCircle: {planetmodel=PlanetModel.WGS84, center=[lat=0.7722082215479366, lon=0.13560747521073413], radius=0.1(5.729577951308232)}"
+literal|"PointInGeo3DShapeQuery: field=point: Shape: GeoStandardCircle: {planetmodel=PlanetModel.WGS84, center=[lat=0.7722082215479366, lon=0.13560747521073413([X=0.7094263130137863, Y=0.09679758930862137, Z=0.6973564619248455])], radius=0.1(5.729577951308232)}"
 argument_list|,
 name|Geo3DPoint
 operator|.
@@ -7893,6 +7970,11 @@ specifier|final
 name|GeoPoint
 name|targetDocPoint
 decl_stmt|;
+DECL|field|scaledDocPoint
+specifier|final
+name|GeoPoint
+name|scaledDocPoint
+decl_stmt|;
 DECL|field|in
 specifier|final
 name|IntersectVisitor
@@ -7961,6 +8043,9 @@ parameter_list|,
 name|GeoPoint
 name|targetDocPoint
 parameter_list|,
+name|GeoPoint
+name|scaledDocPoint
+parameter_list|,
 name|IntersectVisitor
 name|in
 parameter_list|,
@@ -7988,6 +8073,12 @@ operator|.
 name|targetDocPoint
 operator|=
 name|targetDocPoint
+expr_stmt|;
+name|this
+operator|.
+name|scaledDocPoint
+operator|=
+name|scaledDocPoint
 expr_stmt|;
 name|this
 operator|.
@@ -8748,6 +8839,28 @@ name|targetDocPoint
 argument_list|)
 decl_stmt|;
 specifier|final
+name|boolean
+name|scaledWithinShape
+init|=
+name|shape
+operator|.
+name|isWithin
+argument_list|(
+name|scaledDocPoint
+argument_list|)
+decl_stmt|;
+specifier|final
+name|boolean
+name|scaledWithinCell
+init|=
+name|xyzSolid
+operator|.
+name|isWithin
+argument_list|(
+name|scaledDocPoint
+argument_list|)
+decl_stmt|;
+specifier|final
 name|String
 name|relationshipString
 decl_stmt|;
@@ -8839,6 +8952,14 @@ operator|+
 literal|"; Point within shape = "
 operator|+
 name|pointWithinShape
+operator|+
+literal|"; Scaled point within cell = "
+operator|+
+name|scaledWithinCell
+operator|+
+literal|"; Scaled point within shape = "
+operator|+
+name|scaledWithinShape
 return|;
 block|}
 annotation|@
@@ -8938,6 +9059,9 @@ parameter_list|,
 name|GeoPoint
 name|targetDocPoint
 parameter_list|,
+name|GeoPoint
+name|scaledDocPoint
+parameter_list|,
 name|IndexReader
 name|reader
 parameter_list|,
@@ -9022,6 +9146,8 @@ argument_list|(
 name|shape
 argument_list|,
 name|targetDocPoint
+argument_list|,
+name|scaledDocPoint
 argument_list|,
 operator|new
 name|PointInShapeIntersectVisitor

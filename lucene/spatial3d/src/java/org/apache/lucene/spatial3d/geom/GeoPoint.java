@@ -777,7 +777,14 @@ operator|+
 name|getLongitude
 argument_list|()
 operator|+
-literal|"]"
+literal|"("
+operator|+
+name|super
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|")]"
 return|;
 block|}
 block|}
