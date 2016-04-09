@@ -5292,12 +5292,22 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Geo3DPoint<point: x=0.7094263130517758 y=0.09679758927665334 z=0.6973564618592686>"
+literal|"Geo3DPoint<point: x="
 argument_list|,
 name|point
 operator|.
 name|toString
 argument_list|()
+operator|.
+name|substring
+argument_list|(
+literal|0
+argument_list|,
+literal|"Geo3DPoint<point: x="
+operator|.
+name|length
+argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
