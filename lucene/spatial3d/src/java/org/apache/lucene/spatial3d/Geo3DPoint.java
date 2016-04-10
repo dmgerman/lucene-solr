@@ -307,7 +307,7 @@ name|Field
 block|{
 comment|/** How many radians are in one earth surface meter */
 DECL|field|RADIANS_PER_METER
-specifier|protected
+specifier|public
 specifier|final
 specifier|static
 name|double
@@ -318,6 +318,20 @@ operator|/
 name|PlanetModel
 operator|.
 name|WGS84_MEAN
+decl_stmt|;
+comment|/** How many radians are in one degree */
+DECL|field|RADIANS_PER_DEGREE
+specifier|public
+specifier|final
+specifier|static
+name|double
+name|RADIANS_PER_DEGREE
+init|=
+name|Math
+operator|.
+name|PI
+operator|/
+literal|180.0
 decl_stmt|;
 comment|/** Indexing {@link FieldType}. */
 DECL|field|TYPE
@@ -427,7 +441,7 @@ expr_stmt|;
 block|}
 comment|/** Converts degress to radians */
 DECL|method|fromDegrees
-specifier|protected
+specifier|private
 specifier|static
 name|double
 name|fromDegrees
@@ -438,17 +452,14 @@ name|degrees
 parameter_list|)
 block|{
 return|return
-name|Math
-operator|.
-name|toRadians
-argument_list|(
 name|degrees
-argument_list|)
+operator|*
+name|RADIANS_PER_DEGREE
 return|;
 block|}
 comment|/** Converts earth-surface meters to radians */
 DECL|method|fromMeters
-specifier|protected
+specifier|private
 specifier|static
 name|double
 name|fromMeters
