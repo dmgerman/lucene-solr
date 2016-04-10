@@ -6671,64 +6671,17 @@ name|z2
 init|=
 name|z1
 decl_stmt|;
-comment|// Scale final (x,y,z) to land on planet surface
-comment|// Equation of ellipsoid:  x^2 / a^2 + y^2 / b^2 + z^2 / c^2 - 1 = 0
-comment|// Use a parameterization, e.g. x = t * x2, y = t * y2, z = t * z2, and find t.
-comment|// t^2 ( x2^2 / a^2 + y2^2 / b^2 + z2^2 / c^2 ) = 1
-comment|// t = +/- sqrt( 1 / ( x2^2 / a^2 + y2^2 / b^2 + z2^2 / c^2 ) )
-comment|// We want the + variant because we're scaling in the same direction as the original vector.
-specifier|final
-name|double
-name|t
-init|=
-name|Math
-operator|.
-name|sqrt
-argument_list|(
-literal|1.0
-operator|/
-operator|(
-name|x2
-operator|*
-name|x2
-operator|*
-name|pm
-operator|.
-name|inverseAbSquared
-operator|+
-name|y2
-operator|*
-name|y2
-operator|*
-name|pm
-operator|.
-name|inverseAbSquared
-operator|+
-name|z2
-operator|*
-name|z2
-operator|*
-name|pm
-operator|.
-name|inverseCSquared
-operator|)
-argument_list|)
-decl_stmt|;
+comment|// Scale to put the point on the surface
 return|return
-operator|new
-name|GeoPoint
+name|pm
+operator|.
+name|createSurfacePoint
 argument_list|(
 name|x2
-operator|*
-name|t
 argument_list|,
 name|y2
-operator|*
-name|t
 argument_list|,
 name|z2
-operator|*
-name|t
 argument_list|)
 return|;
 block|}
