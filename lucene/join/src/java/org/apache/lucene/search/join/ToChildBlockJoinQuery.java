@@ -458,7 +458,15 @@ name|Term
 argument_list|>
 name|terms
 parameter_list|)
-block|{}
+block|{
+name|parentWeight
+operator|.
+name|extractTerms
+argument_list|(
+name|terms
+argument_list|)
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|getValueForNormalization
