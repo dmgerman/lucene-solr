@@ -191,6 +191,7 @@ parameter_list|)
 block|{
 comment|// The basic operation uses a set of points, two points determining one particular edge, and a sided plane
 comment|// describing membership.
+comment|//System.out.println("Initial point list = "+pointList+"; convexPointIndex = "+convexPointIndex+"; holes = "+holes);
 specifier|final
 name|GeoCompositePolygon
 name|rval
@@ -1520,6 +1521,7 @@ argument_list|,
 name|startingEdge
 argument_list|)
 decl_stmt|;
+comment|/*     // Verify that the polygon does not self-intersect     // Now, look for non-adjacent edges that cross.     System.err.println("Looking for intersections...");     System.err.println("Starting edge is: "+startingEdge);     final Iterator<Edge> edgeIterator = edgeBuffer.iterator();     while (edgeIterator.hasNext()) {       final Edge edge = edgeIterator.next();       final Set<Edge> excludedEdges = new HashSet<>();       excludedEdges.add(edge);       Edge oneBoundary = edgeBuffer.getPrevious(edge);       while (oneBoundary.plane.isNumericallyIdentical(edge.plane)) {         excludedEdges.add(oneBoundary);         oneBoundary = edgeBuffer.getPrevious(oneBoundary);       }       excludedEdges.add(oneBoundary);       Edge otherBoundary = edgeBuffer.getNext(edge);       while (otherBoundary.plane.isNumericallyIdentical(edge.plane)) {         excludedEdges.add(otherBoundary);         otherBoundary = edgeBuffer.getNext(otherBoundary);       }       excludedEdges.add(otherBoundary);        // Now go through all other edges and rule out any intersections       final Iterator<Edge> compareIterator = edgeBuffer.iterator();       while (compareIterator.hasNext()) {         final Edge compareEdge = compareIterator.next();         if (!excludedEdges.contains(compareEdge)) {           // Found an edge we can compare with!           //System.err.println("Found a compare edge...");           boolean nonOverlapping = true;           // We need the other boundaries though.           Edge oneCompareBoundary = edgeBuffer.getPrevious(compareEdge);           while (oneCompareBoundary.plane.isNumericallyIdentical(compareEdge.plane)) {             if (excludedEdges.contains(oneCompareBoundary)) {               //System.err.println(" excluded because oneCompareBoundary found to be in set");               nonOverlapping = false;               break;             }             oneCompareBoundary = edgeBuffer.getPrevious(oneCompareBoundary);           }           Edge otherCompareBoundary = edgeBuffer.getNext(compareEdge);           while (otherCompareBoundary.plane.isNumericallyIdentical(compareEdge.plane)) {             if (excludedEdges.contains(otherCompareBoundary)) {               //System.err.println(" excluded because otherCompareBoundary found to be in set");               nonOverlapping = false;               break;             }             otherCompareBoundary = edgeBuffer.getNext(otherCompareBoundary);           }           if (nonOverlapping) {             //System.err.println("Preparing to call findIntersections...");             // Finally do an intersection test             if (edge.plane.findIntersections(planetModel, compareEdge.plane, oneBoundary.plane, otherBoundary.plane, oneCompareBoundary.plane, otherCompareBoundary.plane).length> 0) {               throw new IllegalArgumentException("polygon has intersecting edges");             }           }         }       }     }     */
 comment|// Starting state:
 comment|// The stopping point
 name|Edge
@@ -4045,6 +4047,11 @@ name|startPlane
 parameter_list|)
 block|{
 comment|/*       System.out.println("Initial points:");       for (final GeoPoint p : pointList) {         System.out.println(" "+p);       }       */
+comment|// We need to detect backtracks, and also situations where someone has tried to stitch together multiple segments into one long arc (> 180 degrees).
+comment|// To do this, every time we extend by a coplanar segment, we compute the total arc distance to the new endpoint, as
+comment|// well as a sum of the arc distances we've accumulated as we march forward.  If these two numbers disagree, then
+comment|// we know there has been a backtrack or other anomaly.
+comment|// extend the edge, we compute the distance along the
 specifier|final
 name|Edge
 name|startEdge
@@ -4170,6 +4177,12 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+comment|// Compute the arc distance before we try to extend
+name|double
+name|accumulatedDistance
+init|=
+literal|0.0
+decl_stmt|;
 specifier|final
 name|Plane
 name|checkPlane
@@ -4245,15 +4258,93 @@ name|index
 expr_stmt|;
 break|break;
 block|}
-block|}
-if|if
-condition|(
-name|checkPointIndex
-operator|==
+else|else
+block|{
+name|accumulatedDistance
+operator|+=
+name|pointList
+operator|.
+name|get
+argument_list|(
+name|getLegalIndex
+argument_list|(
+name|index
+operator|+
+literal|1
+argument_list|,
+name|pointList
+operator|.
+name|size
+argument_list|()
+argument_list|)
+argument_list|)
+operator|.
+name|arcDistance
+argument_list|(
+name|pointList
+operator|.
+name|get
+argument_list|(
+name|index
+argument_list|)
+argument_list|)
+expr_stmt|;
+specifier|final
+name|double
+name|actualDistance
+init|=
+name|pointList
+operator|.
+name|get
+argument_list|(
+name|getLegalIndex
+argument_list|(
+name|startIndex
 operator|-
 literal|1
+argument_list|,
+name|pointList
+operator|.
+name|size
+argument_list|()
+argument_list|)
+argument_list|)
+operator|.
+name|arcDistance
+argument_list|(
+name|pointList
+operator|.
+name|get
+argument_list|(
+name|index
+argument_list|)
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|actualDistance
+operator|-
+name|accumulatedDistance
+argument_list|)
+operator|>=
+name|Vector
+operator|.
+name|MINIMUM_RESOLUTION
 condition|)
 block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"polygon backtracks over itself"
+argument_list|)
+throw|;
+block|}
+block|}
 throw|throw
 operator|new
 name|IllegalArgumentException

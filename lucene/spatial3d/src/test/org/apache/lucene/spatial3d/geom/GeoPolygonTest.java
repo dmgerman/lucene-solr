@@ -2757,6 +2757,171 @@ literal|null
 argument_list|)
 decl_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testPolygonIntersectionFailure1
+specifier|public
+name|void
+name|testPolygonIntersectionFailure1
+parameter_list|()
+block|{
+specifier|final
+name|PlanetModel
+name|pm
+init|=
+name|PlanetModel
+operator|.
+name|WGS84
+decl_stmt|;
+comment|//[junit4]> Throwable #1: java.lang.AssertionError: invalid hits for shape=GeoCompositeMembershipShape:
+comment|//{[GeoConvexPolygon: {planetmodel=PlanetModel.WGS84, points=
+comment|//[[lat=0.2669499069140678, lon=-0.31249902828113546([X=0.9186752334433793, Y=-0.2968103450748192, Z=0.2640238502385029])],
+comment|//[lat=1.538559019421765, lon=0.0([X=0.03215971057004023, Y=0.0, Z=0.9972473454662941])],
+comment|//[lat=-0.5516194571595735, lon=0.0([X=0.8518418310766115, Y=0.0, Z=-0.5241686363384119])]], internalEdges={2}},
+comment|//GeoConvexPolygon: {planetmodel=PlanetModel.WGS84, points=
+comment|//[[lat=0.0, lon=-3.141592653589793([X=-1.0011188539924791, Y=-1.226017000107956E-16, Z=0.0])],
+comment|//[lat=-1.5707963267948966, lon=-2.2780601241431375([X=-3.9697069088211677E-17, Y=-4.644115432258393E-17, Z=-0.997762292022105])],
+comment|//[lat=0.2669499069140678, lon=-0.31249902828113546([X=0.9186752334433793, Y=-0.2968103450748192, Z=0.2640238502385029])]], internalEdges={2}},
+comment|//GeoConvexPolygon: {planetmodel=PlanetModel.WGS84, points=
+comment|//[[lat=0.2669499069140678, lon=-0.31249902828113546([X=0.9186752334433793, Y=-0.2968103450748192, Z=0.2640238502385029])],
+comment|//[lat=-0.5516194571595735, lon=0.0([X=0.8518418310766115, Y=0.0, Z=-0.5241686363384119])],
+comment|//[lat=0.0, lon=-3.141592653589793([X=-1.0011188539924791, Y=-1.226017000107956E-16, Z=0.0])]], internalEdges={0, 2}}]}
+comment|// Build the polygon
+comment|//[[lat=-0.5516194571595735, lon=0.0([X=0.8518418310766115, Y=0.0, Z=-0.5241686363384119])],
+comment|//[lat=0.0, lon=-3.141592653589793([X=-1.0011188539924791, Y=-1.226017000107956E-16, Z=0.0])],
+comment|//[lat=-1.5707963267948966, lon=-2.2780601241431375([X=-3.9697069088211677E-17, Y=-4.644115432258393E-17, Z=-0.997762292022105])],
+comment|//[lat=0.2669499069140678, lon=-0.31249902828113546([X=0.9186752334433793, Y=-0.2968103450748192, Z=0.2640238502385029])],
+comment|//[lat=1.538559019421765, lon=0.0([X=0.03215971057004023, Y=0.0, Z=0.9972473454662941])]]
+name|List
+argument_list|<
+name|GeoPoint
+argument_list|>
+name|polyPoints
+init|=
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|()
+decl_stmt|;
+name|polyPoints
+operator|.
+name|add
+argument_list|(
+operator|new
+name|GeoPoint
+argument_list|(
+name|pm
+argument_list|,
+operator|-
+literal|0.5516194571595735
+argument_list|,
+literal|0.0
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|polyPoints
+operator|.
+name|add
+argument_list|(
+operator|new
+name|GeoPoint
+argument_list|(
+name|pm
+argument_list|,
+literal|0.0
+argument_list|,
+operator|-
+literal|3.141592653589793
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|polyPoints
+operator|.
+name|add
+argument_list|(
+operator|new
+name|GeoPoint
+argument_list|(
+name|pm
+argument_list|,
+operator|-
+literal|1.5707963267948966
+argument_list|,
+operator|-
+literal|2.2780601241431375
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|polyPoints
+operator|.
+name|add
+argument_list|(
+operator|new
+name|GeoPoint
+argument_list|(
+name|pm
+argument_list|,
+literal|0.2669499069140678
+argument_list|,
+operator|-
+literal|0.31249902828113546
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|polyPoints
+operator|.
+name|add
+argument_list|(
+operator|new
+name|GeoPoint
+argument_list|(
+name|pm
+argument_list|,
+literal|1.538559019421765
+argument_list|,
+literal|0.0
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// Make sure we catch the backtrack
+name|boolean
+name|backtracks
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+name|GeoPolygonFactory
+operator|.
+name|makeGeoPolygon
+argument_list|(
+name|pm
+argument_list|,
+name|polyPoints
+argument_list|,
+literal|4
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IllegalArgumentException
+name|e
+parameter_list|)
+block|{
+name|backtracks
+operator|=
+literal|true
+expr_stmt|;
+block|}
+name|assertTrue
+argument_list|(
+name|backtracks
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 
