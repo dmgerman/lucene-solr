@@ -8505,6 +8505,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// now shrink 1 ulp in each direction if possible: it should not include bogus stuff
+comment|// we can't shrink if values are already at extremes, and
+comment|// we can't do this if rectangle is actually a line or we will create a cross-dateline query
 if|if
 condition|(
 name|rect
@@ -8532,6 +8534,14 @@ name|maxLon
 operator|!=
 operator|-
 literal|180
+operator|&&
+name|rect
+operator|.
+name|minLon
+operator|!=
+name|rect
+operator|.
+name|maxLon
 condition|)
 block|{
 comment|// note we put points on "sides" not just "corners" so we just shrink all 4 at once for now: it should exclude all points!
