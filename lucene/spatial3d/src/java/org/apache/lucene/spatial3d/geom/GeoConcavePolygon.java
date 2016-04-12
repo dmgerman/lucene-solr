@@ -1384,7 +1384,7 @@ specifier|final
 name|SidedPlane
 name|sideBound2
 decl_stmt|;
-comment|/** Constructor.       * @param exception is the one plane to exclude from the check.       */
+comment|/** Constructor.       * @param sideBound1 is the first side bound.       * @param sideBound2 is the second side bound.       */
 DECL|method|EitherBound
 specifier|public
 name|EitherBound
