@@ -518,6 +518,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|MatchNoDocsQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Query
 import|;
 end_import
@@ -9375,6 +9389,17 @@ argument_list|,
 name|q2
 argument_list|)
 expr_stmt|;
+comment|// for "impossible" ranges LatLonPoint.newBoxQuery will return MatchNoDocsQuery
+comment|// changing the field is unrelated to that.
+if|if
+condition|(
+name|q1
+operator|instanceof
+name|MatchNoDocsQuery
+operator|==
+literal|false
+condition|)
+block|{
 name|assertFalse
 argument_list|(
 name|q1
@@ -9404,6 +9429,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|double
 name|lat
 init|=
