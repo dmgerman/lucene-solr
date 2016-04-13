@@ -4170,18 +4170,28 @@ name|newPoint
 argument_list|)
 condition|)
 block|{
-comment|// The new point is colinear with the current edge.  We'll have to look for the first point that isn't.
+comment|// The new point is colinear with the current edge.  We'll have to look backwards for the first point that isn't.
 name|int
 name|checkPointIndex
 init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|// Compute the arc distance before we try to extend
+comment|// Compute the arc distance before we try to extend, so that we note backtracking when we see it
 name|double
 name|accumulatedDistance
 init|=
-literal|0.0
+name|newPoint
+operator|.
+name|arcDistance
+argument_list|(
+name|pointList
+operator|.
+name|get
+argument_list|(
+name|startIndex
+argument_list|)
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Plane
@@ -4293,22 +4303,7 @@ specifier|final
 name|double
 name|actualDistance
 init|=
-name|pointList
-operator|.
-name|get
-argument_list|(
-name|getLegalIndex
-argument_list|(
-name|startIndex
-operator|-
-literal|1
-argument_list|,
-name|pointList
-operator|.
-name|size
-argument_list|()
-argument_list|)
-argument_list|)
+name|newPoint
 operator|.
 name|arcDistance
 argument_list|(
@@ -4345,6 +4340,15 @@ argument_list|)
 throw|;
 block|}
 block|}
+block|}
+if|if
+condition|(
+name|checkPointIndex
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
