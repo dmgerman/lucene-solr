@@ -246,6 +246,15 @@ operator|.
 name|getChildNodes
 argument_list|()
 decl_stmt|;
+specifier|final
+name|int
+name|nlLen
+init|=
+name|nl
+operator|.
+name|getLength
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -255,10 +264,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|nl
-operator|.
-name|getLength
-argument_list|()
+name|nlLen
 condition|;
 name|i
 operator|++
