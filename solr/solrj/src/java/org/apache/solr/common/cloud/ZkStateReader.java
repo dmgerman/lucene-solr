@@ -188,6 +188,20 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
+name|AtomicReference
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -2794,6 +2808,21 @@ name|getUpdateLock
 argument_list|()
 init|)
 block|{
+if|if
+condition|(
+name|this
+operator|.
+name|legacyClusterStateVersion
+operator|>=
+name|stat
+operator|.
+name|getVersion
+argument_list|()
+condition|)
+block|{
+comment|// Nothing to do, someone else updated same or newer.
+return|return;
+block|}
 name|this
 operator|.
 name|legacyCollectionStates
@@ -2879,6 +2908,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// We don't get a Stat or track versions on getChildren() calls, so force linearization.
+DECL|field|refreshCollectionListLock
+specifier|private
+specifier|final
+name|Object
+name|refreshCollectionListLock
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
 comment|/**    * Search for any lazy-loadable state format2 collections.    *    * A stateFormat=1 collection which is not interesting to us can also    * be put into the {@link #lazyCollectionStates} map here. But that is okay    * because {@link #constructState()} will give priority to collections in the    * shared collection state over this map.    * In fact this is a clever way to avoid doing a ZK exists check on    * the /collections/collection_name/state.json znode    * Such an exists check is done in {@link ClusterState#hasCollection(String)} and    * {@link ClusterState#getCollections()} method as a safeguard against exposing wrong collection names to the users    */
 DECL|method|refreshCollectionList
 specifier|private
@@ -2892,6 +2932,11 @@ throws|throws
 name|KeeperException
 throws|,
 name|InterruptedException
+block|{
+synchronized|synchronized
+init|(
+name|refreshCollectionListLock
+init|)
 block|{
 name|List
 argument_list|<
@@ -2958,6 +3003,7 @@ argument_list|()
 expr_stmt|;
 return|return;
 block|}
+comment|// Don't lock getUpdateLock() here, we don't need it and it would cause deadlock.
 comment|// Don't mess with watchedCollections, they should self-manage.
 comment|// First, drop any children that disappeared.
 name|this
@@ -3023,6 +3069,7 @@ name|coll
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -3111,6 +3158,35 @@ literal|")"
 return|;
 block|}
 block|}
+comment|// We don't get a Stat or track versions on getChildren() calls, so force linearization.
+DECL|field|refreshLiveNodesLock
+specifier|private
+specifier|final
+name|Object
+name|refreshLiveNodesLock
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
+comment|// Ensures that only the latest getChildren fetch gets applied.
+DECL|field|lastFetchedLiveNodes
+specifier|private
+specifier|final
+name|AtomicReference
+argument_list|<
+name|Set
+argument_list|<
+name|String
+argument_list|>
+argument_list|>
+name|lastFetchedLiveNodes
+init|=
+operator|new
+name|AtomicReference
+argument_list|<>
+argument_list|()
+decl_stmt|;
 comment|/**    * Refresh live_nodes.    */
 DECL|method|refreshLiveNodes
 specifier|private
@@ -3124,6 +3200,11 @@ throws|throws
 name|KeeperException
 throws|,
 name|InterruptedException
+block|{
+synchronized|synchronized
+init|(
+name|refreshLiveNodesLock
+init|)
 block|{
 name|Set
 argument_list|<
@@ -3174,11 +3255,22 @@ name|emptySet
 argument_list|()
 expr_stmt|;
 block|}
+name|lastFetchedLiveNodes
+operator|.
+name|set
+argument_list|(
+name|newLiveNodes
+argument_list|)
+expr_stmt|;
+block|}
+comment|// Can't lock getUpdateLock() until we release the other, it would cause deadlock.
 name|Set
 argument_list|<
 name|String
 argument_list|>
 name|oldLiveNodes
+decl_stmt|,
+name|newLiveNodes
 decl_stmt|;
 synchronized|synchronized
 init|(
@@ -3186,6 +3278,25 @@ name|getUpdateLock
 argument_list|()
 init|)
 block|{
+name|newLiveNodes
+operator|=
+name|lastFetchedLiveNodes
+operator|.
+name|getAndSet
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|newLiveNodes
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Someone else won the race to apply the last update, just exit.
+return|return;
+block|}
 name|oldLiveNodes
 operator|=
 name|this
