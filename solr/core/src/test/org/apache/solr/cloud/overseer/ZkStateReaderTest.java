@@ -600,7 +600,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|500
+literal|1000
 condition|;
 operator|++
 name|i
@@ -804,7 +804,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|500
+literal|1000
 condition|;
 operator|++
 name|i

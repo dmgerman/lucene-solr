@@ -92,38 +92,6 @@ name|decodeLongitude
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|geo
-operator|.
-name|GeoEncodingUtils
-operator|.
-name|encodeLatitude
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|geo
-operator|.
-name|GeoEncodingUtils
-operator|.
-name|encodeLongitude
-import|;
-end_import
-
 begin_comment
 comment|/**  * This is a temporary hack, until some polygon methods have better performance!  *<p>  * When this file is removed then we have made good progress! In general we don't call  * the point-in-polygon algorithm that much, because of how BKD divides up the data. But  * today the method is very slow (general to all polygons, linear with the number of vertices).  * At the same time polygon-rectangle relation operations are also slow in the same way, this  * just really ensures they are the bottleneck by removing most of the point-in-polygon calls.  *<p>  * See the "grid" algorithm description here: http://erich.realtimerendering.com/ptinpoly/  * A few differences:  *<ul>  *<li> We work in an integer encoding, so edge cases are simpler.  *<li> We classify each grid cell as "contained", "not contained", or "don't know".  *<li> We form a grid over a potentially complex multipolygon with holes.  *<li> Construction is less efficient because we do not do anything "smart" such  *        as following polygon edges.   *<li> Instead we construct a baby tree to reduce the number of relation operations,  *        which are currently expensive.  *</ul>  */
 end_comment
@@ -317,18 +285,35 @@ name|long
 operator|)
 name|minLon
 decl_stmt|;
+comment|// if the range is too small, we can't divide it up in our grid nicely.
+comment|// in this case of a tiny polygon, we just make an empty grid instead of complicating/slowing down code.
+specifier|final
+name|long
+name|minRange
+init|=
+operator|(
+name|GRID_SIZE
+operator|-
+literal|1
+operator|)
+operator|*
+operator|(
+name|GRID_SIZE
+operator|-
+literal|1
+operator|)
+decl_stmt|;
 if|if
 condition|(
 name|latitudeRange
 operator|<
-name|GRID_SIZE
+name|minRange
 operator|||
 name|longitudeRange
 operator|<
-name|GRID_SIZE
+name|minRange
 condition|)
 block|{
-comment|// don't complicate fill right now if you pass e.g. emptyish stuff: make an "empty grid"
 name|latPerCell
 operator|=
 name|lonPerCell
@@ -857,6 +842,11 @@ operator|/
 name|latPerCell
 argument_list|)
 decl_stmt|;
+assert|assert
+name|latIndex
+operator|<
+name|GRID_SIZE
+assert|;
 name|int
 name|lonIndex
 init|=
@@ -869,6 +859,11 @@ operator|/
 name|lonPerCell
 argument_list|)
 decl_stmt|;
+assert|assert
+name|lonIndex
+operator|<
+name|GRID_SIZE
+assert|;
 return|return
 name|latIndex
 operator|*
