@@ -88,6 +88,48 @@ specifier|final
 name|SidedPlane
 name|maxZPlane
 decl_stmt|;
+comment|/** true if minXPlane intersects globe */
+DECL|field|minXPlaneIntersects
+specifier|protected
+specifier|final
+name|boolean
+name|minXPlaneIntersects
+decl_stmt|;
+comment|/** true if maxXPlane intersects globe */
+DECL|field|maxXPlaneIntersects
+specifier|protected
+specifier|final
+name|boolean
+name|maxXPlaneIntersects
+decl_stmt|;
+comment|/** true if minYPlane intersects globe */
+DECL|field|minYPlaneIntersects
+specifier|protected
+specifier|final
+name|boolean
+name|minYPlaneIntersects
+decl_stmt|;
+comment|/** true if maxYPlane intersects globe */
+DECL|field|maxYPlaneIntersects
+specifier|protected
+specifier|final
+name|boolean
+name|maxYPlaneIntersects
+decl_stmt|;
+comment|/** true if minZPlane intersects globe */
+DECL|field|minZPlaneIntersects
+specifier|protected
+specifier|final
+name|boolean
+name|minZPlaneIntersects
+decl_stmt|;
+comment|/** true if maxZPlane intersects globe */
+DECL|field|maxZPlaneIntersects
+specifier|protected
+specifier|final
+name|boolean
+name|maxZPlaneIntersects
+decl_stmt|;
 comment|/** These are the edge points of the shape, which are defined to be at least one point on    * each surface area boundary.  In the case of a solid, this includes points which represent    * the intersection of XYZ bounding planes and the planet, as well as points representing    * the intersection of single bounding planes with the planet itself.    */
 DECL|field|edgePoints
 specifier|protected
@@ -385,6 +427,30 @@ expr_stmt|;
 name|maxZPlane
 operator|=
 literal|null
+expr_stmt|;
+name|minXPlaneIntersects
+operator|=
+literal|false
+expr_stmt|;
+name|maxXPlaneIntersects
+operator|=
+literal|false
+expr_stmt|;
+name|minYPlaneIntersects
+operator|=
+literal|false
+expr_stmt|;
+name|maxYPlaneIntersects
+operator|=
+literal|false
+expr_stmt|;
+name|minZPlaneIntersects
+operator|=
+literal|false
+expr_stmt|;
+name|maxZPlaneIntersects
+operator|=
+literal|false
 expr_stmt|;
 name|notableMinXPoints
 operator|=
@@ -1600,6 +1666,78 @@ comment|//System.err.println(
 comment|//  " minXEdges="+Arrays.asList(minXEdges)+" maxXEdges="+Arrays.asList(maxXEdges)+
 comment|//  " minYEdges="+Arrays.asList(minYEdges)+" maxYEdges="+Arrays.asList(maxYEdges)+
 comment|//  " minZEdges="+Arrays.asList(minZEdges)+" maxZEdges="+Arrays.asList(maxZEdges));
+name|minXPlaneIntersects
+operator|=
+name|notableMinXPoints
+operator|.
+name|length
+operator|+
+name|minXEdges
+operator|.
+name|length
+operator|>
+literal|0
+expr_stmt|;
+name|maxXPlaneIntersects
+operator|=
+name|notableMaxXPoints
+operator|.
+name|length
+operator|+
+name|maxXEdges
+operator|.
+name|length
+operator|>
+literal|0
+expr_stmt|;
+name|minYPlaneIntersects
+operator|=
+name|notableMinYPoints
+operator|.
+name|length
+operator|+
+name|minYEdges
+operator|.
+name|length
+operator|>
+literal|0
+expr_stmt|;
+name|maxYPlaneIntersects
+operator|=
+name|notableMaxYPoints
+operator|.
+name|length
+operator|+
+name|maxYEdges
+operator|.
+name|length
+operator|>
+literal|0
+expr_stmt|;
+name|minZPlaneIntersects
+operator|=
+name|notableMinZPoints
+operator|.
+name|length
+operator|+
+name|minZEdges
+operator|.
+name|length
+operator|>
+literal|0
+expr_stmt|;
+name|maxZPlaneIntersects
+operator|=
+name|notableMaxZPoints
+operator|.
+name|length
+operator|+
+name|maxZEdges
+operator|.
+name|length
+operator|>
+literal|0
+expr_stmt|;
 comment|// Glue everything together.  This is not a minimal set of edgepoints, as of now, but it does completely describe all shapes on the
 comment|// planet.
 name|this
@@ -1855,6 +1993,9 @@ return|;
 block|}
 if|if
 condition|(
+operator|(
+name|minXPlaneIntersects
+operator|&&
 name|path
 operator|.
 name|intersects
@@ -1873,7 +2014,11 @@ name|minZPlane
 argument_list|,
 name|maxZPlane
 argument_list|)
+operator|)
 operator|||
+operator|(
+name|maxXPlaneIntersects
+operator|&&
 name|path
 operator|.
 name|intersects
@@ -1892,7 +2037,11 @@ name|minZPlane
 argument_list|,
 name|maxZPlane
 argument_list|)
+operator|)
 operator|||
+operator|(
+name|minYPlaneIntersects
+operator|&&
 name|path
 operator|.
 name|intersects
@@ -1911,7 +2060,11 @@ name|minZPlane
 argument_list|,
 name|maxZPlane
 argument_list|)
+operator|)
 operator|||
+operator|(
+name|maxYPlaneIntersects
+operator|&&
 name|path
 operator|.
 name|intersects
@@ -1930,7 +2083,11 @@ name|minZPlane
 argument_list|,
 name|maxZPlane
 argument_list|)
+operator|)
 operator|||
+operator|(
+name|minZPlaneIntersects
+operator|&&
 name|path
 operator|.
 name|intersects
@@ -1949,7 +2106,11 @@ name|minYPlane
 argument_list|,
 name|maxYPlane
 argument_list|)
+operator|)
 operator|||
+operator|(
+name|maxZPlaneIntersects
+operator|&&
 name|path
 operator|.
 name|intersects
@@ -1968,6 +2129,7 @@ name|minYPlane
 argument_list|,
 name|maxYPlane
 argument_list|)
+operator|)
 condition|)
 block|{
 comment|//System.err.println(" edges intersect");
