@@ -5113,6 +5113,7 @@ literal|null
 operator|!=
 name|length
 condition|)
+block|{
 name|urlc
 operator|.
 name|setFixedLengthStreamingMode
@@ -5120,6 +5121,19 @@ argument_list|(
 name|length
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+name|urlc
+operator|.
+name|setChunkedStreamingMode
+argument_list|(
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+comment|//use JDK default chunkLen, 4k in Java 8.
+block|}
 name|urlc
 operator|.
 name|connect
