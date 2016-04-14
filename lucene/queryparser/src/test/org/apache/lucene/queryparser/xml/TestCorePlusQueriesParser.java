@@ -54,6 +54,8 @@ name|TestCorePlusQueriesParser
 extends|extends
 name|TestCoreParser
 block|{
+annotation|@
+name|Override
 DECL|method|newCoreParser
 specifier|protected
 name|CoreParser
