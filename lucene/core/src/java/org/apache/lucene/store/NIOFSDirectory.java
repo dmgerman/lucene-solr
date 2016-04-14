@@ -486,7 +486,22 @@ literal|"slice() "
 operator|+
 name|sliceDescription
 operator|+
-literal|" out of bounds: "
+literal|" out of bounds: offset="
+operator|+
+name|offset
+operator|+
+literal|",length="
+operator|+
+name|length
+operator|+
+literal|",fileLength="
+operator|+
+name|this
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|": "
 operator|+
 name|this
 argument_list|)
