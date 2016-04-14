@@ -826,7 +826,6 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-comment|// marker for null token
 name|token
 operator|.
 name|serialize
