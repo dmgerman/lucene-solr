@@ -458,12 +458,15 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
+comment|// can't wrap because we require Lucene60PointsFormat directly but e.g. ParallelReader wraps with its own points impl:
 name|IndexSearcher
 name|s
 init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|FieldDoc
@@ -539,11 +542,14 @@ operator|.
 name|getReader
 argument_list|()
 expr_stmt|;
+comment|// can't wrap because we require Lucene60PointsFormat directly but e.g. ParallelReader wraps with its own points impl:
 name|s
 operator|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|hit
@@ -741,12 +747,15 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
+comment|// can't wrap because we require Lucene60PointsFormat directly but e.g. ParallelReader wraps with its own points impl:
 name|IndexSearcher
 name|s
 init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|FieldDoc
@@ -835,11 +844,14 @@ operator|.
 name|getReader
 argument_list|()
 expr_stmt|;
+comment|// can't wrap because we require Lucene60PointsFormat directly but e.g. ParallelReader wraps with its own points impl:
 name|s
 operator|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1013,6 +1025,7 @@ argument_list|(
 name|w
 argument_list|)
 decl_stmt|;
+comment|// can't wrap because we require Lucene60PointsFormat directly but e.g. ParallelReader wraps with its own points impl:
 name|ScoreDoc
 index|[]
 name|hits
@@ -1024,6 +1037,8 @@ argument_list|(
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 argument_list|,
 literal|"point"
@@ -1140,6 +1155,7 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
+comment|// can't wrap because we require Lucene60PointsFormat directly but e.g. ParallelReader wraps with its own points impl:
 name|assertEquals
 argument_list|(
 literal|0
@@ -1151,6 +1167,8 @@ argument_list|(
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 argument_list|,
 literal|"point"
@@ -1467,12 +1485,15 @@ name|r
 argument_list|)
 expr_stmt|;
 block|}
+comment|// can't wrap because we require Lucene60PointsFormat directly but e.g. ParallelReader wraps with its own points impl:
 name|IndexSearcher
 name|s
 init|=
 name|newSearcher
 argument_list|(
 name|r
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|int
