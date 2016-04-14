@@ -645,8 +645,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/** Returns the underlying {@link BKDReader}.    *    * @lucene.internal */
 DECL|method|getBKDReader
-specifier|private
+specifier|public
 name|BKDReader
 name|getBKDReader
 parameter_list|(
