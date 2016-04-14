@@ -54,6 +54,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|LinkedHashMap
 import|;
 end_import
@@ -109,6 +119,11 @@ class|class
 name|Slice
 extends|extends
 name|ZkNodeProps
+implements|implements
+name|Iterable
+argument_list|<
+name|Replica
+argument_list|>
 block|{
 comment|/** Loads multiple slices into a Map from a generic Map that probably came from deserialized JSON. */
 DECL|method|loadAllFromMap
@@ -252,6 +267,27 @@ block|}
 block|}
 return|return
 name|result
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|iterator
+specifier|public
+name|Iterator
+argument_list|<
+name|Replica
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+name|replicas
+operator|.
+name|values
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
 return|;
 block|}
 comment|/** The slice's state. */
