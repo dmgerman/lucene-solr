@@ -9048,6 +9048,21 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+specifier|final
+name|XYZBounds
+name|bounds
+init|=
+operator|new
+name|XYZBounds
+argument_list|()
+decl_stmt|;
+name|shape
+operator|.
+name|getBounds
+argument_list|(
+name|bounds
+argument_list|)
+expr_stmt|;
 comment|// First find the leaf reader that owns this doc:
 name|int
 name|subIndex
@@ -9132,6 +9147,8 @@ argument_list|(
 name|hits
 argument_list|,
 name|shape
+argument_list|,
+name|bounds
 argument_list|)
 argument_list|,
 name|docID
