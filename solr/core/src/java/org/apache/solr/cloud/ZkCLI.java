@@ -545,6 +545,14 @@ name|UPCONFIG
 init|=
 literal|"upconfig"
 decl_stmt|;
+DECL|field|EXCLUDE_REGEX_SHORT
+specifier|static
+specifier|final
+name|String
+name|EXCLUDE_REGEX_SHORT
+init|=
+literal|"x"
+decl_stmt|;
 DECL|field|EXCLUDE_REGEX
 specifier|static
 specifier|final
@@ -841,6 +849,8 @@ name|options
 operator|.
 name|addOption
 argument_list|(
+name|EXCLUDE_REGEX_SHORT
+argument_list|,
 name|EXCLUDE_REGEX
 argument_list|,
 literal|true
