@@ -506,14 +506,26 @@ name|GeoPoint
 name|point
 parameter_list|)
 block|{
-specifier|final
-name|double
-name|x
-init|=
+return|return
+name|addXValue
+argument_list|(
 name|point
 operator|.
 name|x
-decl_stmt|;
+argument_list|)
+return|;
+block|}
+comment|/** Add a specific X value.    * @param x is the value to add.    * @return the bounds object.    */
+DECL|method|addXValue
+specifier|public
+name|Bounds
+name|addXValue
+parameter_list|(
+specifier|final
+name|double
+name|x
+parameter_list|)
+block|{
 specifier|final
 name|double
 name|small
@@ -586,14 +598,26 @@ name|GeoPoint
 name|point
 parameter_list|)
 block|{
-specifier|final
-name|double
-name|y
-init|=
+return|return
+name|addYValue
+argument_list|(
 name|point
 operator|.
 name|y
-decl_stmt|;
+argument_list|)
+return|;
+block|}
+comment|/** Add a specific Y value.    * @param y is the value to add.    * @return the bounds object.    */
+DECL|method|addYValue
+specifier|public
+name|Bounds
+name|addYValue
+parameter_list|(
+specifier|final
+name|double
+name|y
+parameter_list|)
+block|{
 specifier|final
 name|double
 name|small
@@ -666,14 +690,26 @@ name|GeoPoint
 name|point
 parameter_list|)
 block|{
-specifier|final
-name|double
-name|z
-init|=
+return|return
+name|addZValue
+argument_list|(
 name|point
 operator|.
 name|z
-decl_stmt|;
+argument_list|)
+return|;
+block|}
+comment|/** Add a specific Z value.    * @param z is the value to add.    * @return the bounds object.    */
+DECL|method|addZValue
+specifier|public
+name|Bounds
+name|addZValue
+parameter_list|(
+specifier|final
+name|double
+name|z
+parameter_list|)
+block|{
 specifier|final
 name|double
 name|small
@@ -813,6 +849,42 @@ block|{
 comment|// No specific thing we need to do.
 return|return
 name|this
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"XYZBounds: [xmin="
+operator|+
+name|minX
+operator|+
+literal|" xmax="
+operator|+
+name|maxX
+operator|+
+literal|" ymin="
+operator|+
+name|minY
+operator|+
+literal|" ymax="
+operator|+
+name|maxY
+operator|+
+literal|" zmin="
+operator|+
+name|minZ
+operator|+
+literal|" zmax="
+operator|+
+name|maxZ
+operator|+
+literal|"]"
 return|;
 block|}
 block|}
