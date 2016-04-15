@@ -571,7 +571,31 @@ operator|=
 name|maxLon
 expr_stmt|;
 block|}
-comment|/** Returns true if the point is contained within this polygon */
+comment|/**     * Returns true if the point is contained within this polygon.    *<p>    * See<a href="https://www.ecse.rpi.edu/~wrf/Research/Short_Notes/pnpoly.html">    * https://www.ecse.rpi.edu/~wrf/Research/Short_Notes/pnpoly.html</a> for more information.    */
+comment|// ported to java from https://www.ecse.rpi.edu/~wrf/Research/Short_Notes/pnpoly.html
+comment|// original code under the BSD license (https://www.ecse.rpi.edu/~wrf/Research/Short_Notes/pnpoly.html#License%20to%20Use)
+comment|//
+comment|// Copyright (c) 1970-2003, Wm. Randolph Franklin
+comment|//
+comment|// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+comment|// documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+comment|// the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
+comment|// to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+comment|//
+comment|// 1. Redistributions of source code must retain the above copyright
+comment|//    notice, this list of conditions and the following disclaimers.
+comment|// 2. Redistributions in binary form must reproduce the above copyright
+comment|//    notice in the documentation and/or other materials provided with
+comment|//    the distribution.
+comment|// 3. The name of W. Randolph Franklin may not be used to endorse or
+comment|//    promote products derived from this Software without specific
+comment|//    prior written permission.
+comment|//
+comment|// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+comment|// TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+comment|// THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+comment|// CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+comment|// IN THE SOFTWARE.
 DECL|method|contains
 specifier|public
 name|boolean
@@ -608,13 +632,21 @@ return|return
 literal|false
 return|;
 block|}
-comment|/*      * simple even-odd point in polygon computation      *    1.  Determine if point is contained in the longitudinal range      *    2.  Determine whether point crosses the edge by computing the latitudinal delta      *        between the end-point of a parallel vector (originating at the point) and the      *        y-component of the edge sink      *      * NOTE: Requires polygon point (x,y) order either clockwise or counter-clockwise      */
 name|boolean
 name|inPoly
 init|=
 literal|false
 decl_stmt|;
-comment|/*      * Note: This is using a euclidean coordinate system which could result in      * upwards of 110KM error at the equator.      * TODO convert coordinates to cylindrical projection (e.g. mercator)      */
+name|boolean
+name|previous
+init|=
+name|polyLats
+index|[
+literal|0
+index|]
+operator|>
+name|latitude
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -632,57 +664,27 @@ name|i
 operator|++
 control|)
 block|{
-if|if
-condition|(
-name|polyLons
-index|[
-name|i
-index|]
-operator|<=
-name|longitude
-operator|&&
-name|polyLons
-index|[
-name|i
-operator|-
-literal|1
-index|]
-operator|>=
-name|longitude
-operator|||
-name|polyLons
-index|[
-name|i
-operator|-
-literal|1
-index|]
-operator|<=
-name|longitude
-operator|&&
-name|polyLons
-index|[
-name|i
-index|]
-operator|>=
-name|longitude
-condition|)
-block|{
-if|if
-condition|(
+name|boolean
+name|current
+init|=
 name|polyLats
 index|[
 name|i
 index|]
-operator|+
-operator|(
+operator|>
+name|latitude
+decl_stmt|;
+if|if
+condition|(
+name|current
+operator|!=
+name|previous
+condition|)
+block|{
+if|if
+condition|(
 name|longitude
-operator|-
-name|polyLons
-index|[
-name|i
-index|]
-operator|)
-operator|/
+operator|<
 operator|(
 name|polyLons
 index|[
@@ -698,6 +700,15 @@ index|]
 operator|)
 operator|*
 operator|(
+name|latitude
+operator|-
+name|polyLats
+index|[
+name|i
+index|]
+operator|)
+operator|/
+operator|(
 name|polyLats
 index|[
 name|i
@@ -710,8 +721,11 @@ index|[
 name|i
 index|]
 operator|)
-operator|<=
-name|latitude
+operator|+
+name|polyLons
+index|[
+name|i
+index|]
 condition|)
 block|{
 name|inPoly
@@ -720,6 +734,10 @@ operator|!
 name|inPoly
 expr_stmt|;
 block|}
+name|previous
+operator|=
+name|current
+expr_stmt|;
 block|}
 block|}
 if|if
