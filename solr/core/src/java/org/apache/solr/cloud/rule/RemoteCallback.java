@@ -35,7 +35,6 @@ interface|interface
 name|RemoteCallback
 block|{
 DECL|method|remoteCallback
-specifier|public
 name|void
 name|remoteCallback
 parameter_list|(

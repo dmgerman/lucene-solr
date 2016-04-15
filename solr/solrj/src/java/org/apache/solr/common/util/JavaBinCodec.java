@@ -4989,13 +4989,11 @@ block|}
 comment|/**    * Allows extension of {@link JavaBinCodec} to support serialization of arbitrary data types.    *<p>    * Implementors of this interface write a method to serialize a given object using an existing {@link JavaBinCodec}    */
 DECL|interface|ObjectResolver
 specifier|public
-specifier|static
 interface|interface
 name|ObjectResolver
 block|{
 comment|/**      * Examine and attempt to serialize the given object, using a {@link JavaBinCodec} to write it to a stream.      *      * @param o     the object that the caller wants serialized.      * @param codec used to actually serialize {@code o}.      * @return the object {@code o} itself if it could not be serialized, or {@code null} if the whole object was successfully serialized.      * @see JavaBinCodec      */
 DECL|method|resolve
-specifier|public
 name|Object
 name|resolve
 parameter_list|(
@@ -5015,7 +5013,6 @@ interface|interface
 name|WritableDocFields
 block|{
 DECL|method|isWritable
-specifier|public
 name|boolean
 name|isWritable
 parameter_list|(
@@ -5024,7 +5021,6 @@ name|name
 parameter_list|)
 function_decl|;
 DECL|method|wantsAllFields
-specifier|public
 name|boolean
 name|wantsAllFields
 parameter_list|()

@@ -470,7 +470,6 @@ interface|interface
 name|IndexWriterCloser
 block|{
 DECL|method|closeWriter
-specifier|public
 name|void
 name|closeWriter
 parameter_list|(

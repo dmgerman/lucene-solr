@@ -106,7 +106,6 @@ parameter_list|)
 function_decl|;
 comment|/**    * Abstracts the source for {@link SolrDocument} instances.    * The source of documents is different for a distributed search than local search    */
 DECL|interface|SolrDocumentSource
-specifier|public
 interface|interface
 name|SolrDocumentSource
 block|{
