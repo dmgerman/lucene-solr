@@ -471,7 +471,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * An indexed location field.  *<p>  * Finding all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for common operations:  *<ul>  *<li>{@link #newBoxQuery newBoxQuery()} for matching points within a bounding box.  *<li>{@link #newDistanceQuery newDistanceQuery()} for matching points within a specified distance.  *<li>{@link #newDistanceSort newDistanceSort()} for ordering documents by distance from a specified location.   *<li>{@link #newPolygonQuery newPolygonQuery()} for matching points within an arbitrary polygon.  *</ul>  *<p>  *<b>WARNING</b>: Values are indexed with some loss of precision from the  * original {@code double} values (4.190951585769653E-8 for the latitude component  * and 8.381903171539307E-8 for longitude).  * @see PointValues  */
+comment|/**   * An indexed location field.  *<p>  * Finding all documents within a range at search time is  * efficient.  Multiple values for the same field in one document  * is allowed.   *<p>  * This field defines static factory methods for common operations:  *<ul>  *<li>{@link #newBoxQuery newBoxQuery()} for matching points within a bounding box.  *<li>{@link #newDistanceQuery newDistanceQuery()} for matching points within a specified distance.  *<li>{@link #newDistanceSort newDistanceSort()} for ordering documents by distance from a specified location.   *<li>{@link #newPolygonQuery newPolygonQuery()} for matching points within an arbitrary polygon.  *<li>{@link #nearest nearest()} for finding the k-nearest neighbors by distance.  *</ul>  *<p>  *<b>WARNING</b>: Values are indexed with some loss of precision from the  * original {@code double} values (4.190951585769653E-8 for the latitude component  * and 8.381903171539307E-8 for longitude).  * @see PointValues  */
 end_comment
 
 begin_comment
@@ -1566,7 +1566,9 @@ name|longitude
 argument_list|)
 return|;
 block|}
-comment|/**    * Finds the {@code topN} nearest indexed points to the provided point, according to Haversine distance.    * This is functionally equivalent to running {@link MatchAllDocsQuery} with a {@link #newDistanceSort},    * but is far more efficient since it takes advantage of properties the indexed BKD tree.  Currently this    * only works with {@link Lucene60PointsFormat} (used by the default codec).    */
+comment|/**    * Finds the {@code n} nearest indexed points to the provided point, according to Haversine distance.    *<p>    * This is functionally equivalent to running {@link MatchAllDocsQuery} with a {@link #newDistanceSort},    * but is far more efficient since it takes advantage of properties the indexed BKD tree.  Currently this    * only works with {@link Lucene60PointsFormat} (used by the default codec).    *<p>    * Documents are ordered by ascending distance from the location. The value returned in {@link FieldDoc} for    * the hits contains a Double instance with the distance in meters.    *     * @param searcher IndexSearcher to find nearest points from.    * @param field field name. must not be null.    * @param latitude latitude at the center: must be within standard +/-90 coordinate bounds.    * @param longitude longitude at the center: must be within standard +/-180 coordinate bounds.    * @param n the number of nearest neighbors to retrieve.    * @return TopFieldDocs containing documents ordered by distance.    * @throws IllegalArgumentException if the underlying PointValues is not a {@code Lucene60PointsReader} (this is a current limitation).    * @throws IOException if an IOException occurs while finding the points.    */
+comment|// TODO: what about multi-valued documents? what happens?
+comment|// TODO: parameter checking, what if i pass a negative n, bogus latitude, null field,etc?
 DECL|method|nearest
 specifier|public
 specifier|static
@@ -1574,10 +1576,10 @@ name|TopFieldDocs
 name|nearest
 parameter_list|(
 name|IndexSearcher
-name|s
+name|searcher
 parameter_list|,
 name|String
-name|fieldName
+name|field
 parameter_list|,
 name|double
 name|latitude
@@ -1634,7 +1636,7 @@ control|(
 name|LeafReaderContext
 name|leaf
 range|:
-name|s
+name|searcher
 operator|.
 name|getIndexReader
 argument_list|()
@@ -1686,7 +1688,7 @@ name|points
 operator|.
 name|getDocCount
 argument_list|(
-name|fieldName
+name|field
 argument_list|)
 expr_stmt|;
 name|BKDReader
@@ -1701,7 +1703,7 @@ operator|)
 operator|.
 name|getBKDReader
 argument_list|(
-name|fieldName
+name|field
 argument_list|)
 decl_stmt|;
 if|if
