@@ -88,6 +88,20 @@ name|lucene
 operator|.
 name|geo
 operator|.
+name|GeoUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|geo
+operator|.
 name|Polygon
 import|;
 end_import
@@ -1507,9 +1521,8 @@ name|longitude
 argument_list|)
 return|;
 block|}
-comment|/**    * Finds the {@code n} nearest indexed points to the provided point, according to Haversine distance.    *<p>    * This is functionally equivalent to running {@link MatchAllDocsQuery} with a {@link #newDistanceSort},    * but is far more efficient since it takes advantage of properties the indexed BKD tree.  Currently this    * only works with {@link Lucene60PointsFormat} (used by the default codec).    *<p>    * Documents are ordered by ascending distance from the location. The value returned in {@link FieldDoc} for    * the hits contains a Double instance with the distance in meters.    *     * @param searcher IndexSearcher to find nearest points from.    * @param field field name. must not be null.    * @param latitude latitude at the center: must be within standard +/-90 coordinate bounds.    * @param longitude longitude at the center: must be within standard +/-180 coordinate bounds.    * @param n the number of nearest neighbors to retrieve.    * @return TopFieldDocs containing documents ordered by distance.    * @throws IllegalArgumentException if the underlying PointValues is not a {@code Lucene60PointsReader} (this is a current limitation).    * @throws IOException if an IOException occurs while finding the points.    */
+comment|/**    * Finds the {@code n} nearest indexed points to the provided point, according to Haversine distance.    *<p>    * This is functionally equivalent to running {@link MatchAllDocsQuery} with a {@link #newDistanceSort},    * but is far more efficient since it takes advantage of properties the indexed BKD tree.  Currently this    * only works with {@link Lucene60PointsFormat} (used by the default codec).  Multi-valued fields are    * currently not de-duplicated, so if a document had multiple instances of the specified field that    * make it into the top n, that document will appear more than once.    *<p>    * Documents are ordered by ascending distance from the location. The value returned in {@link FieldDoc} for    * the hits contains a Double instance with the distance in meters.    *     * @param searcher IndexSearcher to find nearest points from.    * @param field field name. must not be null.    * @param latitude latitude at the center: must be within standard +/-90 coordinate bounds.    * @param longitude longitude at the center: must be within standard +/-180 coordinate bounds.    * @param n the number of nearest neighbors to retrieve.    * @return TopFieldDocs containing documents ordered by distance, where the field value for each {@link FieldDoc} is the distance in meters    * @throws IllegalArgumentException if the underlying PointValues is not a {@code Lucene60PointsReader} (this is a current limitation), or    *         if {@code field} or {@code searcher} is null, or if {@code latitude}, {@code longitude} or {@code n} are out-of-bounds    * @throws IOException if an IOException occurs while finding the points.    */
 comment|// TODO: what about multi-valued documents? what happens?
-comment|// TODO: parameter checking, what if i pass a negative n, bogus latitude, null field,etc?
 DECL|method|nearest
 specifier|public
 specifier|static
@@ -1534,6 +1547,67 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|GeoUtils
+operator|.
+name|checkLatitude
+argument_list|(
+name|latitude
+argument_list|)
+expr_stmt|;
+name|GeoUtils
+operator|.
+name|checkLongitude
+argument_list|(
+name|longitude
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|n
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"n must be at least 1; got "
+operator|+
+name|n
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|field
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"field must not be null"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|searcher
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"searcher must not be null"
+argument_list|)
+throw|;
+block|}
 name|List
 argument_list|<
 name|BKDReader
