@@ -54,6 +54,11 @@ specifier|private
 name|int
 name|nextShape
 decl_stmt|;
+DECL|field|finished
+specifier|private
+name|boolean
+name|finished
+decl_stmt|;
 DECL|method|EarthDebugger
 specifier|public
 name|EarthDebugger
@@ -1217,6 +1222,23 @@ name|String
 name|finish
 parameter_list|()
 block|{
+if|if
+condition|(
+name|finished
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"already finished"
+argument_list|)
+throw|;
+block|}
+name|finished
+operator|=
+literal|true
+expr_stmt|;
 name|b
 operator|.
 name|append
