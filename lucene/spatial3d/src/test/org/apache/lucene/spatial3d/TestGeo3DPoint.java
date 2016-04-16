@@ -5196,24 +5196,6 @@ operator|.
 name|getShape
 argument_list|()
 decl_stmt|;
-comment|// If there's a conflict, we don't know what 'truth' actually is; either result is OK
-name|boolean
-name|conflict
-init|=
-name|shape
-operator|.
-name|isWithin
-argument_list|(
-name|point
-argument_list|)
-operator|!=
-name|shape
-operator|.
-name|isWithin
-argument_list|(
-name|unquantizedPoint
-argument_list|)
-decl_stmt|;
 name|boolean
 name|expected
 init|=
@@ -5233,7 +5215,7 @@ name|shape
 operator|.
 name|isWithin
 argument_list|(
-name|unquantizedPoint
+name|point
 argument_list|)
 operator|)
 decl_stmt|;
@@ -5248,33 +5230,6 @@ argument_list|)
 operator|!=
 name|expected
 condition|)
-block|{
-if|if
-condition|(
-name|conflict
-condition|)
-block|{
-if|if
-condition|(
-name|VERBOSE
-condition|)
-block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"CONFLICT: id="
-operator|+
-name|id
-operator|+
-literal|" quantized point membership disagrees with non-quantized point: truth unknown"
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-else|else
 block|{
 name|StringBuilder
 name|b
@@ -5504,7 +5459,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 else|else
