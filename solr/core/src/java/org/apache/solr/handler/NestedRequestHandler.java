@@ -42,7 +42,6 @@ name|NestedRequestHandler
 block|{
 comment|/** Return a Requestandler to handle a subpath from the path this handler is registered.    */
 DECL|method|getSubHandler
-specifier|public
 name|SolrRequestHandler
 name|getSubHandler
 parameter_list|(
