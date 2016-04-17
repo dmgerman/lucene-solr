@@ -4152,19 +4152,6 @@ name|gPt
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
-name|int
-name|convexPointIndex
-init|=
-name|random
-argument_list|()
-operator|.
-name|nextInt
-argument_list|(
-name|vertexCount
-argument_list|)
-decl_stmt|;
-comment|//If we get this wrong, hopefully we get IllegalArgumentException
 try|try
 block|{
 return|return
@@ -4177,8 +4164,6 @@ operator|.
 name|WGS84
 argument_list|,
 name|geoPoints
-argument_list|,
-name|convexPointIndex
 argument_list|)
 return|;
 block|}
