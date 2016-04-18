@@ -3754,7 +3754,10 @@ literal|0.5
 decl_stmt|;
 try|try
 block|{
-return|return
+specifier|final
+name|Query
+name|q
+init|=
 name|Geo3DPoint
 operator|.
 name|newPolygonQuery
@@ -3796,6 +3799,11 @@ argument_list|,
 literal|true
 argument_list|)
 argument_list|)
+decl_stmt|;
+comment|//System.err.println("Generated: "+q);
+comment|//assertTrue(false);
+return|return
+name|q
 return|;
 block|}
 catch|catch

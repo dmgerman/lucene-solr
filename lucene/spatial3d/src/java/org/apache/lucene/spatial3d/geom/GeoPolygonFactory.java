@@ -179,6 +179,7 @@ argument_list|>
 name|holes
 parameter_list|)
 block|{
+comment|//System.err.println("points="+pointList);
 comment|// Create a random number generator.  Effectively this furnishes us with a repeatable sequence
 comment|// of points to use for poles.
 specifier|final
@@ -351,11 +352,20 @@ operator|new
 name|GeoCompositePolygon
 argument_list|()
 decl_stmt|;
+name|MutableBoolean
+name|seenConcave
+init|=
+operator|new
+name|MutableBoolean
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|buildPolygonShape
 argument_list|(
 name|rval
+argument_list|,
+name|seenConcave
 argument_list|,
 name|planetModel
 argument_list|,
@@ -392,9 +402,17 @@ operator|new
 name|GeoCompositePolygon
 argument_list|()
 expr_stmt|;
+name|seenConcave
+operator|=
+operator|new
+name|MutableBoolean
+argument_list|()
+expr_stmt|;
 name|buildPolygonShape
 argument_list|(
 name|rval
+argument_list|,
+name|seenConcave
 argument_list|,
 name|planetModel
 argument_list|,
@@ -426,9 +444,17 @@ operator|new
 name|GeoCompositePolygon
 argument_list|()
 expr_stmt|;
+name|seenConcave
+operator|=
+operator|new
+name|MutableBoolean
+argument_list|()
+expr_stmt|;
 name|buildPolygonShape
 argument_list|(
 name|rval
+argument_list|,
+name|seenConcave
 argument_list|,
 name|planetModel
 argument_list|,
@@ -478,9 +504,17 @@ operator|new
 name|GeoCompositePolygon
 argument_list|()
 expr_stmt|;
+name|seenConcave
+operator|=
+operator|new
+name|MutableBoolean
+argument_list|()
+expr_stmt|;
 name|buildPolygonShape
 argument_list|(
 name|rval
+argument_list|,
+name|seenConcave
 argument_list|,
 name|planetModel
 argument_list|,
@@ -1829,9 +1863,8 @@ name|y2
 argument_list|)
 return|;
 block|}
-comment|/** Build a GeoPolygon out of one concave part and multiple convex parts given points, starting edge, and whether starting edge is internal or not.    * @param rval is the composite polygon to add to.    * @param planetModel is the planet model.    * @param pointsList is a list of the GeoPoints to build an arbitrary polygon out of.    * @param internalEdges specifies which edges are internal.    * @param startPointIndex is the first of the points, constituting the starting edge.    * @param startingEdge is the plane describing the starting edge.    * @param holes is the list of holes in the polygon, or null if none.    * @param testPoint is an (optional) test point, which will be used to determine if we are generating    *  a shape with the proper sidedness.  It is passed in only when the test point is supposed to be outside    *  of the generated polygon.  In this case, if the generated polygon is found to contain the point, the    *  method exits early with a null return value.    *  This only makes sense in the context of evaluating both possible choices and using logic to determine    *  which result to use.  If the test point is supposed to be within the shape, then it must be outside of the    *  complement shape.  If the test point is supposed to be outside the shape, then it must be outside of the    *  original shape.  Either way, we can figure out the right thing to use.    * @return false if what was specified    *  was inconsistent with what we generated.  Specifically, if we specify an exterior point that is    *  found in the interior of the shape we create here we return false, which is a signal that we chose    *  our initial plane sidedness backwards.    */
+comment|/** Build a GeoPolygon out of one concave part and multiple convex parts given points, starting edge, and whether starting edge is internal or not.    * @param rval is the composite polygon to add to.    * @param seenConcave is true if a concave polygon has been seen in this generation yet.    * @param planetModel is the planet model.    * @param pointsList is a list of the GeoPoints to build an arbitrary polygon out of.    * @param internalEdges specifies which edges are internal.    * @param startPointIndex is the first of the points, constituting the starting edge.    * @param startingEdge is the plane describing the starting edge.    * @param holes is the list of holes in the polygon, or null if none.    * @param testPoint is an (optional) test point, which will be used to determine if we are generating    *  a shape with the proper sidedness.  It is passed in only when the test point is supposed to be outside    *  of the generated polygon.  In this case, if the generated polygon is found to contain the point, the    *  method exits early with a null return value.    *  This only makes sense in the context of evaluating both possible choices and using logic to determine    *  which result to use.  If the test point is supposed to be within the shape, then it must be outside of the    *  complement shape.  If the test point is supposed to be outside the shape, then it must be outside of the    *  original shape.  Either way, we can figure out the right thing to use.    * @return false if what was specified    *  was inconsistent with what we generated.  Specifically, if we specify an exterior point that is    *  found in the interior of the shape we create here we return false, which is a signal that we chose    *  our initial plane sidedness backwards.    */
 DECL|method|buildPolygonShape
-specifier|public
 specifier|static
 name|boolean
 name|buildPolygonShape
@@ -1839,6 +1872,10 @@ parameter_list|(
 specifier|final
 name|GeoCompositePolygon
 name|rval
+parameter_list|,
+specifier|final
+name|MutableBoolean
+name|seenConcave
 parameter_list|,
 specifier|final
 name|PlanetModel
@@ -1881,7 +1918,8 @@ parameter_list|)
 block|{
 comment|// It could be the case that we need a concave polygon.  So we need to try and look for that case
 comment|// as part of the general code for constructing complex polygons.
-comment|// Note that there can be only one concave polygon.
+comment|// Note that there can be only one concave polygon.  This code will enforce that condition and will return
+comment|// false if it is violated.
 comment|// The code here must keep track of two lists of sided planes.  The first list contains the planes consistent with
 comment|// a concave polygon.  This list will grow and shrink.  The second list is built starting at the current edge that
 comment|// was last consistent with the concave polygon, and contains all edges consistent with a convex polygon.
@@ -2212,7 +2250,9 @@ init|=
 operator|new
 name|ArrayList
 argument_list|<>
-argument_list|()
+argument_list|(
+literal|3
+argument_list|)
 decl_stmt|;
 specifier|final
 name|BitSet
@@ -2267,50 +2307,44 @@ argument_list|(
 name|thePoint
 argument_list|)
 expr_stmt|;
-name|thirdPartInternal
+assert|assert
+name|checkEdge
 operator|.
-name|set
+name|plane
+operator|.
+name|isWithin
 argument_list|(
-literal|2
-argument_list|,
-literal|true
+name|thePoint
 argument_list|)
-expr_stmt|;
-comment|//System.out.println("Doing convex part...");
-if|if
-condition|(
-name|buildPolygonShape
+operator|:
+literal|"Point was on wrong side of complementary plane, so must be on the right side of the non-complementary plane!"
+assert|;
+specifier|final
+name|GeoPolygon
+name|convexPart
+init|=
+operator|new
+name|GeoConvexPolygon
 argument_list|(
-name|rval
-argument_list|,
 name|planetModel
 argument_list|,
 name|thirdPartPoints
 argument_list|,
-name|thirdPartInternal
-argument_list|,
-literal|0
-argument_list|,
-literal|1
-argument_list|,
-name|checkEdge
-operator|.
-name|plane
-argument_list|,
 name|holes
 argument_list|,
-name|testPoint
+name|thirdPartInternal
+argument_list|,
+literal|true
 argument_list|)
-operator|==
-literal|false
-condition|)
-block|{
-return|return
-literal|false
-return|;
-block|}
-comment|//System.out.println("...done convex part.");
-comment|// ??? check if we get the sense right
+decl_stmt|;
+comment|//System.out.println("convex part = "+convexPart);
+name|rval
+operator|.
+name|addShape
+argument_list|(
+name|convexPart
+argument_list|)
+expr_stmt|;
 comment|// The part preceding the bad edge, back to thePoint, needs to be recursively
 comment|// processed.  So, assemble what we need, which is basically a list of edges.
 name|Edge
@@ -2410,6 +2444,8 @@ condition|(
 name|buildPolygonShape
 argument_list|(
 name|rval
+argument_list|,
+name|seenConcave
 argument_list|,
 name|planetModel
 argument_list|,
@@ -2551,6 +2587,8 @@ name|buildPolygonShape
 argument_list|(
 name|rval
 argument_list|,
+name|seenConcave
+argument_list|,
 name|planetModel
 argument_list|,
 name|secondPartPoints
@@ -2603,6 +2641,7 @@ block|}
 block|}
 comment|// No violations found: we know it's a legal concave polygon.
 comment|// If there's anything left in the edge buffer, convert to concave polygon.
+comment|//System.out.println("adding concave part");
 if|if
 condition|(
 name|makeConcavePolygon
@@ -2610,6 +2649,8 @@ argument_list|(
 name|planetModel
 argument_list|,
 name|rval
+argument_list|,
+name|seenConcave
 argument_list|,
 name|edgeBuffer
 argument_list|,
@@ -2629,7 +2670,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/** Look for a concave polygon in the remainder of the edgebuffer.    * By this point, if there are any edges in the edgebuffer, they represent a concave polygon.    * @param planetModel is the planet model.    * @param rval is the composite polygon we're building.    * @param edgeBuffer is the edge buffer.    * @param holes is the optional list of holes.    * @param testPoint is the optional test point.    * @return true unless the testPoint caused failure.    */
+comment|/** Look for a concave polygon in the remainder of the edgebuffer.    * By this point, if there are any edges in the edgebuffer, they represent a concave polygon.    * @param planetModel is the planet model.    * @param rval is the composite polygon we're building.    * @param seenConcave is true if we've already seen a concave polygon.    * @param edgeBuffer is the edge buffer.    * @param holes is the optional list of holes.    * @param testPoint is the optional test point.    * @return true unless the testPoint caused failure.    */
 DECL|method|makeConcavePolygon
 specifier|private
 specifier|static
@@ -2643,6 +2684,10 @@ parameter_list|,
 specifier|final
 name|GeoCompositePolygon
 name|rval
+parameter_list|,
+specifier|final
+name|MutableBoolean
+name|seenConcave
 parameter_list|,
 specifier|final
 name|EdgeBuffer
@@ -2674,6 +2719,27 @@ return|return
 literal|true
 return|;
 block|}
+if|if
+condition|(
+name|seenConcave
+operator|.
+name|value
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Illegal polygon; polygon edges intersect each other"
+argument_list|)
+throw|;
+block|}
+name|seenConcave
+operator|.
+name|value
+operator|=
+literal|true
+expr_stmt|;
 comment|// If there are less than three edges, something got messed up somehow.  Don't know how this
 comment|// can happen but check.
 if|if
@@ -4431,12 +4497,7 @@ name|SidedPlane
 name|startPlane
 parameter_list|)
 block|{
-comment|/*       System.out.println("Initial points:");       for (final GeoPoint p : pointList) {         System.out.println(" "+p);       }       */
-comment|// We need to detect backtracks, and also situations where someone has tried to stitch together multiple segments into one long arc (> 180 degrees).
-comment|// To do this, every time we extend by a coplanar segment, we compute the total arc distance to the new endpoint, as
-comment|// well as a sum of the arc distances we've accumulated as we march forward.  If these two numbers disagree, then
-comment|// we know there has been a backtrack or other anomaly.
-comment|// extend the edge, we compute the distance along the
+comment|/*       System.out.println("Start plane index: "+startPlaneStartIndex+" End plane index: "+startPlaneEndIndex+" Initial points:");       for (final GeoPoint p : pointList) {         System.out.println(" "+p);       }       */
 specifier|final
 name|Edge
 name|startEdge
@@ -4489,6 +4550,47 @@ condition|(
 literal|true
 condition|)
 block|{
+comment|/*         System.out.println("For plane "+currentEdge.plane+", the following points are in/out:");         for (final GeoPoint p: pointList) {           System.out.println(" "+p+" is: "+(currentEdge.plane.isWithin(p)?"in":"out"));         }         */
+comment|// Check termination condition
+if|if
+condition|(
+name|currentEdge
+operator|.
+name|endPoint
+operator|==
+name|startEdge
+operator|.
+name|startPoint
+condition|)
+block|{
+comment|// We finish here.  Link the current edge to the start edge, and exit
+name|previousEdges
+operator|.
+name|put
+argument_list|(
+name|startEdge
+argument_list|,
+name|currentEdge
+argument_list|)
+expr_stmt|;
+name|nextEdges
+operator|.
+name|put
+argument_list|(
+name|currentEdge
+argument_list|,
+name|startEdge
+argument_list|)
+expr_stmt|;
+name|edges
+operator|.
+name|add
+argument_list|(
+name|startEdge
+argument_list|)
+expr_stmt|;
+break|break;
+block|}
 comment|// Compute the next edge
 name|startIndex
 operator|=
@@ -4528,9 +4630,6 @@ name|endIndex
 argument_list|)
 decl_stmt|;
 comment|// Build the new edge
-comment|// We have to be sure that the point we use as a check does not lie on the plane.
-comment|// In order to meet that goal, we need to go hunting for a point that meets the criteria.  If we don't
-comment|// find one, we've got a linear "polygon" that we cannot use.
 comment|// We need to know the sidedness of the new plane.  The point we're going to be presenting to it has
 comment|// a certain relationship with the sided plane we already have for the current edge.  If the current edge
 comment|// is colinear with the new edge, then we want to maintain the same relationship.  If the new edge
@@ -4538,173 +4637,24 @@ comment|// is not colinear, then we can use the new point's relationship with th
 specifier|final
 name|boolean
 name|isNewPointWithin
+init|=
+name|currentEdge
+operator|.
+name|plane
+operator|.
+name|isWithin
+argument_list|(
+name|newPoint
+argument_list|)
 decl_stmt|;
 specifier|final
 name|GeoPoint
 name|pointToPresent
-decl_stmt|;
-if|if
-condition|(
-name|currentEdge
-operator|.
-name|plane
-operator|.
-name|evaluateIsZero
-argument_list|(
-name|newPoint
-argument_list|)
-condition|)
-block|{
-comment|// The new point is colinear with the current edge.  We'll have to look backwards for the first point that isn't.
-name|int
-name|checkPointIndex
 init|=
-operator|-
-literal|1
-decl_stmt|;
-comment|// Compute the arc distance before we try to extend, so that we note backtracking when we see it
-comment|//double accumulatedDistance = newPoint.arcDistance(pointList.get(startIndex));
-specifier|final
-name|Plane
-name|checkPlane
-init|=
-operator|new
-name|Plane
-argument_list|(
-name|pointList
-operator|.
-name|get
-argument_list|(
-name|startIndex
-argument_list|)
-argument_list|,
-name|newPoint
-argument_list|)
-decl_stmt|;
-for|for
-control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|pointList
-operator|.
-name|size
-argument_list|()
-condition|;
-name|i
-operator|++
-control|)
-block|{
-specifier|final
-name|int
-name|index
-init|=
-name|getLegalIndex
-argument_list|(
-name|startIndex
-operator|-
-literal|1
-operator|-
-name|i
-argument_list|,
-name|pointList
-operator|.
-name|size
-argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|checkPlane
-operator|.
-name|evaluateIsZero
-argument_list|(
-name|pointList
-operator|.
-name|get
-argument_list|(
-name|index
-argument_list|)
-argument_list|)
-condition|)
-block|{
-name|checkPointIndex
-operator|=
-name|index
-expr_stmt|;
-break|break;
-block|}
-else|else
-block|{
-comment|//accumulatedDistance += pointList.get(getLegalIndex(index+1, pointList.size())).arcDistance(pointList.get(index));
-comment|//final double actualDistance = newPoint.arcDistance(pointList.get(index));
-comment|//if (Math.abs(actualDistance - accumulatedDistance)>= Vector.MINIMUM_RESOLUTION) {
-comment|//  throw new IllegalArgumentException("polygon backtracks over itself");
-comment|//}
-block|}
-block|}
-if|if
-condition|(
-name|checkPointIndex
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"polygon is illegal (linear)"
-argument_list|)
-throw|;
-block|}
-name|pointToPresent
-operator|=
-name|pointList
-operator|.
-name|get
-argument_list|(
-name|checkPointIndex
-argument_list|)
-expr_stmt|;
-name|isNewPointWithin
-operator|=
-name|currentEdge
-operator|.
-name|plane
-operator|.
-name|isWithin
-argument_list|(
-name|pointToPresent
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|isNewPointWithin
-operator|=
-name|currentEdge
-operator|.
-name|plane
-operator|.
-name|isWithin
-argument_list|(
-name|newPoint
-argument_list|)
-expr_stmt|;
-name|pointToPresent
-operator|=
 name|currentEdge
 operator|.
 name|startPoint
-expr_stmt|;
-block|}
+decl_stmt|;
 specifier|final
 name|SidedPlane
 name|newPlane
@@ -4726,7 +4676,6 @@ argument_list|,
 name|newPoint
 argument_list|)
 decl_stmt|;
-comment|/*         System.out.println("For next plane, the following points are in/out:");         for (final GeoPoint p: pointList) {           System.out.println(" "+p+" is: "+(newPlane.isWithin(p)?"in":"out"));         }         */
 specifier|final
 name|Edge
 name|newEdge
@@ -4788,45 +4737,6 @@ name|currentEdge
 operator|=
 name|newEdge
 expr_stmt|;
-if|if
-condition|(
-name|currentEdge
-operator|.
-name|endPoint
-operator|==
-name|startEdge
-operator|.
-name|startPoint
-condition|)
-block|{
-comment|// We finish here.  Link the current edge to the start edge, and exit
-name|previousEdges
-operator|.
-name|put
-argument_list|(
-name|startEdge
-argument_list|,
-name|currentEdge
-argument_list|)
-expr_stmt|;
-name|nextEdges
-operator|.
-name|put
-argument_list|(
-name|currentEdge
-argument_list|,
-name|startEdge
-argument_list|)
-expr_stmt|;
-name|edges
-operator|.
-name|add
-argument_list|(
-name|startEdge
-argument_list|)
-expr_stmt|;
-break|break;
-block|}
 block|}
 name|oneEdge
 operator|=
@@ -5090,6 +5000,19 @@ return|return
 name|oneEdge
 return|;
 block|}
+block|}
+DECL|class|MutableBoolean
+specifier|static
+class|class
+name|MutableBoolean
+block|{
+DECL|field|value
+specifier|public
+name|boolean
+name|value
+init|=
+literal|false
+decl_stmt|;
 block|}
 block|}
 end_class
