@@ -15607,17 +15607,22 @@ operator|+
 literal|" collection, available options are:"
 argument_list|)
 expr_stmt|;
+name|String
+name|validConfigs
+init|=
+literal|"basic_configs, data_driven_schema_configs, or sample_techproducts_configs ["
+operator|+
+name|cloudConfig
+operator|+
+literal|"] "
+decl_stmt|;
 name|cloudConfig
 operator|=
 name|prompt
 argument_list|(
 name|readInput
 argument_list|,
-literal|"basic_configs, data_driven_schema_configs, sample_techproducts_configs, or managed_schema_configs ["
-operator|+
-name|cloudConfig
-operator|+
-literal|"] "
+name|validConfigs
 argument_list|,
 name|cloudConfig
 argument_list|)
@@ -15651,11 +15656,7 @@ name|prompt
 argument_list|(
 name|readInput
 argument_list|,
-literal|"basic_configs, data_driven_schema_configs, sample_techproducts_configs, or managed_schema_configs ["
-operator|+
-name|cloudConfig
-operator|+
-literal|"] "
+name|validConfigs
 argument_list|,
 name|cloudConfig
 argument_list|)
