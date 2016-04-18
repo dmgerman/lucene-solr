@@ -144,6 +144,22 @@ name|TermEncoding
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|SuppressCodecs
+import|;
+end_import
+
 begin_comment
 comment|/**  * random testing for GeoPoint query logic (with deprecated numeric encoding)  * @deprecated remove this when TermEncoding.NUMERIC is removed  */
 end_comment
@@ -151,6 +167,12 @@ end_comment
 begin_class
 annotation|@
 name|Deprecated
+annotation|@
+name|SuppressCodecs
+argument_list|(
+literal|"Direct"
+argument_list|)
+comment|// can easily create too many postings and blow direct sky high
 DECL|class|TestLegacyGeoPointQuery
 specifier|public
 class|class
