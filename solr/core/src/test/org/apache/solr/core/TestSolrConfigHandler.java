@@ -2699,7 +2699,7 @@ name|StrUtils
 operator|.
 name|formatString
 argument_list|(
-literal|"Could not get expected value  ''{0}'' for path ''{1}'' full output: {2}"
+literal|"Could not get expected value  ''{0}'' for path ''{1}'' full output: {2},  from server:  {3}"
 argument_list|,
 name|expected
 argument_list|,
@@ -2716,6 +2716,8 @@ name|getAsString
 argument_list|(
 name|m
 argument_list|)
+argument_list|,
+name|testServerBaseUrl
 argument_list|)
 argument_list|,
 name|success
