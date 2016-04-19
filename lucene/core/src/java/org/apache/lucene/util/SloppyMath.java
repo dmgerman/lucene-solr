@@ -30,7 +30,7 @@ specifier|public
 class|class
 name|SloppyMath
 block|{
-comment|/**    * Returns the Haversine distance in meters between two points    * specified in decimal degrees (latitude/longitude).  This works correctly    * even if the dateline is between the two points.    *<p>    * Error is at most 2E-1 (20cm) from the actual haversine distance, but is typically    * much smaller for reasonable distances: around 1E-5 (0.01mm) for distances less than    * 1000km.    *    * @param lat1 Latitude of the first point.    * @param lon1 Longitude of the first point.    * @param lat2 Latitude of the second point.    * @param lon2 Longitude of the second point.    * @return distance in meters.    */
+comment|/**    * Returns the Haversine distance in meters between two points    * specified in decimal degrees (latitude/longitude).  This works correctly    * even if the dateline is between the two points.    *<p>    * Error is at most 4E-1 (40cm) from the actual haversine distance, but is typically    * much smaller for reasonable distances: around 1E-5 (0.01mm) for distances less than    * 1000km.    *    * @param lat1 Latitude of the first point.    * @param lon1 Longitude of the first point.    * @param lat2 Latitude of the second point.    * @param lon2 Longitude of the second point.    * @return distance in meters.    */
 DECL|method|haversinMeters
 specifier|public
 specifier|static
