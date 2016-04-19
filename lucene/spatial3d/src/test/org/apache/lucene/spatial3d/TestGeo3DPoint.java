@@ -4162,7 +4162,10 @@ expr_stmt|;
 block|}
 try|try
 block|{
-return|return
+specifier|final
+name|GeoShape
+name|rval
+init|=
 name|GeoPolygonFactory
 operator|.
 name|makeGeoPolygon
@@ -4173,6 +4176,19 @@ name|WGS84
 argument_list|,
 name|geoPoints
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|rval
+operator|==
+literal|null
+condition|)
+block|{
+comment|// Degenerate polygon
+continue|continue;
+block|}
+return|return
+name|rval
 return|;
 block|}
 catch|catch

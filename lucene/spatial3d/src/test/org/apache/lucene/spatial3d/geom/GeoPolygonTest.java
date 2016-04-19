@@ -553,6 +553,17 @@ argument_list|(
 name|point4
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"Before: "
+operator|+
+name|originalPoints
+argument_list|)
+expr_stmt|;
 specifier|final
 name|List
 argument_list|<
@@ -567,6 +578,17 @@ argument_list|(
 name|originalPoints
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|err
+operator|.
+name|println
+argument_list|(
+literal|"After: "
+operator|+
+name|filteredPoints
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|3
