@@ -31,7 +31,27 @@ extends|extends
 name|GeoMembershipShape
 extends|,
 name|GeoDistance
-block|{  }
+block|{
+comment|/**    * Compute a bound based on a provided distance measure.    * This method takes an input distance and distance metric and provides bounds on the    * shape if reduced to match that distance.  The method is allowed to return    * bounds that are larger than the distance would indicate, but never smaller.    * @param bounds is the bounds object to update.    * @param distanceStyle describes the type of distance metric provided.    * @param distanceValue is the distance metric to use.  It is presumed that the distance metric    *  was produced with the same distance style as is provided to this method.    */
+DECL|method|getDistanceBounds
+specifier|public
+name|void
+name|getDistanceBounds
+parameter_list|(
+specifier|final
+name|Bounds
+name|bounds
+parameter_list|,
+specifier|final
+name|DistanceStyle
+name|distanceStyle
+parameter_list|,
+specifier|final
+name|double
+name|distanceValue
+parameter_list|)
+function_decl|;
+block|}
 end_interface
 
 end_unit
