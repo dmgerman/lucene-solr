@@ -1061,6 +1061,15 @@ argument_list|,
 name|geoPoints
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|shape
+operator|==
+literal|null
+condition|)
+block|{
+continue|continue;
+block|}
 return|return
 operator|new
 name|Geo3dShape
