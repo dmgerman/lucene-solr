@@ -554,7 +554,7 @@ name|rval
 return|;
 block|}
 block|}
-comment|/** Filter duplicate points and coplanar points.    * @param start with input list of points    * @return the filtered list, or null if we can't get a legit polygon from the input.    */
+comment|/** Filter duplicate points and coplanar points.    * @param input with input list of points    * @return the filtered list, or null if we can't get a legit polygon from the input.    */
 DECL|method|filterPoints
 specifier|static
 name|List
