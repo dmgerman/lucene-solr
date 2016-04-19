@@ -56,6 +56,17 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * Returns an explanation about the stream object    * @param factory Stream factory for this, contains information about the function name    * @return Explanation about this stream object containing explanations of any child stream objects    * @throws IOException throw on any error    */
+DECL|method|toExplanation
+name|Explanation
+name|toExplanation
+parameter_list|(
+name|StreamFactory
+name|factory
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
 block|}
 end_interface
 
