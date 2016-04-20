@@ -1121,6 +1121,15 @@ name|GatherNodesStream
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"select"
+argument_list|,
+name|SelectStream
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
