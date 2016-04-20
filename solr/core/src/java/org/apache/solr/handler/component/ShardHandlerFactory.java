@@ -243,6 +243,8 @@ operator|.
 name|getMessage
 argument_list|()
 argument_list|)
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
