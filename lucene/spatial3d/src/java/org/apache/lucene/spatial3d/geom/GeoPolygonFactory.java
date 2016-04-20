@@ -180,6 +180,8 @@ name|holes
 parameter_list|)
 block|{
 comment|// First, exercise a sanity filter on the provided pointList, and remove identical points, linear points, and backtracks
+comment|//System.err.println(" filtering "+pointList.size()+" points...");
+comment|//final long startTime = System.currentTimeMillis();
 specifier|final
 name|List
 argument_list|<
@@ -192,6 +194,7 @@ argument_list|(
 name|pointList
 argument_list|)
 decl_stmt|;
+comment|//System.err.println("  ...done in "+(System.currentTimeMillis()-startTime)+"ms ("+((filteredPointList==null)?"degenerate":(filteredPointList.size()+" points"))+")");
 if|if
 condition|(
 name|filteredPointList
@@ -289,7 +292,9 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"cannot find a point that is inside the polygon"
+literal|"cannot find a point that is inside the polygon "
+operator|+
+name|filteredPointList
 argument_list|)
 throw|;
 block|}
@@ -1195,15 +1200,14 @@ argument_list|)
 condition|)
 block|{
 comment|// This possibility is no good.  But does it say anything about other possibilities?  I think
-comment|// it may mean we don't have to consider any further extensions; gotta work that through
-comment|// mathematically though before coding it.
+comment|// it may mean we don't have to consider any further extensions.  I can't prove this, but
+comment|// it makes this algorithm complete in not an insane period of time at least...
 comment|//System.err.println("  interior point not coplanar with trial plane");
-name|isChoiceLegal
-operator|=
-literal|false
-expr_stmt|;
-break|break;
-comment|//return null;
+comment|//isChoiceLegal = false;
+comment|//break;
+return|return
+literal|null
+return|;
 block|}
 name|checkIndex
 operator|=
@@ -1302,22 +1306,6 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** The maximum distance from the close point to the trial pole: 2 degrees */
-DECL|field|MAX_POLE_DISTANCE
-specifier|private
-specifier|final
-specifier|static
-name|double
-name|MAX_POLE_DISTANCE
-init|=
-name|Math
-operator|.
-name|PI
-operator|*
-literal|0.25
-operator|/
-literal|180.0
-decl_stmt|;
 comment|/** Pick a random pole that has a good chance of being inside the polygon described by the points.    * @param generator is the random number generator to use.    * @param planetModel is the planet model to use.    * @param points is the list of points available.    * @return the randomly-determined pole selection.    */
 DECL|method|pickPole
 specifier|private
@@ -1388,16 +1376,37 @@ name|PI
 decl_stmt|;
 specifier|final
 name|double
+name|maxArcDistance
+init|=
+name|points
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|arcDistance
+argument_list|(
+name|points
+operator|.
+name|get
+argument_list|(
+literal|1
+argument_list|)
+argument_list|)
+decl_stmt|;
+specifier|final
+name|double
 name|arcDistance
 init|=
-name|MAX_POLE_DISTANCE
+name|maxArcDistance
 operator|-
 name|generator
 operator|.
 name|nextDouble
 argument_list|()
 operator|*
-name|MAX_POLE_DISTANCE
+name|maxArcDistance
 decl_stmt|;
 comment|// We come up with a unit circle (x,y,z) coordinate given the random angle and arc distance.  The point is centered around the positive x axis.
 specifier|final
