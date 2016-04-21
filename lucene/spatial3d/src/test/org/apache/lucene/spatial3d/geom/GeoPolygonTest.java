@@ -256,6 +256,8 @@ operator|.
 name|filterPoints
 argument_list|(
 name|originalPoints
+argument_list|,
+literal|0.0
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -359,6 +361,8 @@ operator|.
 name|filterPoints
 argument_list|(
 name|originalPoints
+argument_list|,
+literal|0.0
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -462,6 +466,8 @@ operator|.
 name|filterPoints
 argument_list|(
 name|originalPoints
+argument_list|,
+literal|0.0
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -576,6 +582,8 @@ operator|.
 name|filterPoints
 argument_list|(
 name|originalPoints
+argument_list|,
+literal|0.0
 argument_list|)
 decl_stmt|;
 name|System

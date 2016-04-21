@@ -179,6 +179,49 @@ argument_list|>
 name|holes
 parameter_list|)
 block|{
+return|return
+name|makeGeoPolygon
+argument_list|(
+name|planetModel
+argument_list|,
+name|pointList
+argument_list|,
+name|holes
+argument_list|,
+literal|0.0
+argument_list|)
+return|;
+block|}
+comment|/** Create a GeoPolygon using the specified points and holes, using order to determine     * siding of the polygon.  Much like ESRI, this method uses clockwise to indicate the space    * on the same side of the shape as being inside, and counter-clockwise to indicate the    * space on the opposite side as being inside.    * @param pointList is a list of the GeoPoints to build an arbitrary polygon out of.  If points go    *  clockwise from a given pole, then that pole should be within the polygon.  If points go    *  counter-clockwise, then that pole should be outside the polygon.    * @param holes is a list of polygons representing "holes" in the outside polygon.  Null == none.    * @param leniencyValue is the maximum distance (in units) that a point can be from the plane and still be considered as    *  belonging to the plane.  Any value greater than zero may cause some of the provided points that are in fact outside    *  the strict definition of co-planarity, but are within this distance, to be discarded for the purposes of creating a    *  "safe" polygon.    * @return a GeoPolygon corresponding to what was specified, or null if a valid polygon cannot be generated    *  from this input.    */
+DECL|method|makeGeoPolygon
+specifier|public
+specifier|static
+name|GeoPolygon
+name|makeGeoPolygon
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
+specifier|final
+name|List
+argument_list|<
+name|GeoPoint
+argument_list|>
+name|pointList
+parameter_list|,
+specifier|final
+name|List
+argument_list|<
+name|GeoPolygon
+argument_list|>
+name|holes
+parameter_list|,
+specifier|final
+name|double
+name|leniencyValue
+parameter_list|)
+block|{
 comment|// First, exercise a sanity filter on the provided pointList, and remove identical points, linear points, and backtracks
 comment|//System.err.println(" filtering "+pointList.size()+" points...");
 comment|//final long startTime = System.currentTimeMillis();
@@ -192,6 +235,8 @@ init|=
 name|filterPoints
 argument_list|(
 name|pointList
+argument_list|,
+name|leniencyValue
 argument_list|)
 decl_stmt|;
 comment|//System.err.println("  ...done in "+(System.currentTimeMillis()-startTime)+"ms ("+((filteredPointList==null)?"degenerate":(filteredPointList.size()+" points"))+")");
@@ -559,7 +604,7 @@ name|rval
 return|;
 block|}
 block|}
-comment|/** Filter duplicate points and coplanar points.    * @param input with input list of points    * @return the filtered list, or null if we can't get a legit polygon from the input.    */
+comment|/** Filter duplicate points and coplanar points.    * @param input with input list of points    * @param leniencyValue is the allowed distance of a point from the plane for cleanup of overly detailed polygons    * @return the filtered list, or null if we can't get a legit polygon from the input.    */
 DECL|method|filterPoints
 specifier|static
 name|List
@@ -574,6 +619,10 @@ argument_list|<
 name|GeoPoint
 argument_list|>
 name|input
+parameter_list|,
+specifier|final
+name|double
+name|leniencyValue
 parameter_list|)
 block|{
 specifier|final
@@ -868,6 +917,8 @@ argument_list|()
 argument_list|)
 argument_list|,
 name|i
+argument_list|,
+name|leniencyValue
 argument_list|)
 decl_stmt|;
 if|if
@@ -918,7 +969,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/** Recursive depth-first path search.  In order to find a valid path, we must consider all possible legal extensions of    * the current path.  We discard any path that produces illegalities (meaning anything that would allow any coplanarity    * to continue to exist no matter from which direction one looks at it), and take the first legal path we find.    * @param currentPath is the current path (not null).    * @param points is the raw list of points under consideration.    * @param pointIndex is the index of the point that represents the next possible point for consideration for path    *  extension.    * @param startPointIndex is index of the point that starts the current path, so that we can know when we are done.    * @return null if there was no safe path found, or the safe path if one was discovered.    */
+comment|/** Recursive depth-first path search.  In order to find a valid path, we must consider all possible legal extensions of    * the current path.  We discard any path that produces illegalities (meaning anything that would allow any coplanarity    * to continue to exist no matter from which direction one looks at it), and take the first legal path we find.    * @param currentPath is the current path (not null).    * @param points is the raw list of points under consideration.    * @param pointIndex is the index of the point that represents the next possible point for consideration for path    *  extension.    * @param startPointIndex is index of the point that starts the current path, so that we can know when we are done.    * @param leniencyValue is the maximum allowed distance of a point being skipped from the revised polygon.  Pass zero if    *  no leniency desired.    * @return null if there was no safe path found, or the safe path if one was discovered.    */
 DECL|method|findSafePath
 specifier|private
 specifier|static
@@ -943,6 +994,10 @@ parameter_list|,
 specifier|final
 name|int
 name|startPointIndex
+parameter_list|,
+specifier|final
+name|double
+name|leniencyValue
 parameter_list|)
 block|{
 comment|//System.err.println("extending path...");
@@ -1078,6 +1133,53 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+else|else
+block|{
+comment|// To guarantee that no planes we build are coplanar with edge points, we need to verify everything back from
+comment|// considerEndPoint back to the start of the path.  We build the edge from considerEndPoint back to each
+comment|// of the SafePath points already determined.  Then, we need to look at all triangles that include that edge and
+comment|// the SafePath points in between.  If all of those triangles are legal, we can be assured that adding the current
+comment|// proposed point is safe to do.
+comment|// This is, of course, a lot of work -- specifically, it's O(n^2) for each point in the path, which leads to an O(n^3)
+comment|// evaluation time overall!!
+comment|// The only alternative is to understand the cases under which these triangles would be introduced, and tailor the
+comment|// cleaning to catch those cases only.  Still need to figure that out.  The case that blows up is when *all* the points
+comment|// for a triangle are coplanar, so theoretically we don't even need to generate the triangle at all(!)
+comment|//
+comment|// Build a plane that represents the third edge in this triangle, to guarantee that we can compose
+comment|// the polygon from triangles
+specifier|final
+name|Plane
+name|thirdPlane
+init|=
+operator|new
+name|Plane
+argument_list|(
+name|currentPath
+operator|.
+name|previous
+operator|.
+name|lastPoint
+argument_list|,
+name|considerEndPoint
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|thirdPlane
+operator|.
+name|evaluateIsZero
+argument_list|(
+name|considerStartPoint
+argument_list|)
+condition|)
+block|{
+name|isChoiceLegal
+operator|=
+literal|false
+expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 if|if
@@ -1151,6 +1253,40 @@ operator|=
 literal|false
 expr_stmt|;
 block|}
+else|else
+block|{
+comment|// Build a plane that represents the third edge in this triangle, to guarantee that we can compose
+comment|// the polygon from triangles
+specifier|final
+name|Plane
+name|thirdPlane
+init|=
+operator|new
+name|Plane
+argument_list|(
+name|considerStartPoint
+argument_list|,
+name|firstPlaneEndpoint
+operator|.
+name|lastPoint
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|thirdPlane
+operator|.
+name|evaluateIsZero
+argument_list|(
+name|considerEndPoint
+argument_list|)
+condition|)
+block|{
+name|isChoiceLegal
+operator|=
+literal|false
+expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 if|if
@@ -1185,10 +1321,13 @@ condition|)
 block|{
 if|if
 condition|(
-operator|!
+name|Math
+operator|.
+name|abs
+argument_list|(
 name|considerPlane
 operator|.
-name|evaluateIsZero
+name|evaluate
 argument_list|(
 name|points
 operator|.
@@ -1197,6 +1336,13 @@ argument_list|(
 name|checkIndex
 argument_list|)
 argument_list|)
+argument_list|)
+operator|>=
+name|Vector
+operator|.
+name|MINIMUM_RESOLUTION
+operator|+
+name|leniencyValue
 condition|)
 block|{
 comment|// This possibility is no good.  But does it say anything about other possibilities?  I think
@@ -1273,6 +1419,8 @@ argument_list|,
 name|nextPointIndex
 argument_list|,
 name|startPointIndex
+argument_list|,
+name|leniencyValue
 argument_list|)
 decl_stmt|;
 if|if
@@ -2997,18 +3145,13 @@ operator|<
 literal|3
 condition|)
 block|{
+comment|// Linear...
+comment|// Here we can emit GeoWorld, but probably this means we had a broken poly to start with.
 throw|throw
 operator|new
-name|IllegalStateException
+name|IllegalArgumentException
 argument_list|(
-literal|"Ending edge buffer had only "
-operator|+
-name|edgeBuffer
-operator|.
-name|size
-argument_list|()
-operator|+
-literal|" edges"
+literal|"Illegal polygon; polygon edges intersect each other"
 argument_list|)
 throw|;
 block|}
@@ -3874,15 +4017,13 @@ literal|3
 condition|)
 block|{
 comment|// This means we found a degenerate cycle of edges.  If we emit a polygon at this point it
-comment|// has no contents, so we've clearly done something wrong, but not sure what.
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"polygon was illegal (degenerate illegal two-edge cyclical polygon encountered in processing)"
-argument_list|)
-throw|;
+comment|// has no contents, so we generate no polygon.
+return|return
+literal|false
+return|;
 block|}
+comment|// Now look for completely planar points.  This too is a degeneracy condition that we should
+comment|// return "false" for.
 name|Edge
 name|edge
 init|=
@@ -3898,7 +4039,7 @@ name|startPoint
 argument_list|)
 expr_stmt|;
 name|int
-name|i
+name|k
 init|=
 literal|0
 decl_stmt|;
@@ -3929,7 +4070,7 @@ name|internalEdges
 operator|.
 name|set
 argument_list|(
-name|i
+name|k
 operator|++
 argument_list|,
 name|edge
@@ -3953,6 +4094,149 @@ name|lastEdge
 operator|.
 name|isInternal
 expr_stmt|;
+comment|// Look for coplanarity; abort if so
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|points
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+specifier|final
+name|GeoPoint
+name|start
+init|=
+name|points
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+specifier|final
+name|GeoPoint
+name|end
+init|=
+name|points
+operator|.
+name|get
+argument_list|(
+name|getLegalIndex
+argument_list|(
+name|i
+operator|+
+literal|1
+argument_list|,
+name|points
+operator|.
+name|size
+argument_list|()
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|// We have to find the next point that is not on the plane between start and end.
+comment|// If there is no such point, it's an error.
+specifier|final
+name|Plane
+name|planeToFind
+init|=
+operator|new
+name|Plane
+argument_list|(
+name|start
+argument_list|,
+name|end
+argument_list|)
+decl_stmt|;
+name|int
+name|endPointIndex
+init|=
+operator|-
+literal|1
+decl_stmt|;
+for|for
+control|(
+name|int
+name|j
+init|=
+literal|0
+init|;
+name|j
+operator|<
+name|points
+operator|.
+name|size
+argument_list|()
+condition|;
+name|j
+operator|++
+control|)
+block|{
+specifier|final
+name|int
+name|index
+init|=
+name|getLegalIndex
+argument_list|(
+name|j
+operator|+
+name|i
+operator|+
+literal|2
+argument_list|,
+name|points
+operator|.
+name|size
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|planeToFind
+operator|.
+name|evaluateIsZero
+argument_list|(
+name|points
+operator|.
+name|get
+argument_list|(
+name|index
+argument_list|)
+argument_list|)
+condition|)
+block|{
+name|endPointIndex
+operator|=
+name|index
+expr_stmt|;
+break|break;
+block|}
+block|}
+if|if
+condition|(
+name|endPointIndex
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
 name|edgeBuffer
 operator|.
 name|clear
@@ -4028,6 +4312,8 @@ name|returnIsInternal
 operator|=
 literal|true
 expr_stmt|;
+comment|// Now look for completely planar points.  This too is a degeneracy condition that we should
+comment|// return "false" for.
 name|Edge
 name|edge
 init|=
@@ -4043,7 +4329,7 @@ name|startPoint
 argument_list|)
 expr_stmt|;
 name|int
-name|i
+name|k
 init|=
 literal|0
 decl_stmt|;
@@ -4065,7 +4351,7 @@ name|internalEdges
 operator|.
 name|set
 argument_list|(
-name|i
+name|k
 operator|++
 argument_list|,
 name|edge
@@ -4098,6 +4384,149 @@ argument_list|(
 name|edge
 argument_list|)
 expr_stmt|;
+block|}
+comment|// Look for coplanarity; abort if so
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+name|points
+operator|.
+name|size
+argument_list|()
+condition|;
+name|i
+operator|++
+control|)
+block|{
+specifier|final
+name|GeoPoint
+name|start
+init|=
+name|points
+operator|.
+name|get
+argument_list|(
+name|i
+argument_list|)
+decl_stmt|;
+specifier|final
+name|GeoPoint
+name|end
+init|=
+name|points
+operator|.
+name|get
+argument_list|(
+name|getLegalIndex
+argument_list|(
+name|i
+operator|+
+literal|1
+argument_list|,
+name|points
+operator|.
+name|size
+argument_list|()
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|// We have to find the next point that is not on the plane between start and end.
+comment|// If there is no such point, it's an error.
+specifier|final
+name|Plane
+name|planeToFind
+init|=
+operator|new
+name|Plane
+argument_list|(
+name|start
+argument_list|,
+name|end
+argument_list|)
+decl_stmt|;
+name|int
+name|endPointIndex
+init|=
+operator|-
+literal|1
+decl_stmt|;
+for|for
+control|(
+name|int
+name|j
+init|=
+literal|0
+init|;
+name|j
+operator|<
+name|points
+operator|.
+name|size
+argument_list|()
+condition|;
+name|j
+operator|++
+control|)
+block|{
+specifier|final
+name|int
+name|index
+init|=
+name|getLegalIndex
+argument_list|(
+name|j
+operator|+
+name|i
+operator|+
+literal|2
+argument_list|,
+name|points
+operator|.
+name|size
+argument_list|()
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|planeToFind
+operator|.
+name|evaluateIsZero
+argument_list|(
+name|points
+operator|.
+name|get
+argument_list|(
+name|index
+argument_list|)
+argument_list|)
+condition|)
+block|{
+name|endPointIndex
+operator|=
+name|index
+expr_stmt|;
+break|break;
+block|}
+block|}
+if|if
+condition|(
+name|endPointIndex
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
 block|}
 comment|// Modify the edge buffer
 name|edgeBuffer
