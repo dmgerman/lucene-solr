@@ -2774,6 +2774,13 @@ argument_list|(
 name|normSimilarity
 argument_list|)
 expr_stmt|;
+name|searcher
+operator|.
+name|setQueryCache
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 return|return
 name|searcher
 return|;
