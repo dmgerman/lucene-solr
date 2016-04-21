@@ -1335,10 +1335,7 @@ literal|1
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|SimpleOrderedMap
-argument_list|<
-name|Object
-argument_list|>
+name|Map
 name|propertyValues
 init|=
 name|req
@@ -1348,6 +1345,8 @@ argument_list|()
 operator|.
 name|getNamedPropertyValues
 argument_list|(
+name|realName
+argument_list|,
 name|req
 operator|.
 name|getParams

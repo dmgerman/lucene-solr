@@ -182,6 +182,90 @@ literal|"/copyFields/[18]=={'source':'src_sub_no_ast_i','dest':'dest_sub_no_ast_
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testRestrictSource
+specifier|public
+name|void
+name|testRestrictSource
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=title,*_i,*_src_sub_i,src_sub_no_ast_i"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 16"
+argument_list|,
+comment|// 4 + 4 + 4 + 4
+literal|"count(/response/arr[@name='copyFields']/lst/str[@name='source'][.='title']) = 4"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst/str[@name='source'][.='*_i']) = 4"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst/str[@name='source'][.='*_src_sub_i']) = 4"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst/str[@name='source'][.='src_sub_no_ast_i']) = 4"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testRestrictDest
+specifier|public
+name|void
+name|testRestrictDest
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&dest.fl=title,*_s,*_dest_sub_s,dest_sub_no_ast_s"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 16"
+argument_list|,
+comment|// 3 + 4 + 4 + 5
+literal|"count(/response/arr[@name='copyFields']/lst/str[@name='dest'][.='title']) = 3"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst/str[@name='dest'][.='*_s']) = 4"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst/str[@name='dest'][.='*_dest_sub_s']) = 4"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst/str[@name='dest'][.='dest_sub_no_ast_s']) = 5"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testRestrictSourceAndDest
+specifier|public
+name|void
+name|testRestrictSourceAndDest
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/copyfields/?indent=on&wt=xml&source.fl=title,*_i&dest.fl=title,dest_sub_no_ast_s"
+argument_list|,
+literal|"count(/response/arr[@name='copyFields']/lst) = 3"
+argument_list|,
+literal|"/response/arr[@name='copyFields']/lst[    str[@name='source'][.='title']"
+operator|+
+literal|"                                      and str[@name='dest'][.='dest_sub_no_ast_s']]"
+argument_list|,
+literal|"/response/arr[@name='copyFields']/lst[    str[@name='source'][.='*_i']"
+operator|+
+literal|"                                      and str[@name='dest'][.='title']]"
+argument_list|,
+literal|"/response/arr[@name='copyFields']/lst[    str[@name='source'][.='*_i']"
+operator|+
+literal|"                                      and str[@name='dest'][.='dest_sub_no_ast_s']]"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

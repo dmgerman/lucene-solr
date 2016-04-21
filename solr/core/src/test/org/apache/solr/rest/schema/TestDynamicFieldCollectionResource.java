@@ -84,6 +84,48 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+DECL|method|testGetTwoDynamicFields
+specifier|public
+name|void
+name|testGetTwoDynamicFields
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/dynamicfields?indent=on&wt=xml&fl=*_i,*_s"
+argument_list|,
+literal|"count(/response/arr[@name='dynamicFields']/lst/str[@name='name']) = 2"
+argument_list|,
+literal|"(/response/arr[@name='dynamicFields']/lst/str[@name='name'])[1] = '*_i'"
+argument_list|,
+literal|"(/response/arr[@name='dynamicFields']/lst/str[@name='name'])[2] = '*_s'"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testNotFoundDynamicFields
+specifier|public
+name|void
+name|testNotFoundDynamicFields
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/dynamicfields?indent=on&wt=xml&fl=*_not_in_there,this_one_isnt_either_*"
+argument_list|,
+literal|"count(/response/arr[@name='dynamicFields']) = 1"
+argument_list|,
+literal|"count(/response/arr[@name='dynamicfields']/lst/str[@name='name']) = 0"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
 DECL|method|testJsonGetAllDynamicFields
 specifier|public
 name|void
@@ -101,6 +143,27 @@ argument_list|,
 literal|"/dynamicFields/[1]/name=='ignored_*'"
 argument_list|,
 literal|"/dynamicFields/[2]/name=='*_mfacet'"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|testJsonGetTwoDynamicFields
+specifier|public
+name|void
+name|testJsonGetTwoDynamicFields
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertJQ
+argument_list|(
+literal|"/schema/dynamicfields?indent=on&fl=*_i,*_s&wt=xml"
+argument_list|,
+comment|// assertJQ will fix the wt param to be json
+literal|"/dynamicFields/[0]/name=='*_i'"
+argument_list|,
+literal|"/dynamicFields/[1]/name=='*_s'"
 argument_list|)
 expr_stmt|;
 block|}
