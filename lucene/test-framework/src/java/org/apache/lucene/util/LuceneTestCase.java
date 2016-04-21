@@ -9033,6 +9033,10 @@ argument_list|,
 literal|1
 operator|<<
 literal|25
+argument_list|,
+name|context
+lambda|->
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
