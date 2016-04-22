@@ -523,9 +523,6 @@ name|shouldCache
 parameter_list|(
 name|Query
 name|query
-parameter_list|,
-name|LeafReaderContext
-name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -3228,9 +3225,6 @@ name|shouldCache
 parameter_list|(
 name|Query
 name|query
-parameter_list|,
-name|LeafReaderContext
-name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -5459,9 +5453,6 @@ name|shouldCache
 parameter_list|(
 name|Query
 name|query
-parameter_list|,
-name|LeafReaderContext
-name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -7655,9 +7646,6 @@ name|shouldCache
 parameter_list|(
 name|Query
 name|query
-parameter_list|,
-name|LeafReaderContext
-name|context
 parameter_list|)
 throws|throws
 name|IOException

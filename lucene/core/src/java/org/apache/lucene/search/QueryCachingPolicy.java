@@ -26,20 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|LeafReaderContext
-import|;
-end_import
-
 begin_comment
 comment|/**  * A policy defining which filters should be cached.  *  * Implementations of this class must be thread-safe.  *  * @see UsageTrackingQueryCachingPolicy  * @see LRUQueryCache  * @lucene.experimental  */
 end_comment
@@ -84,9 +70,6 @@ name|shouldCache
 parameter_list|(
 name|Query
 name|query
-parameter_list|,
-name|LeafReaderContext
-name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -106,16 +89,13 @@ name|Query
 name|query
 parameter_list|)
 function_decl|;
-comment|/** Whether the given {@link DocIdSet} should be cached on a given segment.    *  This method will be called on each leaf context to know if the filter    *  should be cached on this particular leaf. The filter cache will first    *  attempt to load a {@link DocIdSet} from the cache. If it is not cached    *  yet and this method returns<tt>true</tt> then a cache entry will be    *  generated. Otherwise an uncached set will be returned. */
+comment|/** Whether the given {@link Query} is worth caching.    *  This method will be called by the {@link QueryCache} to know whether to    *  cache. It will first attempt to load a {@link DocIdSet} from the cache.    *  If it is not cached yet and this method returns<tt>true</tt> then a    *  cache entry will be generated. Otherwise an uncached scorer will be    *  returned. */
 DECL|method|shouldCache
 name|boolean
 name|shouldCache
 parameter_list|(
 name|Query
 name|query
-parameter_list|,
-name|LeafReaderContext
-name|context
 parameter_list|)
 throws|throws
 name|IOException
