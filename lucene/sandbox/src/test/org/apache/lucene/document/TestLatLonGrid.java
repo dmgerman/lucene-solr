@@ -277,7 +277,12 @@ name|minLon
 argument_list|,
 name|maxLon
 argument_list|,
+name|LatLonTree
+operator|.
+name|build
+argument_list|(
 name|polygon
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// we are in integer space... but exhaustive testing is slow!
@@ -566,7 +571,12 @@ name|minLon
 argument_list|,
 name|maxLon
 argument_list|,
+name|LatLonTree
+operator|.
+name|build
+argument_list|(
 name|polygon
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|// we are in integer space... but exhaustive testing is slow!
@@ -744,7 +754,12 @@ literal|0
 argument_list|,
 name|max
 argument_list|,
+name|LatLonTree
+operator|.
+name|build
+argument_list|(
 name|tiny
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertEquals
