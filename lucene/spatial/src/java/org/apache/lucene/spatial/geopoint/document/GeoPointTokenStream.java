@@ -177,7 +177,7 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|org
 operator|.
 name|apache
@@ -186,9 +186,13 @@ name|lucene
 operator|.
 name|spatial
 operator|.
-name|util
+name|geopoint
 operator|.
-name|GeoEncodingUtils
+name|document
+operator|.
+name|GeoPointField
+operator|.
+name|geoCodedToPrefixCoded
 import|;
 end_import
 
@@ -570,8 +574,6 @@ name|BytesRef
 name|getBytesRef
 parameter_list|()
 block|{
-name|GeoEncodingUtils
-operator|.
 name|geoCodedToPrefixCoded
 argument_list|(
 name|value

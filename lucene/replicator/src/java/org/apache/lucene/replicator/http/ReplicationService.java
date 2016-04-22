@@ -678,6 +678,7 @@ index|]
 argument_list|)
 throw|;
 block|}
+comment|// SOLR-8933 Don't close this stream.
 name|ServletOutputStream
 name|resOut
 init|=
