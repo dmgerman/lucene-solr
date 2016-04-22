@@ -176,6 +176,26 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+DECL|method|testGetFieldIncludeDynamic
+specifier|public
+name|void
+name|testGetFieldIncludeDynamic
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertQ
+argument_list|(
+literal|"/schema/fields/some_crazy_name_i?indent=on&wt=xml&includeDynamic=true"
+argument_list|,
+literal|"/response/lst[@name='field']/str[@name='name'] = 'some_crazy_name_i'"
+argument_list|,
+literal|"/response/lst[@name='field']/str[@name='dynamicBase'] = '*_i'"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
 DECL|method|testGetFieldDontShowDefaults
 specifier|public
 name|void
