@@ -1741,7 +1741,7 @@ return|;
 block|}
 comment|/**    * This is precalculated data for segment endpoint.    * Note well: This is not necessarily a circle.  There are four cases:    * (1) The path consists of a single endpoint.  In this case, we build a simple circle with the proper cutoff offset.    * (2) This is the end of a path.  The circle plane must be constructed to go through two supplied points and be perpendicular to a connecting plane.    * (2.5) Intersection, but the path on both sides is linear.  We generate a circle, but we use the cutoff planes to limit its influence in the straight line case.    * (3) This is an intersection in a path.  We are supplied FOUR planes.  If there are intersections within bounds for both upper and lower, then    *    we generate no circle at all.  If there is one intersection only, then we generate a plane that includes that intersection, as well as the remaining    *    cutoff plane/edge plane points.    */
 DECL|class|SegmentEndpoint
-specifier|public
+specifier|private
 specifier|static
 class|class
 name|SegmentEndpoint
@@ -2847,7 +2847,7 @@ block|}
 block|}
 comment|/**    * This is the pre-calculated data for a path segment.    */
 DECL|class|PathSegment
-specifier|public
+specifier|private
 specifier|static
 class|class
 name|PathSegment
