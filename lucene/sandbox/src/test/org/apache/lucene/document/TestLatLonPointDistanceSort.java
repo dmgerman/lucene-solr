@@ -311,7 +311,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Simple tests for {@link LatLonPoint#newDistanceSort} */
+comment|/** Simple tests for {@link LatLonDocValuesField#newDistanceSort} */
 end_comment
 
 begin_class
@@ -362,7 +362,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LatLonPoint
+name|LatLonDocValuesField
 argument_list|(
 literal|"location"
 argument_list|,
@@ -391,7 +391,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LatLonPoint
+name|LatLonDocValuesField
 argument_list|(
 literal|"location"
 argument_list|,
@@ -420,7 +420,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LatLonPoint
+name|LatLonDocValuesField
 argument_list|(
 literal|"location"
 argument_list|,
@@ -465,7 +465,7 @@ init|=
 operator|new
 name|Sort
 argument_list|(
-name|LatLonPoint
+name|LatLonDocValuesField
 operator|.
 name|newDistanceSort
 argument_list|(
@@ -646,7 +646,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LatLonPoint
+name|LatLonDocValuesField
 argument_list|(
 literal|"location"
 argument_list|,
@@ -675,7 +675,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LatLonPoint
+name|LatLonDocValuesField
 argument_list|(
 literal|"location"
 argument_list|,
@@ -720,7 +720,7 @@ init|=
 operator|new
 name|Sort
 argument_list|(
-name|LatLonPoint
+name|LatLonDocValuesField
 operator|.
 name|newDistanceSort
 argument_list|(
@@ -1334,7 +1334,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|LatLonPoint
+name|LatLonDocValuesField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -1607,7 +1607,7 @@ comment|// sort by distance, then ID
 name|SortField
 name|distanceSort
 init|=
-name|LatLonPoint
+name|LatLonDocValuesField
 operator|.
 name|newDistanceSort
 argument_list|(
