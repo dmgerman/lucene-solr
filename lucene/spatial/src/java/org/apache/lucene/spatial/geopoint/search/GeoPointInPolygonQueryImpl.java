@@ -74,7 +74,7 @@ name|lucene
 operator|.
 name|geo
 operator|.
-name|Polygon
+name|Polygon2D
 import|;
 end_import
 
@@ -115,8 +115,7 @@ decl_stmt|;
 DECL|field|polygons
 specifier|private
 specifier|final
-name|Polygon
-index|[]
+name|Polygon2D
 name|polygons
 decl_stmt|;
 DECL|method|GeoPointInPolygonQueryImpl
@@ -181,9 +180,9 @@ name|this
 operator|.
 name|polygons
 operator|=
-name|Objects
+name|Polygon2D
 operator|.
-name|requireNonNull
+name|create
 argument_list|(
 name|q
 operator|.
@@ -275,12 +274,10 @@ name|maxLon
 parameter_list|)
 block|{
 return|return
-name|Polygon
+name|polygons
 operator|.
 name|relate
 argument_list|(
-name|polygons
-argument_list|,
 name|minLat
 argument_list|,
 name|maxLat
@@ -320,12 +317,10 @@ name|maxLon
 parameter_list|)
 block|{
 return|return
-name|Polygon
+name|polygons
 operator|.
 name|relate
 argument_list|(
-name|polygons
-argument_list|,
 name|minLat
 argument_list|,
 name|maxLat
@@ -365,12 +360,10 @@ name|maxLon
 parameter_list|)
 block|{
 return|return
-name|Polygon
+name|polygons
 operator|.
 name|relate
 argument_list|(
-name|polygons
-argument_list|,
 name|minLat
 argument_list|,
 name|maxLat
@@ -385,7 +378,7 @@ operator|.
 name|CELL_OUTSIDE_QUERY
 return|;
 block|}
-comment|/**      * The two-phase query approach. The parent      * {@link org.apache.lucene.spatial.geopoint.search.GeoPointTermsEnum#accept} method is called to match      * encoded terms that fall within the bounding box of the polygon. Those documents that pass the initial      * bounding box filter are then compared to the provided polygon using the      * {@link Polygon#contains(Polygon[], double, double)} method.      */
+comment|/**      * The two-phase query approach. The parent      * {@link org.apache.lucene.spatial.geopoint.search.GeoPointTermsEnum#accept} method is called to match      * encoded terms that fall within the bounding box of the polygon. Those documents that pass the initial      * bounding box filter are then compared to the provided polygon using the      * {@link Polygon2D#contains(double, double)} method.      */
 annotation|@
 name|Override
 DECL|method|postFilter
@@ -403,12 +396,10 @@ name|lon
 parameter_list|)
 block|{
 return|return
-name|Polygon
+name|polygons
 operator|.
 name|contains
 argument_list|(
-name|polygons
-argument_list|,
 name|lat
 argument_list|,
 name|lon
