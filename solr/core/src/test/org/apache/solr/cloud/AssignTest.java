@@ -524,9 +524,12 @@ name|Assign
 operator|.
 name|assignNode
 argument_list|(
-literal|"collection1"
-argument_list|,
 name|state
+operator|.
+name|getCollection
+argument_list|(
+literal|"collection1"
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertEquals

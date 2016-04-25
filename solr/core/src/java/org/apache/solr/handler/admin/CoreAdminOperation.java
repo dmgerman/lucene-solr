@@ -3366,12 +3366,10 @@ decl_stmt|;
 name|Slice
 name|slice
 init|=
-name|clusterState
+name|collection
 operator|.
 name|getSlice
 argument_list|(
-name|collectionName
-argument_list|,
 name|sliceName
 argument_list|)
 decl_stmt|;
@@ -3955,7 +3953,7 @@ name|getCloudDescriptor
 argument_list|()
 decl_stmt|;
 name|String
-name|collection
+name|collectionName
 init|=
 name|cloudDescriptor
 operator|.
@@ -4026,7 +4024,7 @@ argument_list|()
 operator|.
 name|forceUpdateCollection
 argument_list|(
-name|collection
+name|collectionName
 argument_list|)
 expr_stmt|;
 block|}
@@ -4108,15 +4106,23 @@ operator|.
 name|getClusterState
 argument_list|()
 decl_stmt|;
-name|Slice
-name|slice
+name|DocCollection
+name|collection
 init|=
 name|clusterState
 operator|.
+name|getCollection
+argument_list|(
+name|collectionName
+argument_list|)
+decl_stmt|;
+name|Slice
+name|slice
+init|=
+name|collection
+operator|.
 name|getSlice
 argument_list|(
-name|collection
-argument_list|,
 name|cloudDescriptor
 operator|.
 name|getShardId
@@ -4278,7 +4284,7 @@ name|waitForState
 operator|+
 literal|"): collection="
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|", shard="
 operator|+

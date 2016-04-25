@@ -461,7 +461,9 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Get the lead replica for specific collection, or null if one currently doesn't exist.    */
+comment|/**    * Get the lead replica for specific collection, or null if one currently doesn't exist.    * @deprecated Use {@link DocCollection#getLeader(String)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getLeader
 specifier|public
 name|Replica
@@ -517,18 +519,50 @@ name|getLeader
 argument_list|()
 return|;
 block|}
+comment|/**    * Returns true if the specified collection name exists, false otherwise.    *    * Implementation note: This method resolves the collection reference by calling    * {@link CollectionRef#get()} which can make a call to ZooKeeper. This is necessary    * because the semantics of how collection list is loaded have changed in SOLR-6629.    * Please see javadocs in {@link ZkStateReader#refreshCollectionList(Watcher)}    */
+DECL|method|hasCollection
+specifier|public
+name|boolean
+name|hasCollection
+parameter_list|(
+name|String
+name|collectionName
+parameter_list|)
+block|{
+return|return
+name|getCollectionOrNull
+argument_list|(
+name|collectionName
+argument_list|)
+operator|!=
+literal|null
+return|;
+block|}
+comment|/**    * Gets the replica by the core node name (assuming the slice is unknown) or null if replica is not found.    * If the slice is known, do not use this method.    * coreNodeName is the same as replicaName    *    * @deprecated use {@link DocCollection#getReplica(String)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getReplica
-specifier|private
+specifier|public
 name|Replica
 name|getReplica
 parameter_list|(
-name|DocCollection
-name|coll
-parameter_list|,
+specifier|final
 name|String
-name|replicaName
+name|collection
+parameter_list|,
+specifier|final
+name|String
+name|coreNodeName
 parameter_list|)
 block|{
+name|DocCollection
+name|coll
+init|=
+name|getCollectionOrNull
+argument_list|(
+name|collection
+argument_list|)
+decl_stmt|;
 if|if
 condition|(
 name|coll
@@ -556,7 +590,7 @@ name|slice
 operator|.
 name|getReplica
 argument_list|(
-name|replicaName
+name|coreNodeName
 argument_list|)
 decl_stmt|;
 if|if
@@ -573,53 +607,9 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Returns true if the specified collection name exists, false otherwise.    *    * Implementation note: This method resolves the collection reference by calling    * {@link CollectionRef#get()} which can make a call to ZooKeeper. This is necessary    * because the semantics of how collection list is loaded have changed in SOLR-6629.    * Please javadocs in {@link ZkStateReader#refreshCollectionList(Watcher)}    */
-DECL|method|hasCollection
-specifier|public
-name|boolean
-name|hasCollection
-parameter_list|(
-name|String
-name|collectionName
-parameter_list|)
-block|{
-return|return
-name|getCollectionOrNull
-argument_list|(
-name|collectionName
-argument_list|)
-operator|!=
-literal|null
-return|;
-block|}
-comment|/**    * Gets the replica by the core name (assuming the slice is unknown) or null if replica is not found.    * If the slice is known, do not use this method.    * coreNodeName is the same as replicaName    */
-DECL|method|getReplica
-specifier|public
-name|Replica
-name|getReplica
-parameter_list|(
-specifier|final
-name|String
-name|collection
-parameter_list|,
-specifier|final
-name|String
-name|coreNodeName
-parameter_list|)
-block|{
-return|return
-name|getReplica
-argument_list|(
-name|getCollectionOrNull
-argument_list|(
-name|collection
-argument_list|)
-argument_list|,
-name|coreNodeName
-argument_list|)
-return|;
-block|}
-comment|/**    * Get the named Slice for collection, or null if not found.    */
+comment|/**    * Get the named Slice for collection, or null if not found.    *    * @deprecated use {@link DocCollection#getSlice(String)} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getSlice
 specifier|public
 name|Slice
@@ -658,6 +648,9 @@ name|sliceName
 argument_list|)
 return|;
 block|}
+comment|/**    * @deprecated use {@link DocCollection#getSlicesMap()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getSlicesMap
 specifier|public
 name|Map
@@ -696,6 +689,9 @@ name|getSlicesMap
 argument_list|()
 return|;
 block|}
+comment|/**    * @deprecated use {@link DocCollection#getActiveSlicesMap()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getActiveSlicesMap
 specifier|public
 name|Map
@@ -734,6 +730,9 @@ name|getActiveSlicesMap
 argument_list|()
 return|;
 block|}
+comment|/**    * @deprecated use {@link DocCollection#getSlices()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getSlices
 specifier|public
 name|Collection
@@ -770,6 +769,9 @@ name|getSlices
 argument_list|()
 return|;
 block|}
+comment|/**    * @deprecated use {@link DocCollection#getActiveSlices()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getActiveSlices
 specifier|public
 name|Collection
@@ -898,7 +900,7 @@ name|get
 argument_list|()
 return|;
 block|}
-comment|/**    * Get collection names.    *    * Implementation note: This method resolves the collection reference by calling    * {@link CollectionRef#get()} which can make a call to ZooKeeper. This is necessary    * because the semantics of how collection list is loaded have changed in SOLR-6629.    * Please javadocs in {@link ZkStateReader#refreshCollectionList(Watcher)}    */
+comment|/**    * Get collection names.    *    * Implementation note: This method resolves the collection reference by calling    * {@link CollectionRef#get()} which can make a call to ZooKeeper. This is necessary    * because the semantics of how collection list is loaded have changed in SOLR-6629.    * Please see javadocs in {@link ZkStateReader#refreshCollectionList(Watcher)}    */
 DECL|method|getCollections
 specifier|public
 name|Set
