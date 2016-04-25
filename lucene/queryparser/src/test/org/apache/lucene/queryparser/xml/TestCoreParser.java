@@ -1217,13 +1217,23 @@ literal|"TEST: qType="
 operator|+
 name|qType
 operator|+
-literal|" query="
-operator|+
-name|q
-operator|+
 literal|" numDocs="
 operator|+
 name|numDocs
+operator|+
+literal|" "
+operator|+
+name|q
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getCanonicalName
+argument_list|()
+operator|+
+literal|" query="
+operator|+
+name|q
 argument_list|)
 expr_stmt|;
 block|}
@@ -1246,22 +1256,22 @@ argument_list|,
 name|numDocs
 argument_list|)
 decl_stmt|;
-name|assertTrue
-argument_list|(
-name|qType
-operator|+
-literal|" should produce results "
-argument_list|,
+specifier|final
+name|boolean
+name|producedResults
+init|=
+operator|(
 name|hits
 operator|.
 name|totalHits
 operator|>
 literal|0
-argument_list|)
-expr_stmt|;
+operator|)
+decl_stmt|;
 if|if
 condition|(
-name|VERBOSE
+operator|!
+name|producedResults
 condition|)
 block|{
 name|System
@@ -1270,13 +1280,35 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"========="
+literal|"TEST: qType="
 operator|+
 name|qType
 operator|+
-literal|"============"
+literal|" numDocs="
+operator|+
+name|numDocs
+operator|+
+literal|" "
+operator|+
+name|q
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getCanonicalName
+argument_list|()
+operator|+
+literal|" query="
+operator|+
+name|q
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
 name|ScoreDoc
 index|[]
 name|scoreDocs
@@ -1358,6 +1390,15 @@ name|println
 argument_list|()
 expr_stmt|;
 block|}
+name|assertTrue
+argument_list|(
+name|qType
+operator|+
+literal|" produced no results"
+argument_list|,
+name|producedResults
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
