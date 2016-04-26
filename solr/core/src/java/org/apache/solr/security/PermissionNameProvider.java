@@ -152,6 +152,22 @@ argument_list|,
 literal|null
 argument_list|)
 block|,
+DECL|enum constant|CORE_READ_PERM
+name|CORE_READ_PERM
+argument_list|(
+literal|"core-admin-read"
+argument_list|,
+literal|null
+argument_list|)
+block|,
+DECL|enum constant|CORE_EDIT_PERM
+name|CORE_EDIT_PERM
+argument_list|(
+literal|"core-admin-edit"
+argument_list|,
+literal|null
+argument_list|)
+block|,
 DECL|enum constant|READ_PERM
 name|READ_PERM
 argument_list|(

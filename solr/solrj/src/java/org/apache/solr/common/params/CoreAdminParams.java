@@ -343,6 +343,9 @@ name|CoreAdminAction
 block|{
 DECL|enum constant|STATUS
 name|STATUS
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|UNLOAD
 name|UNLOAD
@@ -388,6 +391,9 @@ name|OVERSEEROP
 block|,
 DECL|enum constant|REQUESTSTATUS
 name|REQUESTSTATUS
+argument_list|(
+literal|true
+argument_list|)
 block|,
 DECL|enum constant|REJOINLEADERELECTION
 name|REJOINLEADERELECTION
@@ -399,6 +405,37 @@ block|,
 DECL|enum constant|INVOKE
 name|INVOKE
 block|;
+DECL|field|isRead
+specifier|public
+specifier|final
+name|boolean
+name|isRead
+decl_stmt|;
+DECL|method|CoreAdminAction
+name|CoreAdminAction
+parameter_list|(
+name|boolean
+name|isRead
+parameter_list|)
+block|{
+name|this
+operator|.
+name|isRead
+operator|=
+name|isRead
+expr_stmt|;
+block|}
+DECL|method|CoreAdminAction
+name|CoreAdminAction
+parameter_list|()
+block|{
+name|this
+operator|.
+name|isRead
+operator|=
+literal|false
+expr_stmt|;
+block|}
 DECL|method|get
 specifier|public
 specifier|static
