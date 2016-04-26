@@ -968,7 +968,7 @@ name|termContext
 operator|.
 name|docFreq
 argument_list|()
-operator|<
+operator|<=
 name|this
 operator|.
 name|maxDocFreq

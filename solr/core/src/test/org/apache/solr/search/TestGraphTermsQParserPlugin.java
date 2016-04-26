@@ -792,7 +792,7 @@ name|add
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!graphTerms f=test_ti maxDocFreq=3}5,10"
+literal|"{!graphTerms f=test_ti maxDocFreq=2}5,10"
 argument_list|)
 expr_stmt|;
 name|params
