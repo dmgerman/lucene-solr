@@ -34,20 +34,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|LeafReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|FrequencyTrackingRingBuffer
@@ -55,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link QueryCachingPolicy} that tracks usage statistics of recently-used  * filters in order to decide on which filters are worth caching.  *  * It also uses some heuristics on segments, filters and the doc id sets that  * they produce in order to cache more aggressively when the execution cost  * significantly outweighs the caching overhead.  *  * @lucene.experimental  */
+comment|/**  * A {@link QueryCachingPolicy} that tracks usage statistics of recently-used  * filters in order to decide on which filters are worth caching.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -402,9 +388,6 @@ name|shouldCache
 parameter_list|(
 name|Query
 name|query
-parameter_list|,
-name|LeafReaderContext
-name|context
 parameter_list|)
 throws|throws
 name|IOException

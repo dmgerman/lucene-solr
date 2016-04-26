@@ -4024,6 +4024,253 @@ name|toString
 argument_list|()
 return|;
 block|}
+comment|/**    * Simple slow point in polygon check (for testing)    */
+comment|// direct port of PNPOLY C code (https://www.ecse.rpi.edu/~wrf/Research/Short_Notes/pnpoly.html)
+comment|// this allows us to improve the code yet still ensure we have its properties
+comment|// it is under the BSD license (https://www.ecse.rpi.edu/~wrf/Research/Short_Notes/pnpoly.html#License%20to%20Use)
+comment|//
+comment|// Copyright (c) 1970-2003, Wm. Randolph Franklin
+comment|//
+comment|// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
+comment|// documentation files (the "Software"), to deal in the Software without restriction, including without limitation
+comment|// the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and
+comment|// to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+comment|//
+comment|// 1. Redistributions of source code must retain the above copyright
+comment|//    notice, this list of conditions and the following disclaimers.
+comment|// 2. Redistributions in binary form must reproduce the above copyright
+comment|//    notice in the documentation and/or other materials provided with
+comment|//    the distribution.
+comment|// 3. The name of W. Randolph Franklin may not be used to endorse or
+comment|//    promote products derived from this Software without specific
+comment|//    prior written permission.
+comment|//
+comment|// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+comment|// TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+comment|// THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+comment|// CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+comment|// IN THE SOFTWARE.
+DECL|method|containsSlowly
+specifier|public
+specifier|static
+name|boolean
+name|containsSlowly
+parameter_list|(
+name|Polygon
+name|polygon
+parameter_list|,
+name|double
+name|latitude
+parameter_list|,
+name|double
+name|longitude
+parameter_list|)
+block|{
+if|if
+condition|(
+name|polygon
+operator|.
+name|getHoles
+argument_list|()
+operator|.
+name|length
+operator|>
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"this testing method does not support holes"
+argument_list|)
+throw|;
+block|}
+name|double
+name|polyLats
+index|[]
+init|=
+name|polygon
+operator|.
+name|getPolyLats
+argument_list|()
+decl_stmt|;
+name|double
+name|polyLons
+index|[]
+init|=
+name|polygon
+operator|.
+name|getPolyLons
+argument_list|()
+decl_stmt|;
+comment|// bounding box check required due to rounding errors (we don't solve that problem)
+if|if
+condition|(
+name|latitude
+argument_list|<
+name|polygon
+operator|.
+name|minLat
+operator|||
+name|latitude
+argument_list|>
+name|polygon
+operator|.
+name|maxLat
+operator|||
+name|longitude
+argument_list|<
+name|polygon
+operator|.
+name|minLon
+operator|||
+name|longitude
+argument_list|>
+name|polygon
+operator|.
+name|maxLon
+condition|)
+block|{
+return|return
+literal|false
+return|;
+block|}
+name|boolean
+name|c
+init|=
+literal|false
+decl_stmt|;
+name|int
+name|i
+decl_stmt|,
+name|j
+decl_stmt|;
+name|int
+name|nvert
+init|=
+name|polyLats
+operator|.
+name|length
+decl_stmt|;
+name|double
+name|verty
+index|[]
+init|=
+name|polyLats
+decl_stmt|;
+name|double
+name|vertx
+index|[]
+init|=
+name|polyLons
+decl_stmt|;
+name|double
+name|testy
+init|=
+name|latitude
+decl_stmt|;
+name|double
+name|testx
+init|=
+name|longitude
+decl_stmt|;
+for|for
+control|(
+name|i
+operator|=
+literal|0
+operator|,
+name|j
+operator|=
+name|nvert
+operator|-
+literal|1
+init|;
+name|i
+operator|<
+name|nvert
+condition|;
+name|j
+operator|=
+name|i
+operator|++
+control|)
+block|{
+if|if
+condition|(
+operator|(
+operator|(
+name|verty
+index|[
+name|i
+index|]
+operator|>
+name|testy
+operator|)
+operator|!=
+operator|(
+name|verty
+index|[
+name|j
+index|]
+operator|>
+name|testy
+operator|)
+operator|)
+operator|&&
+operator|(
+name|testx
+operator|<
+operator|(
+name|vertx
+index|[
+name|j
+index|]
+operator|-
+name|vertx
+index|[
+name|i
+index|]
+operator|)
+operator|*
+operator|(
+name|testy
+operator|-
+name|verty
+index|[
+name|i
+index|]
+operator|)
+operator|/
+operator|(
+name|verty
+index|[
+name|j
+index|]
+operator|-
+name|verty
+index|[
+name|i
+index|]
+operator|)
+operator|+
+name|vertx
+index|[
+name|i
+index|]
+operator|)
+condition|)
+name|c
+operator|=
+operator|!
+name|c
+expr_stmt|;
+block|}
+return|return
+name|c
+return|;
+block|}
 block|}
 end_class
 

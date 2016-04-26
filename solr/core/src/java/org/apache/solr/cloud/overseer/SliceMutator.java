@@ -530,9 +530,7 @@ name|Assign
 operator|.
 name|assignNode
 argument_list|(
-name|coll
-argument_list|,
-name|clusterState
+name|collection
 argument_list|)
 decl_stmt|;
 name|Replica
@@ -1218,7 +1216,7 @@ name|message
 parameter_list|)
 block|{
 name|String
-name|collection
+name|collectionName
 init|=
 name|message
 operator|.
@@ -1248,13 +1246,23 @@ name|info
 argument_list|(
 literal|"Update shard state invoked for collection: "
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|" with message: "
 operator|+
 name|message
 argument_list|)
 expr_stmt|;
+name|DocCollection
+name|collection
+init|=
+name|clusterState
+operator|.
+name|getCollection
+argument_list|(
+name|collectionName
+argument_list|)
+decl_stmt|;
 name|Map
 argument_list|<
 name|String
@@ -1267,12 +1275,10 @@ operator|new
 name|LinkedHashMap
 argument_list|<>
 argument_list|(
-name|clusterState
+name|collection
 operator|.
 name|getSlicesMap
-argument_list|(
-name|collection
-argument_list|)
+argument_list|()
 argument_list|)
 decl_stmt|;
 for|for
@@ -1313,12 +1319,10 @@ continue|continue;
 name|Slice
 name|slice
 init|=
-name|clusterState
+name|collection
 operator|.
 name|getSlice
 argument_list|(
-name|collection
-argument_list|,
 name|key
 argument_list|)
 decl_stmt|;
@@ -1335,7 +1339,7 @@ name|RuntimeException
 argument_list|(
 literal|"Overseer.updateShardState unknown collection: "
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|" slice: "
 operator|+
@@ -1484,14 +1488,9 @@ return|return
 operator|new
 name|ZkWriteCommand
 argument_list|(
-name|collection
+name|collectionName
 argument_list|,
-name|clusterState
-operator|.
-name|getCollection
-argument_list|(
 name|collection
-argument_list|)
 operator|.
 name|copyWithSlices
 argument_list|(
@@ -1514,7 +1513,7 @@ name|message
 parameter_list|)
 block|{
 name|String
-name|collection
+name|collectionName
 init|=
 name|message
 operator|.
@@ -1600,15 +1599,23 @@ argument_list|(
 literal|"expireAt"
 argument_list|)
 decl_stmt|;
-name|Slice
-name|slice
+name|DocCollection
+name|collection
 init|=
 name|clusterState
 operator|.
+name|getCollection
+argument_list|(
+name|collectionName
+argument_list|)
+decl_stmt|;
+name|Slice
+name|slice
+init|=
+name|collection
+operator|.
 name|getSlice
 argument_list|(
-name|collection
-argument_list|,
 name|shard
 argument_list|)
 decl_stmt|;
@@ -1625,7 +1632,7 @@ name|RuntimeException
 argument_list|(
 literal|"Overseer.addRoutingRule unknown collection: "
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|" slice:"
 operator|+
@@ -1841,20 +1848,15 @@ return|return
 operator|new
 name|ZkWriteCommand
 argument_list|(
-name|collection
+name|collectionName
 argument_list|,
 name|CollectionMutator
 operator|.
 name|updateSlice
 argument_list|(
-name|collection
+name|collectionName
 argument_list|,
-name|clusterState
-operator|.
-name|getCollection
-argument_list|(
 name|collection
-argument_list|)
 argument_list|,
 name|newSlice
 argument_list|)
@@ -1875,7 +1877,7 @@ name|message
 parameter_list|)
 block|{
 name|String
-name|collection
+name|collectionName
 init|=
 name|message
 operator|.
@@ -1927,7 +1929,7 @@ name|info
 argument_list|(
 literal|"Overseer.removeRoutingRule invoked for collection: "
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|" shard: "
 operator|+
@@ -1938,15 +1940,23 @@ operator|+
 name|routeKeyStr
 argument_list|)
 expr_stmt|;
-name|Slice
-name|slice
+name|DocCollection
+name|collection
 init|=
 name|clusterState
 operator|.
+name|getCollection
+argument_list|(
+name|collectionName
+argument_list|)
+decl_stmt|;
+name|Slice
+name|slice
+init|=
+name|collection
+operator|.
 name|getSlice
 argument_list|(
-name|collection
-argument_list|,
 name|shard
 argument_list|)
 decl_stmt|;
@@ -1963,7 +1973,7 @@ name|warn
 argument_list|(
 literal|"Unknown collection: "
 operator|+
-name|collection
+name|collectionName
 operator|+
 literal|" shard: "
 operator|+
@@ -2049,20 +2059,15 @@ return|return
 operator|new
 name|ZkWriteCommand
 argument_list|(
-name|collection
+name|collectionName
 argument_list|,
 name|CollectionMutator
 operator|.
 name|updateSlice
 argument_list|(
-name|collection
+name|collectionName
 argument_list|,
-name|clusterState
-operator|.
-name|getCollection
-argument_list|(
 name|collection
-argument_list|)
 argument_list|,
 name|newSlice
 argument_list|)

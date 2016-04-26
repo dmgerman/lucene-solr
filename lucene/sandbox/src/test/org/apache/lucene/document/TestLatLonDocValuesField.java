@@ -31,14 +31,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Simple tests for {@link LatLonPoint}  * TODO: move this lone test and remove class?  * */
+comment|/** Simple tests for LatLonDocValuesField */
 end_comment
 
 begin_class
-DECL|class|TestLatLonPoint
+DECL|class|TestLatLonDocValuesField
 specifier|public
 class|class
-name|TestLatLonPoint
+name|TestLatLonDocValuesField
 extends|extends
 name|LuceneTestCase
 block|{
@@ -53,11 +53,11 @@ block|{
 comment|// looks crazy due to lossiness
 name|assertEquals
 argument_list|(
-literal|"LatLonPoint<field:18.313693958334625,-65.22744401358068>"
+literal|"LatLonDocValuesField<field:18.313693958334625,-65.22744401358068>"
 argument_list|,
 operator|(
 operator|new
-name|LatLonPoint
+name|LatLonDocValuesField
 argument_list|(
 literal|"field"
 argument_list|,
@@ -72,48 +72,20 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// looks crazy due to lossiness
+comment|// sort field
 name|assertEquals
 argument_list|(
-literal|"field:[18.000000016763806 TO 18.999999999068677],[-65.9999999217689 TO -65.00000006519258]"
+literal|"<distance:\"field\" latitude=18.0 longitude=19.0>"
 argument_list|,
-name|LatLonPoint
+name|LatLonDocValuesField
 operator|.
-name|newBoxQuery
+name|newDistanceSort
 argument_list|(
 literal|"field"
 argument_list|,
-literal|18
+literal|18.0
 argument_list|,
-literal|19
-argument_list|,
-operator|-
-literal|66
-argument_list|,
-operator|-
-literal|65
-argument_list|)
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// distance query does not quantize inputs
-name|assertEquals
-argument_list|(
-literal|"field:18.0,19.0 +/- 25.0 meters"
-argument_list|,
-name|LatLonPoint
-operator|.
-name|newDistanceQuery
-argument_list|(
-literal|"field"
-argument_list|,
-literal|18
-argument_list|,
-literal|19
-argument_list|,
-literal|25
+literal|19.0
 argument_list|)
 operator|.
 name|toString

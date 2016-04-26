@@ -7373,10 +7373,12 @@ else|else
 block|{
 name|expected
 operator|=
-name|polygon
+name|GeoTestUtil
 operator|.
-name|contains
+name|containsSlowly
 argument_list|(
+name|polygon
+argument_list|,
 name|lats
 index|[
 name|id

@@ -7657,8 +7657,6 @@ name|Assign
 operator|.
 name|assignNode
 argument_list|(
-name|collectionName
-argument_list|,
 name|client
 operator|.
 name|getZkStateReader
@@ -7666,6 +7664,11 @@ argument_list|()
 operator|.
 name|getClusterState
 argument_list|()
+operator|.
+name|getCollection
+argument_list|(
+name|collectionName
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|ArrayList
@@ -7713,8 +7716,6 @@ name|Assign
 operator|.
 name|assignNode
 argument_list|(
-name|collectionName
-argument_list|,
 name|client
 operator|.
 name|getZkStateReader
@@ -7722,6 +7723,11 @@ argument_list|()
 operator|.
 name|getClusterState
 argument_list|()
+operator|.
+name|getCollection
+argument_list|(
+name|collectionName
+argument_list|)
 argument_list|)
 argument_list|,
 name|nodeList
@@ -7829,8 +7835,6 @@ name|Assign
 operator|.
 name|assignNode
 argument_list|(
-name|collectionName
-argument_list|,
 name|client
 operator|.
 name|getZkStateReader
@@ -7838,6 +7842,11 @@ argument_list|()
 operator|.
 name|getClusterState
 argument_list|()
+operator|.
+name|getCollection
+argument_list|(
+name|collectionName
+argument_list|)
 argument_list|)
 argument_list|,
 literal|null
@@ -8070,8 +8079,6 @@ name|Assign
 operator|.
 name|assignNode
 argument_list|(
-name|collectionName
-argument_list|,
 name|client
 operator|.
 name|getZkStateReader
@@ -8079,6 +8086,11 @@ argument_list|()
 operator|.
 name|getClusterState
 argument_list|()
+operator|.
+name|getCollection
+argument_list|(
+name|collectionName
+argument_list|)
 argument_list|)
 argument_list|,
 name|nodeList

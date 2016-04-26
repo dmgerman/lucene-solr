@@ -847,7 +847,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|LatLonPoint
+name|LatLonDocValuesField
 operator|.
 name|checkCompatible
 argument_list|(
