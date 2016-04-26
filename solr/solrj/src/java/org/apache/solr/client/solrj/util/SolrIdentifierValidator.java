@@ -76,7 +76,7 @@ name|Pattern
 operator|.
 name|compile
 argument_list|(
-literal|"^(?!\\-)[\\._A-Za-z0-9\\-]*$"
+literal|"^(?!\\-)[\\._A-Za-z0-9\\-]+$"
 argument_list|)
 decl_stmt|;
 DECL|enum|IdentifierType
@@ -272,40 +272,37 @@ name|String
 name|name
 parameter_list|)
 block|{
+name|String
+name|typeStr
+init|=
+name|identifierType
+operator|.
+name|toString
+argument_list|()
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
+decl_stmt|;
 return|return
 literal|"Invalid "
 operator|+
-name|identifierType
-operator|.
-name|toString
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|)
+name|typeStr
 operator|+
-literal|": "
+literal|": ["
 operator|+
 name|name
 operator|+
-literal|". "
+literal|"]. "
 operator|+
-name|identifierType
-operator|.
-name|toString
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|)
+name|typeStr
 operator|+
-literal|" names must consist entirely of periods, underscores, hyphens, and alphanumerics"
+literal|" names must consist entirely of periods, "
+operator|+
+literal|"underscores, hyphens, and alphanumerics as well not start with a hyphen"
 return|;
 block|}
 block|}
