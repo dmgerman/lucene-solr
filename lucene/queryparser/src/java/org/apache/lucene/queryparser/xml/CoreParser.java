@@ -627,7 +627,6 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|parseXML
-specifier|private
 specifier|static
 name|Document
 name|parseXML
