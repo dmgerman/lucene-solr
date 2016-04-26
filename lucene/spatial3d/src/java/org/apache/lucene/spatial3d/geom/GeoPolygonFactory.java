@@ -232,9 +232,12 @@ name|GeoPoint
 argument_list|>
 name|filteredPointList
 init|=
+name|filterEdges
+argument_list|(
 name|filterPoints
 argument_list|(
 name|pointList
+argument_list|)
 argument_list|,
 name|leniencyValue
 argument_list|)
@@ -604,7 +607,7 @@ name|rval
 return|;
 block|}
 block|}
-comment|/** Filter duplicate points and coplanar points.    * @param input with input list of points    * @param leniencyValue is the allowed distance of a point from the plane for cleanup of overly detailed polygons    * @return the filtered list, or null if we can't get a legit polygon from the input.    */
+comment|/** Filter duplicate points.    * @param input with input list of points    * @return the filtered list, or null if we can't get a legit polygon from the input.    */
 DECL|method|filterPoints
 specifier|static
 name|List
@@ -619,10 +622,6 @@ argument_list|<
 name|GeoPoint
 argument_list|>
 name|input
-parameter_list|,
-specifier|final
-name|double
-name|leniencyValue
 parameter_list|)
 block|{
 specifier|final
@@ -847,6 +846,31 @@ return|return
 literal|null
 return|;
 block|}
+return|return
+name|noIdenticalPoints
+return|;
+block|}
+comment|/** Filter coplanar points.    * @param noIdenticalPoints with input list of points    * @param leniencyValue is the allowed distance of a point from the plane for cleanup of overly detailed polygons    * @return the filtered list, or null if we can't get a legit polygon from the input.    */
+DECL|method|filterEdges
+specifier|static
+name|List
+argument_list|<
+name|GeoPoint
+argument_list|>
+name|filterEdges
+parameter_list|(
+specifier|final
+name|List
+argument_list|<
+name|GeoPoint
+argument_list|>
+name|noIdenticalPoints
+parameter_list|,
+specifier|final
+name|double
+name|leniencyValue
+parameter_list|)
+block|{
 comment|// Now, do the depth-first search needed to find a path that has no coplanarities in it.
 comment|// This is, unfortunately, not easy, because coplanarity is not transitive as you walk around the polygon.
 comment|// If point C is not coplanar with edge A-B, there is no guarantee that A is not coplanar with B-C.
