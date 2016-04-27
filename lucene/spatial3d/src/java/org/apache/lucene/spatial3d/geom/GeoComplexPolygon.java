@@ -4479,6 +4479,9 @@ comment|// The other logical difference is that crossings of all kinds have to b
 comment|// (a) both inside edges are considered together at all times;
 comment|// (b) both outside edges are considered together at all times;
 comment|// (c) inside edge crossings that are between the other leg's inside and outside edge are ignored.
+comment|// Intersection point crossings are either simple, or a crossing on an endpoint.
+comment|// In either case, we have to be sure to count each edge only once, since it might appear in both the
+comment|// first leg and the second.  If the first leg can process it, it should, and the second should skip it.
 if|if
 condition|(
 name|crossingPoint
@@ -4489,12 +4492,66 @@ name|intersectionPoint
 argument_list|)
 condition|)
 block|{
-comment|// Intersection point crossing
-comment|// MHL to deal with intersection point crossing!!
-block|}
-else|else
+if|if
+condition|(
+name|isSecondLeg
+condition|)
 block|{
-comment|// Standard plane crossing, either first leg or second leg
+comment|// See whether this edge would have been processed in the first leg; if so, we skip it.
+specifier|final
+name|GeoPoint
+index|[]
+name|firstLegCrossings
+init|=
+name|testPointPlane
+operator|.
+name|findCrossings
+argument_list|(
+name|planetModel
+argument_list|,
+name|edge
+operator|.
+name|plane
+argument_list|,
+name|testPointCutoffPlane
+argument_list|,
+name|testPointOtherCutoffPlane
+argument_list|,
+name|edge
+operator|.
+name|startPlane
+argument_list|,
+name|edge
+operator|.
+name|endPlane
+argument_list|)
+decl_stmt|;
+for|for
+control|(
+specifier|final
+name|GeoPoint
+name|firstLegCrossing
+range|:
+name|firstLegCrossings
+control|)
+block|{
+if|if
+condition|(
+name|firstLegCrossing
+operator|.
+name|isNumericallyIdentical
+argument_list|(
+name|intersectionPoint
+argument_list|)
+condition|)
+block|{
+comment|// We already processed it, so we're done here.
+return|return;
+block|}
+block|}
+block|}
+block|}
+comment|// Plane crossing, either first leg or second leg
 specifier|final
 name|Plane
 name|plane
@@ -5403,7 +5460,6 @@ comment|// Not a special case, so we can safely count a crossing.
 name|crossingCount
 operator|++
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}
