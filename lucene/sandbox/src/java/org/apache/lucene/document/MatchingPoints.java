@@ -115,7 +115,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Accumulates matching hits for points.  *<p>  * Add matches with ({@link #add(int)}) and call {@link #iterator()} for  * an iterator over the results.   *<p>  * This implementation currently optimizes bitset structure (sparse vs dense)  * and {@link DocIdSetIterator#cost()} (cardinality) based on index statistics.  * This API may change as point values evolves.  *   * @lucene.experimental  */
+comment|/**  * Accumulates matching hits for points.  *<p>  * Add matches with ({@link #add(int)}) and call {@link #iterator()} for  * an iterator over the results.   *<p>  *<b>NOTE:</b> it is required that you implement the optional {@code grow()}  * method in your IntersectVisitor, this is used for cost computation.  *<p>  * This implementation currently optimizes bitset structure (sparse vs dense)  * and {@link DocIdSetIterator#cost()} (cardinality) based on index statistics.  * This API may change as point values evolves.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -270,8 +270,20 @@ argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * Grows cardinality counter by the given amount.    */
+DECL|method|grow
+specifier|public
+name|void
+name|grow
+parameter_list|(
+name|int
+name|amount
+parameter_list|)
+block|{
 name|counter
-operator|++
+operator|+=
+name|amount
 expr_stmt|;
 block|}
 comment|/**    * Returns an iterator over the recorded matches.    */
@@ -281,8 +293,23 @@ name|DocIdSetIterator
 name|iterator
 parameter_list|()
 block|{
-comment|// if single-valued (docCount == numPoints), then this is exact
-comment|// otherwise its approximate based on field stats
+comment|// ensure caller implements the grow() api
+assert|assert
+name|counter
+operator|>
+literal|0
+operator|||
+name|bits
+operator|.
+name|cardinality
+argument_list|()
+operator|==
+literal|0
+operator|:
+literal|"the IntersectVisitor is missing grow()"
+assert|;
+comment|// if single-valued (docCount == numPoints), then we know 1 point == 1 doc
+comment|// otherwise we approximate based on field stats
 return|return
 operator|new
 name|BitSetIterator
