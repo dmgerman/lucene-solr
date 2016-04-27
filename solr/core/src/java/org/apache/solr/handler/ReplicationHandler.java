@@ -1080,6 +1080,15 @@ name|RequestHandlerBase
 implements|implements
 name|SolrCoreAware
 block|{
+DECL|field|PATH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|PATH
+init|=
+literal|"/replication"
+decl_stmt|;
 DECL|field|LOG
 specifier|private
 specifier|static

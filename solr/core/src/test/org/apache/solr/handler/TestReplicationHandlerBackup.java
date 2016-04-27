@@ -1810,7 +1810,11 @@ literal|"/"
 operator|+
 name|DEFAULT_TEST_CORENAME
 operator|+
-literal|"/replication?command="
+name|ReplicationHandler
+operator|.
+name|PATH
+operator|+
+literal|"?command="
 operator|+
 name|cmd
 operator|+
@@ -1937,7 +1941,11 @@ literal|"/"
 operator|+
 name|DEFAULT_TEST_CORENAME
 operator|+
-literal|"/replication?command="
+name|ReplicationHandler
+operator|.
+name|PATH
+operator|+
+literal|"?command="
 operator|+
 name|ReplicationHandler
 operator|.

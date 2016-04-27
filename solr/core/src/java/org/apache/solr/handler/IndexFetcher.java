@@ -1787,7 +1787,9 @@ name|masterUrl
 operator|.
 name|endsWith
 argument_list|(
-literal|"/replication"
+name|ReplicationHandler
+operator|.
+name|PATH
 argument_list|)
 condition|)
 block|{
@@ -1811,7 +1813,13 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"'masterUrl' must be specified without the /replication suffix"
+literal|"'masterUrl' must be specified without the "
+operator|+
+name|ReplicationHandler
+operator|.
+name|PATH
+operator|+
+literal|" suffix"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2075,7 +2083,9 @@ name|CommonParams
 operator|.
 name|QT
 argument_list|,
-literal|"/replication"
+name|ReplicationHandler
+operator|.
+name|PATH
 argument_list|)
 expr_stmt|;
 name|QueryRequest
@@ -2216,7 +2226,9 @@ name|CommonParams
 operator|.
 name|QT
 argument_list|,
-literal|"/replication"
+name|ReplicationHandler
+operator|.
+name|PATH
 argument_list|)
 expr_stmt|;
 name|QueryRequest
@@ -9673,7 +9685,9 @@ name|CommonParams
 operator|.
 name|QT
 argument_list|,
-literal|"/replication"
+name|ReplicationHandler
+operator|.
+name|PATH
 argument_list|)
 expr_stmt|;
 comment|//add the version to download. This is used to reserve the download
@@ -10382,7 +10396,9 @@ name|CommonParams
 operator|.
 name|QT
 argument_list|,
-literal|"/replication"
+name|ReplicationHandler
+operator|.
+name|PATH
 argument_list|)
 expr_stmt|;
 comment|// TODO use shardhandler

@@ -1052,7 +1052,9 @@ name|makeMap
 argument_list|(
 literal|"resource"
 argument_list|,
-literal|"/replication"
+name|ReplicationHandler
+operator|.
+name|PATH
 argument_list|,
 literal|"httpMethod"
 argument_list|,
@@ -1091,7 +1093,9 @@ name|makeMap
 argument_list|(
 literal|"resource"
 argument_list|,
-literal|"/replication"
+name|ReplicationHandler
+operator|.
+name|PATH
 argument_list|,
 literal|"httpMethod"
 argument_list|,
