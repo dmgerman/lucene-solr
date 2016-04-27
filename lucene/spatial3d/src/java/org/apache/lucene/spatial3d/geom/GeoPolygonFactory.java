@@ -377,6 +377,32 @@ name|PolygonDescription
 argument_list|>
 name|holes
 decl_stmt|;
+comment|/** Instantiate the polygon description.      * @param points is the list of points.      */
+DECL|method|PolygonDescription
+specifier|public
+name|PolygonDescription
+parameter_list|(
+specifier|final
+name|List
+argument_list|<
+name|?
+extends|extends
+name|GeoPoint
+argument_list|>
+name|points
+parameter_list|)
+block|{
+name|this
+argument_list|(
+name|points
+argument_list|,
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Instantiate the polygon description.      * @param points is the list of points.      * @param holes is the list of holes.      */
 DECL|method|PolygonDescription
 specifier|public
