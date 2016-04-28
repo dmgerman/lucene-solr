@@ -376,6 +376,15 @@ name|AbstractQueryableTable
 implements|implements
 name|TranslatableTable
 block|{
+DECL|field|DEFAULT_SORT_FIELD
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|DEFAULT_SORT_FIELD
+init|=
+literal|"_version_"
+decl_stmt|;
 DECL|field|collection
 specifier|private
 specifier|final
@@ -663,11 +672,6 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|String
-name|DEFAULT_SORT_FIELD
-init|=
-literal|"_version_"
-decl_stmt|;
 name|solrParams
 operator|.
 name|put
@@ -748,9 +752,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//    if (limit != null) {
-comment|//      queryBuilder.append(" LIMIT ").append(limit);
-comment|//    }
 return|return
 operator|new
 name|AbstractEnumerable
