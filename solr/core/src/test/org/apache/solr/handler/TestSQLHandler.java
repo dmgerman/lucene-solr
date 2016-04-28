@@ -3913,7 +3913,7 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, 'count(*)', sum('field_i'), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by 'str_s' order by 'sum(field_i)' asc limit 2"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s order by sum(field_i) asc limit 2"
 argument_list|)
 expr_stmt|;
 name|SolrStream
@@ -4141,7 +4141,7 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s as myString, 'count(*)', sum('field_i') as sum, min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by 'str_s' order by sum asc limit 2"
+literal|"select str_s as myString, count(*), sum(field_i) as sum, min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s order by sum asc limit 2"
 argument_list|)
 expr_stmt|;
 name|solrStream

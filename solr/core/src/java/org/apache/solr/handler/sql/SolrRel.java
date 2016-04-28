@@ -197,7 +197,7 @@ DECL|field|solrTable
 name|SolrTable
 name|solrTable
 decl_stmt|;
-comment|/** Adds newly projected fields and restricted filterQueries.      *      * @param fields New fields to be projected from a query      * @param filterQueries New filterQueries to be applied to the query      */
+comment|/** Adds newly projected fields and restricted filterQueries.      *      * @param fieldMappings New fields to be projected from a query      * @param filterQueries New filterQueries to be applied to the query      */
 DECL|method|add
 specifier|public
 name|void
