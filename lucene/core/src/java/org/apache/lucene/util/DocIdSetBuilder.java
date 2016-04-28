@@ -54,6 +54,22 @@ name|DocIdSetIterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|packed
+operator|.
+name|PackedInts
+import|;
+end_import
+
 begin_comment
 comment|/**  * A builder of {@link DocIdSet}s.  At first it uses a sparse structure to gather  * documents, and then upgrades to a non-sparse bit set once enough hits match.  *  * @lucene.internal  */
 end_comment
@@ -711,9 +727,16 @@ name|sorter
 operator|.
 name|sort
 argument_list|(
-name|buffer
+name|PackedInts
+operator|.
+name|bitsRequired
+argument_list|(
+name|maxDoc
+operator|-
+literal|1
+argument_list|)
 argument_list|,
-literal|0
+name|buffer
 argument_list|,
 name|bufferSize
 argument_list|)
