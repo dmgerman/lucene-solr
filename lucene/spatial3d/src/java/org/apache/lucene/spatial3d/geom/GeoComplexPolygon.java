@@ -3176,7 +3176,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Compare a node against a subrange of a new edge.      * @param node is the node to compare.      * @param newEdge is the edge being added.      * @param minimumValue is the minimum value for the edge being added.      * @param maximumValue is the maximum value for the edge being added.      * @return the comparison result.      */
+comment|/** Compare a node against a subrange of a new edge.      * @param nodeMinimumValue is the node's minimum value.      * @param nodeMaximumValue is the node's maximum value.      * @param minimumValue is the minimum value for the edge being added.      * @param maximumValue is the maximum value for the edge being added.      * @return the comparison result.      */
 DECL|method|compareForAdd
 specifier|protected
 name|int
