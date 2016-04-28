@@ -1483,7 +1483,7 @@ argument_list|,
 literal|0.0
 argument_list|,
 operator|-
-literal|0.65
+literal|0.35
 argument_list|)
 expr_stmt|;
 name|assertFalse
@@ -1496,7 +1496,6 @@ name|gp
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//??? fails
 comment|// Sample some points within
 name|gp
 operator|=
@@ -1650,7 +1649,6 @@ name|gp
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//??? fails
 name|gp
 operator|=
 operator|new
