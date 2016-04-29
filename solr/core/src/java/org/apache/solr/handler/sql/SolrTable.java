@@ -70,6 +70,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Properties
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -300,24 +310,6 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|impl
-operator|.
-name|CloudSolrClient
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
 name|io
 operator|.
 name|stream
@@ -492,14 +484,14 @@ argument_list|>
 name|query
 parameter_list|(
 specifier|final
-name|String
-name|zk
+name|Properties
+name|properties
 parameter_list|)
 block|{
 return|return
 name|query
 argument_list|(
-name|zk
+name|properties
 argument_list|,
 name|Collections
 operator|.
@@ -520,7 +512,7 @@ literal|null
 argument_list|)
 return|;
 block|}
-comment|/** Executes a Solr query on the underlying table.    *    * @param zk Solr ZooKeeper connection string    * @param fields List of fields to project    * @param filterQueries A list of filterQueries which should be used in the query    * @return Enumerator of results    */
+comment|/** Executes a Solr query on the underlying table.    *    * @param properties Connections properties    * @param fields List of fields to project    * @param filterQueries A list of filterQueries which should be used in the query    * @return Enumerator of results    */
 DECL|method|query
 specifier|public
 name|Enumerable
@@ -530,8 +522,8 @@ argument_list|>
 name|query
 parameter_list|(
 specifier|final
-name|String
-name|zk
+name|Properties
+name|properties
 parameter_list|,
 name|List
 argument_list|<
@@ -568,6 +560,7 @@ name|HashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|//solrParams.put(CommonParams.OMIT_HEADER, "true");
 name|solrParams
 operator|.
 name|put
@@ -769,11 +762,21 @@ name|enumerator
 parameter_list|()
 block|{
 name|TupleStream
-name|cloudSolrStream
+name|tupleStream
 decl_stmt|;
 try|try
 block|{
-name|cloudSolrStream
+name|String
+name|zk
+init|=
+name|properties
+operator|.
+name|getProperty
+argument_list|(
+literal|"zk"
+argument_list|)
+decl_stmt|;
+name|tupleStream
 operator|=
 operator|new
 name|CloudSolrStream
@@ -784,11 +787,6 @@ name|collection
 argument_list|,
 name|solrParams
 argument_list|)
-expr_stmt|;
-name|cloudSolrStream
-operator|.
-name|open
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -809,7 +807,7 @@ return|return
 operator|new
 name|SolrEnumerator
 argument_list|(
-name|cloudSolrStream
+name|tupleStream
 argument_list|,
 name|fields
 argument_list|)
@@ -970,7 +968,7 @@ argument_list|()
 operator|.
 name|query
 argument_list|(
-name|getZK
+name|getProperties
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -994,10 +992,10 @@ operator|)
 name|table
 return|;
 block|}
-DECL|method|getZK
+DECL|method|getProperties
 specifier|private
-name|String
-name|getZK
+name|Properties
+name|getProperties
 parameter_list|()
 block|{
 return|return
@@ -1010,7 +1008,7 @@ operator|.
 name|class
 argument_list|)
 operator|.
-name|zk
+name|properties
 return|;
 block|}
 comment|/** Called via code-generation.      *      * @see SolrMethod#SOLR_QUERYABLE_QUERY      */
@@ -1055,7 +1053,7 @@ argument_list|()
 operator|.
 name|query
 argument_list|(
-name|getZK
+name|getProperties
 argument_list|()
 argument_list|,
 name|fields
