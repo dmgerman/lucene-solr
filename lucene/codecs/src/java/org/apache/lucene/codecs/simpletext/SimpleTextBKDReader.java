@@ -304,6 +304,13 @@ argument_list|,
 name|BLOCK_COUNT
 argument_list|)
 decl_stmt|;
+name|visitor
+operator|.
+name|grow
+argument_list|(
+name|count
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -461,6 +468,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|visitor
+operator|.
+name|grow
+argument_list|(
+name|count
+argument_list|)
+expr_stmt|;
 comment|// NOTE: we don't do prefix coding, so we ignore commonPrefixLengths
 assert|assert
 name|scratchPackedValue

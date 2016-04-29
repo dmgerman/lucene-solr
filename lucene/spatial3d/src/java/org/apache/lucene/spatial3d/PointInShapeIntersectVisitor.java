@@ -181,6 +181,13 @@ specifier|final
 name|XYZBounds
 name|shapeBounds
 decl_stmt|;
+DECL|field|adder
+specifier|private
+name|DocIdSetBuilder
+operator|.
+name|BulkAdder
+name|adder
+decl_stmt|;
 DECL|method|PointInShapeIntersectVisitor
 specifier|public
 name|PointInShapeIntersectVisitor
@@ -225,6 +232,8 @@ name|int
 name|count
 parameter_list|)
 block|{
+name|adder
+operator|=
 name|hits
 operator|.
 name|grow
@@ -244,7 +253,7 @@ name|int
 name|docID
 parameter_list|)
 block|{
-name|hits
+name|adder
 operator|.
 name|add
 argument_list|(
@@ -375,7 +384,7 @@ name|z
 argument_list|)
 condition|)
 block|{
-name|hits
+name|adder
 operator|.
 name|add
 argument_list|(
