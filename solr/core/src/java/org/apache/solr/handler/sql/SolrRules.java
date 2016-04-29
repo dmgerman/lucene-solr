@@ -134,6 +134,20 @@ name|calcite
 operator|.
 name|rel
 operator|.
+name|RelCollations
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|calcite
+operator|.
+name|rel
+operator|.
 name|RelNode
 import|;
 end_import
@@ -151,6 +165,22 @@ operator|.
 name|convert
 operator|.
 name|ConverterRule
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|calcite
+operator|.
+name|rel
+operator|.
+name|core
+operator|.
+name|Sort
 import|;
 end_import
 
@@ -710,7 +740,7 @@ return|return
 operator|new
 name|SolrProject
 argument_list|(
-name|project
+name|rel
 operator|.
 name|getCluster
 argument_list|()
@@ -741,111 +771,120 @@ return|;
 block|}
 block|}
 comment|/**    * Rule to convert a {@link org.apache.calcite.rel.core.Sort} to a {@link SolrSort}.    */
-comment|//  private static class SolrSortRule extends RelOptRule {
-comment|//    private static final com.google.common.base.Predicate<Sort> SORT_PREDICATE =
-comment|//            input -> {
-comment|//              // CQL has no support for offsets
-comment|//              return input.offset == null;
-comment|//            };
-comment|//    private static final com.google.common.base.Predicate<SolrFilter> FILTER_PREDICATE =
-comment|//            input -> {
-comment|//              // We can only use implicit sorting within a single partition
-comment|//              return input.isSinglePartition();
-comment|//            };
-comment|//    private static final RelOptRuleOperand SOLR_OP =
-comment|//        operand(SolrToEnumerableConverter.class,
-comment|//        operand(SolrFilter.class, null, FILTER_PREDICATE, any()));
-comment|//
-comment|//    private static final SolrSortRule INSTANCE = new SolrSortRule();
-comment|//
-comment|//    private SolrSortRule() {
-comment|//      super(operand(Sort.class, null, SORT_PREDICATE, SOLR_OP), "SolrSortRule");
-comment|//    }
-comment|//
-comment|//    public RelNode convert(Sort sort, SolrFilter filter) {
-comment|//      final RelTraitSet traitSet =
-comment|//          sort.getTraitSet().replace(SolrRel.CONVENTION)
-comment|//              .replace(sort.getCollation());
-comment|//      return new SolrSort(sort.getCluster(), traitSet,
-comment|//          convert(sort.getInput(), traitSet.replace(RelCollations.EMPTY)),
-comment|//          sort.getCollation(), filter.getImplicitCollation(), sort.fetch);
-comment|//    }
-comment|//
-comment|//    public boolean matches(RelOptRuleCall call) {
-comment|//      final Sort sort = call.rel(0);
-comment|//      final SolrFilter filter = call.rel(2);
-comment|//      return collationsCompatible(sort.getCollation(), filter.getImplicitCollation());
-comment|//    }
-comment|//
-comment|//    /** Check if it is possible to exploit native CQL sorting for a given collation.
-comment|//     *
-comment|//     * @return True if it is possible to achieve this sort in Solr
-comment|//     */
-comment|//    private boolean collationsCompatible(RelCollation sortCollation, RelCollation implicitCollation) {
-comment|//      List<RelFieldCollation> sortFieldCollations = sortCollation.getFieldCollations();
-comment|//      List<RelFieldCollation> implicitFieldCollations = implicitCollation.getFieldCollations();
-comment|//
-comment|//      if (sortFieldCollations.size()> implicitFieldCollations.size()) {
-comment|//        return false;
-comment|//      }
-comment|//      if (sortFieldCollations.size() == 0) {
-comment|//        return true;
-comment|//      }
-comment|//
-comment|//      // Check if we need to reverse the order of the implicit collation
-comment|//      boolean reversed = reverseDirection(sortFieldCollations.get(0).getDirection())
-comment|//          == implicitFieldCollations.get(0).getDirection();
-comment|//
-comment|//      for (int i = 0; i< sortFieldCollations.size(); i++) {
-comment|//        RelFieldCollation sorted = sortFieldCollations.get(i);
-comment|//        RelFieldCollation implied = implicitFieldCollations.get(i);
-comment|//
-comment|//        // Check that the fields being sorted match
-comment|//        if (sorted.getFieldIndex() != implied.getFieldIndex()) {
-comment|//          return false;
-comment|//        }
-comment|//
-comment|//        // Either all fields must be sorted in the same direction
-comment|//        // or the opposite direction based on whether we decided
-comment|//        // if the sort direction should be reversed above
-comment|//        RelFieldCollation.Direction sortDirection = sorted.getDirection();
-comment|//        RelFieldCollation.Direction implicitDirection = implied.getDirection();
-comment|//        if ((!reversed&& sortDirection != implicitDirection)
-comment|//                || (reversed&& reverseDirection(sortDirection) != implicitDirection)) {
-comment|//          return false;
-comment|//        }
-comment|//      }
-comment|//
-comment|//      return true;
-comment|//    }
-comment|//
-comment|//    /** Find the reverse of a given collation direction.
-comment|//     *
-comment|//     * @return Reverse of the input direction
-comment|//     */
-comment|//    private RelFieldCollation.Direction reverseDirection(RelFieldCollation.Direction direction) {
-comment|//      switch(direction) {
-comment|//      case ASCENDING:
-comment|//      case STRICTLY_ASCENDING:
-comment|//        return RelFieldCollation.Direction.DESCENDING;
-comment|//      case DESCENDING:
-comment|//      case STRICTLY_DESCENDING:
-comment|//        return RelFieldCollation.Direction.ASCENDING;
-comment|//      default:
-comment|//        return null;
-comment|//      }
-comment|//    }
-comment|//
-comment|//    /** @see org.apache.calcite.rel.convert.ConverterRule */
-comment|//    public void onMatch(RelOptRuleCall call) {
-comment|//      final Sort sort = call.rel(0);
-comment|//      SolrFilter filter = call.rel(2);
-comment|//      final RelNode converted = convert(sort, filter);
-comment|//      if (converted != null) {
-comment|//        call.transformTo(converted);
-comment|//      }
-comment|//    }
-comment|//  }
+DECL|class|SolrSortRule
+specifier|private
+specifier|static
+class|class
+name|SolrSortRule
+extends|extends
+name|SolrConverterRule
+block|{
+DECL|field|INSTANCE
+specifier|public
+specifier|static
+specifier|final
+name|SolrSortRule
+name|INSTANCE
+init|=
+operator|new
+name|SolrSortRule
+argument_list|()
+decl_stmt|;
+DECL|method|SolrSortRule
+specifier|private
+name|SolrSortRule
+parameter_list|()
+block|{
+name|super
+argument_list|(
+name|Sort
+operator|.
+name|class
+argument_list|,
+literal|"SolrSortRule"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|convert
+specifier|public
+name|RelNode
+name|convert
+parameter_list|(
+name|RelNode
+name|rel
+parameter_list|)
+block|{
+specifier|final
+name|Sort
+name|sort
+init|=
+operator|(
+name|Sort
+operator|)
+name|rel
+decl_stmt|;
+specifier|final
+name|RelTraitSet
+name|traitSet
+init|=
+name|sort
+operator|.
+name|getTraitSet
+argument_list|()
+operator|.
+name|replace
+argument_list|(
+name|out
+argument_list|)
+operator|.
+name|replace
+argument_list|(
+name|sort
+operator|.
+name|getCollation
+argument_list|()
+argument_list|)
+decl_stmt|;
+return|return
+operator|new
+name|SolrSort
+argument_list|(
+name|rel
+operator|.
+name|getCluster
+argument_list|()
+argument_list|,
+name|traitSet
+argument_list|,
+name|convert
+argument_list|(
+name|sort
+operator|.
+name|getInput
+argument_list|()
+argument_list|,
+name|traitSet
+operator|.
+name|replace
+argument_list|(
+name|RelCollations
+operator|.
+name|EMPTY
+argument_list|)
+argument_list|)
+argument_list|,
+name|sort
+operator|.
+name|getCollation
+argument_list|()
+argument_list|,
+name|sort
+operator|.
+name|fetch
+argument_list|)
+return|;
+block|}
+block|}
 block|}
 end_class
 

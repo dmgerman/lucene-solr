@@ -95,7 +95,7 @@ name|List
 operator|.
 name|class
 argument_list|,
-name|List
+name|String
 operator|.
 name|class
 argument_list|,

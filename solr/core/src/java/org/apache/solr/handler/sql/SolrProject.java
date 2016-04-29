@@ -462,11 +462,9 @@ expr_stmt|;
 block|}
 name|implementor
 operator|.
-name|add
+name|addFieldMappings
 argument_list|(
 name|fieldMappings
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 block|}

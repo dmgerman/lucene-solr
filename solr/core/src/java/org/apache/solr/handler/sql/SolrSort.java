@@ -226,12 +226,6 @@ name|Sort
 implements|implements
 name|SolrRel
 block|{
-DECL|field|implicitCollation
-specifier|private
-specifier|final
-name|RelCollation
-name|implicitCollation
-decl_stmt|;
 DECL|method|SolrSort
 specifier|public
 name|SolrSort
@@ -247,9 +241,6 @@ name|child
 parameter_list|,
 name|RelCollation
 name|collation
-parameter_list|,
-name|RelCollation
-name|implicitCollation
 parameter_list|,
 name|RexNode
 name|fetch
@@ -269,12 +260,6 @@ literal|null
 argument_list|,
 name|fetch
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|implicitCollation
-operator|=
-name|implicitCollation
 expr_stmt|;
 assert|assert
 name|getConvention
@@ -359,8 +344,6 @@ argument_list|,
 name|input
 argument_list|,
 name|collation
-argument_list|,
-name|implicitCollation
 argument_list|,
 name|fetch
 argument_list|)
@@ -458,7 +441,7 @@ decl_stmt|;
 name|String
 name|direction
 init|=
-literal|"ASC"
+literal|"asc"
 decl_stmt|;
 if|if
 condition|(
@@ -479,7 +462,7 @@ condition|)
 block|{
 name|direction
 operator|=
-literal|"DESC"
+literal|"desc"
 expr_stmt|;
 block|}
 name|fieldOrder

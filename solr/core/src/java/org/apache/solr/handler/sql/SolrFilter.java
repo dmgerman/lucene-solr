@@ -364,11 +364,8 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|List
-argument_list|<
 name|String
-argument_list|>
-name|fqs
+name|query
 init|=
 name|translator
 operator|.
@@ -379,15 +376,13 @@ argument_list|)
 decl_stmt|;
 name|implementor
 operator|.
-name|add
+name|addQuery
 argument_list|(
-literal|null
-argument_list|,
-name|fqs
+name|query
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Translates {@link RexNode} expressions into Solr fq strings. */
+comment|/** Translates {@link RexNode} expressions into Solr query strings. */
 DECL|class|Translator
 specifier|private
 specifier|static
@@ -422,10 +417,7 @@ expr_stmt|;
 block|}
 DECL|method|translateMatch
 specifier|private
-name|List
-argument_list|<
 name|String
-argument_list|>
 name|translateMatch
 parameter_list|(
 name|RexNode
@@ -441,10 +433,7 @@ return|;
 block|}
 DECL|method|translateOr
 specifier|private
-name|List
-argument_list|<
 name|String
-argument_list|>
 name|translateOr
 parameter_list|(
 name|RexNode
@@ -455,7 +444,7 @@ name|List
 argument_list|<
 name|String
 argument_list|>
-name|list
+name|ors
 init|=
 operator|new
 name|ArrayList
@@ -475,7 +464,7 @@ name|condition
 argument_list|)
 control|)
 block|{
-name|list
+name|ors
 operator|.
 name|add
 argument_list|(
@@ -487,10 +476,16 @@ argument_list|)
 expr_stmt|;
 block|}
 return|return
-name|list
+name|String
+operator|.
+name|join
+argument_list|(
+literal|" OR "
+argument_list|,
+name|ors
+argument_list|)
 return|;
 block|}
-comment|/** Translates a condition that may be an AND of other conditions. Gathers      * together conditions that apply to the same field. */
 DECL|method|translateAnd
 specifier|private
 name|String
@@ -569,9 +564,9 @@ case|:
 return|return
 name|translateBinary
 argument_list|(
-literal|null
+literal|""
 argument_list|,
-literal|null
+literal|""
 argument_list|,
 operator|(
 name|RexCall
@@ -579,12 +574,28 @@ operator|)
 name|node
 argument_list|)
 return|;
+comment|//        case NOT_EQUALS:
+comment|//          return null;
 comment|//        case LESS_THAN:
 comment|//          return translateBinary("$lt", "$gt", (RexCall) node);
 comment|//        case LESS_THAN_OR_EQUAL:
 comment|//          return translateBinary("$lte", "$gte", (RexCall) node);
-comment|//        case NOT_EQUALS:
-comment|//          return translateBinary("$ne", "$ne", (RexCall) node);
+case|case
+name|NOT
+case|:
+return|return
+name|translateBinary
+argument_list|(
+literal|"-"
+argument_list|,
+literal|"-"
+argument_list|,
+operator|(
+name|RexCall
+operator|)
+name|node
+argument_list|)
+return|;
 comment|//        case GREATER_THAN:
 comment|//          return translateBinary("$gt", "$lt", (RexCall) node);
 comment|//        case GREATER_THAN_OR_EQUAL:
@@ -617,6 +628,26 @@ name|RexCall
 name|call
 parameter_list|)
 block|{
+if|if
+condition|(
+name|call
+operator|.
+name|operands
+operator|.
+name|size
+argument_list|()
+operator|!=
+literal|2
+condition|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+literal|"hello"
+argument_list|)
+throw|;
+block|}
 specifier|final
 name|RexNode
 name|left
@@ -812,14 +843,11 @@ argument_list|,
 name|right
 argument_list|)
 return|;
-case|case
-name|OTHER_FUNCTION
-case|:
+comment|//        case OTHER_FUNCTION:
 comment|//          String itemName = SolrRules.isItem((RexCall) left);
 comment|//          if (itemName != null) {
 comment|//            return translateOp2(op, itemName, rightLiteral);
 comment|//          }
-comment|// fall through
 default|default:
 return|return
 literal|null
@@ -848,8 +876,14 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// E.g.: {deptno: 100}
+name|op
+operator|=
+literal|""
+expr_stmt|;
+block|}
 return|return
+name|op
+operator|+
 name|name
 operator|+
 literal|":"
@@ -859,17 +893,6 @@ operator|.
 name|getValue2
 argument_list|()
 return|;
-block|}
-else|else
-block|{
-comment|//        // E.g. {deptno: {$lt: 100}}
-comment|//        // which may later be combined with other conditions:
-comment|//        // E.g. {deptno: [$lt: 100, $gt: 50]}
-comment|//        multimap.put(name, Pair.of(op, right));
-return|return
-literal|null
-return|;
-block|}
 block|}
 block|}
 block|}
