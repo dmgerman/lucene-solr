@@ -2328,6 +2328,47 @@ parameter_list|)
 throws|throws
 name|SQLException
 block|{
+name|String
+name|tableCatCheck
+init|=
+literal|""
+decl_stmt|;
+if|if
+condition|(
+name|catalog
+operator|!=
+literal|null
+condition|)
+block|{
+name|tableCatCheck
+operator|=
+literal|"tableCat = '\" + catalog + \"' and"
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|schemaPattern
+operator|==
+literal|null
+condition|)
+block|{
+name|schemaPattern
+operator|=
+literal|"%"
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|tableNamePattern
+operator|==
+literal|null
+condition|)
+block|{
+name|tableNamePattern
+operator|=
+literal|"%"
+expr_stmt|;
+block|}
 return|return
 name|this
 operator|.
@@ -2335,7 +2376,21 @@ name|connectionStatement
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select TABLE_CAT, TABLE_SCHEM, TABLE_NAME, TABLE_TYPE, REMARKS from _TABLES_"
+literal|"select tableCat, tableSchem, tableName, tableType, remarks from "
+operator|+
+literal|"metadata.TABLES where "
+operator|+
+name|tableCatCheck
+operator|+
+literal|" tableSchem like '"
+operator|+
+name|schemaPattern
+operator|+
+literal|"' and tableName like '"
+operator|+
+name|tableNamePattern
+operator|+
+literal|"'"
 argument_list|)
 return|;
 block|}
@@ -2356,7 +2411,7 @@ name|connectionStatement
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select TABLE_SCHEM, TABLE_CATALOG from _SCHEMAS_"
+literal|"select distinct tableSchem, tableCat from metadata.TABLES"
 argument_list|)
 return|;
 block|}
@@ -2377,7 +2432,7 @@ name|connectionStatement
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select TABLE_CAT from _CATALOGS_"
+literal|"select distinct tableCat from metadata.TABLES"
 argument_list|)
 return|;
 block|}
