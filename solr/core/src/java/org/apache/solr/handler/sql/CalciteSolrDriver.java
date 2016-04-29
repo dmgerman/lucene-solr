@@ -180,6 +180,21 @@ argument_list|(
 literal|"zk"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|schemaName
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SQLException
+argument_list|(
+literal|"zk must be set"
+argument_list|)
+throw|;
+block|}
 name|rootSchema
 operator|.
 name|add
