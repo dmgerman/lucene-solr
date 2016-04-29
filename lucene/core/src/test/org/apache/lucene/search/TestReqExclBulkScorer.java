@@ -265,7 +265,7 @@ name|exclBuilder
 operator|.
 name|grow
 argument_list|(
-name|numIncludedDocs
+name|numExcludedDocs
 argument_list|)
 decl_stmt|;
 for|for
