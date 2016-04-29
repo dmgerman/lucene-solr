@@ -490,6 +490,11 @@ operator|new
 name|IntersectVisitor
 argument_list|()
 block|{
+name|DocIdSetBuilder
+operator|.
+name|BulkAdder
+name|adder
+decl_stmt|;
 annotation|@
 name|Override
 specifier|public
@@ -500,6 +505,8 @@ name|int
 name|count
 parameter_list|)
 block|{
+name|adder
+operator|=
 name|result
 operator|.
 name|grow
@@ -518,7 +525,7 @@ name|int
 name|docID
 parameter_list|)
 block|{
-name|result
+name|adder
 operator|.
 name|add
 argument_list|(
@@ -610,7 +617,7 @@ return|return;
 block|}
 block|}
 comment|// Doc is in-bounds
-name|result
+name|adder
 operator|.
 name|add
 argument_list|(
