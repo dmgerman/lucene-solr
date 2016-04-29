@@ -1822,7 +1822,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select id as myId, field_i as myInt, str_s as myString from collection1 where text='XXXX' AND id='(1 2 3)' order by myInt desc"
+literal|"select id as myId, field_i as myInt, str_s as myString from collection1 where text='XXXX' "
+operator|+
+literal|"AND id='(1 2 3)' order by myInt desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -2021,7 +2023,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select id as myId, field_i as myInt, str_s as myString from collection1 where text='XXXX' AND id='(1 2 3)' order by field_i desc"
+literal|"select id as myId, field_i as myInt, str_s as myString from collection1 where text='XXXX' "
+operator|+
+literal|"AND id='(1 2 3)' order by field_i desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -2887,7 +2891,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select Str_s, sum(Field_i) as `sum(Field_i)` from collection1 where id='(1 8)' group by Str_s having (sum(Field_i) = 7 OR sum(Field_i) = 60) order by sum(Field_i) desc"
+literal|"select Str_s, sum(Field_i) as `sum(Field_i)` from collection1 where id='(1 8)' group by Str_s "
+operator|+
+literal|"having (sum(Field_i) = 7 OR sum(Field_i) = 60) order by sum(Field_i) desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -3014,7 +3020,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select Str_s, sum(Field_i) as `sum(Field_i)` from collection1 where id='(1 8)' group by Str_s having (sum(Field_i) = 7 OR sum(Field_i) = 60) order by sum(Field_i) desc"
+literal|"select Str_s, sum(Field_i) as `sum(Field_i)` from collection1 where id='(1 8)' group by Str_s "
+operator|+
+literal|"having (sum(Field_i) = 7 OR sum(Field_i) = 60) order by sum(Field_i) desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -3515,7 +3523,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_iff), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having ((sum(field_iff) = 19) AND (min(field_i) = 8))"
+literal|"select str_s, count(*), sum(field_iff), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"having ((sum(field_iff) = 19) AND (min(field_i) = 8))"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -3592,7 +3604,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), blah(field_iff), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having ((sum(field_iff) = 19) AND (min(field_i) = 8))"
+literal|"select str_s, count(*), blah(field_iff), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"having ((sum(field_iff) = 19) AND (min(field_i) = 8))"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -3939,7 +3955,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s order by sum(field_i) asc limit 2"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), cast(avg(1.0 * field_i) as float)"
+operator|+
+literal|" from collection1 where text='XXXX' group by str_s order by sum(field_i) asc limit 2"
 argument_list|)
 expr_stmt|;
 name|SolrStream
@@ -4058,8 +4076,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//nocommit - why is this getting returned as a long and not as a double? - avg() returns same type as input
-comment|//assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|tuple
 operator|=
 name|tuples
@@ -4136,7 +4165,19 @@ literal|20
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|13.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|.
 name|put
@@ -4154,7 +4195,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s as myString, count(*), sum(field_i) as mySum, min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s order by mySum asc limit 2"
+literal|"select str_s as myString, count(*), sum(field_i) as mySum, min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s order by mySum asc limit 2"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -4262,7 +4305,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|tuple
 operator|=
 name|tuples
@@ -4338,11 +4393,23 @@ literal|20
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|13.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 comment|// TODO fix test - Cannot apply 'NOT' to arguments of type 'NOT<JAVATYPE(CLASS JAVA.LANG.STRING)>'. Supported form(s): 'NOT<BOOLEAN>'
-comment|/*       params = new HashMap();       params.put(CommonParams.QT, "/sql");       params.put("stmt", "select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where (text='XXXX' AND NOT text='XXXX XXX') group by str_s order by str_s desc");        solrStream = new SolrStream(jetty.url, params);       tuples = getTuples(solrStream);        //The sort by and order by match and no limit is applied. All the Tuples should be returned in       //this scenario.        assert(tuples.size() == 3);        tuple = tuples.get(0);       assert(tuple.get("str_s").equals("c"));       assert(tuple.getDouble("EXPR$1") == 4); //count(*)       assert(tuple.getDouble("EXPR$2") == 180); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 30); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 60); //max(field_i)       //assert(tuple.getDouble("EXPR$5") == 45); //avg(field_i)        tuple = tuples.get(1);       assert(tuple.get("str_s").equals("b"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("EXPR$2") == 19); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 8); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 11); //max(field_i)       //assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)        tuple = tuples.get(2);       assert(tuple.get("str_s").equals("a"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("EXPR$2") == 27); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 7); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 20); //max(field_i)       //assert(tuple.getDouble("avg(field_i)") == 13.5D); //avg(field_i)       */
+comment|/*       params = new HashMap();       params.put(CommonParams.QT, "/sql");       params.put("stmt", "select str_s, count(*), sum(field_i), min(field_i), max(field_i), "           + "cast(avg(1.0 * field_i) as float) from collection1 where (text='XXXX' AND NOT text='XXXX XXX') "           + "group by str_s order by str_s desc");        solrStream = new SolrStream(jetty.url, params);       tuples = getTuples(solrStream);        //The sort by and order by match and no limit is applied. All the Tuples should be returned in       //this scenario.        assert(tuples.size() == 3);        tuple = tuples.get(0);       assert(tuple.get("str_s").equals("c"));       assert(tuple.getDouble("EXPR$1") == 4); //count(*)       assert(tuple.getDouble("EXPR$2") == 180); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 30); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 60); //max(field_i)       assert(tuple.getDouble("EXPR$5") == 45); //avg(field_i)        tuple = tuples.get(1);       assert(tuple.get("str_s").equals("b"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("EXPR$2") == 19); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 8); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 11); //max(field_i)       assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)        tuple = tuples.get(2);       assert(tuple.get("str_s").equals("a"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("EXPR$2") == 27); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 7); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 20); //max(field_i)       assert(tuple.getDouble("avg(field_i)") == 13.5D); //avg(field_i)       */
 comment|// TODO fix test - Cannot apply 'NOT' to arguments of type 'NOT<JAVATYPE(CLASS JAVA.LANG.STRING)>'. Supported form(s): 'NOT<BOOLEAN>'
-comment|/*       params = new HashMap();       params.put(CommonParams.QT, "/sql");       params.put("stmt", "select str_s as myString, count(*) as myCount, sum(field_i) as mySum, min(field_i) as myMin, max(field_i) as myMax, avg(field_i) as myAvg from collection1 where (text='XXXX' AND NOT text='XXXX XXX') group by str_s order by str_s desc");        solrStream = new SolrStream(jetty.url, params);       tuples = getTuples(solrStream);        //The sort by and order by match and no limit is applied. All the Tuples should be returned in       //this scenario.        assert(tuples.size() == 3);        tuple = tuples.get(0);       assert(tuple.get("myString").equals("c"));       assert(tuple.getDouble("myCount") == 4);       assert(tuple.getDouble("mySum") == 180);       assert(tuple.getDouble("myMin") == 30);       assert(tuple.getDouble("myMax") == 60);       //assert(tuple.getDouble("myAvg") == 45);        tuple = tuples.get(1);       assert(tuple.get("myString").equals("b"));       assert(tuple.getDouble("myCount") == 2);       assert(tuple.getDouble("mySum") == 19);       assert(tuple.getDouble("myMin") == 8);       assert(tuple.getDouble("myMax") == 11);       //assert(tuple.getDouble("myAvg") == 9.5D);        tuple = tuples.get(2);       assert(tuple.get("myString").equals("a"));       assert(tuple.getDouble("myCount") == 2);       assert(tuple.getDouble("mySum") == 27);       assert(tuple.getDouble("myMin") == 7);       assert(tuple.getDouble("myMax") == 20);       //assert(tuple.getDouble("myAvg") == 13.5D);       */
+comment|/*       params = new HashMap();       params.put(CommonParams.QT, "/sql");       params.put("stmt", "select str_s as myString, count(*) as myCount, sum(field_i) as mySum, min(field_i) as myMin, "           + "max(field_i) as myMax, cast(avg(1.0 * field_i) as float) as myAvg from collection1 "           + "where (text='XXXX' AND NOT text='XXXX XXX') group by str_s order by str_s desc");        solrStream = new SolrStream(jetty.url, params);       tuples = getTuples(solrStream);        //The sort by and order by match and no limit is applied. All the Tuples should be returned in       //this scenario.        assert(tuples.size() == 3);        tuple = tuples.get(0);       assert(tuple.get("myString").equals("c"));       assert(tuple.getDouble("myCount") == 4);       assert(tuple.getDouble("mySum") == 180);       assert(tuple.getDouble("myMin") == 30);       assert(tuple.getDouble("myMax") == 60);       assert(tuple.getDouble("myAvg") == 45);        tuple = tuples.get(1);       assert(tuple.get("myString").equals("b"));       assert(tuple.getDouble("myCount") == 2);       assert(tuple.getDouble("mySum") == 19);       assert(tuple.getDouble("myMin") == 8);       assert(tuple.getDouble("myMax") == 11);       assert(tuple.getDouble("myAvg") == 9.5D);        tuple = tuples.get(2);       assert(tuple.get("myString").equals("a"));       assert(tuple.getDouble("myCount") == 2);       assert(tuple.getDouble("mySum") == 27);       assert(tuple.getDouble("myMin") == 7);       assert(tuple.getDouble("myMax") == 20);       assert(tuple.getDouble("myAvg") == 13.5D);       */
 name|params
 operator|=
 operator|new
@@ -4366,7 +4433,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having sum(field_i) = 19"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), cast(avg(1.0 * field_i) as float) "
+operator|+
+literal|"from collection1 where text='XXXX' group by str_s having sum(field_i) = 19"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -4474,7 +4543,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -4498,7 +4579,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having ((sum(field_i) = 19) AND (min(field_i) = 8))"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), cast(avg(1.0 * field_i) as float) "
+operator|+
+literal|"from collection1 where text='XXXX' group by str_s having ((sum(field_i) = 19) AND (min(field_i) = 8))"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -4606,7 +4689,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -4630,7 +4725,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i) as mySum, min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having ((sum(field_i) = 19) AND (min(field_i) = 8))"
+literal|"select str_s, count(*), sum(field_i) as mySum, min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"having ((sum(field_i) = 19) AND (min(field_i) = 8))"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -4737,7 +4836,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -4761,7 +4872,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having ((sum(field_i) = 19) AND (min(field_i) = 100))"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"having ((sum(field_i) = 19) AND (min(field_i) = 100))"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -8939,7 +9054,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s order by sum(field_i) asc limit 2"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"order by sum(field_i) asc limit 2"
 argument_list|)
 expr_stmt|;
 name|SolrStream
@@ -9058,7 +9177,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|tuple
 operator|=
 name|tuples
@@ -9135,11 +9266,23 @@ literal|20
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|13.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 comment|// TODO fix test - Cannot apply 'NOT' to arguments of type 'NOT<JAVATYPE(CLASS JAVA.LANG.STRING)>'. Supported form(s): 'NOT<BOOLEAN>'
-comment|/*       params = new HashMap();       params.put(CommonParams.QT, "/sql");       params.put("aggregationMode", "facet");       params.put("stmt", "select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where (text='XXXX' AND NOT text='XXXX XXX') group by str_s order by str_s desc");        solrStream = new SolrStream(jetty.url, params);       tuples = getTuples(solrStream);        //The sort by and order by match and no limit is applied. All the Tuples should be returned in       //this scenario.        assert(tuples.size() == 3);        tuple = tuples.get(0);       assert(tuple.get("str_s").equals("c"));       assert(tuple.getDouble("EXPR$1") == 4); //count(*)       assert(tuple.getDouble("EXPR$2") == 180); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 30); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 60); //max(field_i) //      assert(tuple.getDouble("EXPR$5") == 45); //avg(field_i)        tuple = tuples.get(1);       assert(tuple.get("str_s").equals("b"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("EXPR$2") == 19); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 8); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 11); //max(field_i) //      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)        tuple = tuples.get(2);       assert(tuple.get("str_s").equals("a"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("EXPR$2") == 27); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 7); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 20); //max(field_i) //      assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)       */
+comment|/*       params = new HashMap();       params.put(CommonParams.QT, "/sql");       params.put("aggregationMode", "facet");       params.put("stmt", "select str_s, count(*), sum(field_i), min(field_i), max(field_i), "           + "cast(avg(1.0 * field_i) as float) from collection1 where (text='XXXX' AND NOT text='XXXX XXX') "           + "group by str_s order by str_s desc");        solrStream = new SolrStream(jetty.url, params);       tuples = getTuples(solrStream);        //The sort by and order by match and no limit is applied. All the Tuples should be returned in       //this scenario.        assert(tuples.size() == 3);        tuple = tuples.get(0);       assert(tuple.get("str_s").equals("c"));       assert(tuple.getDouble("EXPR$1") == 4); //count(*)       assert(tuple.getDouble("EXPR$2") == 180); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 30); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 60); //max(field_i)       assert(tuple.getDouble("EXPR$5") == 45); //avg(field_i)        tuple = tuples.get(1);       assert(tuple.get("str_s").equals("b"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("EXPR$2") == 19); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 8); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 11); //max(field_i)       assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)        tuple = tuples.get(2);       assert(tuple.get("str_s").equals("a"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("EXPR$2") == 27); //sum(field_i)       assert(tuple.getDouble("EXPR$3") == 7); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 20); //max(field_i)       assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)       */
 comment|// TODO fix test - Cannot apply 'NOT' to arguments of type 'NOT<JAVATYPE(CLASS JAVA.LANG.STRING)>'. Supported form(s): 'NOT<BOOLEAN>'
-comment|/*       params = new HashMap();       params.put(CommonParams.QT, "/sql");       params.put("aggregationMode", "facet");       params.put("stmt", "select str_s as myString, count(*), sum(field_i) as mySum, min(field_i), max(field_i), avg(field_i) from collection1 where (text='XXXX' AND NOT text='XXXX XXX') group by str_s order by myString desc");        solrStream = new SolrStream(jetty.url, params);       tuples = getTuples(solrStream);        //The sort by and order by match and no limit is applied. All the Tuples should be returned in       //this scenario.        assert(tuples.size() == 3);        tuple = tuples.get(0);       assert(tuple.get("myString").equals("c"));       assert(tuple.getDouble("EXPR$1") == 4); //count(*)       assert(tuple.getDouble("mySum") == 180);       assert(tuple.getDouble("EXPR$3") == 30); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 60); //max(field_i) //      assert(tuple.getDouble("EXPR$5") == 45); //avg(field_i)        tuple = tuples.get(1);       assert(tuple.get("myString").equals("b"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("mySum") == 19);       assert(tuple.getDouble("EXPR$3") == 8); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 11); //max(field_i) //      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)        tuple = tuples.get(2);       assert(tuple.get("myString").equals("a"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("mySum") == 27);       assert(tuple.getDouble("EXPR$3") == 7); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 20); //max(field_i) //      assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)       */
+comment|/*       params = new HashMap();       params.put(CommonParams.QT, "/sql");       params.put("aggregationMode", "facet");       params.put("stmt", "select str_s as myString, count(*), sum(field_i) as mySum, min(field_i), max(field_i), "           + "cast(avg(1.0 * field_i) as float) from collection1 where (text='XXXX' AND NOT text='XXXX XXX') "           + "group by str_s order by myString desc");        solrStream = new SolrStream(jetty.url, params);       tuples = getTuples(solrStream);        //The sort by and order by match and no limit is applied. All the Tuples should be returned in       //this scenario.        assert(tuples.size() == 3);        tuple = tuples.get(0);       assert(tuple.get("myString").equals("c"));       assert(tuple.getDouble("EXPR$1") == 4); //count(*)       assert(tuple.getDouble("mySum") == 180);       assert(tuple.getDouble("EXPR$3") == 30); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 60); //max(field_i)       assert(tuple.getDouble("EXPR$5") == 45); //avg(field_i)        tuple = tuples.get(1);       assert(tuple.get("myString").equals("b"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("mySum") == 19);       assert(tuple.getDouble("EXPR$3") == 8); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 11); //max(field_i)       assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)        tuple = tuples.get(2);       assert(tuple.get("myString").equals("a"));       assert(tuple.getDouble("EXPR$1") == 2); //count(*)       assert(tuple.getDouble("mySum") == 27);       assert(tuple.getDouble("EXPR$3") == 7); //min(field_i)       assert(tuple.getDouble("EXPR$4") == 20); //max(field_i)       assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)       */
 name|params
 operator|=
 operator|new
@@ -9172,7 +9315,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having sum(field_i) = 19"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s having sum(field_i) = 19"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -9280,7 +9425,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -9313,7 +9470,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having ((sum(field_i) = 19) AND (min(field_i) = 8))"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"having ((sum(field_i) = 19) AND (min(field_i) = 8))"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -9421,7 +9582,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -9454,7 +9627,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i) as mySum, min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having ((sum(field_i) = 19) AND (min(field_i) = 8))"
+literal|"select str_s, count(*), sum(field_i) as mySum, min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"having ((sum(field_i) = 19) AND (min(field_i) = 8))"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -9561,7 +9738,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -9594,7 +9783,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having ((sum(field_i) = 19) AND (min(field_i) = 100))"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"having ((sum(field_i) = 19) AND (min(field_i) = 100))"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -9852,7 +10045,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s order by sum(field_i) asc limit 2"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"order by sum(field_i) asc limit 2"
 argument_list|)
 expr_stmt|;
 name|SolrStream
@@ -9971,7 +10168,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|tuple
 operator|=
 name|tuples
@@ -10048,7 +10257,19 @@ literal|20
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|13.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -10081,7 +10302,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i) as mySum, min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s order by mySum asc limit 2"
+literal|"select str_s, count(*), sum(field_i) as mySum, min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s order by mySum asc limit 2"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -10189,7 +10412,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|tuple
 operator|=
 name|tuples
@@ -10265,7 +10500,19 @@ literal|20
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|13.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -10298,7 +10545,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s order by str_s desc"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s order by str_s desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -10408,7 +10657,19 @@ literal|60
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 45); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|45
+operator|)
+assert|;
+comment|//avg(field_i)
 name|tuple
 operator|=
 name|tuples
@@ -10485,7 +10746,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|tuple
 operator|=
 name|tuples
@@ -10562,7 +10835,19 @@ literal|20
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|13.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -10595,7 +10880,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s as myString, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s order by myString desc"
+literal|"select str_s as myString, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s order by myString desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -10705,7 +10992,19 @@ literal|60
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 45); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|45
+operator|)
+assert|;
+comment|//avg(field_i)
 name|tuple
 operator|=
 name|tuples
@@ -10782,7 +11081,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|tuple
 operator|=
 name|tuples
@@ -10859,7 +11170,19 @@ literal|20
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 13.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|13.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -10892,7 +11215,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having sum(field_i) = 19"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s having sum(field_i) = 19"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -11000,7 +11325,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -11033,7 +11370,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having ((sum(field_i) = 19) AND (min(field_i) = 8))"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"having ((sum(field_i) = 19) AND (min(field_i) = 8))"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -11141,7 +11482,19 @@ literal|11
 operator|)
 assert|;
 comment|//max(field_i)
-comment|//      assert(tuple.getDouble("EXPR$5") == 9.5D); //avg(field_i)
+assert|assert
+operator|(
+name|tuple
+operator|.
+name|getDouble
+argument_list|(
+literal|"EXPR$5"
+argument_list|)
+operator|==
+literal|9.5D
+operator|)
+assert|;
+comment|//avg(field_i)
 name|params
 operator|=
 operator|new
@@ -11174,7 +11527,11 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), avg(field_i) from collection1 where text='XXXX' group by str_s having ((sum(field_i) = 19) AND (min(field_i) = 100))"
+literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
+operator|+
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s "
+operator|+
+literal|"having ((sum(field_i) = 19) AND (min(field_i) = 100))"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -11459,7 +11816,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select count(*), sum(a_i), min(a_i), max(a_i), avg(a_i), sum(a_f), min(a_f), max(a_f), avg(a_f) from collection1"
+literal|"select count(*), sum(a_i), min(a_i), max(a_i), cast(avg(1.0 * a_i) as float), sum(a_f), "
+operator|+
+literal|"min(a_f), max(a_f), avg(a_f) from collection1"
 argument_list|)
 expr_stmt|;
 name|SolrStream
@@ -11692,7 +12051,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select count(*) as myCount, sum(a_i) as mySum, min(a_i) as myMin, max(a_i) as myMax, avg(a_i) as myAvg, sum(a_f), min(a_f), max(a_f), avg(a_f) from collection1"
+literal|"select count(*) as myCount, sum(a_i) as mySum, min(a_i) as myMin, max(a_i) as myMax, "
+operator|+
+literal|"cast(avg(1.0 * a_i) as float) as myAvg, sum(a_f), min(a_f), max(a_f), avg(a_f) from collection1"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -11906,7 +12267,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select count(*), sum(a_i), min(a_i), max(a_i), avg(a_i), sum(a_f), min(a_f), max(a_f), avg(a_f) from collection1 where id = 2"
+literal|"select count(*), sum(a_i), min(a_i), max(a_i), cast(avg(1.0 * a_i) as float), sum(a_f), "
+operator|+
+literal|"min(a_f), max(a_f), avg(a_f) from collection1 where id = 2"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -12124,7 +12487,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select count(*), sum(a_i), min(a_i), max(a_i), avg(a_i), sum(a_f), min(a_f), max(a_f), avg(a_f) from collection1 where a_s = 'blah'"
+literal|"select count(*), sum(a_i), min(a_i), max(a_i), cast(avg(1.0 * a_i) as float), sum(a_f), "
+operator|+
+literal|"min(a_f), max(a_f), avg(a_f) from collection1 where a_s = 'blah'"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -12684,7 +13049,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select year_i, month_i, sum(item_i) from collection1 group by year_i, month_i order by year_i desc, month_i desc"
+literal|"select year_i, month_i, sum(item_i) from collection1 group by year_i, month_i "
+operator|+
+literal|"order by year_i desc, month_i desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -12881,7 +13248,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select year_i, month_i, day_i, sum(item_i) from collection1 group by year_i, month_i, day_i order by year_i desc, month_i desc, day_i desc"
+literal|"select year_i, month_i, day_i, sum(item_i) from collection1 group by year_i, month_i, day_i "
+operator|+
+literal|"order by year_i desc, month_i desc, day_i desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -13665,7 +14034,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select year_i, month_i, sum(item_i) from collection1 group by year_i, month_i order by year_i desc, month_i desc"
+literal|"select year_i, month_i, sum(item_i) from collection1 group by year_i, month_i "
+operator|+
+literal|"order by year_i desc, month_i desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -13867,7 +14238,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select year_i, month_i, day_i, sum(item_i) from collection1 group by year_i, month_i, day_i order by year_i desc, month_i desc, day_i desc"
+literal|"select year_i, month_i, day_i, sum(item_i) from collection1 group by year_i, month_i, day_i "
+operator|+
+literal|"order by year_i desc, month_i desc, day_i desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -14660,7 +15033,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select year_i, month_i, sum(item_i) from collection1 group by year_i, month_i order by year_i desc, month_i desc"
+literal|"select year_i, month_i, sum(item_i) from collection1 group by year_i, month_i "
+operator|+
+literal|"order by year_i desc, month_i desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
@@ -14890,7 +15265,9 @@ name|put
 argument_list|(
 literal|"stmt"
 argument_list|,
-literal|"select year_i, month_i, day_i, sum(item_i) from collection1 group by year_i, month_i, day_i order by year_i desc, month_i desc, day_i desc"
+literal|"select year_i, month_i, day_i, sum(item_i) from collection1 group by year_i, month_i, day_i "
+operator|+
+literal|"order by year_i desc, month_i desc, day_i desc"
 argument_list|)
 expr_stmt|;
 name|solrStream
