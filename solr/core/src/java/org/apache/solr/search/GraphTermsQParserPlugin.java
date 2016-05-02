@@ -1331,6 +1331,8 @@ name|reader
 operator|.
 name|maxDoc
 argument_list|()
+argument_list|,
+name|terms
 argument_list|)
 decl_stmt|;
 for|for

@@ -552,6 +552,8 @@ name|reader
 operator|.
 name|maxDoc
 argument_list|()
+argument_list|,
+name|terms
 argument_list|)
 decl_stmt|;
 comment|// subset of documents that need no postfiltering, this is purely an optimization

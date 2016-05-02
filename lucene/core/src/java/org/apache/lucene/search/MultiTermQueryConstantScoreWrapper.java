@@ -894,6 +894,8 @@ argument_list|()
 operator|.
 name|maxDoc
 argument_list|()
+argument_list|,
+name|terms
 argument_list|)
 decl_stmt|;
 if|if
