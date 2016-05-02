@@ -4276,7 +4276,7 @@ argument_list|)
 decl_stmt|;
 comment|//verifyPoint(planetModel, point1, q);
 comment|//verifyPoint(planetModel, point2, q);
-comment|//System.err.println("  "+point1+" and "+point2);
+comment|//System.err.println("   Considering points "+point1+" and "+point2);
 if|if
 condition|(
 name|point1
