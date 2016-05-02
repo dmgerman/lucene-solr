@@ -96,6 +96,23 @@ name|long
 name|cost
 parameter_list|)
 block|{
+if|if
+condition|(
+name|cost
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cost must be>= 0, got "
+operator|+
+name|cost
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|set
