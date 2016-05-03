@@ -332,6 +332,7 @@ return|;
 block|}
 DECL|method|close
 specifier|public
+specifier|synchronized
 name|void
 name|close
 parameter_list|()
@@ -387,6 +388,11 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|solrClients
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
