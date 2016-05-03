@@ -2549,7 +2549,7 @@ index|[
 literal|0
 index|]
 decl_stmt|;
-comment|/** Create a tree.      * @param edges is the list of edges.      */
+comment|/** Create a tree.      * @param allEdges is the list of edges.      */
 DECL|method|Tree
 specifier|public
 name|Tree
