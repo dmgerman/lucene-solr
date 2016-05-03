@@ -219,6 +219,18 @@ name|MIGRATESTATEFORMAT
 argument_list|(
 literal|true
 argument_list|)
+block|,
+DECL|enum constant|BACKUP
+name|BACKUP
+argument_list|(
+literal|true
+argument_list|)
+block|,
+DECL|enum constant|RESTORE
+name|RESTORE
+argument_list|(
+literal|true
+argument_list|)
 block|;
 DECL|field|isWrite
 specifier|public

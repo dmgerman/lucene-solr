@@ -22,9 +22,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|text
+name|io
 operator|.
-name|MessageFormat
+name|IOException
 import|;
 end_import
 
@@ -32,9 +32,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|text
 operator|.
-name|List
+name|MessageFormat
 import|;
 end_import
 
@@ -54,6 +54,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collections
 import|;
 end_import
@@ -64,7 +74,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Locale
+name|List
 import|;
 end_import
 
@@ -72,9 +82,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|IOException
+name|Locale
 import|;
 end_import
 
@@ -664,7 +674,7 @@ specifier|static
 name|String
 name|join
 parameter_list|(
-name|List
+name|Collection
 argument_list|<
 name|?
 argument_list|>
