@@ -786,6 +786,15 @@ name|URL_SCHEME
 init|=
 literal|"urlScheme"
 decl_stmt|;
+DECL|field|BACKUP_LOCATION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|BACKUP_LOCATION
+init|=
+literal|"location"
+decl_stmt|;
 comment|/** A view of the current state of all collections; combines all the different state sources into a single view. */
 DECL|field|clusterState
 specifier|protected
@@ -968,6 +977,8 @@ argument_list|,
 name|URL_SCHEME
 argument_list|,
 name|AUTO_ADD_REPLICAS
+argument_list|,
+name|BACKUP_LOCATION
 argument_list|)
 argument_list|)
 argument_list|)
