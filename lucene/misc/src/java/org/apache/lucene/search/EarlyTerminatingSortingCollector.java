@@ -60,20 +60,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexWriter
 import|;
 end_import
@@ -88,7 +74,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SortingMergePolicy
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -100,9 +86,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|LeafCollector
+name|LeafReaderContext
 import|;
 end_import
 
@@ -144,6 +130,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|FilterCollector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|FilterLeafCollector
 import|;
 end_import
@@ -158,7 +158,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|FilterCollector
+name|LeafCollector
 import|;
 end_import
 
@@ -205,7 +205,11 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link Collector} that early terminates collection of documents on a  * per-segment basis, if the segment was sorted according to the given  * {@link Sort}.  *  *<p>  *<b>NOTE:</b> the {@code Collector} detects segments sorted according to a  * {@link SortingMergePolicy}'s {@link Sort} and so it's best used in conjunction  * with a {@link SortingMergePolicy}. Also,it collects up to a specified  * {@code numDocsToCollect} from each segment, and therefore is mostly suitable  * for use in conjunction with collectors such as {@link TopDocsCollector}, and  * not e.g. {@link TotalHitCountCollector}.  *<p>  *<b>NOTE</b>: If you wrap a {@code TopDocsCollector} that sorts in the same  * order as the index order, the returned {@link TopDocsCollector#topDocs() TopDocs}  * will be correct. However the total of {@link TopDocsCollector#getTotalHits()  * hit count} will be underestimated since not all matching documents will have  * been collected.  *<p>  *<b>NOTE</b>: This {@code Collector} uses {@link Sort#toString()} to detect  * whether a segment was sorted with the same {@code Sort}. This has  * two implications:  *<ul>  *<li>if a custom comparator is not implemented correctly and returns  * different identifiers for equivalent instances, this collector will not  * detect sorted segments,</li>  *<li>if you suddenly change the {@link IndexWriter}'s  * {@code SortingMergePolicy} to sort according to another criterion and if both  * the old and the new {@code Sort}s have the same identifier, this  * {@code Collector} will incorrectly detect sorted segments.</li>  *</ul>  *  * @lucene.experimental  */
+comment|/**  * A {@link Collector} that early terminates collection of documents on a  * per-segment basis, if the segment was sorted according to the given  * {@link Sort}.  *  *<p>  *<b>NOTE:</b> the {@code Collector} detects segments sorted according to a  * an {@link IndexWriterConfig#setIndexSort}. Also, it collects up to a specified  * {@code numDocsToCollect} from each segment, and therefore is mostly suitable  * for use in conjunction with collectors such as {@link TopDocsCollector}, and  * not e.g. {@link TotalHitCountCollector}.  *<p>  *<b>NOTE</b>: If you wrap a {@code TopDocsCollector} that sorts in the same  * order as the index order, the returned {@link TopDocsCollector#topDocs() TopDocs}  * will be correct. However the total of {@link TopDocsCollector#getTotalHits()  * hit count} will be vastly underestimated since not all matching documents will have  * been collected.  *  * @lucene.experimental  */
+end_comment
+
+begin_comment
+comment|// nocommit move to core too
 end_comment
 
 begin_class
@@ -308,12 +312,6 @@ specifier|final
 name|int
 name|numDocsToCollect
 decl_stmt|;
-DECL|field|mergePolicySort
-specifier|private
-specifier|final
-name|Sort
-name|mergePolicySort
-decl_stmt|;
 DECL|field|terminatedEarly
 specifier|private
 specifier|final
@@ -326,7 +324,7 @@ argument_list|(
 literal|false
 argument_list|)
 decl_stmt|;
-comment|/**    * Create a new {@link EarlyTerminatingSortingCollector} instance.    *    * @param in    *          the collector to wrap    * @param sort    *          the sort you are sorting the search results on    * @param numDocsToCollect    *          the number of documents to collect on each segment. When wrapping    *          a {@link TopDocsCollector}, this number should be the number of    *          hits.    * @param mergePolicySort    *          the sort your {@link SortingMergePolicy} uses    * @throws IllegalArgumentException if the sort order doesn't allow for early    *          termination with the given merge policy.    */
+comment|/**    * Create a new {@link EarlyTerminatingSortingCollector} instance.    *    * @param in    *          the collector to wrap    * @param sort    *          the sort you are sorting the search results on    * @param numDocsToCollect    *          the number of documents to collect on each segment. When wrapping    *          a {@link TopDocsCollector}, this number should be the number of    *          hits.    * @throws IllegalArgumentException if the sort order doesn't allow for early    *          termination with the given merge policy.    */
 DECL|method|EarlyTerminatingSortingCollector
 specifier|public
 name|EarlyTerminatingSortingCollector
@@ -339,9 +337,6 @@ name|sort
 parameter_list|,
 name|int
 name|numDocsToCollect
-parameter_list|,
-name|Sort
-name|mergePolicySort
 parameter_list|)
 block|{
 name|super
@@ -366,32 +361,6 @@ name|numDocsToCollect
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-name|canEarlyTerminate
-argument_list|(
-name|sort
-argument_list|,
-name|mergePolicySort
-argument_list|)
-operator|==
-literal|false
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"Cannot early terminate with sort order "
-operator|+
-name|sort
-operator|+
-literal|" if segments are sorted with "
-operator|+
-name|mergePolicySort
-argument_list|)
-throw|;
-block|}
 name|this
 operator|.
 name|sort
@@ -403,12 +372,6 @@ operator|.
 name|numDocsToCollect
 operator|=
 name|numDocsToCollect
-expr_stmt|;
-name|this
-operator|.
-name|mergePolicySort
-operator|=
-name|mergePolicySort
 expr_stmt|;
 block|}
 annotation|@
@@ -424,19 +387,52 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|SortingMergePolicy
-operator|.
-name|isSorted
-argument_list|(
+name|Sort
+name|segmentSort
+init|=
 name|context
 operator|.
 name|reader
 argument_list|()
+operator|.
+name|getIndexSort
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|segmentSort
+operator|!=
+literal|null
+operator|&&
+name|canEarlyTerminate
+argument_list|(
+name|sort
 argument_list|,
-name|mergePolicySort
+name|segmentSort
 argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Cannot early terminate with sort order "
+operator|+
+name|sort
+operator|+
+literal|" if segments are sorted with "
+operator|+
+name|segmentSort
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|segmentSort
+operator|!=
+literal|null
 condition|)
 block|{
 comment|// segment is sorted, can early-terminate

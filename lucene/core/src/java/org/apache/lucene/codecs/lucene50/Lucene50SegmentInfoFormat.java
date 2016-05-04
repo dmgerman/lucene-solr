@@ -547,6 +547,8 @@ argument_list|,
 name|segmentID
 argument_list|,
 name|attributes
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|si
@@ -623,6 +625,25 @@ operator|.
 name|SI_EXTENSION
 argument_list|)
 decl_stmt|;
+comment|// nocommit indexSort
+if|if
+condition|(
+name|si
+operator|.
+name|getIndexSort
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"teach me to write indexSort"
+argument_list|)
+throw|;
+block|}
 try|try
 init|(
 name|IndexOutput

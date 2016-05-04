@@ -18,6 +18,14 @@ name|lucene60
 package|;
 end_package
 
+begin_comment
+comment|// nocommit if index time sorting is in use, don't try to bulk merge ... later we can make crazy bulk merger that looks for long runs from
+end_comment
+
+begin_comment
+comment|// one sub?
+end_comment
+
 begin_import
 import|import
 name|java

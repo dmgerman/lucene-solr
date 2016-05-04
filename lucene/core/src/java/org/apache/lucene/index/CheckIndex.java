@@ -13520,6 +13520,8 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|// nocommit must check index is sorted, if it claims to be
+comment|// nocommit must check that all segments have the same sort, if any segment is sorted
 comment|/**    * Parse command line args into fields    * @param args The command line arguments    * @return An Options struct    * @throws IllegalArgumentException if any of the CLI args are invalid    */
 DECL|method|parseOptions
 specifier|public

@@ -303,6 +303,8 @@ name|String
 operator|>
 name|emptyMap
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|info
@@ -497,6 +499,8 @@ name|String
 operator|>
 name|emptyMap
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|info
@@ -598,6 +602,8 @@ name|String
 operator|>
 name|emptyMap
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|info

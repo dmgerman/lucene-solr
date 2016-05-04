@@ -183,6 +183,7 @@ name|ConcurrentHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
+comment|// nocommit should we somehow throw exc if you try to pass in "sorted" Fields?
 comment|/** Returns a single {@link Fields} instance for this    *  reader, merging fields/terms/docs/positions on the    *  fly.  This method will return null if the reader     *  has no postings.    *    *<p><b>NOTE</b>: this is a slow way to access postings.    *  It's better to get the sub-readers and iterate through them    *  yourself. */
 DECL|method|getFields
 specifier|public

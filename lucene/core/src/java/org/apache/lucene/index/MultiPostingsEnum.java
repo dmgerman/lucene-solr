@@ -187,7 +187,8 @@ operator|==
 name|parent
 return|;
 block|}
-comment|/** Rre-use and reset this instance on the provided slices. */
+comment|// nocommit is this class supposed to be aware of index sorting too???
+comment|/** Re-use and reset this instance on the provided slices. */
 DECL|method|reset
 specifier|public
 name|MultiPostingsEnum
@@ -645,10 +646,6 @@ specifier|static
 class|class
 name|EnumWithSlice
 block|{
-DECL|method|EnumWithSlice
-name|EnumWithSlice
-parameter_list|()
-block|{     }
 comment|/** {@link PostingsEnum} for this sub-reader. */
 DECL|field|postingsEnum
 specifier|public
