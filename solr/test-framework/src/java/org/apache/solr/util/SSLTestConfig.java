@@ -766,7 +766,7 @@ name|build
 argument_list|()
 return|;
 block|}
-comment|/**    * Returns an SslContextFactory using {@link buildServerSSLContext} if SSL should be used, else returns null.    */
+comment|/**    * Returns an SslContextFactory using {@link #buildServerSSLContext} if SSL should be used, else returns null.    */
 annotation|@
 name|Override
 DECL|method|createContextFactory
