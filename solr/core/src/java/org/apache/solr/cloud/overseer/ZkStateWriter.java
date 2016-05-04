@@ -1013,14 +1013,6 @@ name|getZNodeVersion
 argument_list|()
 argument_list|)
 expr_stmt|;
-assert|assert
-name|c
-operator|.
-name|getZNodeVersion
-argument_list|()
-operator|>=
-literal|0
-assert|;
 name|Stat
 name|stat
 init|=

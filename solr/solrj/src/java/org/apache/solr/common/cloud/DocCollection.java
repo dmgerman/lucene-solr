@@ -241,13 +241,10 @@ literal|"snitch"
 decl_stmt|;
 DECL|field|znodeVersion
 specifier|private
+specifier|final
 name|int
 name|znodeVersion
-init|=
-operator|-
-literal|1
 decl_stmt|;
-comment|// sentinel
 DECL|field|name
 specifier|private
 specifier|final
@@ -343,8 +340,9 @@ name|props
 argument_list|,
 name|router
 argument_list|,
-operator|-
-literal|1
+name|Integer
+operator|.
+name|MAX_VALUE
 argument_list|,
 name|ZkStateReader
 operator|.
@@ -396,11 +394,7 @@ name|props
 operator|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 else|:
 name|props
@@ -410,6 +404,15 @@ name|this
 operator|.
 name|znodeVersion
 operator|=
+name|zkVersion
+operator|==
+operator|-
+literal|1
+condition|?
+name|Integer
+operator|.
+name|MAX_VALUE
+else|:
 name|zkVersion
 expr_stmt|;
 name|this
