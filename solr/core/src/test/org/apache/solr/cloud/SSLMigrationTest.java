@@ -494,11 +494,11 @@ expr_stmt|;
 block|}
 name|HttpClientUtil
 operator|.
-name|setHttpClientBuilder
+name|setSchemaRegistryProvider
 argument_list|(
 name|sslConfig
 operator|.
-name|getHttpClientBuilder
+name|buildClientSchemaRegistryProvider
 argument_list|()
 argument_list|)
 expr_stmt|;

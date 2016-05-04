@@ -72,6 +72,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -583,6 +593,13 @@ name|BOOLEAN_REWRITE_TERM_COUNT_THRESHOLD
 init|=
 literal|16
 decl_stmt|;
+DECL|field|singleField
+specifier|private
+specifier|final
+name|boolean
+name|singleField
+decl_stmt|;
+comment|// whether all terms are from the same field
 DECL|field|termData
 specifier|private
 specifier|final
@@ -674,6 +691,17 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|fields
+init|=
+operator|new
+name|HashSet
+argument_list|<>
+argument_list|()
+decl_stmt|;
 name|Term
 name|previous
 init|=
@@ -699,6 +727,16 @@ operator|==
 literal|false
 condition|)
 block|{
+name|fields
+operator|.
+name|add
+argument_list|(
+name|term
+operator|.
+name|field
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|builder
 operator|.
 name|add
@@ -712,6 +750,15 @@ operator|=
 name|term
 expr_stmt|;
 block|}
+name|singleField
+operator|=
+name|fields
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|1
+expr_stmt|;
 name|termData
 operator|=
 name|builder
@@ -869,6 +916,10 @@ name|term
 argument_list|)
 expr_stmt|;
 block|}
+name|singleField
+operator|=
+literal|true
+expr_stmt|;
 name|termData
 operator|=
 name|builder
@@ -1748,6 +1799,31 @@ argument_list|()
 operator|==
 name|threshold
 assert|;
+if|if
+condition|(
+name|singleField
+condition|)
+block|{
+comment|// common case: all terms are in the same field
+comment|// use an optimized builder that leverages terms stats to be more efficient
+name|builder
+operator|=
+operator|new
+name|DocIdSetBuilder
+argument_list|(
+name|reader
+operator|.
+name|maxDoc
+argument_list|()
+argument_list|,
+name|terms
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// corner case: different fields
+comment|// don't make assumptions about the docs we will get
 name|builder
 operator|=
 operator|new
@@ -1759,6 +1835,7 @@ name|maxDoc
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 name|docs
 operator|=
 name|termsEnum

@@ -404,6 +404,13 @@ name|FORCEPREPAREFORLEADERSHIP
 block|,
 DECL|enum constant|INVOKE
 name|INVOKE
+block|,
+comment|//Internal APIs to backup and restore a core
+DECL|enum constant|BACKUPCORE
+name|BACKUPCORE
+block|,
+DECL|enum constant|RESTORECORE
+name|RESTORECORE
 block|;
 DECL|field|isRead
 specifier|public

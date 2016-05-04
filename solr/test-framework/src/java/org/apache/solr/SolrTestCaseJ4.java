@@ -1921,14 +1921,14 @@ operator|=
 name|buildSSLConfig
 argument_list|()
 expr_stmt|;
-comment|//will use ssl specific or default depending on sslConfig
+comment|// based on randomized SSL config, set SchemaRegistryProvider appropriately
 name|HttpClientUtil
 operator|.
-name|setHttpClientBuilder
+name|setSchemaRegistryProvider
 argument_list|(
 name|sslConfig
 operator|.
-name|getHttpClientBuilder
+name|buildClientSchemaRegistryProvider
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2346,6 +2346,9 @@ argument_list|)
 operator|<
 literal|2
 decl_stmt|;
+comment|// NOTE: clientAuth is useless unless trySsl==true, but we randomize it independently
+comment|// just in case it might find bugs in our test/ssl client code (ie: attempting to use
+comment|// SSL w/client cert to non-ssl servers)
 name|boolean
 name|trySslClientAuth
 init|=
@@ -2366,6 +2369,9 @@ operator|.
 name|MAC_OS_X
 condition|)
 block|{
+comment|// see SOLR-9039
+comment|// If a solution is found to remove this, please make sure to also update
+comment|// TestMiniSolrCloudClusterSSL.testSslAndClientAuth as well.
 name|trySslClientAuth
 operator|=
 literal|false

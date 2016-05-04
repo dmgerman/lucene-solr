@@ -418,6 +418,11 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
+DECL|field|docBudget
+specifier|private
+name|int
+name|docBudget
+decl_stmt|;
 DECL|method|AssertingIntersectVisitor
 specifier|public
 name|AssertingIntersectVisitor
@@ -507,6 +512,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+operator|--
+name|docBudget
+operator|>=
+literal|0
+operator|:
+literal|"called add() more times than the last call to grow() reserved"
+assert|;
 comment|// This method, not filtering each hit, should only be invoked when the cell is inside the query shape:
 assert|assert
 name|lastCompareResult
@@ -540,6 +553,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+operator|--
+name|docBudget
+operator|>=
+literal|0
+operator|:
+literal|"called add() more times than the last call to grow() reserved"
+assert|;
 comment|// This method, to filter each doc's value, should only be invoked when the cell crosses the query shape:
 assert|assert
 name|lastCompareResult
@@ -755,6 +776,10 @@ name|grow
 argument_list|(
 name|count
 argument_list|)
+expr_stmt|;
+name|docBudget
+operator|=
+name|count
 expr_stmt|;
 block|}
 annotation|@

@@ -36,6 +36,10 @@ name|SslContextFactory
 import|;
 end_import
 
+begin_comment
+comment|/**   * Encapsulates settings related to SSL Configuration for an embedded Jetty Server.  * NOTE: all other settings are ignogred if {@link #isSSLMode} is false.  * @see #setUseSSL  */
+end_comment
+
 begin_class
 DECL|class|SSLConfig
 specifier|public
@@ -72,6 +76,7 @@ specifier|private
 name|String
 name|trustStorePassword
 decl_stmt|;
+comment|/** NOTE: all other settings are ignored if useSSL is false; trustStore settings are ignored if clientAuth is false */
 DECL|method|SSLConfig
 specifier|public
 name|SSLConfig
@@ -164,6 +169,7 @@ operator|=
 name|clientAuth
 expr_stmt|;
 block|}
+comment|/** All other settings on this object are ignored unless this is true */
 DECL|method|isSSLMode
 specifier|public
 name|boolean
@@ -224,6 +230,7 @@ return|return
 name|trustStorePassword
 return|;
 block|}
+comment|/**    * Returns an SslContextFactory that should be used by a jetty server based on the specified     * SSLConfig param which may be null.    *    * if the SSLConfig param is non-null, then this method will return the results of     * {@link #createContextFactory()}.    *     * If the SSLConfig param is null, then this method will return null unless the     *<code>tests.jettySsl</code> system property is true, in which case standard "javax.net.ssl.*"     * system properties will be used instead, along with "tests.jettySsl.clientAuth".    *     * @see #createContextFactory()    */
 DECL|method|createContextFactory
 specifier|public
 specifier|static
@@ -237,22 +244,25 @@ block|{
 if|if
 condition|(
 name|sslConfig
-operator|==
+operator|!=
 literal|null
 condition|)
 block|{
+return|return
+name|sslConfig
+operator|.
+name|createContextFactory
+argument_list|()
+return|;
+block|}
+comment|// else...
 if|if
 condition|(
 name|Boolean
 operator|.
 name|getBoolean
 argument_list|(
-name|System
-operator|.
-name|getProperty
-argument_list|(
 literal|"tests.jettySsl"
-argument_list|)
 argument_list|)
 condition|)
 block|{
@@ -261,20 +271,30 @@ name|configureSslFromSysProps
 argument_list|()
 return|;
 block|}
+comment|// else...
 return|return
 literal|null
 return|;
 block|}
+comment|/**    * Returns an SslContextFactory that should be used by a jetty server based on this SSLConfig instance,     * or null if SSL should not be used.    *    * The default implementation generates a simple factory according to the keystore, truststore,     * and clientAuth properties of this object.    *    * @see #getKeyStore    * @see #getKeyStorePassword    * @see #isClientAuthMode    * @see #getTrustStore    * @see #getTrustStorePassword    */
+DECL|method|createContextFactory
+specifier|public
+name|SslContextFactory
+name|createContextFactory
+parameter_list|()
+block|{
 if|if
 condition|(
 operator|!
-name|sslConfig
-operator|.
-name|useSsl
+name|isSSLMode
+argument_list|()
 condition|)
+block|{
 return|return
 literal|null
 return|;
+block|}
+comment|// else...
 name|SslContextFactory
 name|factory
 init|=
@@ -286,8 +306,6 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|sslConfig
-operator|.
 name|getKeyStore
 argument_list|()
 operator|!=
@@ -297,16 +315,12 @@ name|factory
 operator|.
 name|setKeyStorePath
 argument_list|(
-name|sslConfig
-operator|.
 name|getKeyStore
 argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|sslConfig
-operator|.
 name|getKeyStorePassword
 argument_list|()
 operator|!=
@@ -316,16 +330,26 @@ name|factory
 operator|.
 name|setKeyStorePassword
 argument_list|(
-name|sslConfig
-operator|.
 name|getKeyStorePassword
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|factory
+operator|.
+name|setNeedClientAuth
+argument_list|(
+name|isClientAuthMode
 argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|sslConfig
-operator|.
+name|isClientAuthMode
+argument_list|()
+condition|)
+block|{
+if|if
+condition|(
 name|getTrustStore
 argument_list|()
 operator|!=
@@ -335,16 +359,12 @@ name|factory
 operator|.
 name|setTrustStorePath
 argument_list|(
-name|sslConfig
-operator|.
 name|getTrustStore
 argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|sslConfig
-operator|.
 name|getTrustStorePassword
 argument_list|()
 operator|!=
@@ -354,12 +374,11 @@ name|factory
 operator|.
 name|setTrustStorePassword
 argument_list|(
-name|sslConfig
-operator|.
 name|getTrustStorePassword
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|factory
 return|;

@@ -2303,10 +2303,8 @@ name|docid
 argument_list|,
 name|searcher
 operator|.
-name|getNonStoredDVs
-argument_list|(
-literal|false
-argument_list|)
+name|getNonStoredDVsWithoutCopyTargets
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

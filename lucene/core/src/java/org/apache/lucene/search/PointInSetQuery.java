@@ -728,6 +728,10 @@ name|reader
 operator|.
 name|maxDoc
 argument_list|()
+argument_list|,
+name|values
+argument_list|,
+name|field
 argument_list|)
 decl_stmt|;
 if|if
@@ -878,6 +882,13 @@ specifier|final
 name|PrefixCodedTerms
 name|sortedPackedPoints
 decl_stmt|;
+DECL|field|adder
+specifier|private
+name|DocIdSetBuilder
+operator|.
+name|BulkAdder
+name|adder
+decl_stmt|;
 DECL|method|MergePointVisitor
 specifier|public
 name|MergePointVisitor
@@ -937,6 +948,8 @@ name|int
 name|count
 parameter_list|)
 block|{
+name|adder
+operator|=
 name|result
 operator|.
 name|grow
@@ -956,7 +969,7 @@ name|int
 name|docID
 parameter_list|)
 block|{
-name|result
+name|adder
 operator|.
 name|add
 argument_list|(
@@ -1010,7 +1023,7 @@ literal|0
 condition|)
 block|{
 comment|// Query point equals index point, so collect and return
-name|result
+name|adder
 operator|.
 name|add
 argument_list|(
@@ -1186,6 +1199,13 @@ name|byte
 index|[]
 name|pointBytes
 decl_stmt|;
+DECL|field|adder
+specifier|private
+name|DocIdSetBuilder
+operator|.
+name|BulkAdder
+name|adder
+decl_stmt|;
 DECL|method|SinglePointVisitor
 specifier|public
 name|SinglePointVisitor
@@ -1265,6 +1285,8 @@ name|int
 name|count
 parameter_list|)
 block|{
+name|adder
+operator|=
 name|result
 operator|.
 name|grow
@@ -1284,7 +1306,7 @@ name|int
 name|docID
 parameter_list|)
 block|{
-name|result
+name|adder
 operator|.
 name|add
 argument_list|(
@@ -1329,7 +1351,7 @@ argument_list|)
 condition|)
 block|{
 comment|// The point for this doc matches the point we are querying on
-name|result
+name|adder
 operator|.
 name|add
 argument_list|(

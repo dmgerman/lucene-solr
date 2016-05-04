@@ -2270,6 +2270,7 @@ block|}
 block|}
 DECL|method|waitForCollection
 specifier|protected
+specifier|static
 name|void
 name|waitForCollection
 parameter_list|(

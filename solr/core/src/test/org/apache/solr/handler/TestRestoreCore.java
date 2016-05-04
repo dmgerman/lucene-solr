@@ -756,12 +756,17 @@ block|{
 name|int
 name|nDocs
 init|=
+name|usually
+argument_list|()
+condition|?
 name|TestReplicationHandlerBackup
 operator|.
 name|indexDocs
 argument_list|(
 name|masterClient
 argument_list|)
+else|:
+literal|0
 decl_stmt|;
 name|String
 name|snapshotName
@@ -891,6 +896,10 @@ block|}
 name|int
 name|numRestoreTests
 init|=
+name|nDocs
+operator|>
+literal|0
+condition|?
 name|TestUtil
 operator|.
 name|nextInt
@@ -902,6 +911,8 @@ literal|1
 argument_list|,
 literal|5
 argument_list|)
+else|:
+literal|1
 decl_stmt|;
 for|for
 control|(
@@ -919,6 +930,13 @@ operator|++
 control|)
 block|{
 comment|//Modify existing index before we call restore.
+if|if
+condition|(
+name|nDocs
+operator|>
+literal|0
+condition|)
+block|{
 comment|//Delete a few docs
 name|int
 name|numDeletes
@@ -1049,6 +1067,7 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 name|TestReplicationHandlerBackup
 operator|.
