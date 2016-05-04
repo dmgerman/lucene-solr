@@ -20,26 +20,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -212,13 +192,32 @@ name|RexNode
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation of {@link org.apache.calcite.rel.core.Sort} relational expression in Solr.  */
 end_comment
 
 begin_class
 DECL|class|SolrSort
-specifier|public
 class|class
 name|SolrSort
 extends|extends
@@ -227,7 +226,6 @@ implements|implements
 name|SolrRel
 block|{
 DECL|method|SolrSort
-specifier|public
 name|SolrSort
 parameter_list|(
 name|RelOptCluster
