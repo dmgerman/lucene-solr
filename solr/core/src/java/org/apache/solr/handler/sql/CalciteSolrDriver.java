@@ -102,8 +102,17 @@ name|CalciteSolrDriver
 extends|extends
 name|Driver
 block|{
+DECL|field|CONNECT_STRING_PREFIX
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|CONNECT_STRING_PREFIX
+init|=
+literal|"jdbc:calcitesolr:"
+decl_stmt|;
 DECL|method|CalciteSolrDriver
-specifier|protected
+specifier|private
 name|CalciteSolrDriver
 parameter_list|()
 block|{
@@ -121,6 +130,8 @@ name|register
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Override
 DECL|method|getConnectStringPrefix
 specifier|protected
 name|String
@@ -128,7 +139,7 @@ name|getConnectStringPrefix
 parameter_list|()
 block|{
 return|return
-literal|"jdbc:calcitesolr:"
+name|CONNECT_STRING_PREFIX
 return|;
 block|}
 annotation|@
