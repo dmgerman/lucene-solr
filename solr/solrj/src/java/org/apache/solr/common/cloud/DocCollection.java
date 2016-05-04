@@ -400,6 +400,7 @@ else|:
 name|props
 argument_list|)
 expr_stmt|;
+comment|// -1 means any version in ZK CAS, so we choose Integer.MAX_VALUE instead to avoid accidental overwrites
 name|this
 operator|.
 name|znodeVersion
