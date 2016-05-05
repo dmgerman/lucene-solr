@@ -2878,7 +2878,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-comment|/**    * Search for any lazy-loadable state format2 collections.    *    * A stateFormat=1 collection which is not interesting to us can also    * be put into the {@link #lazyCollectionStates} map here. But that is okay    * because {@link #constructState()} will give priority to collections in the    * shared collection state over this map.    * In fact this is a clever way to avoid doing a ZK exists check on    * the /collections/collection_name/state.json znode    * Such an exists check is done in {@link ClusterState#hasCollection(String)} and    * {@link ClusterState#getCollections()} method as a safeguard against exposing wrong collection names to the users    */
+comment|/**    * Search for any lazy-loadable state format2 collections.    *    * A stateFormat=1 collection which is not interesting to us can also    * be put into the {@link #lazyCollectionStates} map here. But that is okay    * because {@link #constructState()} will give priority to collections in the    * shared collection state over this map.    * In fact this is a clever way to avoid doing a ZK exists check on    * the /collections/collection_name/state.json znode    * Such an exists check is done in {@link ClusterState#hasCollection(String)} and    * {@link ClusterState#getCollections()} and {@link ClusterState#getCollectionsMap()} methods    * have a safeguard against exposing wrong collection names to the users    */
 DECL|method|refreshCollectionList
 specifier|private
 name|void
@@ -3861,13 +3861,6 @@ argument_list|,
 literal|"Could not find collection in zk: "
 operator|+
 name|collection
-operator|+
-literal|" "
-operator|+
-name|clusterState
-operator|.
-name|getCollections
-argument_list|()
 argument_list|)
 throw|;
 block|}

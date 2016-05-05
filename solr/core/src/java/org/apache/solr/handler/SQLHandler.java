@@ -404,22 +404,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|SolrParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|core
 operator|.
 name|CoreContainer
@@ -1606,7 +1590,7 @@ parameter_list|(
 name|StreamContext
 name|context
 parameter_list|)
-block|{      }
+block|{     }
 block|}
 block|}
 end_class
