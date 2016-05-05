@@ -10182,6 +10182,17 @@ name|m
 operator|.
 name|put
 argument_list|(
+literal|"graphml"
+argument_list|,
+operator|new
+name|GraphMLResponseWriter
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|m
+operator|.
+name|put
+argument_list|(
 literal|"python"
 argument_list|,
 operator|new
