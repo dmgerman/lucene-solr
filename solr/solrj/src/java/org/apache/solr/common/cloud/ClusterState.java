@@ -968,7 +968,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Get a map of collection name vs DocCollection objects    *    * Implementation note: This method resolves the collection reference by calling    * {@link CollectionRef#get()} which can make a call to ZooKeeper. This is necessary    * because the semantics of how collection list is loaded have changed in SOLR-6629.    * Please see javadocs in {@link ZkStateReader#refreshCollectionList(Watcher)}    *    * @return    */
+comment|/**    * Get a map of collection name vs DocCollection objects    *    * Implementation note: This method resolves the collection reference by calling    * {@link CollectionRef#get()} which can make a call to ZooKeeper. This is necessary    * because the semantics of how collection list is loaded have changed in SOLR-6629.    * Please see javadocs in {@link ZkStateReader#refreshCollectionList(Watcher)}    *    * @return a map of collection name vs DocCollection object    */
 DECL|method|getCollectionsMap
 specifier|public
 name|Map
