@@ -38,16 +38,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|UUID
@@ -169,19 +159,8 @@ specifier|abstract
 class|class
 name|Metric
 implements|implements
-name|Serializable
-implements|,
 name|Expressible
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|1L
-decl_stmt|;
 DECL|field|metricNodeId
 specifier|private
 name|UUID
@@ -202,7 +181,6 @@ specifier|private
 name|String
 name|identifier
 decl_stmt|;
-comment|//  @Override
 DECL|method|getFunctionName
 specifier|public
 name|String
@@ -213,7 +191,6 @@ return|return
 name|functionName
 return|;
 block|}
-comment|//  @Override
 DECL|method|setFunctionName
 specifier|public
 name|void
@@ -316,7 +293,8 @@ return|return
 operator|new
 name|Explanation
 argument_list|(
-name|metricNodeId
+name|getMetricNodeId
+argument_list|()
 operator|.
 name|toString
 argument_list|()
@@ -368,7 +346,7 @@ block|}
 DECL|method|getValue
 specifier|public
 specifier|abstract
-name|double
+name|Number
 name|getValue
 parameter_list|()
 function_decl|;
