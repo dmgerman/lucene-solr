@@ -445,7 +445,7 @@ name|double
 name|arcDistance
 parameter_list|(
 specifier|final
-name|GeoPoint
+name|Vector
 name|v
 parameter_list|)
 block|{

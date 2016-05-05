@@ -955,7 +955,7 @@ name|C0
 argument_list|)
 return|;
 block|}
-comment|/** Compute surface distance between two points.    * @param pt1 is the first point.    * @param pt2 is the second point.    * @return the adjusted angle, when multiplied by the mean earth radius, yields a surface distance.  This will differ    * from GeoPoint.arcDistance() only when the planet model is not a sphere. @see {@link GeoPoint#arcDistance(GeoPoint)}    */
+comment|/** Compute surface distance between two points.    * @param pt1 is the first point.    * @param pt2 is the second point.    * @return the adjusted angle, when multiplied by the mean earth radius, yields a surface distance.  This will differ    * from GeoPoint.arcDistance() only when the planet model is not a sphere. @see {@link GeoPoint#arcDistance(Vector)}    */
 DECL|method|surfaceDistance
 specifier|public
 name|double
