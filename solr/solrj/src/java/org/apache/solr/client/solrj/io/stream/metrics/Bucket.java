@@ -26,16 +26,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Serializable
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -57,18 +47,7 @@ DECL|class|Bucket
 specifier|public
 class|class
 name|Bucket
-implements|implements
-name|Serializable
 block|{
-DECL|field|serialVersionUID
-specifier|private
-specifier|static
-specifier|final
-name|long
-name|serialVersionUID
-init|=
-literal|1
-decl_stmt|;
 DECL|field|NULL_VALUE
 specifier|private
 specifier|static
@@ -83,11 +62,6 @@ specifier|private
 name|String
 name|bucketKey
 decl_stmt|;
-DECL|method|Bucket
-specifier|public
-name|Bucket
-parameter_list|()
-block|{    }
 DECL|method|Bucket
 specifier|public
 name|Bucket

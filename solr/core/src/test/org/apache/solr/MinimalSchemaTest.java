@@ -359,6 +359,13 @@ name|handler
 operator|.
 name|startsWith
 argument_list|(
+literal|"/graph"
+argument_list|)
+operator|||
+name|handler
+operator|.
+name|startsWith
+argument_list|(
 literal|"/sql"
 argument_list|)
 operator|||

@@ -1137,6 +1137,8 @@ operator|.
 name|baseUrl
 operator|+
 literal|": An exception has occurred on the server, refer to server log for details."
+argument_list|,
+name|e
 argument_list|)
 throw|;
 block|}
