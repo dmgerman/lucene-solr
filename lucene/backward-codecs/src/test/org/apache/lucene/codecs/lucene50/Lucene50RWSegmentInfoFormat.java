@@ -627,25 +627,14 @@ operator|.
 name|SI_EXTENSION
 argument_list|)
 decl_stmt|;
-comment|// nocommit indexSort
-if|if
-condition|(
+assert|assert
 name|si
 operator|.
 name|getIndexSort
 argument_list|()
-operator|!=
+operator|==
 literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"teach me to write indexSort"
-argument_list|)
-throw|;
-block|}
+assert|;
 try|try
 init|(
 name|IndexOutput
