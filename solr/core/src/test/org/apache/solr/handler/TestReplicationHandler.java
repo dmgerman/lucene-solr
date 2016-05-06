@@ -3570,6 +3570,13 @@ block|}
 comment|/**    * We assert that if master is down for more than poll interval,    * the slave doesn't re-fetch the whole index from master again if    * the index hasn't changed. See SOLR-9036    */
 annotation|@
 name|Test
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-9036"
+argument_list|)
 DECL|method|doTestIndexFetchOnMasterRestart
 specifier|public
 name|void
