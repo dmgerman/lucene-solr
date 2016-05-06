@@ -257,21 +257,23 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 5.0 Segment info format.  *<p>  * Files:  *<ul>  *<li><tt>.si</tt>: Header, SegVersion, SegSize, IsCompoundFile, Diagnostics, Files, Attributes, Footer  *</ul>  * Data types:  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>SegSize --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>SegVersion --&gt; {@link DataOutput#writeString String}</li>  *<li>Files --&gt; {@link DataOutput#writeSetOfStrings Set&lt;String&gt;}</li>  *<li>Diagnostics,Attributes --&gt; {@link DataOutput#writeMapOfStrings Map&lt;String,String&gt;}</li>  *<li>IsCompoundFile --&gt; {@link DataOutput#writeByte Int8}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  * Field Descriptions:  *<ul>  *<li>SegVersion is the code version that created the segment.</li>  *<li>SegSize is the number of documents contained in the segment index.</li>  *<li>IsCompoundFile records whether the segment is written as a compound file or  *       not. If this is -1, the segment is not a compound file. If it is 1, the segment  *       is a compound file.</li>  *<li>The Diagnostics Map is privately written by {@link IndexWriter}, as a debugging aid,  *       for each segment it creates. It includes metadata like the current Lucene  *       version, OS, Java version, why the segment was created (merge, flush,  *       addIndexes), etc.</li>  *<li>Files is a list of files referred to by this segment.</li>  *</ul>  *   * @see SegmentInfos  * @lucene.experimental  */
+comment|/**  * Read-write version of 5.0 SegmentInfoFormat for testing  * @deprecated for test purposes only  */
 end_comment
 
 begin_class
-DECL|class|Lucene50SegmentInfoFormat
+annotation|@
+name|Deprecated
+DECL|class|Lucene50RWSegmentInfoFormat
 specifier|public
 class|class
-name|Lucene50SegmentInfoFormat
+name|Lucene50RWSegmentInfoFormat
 extends|extends
-name|SegmentInfoFormat
+name|Lucene50SegmentInfoFormat
 block|{
 comment|/** Sole constructor. */
-DECL|method|Lucene50SegmentInfoFormat
+DECL|method|Lucene50RWSegmentInfoFormat
 specifier|public
-name|Lucene50SegmentInfoFormat
+name|Lucene50RWSegmentInfoFormat
 parameter_list|()
 block|{   }
 annotation|@

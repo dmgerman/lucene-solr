@@ -1277,6 +1277,16 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+DECL|method|supportsIndexSort
+specifier|protected
+name|boolean
+name|supportsIndexSort
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/** Test sort */
 DECL|method|testSort
 specifier|public
@@ -1286,6 +1296,14 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|assumeTrue
+argument_list|(
+literal|"test requires a codec that can read/write index sort"
+argument_list|,
+name|supportsIndexSort
+argument_list|()
+argument_list|)
+expr_stmt|;
 specifier|final
 name|int
 name|iters

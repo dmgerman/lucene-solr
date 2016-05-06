@@ -263,7 +263,6 @@ name|i
 operator|++
 control|)
 block|{
-comment|// nocommit delDocMaps?
 name|allSubs
 index|[
 name|i
@@ -440,11 +439,26 @@ name|int
 name|docID
 parameter_list|()
 block|{
+if|if
+condition|(
+name|current
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
+else|else
+block|{
 return|return
 name|current
 operator|.
 name|mappedDocID
 return|;
+block|}
 block|}
 annotation|@
 name|Override

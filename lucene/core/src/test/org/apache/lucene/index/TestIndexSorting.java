@@ -206,22 +206,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|simpletext
-operator|.
-name|SimpleTextCodec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|document
 operator|.
 name|BinaryDocValuesField
@@ -722,6 +706,10 @@ begin_comment
 comment|// nocommit test EarlyTerminatingCollector
 end_comment
 
+begin_comment
+comment|// nocommit must test all supported SortField.Type
+end_comment
+
 begin_class
 DECL|class|TestIndexSorting
 specifier|public
@@ -761,16 +749,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|iwc
-operator|.
-name|setCodec
-argument_list|(
-operator|new
-name|SimpleTextCodec
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// nocommit only simple-text supports sorting so far
 name|Sort
 name|indexSort
 init|=
@@ -814,7 +792,7 @@ name|numDocs
 init|=
 name|atLeast
 argument_list|(
-literal|200
+literal|1000
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -1682,16 +1660,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|iwc
-operator|.
-name|setCodec
-argument_list|(
-operator|new
-name|SimpleTextCodec
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// nocommit only simple-text supports sorting so far
 name|Sort
 name|indexSort
 init|=
@@ -2315,16 +2283,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|iwc
-operator|.
-name|setCodec
-argument_list|(
-operator|new
-name|SimpleTextCodec
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// nocommit only simple-text supports sorting so far
 name|Sort
 name|indexSort
 init|=
@@ -2442,6 +2400,13 @@ literal|1
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|w
+operator|.
+name|addDocument
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
 name|values
 operator|.
 name|put
@@ -2525,7 +2490,7 @@ operator|new
 name|Thread
 argument_list|(
 operator|new
-name|UpdateRunnable
+name|DVUpdateRunnable
 argument_list|(
 name|numDocs
 argument_list|,
@@ -2898,16 +2863,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|iwc
-operator|.
-name|setCodec
-argument_list|(
-operator|new
-name|SimpleTextCodec
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// nocommit only simple-text supports sorting so far
 name|Sort
 name|indexSort
 init|=
@@ -3297,16 +3252,6 @@ argument_list|)
 decl_stmt|;
 name|iwc
 operator|.
-name|setCodec
-argument_list|(
-operator|new
-name|SimpleTextCodec
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// nocommit only simple-text supports sorting so far
-name|iwc
-operator|.
 name|setIndexSort
 argument_list|(
 operator|new
@@ -3394,16 +3339,6 @@ argument_list|)
 decl_stmt|;
 name|iwc2
 operator|.
-name|setCodec
-argument_list|(
-operator|new
-name|SimpleTextCodec
-argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// nocommit only simple-text supports sorting so far
-name|iwc2
-operator|.
 name|setIndexSort
 argument_list|(
 operator|new
@@ -3424,7 +3359,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 name|IllegalArgumentException
-name|expected
+name|e
 init|=
 name|expectThrows
 argument_list|(
@@ -3446,14 +3381,32 @@ expr_stmt|;
 block|}
 argument_list|)
 decl_stmt|;
-name|assertEquals
-argument_list|(
-literal|"cannot change previous indexSort=<long: \"foo\"> (from segment=_2(7.0.0):c2:[indexSort=<long: \"foo\">]) to new indexSort=<long: \"bar\">"
-argument_list|,
-name|expected
+name|String
+name|message
+init|=
+name|e
 operator|.
 name|getMessage
 argument_list|()
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|message
+operator|.
+name|contains
+argument_list|(
+literal|"cannot change previous indexSort=<long: \"foo\">"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|message
+operator|.
+name|contains
+argument_list|(
+literal|"to new indexSort=<long: \"bar\">"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|dir
@@ -4420,16 +4373,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// nocommit:
-name|conf
-operator|.
-name|setCodec
-argument_list|(
-operator|new
-name|SimpleTextCodec
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|conf
 operator|.
 name|setMaxBufferedDocs
@@ -4832,16 +4775,6 @@ argument_list|)
 decl_stmt|;
 name|int
 name|doc
-decl_stmt|;
-name|boolean
-name|isSorted
-init|=
-name|reader
-operator|.
-name|getIndexSort
-argument_list|()
-operator|!=
-literal|null
 decl_stmt|;
 comment|// test nextDoc()
 while|while
@@ -5314,16 +5247,6 @@ name|reader
 operator|.
 name|maxDoc
 argument_list|()
-decl_stmt|;
-name|boolean
-name|isSorted
-init|=
-name|reader
-operator|.
-name|getIndexSort
-argument_list|()
-operator|!=
-literal|null
 decl_stmt|;
 for|for
 control|(

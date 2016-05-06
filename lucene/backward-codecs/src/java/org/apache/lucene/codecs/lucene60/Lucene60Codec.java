@@ -648,7 +648,7 @@ return|return
 name|defaultFormat
 return|;
 block|}
-comment|/** Returns the docvalues format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene50".    *<p>    *<b>WARNING:</b> if you subclass, you are responsible for index     *  backwards compatibility: future version of Lucene are only     *  guaranteed to be able to read the default implementation.     */
+comment|/** Returns the docvalues format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene54".    *<p>    *<b>WARNING:</b> if you subclass, you are responsible for index     *  backwards compatibility: future version of Lucene are only     *  guaranteed to be able to read the default implementation.     */
 DECL|method|getDocValuesFormatForField
 specifier|public
 name|DocValuesFormat

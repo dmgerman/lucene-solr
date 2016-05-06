@@ -1626,18 +1626,11 @@ name|long
 name|nextOrd
 parameter_list|()
 block|{
-comment|// nocommit
-name|long
-name|v
-init|=
+return|return
 name|in
 operator|.
 name|nextOrd
 argument_list|()
-decl_stmt|;
-comment|//System.out.println("  slr.sssdv.nextOrd return " + v + " this=" + this);
-return|return
-name|v
 return|;
 block|}
 annotation|@

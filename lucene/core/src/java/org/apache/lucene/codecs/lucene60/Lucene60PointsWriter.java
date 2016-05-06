@@ -710,6 +710,29 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|mergeState
+operator|.
+name|segmentInfo
+operator|.
+name|getIndexSort
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// TODO: can we gain back some optos even if index is sorted?  E.g. if sort results in large chunks of contiguous docs from one sub
+comment|// being copied over...?
+name|super
+operator|.
+name|merge
+argument_list|(
+name|mergeState
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 for|for
 control|(
 name|PointsReader

@@ -156,10 +156,6 @@ begin_comment
 comment|/**  * Sorts documents of a given index by returning a permutation on the document  * IDs.  * @lucene.experimental  */
 end_comment
 
-begin_comment
-comment|// nocommit rename to IndexSorter?
-end_comment
-
 begin_class
 DECL|class|Sorter
 specifier|final

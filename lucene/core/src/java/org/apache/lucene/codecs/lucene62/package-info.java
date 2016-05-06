@@ -4,11 +4,11 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Components from the Lucene 6.0 index format.  See {@link org.apache.lucene.codecs.lucene62}  * for an overview of the index format.  */
+comment|/**  * Components from the Lucene 6.2 index format  * See {@link org.apache.lucene.codecs.lucene62} for an overview  * of the index format.  */
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene60
+DECL|package|org.apache.lucene.codecs.lucene62
 package|package
 name|org
 operator|.
@@ -18,7 +18,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene60
+name|lucene62
 package|;
 end_package
 
