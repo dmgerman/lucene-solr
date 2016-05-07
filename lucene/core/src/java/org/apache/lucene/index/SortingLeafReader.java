@@ -4282,7 +4282,6 @@ return|;
 block|}
 else|else
 block|{
-comment|// nocommit make sure this is tested
 return|return
 operator|new
 name|SortingPointValues

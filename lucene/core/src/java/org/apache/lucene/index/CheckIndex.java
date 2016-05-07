@@ -2430,6 +2430,11 @@ name|reader
 init|=
 literal|null
 decl_stmt|;
+name|Sort
+name|previousIndexSort
+init|=
+literal|null
+decl_stmt|;
 try|try
 block|{
 name|msg
@@ -2560,6 +2565,47 @@ operator|+
 name|indexSort
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|previousIndexSort
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|previousIndexSort
+operator|.
+name|equals
+argument_list|(
+name|indexSort
+argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"index sort changed from "
+operator|+
+name|previousIndexSort
+operator|+
+literal|" to "
+operator|+
+name|indexSort
+argument_list|)
+throw|;
+block|}
+block|}
+else|else
+block|{
+name|previousIndexSort
+operator|=
+name|indexSort
+expr_stmt|;
+block|}
 block|}
 name|segInfoStat
 operator|.
@@ -3791,8 +3837,6 @@ argument_list|(
 name|readerContext
 argument_list|)
 expr_stmt|;
-comment|// nocommit we prevent SCORE?
-comment|//comparators[i].setScorer(FAKESCORER);
 block|}
 name|int
 name|maxDoc
@@ -14019,8 +14063,6 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|// nocommit must check index is sorted, if it claims to be
-comment|// nocommit must check that all segments have the same sort, if any segment is sorted
 comment|/**    * Parse command line args into fields    * @param args The command line arguments    * @return An Options struct    * @throws IllegalArgumentException if any of the CLI args are invalid    */
 DECL|method|parseOptions
 specifier|public
