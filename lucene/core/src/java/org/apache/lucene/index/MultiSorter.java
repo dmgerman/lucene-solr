@@ -763,7 +763,7 @@ name|getType
 argument_list|()
 condition|)
 block|{
-comment|// TODO: use global ords for string sort
+comment|// ncommit: use segment-local ords for string sort
 case|case
 name|INT
 case|:

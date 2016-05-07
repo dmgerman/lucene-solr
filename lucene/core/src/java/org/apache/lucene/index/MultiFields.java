@@ -183,7 +183,6 @@ name|ConcurrentHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|// nocommit make test for sorted fields
 comment|/** Returns a single {@link Fields} instance for this    *  reader, merging fields/terms/docs/positions on the    *  fly.  This method will return null if the reader     *  has no postings.    *    *<p><b>NOTE</b>: this is a slow way to access postings.    *  It's better to get the sub-readers and iterate through them    *  yourself. */
 DECL|method|getFields
 specifier|public
@@ -288,26 +287,6 @@ operator|.
 name|reader
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|r
-operator|.
-name|getIndexSort
-argument_list|()
-operator|!=
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"cannot handle index sort: reader="
-operator|+
-name|r
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|Fields
 name|f
@@ -517,32 +496,6 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|ctx
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getIndexSort
-argument_list|()
-operator|!=
-literal|null
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"cannot handle index sort: reader="
-operator|+
-name|ctx
-operator|.
-name|reader
-argument_list|()
-argument_list|)
-throw|;
-block|}
 name|liveDocs
 index|[
 name|i
