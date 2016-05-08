@@ -4583,7 +4583,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"invalid SortField type: must be one of [STRING, INT, FLOAT, LONG, DOUBLE, BYTES] but got:<score>"
+literal|"invalid SortField type: must be one of [STRING, INT, FLOAT, LONG, DOUBLE] but got:<score>"
 argument_list|,
 name|expected
 operator|.

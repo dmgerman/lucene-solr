@@ -137,7 +137,7 @@ name|LeafReader
 block|{
 DECL|field|in
 specifier|final
-name|SegmentReader
+name|CodecReader
 name|in
 decl_stmt|;
 DECL|field|fields
@@ -168,7 +168,7 @@ decl_stmt|;
 DECL|method|MergeReaderWrapper
 name|MergeReaderWrapper
 parameter_list|(
-name|SegmentReader
+name|CodecReader
 name|in
 parameter_list|)
 throws|throws

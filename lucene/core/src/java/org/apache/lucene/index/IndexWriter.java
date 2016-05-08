@@ -3542,7 +3542,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// nocommit can we improve this from just best effort?
 comment|/** Confirms that the incoming index sort (if any) matches the existing index sort (if any).  This is unfortunately just best effort,    *  because it could be the old index only has flushed segments. */
 DECL|method|validateIndexSort
 specifier|private

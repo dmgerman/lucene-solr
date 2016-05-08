@@ -2038,7 +2038,6 @@ block|}
 block|}
 return|;
 block|}
-comment|// nocommit do the rest:
 default|default:
 throw|throw
 operator|new

@@ -1180,19 +1180,13 @@ name|SortField
 operator|.
 name|Type
 operator|.
-name|INT
-argument_list|,
-name|SortField
-operator|.
-name|Type
-operator|.
-name|FLOAT
-argument_list|,
-name|SortField
-operator|.
-name|Type
-operator|.
 name|LONG
+argument_list|,
+name|SortField
+operator|.
+name|Type
+operator|.
+name|INT
 argument_list|,
 name|SortField
 operator|.
@@ -1204,7 +1198,7 @@ name|SortField
 operator|.
 name|Type
 operator|.
-name|BYTES
+name|FLOAT
 argument_list|)
 decl_stmt|;
 comment|/**    * Set the {@link Sort} order to use when merging segments.  Note that newly flushed segments will remain unsorted.    */

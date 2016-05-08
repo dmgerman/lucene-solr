@@ -669,9 +669,6 @@ operator|.
 name|DocMap
 name|docMap
 parameter_list|,
-name|Bits
-name|liveDocs
-parameter_list|,
 name|TermVectorsReader
 name|reader
 parameter_list|,
@@ -682,8 +679,6 @@ block|{
 name|super
 argument_list|(
 name|docMap
-argument_list|,
-name|liveDocs
 argument_list|)
 expr_stmt|;
 name|this
@@ -805,13 +800,6 @@ argument_list|(
 name|mergeState
 operator|.
 name|docMaps
-index|[
-name|i
-index|]
-argument_list|,
-name|mergeState
-operator|.
-name|liveDocs
 index|[
 name|i
 index|]
