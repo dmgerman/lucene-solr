@@ -494,7 +494,7 @@ name|enabled
 init|=
 name|pair
 operator|.
-name|getKey
+name|first
 argument_list|()
 decl_stmt|;
 name|int
@@ -502,7 +502,7 @@ name|chanceIn100
 init|=
 name|pair
 operator|.
-name|getValue
+name|second
 argument_list|()
 decl_stmt|;
 if|if
@@ -615,7 +615,7 @@ name|enabled
 init|=
 name|pair
 operator|.
-name|getKey
+name|first
 argument_list|()
 decl_stmt|;
 name|int
@@ -623,7 +623,7 @@ name|chanceIn100
 init|=
 name|pair
 operator|.
-name|getValue
+name|second
 argument_list|()
 decl_stmt|;
 if|if
@@ -794,7 +794,7 @@ name|enabled
 init|=
 name|pair
 operator|.
-name|getKey
+name|first
 argument_list|()
 decl_stmt|;
 name|int
@@ -802,7 +802,7 @@ name|chanceIn100
 init|=
 name|pair
 operator|.
-name|getValue
+name|second
 argument_list|()
 decl_stmt|;
 if|if
@@ -872,7 +872,7 @@ name|enabled
 init|=
 name|pair
 operator|.
-name|getKey
+name|first
 argument_list|()
 decl_stmt|;
 name|int
@@ -880,7 +880,7 @@ name|chanceIn100
 init|=
 name|pair
 operator|.
-name|getValue
+name|second
 argument_list|()
 decl_stmt|;
 if|if
@@ -953,7 +953,7 @@ name|enabled
 init|=
 name|pair
 operator|.
-name|getKey
+name|first
 argument_list|()
 decl_stmt|;
 name|int
@@ -961,7 +961,7 @@ name|chanceIn100
 init|=
 name|pair
 operator|.
-name|getValue
+name|second
 argument_list|()
 decl_stmt|;
 if|if
@@ -1029,7 +1029,7 @@ name|enabled
 init|=
 name|pair
 operator|.
-name|getKey
+name|first
 argument_list|()
 decl_stmt|;
 name|int
@@ -1037,7 +1037,7 @@ name|chanceIn100
 init|=
 name|pair
 operator|.
-name|getValue
+name|second
 argument_list|()
 decl_stmt|;
 if|if
@@ -1140,7 +1140,7 @@ name|enabled
 init|=
 name|pair
 operator|.
-name|getKey
+name|first
 argument_list|()
 decl_stmt|;
 name|int
@@ -1148,7 +1148,7 @@ name|chanceIn100
 init|=
 name|pair
 operator|.
-name|getValue
+name|second
 argument_list|()
 decl_stmt|;
 if|if

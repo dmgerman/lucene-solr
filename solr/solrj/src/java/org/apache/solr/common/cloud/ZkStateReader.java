@@ -2183,14 +2183,14 @@ name|data
 operator|=
 name|pair
 operator|.
-name|getKey
+name|first
 argument_list|()
 operator|==
 literal|null
 operator|||
 name|pair
 operator|.
-name|getKey
+name|first
 argument_list|()
 operator|.
 name|length
@@ -2210,7 +2210,7 @@ name|fromJSON
 argument_list|(
 name|pair
 operator|.
-name|getKey
+name|first
 argument_list|()
 argument_list|)
 argument_list|,
@@ -2225,7 +2225,7 @@ name|version
 operator|=
 name|pair
 operator|.
-name|getValue
+name|second
 argument_list|()
 operator|==
 literal|null
@@ -2235,7 +2235,7 @@ literal|1
 else|:
 name|pair
 operator|.
-name|getValue
+name|second
 argument_list|()
 operator|.
 name|getVersion
