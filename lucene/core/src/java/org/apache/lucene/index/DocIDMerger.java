@@ -223,6 +223,7 @@ condition|(
 name|indexIsSorted
 condition|)
 block|{
+comment|// nocommit: we could optimize the (silly) single-sub case and pretend it's a concatenation instead
 name|queue
 operator|=
 operator|new

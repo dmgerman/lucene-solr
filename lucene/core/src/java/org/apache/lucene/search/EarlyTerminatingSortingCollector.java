@@ -208,10 +208,6 @@ begin_comment
 comment|/**  * A {@link Collector} that early terminates collection of documents on a  * per-segment basis, if the segment was sorted according to the given  * {@link Sort}.  *  *<p>  *<b>NOTE:</b> the {@code Collector} detects segments sorted according to a  * an {@link IndexWriterConfig#setIndexSort}. Also, it collects up to a specified  * {@code numDocsToCollect} from each segment, and therefore is mostly suitable  * for use in conjunction with collectors such as {@link TopDocsCollector}, and  * not e.g. {@link TotalHitCountCollector}.  *<p>  *<b>NOTE</b>: If you wrap a {@code TopDocsCollector} that sorts in the same  * order as the index order, the returned {@link TopDocsCollector#topDocs() TopDocs}  * will be correct. However the total of {@link TopDocsCollector#getTotalHits()  * hit count} will be vastly underestimated since not all matching documents will have  * been collected.  *  * @lucene.experimental  */
 end_comment
 
-begin_comment
-comment|// nocommit move to core too
-end_comment
-
 begin_class
 DECL|class|EarlyTerminatingSortingCollector
 specifier|public
