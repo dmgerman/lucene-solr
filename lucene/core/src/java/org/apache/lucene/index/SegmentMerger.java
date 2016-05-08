@@ -217,6 +217,7 @@ operator|.
 name|Builder
 name|fieldInfosBuilder
 decl_stmt|;
+comment|// nocommit make sure infoStream states per-segment-being-merged if they are already sorted
 comment|// note, just like in codec apis Directory 'dir' is NOT the same as segmentInfo.dir!!
 DECL|method|SegmentMerger
 name|SegmentMerger
@@ -315,6 +316,46 @@ argument_list|(
 name|fieldNumbers
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|mergeState
+operator|.
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"SM"
+argument_list|)
+condition|)
+block|{
+if|if
+condition|(
+name|segmentInfo
+operator|.
+name|getIndexSort
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|mergeState
+operator|.
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"SM"
+argument_list|,
+literal|"index sort during merge: "
+operator|+
+name|segmentInfo
+operator|.
+name|getIndexSort
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 comment|/** True if any merging should happen */
 DECL|method|shouldMerge
