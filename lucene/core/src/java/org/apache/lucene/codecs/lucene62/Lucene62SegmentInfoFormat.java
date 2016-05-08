@@ -1429,7 +1429,6 @@ operator|=
 literal|4
 expr_stmt|;
 break|break;
-comment|// nocommit the rest:
 default|default:
 throw|throw
 operator|new
@@ -1697,7 +1696,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 break|break;
-comment|// nocommit the rest:
 default|default:
 throw|throw
 operator|new
