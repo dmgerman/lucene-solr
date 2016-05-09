@@ -741,6 +741,15 @@ name|AUTO_ADD_REPLICAS
 init|=
 literal|"autoAddReplicas"
 decl_stmt|;
+DECL|field|MAX_CORES_PER_NODE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|MAX_CORES_PER_NODE
+init|=
+literal|"maxCoresPerNode"
+decl_stmt|;
 DECL|field|ROLES
 specifier|public
 specifier|static
@@ -979,6 +988,8 @@ argument_list|,
 name|AUTO_ADD_REPLICAS
 argument_list|,
 name|BACKUP_LOCATION
+argument_list|,
+name|MAX_CORES_PER_NODE
 argument_list|)
 argument_list|)
 argument_list|)
