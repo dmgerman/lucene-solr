@@ -789,7 +789,6 @@ name|checkIntegrity
 argument_list|()
 expr_stmt|;
 block|}
-comment|// nocommit make sure the else case tested here
 name|subs
 operator|.
 name|add

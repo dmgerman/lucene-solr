@@ -223,7 +223,6 @@ condition|(
 name|indexIsSorted
 condition|)
 block|{
-comment|// nocommit: we could optimize the (silly) single-sub case and pretend it's a concatenation instead
 name|queue
 operator|=
 operator|new
@@ -282,7 +281,6 @@ name|reset
 argument_list|()
 expr_stmt|;
 block|}
-comment|// nocommit it's awkward that we must pass in this boolean, when the subs should "know" this based on what docMap they have?
 DECL|method|DocIDMerger
 specifier|public
 name|DocIDMerger
@@ -324,13 +322,12 @@ operator|!=
 literal|null
 condition|)
 block|{
+comment|// caller may not have fully consumed the queue:
 name|queue
 operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-comment|// nocommit why does bloom filter wrapper trip this?
-comment|// assert queue.size() == 0: "queue.size() = " + queue.size();
 for|for
 control|(
 name|T
@@ -409,8 +406,7 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
-else|else
-block|{
+elseif|else
 if|if
 condition|(
 name|subs
@@ -445,7 +441,6 @@ name|nextIndex
 operator|=
 literal|0
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|/** Returns null when done */

@@ -187,7 +187,6 @@ operator|==
 name|parent
 return|;
 block|}
-comment|// nocommit is this class supposed to be aware of index sorting too???
 comment|/** Re-use and reset this instance on the provided slices. */
 DECL|method|reset
 specifier|public

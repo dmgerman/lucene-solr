@@ -16,10 +16,6 @@ name|index
 package|;
 end_package
 
-begin_comment
-comment|// nocommit must add sorted indices to back compat tests
-end_comment
-
 begin_import
 import|import
 name|java
@@ -8222,8 +8218,7 @@ return|return
 name|locks
 return|;
 block|}
-comment|/**    * Adds all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing. A large document    * collection can be broken into sub-collections. Each sub-collection can be    * indexed in parallel, on a different thread, process or machine. The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>    *<b>NOTE:</b> this method acquires the write lock in    * each directory, to ensure that no {@code IndexWriter}    * is currently open or tries to open while this is    * running.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (for example disk full), then either no indexes    * will have been added or they all will have been.    *    *<p>Note that this requires temporary free space in the    * {@link Directory} up to 2X the sum of all input indexes    * (including the starting index). If readers/searchers    * are open against the starting index, then temporary    * free space required will be higher by the size of the    * starting index (see {@link #forceMerge(int)} for details).    *    *<p>This requires this index not be among those to be added.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws IllegalArgumentException if addIndexes would cause    *   the index to exceed {@link #MAX_DOCS}    */
-comment|// nocommit doesn't support index sorting?  or sorts must be the same?
+comment|/**    * Adds all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing. A large document    * collection can be broken into sub-collections. Each sub-collection can be    * indexed in parallel, on a different thread, process or machine. The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>    *<b>NOTE:</b> this method acquires the write lock in    * each directory, to ensure that no {@code IndexWriter}    * is currently open or tries to open while this is    * running.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (for example disk full), then either no indexes    * will have been added or they all will have been.    *    *<p>Note that this requires temporary free space in the    * {@link Directory} up to 2X the sum of all input indexes    * (including the starting index). If readers/searchers    * are open against the starting index, then temporary    * free space required will be higher by the size of the    * starting index (see {@link #forceMerge(int)} for details).    *    *<p>This requires this index not be among those to be added.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws IllegalArgumentException if addIndexes would cause    *   the index to exceed {@link #MAX_DOCS}, or if the indoming    *   index sort does not match this index's index sort    */
 DECL|method|addIndexes
 specifier|public
 name|void
@@ -8254,6 +8249,14 @@ name|acquireWriteLocks
 argument_list|(
 name|dirs
 argument_list|)
+decl_stmt|;
+name|Sort
+name|indexSort
+init|=
+name|config
+operator|.
+name|getIndexSort
+argument_list|()
 decl_stmt|;
 name|boolean
 name|successTop
@@ -8431,6 +8434,51 @@ name|info
 operator|.
 name|name
 assert|;
+name|Sort
+name|segmentIndexSort
+init|=
+name|info
+operator|.
+name|info
+operator|.
+name|getIndexSort
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|indexSort
+operator|!=
+literal|null
+operator|&&
+name|segmentIndexSort
+operator|!=
+literal|null
+operator|&&
+name|indexSort
+operator|.
+name|equals
+argument_list|(
+name|segmentIndexSort
+argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+comment|// TODO: we could make this smarter, e.g. if the incoming indexSort is congruent with our sort ("starts with") then it's OK
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot change index sort from "
+operator|+
+name|segmentIndexSort
+operator|+
+literal|" to "
+operator|+
+name|indexSort
+argument_list|)
+throw|;
+block|}
 name|String
 name|newSegName
 init|=
@@ -8703,7 +8751,6 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE:</b> empty segments are dropped by this method and not added to this    * index.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link LeafReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call.    *     * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    * @throws IllegalArgumentException    *           if addIndexes would cause the index to exceed {@link #MAX_DOCS}    */
-comment|// nocommit make sure if you add "sorted by X" to "sorted by Y" index, we catch it
 DECL|method|addIndexes
 specifier|public
 name|void
@@ -8724,6 +8771,14 @@ name|long
 name|numDocs
 init|=
 literal|0
+decl_stmt|;
+name|Sort
+name|indexSort
+init|=
+name|config
+operator|.
+name|getIndexSort
+argument_list|()
 decl_stmt|;
 try|try
 block|{
@@ -8775,6 +8830,48 @@ operator|.
 name|numDocs
 argument_list|()
 expr_stmt|;
+name|Sort
+name|leafIndexSort
+init|=
+name|leaf
+operator|.
+name|getIndexSort
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|indexSort
+operator|!=
+literal|null
+operator|&&
+name|leafIndexSort
+operator|!=
+literal|null
+operator|&&
+name|indexSort
+operator|.
+name|equals
+argument_list|(
+name|leafIndexSort
+argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot change index sort from "
+operator|+
+name|leafIndexSort
+operator|+
+literal|" to "
+operator|+
+name|indexSort
+argument_list|)
+throw|;
+block|}
 block|}
 comment|// Best-effort up front check:
 name|testReserveDocs

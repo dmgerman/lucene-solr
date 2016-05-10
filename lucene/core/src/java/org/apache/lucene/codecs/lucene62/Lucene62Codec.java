@@ -359,10 +359,6 @@ import|;
 end_import
 
 begin_comment
-comment|// nocommit if somehow this does NOT land in 6.2, rename all this!!
-end_comment
-
-begin_comment
 comment|/**  * Implements the Lucene 6.2 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene60 package documentation for file format details.  *  * @lucene.experimental  */
 end_comment
 

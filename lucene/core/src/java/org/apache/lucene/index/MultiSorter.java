@@ -189,7 +189,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// nocommit optimize if only 1 reader is incoming
+comment|// TODO: optimize if only 1 reader is incoming, though that's a rare case
 name|SortField
 name|fields
 index|[]

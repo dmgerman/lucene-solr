@@ -790,19 +790,6 @@ argument_list|(
 name|sort
 argument_list|)
 expr_stmt|;
-comment|// nocommit:
-name|iwc
-operator|.
-name|setCodec
-argument_list|(
-name|Codec
-operator|.
-name|forName
-argument_list|(
-literal|"SimpleText"
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|iw
 operator|=
 operator|new

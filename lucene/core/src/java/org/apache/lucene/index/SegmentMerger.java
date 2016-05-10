@@ -217,7 +217,6 @@ operator|.
 name|Builder
 name|fieldInfosBuilder
 decl_stmt|;
-comment|// nocommit make sure infoStream states per-segment-being-merged if they are already sorted
 comment|// note, just like in codec apis Directory 'dir' is NOT the same as segmentInfo.dir!!
 DECL|method|SegmentMerger
 name|SegmentMerger

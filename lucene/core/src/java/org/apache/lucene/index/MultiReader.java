@@ -130,7 +130,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// nocommit what if there is an indexSort?
 annotation|@
 name|Override
 DECL|method|doClose
