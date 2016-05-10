@@ -368,20 +368,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Constants
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|eclipse
 operator|.
 name|jetty
@@ -637,7 +623,7 @@ name|builder
 operator|.
 name|setSecureRandom
 argument_list|(
-name|NullSecureRandom
+name|NotSecurePsuedoRandom
 operator|.
 name|INSTANCE
 argument_list|)
@@ -730,7 +716,7 @@ name|builder
 operator|.
 name|setSecureRandom
 argument_list|(
-name|NullSecureRandom
+name|NotSecurePsuedoRandom
 operator|.
 name|INSTANCE
 argument_list|)
@@ -1304,16 +1290,15 @@ literal|"javax.net.ssl.trustStorePassword"
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * A mocked up instance of SecureRandom that always does the minimal amount of work to generate     * "random" numbers.  This is to prevent blocking issues that arise in platform default     * SecureRandom instances due to too many instances / not enough random entropy.      * Tests do not need secure SSL.    */
-DECL|class|NullSecureRandom
+comment|/**    * A mocked up instance of SecureRandom that just uses {@link Random} under the covers.    * This is to prevent blocking issues that arise in platform default     * SecureRandom instances due to too many instances / not enough random entropy.      * Tests do not need secure SSL.    */
+DECL|class|NotSecurePsuedoRandom
 specifier|private
 specifier|static
 class|class
-name|NullSecureRandom
+name|NotSecurePsuedoRandom
 extends|extends
 name|SecureRandom
 block|{
-comment|/**       * The one and only instance that should be used, specific impl may vary based on platform       * @see Constants#SUN_OS      * @see<a href="https://issues.apache.org/jira/browse/SOLR-9068">SOLR-9068</a>      */
 DECL|field|INSTANCE
 specifier|public
 specifier|static
@@ -1321,27 +1306,10 @@ specifier|final
 name|SecureRandom
 name|INSTANCE
 init|=
-name|Constants
-operator|.
-name|SUN_OS
-condition|?
 operator|new
-name|NullSecureRandom
-argument_list|(
-name|NullSecureRandomSpi
-operator|.
-name|PSUEDO_RAND_INSTANCE
-argument_list|)
-else|:
-operator|new
-name|NullSecureRandom
-argument_list|(
-name|NullSecureRandomSpi
-operator|.
-name|NULL_INSTANCE
-argument_list|)
+name|NotSecurePsuedoRandom
+argument_list|()
 decl_stmt|;
-comment|/** A source of psuedo random data if needed */
 DECL|field|RAND
 specifier|private
 specifier|static
@@ -1355,25 +1323,11 @@ argument_list|(
 literal|42
 argument_list|)
 decl_stmt|;
-comment|/** SPI base class for all NullSecureRandom instances */
-DECL|class|NullSecureRandomSpi
+comment|/**       * Helper method that can be used to fill an array with non-zero data.      * (Attempted workarround of Solaris SSL Padding bug: SOLR-9068)      */
+DECL|method|fillData
 specifier|private
 specifier|static
-class|class
-name|NullSecureRandomSpi
-extends|extends
-name|SecureRandomSpi
-block|{
-DECL|method|NullSecureRandomSpi
-specifier|private
-name|NullSecureRandomSpi
-parameter_list|()
-block|{
-comment|/* NOOP */
-block|}
-comment|/**         * Helper method that can be used to fill an array with non-zero data.        * Default impl is No-Op        */
-DECL|method|fillData
-specifier|public
+specifier|final
 name|byte
 index|[]
 name|fillData
@@ -1383,15 +1337,30 @@ index|[]
 name|data
 parameter_list|)
 block|{
+name|RAND
+operator|.
+name|nextBytes
+argument_list|(
+name|data
+argument_list|)
+expr_stmt|;
 return|return
 name|data
 return|;
-comment|/* NOOP */
 block|}
+comment|/** SPI Used to init all instances */
+DECL|field|NOT_SECURE_SPI
+specifier|private
+specifier|static
+specifier|final
+name|SecureRandomSpi
+name|NOT_SECURE_SPI
+init|=
+operator|new
+name|SecureRandomSpi
+argument_list|()
+block|{
 comment|/** returns a new byte[] filled with static data */
-annotation|@
-name|Override
-DECL|method|engineGenerateSeed
 specifier|public
 name|byte
 index|[]
@@ -1413,9 +1382,6 @@ argument_list|)
 return|;
 block|}
 comment|/** fills the byte[] with static data */
-annotation|@
-name|Override
-DECL|method|engineNextBytes
 specifier|public
 name|void
 name|engineNextBytes
@@ -1432,9 +1398,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** NOOP */
-annotation|@
-name|Override
-DECL|method|engineSetSeed
 specifier|public
 name|void
 name|engineSetSeed
@@ -1446,87 +1409,22 @@ parameter_list|)
 block|{
 comment|/* NOOP */
 block|}
-comment|/** Instance to use on platforms w/SSLEngines that work fine when SecureRandom returns constant bytes */
-DECL|field|NULL_INSTANCE
-specifier|public
-specifier|static
-specifier|final
-name|NullSecureRandomSpi
-name|NULL_INSTANCE
-init|=
-operator|new
-name|NullSecureRandomSpi
-argument_list|()
-decl_stmt|;
-comment|/**         * Instance to use on platforms that need at least psuedo-random data for the SSLEngine to not break        * (Attempted workarround of Solaris SSL Padding bug: SOLR-9068)        */
-DECL|field|PSUEDO_RAND_INSTANCE
-specifier|public
-specifier|static
-specifier|final
-name|NullSecureRandomSpi
-name|PSUEDO_RAND_INSTANCE
-init|=
-operator|new
-name|NullSecureRandomSpi
-argument_list|()
-block|{
-comment|/**           * Fill with Psuedo-Random data.          * (Attempted workarround of Solaris SSL Padding bug: SOLR-9068)          */
-annotation|@
-name|Override
-specifier|public
-name|byte
-index|[]
-name|fillData
-parameter_list|(
-name|byte
-index|[]
-name|data
-parameter_list|)
-block|{
-name|RAND
-operator|.
-name|nextBytes
-argument_list|(
-name|data
-argument_list|)
-expr_stmt|;
-return|return
-name|data
-return|;
-block|}
 block|}
 decl_stmt|;
-block|}
-DECL|method|NullSecureRandom
+DECL|method|NotSecurePsuedoRandom
 specifier|private
-name|NullSecureRandom
-parameter_list|(
-name|NullSecureRandomSpi
-name|spi
-parameter_list|)
+name|NotSecurePsuedoRandom
+parameter_list|()
 block|{
 name|super
 argument_list|(
-name|spi
+name|NOT_SECURE_SPI
 argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|this
-operator|.
-name|spi
-operator|=
-name|spi
-expr_stmt|;
 block|}
-DECL|field|spi
-specifier|private
-name|NullSecureRandomSpi
-name|spi
-decl_stmt|;
-comment|/** fills a new byte[] with data from SPI */
-annotation|@
-name|Override
+comment|/** returns a new byte[] filled with static data */
 DECL|method|generateSeed
 specifier|public
 name|byte
@@ -1538,8 +1436,6 @@ name|numBytes
 parameter_list|)
 block|{
 return|return
-name|spi
-operator|.
 name|fillData
 argument_list|(
 operator|new
@@ -1550,9 +1446,7 @@ index|]
 argument_list|)
 return|;
 block|}
-comment|/** fills the byte[] with data from SPI */
-annotation|@
-name|Override
+comment|/** fills the byte[] with static data */
 DECL|method|nextBytes
 specifier|synchronized
 specifier|public
@@ -1564,8 +1458,6 @@ index|[]
 name|bytes
 parameter_list|)
 block|{
-name|spi
-operator|.
 name|fillData
 argument_list|(
 name|bytes
@@ -1573,8 +1465,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** NOOP */
-annotation|@
-name|Override
 DECL|method|setSeed
 specifier|synchronized
 specifier|public
@@ -1589,8 +1479,6 @@ block|{
 comment|/* NOOP */
 block|}
 comment|/** NOOP */
-annotation|@
-name|Override
 DECL|method|setSeed
 specifier|synchronized
 specifier|public

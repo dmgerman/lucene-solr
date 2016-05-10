@@ -8259,7 +8259,7 @@ name|it
 lambda|->
 name|it
 operator|.
-name|getValue
+name|second
 argument_list|()
 operator|!=
 literal|null
@@ -8273,11 +8273,11 @@ name|toMap
 argument_list|(
 name|Pair
 operator|::
-name|getKey
+name|first
 argument_list|,
 name|Pair
 operator|::
-name|getValue
+name|second
 argument_list|,
 parameter_list|(
 name|v1
