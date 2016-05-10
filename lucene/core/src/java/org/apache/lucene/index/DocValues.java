@@ -683,7 +683,7 @@ operator|)
 operator|+
 literal|"). "
 operator|+
-literal|" Re-index with correct docvalues type."
+literal|"Re-index with correct docvalues type."
 argument_list|)
 throw|;
 block|}
