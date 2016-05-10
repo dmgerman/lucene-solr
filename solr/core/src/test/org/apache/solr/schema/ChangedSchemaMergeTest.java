@@ -1102,21 +1102,15 @@ name|withWhich
 init|=
 literal|"<schema name=\"tiny\" version=\"1.1\">\n"
 operator|+
-literal|"<fields>\n"
-operator|+
 literal|"<field name=\"id\" type=\"string\" indexed=\"true\" stored=\"true\" required=\"true\"/>\n"
 operator|+
 literal|"<field name=\"text\" type=\"text\" indexed=\"true\" stored=\"true\"/>\n"
 operator|+
 literal|"<field name=\"which\" type=\"int\" indexed=\"true\" stored=\"true\"/>\n"
 operator|+
-literal|"</fields>\n"
-operator|+
 literal|"<uniqueKey>id</uniqueKey>\n"
 operator|+
 literal|"\n"
-operator|+
-literal|"<types>\n"
 operator|+
 literal|"<fieldtype name=\"text\" class=\"solr.TextField\">\n"
 operator|+
@@ -1133,8 +1127,6 @@ operator|+
 literal|"<fieldType name=\"string\" class=\"solr.StrField\"/>\n"
 operator|+
 literal|"<fieldType name=\"int\" class=\"solr.TrieIntField\" precisionStep=\"0\" positionIncrementGap=\"0\"/>"
-operator|+
-literal|"</types>\n"
 operator|+
 literal|"<similarity class=\"${solr.test.simfac1}\"/> "
 operator|+
@@ -1148,19 +1140,13 @@ name|withoutWhich
 init|=
 literal|"<schema name=\"tiny\" version=\"1.1\">\n"
 operator|+
-literal|"<fields>\n"
-operator|+
 literal|"<field name=\"id\" type=\"string\" indexed=\"true\" stored=\"true\" required=\"true\"/>\n"
 operator|+
 literal|"<field name=\"text\" type=\"text\" indexed=\"true\" stored=\"true\"/>\n"
 operator|+
-literal|"</fields>\n"
-operator|+
 literal|"<uniqueKey>id</uniqueKey>\n"
 operator|+
 literal|"\n"
-operator|+
-literal|"<types>\n"
 operator|+
 literal|"<fieldtype name=\"text\" class=\"solr.TextField\">\n"
 operator|+
@@ -1177,8 +1163,6 @@ operator|+
 literal|"<fieldType name=\"string\" class=\"solr.StrField\"/>\n"
 operator|+
 literal|"<fieldType name=\"int\" class=\"solr.TrieIntField\" precisionStep=\"0\" positionIncrementGap=\"0\"/>"
-operator|+
-literal|"</types>\n"
 operator|+
 literal|"<similarity class=\"${solr.test.simfac2}\"/> "
 operator|+
