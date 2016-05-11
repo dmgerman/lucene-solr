@@ -62,7 +62,7 @@ name|BinaryQueryResponseWriter
 extends|extends
 name|QueryResponseWriter
 block|{
-comment|/**Use it to write the reponse in a binary format      */
+comment|/**Use it to write the response in a binary format      */
 DECL|method|write
 specifier|public
 name|void

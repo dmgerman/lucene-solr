@@ -716,7 +716,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//if the args is initialized from solrconfig.xml inside the requesthHandler it should be taking precedence over  initParams
+comment|//if the args is initialized from solrconfig.xml inside the requestHandler it should be taking precedence over  initParams
 name|merge
 argument_list|(
 operator|(
@@ -844,7 +844,7 @@ name|name
 argument_list|)
 condition|)
 continue|continue;
-comment|//aready taken care of
+comment|//already taken care of
 name|Object
 name|val
 init|=

@@ -262,7 +262,7 @@ operator|.
 name|ROOT
 argument_list|)
 decl_stmt|;
-comment|/**    * A mapping from (uppercased) String labels idenyifying time units,    * to the corresponding Calendar constant used to set/add/roll that unit    * of measurement.    *    *<p>    * A single logical unit of time might be represented by multiple labels    * for convenience (ie:<code>DATE==DAY</code>,    *<code>MILLI==MILLISECOND</code>)    *</p>    *    * @see Calendar    */
+comment|/**    * A mapping from (uppercased) String labels identifying time units,    * to the corresponding Calendar constant used to set/add/roll that unit    * of measurement.    *    *<p>    * A single logical unit of time might be represented by multiple labels    * for convenience (ie:<code>DATE==DAY</code>,    *<code>MILLI==MILLISECOND</code>)    *</p>    *    * @see Calendar    */
 DECL|field|CALENDAR_UNITS
 specifier|public
 specifier|static
@@ -293,7 +293,7 @@ parameter_list|()
 block|{
 comment|// NOTE: consciously choosing not to support WEEK at this time,
 comment|// because of complexity in rounding down to the nearest week
-comment|// arround a month/year boundry.
+comment|// around a month/year boundary.
 comment|// (Not to mention: it's not clear what people would *expect*)
 comment|//
 comment|// If we consider adding some time of "week" support, then

@@ -487,7 +487,7 @@ expr_stmt|;
 comment|// mess with the segment counts
 block|}
 block|}
-comment|// doc#0: at least one doc that is garunteed not special and has no chance of being filtered
+comment|// doc#0: at least one doc that is guaranteed not special and has no chance of being filtered
 name|assertU
 argument_list|(
 name|adoc

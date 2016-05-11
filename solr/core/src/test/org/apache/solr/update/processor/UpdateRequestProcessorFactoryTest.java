@@ -375,7 +375,7 @@ throws|throws
 name|Exception
 block|{
 comment|// a key part of this test is verifying that LogUpdateProcessor is found in all chains because it
-comment|// is a @RunAllways processor -- but in order for that to work, we have to sanity check that the log
+comment|// is a @RunAlways processor -- but in order for that to work, we have to sanity check that the log
 comment|// level is at least "INFO" otherwise the factory won't even produce a processor and all our assertions
 comment|// are for nought.  (see LogUpdateProcessorFactory.getInstance)
 comment|//

@@ -5616,7 +5616,7 @@ literal|null
 condition|)
 block|{
 comment|//Nope, no transient core with this name
-comment|// if there was an error initalizing this core, throw a 500
+comment|// if there was an error initializing this core, throw a 500
 comment|// error with the details for clients attempting to access it.
 name|CoreLoadFailure
 name|loadFailure

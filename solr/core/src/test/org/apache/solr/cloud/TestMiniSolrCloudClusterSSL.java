@@ -1322,7 +1322,7 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// sanity check the HttpClient used under the hood by our the cluster's CloudSolrClient
-comment|// ensure it has the neccessary protocols/credentials for each jetty server
+comment|// ensure it has the necessary protocols/credentials for each jetty server
 comment|//
 comment|// NOTE: we're not responsible for closing the cloud client
 specifier|final
@@ -1470,7 +1470,7 @@ name|wrongBaseURL
 operator|+
 literal|"/admin/cores"
 decl_stmt|;
-comment|// vastly diff exception details betwen plain http vs https, not worried about details here
+comment|// vastly diff exception details between plain http vs https, not worried about details here
 name|expectThrows
 argument_list|(
 name|IOException
@@ -1723,7 +1723,7 @@ name|url
 parameter_list|)
 block|{
 comment|// NOTE: at the moment, SolrTestCaseJ4 already returns "new HttpSolrClient" most of the time,
-comment|// so this method may seem redundent -- but the point here is to sanity check 2 things:
+comment|// so this method may seem redundant -- but the point here is to sanity check 2 things:
 comment|// 1) a direct test that "new HttpSolrClient" works given the current JVM/sysprop defaults
 comment|// 2) a sanity check that whatever getHttpSolrClient(String) returns will work regardless of
 comment|//    current test configuration.

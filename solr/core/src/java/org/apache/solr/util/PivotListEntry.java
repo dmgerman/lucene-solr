@@ -270,7 +270,7 @@ name|minIndex
 argument_list|)
 return|;
 block|}
-comment|// otherweise...
+comment|// otherwise...
 comment|// scan starting at the min/optional index
 return|return
 name|pivotList

@@ -1227,7 +1227,7 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Version in commitData was not formated correctly: "
+literal|"Version in commitData was not formatted correctly: "
 operator|+
 name|commitTime
 argument_list|,

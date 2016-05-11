@@ -1112,7 +1112,7 @@ init|(
 name|readerCache
 init|)
 block|{
-comment|// Map.clear() is optional and can throw UnsipportedOperationException,
+comment|// Map.clear() is optional and can throw UnsupportedOperationException,
 comment|// but readerCache is WeakHashMap and it supports clear().
 name|readerCache
 operator|.

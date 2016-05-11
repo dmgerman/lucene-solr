@@ -647,7 +647,7 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|// if the client set shards.rows set this explicity
+comment|// if the client set shards.rows set this explicitly
 name|sreq
 operator|.
 name|params

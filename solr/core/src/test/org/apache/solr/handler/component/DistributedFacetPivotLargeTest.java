@@ -1084,7 +1084,7 @@ comment|// - if we refined all other companies places, would twoShard return hon
 comment|//   ... but there's no refinement since mincount==0
 comment|// - would it even matter
 comment|//
-comment|// should we remove the refinement short circut?
+comment|// should we remove the refinement short circuit?
 comment|//
 comment|// rsp = query( params( "q", "*:*",
 comment|//                      "rows", "0",

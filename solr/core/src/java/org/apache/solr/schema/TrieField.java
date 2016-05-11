@@ -1844,7 +1844,7 @@ name|field
 argument_list|)
 return|;
 block|}
-comment|/**    * Helper method that will only be called for multivalued Trie fields that have doc values.    * Default impl throws an error indicating that selecting a single value from this multivalued     * field is not supported for this field type    *    * @param choice the selector Type to use, will never be null    * @param field the field to use, garunteed to be multivalued.    * @see #getSingleValueSource(MultiValueSelector,SchemaField,QParser)     */
+comment|/**    * Helper method that will only be called for multivalued Trie fields that have doc values.    * Default impl throws an error indicating that selecting a single value from this multivalued     * field is not supported for this field type    *    * @param choice the selector Type to use, will never be null    * @param field the field to use, guaranteed to be multivalued.    * @see #getSingleValueSource(MultiValueSelector,SchemaField,QParser)     */
 DECL|method|getSingleValueSource
 specifier|protected
 name|ValueSource

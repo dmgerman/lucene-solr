@@ -851,7 +851,7 @@ block|{
 comment|// TODO??? need to fill up the fields with matching field names in the index
 comment|// and add them to okFieldNames?
 comment|// maybe just get all fields?
-comment|// this would disable field selection optimization... i think thatis OK
+comment|// this would disable field selection optimization... i think that is OK
 name|fields
 operator|.
 name|clear

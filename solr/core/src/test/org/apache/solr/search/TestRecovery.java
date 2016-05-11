@@ -3526,7 +3526,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|// a deleteByQuery currently forces open a new realtime reader via the update log.
-comment|// This also tests that the update log was informed of the new udpate handler.
+comment|// This also tests that the update log was informed of the new update handler.
 name|deleteByQueryAndGetVersion
 argument_list|(
 literal|"foo_t:hownowbrowncow"

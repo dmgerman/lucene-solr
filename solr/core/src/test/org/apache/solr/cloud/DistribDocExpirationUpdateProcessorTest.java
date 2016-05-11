@@ -749,7 +749,7 @@ expr_stmt|;
 comment|// TODO: above logic verifies that deleteByQuery happens on all nodes, and ...
 comment|// doesn't affect searcher re-open on shards w/o expired docs ... can we also verify
 comment|// that *only* one node is sending the deletes ?
-comment|// (ie: no flood of redundent deletes?)
+comment|// (ie: no flood of redundant deletes?)
 block|}
 comment|/**    * returns a map whose key is the coreNodeName and whose value is what the replication    * handler returns for the indexversion    */
 DECL|method|getIndexVersionOfAllReplicas
@@ -989,7 +989,7 @@ return|return
 name|results
 return|;
 block|}
-comment|/**    * Executes a query over and over against the cloudClient every 5 seconds     * until the numFound is 0 or the maxTimeLimitSeconds is exceeded.     * Query is garunteed to be executed at least once.    */
+comment|/**    * Executes a query over and over against the cloudClient every 5 seconds     * until the numFound is 0 or the maxTimeLimitSeconds is exceeded.     * Query is guaranteed to be executed at least once.    */
 DECL|method|waitForNoResults
 specifier|private
 name|void

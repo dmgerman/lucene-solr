@@ -1396,7 +1396,7 @@ argument_list|()
 index|]
 argument_list|)
 decl_stmt|;
-comment|// sort the tokens by absoulte position
+comment|// sort the tokens by absolute position
 name|ArrayUtil
 operator|.
 name|timSort
@@ -2538,7 +2538,7 @@ name|EMPTY_BYTES_SET
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Constructs a new AnalysisContext with a given field tpe, analyzer and      * termsToMatch. During the analysis processs, The produced tokens will be       * compaired to the termes in the {@code termsToMatch} set. When found,       * these tokens will be marked as a match.      *      * @param fieldName    The name of the field the analysis is performed on       *                     (may be {@code null}).      * @param fieldType    The type of the field the analysis is performed on.      * @param analyzer     The analyzer to be used.      * @param termsToMatch Holds all the terms that should match during the       *                     analysis process.      */
+comment|/**      * Constructs a new AnalysisContext with a given field tpe, analyzer and      * termsToMatch. During the analysis processs, The produced tokens will be       * compared to the terms in the {@code termsToMatch} set. When found,       * these tokens will be marked as a match.      *      * @param fieldName    The name of the field the analysis is performed on       *                     (may be {@code null}).      * @param fieldType    The type of the field the analysis is performed on.      * @param analyzer     The analyzer to be used.      * @param termsToMatch Holds all the terms that should match during the       *                     analysis process.      */
 DECL|method|AnalysisContext
 specifier|public
 name|AnalysisContext

@@ -938,7 +938,7 @@ name|Stat
 argument_list|>
 name|distribDeps
 decl_stmt|;
-comment|/**      * Sole constructor for Stat enum values      * @param deps the set of stat values, other then this one, which are a distributed       *        dependency and must be computed and returned by each individual shards in       *        order to compute<i>this</i> stat over the entire distributed result set.      * @param selfDep indicates that when computing this stat across a distributed result       *        set, each shard must compute this stat<i>in addition to</i> any other       *        distributed dependences.      * @see #getDistribDeps      */
+comment|/**      * Sole constructor for Stat enum values      * @param deps the set of stat values, other then this one, which are a distributed       *        dependency and must be computed and returned by each individual shards in       *        order to compute<i>this</i> stat over the entire distributed result set.      * @param selfDep indicates that when computing this stat across a distributed result       *        set, each shard must compute this stat<i>in addition to</i> any other       *        distributed dependencies.      * @see #getDistribDeps      */
 DECL|method|Stat
 name|Stat
 parameter_list|(

@@ -463,7 +463,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|// replace \0 with the field name and create a parseable string
+comment|// replace \0 with the field name and create a parsable string
 DECL|method|func
 specifier|public
 name|String

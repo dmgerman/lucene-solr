@@ -1305,7 +1305,7 @@ comment|// All queries should be served by the active replica
 comment|// To make sure that's true we keep querying the down replica
 comment|// If queries are getting processed by the down replica then the cluster state hasn't updated for that replica
 comment|// locally
-comment|// So we keep trying till it has updated and then verify if ALL queries go to the active reploca
+comment|// So we keep trying till it has updated and then verify if ALL queries go to the active replica
 name|long
 name|count
 init|=

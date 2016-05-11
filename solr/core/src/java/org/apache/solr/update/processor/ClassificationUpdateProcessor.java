@@ -403,7 +403,7 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-comment|/**    * @param cmd the update command in input conaining the Document to classify    * @throws IOException If there is a low-level I/O error    */
+comment|/**    * @param cmd the update command in input containing the Document to classify    * @throws IOException If there is a low-level I/O error    */
 annotation|@
 name|Override
 DECL|method|processAdd

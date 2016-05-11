@@ -699,7 +699,7 @@ name|readAgain
 argument_list|()
 decl_stmt|;
 comment|//  read the next char and set eol
-comment|/* note: unfourtunately isEndOfLine may consumes a character silently.      *       this has no effect outside of the method. so a simple workaround      *       is to call 'readAgain' on the stream...      *       uh: might using objects instead of base-types (jdk1.5 autoboxing!)      */
+comment|/* note: unfortunately isEndOfLine may consumes a character silently.      *       this has no effect outside of the method. so a simple workaround      *       is to call 'readAgain' on the stream...      *       uh: might using objects instead of base-types (jdk1.5 autoboxing!)      */
 name|int
 name|c
 init|=

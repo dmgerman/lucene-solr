@@ -4258,7 +4258,7 @@ comment|// Prevent dropping tmpMaxPropPerNode again.
 block|}
 block|}
 block|}
-comment|// Go through the list of presently-hosted proeprties and remove any that have too many replicas that host the property
+comment|// Go through the list of presently-hosted properties and remove any that have too many replicas that host the property
 DECL|method|removeOverallocatedReplicas
 specifier|private
 name|void

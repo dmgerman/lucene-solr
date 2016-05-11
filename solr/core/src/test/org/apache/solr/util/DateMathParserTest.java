@@ -158,13 +158,13 @@ name|DateMathParserTest
 extends|extends
 name|LuceneTestCase
 block|{
-comment|/**    * A formatter for specifying every last nuance of a Date for easy    * refernece in assertion statements    */
+comment|/**    * A formatter for specifying every last nuance of a Date for easy    * reference in assertion statements    */
 DECL|field|fmt
 specifier|private
 name|DateFormat
 name|fmt
 decl_stmt|;
-comment|/**    * A parser for reading in explicit dates that are convinient to type    * in a test    */
+comment|/**    * A parser for reading in explicit dates that are convenient to type    * in a test    */
 DECL|field|parser
 specifier|private
 name|DateFormat

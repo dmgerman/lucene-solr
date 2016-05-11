@@ -3133,7 +3133,7 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-comment|// bail fast using whatever ammounts defaults to if no value
+comment|// bail fast using whatever amounts defaults to if no value
 comment|// (if we don't do this early, currencyOrd may be< 0,
 comment|// causing index bounds exception
 if|if

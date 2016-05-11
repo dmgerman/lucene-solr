@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**   * Core classes implementin Solr internals and the management of {@link org.apache.solr.core.SolrCore}s  */
+comment|/**   * Core classes implementing Solr internals and the management of {@link org.apache.solr.core.SolrCore}s  */
 end_comment
 
 begin_package

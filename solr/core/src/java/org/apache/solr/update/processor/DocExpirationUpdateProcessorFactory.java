@@ -978,7 +978,7 @@ name|e
 argument_list|)
 throw|;
 block|}
-comment|// schedule recuring deletion
+comment|// schedule recurring deletion
 name|initDeleteExpiredDocsScheduler
 argument_list|(
 name|core
@@ -1350,9 +1350,9 @@ argument_list|()
 decl_stmt|;
 comment|// TODO: should we try to accept things like "1DAY" as well as "+1DAY" ?
 comment|// How?
-comment|// 'startsWith("+")' is a bad idea because it would cause porblems with
+comment|// 'startsWith("+")' is a bad idea because it would cause problems with
 comment|// things like "/DAY+1YEAR"
-comment|// Maybe catch ParseException and rety with "+" prepended?
+comment|// Maybe catch ParseException and retry with "+" prepended?
 name|doc
 operator|.
 name|addField
@@ -1696,7 +1696,7 @@ argument_list|,
 name|ioe
 argument_list|)
 expr_stmt|;
-comment|// DO NOT RETHROW: ScheduledExecutor will supress subsequent executions
+comment|// DO NOT RETHROW: ScheduledExecutor will suppress subsequent executions
 block|}
 catch|catch
 parameter_list|(
@@ -1718,7 +1718,7 @@ argument_list|,
 name|re
 argument_list|)
 expr_stmt|;
-comment|// DO NOT RETHROW: ScheduledExecutor will supress subsequent executions
+comment|// DO NOT RETHROW: ScheduledExecutor will suppress subsequent executions
 block|}
 finally|finally
 block|{
@@ -1739,7 +1739,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    *<p>    * Helper method that returns true if the Runnable managed by this factory     * should be responseible of doing periodica deletes.    *</p>    *<p>    * In simple standalone instalations this method always returns true,     * but in cloud mode it will be true if and only if we are currently the leader     * of the (active) slice with the first name (lexigraphically).    *</p>    *<p>    * If this method returns false, it may have also logged a message letting the user     * know why we aren't attempting period deletion (but it will attempt to not log     * this excessively)    *</p>    */
+comment|/**    *<p>    * Helper method that returns true if the Runnable managed by this factory     * should be responsible of doing periodical deletes.    *</p>    *<p>    * In simple standalone installations this method always returns true,     * but in cloud mode it will be true if and only if we are currently the leader     * of the (active) slice with the first name (lexicographically).    *</p>    *<p>    * If this method returns false, it may have also logged a message letting the user     * know why we aren't attempting period deletion (but it will attempt to not log     * this excessively)    *</p>    */
 DECL|method|iAmInChargeOfPeriodicDeletes
 specifier|private
 name|boolean

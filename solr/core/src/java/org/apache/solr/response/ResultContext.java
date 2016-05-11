@@ -165,7 +165,7 @@ name|Query
 name|getQuery
 parameter_list|()
 function_decl|;
-comment|// TODO: any reason to allow for retrievial of any filters as well?
+comment|// TODO: any reason to allow for retrieval of any filters as well?
 comment|/** Note: do not use the request to get the searcher!  A cross-core request may have a different    *  searcher (for the other core) than the original request.    */
 DECL|method|getRequest
 specifier|public

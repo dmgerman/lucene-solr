@@ -139,7 +139,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** A base class that may be usefull for implementing DocSets */
+comment|/** A base class that may be useful for implementing DocSets */
 end_comment
 
 begin_class

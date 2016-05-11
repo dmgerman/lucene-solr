@@ -301,7 +301,7 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"field '{}' {} value '{}' is not mutatable, so no values will be mutated"
+literal|"field '{}' {} value '{}' is not mutable, so no values will be mutated"
 argument_list|,
 operator|new
 name|Object

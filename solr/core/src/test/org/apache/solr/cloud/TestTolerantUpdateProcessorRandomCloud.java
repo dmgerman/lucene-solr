@@ -1926,7 +1926,7 @@ literal|200
 argument_list|)
 expr_stmt|;
 block|}
-comment|// check the index contents against our expecationts
+comment|// check the index contents against our expectations
 specifier|final
 name|BitSet
 name|actualDocIds
@@ -1955,7 +1955,7 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"cardinality missmatch: expected {} BUT actual {}"
+literal|"cardinality mismatch: expected {} BUT actual {}"
 argument_list|,
 name|expectedDocIds
 operator|.
@@ -2276,7 +2276,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"wrong nextBit at redundent end of all iters"
+literal|"wrong nextBit at redundant end of all iters"
 argument_list|,
 operator|-
 literal|1

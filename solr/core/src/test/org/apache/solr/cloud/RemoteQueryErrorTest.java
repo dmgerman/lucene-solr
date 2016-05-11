@@ -276,7 +276,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"Expected unique key exceptoin"
+literal|"Expected unique key exception"
 argument_list|)
 expr_stmt|;
 block|}

@@ -711,7 +711,7 @@ name|getReservedEndpointsPattern
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Returns the set of non-registerable endpoints.      */
+comment|/**      * Returns the set of non-registrable endpoints.      */
 DECL|method|getReservedEndpoints
 specifier|public
 name|Set

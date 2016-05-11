@@ -40,7 +40,7 @@ specifier|public
 interface|interface
 name|NestedRequestHandler
 block|{
-comment|/** Return a Requestandler to handle a subpath from the path this handler is registered.    */
+comment|/** Return a RequestHandler to handle a subpath from the path this handler is registered.    */
 DECL|method|getSubHandler
 name|SolrRequestHandler
 name|getSubHandler

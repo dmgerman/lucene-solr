@@ -388,7 +388,7 @@ name|f
 argument_list|)
 expr_stmt|;
 block|}
-comment|// delete old files only after we have successfuly opened the newest
+comment|// delete old files only after we have successfully opened the newest
 if|if
 condition|(
 name|oldFiles
@@ -487,7 +487,7 @@ name|IOException
 name|cause
 parameter_list|)
 block|{
-comment|// TODO: should this class care if a file couldnt be deleted?
+comment|// TODO: should this class care if a file couldn't be deleted?
 comment|// this just emulates previous behavior, where only SecurityException would be handled.
 block|}
 comment|// deleteList.remove(df);
