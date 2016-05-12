@@ -58,6 +58,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -945,7 +955,18 @@ block|}
 else|else
 block|{
 comment|// do a merge sort of the incoming leaves:
-return|return
+name|long
+name|t0
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
+name|DocMap
+index|[]
+name|result
+init|=
 name|MultiSorter
 operator|.
 name|sort
@@ -954,6 +975,54 @@ name|indexSort
 argument_list|,
 name|readers
 argument_list|)
+decl_stmt|;
+name|long
+name|t1
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|infoStream
+operator|.
+name|isEnabled
+argument_list|(
+literal|"SM"
+argument_list|)
+condition|)
+block|{
+name|infoStream
+operator|.
+name|message
+argument_list|(
+literal|"SM"
+argument_list|,
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+literal|"%.2f msec to build merge sorted DocMaps"
+argument_list|,
+operator|(
+name|t1
+operator|-
+name|t0
+operator|)
+operator|/
+literal|1000000.0
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|result
 return|;
 block|}
 block|}
@@ -1094,6 +1163,14 @@ block|{
 comment|// TODO: fix IW to also sort when flushing?  It's somewhat tricky because of stored fields and term vectors, which write "live"
 comment|// to their index files on each indexed document:
 comment|// This segment was written by flush, so documents are not yet sorted, so we sort them now:
+name|long
+name|t0
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
 name|Sorter
 operator|.
 name|DocMap
@@ -1105,6 +1182,25 @@ name|sort
 argument_list|(
 name|leaf
 argument_list|)
+decl_stmt|;
+name|long
+name|t1
+init|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+decl_stmt|;
+name|double
+name|msec
+init|=
+operator|(
+name|t1
+operator|-
+name|t0
+operator|)
+operator|/
+literal|1000000.0
 decl_stmt|;
 if|if
 condition|(
@@ -1129,15 +1225,22 @@ name|message
 argument_list|(
 literal|"SM"
 argument_list|,
-literal|"segment "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+literal|"segment %s is not sorted; wrapping for sort %s now (%.2f msec to sort)"
+argument_list|,
 name|leaf
-operator|+
-literal|" is not sorted; wrapping for sort "
-operator|+
+argument_list|,
 name|indexSort
-operator|+
-literal|" now"
+argument_list|,
+name|msec
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1213,15 +1316,22 @@ name|message
 argument_list|(
 literal|"SM"
 argument_list|,
-literal|"segment "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+literal|"segment %s is not sorted, but is already accidentally in sort %s order (%.2f msec to sort)"
+argument_list|,
 name|leaf
-operator|+
-literal|" is not sorted, but is already accidentally in sort "
-operator|+
+argument_list|,
 name|indexSort
-operator|+
-literal|" order"
+argument_list|,
+name|msec
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

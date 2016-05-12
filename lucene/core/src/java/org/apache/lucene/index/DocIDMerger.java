@@ -218,9 +218,14 @@ name|subs
 operator|=
 name|subs
 expr_stmt|;
+comment|// nocommit safe?
 if|if
 condition|(
 name|indexIsSorted
+operator|&&
+name|maxCount
+operator|>
+literal|1
 condition|)
 block|{
 name|queue

@@ -3732,7 +3732,7 @@ name|infoStream
 operator|.
 name|print
 argument_list|(
-literal|"    test: check index sort....."
+literal|"    test: index sort.........."
 argument_list|)
 expr_stmt|;
 block|}
