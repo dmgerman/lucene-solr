@@ -10177,6 +10177,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"hasOffsets"
+argument_list|,
 name|leftTerms
 operator|.
 name|hasOffsets
@@ -10190,6 +10192,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"hasPositions"
+argument_list|,
 name|leftTerms
 operator|.
 name|hasPositions
@@ -10203,6 +10207,8 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
+literal|"hasPayloads"
+argument_list|,
 name|leftTerms
 operator|.
 name|hasPayloads
