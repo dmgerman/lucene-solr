@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene60
+DECL|package|org.apache.lucene.codecs.lucene62
 package|package
 name|org
 operator|.
@@ -14,7 +14,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene60
+name|lucene62
 package|;
 end_package
 
@@ -240,22 +240,6 @@ name|codecs
 operator|.
 name|lucene50
 operator|.
-name|Lucene50SegmentInfoFormat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene50
-operator|.
 name|Lucene50StoredFieldsFormat
 operator|.
 name|Mode
@@ -320,6 +304,38 @@ name|lucene
 operator|.
 name|codecs
 operator|.
+name|lucene60
+operator|.
+name|Lucene60FieldInfosFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene60
+operator|.
+name|Lucene60PointsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
 name|perfield
 operator|.
 name|PerFieldDocValuesFormat
@@ -343,14 +359,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the Lucene 6.0 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene60 package documentation for file format details.  *  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 6.2 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene60 package documentation for file format details.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|Lucene60Codec
+DECL|class|Lucene62Codec
 specifier|public
 class|class
-name|Lucene60Codec
+name|Lucene62Codec
 extends|extends
 name|Codec
 block|{
@@ -381,7 +397,7 @@ name|SegmentInfoFormat
 name|segmentInfosFormat
 init|=
 operator|new
-name|Lucene50SegmentInfoFormat
+name|Lucene62SegmentInfoFormat
 argument_list|()
 decl_stmt|;
 DECL|field|liveDocsFormat
@@ -425,7 +441,7 @@ name|field
 parameter_list|)
 block|{
 return|return
-name|Lucene60Codec
+name|Lucene62Codec
 operator|.
 name|this
 operator|.
@@ -458,7 +474,7 @@ name|field
 parameter_list|)
 block|{
 return|return
-name|Lucene60Codec
+name|Lucene62Codec
 operator|.
 name|this
 operator|.
@@ -477,9 +493,9 @@ name|StoredFieldsFormat
 name|storedFieldsFormat
 decl_stmt|;
 comment|/**     * Instantiates a new codec.    */
-DECL|method|Lucene60Codec
+DECL|method|Lucene62Codec
 specifier|public
-name|Lucene60Codec
+name|Lucene62Codec
 parameter_list|()
 block|{
 name|this
@@ -491,9 +507,9 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**     * Instantiates a new codec, specifying the stored fields compression    * mode to use.    * @param mode stored fields compression mode to use for newly     *             flushed/merged segments.    */
-DECL|method|Lucene60Codec
+DECL|method|Lucene62Codec
 specifier|public
-name|Lucene60Codec
+name|Lucene62Codec
 parameter_list|(
 name|Mode
 name|mode
@@ -501,7 +517,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-literal|"Lucene60"
+literal|"Lucene62"
 argument_list|)
 expr_stmt|;
 name|this
@@ -640,7 +656,7 @@ return|return
 name|defaultFormat
 return|;
 block|}
-comment|/** Returns the docvalues format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene50".    *<p>    *<b>WARNING:</b> if you subclass, you are responsible for index     *  backwards compatibility: future version of Lucene are only     *  guaranteed to be able to read the default implementation.     */
+comment|/** Returns the docvalues format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene54".    *<p>    *<b>WARNING:</b> if you subclass, you are responsible for index     *  backwards compatibility: future version of Lucene are only     *  guaranteed to be able to read the default implementation.     */
 DECL|method|getDocValuesFormatForField
 specifier|public
 name|DocValuesFormat

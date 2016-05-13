@@ -130,6 +130,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|Sort
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|Directory
@@ -272,6 +286,12 @@ name|String
 argument_list|>
 name|attributes
 decl_stmt|;
+DECL|field|indexSort
+specifier|private
+specifier|final
+name|Sort
+name|indexSort
+decl_stmt|;
 comment|// Tracks the Lucene version this segment was created with, since 3.1. Null
 comment|// indicates an older than 3.0 index, and it's used to detect a too old index.
 comment|// The format expected is "x.y" - "2.x" for pre-3.0 indexes (or null), and
@@ -365,6 +385,9 @@ argument_list|,
 name|String
 argument_list|>
 name|attributes
+parameter_list|,
+name|Sort
+name|indexSort
 parameter_list|)
 block|{
 assert|assert
@@ -479,6 +502,12 @@ name|requireNonNull
 argument_list|(
 name|attributes
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|indexSort
+operator|=
+name|indexSort
 expr_stmt|;
 block|}
 comment|/**    * Mark whether this segment is stored as a compound file.    *    * @param isCompoundFile true if this is a compound file;    * else, false    */
@@ -772,27 +801,9 @@ name|delCount
 argument_list|)
 expr_stmt|;
 block|}
-specifier|final
-name|String
-name|sorter_key
-init|=
-literal|"sorter"
-decl_stmt|;
-comment|// SortingMergePolicy.SORTER_ID_PROP; // TODO: use this once we can import SortingMergePolicy (currently located in 'misc' instead of 'core')
-specifier|final
-name|String
-name|sorter_val
-init|=
-name|diagnostics
-operator|.
-name|get
-argument_list|(
-name|sorter_key
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
-name|sorter_val
+name|indexSort
 operator|!=
 literal|null
 condition|)
@@ -801,28 +812,14 @@ name|s
 operator|.
 name|append
 argument_list|(
-literal|":["
+literal|":[indexSort="
 argument_list|)
 expr_stmt|;
 name|s
 operator|.
 name|append
 argument_list|(
-name|sorter_key
-argument_list|)
-expr_stmt|;
-name|s
-operator|.
-name|append
-argument_list|(
-literal|'='
-argument_list|)
-expr_stmt|;
-name|s
-operator|.
-name|append
-argument_list|(
-name|sorter_val
+name|indexSort
 argument_list|)
 expr_stmt|;
 name|s
@@ -1226,6 +1223,17 @@ parameter_list|()
 block|{
 return|return
 name|attributes
+return|;
+block|}
+comment|/** Return the sort order of this segment, or null if the index has no sort. */
+DECL|method|getIndexSort
+specifier|public
+name|Sort
+name|getIndexSort
+parameter_list|()
+block|{
+return|return
+name|indexSort
 return|;
 block|}
 block|}
