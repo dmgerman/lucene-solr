@@ -1252,6 +1252,14 @@ argument_list|)
 expr_stmt|;
 block|}
 assert|assert
+name|field
+operator|+
+literal|1
+operator|==
+name|Calendar
+operator|.
+name|ERA
+operator|||
 operator|(
 operator|(
 name|Calendar
