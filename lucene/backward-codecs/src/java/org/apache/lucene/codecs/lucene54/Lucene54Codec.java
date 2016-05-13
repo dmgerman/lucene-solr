@@ -359,10 +359,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the Lucene 5.4 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene54 package documentation for file format details.  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 5.4 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene54 package documentation for file format details.  * @lucene.experimental  * @deprecated Only for 5.x back compat  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene54Codec
 specifier|public
 class|class
