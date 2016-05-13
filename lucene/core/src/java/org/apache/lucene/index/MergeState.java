@@ -1410,6 +1410,12 @@ specifier|abstract
 class|class
 name|DocMap
 block|{
+comment|/** Sole constructor */
+DECL|method|DocMap
+specifier|public
+name|DocMap
+parameter_list|()
+block|{     }
 comment|/** Return the mapped docID or -1 if the given doc is not mapped. */
 DECL|method|get
 specifier|public

@@ -2131,8 +2131,6 @@ name|cmd
 operator|.
 name|getLen
 argument_list|()
-argument_list|,
-name|mergeSort
 argument_list|)
 expr_stmt|;
 block|}

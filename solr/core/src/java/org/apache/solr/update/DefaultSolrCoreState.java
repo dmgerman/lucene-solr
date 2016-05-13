@@ -178,20 +178,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|SortingMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|Sort
@@ -237,6 +223,8 @@ operator|.
 name|common
 operator|.
 name|SolrException
+operator|.
+name|ErrorCode
 import|;
 end_import
 
@@ -251,8 +239,6 @@ operator|.
 name|common
 operator|.
 name|SolrException
-operator|.
-name|ErrorCode
 import|;
 end_import
 
@@ -309,6 +295,20 @@ operator|.
 name|core
 operator|.
 name|SolrCore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|index
+operator|.
+name|SortingMergePolicy
 import|;
 end_import
 

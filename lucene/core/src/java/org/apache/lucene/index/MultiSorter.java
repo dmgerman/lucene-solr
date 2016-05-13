@@ -57,6 +57,22 @@ operator|.
 name|index
 operator|.
 name|MergeState
+operator|.
+name|DocMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|MergeState
 import|;
 end_import
 
@@ -168,7 +184,7 @@ specifier|final
 class|class
 name|MultiSorter
 block|{
-comment|/** Does a merge sort of the leaves of the incoming reader, returning {@link MergeState#DocMap} to map each leaf's    *  documents into the merged segment.  The documents for each incoming leaf reader must already be sorted by the same sort! */
+comment|/** Does a merge sort of the leaves of the incoming reader, returning {@link DocMap} to map each leaf's    *  documents into the merged segment.  The documents for each incoming leaf reader must already be sorted by the same sort! */
 DECL|method|sort
 specifier|static
 name|MergeState

@@ -1254,6 +1254,10 @@ specifier|final
 class|class
 name|IndexSortStatus
 block|{
+DECL|method|IndexSortStatus
+name|IndexSortStatus
+parameter_list|()
+block|{       }
 comment|/** Exception thrown during term index test (null on success) */
 DECL|field|error
 specifier|public
@@ -3671,6 +3675,7 @@ return|return
 name|result
 return|;
 block|}
+comment|/**    * Tests index sort order.    * @lucene.experimental    */
 DECL|method|testSort
 specifier|public
 specifier|static
