@@ -113,10 +113,6 @@ comment|/** Sort using term values as Strings, but comparing by      * value (us
 DECL|enum constant|STRING_VAL
 name|STRING_VAL
 block|,
-comment|/** Sort use byte[] index values. */
-DECL|enum constant|BYTES
-name|BYTES
-block|,
 comment|/** Force rewriting of SortField using {@link SortField#rewrite(IndexSearcher)}      * before it can be used for sorting */
 DECL|enum constant|REWRITEABLE
 name|REWRITEABLE

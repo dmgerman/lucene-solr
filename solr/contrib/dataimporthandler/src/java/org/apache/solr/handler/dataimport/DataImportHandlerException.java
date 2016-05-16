@@ -199,7 +199,7 @@ block|}
 DECL|method|wrapAndThrow
 specifier|public
 specifier|static
-name|void
+name|DataImportHandlerException
 name|wrapAndThrow
 parameter_list|(
 name|int
@@ -239,7 +239,7 @@ block|}
 DECL|method|wrapAndThrow
 specifier|public
 specifier|static
-name|void
+name|DataImportHandlerException
 name|wrapAndThrow
 parameter_list|(
 name|int

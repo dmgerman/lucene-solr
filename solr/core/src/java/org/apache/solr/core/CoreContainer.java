@@ -4189,9 +4189,6 @@ argument_list|()
 operator|.
 name|getZkStateReader
 argument_list|()
-operator|.
-name|getClusterProps
-argument_list|()
 argument_list|)
 condition|)
 block|{

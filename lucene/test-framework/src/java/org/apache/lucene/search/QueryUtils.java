@@ -1300,6 +1300,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{}
+annotation|@
+name|Override
+specifier|public
+name|Sort
+name|getIndexSort
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 return|;
 block|}

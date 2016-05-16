@@ -17,18 +17,12 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
+import|import
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|Config
-operator|.
-name|assertWarnOrFail
+name|IOException
 import|;
 end_import
 
@@ -189,6 +183,20 @@ operator|.
 name|index
 operator|.
 name|TieredMergePolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|Sort
 import|;
 end_import
 
@@ -386,6 +394,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|index
+operator|.
+name|SortingMergePolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|schema
 operator|.
 name|IndexSchema
@@ -423,6 +445,22 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|Config
+operator|.
+name|assertWarnOrFail
 import|;
 end_import
 
@@ -1464,6 +1502,8 @@ parameter_list|(
 name|SolrCore
 name|core
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|IndexSchema
 name|schema
@@ -1524,14 +1564,19 @@ name|getSimilarity
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|iwc
-operator|.
-name|setMergePolicy
-argument_list|(
+name|MergePolicy
+name|mergePolicy
+init|=
 name|buildMergePolicy
 argument_list|(
 name|schema
 argument_list|)
+decl_stmt|;
+name|iwc
+operator|.
+name|setMergePolicy
+argument_list|(
+name|mergePolicy
 argument_list|)
 expr_stmt|;
 name|iwc
@@ -1551,6 +1596,34 @@ argument_list|(
 name|infoStream
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|mergePolicy
+operator|instanceof
+name|SortingMergePolicy
+condition|)
+block|{
+name|Sort
+name|indexSort
+init|=
+operator|(
+operator|(
+name|SortingMergePolicy
+operator|)
+name|mergePolicy
+operator|)
+operator|.
+name|getSort
+argument_list|()
+decl_stmt|;
+name|iwc
+operator|.
+name|setIndexSort
+argument_list|(
+name|indexSort
+argument_list|)
+expr_stmt|;
+block|}
 comment|// do this after buildMergePolicy since the backcompat logic
 comment|// there may modify the effective useCompoundFile
 name|iwc

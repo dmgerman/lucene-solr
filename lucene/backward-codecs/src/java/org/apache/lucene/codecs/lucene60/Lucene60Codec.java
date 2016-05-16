@@ -343,10 +343,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Implements the Lucene 6.0 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene60 package documentation for file format details.  *  * @lucene.experimental  */
+comment|/**  * Implements the Lucene 6.0 index format, with configurable per-field postings  * and docvalues formats.  *<p>  * If you want to reuse functionality of this codec in another codec, extend  * {@link FilterCodec}.  *  * @see org.apache.lucene.codecs.lucene60 package documentation for file format details.  *  * @lucene.experimental  * @deprecated Only for 6.0 back compat  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|Lucene60Codec
 specifier|public
 class|class
@@ -640,7 +642,7 @@ return|return
 name|defaultFormat
 return|;
 block|}
-comment|/** Returns the docvalues format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene50".    *<p>    *<b>WARNING:</b> if you subclass, you are responsible for index     *  backwards compatibility: future version of Lucene are only     *  guaranteed to be able to read the default implementation.     */
+comment|/** Returns the docvalues format that should be used for writing     *  new segments of<code>field</code>.    *      *  The default implementation always returns "Lucene54".    *<p>    *<b>WARNING:</b> if you subclass, you are responsible for index     *  backwards compatibility: future version of Lucene are only     *  guaranteed to be able to read the default implementation.     */
 DECL|method|getDocValuesFormatForField
 specifier|public
 name|DocValuesFormat

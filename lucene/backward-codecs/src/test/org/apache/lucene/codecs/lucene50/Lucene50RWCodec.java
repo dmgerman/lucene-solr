@@ -32,6 +32,20 @@ name|NormsFormat
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|SegmentInfoFormat
+import|;
+end_import
+
 begin_comment
 comment|/**  * Codec for testing 5.0 index format  * @deprecated Only for testing old 5.0-5.2 segments  */
 end_comment
@@ -56,6 +70,16 @@ operator|new
 name|Lucene50RWNormsFormat
 argument_list|()
 decl_stmt|;
+DECL|field|segmentInfoFormat
+specifier|private
+specifier|final
+name|SegmentInfoFormat
+name|segmentInfoFormat
+init|=
+operator|new
+name|Lucene50RWSegmentInfoFormat
+argument_list|()
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|normsFormat
@@ -66,6 +90,18 @@ parameter_list|()
 block|{
 return|return
 name|normsFormat
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|segmentInfoFormat
+specifier|public
+name|SegmentInfoFormat
+name|segmentInfoFormat
+parameter_list|()
+block|{
+return|return
+name|segmentInfoFormat
 return|;
 block|}
 block|}

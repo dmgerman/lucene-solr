@@ -1552,12 +1552,6 @@ operator|.
 name|DocMap
 name|docMap
 decl_stmt|;
-comment|/** Base offset for all our docIDs */
-DECL|field|docIDBase
-specifier|final
-name|int
-name|docIDBase
-decl_stmt|;
 comment|/** Current doc ID */
 DECL|field|docID
 specifier|public
@@ -1593,9 +1587,6 @@ name|MergeState
 operator|.
 name|DocMap
 name|docMap
-parameter_list|,
-name|int
-name|docIDBase
 parameter_list|)
 throws|throws
 name|IOException
@@ -1640,12 +1631,6 @@ operator|.
 name|docMap
 operator|=
 name|docMap
-expr_stmt|;
-name|this
-operator|.
-name|docIDBase
-operator|=
-name|docIDBase
 expr_stmt|;
 name|long
 name|minFP
@@ -2048,11 +2033,11 @@ comment|// Tie break by sorting smaller docIDs earlier:
 return|return
 name|a
 operator|.
-name|docIDBase
+name|docID
 operator|<
 name|b
 operator|.
-name|docIDBase
+name|docID
 return|;
 block|}
 block|}
@@ -2078,12 +2063,6 @@ argument_list|<
 name|BKDReader
 argument_list|>
 name|readers
-parameter_list|,
-name|List
-argument_list|<
-name|Integer
-argument_list|>
-name|docIDBases
 parameter_list|)
 throws|throws
 name|IOException
@@ -2120,7 +2099,6 @@ literal|"cannot mix add and merge"
 argument_list|)
 throw|;
 block|}
-comment|//System.out.println("BKDW.merge segs=" + readers.size());
 comment|// Catch user silliness:
 if|if
 condition|(
@@ -2241,13 +2219,6 @@ argument_list|(
 name|bkd
 argument_list|,
 name|docMap
-argument_list|,
-name|docIDBases
-operator|.
-name|get
-argument_list|(
-name|i
-argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -2431,10 +2402,6 @@ comment|// NOTE: doesn't work with subclasses (e.g. SimpleText!)
 name|int
 name|docID
 init|=
-name|reader
-operator|.
-name|docIDBase
-operator|+
 name|reader
 operator|.
 name|docID
