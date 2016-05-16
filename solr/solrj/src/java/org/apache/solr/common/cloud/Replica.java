@@ -337,6 +337,19 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+DECL|method|getCoreName
+specifier|public
+name|String
+name|getCoreName
+parameter_list|()
+block|{
+return|return
+name|getStr
+argument_list|(
+name|CORE_NAME_PROP
+argument_list|)
+return|;
+block|}
 comment|/** The name of the node this replica resides on */
 DECL|method|getNodeName
 specifier|public
