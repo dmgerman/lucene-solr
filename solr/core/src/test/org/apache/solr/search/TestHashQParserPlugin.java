@@ -1195,7 +1195,7 @@ name|add
 argument_list|(
 literal|"partitionKeys"
 argument_list|,
-literal|"a_s,a_i,a_l"
+literal|"a_s,       a_i,      a_l"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1317,7 +1317,7 @@ name|add
 argument_list|(
 literal|"partitionKeys"
 argument_list|,
-literal|"a_s,a_i,a_l"
+literal|"a_s, a_i, a_l"
 argument_list|)
 expr_stmt|;
 name|params
