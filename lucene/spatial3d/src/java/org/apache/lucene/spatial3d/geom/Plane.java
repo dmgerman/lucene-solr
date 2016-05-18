@@ -1126,7 +1126,7 @@ return|;
 return|return
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 return|;
 block|}
 comment|// First, compute the perpendicular plane.
@@ -1197,7 +1197,7 @@ name|minDistance
 init|=
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 decl_stmt|;
 for|for
 control|(
@@ -1377,7 +1377,7 @@ block|{
 return|return
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 return|;
 block|}
 return|return
@@ -1469,7 +1469,7 @@ name|normal
 operator|==
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 condition|)
 return|return
 name|normal
@@ -1580,7 +1580,7 @@ return|;
 return|return
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 return|;
 block|}
 comment|// First, compute the perpendicular plane.
@@ -1651,7 +1651,7 @@ name|minDistance
 init|=
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 decl_stmt|;
 for|for
 control|(

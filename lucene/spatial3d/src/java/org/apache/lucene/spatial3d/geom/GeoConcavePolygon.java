@@ -1824,7 +1824,7 @@ name|minimumDistance
 init|=
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 decl_stmt|;
 for|for
 control|(
