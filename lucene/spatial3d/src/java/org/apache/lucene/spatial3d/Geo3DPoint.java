@@ -571,23 +571,6 @@ modifier|...
 name|polygons
 parameter_list|)
 block|{
-if|if
-condition|(
-name|polygons
-operator|.
-name|length
-operator|<
-literal|1
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"need at least one polygon"
-argument_list|)
-throw|;
-block|}
 specifier|final
 name|GeoShape
 name|shape
