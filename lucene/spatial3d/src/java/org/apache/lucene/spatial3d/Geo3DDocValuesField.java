@@ -1252,11 +1252,11 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Creates a SortField for sorting by distance along a path.    *<p>    * This sort orders documents by ascending distance along the described path. The value returned in {@link FieldDoc} for    * the hits contains a Double instance with the distance in meters.    *<p>    * If a document is missing the field, then by default it is treated as having {@link Double#POSITIVE_INFINITY} distance    * (missing values sort last).    *<p>    * If a document contains multiple values for the field, the<i>closest</i> distance to the location is used.    *     * @param field field name. must not be null.    * @param pathLatitudes latitude values for points of the path: must be within standard +/-90 coordinate bounds.    * @param pathLongitudes longitude values for points of the path: must be within standard +/-180 coordinate bounds.    * @param pathWidthMeters width of the path in meters.    * @return SortField ordering documents by distance    * @throws IllegalArgumentException if {@code field} is null or location has invalid coordinates.    */
-DECL|method|newDistanceSort
+DECL|method|newPathSort
 specifier|public
 specifier|static
 name|SortField
-name|newDistanceSort
+name|newPathSort
 parameter_list|(
 specifier|final
 name|String
