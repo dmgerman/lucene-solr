@@ -165,8 +165,8 @@ comment|// The formula we use to go from double to encoded value is:  Math.floor
 comment|// If we plug in maximum for value, we should get 0x1FFFFF.
 comment|// So, 0x1FFFFF = Math.floor((maximum - minimum) * factor + 0.5)
 comment|// We factor out the 0.5 and Math.floor by stating instead:
-comment|// 0x200000 = (maximum - minimum) * factor
-comment|// So, factor = 0x200000 / (maximum - minimum)
+comment|// 0x1FFFFF = (maximum - minimum) * factor
+comment|// So, factor = 0x1FFFFF / (maximum - minimum)
 DECL|field|inverseMaximumValue
 specifier|private
 specifier|final
@@ -180,7 +180,7 @@ call|(
 name|double
 call|)
 argument_list|(
-literal|0x200000
+literal|0x1FFFFF
 argument_list|)
 decl_stmt|;
 DECL|field|inverseXFactor
@@ -397,7 +397,69 @@ name|GeoPoint
 name|point
 parameter_list|)
 block|{
+name|fieldsData
+operator|=
+name|Long
+operator|.
+name|valueOf
+argument_list|(
+name|encodePoint
+argument_list|(
+name|point
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Change the values of this field    * @param x is the x value for the point.    * @param y is the y value for the point.    * @param z is the z value for the point.    * @throws IllegalArgumentException if x, y, or z are out of bounds    */
+DECL|method|setLocationValue
+specifier|public
+name|void
 name|setLocationValue
+parameter_list|(
+specifier|final
+name|double
+name|x
+parameter_list|,
+specifier|final
+name|double
+name|y
+parameter_list|,
+specifier|final
+name|double
+name|z
+parameter_list|)
+block|{
+name|fieldsData
+operator|=
+name|Long
+operator|.
+name|valueOf
+argument_list|(
+name|encodePoint
+argument_list|(
+name|x
+argument_list|,
+name|y
+argument_list|,
+name|z
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** Encode a point.    * @param point is the point    * @return the encoded long    */
+DECL|method|encodePoint
+specifier|public
+specifier|static
+name|long
+name|encodePoint
+parameter_list|(
+specifier|final
+name|GeoPoint
+name|point
+parameter_list|)
+block|{
+return|return
+name|encodePoint
 argument_list|(
 name|point
 operator|.
@@ -411,13 +473,14 @@ name|point
 operator|.
 name|z
 argument_list|)
-expr_stmt|;
+return|;
 block|}
-comment|/**    * Change the values of this field    * @param x is the x value for the point.    * @param y is the y value for the point.    * @param z is the z value for the point.    * @throws IllegalArgumentException if x, y, or z are out of bounds    */
-DECL|method|setLocationValue
+comment|/** Encode a point.    * @param x is the x value    * @param y is the y value    * @param z is the z value    * @return the encoded long    */
+DECL|method|encodePoint
 specifier|public
-name|void
-name|setLocationValue
+specifier|static
+name|long
+name|encodePoint
 parameter_list|(
 specifier|final
 name|double
@@ -456,12 +519,7 @@ argument_list|(
 name|z
 argument_list|)
 decl_stmt|;
-name|fieldsData
-operator|=
-name|Long
-operator|.
-name|valueOf
-argument_list|(
+return|return
 operator|(
 operator|(
 call|(
@@ -502,8 +560,7 @@ operator|&
 literal|0x1FFFFF
 argument_list|)
 operator|)
-argument_list|)
-expr_stmt|;
+return|;
 block|}
 comment|/** Decode GeoPoint value from long docvalues value.    * @param docValue is the doc values value.    * @return the GeoPoint.    */
 DECL|method|decodePoint
