@@ -1122,6 +1122,126 @@ argument_list|,
 literal|3
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+name|expression
+operator|=
+name|StreamExpressionParser
+operator|.
+name|parse
+argument_list|(
+literal|"search("
+operator|+
+name|COLLECTION
+operator|+
+literal|", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\")"
+argument_list|)
+expr_stmt|;
+name|stream
+operator|=
+operator|new
+name|CloudSolrStream
+argument_list|(
+name|expression
+argument_list|,
+name|factory
+argument_list|)
+expr_stmt|;
+name|tuples
+operator|=
+name|getTuples
+argument_list|(
+name|stream
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|Exception
+argument_list|(
+literal|"Should be an exception here"
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|assertTrue
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"q param expected for search function"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
+name|expression
+operator|=
+name|StreamExpressionParser
+operator|.
+name|parse
+argument_list|(
+literal|"search("
+operator|+
+name|COLLECTION
+operator|+
+literal|", q=\"blah\", sort=\"a_f asc, a_i asc\")"
+argument_list|)
+expr_stmt|;
+name|stream
+operator|=
+operator|new
+name|CloudSolrStream
+argument_list|(
+name|expression
+argument_list|,
+name|factory
+argument_list|)
+expr_stmt|;
+name|tuples
+operator|=
+name|getTuples
+argument_list|(
+name|stream
+argument_list|)
+expr_stmt|;
+throw|throw
+operator|new
+name|Exception
+argument_list|(
+literal|"Should be an exception here"
+argument_list|)
+throw|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|assertTrue
+argument_list|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"fl param expected for search function"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Test
@@ -16964,6 +17084,63 @@ operator|==
 literal|2
 argument_list|)
 expr_stmt|;
+comment|//Test zero result facets
+name|clause
+operator|=
+literal|"facet("
+operator|+
+literal|"collection1, "
+operator|+
+literal|"q=\"blahhh\", "
+operator|+
+literal|"fl=\"a_s,a_i,a_f\", "
+operator|+
+literal|"sort=\"a_s asc\", "
+operator|+
+literal|"buckets=\"a_s\", "
+operator|+
+literal|"bucketSorts=\"a_s asc\", "
+operator|+
+literal|"bucketSizeLimit=100, "
+operator|+
+literal|"sum(a_i), sum(a_f), "
+operator|+
+literal|"min(a_i), min(a_f), "
+operator|+
+literal|"max(a_i), max(a_f), "
+operator|+
+literal|"avg(a_i), avg(a_f), "
+operator|+
+literal|"count(*)"
+operator|+
+literal|")"
+expr_stmt|;
+name|stream
+operator|=
+name|factory
+operator|.
+name|constructStream
+argument_list|(
+name|clause
+argument_list|)
+expr_stmt|;
+name|tuples
+operator|=
+name|getTuples
+argument_list|(
+name|stream
+argument_list|)
+expr_stmt|;
+assert|assert
+operator|(
+name|tuples
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+operator|)
+assert|;
 block|}
 annotation|@
 name|Test

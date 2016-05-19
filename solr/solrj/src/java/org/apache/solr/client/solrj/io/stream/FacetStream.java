@@ -3313,6 +3313,15 @@ argument_list|(
 name|bucketName
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|nl
+operator|==
+literal|null
+condition|)
+block|{
+return|return;
+block|}
 name|List
 name|allBuckets
 init|=
