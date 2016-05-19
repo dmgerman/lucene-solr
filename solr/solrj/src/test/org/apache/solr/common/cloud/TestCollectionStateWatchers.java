@@ -681,12 +681,12 @@ name|SECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"CollectionStateWatcher wasn't cleared after completion"
-argument_list|,
-literal|0
-argument_list|,
+name|Set
+argument_list|<
+name|CollectionStateWatcher
+argument_list|>
+name|watchers
+init|=
 name|client
 operator|.
 name|getZkStateReader
@@ -696,9 +696,21 @@ name|getStateWatchers
 argument_list|(
 literal|"testcollection"
 argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"CollectionStateWatcher wasn't cleared after completion"
+argument_list|,
+name|watchers
+operator|==
+literal|null
+operator|||
+name|watchers
 operator|.
 name|size
 argument_list|()
+operator|==
+literal|0
 argument_list|)
 expr_stmt|;
 block|}

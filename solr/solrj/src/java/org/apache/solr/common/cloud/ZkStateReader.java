@@ -6998,13 +6998,6 @@ operator|.
 name|stateWatchers
 argument_list|)
 expr_stmt|;
-name|v
-operator|.
-name|stateWatchers
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 return|return
 name|v
 return|;
@@ -7029,11 +7022,9 @@ name|liveNodes
 argument_list|,
 name|collectionState
 argument_list|)
-operator|==
-literal|false
 condition|)
 block|{
-name|registerCollectionStateWatcher
+name|removeCollectionStateWatcher
 argument_list|(
 name|collection
 argument_list|,
