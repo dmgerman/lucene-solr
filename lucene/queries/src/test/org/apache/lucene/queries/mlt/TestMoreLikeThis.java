@@ -326,16 +326,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|Test
-import|;
-end_import
-
 begin_class
 DECL|class|TestMoreLikeThis
 specifier|public
@@ -2054,7 +2044,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|100
+literal|300
 condition|;
 name|i
 operator|++
@@ -2081,7 +2071,7 @@ literal|0
 init|;
 name|i
 operator|<
-literal|30
+literal|300
 condition|;
 name|i
 operator|++
