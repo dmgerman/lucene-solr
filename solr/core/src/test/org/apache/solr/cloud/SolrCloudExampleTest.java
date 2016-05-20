@@ -562,6 +562,29 @@ argument_list|(
 name|testCollectionName
 argument_list|)
 expr_stmt|;
+name|int
+name|invalidToolExitStatus
+init|=
+literal|1
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Collection '"
+operator|+
+name|testCollectionName
+operator|+
+literal|"' created even though it already existed"
+argument_list|,
+name|invalidToolExitStatus
+argument_list|,
+name|tool
+operator|.
+name|runTool
+argument_list|(
+name|cli
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// now index docs like bin/post would do but we can't use SimplePostTool because it uses System.exit when
 comment|// it encounters an error, which JUnit doesn't like ...
 name|log
