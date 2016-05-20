@@ -30,7 +30,7 @@ name|XYZBounds
 implements|implements
 name|Bounds
 block|{
-comment|/** A 'fudge factor', which is added to maximums and subtracted from minimums,    * in order to compensate for potential error deltas.  This would not be necessary    * except that our 'bounds' is defined as always equaling or exceeding the boundary    * of the shape, and we cannot guarantee that without making MINIMUM_RESOLUTION    * unacceptably large.    */
+comment|/** A 'fudge factor', which is added to maximums and subtracted from minimums,    * in order to compensate for potential error deltas.  This would not be necessary    * except that our 'bounds' is defined as always equaling or exceeding the boundary    * of the shape, and we cannot guarantee that without making MINIMUM_RESOLUTION    * unacceptably large.    * Also, see LUCENE-7290 for a description of how geometry can magnify the bounds delta.    */
 DECL|field|FUDGE_FACTOR
 specifier|private
 specifier|static
@@ -42,7 +42,7 @@ name|Vector
 operator|.
 name|MINIMUM_RESOLUTION
 operator|*
-literal|500.0
+literal|100.0
 decl_stmt|;
 comment|/** Minimum x */
 DECL|field|minX
@@ -766,6 +766,48 @@ name|large
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|this
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|addIntersection
+specifier|public
+name|Bounds
+name|addIntersection
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
+specifier|final
+name|Plane
+name|plane1
+parameter_list|,
+specifier|final
+name|Plane
+name|plane2
+parameter_list|,
+specifier|final
+name|Membership
+modifier|...
+name|bounds
+parameter_list|)
+block|{
+name|plane1
+operator|.
+name|recordBounds
+argument_list|(
+name|planetModel
+argument_list|,
+name|this
+argument_list|,
+name|plane2
+argument_list|,
+name|bounds
+argument_list|)
+expr_stmt|;
 return|return
 name|this
 return|;
