@@ -1011,7 +1011,7 @@ literal|"score of result "
 operator|+
 name|i
 operator|+
-literal|" shuould be "
+literal|" should be "
 operator|+
 name|expectedScore
 operator|+
@@ -1053,7 +1053,7 @@ literal|"id of result "
 operator|+
 name|i
 operator|+
-literal|" shuould be "
+literal|" should be "
 operator|+
 name|expectedId
 operator|+

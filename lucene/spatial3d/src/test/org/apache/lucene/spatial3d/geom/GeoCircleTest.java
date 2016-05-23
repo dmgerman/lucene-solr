@@ -100,7 +100,7 @@ name|assertEquals
 argument_list|(
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 argument_list|,
 name|c
 operator|.
@@ -120,7 +120,7 @@ name|assertEquals
 argument_list|(
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 argument_list|,
 name|c
 operator|.
@@ -140,7 +140,7 @@ name|assertEquals
 argument_list|(
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 argument_list|,
 name|c
 operator|.
@@ -1053,30 +1053,6 @@ operator|==
 name|GeoArea
 operator|.
 name|WITHIN
-argument_list|)
-expr_stmt|;
-comment|// Point is actually outside the bounds, and outside the shape
-name|assertTrue
-argument_list|(
-operator|!
-name|area
-operator|.
-name|isWithin
-argument_list|(
-name|p1
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// Approximate point the same
-name|assertTrue
-argument_list|(
-operator|!
-name|area
-operator|.
-name|isWithin
-argument_list|(
-name|p2
-argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// Eleventh BKD discovered failure

@@ -4806,7 +4806,7 @@ literal|"bday:[NOW/DAY TO NOW/DAY+1DAY]"
 argument_list|,
 literal|"TZ"
 argument_list|,
-literal|"GMT-23"
+literal|"GMT+01"
 argument_list|,
 literal|"NOW"
 argument_list|,

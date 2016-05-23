@@ -222,7 +222,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// skip low version against commited data
+comment|// skip low version against committed data
 name|assertU
 argument_list|(
 name|adoc
@@ -371,7 +371,7 @@ argument_list|,
 literal|"=={'doc':{'name':'a2'}}"
 argument_list|)
 expr_stmt|;
-comment|// skip low version against uncommited data from updateLog
+comment|// skip low version against uncommitted data from updateLog
 name|assertU
 argument_list|(
 name|adoc
@@ -720,7 +720,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// skip low version delete against commited doc
+comment|// skip low version delete against committed doc
 name|assertU
 argument_list|(
 name|adoc
@@ -851,7 +851,7 @@ argument_list|,
 literal|"=={'doc':{'name':'a2'}}"
 argument_list|)
 expr_stmt|;
-comment|// skip low version delete against uncommited doc from updateLog
+comment|// skip low version delete against uncommitted doc from updateLog
 name|assertU
 argument_list|(
 name|adoc
@@ -952,7 +952,7 @@ argument_list|,
 literal|"=={'doc':{'name':'a3'}}"
 argument_list|)
 expr_stmt|;
-comment|// skip low version add against uncommited "delete" from updateLog
+comment|// skip low version add against uncommitted "delete" from updateLog
 name|deleteAndGetVersion
 argument_list|(
 literal|"aaa"
@@ -1153,7 +1153,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// skip low version add& low version delete against commited doc
+comment|// skip low version add& low version delete against committed doc
 name|updateJ
 argument_list|(
 name|jsonAdd
@@ -1284,7 +1284,7 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// skip low version delete against uncommited doc from updateLog
+comment|// skip low version delete against uncommitted doc from updateLog
 name|updateJ
 argument_list|(
 name|jsonAdd
@@ -1399,7 +1399,7 @@ argument_list|,
 literal|"=={'doc':{'name':'a2'}}"
 argument_list|)
 expr_stmt|;
-comment|// skip low version add against uncommited "delete" from updateLog
+comment|// skip low version add against uncommitted "delete" from updateLog
 name|deleteAndGetVersion
 argument_list|(
 literal|"aaa"
@@ -1623,7 +1623,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// fail low version add& low version delete against commited doc
+comment|// fail low version add& low version delete against committed doc
 name|updateJ
 argument_list|(
 name|jsonAdd
@@ -1804,7 +1804,7 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// fail low version delete against uncommited doc from updateLog
+comment|// fail low version delete against uncommitted doc from updateLog
 name|updateJ
 argument_list|(
 name|jsonAdd
@@ -1944,7 +1944,7 @@ argument_list|,
 literal|"=={'doc':{'name':'a2'}}"
 argument_list|)
 expr_stmt|;
-comment|// fail low version add against uncommited "delete" from updateLog
+comment|// fail low version add against uncommitted "delete" from updateLog
 name|deleteAndGetVersion
 argument_list|(
 literal|"aaa"

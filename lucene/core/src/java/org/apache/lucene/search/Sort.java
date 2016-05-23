@@ -158,6 +158,23 @@ modifier|...
 name|fields
 parameter_list|)
 block|{
+if|if
+condition|(
+name|fields
+operator|.
+name|length
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"There must be at least 1 sort field"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|fields

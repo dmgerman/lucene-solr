@@ -603,11 +603,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-operator|new
-name|BytesRef
-argument_list|(
 literal|"foobaz"
-argument_list|)
 argument_list|,
 name|results
 operator|.
@@ -617,6 +613,9 @@ literal|0
 argument_list|)
 operator|.
 name|payload
+operator|.
+name|utf8ToString
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals

@@ -3022,14 +3022,6 @@ name|tuples
 init|=
 literal|null
 decl_stmt|;
-name|Set
-argument_list|<
-name|String
-argument_list|>
-name|paths
-init|=
-literal|null
-decl_stmt|;
 name|GatherNodesStream
 name|stream
 init|=

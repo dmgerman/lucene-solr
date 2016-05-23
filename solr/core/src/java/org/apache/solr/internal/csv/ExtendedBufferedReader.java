@@ -231,7 +231,7 @@ return|return
 name|lastChar
 return|;
 block|}
-comment|/**    * Non-blocking reading of len chars into buffer buf starting    * at bufferposition off.    *     * performs an iteratative read on the underlying stream    * as long as the following conditions hold:    *   - less than len chars have been read    *   - end of stream has not been reached    *   - next read is not blocking    *     * @return nof chars actually read or END_OF_STREAM    */
+comment|/**    * Non-blocking reading of len chars into buffer buf starting    * at bufferposition off.    *     * performs an iterative read on the underlying stream    * as long as the following conditions hold:    *   - less than len chars have been read    *   - end of stream has not been reached    *   - next read is not blocking    *     * @return nof chars actually read or END_OF_STREAM    */
 annotation|@
 name|Override
 DECL|method|read

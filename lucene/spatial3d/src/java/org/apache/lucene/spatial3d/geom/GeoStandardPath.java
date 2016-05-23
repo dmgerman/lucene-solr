@@ -1107,7 +1107,7 @@ name|distance
 operator|!=
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 condition|)
 return|return
 name|currentDistance
@@ -1163,7 +1163,7 @@ name|distance
 operator|!=
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 condition|)
 return|return
 name|currentDistance
@@ -1198,7 +1198,7 @@ block|}
 return|return
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 return|;
 block|}
 annotation|@
@@ -1257,7 +1257,7 @@ name|minDistance
 init|=
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 decl_stmt|;
 for|for
 control|(
@@ -2617,7 +2617,7 @@ condition|)
 return|return
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 return|;
 return|return
 name|distanceStyle
@@ -3562,7 +3562,7 @@ condition|)
 return|return
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 return|;
 comment|// (1) Compute normalizedPerpPlane.  If degenerate, then return point distance from start to point.
 comment|// Want no allocations or expensive operations!  so we do this the hard way

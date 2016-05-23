@@ -462,7 +462,7 @@ expr_stmt|;
 name|String
 name|schema
 init|=
-name|getSchemaFile
+name|getCloudSchemaFile
 argument_list|()
 decl_stmt|;
 if|if
@@ -523,6 +523,17 @@ parameter_list|()
 block|{
 return|return
 literal|"solrconfig-tlog.xml"
+return|;
+block|}
+DECL|method|getCloudSchemaFile
+specifier|protected
+name|String
+name|getCloudSchemaFile
+parameter_list|()
+block|{
+return|return
+name|getSchemaFile
+argument_list|()
 return|;
 block|}
 annotation|@

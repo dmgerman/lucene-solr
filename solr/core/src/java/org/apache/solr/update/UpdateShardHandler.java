@@ -380,7 +380,7 @@ return|return
 name|clientConnectionManager
 return|;
 block|}
-comment|/**    * In general, RecoveryStrategy threads do not do disk IO, but they open and close SolrCores    * in async threads, amoung other things, and can trigger disk IO, so we use this alternate     * executor rather than the 'updateExecutor', which is interrupted on shutdown.    *     * @return executor for {@link RecoveryStrategy} thread which will not be interrupted on close.    */
+comment|/**    * In general, RecoveryStrategy threads do not do disk IO, but they open and close SolrCores    * in async threads, among other things, and can trigger disk IO, so we use this alternate     * executor rather than the 'updateExecutor', which is interrupted on shutdown.    *     * @return executor for {@link RecoveryStrategy} thread which will not be interrupted on close.    */
 DECL|method|getRecoveryExecutor
 specifier|public
 name|ExecutorService
@@ -399,7 +399,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|// we interrupt on purpose here, but this exectuor should not run threads that do disk IO!
+comment|// we interrupt on purpose here, but this executor should not run threads that do disk IO!
 name|ExecutorUtil
 operator|.
 name|shutdownWithInterruptAndAwaitTermination

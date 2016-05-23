@@ -242,6 +242,17 @@ name|defaultFactories
 operator|.
 name|put
 argument_list|(
+literal|"subquery"
+argument_list|,
+operator|new
+name|SubQueryAugmenterFactory
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|defaultFactories
+operator|.
+name|put
+argument_list|(
 literal|"json"
 argument_list|,
 operator|new

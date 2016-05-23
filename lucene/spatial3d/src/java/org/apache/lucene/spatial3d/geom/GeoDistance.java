@@ -31,9 +31,9 @@ extends|extends
 name|Membership
 block|{
 comment|// The following methods compute distances from the shape to a point
-comment|// expected to be INSIDE the shape.  Typically a value of Double.MAX_VALUE
+comment|// expected to be INSIDE the shape.  Typically a value of Double.POSITIVE_INFINITY
 comment|// is returned for points that happen to be outside the shape.
-comment|/**    * Compute this shape's<em>internal</em> "distance" to the GeoPoint.    * Implementations should clarify how this is computed when it's non-obvious.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param distanceStyle is the distance style.    * @param point is the point to compute the distance to.    * @return the distance.    */
+comment|/**    * Compute this shape's<em>internal</em> "distance" to the GeoPoint.    * Implementations should clarify how this is computed when it's non-obvious.    * A return value of Double.POSITIVE_INFINITY should be returned for    * points outside of the shape.    *    * @param distanceStyle is the distance style.    * @param point is the point to compute the distance to.    * @return the distance.    */
 DECL|method|computeDistance
 specifier|public
 specifier|default
@@ -68,7 +68,7 @@ name|z
 argument_list|)
 return|;
 block|}
-comment|/**    * Compute this shape's<em>internal</em> "distance" to the GeoPoint.    * Implementations should clarify how this is computed when it's non-obvious.    * A return value of Double.MAX_VALUE should be returned for    * points outside of the shape.    *    * @param x is the point's unit x coordinate (using U.S. convention).    * @param y is the point's unit y coordinate (using U.S. convention).    * @param z is the point's unit z coordinate (using U.S. convention).    * @return the distance.    */
+comment|/**    * Compute this shape's<em>internal</em> "distance" to the GeoPoint.    * Implementations should clarify how this is computed when it's non-obvious.    * A return value of Double.POSITIVE_INFINITY should be returned for    * points outside of the shape.    *    * @param x is the point's unit x coordinate (using U.S. convention).    * @param y is the point's unit y coordinate (using U.S. convention).    * @param z is the point's unit z coordinate (using U.S. convention).    * @return the distance.    */
 DECL|method|computeDistance
 specifier|public
 name|double

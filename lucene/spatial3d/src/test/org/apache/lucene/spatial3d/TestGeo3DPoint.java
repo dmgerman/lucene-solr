@@ -933,7 +933,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"Lucene60"
+literal|"Lucene62"
 argument_list|)
 condition|)
 block|{
@@ -992,7 +992,7 @@ return|return
 operator|new
 name|FilterCodec
 argument_list|(
-literal|"Lucene60"
+literal|"Lucene62"
 argument_list|,
 name|Codec
 operator|.
@@ -1238,7 +1238,7 @@ block|{
 return|return
 name|degrees
 operator|*
-name|Geo3DPoint
+name|Geo3DUtil
 operator|.
 name|RADIANS_PER_DEGREE
 return|;
@@ -3058,10 +3058,16 @@ name|println
 argument_list|(
 literal|"  point="
 operator|+
-name|docs
-index|[
-name|docID
-index|]
+name|point
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|println
+argument_list|(
+literal|"  mappedPoint="
+operator|+
+name|mappedPoint
 argument_list|)
 expr_stmt|;
 name|fail

@@ -2773,7 +2773,7 @@ parameter_list|)
 block|{
 comment|// randomly decide which stat tag to use
 comment|// if this is 0, or stats aren't enabled, we'll be asking for a tag that doesn't exist
-comment|// ...which should be fine (just like excluding a taged fq that doesn't exist)
+comment|// ...which should be fine (just like excluding a tagged fq that doesn't exist)
 specifier|final
 name|int
 name|statTag

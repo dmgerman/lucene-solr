@@ -4189,9 +4189,6 @@ argument_list|()
 operator|.
 name|getZkStateReader
 argument_list|()
-operator|.
-name|getClusterProps
-argument_list|()
 argument_list|)
 condition|)
 block|{
@@ -4533,13 +4530,6 @@ argument_list|(
 name|dcore
 argument_list|,
 name|coreConfig
-argument_list|)
-expr_stmt|;
-name|solrCores
-operator|.
-name|addCreated
-argument_list|(
-name|core
 argument_list|)
 expr_stmt|;
 comment|// always kick off recovery if we are in non-Cloud mode
@@ -5616,7 +5606,7 @@ literal|null
 condition|)
 block|{
 comment|//Nope, no transient core with this name
-comment|// if there was an error initalizing this core, throw a 500
+comment|// if there was an error initializing this core, throw a 500
 comment|// error with the details for clients attempting to access it.
 name|CoreLoadFailure
 name|loadFailure

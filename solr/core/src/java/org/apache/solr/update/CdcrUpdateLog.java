@@ -2652,7 +2652,7 @@ name|subReader
 parameter_list|)
 block|{
 comment|// If a subreader has a null tlog reader, does nothing
-comment|// This can happend if a subreader is instantiated from a non-initialised parent reader, or if the subreader
+comment|// This can happened if a subreader is instantiated from a non-initialised parent reader, or if the subreader
 comment|// has been closed.
 if|if
 condition|(

@@ -152,7 +152,7 @@ block|{
 return|return
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 return|;
 block|}
 return|return
@@ -218,7 +218,7 @@ name|distanceValue
 operator|==
 name|Double
 operator|.
-name|MAX_VALUE
+name|POSITIVE_INFINITY
 condition|)
 block|{
 name|getBounds
@@ -238,7 +238,7 @@ name|distanceValue
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Called by a {@code getDistanceBounds} method if distanceValue is not Double.MAX_VALUE. */
+comment|/** Called by a {@code getDistanceBounds} method if distanceValue is not Double.POSITIVE_INFINITY. */
 DECL|method|distanceBounds
 specifier|protected
 specifier|abstract

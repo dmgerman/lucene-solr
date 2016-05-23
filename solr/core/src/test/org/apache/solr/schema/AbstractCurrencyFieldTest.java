@@ -2103,7 +2103,7 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// direct value source usage, gets "raw" form od default curency
+comment|// direct value source usage, gets "raw" form od default currency
 comment|// default==USD, so raw==penies
 name|assertQ
 argument_list|(

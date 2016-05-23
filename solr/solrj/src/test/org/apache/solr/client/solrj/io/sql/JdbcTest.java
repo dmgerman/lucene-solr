@@ -2938,7 +2938,7 @@ name|errorMessage
 operator|.
 name|contains
 argument_list|(
-literal|"Group by queries must include atleast one aggregate function"
+literal|"Group by queries must include at least one aggregate function"
 argument_list|)
 argument_list|)
 expr_stmt|;

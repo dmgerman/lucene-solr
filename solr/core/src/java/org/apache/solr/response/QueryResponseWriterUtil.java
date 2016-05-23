@@ -140,7 +140,7 @@ parameter_list|()
 block|{
 comment|/* static helpers only */
 block|}
-comment|/**    * Writes the response writer's result to the given output stream.    * This method inspects the specified writer to determine if it is a     * {@link BinaryQueryResponseWriter} or not to delegate to the approprate method.    * @see BinaryQueryResponseWriter#write(OutputStream,SolrQueryRequest,SolrQueryResponse)    * @see BinaryQueryResponseWriter#write(Writer,SolrQueryRequest,SolrQueryResponse)    */
+comment|/**    * Writes the response writer's result to the given output stream.    * This method inspects the specified writer to determine if it is a     * {@link BinaryQueryResponseWriter} or not to delegate to the appropriate method.    * @see BinaryQueryResponseWriter#write(OutputStream,SolrQueryRequest,SolrQueryResponse)    * @see BinaryQueryResponseWriter#write(Writer,SolrQueryRequest,SolrQueryResponse)    */
 DECL|method|writeQueryResponse
 specifier|public
 specifier|static

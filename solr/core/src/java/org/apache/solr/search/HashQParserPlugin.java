@@ -515,6 +515,17 @@ argument_list|(
 literal|"partitionKeys"
 argument_list|)
 decl_stmt|;
+name|keys
+operator|=
+name|keys
+operator|.
+name|replace
+argument_list|(
+literal|" "
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|HashQuery

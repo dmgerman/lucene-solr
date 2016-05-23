@@ -47,7 +47,7 @@ specifier|final
 class|class
 name|Version
 block|{
-comment|/** Match settings and bugs in Lucene's 6.0 release.    *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    * @deprecated (7.0.0) Use latest    */
+comment|/** Match settings and bugs in Lucene's 6.0 release.    * @deprecated (7.0.0) Use latest    */
 annotation|@
 name|Deprecated
 DECL|field|LUCENE_6_0_0
@@ -65,6 +65,26 @@ argument_list|,
 literal|0
 argument_list|,
 literal|0
+argument_list|)
+decl_stmt|;
+comment|/**    * Match settings and bugs in Lucene's 6.0.1 release.    * @deprecated Use latest    */
+annotation|@
+name|Deprecated
+DECL|field|LUCENE_6_0_1
+specifier|public
+specifier|static
+specifier|final
+name|Version
+name|LUCENE_6_0_1
+init|=
+operator|new
+name|Version
+argument_list|(
+literal|6
+argument_list|,
+literal|0
+argument_list|,
+literal|1
 argument_list|)
 decl_stmt|;
 comment|/**    * Match settings and bugs in Lucene's 6.1.0 release.    * @deprecated Use latest    */
@@ -87,7 +107,7 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
-comment|/**    * Match settings and bugs in Lucene's 7.0.0 release.    */
+comment|/**    * Match settings and bugs in Lucene's 7.0.0 release.    *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
 DECL|field|LUCENE_7_0_0
 specifier|public
 specifier|static

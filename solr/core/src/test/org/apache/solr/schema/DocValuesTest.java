@@ -963,7 +963,7 @@ literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// check reversability of created fields
+comment|// check reversibility of created fields
 name|tstToObj
 argument_list|(
 name|schema

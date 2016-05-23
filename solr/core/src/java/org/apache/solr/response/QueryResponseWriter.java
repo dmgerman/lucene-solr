@@ -118,7 +118,7 @@ name|CONTENT_TYPE_TEXT_ASCII
 init|=
 literal|"text/plain; charset=US-ASCII"
 decl_stmt|;
-comment|/**    * Write a SolrQueryResponse, this method must be thread save.    *    *<p>    * Information about the request (in particular: formating options) may be     * obtained from<code>req</code> but the dominant source of information     * should be<code>rsp</code>.    *<p>    * There are no mandatory actions that write must perform.    * An empty write implementation would fulfill    * all interface obligations.    *</p>     */
+comment|/**    * Write a SolrQueryResponse, this method must be thread save.    *    *<p>    * Information about the request (in particular: formatting options) may be     * obtained from<code>req</code> but the dominant source of information     * should be<code>rsp</code>.    *<p>    * There are no mandatory actions that write must perform.    * An empty write implementation would fulfill    * all interface obligations.    *</p>     */
 DECL|method|write
 specifier|public
 name|void

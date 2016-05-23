@@ -301,7 +301,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A field for indexed dates and date ranges. It's mostly compatible with TrieDateField.  *  * @see NumberRangePrefixTreeStrategy  * @see DateRangePrefixTree  */
+comment|/**  * A field for indexed dates and date ranges. It's mostly compatible with TrieDateField.  It has the potential to allow  * efficient faceting, similar to facet.enum.  *  * @see NumberRangePrefixTreeStrategy  * @see DateRangePrefixTree  */
 end_comment
 
 begin_class
@@ -314,7 +314,10 @@ name|AbstractSpatialPrefixTreeFieldType
 argument_list|<
 name|NumberRangePrefixTreeStrategy
 argument_list|>
+implements|implements
+name|DateValueFieldType
 block|{
+comment|// used by ParseDateFieldUpdateProcessorFactory
 DECL|field|OP_PARAM
 specifier|private
 specifier|static
@@ -332,9 +335,13 @@ specifier|final
 name|DateRangePrefixTree
 name|tree
 init|=
+operator|new
+name|DateRangePrefixTree
+argument_list|(
 name|DateRangePrefixTree
 operator|.
-name|INSTANCE
+name|JAVA_UTIL_TIME_COMPAT_CAL
+argument_list|)
 decl_stmt|;
 annotation|@
 name|Override
@@ -453,6 +460,7 @@ name|String
 name|shapeStr
 parameter_list|)
 block|{
+comment|// even if shapeStr is set, it might have included some dateMath, so see if we can resolve it first:
 if|if
 condition|(
 name|shape
@@ -481,28 +489,14 @@ name|getMaxLevels
 argument_list|()
 condition|)
 block|{
-comment|//fully precise date. We can be fully compatible with TrieDateField.
-name|Date
-name|date
-init|=
-name|tree
-operator|.
-name|toCalendar
-argument_list|(
-name|unitShape
-argument_list|)
-operator|.
-name|getTime
-argument_list|()
-decl_stmt|;
+comment|//fully precise date. We can be fully compatible with TrieDateField (incl. 'Z')
 return|return
-name|date
-operator|.
-name|toInstant
-argument_list|()
+name|shape
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|'Z'
 return|;
 block|}
 block|}
@@ -521,6 +515,27 @@ name|shapeStr
 operator|)
 return|;
 comment|//we don't normalize ranges here; should we?
+block|}
+comment|// Won't be called because we override getStoredValue? any way; easy to implement in terms of that
+annotation|@
+name|Override
+DECL|method|shapeToString
+specifier|public
+name|String
+name|shapeToString
+parameter_list|(
+name|Shape
+name|shape
+parameter_list|)
+block|{
+return|return
+name|getStoredValue
+argument_list|(
+name|shape
+argument_list|,
+literal|null
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Override
@@ -626,8 +641,9 @@ operator|>=
 literal|0
 condition|)
 block|{
-comment|//use Solr standard date format parsing rules.
-comment|//TODO parse a Calendar instead of a Date, rounded according to DateMath syntax.
+comment|//  ? but not if Z is last char ?   Ehh, whatever.
+comment|//use Solr standard date format parsing rules:
+comment|//TODO add DMP utility to return ZonedDateTime alternative, then set cal fields manually, which is faster?
 name|Date
 name|date
 init|=
@@ -724,78 +740,6 @@ argument_list|,
 name|rawval
 argument_list|)
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|shapeToString
-specifier|public
-name|String
-name|shapeToString
-parameter_list|(
-name|Shape
-name|shape
-parameter_list|)
-block|{
-if|if
-condition|(
-name|shape
-operator|instanceof
-name|UnitNRShape
-condition|)
-block|{
-name|UnitNRShape
-name|unitShape
-init|=
-operator|(
-name|UnitNRShape
-operator|)
-name|shape
-decl_stmt|;
-if|if
-condition|(
-name|unitShape
-operator|.
-name|getLevel
-argument_list|()
-operator|==
-name|tree
-operator|.
-name|getMaxLevels
-argument_list|()
-condition|)
-block|{
-comment|//fully precise date. We can be fully compatible with TrieDateField.
-name|Date
-name|date
-init|=
-name|tree
-operator|.
-name|toCalendar
-argument_list|(
-name|unitShape
-argument_list|)
-operator|.
-name|getTime
-argument_list|()
-decl_stmt|;
-return|return
-name|date
-operator|.
-name|toInstant
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-return|;
-block|}
-block|}
-return|return
-name|shape
-operator|.
-name|toString
-argument_list|()
-return|;
-comment|//range shape
 block|}
 annotation|@
 name|Override

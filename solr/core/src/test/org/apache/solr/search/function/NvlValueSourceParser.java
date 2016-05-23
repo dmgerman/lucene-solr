@@ -127,7 +127,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A sample ValueSourceParser for testing. Approximates the oracle NVL function,  * letting you substitude a value when a "null" is encountered. In this case,  * null is approximated by a float value, since ValueSource always returns a  * float, even if the field is undefined for a document.  *   * Initialization parameters:  *  - nvlFloatValue: float value to consider as "NULL" when seen in a field. defaults to 0.0f.  *    * Example:  *   nvl(vs,2)   will return 2 if the vs is NULL (as defined by nvlFloatValue above) or the doc value otherwise  *   */
+comment|/**  * A sample ValueSourceParser for testing. Approximates the oracle NVL function,  * letting you substitute a value when a "null" is encountered. In this case,  * null is approximated by a float value, since ValueSource always returns a  * float, even if the field is undefined for a document.  *   * Initialization parameters:  *  - nvlFloatValue: float value to consider as "NULL" when seen in a field. defaults to 0.0f.  *    * Example:  *   nvl(vs,2)   will return 2 if the vs is NULL (as defined by nvlFloatValue above) or the doc value otherwise  *   */
 end_comment
 
 begin_class

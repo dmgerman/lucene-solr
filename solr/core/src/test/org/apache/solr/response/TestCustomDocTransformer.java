@@ -349,7 +349,7 @@ argument_list|,
 literal|"id,out:[custom extra=subject,title]"
 argument_list|)
 argument_list|,
-comment|// Check that the concatinated fields make it in the results
+comment|// Check that the concatenated fields make it in the results
 literal|"//*[@numFound='"
 operator|+
 name|max
@@ -515,7 +515,7 @@ return|return
 name|extra
 return|;
 block|}
-comment|/**      * This transformer simply concatinates the values of multipe fields      */
+comment|/**      * This transformer simply concatenates the values of multiple fields      */
 annotation|@
 name|Override
 DECL|method|transform

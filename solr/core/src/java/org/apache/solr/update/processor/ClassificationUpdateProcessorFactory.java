@@ -260,7 +260,7 @@ specifier|private
 name|int
 name|k
 decl_stmt|;
-comment|// knn specific - thw window of top results to evaluate, when assgning the class
+comment|// knn specific - thw window of top results to evaluate, when assigning the class
 annotation|@
 name|Override
 DECL|method|init

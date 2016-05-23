@@ -2565,7 +2565,7 @@ block|}
 block|}
 empty_stmt|;
 comment|// with SOLR-6279 UNLOAD will wait for the core's reference count to have reached zero
-comment|// hence cN.close() need to preceed or run in parallel with unloadViaAdmin(...)
+comment|// hence cN.close() need to proceed or run in parallel with unloadViaAdmin(...)
 specifier|final
 name|TestThread
 name|cThread

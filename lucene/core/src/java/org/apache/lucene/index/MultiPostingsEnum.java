@@ -187,7 +187,7 @@ operator|==
 name|parent
 return|;
 block|}
-comment|/** Rre-use and reset this instance on the provided slices. */
+comment|/** Re-use and reset this instance on the provided slices. */
 DECL|method|reset
 specifier|public
 name|MultiPostingsEnum
@@ -645,10 +645,6 @@ specifier|static
 class|class
 name|EnumWithSlice
 block|{
-DECL|method|EnumWithSlice
-name|EnumWithSlice
-parameter_list|()
-block|{     }
 comment|/** {@link PostingsEnum} for this sub-reader. */
 DECL|field|postingsEnum
 specifier|public
@@ -661,6 +657,10 @@ specifier|public
 name|ReaderSlice
 name|slice
 decl_stmt|;
+DECL|method|EnumWithSlice
+name|EnumWithSlice
+parameter_list|()
+block|{     }
 annotation|@
 name|Override
 DECL|method|toString

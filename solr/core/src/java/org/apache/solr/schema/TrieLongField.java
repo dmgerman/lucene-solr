@@ -547,7 +547,7 @@ name|int
 name|doc
 parameter_list|)
 block|{
-comment|// micro optimized (eliminate at least one redudnent ord check)
+comment|// micro optimized (eliminate at least one redundant ord check)
 comment|//mval.exists = exists(doc);
 comment|//mval.value = mval.exists ? longVal(doc) : 0;
 comment|//

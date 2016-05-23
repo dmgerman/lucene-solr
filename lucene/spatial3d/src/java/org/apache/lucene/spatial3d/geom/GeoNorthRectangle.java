@@ -985,6 +985,17 @@ argument_list|,
 name|leftPlane
 argument_list|)
 operator|.
+name|addIntersection
+argument_list|(
+name|planetModel
+argument_list|,
+name|rightPlane
+argument_list|,
+name|leftPlane
+argument_list|,
+name|bottomPlane
+argument_list|)
+operator|.
 name|addPoint
 argument_list|(
 name|LLHC

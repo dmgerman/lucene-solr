@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Custom field type that overrides the prefix query behavior to map "X*" to [X TO Integer.MAX_VALUE].  * * This is used for testing overridded prefix query for custom fields in TestOverriddenPrefixQueryForCustomFieldType  */
+comment|/**  * Custom field type that overrides the prefix query behavior to map "X*" to [X TO Integer.MAX_VALUE].  * * This is used for testing overridden prefix query for custom fields in TestOverriddenPrefixQueryForCustomFieldType  */
 end_comment
 
 begin_class

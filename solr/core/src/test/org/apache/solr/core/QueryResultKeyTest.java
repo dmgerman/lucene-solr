@@ -1051,7 +1051,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * returns a "small" list of "small" random numbers.  The idea behind this method is     * that multiple calls have a decent change of returning two arrays which are the     * same size and contain the same numbers but in a differnet order.    *    * the array is garunteed to always have at least 1 element    */
+comment|/**    * returns a "small" list of "small" random numbers.  The idea behind this method is     * that multiple calls have a decent change of returning two arrays which are the     * same size and contain the same numbers but in a differed order.    *    * the array is guaranteed to always have at least 1 element    */
 DECL|method|smallArrayOfRandomNumbers
 specifier|private
 name|int

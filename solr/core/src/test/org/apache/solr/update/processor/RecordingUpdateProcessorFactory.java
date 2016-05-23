@@ -197,7 +197,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This Factory can optionally save refrences to the commands it receives in   * BlockingQueues that tests can poll from to observe that the exepected commands   * are executed.  By default, this factory does nothing except return the "next"   * processor from the chain unless it's told to {@link #startRecording()}  */
+comment|/**  * This Factory can optionally save references to the commands it receives in   * BlockingQueues that tests can poll from to observe that the expected commands   * are executed.  By default, this factory does nothing except return the "next"   * processor from the chain unless it's told to {@link #startRecording()}  */
 end_comment
 
 begin_class

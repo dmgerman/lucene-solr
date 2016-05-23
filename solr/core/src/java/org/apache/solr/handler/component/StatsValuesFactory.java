@@ -2546,7 +2546,7 @@ operator|.
 name|minD
 condition|)
 block|{
-comment|// Double for result& cached primitive doulbe to minimize unboxing in future comparisons
+comment|// Double for result& cached primitive double to minimize unboxing in future comparisons
 name|this
 operator|.
 name|min
@@ -2596,7 +2596,7 @@ operator|<
 name|maxD
 condition|)
 block|{
-comment|// Double for result& cached primitive doulbe to minimize unboxing in future comparisons
+comment|// Double for result& cached primitive double to minimize unboxing in future comparisons
 name|this
 operator|.
 name|max

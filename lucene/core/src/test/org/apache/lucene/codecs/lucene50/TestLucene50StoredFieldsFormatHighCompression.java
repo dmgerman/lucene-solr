@@ -60,9 +60,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene60
+name|lucene62
 operator|.
-name|Lucene60Codec
+name|Lucene62Codec
 import|;
 end_import
 
@@ -196,7 +196,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Lucene60Codec
+name|Lucene62Codec
 argument_list|(
 name|Mode
 operator|.
@@ -245,7 +245,7 @@ operator|.
 name|setCodec
 argument_list|(
 operator|new
-name|Lucene60Codec
+name|Lucene62Codec
 argument_list|(
 name|RandomPicks
 operator|.
@@ -446,7 +446,7 @@ parameter_list|()
 lambda|->
 block|{
 operator|new
-name|Lucene60Codec
+name|Lucene62Codec
 argument_list|(
 literal|null
 argument_list|)

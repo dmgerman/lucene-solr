@@ -885,7 +885,7 @@ block|,
 DECL|enum constant|LAZY
 name|LAZY
 block|,
-comment|// EnumSet.of and/or EnumSet.copyOf(Collection) are anoying
+comment|// EnumSet.of and/or EnumSet.copyOf(Collection) are annoying
 comment|// because of type determination
 DECL|enum constant|NOOP
 name|NOOP
@@ -1255,7 +1255,7 @@ name|assertWarnOrFail
 argument_list|(
 literal|"Solr no longer supports forceful unlocking via the 'unlockOnStartup' option.  "
 operator|+
-literal|"This is no longer neccessary for the default lockType except in situations where "
+literal|"This is no longer necessary for the default lockType except in situations where "
 operator|+
 literal|"it would be dangerous and should not be done.  For other lockTypes and/or "
 operator|+
@@ -2024,7 +2024,7 @@ name|MULTI_OK
 argument_list|)
 argument_list|)
 comment|// TODO: WTF is up with queryConverter???
-comment|// it aparently *only* works as a singleton? - SOLR-4304
+comment|// it apparently *only* works as a singleton? - SOLR-4304
 comment|// and even then -- only if there is a single SpellCheckComponent
 comment|// because of queryConverter.setIndexAnalyzer
 operator|.

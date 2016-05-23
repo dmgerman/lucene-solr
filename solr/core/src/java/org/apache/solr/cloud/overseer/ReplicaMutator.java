@@ -1550,9 +1550,6 @@ operator|.
 name|isLegacy
 argument_list|(
 name|zkStateReader
-operator|.
-name|getClusterProps
-argument_list|()
 argument_list|)
 condition|)
 block|{

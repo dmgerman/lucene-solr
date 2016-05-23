@@ -246,7 +246,7 @@ name|rsp
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * This method must authenticate the request. Upon a successful authentication, this     * must call the next filter in the filter chain and set the user principal of the request,    * or else, upon an error or an authentication failure, throw an exception.    *     * @param request the http request    * @param response the http response    * @param filterChain the servlet filter chain    * @throws Exception any exception thrown during the authentication, e.g.     * PriviledgedAccessException    */
+comment|/**    * This method must authenticate the request. Upon a successful authentication, this     * must call the next filter in the filter chain and set the user principal of the request,    * or else, upon an error or an authentication failure, throw an exception.    *     * @param request the http request    * @param response the http response    * @param filterChain the servlet filter chain    * @throws Exception any exception thrown during the authentication, e.g. PrivilegedActionException    */
 DECL|method|doAuthenticate
 specifier|public
 specifier|abstract

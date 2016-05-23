@@ -577,7 +577,7 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// now do a variety of things that *should* always garuntee a new searcher
+comment|// now do a variety of things that *should* always guarantee a new searcher
 name|SolrQueryRequest
 name|beforeReq
 decl_stmt|;
