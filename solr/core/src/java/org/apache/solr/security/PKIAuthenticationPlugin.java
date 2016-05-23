@@ -580,6 +580,41 @@ specifier|final
 name|int
 name|MAX_VALIDITY
 init|=
+name|getTTL
+argument_list|()
+decl_stmt|;
+DECL|method|getTTL
+specifier|private
+name|int
+name|getTTL
+parameter_list|()
+block|{
+name|String
+name|ttl
+init|=
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"pkiauth.ttl"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|ttl
+operator|!=
+literal|null
+condition|)
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"TTL is set to {}ms"
+argument_list|,
+name|ttl
+argument_list|)
+expr_stmt|;
+return|return
 name|Integer
 operator|.
 name|parseInt
@@ -593,7 +628,8 @@ argument_list|,
 literal|"5000"
 argument_list|)
 argument_list|)
-decl_stmt|;
+return|;
+block|}
 DECL|field|myNodeName
 specifier|private
 specifier|final
@@ -906,7 +942,13 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Invalid key "
+literal|"Invalid key request timestamp {} : received timestamp {}"
+argument_list|,
+name|decipher
+operator|.
+name|timestamp
+argument_list|,
+name|receivedTime
 argument_list|)
 expr_stmt|;
 name|filterChain
