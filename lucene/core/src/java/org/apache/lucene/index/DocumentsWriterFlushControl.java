@@ -1991,6 +1991,7 @@ expr_stmt|;
 comment|// Set a new delete queue - all subsequent DWPT will use this queue until
 comment|// we do another full flush
 comment|//System.out.println("DWFC: fullFLush old seqNo=" + documentsWriter.deleteQueue.seqNo.get() + " activeThreadCount=" + perThreadPool.getActiveThreadStateCount());
+comment|// jump over any possible in flight ops:
 name|seqNo
 operator|=
 name|documentsWriter

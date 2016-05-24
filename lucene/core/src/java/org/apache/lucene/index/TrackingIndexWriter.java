@@ -234,33 +234,6 @@ name|long
 name|deleteDocuments
 parameter_list|(
 name|Term
-name|t
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|writer
-operator|.
-name|deleteDocuments
-argument_list|(
-name|t
-argument_list|)
-expr_stmt|;
-comment|// Return gen as of when indexing finished:
-return|return
-name|indexingGen
-operator|.
-name|get
-argument_list|()
-return|;
-block|}
-comment|/** Calls {@link IndexWriter#deleteDocuments(Term...)} and    *  returns the generation that reflects this change. */
-DECL|method|deleteDocuments
-specifier|public
-name|long
-name|deleteDocuments
-parameter_list|(
-name|Term
 modifier|...
 name|terms
 parameter_list|)
@@ -272,33 +245,6 @@ operator|.
 name|deleteDocuments
 argument_list|(
 name|terms
-argument_list|)
-expr_stmt|;
-comment|// Return gen as of when indexing finished:
-return|return
-name|indexingGen
-operator|.
-name|get
-argument_list|()
-return|;
-block|}
-comment|/** Calls {@link IndexWriter#deleteDocuments(Query...)} and    *  returns the generation that reflects this change. */
-DECL|method|deleteDocuments
-specifier|public
-name|long
-name|deleteDocuments
-parameter_list|(
-name|Query
-name|q
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-name|writer
-operator|.
-name|deleteDocuments
-argument_list|(
-name|q
 argument_list|)
 expr_stmt|;
 comment|// Return gen as of when indexing finished:
@@ -548,6 +494,9 @@ name|reader
 argument_list|,
 name|docID
 argument_list|)
+operator|!=
+operator|-
+literal|1
 condition|)
 block|{
 return|return

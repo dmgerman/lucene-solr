@@ -2430,7 +2430,7 @@ annotation|@
 name|Override
 DECL|method|updateDocument
 specifier|public
-name|void
+name|long
 name|updateDocument
 parameter_list|(
 name|Term
@@ -2447,6 +2447,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|long
+name|result
+init|=
 name|super
 operator|.
 name|updateDocument
@@ -2455,7 +2458,7 @@ name|term
 argument_list|,
 name|doc
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 try|try
 block|{
 if|if
@@ -2489,6 +2492,9 @@ name|e
 argument_list|)
 throw|;
 block|}
+return|return
+name|result
+return|;
 block|}
 block|}
 DECL|method|testEvilSearcherFactory
