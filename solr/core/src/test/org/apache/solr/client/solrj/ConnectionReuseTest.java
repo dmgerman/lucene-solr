@@ -1131,11 +1131,9 @@ comment|// we can't fully control queue polling breaking up requests - allow a b
 name|int
 name|exp
 init|=
-name|cnt1
-operator|+
 name|queueBreaks
 operator|+
-literal|2
+literal|3
 decl_stmt|;
 name|assertTrue
 argument_list|(

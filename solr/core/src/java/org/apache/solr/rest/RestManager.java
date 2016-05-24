@@ -2991,11 +2991,11 @@ argument_list|>
 name|clazz
 parameter_list|)
 block|{
+specifier|final
 name|ManagedResource
 name|res
-init|=
-literal|null
 decl_stmt|;
+specifier|final
 name|ManagedResourceRegistration
 name|existingReg
 init|=
@@ -3026,6 +3026,8 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|res
+operator|=
 name|addRegisteredResource
 argument_list|(
 name|registry

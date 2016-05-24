@@ -3212,15 +3212,34 @@ operator|.
 name|overrequestCount
 argument_list|)
 expr_stmt|;
+comment|// If option FACET_DISTRIB_MCO is turned on then we will use 1 as the initial
+comment|// minCount (unless the user explicitly set it to something less than 1). If
+comment|// option FACET_DISTRIB_MCO is turned off then we will use 0 as the initial
+comment|// minCount regardless of what the user might have provided (prior to the
+comment|// addition of the FACET_DISTRIB_MCO option the default logic was to use 0).
+comment|// As described in issues SOLR-8559 and SOLR-8988 the use of 1 provides a
+comment|// significant performance boost.
 name|dff
 operator|.
 name|initialMincount
 operator|=
+name|dff
+operator|.
+name|mco
+condition|?
+name|Math
+operator|.
+name|min
+argument_list|(
+name|dff
+operator|.
+name|minCount
+argument_list|,
+literal|1
+argument_list|)
+else|:
 literal|0
 expr_stmt|;
-comment|// TODO: we could change this to 1, but would
-comment|// then need more refinement for small facet
-comment|// result sets?
 block|}
 else|else
 block|{
@@ -8157,6 +8176,11 @@ name|int
 name|initialMincount
 decl_stmt|;
 comment|// mincount param sent to each shard
+DECL|field|mco
+specifier|public
+name|boolean
+name|mco
+decl_stmt|;
 DECL|field|overrequestRatio
 specifier|public
 name|double
@@ -8279,6 +8303,23 @@ operator|.
 name|FACET_OVERREQUEST_COUNT
 argument_list|,
 literal|10
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|mco
+operator|=
+name|params
+operator|.
+name|getFieldBool
+argument_list|(
+name|field
+argument_list|,
+name|FacetParams
+operator|.
+name|FACET_DISTRIB_MCO
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
