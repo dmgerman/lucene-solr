@@ -18831,6 +18831,27 @@ block|}
 block|}
 return|;
 block|}
+comment|// nocommit javadocs
+DECL|method|getLastSequenceNumber
+specifier|public
+name|long
+name|getLastSequenceNumber
+parameter_list|()
+block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
+return|return
+name|docWriter
+operator|.
+name|deleteQueue
+operator|.
+name|seqNo
+operator|.
+name|get
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

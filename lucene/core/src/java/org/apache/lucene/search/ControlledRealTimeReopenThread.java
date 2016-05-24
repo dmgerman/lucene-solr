@@ -86,20 +86,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|TrackingIndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|ThreadInterruptedException
@@ -107,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Utility class that runs a thread to manage periodicc  *  reopens of a {@link ReferenceManager}, with methods to wait for a specific  *  index changes to become visible.  To use this class you  *  must first wrap your {@link IndexWriter} with a {@link  *  TrackingIndexWriter} and always use it to make changes  *  to the index, saving the returned generation.  Then,  *  when a given search request needs to see a specific  *  index change, call the {#waitForGeneration} to wait for  *  that change to be visible.  Note that this will only  *  scale well if most searches do not need to wait for a  *  specific index generation.  *  * @lucene.experimental */
+comment|/** Utility class that runs a thread to manage periodicc  *  reopens of a {@link ReferenceManager}, with methods to wait for a specific  *  index changes to become visible.  When a given search request needs to see a specific  *  index change, call the {#waitForGeneration} to wait for  *  that change to be visible.  Note that this will only  *  scale well if most searches do not need to wait for a  *  specific index generation.  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -147,7 +133,7 @@ decl_stmt|;
 DECL|field|writer
 specifier|private
 specifier|final
-name|TrackingIndexWriter
+name|IndexWriter
 name|writer
 decl_stmt|;
 DECL|field|finish
@@ -199,7 +185,7 @@ DECL|method|ControlledRealTimeReopenThread
 specifier|public
 name|ControlledRealTimeReopenThread
 parameter_list|(
-name|TrackingIndexWriter
+name|IndexWriter
 name|writer
 parameter_list|,
 name|ReferenceManager
@@ -444,7 +430,7 @@ name|curGen
 init|=
 name|writer
 operator|.
-name|getGeneration
+name|getLastSequenceNumber
 argument_list|()
 decl_stmt|;
 if|if
@@ -728,7 +714,7 @@ name|refreshStartGen
 operator|=
 name|writer
 operator|.
-name|getAndIncrementGeneration
+name|getLastSequenceNumber
 argument_list|()
 expr_stmt|;
 try|try
