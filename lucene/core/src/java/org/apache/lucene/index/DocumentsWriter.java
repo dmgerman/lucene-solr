@@ -477,6 +477,7 @@ operator|.
 name|doOnDelete
 argument_list|()
 expr_stmt|;
+comment|// nocommit long
 return|return
 name|applyAllDeletes
 argument_list|(
@@ -489,7 +490,7 @@ comment|// term doesn't exist, don't bother buffering into the
 comment|// per-DWPT map (but still must go into the global map)
 DECL|method|deleteTerms
 specifier|synchronized
-name|boolean
+name|long
 name|deleteTerms
 parameter_list|(
 specifier|final
@@ -509,23 +510,37 @@ name|this
 operator|.
 name|deleteQueue
 decl_stmt|;
+name|long
+name|seqNo
+init|=
 name|deleteQueue
 operator|.
 name|addDelete
 argument_list|(
 name|terms
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|flushControl
 operator|.
 name|doOnDelete
 argument_list|()
 expr_stmt|;
-return|return
+if|if
+condition|(
 name|applyAllDeletes
 argument_list|(
 name|deleteQueue
 argument_list|)
+condition|)
+block|{
+name|seqNo
+operator|=
+operator|-
+name|seqNo
+expr_stmt|;
+block|}
+return|return
+name|seqNo
 return|;
 block|}
 DECL|method|updateDocValues
@@ -1839,7 +1854,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|updateDocument
-name|boolean
+name|long
 name|updateDocument
 parameter_list|(
 specifier|final
@@ -1883,6 +1898,10 @@ specifier|final
 name|DocumentsWriterPerThread
 name|flushingDWPT
 decl_stmt|;
+specifier|final
+name|long
+name|seqno
+decl_stmt|;
 try|try
 block|{
 comment|// This must happen after we've pulled the ThreadState because IW.close
@@ -1920,6 +1939,8 @@ argument_list|()
 decl_stmt|;
 try|try
 block|{
+name|seqno
+operator|=
 name|dwpt
 operator|.
 name|updateDocument
@@ -2002,14 +2023,27 @@ name|perThread
 argument_list|)
 expr_stmt|;
 block|}
-return|return
+if|if
+condition|(
 name|postUpdate
 argument_list|(
 name|flushingDWPT
 argument_list|,
 name|hasEvents
 argument_list|)
+condition|)
+block|{
+return|return
+operator|-
+name|seqno
 return|;
+block|}
+else|else
+block|{
+return|return
+name|seqno
+return|;
+block|}
 block|}
 DECL|method|doFlush
 specifier|private
@@ -2467,7 +2501,7 @@ return|;
 block|}
 comment|/*    * FlushAllThreads is synced by IW fullFlushLock. Flushing all threads is a    * two stage operation; the caller must ensure (in try/finally) that finishFlush    * is called after this method, to release the flush lock in DWFlushControl    */
 DECL|method|flushAllThreads
-name|boolean
+name|long
 name|flushAllThreads
 parameter_list|()
 throws|throws
@@ -2499,6 +2533,9 @@ literal|"startFullFlush"
 argument_list|)
 expr_stmt|;
 block|}
+name|long
+name|seqNo
+decl_stmt|;
 synchronized|synchronized
 init|(
 name|this
@@ -2514,6 +2551,8 @@ operator|=
 name|deleteQueue
 expr_stmt|;
 comment|/* Cutover to a new delete queue.  This must be synced on the flush control        * otherwise a new DWPT could sneak into the loop with an already flushing        * delete queue */
+name|seqNo
+operator|=
 name|flushControl
 operator|.
 name|markForFullFlush
@@ -2653,9 +2692,22 @@ operator|==
 name|currentFullFlushDelQueue
 assert|;
 block|}
-return|return
+if|if
+condition|(
 name|anythingFlushed
+condition|)
+block|{
+return|return
+operator|-
+name|seqNo
 return|;
+block|}
+else|else
+block|{
+return|return
+name|seqNo
+return|;
+block|}
 block|}
 DECL|method|finishFullFlush
 name|void

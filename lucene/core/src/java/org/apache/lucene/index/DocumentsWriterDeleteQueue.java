@@ -36,6 +36,20 @@ name|concurrent
 operator|.
 name|atomic
 operator|.
+name|AtomicLong
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|atomic
+operator|.
 name|AtomicReferenceFieldUpdater
 import|;
 end_import
@@ -193,6 +207,11 @@ specifier|final
 name|BufferedUpdates
 name|globalBufferedUpdates
 decl_stmt|;
+DECL|field|gen
+specifier|private
+name|long
+name|gen
+decl_stmt|;
 comment|// only acquired to update the global deletes, pkg-private for access by tests:
 DECL|field|globalBufferLock
 specifier|final
@@ -208,13 +227,21 @@ specifier|final
 name|long
 name|generation
 decl_stmt|;
+DECL|field|seqNo
+specifier|final
+name|AtomicLong
+name|seqNo
+decl_stmt|;
 DECL|method|DocumentsWriterDeleteQueue
 name|DocumentsWriterDeleteQueue
 parameter_list|()
 block|{
+comment|// seqNo must start at 1 because some APIs negate this to encode a boolean
 name|this
 argument_list|(
 literal|0
+argument_list|,
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -223,6 +250,9 @@ name|DocumentsWriterDeleteQueue
 parameter_list|(
 name|long
 name|generation
+parameter_list|,
+name|long
+name|startSeqNo
 parameter_list|)
 block|{
 name|this
@@ -232,6 +262,8 @@ name|BufferedUpdates
 argument_list|()
 argument_list|,
 name|generation
+argument_list|,
+name|startSeqNo
 argument_list|)
 expr_stmt|;
 block|}
@@ -243,6 +275,9 @@ name|globalBufferedUpdates
 parameter_list|,
 name|long
 name|generation
+parameter_list|,
+name|long
+name|startSeqNo
 parameter_list|)
 block|{
 name|this
@@ -256,6 +291,16 @@ operator|.
 name|generation
 operator|=
 name|generation
+expr_stmt|;
+name|this
+operator|.
+name|seqNo
+operator|=
+operator|new
+name|AtomicLong
+argument_list|(
+name|startSeqNo
+argument_list|)
 expr_stmt|;
 comment|/*      * we use a sentinel instance as our initial tail. No slice will ever try to      * apply this tail since the head is always omitted.      */
 name|tail
@@ -278,7 +323,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|method|addDelete
-name|void
+name|long
 name|addDelete
 parameter_list|(
 name|Query
@@ -286,6 +331,9 @@ modifier|...
 name|queries
 parameter_list|)
 block|{
+name|long
+name|seqNo
+init|=
 name|add
 argument_list|(
 operator|new
@@ -294,13 +342,16 @@ argument_list|(
 name|queries
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|tryApplyGlobalSlice
 argument_list|()
 expr_stmt|;
+return|return
+name|seqNo
+return|;
 block|}
 DECL|method|addDelete
-name|void
+name|long
 name|addDelete
 parameter_list|(
 name|Term
@@ -308,6 +359,9 @@ modifier|...
 name|terms
 parameter_list|)
 block|{
+name|long
+name|seqNo
+init|=
 name|add
 argument_list|(
 operator|new
@@ -316,13 +370,16 @@ argument_list|(
 name|terms
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|tryApplyGlobalSlice
 argument_list|()
 expr_stmt|;
+return|return
+name|seqNo
+return|;
 block|}
 DECL|method|addDocValuesUpdates
-name|void
+name|long
 name|addDocValuesUpdates
 parameter_list|(
 name|DocValuesUpdate
@@ -330,6 +387,9 @@ modifier|...
 name|updates
 parameter_list|)
 block|{
+name|long
+name|seqNo
+init|=
 name|add
 argument_list|(
 operator|new
@@ -338,14 +398,17 @@ argument_list|(
 name|updates
 argument_list|)
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|tryApplyGlobalSlice
 argument_list|()
 expr_stmt|;
+return|return
+name|seqNo
+return|;
 block|}
 comment|/**    * invariant for document update    */
 DECL|method|add
-name|void
+name|long
 name|add
 parameter_list|(
 name|Term
@@ -366,11 +429,14 @@ name|term
 argument_list|)
 decl_stmt|;
 comment|//    System.out.println(Thread.currentThread().getName() + ": push " + termNode + " this=" + this);
+name|long
+name|seqNo
+init|=
 name|add
 argument_list|(
 name|termNode
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 comment|/*      * this is an update request where the term is the updated documents      * delTerm. in that case we need to guarantee that this insert is atomic      * with regards to the given delete slice. This means if two threads try to      * update the same document with in turn the same delTerm one of them must      * win. By taking the node we have created for our del term as the new tail      * it is guaranteed that if another thread adds the same right after us we      * will apply this delete next time we update our slice and one of the two      * competing updates wins!      */
 name|slice
 operator|.
@@ -394,16 +460,21 @@ argument_list|()
 expr_stmt|;
 comment|// TODO doing this each time is not necessary maybe
 comment|// we can do it just every n times or so?
+return|return
+name|seqNo
+return|;
 block|}
+comment|// nocommit can we remove the sync'd
 DECL|method|add
-name|void
+specifier|synchronized
+name|long
 name|add
 parameter_list|(
 name|Node
 argument_list|<
 name|?
 argument_list|>
-name|item
+name|newNode
 parameter_list|)
 block|{
 comment|/*      * this non-blocking / 'wait-free' linked list add was inspired by Apache      * Harmony's ConcurrentLinkedQueue Implementation.      */
@@ -464,7 +535,7 @@ comment|// can fail
 block|}
 else|else
 block|{
-comment|/*            * we are in quiescent state and can try to insert the item to the            * current tail if we fail to insert we just retry the operation since            * somebody else has already added its item            */
+comment|/*            * we are in quiescent state and can try to insert the new node to the            * current tail if we fail to insert we just retry the operation since            * somebody else has already added its item            */
 if|if
 condition|(
 name|currentTail
@@ -473,7 +544,7 @@ name|casNext
 argument_list|(
 literal|null
 argument_list|,
-name|item
+name|newNode
 argument_list|)
 condition|)
 block|{
@@ -486,10 +557,15 @@ name|this
 argument_list|,
 name|currentTail
 argument_list|,
-name|item
+name|newNode
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+name|seqNo
+operator|.
+name|getAndIncrement
+argument_list|()
+return|;
 block|}
 block|}
 block|}

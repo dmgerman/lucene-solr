@@ -104,6 +104,10 @@ begin_comment
 comment|/** Class that tracks changes to a delegated  *  IndexWriter, used by {@link  *  ControlledRealTimeReopenThread} to ensure specific  *  changes are visible.   Create this class (passing your  *  IndexWriter), and then pass this class to {@link  *  ControlledRealTimeReopenThread}.  *  Be sure to make all changes via the  *  TrackingIndexWriter, otherwise {@link  *  ControlledRealTimeReopenThread} won't know about the changes.  *  * @lucene.experimental */
 end_comment
 
+begin_comment
+comment|// nocommit removeme
+end_comment
+
 begin_class
 DECL|class|TrackingIndexWriter
 specifier|public

@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/* Holds buffered deletes and updates, by docID, term or query for a  * single segment. This is used to hold buffered pending  * deletes and updates against the to-be-flushed segment.  Once the  * deletes and updates are pushed (on flush in DocumentsWriter), they  * are converted to a FrozenDeletes instance. */
+comment|/* Holds buffered deletes and updates, by docID, term or query for a  * single segment. This is used to hold buffered pending  * deletes and updates against the to-be-flushed segment.  Once the  * deletes and updates are pushed (on flush in DocumentsWriter), they  * are converted to a FrozenBufferedUpdates instance. */
 end_comment
 
 begin_comment

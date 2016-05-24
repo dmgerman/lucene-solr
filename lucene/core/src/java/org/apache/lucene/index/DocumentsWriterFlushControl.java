@@ -1946,13 +1946,16 @@ block|}
 block|}
 block|}
 DECL|method|markForFullFlush
-name|void
+name|long
 name|markForFullFlush
 parameter_list|()
 block|{
 specifier|final
 name|DocumentsWriterDeleteQueue
 name|flushingQueue
+decl_stmt|;
+name|long
+name|seqNo
 decl_stmt|;
 synchronized|synchronized
 init|(
@@ -1987,6 +1990,25 @@ name|deleteQueue
 expr_stmt|;
 comment|// Set a new delete queue - all subsequent DWPT will use this queue until
 comment|// we do another full flush
+comment|//System.out.println("DWFC: fullFLush old seqNo=" + documentsWriter.deleteQueue.seqNo.get() + " activeThreadCount=" + perThreadPool.getActiveThreadStateCount());
+name|seqNo
+operator|=
+name|documentsWriter
+operator|.
+name|deleteQueue
+operator|.
+name|seqNo
+operator|.
+name|get
+argument_list|()
+operator|+
+name|perThreadPool
+operator|.
+name|getActiveThreadStateCount
+argument_list|()
+expr_stmt|;
+comment|// nocommit is this (active thread state count) always enough of a gap?  what if new indexing thread sneaks in just now?  it would
+comment|// have to get this next delete queue?
 name|DocumentsWriterDeleteQueue
 name|newQueue
 init|=
@@ -1996,6 +2018,10 @@ argument_list|(
 name|flushingQueue
 operator|.
 name|generation
+operator|+
+literal|1
+argument_list|,
+name|seqNo
 operator|+
 literal|1
 argument_list|)
@@ -2178,6 +2204,9 @@ operator|.
 name|deleteQueue
 argument_list|)
 assert|;
+return|return
+name|seqNo
+return|;
 block|}
 DECL|method|assertActiveDeleteQueue
 specifier|private

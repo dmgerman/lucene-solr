@@ -2086,9 +2086,13 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"DirectoryReader.ReaderCommit("
+literal|"StandardDirectoryReader.ReaderCommit("
 operator|+
 name|segmentsFileName
+operator|+
+literal|" files="
+operator|+
+name|files
 operator|+
 literal|")"
 return|;

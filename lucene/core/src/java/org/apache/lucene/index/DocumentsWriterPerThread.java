@@ -993,11 +993,6 @@ literal|"num docs "
 operator|+
 name|numDocsInRAM
 assert|;
-name|pendingUpdates
-operator|.
-name|clear
-argument_list|()
-expr_stmt|;
 name|deleteSlice
 operator|=
 name|deleteQueue
@@ -1193,7 +1188,7 @@ block|}
 block|}
 DECL|method|updateDocument
 specifier|public
-name|void
+name|long
 name|updateDocument
 parameter_list|(
 name|Iterable
@@ -1345,11 +1340,12 @@ operator|++
 expr_stmt|;
 block|}
 block|}
+return|return
 name|finishDocument
 argument_list|(
 name|delTerm
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 DECL|method|updateDocuments
 specifier|public
@@ -1572,6 +1568,7 @@ name|docCount
 argument_list|)
 expr_stmt|;
 block|}
+comment|// nocommit return seqNo here
 block|}
 finally|finally
 block|{
@@ -1630,7 +1627,7 @@ return|;
 block|}
 DECL|method|finishDocument
 specifier|private
-name|void
+name|long
 name|finishDocument
 parameter_list|(
 name|Term
@@ -1645,6 +1642,9 @@ name|numDocsInRAM
 operator|!=
 literal|0
 decl_stmt|;
+name|long
+name|seqNo
+decl_stmt|;
 if|if
 condition|(
 name|delTerm
@@ -1652,6 +1652,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|seqNo
+operator|=
 name|deleteQueue
 operator|.
 name|add
@@ -1683,6 +1685,16 @@ argument_list|(
 name|deleteSlice
 argument_list|)
 expr_stmt|;
+comment|// nocommit we don't need to increment here?
+name|seqNo
+operator|=
+name|deleteQueue
+operator|.
+name|seqNo
+operator|.
+name|get
+argument_list|()
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -1711,6 +1723,9 @@ block|}
 operator|++
 name|numDocsInRAM
 expr_stmt|;
+return|return
+name|seqNo
+return|;
 block|}
 comment|// Buffer a specific docID for deletion. Currently only
 comment|// used when we hit an exception when adding a document

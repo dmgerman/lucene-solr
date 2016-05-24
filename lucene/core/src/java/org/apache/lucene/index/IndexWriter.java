@@ -994,6 +994,11 @@ name|SegmentInfos
 name|pendingCommit
 decl_stmt|;
 comment|// set when a commit is pending (after prepareCommit()& before commit())
+DECL|field|pendingSeqNo
+specifier|volatile
+name|long
+name|pendingSeqNo
+decl_stmt|;
 DECL|field|pendingCommitChangeCount
 specifier|volatile
 name|long
@@ -1360,13 +1365,39 @@ init|)
 block|{
 try|try
 block|{
-name|anyChanges
-operator|=
+comment|// nocommit should we make this available in the returned NRT reader?
+name|long
+name|seqNo
+init|=
 name|docWriter
 operator|.
 name|flushAllThreads
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|seqNo
+operator|<
+literal|0
+condition|)
+block|{
+name|anyChanges
+operator|=
+literal|true
 expr_stmt|;
+name|seqNo
+operator|=
+operator|-
+name|seqNo
+expr_stmt|;
+block|}
+else|else
+block|{
+name|anyChanges
+operator|=
+literal|false
+expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -4418,7 +4449,7 @@ block|}
 comment|/**    * Adds a document to this index.    *    *<p> Note that if an Exception is hit (for example disk full)    * then the index will be consistent, but this document    * may not have been added.  Furthermore, it's possible    * the index will have one segment in non-compound format    * even when using compound files (when a merge has    * partially succeeded).</p>    *    *<p> This method periodically flushes pending documents    * to the Directory (see<a href="#flush">above</a>), and    * also periodically triggers segment merges in the index    * according to the {@link MergePolicy} in use.</p>    *    *<p>Merges temporarily consume space in the    * directory. The amount of space required is up to 1X the    * size of all segments being merged, when no    * readers/searchers are open against the index, and up to    * 2X the size of all segments being merged when    * readers/searchers are open against the index (see    * {@link #forceMerge(int)} for details). The sequence of    * primitive merge operations performed is governed by the    * merge policy.    *    *<p>Note that each term in the document can be no longer    * than {@link #MAX_TERM_LENGTH} in bytes, otherwise an    * IllegalArgumentException will be thrown.</p>    *    *<p>Note that it's possible to create an invalid Unicode    * string in java if a UTF16 surrogate pair is malformed.    * In this case, the invalid characters are silently    * replaced with the Unicode replacement character    * U+FFFD.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public
-name|void
+name|long
 name|addDocument
 parameter_list|(
 name|Iterable
@@ -4432,13 +4463,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+return|return
 name|updateDocument
 argument_list|(
 literal|null
 argument_list|,
 name|doc
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 comment|/**    * Atomically adds a block of documents with sequentially    * assigned document IDs, such that an external reader    * will see all or none of the documents.    *    *<p><b>WARNING</b>: the index does not currently record    * which documents were added as a block.  Today this is    * fine, because merging will preserve a block. The order of    * documents within a segment will be preserved, even when child    * documents within a block are deleted. Most search features    * (like result grouping and block joining) require you to    * mark documents; when these documents are deleted these    * search features will not work as expected. Obviously adding    * documents to an existing block will require you the reindex    * the entire block.    *    *<p>However it's possible that in the future Lucene may    * merge more aggressively re-order documents (for example,    * perhaps to obtain better index compression), in which case    * you may need to fully re-index your documents at that time.    *    *<p>See {@link #addDocument(Iterable)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    *<p><b>NOTE</b>: tools that do offline splitting of an index    * (for example, IndexSplitter in contrib) or    * re-sorting of documents (for example, IndexSorter in    * contrib) are not aware of these atomically added documents    * and will likely break them up.  Use such tools at your    * own risk!    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @lucene.experimental    */
 DECL|method|addDocuments
@@ -4867,7 +4899,7 @@ block|}
 comment|/**    * Deletes the document(s) containing any of the    * terms. All given deletes are applied and flushed atomically    * at the same time.    *    * @param terms array of terms to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|deleteDocuments
 specifier|public
-name|void
+name|long
 name|deleteDocuments
 parameter_list|(
 name|Term
@@ -4882,16 +4914,28 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-if|if
-condition|(
+name|long
+name|seqNo
+init|=
 name|docWriter
 operator|.
 name|deleteTerms
 argument_list|(
 name|terms
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|seqNo
+operator|<
+literal|0
 condition|)
 block|{
+name|seqNo
+operator|=
+operator|-
+name|seqNo
+expr_stmt|;
 name|processEvents
 argument_list|(
 literal|true
@@ -4900,6 +4944,9 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+return|return
+name|seqNo
+return|;
 block|}
 catch|catch
 parameter_list|(
@@ -4914,6 +4961,11 @@ argument_list|,
 literal|"deleteDocuments(Term..)"
 argument_list|)
 expr_stmt|;
+comment|// dead code but javac disagrees:
+return|return
+operator|-
+literal|1
+return|;
 block|}
 block|}
 comment|/**    * Deletes the document(s) matching any of the provided queries.    * All given deletes are applied and flushed atomically at the same time.    *    * @param queries array of queries to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
@@ -4998,7 +5050,7 @@ block|}
 comment|/**    * Updates a document by first deleting the document(s)    * containing<code>term</code> and then adding the new    * document.  The delete and then add are atomic as seen    * by a reader on the same index (flush may happen only after    * the add).    *    * @param term the term to identify the document(s) to be    * deleted    * @param doc the document to be added    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|updateDocument
 specifier|public
-name|void
+name|long
 name|updateDocument
 parameter_list|(
 name|Term
@@ -5027,8 +5079,9 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-if|if
-condition|(
+name|long
+name|seqNo
+init|=
 name|docWriter
 operator|.
 name|updateDocument
@@ -5039,8 +5092,19 @@ name|analyzer
 argument_list|,
 name|term
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|seqNo
+operator|<
+literal|0
 condition|)
 block|{
+name|seqNo
+operator|=
+operator|-
+name|seqNo
+expr_stmt|;
 name|processEvents
 argument_list|(
 literal|true
@@ -5053,6 +5117,9 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
+return|return
+name|seqNo
+return|;
 block|}
 finally|finally
 block|{
@@ -5100,6 +5167,11 @@ argument_list|,
 literal|"updateDocument"
 argument_list|)
 expr_stmt|;
+comment|// dead code but javac disagrees:
+return|return
+operator|-
+literal|1
+return|;
 block|}
 block|}
 comment|/**    * Updates a document's {@link NumericDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link NumericDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
@@ -9530,7 +9602,7 @@ name|Override
 DECL|method|prepareCommit
 specifier|public
 specifier|final
-name|void
+name|long
 name|prepareCommit
 parameter_list|()
 throws|throws
@@ -9539,6 +9611,8 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+name|pendingSeqNo
+operator|=
 name|prepareCommitInternal
 argument_list|(
 name|config
@@ -9547,10 +9621,13 @@ name|getMergePolicy
 argument_list|()
 argument_list|)
 expr_stmt|;
+return|return
+name|pendingSeqNo
+return|;
 block|}
 DECL|method|prepareCommitInternal
 specifier|private
-name|void
+name|long
 name|prepareCommitInternal
 parameter_list|(
 name|MergePolicy
@@ -9658,6 +9735,9 @@ name|anySegmentsFlushed
 init|=
 literal|false
 decl_stmt|;
+name|long
+name|seqNo
+decl_stmt|;
 comment|// This is copied from doFlush, except it's modified to
 comment|// clone& incRef the flushed SegmentInfos inside the
 comment|// sync block:
@@ -9680,13 +9760,30 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|anySegmentsFlushed
+name|seqNo
 operator|=
 name|docWriter
 operator|.
 name|flushAllThreads
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|seqNo
+operator|<
+literal|0
+condition|)
+block|{
+name|anySegmentsFlushed
+operator|=
+literal|true
+expr_stmt|;
+name|seqNo
+operator|=
+operator|-
+name|seqNo
+expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
@@ -9860,6 +9957,12 @@ argument_list|,
 literal|"prepareCommit"
 argument_list|)
 expr_stmt|;
+comment|// dead code but javac disagrees:
+name|seqNo
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 block|}
 name|boolean
 name|success
@@ -9894,6 +9997,9 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
+return|return
+name|seqNo
+return|;
 block|}
 finally|finally
 block|{
@@ -10036,7 +10142,7 @@ name|Override
 DECL|method|commit
 specifier|public
 specifier|final
-name|void
+name|long
 name|commit
 parameter_list|()
 throws|throws
@@ -10045,6 +10151,8 @@ block|{
 name|ensureOpen
 argument_list|()
 expr_stmt|;
+comment|// nocommit should we put seq no into sis?
+return|return
 name|commitInternal
 argument_list|(
 name|config
@@ -10052,7 +10160,7 @@ operator|.
 name|getMergePolicy
 argument_list|()
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 comment|/** Returns true if there may be changes that have not been    *  committed.  There are cases where this may return true    *  when there are no actual "real" changes to the index,    *  for example if you've deleted by Term or Query but    *  that Term or Query does not match any documents.    *  Also, if a merge kicked off as a result of flushing a    *  new segment during {@link #commit}, or a concurrent    *  merged finished, this method may return true right    *  after you had just called {@link #commit}. */
 DECL|method|hasUncommittedChanges
@@ -10084,7 +10192,7 @@ block|}
 DECL|method|commitInternal
 specifier|private
 specifier|final
-name|void
+name|long
 name|commitInternal
 parameter_list|(
 name|MergePolicy
@@ -10143,6 +10251,9 @@ literal|"commit: enter lock"
 argument_list|)
 expr_stmt|;
 block|}
+name|long
+name|seqNo
+decl_stmt|;
 if|if
 condition|(
 name|pendingCommit
@@ -10170,6 +10281,8 @@ literal|"commit: now prepare"
 argument_list|)
 expr_stmt|;
 block|}
+name|seqNo
+operator|=
 name|prepareCommitInternal
 argument_list|(
 name|mergePolicy
@@ -10198,10 +10311,17 @@ literal|"commit: already prepared"
 argument_list|)
 expr_stmt|;
 block|}
+name|seqNo
+operator|=
+name|pendingSeqNo
+expr_stmt|;
 block|}
 name|finishCommit
 argument_list|()
 expr_stmt|;
+return|return
+name|seqNo
+return|;
 block|}
 block|}
 DECL|method|finishCommit
@@ -10739,13 +10859,38 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|anyChanges
-operator|=
+name|long
+name|seqNo
+init|=
 name|docWriter
 operator|.
 name|flushAllThreads
 argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|seqNo
+operator|<
+literal|0
+condition|)
+block|{
+name|seqNo
+operator|=
+operator|-
+name|seqNo
 expr_stmt|;
+name|anyChanges
+operator|=
+literal|true
+expr_stmt|;
+block|}
+else|else
+block|{
+name|anyChanges
+operator|=
+literal|false
+expr_stmt|;
+block|}
 if|if
 condition|(
 operator|!
