@@ -41,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A query that matches no documents.  */
+comment|/**      * A query that matches no documents.  */
 end_comment
 
 begin_class
@@ -90,6 +90,37 @@ parameter_list|)
 block|{
 return|return
 literal|""
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|equals
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+return|return
+name|sameClassAs
+argument_list|(
+name|o
+argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|hashCode
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|classHash
+argument_list|()
 return|;
 block|}
 block|}

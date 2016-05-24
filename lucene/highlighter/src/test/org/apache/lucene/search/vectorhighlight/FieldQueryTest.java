@@ -5090,7 +5090,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    *<t>...terminal    *     * a-b-c-<t>    *     +-d-<t>    * b-c-d-<t>    * +-d-<t>    */
+comment|/*    *<t>...terminal    *    * a-b-c-<t>    *     +-d-<t>    * b-c-d-<t>    * +-d-<t>    */
 DECL|method|testQueryPhraseMapOverlapPhrases
 specifier|public
 name|void
@@ -5586,7 +5586,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    *<t>...terminal    *     * a-b-<t>    *   +-c-<t>    */
+comment|/*    *<t>...terminal    *    * a-b-<t>    *   +-c-<t>    */
 DECL|method|testQueryPhraseMapOverlapPhrases2
 specifier|public
 name|void
@@ -5865,7 +5865,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/*    *<t>...terminal    *     * a-a-a-<t>    *     +-a-<t>    *       +-a-<t>    *         +-a-<t>    */
+comment|/*    *<t>...terminal    *    * a-a-a-<t>    *     +-a-<t>    *       +-a-<t>    *         +-a-<t>    */
 DECL|method|testQueryPhraseMapOverlapPhrases3
 specifier|public
 name|void
@@ -7801,6 +7801,35 @@ block|{
 return|return
 literal|"DummyQuery"
 return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|()
+throw|;
 block|}
 block|}
 decl_stmt|;

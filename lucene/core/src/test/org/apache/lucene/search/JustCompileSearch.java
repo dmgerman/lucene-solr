@@ -109,7 +109,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Holds all implementations of classes in the o.a.l.search package as a  * back-compatibility test. It does not run any tests per-se, however if   * someone adds a method to an interface or abstract method to an abstract  * class, one of the implementations here will fail to compile and so we know  * back-compat policy was violated.  */
+comment|/**  * Holds all implementations of classes in the o.a.l.search package as a  * back-compatibility test. It does not run any tests per-se, however if  * someone adds a method to an interface or abstract method to an abstract  * class, one of the implementations here will fail to compile and so we know  * back-compat policy was violated.  */
 end_comment
 
 begin_class
@@ -533,6 +533,41 @@ parameter_list|(
 name|String
 name|field
 parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+name|UNSUPPORTED_MSG
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|equals
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|obj
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+name|UNSUPPORTED_MSG
+argument_list|)
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|hashCode
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
 block|{
 throw|throw
 operator|new

@@ -418,6 +418,38 @@ return|return
 literal|"My Whacky Query"
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+return|return
+name|o
+operator|==
+name|this
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
+return|;
+block|}
 block|}
 decl_stmt|;
 name|checkUnequal
@@ -566,7 +598,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Various query sanity checks on a searcher, some checks are only done for    * instanceof IndexSearcher.    *    * @see #check(Query)    * @see #checkFirstSkipTo    * @see #checkSkipTo    * @see #checkExplanations    * @see #checkEqual    */
+comment|/**    * Various query sanity checks on a searcher, some checks are only done for    * instanceof IndexSearcher.    *    * @see #check(Query)    * @see #checkFirstSkipTo    * @see #checkSkipTo    * @see #checkExplanations    * @see #checkEqual    */
 DECL|method|check
 specifier|public
 specifier|static
@@ -798,7 +830,7 @@ name|cacheKey
 return|;
 block|}
 block|}
-comment|/**    * Given an IndexSearcher, returns a new IndexSearcher whose IndexReader     * is a MultiReader containing the Reader of the original IndexSearcher,     * as well as several "empty" IndexReaders -- some of which will have     * deleted documents in them.  This new IndexSearcher should     * behave exactly the same as the original IndexSearcher.    * @param s the searcher to wrap    * @param edge if negative, s will be the first sub; if 0, s will be in the middle, if positive s will be the last sub    */
+comment|/**    * Given an IndexSearcher, returns a new IndexSearcher whose IndexReader    * is a MultiReader containing the Reader of the original IndexSearcher,    * as well as several "empty" IndexReaders -- some of which will have    * deleted documents in them.  This new IndexSearcher should    * behave exactly the same as the original IndexSearcher.    * @param s the searcher to wrap    * @param edge if negative, s will be the first sub; if 0, s will be in the middle, if positive s will be the last sub    */
 DECL|method|wrapUnderlyingReader
 specifier|public
 specifier|static

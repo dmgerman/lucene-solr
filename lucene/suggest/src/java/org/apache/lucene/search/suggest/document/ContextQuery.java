@@ -219,7 +219,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link CompletionQuery} that match documents specified by  * a wrapped {@link CompletionQuery} supporting boosting and/or filtering  * by specified contexts.  *<p>  * Use this query against {@link ContextSuggestField}  *<p>  * Example of using a {@link CompletionQuery} with boosted  * contexts:  *<pre class="prettyprint">  *  CompletionQuery completionQuery = ...;  *  ContextQuery query = new ContextQuery(completionQuery);  *  query.addContext("context1", 2);  *  query.addContext("context2", 1);  *</pre>  *<p>  * NOTE:  *<ul>  *<li>  *    This query can be constructed with  *    {@link PrefixCompletionQuery}, {@link RegexCompletionQuery}  *    or {@link FuzzyCompletionQuery} query.  *</li>  *<li>  *     To suggest across all contexts, use {@link #addAllContexts()}.  *     When no context is added, the default behaviour is to suggest across  *     all contexts.  *</li>  *<li>  *     To apply the same boost to multiple contexts sharing the same prefix,  *     Use {@link #addContext(CharSequence, float, boolean)} with the common  *     context prefix, boost and set<code>exact</code> to false.  *<li>  *     Using this query against a {@link SuggestField} (not context enabled),  *     would yield results ignoring any context filtering/boosting  *</li>  *</ul>  *  * @lucene.experimental  */
+comment|/**  * A {@link CompletionQuery} that matches documents specified by  * a wrapped {@link CompletionQuery} supporting boosting and/or filtering  * by specified contexts.  *<p>  * Use this query against {@link ContextSuggestField}  *<p>  * Example of using a {@link CompletionQuery} with boosted  * contexts:  *<pre class="prettyprint">  *  CompletionQuery completionQuery = ...;  *  ContextQuery query = new ContextQuery(completionQuery);  *  query.addContext("context1", 2);  *  query.addContext("context2", 1);  *</pre>  *<p>  * NOTE:  *<ul>  *<li>  *    This query can be constructed with  *    {@link PrefixCompletionQuery}, {@link RegexCompletionQuery}  *    or {@link FuzzyCompletionQuery} query.  *</li>  *<li>  *     To suggest across all contexts, use {@link #addAllContexts()}.  *     When no context is added, the default behaviour is to suggest across  *     all contexts.  *</li>  *<li>  *     To apply the same boost to multiple contexts sharing the same prefix,  *     Use {@link #addContext(CharSequence, float, boolean)} with the common  *     context prefix, boost and set<code>exact</code> to false.  *<li>  *     Using this query against a {@link SuggestField} (not context enabled),  *     would yield results ignoring any context filtering/boosting  *</li>  *</ul>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -1617,6 +1617,37 @@ name|boost
 argument_list|()
 return|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|equals
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
+block|}
+annotation|@
+name|Override
+DECL|method|hashCode
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|()
+throw|;
 block|}
 block|}
 end_class
