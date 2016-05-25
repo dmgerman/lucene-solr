@@ -310,22 +310,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|uninverting
-operator|.
-name|UninvertingReader
-operator|.
-name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -343,6 +327,8 @@ operator|.
 name|common
 operator|.
 name|SolrException
+operator|.
+name|ErrorCode
 import|;
 end_import
 
@@ -357,8 +343,6 @@ operator|.
 name|common
 operator|.
 name|SolrException
-operator|.
-name|ErrorCode
 import|;
 end_import
 
@@ -387,6 +371,22 @@ operator|.
 name|search
 operator|.
 name|QParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|uninverting
+operator|.
+name|UninvertingReader
+operator|.
+name|Type
 import|;
 end_import
 
