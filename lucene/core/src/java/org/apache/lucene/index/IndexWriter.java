@@ -1365,7 +1365,7 @@ init|)
 block|{
 try|try
 block|{
-comment|// nocommit should we make this available in the returned NRT reader?
+comment|// TODO: should we somehow make this available in the returned NRT reader?
 name|long
 name|seqNo
 init|=
@@ -10173,9 +10173,24 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
+if|if
+condition|(
+name|pendingCommit
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+operator|-
+literal|1
+return|;
+block|}
+else|else
+block|{
 return|return
 name|seqNo
 return|;
+block|}
 block|}
 finally|finally
 block|{
@@ -10312,7 +10327,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-comment|/**    *<p>Commits all pending changes (added and deleted    * documents, segment merges, added    * indexes, etc.) to the index, and syncs all referenced    * index files, such that a reader will see the changes    * and the index updates will survive an OS or machine    * crash or power loss.  Note that this does not wait for    * any running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents and metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    * @see #prepareCommit    */
+comment|/**    *<p>Commits all pending changes (added and deleted    * documents, segment merges, added    * indexes, etc.) to the index, and syncs all referenced    * index files, such that a reader will see the changes    * and the index updates will survive an OS or machine    * crash or power loss.  Note that this does not wait for    * any running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents and metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    *<p> If nothing was committed, because there were no    * pending changes, this returns -1.  Otherwise, it returns    * the sequence number such that all indexing operations    * prior to this sequence will be included in the commit    * point, and all other operations will not.</p>    *    * @see #prepareCommit    */
 annotation|@
 name|Override
 DECL|method|commit
@@ -18890,7 +18905,7 @@ block|}
 block|}
 return|;
 block|}
-comment|// nocommit javadocs
+comment|/** Returns the last sequence number.    *    * @lucene.experimental */
 DECL|method|getLastSequenceNumber
 specifier|public
 name|long
@@ -18909,6 +18924,8 @@ name|seqNo
 operator|.
 name|get
 argument_list|()
+operator|-
+literal|1
 return|;
 block|}
 block|}

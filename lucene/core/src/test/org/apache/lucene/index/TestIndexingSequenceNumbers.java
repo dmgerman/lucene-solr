@@ -496,18 +496,17 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// nocommit use RandomIndexWriter
 specifier|final
-name|IndexWriter
+name|RandomIndexWriter
 name|w
 init|=
 operator|new
-name|IndexWriter
+name|RandomIndexWriter
 argument_list|(
-name|dir
-argument_list|,
-name|newIndexWriterConfig
+name|random
 argument_list|()
+argument_list|,
+name|dir
 argument_list|)
 decl_stmt|;
 name|Thread
@@ -806,12 +805,10 @@ expr_stmt|;
 name|DirectoryReader
 name|r
 init|=
-name|DirectoryReader
-operator|.
-name|open
-argument_list|(
 name|w
-argument_list|)
+operator|.
+name|getReader
+argument_list|()
 decl_stmt|;
 name|IndexSearcher
 name|s
@@ -960,7 +957,6 @@ init|=
 name|newDirectory
 argument_list|()
 decl_stmt|;
-comment|// nocommit use RandomIndexWriter
 name|IndexWriterConfig
 name|iwc
 init|=
@@ -976,6 +972,7 @@ operator|.
 name|INSTANCE
 argument_list|)
 expr_stmt|;
+comment|// Cannot use RIW since it randomly commits:
 specifier|final
 name|IndexWriter
 name|w
@@ -1176,14 +1173,6 @@ init|(
 name|commitLock
 init|)
 block|{
-if|if
-condition|(
-name|w
-operator|.
-name|hasUncommittedChanges
-argument_list|()
-condition|)
-block|{
 name|op
 operator|.
 name|seqNo
@@ -1193,6 +1182,16 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|op
+operator|.
+name|seqNo
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
 name|commits
 operator|.
 name|add
@@ -1201,7 +1200,6 @@ name|op
 argument_list|)
 expr_stmt|;
 block|}
-comment|//System.out.println("done commit seqNo=" + op.seqNo);
 block|}
 block|}
 else|else
@@ -1456,7 +1454,40 @@ name|join
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*     // nocommit: why does this make the assertEquals angry...?     if (w.hasUncommittedChanges()) {       Operation commitOp = new Operation();       commitOp.seqNo = w.commit();       commits.add(commitOp);     }     */
+name|Operation
+name|commitOp
+init|=
+operator|new
+name|Operation
+argument_list|()
+decl_stmt|;
+name|commitOp
+operator|.
+name|seqNo
+operator|=
+name|w
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|commitOp
+operator|.
+name|seqNo
+operator|!=
+operator|-
+literal|1
+condition|)
+block|{
+name|commits
+operator|.
+name|add
+argument_list|(
+name|commitOp
+argument_list|)
+expr_stmt|;
+block|}
 name|List
 argument_list|<
 name|IndexCommit
@@ -2047,7 +2078,6 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|// nocommit test that does n ops across threads, then does it again with a single index / single thread, and assert indices are the same
 block|}
 end_class
 

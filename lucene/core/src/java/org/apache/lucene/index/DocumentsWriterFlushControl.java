@@ -2008,8 +2008,8 @@ operator|.
 name|getActiveThreadStateCount
 argument_list|()
 expr_stmt|;
-comment|// nocommit is this (active thread state count) always enough of a gap?  what if new indexing thread sneaks in just now?  it would
-comment|// have to get this next delete queue?
+comment|// Insert a gap in seqNo of current active thread count, in the worst case those threads now have one operation in flight.  It's fine
+comment|// if we have some sequence numbers that were never assigned:
 name|DocumentsWriterDeleteQueue
 name|newQueue
 init|=
