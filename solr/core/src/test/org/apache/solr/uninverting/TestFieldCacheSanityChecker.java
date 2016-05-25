@@ -4,13 +4,13 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.uninverting
+DECL|package|org.apache.solr.uninverting
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|uninverting
 package|;
@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LegacyDoubleField
+name|Field
 import|;
 end_import
 
@@ -78,7 +78,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|Field
+name|LegacyDoubleField
 import|;
 end_import
 
@@ -134,20 +134,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|DirectoryReader
 import|;
 end_import
@@ -176,7 +162,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MultiReader
+name|LeafReader
 import|;
 end_import
 
@@ -190,7 +176,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowCompositeReaderWrapper
+name|MultiReader
 import|;
 end_import
 
@@ -216,6 +202,34 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|util
+operator|.
+name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|index
+operator|.
+name|SlowCompositeReaderWrapper
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|uninverting
 operator|.
 name|FieldCacheSanityChecker
@@ -230,27 +244,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|uninverting
 operator|.
 name|FieldCacheSanityChecker
 operator|.
 name|InsanityType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
 import|;
 end_import
 

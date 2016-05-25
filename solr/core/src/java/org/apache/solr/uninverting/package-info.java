@@ -8,13 +8,13 @@ comment|/**  * Support for creating docvalues on-the-fly from the inverted index
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.uninverting
+DECL|package|org.apache.solr.uninverting
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|uninverting
 package|;

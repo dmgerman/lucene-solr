@@ -345,6 +345,8 @@ operator|.
 name|search
 operator|.
 name|SortField
+operator|.
+name|Type
 import|;
 end_import
 
@@ -359,8 +361,6 @@ operator|.
 name|search
 operator|.
 name|SortField
-operator|.
-name|Type
 import|;
 end_import
 
@@ -417,20 +417,6 @@ operator|.
 name|store
 operator|.
 name|RAMDirectory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|uninverting
-operator|.
-name|UninvertingReader
 import|;
 end_import
 
@@ -527,6 +513,20 @@ operator|.
 name|schema
 operator|.
 name|SchemaField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|uninverting
+operator|.
+name|UninvertingReader
 import|;
 end_import
 

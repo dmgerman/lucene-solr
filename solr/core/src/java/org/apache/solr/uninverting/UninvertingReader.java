@@ -4,13 +4,13 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.uninverting
+DECL|package|org.apache.solr.uninverting
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|uninverting
 package|;
@@ -312,11 +312,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|uninverting
+name|util
 operator|.
-name|FieldCache
-operator|.
-name|CacheEntry
+name|Bits
 import|;
 end_import
 
@@ -326,11 +324,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|util
+name|uninverting
 operator|.
-name|Bits
+name|FieldCache
+operator|.
+name|CacheEntry
 import|;
 end_import
 

@@ -178,7 +178,21 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
+operator|.
+name|schema
+operator|.
+name|IndexSchema
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
 operator|.
 name|uninverting
 operator|.
@@ -194,9 +208,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|schema
+name|uninverting
 operator|.
-name|IndexSchema
+name|UninvertingReader
 import|;
 end_import
 

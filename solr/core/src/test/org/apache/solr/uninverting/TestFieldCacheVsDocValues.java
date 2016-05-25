@@ -4,33 +4,17 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.uninverting
+DECL|package|org.apache.solr.uninverting
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|uninverting
 package|;
 end_package
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|SortedSetDocValues
-operator|.
-name|NO_MORE_ORDS
-import|;
-end_import
 
 begin_import
 import|import
@@ -198,34 +182,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|LeafReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|BinaryDocValues
 import|;
 end_import
@@ -296,7 +252,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|RandomIndexWriter
+name|LeafReader
 import|;
 end_import
 
@@ -310,7 +266,21 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowCompositeReaderWrapper
+name|LeafReaderContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|RandomIndexWriter
 import|;
 end_import
 
@@ -367,6 +337,8 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
+operator|.
+name|SeekStatus
 import|;
 end_import
 
@@ -381,8 +353,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-operator|.
-name|SeekStatus
 import|;
 end_import
 
@@ -467,6 +437,36 @@ operator|.
 name|util
 operator|.
 name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|index
+operator|.
+name|SlowCompositeReaderWrapper
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|SortedSetDocValues
+operator|.
+name|NO_MORE_ORDS
 import|;
 end_import
 

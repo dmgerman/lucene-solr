@@ -32,20 +32,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|uninverting
-operator|.
-name|UninvertingReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|common
@@ -69,6 +55,22 @@ operator|.
 name|util
 operator|.
 name|SimpleOrderedMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|core
+operator|.
+name|JmxMonitoredMap
+operator|.
+name|JmxAugmentedSolrInfoMBean
 import|;
 end_import
 
@@ -108,11 +110,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|uninverting
 operator|.
-name|JmxMonitoredMap
-operator|.
-name|JmxAugmentedSolrInfoMBean
+name|UninvertingReader
 import|;
 end_import
 
