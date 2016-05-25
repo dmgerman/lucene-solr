@@ -208,9 +208,7 @@ literal|"failOnPrepare"
 argument_list|)
 throw|;
 block|}
-comment|// nocommit hmm
 return|return
-operator|-
 literal|1
 return|;
 block|}
@@ -270,9 +268,7 @@ literal|"failOnCommit"
 argument_list|)
 throw|;
 block|}
-comment|// nocommit hmm
 return|return
-operator|-
 literal|1
 return|;
 block|}

@@ -55,7 +55,6 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/**    * Discards any changes that have occurred since the last commit. In a 2-phase    * commit algorithm, where one of the objects failed to {@link #commit()} or    * {@link #prepareCommit()}, this method is used to roll all other objects    * back to their previous state.    */
-comment|// nocommit return long?
 DECL|method|rollback
 specifier|public
 name|void
