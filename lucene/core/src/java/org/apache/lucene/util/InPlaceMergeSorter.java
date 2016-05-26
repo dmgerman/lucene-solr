@@ -82,7 +82,7 @@ name|to
 operator|-
 name|from
 operator|<
-name|THRESHOLD
+name|INSERTION_SORT_THRESHOLD
 condition|)
 block|{
 name|insertionSort

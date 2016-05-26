@@ -1275,6 +1275,8 @@ argument_list|(
 name|og
 operator|.
 name|docs
+argument_list|,
+name|numSubScorers
 argument_list|)
 expr_stmt|;
 block|}
@@ -1327,6 +1329,8 @@ argument_list|(
 name|og
 operator|.
 name|scores
+argument_list|,
+name|numSubScorers
 argument_list|)
 expr_stmt|;
 block|}

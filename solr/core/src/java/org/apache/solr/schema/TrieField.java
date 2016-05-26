@@ -119,6 +119,8 @@ operator|.
 name|document
 operator|.
 name|FieldType
+operator|.
+name|LegacyNumericType
 import|;
 end_import
 
@@ -133,8 +135,6 @@ operator|.
 name|document
 operator|.
 name|FieldType
-operator|.
-name|LegacyNumericType
 import|;
 end_import
 
@@ -430,22 +430,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|uninverting
-operator|.
-name|UninvertingReader
-operator|.
-name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -623,6 +607,22 @@ operator|.
 name|function
 operator|.
 name|ValueSourceRangeFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|uninverting
+operator|.
+name|UninvertingReader
+operator|.
+name|Type
 import|;
 end_import
 

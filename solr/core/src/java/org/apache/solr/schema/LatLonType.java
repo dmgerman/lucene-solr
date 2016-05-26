@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|IndexableField
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexableField
+name|LeafReaderContext
 import|;
 end_import
 
@@ -308,22 +308,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|uninverting
-operator|.
-name|UninvertingReader
-operator|.
-name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|common
@@ -413,6 +397,22 @@ operator|.
 name|search
 operator|.
 name|SpatialOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|uninverting
+operator|.
+name|UninvertingReader
+operator|.
+name|Type
 import|;
 end_import
 

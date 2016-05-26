@@ -1291,8 +1291,6 @@ name|TermAutomatonQuery
 name|other
 parameter_list|)
 block|{
-comment|// NOTE: not quite correct, because if terms were added in different
-comment|// order in each query but the language is the same, we return false:
 return|return
 name|checkFinished
 argument_list|(
@@ -1304,25 +1302,9 @@ argument_list|(
 name|other
 argument_list|)
 operator|&&
-name|termToID
-operator|.
-name|equals
-argument_list|(
 name|other
-operator|.
-name|termToID
-argument_list|)
-operator|&&
-name|Operations
-operator|.
-name|sameLanguage
-argument_list|(
-name|det
-argument_list|,
-name|other
-operator|.
-name|det
-argument_list|)
+operator|==
+name|this
 return|;
 block|}
 annotation|@
@@ -1338,23 +1320,16 @@ argument_list|(
 name|this
 argument_list|)
 expr_stmt|;
-comment|// TODO: LUCENE-7295: Automaton.toDot() is very costly!
+comment|// LUCENE-7295: this used to be very awkward toDot() call; it is safer to assume
+comment|// that no two instances are equivalent instead (until somebody finds a better way to check
+comment|// on automaton equivalence quickly).
 return|return
-name|classHash
-argument_list|()
-operator|^
-name|termToID
+name|System
 operator|.
-name|hashCode
-argument_list|()
-operator|+
-name|det
-operator|.
-name|toDot
-argument_list|()
-operator|.
-name|hashCode
-argument_list|()
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 comment|/** Returns the dot (graphviz) representation of this automaton.    *  This is extremely useful for visualizing the automaton. */
@@ -1709,12 +1684,6 @@ name|TermAutomatonWeight
 extends|extends
 name|Weight
 block|{
-DECL|field|searcher
-specifier|private
-specifier|final
-name|IndexSearcher
-name|searcher
-decl_stmt|;
 DECL|field|automaton
 specifier|final
 name|Automaton
@@ -1778,12 +1747,6 @@ operator|.
 name|automaton
 operator|=
 name|automaton
-expr_stmt|;
-name|this
-operator|.
-name|searcher
-operator|=
-name|searcher
 expr_stmt|;
 name|this
 operator|.

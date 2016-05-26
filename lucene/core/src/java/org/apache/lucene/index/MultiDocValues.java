@@ -3689,6 +3689,7 @@ name|mapping
 decl_stmt|;
 comment|/** Creates a new MultiSortedDocValues over<code>values</code> */
 DECL|method|MultiSortedDocValues
+specifier|public
 name|MultiSortedDocValues
 parameter_list|(
 name|SortedDocValues

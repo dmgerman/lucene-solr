@@ -37,11 +37,11 @@ specifier|abstract
 class|class
 name|Sorter
 block|{
-DECL|field|THRESHOLD
+DECL|field|INSERTION_SORT_THRESHOLD
 specifier|static
 specifier|final
 name|int
-name|THRESHOLD
+name|INSERTION_SORT_THRESHOLD
 init|=
 literal|20
 decl_stmt|;
