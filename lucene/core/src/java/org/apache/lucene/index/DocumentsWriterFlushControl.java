@@ -1991,7 +1991,8 @@ expr_stmt|;
 comment|// Set a new delete queue - all subsequent DWPT will use this queue until
 comment|// we do another full flush
 comment|//System.out.println("DWFC: fullFLush old seqNo=" + documentsWriter.deleteQueue.seqNo.get() + " activeThreadCount=" + perThreadPool.getActiveThreadStateCount());
-comment|// jump over any possible in flight ops:
+comment|// Insert a gap in seqNo of current active thread count, in the worst case those threads now have one operation in flight.  It's fine
+comment|// if we have some sequence numbers that were never assigned:
 name|seqNo
 operator|=
 name|documentsWriter
@@ -2008,8 +2009,6 @@ operator|.
 name|getActiveThreadStateCount
 argument_list|()
 expr_stmt|;
-comment|// Insert a gap in seqNo of current active thread count, in the worst case those threads now have one operation in flight.  It's fine
-comment|// if we have some sequence numbers that were never assigned:
 name|DocumentsWriterDeleteQueue
 name|newQueue
 init|=

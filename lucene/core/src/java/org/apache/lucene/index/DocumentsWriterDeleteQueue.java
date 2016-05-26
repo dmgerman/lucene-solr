@@ -207,11 +207,6 @@ specifier|final
 name|BufferedUpdates
 name|globalBufferedUpdates
 decl_stmt|;
-DECL|field|gen
-specifier|private
-name|long
-name|gen
-decl_stmt|;
 comment|// only acquired to update the global deletes, pkg-private for access by tests:
 DECL|field|globalBufferLock
 specifier|final
@@ -227,6 +222,7 @@ specifier|final
 name|long
 name|generation
 decl_stmt|;
+comment|/** Generates the sequence number that IW returns to callers changing the index, showing the effective serialization of all operations. */
 DECL|field|seqNo
 specifier|final
 name|AtomicLong
@@ -236,7 +232,7 @@ DECL|method|DocumentsWriterDeleteQueue
 name|DocumentsWriterDeleteQueue
 parameter_list|()
 block|{
-comment|// seqNo must start at 1 because some APIs negate this to encode a boolean
+comment|// seqNo must start at 1 because some APIs negate this to also return a boolean
 name|this
 argument_list|(
 literal|0
