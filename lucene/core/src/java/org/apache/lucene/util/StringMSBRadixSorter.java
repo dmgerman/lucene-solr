@@ -27,7 +27,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Radix sorter for variable-length strings. This class sorts based on the most  *  significant byte first and falls back to {@link IntroSorter} when the size  *  of the buckets to sort becomes small. It is<b>NOT</b> stable.  *  Worst-case memory usage is about {@code 2.3 KB} */
+comment|/** Radix sorter for variable-length strings. This class sorts based on the most  *  significant byte first and falls back to {@link IntroSorter} when the size  *  of the buckets to sort becomes small. It is<b>NOT</b> stable.  *  Worst-case memory usage is about {@code 2.3 KB}. */
 end_comment
 
 begin_class
@@ -39,6 +39,9 @@ extends|extends
 name|Sorter
 block|{
 comment|// after that many levels of recursion we fall back to introsort anyway
+comment|// this is used as a protection against the fact that radix sort performs
+comment|// worse when there are long common prefixes (probably because of cache
+comment|// locality)
 DECL|field|LEVEL_THRESHOLD
 specifier|private
 specifier|static
