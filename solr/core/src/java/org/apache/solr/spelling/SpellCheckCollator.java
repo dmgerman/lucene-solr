@@ -124,6 +124,22 @@ name|common
 operator|.
 name|params
 operator|.
+name|CursorMarkParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
 name|DisMaxParams
 import|;
 end_import
@@ -847,6 +863,16 @@ operator|.
 name|SORT
 argument_list|,
 literal|"_docid_ asc"
+argument_list|)
+expr_stmt|;
+comment|// CursorMark does not like _docid_ sorting, and we don't need it.
+name|params
+operator|.
+name|remove
+argument_list|(
+name|CursorMarkParams
+operator|.
+name|CURSOR_MARK_PARAM
 argument_list|)
 expr_stmt|;
 comment|// If a dismax query, don't add unnecessary clauses for scoring
