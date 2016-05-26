@@ -204,6 +204,8 @@ name|dir_2
 argument_list|)
 decl_stmt|;
 try|try
+block|{
+try|try
 init|(
 name|IndexOutput
 name|output
@@ -341,7 +343,7 @@ name|assumeFalse
 argument_list|(
 literal|"hardlinks are not supported"
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -483,6 +485,10 @@ name|indexInput
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
+comment|// close them in a finally block we might run into an assume here
 name|IOUtils
 operator|.
 name|close
@@ -492,6 +498,7 @@ argument_list|,
 name|luceneDir_2
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class
