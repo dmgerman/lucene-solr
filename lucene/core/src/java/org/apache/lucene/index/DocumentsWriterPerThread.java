@@ -1582,9 +1582,7 @@ name|seqNo
 operator|=
 name|deleteQueue
 operator|.
-name|seqNo
-operator|.
-name|get
+name|getNextSequenceNumber
 argument_list|()
 expr_stmt|;
 block|}
@@ -1708,9 +1706,7 @@ name|seqNo
 operator|=
 name|deleteQueue
 operator|.
-name|seqNo
-operator|.
-name|get
+name|getNextSequenceNumber
 argument_list|()
 expr_stmt|;
 block|}

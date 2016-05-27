@@ -1013,9 +1013,7 @@ expr_stmt|;
 comment|// jump over any possible in flight ops:
 name|deleteQueue
 operator|.
-name|seqNo
-operator|.
-name|addAndGet
+name|skipSequenceNumbers
 argument_list|(
 name|perThreadPool
 operator|.

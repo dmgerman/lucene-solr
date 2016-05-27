@@ -737,7 +737,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The {@link OpenMode} option on    {@link IndexWriterConfig#setOpenMode(OpenMode)} determines    whether a new index is created, or whether an existing index is   opened. Note that you can open an index with {@link OpenMode#CREATE}   even while readers are using the index. The old readers will    continue to search the "point in time" snapshot they had opened,    and won't see the newly created index until they re-open. If    {@link OpenMode#CREATE_OR_APPEND} is used IndexWriter will create a    new index if there is not already an index at the provided path   and otherwise open the existing index.</p><p>In either case, documents are added with {@link #addDocument(Iterable)   addDocument} and removed with {@link #deleteDocuments(Term...)} or {@link   #deleteDocuments(Query...)}. A document can be updated with {@link   #updateDocument(Term, Iterable) updateDocument} (which just deletes   and then adds the entire document). When finished adding, deleting    and updating documents, {@link #close() close} should be called.</p><a name="flush"></a><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls). A flush is triggered when there are enough added documents   since the last flush. Flushing is triggered either by RAM usage of the   documents (see {@link IndexWriterConfig#setRAMBufferSizeMB}) or the   number of added documents (see {@link IndexWriterConfig#setMaxBufferedDocs(int)}).   The default is to flush when RAM usage hits   {@link IndexWriterConfig#DEFAULT_RAM_BUFFER_SIZE_MB} MB. For   best indexing speed you should flush by RAM usage with a   large RAM buffer. Additionally, if IndexWriter reaches the configured number of   buffered deletes (see {@link IndexWriterConfig#setMaxBufferedDeleteTerms})   the deleted terms and queries are flushed and applied to existing segments.   In contrast to the other flush options {@link IndexWriterConfig#setRAMBufferSizeMB} and    {@link IndexWriterConfig#setMaxBufferedDocs(int)}, deleted terms   won't trigger a segment flush. Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit()} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.   The default is {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p><a name="OOME"></a><p><b>NOTE</b>: if you hit a   VirtualMachineError, or disaster strikes during a checkpoint   then IndexWriter will close itself.  This is a   defensive measure in case any internal state (buffered   documents, deletions, reference counts) were corrupted.     Any subsequent calls will throw an AlreadyClosedException.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link   IndexWriter} instances are completely thread   safe, meaning multiple threads can call any of its   methods, concurrently.  If your application requires   external synchronization, you should<b>not</b>   synchronize on the<code>IndexWriter</code> instance as   this may cause deadlock; use your own (non-Lucene) objects   instead.</p><p><b>NOTE</b>: If you call<code>Thread.interrupt()</code> on a thread that's within   IndexWriter, IndexWriter will try to catch this (eg, if   it's in a wait() or Thread.sleep()), and will then throw   the unchecked exception {@link ThreadInterruptedException}   and<b>clear</b> the interrupt status on the thread.</p> */
+comment|/**   An<code>IndexWriter</code> creates and maintains an index.<p>The {@link OpenMode} option on    {@link IndexWriterConfig#setOpenMode(OpenMode)} determines    whether a new index is created, or whether an existing index is   opened. Note that you can open an index with {@link OpenMode#CREATE}   even while readers are using the index. The old readers will    continue to search the "point in time" snapshot they had opened,    and won't see the newly created index until they re-open. If    {@link OpenMode#CREATE_OR_APPEND} is used IndexWriter will create a    new index if there is not already an index at the provided path   and otherwise open the existing index.</p><p>In either case, documents are added with {@link #addDocument(Iterable)   addDocument} and removed with {@link #deleteDocuments(Term...)} or {@link   #deleteDocuments(Query...)}. A document can be updated with {@link   #updateDocument(Term, Iterable) updateDocument} (which just deletes   and then adds the entire document). When finished adding, deleting    and updating documents, {@link #close() close} should be called.</p><a name="sequence_numbers"></a><p>Each method that changes the index returns a {@code long} sequence number, which   expresses the effective order in which each change was applied.   {@link #commit} also returns a sequence number, describing which   changes are in the commit point and which are not.  Sequence numbers   are transient (not saved into the index in any way) and only valid   within a single {@code IndexWriter} instance.</p><a name="flush"></a><p>These changes are buffered in memory and periodically   flushed to the {@link Directory} (during the above method   calls). A flush is triggered when there are enough added documents   since the last flush. Flushing is triggered either by RAM usage of the   documents (see {@link IndexWriterConfig#setRAMBufferSizeMB}) or the   number of added documents (see {@link IndexWriterConfig#setMaxBufferedDocs(int)}).   The default is to flush when RAM usage hits   {@link IndexWriterConfig#DEFAULT_RAM_BUFFER_SIZE_MB} MB. For   best indexing speed you should flush by RAM usage with a   large RAM buffer. Additionally, if IndexWriter reaches the configured number of   buffered deletes (see {@link IndexWriterConfig#setMaxBufferedDeleteTerms})   the deleted terms and queries are flushed and applied to existing segments.   In contrast to the other flush options {@link IndexWriterConfig#setRAMBufferSizeMB} and    {@link IndexWriterConfig#setMaxBufferedDocs(int)}, deleted terms   won't trigger a segment flush. Note that flushing just moves the   internal buffered state in IndexWriter into the index, but   these changes are not visible to IndexReader until either   {@link #commit()} or {@link #close} is called.  A flush may   also trigger one or more segment merges which by default   run with a background thread so as not to block the   addDocument calls (see<a href="#mergePolicy">below</a>   for changing the {@link MergeScheduler}).</p><p>Opening an<code>IndexWriter</code> creates a lock file for the directory in use. Trying to open   another<code>IndexWriter</code> on the same directory will lead to a   {@link LockObtainFailedException}.</p><a name="deletionPolicy"></a><p>Expert:<code>IndexWriter</code> allows an optional   {@link IndexDeletionPolicy} implementation to be   specified.  You can use this to control when prior commits   are deleted from the index.  The default policy is {@link   KeepOnlyLastCommitDeletionPolicy} which removes all prior   commits as soon as a new commit is done (this matches   behavior before 2.2).  Creating your own policy can allow   you to explicitly keep previous "point in time" commits   alive in the index for some time, to allow readers to   refresh to the new commit without having the old commit   deleted out from under them.  This is necessary on   filesystems like NFS that do not support "delete on last   close" semantics, which Lucene's "point in time" search   normally relies on.</p><a name="mergePolicy"></a><p>Expert:<code>IndexWriter</code> allows you to separately change   the {@link MergePolicy} and the {@link MergeScheduler}.   The {@link MergePolicy} is invoked whenever there are   changes to the segments in the index.  Its role is to   select which merges to do, if any, and return a {@link   MergePolicy.MergeSpecification} describing the merges.   The default is {@link LogByteSizeMergePolicy}.  Then, the {@link   MergeScheduler} is invoked with the requested merges and   it decides when and how to run the merges.  The default is   {@link ConcurrentMergeScheduler}.</p><a name="OOME"></a><p><b>NOTE</b>: if you hit a   VirtualMachineError, or disaster strikes during a checkpoint   then IndexWriter will close itself.  This is a   defensive measure in case any internal state (buffered   documents, deletions, reference counts) were corrupted.     Any subsequent calls will throw an AlreadyClosedException.</p><a name="thread-safety"></a><p><b>NOTE</b>: {@link   IndexWriter} instances are completely thread   safe, meaning multiple threads can call any of its   methods, concurrently.  If your application requires   external synchronization, you should<b>not</b>   synchronize on the<code>IndexWriter</code> instance as   this may cause deadlock; use your own (non-Lucene) objects   instead.</p><p><b>NOTE</b>: If you call<code>Thread.interrupt()</code> on a thread that's within   IndexWriter, IndexWriter will try to catch this (eg, if   it's in a wait() or Thread.sleep()), and will then throw   the unchecked exception {@link ThreadInterruptedException}   and<b>clear</b> the interrupt status on the thread.</p> */
 end_comment
 
 begin_comment
@@ -4446,7 +4446,7 @@ return|return
 literal|false
 return|;
 block|}
-comment|/**    * Adds a document to this index.    *    *<p> Note that if an Exception is hit (for example disk full)    * then the index will be consistent, but this document    * may not have been added.  Furthermore, it's possible    * the index will have one segment in non-compound format    * even when using compound files (when a merge has    * partially succeeded).</p>    *    *<p> This method periodically flushes pending documents    * to the Directory (see<a href="#flush">above</a>), and    * also periodically triggers segment merges in the index    * according to the {@link MergePolicy} in use.</p>    *    *<p>Merges temporarily consume space in the    * directory. The amount of space required is up to 1X the    * size of all segments being merged, when no    * readers/searchers are open against the index, and up to    * 2X the size of all segments being merged when    * readers/searchers are open against the index (see    * {@link #forceMerge(int)} for details). The sequence of    * primitive merge operations performed is governed by the    * merge policy.    *    *<p>Note that each term in the document can be no longer    * than {@link #MAX_TERM_LENGTH} in bytes, otherwise an    * IllegalArgumentException will be thrown.</p>    *    *<p>Note that it's possible to create an invalid Unicode    * string in java if a UTF16 surrogate pair is malformed.    * In this case, the invalid characters are silently    * replaced with the Unicode replacement character    * U+FFFD.</p>    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Adds a document to this index.    *    *<p> Note that if an Exception is hit (for example disk full)    * then the index will be consistent, but this document    * may not have been added.  Furthermore, it's possible    * the index will have one segment in non-compound format    * even when using compound files (when a merge has    * partially succeeded).</p>    *    *<p> This method periodically flushes pending documents    * to the Directory (see<a href="#flush">above</a>), and    * also periodically triggers segment merges in the index    * according to the {@link MergePolicy} in use.</p>    *    *<p>Merges temporarily consume space in the    * directory. The amount of space required is up to 1X the    * size of all segments being merged, when no    * readers/searchers are open against the index, and up to    * 2X the size of all segments being merged when    * readers/searchers are open against the index (see    * {@link #forceMerge(int)} for details). The sequence of    * primitive merge operations performed is governed by the    * merge policy.    *    *<p>Note that each term in the document can be no longer    * than {@link #MAX_TERM_LENGTH} in bytes, otherwise an    * IllegalArgumentException will be thrown.</p>    *    *<p>Note that it's possible to create an invalid Unicode    * string in java if a UTF16 surrogate pair is malformed.    * In this case, the invalid characters are silently    * replaced with the Unicode replacement character    * U+FFFD.</p>    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|addDocument
 specifier|public
 name|long
@@ -4472,7 +4472,7 @@ name|doc
 argument_list|)
 return|;
 block|}
-comment|/**    * Atomically adds a block of documents with sequentially    * assigned document IDs, such that an external reader    * will see all or none of the documents.    *    *<p><b>WARNING</b>: the index does not currently record    * which documents were added as a block.  Today this is    * fine, because merging will preserve a block. The order of    * documents within a segment will be preserved, even when child    * documents within a block are deleted. Most search features    * (like result grouping and block joining) require you to    * mark documents; when these documents are deleted these    * search features will not work as expected. Obviously adding    * documents to an existing block will require you the reindex    * the entire block.    *    *<p>However it's possible that in the future Lucene may    * merge more aggressively re-order documents (for example,    * perhaps to obtain better index compression), in which case    * you may need to fully re-index your documents at that time.    *    *<p>See {@link #addDocument(Iterable)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    *<p><b>NOTE</b>: tools that do offline splitting of an index    * (for example, IndexSplitter in contrib) or    * re-sorting of documents (for example, IndexSorter in    * contrib) are not aware of these atomically added documents    * and will likely break them up.  Use such tools at your    * own risk!    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @lucene.experimental    */
+comment|/**    * Atomically adds a block of documents with sequentially    * assigned document IDs, such that an external reader    * will see all or none of the documents.    *    *<p><b>WARNING</b>: the index does not currently record    * which documents were added as a block.  Today this is    * fine, because merging will preserve a block. The order of    * documents within a segment will be preserved, even when child    * documents within a block are deleted. Most search features    * (like result grouping and block joining) require you to    * mark documents; when these documents are deleted these    * search features will not work as expected. Obviously adding    * documents to an existing block will require you the reindex    * the entire block.    *    *<p>However it's possible that in the future Lucene may    * merge more aggressively re-order documents (for example,    * perhaps to obtain better index compression), in which case    * you may need to fully re-index your documents at that time.    *    *<p>See {@link #addDocument(Iterable)} for details on    * index and IndexWriter state after an Exception, and    * flushing/merging temporary free space requirements.</p>    *    *<p><b>NOTE</b>: tools that do offline splitting of an index    * (for example, IndexSplitter in contrib) or    * re-sorting of documents (for example, IndexSorter in    * contrib) are not aware of these atomically added documents    * and will likely break them up.  Use such tools at your    * own risk!    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @lucene.experimental    */
 DECL|method|addDocuments
 specifier|public
 name|long
@@ -4503,7 +4503,7 @@ name|docs
 argument_list|)
 return|;
 block|}
-comment|/**    * Atomically deletes documents matching the provided    * delTerm and adds a block of documents with sequentially    * assigned document IDs, such that an external reader    * will see all or none of the documents.     *    * See {@link #addDocuments(Iterable)}.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @lucene.experimental    */
+comment|/**    * Atomically deletes documents matching the provided    * delTerm and adds a block of documents with sequentially    * assigned document IDs, such that an external reader    * will see all or none of the documents.     *    * See {@link #addDocuments(Iterable)}.    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    *    * @lucene.experimental    */
 DECL|method|updateDocuments
 specifier|public
 name|long
@@ -4904,9 +4904,7 @@ name|docWriter
 operator|.
 name|deleteQueue
 operator|.
-name|seqNo
-operator|.
-name|getAndIncrement
+name|getNextSequenceNumber
 argument_list|()
 return|;
 block|}
@@ -4925,7 +4923,7 @@ operator|-
 literal|1
 return|;
 block|}
-comment|/**    * Deletes the document(s) containing any of the    * terms. All given deletes are applied and flushed atomically    * at the same time.    *    * @param terms array of terms to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Deletes the document(s) containing any of the    * terms. All given deletes are applied and flushed atomically    * at the same time.    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @param terms array of terms to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|deleteDocuments
 specifier|public
 name|long
@@ -4997,7 +4995,7 @@ literal|1
 return|;
 block|}
 block|}
-comment|/**    * Deletes the document(s) matching any of the provided queries.    * All given deletes are applied and flushed atomically at the same time.    *    * @param queries array of queries to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Deletes the document(s) matching any of the provided queries.    * All given deletes are applied and flushed atomically at the same time.    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @param queries array of queries to identify the documents    * to be deleted    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|deleteDocuments
 specifier|public
 name|long
@@ -5096,7 +5094,7 @@ literal|1
 return|;
 block|}
 block|}
-comment|/**    * Updates a document by first deleting the document(s)    * containing<code>term</code> and then adding the new    * document.  The delete and then add are atomic as seen    * by a reader on the same index (flush may happen only after    * the add).    *    * @param term the term to identify the document(s) to be    * deleted    * @param doc the document to be added    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Updates a document by first deleting the document(s)    * containing<code>term</code> and then adding the new    * document.  The delete and then add are atomic as seen    * by a reader on the same index (flush may happen only after    * the add).    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @param term the term to identify the document(s) to be    * deleted    * @param doc the document to be added    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    */
 DECL|method|updateDocument
 specifier|public
 name|long
@@ -5223,7 +5221,7 @@ literal|1
 return|;
 block|}
 block|}
-comment|/**    * Updates a document's {@link NumericDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link NumericDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Updates a document's {@link NumericDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link NumericDocValues} field    * @param value    *          new value for the field    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|updateNumericDocValue
 specifier|public
 name|long
@@ -5331,7 +5329,7 @@ literal|1
 return|;
 block|}
 block|}
-comment|/**    * Updates a document's {@link BinaryDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     *<p>    *<b>NOTE:</b> this method currently replaces the existing value of all    * affected documents with the new value.    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link BinaryDocValues} field    * @param value    *          new value for the field    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Updates a document's {@link BinaryDocValues} for<code>field</code> to the    * given<code>value</code>. You can only update fields that already exist in    * the index, not add new fields through this method.    *     *<p>    *<b>NOTE:</b> this method currently replaces the existing value of all    * affected documents with the new value.    *     * @param term    *          the term to identify the document(s) to be updated    * @param field    *          field name of the {@link BinaryDocValues} field    * @param value    *          new value for the field    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|updateBinaryDocValue
 specifier|public
 name|long
@@ -5456,7 +5454,7 @@ literal|1
 return|;
 block|}
 block|}
-comment|/**    * Updates documents' DocValues fields to the given values. Each field update    * is applied to the set of documents that are associated with the    * {@link Term} to the same value. All updates are atomically applied and    * flushed together.    *     * @param updates    *          the updates to apply    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
+comment|/**    * Updates documents' DocValues fields to the given values. Each field update    * is applied to the set of documents that are associated with the    * {@link Term} to the same value. All updates are atomically applied and    * flushed together.    *     * @param updates    *          the updates to apply    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    */
 DECL|method|updateDocValues
 specifier|public
 name|long
@@ -7434,7 +7432,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Delete all documents in the index.    *     *<p>    * This method will drop all buffered documents and will remove all segments    * from the index. This change will not be visible until a {@link #commit()}    * has been called. This method can be rolled back using {@link #rollback()}.    *</p>    *     *<p>    * NOTE: this method is much faster than using deleteDocuments( new    * MatchAllDocsQuery() ). Yet, this method also has different semantics    * compared to {@link #deleteDocuments(Query...)} since internal    * data-structures are cleared as well as all segment information is    * forcefully dropped anti-viral semantics like omitting norms are reset or    * doc value types are cleared. Essentially a call to {@link #deleteAll()} is    * equivalent to creating a new {@link IndexWriter} with    * {@link OpenMode#CREATE} which a delete query only marks documents as    * deleted.    *</p>    *     *<p>    * NOTE: this method will forcefully abort all merges in progress. If other    * threads are running {@link #forceMerge}, {@link #addIndexes(CodecReader[])}    * or {@link #forceMergeDeletes} methods, they may receive    * {@link MergePolicy.MergeAbortedException}s.    */
+comment|/**    * Delete all documents in the index.    *     *<p>    * This method will drop all buffered documents and will remove all segments    * from the index. This change will not be visible until a {@link #commit()}    * has been called. This method can be rolled back using {@link #rollback()}.    *</p>    *     *<p>    * NOTE: this method is much faster than using deleteDocuments( new    * MatchAllDocsQuery() ). Yet, this method also has different semantics    * compared to {@link #deleteDocuments(Query...)} since internal    * data-structures are cleared as well as all segment information is    * forcefully dropped anti-viral semantics like omitting norms are reset or    * doc value types are cleared. Essentially a call to {@link #deleteAll()} is    * equivalent to creating a new {@link IndexWriter} with    * {@link OpenMode#CREATE} which a delete query only marks documents as    * deleted.    *</p>    *     *<p>    * NOTE: this method will forcefully abort all merges in progress. If other    * threads are running {@link #forceMerge}, {@link #addIndexes(CodecReader[])}    * or {@link #forceMergeDeletes} methods, they may receive    * {@link MergePolicy.MergeAbortedException}s.    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    */
 DECL|method|deleteAll
 specifier|public
 name|long
@@ -7563,9 +7561,7 @@ name|docWriter
 operator|.
 name|deleteQueue
 operator|.
-name|seqNo
-operator|.
-name|get
+name|getNextSequenceNumber
 argument_list|()
 return|;
 block|}
@@ -8414,7 +8410,7 @@ return|return
 name|locks
 return|;
 block|}
-comment|/**    * Adds all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing. A large document    * collection can be broken into sub-collections. Each sub-collection can be    * indexed in parallel, on a different thread, process or machine. The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>    *<b>NOTE:</b> this method acquires the write lock in    * each directory, to ensure that no {@code IndexWriter}    * is currently open or tries to open while this is    * running.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (for example disk full), then either no indexes    * will have been added or they all will have been.    *    *<p>Note that this requires temporary free space in the    * {@link Directory} up to 2X the sum of all input indexes    * (including the starting index). If readers/searchers    * are open against the starting index, then temporary    * free space required will be higher by the size of the    * starting index (see {@link #forceMerge(int)} for details).    *    *<p>This requires this index not be among those to be added.    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws IllegalArgumentException if addIndexes would cause    *   the index to exceed {@link #MAX_DOCS}, or if the indoming    *   index sort does not match this index's index sort    */
+comment|/**    * Adds all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing. A large document    * collection can be broken into sub-collections. Each sub-collection can be    * indexed in parallel, on a different thread, process or machine. The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>    *<b>NOTE:</b> this method acquires the write lock in    * each directory, to ensure that no {@code IndexWriter}    * is currently open or tries to open while this is    * running.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (for example disk full), then either no indexes    * will have been added or they all will have been.    *    *<p>Note that this requires temporary free space in the    * {@link Directory} up to 2X the sum of all input indexes    * (including the starting index). If readers/searchers    * are open against the starting index, then temporary    * free space required will be higher by the size of the    * starting index (see {@link #forceMerge(int)} for details).    *    *<p>This requires this index not be among those to be added.    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws IllegalArgumentException if addIndexes would cause    *   the index to exceed {@link #MAX_DOCS}, or if the indoming    *   index sort does not match this index's index sort    */
 DECL|method|addIndexes
 specifier|public
 name|long
@@ -8458,6 +8454,9 @@ name|boolean
 name|successTop
 init|=
 literal|false
+decl_stmt|;
+name|long
+name|seqNo
 decl_stmt|;
 try|try
 block|{
@@ -8853,6 +8852,15 @@ argument_list|(
 name|totalMaxDoc
 argument_list|)
 expr_stmt|;
+name|seqNo
+operator|=
+name|docWriter
+operator|.
+name|deleteQueue
+operator|.
+name|getNextSequenceNumber
+argument_list|()
+expr_stmt|;
 name|success
 operator|=
 literal|true
@@ -8915,6 +8923,12 @@ argument_list|,
 literal|"addIndexes(Directory...)"
 argument_list|)
 expr_stmt|;
+comment|// dead code but javac disagrees:
+name|seqNo
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 block|}
 finally|finally
 block|{
@@ -8945,19 +8959,11 @@ block|}
 name|maybeMerge
 argument_list|()
 expr_stmt|;
-comment|// no need to increment:
 return|return
-name|docWriter
-operator|.
-name|deleteQueue
-operator|.
 name|seqNo
-operator|.
-name|get
-argument_list|()
 return|;
 block|}
-comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE:</b> empty segments are dropped by this method and not added to this    * index.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link LeafReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call.    *     * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    * @throws IllegalArgumentException    *           if addIndexes would cause the index to exceed {@link #MAX_DOCS}    */
+comment|/**    * Merges the provided indexes into this index.    *     *<p>    * The provided IndexReaders are not closed.    *     *<p>    * See {@link #addIndexes} for details on transactional semantics, temporary    * free space required in the Directory, and non-CFS segments on an Exception.    *     *<p>    *<b>NOTE:</b> empty segments are dropped by this method and not added to this    * index.    *     *<p>    *<b>NOTE:</b> this method merges all given {@link LeafReader}s in one    * merge. If you intend to merge a large number of readers, it may be better    * to call this method multiple times, each time with a small set of readers.    * In principle, if you use a merge policy with a {@code mergeFactor} or    * {@code maxMergeAtOnce} parameter, you should pass that many readers in one    * call.    *     * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @throws CorruptIndexException    *           if the index is corrupt    * @throws IOException    *           if there is a low-level IO error    * @throws IllegalArgumentException    *           if addIndexes would cause the index to exceed {@link #MAX_DOCS}    */
 DECL|method|addIndexes
 specifier|public
 name|long
@@ -8986,6 +8992,9 @@ name|config
 operator|.
 name|getIndexSort
 argument_list|()
+decl_stmt|;
+name|long
+name|seqNo
 decl_stmt|;
 try|try
 block|{
@@ -9210,15 +9219,12 @@ name|shouldMerge
 argument_list|()
 condition|)
 block|{
-comment|// no need to increment:
 return|return
 name|docWriter
 operator|.
 name|deleteQueue
 operator|.
-name|seqNo
-operator|.
-name|get
+name|getNextSequenceNumber
 argument_list|()
 return|;
 block|}
@@ -9307,15 +9313,12 @@ name|files
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// no need to increment:
 return|return
 name|docWriter
 operator|.
 name|deleteQueue
 operator|.
-name|seqNo
-operator|.
-name|get
+name|getNextSequenceNumber
 argument_list|()
 return|;
 block|}
@@ -9444,15 +9447,12 @@ name|files
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// no need to increment:
 return|return
 name|docWriter
 operator|.
 name|deleteQueue
 operator|.
-name|seqNo
-operator|.
-name|get
+name|getNextSequenceNumber
 argument_list|()
 return|;
 block|}
@@ -9472,6 +9472,15 @@ argument_list|(
 name|infoPerCommit
 argument_list|)
 expr_stmt|;
+name|seqNo
+operator|=
+name|docWriter
+operator|.
+name|deleteQueue
+operator|.
+name|getNextSequenceNumber
+argument_list|()
+expr_stmt|;
 name|checkpoint
 argument_list|()
 expr_stmt|;
@@ -9490,20 +9499,18 @@ argument_list|,
 literal|"addIndexes(CodecReader...)"
 argument_list|)
 expr_stmt|;
+comment|// dead code but javac disagrees:
+name|seqNo
+operator|=
+operator|-
+literal|1
+expr_stmt|;
 block|}
 name|maybeMerge
 argument_list|()
 expr_stmt|;
-comment|// no need to increment:
 return|return
-name|docWriter
-operator|.
-name|deleteQueue
-operator|.
 name|seqNo
-operator|.
-name|get
-argument_list|()
 return|;
 block|}
 comment|/** Copies the segment files as-is into the IndexWriter's directory. */
@@ -9772,7 +9779,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{}
-comment|/**<p>Expert: prepare for commit.  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *<p>You can also just call {@link #commit()} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    */
+comment|/**<p>Expert: prepare for commit.  This does the    *  first phase of 2-phase commit. This method does all    *  steps necessary to commit changes since this writer    *  was opened: flushes pending added and deleted docs,    *  syncs the index files, writes most of next segments_N    *  file.  After calling this you must call either {@link    *  #commit()} to finish the commit, or {@link    *  #rollback()} to revert the commit and undo all changes    *  done since the writer was opened.</p>    *    *<p>You can also just call {@link #commit()} directly    *  without prepareCommit first in which case that method    *  will internally call prepareCommit.    *    * @return The<a href="#sequence_number">sequence number</a>    * last operation in the commit.  All sequence numbers&lt;= this value    * will be reflected in the commit, and all others will not.    */
 annotation|@
 name|Override
 DECL|method|prepareCommit
@@ -10327,7 +10334,7 @@ operator|new
 name|Object
 argument_list|()
 decl_stmt|;
-comment|/**    *<p>Commits all pending changes (added and deleted    * documents, segment merges, added    * indexes, etc.) to the index, and syncs all referenced    * index files, such that a reader will see the changes    * and the index updates will survive an OS or machine    * crash or power loss.  Note that this does not wait for    * any running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents and metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    *<p> If nothing was committed, because there were no    * pending changes, this returns -1.  Otherwise, it returns    * the sequence number such that all indexing operations    * prior to this sequence will be included in the commit    * point, and all other operations will not.</p>    *    * @see #prepareCommit    */
+comment|/**    *<p>Commits all pending changes (added and deleted    * documents, segment merges, added    * indexes, etc.) to the index, and syncs all referenced    * index files, such that a reader will see the changes    * and the index updates will survive an OS or machine    * crash or power loss.  Note that this does not wait for    * any running background merges to finish.  This may be a    * costly operation, so you should test the cost in your    * application and do it only when really necessary.</p>    *    *<p> Note that this operation calls Directory.sync on    * the index files.  That call should not return until the    * file contents and metadata are on stable storage.  For    * FSDirectory, this calls the OS's fsync.  But, beware:    * some hardware devices may in fact cache writes even    * during fsync, and return before the bits are actually    * on stable storage, to give the appearance of faster    * performance.  If you have such a device, and it does    * not have a battery backup (for example) then on power    * loss it may still lose data.  Lucene cannot guarantee    * consistency on such devices.</p>    *    *<p> If nothing was committed, because there were no    * pending changes, this returns -1.  Otherwise, it returns    * the sequence number such that all indexing operations    * prior to this sequence will be included in the commit    * point, and all other operations will not.</p>    *    * @see #prepareCommit    *    * @return The<a href="#sequence_number">sequence number</a>    * last operation in the commit.  All sequence numbers&lt;= this value    * will be reflected in the commit, and all others will not.    */
 annotation|@
 name|Override
 DECL|method|commit
@@ -18905,7 +18912,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Returns the last sequence number.    *    * @lucene.experimental */
+comment|/** Returns the last<a href="#sequence_number">sequence number</a>, or 0    *  if no index-changing operations have completed yet.    *    * @lucene.experimental */
 DECL|method|getLastSequenceNumber
 specifier|public
 name|long
@@ -18920,12 +18927,8 @@ name|docWriter
 operator|.
 name|deleteQueue
 operator|.
-name|seqNo
-operator|.
-name|get
+name|getLastSequenceNumber
 argument_list|()
-operator|-
-literal|1
 return|;
 block|}
 block|}
