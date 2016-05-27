@@ -967,6 +967,14 @@ name|lookupClass
 argument_list|()
 argument_list|)
 decl_stmt|;
+DECL|field|sqlNonCloudErrorMsg
+specifier|static
+specifier|final
+name|String
+name|sqlNonCloudErrorMsg
+init|=
+literal|"/sql handler only works in Solr Cloud mode"
+decl_stmt|;
 DECL|method|inform
 specifier|public
 name|void
@@ -1160,6 +1168,21 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+if|if
+condition|(
+name|workerZkhost
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+name|sqlNonCloudErrorMsg
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|sql
