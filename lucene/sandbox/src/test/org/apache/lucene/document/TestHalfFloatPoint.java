@@ -938,7 +938,7 @@ name|abs
 argument_list|(
 name|f
 argument_list|)
-operator|>
+operator|>=
 literal|65520
 argument_list|)
 expr_stmt|;
