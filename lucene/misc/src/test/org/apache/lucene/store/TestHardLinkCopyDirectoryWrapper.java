@@ -66,6 +66,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -248,6 +258,19 @@ name|output
 argument_list|)
 expr_stmt|;
 block|}
+comment|// In case luceneDir_1 has an NRTCachingDirectory
+name|luceneDir_1
+operator|.
+name|sync
+argument_list|(
+name|Collections
+operator|.
+name|singleton
+argument_list|(
+literal|"foo.bar"
+argument_list|)
+argument_list|)
+expr_stmt|;
 try|try
 block|{
 name|Files
