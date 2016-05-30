@@ -4038,6 +4038,14 @@ name|HIGHLIGHT_ALTERNATE
 argument_list|,
 literal|true
 argument_list|)
+operator|&&
+operator|!
+name|alternateField
+operator|.
+name|equals
+argument_list|(
+name|fieldName
+argument_list|)
 condition|)
 block|{
 comment|// Try to highlight alternate field
