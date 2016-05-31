@@ -353,9 +353,9 @@ operator|=
 literal|true
 expr_stmt|;
 return|return;
-comment|//the patrh is "/"
+comment|//the path is "/"
 block|}
-comment|// deal with how split behaves when seperator starts a string!
+comment|// deal with how split behaves when separator starts with an empty string!
 if|if
 condition|(
 literal|""
@@ -530,11 +530,7 @@ name|handler
 argument_list|,
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -662,7 +658,7 @@ name|fieldName
 expr_stmt|;
 comment|// name to store collected values against
 block|}
-comment|/**      * Walk the Node tree propagating any wildDescentant information to      * child nodes.      */
+comment|/**      * Walk the Node tree propagating any wild Descendant information to      * child nodes.      */
 DECL|method|buildOptimize
 specifier|private
 name|void
@@ -729,7 +725,7 @@ name|RECURSIVE_WILDCARD_PATH
 init|=
 literal|"**"
 decl_stmt|;
-comment|/**      * Build a Node tree structure representing all paths of intrest to us.      * This must be done before parsing of the JSON stream starts. Each node      * holds one portion of an path. Taking each path segment in turn this      * method walks the Node tree  and finds where the new segment should be      * inserted. It creates a Node representing a field's name, PATH and      * some flags and inserts the Node into the Node tree.      */
+comment|/**      * Build a Node tree structure representing all paths of interest to us.      * This must be done before parsing of the JSON stream starts. Each node      * holds one portion of an path. Taking each path segment in turn this      * method walks the Node tree  and finds where the new segment should be      * inserted. It creates a Node representing a field's name, PATH and      * some flags and inserts the Node into the Node tree.      */
 DECL|method|build
 specifier|private
 name|void
@@ -809,7 +805,7 @@ condition|)
 block|{
 comment|// We have emptied paths, we are for the moment a leaf of the tree.
 comment|// When parsing the actual input we have traversed to a position
-comment|// where we actutally have to do something. getOrAddNode() will
+comment|// where we actually have to do something. getOrAddNode() will
 comment|// have created and returned a new minimal Node with name and
 comment|// pathName already populated. We need to add more information.
 if|if
@@ -1220,12 +1216,7 @@ name|values
 argument_list|,
 operator|new
 name|Stack
-argument_list|<
-name|Set
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|,
 name|recordStarted
@@ -1279,12 +1270,7 @@ name|values
 argument_list|,
 operator|new
 name|Stack
-argument_list|<
-name|Set
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|,
 name|recordStarted
@@ -1297,7 +1283,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * If a new tag is encountered, check if it is of interest or not by seeing      * if it matches against our node tree. If we have deperted from the node      * tree then walk back though the tree's ancestor nodes checking to see if      * any // expressions exist for the node and compare them against the new      * tag. If matched then "jump" to that node, otherwise ignore the tag.      *<p>      * Note, the list of // expressions found while walking back up the tree      * is chached in the HashMap decends. Then if the new tag is to be skipped,      * any inner chil tags are compared against the cache and jumped to if      * matched.      */
+comment|/**      * If a new tag is encountered, check if it is of interest or not by seeing      * if it matches against our node tree. If we have departed from the node      * tree then walk back though the tree's ancestor nodes checking to see if      * any // expressions exist for the node and compare them against the new      * tag. If matched then "jump" to that node, otherwise ignore the tag.      *<p>      * Note, the list of // expressions found while walking back up the tree      * is cached in the HashMap descendants. Then if the new tag is to be skipped,      * any inner child tags are compared against the cache and jumped to if      * matched.      */
 DECL|method|handleObjectStart
 specifier|private
 name|void
@@ -1364,7 +1350,7 @@ name|recordStarted
 condition|)
 block|{
 comment|// This Node is a match for an PATH from a forEach attribute,
-comment|// prepare for the clean up that will occurr when the record
+comment|// prepare for the clean up that will occur when the record
 comment|// is emitted after its END_ELEMENT is matched
 name|valuesAddedinThisFrame
 operator|=
@@ -1766,7 +1752,7 @@ block|}
 block|}
 else|else
 block|{
-comment|//this is not something we are interested in  . skip it
+comment|//this is not something we are interested in. Skip it
 name|event
 operator|=
 name|parser
@@ -2078,7 +2064,7 @@ return|;
 block|}
 block|}
 comment|// end of class Node
-comment|/**    * The path is split into segments using the '/' as a seperator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but    * then reassemble things were the '/' appears within a quoted sub-string.    *<p>    * We have already enforced that the string must begin with a seperator. This    * method depends heavily on how split behaves if the string starts with the    * seperator or if a sequence of multiple seperator's appear.    */
+comment|/**    * The path is split into segments using the '/' as a separator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but    * then reassemble things were the '/' appears within a quoted sub-string.    *<p>    * We have already enforced that the string must begin with a separator. This    * method depends heavily on how split behaves if the string starts with the    * seperator or if a sequence of multiple separators appear.    */
 DECL|method|splitEscapeQuote
 specifier|private
 specifier|static
@@ -2131,7 +2117,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// i=1: skip seperator at start of string
+comment|// i=1: skip separator at start of string
 name|StringBuilder
 name|sb
 init|=
@@ -2238,13 +2224,11 @@ block|}
 comment|/**    * Implement this interface to stream records as and when one is found.    */
 DECL|interface|Handler
 specifier|public
-specifier|static
 interface|interface
 name|Handler
 block|{
 comment|/**      * @param record The record map. The key is the field name as provided in      *               the addField() methods. The value can be a single String (for single      *               valued fields) or a List&lt;String&gt; (for multiValued).      * @param path   The forEach path for which this record is being emitted      *               If there is any change all parsing will be aborted and the Exception      *               is propagated up      */
 DECL|method|handle
-specifier|public
 name|void
 name|handle
 parameter_list|(
