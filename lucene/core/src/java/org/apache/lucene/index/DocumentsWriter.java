@@ -2617,7 +2617,7 @@ operator|.
 name|markForFullFlush
 argument_list|()
 expr_stmt|;
-comment|// swaps the delQueue synced on FlushControl
+comment|// swaps this.deleteQueue synced on FlushControl
 assert|assert
 name|setFlushingDeleteQueue
 argument_list|(

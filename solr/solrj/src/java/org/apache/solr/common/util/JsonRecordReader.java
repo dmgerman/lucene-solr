@@ -114,6 +114,9 @@ parameter_list|(
 name|String
 name|split
 parameter_list|,
+name|String
+name|childSplit
+parameter_list|,
 name|List
 argument_list|<
 name|String
@@ -126,10 +129,28 @@ name|jsonRecordReader
 init|=
 operator|new
 name|JsonRecordReader
+argument_list|()
+decl_stmt|;
+name|jsonRecordReader
+operator|.
+name|addSplit
 argument_list|(
 name|split
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+if|if
+condition|(
+name|childSplit
+operator|!=
+literal|null
+condition|)
+name|jsonRecordReader
+operator|.
+name|addSplit
+argument_list|(
+name|childSplit
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|String
@@ -206,10 +227,42 @@ return|return
 name|jsonRecordReader
 return|;
 block|}
-comment|/**    * A constructor called with a '|' separated list of path expressions    * which define sub sections of the JSON stream that are to be emitted as    * separate records.    *    * @param splitPath The PATH for which a record is emitted. Once the    *                  path tag is encountered, the Node.getInst method starts collecting wanted    *                  fields and at the close of the tag, a record is emitted containing all    *                  fields collected since the tag start. Once    *                  emitted the collected fields are cleared. Any fields collected in the    *                  parent tag or above will also be included in the record, but these are    *                  not cleared after emitting the record.    *<p>    *                  It uses the ' | ' syntax of PATH to pass in multiple paths.    */
+DECL|method|getInst
+specifier|public
+specifier|static
+name|JsonRecordReader
+name|getInst
+parameter_list|(
+name|String
+name|split
+parameter_list|,
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|fieldMappings
+parameter_list|)
+block|{
+return|return
+name|getInst
+argument_list|(
+name|split
+argument_list|,
+literal|null
+argument_list|,
+name|fieldMappings
+argument_list|)
+return|;
+block|}
 DECL|method|JsonRecordReader
 specifier|private
 name|JsonRecordReader
+parameter_list|()
+block|{   }
+comment|/**    * a '|' separated list of path expressions    * which define sub sections of the JSON stream that are to be emitted as    * separate records.    * It is possible to have multiple levels of split one for parent and one for child    * each child record (or a list of records) will be emitted as a part of the parent record with    * null as the key    *    * @param splitPath The PATH for which a record is emitted.  A record is emitted containing all    *                  fields collected since the tag start. Once    *                  emitted the collected fields are cleared. Any fields collected in the    *                  parent tag or above will also be included in the record, but these are    *                  not cleared after emitting the record.    *<p>    *                  It uses the ' | ' syntax of PATH to pass in multiple paths.    */
+DECL|method|addSplit
+name|void
+name|addSplit
 parameter_list|(
 name|String
 name|splitPath
@@ -348,14 +401,13 @@ name|isRecord
 condition|)
 name|rootNode
 operator|.
-name|isRecord
-operator|=
-literal|true
+name|setAsRecord
+argument_list|()
 expr_stmt|;
 return|return;
-comment|//the patrh is "/"
+comment|//the path is "/"
 block|}
-comment|// deal with how split behaves when seperator starts a string!
+comment|// deal with how split behaves when separator starts with an empty string!
 if|if
 condition|(
 literal|""
@@ -442,27 +494,12 @@ name|streamRecords
 argument_list|(
 name|r
 argument_list|,
-operator|new
-name|Handler
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|handle
 parameter_list|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
 name|record
 parameter_list|,
-name|String
 name|path
 parameter_list|)
+lambda|->
 block|{
 name|results
 operator|.
@@ -471,7 +508,6 @@ argument_list|(
 name|record
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 argument_list|)
 expr_stmt|;
@@ -530,11 +566,7 @@ name|handler
 argument_list|,
 operator|new
 name|LinkedHashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -596,6 +628,12 @@ init|=
 literal|false
 decl_stmt|;
 comment|//flag: this Node starts a new record
+DECL|field|isChildRecord
+name|boolean
+name|isChildRecord
+init|=
+literal|false
+decl_stmt|;
 DECL|field|wildCardChild
 name|Node
 name|wildCardChild
@@ -662,7 +700,94 @@ name|fieldName
 expr_stmt|;
 comment|// name to store collected values against
 block|}
-comment|/**      * Walk the Node tree propagating any wildDescentant information to      * child nodes.      */
+DECL|method|setAsRecord
+name|void
+name|setAsRecord
+parameter_list|()
+block|{
+if|if
+condition|(
+name|isMyChildARecord
+argument_list|()
+condition|)
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|name
+operator|+
+literal|" has a parent node at my level or lower"
+argument_list|)
+throw|;
+name|isChildRecord
+operator|=
+name|hasParentRecord
+argument_list|()
+expr_stmt|;
+name|isRecord
+operator|=
+literal|true
+expr_stmt|;
+block|}
+DECL|method|hasParentRecord
+specifier|private
+name|boolean
+name|hasParentRecord
+parameter_list|()
+block|{
+return|return
+name|isRecord
+operator|||
+name|parent
+operator|!=
+literal|null
+operator|&&
+name|parent
+operator|.
+name|hasParentRecord
+argument_list|()
+return|;
+block|}
+DECL|method|isMyChildARecord
+specifier|private
+name|boolean
+name|isMyChildARecord
+parameter_list|()
+block|{
+if|if
+condition|(
+name|isRecord
+condition|)
+return|return
+literal|true
+return|;
+for|for
+control|(
+name|Node
+name|node
+range|:
+name|childNodes
+operator|.
+name|values
+argument_list|()
+control|)
+block|{
+if|if
+condition|(
+name|node
+operator|.
+name|isMyChildARecord
+argument_list|()
+condition|)
+return|return
+literal|true
+return|;
+block|}
+return|return
+literal|false
+return|;
+block|}
+comment|/**      * Walk the Node tree propagating any wild Descendant information to      * child nodes.      */
 DECL|method|buildOptimize
 specifier|private
 name|void
@@ -729,7 +854,7 @@ name|RECURSIVE_WILDCARD_PATH
 init|=
 literal|"**"
 decl_stmt|;
-comment|/**      * Build a Node tree structure representing all paths of intrest to us.      * This must be done before parsing of the JSON stream starts. Each node      * holds one portion of an path. Taking each path segment in turn this      * method walks the Node tree  and finds where the new segment should be      * inserted. It creates a Node representing a field's name, PATH and      * some flags and inserts the Node into the Node tree.      */
+comment|/**      * Build a Node tree structure representing all paths of interest to us.      * This must be done before parsing of the JSON stream starts. Each node      * holds one portion of an path. Taking each path segment in turn this      * method walks the Node tree  and finds where the new segment should be      * inserted. It creates a Node representing a field's name, PATH and      * some flags and inserts the Node into the Node tree.      */
 DECL|method|build
 specifier|private
 name|void
@@ -809,7 +934,7 @@ condition|)
 block|{
 comment|// We have emptied paths, we are for the moment a leaf of the tree.
 comment|// When parsing the actual input we have traversed to a position
-comment|// where we actutally have to do something. getOrAddNode() will
+comment|// where we actually have to do something. getOrAddNode() will
 comment|// have created and returned a new minimal Node with name and
 comment|// pathName already populated. We need to add more information.
 if|if
@@ -843,9 +968,8 @@ assert|;
 comment|// split attribute
 name|n
 operator|.
-name|isRecord
-operator|=
-literal|true
+name|setAsRecord
+argument_list|()
 expr_stmt|;
 comment|// flag: split attribute, prepare to emit rec
 name|n
@@ -1220,12 +1344,7 @@ name|values
 argument_list|,
 operator|new
 name|Stack
-argument_list|<
-name|Set
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|,
 name|recordStarted
@@ -1279,12 +1398,7 @@ name|values
 argument_list|,
 operator|new
 name|Stack
-argument_list|<
-name|Set
-argument_list|<
-name|String
-argument_list|>
-argument_list|>
+argument_list|<>
 argument_list|()
 argument_list|,
 name|recordStarted
@@ -1297,7 +1411,7 @@ block|}
 block|}
 block|}
 block|}
-comment|/**      * If a new tag is encountered, check if it is of interest or not by seeing      * if it matches against our node tree. If we have deperted from the node      * tree then walk back though the tree's ancestor nodes checking to see if      * any // expressions exist for the node and compare them against the new      * tag. If matched then "jump" to that node, otherwise ignore the tag.      *<p>      * Note, the list of // expressions found while walking back up the tree      * is chached in the HashMap decends. Then if the new tag is to be skipped,      * any inner chil tags are compared against the cache and jumped to if      * matched.      */
+comment|/**      * If a new tag is encountered, check if it is of interest or not by seeing      * if it matches against our node tree. If we have departed from the node      * tree then walk back though the tree's ancestor nodes checking to see if      * any // expressions exist for the node and compare them against the new      * tag. If matched then "jump" to that node, otherwise ignore the tag.      *<p>      * Note, the list of // expressions found while walking back up the tree      * is cached in the HashMap descendants. Then if the new tag is to be skipped,      * any inner child tags are compared against the cache and jumped to if      * matched.      */
 DECL|method|handleObjectStart
 specifier|private
 name|void
@@ -1364,7 +1478,7 @@ name|recordStarted
 condition|)
 block|{
 comment|// This Node is a match for an PATH from a forEach attribute,
-comment|// prepare for the clean up that will occurr when the record
+comment|// prepare for the clean up that will occur when the record
 comment|// is emitted after its END_ELEMENT is matched
 name|valuesAddedinThisFrame
 operator|=
@@ -1452,22 +1566,8 @@ operator|==
 name|OBJECT_START
 condition|)
 block|{
-name|node
-operator|.
-name|handleObjectStart
-argument_list|(
-name|parser
-argument_list|,
-name|handler
-argument_list|,
-name|values
-argument_list|,
-name|stack
-argument_list|,
-name|isRecordStarted
-argument_list|,
-name|this
-argument_list|)
+name|walkObject
+argument_list|()
 expr_stmt|;
 block|}
 elseif|else
@@ -1505,6 +1605,63 @@ operator|==
 name|OBJECT_START
 condition|)
 block|{
+name|walkObject
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+block|}
+block|}
+name|void
+name|walkObject
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|node
+operator|.
+name|isChildRecord
+condition|)
+block|{
+name|node
+operator|.
+name|handleObjectStart
+argument_list|(
+name|parser
+argument_list|,
+parameter_list|(
+name|record
+parameter_list|,
+name|path
+parameter_list|)
+lambda|->
+name|addChildDoc2ParentDoc
+argument_list|(
+name|record
+argument_list|,
+name|values
+argument_list|)
+argument_list|,
+operator|new
+name|LinkedHashMap
+argument_list|<>
+argument_list|()
+argument_list|,
+operator|new
+name|Stack
+argument_list|<>
+argument_list|()
+argument_list|,
+literal|true
+argument_list|,
+name|this
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|node
 operator|.
 name|handleObjectStart
@@ -1522,8 +1679,6 @@ argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
-block|}
-block|}
 block|}
 block|}
 block|}
@@ -1634,7 +1789,7 @@ operator|.
 name|isLeaf
 condition|)
 block|{
-comment|//this is a leaf collect data here
+comment|//this is a leaf. Collect data here
 name|event
 operator|=
 name|parser
@@ -1766,7 +1921,7 @@ block|}
 block|}
 else|else
 block|{
-comment|//this is not something we are interested in  . skip it
+comment|//this is not something we are interested in. Skip it
 name|event
 operator|=
 name|parser
@@ -1884,6 +2039,111 @@ block|}
 block|}
 block|}
 block|}
+DECL|method|addChildDoc2ParentDoc
+specifier|private
+name|void
+name|addChildDoc2ParentDoc
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|record
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|values
+parameter_list|)
+block|{
+name|Object
+name|oldVal
+init|=
+name|values
+operator|.
+name|get
+argument_list|(
+literal|null
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|oldVal
+operator|==
+literal|null
+condition|)
+block|{
+name|values
+operator|.
+name|put
+argument_list|(
+literal|null
+argument_list|,
+name|record
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|oldVal
+operator|instanceof
+name|List
+condition|)
+block|{
+operator|(
+operator|(
+name|List
+operator|)
+name|oldVal
+operator|)
+operator|.
+name|add
+argument_list|(
+name|record
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|ArrayList
+name|l
+init|=
+operator|new
+name|ArrayList
+argument_list|()
+decl_stmt|;
+name|l
+operator|.
+name|add
+argument_list|(
+name|oldVal
+argument_list|)
+expr_stmt|;
+name|l
+operator|.
+name|add
+argument_list|(
+name|record
+argument_list|)
+expr_stmt|;
+name|values
+operator|.
+name|put
+argument_list|(
+literal|null
+argument_list|,
+name|l
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/**      * Construct the name as it would appear in the final record      */
 DECL|method|getNameInRecord
 specifier|private
 name|String
@@ -1909,6 +2169,12 @@ operator|!
 name|n
 operator|.
 name|useFqn
+operator|||
+name|frameWrapper
+operator|.
+name|node
+operator|.
+name|isChildRecord
 condition|)
 return|return
 name|name
@@ -1922,7 +2188,7 @@ argument_list|()
 decl_stmt|;
 name|frameWrapper
 operator|.
-name|prependName
+name|addName
 argument_list|(
 name|sb
 argument_list|)
@@ -2078,7 +2344,7 @@ return|;
 block|}
 block|}
 comment|// end of class Node
-comment|/**    * The path is split into segments using the '/' as a seperator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but    * then reassemble things were the '/' appears within a quoted sub-string.    *<p>    * We have already enforced that the string must begin with a seperator. This    * method depends heavily on how split behaves if the string starts with the    * seperator or if a sequence of multiple seperator's appear.    */
+comment|/**    * The path is split into segments using the '/' as a separator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but    * then reassemble things were the '/' appears within a quoted sub-string.    *<p>    * We have already enforced that the string must begin with a separator. This    * method depends heavily on how split behaves if the string starts with the    * seperator or if a sequence of multiple separators appear.    */
 DECL|method|splitEscapeQuote
 specifier|private
 specifier|static
@@ -2131,7 +2397,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// i=1: skip seperator at start of string
+comment|// i=1: skip separator at start of string
 name|StringBuilder
 name|sb
 init|=
@@ -2238,13 +2504,11 @@ block|}
 comment|/**    * Implement this interface to stream records as and when one is found.    */
 DECL|interface|Handler
 specifier|public
-specifier|static
 interface|interface
 name|Handler
 block|{
 comment|/**      * @param record The record map. The key is the field name as provided in      *               the addField() methods. The value can be a single String (for single      *               valued fields) or a List&lt;String&gt; (for multiValued).      * @param path   The forEach path for which this record is being emitted      *               If there is any change all parsing will be aborted and the Exception      *               is propagated up      */
 DECL|method|handle
-specifier|public
 name|void
 name|handle
 parameter_list|(
@@ -2424,9 +2688,9 @@ DECL|field|name
 name|String
 name|name
 decl_stmt|;
-DECL|method|prependName
+DECL|method|addName
 name|void
-name|prependName
+name|addName
 parameter_list|(
 name|StringBuilder
 name|sb
@@ -2437,11 +2701,18 @@ condition|(
 name|parent
 operator|!=
 literal|null
+operator|&&
+operator|!
+name|parent
+operator|.
+name|node
+operator|.
+name|isChildRecord
 condition|)
 block|{
 name|parent
 operator|.
-name|prependName
+name|addName
 argument_list|(
 name|sb
 argument_list|)

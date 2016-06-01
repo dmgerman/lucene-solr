@@ -596,6 +596,7 @@ name|ord
 argument_list|)
 return|;
 block|}
+comment|// TODO: merge this with getActiveThreadStateCount: they are the same!
 DECL|method|getMaxThreadStates
 specifier|synchronized
 name|int
