@@ -693,13 +693,6 @@ name|getters
 operator|.
 name|add
 argument_list|(
-literal|"getMaxThreadStates"
-argument_list|)
-expr_stmt|;
-name|getters
-operator|.
-name|add
-argument_list|(
 literal|"getReaderPooling"
 argument_list|)
 expr_stmt|;

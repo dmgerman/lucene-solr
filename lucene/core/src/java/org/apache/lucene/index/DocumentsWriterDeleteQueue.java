@@ -154,6 +154,7 @@ name|DocumentsWriterDeleteQueue
 implements|implements
 name|Accountable
 block|{
+comment|// the current end (latest delete operation) in the delete queue:
 DECL|field|tail
 specifier|private
 specifier|volatile
@@ -195,6 +196,7 @@ argument_list|,
 literal|"tail"
 argument_list|)
 decl_stmt|;
+comment|/** Used to record deletes against all prior (already written to disk) segments.  Whenever any segment flushes, we bundle up this set of    *  deletes and insert into the buffered updates stream before the newly flushed segment(s). */
 DECL|field|globalSlice
 specifier|private
 specifier|final
@@ -229,6 +231,15 @@ specifier|final
 name|AtomicLong
 name|nextSeqNo
 decl_stmt|;
+comment|// for asserts
+DECL|field|maxSeqNo
+name|long
+name|maxSeqNo
+init|=
+name|Long
+operator|.
+name|MAX_VALUE
+decl_stmt|;
 DECL|method|DocumentsWriterDeleteQueue
 name|DocumentsWriterDeleteQueue
 parameter_list|()
@@ -256,7 +267,9 @@ name|this
 argument_list|(
 operator|new
 name|BufferedUpdates
-argument_list|()
+argument_list|(
+literal|"global"
+argument_list|)
 argument_list|,
 name|generation
 argument_list|,
@@ -425,7 +438,6 @@ argument_list|(
 name|term
 argument_list|)
 decl_stmt|;
-comment|//    System.out.println(Thread.currentThread().getName() + ": push " + termNode + " this=" + this);
 name|long
 name|seqNo
 init|=
@@ -462,6 +474,7 @@ name|seqNo
 return|;
 block|}
 DECL|method|add
+specifier|synchronized
 name|long
 name|add
 parameter_list|(
@@ -472,86 +485,22 @@ argument_list|>
 name|newNode
 parameter_list|)
 block|{
-comment|/*      * this non-blocking / 'wait-free' linked list add was inspired by Apache      * Harmony's ConcurrentLinkedQueue Implementation.      */
-while|while
-condition|(
-literal|true
-condition|)
-block|{
-specifier|final
-name|Node
-argument_list|<
-name|?
-argument_list|>
-name|currentTail
-init|=
 name|tail
-decl_stmt|;
-specifier|final
-name|Node
-argument_list|<
-name|?
-argument_list|>
-name|tailNext
-init|=
-name|currentTail
 operator|.
 name|next
-decl_stmt|;
-if|if
-condition|(
-name|tail
-operator|==
-name|currentTail
-operator|&&
-name|tailNext
-operator|==
-literal|null
-condition|)
-block|{
-comment|/*          * we are in quiescent state and can try to insert the newNode to the          * current tail if we fail to insert we just retry the operation since          * somebody else has already added its newNode          */
-if|if
-condition|(
-name|currentTail
-operator|.
-name|casNext
-argument_list|(
-literal|null
-argument_list|,
+operator|=
 name|newNode
-argument_list|)
-condition|)
-block|{
-comment|/*            * now that we are done we need to advance the tail            */
-name|long
-name|seqNo
-init|=
+expr_stmt|;
+name|this
+operator|.
+name|tail
+operator|=
+name|newNode
+expr_stmt|;
+return|return
 name|getNextSequenceNumber
 argument_list|()
-decl_stmt|;
-name|boolean
-name|result
-init|=
-name|tailUpdater
-operator|.
-name|compareAndSet
-argument_list|(
-name|this
-argument_list|,
-name|currentTail
-argument_list|,
-name|newNode
-argument_list|)
-decl_stmt|;
-assert|assert
-name|result
-assert|;
-return|return
-name|seqNo
 return|;
-block|}
-block|}
-block|}
 block|}
 DECL|method|anyChanges
 name|boolean
@@ -618,13 +567,12 @@ try|try
 block|{
 if|if
 condition|(
-name|updateSlice
+name|updateSliceNoSeqNo
 argument_list|(
 name|globalSlice
 argument_list|)
 condition|)
 block|{
-comment|//          System.out.println(Thread.currentThread() + ": apply globalSlice");
 name|globalSlice
 operator|.
 name|apply
@@ -718,7 +666,6 @@ name|MAX_INT
 argument_list|)
 expr_stmt|;
 block|}
-comment|//      System.out.println(Thread.currentThread().getName() + ": now freeze global buffer " + globalBufferedDeletes);
 specifier|final
 name|FrozenBufferedUpdates
 name|packet
@@ -762,9 +709,52 @@ name|tail
 argument_list|)
 return|;
 block|}
+comment|/** Negative result means there were new deletes since we last applied */
 DECL|method|updateSlice
-name|boolean
+specifier|synchronized
+name|long
 name|updateSlice
+parameter_list|(
+name|DeleteSlice
+name|slice
+parameter_list|)
+block|{
+name|long
+name|seqNo
+init|=
+name|getNextSequenceNumber
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|slice
+operator|.
+name|sliceTail
+operator|!=
+name|tail
+condition|)
+block|{
+comment|// new deletes arrived since we last checked
+name|slice
+operator|.
+name|sliceTail
+operator|=
+name|tail
+expr_stmt|;
+name|seqNo
+operator|=
+operator|-
+name|seqNo
+expr_stmt|;
+block|}
+return|return
+name|seqNo
+return|;
+block|}
+comment|/** Just like updateSlice, but does not assign a sequence number */
+DECL|method|updateSliceNoSeqNo
+name|boolean
+name|updateSliceNoSeqNo
 parameter_list|(
 name|DeleteSlice
 name|slice
@@ -779,7 +769,7 @@ operator|!=
 name|tail
 condition|)
 block|{
-comment|// If we are the same just
+comment|// new deletes arrived since we last checked
 name|slice
 operator|.
 name|sliceTail
@@ -892,7 +882,6 @@ argument_list|,
 name|docIDUpto
 argument_list|)
 expr_stmt|;
-comment|//        System.out.println(Thread.currentThread().getName() + ": pull " + current + " docIDUpto=" + docIDUpto);
 block|}
 do|while
 condition|(
@@ -1704,11 +1693,29 @@ name|long
 name|getNextSequenceNumber
 parameter_list|()
 block|{
-return|return
+name|long
+name|seqNo
+init|=
 name|nextSeqNo
 operator|.
 name|getAndIncrement
 argument_list|()
+decl_stmt|;
+assert|assert
+name|seqNo
+operator|<
+name|maxSeqNo
+operator|:
+literal|"seqNo="
+operator|+
+name|seqNo
+operator|+
+literal|" vs maxSeqNo="
+operator|+
+name|maxSeqNo
+assert|;
+return|return
+name|seqNo
 return|;
 block|}
 DECL|method|getLastSequenceNumber
@@ -1726,6 +1733,7 @@ operator|-
 literal|1
 return|;
 block|}
+comment|/** Inserts a gap in the sequence numbers.  This is used by IW during flush or commit to ensure any in-flight threads get sequence numbers    *  inside the gap */
 DECL|method|skipSequenceNumbers
 specifier|public
 name|void
