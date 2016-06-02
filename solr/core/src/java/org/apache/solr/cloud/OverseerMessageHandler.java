@@ -85,6 +85,30 @@ name|String
 name|operation
 parameter_list|)
 function_decl|;
+DECL|interface|Lock
+interface|interface
+name|Lock
+block|{
+DECL|method|unlock
+name|void
+name|unlock
+parameter_list|()
+function_decl|;
+block|}
+comment|/**Try to provide an exclusive lock for this particular task    * return null if locking is not possible. If locking is not necessary    */
+DECL|method|lockTask
+name|Lock
+name|lockTask
+parameter_list|(
+name|ZkNodeProps
+name|message
+parameter_list|,
+name|OverseerTaskProcessor
+operator|.
+name|TaskBatch
+name|taskBatch
+parameter_list|)
+function_decl|;
 comment|/**    * @param message the message being processed    *    * @return the taskKey for the message for handling task exclusivity    */
 DECL|method|getTaskKey
 name|String
@@ -94,59 +118,6 @@ name|ZkNodeProps
 name|message
 parameter_list|)
 function_decl|;
-comment|/**    * @param taskKey the key associated with the task, cached from getTaskKey    * @param message the message being processed    */
-DECL|method|markExclusiveTask
-name|void
-name|markExclusiveTask
-parameter_list|(
-name|String
-name|taskKey
-parameter_list|,
-name|ZkNodeProps
-name|message
-parameter_list|)
-function_decl|;
-comment|/**    * @param taskKey the key associated with the task    * @param operation the operation being processed    * @param message the message being processed    */
-DECL|method|unmarkExclusiveTask
-name|void
-name|unmarkExclusiveTask
-parameter_list|(
-name|String
-name|taskKey
-parameter_list|,
-name|String
-name|operation
-parameter_list|,
-name|ZkNodeProps
-name|message
-parameter_list|)
-function_decl|;
-comment|/**    * @param taskKey the key associated with the task    * @param message the message being processed    *    * @return the exclusive marking    */
-DECL|method|checkExclusiveMarking
-name|ExclusiveMarking
-name|checkExclusiveMarking
-parameter_list|(
-name|String
-name|taskKey
-parameter_list|,
-name|ZkNodeProps
-name|message
-parameter_list|)
-function_decl|;
-DECL|enum|ExclusiveMarking
-enum|enum
-name|ExclusiveMarking
-block|{
-DECL|enum constant|NOTDETERMINED
-name|NOTDETERMINED
-block|,
-comment|// not enough context, fall back to the processor (i.e. look at running tasks)
-DECL|enum constant|EXCLUSIVE
-name|EXCLUSIVE
-block|,
-DECL|enum constant|NONEXCLUSIVE
-name|NONEXCLUSIVE
-block|}
 block|}
 end_interface
 
