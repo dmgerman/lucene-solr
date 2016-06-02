@@ -3004,17 +3004,16 @@ argument_list|(
 name|coll
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|ref
-operator|==
-literal|null
-condition|)
-continue|continue;
 comment|// legacy collections are always in-memory
 name|DocCollection
 name|oldState
 init|=
+name|ref
+operator|==
+literal|null
+condition|?
+literal|null
+else|:
 name|ref
 operator|.
 name|get
@@ -6282,8 +6281,6 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-else|else
-block|{
 name|DocCollection
 name|state
 init|=
@@ -6315,7 +6312,6 @@ argument_list|,
 name|stateWatcher
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 comment|/**    * Block until a CollectionStatePredicate returns true, or the wait times out    *    * Note that the predicate may be called again even after it has returned true, so    * implementors should avoid changing state within the predicate call itself.    *    * @param collection the collection to watch    * @param wait       how long to wait    * @param unit       the units of the wait parameter    * @param predicate  the predicate to call on state changes    * @throws InterruptedException on interrupt    * @throws TimeoutException on timeout    */
