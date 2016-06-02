@@ -1142,7 +1142,8 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|// multiple threads update the same set of documents, and we randomly commit
+comment|// multiple threads update the same set of documents, and we randomly commit, recording the commit seqNo and then opening each commit in
+comment|// the end to verify it reflects the correct updates
 for|for
 control|(
 name|int
@@ -2336,6 +2337,7 @@ argument_list|(
 name|ops1
 argument_list|)
 expr_stmt|;
+comment|// pre-index every ID so none are missing:
 for|for
 control|(
 name|int
@@ -2448,7 +2450,8 @@ name|op
 argument_list|)
 expr_stmt|;
 block|}
-comment|// multiple threads update the same set of documents, and we randomly commit
+comment|// multiple threads update the same set of documents, and we randomly commit, recording the commit seqNo and then opening each commit in
+comment|// the end to verify it reflects the correct updates
 for|for
 control|(
 name|int
@@ -3034,8 +3037,8 @@ argument_list|,
 literal|1
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
+comment|// We pre-add all ids up front:
+assert|assert
 name|expectedThreadIDs
 index|[
 name|id
@@ -3043,8 +3046,7 @@ index|]
 operator|!=
 operator|-
 literal|1
-condition|)
-block|{
+assert|;
 name|assertEquals
 argument_list|(
 literal|1
@@ -3083,7 +3085,18 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"FAIL: id="
+literal|"FAIL: commit="
+operator|+
+name|i
+operator|+
+literal|" (of "
+operator|+
+name|commits
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|") id="
 operator|+
 name|id
 operator|+
@@ -3162,20 +3175,6 @@ operator|+
 name|op
 operator|.
 name|seqNo
-operator|+
-literal|" "
-operator|+
-operator|(
-name|op
-operator|.
-name|what
-operator|==
-literal|2
-condition|?
-literal|"updated"
-else|:
-literal|"deleted"
-operator|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -3193,133 +3192,6 @@ name|id
 index|]
 argument_list|,
 name|actualThreadID
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-elseif|else
-if|if
-condition|(
-name|hits
-operator|.
-name|totalHits
-operator|!=
-literal|0
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"FAIL: id="
-operator|+
-name|id
-operator|+
-literal|" expectedThreadID="
-operator|+
-name|expectedThreadIDs
-index|[
-name|id
-index|]
-operator|+
-literal|" vs totalHits="
-operator|+
-name|hits
-operator|.
-name|totalHits
-operator|+
-literal|" commitSeqNo="
-operator|+
-name|commitSeqNo
-operator|+
-literal|" numThreads="
-operator|+
-name|numThreads
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|int
-name|threadID
-init|=
-literal|0
-init|;
-name|threadID
-operator|<
-name|threadOps
-operator|.
-name|size
-argument_list|()
-condition|;
-name|threadID
-operator|++
-control|)
-block|{
-for|for
-control|(
-name|Operation
-name|op
-range|:
-name|threadOps
-operator|.
-name|get
-argument_list|(
-name|threadID
-argument_list|)
-control|)
-block|{
-if|if
-condition|(
-name|id
-operator|==
-name|op
-operator|.
-name|id
-condition|)
-block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"  threadID="
-operator|+
-name|threadID
-operator|+
-literal|" seqNo="
-operator|+
-name|op
-operator|.
-name|seqNo
-operator|+
-literal|" "
-operator|+
-operator|(
-name|op
-operator|.
-name|what
-operator|==
-literal|2
-condition|?
-literal|"updated"
-else|:
-literal|"del"
-operator|)
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|hits
-operator|.
-name|totalHits
 argument_list|)
 expr_stmt|;
 block|}
