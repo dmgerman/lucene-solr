@@ -319,9 +319,12 @@ specifier|final
 name|double
 name|DECODE
 init|=
+name|getNextSafeDouble
+argument_list|(
 literal|1
 operator|/
 name|MUL
+argument_list|)
 decl_stmt|;
 DECL|field|MIN_ENCODED_VALUE
 specifier|private
@@ -333,6 +336,18 @@ init|=
 name|encodeValue
 argument_list|(
 operator|-
+name|MAX_VALUE
+argument_list|)
+decl_stmt|;
+DECL|field|MAX_ENCODED_VALUE
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|MAX_ENCODED_VALUE
+init|=
+name|encodeValue
+argument_list|(
 name|MAX_VALUE
 argument_list|)
 decl_stmt|;
@@ -394,24 +409,6 @@ literal|")"
 argument_list|)
 throw|;
 block|}
-comment|// the maximum possible value cannot be encoded without overflow
-if|if
-condition|(
-name|x
-operator|==
-name|MAX_VALUE
-condition|)
-block|{
-name|x
-operator|=
-name|Math
-operator|.
-name|nextDown
-argument_list|(
-name|x
-argument_list|)
-expr_stmt|;
-block|}
 name|long
 name|result
 init|=
@@ -427,7 +424,6 @@ operator|/
 name|DECODE
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("    enc: " + x + " -> " + result);
 assert|assert
 name|result
 operator|>=
@@ -459,8 +455,42 @@ name|int
 name|x
 parameter_list|)
 block|{
+name|double
+name|result
+decl_stmt|;
+if|if
+condition|(
+name|x
+operator|==
+name|MIN_ENCODED_VALUE
+condition|)
+block|{
+comment|// We must special case this, because -MAX_VALUE is not guaranteed to land precisely at a floor value, and we don't ever want to
+comment|// return a value outside of the planet's range (I think?).  The max value is "safe" because we floor during encode:
+name|result
+operator|=
+operator|-
+name|MAX_VALUE
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|x
+operator|==
+name|MAX_ENCODED_VALUE
+condition|)
+block|{
+name|result
+operator|=
+name|MAX_VALUE
+expr_stmt|;
+block|}
+else|else
+block|{
 comment|// We decode to the center value; this keeps the encoding stable
-return|return
+name|result
+operator|=
 operator|(
 name|x
 operator|+
@@ -468,6 +498,20 @@ literal|0.5
 operator|)
 operator|*
 name|DECODE
+expr_stmt|;
+block|}
+assert|assert
+name|result
+operator|>=
+operator|-
+name|MAX_VALUE
+operator|&&
+name|result
+operator|<=
+name|MAX_VALUE
+assert|;
+return|return
+name|result
 return|;
 block|}
 comment|/** Returns smallest double that would encode to int x. */
@@ -487,6 +531,68 @@ operator|*
 name|DECODE
 return|;
 block|}
+comment|/** Returns a double value>= x such that if you multiply that value by an int, and then    *  divide it by that int again, you get precisely the same value back */
+DECL|method|getNextSafeDouble
+specifier|private
+specifier|static
+name|double
+name|getNextSafeDouble
+parameter_list|(
+name|double
+name|x
+parameter_list|)
+block|{
+comment|// Move to double space:
+name|long
+name|bits
+init|=
+name|Double
+operator|.
+name|doubleToLongBits
+argument_list|(
+name|x
+argument_list|)
+decl_stmt|;
+comment|// Make sure we are beyond the actual maximum value:
+name|bits
+operator|+=
+name|Integer
+operator|.
+name|MAX_VALUE
+expr_stmt|;
+comment|// Clear the bottom 32 bits:
+name|bits
+operator|&=
+operator|~
+operator|(
+operator|(
+name|long
+operator|)
+name|Integer
+operator|.
+name|MAX_VALUE
+operator|)
+expr_stmt|;
+comment|// Convert back to double:
+name|double
+name|result
+init|=
+name|Double
+operator|.
+name|longBitsToDouble
+argument_list|(
+name|bits
+argument_list|)
+decl_stmt|;
+assert|assert
+name|result
+operator|>
+name|x
+assert|;
+return|return
+name|result
+return|;
+block|}
 comment|/** Returns largest double that would encode to int x. */
 comment|// NOTE: keep this package private!!
 DECL|method|decodeValueCeil
@@ -498,21 +604,13 @@ name|int
 name|x
 parameter_list|)
 block|{
-if|if
-condition|(
+assert|assert
 name|x
-operator|==
+operator|<
 name|Integer
 operator|.
 name|MAX_VALUE
-condition|)
-block|{
-return|return
-name|MAX_VALUE
-return|;
-block|}
-else|else
-block|{
+assert|;
 return|return
 name|Math
 operator|.
@@ -527,7 +625,6 @@ operator|*
 name|DECODE
 argument_list|)
 return|;
-block|}
 block|}
 comment|/** Converts degress to radians */
 DECL|method|fromDegrees
