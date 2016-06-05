@@ -1946,13 +1946,16 @@ block|}
 block|}
 block|}
 DECL|method|markForFullFlush
-name|void
+name|long
 name|markForFullFlush
 parameter_list|()
 block|{
 specifier|final
 name|DocumentsWriterDeleteQueue
 name|flushingQueue
+decl_stmt|;
+name|long
+name|seqNo
 decl_stmt|;
 synchronized|synchronized
 init|(
@@ -1987,6 +1990,32 @@ name|deleteQueue
 expr_stmt|;
 comment|// Set a new delete queue - all subsequent DWPT will use this queue until
 comment|// we do another full flush
+comment|// Insert a gap in seqNo of current active thread count, in the worst case each of those threads now have one operation in flight.  It's fine
+comment|// if we have some sequence numbers that were never assigned:
+name|seqNo
+operator|=
+name|documentsWriter
+operator|.
+name|deleteQueue
+operator|.
+name|getLastSequenceNumber
+argument_list|()
+operator|+
+name|perThreadPool
+operator|.
+name|getActiveThreadStateCount
+argument_list|()
+operator|+
+literal|2
+expr_stmt|;
+name|flushingQueue
+operator|.
+name|maxSeqNo
+operator|=
+name|seqNo
+operator|+
+literal|1
+expr_stmt|;
 name|DocumentsWriterDeleteQueue
 name|newQueue
 init|=
@@ -1996,6 +2025,10 @@ argument_list|(
 name|flushingQueue
 operator|.
 name|generation
+operator|+
+literal|1
+argument_list|,
+name|seqNo
 operator|+
 literal|1
 argument_list|)
@@ -2178,6 +2211,9 @@ operator|.
 name|deleteQueue
 argument_list|)
 assert|;
+return|return
+name|seqNo
+return|;
 block|}
 DECL|method|assertActiveDeleteQueue
 specifier|private
