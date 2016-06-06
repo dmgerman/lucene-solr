@@ -1594,6 +1594,9 @@ parameter_list|,
 name|LeafCollector
 name|collector
 parameter_list|,
+name|LeafCollector
+name|singleClauseCollector
+parameter_list|,
 name|Bits
 name|acceptDocs
 parameter_list|,
@@ -1655,7 +1658,7 @@ name|bulkScorer
 operator|.
 name|score
 argument_list|(
-name|collector
+name|singleClauseCollector
 argument_list|,
 name|acceptDocs
 argument_list|,
@@ -1811,6 +1814,8 @@ decl_stmt|;
 name|scoreWindowSingleScorer
 argument_list|(
 name|bulkScorer
+argument_list|,
+name|collector
 argument_list|,
 name|singleClauseCollector
 argument_list|,
