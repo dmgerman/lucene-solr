@@ -4737,11 +4737,11 @@ return|;
 block|}
 name|TimeUnit
 operator|.
-name|MILLISECONDS
+name|SECONDS
 operator|.
 name|sleep
 argument_list|(
-literal|100
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
