@@ -39,7 +39,7 @@ block|{
 comment|/**    * The first stage of a 2-phase commit. Implementations should do as much work    * as possible in this method, but avoid actual committing changes. If the    * 2-phase commit fails, {@link #rollback()} is called to discard all changes    * since last successful commit.    */
 DECL|method|prepareCommit
 specifier|public
-name|void
+name|long
 name|prepareCommit
 parameter_list|()
 throws|throws
@@ -48,7 +48,7 @@ function_decl|;
 comment|/**    * The second phase of a 2-phase commit. Implementations should ideally do    * very little work in this method (following {@link #prepareCommit()}, and    * after it returns, the caller can assume that the changes were successfully    * committed to the underlying storage.    */
 DECL|method|commit
 specifier|public
-name|void
+name|long
 name|commit
 parameter_list|()
 throws|throws

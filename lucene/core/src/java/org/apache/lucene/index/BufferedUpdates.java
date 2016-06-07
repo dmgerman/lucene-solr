@@ -155,7 +155,7 @@ import|;
 end_import
 
 begin_comment
-comment|/* Holds buffered deletes and updates, by docID, term or query for a  * single segment. This is used to hold buffered pending  * deletes and updates against the to-be-flushed segment.  Once the  * deletes and updates are pushed (on flush in DocumentsWriter), they  * are converted to a FrozenDeletes instance. */
+comment|/* Holds buffered deletes and updates, by docID, term or query for a  * single segment. This is used to hold buffered pending  * deletes and updates against the to-be-flushed segment.  Once the  * deletes and updates are pushed (on flush in DocumentsWriter), they  * are converted to a FrozenBufferedUpdates instance. */
 end_comment
 
 begin_comment
@@ -515,10 +515,18 @@ DECL|field|gen
 name|long
 name|gen
 decl_stmt|;
+DECL|field|segmentName
+specifier|final
+name|String
+name|segmentName
+decl_stmt|;
 DECL|method|BufferedUpdates
 specifier|public
 name|BufferedUpdates
-parameter_list|()
+parameter_list|(
+name|String
+name|segmentName
+parameter_list|)
 block|{
 name|this
 operator|.
@@ -527,6 +535,12 @@ operator|=
 operator|new
 name|AtomicLong
 argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|segmentName
+operator|=
+name|segmentName
 expr_stmt|;
 block|}
 annotation|@

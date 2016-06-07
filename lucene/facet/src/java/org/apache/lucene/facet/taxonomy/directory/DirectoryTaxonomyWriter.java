@@ -2126,7 +2126,7 @@ name|Override
 DECL|method|commit
 specifier|public
 specifier|synchronized
-name|void
+name|long
 name|commit
 parameter_list|()
 throws|throws
@@ -2181,11 +2181,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+return|return
 name|indexWriter
 operator|.
 name|commit
 argument_list|()
-expr_stmt|;
+return|;
 block|}
 comment|/** Combine original user data with the taxonomy epoch. */
 DECL|method|combinedCommitData
@@ -2311,7 +2312,7 @@ name|Override
 DECL|method|prepareCommit
 specifier|public
 specifier|synchronized
-name|void
+name|long
 name|prepareCommit
 parameter_list|()
 throws|throws
@@ -2366,11 +2367,12 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+return|return
 name|indexWriter
 operator|.
 name|prepareCommit
 argument_list|()
-expr_stmt|;
+return|;
 block|}
 annotation|@
 name|Override
