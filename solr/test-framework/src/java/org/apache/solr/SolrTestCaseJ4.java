@@ -1463,15 +1463,7 @@ argument_list|)
 comment|// might be ok, the failures with e.g. nightly runs might be "normal"
 annotation|@
 name|RandomizeSSL
-argument_list|(
-name|ssl
-operator|=
-literal|0.0
-argument_list|,
-name|reason
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9189 - temp disable randomized ssl to get to bottom of recent explosion of timeout related failures in jenkins builds"
-argument_list|)
+argument_list|()
 DECL|class|SolrTestCaseJ4
 specifier|public
 specifier|abstract
