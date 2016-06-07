@@ -922,19 +922,6 @@ literal|"split"
 argument_list|)
 decl_stmt|;
 name|String
-name|childSplit
-init|=
-name|req
-operator|.
-name|getParams
-argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|"child.split"
-argument_list|)
-decl_stmt|;
-name|String
 index|[]
 name|f
 init|=
@@ -951,8 +938,6 @@ decl_stmt|;
 name|handleSplitMode
 argument_list|(
 name|split
-argument_list|,
-name|childSplit
 argument_list|,
 name|f
 argument_list|,
@@ -1336,9 +1321,6 @@ name|String
 name|split
 parameter_list|,
 name|String
-name|childSplit
-parameter_list|,
-name|String
 index|[]
 name|fields
 parameter_list|,
@@ -1487,8 +1469,6 @@ operator|.
 name|getInst
 argument_list|(
 name|split
-argument_list|,
-name|childSplit
 argument_list|,
 name|Arrays
 operator|.

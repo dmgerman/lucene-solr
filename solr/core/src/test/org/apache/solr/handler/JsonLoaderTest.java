@@ -2289,11 +2289,7 @@ name|req
 argument_list|(
 literal|"split"
 argument_list|,
-literal|"/"
-argument_list|,
-literal|"child.split"
-argument_list|,
-literal|"/a/b"
+literal|"/|/a/b"
 argument_list|)
 expr_stmt|;
 name|req
