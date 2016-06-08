@@ -294,7 +294,7 @@ argument_list|()
 argument_list|,
 literal|0
 argument_list|,
-literal|1000
+literal|999
 argument_list|)
 operator|<
 call|(
@@ -332,7 +332,7 @@ argument_list|()
 argument_list|,
 literal|0
 argument_list|,
-literal|1000
+literal|999
 argument_list|)
 operator|<
 call|(
