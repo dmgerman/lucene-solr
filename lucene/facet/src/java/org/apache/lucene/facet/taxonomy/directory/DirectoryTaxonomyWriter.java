@@ -3309,6 +3309,8 @@ name|addDone
 argument_list|()
 expr_stmt|;
 comment|// in case this wasn't previously called
+try|try
+init|(
 name|DataInputStream
 name|in
 init|=
@@ -3326,7 +3328,8 @@ name|tmpfile
 argument_list|)
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|map
 operator|=
 operator|new
@@ -3382,11 +3385,7 @@ operator|=
 name|newordinal
 expr_stmt|;
 block|}
-name|in
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 comment|// Delete the temporary file, which is no longer needed.
 name|Files
 operator|.

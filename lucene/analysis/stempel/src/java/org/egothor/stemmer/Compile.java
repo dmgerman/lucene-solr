@@ -351,9 +351,6 @@ name|i
 operator|++
 control|)
 block|{
-name|LineNumberReader
-name|in
-decl_stmt|;
 comment|// System.out.println("[" + args[i] + "]");
 name|Diff
 name|diff
@@ -377,8 +374,11 @@ name|i
 index|]
 argument_list|)
 expr_stmt|;
+try|try
+init|(
+name|LineNumberReader
 name|in
-operator|=
+init|=
 operator|new
 name|LineNumberReader
 argument_list|(
@@ -404,7 +404,8 @@ name|charset
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 for|for
 control|(
 name|String
@@ -532,11 +533,7 @@ block|{
 comment|// no base token (stem) on a line
 block|}
 block|}
-name|in
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 name|Optimizer
 name|o
 init|=
@@ -706,6 +703,8 @@ literal|" "
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+init|(
 name|DataOutputStream
 name|os
 init|=
@@ -733,7 +732,8 @@ argument_list|)
 argument_list|)
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|os
 operator|.
 name|writeUTF
@@ -751,11 +751,7 @@ argument_list|(
 name|os
 argument_list|)
 expr_stmt|;
-name|os
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|allocTrie

@@ -534,6 +534,8 @@ name|IOException
 throws|,
 name|ClassNotFoundException
 block|{
+try|try
+init|(
 name|ObjectInputStream
 name|input
 init|=
@@ -542,7 +544,8 @@ name|ObjectInputStream
 argument_list|(
 name|serialObjectInputStream
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|wordIndexTable
 operator|=
 operator|(
@@ -591,11 +594,7 @@ name|readObject
 argument_list|()
 expr_stmt|;
 comment|// log.info("load core dict from serialization.");
-name|input
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 block|}
 DECL|method|saveToObj
 specifier|private
@@ -607,7 +606,7 @@ name|serialObj
 parameter_list|)
 block|{
 try|try
-block|{
+init|(
 name|ObjectOutputStream
 name|output
 init|=
@@ -621,7 +620,8 @@ argument_list|(
 name|serialObj
 argument_list|)
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|output
 operator|.
 name|writeObject

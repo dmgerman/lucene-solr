@@ -525,6 +525,8 @@ operator|.
 name|UTF_8
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|String
 name|word
 decl_stmt|;
@@ -834,11 +836,17 @@ name|occur
 expr_stmt|;
 block|}
 block|}
-name|in
+block|}
+finally|finally
+block|{
+name|IOUtils
 operator|.
 name|close
-argument_list|()
+argument_list|(
+name|in
+argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**    * Deletes the node passed in as an argument. If this node has non-null data,    * then both the node and the data will be deleted. It also deletes any other    * nodes in the trie that are no longer needed after the deletion of the node.    *     *@param nodeToDelete    *          The node to delete.    */
 DECL|method|deleteNode
