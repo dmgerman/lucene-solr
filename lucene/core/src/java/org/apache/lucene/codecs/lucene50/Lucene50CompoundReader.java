@@ -535,7 +535,6 @@ block|}
 comment|/** Helper method that reads CFS entries from an input stream */
 DECL|method|readEntries
 specifier|private
-specifier|final
 name|Map
 argument_list|<
 name|String
@@ -818,6 +817,22 @@ operator|==
 literal|null
 condition|)
 block|{
+name|String
+name|datFileName
+init|=
+name|IndexFileNames
+operator|.
+name|segmentFileName
+argument_list|(
+name|segmentName
+argument_list|,
+literal|""
+argument_list|,
+name|Lucene50CompoundFormat
+operator|.
+name|DATA_EXTENSION
+argument_list|)
+decl_stmt|;
 throw|throw
 operator|new
 name|FileNotFoundException
@@ -826,7 +841,11 @@ literal|"No sub-file with id "
 operator|+
 name|id
 operator|+
-literal|" found (fileName="
+literal|" found in compound file \""
+operator|+
+name|datFileName
+operator|+
+literal|"\" (fileName="
 operator|+
 name|name
 operator|+

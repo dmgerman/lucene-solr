@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.index
+DECL|package|org.apache.lucene.codecs
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|codecs
 package|;
 end_package
 
@@ -51,6 +51,20 @@ operator|.
 name|codecs
 operator|.
 name|CodecUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|CorruptIndexException
 import|;
 end_import
 

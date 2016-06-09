@@ -114,7 +114,7 @@ name|codecs
 operator|.
 name|memory
 operator|.
-name|MemoryPostingsFormat
+name|DirectPostingsFormat
 import|;
 end_import
 
@@ -128,9 +128,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|simpletext
+name|memory
 operator|.
-name|SimpleTextPostingsFormat
+name|MemoryPostingsFormat
 import|;
 end_import
 
@@ -243,6 +243,8 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
+operator|.
+name|OpenMode
 import|;
 end_import
 
@@ -257,8 +259,6 @@ operator|.
 name|index
 operator|.
 name|IndexWriterConfig
-operator|.
-name|OpenMode
 import|;
 end_import
 
@@ -1414,13 +1414,13 @@ operator|.
 name|getDefaultPostingsFormat
 argument_list|()
 decl_stmt|;
-DECL|field|simpleText
+DECL|field|direct
 specifier|final
 name|PostingsFormat
-name|simpleText
+name|direct
 init|=
 operator|new
-name|SimpleTextPostingsFormat
+name|DirectPostingsFormat
 argument_list|()
 decl_stmt|;
 DECL|field|memory
@@ -1454,7 +1454,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|simpleText
+name|direct
 return|;
 block|}
 elseif|else
@@ -1498,13 +1498,13 @@ operator|.
 name|getDefaultPostingsFormat
 argument_list|()
 decl_stmt|;
-DECL|field|simpleText
+DECL|field|direct
 specifier|final
 name|PostingsFormat
-name|simpleText
+name|direct
 init|=
 operator|new
-name|SimpleTextPostingsFormat
+name|DirectPostingsFormat
 argument_list|()
 decl_stmt|;
 annotation|@
@@ -1529,7 +1529,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|simpleText
+name|direct
 return|;
 block|}
 else|else

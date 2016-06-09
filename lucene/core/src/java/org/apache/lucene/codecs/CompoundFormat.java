@@ -106,7 +106,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Packs the provided segment's files into a compound format.    */
+comment|/**    * Packs the provided segment's files into a compound format.  All files referenced    * by the provided {@link SegmentInfo} must have {@link CodecUtil#writeIndexHeader}    * and {@link CodecUtil#writeFooter}.    */
 DECL|method|write
 specifier|public
 specifier|abstract

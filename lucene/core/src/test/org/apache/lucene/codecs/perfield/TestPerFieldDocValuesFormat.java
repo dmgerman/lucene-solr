@@ -542,7 +542,7 @@ name|DocValuesFormat
 operator|.
 name|forName
 argument_list|(
-literal|"SimpleText"
+literal|"Memory"
 argument_list|)
 decl_stmt|;
 name|iwc
