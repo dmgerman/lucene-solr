@@ -3712,11 +3712,6 @@ operator|.
 name|SECONDS
 argument_list|)
 decl_stmt|;
-name|boolean
-name|foundStates
-init|=
-literal|true
-decl_stmt|;
 while|while
 condition|(
 name|System
@@ -3727,6 +3722,11 @@ operator|<
 name|timeout
 condition|)
 block|{
+name|boolean
+name|foundStates
+init|=
+literal|true
+decl_stmt|;
 name|ClusterState
 name|clusterState
 init|=
@@ -3845,11 +3845,6 @@ block|}
 block|}
 block|}
 block|}
-if|if
-condition|(
-name|foundStates
-condition|)
-block|{
 name|Thread
 operator|.
 name|sleep
@@ -3857,22 +3852,14 @@ argument_list|(
 literal|1000
 argument_list|)
 expr_stmt|;
-break|break;
-block|}
-name|Thread
-operator|.
-name|sleep
-argument_list|(
-literal|1000
-argument_list|)
-expr_stmt|;
-block|}
 if|if
 condition|(
-operator|!
 name|foundStates
 condition|)
 block|{
+return|return;
+block|}
+block|}
 name|log
 operator|.
 name|warn
@@ -3880,7 +3867,6 @@ argument_list|(
 literal|"Timed out waiting to see all nodes published as DOWN in our cluster state."
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|/**    * Validates if the chroot exists in zk (or if it is successfully created).    * Optionally, if create is set to true this method will create the path in    * case it doesn't exist    *    * @return true if the path exists or is created false if the path doesn't    * exist and 'create' = false    */
 DECL|method|checkChrootPath
