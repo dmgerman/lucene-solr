@@ -2485,6 +2485,200 @@ argument_list|,
 literal|"q"
 argument_list|)
 expr_stmt|;
+name|json
+operator|=
+literal|"{\n"
+operator|+
+literal|"  \"id\": \"1\",\n"
+operator|+
+literal|"  \"name\": \"i am the parent\",\n"
+operator|+
+literal|"  \"cat\": \"parent\",\n"
+operator|+
+literal|"  \"children\": [\n"
+operator|+
+literal|"    {\n"
+operator|+
+literal|"      \"id\": \"1.1\",\n"
+operator|+
+literal|"      \"name\": \"i am the 1st child\",\n"
+operator|+
+literal|"      \"cat\": \"child\"\n"
+operator|+
+literal|"    },\n"
+operator|+
+literal|"    {\n"
+operator|+
+literal|"      \"id\": \"1.2\",\n"
+operator|+
+literal|"      \"name\": \"i am the 2nd child\",\n"
+operator|+
+literal|"      \"cat\": \"child\",\n"
+operator|+
+literal|"      \"grandchildren\": [\n"
+operator|+
+literal|"        {\n"
+operator|+
+literal|"          \"id\": \"1.2.1\",\n"
+operator|+
+literal|"          \"name\": \"i am the grandchild\",\n"
+operator|+
+literal|"          \"cat\": \"grandchild\"\n"
+operator|+
+literal|"        }\n"
+operator|+
+literal|"      ]\n"
+operator|+
+literal|"    }\n"
+operator|+
+literal|"  ]\n"
+operator|+
+literal|"}"
+expr_stmt|;
+name|req
+operator|=
+name|req
+argument_list|(
+literal|"split"
+argument_list|,
+literal|"/|/children|/children/grandchildren"
+argument_list|,
+literal|"f"
+argument_list|,
+literal|"$FQN:/**"
+argument_list|,
+literal|"f"
+argument_list|,
+literal|"id:/children/id"
+argument_list|,
+literal|"f"
+argument_list|,
+literal|"/name"
+argument_list|,
+literal|"f"
+argument_list|,
+literal|"/children/name"
+argument_list|,
+literal|"f"
+argument_list|,
+literal|"cat:/children/cat"
+argument_list|,
+literal|"f"
+argument_list|,
+literal|"id:/children/grandchildren/id"
+argument_list|,
+literal|"f"
+argument_list|,
+literal|"name:/children/grandchildren/name"
+argument_list|,
+literal|"f"
+argument_list|,
+literal|"cat:/children/grandchildren/cat"
+argument_list|)
+expr_stmt|;
+name|req
+operator|.
+name|getContext
+argument_list|()
+operator|.
+name|put
+argument_list|(
+literal|"path"
+argument_list|,
+literal|"/update/json/docs"
+argument_list|)
+expr_stmt|;
+name|rsp
+operator|=
+operator|new
+name|SolrQueryResponse
+argument_list|()
+expr_stmt|;
+name|p
+operator|=
+operator|new
+name|BufferingRequestProcessor
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
+name|loader
+operator|=
+operator|new
+name|JsonLoader
+argument_list|()
+expr_stmt|;
+name|loader
+operator|.
+name|load
+argument_list|(
+name|req
+argument_list|,
+name|rsp
+argument_list|,
+operator|new
+name|ContentStreamBase
+operator|.
+name|StringStream
+argument_list|(
+name|json
+argument_list|)
+argument_list|,
+name|p
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|2
+argument_list|,
+name|p
+operator|.
+name|addCommands
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|solrDoc
+operator|.
+name|getChildDocuments
+argument_list|()
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|1
+argument_list|,
+name|p
+operator|.
+name|addCommands
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|solrDoc
+operator|.
+name|getChildDocuments
+argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|getChildDocuments
+argument_list|()
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testExtendedFieldValues
 specifier|public
