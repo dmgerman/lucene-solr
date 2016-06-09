@@ -120,18 +120,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|function
-operator|.
-name|Function
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|google
@@ -155,6 +143,20 @@ operator|.
 name|base
 operator|.
 name|Preconditions
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Predicate
 import|;
 end_import
 
@@ -1329,11 +1331,9 @@ parameter_list|,
 name|long
 name|waitMillis
 parameter_list|,
-name|Function
+name|Predicate
 argument_list|<
 name|String
-argument_list|,
-name|Boolean
 argument_list|>
 name|acceptFilter
 parameter_list|)

@@ -88,6 +88,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Predicates
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -173,6 +187,38 @@ operator|.
 name|junit
 operator|.
 name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Predicates
+operator|.
+name|alwaysFalse
+import|;
+end_import
+
+begin_import
+import|import static
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Predicates
+operator|.
+name|alwaysTrue
 import|;
 end_import
 
@@ -836,9 +882,8 @@ name|i
 argument_list|,
 literal|0
 argument_list|,
-name|child
-lambda|->
-literal|true
+name|alwaysTrue
+argument_list|()
 argument_list|)
 operator|.
 name|size
@@ -859,9 +904,8 @@ literal|4
 argument_list|,
 literal|0
 argument_list|,
-name|child
-lambda|->
-literal|true
+name|alwaysTrue
+argument_list|()
 argument_list|)
 operator|.
 name|size
@@ -889,9 +933,8 @@ literal|4
 argument_list|,
 literal|1000
 argument_list|,
-name|child
-lambda|->
-literal|false
+name|alwaysFalse
+argument_list|()
 argument_list|)
 operator|.
 name|size
