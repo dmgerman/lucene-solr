@@ -584,16 +584,6 @@ argument_list|)
 argument_list|)
 decl_stmt|;
 assert|assert
-name|termStates
-index|[
-name|pos
-index|]
-operator|.
-name|hasOnlyRealTerms
-argument_list|()
-operator|==
-literal|false
-operator|||
 name|reader
 operator|.
 name|docFreq

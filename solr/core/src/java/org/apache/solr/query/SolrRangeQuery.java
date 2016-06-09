@@ -2013,21 +2013,6 @@ operator|.
 name|termState
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|state
-operator|.
-name|isRealTerm
-argument_list|()
-operator|==
-literal|false
-condition|)
-block|{
-comment|// TermQuery does not accept fake terms for now
-return|return
-name|count
-return|;
-block|}
 name|int
 name|df
 init|=
