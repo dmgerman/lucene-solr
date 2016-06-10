@@ -108,26 +108,6 @@ name|GeoPointField
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|spatial
-operator|.
-name|geopoint
-operator|.
-name|document
-operator|.
-name|GeoPointField
-operator|.
-name|TermEncoding
-import|;
-end_import
-
 begin_comment
 comment|/**  * random testing for GeoPoint query logic  *  * @lucene.experimental  */
 end_comment
@@ -229,7 +209,7 @@ name|lon
 argument_list|,
 name|GeoPointField
 operator|.
-name|PREFIX_TYPE_NOT_STORED
+name|TYPE_NOT_STORED
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -262,10 +242,6 @@ operator|new
 name|GeoPointInBBoxQuery
 argument_list|(
 name|field
-argument_list|,
-name|TermEncoding
-operator|.
-name|PREFIX
 argument_list|,
 name|minLat
 argument_list|,
@@ -303,10 +279,6 @@ name|GeoPointDistanceQuery
 argument_list|(
 name|field
 argument_list|,
-name|TermEncoding
-operator|.
-name|PREFIX
-argument_list|,
 name|centerLat
 argument_list|,
 name|centerLon
@@ -335,10 +307,6 @@ operator|new
 name|GeoPointInPolygonQuery
 argument_list|(
 name|field
-argument_list|,
-name|TermEncoding
-operator|.
-name|PREFIX
 argument_list|,
 name|polygons
 argument_list|)
