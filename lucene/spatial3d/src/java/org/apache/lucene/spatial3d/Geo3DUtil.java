@@ -327,7 +327,6 @@ name|MUL
 argument_list|)
 decl_stmt|;
 DECL|field|MIN_ENCODED_VALUE
-specifier|private
 specifier|static
 specifier|final
 name|int
@@ -340,7 +339,6 @@ name|MAX_VALUE
 argument_list|)
 decl_stmt|;
 DECL|field|MAX_ENCODED_VALUE
-specifier|private
 specifier|static
 specifier|final
 name|int

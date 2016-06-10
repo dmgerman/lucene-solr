@@ -7921,7 +7921,7 @@ block|}
 block|}
 block|}
 comment|// poached from TestGeoEncodingUtils.testLatitudeQuantization:
-comment|/**    * step through some integers, ensuring they decode to their expected double values.    * double values start at -90 and increase by LATITUDE_DECODE for each integer.    * check edge cases within the double range and random doubles within the range too.    */
+comment|/**    * step through some integers, ensuring they decode to their expected double values.    * double values start at -planetMax and increase by Geo3DUtil.DECODE for each integer.    * check edge cases within the double range and random doubles within the range too.    */
 DECL|method|testQuantization
 specifier|public
 name|void
@@ -7959,6 +7959,28 @@ operator|.
 name|nextInt
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|encoded
+operator|<
+name|Geo3DUtil
+operator|.
+name|MIN_ENCODED_VALUE
+condition|)
+block|{
+continue|continue;
+block|}
+if|if
+condition|(
+name|encoded
+operator|>
+name|Geo3DUtil
+operator|.
+name|MAX_ENCODED_VALUE
+condition|)
+block|{
+continue|continue;
+block|}
 name|double
 name|min
 init|=
