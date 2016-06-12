@@ -38,6 +38,16 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Test
+import|;
+end_import
+
 begin_comment
 comment|/**  * Tests things like sorting on docvalues with missing values  */
 end_comment
@@ -643,6 +653,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** float with default lucene sort (treats as 0) */
+annotation|@
+name|Test
 DECL|method|testFloatSort
 specifier|public
 name|void
@@ -662,6 +674,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic float with default lucene sort (treats as 0) */
+annotation|@
+name|Test
 DECL|method|testDynFloatSort
 specifier|public
 name|void
@@ -681,6 +695,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** float with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testFloatSortMissingFirst
 specifier|public
 name|void
@@ -700,6 +716,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic float with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testDynFloatSortMissingFirst
 specifier|public
 name|void
@@ -719,6 +737,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** float with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testFloatSortMissingLast
 specifier|public
 name|void
@@ -738,6 +758,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic float with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testDynFloatSortMissingLast
 specifier|public
 name|void
@@ -757,6 +779,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** float function query based on missing */
+annotation|@
+name|Test
 DECL|method|testFloatMissingFunction
 specifier|public
 name|void
@@ -776,6 +800,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dyanmic float function query based on missing */
+annotation|@
+name|Test
 DECL|method|testDynFloatMissingFunction
 specifier|public
 name|void
@@ -795,6 +821,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** float missing facet count */
+annotation|@
+name|Test
 DECL|method|testFloatMissingFacet
 specifier|public
 name|void
@@ -814,6 +842,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic float missing facet count */
+annotation|@
+name|Test
 DECL|method|testDynFloatMissingFacet
 specifier|public
 name|void
@@ -833,6 +863,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** int with default lucene sort (treats as 0) */
+annotation|@
+name|Test
 DECL|method|testIntSort
 specifier|public
 name|void
@@ -852,6 +884,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic int with default lucene sort (treats as 0) */
+annotation|@
+name|Test
 DECL|method|testDynIntSort
 specifier|public
 name|void
@@ -871,6 +905,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** int with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testIntSortMissingFirst
 specifier|public
 name|void
@@ -890,6 +926,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic int with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testDynIntSortMissingFirst
 specifier|public
 name|void
@@ -909,6 +947,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** int with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testIntSortMissingLast
 specifier|public
 name|void
@@ -928,6 +968,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic int with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testDynIntSortMissingLast
 specifier|public
 name|void
@@ -947,6 +989,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** int function query based on missing */
+annotation|@
+name|Test
 DECL|method|testIntMissingFunction
 specifier|public
 name|void
@@ -966,6 +1010,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic int function query based on missing */
+annotation|@
+name|Test
 DECL|method|testDynIntMissingFunction
 specifier|public
 name|void
@@ -985,6 +1031,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** int missing facet count */
+annotation|@
+name|Test
 DECL|method|testIntMissingFacet
 specifier|public
 name|void
@@ -1004,6 +1052,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic int missing facet count */
+annotation|@
+name|Test
 DECL|method|testDynIntMissingFacet
 specifier|public
 name|void
@@ -1023,6 +1073,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** double with default lucene sort (treats as 0) */
+annotation|@
+name|Test
 DECL|method|testDoubleSort
 specifier|public
 name|void
@@ -1042,6 +1094,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic double with default lucene sort (treats as 0) */
+annotation|@
+name|Test
 DECL|method|testDynDoubleSort
 specifier|public
 name|void
@@ -1061,6 +1115,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** double with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testDoubleSortMissingFirst
 specifier|public
 name|void
@@ -1080,6 +1136,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic double with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testDynDoubleSortMissingFirst
 specifier|public
 name|void
@@ -1099,6 +1157,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** double with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testDoubleSortMissingLast
 specifier|public
 name|void
@@ -1118,6 +1178,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic double with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testDynDoubleSortMissingLast
 specifier|public
 name|void
@@ -1137,6 +1199,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** double function query based on missing */
+annotation|@
+name|Test
 DECL|method|testDoubleMissingFunction
 specifier|public
 name|void
@@ -1156,6 +1220,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dyanmic double function query based on missing */
+annotation|@
+name|Test
 DECL|method|testDynDoubleMissingFunction
 specifier|public
 name|void
@@ -1175,6 +1241,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** double missing facet count */
+annotation|@
+name|Test
 DECL|method|testDoubleMissingFacet
 specifier|public
 name|void
@@ -1194,6 +1262,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic double missing facet count */
+annotation|@
+name|Test
 DECL|method|testDynDoubleMissingFacet
 specifier|public
 name|void
@@ -1213,6 +1283,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** long with default lucene sort (treats as 0) */
+annotation|@
+name|Test
 DECL|method|testLongSort
 specifier|public
 name|void
@@ -1232,6 +1304,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic long with default lucene sort (treats as 0) */
+annotation|@
+name|Test
 DECL|method|testDynLongSort
 specifier|public
 name|void
@@ -1251,6 +1325,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** long with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testLongSortMissingFirst
 specifier|public
 name|void
@@ -1270,6 +1346,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic long with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testDynLongSortMissingFirst
 specifier|public
 name|void
@@ -1289,6 +1367,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** long with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testLongSortMissingLast
 specifier|public
 name|void
@@ -1308,6 +1388,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic long with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testDynLongSortMissingLast
 specifier|public
 name|void
@@ -1327,6 +1409,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** long function query based on missing */
+annotation|@
+name|Test
 DECL|method|testLongMissingFunction
 specifier|public
 name|void
@@ -1346,6 +1430,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic long function query based on missing */
+annotation|@
+name|Test
 DECL|method|testDynLongMissingFunction
 specifier|public
 name|void
@@ -1365,6 +1451,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** long missing facet count */
+annotation|@
+name|Test
 DECL|method|testLongMissingFacet
 specifier|public
 name|void
@@ -1384,6 +1472,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic long missing facet count */
+annotation|@
+name|Test
 DECL|method|testDynLongMissingFacet
 specifier|public
 name|void
@@ -1403,6 +1493,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** date with default lucene sort (treats as 1970) */
+annotation|@
+name|Test
 DECL|method|testDateSort
 specifier|public
 name|void
@@ -1422,6 +1514,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic date with default lucene sort (treats as 1970) */
+annotation|@
+name|Test
 DECL|method|testDynDateSort
 specifier|public
 name|void
@@ -1441,6 +1535,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** date with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testDateSortMissingFirst
 specifier|public
 name|void
@@ -1460,6 +1556,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic date with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testDynDateSortMissingFirst
 specifier|public
 name|void
@@ -1479,6 +1577,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** date with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testDateSortMissingLast
 specifier|public
 name|void
@@ -1498,6 +1598,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic date with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testDynDateSortMissingLast
 specifier|public
 name|void
@@ -1517,6 +1619,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** date function query based on missing */
+annotation|@
+name|Test
 DECL|method|testDateMissingFunction
 specifier|public
 name|void
@@ -1536,6 +1640,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic date function query based on missing */
+annotation|@
+name|Test
 DECL|method|testDynDateMissingFunction
 specifier|public
 name|void
@@ -1555,6 +1661,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** date missing facet count */
+annotation|@
+name|Test
 DECL|method|testDateMissingFacet
 specifier|public
 name|void
@@ -1574,6 +1682,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic date missing facet count */
+annotation|@
+name|Test
 DECL|method|testDynDateMissingFacet
 specifier|public
 name|void
@@ -1593,6 +1703,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** string (and dynamic string) with default lucene sort (treats as "") */
+annotation|@
+name|Test
 DECL|method|testStringSort
 specifier|public
 name|void
@@ -1710,6 +1822,8 @@ expr_stmt|;
 block|}
 block|}
 comment|/** string with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testStringSortMissingFirst
 specifier|public
 name|void
@@ -1729,6 +1843,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic string with sort missing always first */
+annotation|@
+name|Test
 DECL|method|testDynStringSortMissingFirst
 specifier|public
 name|void
@@ -1748,6 +1864,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** string with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testStringSortMissingLast
 specifier|public
 name|void
@@ -1767,6 +1885,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic string with sort missing always last */
+annotation|@
+name|Test
 DECL|method|testDynStringSortMissingLast
 specifier|public
 name|void
@@ -1786,6 +1906,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** string function query based on missing */
+annotation|@
+name|Test
 DECL|method|testStringMissingFunction
 specifier|public
 name|void
@@ -1805,6 +1927,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** dynamic string function query based on missing */
+annotation|@
+name|Test
 DECL|method|testDynStringMissingFunction
 specifier|public
 name|void
@@ -1824,6 +1948,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/** string missing facet count */
+annotation|@
+name|Test
 DECL|method|testStringMissingFacet
 specifier|public
 name|void
@@ -1918,6 +2044,352 @@ argument_list|,
 literal|"//lst[@name='facet_fields']/lst[@name='stringdv']/int[@name='z'][.=1]"
 argument_list|,
 literal|"//lst[@name='facet_fields']/lst[@name='stringdv']/int[.=2]"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** bool (and dynamic bool) with default lucene sort (treats as "") */
+annotation|@
+name|Test
+DECL|method|testBoolSort
+specifier|public
+name|void
+name|testBoolSort
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// note: cant use checkSortMissingDefault because
+comment|// nothing sorts lower then the default of "" and
+comment|// bool fields are, at root, string fields.
+for|for
+control|(
+name|String
+name|field
+range|:
+operator|new
+name|String
+index|[]
+block|{
+literal|"booldv"
+block|,
+literal|"dyn_booldv"
+block|}
+control|)
+block|{
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"0"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// missing
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"1"
+argument_list|,
+name|field
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2"
+argument_list|,
+name|field
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+name|field
+operator|+
+literal|" asc"
+argument_list|)
+argument_list|,
+literal|"//result/doc[1]/str[@name='id'][.=0]"
+argument_list|,
+literal|"//result/doc[2]/str[@name='id'][.=1]"
+argument_list|,
+literal|"//result/doc[3]/str[@name='id'][.=2]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"sort"
+argument_list|,
+name|field
+operator|+
+literal|" desc"
+argument_list|)
+argument_list|,
+literal|"//result/doc[1]/str[@name='id'][.=2]"
+argument_list|,
+literal|"//result/doc[2]/str[@name='id'][.=1]"
+argument_list|,
+literal|"//result/doc[3]/str[@name='id'][.=0]"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+comment|/** bool with sort missing always first */
+annotation|@
+name|Test
+DECL|method|testBoolSortMissingFirst
+specifier|public
+name|void
+name|testBoolSortMissingFirst
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkSortMissingFirst
+argument_list|(
+literal|"booldv_missingfirst"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"ture"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** dynamic bool with sort missing always first */
+annotation|@
+name|Test
+DECL|method|testDynBoolSortMissingFirst
+specifier|public
+name|void
+name|testDynBoolSortMissingFirst
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkSortMissingFirst
+argument_list|(
+literal|"dyn_booldv_missingfirst"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** bool with sort missing always last */
+annotation|@
+name|Test
+DECL|method|testBoolSortMissingLast
+specifier|public
+name|void
+name|testBoolSortMissingLast
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkSortMissingLast
+argument_list|(
+literal|"booldv_missinglast"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** dynamic bool with sort missing always last */
+annotation|@
+name|Test
+DECL|method|testDynBoolSortMissingLast
+specifier|public
+name|void
+name|testDynBoolSortMissingLast
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkSortMissingLast
+argument_list|(
+literal|"dyn_booldv_missinglast"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** bool function query based on missing */
+annotation|@
+name|Test
+DECL|method|testBoolMissingFunction
+specifier|public
+name|void
+name|testBoolMissingFunction
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkSortMissingFunction
+argument_list|(
+literal|"booldv"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** dynamic bool function query based on missing */
+annotation|@
+name|Test
+DECL|method|testDynBoolMissingFunction
+specifier|public
+name|void
+name|testDynBoolMissingFunction
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkSortMissingFunction
+argument_list|(
+literal|"dyn_booldv"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/** bool missing facet count */
+annotation|@
+name|Test
+DECL|method|testBoolMissingFacet
+specifier|public
+name|void
+name|testBoolMissingFacet
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"0"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// missing
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"1"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// missing
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"booldv"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"3"
+argument_list|,
+literal|"booldv"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"booldv"
+argument_list|,
+literal|"facet.mincount"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"facet.missing"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//lst[@name='facet_fields']/lst[@name='booldv']/int[@name='false'][.=1]"
+argument_list|,
+literal|"//lst[@name='facet_fields']/lst[@name='booldv']/int[@name='true'][.=1]"
+argument_list|,
+literal|"//lst[@name='facet_fields']/lst[@name='booldv']/int[.=2]"
 argument_list|)
 expr_stmt|;
 block|}

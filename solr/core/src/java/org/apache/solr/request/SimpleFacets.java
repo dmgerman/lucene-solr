@@ -3845,12 +3845,28 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|/* Always use filters for booleans... we know the number of values is very small. */
+comment|/* Always use filters for booleans if not DocValues only... we know the number of values is very small. */
 if|if
 condition|(
 name|type
 operator|instanceof
 name|BoolField
+operator|&&
+operator|(
+name|field
+operator|.
+name|indexed
+argument_list|()
+operator|==
+literal|true
+operator|||
+name|field
+operator|.
+name|hasDocValues
+argument_list|()
+operator|==
+literal|false
+operator|)
 condition|)
 block|{
 name|method
