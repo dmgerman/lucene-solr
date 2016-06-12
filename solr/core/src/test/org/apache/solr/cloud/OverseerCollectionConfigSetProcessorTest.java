@@ -76,6 +76,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Predicate
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1074,7 +1086,7 @@ argument_list|()
 argument_list|,
 name|anyObject
 argument_list|(
-name|Set
+name|Predicate
 operator|.
 name|class
 argument_list|)

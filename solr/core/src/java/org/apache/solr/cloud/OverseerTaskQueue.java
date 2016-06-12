@@ -70,6 +70,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Predicate
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -1162,7 +1174,7 @@ parameter_list|(
 name|int
 name|n
 parameter_list|,
-name|Set
+name|Predicate
 argument_list|<
 name|String
 argument_list|>
@@ -1258,7 +1270,7 @@ lambda|->
 operator|!
 name|excludeSet
 operator|.
-name|contains
+name|test
 argument_list|(
 name|dir
 operator|+
