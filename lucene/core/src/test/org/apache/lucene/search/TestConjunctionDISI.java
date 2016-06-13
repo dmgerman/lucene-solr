@@ -909,7 +909,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|final
-name|ConjunctionDISI
+name|DocIdSetIterator
 name|conjunction
 init|=
 name|ConjunctionDISI
@@ -1153,7 +1153,7 @@ expr_stmt|;
 block|}
 block|}
 specifier|final
-name|ConjunctionDISI
+name|DocIdSetIterator
 name|conjunction
 init|=
 name|ConjunctionDISI
@@ -1171,10 +1171,12 @@ decl_stmt|;
 name|TwoPhaseIterator
 name|twoPhaseIterator
 init|=
-name|conjunction
+name|TwoPhaseIterator
 operator|.
-name|asTwoPhaseIterator
-argument_list|()
+name|unwrap
+argument_list|(
+name|conjunction
+argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
@@ -1428,7 +1430,7 @@ block|}
 else|else
 block|{
 specifier|final
-name|ConjunctionDISI
+name|DocIdSetIterator
 name|conj
 init|=
 name|ConjunctionDISI
@@ -1451,10 +1453,12 @@ name|scorer
 argument_list|(
 name|conj
 argument_list|,
-name|conj
+name|TwoPhaseIterator
 operator|.
-name|asTwoPhaseIterator
-argument_list|()
+name|unwrap
+argument_list|(
+name|conj
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1932,7 +1936,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|final
-name|ConjunctionDISI
+name|DocIdSetIterator
 name|conjunction
 init|=
 name|ConjunctionDISI

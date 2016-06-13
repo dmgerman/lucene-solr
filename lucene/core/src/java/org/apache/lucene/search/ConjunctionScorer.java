@@ -69,7 +69,7 @@ name|Scorer
 block|{
 DECL|field|disi
 specifier|final
-name|ConjunctionDISI
+name|DocIdSetIterator
 name|disi
 decl_stmt|;
 DECL|field|scorers
@@ -195,10 +195,12 @@ name|twoPhaseIterator
 parameter_list|()
 block|{
 return|return
-name|disi
+name|TwoPhaseIterator
 operator|.
-name|asTwoPhaseIterator
-argument_list|()
+name|unwrap
+argument_list|(
+name|disi
+argument_list|)
 return|;
 block|}
 annotation|@

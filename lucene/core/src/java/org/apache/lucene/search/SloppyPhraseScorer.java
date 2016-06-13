@@ -141,7 +141,7 @@ block|{
 DECL|field|conjunction
 specifier|private
 specifier|final
-name|ConjunctionDISI
+name|DocIdSetIterator
 name|conjunction
 decl_stmt|;
 DECL|field|phrasePositions
@@ -411,6 +411,16 @@ name|iterators
 argument_list|)
 argument_list|)
 expr_stmt|;
+assert|assert
+name|TwoPhaseIterator
+operator|.
+name|unwrap
+argument_list|(
+name|conjunction
+argument_list|)
+operator|==
+literal|null
+assert|;
 name|this
 operator|.
 name|matchCost
