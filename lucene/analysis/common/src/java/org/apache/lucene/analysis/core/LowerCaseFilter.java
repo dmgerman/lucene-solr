@@ -101,17 +101,6 @@ name|LowerCaseFilter
 extends|extends
 name|TokenFilter
 block|{
-DECL|field|charUtils
-specifier|private
-specifier|final
-name|CharacterUtils
-name|charUtils
-init|=
-name|CharacterUtils
-operator|.
-name|getInstance
-argument_list|()
-decl_stmt|;
 DECL|field|termAtt
 specifier|private
 specifier|final
@@ -159,7 +148,7 @@ name|incrementToken
 argument_list|()
 condition|)
 block|{
-name|charUtils
+name|CharacterUtils
 operator|.
 name|toLowerCase
 argument_list|(

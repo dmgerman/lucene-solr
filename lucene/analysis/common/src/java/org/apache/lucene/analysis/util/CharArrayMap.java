@@ -139,12 +139,6 @@ name|INIT_SIZE
 init|=
 literal|8
 decl_stmt|;
-DECL|field|charUtils
-specifier|private
-specifier|final
-name|CharacterUtils
-name|charUtils
-decl_stmt|;
 DECL|field|ignoreCase
 specifier|private
 name|boolean
@@ -233,15 +227,6 @@ index|[
 name|size
 index|]
 expr_stmt|;
-name|this
-operator|.
-name|charUtils
-operator|=
-name|CharacterUtils
-operator|.
-name|getInstance
-argument_list|()
-expr_stmt|;
 block|}
 comment|/**    * Creates a map from the mappings in another map.     *    * @param c    *          a map whose mappings to be copied    * @param ignoreCase    *<code>false</code> if and only if the set should be case sensitive    *          otherwise<code>true</code>.    */
 DECL|method|CharArrayMap
@@ -321,14 +306,6 @@ operator|=
 name|toCopy
 operator|.
 name|count
-expr_stmt|;
-name|this
-operator|.
-name|charUtils
-operator|=
-name|toCopy
-operator|.
-name|charUtils
 expr_stmt|;
 block|}
 comment|/** Clears all entries in this map. This method is supported for reusing, but not {@link Map#remove}. */
@@ -944,7 +921,7 @@ condition|(
 name|ignoreCase
 condition|)
 block|{
-name|charUtils
+name|CharacterUtils
 operator|.
 name|toLowerCase
 argument_list|(
@@ -1238,7 +1215,7 @@ specifier|final
 name|int
 name|codePointAt
 init|=
-name|charUtils
+name|Character
 operator|.
 name|codePointAt
 argument_list|(
@@ -1260,7 +1237,7 @@ argument_list|(
 name|codePointAt
 argument_list|)
 operator|!=
-name|charUtils
+name|Character
 operator|.
 name|codePointAt
 argument_list|(
@@ -1381,7 +1358,7 @@ specifier|final
 name|int
 name|codePointAt
 init|=
-name|charUtils
+name|Character
 operator|.
 name|codePointAt
 argument_list|(
@@ -1399,7 +1376,7 @@ argument_list|(
 name|codePointAt
 argument_list|)
 operator|!=
-name|charUtils
+name|Character
 operator|.
 name|codePointAt
 argument_list|(
@@ -1528,7 +1505,7 @@ specifier|final
 name|int
 name|codePointAt
 init|=
-name|charUtils
+name|Character
 operator|.
 name|codePointAt
 argument_list|(
@@ -1651,7 +1628,7 @@ block|{
 name|int
 name|codePointAt
 init|=
-name|charUtils
+name|Character
 operator|.
 name|codePointAt
 argument_list|(

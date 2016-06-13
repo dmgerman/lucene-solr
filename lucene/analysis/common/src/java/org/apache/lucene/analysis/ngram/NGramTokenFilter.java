@@ -136,22 +136,6 @@ name|PositionLengthAttribute
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|CharacterUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tokenizes the input into n-grams of the given size(s).  * As of Lucene 4.4, this token filter:<ul>  *<li>handles supplementary characters correctly,</li>  *<li>emits all n-grams for the same token at the same position,</li>  *<li>does not modify offsets,</li>  *<li>sorts n-grams by their offset in the original token first, then  * increasing length (meaning that "abc" will give "a", "ab", "abc", "b", "bc",  * "c").</li></ul>  *<p>If you were using this {@link TokenFilter} to perform partial highlighting,  * this won't work anymore since this filter doesn't update offsets. You should  * modify your analysis chain to use {@link NGramTokenizer}, and potentially  * override {@link NGramTokenizer#isTokenChar(int)} to perform pre-tokenization.  */
 end_comment
@@ -236,18 +220,6 @@ specifier|private
 name|int
 name|tokEnd
 decl_stmt|;
-DECL|field|hasIllegalOffsets
-specifier|private
-name|boolean
-name|hasIllegalOffsets
-decl_stmt|;
-comment|// only if the length changed before this filter
-DECL|field|charUtils
-specifier|private
-specifier|final
-name|CharacterUtils
-name|charUtils
-decl_stmt|;
 DECL|field|termAtt
 specifier|private
 specifier|final
@@ -315,15 +287,6 @@ operator|.
 name|MAX_VALUE
 argument_list|)
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|charUtils
-operator|=
-name|CharacterUtils
-operator|.
-name|getInstance
-argument_list|()
 expr_stmt|;
 if|if
 condition|(
@@ -463,11 +426,18 @@ argument_list|()
 expr_stmt|;
 name|curCodePointCount
 operator|=
-name|charUtils
+name|Character
 operator|.
 name|codePointCount
 argument_list|(
 name|termAtt
+argument_list|,
+literal|0
+argument_list|,
+name|termAtt
+operator|.
+name|length
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|curGramSize
@@ -505,18 +475,6 @@ name|offsetAtt
 operator|.
 name|endOffset
 argument_list|()
-expr_stmt|;
-comment|// if length by start + end offsets doesn't match the term text then assume
-comment|// this is a synonym and don't adjust the offsets.
-name|hasIllegalOffsets
-operator|=
-operator|(
-name|tokStart
-operator|+
-name|curTermLength
-operator|)
-operator|!=
-name|tokEnd
 expr_stmt|;
 block|}
 block|}
@@ -561,7 +519,7 @@ specifier|final
 name|int
 name|start
 init|=
-name|charUtils
+name|Character
 operator|.
 name|offsetByCodePoints
 argument_list|(
@@ -580,7 +538,7 @@ specifier|final
 name|int
 name|end
 init|=
-name|charUtils
+name|Character
 operator|.
 name|offsetByCodePoints
 argument_list|(

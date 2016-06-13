@@ -170,11 +170,6 @@ name|DEFAULT_MAX_NGRAM_SIZE
 init|=
 literal|2
 decl_stmt|;
-DECL|field|charUtils
-specifier|private
-name|CharacterUtils
-name|charUtils
-decl_stmt|;
 DECL|field|charBuffer
 specifier|private
 name|CharacterUtils
@@ -423,13 +418,6 @@ name|boolean
 name|edgesOnly
 parameter_list|)
 block|{
-name|charUtils
-operator|=
-name|CharacterUtils
-operator|.
-name|getInstance
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|minGram
@@ -589,7 +577,7 @@ comment|// fill in remaining space
 name|exhausted
 operator|=
 operator|!
-name|charUtils
+name|CharacterUtils
 operator|.
 name|fill
 argument_list|(
@@ -607,7 +595,7 @@ expr_stmt|;
 comment|// convert to code points
 name|bufferEnd
 operator|+=
-name|charUtils
+name|CharacterUtils
 operator|.
 name|toCodePoints
 argument_list|(
@@ -723,7 +711,7 @@ specifier|final
 name|int
 name|length
 init|=
-name|charUtils
+name|CharacterUtils
 operator|.
 name|toChars
 argument_list|(

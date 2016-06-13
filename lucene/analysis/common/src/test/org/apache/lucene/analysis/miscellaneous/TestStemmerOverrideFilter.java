@@ -544,14 +544,6 @@ operator|.
 name|nextBoolean
 argument_list|()
 decl_stmt|;
-name|CharacterUtils
-name|charUtils
-init|=
-name|CharacterUtils
-operator|.
-name|getInstance
-argument_list|()
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -691,7 +683,7 @@ operator|.
 name|toCharArray
 argument_list|()
 decl_stmt|;
-name|charUtils
+name|CharacterUtils
 operator|.
 name|toLowerCase
 argument_list|(
