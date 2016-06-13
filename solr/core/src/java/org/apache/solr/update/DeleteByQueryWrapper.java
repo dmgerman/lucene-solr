@@ -200,20 +200,6 @@ name|UninvertingReader
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|uninverting
-operator|.
-name|UninvertingReader
-import|;
-end_import
-
 begin_comment
 comment|/**   * Allows access to uninverted docvalues by delete-by-queries.  * this is used e.g. to implement versioning constraints in solr.  *<p>  * Even though we wrap for each query, UninvertingReader's core   * cache key is the inner one, so it still reuses fieldcaches and so on.  */
 end_comment

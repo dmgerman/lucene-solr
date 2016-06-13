@@ -28,22 +28,6 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BitUtil
-operator|.
-name|zigZagEncode
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|packed
 operator|.
 name|MonotonicBlockPackedReader

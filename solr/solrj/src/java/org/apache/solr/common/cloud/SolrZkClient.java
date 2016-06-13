@@ -472,18 +472,6 @@ name|ExecutorService
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|Executors
-import|;
-end_import
-
 begin_comment
 comment|/**  *  * All Solr ZooKeeper interactions should go through this class rather than  * ZooKeeper. This class handles synchronous connects and reconnections.  *  */
 end_comment

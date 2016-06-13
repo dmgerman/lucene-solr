@@ -183,22 +183,6 @@ operator|.
 name|index
 operator|.
 name|LeafReader
-operator|.
-name|CoreClosedListener
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|LeafReader
 import|;
 end_import
 

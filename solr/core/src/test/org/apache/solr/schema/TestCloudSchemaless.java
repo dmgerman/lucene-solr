@@ -164,20 +164,6 @@ name|solr
 operator|.
 name|util
 operator|.
-name|RESTfulServerProvider
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
 name|RestTestHarness
 import|;
 end_import
@@ -203,16 +189,6 @@ operator|.
 name|junit
 operator|.
 name|After
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|BeforeClass
 import|;
 end_import
 

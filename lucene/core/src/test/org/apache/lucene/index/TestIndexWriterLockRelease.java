@@ -106,34 +106,6 @@ name|LuceneTestCase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|TestUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  * This tests the patch for issue #LUCENE-715 (IndexWriter does not  * release its write lock when trying to open an index which does not yet  * exist).  */
 end_comment

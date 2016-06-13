@@ -18,16 +18,6 @@ name|geom
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
 begin_comment
 comment|/**  * 3D rectangle, bounded on six sides by X,Y,Z limits  *  * @lucene.internal  */
 end_comment

@@ -46,20 +46,6 @@ name|AttributeFactory
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tokenizes the input from an edge into n-grams of given size(s).  *<p>  * This {@link Tokenizer} create n-grams from the beginning edge of a input token.  *<p><a name="match_version"></a>As of Lucene 4.4, this class supports  * {@link #isTokenChar(int) pre-tokenization} and correctly handles  * supplementary characters.  */
 end_comment

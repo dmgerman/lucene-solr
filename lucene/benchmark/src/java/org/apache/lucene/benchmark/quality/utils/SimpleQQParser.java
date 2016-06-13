@@ -158,20 +158,6 @@ name|Query
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * Simplistic quality query parser. A Lucene query is created by passing   * the value of the specified QualityQuery name-value pair(s) into   * a Lucene's QueryParser using StandardAnalyzer. */
 end_comment

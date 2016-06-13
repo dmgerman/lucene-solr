@@ -404,22 +404,6 @@ name|cloud
 operator|.
 name|OverseerCollectionMessageHandler
 operator|.
-name|ROUTER
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|OverseerCollectionMessageHandler
-operator|.
 name|SHARD_UNIQUE
 import|;
 end_import

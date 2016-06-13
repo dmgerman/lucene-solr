@@ -192,20 +192,6 @@ name|StopwordAnalyzerBase
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * {@link Analyzer} for Persian.  *<p>  * This Analyzer uses {@link PersianCharFilter} which implies tokenizing around  * zero-width non-joiner in addition to whitespace. Some persian-specific variant forms (such as farsi  * yeh and keheh) are standardized. "Stemming" is accomplished via stopwords.  *</p>  */
 end_comment

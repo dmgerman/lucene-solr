@@ -356,16 +356,6 @@ name|List
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
 begin_comment
 comment|/**  * TODO!  *  *  * @since solr 1.3  */
 end_comment

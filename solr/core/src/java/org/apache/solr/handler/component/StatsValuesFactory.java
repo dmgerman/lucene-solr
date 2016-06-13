@@ -50,18 +50,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|StandardCharsets
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -223,20 +211,6 @@ operator|.
 name|stats
 operator|.
 name|AVLTreeDigest
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|hash
-operator|.
-name|Hashing
 import|;
 end_import
 
