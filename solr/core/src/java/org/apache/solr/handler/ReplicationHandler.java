@@ -4950,9 +4950,12 @@ try|try
 block|{
 name|size
 operator|=
-name|DirectoryFactory
+name|core
 operator|.
-name|sizeOfDirectory
+name|getDirectoryFactory
+argument_list|()
+operator|.
+name|size
 argument_list|(
 name|dir
 argument_list|)

@@ -2580,6 +2580,27 @@ name|oldDirPath
 argument_list|)
 return|;
 block|}
+DECL|method|getPath
+specifier|protected
+specifier|synchronized
+name|String
+name|getPath
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+block|{
+return|return
+name|byDirectoryCache
+operator|.
+name|get
+argument_list|(
+name|directory
+argument_list|)
+operator|.
+name|path
+return|;
+block|}
 block|}
 end_class
 
