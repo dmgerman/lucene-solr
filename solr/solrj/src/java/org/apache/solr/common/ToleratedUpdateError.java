@@ -83,7 +83,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Models the basic information related to a single "tolerated" error that occured during updates.    * This class is only useful when the<code>ToleranteUpdateProcessorFactory</code> is used in an update   * processor chain  */
+comment|/**  * Models the basic information related to a single "tolerated" error that occured during updates.    * This class is only useful when the<code>TolerantUpdateProcessorFactory</code> is used in an update   * processor chain  */
 end_comment
 
 begin_class
