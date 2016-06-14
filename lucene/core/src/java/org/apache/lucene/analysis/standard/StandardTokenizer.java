@@ -140,6 +140,7 @@ name|StandardTokenizerImpl
 name|scanner
 decl_stmt|;
 comment|// TODO: how can we remove these old types?!
+comment|/** Alpha/numeric token type */
 DECL|field|ALPHANUM
 specifier|public
 specifier|static
@@ -185,6 +186,7 @@ name|COMPANY
 init|=
 literal|3
 decl_stmt|;
+comment|/** Email token type */
 DECL|field|EMAIL
 specifier|public
 specifier|static
@@ -206,6 +208,7 @@ name|HOST
 init|=
 literal|5
 decl_stmt|;
+comment|/** Numeric token type */
 DECL|field|NUM
 specifier|public
 specifier|static
@@ -239,6 +242,7 @@ name|ACRONYM_DEP
 init|=
 literal|8
 decl_stmt|;
+comment|/** Southeast Asian token type */
 DECL|field|SOUTHEAST_ASIAN
 specifier|public
 specifier|static
@@ -248,6 +252,7 @@ name|SOUTHEAST_ASIAN
 init|=
 literal|9
 decl_stmt|;
+comment|/** Idiographic token type */
 DECL|field|IDEOGRAPHIC
 specifier|public
 specifier|static
@@ -257,6 +262,7 @@ name|IDEOGRAPHIC
 init|=
 literal|10
 decl_stmt|;
+comment|/** Hiragana token type */
 DECL|field|HIRAGANA
 specifier|public
 specifier|static
@@ -266,6 +272,7 @@ name|HIRAGANA
 init|=
 literal|11
 decl_stmt|;
+comment|/** Katakana token type */
 DECL|field|KATAKANA
 specifier|public
 specifier|static
@@ -275,6 +282,7 @@ name|KATAKANA
 init|=
 literal|12
 decl_stmt|;
+comment|/** Hangul token type */
 DECL|field|HANGUL
 specifier|public
 specifier|static
@@ -326,6 +334,7 @@ block|,
 literal|"<HANGUL>"
 block|}
 decl_stmt|;
+comment|/** Absolute maximum sized token */
 DECL|field|MAX_TOKEN_LENGTH_LIMIT
 specifier|public
 specifier|static
@@ -414,7 +423,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/** @see #setMaxTokenLength */
+comment|/** Returns the current maximum token length    *     *  @see #setMaxTokenLength */
 DECL|method|getMaxTokenLength
 specifier|public
 name|int

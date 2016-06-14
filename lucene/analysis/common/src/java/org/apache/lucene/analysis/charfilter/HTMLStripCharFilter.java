@@ -82,8 +82,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|util
-operator|.
 name|CharArrayMap
 import|;
 end_import
@@ -97,8 +95,6 @@ operator|.
 name|lucene
 operator|.
 name|analysis
-operator|.
-name|util
 operator|.
 name|CharArraySet
 import|;

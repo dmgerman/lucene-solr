@@ -74,6 +74,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|CharArraySet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenFilter
 import|;
 end_import
@@ -104,7 +118,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|KeywordAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -120,23 +134,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|CharTermAttribute
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|CharArraySet
+name|KeywordAttribute
 import|;
 end_import
 

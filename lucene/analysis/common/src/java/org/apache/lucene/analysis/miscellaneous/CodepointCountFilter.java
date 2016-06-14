@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|FilteringTokenFilter
 import|;
 end_import
 
@@ -42,9 +42,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|util
-operator|.
-name|FilteringTokenFilter
+name|TokenStream
 import|;
 end_import
 

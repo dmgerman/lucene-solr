@@ -58,6 +58,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|standard
+operator|.
+name|StandardAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|codecs
 operator|.
 name|Codec
@@ -352,7 +368,21 @@ return|return
 name|this
 return|;
 block|}
-comment|/**    * Creates a new config that with the default {@link    * Analyzer}. By default, {@link TieredMergePolicy} is used    * for merging;    * Note that {@link TieredMergePolicy} is free to select    * non-contiguous merges, which means docIDs may not    * remain monotonic over time.  If this is a problem you    * should switch to {@link LogByteSizeMergePolicy} or    * {@link LogDocMergePolicy}.    */
+comment|/**    * Creates a new config, using {@link StandardAnalyzer} as the    * analyzer.  By default, {@link TieredMergePolicy} is used    * for merging;    * Note that {@link TieredMergePolicy} is free to select    * non-contiguous merges, which means docIDs may not    * remain monotonic over time.  If this is a problem you    * should switch to {@link LogByteSizeMergePolicy} or    * {@link LogDocMergePolicy}.    */
+DECL|method|IndexWriterConfig
+specifier|public
+name|IndexWriterConfig
+parameter_list|()
+block|{
+name|this
+argument_list|(
+operator|new
+name|StandardAnalyzer
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Creates a new config that with the provided {@link    * Analyzer}. By default, {@link TieredMergePolicy} is used    * for merging;    * Note that {@link TieredMergePolicy} is free to select    * non-contiguous merges, which means docIDs may not    * remain monotonic over time.  If this is a problem you    * should switch to {@link LogByteSizeMergePolicy} or    * {@link LogDocMergePolicy}.    */
 DECL|method|IndexWriterConfig
 specifier|public
 name|IndexWriterConfig

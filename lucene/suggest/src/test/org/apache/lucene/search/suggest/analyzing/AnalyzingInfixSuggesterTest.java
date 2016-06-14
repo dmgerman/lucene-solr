@@ -146,6 +146,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|CharArraySet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|MockAnalyzer
 import|;
 end_import
@@ -174,7 +188,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|StopFilter
 import|;
 end_import
 
@@ -188,9 +202,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|StopFilter
+name|TokenStream
 import|;
 end_import
 
@@ -223,22 +235,6 @@ operator|.
 name|tokenattributes
 operator|.
 name|OffsetAttribute
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|CharArraySet
 import|;
 end_import
 

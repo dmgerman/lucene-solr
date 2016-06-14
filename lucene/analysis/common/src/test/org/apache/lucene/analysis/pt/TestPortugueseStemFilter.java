@@ -19,22 +19,6 @@ package|;
 end_package
 
 begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|VocabularyAssert
-operator|.
-name|assertVocabulary
-import|;
-end_import
-
-begin_import
 import|import
 name|java
 operator|.
@@ -69,6 +53,20 @@ operator|.
 name|analysis
 operator|.
 name|BaseTokenStreamTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|CharArraySet
 import|;
 end_import
 
@@ -147,7 +145,7 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|org
 operator|.
 name|apache
@@ -156,9 +154,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|util
+name|VocabularyAssert
 operator|.
-name|CharArraySet
+name|assertVocabulary
 import|;
 end_import
 

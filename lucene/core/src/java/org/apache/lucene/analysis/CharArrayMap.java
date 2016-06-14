@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.analysis.util
+DECL|package|org.apache.lucene.analysis
 package|package
 name|org
 operator|.
@@ -13,8 +13,6 @@ operator|.
 name|lucene
 operator|.
 name|analysis
-operator|.
-name|util
 package|;
 end_package
 
@@ -87,8 +85,6 @@ operator|.
 name|lucene
 operator|.
 name|analysis
-operator|.
-name|util
 operator|.
 name|CharacterUtils
 import|;
@@ -3025,7 +3021,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Empty {@link org.apache.lucene.analysis.util.CharArrayMap.UnmodifiableCharArrayMap} optimized for speed.    * Contains checks will always return<code>false</code> or throw    * NPE if necessary.    */
+comment|/**    * Empty {@link org.apache.lucene.analysis.CharArrayMap.UnmodifiableCharArrayMap} optimized for speed.    * Contains checks will always return<code>false</code> or throw    * NPE if necessary.    */
 DECL|class|EmptyCharArrayMap
 specifier|private
 specifier|static

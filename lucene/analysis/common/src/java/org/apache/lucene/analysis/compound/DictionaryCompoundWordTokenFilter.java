@@ -42,8 +42,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|util
-operator|.
 name|CharArraySet
 import|;
 end_import

@@ -1228,6 +1228,7 @@ name|StandardTokenizer
 operator|.
 name|SOUTHEAST_ASIAN
 decl_stmt|;
+comment|/** Idiographic token type */
 DECL|field|IDEOGRAPHIC_TYPE
 specifier|public
 specifier|static
@@ -1239,6 +1240,7 @@ name|StandardTokenizer
 operator|.
 name|IDEOGRAPHIC
 decl_stmt|;
+comment|/** Hiragana token type */
 DECL|field|HIRAGANA_TYPE
 specifier|public
 specifier|static
@@ -1250,6 +1252,7 @@ name|StandardTokenizer
 operator|.
 name|HIRAGANA
 decl_stmt|;
+comment|/** Katakana token type */
 DECL|field|KATAKANA_TYPE
 specifier|public
 specifier|static
@@ -1261,6 +1264,7 @@ name|StandardTokenizer
 operator|.
 name|KATAKANA
 decl_stmt|;
+comment|/** Hangul token type */
 DECL|field|HANGUL_TYPE
 specifier|public
 specifier|static
@@ -1272,6 +1276,7 @@ name|StandardTokenizer
 operator|.
 name|HANGUL
 decl_stmt|;
+comment|/** Character count processed so far */
 DECL|method|yychar
 specifier|public
 specifier|final

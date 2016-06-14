@@ -28,6 +28,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|CharArraySet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenStream
 import|;
 end_import
@@ -58,7 +72,7 @@ name|analysis
 operator|.
 name|core
 operator|.
-name|TestStopFilter
+name|TestStopFilterFactory
 import|;
 end_import
 
@@ -75,22 +89,6 @@ operator|.
 name|util
 operator|.
 name|BaseTokenStreamFactoryTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|CharArraySet
 import|;
 end_import
 
@@ -166,7 +164,7 @@ init|=
 operator|new
 name|ClasspathResourceLoader
 argument_list|(
-name|TestStopFilter
+name|TestStopFilterFactory
 operator|.
 name|class
 argument_list|)

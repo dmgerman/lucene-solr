@@ -68,6 +68,7 @@ name|StandardFilter
 extends|extends
 name|TokenFilter
 block|{
+comment|/** Sole constructor */
 DECL|method|StandardFilter
 specifier|public
 name|StandardFilter

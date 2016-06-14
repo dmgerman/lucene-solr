@@ -1628,7 +1628,7 @@ name|queryResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.core.LowerCaseFilter"
+literal|"org.apache.lucene.analysis.LowerCaseFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -1703,7 +1703,7 @@ name|queryResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.core.StopFilter"
+literal|"org.apache.lucene.analysis.StopFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2404,7 +2404,7 @@ name|valueResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.core.LowerCaseFilter"
+literal|"org.apache.lucene.analysis.LowerCaseFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
@@ -2678,7 +2678,7 @@ name|valueResult
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.core.StopFilter"
+literal|"org.apache.lucene.analysis.StopFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull

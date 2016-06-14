@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|TokenStream
+name|CharArraySet
 import|;
 end_import
 
@@ -63,8 +63,6 @@ operator|.
 name|lucene
 operator|.
 name|analysis
-operator|.
-name|core
 operator|.
 name|StopFilter
 import|;
@@ -80,9 +78,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|util
-operator|.
-name|CharArraySet
+name|TokenStream
 import|;
 end_import
 

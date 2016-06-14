@@ -32,6 +32,20 @@ name|Analyzer
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|LowerCaseFilter
+import|;
+end_import
+
 begin_comment
 comment|/** An {@link Analyzer} that filters {@link LetterTokenizer}   *  with {@link LowerCaseFilter}   **/
 end_comment
