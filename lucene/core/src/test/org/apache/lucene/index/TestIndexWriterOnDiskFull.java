@@ -280,22 +280,6 @@ name|TestUtil
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|TestIndexWriter
-operator|.
-name|assertNoUnreferencedFiles
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests for IndexWriter when the disk runs out of space  */
 end_comment

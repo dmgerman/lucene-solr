@@ -58,20 +58,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|SolrTestCaseJ4
-operator|.
-name|SuppressSSL
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|util
 operator|.
 name|SSLTestConfig
@@ -105,16 +91,6 @@ operator|.
 name|RandomizeSSL
 operator|.
 name|SSLRandomizer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|AfterClass
 import|;
 end_import
 

@@ -18,20 +18,6 @@ name|processor
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-import|;
-end_import
-
 begin_comment
 comment|/**  * A marker interface for denoting that a factory is responsible for handling  * distributed communication of updates across a SolrCloud cluster.  *   * @see UpdateRequestProcessorChain#init  * @see UpdateRequestProcessorChain#createProcessor  */
 end_comment

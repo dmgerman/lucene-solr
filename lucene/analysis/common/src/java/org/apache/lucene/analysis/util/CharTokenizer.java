@@ -592,17 +592,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-DECL|field|charUtils
-specifier|private
-specifier|final
-name|CharacterUtils
-name|charUtils
-init|=
-name|CharacterUtils
-operator|.
-name|getInstance
-argument_list|()
-decl_stmt|;
 DECL|field|ioBuffer
 specifier|private
 specifier|final
@@ -698,7 +687,7 @@ name|offset
 operator|+=
 name|dataLen
 expr_stmt|;
-name|charUtils
+name|CharacterUtils
 operator|.
 name|fill
 argument_list|(
@@ -763,7 +752,7 @@ specifier|final
 name|int
 name|c
 init|=
-name|charUtils
+name|Character
 operator|.
 name|codePointAt
 argument_list|(

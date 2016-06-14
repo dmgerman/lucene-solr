@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|ThreadInterruptedException
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|util
@@ -122,6 +108,12 @@ name|long
 name|bytesUsed
 init|=
 literal|0
+decl_stmt|;
+comment|// set by DocumentsWriter after each indexing op finishes
+DECL|field|lastSeqNo
+specifier|volatile
+name|long
+name|lastSeqNo
 decl_stmt|;
 DECL|method|ThreadState
 name|ThreadState

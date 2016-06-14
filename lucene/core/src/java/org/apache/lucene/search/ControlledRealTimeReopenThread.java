@@ -424,15 +424,6 @@ parameter_list|)
 throws|throws
 name|InterruptedException
 block|{
-specifier|final
-name|long
-name|curGen
-init|=
-name|writer
-operator|.
-name|getLastSequenceNumber
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 name|targetGen
@@ -691,7 +682,7 @@ name|refreshStartGen
 operator|=
 name|writer
 operator|.
-name|getLastSequenceNumber
+name|getMaxCompletedSequenceNumber
 argument_list|()
 expr_stmt|;
 try|try

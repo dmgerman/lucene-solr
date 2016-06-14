@@ -76,20 +76,6 @@ name|TokenStream
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|MockTokenizer
-import|;
-end_import
-
 begin_comment
 comment|/** basic tests for {@link ICUFoldingFilterFactory} */
 end_comment

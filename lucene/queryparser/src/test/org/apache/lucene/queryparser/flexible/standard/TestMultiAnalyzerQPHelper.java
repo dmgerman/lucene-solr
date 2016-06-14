@@ -32,16 +32,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -153,28 +143,6 @@ operator|.
 name|config
 operator|.
 name|StandardQueryConfigHandler
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queryparser
-operator|.
-name|flexible
-operator|.
-name|standard
-operator|.
-name|config
-operator|.
-name|StandardQueryConfigHandler
-operator|.
-name|Operator
 import|;
 end_import
 

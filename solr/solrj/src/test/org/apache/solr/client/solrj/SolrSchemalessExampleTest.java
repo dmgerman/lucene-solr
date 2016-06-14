@@ -312,16 +312,6 @@ name|Properties
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
 begin_class
 DECL|class|SolrSchemalessExampleTest
 specifier|public

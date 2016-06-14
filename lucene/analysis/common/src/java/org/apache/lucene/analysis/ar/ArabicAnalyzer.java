@@ -192,20 +192,6 @@ name|Tokenizer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
-import|;
-end_import
-
 begin_comment
 comment|/**  * {@link Analyzer} for Arabic.   *<p>  * This analyzer implements light-stemming as specified by:  *<i>  * Light Stemming for Arabic Information Retrieval  *</i>      * http://www.mtholyoke.edu/~lballest/Pubs/arab_stem05.pdf  *<p>  * The analysis package contains three primary components:  *<ul>  *<li>{@link ArabicNormalizationFilter}: Arabic orthographic normalization.  *<li>{@link ArabicStemFilter}: Arabic light stemming  *<li>Arabic stop words file: a set of default Arabic stop words.  *</ul>  *   */
 end_comment

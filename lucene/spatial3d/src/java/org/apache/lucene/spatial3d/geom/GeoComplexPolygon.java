@@ -48,26 +48,6 @@ name|ArrayList
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashSet
-import|;
-end_import
-
 begin_comment
 comment|/**  * GeoComplexPolygon objects are structures designed to handle very large numbers of edges.  * They perform very well in this case compared to the alternatives, which all have O(N) evaluation  * and O(N^2) setup times.  Complex polygons have O(N) setup times and best case O(log(N))  * evaluation times.  *  * The tradeoff is that these objects perform object creation when evaluating intersects() and  * isWithin().  *  * @lucene.internal  */
 end_comment

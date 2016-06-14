@@ -647,9 +647,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: verify "
+literal|": nrt: verify updateDocuments "
 operator|+
 name|id
+operator|+
+literal|" gen="
+operator|+
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -698,7 +702,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: got searcher="
+literal|": nrt: got deletes searcher="
 operator|+
 name|s
 argument_list|)
@@ -819,9 +823,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: verify "
+literal|": nrt: verify addDocuments "
 operator|+
 name|id
+operator|+
+literal|" gen="
+operator|+
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -870,7 +878,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: got searcher="
+literal|": nrt: got noDeletes searcher="
 operator|+
 name|s
 argument_list|)
@@ -986,9 +994,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: verify "
+literal|": nrt: verify addDocument "
 operator|+
 name|id
+operator|+
+literal|" gen="
+operator|+
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -1037,7 +1049,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: got searcher="
+literal|": nrt: got noDeletes searcher="
 operator|+
 name|s
 argument_list|)
@@ -1152,9 +1164,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: verify "
+literal|": nrt: verify updateDocument "
 operator|+
 name|id
+operator|+
+literal|" gen="
+operator|+
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -1203,7 +1219,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: got searcher="
+literal|": nrt: got deletes searcher="
 operator|+
 name|s
 argument_list|)
@@ -1308,9 +1324,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: verify del "
+literal|": nrt: verify deleteDocuments "
 operator|+
 name|id
+operator|+
+literal|" gen="
+operator|+
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -1359,7 +1379,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: got searcher="
+literal|": nrt: got deletes searcher="
 operator|+
 name|s
 argument_list|)

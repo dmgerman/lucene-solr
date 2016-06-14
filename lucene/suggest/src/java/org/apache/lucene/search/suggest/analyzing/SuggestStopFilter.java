@@ -154,22 +154,6 @@ name|CharArraySet
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|AttributeSource
-operator|.
-name|State
-import|;
-end_import
-
 begin_comment
 comment|/** Like {@link StopFilter} except it will not remove the  *  last token if that token was not followed by some token  *  separator.  For example, a query 'find the' would  *  preserve the 'the' since it was not followed by a space or  *  punctuation or something, and mark it KEYWORD so future  *  stemmers won't touch it either while a query like "find  *  the popsicle' would remove 'the' as a stopword.  *  *<p>Normally you'd use the ordinary {@link StopFilter}  *  in your indexAnalyzer and then this class in your  *  queryAnalyzer, when using one of the analyzing suggesters. */
 end_comment

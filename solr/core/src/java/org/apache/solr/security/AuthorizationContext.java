@@ -62,20 +62,6 @@ name|SolrParams
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|request
-operator|.
-name|SolrRequestHandler
-import|;
-end_import
-
 begin_comment
 comment|/**  * Request context for Solr to be used by Authorization plugin.  */
 end_comment

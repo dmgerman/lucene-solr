@@ -440,16 +440,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|easymock
-operator|.
-name|IAnswer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|After

@@ -94,18 +94,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|SolrTestCaseJ4
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|util
 operator|.
 name|AbstractSolrTestCase
@@ -129,16 +117,6 @@ operator|.
 name|util
 operator|.
 name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
 import|;
 end_import
 

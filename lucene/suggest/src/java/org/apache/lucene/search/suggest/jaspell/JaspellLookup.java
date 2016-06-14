@@ -196,20 +196,6 @@ name|CharsRefBuilder
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|UnicodeUtil
-import|;
-end_import
-
 begin_comment
 comment|/**  * Suggest implementation based on   *<a href="http://jaspell.sourceforge.net/">JaSpell</a>.  *   * @see JaspellTernarySearchTrie  * @deprecated Migrate to one of the newer suggesters which are much more RAM efficient.  */
 end_comment

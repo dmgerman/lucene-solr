@@ -18912,11 +18912,11 @@ block|}
 block|}
 return|;
 block|}
-comment|/** Returns the last<a href="#sequence_number">sequence number</a>, or 0    *  if no index-changing operations have completed yet.    *    * @lucene.experimental */
-DECL|method|getLastSequenceNumber
+comment|/** Returns the highest<a href="#sequence_number">sequence number</a> across    *  all completed operations, or 0 if no operations have finished yet.  Still    *  in-flight operations (in other threads) are not counted until they finish.    *    * @lucene.experimental */
+DECL|method|getMaxCompletedSequenceNumber
 specifier|public
 name|long
-name|getLastSequenceNumber
+name|getMaxCompletedSequenceNumber
 parameter_list|()
 block|{
 name|ensureOpen
@@ -18925,9 +18925,7 @@ expr_stmt|;
 return|return
 name|docWriter
 operator|.
-name|deleteQueue
-operator|.
-name|getLastSequenceNumber
+name|getMaxCompletedSequenceNumber
 argument_list|()
 return|;
 block|}

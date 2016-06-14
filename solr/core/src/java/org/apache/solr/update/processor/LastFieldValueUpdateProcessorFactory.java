@@ -72,16 +72,6 @@ name|SortedSet
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Iterator
-import|;
-end_import
-
 begin_comment
 comment|/**  * Keeps only the last value of fields matching the specified   * conditions.  Correct behavior assumes that the SolrInputFields being mutated   * are either single valued, or use an ordered Collection (ie: not a Set).  *<p>  * By default, this processor matches no fields.  *</p>  *   *<p>  * For example, in the configuration below, if a field named   *<code>primary_author</code> contained multiple values (ie:   *<code>"Adam Doe", "Bob Smith", "Carla Jones"</code>) then only the last   * value (ie:<code>"Carla Jones"</code>) will be kept  *</p>  *  *<pre class="prettyprint">  *&lt;processor class="solr.LastFieldValueUpdateProcessorFactory"&gt;  *&lt;str name="fieldName"&gt;primary_author&lt;/str&gt;  *&lt;/processor&gt;  *</pre>  *  * @see FirstFieldValueUpdateProcessorFactory  */
 end_comment

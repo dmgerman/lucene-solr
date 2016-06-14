@@ -88,20 +88,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Predicates
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache

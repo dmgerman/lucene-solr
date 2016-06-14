@@ -80,16 +80,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|net
-operator|.
-name|SocketException
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache

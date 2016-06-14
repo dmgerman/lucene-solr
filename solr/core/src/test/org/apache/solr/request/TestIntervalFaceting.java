@@ -320,16 +320,6 @@ name|Arrays
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Comparator
-import|;
-end_import
-
 begin_class
 DECL|class|TestIntervalFaceting
 specifier|public
