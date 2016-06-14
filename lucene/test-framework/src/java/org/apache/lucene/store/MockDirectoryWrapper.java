@@ -441,12 +441,6 @@ name|assertNoDeleteOpenFile
 init|=
 literal|false
 decl_stmt|;
-DECL|field|preventDoubleWrite
-name|boolean
-name|preventDoubleWrite
-init|=
-literal|true
-decl_stmt|;
 DECL|field|trackDiskUsage
 name|boolean
 name|trackDiskUsage
@@ -773,21 +767,6 @@ operator|=
 name|v
 expr_stmt|;
 block|}
-comment|/** If set to true, we throw an IOException if the same    *  file is opened by createOutput, ever. */
-DECL|method|setPreventDoubleWrite
-specifier|public
-name|void
-name|setPreventDoubleWrite
-parameter_list|(
-name|boolean
-name|value
-parameter_list|)
-block|{
-name|preventDoubleWrite
-operator|=
-name|value
-expr_stmt|;
-block|}
 comment|/** If set to true (the default), when we throw random    *  IOException on openInput or createOutput, we may    *  sometimes throw FileNotFoundException or    *  NoSuchFileException. */
 DECL|method|setAllowRandomFileNotFoundException
 specifier|public
@@ -1100,6 +1079,13 @@ argument_list|)
 expr_stmt|;
 block|}
 name|openFilesDeleted
+operator|.
+name|remove
+argument_list|(
+name|source
+argument_list|)
+expr_stmt|;
+name|createdFiles
 operator|.
 name|remove
 argument_list|(
@@ -2954,8 +2940,6 @@ init|)
 block|{
 if|if
 condition|(
-name|preventDoubleWrite
-operator|&&
 name|createdFiles
 operator|.
 name|contains
@@ -3073,8 +3057,6 @@ name|equals
 argument_list|(
 literal|"segments.gen"
 argument_list|)
-operator|&&
-name|preventDoubleWrite
 condition|)
 block|{
 throw|throw

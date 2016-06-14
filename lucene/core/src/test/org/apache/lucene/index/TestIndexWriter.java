@@ -6786,15 +6786,6 @@ name|RAMDirectory
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// When interrupt arrives in w.close(), this can
-comment|// lead to double-write of files:
-name|dir
-operator|.
-name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 comment|// open/close slowly sometimes
 name|dir
 operator|.

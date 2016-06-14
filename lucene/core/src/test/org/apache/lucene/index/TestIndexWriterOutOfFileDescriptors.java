@@ -206,13 +206,6 @@ literal|"TestIndexWriterOutOfFileDescriptors"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|dir
-operator|.
-name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 name|double
 name|rate
 init|=

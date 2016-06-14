@@ -274,16 +274,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// if we enable this, TestReplicationHandler fails when it
-comment|// tries to write to index.properties after the file has
-comment|// already been created.
-name|mockDirWrapper
-operator|.
-name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|allowReadingFilesStillOpenForWrite

@@ -2778,13 +2778,6 @@ argument_list|)
 expr_stmt|;
 name|dir
 operator|.
-name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|dir
-operator|.
 name|setRandomIOExceptionRate
 argument_list|(
 literal|0.001
