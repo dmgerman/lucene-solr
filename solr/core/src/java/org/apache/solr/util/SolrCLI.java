@@ -1154,6 +1154,20 @@ end_import
 
 begin_import
 import|import static
+name|java
+operator|.
+name|nio
+operator|.
+name|charset
+operator|.
+name|StandardCharsets
+operator|.
+name|UTF_8
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|apache
@@ -1467,8 +1481,6 @@ name|pair
 operator|.
 name|getBytes
 argument_list|(
-name|StandardCharsets
-operator|.
 name|UTF_8
 argument_list|)
 argument_list|)
@@ -1488,6 +1500,8 @@ operator|new
 name|String
 argument_list|(
 name|encodedBytes
+argument_list|,
+name|UTF_8
 argument_list|)
 argument_list|)
 argument_list|)
@@ -13788,8 +13802,6 @@ name|Scanner
 argument_list|(
 name|userInput
 argument_list|,
-name|StandardCharsets
-operator|.
 name|UTF_8
 operator|.
 name|name
