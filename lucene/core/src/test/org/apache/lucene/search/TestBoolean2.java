@@ -1058,7 +1058,7 @@ literal|"w1 w3 w2 w3"
 block|,
 literal|"w1 xx w2 yy w3"
 block|,
-literal|"w1 w3 xx w2 yy w3"
+literal|"w1 w3 xx w2 yy mm"
 block|}
 decl_stmt|;
 DECL|method|queriesTest
