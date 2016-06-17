@@ -286,15 +286,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"This test fails with Java 9 (https://issues.apache.org/jira/browse/PDFBOX-3155)"
-argument_list|,
-name|Constants
-operator|.
-name|JRE_IS_MINIMUM_JAVA9
-argument_list|)
-expr_stmt|;
 name|initCore
 argument_list|(
 literal|"solrconfig.xml"
