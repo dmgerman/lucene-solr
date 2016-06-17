@@ -489,7 +489,7 @@ argument_list|()
 argument_list|)
 return|;
 block|}
-comment|/**    * Retrieve user committed data.    *     * @see TaxonomyWriter#setCommitData(Map)    */
+comment|/**    * Retrieve user committed data.    *     * @see TaxonomyWriter#setLiveCommitData(Iterable)    */
 DECL|method|getCommitUserData
 specifier|public
 specifier|abstract

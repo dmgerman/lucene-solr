@@ -707,7 +707,7 @@ argument_list|)
 expr_stmt|;
 name|publishWriter
 operator|.
-name|setCommitData
+name|setLiveCommitData
 argument_list|(
 operator|new
 name|HashMap
@@ -735,6 +735,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+operator|.
+name|entrySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|publishWriter

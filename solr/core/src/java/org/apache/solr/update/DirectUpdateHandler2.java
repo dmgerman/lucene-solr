@@ -2999,9 +2999,12 @@ argument_list|)
 expr_stmt|;
 name|iw
 operator|.
-name|setCommitData
+name|setLiveCommitData
 argument_list|(
 name|commitData
+operator|.
+name|entrySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
