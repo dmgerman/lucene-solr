@@ -1633,7 +1633,7 @@ annotation|@
 name|Override
 DECL|method|doAuthenticate
 specifier|public
-name|void
+name|boolean
 name|doAuthenticate
 parameter_list|(
 name|ServletRequest
@@ -1664,7 +1664,9 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+literal|true
+return|;
 block|}
 name|HttpServletRequest
 name|httpRequest
@@ -1727,6 +1729,7 @@ argument_list|(
 name|password
 argument_list|)
 condition|)
+block|{
 name|filterChain
 operator|.
 name|doFilter
@@ -1736,6 +1739,10 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
+block|}
 else|else
 block|{
 operator|(
@@ -1752,6 +1759,9 @@ argument_list|,
 literal|"Unauthorized request"
 argument_list|)
 expr_stmt|;
+return|return
+literal|false
+return|;
 block|}
 block|}
 annotation|@

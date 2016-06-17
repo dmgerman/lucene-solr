@@ -1720,6 +1720,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|boolean
+name|requestContinues
+init|=
+literal|false
+decl_stmt|;
 specifier|final
 name|AtomicBoolean
 name|isAuthenticated
@@ -1811,6 +1816,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// upon successful authentication, this should call the chain's next filter.
+name|requestContinues
+operator|=
 name|authenticationPlugin
 operator|.
 name|doAuthenticate
@@ -1883,9 +1890,17 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|// failed authentication?
+comment|// requestContinues is an optional short circuit, thus we still need to check isAuthenticated.
+comment|// This is because the AuthenticationPlugin doesn't always have enough information to determine if
+comment|// it should short circuit, e.g. the Kerberos Authentication Filter will send an error and not
+comment|// call later filters in chain, but doesn't throw an exception.  We could force each Plugin
+comment|// to implement isAuthenticated to simplify the check here, but that just moves the complexity to
+comment|// multiple code paths.
 if|if
 condition|(
+operator|!
+name|requestContinues
+operator|||
 operator|!
 name|isAuthenticated
 operator|.

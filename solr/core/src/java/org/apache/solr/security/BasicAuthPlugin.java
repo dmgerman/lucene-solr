@@ -704,7 +704,7 @@ annotation|@
 name|Override
 DECL|method|doAuthenticate
 specifier|public
-name|void
+name|boolean
 name|doAuthenticate
 parameter_list|(
 name|ServletRequest
@@ -928,6 +928,9 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 block|}
 else|else
@@ -1003,8 +1006,14 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 block|}
+return|return
+literal|false
+return|;
 block|}
 annotation|@
 name|Override

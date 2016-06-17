@@ -858,12 +858,6 @@ parameter_list|)
 block|{
 name|this
 operator|.
-name|zkClientConnectionStrategy
-operator|=
-name|strat
-expr_stmt|;
-name|this
-operator|.
 name|zkServerAddress
 operator|=
 name|zkServerAddress
@@ -882,6 +876,12 @@ name|DefaultConnectionStrategy
 argument_list|()
 expr_stmt|;
 block|}
+name|this
+operator|.
+name|zkClientConnectionStrategy
+operator|=
+name|strat
+expr_stmt|;
 if|if
 condition|(
 operator|!

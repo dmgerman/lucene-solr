@@ -689,7 +689,7 @@ annotation|@
 name|Override
 DECL|method|doAuthenticate
 specifier|public
-name|void
+name|boolean
 name|doAuthenticate
 parameter_list|(
 name|ServletRequest
@@ -736,7 +736,9 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+literal|true
+return|;
 block|}
 name|long
 name|receivedTime
@@ -785,7 +787,9 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+literal|true
+return|;
 block|}
 name|List
 argument_list|<
@@ -830,7 +834,9 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+literal|true
+return|;
 block|}
 name|String
 name|nodeName
@@ -887,7 +893,9 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+literal|true
+return|;
 block|}
 if|if
 condition|(
@@ -926,7 +934,9 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
-return|return;
+return|return
+literal|true
+return|;
 block|}
 specifier|final
 name|Principal
@@ -968,6 +978,9 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+return|return
+literal|true
+return|;
 block|}
 DECL|method|getWrapper
 specifier|private
