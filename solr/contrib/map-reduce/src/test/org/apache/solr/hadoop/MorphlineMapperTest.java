@@ -247,6 +247,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-9220"
+argument_list|)
 DECL|method|testMapper
 specifier|public
 name|void
