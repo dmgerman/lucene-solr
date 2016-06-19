@@ -670,6 +670,7 @@ name|newDirectory
 argument_list|()
 expr_stmt|;
 block|}
+comment|// TODO: this test does not need to be doing this crazy stuff. please improve it!
 for|for
 control|(
 name|String
@@ -681,6 +682,18 @@ name|listAll
 argument_list|()
 control|)
 block|{
+if|if
+condition|(
+name|fileName
+operator|.
+name|startsWith
+argument_list|(
+literal|"extra"
+argument_list|)
+condition|)
+block|{
+continue|continue;
+block|}
 name|singleSegmentDirectory
 operator|.
 name|copyFrom
