@@ -991,6 +991,10 @@ name|getConfigSetProps
 argument_list|(
 name|oldProps
 argument_list|)
+argument_list|,
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 expr_stmt|;
 block|}
@@ -1717,6 +1721,10 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|)
+argument_list|,
+name|StandardCharsets
+operator|.
+name|UTF_8
 argument_list|)
 expr_stmt|;
 name|solrCluster
