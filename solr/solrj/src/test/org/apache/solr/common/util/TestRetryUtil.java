@@ -128,18 +128,8 @@ literal|10000
 argument_list|,
 literal|10
 argument_list|,
-operator|new
-name|RetryCmd
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|execute
 parameter_list|()
-throws|throws
-name|Throwable
+lambda|->
 block|{
 name|int
 name|calls
@@ -167,7 +157,6 @@ argument_list|,
 literal|"Bad Stuff Happened"
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 argument_list|)
@@ -209,18 +198,8 @@ literal|10000
 argument_list|,
 literal|10
 argument_list|,
-operator|new
-name|RetryCmd
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|execute
 parameter_list|()
-throws|throws
-name|Throwable
+lambda|->
 block|{
 name|int
 name|calls
@@ -248,7 +227,6 @@ argument_list|,
 literal|"Bad Stuff Happened"
 argument_list|)
 throw|;
-block|}
 block|}
 block|}
 argument_list|)
@@ -306,18 +284,8 @@ literal|1000
 argument_list|,
 literal|10
 argument_list|,
-operator|new
-name|RetryCmd
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|execute
 parameter_list|()
-throws|throws
-name|Throwable
+lambda|->
 block|{
 name|executes3
 operator|.
@@ -335,7 +303,6 @@ argument_list|,
 literal|"Bad Stuff Happened"
 argument_list|)
 throw|;
-block|}
 block|}
 argument_list|)
 expr_stmt|;

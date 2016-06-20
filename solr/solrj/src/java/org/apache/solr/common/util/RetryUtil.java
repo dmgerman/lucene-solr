@@ -140,12 +140,10 @@ argument_list|)
 decl_stmt|;
 DECL|interface|RetryCmd
 specifier|public
-specifier|static
 interface|interface
 name|RetryCmd
 block|{
 DECL|method|execute
-specifier|public
 name|void
 name|execute
 parameter_list|()
@@ -155,12 +153,10 @@ function_decl|;
 block|}
 DECL|interface|BooleanRetryCmd
 specifier|public
-specifier|static
 interface|interface
 name|BooleanRetryCmd
 block|{
 DECL|method|execute
-specifier|public
 name|boolean
 name|execute
 parameter_list|()
