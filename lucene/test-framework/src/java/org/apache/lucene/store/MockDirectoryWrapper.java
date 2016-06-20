@@ -537,6 +537,11 @@ name|Throttling
 operator|.
 name|NEVER
 decl_stmt|;
+comment|// for testing
+DECL|field|alwaysCorrupt
+name|boolean
+name|alwaysCorrupt
+decl_stmt|;
 DECL|field|inputCloneCount
 specifier|final
 name|AtomicInteger
@@ -1451,6 +1456,20 @@ argument_list|(
 literal|6
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|alwaysCorrupt
+operator|&&
+name|damage
+operator|==
+literal|3
+condition|)
+block|{
+name|damage
+operator|=
+literal|4
+expr_stmt|;
+block|}
 name|String
 name|action
 init|=
@@ -1501,9 +1520,24 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// Ignore
-continue|continue;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
+comment|// Delete original and write zeros back:
+name|deleteFile
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 name|byte
 index|[]
 name|zeroes
@@ -1589,7 +1623,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 break|break;
 case|case
@@ -1675,7 +1719,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 comment|// Delete original and copy bytes back:
 name|deleteFile
@@ -1739,7 +1793,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 name|deleteFile
 argument_list|(
@@ -1964,7 +2028,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 comment|// Delete original and copy bytes back:
 name|deleteFile
@@ -2028,7 +2102,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 name|deleteFile
 argument_list|(
@@ -2083,7 +2167,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 break|break;
 default|default:
