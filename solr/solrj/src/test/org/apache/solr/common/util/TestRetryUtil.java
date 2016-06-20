@@ -74,24 +74,6 @@ name|ErrorCode
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|RetryUtil
-operator|.
-name|RetryCmd
-import|;
-end_import
-
 begin_class
 DECL|class|TestRetryUtil
 specifier|public
