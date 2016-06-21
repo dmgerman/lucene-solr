@@ -144,7 +144,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexWriterConfig
+name|IndexReader
 import|;
 end_import
 
@@ -158,7 +158,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
+name|IndexWriterConfig
 import|;
 end_import
 
@@ -284,10 +284,10 @@ name|Analyzer
 argument_list|>
 name|field2analyzer
 decl_stmt|;
-DECL|field|leafReader
+DECL|field|indexReader
 specifier|protected
-name|LeafReader
-name|leafReader
+name|IndexReader
+name|indexReader
 decl_stmt|;
 annotation|@
 name|Before
@@ -339,7 +339,7 @@ argument_list|,
 name|analyzer
 argument_list|)
 expr_stmt|;
-name|leafReader
+name|indexReader
 operator|=
 name|populateDocumentClassificationIndex
 argument_list|(
@@ -434,7 +434,7 @@ return|;
 block|}
 DECL|method|populateDocumentClassificationIndex
 specifier|protected
-name|LeafReader
+name|IndexReader
 name|populateDocumentClassificationIndex
 parameter_list|(
 name|Analyzer
@@ -1385,21 +1385,11 @@ operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|indexWriter
-operator|.
-name|forceMerge
-argument_list|(
-literal|1
-argument_list|)
-expr_stmt|;
 return|return
-name|getOnlyLeafReader
-argument_list|(
 name|indexWriter
 operator|.
 name|getReader
 argument_list|()
-argument_list|)
 return|;
 block|}
 DECL|method|getVideoGameDocument

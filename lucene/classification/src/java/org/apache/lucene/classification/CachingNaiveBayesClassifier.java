@@ -1057,10 +1057,12 @@ block|{
 name|TermsEnum
 name|termsEnum
 init|=
-name|leafReader
+name|MultiFields
 operator|.
-name|terms
+name|getTerms
 argument_list|(
+name|indexReader
+argument_list|,
 name|textFieldName
 argument_list|)
 operator|.
@@ -1189,7 +1191,7 @@ name|MultiFields
 operator|.
 name|getTerms
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 name|classFieldName
 argument_list|)
@@ -1258,7 +1260,7 @@ name|MultiFields
 operator|.
 name|getTerms
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 name|textFieldName
 argument_list|)
@@ -1288,7 +1290,7 @@ block|}
 name|int
 name|docsWithC
 init|=
-name|leafReader
+name|indexReader
 operator|.
 name|docFreq
 argument_list|(

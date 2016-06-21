@@ -134,6 +134,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|LeafReader
 import|;
 end_import
@@ -294,13 +308,13 @@ name|Analyzer
 argument_list|>
 name|field2analyzer
 decl_stmt|;
-comment|/**    * Creates a {@link KNearestNeighborClassifier}.    *    * @param leafReader     the reader on the index to be used for classification    * @param similarity     the {@link Similarity} to be used by the underlying {@link IndexSearcher} or {@code null}    *                       (defaults to {@link org.apache.lucene.search.similarities.ClassicSimilarity})    * @param query          a {@link org.apache.lucene.search.Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param k              the no. of docs to select in the MLT results to find the nearest neighbor    * @param minDocsFreq    {@link org.apache.lucene.queries.mlt.MoreLikeThis#minDocFreq} parameter    * @param minTermFreq    {@link org.apache.lucene.queries.mlt.MoreLikeThis#minTermFreq} parameter    * @param classFieldName the name of the field used as the output for the classifier    * @param field2analyzer map with key a field name and the related {org.apache.lucene.analysis.Analyzer}    * @param textFieldNames the name of the fields used as the inputs for the classifier, they can contain boosting indication e.g. title^10    */
+comment|/**    * Creates a {@link KNearestNeighborClassifier}.    *    * @param indexReader     the reader on the index to be used for classification    * @param similarity     the {@link Similarity} to be used by the underlying {@link IndexSearcher} or {@code null}    *                       (defaults to {@link org.apache.lucene.search.similarities.ClassicSimilarity})    * @param query          a {@link org.apache.lucene.search.Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param k              the no. of docs to select in the MLT results to find the nearest neighbor    * @param minDocsFreq    {@link org.apache.lucene.queries.mlt.MoreLikeThis#minDocFreq} parameter    * @param minTermFreq    {@link org.apache.lucene.queries.mlt.MoreLikeThis#minTermFreq} parameter    * @param classFieldName the name of the field used as the output for the classifier    * @param field2analyzer map with key a field name and the related {org.apache.lucene.analysis.Analyzer}    * @param textFieldNames the name of the fields used as the inputs for the classifier, they can contain boosting indication e.g. title^10    */
 DECL|method|KNearestNeighborDocumentClassifier
 specifier|public
 name|KNearestNeighborDocumentClassifier
 parameter_list|(
-name|LeafReader
-name|leafReader
+name|IndexReader
+name|indexReader
 parameter_list|,
 name|Similarity
 name|similarity
@@ -335,7 +349,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 name|similarity
 argument_list|,

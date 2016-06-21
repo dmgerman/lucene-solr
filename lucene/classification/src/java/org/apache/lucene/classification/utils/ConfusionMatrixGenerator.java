@@ -180,7 +180,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
+name|IndexReader
 import|;
 end_import
 
@@ -283,7 +283,7 @@ specifier|private
 name|ConfusionMatrixGenerator
 parameter_list|()
 block|{    }
-comment|/**    * get the {@link org.apache.lucene.classification.utils.ConfusionMatrixGenerator.ConfusionMatrix} of a given {@link Classifier},    * generated on the given {@link LeafReader}, class and text fields.    *    * @param reader              the {@link LeafReader} containing the index used for creating the {@link Classifier}    * @param classifier          the {@link Classifier} whose confusion matrix has to be generated    * @param classFieldName      the name of the Lucene field used as the classifier's output    * @param textFieldName       the nome the Lucene field used as the classifier's input    * @param timeoutMilliseconds timeout to wait before stopping creating the confusion matrix    * @param<T>                 the return type of the {@link ClassificationResult} returned by the given {@link Classifier}    * @return a {@link org.apache.lucene.classification.utils.ConfusionMatrixGenerator.ConfusionMatrix}    * @throws IOException if problems occurr while reading the index or using the classifier    */
+comment|/**    * get the {@link org.apache.lucene.classification.utils.ConfusionMatrixGenerator.ConfusionMatrix} of a given {@link Classifier},    * generated on the given {@link IndexReader}, class and text fields.    *    * @param reader              the {@link IndexReader} containing the index used for creating the {@link Classifier}    * @param classifier          the {@link Classifier} whose confusion matrix has to be generated    * @param classFieldName      the name of the Lucene field used as the classifier's output    * @param textFieldName       the nome the Lucene field used as the classifier's input    * @param timeoutMilliseconds timeout to wait before stopping creating the confusion matrix    * @param<T>                 the return type of the {@link ClassificationResult} returned by the given {@link Classifier}    * @return a {@link org.apache.lucene.classification.utils.ConfusionMatrixGenerator.ConfusionMatrix}    * @throws IOException if problems occurr while reading the index or using the classifier    */
 DECL|method|getConfusionMatrix
 specifier|public
 specifier|static
@@ -293,7 +293,7 @@ parameter_list|>
 name|ConfusionMatrix
 name|getConfusionMatrix
 parameter_list|(
-name|LeafReader
+name|IndexReader
 name|reader
 parameter_list|,
 name|Classifier

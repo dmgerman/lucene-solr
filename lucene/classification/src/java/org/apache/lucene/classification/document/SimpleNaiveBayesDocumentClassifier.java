@@ -194,6 +194,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexReader
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexableField
 import|;
 end_import
@@ -380,13 +394,13 @@ name|Analyzer
 argument_list|>
 name|field2analyzer
 decl_stmt|;
-comment|/**    * Creates a new NaiveBayes classifier.    *    * @param leafReader     the reader on the index to be used for classification    * @param query          a {@link org.apache.lucene.search.Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param classFieldName the name of the field used as the output for the classifier NOTE: must not be havely analyzed    *                       as the returned class will be a token indexed for this field    * @param textFieldNames the name of the fields used as the inputs for the classifier, they can contain boosting indication e.g. title^10    */
+comment|/**    * Creates a new NaiveBayes classifier.    *    * @param indexReader     the reader on the index to be used for classification    * @param query          a {@link org.apache.lucene.search.Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param classFieldName the name of the field used as the output for the classifier NOTE: must not be havely analyzed    *                       as the returned class will be a token indexed for this field    * @param textFieldNames the name of the fields used as the inputs for the classifier, they can contain boosting indication e.g. title^10    */
 DECL|method|SimpleNaiveBayesDocumentClassifier
 specifier|public
 name|SimpleNaiveBayesDocumentClassifier
 parameter_list|(
-name|LeafReader
-name|leafReader
+name|IndexReader
+name|indexReader
 parameter_list|,
 name|Query
 name|query
@@ -409,7 +423,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -680,7 +694,7 @@ name|MultiFields
 operator|.
 name|getTerms
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 name|classFieldName
 argument_list|)
@@ -1249,7 +1263,7 @@ name|MultiFields
 operator|.
 name|getTerms
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 name|fieldName
 argument_list|)
@@ -1279,7 +1293,7 @@ comment|// avg # of unique terms per doc
 name|int
 name|docsWithC
 init|=
-name|leafReader
+name|indexReader
 operator|.
 name|docFreq
 argument_list|(
@@ -1496,7 +1510,7 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|leafReader
+name|indexReader
 operator|.
 name|docFreq
 argument_list|(
