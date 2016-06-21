@@ -348,7 +348,12 @@ operator|new
 name|BoostQuery
 argument_list|(
 operator|new
-name|MatchNoDocsQuery
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+operator|.
+name|build
 argument_list|()
 argument_list|,
 literal|2
@@ -360,12 +365,7 @@ operator|new
 name|BoostQuery
 argument_list|(
 operator|new
-name|BooleanQuery
-operator|.
-name|Builder
-argument_list|()
-operator|.
-name|build
+name|MatchNoDocsQuery
 argument_list|()
 argument_list|,
 literal|2

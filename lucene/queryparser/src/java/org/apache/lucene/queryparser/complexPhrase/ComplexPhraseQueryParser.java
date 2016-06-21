@@ -208,6 +208,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|MatchNoDocsQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|MultiTermQuery
 import|;
 end_import
@@ -1334,6 +1348,35 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+elseif|else
+if|if
+condition|(
+name|qc
+operator|instanceof
+name|MatchNoDocsQuery
+condition|)
+block|{
+comment|// Insert fake term e.g. phrase query was for "Fred Smithe*" and
+comment|// there were no "Smithe*" terms - need to
+comment|// prevent match on just "Fred".
+name|allSpanClauses
+index|[
+name|i
+index|]
+operator|=
+operator|new
+name|SpanTermQuery
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+name|field
+argument_list|,
+literal|"Dummy clause because no terms found - must match nothing"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{

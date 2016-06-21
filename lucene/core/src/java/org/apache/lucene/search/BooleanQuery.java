@@ -848,6 +848,22 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|clauses
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+return|return
+operator|new
+name|MatchNoDocsQuery
+argument_list|()
+return|;
+block|}
 comment|// optimize 1-clause queries
 if|if
 condition|(
