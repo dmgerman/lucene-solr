@@ -236,22 +236,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|snowball
-operator|.
-name|SnowballFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|standard
 operator|.
 name|StandardFilter
@@ -325,7 +309,7 @@ specifier|static
 name|String
 name|DEFAULT_STOPWORD_FILE
 init|=
-literal|"/org/apache/lucene/analysis/uk/stopwords.txt"
+literal|"stopwords.txt"
 decl_stmt|;
 comment|/**    * Returns an unmodifiable instance of the default stop words set.    * @return default stop words set.    */
 DECL|method|getDefaultStopSet
@@ -368,7 +352,7 @@ name|IOUtils
 operator|.
 name|getDecodingReader
 argument_list|(
-name|SnowballFilter
+name|UkrainianMorfologikAnalyzer
 operator|.
 name|class
 argument_list|,
@@ -648,7 +632,7 @@ name|class
 operator|.
 name|getResource
 argument_list|(
-literal|"/org/apache/lucene/analysis/uk/ukrainian.dict"
+literal|"ukrainian.dict"
 argument_list|)
 argument_list|)
 return|;
