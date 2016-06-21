@@ -42,16 +42,6 @@ name|org
 operator|.
 name|noggit
 operator|.
-name|CharArr
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|noggit
-operator|.
 name|JSONParser
 import|;
 end_import
