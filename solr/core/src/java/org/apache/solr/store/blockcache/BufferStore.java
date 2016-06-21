@@ -150,7 +150,13 @@ init|=
 operator|new
 name|ConcurrentHashMap
 argument_list|<>
-argument_list|()
+argument_list|(
+literal|8192
+argument_list|,
+literal|0.75f
+argument_list|,
+literal|512
+argument_list|)
 decl_stmt|;
 DECL|field|buffers
 specifier|private

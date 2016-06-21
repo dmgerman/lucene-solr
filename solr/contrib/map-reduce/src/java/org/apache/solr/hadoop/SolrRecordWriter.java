@@ -484,6 +484,8 @@ block|,
 literal|"lib"
 block|,
 literal|"solr.xml"
+block|,
+literal|"core1"
 block|}
 argument_list|)
 argument_list|)
@@ -998,7 +1000,7 @@ name|container
 operator|.
 name|create
 argument_list|(
-literal|"core1"
+literal|""
 argument_list|,
 name|ImmutableMap
 operator|.
@@ -1048,7 +1050,7 @@ name|EmbeddedSolrServer
 argument_list|(
 name|container
 argument_list|,
-literal|"core1"
+literal|""
 argument_list|)
 decl_stmt|;
 return|return

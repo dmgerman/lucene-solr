@@ -100,7 +100,14 @@ specifier|final
 name|int
 name|BUFFER_SIZE
 init|=
+name|Integer
+operator|.
+name|getInteger
+argument_list|(
+literal|"solr.hdfs.readbuffer.size.default"
+argument_list|,
 literal|32768
+argument_list|)
 decl_stmt|;
 DECL|field|bufferSize
 specifier|private
