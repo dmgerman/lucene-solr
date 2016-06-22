@@ -322,6 +322,13 @@ argument_list|(
 name|r
 argument_list|)
 expr_stmt|;
+name|s
+operator|.
+name|setQueryCache
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|createRandomTerms
 specifier|public
