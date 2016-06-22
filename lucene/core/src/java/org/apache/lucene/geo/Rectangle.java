@@ -54,30 +54,6 @@ end_import
 
 begin_import
 import|import static
-name|java
-operator|.
-name|lang
-operator|.
-name|Math
-operator|.
-name|toDegrees
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|lang
-operator|.
-name|Math
-operator|.
-name|toRadians
-import|;
-end_import
-
-begin_import
-import|import static
 name|org
 operator|.
 name|apache
@@ -281,6 +257,38 @@ operator|.
 name|SloppyMath
 operator|.
 name|cos
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
+operator|.
+name|toDegrees
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
+operator|.
+name|toRadians
 import|;
 end_import
 

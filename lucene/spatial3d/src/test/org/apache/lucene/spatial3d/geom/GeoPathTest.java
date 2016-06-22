@@ -30,11 +30,15 @@ end_import
 
 begin_import
 import|import static
-name|java
+name|org
 operator|.
-name|lang
+name|apache
 operator|.
-name|Math
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
 operator|.
 name|toRadians
 import|;

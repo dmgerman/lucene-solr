@@ -454,6 +454,20 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|SloppyMath
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|io
@@ -1043,7 +1057,7 @@ comment|// Degrees -> Radians:
 name|double
 name|originLatRadians
 init|=
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -1053,7 +1067,7 @@ decl_stmt|;
 name|double
 name|originLngRadians
 init|=
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -1091,7 +1105,7 @@ if|if
 condition|(
 name|minLat
 operator|>
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -1101,7 +1115,7 @@ argument_list|)
 operator|&&
 name|maxLat
 operator|<
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -1141,7 +1155,7 @@ if|if
 condition|(
 name|minLng
 operator|<
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -1169,7 +1183,7 @@ if|if
 condition|(
 name|maxLng
 operator|>
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -1198,7 +1212,7 @@ name|max
 argument_list|(
 name|minLat
 argument_list|,
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -1215,7 +1229,7 @@ name|min
 argument_list|(
 name|maxLat
 argument_list|,
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -1225,7 +1239,7 @@ argument_list|)
 expr_stmt|;
 name|minLng
 operator|=
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -1235,7 +1249,7 @@ argument_list|)
 expr_stmt|;
 name|maxLng
 operator|=
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -1265,14 +1279,14 @@ name|newRangeQuery
 argument_list|(
 literal|"latitude"
 argument_list|,
-name|Math
+name|SloppyMath
 operator|.
 name|toDegrees
 argument_list|(
 name|minLat
 argument_list|)
 argument_list|,
-name|Math
+name|SloppyMath
 operator|.
 name|toDegrees
 argument_list|(
@@ -1318,7 +1332,7 @@ name|newRangeQuery
 argument_list|(
 literal|"longitude"
 argument_list|,
-name|Math
+name|SloppyMath
 operator|.
 name|toDegrees
 argument_list|(
@@ -1351,7 +1365,7 @@ name|Double
 operator|.
 name|NEGATIVE_INFINITY
 argument_list|,
-name|Math
+name|SloppyMath
 operator|.
 name|toDegrees
 argument_list|(
@@ -1395,14 +1409,14 @@ name|newRangeQuery
 argument_list|(
 literal|"longitude"
 argument_list|,
-name|Math
+name|SloppyMath
 operator|.
 name|toDegrees
 argument_list|(
 name|minLng
 argument_list|)
 argument_list|,
-name|Math
+name|SloppyMath
 operator|.
 name|toDegrees
 argument_list|(
