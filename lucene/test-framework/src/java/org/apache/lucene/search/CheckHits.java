@@ -1839,7 +1839,6 @@ comment|// simple containment, unless it's a freq of: (which lets a query explai
 comment|// just verify contained expl has same score
 if|if
 condition|(
-operator|!
 name|expl
 operator|.
 name|getDescription
@@ -1849,7 +1848,30 @@ name|endsWith
 argument_list|(
 literal|"with freq of:"
 argument_list|)
+operator|==
+literal|false
+comment|// with dismax, even if there is a single sub explanation, its
+comment|// score might be different if the score is negative
+operator|&&
+operator|(
+name|score
+operator|>=
+literal|0
+operator|||
+name|expl
+operator|.
+name|getDescription
+argument_list|()
+operator|.
+name|endsWith
+argument_list|(
+literal|"times others of:"
+argument_list|)
+operator|==
+literal|false
+operator|)
 condition|)
+block|{
 name|verifyExplanation
 argument_list|(
 name|q
@@ -1866,6 +1888,7 @@ literal|0
 index|]
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{
