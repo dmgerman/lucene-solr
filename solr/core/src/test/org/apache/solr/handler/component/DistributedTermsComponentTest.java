@@ -76,6 +76,10 @@ argument_list|,
 literal|"b_t"
 argument_list|,
 literal|"snake spider shark snail slug seal"
+argument_list|,
+literal|"foo_i"
+argument_list|,
+literal|"1"
 argument_list|)
 expr_stmt|;
 name|index
@@ -87,6 +91,10 @@ argument_list|,
 literal|"b_t"
 argument_list|,
 literal|"snake spider shark snail slug"
+argument_list|,
+literal|"foo_i"
+argument_list|,
+literal|"2"
 argument_list|)
 expr_stmt|;
 name|index
@@ -98,6 +106,10 @@ argument_list|,
 literal|"b_t"
 argument_list|,
 literal|"snake spider shark snail"
+argument_list|,
+literal|"foo_i"
+argument_list|,
+literal|"3"
 argument_list|)
 expr_stmt|;
 name|index
@@ -109,6 +121,10 @@ argument_list|,
 literal|"b_t"
 argument_list|,
 literal|"snake spider shark"
+argument_list|,
+literal|"foo_i"
+argument_list|,
+literal|"2"
 argument_list|)
 expr_stmt|;
 name|index
@@ -370,6 +386,52 @@ argument_list|,
 literal|"terms.sort"
 argument_list|,
 literal|"index"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"/terms"
+argument_list|,
+literal|"shards.qt"
+argument_list|,
+literal|"/terms"
+argument_list|,
+literal|"terms"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"terms.fl"
+argument_list|,
+literal|"b_t"
+argument_list|,
+literal|"terms.list"
+argument_list|,
+literal|"snake, zebra, ant, bad"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"/terms"
+argument_list|,
+literal|"shards.qt"
+argument_list|,
+literal|"/terms"
+argument_list|,
+literal|"terms"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"terms.fl"
+argument_list|,
+literal|"foo_i"
+argument_list|,
+literal|"terms.list"
+argument_list|,
+literal|"2, 3, 1"
 argument_list|)
 expr_stmt|;
 block|}
