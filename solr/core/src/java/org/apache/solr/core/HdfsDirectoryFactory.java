@@ -2187,7 +2187,7 @@ throw|;
 block|}
 block|}
 DECL|method|getConf
-specifier|private
+specifier|public
 name|Configuration
 name|getConf
 parameter_list|()

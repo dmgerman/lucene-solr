@@ -330,6 +330,15 @@ name|lookupClass
 argument_list|()
 argument_list|)
 decl_stmt|;
+DECL|field|DEFAULT_BUFFER_SIZE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_BUFFER_SIZE
+init|=
+literal|4096
+decl_stmt|;
 DECL|field|LF_EXT
 specifier|private
 specifier|static
@@ -392,7 +401,7 @@ name|INSTANCE
 argument_list|,
 name|configuration
 argument_list|,
-literal|4096
+name|DEFAULT_BUFFER_SIZE
 argument_list|)
 expr_stmt|;
 block|}
@@ -1121,6 +1130,7 @@ name|configuration
 return|;
 block|}
 DECL|class|HdfsIndexInput
+specifier|public
 specifier|static
 class|class
 name|HdfsIndexInput

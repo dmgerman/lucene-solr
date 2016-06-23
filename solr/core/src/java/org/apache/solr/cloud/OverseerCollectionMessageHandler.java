@@ -16376,7 +16376,9 @@ name|message
 operator|.
 name|getStr
 argument_list|(
-literal|"location"
+name|ZkStateReader
+operator|.
+name|BACKUP_LOCATION
 argument_list|)
 decl_stmt|;
 name|ShardHandler
@@ -16867,7 +16869,9 @@ name|message
 operator|.
 name|getStr
 argument_list|(
-literal|"location"
+name|ZkStateReader
+operator|.
+name|BACKUP_LOCATION
 argument_list|)
 decl_stmt|;
 name|ShardHandler

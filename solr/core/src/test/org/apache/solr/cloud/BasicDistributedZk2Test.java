@@ -2076,12 +2076,16 @@ literal|false
 argument_list|)
 expr_stmt|;
 comment|// try a backup command
+try|try
+init|(
 specifier|final
 name|HttpSolrClient
 name|client
 init|=
+name|getHttpSolrClient
+argument_list|(
 operator|(
-name|HttpSolrClient
+name|String
 operator|)
 name|shardToJetty
 operator|.
@@ -2095,10 +2099,15 @@ argument_list|(
 literal|0
 argument_list|)
 operator|.
-name|client
+name|info
 operator|.
-name|solrClient
-decl_stmt|;
+name|get
+argument_list|(
+literal|"base_url"
+argument_list|)
+argument_list|)
+init|)
+block|{
 name|ModifiableSolrParams
 name|params
 init|=
@@ -2170,6 +2179,8 @@ operator|.
 name|request
 argument_list|(
 name|request
+argument_list|,
+name|DEFAULT_TEST_COLLECTION_NAME
 argument_list|)
 expr_stmt|;
 name|checkForBackupSuccess
@@ -2179,6 +2190,12 @@ argument_list|,
 name|location
 argument_list|)
 expr_stmt|;
+name|client
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 DECL|method|checkForBackupSuccess
 specifier|private
@@ -2203,6 +2220,8 @@ operator|new
 name|CheckBackupStatus
 argument_list|(
 name|client
+argument_list|,
+name|DEFAULT_TEST_COLLECTION_NAME
 argument_list|)
 decl_stmt|;
 while|while

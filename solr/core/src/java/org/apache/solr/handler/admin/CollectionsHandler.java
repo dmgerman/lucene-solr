@@ -6302,7 +6302,9 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"location"
+name|ZkStateReader
+operator|.
+name|BACKUP_LOCATION
 argument_list|)
 decl_stmt|;
 if|if
@@ -6503,7 +6505,9 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"location"
+name|ZkStateReader
+operator|.
+name|BACKUP_LOCATION
 argument_list|)
 decl_stmt|;
 if|if
