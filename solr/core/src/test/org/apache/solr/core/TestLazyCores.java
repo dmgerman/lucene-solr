@@ -4129,10 +4129,14 @@ argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-literal|10000
+literal|9999
 argument_list|)
+operator|+
+literal|1
 decl_stmt|;
-comment|// sleep for up to 10 s
+comment|// sleep for up to 10 s Must add 1 because using
+comment|// this as a seed will rea few lines down will
+comment|// throw an exception if this is zero
 if|if
 condition|(
 name|VERBOSE
