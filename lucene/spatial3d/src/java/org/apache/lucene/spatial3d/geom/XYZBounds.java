@@ -42,7 +42,7 @@ name|Vector
 operator|.
 name|MINIMUM_RESOLUTION
 operator|*
-literal|1000.0
+literal|1e3
 decl_stmt|;
 comment|/** Minimum x */
 DECL|field|minX
