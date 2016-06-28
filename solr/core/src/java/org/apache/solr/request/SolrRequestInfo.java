@@ -727,9 +727,9 @@ block|{
 name|SolrRequestInfo
 name|me
 init|=
-name|threadLocal
+name|SolrRequestInfo
 operator|.
-name|get
+name|getRequestInfo
 argument_list|()
 decl_stmt|;
 if|if
@@ -781,9 +781,9 @@ argument_list|(
 literal|null
 argument_list|)
 expr_stmt|;
-name|threadLocal
+name|SolrRequestInfo
 operator|.
-name|set
+name|setRequestInfo
 argument_list|(
 name|me
 argument_list|)
@@ -800,9 +800,9 @@ name|AtomicReference
 name|ctx
 parameter_list|)
 block|{
-name|threadLocal
+name|SolrRequestInfo
 operator|.
-name|remove
+name|clearRequestInfo
 argument_list|()
 expr_stmt|;
 block|}
