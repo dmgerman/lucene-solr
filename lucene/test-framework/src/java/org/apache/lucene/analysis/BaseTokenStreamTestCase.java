@@ -5953,6 +5953,16 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|a
+operator|.
+name|normalize
+argument_list|(
+literal|"dummy"
+argument_list|,
+name|text
+argument_list|)
+expr_stmt|;
+comment|// TODO: what can we do besides testing that the above method does not throw?
 if|if
 condition|(
 name|field

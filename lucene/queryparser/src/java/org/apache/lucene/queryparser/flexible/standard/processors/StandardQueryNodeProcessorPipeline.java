@@ -225,6 +225,13 @@ expr_stmt|;
 name|add
 argument_list|(
 operator|new
+name|RegexpQueryNodeProcessor
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|add
+argument_list|(
+operator|new
 name|MatchAllDocsQueryNodeProcessor
 argument_list|()
 argument_list|)
@@ -261,13 +268,6 @@ name|add
 argument_list|(
 operator|new
 name|PointRangeQueryNodeProcessor
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|add
-argument_list|(
-operator|new
-name|LowercaseExpandedTermsQueryNodeProcessor
 argument_list|()
 argument_list|)
 expr_stmt|;

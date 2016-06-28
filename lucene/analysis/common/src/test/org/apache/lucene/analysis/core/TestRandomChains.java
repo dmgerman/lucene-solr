@@ -6446,6 +6446,11 @@ expr_stmt|;
 block|}
 try|try
 block|{
+name|checkNormalize
+argument_list|(
+name|a
+argument_list|)
+expr_stmt|;
 name|checkRandomData
 argument_list|(
 name|random
@@ -6488,6 +6493,40 @@ throw|;
 block|}
 block|}
 block|}
+block|}
+DECL|method|checkNormalize
+specifier|public
+name|void
+name|checkNormalize
+parameter_list|(
+name|Analyzer
+name|a
+parameter_list|)
+block|{
+comment|// normalization should not modify characters that may be used for wildcards
+comment|// or regular expressions
+name|String
+name|s
+init|=
+literal|"([0-9]+)?*"
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|s
+argument_list|,
+name|a
+operator|.
+name|normalize
+argument_list|(
+literal|"dummy"
+argument_list|,
+name|s
+argument_list|)
+operator|.
+name|utf8ToString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 comment|// we might regret this decision...
 DECL|method|testRandomChainsWithLargeStrings

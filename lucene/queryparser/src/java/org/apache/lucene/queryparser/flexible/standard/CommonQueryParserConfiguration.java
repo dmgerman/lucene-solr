@@ -132,23 +132,6 @@ specifier|public
 interface|interface
 name|CommonQueryParserConfiguration
 block|{
-comment|/**    * Whether terms of multi-term queries (e.g., wildcard,    * prefix, fuzzy and range) should be automatically    * lower-cased or not.  Default is<code>true</code>.    */
-DECL|method|setLowercaseExpandedTerms
-specifier|public
-name|void
-name|setLowercaseExpandedTerms
-parameter_list|(
-name|boolean
-name|lowercaseExpandedTerms
-parameter_list|)
-function_decl|;
-comment|/**    * @see #setLowercaseExpandedTerms(boolean)    */
-DECL|method|getLowercaseExpandedTerms
-specifier|public
-name|boolean
-name|getLowercaseExpandedTerms
-parameter_list|()
-function_decl|;
 comment|/**    * Set to<code>true</code> to allow leading wildcard characters.    *<p>    * When set,<code>*</code> or<code>?</code> are allowed as the first    * character of a PrefixQuery and WildcardQuery. Note that this can produce    * very slow queries on big indexes.    *<p>    * Default: false.    */
 DECL|method|setAllowLeadingWildcard
 specifier|public

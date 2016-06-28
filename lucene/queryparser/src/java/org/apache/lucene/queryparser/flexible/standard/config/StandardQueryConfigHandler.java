@@ -280,22 +280,6 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
-comment|/**      * Key used to set whether expanded terms should be lower-cased      *       * @see StandardQueryParser#setLowercaseExpandedTerms(boolean)      * @see StandardQueryParser#getLowercaseExpandedTerms()      */
-DECL|field|LOWERCASE_EXPANDED_TERMS
-specifier|final
-specifier|public
-specifier|static
-name|ConfigurationKey
-argument_list|<
-name|Boolean
-argument_list|>
-name|LOWERCASE_EXPANDED_TERMS
-init|=
-name|ConfigurationKey
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
 comment|/**      * Key used to set whether leading wildcards are supported      *       * @see StandardQueryParser#setAllowLeadingWildcard(boolean)      * @see StandardQueryParser#getAllowLeadingWildcard()      */
 DECL|field|ALLOW_LEADING_WILDCARD
 specifier|final
@@ -693,16 +677,6 @@ operator|.
 name|PHRASE_SLOP
 argument_list|,
 literal|0
-argument_list|)
-expr_stmt|;
-comment|//default value 2.4
-name|set
-argument_list|(
-name|ConfigurationKeys
-operator|.
-name|LOWERCASE_EXPANDED_TERMS
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 comment|//default value 2.4

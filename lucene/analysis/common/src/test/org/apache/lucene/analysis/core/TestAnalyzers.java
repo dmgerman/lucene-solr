@@ -359,6 +359,24 @@ literal|"word"
 block|}
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+operator|new
+name|BytesRef
+argument_list|(
+literal|"\"\\Ã 3[]()! cz@"
+argument_list|)
+argument_list|,
+name|a
+operator|.
+name|normalize
+argument_list|(
+literal|"dummy"
+argument_list|,
+literal|"\"\\Ã3[]()! Cz@"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|a
 operator|.
 name|close
@@ -510,6 +528,24 @@ literal|"word"
 block|}
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+operator|new
+name|BytesRef
+argument_list|(
+literal|"\"\\Ã3[]()! Cz@"
+argument_list|)
+argument_list|,
+name|a
+operator|.
+name|normalize
+argument_list|(
+literal|"dummy"
+argument_list|,
+literal|"\"\\Ã3[]()! Cz@"
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|a
 operator|.
 name|close
@@ -569,6 +605,42 @@ literal|"foo"
 block|,
 literal|"bar"
 block|}
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+operator|new
+name|BytesRef
+argument_list|(
+literal|"\"\\Ã 3[]()! cz@"
+argument_list|)
+argument_list|,
+name|a
+operator|.
+name|normalize
+argument_list|(
+literal|"dummy"
+argument_list|,
+literal|"\"\\Ã3[]()! Cz@"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+operator|new
+name|BytesRef
+argument_list|(
+literal|"the"
+argument_list|)
+argument_list|,
+name|a
+operator|.
+name|normalize
+argument_list|(
+literal|"dummy"
+argument_list|,
+literal|"the"
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|a
