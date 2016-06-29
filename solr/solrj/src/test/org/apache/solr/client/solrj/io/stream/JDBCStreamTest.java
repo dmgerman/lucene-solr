@@ -617,6 +617,13 @@ argument_list|(
 literal|"create table PEOPLE_SPORTS(ID int not null primary key, PERSON_ID int, SPORT_NAME varchar(50), DELETED char(1) default 'N')"
 argument_list|)
 expr_stmt|;
+name|statement
+operator|.
+name|executeUpdate
+argument_list|(
+literal|"create table UNSUPPORTED_COLUMNS(ID int not null primary key, UNSP binary)"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|AfterClass
@@ -736,6 +743,13 @@ operator|.
 name|executeUpdate
 argument_list|(
 literal|"delete from PEOPLE_SPORTS WHERE 1=1"
+argument_list|)
+expr_stmt|;
+name|statement
+operator|.
+name|executeUpdate
+argument_list|(
+literal|"delete from UNSUPPORTED_COLUMNS WHERE 1=1"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3322,6 +3336,54 @@ name|getDouble
 argument_list|(
 literal|"count(*)"
 argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+argument_list|(
+name|expected
+operator|=
+name|IOException
+operator|.
+name|class
+argument_list|)
+DECL|method|testUnsupportedColumns
+specifier|public
+name|void
+name|testUnsupportedColumns
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// No need to load table with any data
+name|TupleStream
+name|stream
+decl_stmt|;
+comment|// Simple 1
+name|stream
+operator|=
+operator|new
+name|JDBCStream
+argument_list|(
+literal|"jdbc:hsqldb:mem:."
+argument_list|,
+literal|"select ID,UNSP from UNSUPPORTED_COLUMNS"
+argument_list|,
+operator|new
+name|FieldComparator
+argument_list|(
+literal|"CODE"
+argument_list|,
+name|ComparatorOrder
+operator|.
+name|ASCENDING
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|getTuples
+argument_list|(
+name|stream
 argument_list|)
 expr_stmt|;
 block|}
