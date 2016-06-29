@@ -521,6 +521,8 @@ argument_list|()
 return|;
 block|}
 comment|/** Render an explanation as HTML. */
+annotation|@
+name|Deprecated
 DECL|method|toHtml
 specifier|public
 name|String
