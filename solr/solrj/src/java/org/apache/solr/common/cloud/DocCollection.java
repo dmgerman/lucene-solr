@@ -733,19 +733,9 @@ operator|)
 name|o
 return|;
 default|default:
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|"Unknown property "
-operator|+
-name|propName
-argument_list|)
-throw|;
+return|return
+name|o
+return|;
 block|}
 block|}
 comment|/**Use this to make an exact copy of DocCollection with a new set of Slices and every other property as is    * @param slices the new set of Slices    * @return the resulting DocCollection    */
