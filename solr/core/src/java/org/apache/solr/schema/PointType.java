@@ -835,13 +835,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|result
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int
@@ -955,13 +948,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|bq
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|int

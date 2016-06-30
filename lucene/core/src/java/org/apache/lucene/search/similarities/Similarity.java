@@ -225,23 +225,6 @@ specifier|public
 name|Similarity
 parameter_list|()
 block|{}
-comment|/** Hook to integrate coordinate-level matching.    *<p>    * By default this is disabled (returns<code>1</code>), as with    * most modern models this will only skew performance, but some    * implementations such as {@link TFIDFSimilarity} override this.    *    * @param overlap the number of query terms matched in the document    * @param maxOverlap the total number of terms in the query    * @return a score factor based on term overlap with the query    */
-DECL|method|coord
-specifier|public
-name|float
-name|coord
-parameter_list|(
-name|int
-name|overlap
-parameter_list|,
-name|int
-name|maxOverlap
-parameter_list|)
-block|{
-return|return
-literal|1f
-return|;
-block|}
 comment|/** Computes the normalization value for a query given the sum of the    * normalized weights {@link SimWeight#getValueForNormalization()} of     * each of the query terms.  This value is passed back to the     * weight ({@link SimWeight#normalize(float, float)} of each query     * term, to provide a hook to attempt to make scores from different    * queries comparable.    *<p>    * By default this is disabled (returns<code>1</code>), but some    * implementations such as {@link TFIDFSimilarity} override this.    *     * @param valueForNormalization the sum of the term normalization values    * @return a normalization factor for query weights    */
 DECL|method|queryNorm
 specifier|public

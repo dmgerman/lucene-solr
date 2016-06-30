@@ -456,7 +456,7 @@ name|standard
 operator|.
 name|nodes
 operator|.
-name|StandardBooleanQueryNode
+name|SynonymQueryNode
 import|;
 end_import
 
@@ -722,12 +722,12 @@ argument_list|)
 expr_stmt|;
 name|setBuilder
 argument_list|(
-name|StandardBooleanQueryNode
+name|SynonymQueryNode
 operator|.
 name|class
 argument_list|,
 operator|new
-name|StandardBooleanQueryNodeBuilder
+name|SynonymQueryNodeBuilder
 argument_list|()
 argument_list|)
 expr_stmt|;

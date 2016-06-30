@@ -1536,13 +1536,6 @@ init|=
 name|newBooleanQuery
 argument_list|()
 decl_stmt|;
-name|query
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|Query

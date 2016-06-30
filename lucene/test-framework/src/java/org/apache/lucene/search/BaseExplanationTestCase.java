@@ -560,7 +560,7 @@ block|,
 literal|"w1 w3 xx w2 yy w3 zz"
 block|}
 decl_stmt|;
-comment|/**     * check the expDocNrs match and have scores that match the explanations.    * Query may be randomly wrapped in a BooleanQuery with a term that matches no documents in     * order to trigger coord logic.    */
+comment|/**     * check the expDocNrs match and have scores that match the explanations.    * Query may be randomly wrapped in a BooleanQuery with a term that matches no documents.    */
 DECL|method|qtest
 specifier|public
 name|void
@@ -596,17 +596,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|bq
-operator|.
-name|setDisableCoord
-argument_list|(
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|bq
 operator|.
 name|add
@@ -1217,13 +1206,6 @@ argument_list|()
 decl_stmt|;
 name|bq
 operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|bq
-operator|.
 name|add
 argument_list|(
 name|q
@@ -1288,13 +1270,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|bq
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|bq
 operator|.
 name|add

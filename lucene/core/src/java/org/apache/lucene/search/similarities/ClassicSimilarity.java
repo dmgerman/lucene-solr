@@ -127,30 +127,6 @@ specifier|public
 name|ClassicSimilarity
 parameter_list|()
 block|{}
-comment|/** Implemented as<code>overlap / maxOverlap</code>. */
-annotation|@
-name|Override
-DECL|method|coord
-specifier|public
-name|float
-name|coord
-parameter_list|(
-name|int
-name|overlap
-parameter_list|,
-name|int
-name|maxOverlap
-parameter_list|)
-block|{
-return|return
-name|overlap
-operator|/
-operator|(
-name|float
-operator|)
-name|maxOverlap
-return|;
-block|}
 comment|/** Implemented as<code>1/sqrt(sumOfSquaredWeights)</code>. */
 annotation|@
 name|Override

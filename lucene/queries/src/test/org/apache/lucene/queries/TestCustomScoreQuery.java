@@ -1603,13 +1603,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|q2CustomNeutralB
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|Query
 name|q2CustomNeutralInner
 init|=

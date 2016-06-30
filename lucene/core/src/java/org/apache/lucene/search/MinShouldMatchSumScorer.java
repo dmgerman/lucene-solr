@@ -287,12 +287,6 @@ specifier|final
 name|int
 name|minShouldMatch
 decl_stmt|;
-DECL|field|coord
-specifier|final
-name|float
-index|[]
-name|coord
-decl_stmt|;
 comment|// list of scorers which 'lead' the iteration and are currently
 comment|// positioned on 'doc'
 DECL|field|lead
@@ -355,10 +349,6 @@ name|scorers
 parameter_list|,
 name|int
 name|minShouldMatch
-parameter_list|,
-name|float
-index|[]
-name|coord
 parameter_list|)
 block|{
 name|super
@@ -404,12 +394,6 @@ operator|.
 name|minShouldMatch
 operator|=
 name|minShouldMatch
-expr_stmt|;
-name|this
-operator|.
-name|coord
-operator|=
-name|coord
 expr_stmt|;
 name|this
 operator|.
@@ -1183,11 +1167,6 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-name|coord
-index|[
-name|freq
-index|]
-operator|*
 operator|(
 name|float
 operator|)

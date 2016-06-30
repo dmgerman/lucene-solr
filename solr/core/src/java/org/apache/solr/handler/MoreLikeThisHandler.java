@@ -2488,16 +2488,6 @@ argument_list|()
 decl_stmt|;
 name|newQ
 operator|.
-name|setDisableCoord
-argument_list|(
-name|boostedQuery
-operator|.
-name|isCoordDisabled
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|newQ
-operator|.
 name|setMinimumNumberShouldMatch
 argument_list|(
 name|boostedQuery

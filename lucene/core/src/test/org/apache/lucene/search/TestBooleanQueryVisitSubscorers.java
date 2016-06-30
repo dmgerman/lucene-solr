@@ -1568,7 +1568,7 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"CoordinatingConjunctionScorer\n"
+literal|"ConjunctionScorer\n"
 operator|+
 literal|"    MUST ConstantScoreScorer\n"
 operator|+
@@ -1700,9 +1700,7 @@ control|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"BoostedScorer\n"
-operator|+
-literal|"    BOOSTED TermScorer body:nutch"
+literal|"TermScorer body:nutch"
 argument_list|,
 name|summary
 argument_list|)

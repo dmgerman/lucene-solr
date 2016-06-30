@@ -862,13 +862,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|result
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 comment|// points must currently be ordered... should we support specifying any two opposite corner points?
 name|result
 operator|.
@@ -1049,13 +1042,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|result
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|result
 operator|.
 name|add

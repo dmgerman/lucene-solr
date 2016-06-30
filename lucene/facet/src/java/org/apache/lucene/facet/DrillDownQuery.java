@@ -572,13 +572,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|builder
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|dimQueries
 operator|.
 name|add

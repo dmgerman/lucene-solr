@@ -1198,9 +1198,9 @@ operator|new
 name|String
 index|[]
 block|{
-literal|"(+(lowerfilt_u:bmw lowerfilt_u:usa) -id:3)/no_coord"
+literal|"+(lowerfilt_u:bmw lowerfilt_u:usa) -id:3"
 block|,
-literal|"(+(lowerfilt_u:usa lowerfilt_u:bmw) -id:3)/no_coord"
+literal|"+(lowerfilt_u:usa lowerfilt_u:bmw) -id:3"
 block|}
 decl_stmt|;
 name|String

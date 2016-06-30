@@ -377,16 +377,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|newBq
-operator|.
-name|setDisableCoord
-argument_list|(
-name|bq
-operator|.
-name|isCoordDisabled
-argument_list|()
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|BooleanClause

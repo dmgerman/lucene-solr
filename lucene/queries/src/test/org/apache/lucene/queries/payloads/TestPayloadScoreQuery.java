@@ -2017,24 +2017,6 @@ return|return
 literal|1.0f
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|coord
-specifier|public
-name|float
-name|coord
-parameter_list|(
-name|int
-name|overlap
-parameter_list|,
-name|int
-name|maxOverlap
-parameter_list|)
-block|{
-return|return
-literal|1.0f
-return|;
-block|}
 comment|//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 comment|//Make everything else 1 so we see the effect of the payload
 comment|//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

@@ -818,13 +818,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|query
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 comment|/* * * Main User Query * * */
 name|parsedUserQuery
 operator|=
@@ -4665,12 +4658,6 @@ name|makeDismax
 init|=
 literal|true
 decl_stmt|;
-DECL|field|disableCoord
-name|boolean
-name|disableCoord
-init|=
-literal|true
-decl_stmt|;
 DECL|field|allowWildcard
 name|boolean
 name|allowWildcard
@@ -5532,7 +5519,6 @@ return|;
 block|}
 else|else
 block|{
-comment|// should we disable coord?
 name|BooleanQuery
 operator|.
 name|Builder
@@ -5544,13 +5530,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|q
-operator|.
-name|setDisableCoord
-argument_list|(
-name|disableCoord
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|Query
@@ -5947,12 +5926,8 @@ operator|.
 name|PHRASE
 argument_list|)
 decl_stmt|;
-comment|// A BooleanQuery is only possible from getFieldQuery if it came from
-comment|// a single whitespace separated term. In this case, check the coordination
-comment|// factor on the query: if it's enabled, that means we aren't a set of synonyms
-comment|// but instead multiple terms from one whitespace-separated term, we must
-comment|// apply minShouldMatch here so that it works correctly with other things
-comment|// like aliasing.
+comment|// Boolean query on a whitespace-separated string
+comment|// If these were synonyms we would have a SynonymQuery
 if|if
 condition|(
 name|query
@@ -5968,15 +5943,6 @@ name|BooleanQuery
 operator|)
 name|query
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|bq
-operator|.
-name|isCoordDisabled
-argument_list|()
-condition|)
-block|{
 name|query
 operator|=
 name|SolrPluginUtils
@@ -5990,7 +5956,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(

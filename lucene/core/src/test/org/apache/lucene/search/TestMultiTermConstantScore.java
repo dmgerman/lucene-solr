@@ -1793,13 +1793,6 @@ argument_list|()
 decl_stmt|;
 name|bq
 operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|bq
-operator|.
 name|add
 argument_list|(
 name|q1
@@ -1940,13 +1933,6 @@ name|BooleanQuery
 operator|.
 name|Builder
 argument_list|()
-expr_stmt|;
-name|bq
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
 expr_stmt|;
 name|bq
 operator|.

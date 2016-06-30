@@ -1936,24 +1936,6 @@ return|return
 literal|1
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|coord
-specifier|public
-name|float
-name|coord
-parameter_list|(
-name|int
-name|overlap
-parameter_list|,
-name|int
-name|maxOverlap
-parameter_list|)
-block|{
-return|return
-literal|1
-return|;
-block|}
 comment|// TODO: Remove warning after API has been finalized
 annotation|@
 name|Override

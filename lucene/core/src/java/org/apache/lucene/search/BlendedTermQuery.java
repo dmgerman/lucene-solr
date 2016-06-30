@@ -471,7 +471,7 @@ name|subQueries
 parameter_list|)
 function_decl|;
 block|}
-comment|/**    * A {@link RewriteMethod} that adds all sub queries to a {@link BooleanQuery}    * which has {@link BooleanQuery#isCoordDisabled() coords disabled}. This    * {@link RewriteMethod} is useful when matching on several fields is    * considered better than having a good match on a single field.    */
+comment|/**    * A {@link RewriteMethod} that adds all sub queries to a {@link BooleanQuery}.    * This {@link RewriteMethod} is useful when matching on several fields is    * considered better than having a good match on a single field.    */
 DECL|field|BOOLEAN_REWRITE
 specifier|public
 specifier|static
@@ -505,13 +505,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|merged
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|Query

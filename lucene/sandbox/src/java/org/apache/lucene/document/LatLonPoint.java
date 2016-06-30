@@ -1098,13 +1098,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|q
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 comment|// E.g.: maxLon = -179, minLon = 179
 name|byte
 index|[]

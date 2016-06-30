@@ -1018,13 +1018,6 @@ argument_list|()
 decl_stmt|;
 name|expanded
 operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|expanded
-operator|.
 name|add
 argument_list|(
 operator|new

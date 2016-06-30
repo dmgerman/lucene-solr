@@ -166,22 +166,6 @@ name|Occur
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|similarities
-operator|.
-name|Similarity
-import|;
-end_import
-
 begin_comment
 comment|/** A Query that matches documents matching boolean combinations of other   * queries, e.g. {@link TermQuery}s, {@link PhraseQuery}s or other   * BooleanQuerys.   */
 end_comment
@@ -282,11 +266,6 @@ specifier|static
 class|class
 name|Builder
 block|{
-DECL|field|disableCoord
-specifier|private
-name|boolean
-name|disableCoord
-decl_stmt|;
 DECL|field|minimumNumberShouldMatch
 specifier|private
 name|int
@@ -312,26 +291,6 @@ specifier|public
 name|Builder
 parameter_list|()
 block|{}
-comment|/**      * {@link Similarity#coord(int,int)} may be disabled in scoring, as      * appropriate. For example, this score factor does not make sense for most      * automatically generated queries, like {@link WildcardQuery} and {@link      * FuzzyQuery}.      */
-DECL|method|setDisableCoord
-specifier|public
-name|Builder
-name|setDisableCoord
-parameter_list|(
-name|boolean
-name|disableCoord
-parameter_list|)
-block|{
-name|this
-operator|.
-name|disableCoord
-operator|=
-name|disableCoord
-expr_stmt|;
-return|return
-name|this
-return|;
-block|}
 comment|/**      * Specifies a minimum number of the optional BooleanClauses      * which must be satisfied.      *      *<p>      * By default no optional clauses are necessary for a match      * (unless there are no required clauses).  If this method is used,      * then the specified number of clauses is required.      *</p>      *<p>      * Use of this method is totally independent of specifying that      * any specific clauses are required (or prohibited).  This number will      * only be compared against the number of matching optional clauses.      *</p>      *      * @param min the number of optional clauses that must match      */
 DECL|method|setMinimumNumberShouldMatch
 specifier|public
@@ -436,8 +395,6 @@ return|return
 operator|new
 name|BooleanQuery
 argument_list|(
-name|disableCoord
-argument_list|,
 name|minimumNumberShouldMatch
 argument_list|,
 name|clauses
@@ -454,12 +411,6 @@ argument_list|)
 return|;
 block|}
 block|}
-DECL|field|disableCoord
-specifier|private
-specifier|final
-name|boolean
-name|disableCoord
-decl_stmt|;
 DECL|field|minimumNumberShouldMatch
 specifier|private
 specifier|final
@@ -495,9 +446,6 @@ DECL|method|BooleanQuery
 specifier|private
 name|BooleanQuery
 parameter_list|(
-name|boolean
-name|disableCoord
-parameter_list|,
 name|int
 name|minimumNumberShouldMatch
 parameter_list|,
@@ -506,12 +454,6 @@ index|[]
 name|clauses
 parameter_list|)
 block|{
-name|this
-operator|.
-name|disableCoord
-operator|=
-name|disableCoord
-expr_stmt|;
 name|this
 operator|.
 name|minimumNumberShouldMatch
@@ -630,17 +572,6 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-comment|/**    * Return whether the coord factor is disabled.    */
-DECL|method|isCoordDisabled
-specifier|public
-name|boolean
-name|isCoordDisabled
-parameter_list|()
-block|{
-return|return
-name|disableCoord
-return|;
 block|}
 comment|/**    * Gets the minimum number of the optional BooleanClauses    * which must be satisfied.    */
 DECL|method|getMinimumNumberShouldMatch
@@ -830,8 +761,6 @@ argument_list|,
 name|searcher
 argument_list|,
 name|needsScores
-argument_list|,
-name|disableCoord
 argument_list|)
 return|;
 block|}
@@ -988,14 +917,6 @@ argument_list|()
 decl_stmt|;
 name|builder
 operator|.
-name|setDisableCoord
-argument_list|(
-name|isCoordDisabled
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|builder
-operator|.
 name|setMinimumNumberShouldMatch
 argument_list|(
 name|getMinimumNumberShouldMatch
@@ -1123,13 +1044,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|rewritten
-operator|.
-name|setDisableCoord
-argument_list|(
-name|disableCoord
-argument_list|)
-expr_stmt|;
 name|rewritten
 operator|.
 name|setMinimumNumberShouldMatch
@@ -1297,14 +1211,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|builder
-operator|.
-name|setDisableCoord
-argument_list|(
-name|isCoordDisabled
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|builder
 operator|.
 name|setMinimumNumberShouldMatch
@@ -1571,12 +1477,6 @@ operator|.
 name|Builder
 argument_list|()
 operator|.
-name|setDisableCoord
-argument_list|(
-name|isCoordDisabled
-argument_list|()
-argument_list|)
-operator|.
 name|setMinimumNumberShouldMatch
 argument_list|(
 name|getMinimumNumberShouldMatch
@@ -1834,7 +1734,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * Compares the specified object with this boolean query for equality.    * Returns true if and only if the provided object<ul>    *<li>is also a {@link BooleanQuery},</li>    *<li>has the same value of {@link #isCoordDisabled()}</li>    *<li>has the same value of {@link #getMinimumNumberShouldMatch()}</li>    *<li>has the same {@link Occur#SHOULD} clauses, regardless of the order</li>    *<li>has the same {@link Occur#MUST} clauses, regardless of the order</li>    *<li>has the same set of {@link Occur#FILTER} clauses, regardless of the    * order and regardless of duplicates</li>    *<li>has the same set of {@link Occur#MUST_NOT} clauses, regardless of    * the order and regardless of duplicates</li></ul>    */
+comment|/**    * Compares the specified object with this boolean query for equality.    * Returns true if and only if the provided object<ul>    *<li>is also a {@link BooleanQuery},</li>    *<li>has the same value of {@link #getMinimumNumberShouldMatch()}</li>    *<li>has the same {@link Occur#SHOULD} clauses, regardless of the order</li>    *<li>has the same {@link Occur#MUST} clauses, regardless of the order</li>    *<li>has the same set of {@link Occur#FILTER} clauses, regardless of the    * order and regardless of duplicates</li>    *<li>has the same set of {@link Occur#MUST_NOT} clauses, regardless of    * the order and regardless of duplicates</li></ul>    */
 annotation|@
 name|Override
 DECL|method|equals
@@ -1882,12 +1782,6 @@ operator|.
 name|getMinimumNumberShouldMatch
 argument_list|()
 operator|&&
-name|disableCoord
-operator|==
-name|other
-operator|.
-name|disableCoord
-operator|&&
 name|clauseSets
 operator|.
 name|equals
@@ -1911,8 +1805,6 @@ name|Objects
 operator|.
 name|hash
 argument_list|(
-name|disableCoord
-argument_list|,
 name|minimumNumberShouldMatch
 argument_list|,
 name|clauseSets

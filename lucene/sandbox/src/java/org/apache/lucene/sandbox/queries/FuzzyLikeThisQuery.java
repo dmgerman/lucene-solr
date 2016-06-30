@@ -1832,14 +1832,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|termVariants
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-comment|//disable coord and IDF for these term variants
 for|for
 control|(
 name|Iterator

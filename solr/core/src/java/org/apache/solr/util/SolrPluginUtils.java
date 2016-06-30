@@ -3617,16 +3617,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|builder
-operator|.
-name|setDisableCoord
-argument_list|(
-name|q
-operator|.
-name|isCoordDisabled
-argument_list|()
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|BooleanClause
