@@ -308,20 +308,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|atomic
-operator|.
-name|AtomicBoolean
-import|;
-end_import
-
-begin_import
-import|import
 name|com
 operator|.
 name|google
@@ -791,20 +777,6 @@ operator|.
 name|data
 operator|.
 name|Stat
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|eclipse
-operator|.
-name|jetty
-operator|.
-name|util
-operator|.
-name|ConcurrentHashSet
 import|;
 end_import
 
