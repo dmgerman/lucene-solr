@@ -775,6 +775,8 @@ init|=
 name|createMiniSolrCloudCluster
 argument_list|()
 decl_stmt|;
+try|try
+block|{
 comment|// Should pass
 name|collectionCreateSearchDelete
 argument_list|(
@@ -849,11 +851,15 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+block|}
+finally|finally
+block|{
 name|miniCluster
 operator|.
 name|shutdown
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|After
