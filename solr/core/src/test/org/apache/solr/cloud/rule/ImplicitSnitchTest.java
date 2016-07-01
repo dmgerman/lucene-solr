@@ -20,6 +20,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -220,6 +230,11 @@ argument_list|(
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -501,6 +516,11 @@ argument_list|(
 literal|null
 argument_list|,
 name|node
+argument_list|,
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|snitch
@@ -605,6 +625,11 @@ argument_list|(
 literal|null
 argument_list|,
 name|node
+argument_list|,
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|snitch
@@ -677,6 +702,11 @@ argument_list|(
 literal|null
 argument_list|,
 name|node
+argument_list|,
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|snitch
@@ -809,6 +839,11 @@ argument_list|(
 literal|null
 argument_list|,
 name|node
+argument_list|,
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//We need mocking here otherwise, we would need proper DNS entry for this test to pass
@@ -974,6 +1009,11 @@ argument_list|(
 literal|null
 argument_list|,
 name|node
+argument_list|,
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//We need mocking here otherwise, we would need proper DNS entry for this test to pass
@@ -1088,6 +1128,11 @@ argument_list|(
 literal|null
 argument_list|,
 name|node
+argument_list|,
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|//We need mocking here otherwise, we would need proper DNS entry for this test to pass
