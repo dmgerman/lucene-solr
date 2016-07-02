@@ -788,9 +788,13 @@ expr_stmt|;
 block|}
 comment|// This method is used by configSetUploadTool and CreateTool to resolve the configset directory.
 comment|// Check several possibilities:
-comment|// 1> configSetDirParam + confname is defined in configsets, thus has a conf/solrconfig.xml
-comment|// 2> configSet is a path that contains conf/solrconfig.xml
-comment|// 3> configSet is t
+comment|// 1> confDir/solrconfig.xml exists
+comment|// 2> confDir/conf/solrconfig.xml exists
+comment|// 3> configSetDir/confDir/conf/solrconfig.xml exists (canned configs)
+comment|// Order is important here since "confDir" may be
+comment|// 1> a full path to the parent of a solrconfig.xml or parent of /conf/solrconfig.xml
+comment|// 2> one of the canned config sets only, e.g. basic_configs
+comment|// and trying to assemble a path for configsetDir/confDir is A Bad Idea. if confDir is a full path.
 DECL|method|getConfigsetPath
 specifier|public
 specifier|static
@@ -798,18 +802,15 @@ name|Path
 name|getConfigsetPath
 parameter_list|(
 name|String
-name|confname
+name|confDir
 parameter_list|,
 name|String
-name|configSet
-parameter_list|,
-name|String
-name|configSetDirParam
+name|configSetDir
 parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// one of the canned configsets.
+comment|// A local path to the source, probably already includes "conf".
 name|Path
 name|ret
 init|=
@@ -817,11 +818,7 @@ name|Paths
 operator|.
 name|get
 argument_list|(
-name|configSetDirParam
-argument_list|,
-name|configSet
-argument_list|,
-literal|"conf"
+name|confDir
 argument_list|,
 literal|"solrconfig.xml"
 argument_list|)
@@ -844,11 +841,7 @@ name|Paths
 operator|.
 name|get
 argument_list|(
-name|configSetDirParam
-argument_list|,
-name|configSet
-argument_list|,
-literal|"conf"
+name|confDir
 argument_list|)
 operator|.
 name|normalize
@@ -862,7 +855,7 @@ name|Paths
 operator|.
 name|get
 argument_list|(
-name|configSet
+name|confDir
 argument_list|,
 literal|"conf"
 argument_list|,
@@ -887,7 +880,7 @@ name|Paths
 operator|.
 name|get
 argument_list|(
-name|configSet
+name|confDir
 argument_list|,
 literal|"conf"
 argument_list|)
@@ -896,14 +889,18 @@ name|normalize
 argument_list|()
 return|;
 block|}
-comment|// A local path to the source, probably already includes "conf".
+comment|// one of the canned configsets.
 name|ret
 operator|=
 name|Paths
 operator|.
 name|get
 argument_list|(
-name|configSet
+name|configSetDir
+argument_list|,
+name|confDir
+argument_list|,
+literal|"conf"
 argument_list|,
 literal|"solrconfig.xml"
 argument_list|)
@@ -926,7 +923,11 @@ name|Paths
 operator|.
 name|get
 argument_list|(
-name|configSet
+name|configSetDir
+argument_list|,
+name|confDir
+argument_list|,
+literal|"conf"
 argument_list|)
 operator|.
 name|normalize
@@ -951,9 +952,25 @@ name|Paths
 operator|.
 name|get
 argument_list|(
-name|configSetDirParam
+name|configSetDir
 argument_list|,
-name|configSet
+literal|"solrconfig.xml"
+argument_list|)
+operator|.
+name|normalize
+argument_list|()
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|,
+name|Paths
+operator|.
+name|get
+argument_list|(
+name|configSetDir
 argument_list|,
 literal|"conf"
 argument_list|,
@@ -973,27 +990,11 @@ name|Paths
 operator|.
 name|get
 argument_list|(
-name|configSet
+name|configSetDir
+argument_list|,
+name|confDir
 argument_list|,
 literal|"conf"
-argument_list|,
-literal|"solrconfig.xml"
-argument_list|)
-operator|.
-name|normalize
-argument_list|()
-operator|.
-name|toAbsolutePath
-argument_list|()
-operator|.
-name|toString
-argument_list|()
-argument_list|,
-name|Paths
-operator|.
-name|get
-argument_list|(
-name|configSet
 argument_list|,
 literal|"solrconfig.xml"
 argument_list|)

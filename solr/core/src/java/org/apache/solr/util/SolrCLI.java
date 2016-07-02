@@ -9025,8 +9025,6 @@ name|ZkConfigManager
 operator|.
 name|getConfigsetPath
 argument_list|(
-name|confname
-argument_list|,
 name|cli
 operator|.
 name|getOptionValue
@@ -10271,7 +10269,9 @@ name|hasArg
 argument_list|()
 operator|.
 name|isRequired
-argument_list|()
+argument_list|(
+literal|false
+argument_list|)
 operator|.
 name|withDescription
 argument_list|(
@@ -10405,8 +10405,6 @@ name|ZkConfigManager
 operator|.
 name|getConfigsetPath
 argument_list|(
-name|confName
-argument_list|,
 name|cli
 operator|.
 name|getOptionValue
