@@ -2488,7 +2488,7 @@ name|downloadPath
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Block until a collection state matches a predicate, or a timeout    *    * Note that the predicate may be called again even after it has returned true, so    * implementors should avoid changing state within the predicate call itself.    *    * @param collection the collection to watch    * @param wait       how long to wait    * @param unit       the units of the wait parameter    * @param predicate  a {@link CollectionStatePredicate} to check the collection state    * @throws InterruptedException on interrupt    * @throws TimeoutException on timeout    */
+comment|/**    * Block until a collection state matches a predicate, or a timeout    *    * Note that the predicate may be called again even after it has returned true, so    * implementors should avoid changing state within the predicate call itself.    *    * @param collection the collection to watch    * @param wait       how long to wait    * @param unit       the units of the wait parameter    * @param predicate  a {@link CollectionStatePredicate} to check the collection state    * @throws InterruptedException on interrupt    * @throws TimeoutException     on timeout    */
 DECL|method|waitForState
 specifier|public
 name|void
@@ -7602,7 +7602,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Final constructed zkHost string: "
 operator|+
