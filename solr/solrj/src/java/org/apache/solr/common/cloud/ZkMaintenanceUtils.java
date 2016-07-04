@@ -200,6 +200,7 @@ end_comment
 
 begin_class
 DECL|class|ZkMaintenanceUtils
+specifier|public
 class|class
 name|ZkMaintenanceUtils
 block|{
@@ -229,7 +230,7 @@ name|ZkMaintenanceUtils
 parameter_list|()
 block|{}
 comment|// don't let it be instantiated, all methods are static.
-comment|/**    * Lists a ZNode child and (optionally) the znodes of all the children. No data is dumped.    *    * @param path    The node to remove on Zookeeper    * @param recurse Whether to remove children.    * @throws KeeperException      Could not perform the Zookeeper operation.    * @throws InterruptedException Thread interrupted    * @throws SolrServerException  zookeeper node has children and recurse not specified.    * @returns an indented list of the znodes suitable for display    */
+comment|/**    * Lists a ZNode child and (optionally) the znodes of all the children. No data is dumped.    *    * @param path    The node to remove on Zookeeper    * @param recurse Whether to remove children.    * @throws KeeperException      Could not perform the Zookeeper operation.    * @throws InterruptedException Thread interrupted    * @throws SolrServerException  zookeeper node has children and recurse not specified.    * @return an indented list of the znodes suitable for display    */
 DECL|method|listZnode
 specifier|public
 specifier|static
@@ -2023,6 +2024,20 @@ argument_list|,
 literal|"/"
 argument_list|)
 expr_stmt|;
+comment|// It's possible that the relative path and file are the same, in which case
+comment|// adding the bare slash is A Bad Idea
+if|if
+condition|(
+name|relativePath
+operator|.
+name|length
+argument_list|()
+operator|==
+literal|0
+condition|)
+return|return
+name|zkRoot
+return|;
 return|return
 name|zkRoot
 operator|+
@@ -2163,29 +2178,6 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|finalDestination
-operator|.
-name|endsWith
-argument_list|(
-literal|"/"
-argument_list|)
-operator|||
-name|path
-operator|.
-name|endsWith
-argument_list|(
-literal|"/"
-argument_list|)
-condition|)
-block|{
-name|int
-name|eoe
-init|=
-literal|99
-decl_stmt|;
-block|}
 name|zkClient
 operator|.
 name|makePath
