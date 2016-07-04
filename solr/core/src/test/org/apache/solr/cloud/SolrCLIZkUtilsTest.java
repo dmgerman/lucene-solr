@@ -879,7 +879,7 @@ literal|"zk:/configs/cp1"
 block|,
 literal|"-dst"
 block|,
-literal|"file:/"
+literal|"file:"
 operator|+
 name|tmp
 operator|.
