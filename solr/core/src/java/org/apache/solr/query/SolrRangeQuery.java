@@ -2193,6 +2193,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+else|else
+block|{
+name|doCheck
+operator|=
+literal|false
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|filter
