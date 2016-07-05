@@ -393,6 +393,10 @@ operator|=
 literal|true
 expr_stmt|;
 block|}
+else|else
+block|{
+return|return;
+block|}
 comment|// TODO: temporary... this should go in a different component.
 name|String
 name|shards
@@ -605,7 +609,7 @@ name|rsp
 operator|.
 name|add
 argument_list|(
-literal|"stats"
+literal|"indexstats"
 argument_list|,
 name|stats
 argument_list|)
@@ -1831,7 +1835,7 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
-literal|"stats"
+literal|"indexstats"
 argument_list|)
 decl_stmt|;
 if|if
@@ -1959,7 +1963,7 @@ name|rsp
 operator|.
 name|add
 argument_list|(
-literal|"stats"
+literal|"indexstats"
 argument_list|,
 name|stats
 argument_list|)

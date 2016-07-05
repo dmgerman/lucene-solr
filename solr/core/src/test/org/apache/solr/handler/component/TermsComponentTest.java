@@ -1251,7 +1251,7 @@ argument_list|,
 literal|"spider, snake, shark, ddddd, bad"
 argument_list|)
 argument_list|,
-literal|"//lst[@name='stats']/int[1][@name='numDocs'][.='23']"
+literal|"//lst[@name='indexstats']/long[1][@name='numDocs'][.='23']"
 argument_list|)
 expr_stmt|;
 block|}

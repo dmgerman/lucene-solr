@@ -1189,7 +1189,7 @@ name|response
 operator|.
 name|get
 argument_list|(
-literal|"stats"
+literal|"indexstats"
 argument_list|)
 decl_stmt|;
 name|long
