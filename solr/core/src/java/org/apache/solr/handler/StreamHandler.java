@@ -1130,6 +1130,15 @@ name|SelectStream
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"scoreNodes"
+argument_list|,
+name|ScoreNodesStream
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName

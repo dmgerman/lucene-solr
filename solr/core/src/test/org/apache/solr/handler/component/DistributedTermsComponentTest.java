@@ -434,6 +434,33 @@ argument_list|,
 literal|"2, 3, 1"
 argument_list|)
 expr_stmt|;
+name|query
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"/terms"
+argument_list|,
+literal|"shards.qt"
+argument_list|,
+literal|"/terms"
+argument_list|,
+literal|"terms"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"terms.fl"
+argument_list|,
+literal|"foo_i"
+argument_list|,
+literal|"terms.stats"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"terms.list"
+argument_list|,
+literal|"2, 3, 1"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

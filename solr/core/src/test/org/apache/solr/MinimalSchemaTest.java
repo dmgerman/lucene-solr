@@ -375,6 +375,13 @@ name|startsWith
 argument_list|(
 literal|"/stream"
 argument_list|)
+operator|||
+name|handler
+operator|.
+name|startsWith
+argument_list|(
+literal|"/terms"
+argument_list|)
 condition|)
 block|{
 continue|continue;
