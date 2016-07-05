@@ -805,13 +805,19 @@ decl_stmt|;
 name|HttpClient
 name|cl
 init|=
+literal|null
+decl_stmt|;
+try|try
+block|{
+name|cl
+operator|=
 name|HttpClientUtil
 operator|.
 name|createClient
 argument_list|(
 literal|null
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|String
 name|baseUrl
 init|=
@@ -1039,7 +1045,7 @@ operator|.
 name|RemoteSolrException
 name|e
 parameter_list|)
-block|{     }
+block|{       }
 name|command
 operator|=
 literal|"{\n"
@@ -1406,7 +1412,7 @@ operator|.
 name|RemoteSolrException
 name|e
 parameter_list|)
-block|{        }
+block|{          }
 name|reload
 operator|.
 name|setMethod
@@ -1442,7 +1448,7 @@ operator|.
 name|RemoteSolrException
 name|e
 parameter_list|)
-block|{        }
+block|{          }
 block|}
 name|cloudSolrClient
 operator|.
@@ -1505,7 +1511,7 @@ operator|.
 name|RemoteSolrException
 name|e
 parameter_list|)
-block|{      }
+block|{        }
 name|cloudSolrClient
 operator|.
 name|setDefaultCollection
@@ -1788,6 +1794,16 @@ argument_list|,
 literal|"HarryIsUberCool"
 argument_list|)
 expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|cl
+operator|!=
+literal|null
+condition|)
+block|{
 name|HttpClientUtil
 operator|.
 name|close
@@ -1795,6 +1811,8 @@ argument_list|(
 name|cl
 argument_list|)
 expr_stmt|;
+block|}
+block|}
 block|}
 DECL|method|executeCommand
 specifier|public
