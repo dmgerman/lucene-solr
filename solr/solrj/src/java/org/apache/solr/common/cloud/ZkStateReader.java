@@ -1942,6 +1942,18 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|error
+argument_list|(
+literal|"Collection {} is not lazy or watched!"
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 comment|/** Refresh the set of live nodes. */
@@ -3474,6 +3486,15 @@ operator|==
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Adding lazy collectionRef for collection {}"
+argument_list|,
+name|coll
+argument_list|)
+expr_stmt|;
 name|lazyCollectionStates
 operator|.
 name|putIfAbsent
