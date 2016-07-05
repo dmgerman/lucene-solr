@@ -1107,6 +1107,56 @@ expr_stmt|;
 comment|/**      * custom behavior, the synonyms are expanded, unless you use quote operator      */
 comment|//TODO test something like "SmartQueryParser()"
 block|}
+comment|// TODO: Remove this specialization once the flexible standard parser gets multi-word synonym support
+annotation|@
+name|Override
+DECL|method|testQPA
+specifier|public
+name|void
+name|testQPA
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|super
+operator|.
+name|testQPA
+argument_list|()
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"term phrase term"
+argument_list|,
+name|qpAnalyzer
+argument_list|,
+literal|"term (phrase1 phrase2) term"
+argument_list|)
+expr_stmt|;
+name|CommonQueryParserConfiguration
+name|cqpc
+init|=
+name|getParserConfig
+argument_list|(
+name|qpAnalyzer
+argument_list|)
+decl_stmt|;
+name|setDefaultOperatorAND
+argument_list|(
+name|cqpc
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+name|cqpc
+argument_list|,
+literal|"field"
+argument_list|,
+literal|"term phrase term"
+argument_list|,
+literal|"+term +(+phrase1 +phrase2) +term"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

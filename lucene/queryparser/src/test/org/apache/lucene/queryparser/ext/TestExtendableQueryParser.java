@@ -315,6 +315,13 @@ operator|.
 name|OR_OPERATOR
 argument_list|)
 expr_stmt|;
+name|qp
+operator|.
+name|setSplitOnWhitespace
+argument_list|(
+name|splitOnWhitespace
+argument_list|)
+expr_stmt|;
 return|return
 name|qp
 return|;

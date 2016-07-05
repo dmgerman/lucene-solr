@@ -56,6 +56,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|MockSynonymAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|MockTokenizer
 import|;
 end_import
@@ -282,6 +296,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|PhraseQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Query
 import|;
 end_import
@@ -352,6 +380,15 @@ name|TestQueryParser
 extends|extends
 name|QueryParserTestBase
 block|{
+DECL|field|splitOnWhitespace
+specifier|protected
+name|boolean
+name|splitOnWhitespace
+init|=
+name|QueryParser
+operator|.
+name|DEFAULT_SPLIT_ON_WHITESPACE
+decl_stmt|;
 DECL|class|QPTestParser
 specifier|public
 specifier|static
@@ -482,6 +519,13 @@ argument_list|(
 name|QueryParserBase
 operator|.
 name|OR_OPERATOR
+argument_list|)
+expr_stmt|;
+name|qp
+operator|.
+name|setSplitOnWhitespace
+argument_list|(
+name|splitOnWhitespace
 argument_list|)
 expr_stmt|;
 return|return
@@ -1899,48 +1943,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: fold these into QueryParserTestBase
-comment|/** adds synonym of "dog" for "dogs". */
-DECL|class|MockSynonymAnalyzer
-specifier|static
-class|class
-name|MockSynonymAnalyzer
-extends|extends
-name|Analyzer
-block|{
-annotation|@
-name|Override
-DECL|method|createComponents
-specifier|protected
-name|TokenStreamComponents
-name|createComponents
-parameter_list|(
-name|String
-name|fieldName
-parameter_list|)
-block|{
-name|MockTokenizer
-name|tokenizer
-init|=
-operator|new
-name|MockTokenizer
-argument_list|()
-decl_stmt|;
-return|return
-operator|new
-name|TokenStreamComponents
-argument_list|(
-name|tokenizer
-argument_list|,
-operator|new
-name|MockSynonymFilter
-argument_list|(
-name|tokenizer
-argument_list|)
-argument_list|)
-return|;
-block|}
-block|}
 comment|/** simple synonyms test */
 DECL|method|testSynonyms
 specifier|public
@@ -3352,6 +3354,1521 @@ argument_list|)
 expr_stmt|;
 block|}
 argument_list|)
+expr_stmt|;
+block|}
+comment|// TODO: Remove this specialization once the flexible standard parser gets multi-word synonym support
+annotation|@
+name|Override
+DECL|method|testQPA
+specifier|public
+name|void
+name|testQPA
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|boolean
+name|oldSplitOnWhitespace
+init|=
+name|splitOnWhitespace
+decl_stmt|;
+name|splitOnWhitespace
+operator|=
+literal|false
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"term phrase term"
+argument_list|,
+name|qpAnalyzer
+argument_list|,
+literal|"term phrase1 phrase2 term"
+argument_list|)
+expr_stmt|;
+name|CommonQueryParserConfiguration
+name|cqpc
+init|=
+name|getParserConfig
+argument_list|(
+name|qpAnalyzer
+argument_list|)
+decl_stmt|;
+name|setDefaultOperatorAND
+argument_list|(
+name|cqpc
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+name|cqpc
+argument_list|,
+literal|"field"
+argument_list|,
+literal|"term phrase term"
+argument_list|,
+literal|"+term +phrase1 +phrase2 +term"
+argument_list|)
+expr_stmt|;
+name|splitOnWhitespace
+operator|=
+name|oldSplitOnWhitespace
+expr_stmt|;
+block|}
+comment|// TODO: Move to QueryParserTestBase once standard flexible parser gets this capability
+DECL|method|testMultiWordSynonyms
+specifier|public
+name|void
+name|testMultiWordSynonyms
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|QueryParser
+name|dumb
+init|=
+operator|new
+name|QueryParser
+argument_list|(
+literal|"field"
+argument_list|,
+operator|new
+name|Analyzer1
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|dumb
+operator|.
+name|setSplitOnWhitespace
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// A multi-word synonym source will form a synonym query for the same-starting-position tokens
+name|BooleanQuery
+operator|.
+name|Builder
+name|multiWordExpandedBqBuilder
+init|=
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|Query
+name|multiWordSynonymQuery
+init|=
+operator|new
+name|SynonymQuery
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"guinea"
+argument_list|)
+argument_list|,
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"cavy"
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|multiWordExpandedBqBuilder
+operator|.
+name|add
+argument_list|(
+name|multiWordSynonymQuery
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+expr_stmt|;
+name|multiWordExpandedBqBuilder
+operator|.
+name|add
+argument_list|(
+operator|new
+name|TermQuery
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"pig"
+argument_list|)
+argument_list|)
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+expr_stmt|;
+name|Query
+name|multiWordExpandedBq
+init|=
+name|multiWordExpandedBqBuilder
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|multiWordExpandedBq
+argument_list|,
+name|dumb
+operator|.
+name|parse
+argument_list|(
+literal|"guinea pig"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// With the phrase operator, a multi-word synonym source will form a multiphrase query.
+comment|// When the number of expanded term(s) is different from that of the original term(s), this is not good.
+name|MultiPhraseQuery
+operator|.
+name|Builder
+name|multiWordExpandedMpqBuilder
+init|=
+operator|new
+name|MultiPhraseQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|multiWordExpandedMpqBuilder
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Term
+index|[]
+block|{
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"guinea"
+argument_list|)
+block|,
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"cavy"
+argument_list|)
+block|}
+argument_list|)
+expr_stmt|;
+name|multiWordExpandedMpqBuilder
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"pig"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|Query
+name|multiWordExpandedMPQ
+init|=
+name|multiWordExpandedMpqBuilder
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|multiWordExpandedMPQ
+argument_list|,
+name|dumb
+operator|.
+name|parse
+argument_list|(
+literal|"\"guinea pig\""
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// custom behavior, the synonyms are expanded, unless you use quote operator
+name|QueryParser
+name|smart
+init|=
+operator|new
+name|SmartQueryParser
+argument_list|()
+decl_stmt|;
+name|smart
+operator|.
+name|setSplitOnWhitespace
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|multiWordExpandedBq
+argument_list|,
+name|smart
+operator|.
+name|parse
+argument_list|(
+literal|"guinea pig"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|PhraseQuery
+operator|.
+name|Builder
+name|multiWordUnexpandedPqBuilder
+init|=
+operator|new
+name|PhraseQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|multiWordUnexpandedPqBuilder
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"guinea"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|multiWordUnexpandedPqBuilder
+operator|.
+name|add
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"pig"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|Query
+name|multiWordUnexpandedPq
+init|=
+name|multiWordUnexpandedPqBuilder
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|multiWordUnexpandedPq
+argument_list|,
+name|smart
+operator|.
+name|parse
+argument_list|(
+literal|"\"guinea pig\""
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// TODO: Move to QueryParserTestBase once standard flexible parser gets this capability
+DECL|method|testOperatorsAndMultiWordSynonyms
+specifier|public
+name|void
+name|testOperatorsAndMultiWordSynonyms
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Analyzer
+name|a
+init|=
+operator|new
+name|MockSynonymAnalyzer
+argument_list|()
+decl_stmt|;
+name|boolean
+name|oldSplitOnWhitespace
+init|=
+name|splitOnWhitespace
+decl_stmt|;
+name|splitOnWhitespace
+operator|=
+literal|false
+expr_stmt|;
+comment|// Operators should interrupt multiword analysis of adjacent words if they associate
+name|assertQueryEquals
+argument_list|(
+literal|"+guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"+guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"-guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"!guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea* pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea* pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea? pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea? pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea~2 pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea~2 pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea^2 pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"(guinea)^2.0 pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea +pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea +pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea -pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea -pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea !pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea -pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig*"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig*"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig?"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig?"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig~2"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig~2"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig^2"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea (pig)^2.0"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"field:guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea field:pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"NOT guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea NOT pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea -pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig AND dogs"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea +pig +Synonym(dog dogs)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"dogs AND guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"+Synonym(dog dogs) +guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig&& dogs"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea +pig +Synonym(dog dogs)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"dogs&& guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"+Synonym(dog dogs) +guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig OR dogs"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig Synonym(dog dogs)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"dogs OR guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(dog dogs) guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig || dogs"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig Synonym(dog dogs)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"dogs || guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(dog dogs) guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"guinea\" pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea \"pig\""
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"(guinea) pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea (pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"/guinea/ pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"/guinea/ pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea /pig/"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea /pig/"
+argument_list|)
+expr_stmt|;
+comment|// Operators should not interrupt multiword analysis if not don't associate
+name|assertQueryEquals
+argument_list|(
+literal|"(guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(cavy guinea) pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"+(guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"+(Synonym(cavy guinea) pig)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"-(guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"-(Synonym(cavy guinea) pig)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"!(guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"-(Synonym(cavy guinea) pig)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"NOT (guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"-(Synonym(cavy guinea) pig)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"(guinea pig)^2"
+argument_list|,
+name|a
+argument_list|,
+literal|"(Synonym(cavy guinea) pig)^2.0"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"field:(guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(cavy guinea) pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"+small guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"+small Synonym(cavy guinea) pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"-small guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-small Synonym(cavy guinea) pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"!small guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-small Synonym(cavy guinea) pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"NOT small guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-small Synonym(cavy guinea) pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"small* guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"small* Synonym(cavy guinea) pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"small? guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"small? Synonym(cavy guinea) pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"small\" guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"small Synonym(cavy guinea) pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig +running"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(cavy guinea) pig +running"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig -running"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(cavy guinea) pig -running"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig !running"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(cavy guinea) pig -running"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig NOT running"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(cavy guinea) pig -running"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig running*"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(cavy guinea) pig running*"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig running?"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(cavy guinea) pig running?"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig \"running\""
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(cavy guinea) pig running"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"guinea pig\"~2"
+argument_list|,
+name|a
+argument_list|,
+literal|"\"(guinea cavy) pig\"~2"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"field:\"guinea pig\""
+argument_list|,
+name|a
+argument_list|,
+literal|"\"(guinea cavy) pig\""
+argument_list|)
+expr_stmt|;
+name|splitOnWhitespace
+operator|=
+name|oldSplitOnWhitespace
+expr_stmt|;
+block|}
+DECL|method|testOperatorsAndMultiWordSynonymsSplitOnWhitespace
+specifier|public
+name|void
+name|testOperatorsAndMultiWordSynonymsSplitOnWhitespace
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Analyzer
+name|a
+init|=
+operator|new
+name|MockSynonymAnalyzer
+argument_list|()
+decl_stmt|;
+name|boolean
+name|oldSplitOnWhitespace
+init|=
+name|splitOnWhitespace
+decl_stmt|;
+name|splitOnWhitespace
+operator|=
+literal|true
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"+guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"+guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"-guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"!guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea* pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea* pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea? pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea? pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea~2 pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea~2 pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea^2 pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"(guinea)^2.0 pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea +pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea +pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea -pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea -pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea !pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea -pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig*"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig*"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig?"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig?"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig~2"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig~2"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig^2"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea (pig)^2.0"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"field:guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea field:pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"NOT guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea NOT pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea -pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig AND dogs"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea +pig +Synonym(dog dogs)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"dogs AND guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"+Synonym(dog dogs) +guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig&& dogs"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea +pig +Synonym(dog dogs)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"dogs&& guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"+Synonym(dog dogs) +guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig OR dogs"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig Synonym(dog dogs)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"dogs OR guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(dog dogs) guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig || dogs"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig Synonym(dog dogs)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"dogs || guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"Synonym(dog dogs) guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"guinea\" pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea \"pig\""
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"(guinea) pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea (pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"/guinea/ pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"/guinea/ pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea /pig/"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea /pig/"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"(guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"+(guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"+(guinea pig)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"-(guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"-(guinea pig)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"!(guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"-(guinea pig)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"NOT (guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"-(guinea pig)"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"(guinea pig)^2"
+argument_list|,
+name|a
+argument_list|,
+literal|"(guinea pig)^2.0"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"field:(guinea pig)"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"+small guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"+small guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"-small guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-small guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"!small guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-small guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"NOT small guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"-small guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"small* guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"small* guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"small? guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"small? guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"small\" guinea pig"
+argument_list|,
+name|a
+argument_list|,
+literal|"small guinea pig"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig +running"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig +running"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig -running"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig -running"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig !running"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig -running"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig NOT running"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig -running"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig running*"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig running*"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig running?"
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig running?"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig \"running\""
+argument_list|,
+name|a
+argument_list|,
+literal|"guinea pig running"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"\"guinea pig\"~2"
+argument_list|,
+name|a
+argument_list|,
+literal|"\"(guinea cavy) pig\"~2"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"field:\"guinea pig\""
+argument_list|,
+name|a
+argument_list|,
+literal|"\"(guinea cavy) pig\""
+argument_list|)
+expr_stmt|;
+name|splitOnWhitespace
+operator|=
+name|oldSplitOnWhitespace
+expr_stmt|;
+block|}
+DECL|method|testDefaultSplitOnWhitespace
+specifier|public
+name|void
+name|testDefaultSplitOnWhitespace
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|QueryParser
+name|parser
+init|=
+operator|new
+name|QueryParser
+argument_list|(
+literal|"field"
+argument_list|,
+operator|new
+name|Analyzer1
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+name|parser
+operator|.
+name|getSplitOnWhitespace
+argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// default is true
+name|BooleanQuery
+operator|.
+name|Builder
+name|bqBuilder
+init|=
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|bqBuilder
+operator|.
+name|add
+argument_list|(
+operator|new
+name|TermQuery
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"guinea"
+argument_list|)
+argument_list|)
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+expr_stmt|;
+name|bqBuilder
+operator|.
+name|add
+argument_list|(
+operator|new
+name|TermQuery
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"pig"
+argument_list|)
+argument_list|)
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|bqBuilder
+operator|.
+name|build
+argument_list|()
+argument_list|,
+name|parser
+operator|.
+name|parse
+argument_list|(
+literal|"guinea pig"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|boolean
+name|oldSplitOnWhitespace
+init|=
+name|splitOnWhitespace
+decl_stmt|;
+name|splitOnWhitespace
+operator|=
+name|QueryParser
+operator|.
+name|DEFAULT_SPLIT_ON_WHITESPACE
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"guinea pig"
+argument_list|,
+operator|new
+name|MockSynonymAnalyzer
+argument_list|()
+argument_list|,
+literal|"guinea pig"
+argument_list|)
+expr_stmt|;
+name|splitOnWhitespace
+operator|=
+name|oldSplitOnWhitespace
 expr_stmt|;
 block|}
 block|}
