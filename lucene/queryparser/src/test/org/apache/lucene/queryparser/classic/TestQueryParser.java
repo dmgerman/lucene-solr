@@ -4763,7 +4763,7 @@ name|Analyzer1
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertFalse
 argument_list|(
 name|parser
 operator|.
@@ -4771,7 +4771,8 @@ name|getSplitOnWhitespace
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// default is true
+comment|// default is false
+comment|// A multi-word synonym source will form a synonym query for the same-starting-position tokens
 name|BooleanQuery
 operator|.
 name|Builder
@@ -4788,7 +4789,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|TermQuery
+name|SynonymQuery
 argument_list|(
 operator|new
 name|Term
@@ -4796,6 +4797,14 @@ argument_list|(
 literal|"field"
 argument_list|,
 literal|"guinea"
+argument_list|)
+argument_list|,
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"cavy"
 argument_list|)
 argument_list|)
 argument_list|,
@@ -4863,7 +4872,7 @@ operator|new
 name|MockSynonymAnalyzer
 argument_list|()
 argument_list|,
-literal|"guinea pig"
+literal|"Synonym(cavy guinea) pig"
 argument_list|)
 expr_stmt|;
 name|splitOnWhitespace

@@ -193,7 +193,7 @@ specifier|final
 name|boolean
 name|DEFAULT_SPLIT_ON_WHITESPACE
 init|=
-literal|true
+literal|false
 decl_stmt|;
 comment|/** Create a query parser.    *  @param f  the default field for query terms.    *  @param a   used to find terms in the query text.    */
 DECL|method|QueryParser
