@@ -1755,6 +1755,13 @@ operator|==
 literal|null
 condition|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"ClusterState watchers have not been initialized"
+argument_list|)
+expr_stmt|;
 return|return;
 block|}
 name|ClusterState
@@ -1785,6 +1792,15 @@ condition|)
 block|{
 comment|// We either don't know anything about this collection (maybe it's new?) or it's legacy.
 comment|// First update the legacy cluster state.
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Checking legacy cluster state for collection {}"
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 name|refreshLegacyClusterState
 argument_list|(
 literal|null
@@ -1843,6 +1859,15 @@ name|isLazilyLoaded
 argument_list|()
 condition|)
 block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Refreshing lazily-loaded state for collection {}"
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|ref
@@ -1874,6 +1899,15 @@ argument_list|)
 condition|)
 block|{
 comment|// Exists as a watched collection, force a refresh.
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Forcing refresh of watched collection state for {}"
+argument_list|,
+name|collection
+argument_list|)
+expr_stmt|;
 name|DocCollection
 name|newState
 init|=
