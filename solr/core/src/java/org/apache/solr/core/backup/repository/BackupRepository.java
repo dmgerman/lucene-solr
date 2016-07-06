@@ -62,6 +62,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Optional
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -110,6 +120,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CoreAdminParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|plugin
@@ -132,13 +158,6 @@ name|NamedListInitializedPlugin
 extends|,
 name|Closeable
 block|{
-comment|/**    * A parameter to specify the name of the backup repository to be used.    */
-DECL|field|REPOSITORY_PROPERTY_NAME
-name|String
-name|REPOSITORY_PROPERTY_NAME
-init|=
-literal|"repository"
-decl_stmt|;
 comment|/**    * This enumeration defines the type of a given path.    */
 DECL|enum|PathType
 enum|enum
@@ -149,6 +168,35 @@ DECL|enum constant|FILE
 name|DIRECTORY
 block|,
 name|FILE
+block|}
+comment|/**    * This method returns the location where the backup should be stored (or restored from).    *    * @param override The location parameter supplied by the user.    * @return If<code>override</code> is not null then return the same value    *         Otherwise return the default configuration value for the {@linkplain CoreAdminParams#BACKUP_LOCATION} parameter.    */
+DECL|method|getBackupLocation
+specifier|default
+name|String
+name|getBackupLocation
+parameter_list|(
+name|String
+name|override
+parameter_list|)
+block|{
+return|return
+name|Optional
+operator|.
+name|ofNullable
+argument_list|(
+name|override
+argument_list|)
+operator|.
+name|orElse
+argument_list|(
+name|getConfigProperty
+argument_list|(
+name|CoreAdminParams
+operator|.
+name|BACKUP_LOCATION
+argument_list|)
+argument_list|)
+return|;
 block|}
 comment|/**    * This method returns the value of the specified configuration property.    */
 DECL|method|getConfigProperty

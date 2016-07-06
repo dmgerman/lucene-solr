@@ -48,6 +48,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|rules
+operator|.
+name|SystemPropertiesRestoreRule
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -69,22 +83,6 @@ operator|.
 name|common
 operator|.
 name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkStateReader
 import|;
 end_import
 
@@ -245,20 +243,6 @@ operator|.
 name|rules
 operator|.
 name|TestRule
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|rules
-operator|.
-name|SystemPropertiesRestoreRule
 import|;
 end_import
 
@@ -800,9 +784,7 @@ name|attrs
 operator|.
 name|put
 argument_list|(
-name|ZkStateReader
-operator|.
-name|BACKUP_LOCATION
+literal|"location"
 argument_list|,
 literal|"/tmp"
 argument_list|)
@@ -856,9 +838,7 @@ name|repo
 operator|.
 name|getConfigProperty
 argument_list|(
-name|ZkStateReader
-operator|.
-name|BACKUP_LOCATION
+literal|"location"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -891,9 +871,7 @@ name|repo
 operator|.
 name|getConfigProperty
 argument_list|(
-name|ZkStateReader
-operator|.
-name|BACKUP_LOCATION
+literal|"location"
 argument_list|)
 argument_list|)
 expr_stmt|;

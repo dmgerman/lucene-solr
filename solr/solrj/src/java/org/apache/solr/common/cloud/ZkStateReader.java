@@ -336,6 +336,22 @@ name|solr
 operator|.
 name|common
 operator|.
+name|params
+operator|.
+name|CoreAdminParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|ExecutorUtil
@@ -881,15 +897,6 @@ name|URL_SCHEME
 init|=
 literal|"urlScheme"
 decl_stmt|;
-DECL|field|BACKUP_LOCATION
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|BACKUP_LOCATION
-init|=
-literal|"location"
-decl_stmt|;
 comment|/** A view of the current state of all collections; combines all the different state sources into a single view. */
 DECL|field|clusterState
 specifier|protected
@@ -1138,6 +1145,8 @@ name|URL_SCHEME
 argument_list|,
 name|AUTO_ADD_REPLICAS
 argument_list|,
+name|CoreAdminParams
+operator|.
 name|BACKUP_LOCATION
 argument_list|,
 name|MAX_CORES_PER_NODE
