@@ -2568,7 +2568,7 @@ name|Codec
 name|codec
 decl_stmt|;
 comment|// for writing new segments
-comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * If you want to make "live" changes to this writer instance, use    * {@link #getConfig()}.    *     *<p>    *<b>NOTE:</b> after ths writer is created, the given configuration instance    * cannot be passed to another writer. If you intend to do so, you should    * {@link IndexWriterConfig#clone() clone} it beforehand.    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
+comment|/**    * Constructs a new IndexWriter per the settings given in<code>conf</code>.    * If you want to make "live" changes to this writer instance, use    * {@link #getConfig()}.    *     *<p>    *<b>NOTE:</b> after ths writer is created, the given configuration instance    * cannot be passed to another writer.    *     * @param d    *          the index directory. The index is either created or appended    *          according<code>conf.getOpenMode()</code>.    * @param conf    *          the configuration settings according to which IndexWriter should    *          be initialized.    * @throws IOException    *           if the directory cannot be read/written to, or if it does not    *           exist and<code>conf.getOpenMode()</code> is    *<code>OpenMode.APPEND</code> or if there is any other low-level    *           IO error    */
 DECL|method|IndexWriter
 specifier|public
 name|IndexWriter
@@ -7590,13 +7590,25 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
-return|return
+name|long
+name|seqNo
+init|=
 name|docWriter
 operator|.
 name|deleteQueue
 operator|.
 name|getNextSequenceNumber
 argument_list|()
+decl_stmt|;
+name|docWriter
+operator|.
+name|setLastSeqNo
+argument_list|(
+name|seqNo
+argument_list|)
+expr_stmt|;
+return|return
+name|seqNo
 return|;
 block|}
 finally|finally

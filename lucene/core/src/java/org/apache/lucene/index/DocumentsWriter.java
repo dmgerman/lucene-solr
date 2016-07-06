@@ -514,6 +514,20 @@ return|return
 name|seqNo
 return|;
 block|}
+DECL|method|setLastSeqNo
+specifier|synchronized
+name|void
+name|setLastSeqNo
+parameter_list|(
+name|long
+name|seqNo
+parameter_list|)
+block|{
+name|lastSeqNo
+operator|=
+name|seqNo
+expr_stmt|;
+block|}
 comment|// TODO: we could check w/ FreqProxTermsWriter: if the
 comment|// term doesn't exist, don't bother buffering into the
 comment|// per-DWPT map (but still must go into the global map)
