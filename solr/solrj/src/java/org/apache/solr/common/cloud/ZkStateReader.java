@@ -2343,6 +2343,22 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"New alias definition is: "
+operator|+
+name|ZkStateReader
+operator|.
+name|this
+operator|.
+name|aliases
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 catch|catch
