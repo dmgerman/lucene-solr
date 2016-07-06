@@ -405,7 +405,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Iterates over a gatherNodes() expression and scores the node Tuples based based on tf-idf.  *  *  Expression Syntax:  *  *  Default function call uses the "count(*)" field for node freq.  *  *  You can use a different value for node freq by providing the nodeFreq param  *  scoreNodes(gatherNodes(...), termFreq="min(weight)")  *  **/
+comment|/**  *  Iterates over a gatherNodes() expression and scores the Tuples based on tf-idf.  *  *  Expression Syntax:  *  *  Default function call uses the "count(*)" field for termFreq.  *  *  You can use a different value for termFreq by providing the termFreq param  *  scoreNodes(gatherNodes(...), termFreq="min(weight)")  *  **/
 end_comment
 
 begin_class
