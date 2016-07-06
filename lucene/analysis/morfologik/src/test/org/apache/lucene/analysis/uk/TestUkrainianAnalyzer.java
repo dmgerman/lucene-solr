@@ -125,7 +125,7 @@ name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
-literal|"Ð¦Ñ Ð¿'ÑÑÐ° Ñ ÑÐ²Ð¾Ñ ÑÐµÑÐ³Ñ ÑÑÑÐ°ÑÑÑÑÑ Ð¿Ð¾ ÐºÐ¾Ð»Ñ."
+literal|"Ð¦Ñ Ð¿'ÑÑÐ°, Ñ ÑÐ²Ð¾Ñ ÑÐµÑÐ³Ñ, ÑÑÑÐ°ÑÑÑÑÑ Ð¿Ð¾ ÐµÐ¼Ð¾ÑÑÐ¹Ð½Ð¾-Ð½Ð°Ð¿ÑÑÐ¶ÐµÐ½Ð¾Ð¼Ñ ÐºÐ¾Ð»Ñ Ð·Ð° ÑÐ¸ÑÐ¼-ÐµÐ½Ð´-Ð±Ð»ÑÐ·Ð¾Ð¼."
 argument_list|,
 operator|new
 name|String
@@ -137,15 +137,21 @@ literal|"ÑÐµÑÐ³Ð°"
 block|,
 literal|"ÑÑÑÐ°ÑÐ¸ÑÑ"
 block|,
+literal|"ÐµÐ¼Ð¾ÑÑÐ¹Ð½Ð¾"
+block|,
+literal|"Ð½Ð°Ð¿ÑÑÐ¶ÐµÐ½Ð¸Ð¹"
+block|,
 literal|"ÐºÐ¾Ð»Ð°"
 block|,
 literal|"ÐºÐ¾Ð»Ð¾"
 block|,
-literal|"ÐºÐ¾Ð»Ð¾"
-block|,
 literal|"ÐºÑÐ»"
 block|,
-literal|"ÐºÑÐ»"
+literal|"ÑÐ¸ÑÐ¼"
+block|,
+literal|"ÐµÐ½Ð´"
+block|,
+literal|"Ð±Ð»ÑÐ·"
 block|}
 argument_list|)
 expr_stmt|;
@@ -174,7 +180,7 @@ name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
-literal|"Ð¦Ñ Ð¿Ê¼ÑÑÐ°, Ñ ÑÐ²Ð¾ÌÑ ÑÐµÑÐ³Ñ, ÑÑÑÐ°ÑÑÑÑÑ Ð¿Ð¾ ÐºÐ¾Ð»Ñ."
+literal|"Ð¦Ñ Ð¿Ê¼ÑÑÐ°, Ñ ÑÐ²Ð¾ÌÑ ÑÐµÑÐ³Ñ ÑÑÑÐ°ÑÑÑÑÑ."
 argument_list|,
 operator|new
 name|String
@@ -185,16 +191,6 @@ block|,
 literal|"ÑÐµÑÐ³Ð°"
 block|,
 literal|"ÑÑÑÐ°ÑÐ¸ÑÑ"
-block|,
-literal|"ÐºÐ¾Ð»Ð°"
-block|,
-literal|"ÐºÐ¾Ð»Ð¾"
-block|,
-literal|"ÐºÐ¾Ð»Ð¾"
-block|,
-literal|"ÐºÑÐ»"
-block|,
-literal|"ÐºÑÐ»"
 block|}
 argument_list|)
 expr_stmt|;
@@ -223,13 +219,66 @@ name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
-literal|"Ð¦ÐµÐ¹ Ð§Ð°Ð¹ÐºÐ¾Ð²ÑÑÐºÐ¸Ð¹."
+literal|"Ð¦ÐµÐ¹ Ð§Ð°Ð¹ÐºÐ¾Ð²ÑÑÐºÐ¸Ð¹ Ñ ÒÐµÑÐµ."
 argument_list|,
 operator|new
 name|String
 index|[]
 block|{
 literal|"ÑÐ°Ð¹ÐºÐ¾Ð²ÑÑÐºÐ¸Ð¹"
+block|,
+literal|"ÒÐµÑÐµ"
+block|}
+argument_list|)
+expr_stmt|;
+name|a
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+DECL|method|testSampleSentence
+specifier|public
+name|void
+name|testSampleSentence
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Analyzer
+name|a
+init|=
+operator|new
+name|UkrainianMorfologikAnalyzer
+argument_list|()
+decl_stmt|;
+name|assertAnalyzesTo
+argument_list|(
+name|a
+argument_list|,
+literal|"Ð¦Ðµ â Ð¿ÑÐ¾ÐµÐºÑ Ð³ÐµÐ½ÐµÑÑÐ²Ð°Ð½Ð½Ñ ÑÐ»Ð¾Ð²Ð½Ð¸ÐºÐ° Ð· ÑÐµÐ³Ð°Ð¼Ð¸ ÑÐ°ÑÑÐ¸Ð½ Ð¼Ð¾Ð²Ð¸ Ð´Ð»Ñ ÑÐºÑÐ°ÑÐ½ÑÑÐºÐ¾Ñ Ð¼Ð¾Ð²Ð¸."
+argument_list|,
+operator|new
+name|String
+index|[]
+block|{
+literal|"Ð¿ÑÐ¾ÐµÐºÑ"
+block|,
+literal|"Ð³ÐµÐ½ÐµÑÑÐ²Ð°Ð½Ð½Ñ"
+block|,
+literal|"ÑÐ»Ð¾Ð²Ð½Ð¸Ðº"
+block|,
+literal|"ÑÐµÐ³"
+block|,
+literal|"ÑÐ°ÑÑÐ¸Ð½Ð°"
+block|,
+literal|"Ð¼Ð¾Ð²Ð°"
+block|,
+literal|"ÑÐºÑÐ°ÑÐ½ÑÑÐºÐ°"
+block|,
+literal|"ÑÐºÑÐ°ÑÐ½ÑÑÐºÐ¸Ð¹"
+block|,
+literal|"Ð¼Ð¾Ð²Ð°"
 block|}
 argument_list|)
 expr_stmt|;
