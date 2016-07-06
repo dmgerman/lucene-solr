@@ -318,28 +318,6 @@ name|stream
 operator|.
 name|expr
 operator|.
-name|StreamExpressionValue
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|io
-operator|.
-name|stream
-operator|.
-name|expr
-operator|.
 name|StreamFactory
 import|;
 end_import
@@ -427,7 +405,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  Iterates over a gatherNodes() expression and scores the node Tuples based based on tf-idf.  *  *  Expression Syntax:  *  *  Default function call uses the "count(*)" value for node freq.  *  *  You can use a different value for node freq by providing the nodeFreq param  *  scoreNodes(gatherNodes(...), nodeFreq="min(weight)")  *  **/
+comment|/**  *  Iterates over a gatherNodes() expression and scores the node Tuples based based on tf-idf.  *  *  Expression Syntax:  *  *  Default function call uses the "count(*)" field for node freq.  *  *  You can use a different value for node freq by providing the nodeFreq param  *  scoreNodes(gatherNodes(...), termFreq="min(weight)")  *  **/
 end_comment
 
 begin_class
@@ -1168,6 +1146,34 @@ name|builder
 operator|.
 name|toString
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+name|TermsParams
+operator|.
+name|TERMS_LIMIT
+argument_list|,
+name|Integer
+operator|.
+name|toString
+argument_list|(
+name|nodes
+operator|.
+name|size
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"distrib"
+argument_list|,
+literal|"true"
 argument_list|)
 expr_stmt|;
 name|QueryRequest
