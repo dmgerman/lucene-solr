@@ -45,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Field that stores  * a set of per-document {@link BytesRef} values, indexed for  * faceting,grouping,joining.  Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new SortedSetDocValuesField(name, new BytesRef("hello")));  *   document.add(new SortedSetDocValuesField(name, new BytesRef("world")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   * */
+comment|/**  *<p>  * Field that stores  * a set of per-document {@link BytesRef} values, indexed for  * faceting,grouping,joining.  Here's an example usage:  *   *<pre class="prettyprint">  *   document.add(new SortedSetDocValuesField(name, new BytesRef("hello")));  *   document.add(new SortedSetDocValuesField(name, new BytesRef("world")));  *</pre>  *   *<p>  * If you also need to store the value, you should add a  * separate {@link StoredField} instance.  *   *<p>  * Each value can be at most 32766 bytes long.  * */
 end_comment
 
 begin_class
