@@ -877,6 +877,9 @@ name|indexSearcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -889,6 +892,8 @@ argument_list|(
 name|indexSearcher
 argument_list|,
 name|needsScores
+argument_list|,
+name|boost
 argument_list|)
 return|;
 block|}

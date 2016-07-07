@@ -399,6 +399,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -416,6 +419,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
+argument_list|,
+literal|1f
 argument_list|)
 argument_list|)
 return|;
@@ -844,37 +849,6 @@ name|joinValue
 argument_list|)
 argument_list|)
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getValueForNormalization
-specifier|public
-name|float
-name|getValueForNormalization
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-literal|1f
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|normalize
-specifier|public
-name|void
-name|normalize
-parameter_list|(
-name|float
-name|norm
-parameter_list|,
-name|float
-name|boost
-parameter_list|)
-block|{
-comment|// no normalization, we ignore the normalization process
-comment|// and produce scores based on the join
 block|}
 annotation|@
 name|Override

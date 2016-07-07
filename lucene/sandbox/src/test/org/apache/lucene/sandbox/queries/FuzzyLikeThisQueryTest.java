@@ -548,6 +548,8 @@ argument_list|(
 name|q
 argument_list|,
 literal|true
+argument_list|,
+literal|1f
 argument_list|)
 operator|.
 name|extractTerms
@@ -742,6 +744,8 @@ argument_list|(
 name|q
 argument_list|,
 literal|true
+argument_list|,
+literal|1f
 argument_list|)
 operator|.
 name|extractTerms
@@ -932,6 +936,8 @@ argument_list|(
 name|q
 argument_list|,
 literal|true
+argument_list|,
+literal|1f
 argument_list|)
 operator|.
 name|extractTerms
@@ -1108,6 +1114,8 @@ argument_list|(
 name|q
 argument_list|,
 literal|true
+argument_list|,
+literal|1f
 argument_list|)
 operator|.
 name|extractTerms

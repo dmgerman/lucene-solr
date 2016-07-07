@@ -132,22 +132,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
-operator|.
-name|function
-operator|.
-name|ValueSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|Explanation
@@ -250,14 +234,6 @@ index|[]
 name|scoringQueries
 decl_stmt|;
 comment|// never null (empty array if there are no valSrcQueries).
-DECL|field|strict
-specifier|private
-name|boolean
-name|strict
-init|=
-literal|false
-decl_stmt|;
-comment|// if true, valueSource part of query does not take part in weights normalization.
 comment|/**    * Create a CustomScoreQuery over input subQuery.    * @param subQuery the sub query whose scored is being customized. Must not be null.     */
 DECL|method|CustomScoreQuery
 specifier|public
@@ -652,17 +628,6 @@ argument_list|(
 literal|")"
 argument_list|)
 expr_stmt|;
-name|sb
-operator|.
-name|append
-argument_list|(
-name|strict
-condition|?
-literal|" STRICT"
-else|:
-literal|""
-argument_list|)
-expr_stmt|;
 return|return
 name|sb
 operator|.
@@ -719,12 +684,6 @@ operator|.
 name|subQuery
 argument_list|)
 operator|&&
-name|strict
-operator|==
-name|other
-operator|.
-name|strict
-operator|&&
 name|scoringQueries
 operator|.
 name|length
@@ -774,14 +733,6 @@ argument_list|(
 name|scoringQueries
 argument_list|)
 operator|)
-operator|^
-operator|(
-name|strict
-condition|?
-literal|1234
-else|:
-literal|4321
-operator|)
 return|;
 block|}
 comment|/**    * Returns a {@link CustomScoreProvider} that calculates the custom scores    * for the given {@link IndexReader}. The default implementation returns a default    * implementation as specified in the docs of {@link CustomScoreProvider}.    * @since 2.9.2    */
@@ -813,19 +764,18 @@ extends|extends
 name|Weight
 block|{
 DECL|field|subQueryWeight
+specifier|final
 name|Weight
 name|subQueryWeight
 decl_stmt|;
 DECL|field|valSrcWeights
+specifier|final
 name|Weight
 index|[]
 name|valSrcWeights
 decl_stmt|;
-DECL|field|qStrict
-name|boolean
-name|qStrict
-decl_stmt|;
 DECL|field|queryWeight
+specifier|final
 name|float
 name|queryWeight
 decl_stmt|;
@@ -838,6 +788,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -849,6 +802,11 @@ operator|.
 name|this
 argument_list|)
 expr_stmt|;
+comment|// note we DONT incorporate our boost, nor pass down any boost
+comment|// (e.g. from outer BQ), as there is no guarantee that the CustomScoreProvider's
+comment|// function obeys the distributive law... it might call sqrt() on the subQuery score
+comment|// or some other arbitrary function other than multiplication.
+comment|// so, instead boosts are applied directly in score()
 name|this
 operator|.
 name|subQueryWeight
@@ -860,6 +818,8 @@ argument_list|(
 name|searcher
 argument_list|,
 name|needsScores
+argument_list|,
+literal|1f
 argument_list|)
 expr_stmt|;
 name|this
@@ -908,14 +868,16 @@ argument_list|(
 name|searcher
 argument_list|,
 name|needsScores
+argument_list|,
+literal|1f
 argument_list|)
 expr_stmt|;
 block|}
 name|this
 operator|.
-name|qStrict
+name|queryWeight
 operator|=
-name|strict
+name|boost
 expr_stmt|;
 block|}
 annotation|@
@@ -955,124 +917,6 @@ name|terms
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-annotation|@
-name|Override
-DECL|method|getValueForNormalization
-specifier|public
-name|float
-name|getValueForNormalization
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-name|float
-name|sum
-init|=
-name|subQueryWeight
-operator|.
-name|getValueForNormalization
-argument_list|()
-decl_stmt|;
-for|for
-control|(
-name|Weight
-name|valSrcWeight
-range|:
-name|valSrcWeights
-control|)
-block|{
-if|if
-condition|(
-name|qStrict
-operator|==
-literal|false
-condition|)
-block|{
-comment|// otherwise do not include ValueSource part in the query normalization
-name|sum
-operator|+=
-name|valSrcWeight
-operator|.
-name|getValueForNormalization
-argument_list|()
-expr_stmt|;
-block|}
-block|}
-return|return
-name|sum
-return|;
-block|}
-comment|/*(non-Javadoc) @see org.apache.lucene.search.Weight#normalize(float) */
-annotation|@
-name|Override
-DECL|method|normalize
-specifier|public
-name|void
-name|normalize
-parameter_list|(
-name|float
-name|norm
-parameter_list|,
-name|float
-name|boost
-parameter_list|)
-block|{
-comment|// note we DONT incorporate our boost, nor pass down any boost
-comment|// (e.g. from outer BQ), as there is no guarantee that the CustomScoreProvider's
-comment|// function obeys the distributive law... it might call sqrt() on the subQuery score
-comment|// or some other arbitrary function other than multiplication.
-comment|// so, instead boosts are applied directly in score()
-name|subQueryWeight
-operator|.
-name|normalize
-argument_list|(
-name|norm
-argument_list|,
-literal|1f
-argument_list|)
-expr_stmt|;
-for|for
-control|(
-name|Weight
-name|valSrcWeight
-range|:
-name|valSrcWeights
-control|)
-block|{
-if|if
-condition|(
-name|qStrict
-condition|)
-block|{
-name|valSrcWeight
-operator|.
-name|normalize
-argument_list|(
-literal|1
-argument_list|,
-literal|1
-argument_list|)
-expr_stmt|;
-comment|// do not normalize the ValueSource part
-block|}
-else|else
-block|{
-name|valSrcWeight
-operator|.
-name|normalize
-argument_list|(
-name|norm
-argument_list|,
-literal|1f
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-name|queryWeight
-operator|=
-name|boost
-expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -1622,6 +1466,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -1633,36 +1480,10 @@ argument_list|(
 name|searcher
 argument_list|,
 name|needsScores
+argument_list|,
+name|boost
 argument_list|)
 return|;
-block|}
-comment|/**    * Checks if this is strict custom scoring.    * In strict custom scoring, the {@link ValueSource} part does not participate in weight normalization.    * This may be useful when one wants full control over how scores are modified, and does     * not care about normalizing by the {@link ValueSource} part.    * One particular case where this is useful if for testing this query.       *<P>    * Note: only has effect when the {@link ValueSource} part is not null.    */
-DECL|method|isStrict
-specifier|public
-name|boolean
-name|isStrict
-parameter_list|()
-block|{
-return|return
-name|strict
-return|;
-block|}
-comment|/**    * Set the strict mode of this query.     * @param strict The strict mode to set.    * @see #isStrict()    */
-DECL|method|setStrict
-specifier|public
-name|void
-name|setStrict
-parameter_list|(
-name|boolean
-name|strict
-parameter_list|)
-block|{
-name|this
-operator|.
-name|strict
-operator|=
-name|strict
-expr_stmt|;
 block|}
 comment|/** The sub-query that CustomScoreQuery wraps, affecting both the score and which documents match. */
 DECL|method|getSubQuery

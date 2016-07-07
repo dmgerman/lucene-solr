@@ -2662,6 +2662,8 @@ name|in
 operator|.
 name|getQuery
 argument_list|()
+argument_list|,
+literal|1f
 argument_list|)
 expr_stmt|;
 name|this

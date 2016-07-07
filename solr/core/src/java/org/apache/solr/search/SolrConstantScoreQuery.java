@@ -346,6 +346,9 @@ name|ConstantWeight
 parameter_list|(
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -355,6 +358,8 @@ argument_list|(
 name|SolrConstantScoreQuery
 operator|.
 name|this
+argument_list|,
+name|boost
 argument_list|)
 expr_stmt|;
 name|this
@@ -492,6 +497,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -503,6 +511,8 @@ operator|.
 name|ConstantWeight
 argument_list|(
 name|searcher
+argument_list|,
+name|boost
 argument_list|)
 return|;
 block|}

@@ -79,7 +79,7 @@ literal|""
 argument_list|)
 return|;
 block|}
-comment|/**    * Expert: Constructs an appropriate Weight implementation for this query.    *<p>    * Only implemented by primitive queries, which re-write to themselves.    *    * @param needsScores   True if document scores ({@link Scorer#score}) or match    *                      frequencies ({@link Scorer#freq}) are needed.    */
+comment|/**    * Expert: Constructs an appropriate Weight implementation for this query.    *<p>    * Only implemented by primitive queries, which re-write to themselves.    *    * @param needsScores   True if document scores ({@link Scorer#score}) or match    *                      frequencies ({@link Scorer#freq}) are needed.    * @param boost         The boost that is propagated by the parent queries.    */
 DECL|method|createWeight
 specifier|public
 name|Weight
@@ -90,6 +90,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException

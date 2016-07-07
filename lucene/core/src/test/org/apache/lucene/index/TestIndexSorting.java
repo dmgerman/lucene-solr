@@ -7789,6 +7789,9 @@ specifier|public
 name|SimWeight
 name|computeWeight
 parameter_list|(
+name|float
+name|boost
+parameter_list|,
 name|CollectionStatistics
 name|collectionStats
 parameter_list|,
@@ -7802,6 +7805,8 @@ name|in
 operator|.
 name|computeWeight
 argument_list|(
+name|boost
+argument_list|,
 name|collectionStats
 argument_list|,
 name|termStats

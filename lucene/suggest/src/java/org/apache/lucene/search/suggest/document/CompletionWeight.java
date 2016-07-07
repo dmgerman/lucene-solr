@@ -542,34 +542,6 @@ return|return
 literal|null
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getValueForNormalization
-specifier|public
-name|float
-name|getValueForNormalization
-parameter_list|()
-throws|throws
-name|IOException
-block|{
-return|return
-literal|0
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|normalize
-specifier|public
-name|void
-name|normalize
-parameter_list|(
-name|float
-name|norm
-parameter_list|,
-name|float
-name|boost
-parameter_list|)
-block|{   }
 block|}
 end_class
 

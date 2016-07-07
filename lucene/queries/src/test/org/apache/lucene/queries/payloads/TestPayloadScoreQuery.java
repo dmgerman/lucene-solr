@@ -2002,21 +2002,6 @@ name|BoostingSimilarity
 extends|extends
 name|MultiplyingSimilarity
 block|{
-annotation|@
-name|Override
-DECL|method|queryNorm
-specifier|public
-name|float
-name|queryNorm
-parameter_list|(
-name|float
-name|sumOfSquaredWeights
-parameter_list|)
-block|{
-return|return
-literal|1.0f
-return|;
-block|}
 comment|//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 comment|//Make everything else 1 so we see the effect of the payload
 comment|//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

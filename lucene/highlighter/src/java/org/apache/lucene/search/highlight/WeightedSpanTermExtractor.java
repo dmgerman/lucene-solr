@@ -2078,6 +2078,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
+argument_list|,
+name|boost
 argument_list|)
 operator|.
 name|extractTerms
@@ -2096,6 +2098,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
+argument_list|,
+name|boost
 argument_list|)
 operator|.
 name|extractTerms

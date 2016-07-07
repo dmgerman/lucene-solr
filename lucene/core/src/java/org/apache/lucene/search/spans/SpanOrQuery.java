@@ -639,6 +639,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -678,6 +681,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
+argument_list|,
+name|boost
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -698,6 +703,8 @@ else|:
 literal|null
 argument_list|,
 name|subWeights
+argument_list|,
+name|boost
 argument_list|)
 return|;
 block|}
@@ -736,6 +743,9 @@ argument_list|<
 name|SpanWeight
 argument_list|>
 name|subWeights
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -749,6 +759,8 @@ argument_list|,
 name|searcher
 argument_list|,
 name|terms
+argument_list|,
+name|boost
 argument_list|)
 expr_stmt|;
 name|this

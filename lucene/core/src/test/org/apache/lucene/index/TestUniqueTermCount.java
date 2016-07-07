@@ -607,6 +607,9 @@ specifier|public
 name|SimWeight
 name|computeWeight
 parameter_list|(
+name|float
+name|boost
+parameter_list|,
 name|CollectionStatistics
 name|collectionStats
 parameter_list|,

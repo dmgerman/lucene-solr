@@ -876,6 +876,8 @@ index|[]
 block|{
 literal|7
 block|,
+literal|9
+block|,
 literal|13
 block|,
 literal|14
@@ -891,8 +893,6 @@ block|,
 literal|24
 block|,
 literal|32
-block|,
-literal|9
 block|}
 decl_stmt|;
 name|int
@@ -997,6 +997,8 @@ index|[]
 block|{
 literal|7
 block|,
+literal|9
+block|,
 literal|13
 block|,
 literal|14
@@ -1012,8 +1014,6 @@ block|,
 literal|24
 block|,
 literal|32
-block|,
-literal|9
 block|}
 decl_stmt|;
 name|int
@@ -1354,11 +1354,11 @@ operator|new
 name|int
 index|[]
 block|{
-literal|27
-block|,
 literal|3
 block|,
 literal|29
+block|,
+literal|27
 block|,
 literal|28
 block|}

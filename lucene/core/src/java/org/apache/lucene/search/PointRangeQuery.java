@@ -442,6 +442,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -453,6 +456,8 @@ operator|new
 name|ConstantScoreWeight
 argument_list|(
 name|this
+argument_list|,
+name|boost
 argument_list|)
 block|{
 specifier|private

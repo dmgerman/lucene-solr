@@ -3333,6 +3333,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -3357,30 +3360,6 @@ argument_list|<
 name|Term
 argument_list|>
 name|terms
-parameter_list|)
-block|{         }
-annotation|@
-name|Override
-specifier|public
-name|float
-name|getValueForNormalization
-parameter_list|()
-block|{
-return|return
-literal|1.0f
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|normalize
-parameter_list|(
-name|float
-name|queryNorm
-parameter_list|,
-name|float
-name|topLevelBoost
 parameter_list|)
 block|{         }
 annotation|@

@@ -1199,6 +1199,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
+argument_list|,
+literal|1f
 argument_list|)
 operator|.
 name|getSpans
@@ -1561,6 +1563,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
+argument_list|,
+literal|1f
 argument_list|)
 operator|.
 name|getSpans
@@ -1921,21 +1925,6 @@ name|BoostingSimilarity
 extends|extends
 name|ClassicSimilarity
 block|{
-annotation|@
-name|Override
-DECL|method|queryNorm
-specifier|public
-name|float
-name|queryNorm
-parameter_list|(
-name|float
-name|sumOfSquaredWeights
-parameter_list|)
-block|{
-return|return
-literal|1
-return|;
-block|}
 comment|// TODO: Remove warning after API has been finalized
 annotation|@
 name|Override

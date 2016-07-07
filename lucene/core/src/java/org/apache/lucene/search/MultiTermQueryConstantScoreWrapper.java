@@ -494,6 +494,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -503,6 +506,8 @@ operator|new
 name|ConstantScoreWeight
 argument_list|(
 name|this
+argument_list|,
+name|boost
 argument_list|)
 block|{
 comment|/** Try to collect terms from the given terms enum and return true iff all        *  terms could be collected. If {@code false} is returned, the enum is        *  left positioned on the next term. */
@@ -823,18 +828,11 @@ argument_list|(
 name|searcher
 argument_list|,
 name|needsScores
-argument_list|)
-decl_stmt|;
-name|weight
-operator|.
-name|normalize
-argument_list|(
-literal|1f
 argument_list|,
 name|score
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 operator|new
 name|WeightOrDocIdSet

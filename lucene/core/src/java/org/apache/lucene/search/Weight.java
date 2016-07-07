@@ -100,22 +100,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|similarities
-operator|.
-name|Similarity
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|Bits
@@ -123,7 +107,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Calculate query weights and build query scorers.  *<p>  * The purpose of {@link Weight} is to ensure searching does not modify a  * {@link Query}, so that a {@link Query} instance can be reused.<br>  * {@link IndexSearcher} dependent state of the query should reside in the  * {@link Weight}.<br>  * {@link org.apache.lucene.index.LeafReader} dependent state should reside in the {@link Scorer}.  *<p>  * Since {@link Weight} creates {@link Scorer} instances for a given  * {@link org.apache.lucene.index.LeafReaderContext} ({@link #scorer(org.apache.lucene.index.LeafReaderContext)})  * callers must maintain the relationship between the searcher's top-level  * {@link IndexReaderContext} and the context used to create a {@link Scorer}.   *<p>  * A<code>Weight</code> is used in the following way:  *<ol>  *<li>A<code>Weight</code> is constructed by a top-level query, given a  *<code>IndexSearcher</code> ({@link Query#createWeight(IndexSearcher, boolean)}).  *<li>The {@link #getValueForNormalization()} method is called on the  *<code>Weight</code> to compute the query normalization factor  * {@link Similarity#queryNorm(float)} of the query clauses contained in the  * query.  *<li>The query normalization factor is passed to {@link #normalize(float, float)}. At  * this point the weighting is complete.  *<li>A<code>Scorer</code> is constructed by  * {@link #scorer(org.apache.lucene.index.LeafReaderContext)}.  *</ol>  *   * @since 2.9  */
+comment|/**  * Expert: Calculate query weights and build query scorers.  *<p>  * The purpose of {@link Weight} is to ensure searching does not modify a  * {@link Query}, so that a {@link Query} instance can be reused.<br>  * {@link IndexSearcher} dependent state of the query should reside in the  * {@link Weight}.<br>  * {@link org.apache.lucene.index.LeafReader} dependent state should reside in the {@link Scorer}.  *<p>  * Since {@link Weight} creates {@link Scorer} instances for a given  * {@link org.apache.lucene.index.LeafReaderContext} ({@link #scorer(org.apache.lucene.index.LeafReaderContext)})  * callers must maintain the relationship between the searcher's top-level  * {@link IndexReaderContext} and the context used to create a {@link Scorer}.   *<p>  * A<code>Weight</code> is used in the following way:  *<ol>  *<li>A<code>Weight</code> is constructed by a top-level query, given a  *<code>IndexSearcher</code> ({@link Query#createWeight(IndexSearcher, boolean, float)}).  *<li>A<code>Scorer</code> is constructed by  * {@link #scorer(org.apache.lucene.index.LeafReaderContext)}.  *</ol>  *   * @since 2.9  */
 end_comment
 
 begin_class
@@ -197,30 +181,6 @@ return|return
 name|parentQuery
 return|;
 block|}
-comment|/** The value for normalization of contained query clauses (e.g. sum of squared weights). */
-DECL|method|getValueForNormalization
-specifier|public
-specifier|abstract
-name|float
-name|getValueForNormalization
-parameter_list|()
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Assigns the query normalization factor and boost to this. */
-DECL|method|normalize
-specifier|public
-specifier|abstract
-name|void
-name|normalize
-parameter_list|(
-name|float
-name|norm
-parameter_list|,
-name|float
-name|boost
-parameter_list|)
-function_decl|;
 comment|/**    * Returns a {@link Scorer} which can iterate in order over all matching    * documents and assign them a score.    *<p>    *<b>NOTE:</b> null can be returned if no documents will be scored by this    * query.    *<p>    *<b>NOTE</b>: The returned {@link Scorer} does not have    * {@link LeafReader#getLiveDocs()} applied, they need to be checked on top.    *     * @param context    *          the {@link org.apache.lucene.index.LeafReaderContext} for which to return the {@link Scorer}.    *              * @return a {@link Scorer} which scores documents in/out-of order.    * @throws IOException if there is a low-level I/O error    */
 DECL|method|scorer
 specifier|public

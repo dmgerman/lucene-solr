@@ -946,7 +946,7 @@ specifier|final
 name|String
 name|fromQ
 init|=
-literal|"match_s:c match_s:not_1_0_score_after_weight_normalization"
+literal|"match_s:c^2"
 decl_stmt|;
 name|CloudSolrClient
 name|client

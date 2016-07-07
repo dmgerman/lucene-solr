@@ -667,23 +667,6 @@ argument_list|(
 operator|new
 name|ClassicSimilarity
 argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|float
-name|queryNorm
-parameter_list|(
-name|float
-name|sumOfSquaredWeights
-parameter_list|)
-block|{
-return|return
-literal|1
-return|;
-comment|// we disable queryNorm, both for debugging and ease of impl
-block|}
-block|}
 argument_list|)
 expr_stmt|;
 block|}
@@ -2769,6 +2752,8 @@ name|similarity
 operator|.
 name|computeWeight
 argument_list|(
+literal|1f
+argument_list|,
 name|searcher
 operator|.
 name|collectionStatistics
@@ -2786,21 +2771,6 @@ name|context
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|w
-operator|.
-name|getValueForNormalization
-argument_list|()
-expr_stmt|;
-comment|// ignored
-name|w
-operator|.
-name|normalize
-argument_list|(
-literal|1F
-argument_list|,
-literal|1F
-argument_list|)
-expr_stmt|;
 name|sims
 index|[
 operator|(

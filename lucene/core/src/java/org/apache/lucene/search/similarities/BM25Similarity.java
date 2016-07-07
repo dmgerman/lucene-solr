@@ -839,6 +839,9 @@ specifier|final
 name|SimWeight
 name|computeWeight
 parameter_list|(
+name|float
+name|boost
+parameter_list|,
 name|CollectionStatistics
 name|collectionStats
 parameter_list|,
@@ -945,6 +948,8 @@ name|collectionStats
 operator|.
 name|field
 argument_list|()
+argument_list|,
+name|boost
 argument_list|,
 name|idf
 argument_list|,
@@ -1235,12 +1240,14 @@ decl_stmt|;
 comment|/** query boost */
 DECL|field|boost
 specifier|private
+specifier|final
 name|float
 name|boost
 decl_stmt|;
 comment|/** weight (idf * boost) */
 DECL|field|weight
 specifier|private
+specifier|final
 name|float
 name|weight
 decl_stmt|;
@@ -1265,6 +1272,9 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
+name|float
+name|boost
+parameter_list|,
 name|Explanation
 name|idf
 parameter_list|,
@@ -1284,6 +1294,12 @@ name|field
 expr_stmt|;
 name|this
 operator|.
+name|boost
+operator|=
+name|boost
+expr_stmt|;
+name|this
+operator|.
 name|idf
 operator|=
 name|idf
@@ -1299,50 +1315,6 @@ operator|.
 name|cache
 operator|=
 name|cache
-expr_stmt|;
-name|normalize
-argument_list|(
-literal|1f
-argument_list|,
-literal|1f
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|getValueForNormalization
-specifier|public
-name|float
-name|getValueForNormalization
-parameter_list|()
-block|{
-comment|// we return a TF-IDF like normalization to be nice, but we don't actually normalize ourselves.
-return|return
-name|weight
-operator|*
-name|weight
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|normalize
-specifier|public
-name|void
-name|normalize
-parameter_list|(
-name|float
-name|queryNorm
-parameter_list|,
-name|float
-name|boost
-parameter_list|)
-block|{
-comment|// we don't normalize with queryNorm at all, we just capture the top-level boost
-name|this
-operator|.
-name|boost
-operator|=
-name|boost
 expr_stmt|;
 name|this
 operator|.

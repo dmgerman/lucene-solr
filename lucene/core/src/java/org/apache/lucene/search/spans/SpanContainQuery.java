@@ -321,6 +321,9 @@ name|bigWeight
 parameter_list|,
 name|SpanWeight
 name|littleWeight
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -334,6 +337,8 @@ argument_list|,
 name|searcher
 argument_list|,
 name|terms
+argument_list|,
+name|boost
 argument_list|)
 expr_stmt|;
 name|this

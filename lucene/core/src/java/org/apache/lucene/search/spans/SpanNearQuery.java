@@ -786,6 +786,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -820,6 +823,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
+argument_list|,
+name|boost
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -840,6 +845,8 @@ name|subWeights
 argument_list|)
 else|:
 literal|null
+argument_list|,
+name|boost
 argument_list|)
 return|;
 block|}
@@ -878,6 +885,9 @@ argument_list|,
 name|TermContext
 argument_list|>
 name|terms
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -891,6 +901,8 @@ argument_list|,
 name|searcher
 argument_list|,
 name|terms
+argument_list|,
+name|boost
 argument_list|)
 expr_stmt|;
 name|this
@@ -1420,6 +1432,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -1429,6 +1444,8 @@ operator|new
 name|SpanGapWeight
 argument_list|(
 name|searcher
+argument_list|,
+name|boost
 argument_list|)
 return|;
 block|}
@@ -1444,6 +1461,9 @@ name|SpanGapWeight
 parameter_list|(
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -1457,6 +1477,8 @@ argument_list|,
 name|searcher
 argument_list|,
 literal|null
+argument_list|,
+name|boost
 argument_list|)
 expr_stmt|;
 block|}

@@ -127,34 +127,6 @@ specifier|public
 name|ClassicSimilarity
 parameter_list|()
 block|{}
-comment|/** Implemented as<code>1/sqrt(sumOfSquaredWeights)</code>. */
-annotation|@
-name|Override
-DECL|method|queryNorm
-specifier|public
-name|float
-name|queryNorm
-parameter_list|(
-name|float
-name|sumOfSquaredWeights
-parameter_list|)
-block|{
-return|return
-call|(
-name|float
-call|)
-argument_list|(
-literal|1.0
-operator|/
-name|Math
-operator|.
-name|sqrt
-argument_list|(
-name|sumOfSquaredWeights
-argument_list|)
-argument_list|)
-return|;
-block|}
 comment|/**    * Encodes a normalization factor for storage in an index.    *<p>    * The encoding uses a three-bit mantissa, a five-bit exponent, and the    * zero-exponent point at 15, thus representing values from around 7x10^9 to    * 2x10^-9 with about one significant decimal digit of accuracy. Zero is also    * represented. Negative numbers are rounded up to zero. Values too large to    * represent are rounded down to the largest representable value. Positive    * values too small to represent are rounded up to the smallest positive    * representable value.    *     * @see org.apache.lucene.document.Field#setBoost(float)    * @see org.apache.lucene.util.SmallFloat    */
 annotation|@
 name|Override

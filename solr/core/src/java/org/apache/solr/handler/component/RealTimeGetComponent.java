@@ -1873,6 +1873,8 @@ argument_list|(
 name|q
 argument_list|,
 literal|false
+argument_list|,
+literal|1f
 argument_list|)
 operator|.
 name|scorer

@@ -727,6 +727,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
+argument_list|,
+literal|1f
 argument_list|)
 operator|.
 name|getSpans
@@ -952,6 +954,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
+argument_list|,
+literal|1f
 argument_list|)
 operator|.
 name|getSpans
@@ -1224,6 +1228,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|false
+argument_list|,
+literal|1f
 argument_list|)
 operator|.
 name|getSpans

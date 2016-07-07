@@ -90,11 +90,16 @@ name|RandomAccessWeight
 parameter_list|(
 name|Query
 name|query
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 block|{
 name|super
 argument_list|(
 name|query
+argument_list|,
+name|boost
 argument_list|)
 expr_stmt|;
 block|}

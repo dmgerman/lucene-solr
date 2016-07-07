@@ -2117,6 +2117,9 @@ name|SpatialWeight
 parameter_list|(
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -2126,6 +2129,8 @@ argument_list|(
 name|SpatialDistanceQuery
 operator|.
 name|this
+argument_list|,
+name|boost
 argument_list|)
 expr_stmt|;
 name|this
@@ -3122,6 +3127,8 @@ operator|new
 name|SpatialWeight
 argument_list|(
 name|searcher
+argument_list|,
+literal|1f
 argument_list|)
 argument_list|)
 return|;
@@ -3271,6 +3278,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -3286,6 +3296,8 @@ operator|new
 name|SpatialWeight
 argument_list|(
 name|searcher
+argument_list|,
+name|boost
 argument_list|)
 return|;
 block|}
