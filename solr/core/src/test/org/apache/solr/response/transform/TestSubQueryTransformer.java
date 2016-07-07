@@ -835,7 +835,7 @@ literal|"true"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"name_s_dv,depts:[subquery]"
+literal|"dept_ss_dv,name_s_dv,depts:[subquery]"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -944,11 +944,11 @@ literal|"true"
 block|,
 literal|"fl"
 block|,
-literal|"name_s_dv,depts:[subquery]"
+literal|"dept_ss_dv,name_s_dv,depts:[subquery]"
 block|,
 literal|"fl"
 block|,
-literal|"depts_i:[subquery]"
+literal|"dept_i_dv,depts_i:[subquery]"
 block|,
 literal|"rows"
 block|,
@@ -1382,7 +1382,7 @@ literal|"true"
 block|,
 literal|"fl"
 block|,
-literal|"name_s_dv,depts:[subquery]"
+literal|"dept_ss_dv,name_s_dv,depts:[subquery]"
 block|,
 literal|"rows"
 block|,
@@ -1649,7 +1649,7 @@ literal|"true"
 block|,
 literal|"fl"
 block|,
-literal|"name_s_dv,subq1:[subquery]"
+literal|"dept_ss_dv,name_s_dv,subq1:[subquery]"
 block|,
 literal|"rows"
 block|,
@@ -1663,7 +1663,7 @@ literal|"{!terms f=dept_id_s v=$row.dept_ss_dv}"
 block|,
 literal|"subq1.fl"
 block|,
-literal|"text_t,dept_id_s_dv,neighbours:[subquery]"
+literal|"dept_id_i_dv,text_t,dept_id_s_dv,neighbours:[subquery]"
 block|,
 literal|"subq1.indent"
 block|,
@@ -2651,12 +2651,11 @@ operator|.
 name|nextBoolean
 argument_list|()
 condition|?
-literal|"name_s_dv"
+literal|"name_s_dv,dept_ss_dv"
 else|:
 literal|"*"
 operator|)
 operator|+
-comment|//"dept_ss_dv,
 literal|",subq1:[subquery "
 operator|+
 operator|(
