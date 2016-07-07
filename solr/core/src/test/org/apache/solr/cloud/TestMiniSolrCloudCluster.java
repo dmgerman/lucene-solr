@@ -3313,7 +3313,7 @@ operator|.
 name|TEST_HOME
 argument_list|()
 argument_list|,
-literal|"solr-no-core.xml"
+literal|"solr.xml"
 argument_list|)
 decl_stmt|;
 name|Builder

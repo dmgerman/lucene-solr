@@ -1506,8 +1506,6 @@ argument_list|(
 name|solrHomeDirectory
 argument_list|,
 literal|"corex"
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 name|File

@@ -1377,7 +1377,7 @@ name|getSolrXml
 parameter_list|()
 block|{
 return|return
-literal|"solr-no-core.xml"
+literal|"solr.xml"
 return|;
 block|}
 DECL|method|CollectionsAPIDistributedZkTest

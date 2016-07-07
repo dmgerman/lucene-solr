@@ -637,7 +637,7 @@ name|getSolrXml
 parameter_list|()
 block|{
 return|return
-literal|"solr-no-core.xml"
+literal|"solr.xml"
 return|;
 block|}
 DECL|method|SharedFSAutoReplicaFailoverTest
@@ -1345,7 +1345,7 @@ literal|3
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|//solr-no-core.xml has defined workLoopDelay=10s and waitAfterExpiration=10s
+comment|//solr.xml has defined workLoopDelay=10s and waitAfterExpiration=10s
 comment|//Hence waiting for 30 seconds to be on the safe side.
 name|Thread
 operator|.
