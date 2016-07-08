@@ -790,7 +790,9 @@ block|{
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"empty BooleanQuery"
+argument_list|)
 return|;
 block|}
 comment|// optimize 1-clause queries
@@ -891,7 +893,9 @@ comment|// no positive clauses
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"pure negative BooleanQuery"
+argument_list|)
 return|;
 default|default:
 throw|throw

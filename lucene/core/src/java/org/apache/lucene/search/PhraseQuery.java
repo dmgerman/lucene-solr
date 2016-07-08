@@ -1281,7 +1281,9 @@ block|{
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"empty PhraseQuery"
+argument_list|)
 return|;
 block|}
 elseif|else

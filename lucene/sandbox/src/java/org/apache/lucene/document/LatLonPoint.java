@@ -1016,7 +1016,9 @@ comment|// range cannot match as 90.0 can never exist
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"LatLonPoint.newBoxQuery with minLatitude=90.0"
+argument_list|)
 return|;
 block|}
 if|if
@@ -1037,7 +1039,9 @@ comment|// range cannot match as 180.0 can never exist
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"LatLonPoint.newBoxQuery with minLongitude=maxLongitude=180.0"
+argument_list|)
 return|;
 block|}
 elseif|else

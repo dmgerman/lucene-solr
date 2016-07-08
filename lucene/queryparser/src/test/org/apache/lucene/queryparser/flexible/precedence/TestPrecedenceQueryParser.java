@@ -318,6 +318,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|MatchNoDocsQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|PhraseQuery
 import|;
 end_import
@@ -463,7 +477,7 @@ comment|/**  *<p>  * This test case tests {@link PrecedenceQueryParser}.  *</p> 
 end_comment
 
 begin_comment
-comment|//TODO: refactor this to actually extend that class, overriding the tests
+comment|//TODO: refactor this to actually extend that class (QueryParserTestBase), overriding the tests
 end_comment
 
 begin_comment
@@ -975,6 +989,87 @@ operator|+
 name|result
 operator|+
 literal|"/"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|assertMatchNoDocsQuery
+specifier|public
+name|void
+name|assertMatchNoDocsQuery
+parameter_list|(
+name|String
+name|queryString
+parameter_list|,
+name|Analyzer
+name|a
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+name|assertMatchNoDocsQuery
+argument_list|(
+name|getQuery
+argument_list|(
+name|queryString
+argument_list|,
+name|a
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|assertMatchNoDocsQuery
+specifier|public
+name|void
+name|assertMatchNoDocsQuery
+parameter_list|(
+name|Query
+name|query
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+if|if
+condition|(
+name|query
+operator|instanceof
+name|MatchNoDocsQuery
+condition|)
+block|{
+comment|// good
+block|}
+elseif|else
+if|if
+condition|(
+name|query
+operator|instanceof
+name|BooleanQuery
+operator|&&
+operator|(
+operator|(
+name|BooleanQuery
+operator|)
+name|query
+operator|)
+operator|.
+name|clauses
+argument_list|()
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|// good
+block|}
+else|else
+block|{
+name|fail
+argument_list|(
+literal|"expected MatchNoDocsQuery or an empty BooleanQuery but got: "
+operator|+
+name|query
 argument_list|)
 expr_stmt|;
 block|}
@@ -1798,13 +1893,11 @@ throws|throws
 name|Exception
 block|{
 comment|// The numbers go away because SimpleAnalzyer ignores them
-name|assertQueryEquals
+name|assertMatchNoDocsQuery
 argument_list|(
 literal|"3"
 argument_list|,
 literal|null
-argument_list|,
-literal|""
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -2380,22 +2473,18 @@ argument_list|,
 literal|"(+term -(phrase1 phrase2)) term"
 argument_list|)
 expr_stmt|;
-name|assertQueryEquals
+name|assertMatchNoDocsQuery
 argument_list|(
 literal|"stop"
 argument_list|,
 name|qpAnalyzer
-argument_list|,
-literal|""
 argument_list|)
 expr_stmt|;
-name|assertQueryEquals
+name|assertMatchNoDocsQuery
 argument_list|(
 literal|"stop OR stop AND stop"
 argument_list|,
 name|qpAnalyzer
-argument_list|,
-literal|""
 argument_list|)
 expr_stmt|;
 name|assertTrue

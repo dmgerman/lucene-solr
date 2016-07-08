@@ -2161,7 +2161,9 @@ block|{
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"JoinUtil.createJoinQuery with no segments"
+argument_list|)
 return|;
 block|}
 elseif|else
@@ -2226,7 +2228,9 @@ block|{
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"JoinUtil.createJoinQuery: no join values"
+argument_list|)
 return|;
 block|}
 block|}

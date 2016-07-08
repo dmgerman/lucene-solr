@@ -530,7 +530,9 @@ block|{
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"empty string passed to query parser"
+argument_list|)
 return|;
 block|}
 else|else

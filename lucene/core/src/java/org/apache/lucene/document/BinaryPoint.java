@@ -970,7 +970,9 @@ comment|// There are no points, and we cannot guess the bytesPerDim here, so we 
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"empty BinaryPoint.newSetQuery"
+argument_list|)
 return|;
 block|}
 comment|// Don't unexpectedly change the user's incoming values array:

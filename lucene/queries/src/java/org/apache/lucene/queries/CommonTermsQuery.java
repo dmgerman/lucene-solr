@@ -452,7 +452,9 @@ block|{
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"CommonTermsQuery with no terms"
+argument_list|)
 return|;
 block|}
 elseif|else
