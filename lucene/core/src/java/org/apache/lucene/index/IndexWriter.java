@@ -32,29 +32,7 @@ name|java
 operator|.
 name|io
 operator|.
-name|FileNotFoundException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
 name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|file
-operator|.
-name|NoSuchFileException
 import|;
 end_import
 
@@ -9726,26 +9704,6 @@ argument_list|(
 name|file
 argument_list|)
 decl_stmt|;
-assert|assert
-operator|!
-name|slowFileExists
-argument_list|(
-name|directory
-argument_list|,
-name|newFileName
-argument_list|)
-operator|:
-literal|"file \""
-operator|+
-name|newFileName
-operator|+
-literal|"\" already exists; newInfo.files="
-operator|+
-name|newInfo
-operator|.
-name|files
-argument_list|()
-assert|;
 name|directory
 operator|.
 name|copyFrom
@@ -17219,30 +17177,6 @@ range|:
 name|files
 control|)
 block|{
-assert|assert
-name|slowFileExists
-argument_list|(
-name|directory
-argument_list|,
-name|fileName
-argument_list|)
-operator|:
-literal|"file "
-operator|+
-name|fileName
-operator|+
-literal|" does not exist; files="
-operator|+
-name|Arrays
-operator|.
-name|toString
-argument_list|(
-name|directory
-operator|.
-name|listAll
-argument_list|()
-argument_list|)
-assert|;
 comment|// If this trips it means we are missing a call to
 comment|// .checkpoint somewhere, because by the time we
 comment|// are called, deleter should know about every
@@ -18773,54 +18707,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-block|}
-comment|/** Used only by asserts: returns true if the file exists    *  (can be opened), false if it cannot be opened, and    *  (unlike Java's File.exists) throws IOException if    *  there's some unexpected error. */
-DECL|method|slowFileExists
-specifier|static
-name|boolean
-name|slowFileExists
-parameter_list|(
-name|Directory
-name|dir
-parameter_list|,
-name|String
-name|fileName
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-try|try
-block|{
-name|dir
-operator|.
-name|openInput
-argument_list|(
-name|fileName
-argument_list|,
-name|IOContext
-operator|.
-name|DEFAULT
-argument_list|)
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
-return|return
-literal|true
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|NoSuchFileException
-decl||
-name|FileNotFoundException
-name|e
-parameter_list|)
-block|{
-return|return
-literal|false
-return|;
-block|}
 block|}
 comment|/** Anything that will add N docs to the index should reserve first to    *  make sure it's allowed.  This will throw {@code    *  IllegalArgumentException} if it's not allowed. */
 DECL|method|reserveDocs

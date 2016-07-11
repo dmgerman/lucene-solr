@@ -620,6 +620,10 @@ argument_list|,
 name|dir
 argument_list|)
 expr_stmt|;
+name|success
+operator|=
+literal|true
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1185,17 +1189,6 @@ operator|.
 name|version
 argument_list|)
 expr_stmt|;
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|fileNamesToCopy
-init|=
-name|job
-operator|.
-name|getFileNamesToCopy
-argument_list|()
-decl_stmt|;
 comment|// Force this copy job to finish while we wait, now.  Note that this can be very time consuming!
 comment|// NOTE: newNRTPoint detects we are still in init (mgr is null) and does not cancel our copy if a flush happens
 try|try
@@ -3586,11 +3579,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|boolean
-name|doCopyCommitFiles
-init|=
-literal|false
-decl_stmt|;
 name|List
 argument_list|<
 name|Map
