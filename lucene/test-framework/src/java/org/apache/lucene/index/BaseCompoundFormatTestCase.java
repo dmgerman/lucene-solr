@@ -1983,7 +1983,7 @@ lambda|->
 block|{
 name|cfs
 operator|.
-name|renameFile
+name|rename
 argument_list|(
 name|testfile
 argument_list|,

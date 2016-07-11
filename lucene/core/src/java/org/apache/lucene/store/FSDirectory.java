@@ -959,10 +959,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|renameFile
+DECL|method|rename
 specifier|public
 name|void
-name|renameFile
+name|rename
 parameter_list|(
 name|String
 name|source
@@ -1028,8 +1028,24 @@ operator|.
 name|ATOMIC_MOVE
 argument_list|)
 expr_stmt|;
-comment|// TODO: should we move directory fsync to a separate 'syncMetadata' method?
-comment|// for example, to improve listCommits(), IndexFileDeleter could also call that after deleting segments_Ns
+name|maybeDeletePendingFiles
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|syncMetaData
+specifier|public
+name|void
+name|syncMetaData
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// TODO: to improve listCommits(), IndexFileDeleter could call this after deleting segments_Ns
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|IOUtils
 operator|.
 name|fsync

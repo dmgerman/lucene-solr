@@ -905,10 +905,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|renameFile
+DECL|method|rename
 specifier|public
 name|void
-name|renameFile
+name|rename
 parameter_list|(
 name|String
 name|source
@@ -950,6 +950,18 @@ argument_list|,
 name|destPath
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|syncMetaData
+specifier|public
+name|void
+name|syncMetaData
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+comment|// TODO: how?
 block|}
 annotation|@
 name|Override

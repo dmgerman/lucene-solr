@@ -965,10 +965,12 @@ argument_list|()
 throw|;
 block|}
 comment|/** Not implemented    * @throws UnsupportedOperationException always: not supported by CFS */
-DECL|method|renameFile
+annotation|@
+name|Override
+DECL|method|rename
 specifier|public
 name|void
-name|renameFile
+name|rename
 parameter_list|(
 name|String
 name|from
@@ -983,6 +985,14 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
+DECL|method|syncMetaData
+specifier|public
+name|void
+name|syncMetaData
+parameter_list|()
+block|{   }
 comment|/** Returns the length of a file in the directory.    * @throws IOException if the file does not exist */
 annotation|@
 name|Override

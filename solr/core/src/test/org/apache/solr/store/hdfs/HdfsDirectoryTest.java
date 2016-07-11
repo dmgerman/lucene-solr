@@ -790,7 +790,7 @@ argument_list|()
 expr_stmt|;
 name|directory
 operator|.
-name|renameFile
+name|rename
 argument_list|(
 literal|"testing.test"
 argument_list|,

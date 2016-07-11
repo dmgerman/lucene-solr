@@ -280,7 +280,7 @@ argument_list|)
 expr_stmt|;
 name|dir
 operator|.
-name|renameFile
+name|rename
 argument_list|(
 literal|"foo"
 argument_list|,

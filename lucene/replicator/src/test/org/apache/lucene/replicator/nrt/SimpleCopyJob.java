@@ -738,7 +738,7 @@ name|dest
 operator|.
 name|dir
 operator|.
-name|renameFile
+name|rename
 argument_list|(
 name|tmpFileName
 argument_list|,

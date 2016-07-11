@@ -927,11 +927,11 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|renameFile
+DECL|method|rename
 specifier|public
 specifier|synchronized
 name|void
-name|renameFile
+name|rename
 parameter_list|(
 name|String
 name|source
@@ -1038,7 +1038,7 @@ try|try
 block|{
 name|in
 operator|.
-name|renameFile
+name|rename
 argument_list|(
 name|source
 argument_list|,
@@ -1106,6 +1106,42 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|syncMetaData
+specifier|public
+specifier|synchronized
+name|void
+name|syncMetaData
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|maybeYield
+argument_list|()
+expr_stmt|;
+name|maybeThrowDeterministicException
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|crashed
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"cannot rename after crash"
+argument_list|)
+throw|;
+block|}
+name|in
+operator|.
+name|syncMetaData
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|sizeInBytes
 specifier|public
@@ -1463,6 +1499,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO: we should also mess with any recent file renames, file deletions, if
+comment|// syncMetaData was not called!!
 comment|// Must make a copy because we change the incoming unsyncedFiles
 comment|// when we create temp files, delete, etc., below:
 specifier|final

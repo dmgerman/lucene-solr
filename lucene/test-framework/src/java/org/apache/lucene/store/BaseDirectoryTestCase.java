@@ -735,7 +735,7 @@ argument_list|()
 expr_stmt|;
 name|dir
 operator|.
-name|renameFile
+name|rename
 argument_list|(
 literal|"foobar"
 argument_list|,
@@ -8366,7 +8366,7 @@ lambda|->
 block|{
 name|fsDir
 operator|.
-name|renameFile
+name|rename
 argument_list|(
 name|fileName
 argument_list|,
