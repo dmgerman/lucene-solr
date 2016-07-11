@@ -3203,17 +3203,15 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|Thread
-name|shutdownThread
-init|=
-operator|new
-name|Thread
+name|coreContainerWorkExecutor
+operator|.
+name|submit
+argument_list|(
+call|(
+name|Runnable
+call|)
 argument_list|()
-block|{
-specifier|public
-name|void
-name|run
-parameter_list|()
+operator|->
 block|{
 try|try
 block|{
@@ -3280,15 +3278,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
-decl_stmt|;
-name|coreContainerWorkExecutor
-operator|.
-name|submit
-argument_list|(
-name|shutdownThread
-argument_list|)
-expr_stmt|;
+block|)
+empty_stmt|;
 block|}
 else|else
 block|{
@@ -3317,6 +3308,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_class
+
+begin_function
 DECL|method|securityNodeChanged
 specifier|public
 name|void
@@ -3387,6 +3381,9 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|checkForDuplicateCoreNames
 specifier|private
 specifier|static
@@ -3487,6 +3484,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_decl_stmt
 DECL|field|isShutDown
 specifier|private
 specifier|volatile
@@ -3495,6 +3495,9 @@ name|isShutDown
 init|=
 literal|false
 decl_stmt|;
+end_decl_stmt
+
+begin_function
 DECL|method|isShutDown
 specifier|public
 name|boolean
@@ -3505,7 +3508,13 @@ return|return
 name|isShutDown
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Stops all cores.    */
+end_comment
+
+begin_function
 DECL|method|shutdown
 specifier|public
 name|void
@@ -3825,6 +3834,9 @@ argument_list|)
 expr_stmt|;
 comment|// best effort
 block|}
+end_function
+
+begin_function
 DECL|method|cancelCoreRecoveries
 specifier|public
 name|void
@@ -3883,6 +3895,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_function
 annotation|@
 name|Override
 DECL|method|finalize
@@ -3926,6 +3941,9 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|getCoresLocator
 specifier|public
 name|CoresLocator
@@ -3936,6 +3954,9 @@ return|return
 name|coresLocator
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|registerCore
 specifier|protected
 name|SolrCore
@@ -4162,7 +4183,13 @@ name|old
 return|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a new core, publishing the core state to the cluster    * @param coreName the core name    * @param parameters the core parameters    * @return the newly created core    */
+end_comment
+
+begin_function
 DECL|method|create
 specifier|public
 name|SolrCore
@@ -4199,7 +4226,13 @@ name|parameters
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a new core in a specified instance directory, publishing the core state to the cluster    * @param coreName the core name    * @param instancePath the instance directory    * @param parameters the core parameters    * @return the newly created core    */
+end_comment
+
+begin_function
 DECL|method|create
 specifier|public
 name|SolrCore
@@ -4529,7 +4562,13 @@ argument_list|)
 throw|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Creates a new core based on a CoreDescriptor.    *    * @param dcore        a core descriptor    * @param publishState publish core state to the cluster if true    *    * @return the newly created core    */
+end_comment
+
+begin_function
 DECL|method|create
 specifier|private
 name|SolrCore
@@ -4878,7 +4917,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * @return a Collection of registered SolrCores    */
+end_comment
+
+begin_function
 DECL|method|getCores
 specifier|public
 name|Collection
@@ -4895,7 +4940,13 @@ name|getCores
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * @return a Collection of the names that cores are mapped to    */
+end_comment
+
+begin_function
 DECL|method|getCoreNames
 specifier|public
 name|Collection
@@ -4912,7 +4963,13 @@ name|getCoreNames
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** This method is currently experimental.    * @return a Collection of the names that a specific core is mapped to.    */
+end_comment
+
+begin_function
 DECL|method|getCoreNames
 specifier|public
 name|Collection
@@ -4934,7 +4991,13 @@ name|core
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * get a list of all the cores that are currently loaded    * @return a list of al lthe available core names in either permanent or transient core lists.    */
+end_comment
+
+begin_function
 DECL|method|getAllCoreNames
 specifier|public
 name|Collection
@@ -4951,7 +5014,13 @@ name|getAllCoreNames
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Returns an immutable Map of Exceptions that occured when initializing     * SolrCores (either at startup, or do to runtime requests to create cores)     * keyed off of the name (String) of the SolrCore that had the Exception     * during initialization.    *<p>    * While the Map returned by this method is immutable and will not change     * once returned to the client, the source data used to generate this Map     * can be changed as various SolrCore operations are performed:    *</p>    *<ul>    *<li>Failed attempts to create new SolrCores will add new Exceptions.</li>    *<li>Failed attempts to re-create a SolrCore using a name already contained in this Map will replace the Exception.</li>    *<li>Failed attempts to reload a SolrCore will cause an Exception to be added to this list -- even though the existing SolrCore with that name will continue to be available.</li>    *<li>Successful attempts to re-created a SolrCore using a name already contained in this Map will remove the Exception.</li>    *<li>Registering an existing SolrCore with a name already contained in this Map (ie: ALIAS or SWAP) will remove the Exception.</li>    *</ul>    */
+end_comment
+
+begin_function
 DECL|method|getCoreInitFailures
 specifier|public
 name|Map
@@ -4972,8 +5041,17 @@ name|coreInitFailures
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|// ---------------- Core name related methods ---------------
+end_comment
+
+begin_comment
 comment|/**    * Recreates a SolrCore.    * While the new core is loading, requests will continue to be dispatched to    * and processed by the old core    *     * @param name the name of the SolrCore to reload    */
+end_comment
+
+begin_function
 DECL|method|reload
 specifier|public
 name|void
@@ -5148,7 +5226,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Swaps two SolrCore descriptors.    */
+end_comment
+
+begin_function
 DECL|method|swap
 specifier|public
 name|void
@@ -5230,7 +5314,13 @@ name|n1
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Unload a core from this container, leaving all files on disk    * @param name the name of the core to unload    */
+end_comment
+
+begin_function
 DECL|method|unload
 specifier|public
 name|void
@@ -5252,7 +5342,13 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Unload a core from this container, optionally removing the core's data and configuration    *    * @param name the name of the core to unload    * @param deleteIndexDir if true, delete the core's index on close    * @param deleteDataDir if true, delete the core's data directory on close    * @param deleteInstanceDir if true, delete the core's instance directory on close    */
+end_comment
+
+begin_function
 DECL|method|unload
 specifier|public
 name|void
@@ -5517,6 +5613,9 @@ throw|;
 block|}
 block|}
 block|}
+end_function
+
+begin_function
 DECL|method|rename
 specifier|public
 name|void
@@ -5593,7 +5692,13 @@ expr_stmt|;
 block|}
 block|}
 block|}
+end_function
+
+begin_comment
 comment|/**    * Get the CoreDescriptors for all cores managed by this container    * @return a List of CoreDescriptors    */
+end_comment
+
+begin_function
 DECL|method|getCoreDescriptors
 specifier|public
 name|List
@@ -5610,6 +5715,9 @@ name|getCoreDescriptors
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getCoreDescriptor
 specifier|public
 name|CoreDescriptor
@@ -5649,6 +5757,9 @@ return|return
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getCoreRootDirectory
 specifier|public
 name|Path
@@ -5662,7 +5773,13 @@ name|getCoreRootDirectory
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Gets a core by name and increase its refcount.    *    * @see SolrCore#close()    * @param name the core name    * @return the core if found, null if a SolrCore by this name does not exist    * @exception SolrException if a SolrCore with this name failed to be initialized    */
+end_comment
+
+begin_function
 DECL|method|getCore
 specifier|public
 name|SolrCore
@@ -5847,6 +5964,9 @@ return|return
 name|core
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getBlobRepository
 specifier|public
 name|BlobRepository
@@ -5857,7 +5977,13 @@ return|return
 name|blobRepository
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * If using asyncSolrCoreLoad=true, calling this after {@link #load()} will    * not return until all cores have finished loading.    *     * @param timeoutMs timeout, upon which method simply returns    */
+end_comment
+
+begin_function
 DECL|method|waitForLoadingCoresToFinish
 specifier|public
 name|void
@@ -5875,6 +6001,9 @@ name|timeoutMs
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_function
 DECL|method|waitForLoadingCore
 specifier|public
 name|void
@@ -5897,7 +6026,13 @@ name|timeoutMs
 argument_list|)
 expr_stmt|;
 block|}
+end_function
+
+begin_comment
 comment|// ---------------- CoreContainer request handlers --------------
+end_comment
+
+begin_function
 DECL|method|createHandler
 specifier|protected
 parameter_list|<
@@ -5945,6 +6080,9 @@ block|}
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getMultiCoreHandler
 specifier|public
 name|CoreAdminHandler
@@ -5955,6 +6093,9 @@ return|return
 name|coreAdminHandler
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getCollectionsHandler
 specifier|public
 name|CollectionsHandler
@@ -5965,6 +6106,9 @@ return|return
 name|collectionsHandler
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getInfoHandler
 specifier|public
 name|InfoHandler
@@ -5975,6 +6119,9 @@ return|return
 name|infoHandler
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getConfigSetsHandler
 specifier|public
 name|ConfigSetsHandler
@@ -5985,6 +6132,9 @@ return|return
 name|configSetsHandler
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getHostName
 specifier|public
 name|String
@@ -5997,7 +6147,13 @@ operator|.
 name|hostName
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Gets the alternate path for multicore handling:    * This is used in case there is a registered unnamed core (aka name is "") to    * declare an alternate way of accessing named cores.    * This can also be used in a pseudo single-core environment so admins can prepare    * a new version before swapping.    */
+end_comment
+
+begin_function
 DECL|method|getManagementPath
 specifier|public
 name|String
@@ -6011,6 +6167,9 @@ name|getManagementPath
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getLogging
 specifier|public
 name|LogWatcher
@@ -6021,7 +6180,13 @@ return|return
 name|logging
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Determines whether the core is already loaded or not but does NOT load the core    *    */
+end_comment
+
+begin_function
 DECL|method|isLoaded
 specifier|public
 name|boolean
@@ -6040,6 +6205,9 @@ name|name
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|isLoadedNotPendingClose
 specifier|public
 name|boolean
@@ -6058,7 +6226,13 @@ name|name
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/**    * Gets a solr core descriptor for a core that is not loaded. Note that if the caller calls this on a    * loaded core, the unloaded descriptor will be returned.    *    * @param cname - name of the unloaded core descriptor to load. NOTE:    * @return a coreDescriptor. May return null    */
+end_comment
+
+begin_function
 DECL|method|getUnloadedCoreDescriptor
 specifier|public
 name|CoreDescriptor
@@ -6077,6 +6251,9 @@ name|cname
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getSolrHome
 specifier|public
 name|String
@@ -6087,6 +6264,9 @@ return|return
 name|solrHome
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|isZooKeeperAware
 specifier|public
 name|boolean
@@ -6102,6 +6282,9 @@ operator|!=
 literal|null
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getZkController
 specifier|public
 name|ZkController
@@ -6115,6 +6298,9 @@ name|getZkController
 argument_list|()
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getConfig
 specifier|public
 name|NodeConfig
@@ -6125,7 +6311,13 @@ return|return
 name|cfg
 return|;
 block|}
+end_function
+
+begin_comment
 comment|/** The default ShardHandlerFactory used to communicate with other solr instances */
+end_comment
+
+begin_function
 DECL|method|getShardHandlerFactory
 specifier|public
 name|ShardHandlerFactory
@@ -6136,6 +6328,9 @@ return|return
 name|shardHandlerFactory
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getUpdateShardHandler
 specifier|public
 name|UpdateShardHandler
@@ -6146,6 +6341,9 @@ return|return
 name|updateShardHandler
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getResourceLoader
 specifier|public
 name|SolrResourceLoader
@@ -6156,6 +6354,9 @@ return|return
 name|loader
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|isCoreLoading
 specifier|public
 name|boolean
@@ -6174,6 +6375,9 @@ name|name
 argument_list|)
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getAuthorizationPlugin
 specifier|public
 name|AuthorizationPlugin
@@ -6192,6 +6396,9 @@ operator|.
 name|plugin
 return|;
 block|}
+end_function
+
+begin_function
 DECL|method|getAuthenticationPlugin
 specifier|public
 name|AuthenticationPlugin
@@ -6210,71 +6417,69 @@ operator|.
 name|plugin
 return|;
 block|}
-block|}
-end_class
+end_function
 
-begin_class
+begin_expr_stmt
+unit|}  class
 DECL|class|CloserThread
-class|class
 name|CloserThread
-extends|extends
+expr|extends
 name|Thread
 block|{
 DECL|field|container
 name|CoreContainer
 name|container
-decl_stmt|;
+block|;
 DECL|field|solrCores
 name|SolrCores
 name|solrCores
-decl_stmt|;
+block|;
 DECL|field|cfg
 name|NodeConfig
 name|cfg
-decl_stmt|;
+block|;
 DECL|method|CloserThread
 name|CloserThread
-parameter_list|(
+argument_list|(
 name|CoreContainer
 name|container
-parameter_list|,
+argument_list|,
 name|SolrCores
 name|solrCores
-parameter_list|,
+argument_list|,
 name|NodeConfig
 name|cfg
-parameter_list|)
+argument_list|)
 block|{
 name|this
 operator|.
 name|container
 operator|=
 name|container
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|solrCores
 operator|=
 name|solrCores
-expr_stmt|;
+block|;
 name|this
 operator|.
 name|cfg
 operator|=
 name|cfg
-expr_stmt|;
-block|}
+block|;   }
 comment|// It's important that this be the _only_ thread removing things from pendingDynamicCloses!
 comment|// This is single-threaded, but I tried a multi-threaded approach and didn't see any performance gains, so
 comment|// there's no good justification for the complexity. I suspect that the locking on things like DefaultSolrCoreState
 comment|// essentially create a single-threaded process anyway.
-annotation|@
+expr|@
 name|Override
 DECL|method|run
 specifier|public
 name|void
 name|run
-parameter_list|()
+argument_list|()
 block|{
 while|while
 condition|(
@@ -6314,17 +6519,19 @@ block|{
 comment|// Well, if we've been told to stop, we will. Otherwise, continue on and check to see if there are
 comment|// any cores to close.
 block|}
-block|}
-for|for
-control|(
+end_expr_stmt
+
+begin_expr_stmt
+unit|}       for
+operator|(
 name|SolrCore
 name|removeMe
-init|=
+operator|=
 name|solrCores
 operator|.
 name|getCoreToClose
 argument_list|()
-init|;
+expr|;
 name|removeMe
 operator|!=
 literal|null
@@ -6334,14 +6541,14 @@ name|container
 operator|.
 name|isShutDown
 argument_list|()
-condition|;
+expr|;
 name|removeMe
 operator|=
 name|solrCores
 operator|.
 name|getCoreToClose
 argument_list|()
-control|)
+operator|)
 block|{
 try|try
 block|{
@@ -6351,6 +6558,9 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+end_expr_stmt
+
+begin_finally
 finally|finally
 block|{
 name|solrCores
@@ -6364,11 +6574,8 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-block|}
-block|}
-block|}
-block|}
-end_class
+end_finally
 
+unit|}     }   } }
 end_unit
 

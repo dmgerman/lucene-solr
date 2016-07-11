@@ -4943,14 +4943,9 @@ argument_list|)
 decl_stmt|;
 operator|new
 name|Thread
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
+argument_list|(
 parameter_list|()
+lambda|->
 block|{
 try|try
 block|{
@@ -4996,7 +4991,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-block|}
+argument_list|)
 operator|.
 name|start
 argument_list|()

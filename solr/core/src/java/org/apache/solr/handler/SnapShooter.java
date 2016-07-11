@@ -818,22 +818,14 @@ parameter_list|)
 block|{
 operator|new
 name|Thread
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
+argument_list|(
 parameter_list|()
-block|{
+lambda|->
 name|deleteNamedSnapshot
 argument_list|(
 name|replicationHandler
 argument_list|)
-expr_stmt|;
-block|}
-block|}
+argument_list|)
 operator|.
 name|start
 argument_list|()
@@ -1022,17 +1014,12 @@ name|getGeneration
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|//TODO should use Solr's ExecutorUtil
 operator|new
 name|Thread
-argument_list|()
-block|{
-comment|//TODO should use Solr's ExecutorUtil
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
+argument_list|(
 parameter_list|()
+lambda|->
 block|{
 try|try
 block|{
@@ -1139,7 +1126,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
+argument_list|)
 operator|.
 name|start
 argument_list|()

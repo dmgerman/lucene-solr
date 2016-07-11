@@ -1684,25 +1684,16 @@ name|myId
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|//do this in a separate thread because any wait is interrupted in this main thread
 operator|new
 name|Thread
 argument_list|(
+name|this
+operator|::
+name|checkIfIamStillLeader
+argument_list|,
 literal|"OverseerExitThread"
 argument_list|)
-block|{
-comment|//do this in a separate thread because any wait is interrupted in this main thread
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
-parameter_list|()
-block|{
-name|checkIfIamStillLeader
-argument_list|()
-expr_stmt|;
-block|}
-block|}
 operator|.
 name|start
 argument_list|()

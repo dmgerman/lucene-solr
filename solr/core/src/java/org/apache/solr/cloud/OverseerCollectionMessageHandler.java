@@ -4841,14 +4841,9 @@ comment|//if there are too many nodes this command may time out. And most likely
 comment|// overseers are created when there are too many nodes  . So , do this operation in a separate thread
 operator|new
 name|Thread
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
+argument_list|(
 parameter_list|()
+lambda|->
 block|{
 try|try
 block|{
@@ -4877,7 +4872,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
+argument_list|)
 operator|.
 name|start
 argument_list|()

@@ -13627,17 +13627,12 @@ argument_list|(
 name|listeners
 argument_list|)
 decl_stmt|;
+comment|// run these in a separate thread because this can be long running
 operator|new
 name|Thread
-argument_list|()
-block|{
-comment|// run these in a separate thread because this can be long running
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
+argument_list|(
 parameter_list|()
+lambda|->
 block|{
 name|log
 operator|.
@@ -13683,7 +13678,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
+argument_list|)
 operator|.
 name|start
 argument_list|()
