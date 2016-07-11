@@ -733,13 +733,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9287"
-argument_list|)
 DECL|method|testScoreAndAllRealFieldsRTG
 specifier|public
 name|void
@@ -914,13 +907,6 @@ literal|"//result/doc[count(*)=1]"
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9287"
-argument_list|)
 DECL|method|testScoreAndExplicitRealFieldsRTG
 specifier|public
 name|void
@@ -1497,7 +1483,7 @@ name|AwaitsFix
 argument_list|(
 name|bugUrl
 operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9287"
+literal|"https://issues.apache.org/jira/browse/SOLR-9285"
 argument_list|)
 DECL|method|testFunctionsAndScoreRTG
 specifier|public
@@ -1507,6 +1493,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// NOTE: once this test is fixed to pass, testAugmentersRTG should also be updated to test a abs(val_i)
 comment|// if we use RTG (committed or otherwise) score should be ignored
 for|for
 control|(
@@ -2238,13 +2225,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9287"
-argument_list|)
 DECL|method|testGlobsAndScoreRTG
 specifier|public
 name|void
@@ -2591,6 +2571,7 @@ argument_list|)
 control|)
 block|{
 comment|// NOTE: once testDocIdAugmenterRTG can pass, [docid] should be tested here as well.
+comment|// NOTE: once testFunctionsAndScoreRTG can pass, abs(val_i) should be tested here as well
 for|for
 control|(
 name|SolrParams
@@ -2662,6 +2643,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 comment|// ,"//doc/int[@name='[docid]']" // TODO
+comment|// ,"//doc/gloat[@name='abs(val_i)']" // TODO
 argument_list|,
 literal|"//doc/str[@name='[shard]'][.='[not a shard request]']"
 comment|// RTG: [explain] should be missing (ignored)
@@ -2790,6 +2772,7 @@ argument_list|)
 control|)
 block|{
 comment|// NOTE: once testDocIdAugmenterRTG can pass, [docid] should be tested here as well.
+comment|// NOTE: once testFunctionsAndScoreRTG can pass, abs(val_i) should be tested here as well
 for|for
 control|(
 name|SolrParams
@@ -2863,6 +2846,7 @@ literal|"count(//doc)=1"
 argument_list|,
 literal|"//doc/str[@name='id']"
 comment|// ,"//doc/int[@name='[docid]']" // TODO
+comment|// ,"//doc/gloat[@name='abs(val_i)']" // TODO
 comment|// RTG: [explain] should be missing (ignored)
 argument_list|,
 literal|"//doc/int[@name='x_alias'][.=10]"
@@ -2996,13 +2980,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9287"
-argument_list|)
 DECL|method|testAugmentersAndScoreRTG
 specifier|public
 name|void
@@ -3028,6 +3005,7 @@ argument_list|)
 control|)
 block|{
 comment|// NOTE: once testDocIdAugmenterRTG can pass, [docid] should be tested here as well.
+comment|// NOTE: once testFunctionsAndScoreRTG can pass, abs(val_i) should be tested here as well
 name|assertQ
 argument_list|(
 name|id
@@ -3051,6 +3029,7 @@ argument_list|,
 literal|"x_alias:[value v=10 t=int],score"
 argument_list|)
 comment|// ,"//doc/int[@name='[docid]']" // TODO
+comment|// ,"//doc/gloat[@name='abs(val_i)']" // TODO
 argument_list|,
 literal|"//doc/int[@name='x_alias'][.=10]"
 argument_list|,
@@ -3125,6 +3104,7 @@ argument_list|,
 literal|"xml"
 argument_list|)
 comment|// ,"//doc/int[@name='[docid]']" // TODO
+comment|// ,"//doc/gloat[@name='abs(val_i)']" // TODO
 argument_list|,
 literal|"//doc/int[@name='x_alias'][.=10]"
 comment|// RTG: [explain] and score should be missing (ignored)
@@ -3318,13 +3298,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9287"
-argument_list|)
 DECL|method|testAugmentersGlobsExplicitAndScoreOhMyRTG
 specifier|public
 name|void
@@ -3351,6 +3324,7 @@ name|Arrays
 operator|.
 name|asList
 comment|// NOTE: once testDocIdAugmenterRTG can pass, [docid] should be tested here as well.
+comment|// NOTE: once testFunctionsAndScoreRTG can pass, abs(val_i) should be tested here as well
 argument_list|(
 literal|"id"
 argument_list|,
@@ -3504,13 +3478,14 @@ literal|"count(//doc)=1"
 argument_list|,
 literal|"//doc/str[@name='id']"
 comment|// ,"//doc/int[@name='[docid]']" // TODO
+comment|// ,"//doc/gloat[@name='abs(val_i)']" // TODO
 comment|// RTG: [explain] and score should be missing (ignored)
 argument_list|,
 literal|"//doc/int[@name='val_i'][.=1]"
 argument_list|,
 literal|"//doc/str[@name='subject']"
 argument_list|,
-literal|"//result/doc[count(*)=3]"
+literal|"//doc[count(*)=3]"
 argument_list|)
 expr_stmt|;
 block|}
