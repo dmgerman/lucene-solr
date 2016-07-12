@@ -11621,6 +11621,9 @@ name|COLLECTION
 argument_list|,
 literal|"50000000"
 argument_list|,
+operator|-
+literal|1
+argument_list|,
 literal|1000000
 argument_list|,
 name|sParams
@@ -16734,11 +16737,11 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|Long
+name|String
 name|tip
 init|=
 operator|(
-name|Long
+name|String
 operator|)
 name|t
 operator|.
@@ -16749,12 +16752,18 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|tip
 operator|.
-name|intValue
-argument_list|()
-operator|!=
+name|equals
+argument_list|(
+name|Integer
+operator|.
+name|toString
+argument_list|(
 name|val
+argument_list|)
+argument_list|)
 condition|)
 block|{
 throw|throw
@@ -16764,9 +16773,6 @@ argument_list|(
 literal|"Found value:"
 operator|+
 name|tip
-operator|.
-name|intValue
-argument_list|()
 operator|+
 literal|" expecting:"
 operator|+
@@ -16956,11 +16962,11 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-name|Long
+name|String
 name|tip
 init|=
 operator|(
-name|Long
+name|String
 operator|)
 name|t
 operator|.
@@ -16971,12 +16977,18 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+operator|!
 name|tip
 operator|.
-name|intValue
-argument_list|()
-operator|!=
+name|equals
+argument_list|(
+name|Integer
+operator|.
+name|toString
+argument_list|(
 name|val
+argument_list|)
+argument_list|)
 condition|)
 block|{
 throw|throw
@@ -16986,9 +16998,6 @@ argument_list|(
 literal|"Found value:"
 operator|+
 name|tip
-operator|.
-name|intValue
-argument_list|()
 operator|+
 literal|" expecting:"
 operator|+

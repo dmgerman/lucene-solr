@@ -4138,7 +4138,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Long"
+literal|"String"
 argument_list|,
 name|resultSetMetaData
 operator|.
@@ -4200,7 +4200,7 @@ name|assertEquals
 argument_list|(
 name|Types
 operator|.
-name|DOUBLE
+name|VARCHAR
 argument_list|,
 name|resultSetMetaData
 operator|.

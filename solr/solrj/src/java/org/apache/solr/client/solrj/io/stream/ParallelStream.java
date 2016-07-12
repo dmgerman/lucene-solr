@@ -779,7 +779,7 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"Invalid expression %s - expecting a single 'workersParam' parameter of type positive integer but didn't find one"
+literal|"Invalid expression %s - expecting a single 'workers' parameter of type positive integer but didn't find one"
 argument_list|,
 name|expression
 argument_list|)
