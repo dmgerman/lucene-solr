@@ -19776,6 +19776,10 @@ argument_list|,
 literal|"a_f"
 argument_list|,
 literal|"1"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ha ha bla blah0"
 argument_list|)
 operator|.
 name|add
@@ -19795,6 +19799,10 @@ argument_list|,
 literal|"a_f"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ha ha bla blah2"
 argument_list|)
 operator|.
 name|add
@@ -19814,6 +19822,10 @@ argument_list|,
 literal|"a_f"
 argument_list|,
 literal|"3"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ha ha bla blah3"
 argument_list|)
 operator|.
 name|add
@@ -19833,6 +19845,10 @@ argument_list|,
 literal|"a_f"
 argument_list|,
 literal|"4"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ha ha bla blah4"
 argument_list|)
 operator|.
 name|add
@@ -19852,6 +19868,10 @@ argument_list|,
 literal|"a_f"
 argument_list|,
 literal|"5"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ha ha bla blah5"
 argument_list|)
 operator|.
 name|add
@@ -19871,6 +19891,10 @@ argument_list|,
 literal|"a_f"
 argument_list|,
 literal|"6"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ha ha bla blah6"
 argument_list|)
 operator|.
 name|add
@@ -19890,6 +19914,10 @@ argument_list|,
 literal|"a_f"
 argument_list|,
 literal|"7"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ha ha bla blah7"
 argument_list|)
 operator|.
 name|add
@@ -19909,6 +19937,10 @@ argument_list|,
 literal|"a_f"
 argument_list|,
 literal|"8"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ha ha bla blah8"
 argument_list|)
 operator|.
 name|add
@@ -19928,6 +19960,10 @@ argument_list|,
 literal|"a_f"
 argument_list|,
 literal|"9"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ha ha bla blah9"
 argument_list|)
 operator|.
 name|add
@@ -19947,6 +19983,10 @@ argument_list|,
 literal|"a_f"
 argument_list|,
 literal|"10"
+argument_list|,
+literal|"subject"
+argument_list|,
+literal|"ha ha bla blah10"
 argument_list|)
 operator|.
 name|commit
@@ -20548,6 +20588,90 @@ argument_list|,
 literal|"12"
 argument_list|,
 literal|"13"
+argument_list|)
+expr_stmt|;
+comment|//Test text extraction
+name|expression
+operator|=
+name|StreamExpressionParser
+operator|.
+name|parse
+argument_list|(
+literal|"parallel(collection1, "
+operator|+
+literal|"workers=\"2\", "
+operator|+
+literal|"sort=\"_version_ asc\","
+operator|+
+literal|"topic(collection1, "
+operator|+
+literal|"collection1, "
+operator|+
+literal|"q=\"subject:bla\", "
+operator|+
+literal|"fl=\"subject\", "
+operator|+
+literal|"id=\"3000000\", "
+operator|+
+literal|"initialCheckpoint=\"0\", "
+operator|+
+literal|"partitionKeys=\"id\"))"
+argument_list|)
+expr_stmt|;
+name|stream
+operator|=
+name|factory
+operator|.
+name|constructStream
+argument_list|(
+name|expression
+argument_list|)
+expr_stmt|;
+name|context
+operator|=
+operator|new
+name|StreamContext
+argument_list|()
+expr_stmt|;
+name|context
+operator|.
+name|setSolrClientCache
+argument_list|(
+name|cache
+argument_list|)
+expr_stmt|;
+name|stream
+operator|.
+name|setStreamContext
+argument_list|(
+name|context
+argument_list|)
+expr_stmt|;
+name|assertTopicSubject
+argument_list|(
+name|stream
+argument_list|,
+literal|"ha ha bla blah0"
+argument_list|,
+literal|"ha ha bla blah1"
+argument_list|,
+literal|"ha ha bla blah2"
+argument_list|,
+literal|"ha ha bla blah3"
+argument_list|,
+literal|"ha ha bla blah4"
+argument_list|,
+literal|"ha ha bla blah5"
+argument_list|,
+literal|"ha ha bla blah6"
+argument_list|,
+literal|"ha ha bla blah7"
+argument_list|,
+literal|"ha ha bla blah8"
+argument_list|,
+literal|"ha ha bla blah9"
+argument_list|,
+literal|"ha ha bla blah10"
 argument_list|)
 expr_stmt|;
 block|}
@@ -25888,6 +26012,135 @@ operator|+
 name|count
 argument_list|)
 throw|;
+block|}
+block|}
+DECL|method|assertTopicSubject
+specifier|private
+name|void
+name|assertTopicSubject
+parameter_list|(
+name|TupleStream
+name|stream
+parameter_list|,
+name|String
+modifier|...
+name|textArray
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+name|long
+name|version
+init|=
+operator|-
+literal|1
+decl_stmt|;
+name|int
+name|count
+init|=
+literal|0
+decl_stmt|;
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|texts
+init|=
+operator|new
+name|ArrayList
+argument_list|()
+decl_stmt|;
+for|for
+control|(
+name|String
+name|text
+range|:
+name|textArray
+control|)
+block|{
+name|texts
+operator|.
+name|add
+argument_list|(
+name|text
+argument_list|)
+expr_stmt|;
+block|}
+try|try
+block|{
+name|stream
+operator|.
+name|open
+argument_list|()
+expr_stmt|;
+while|while
+condition|(
+literal|true
+condition|)
+block|{
+name|Tuple
+name|tuple
+init|=
+name|stream
+operator|.
+name|read
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|tuple
+operator|.
+name|EOF
+condition|)
+block|{
+break|break;
+block|}
+else|else
+block|{
+operator|++
+name|count
+expr_stmt|;
+name|String
+name|subject
+init|=
+name|tuple
+operator|.
+name|getString
+argument_list|(
+literal|"subject"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+operator|!
+name|texts
+operator|.
+name|contains
+argument_list|(
+name|subject
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|Exception
+argument_list|(
+literal|"Expecting subject in topic run not found:"
+operator|+
+name|subject
+argument_list|)
+throw|;
+block|}
+block|}
+block|}
+block|}
+finally|finally
+block|{
+name|stream
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}
