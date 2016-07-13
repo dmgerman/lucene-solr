@@ -4112,7 +4112,7 @@ name|artifact
 operator|=
 name|artifact
 operator|.
-name|replace
+name|replaceAll
 argument_list|(
 literal|"(?<!solr-)analysis-"
 argument_list|,
