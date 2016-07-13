@@ -60,16 +60,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -118,9 +108,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|search
 operator|.
-name|Term
+name|FilterWeight
 import|;
 end_import
 
@@ -446,14 +436,8 @@ specifier|static
 class|class
 name|BlockJoinWeight
 extends|extends
-name|Weight
+name|FilterWeight
 block|{
-DECL|field|childWeight
-specifier|private
-specifier|final
-name|Weight
-name|childWeight
-decl_stmt|;
 DECL|field|parentsFilter
 specifier|private
 specifier|final
@@ -486,13 +470,9 @@ block|{
 name|super
 argument_list|(
 name|joinQuery
+argument_list|,
+name|childWeight
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|childWeight
-operator|=
-name|childWeight
 expr_stmt|;
 name|this
 operator|.
@@ -505,28 +485,6 @@ operator|.
 name|scoreMode
 operator|=
 name|scoreMode
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|extractTerms
-specifier|public
-name|void
-name|extractTerms
-parameter_list|(
-name|Set
-argument_list|<
-name|Term
-argument_list|>
-name|terms
-parameter_list|)
-block|{
-name|childWeight
-operator|.
-name|extractTerms
-argument_list|(
-name|terms
-argument_list|)
 expr_stmt|;
 block|}
 comment|// NOTE: acceptDocs applies (and is checked) only in the
@@ -548,7 +506,7 @@ specifier|final
 name|Scorer
 name|childScorer
 init|=
-name|childWeight
+name|in
 operator|.
 name|scorer
 argument_list|(
@@ -687,7 +645,7 @@ name|explain
 argument_list|(
 name|context
 argument_list|,
-name|childWeight
+name|in
 argument_list|)
 return|;
 block|}
