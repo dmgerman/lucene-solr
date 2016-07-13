@@ -4693,6 +4693,17 @@ argument_list|()
 expr_stmt|;
 block|}
 decl_stmt|;
+comment|/**    * We should try keeping this to a minimum. Only in scenarios where the value being read is a user facing property    * should we force update to make sure we are reading the latest value.    */
+DECL|method|forceUpdateClusterProperties
+specifier|public
+name|void
+name|forceUpdateClusterProperties
+parameter_list|()
+block|{
+name|loadClusterProperties
+argument_list|()
+expr_stmt|;
+block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(

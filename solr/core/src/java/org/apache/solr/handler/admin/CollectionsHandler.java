@@ -6527,6 +6527,20 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//Refresh the cluster property file to make sure the value set for location is the latest
+name|h
+operator|.
+name|coreContainer
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|forceUpdateClusterProperties
+argument_list|()
+expr_stmt|;
 comment|// Check if the location is specified in the cluster property.
 name|location
 operator|=
@@ -6841,6 +6855,20 @@ operator|==
 literal|null
 condition|)
 block|{
+comment|//Refresh the cluster property file to make sure the value set for location is the latest
+name|h
+operator|.
+name|coreContainer
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getZkStateReader
+argument_list|()
+operator|.
+name|forceUpdateClusterProperties
+argument_list|()
+expr_stmt|;
 comment|// Check if the location is specified in the cluster property.
 name|location
 operator|=
