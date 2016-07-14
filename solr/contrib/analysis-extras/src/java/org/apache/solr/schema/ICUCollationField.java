@@ -1037,7 +1037,7 @@ return|;
 block|}
 comment|/**    * Read custom rules from a file, and create a RuleBasedCollator    * The file cannot support comments, as # might be in the rules!    */
 DECL|method|createFromRules
-specifier|private
+specifier|static
 name|Collator
 name|createFromRules
 parameter_list|(
