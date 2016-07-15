@@ -8043,16 +8043,6 @@ operator|.
 name|None
 argument_list|)
 decl_stmt|;
-name|query
-operator|=
-operator|new
-name|BoostQuery
-argument_list|(
-name|query
-argument_list|,
-name|boost
-argument_list|)
-expr_stmt|;
 name|FieldQuery
 name|fq
 init|=
