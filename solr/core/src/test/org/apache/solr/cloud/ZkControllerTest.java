@@ -1950,6 +1950,11 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+name|super
+operator|.
+name|shutdown
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 block|}
