@@ -4480,9 +4480,9 @@ literal|10
 argument_list|)
 return|;
 block|}
-comment|// Wraps FVH to allow pass-by-reference
+comment|// Wraps FVH to allow pass-by-reference. Public access to allow use in 3rd party subclasses
 DECL|class|FvhContainer
-specifier|protected
+specifier|public
 class|class
 name|FvhContainer
 block|{
@@ -4495,6 +4495,7 @@ name|FieldQuery
 name|fieldQuery
 decl_stmt|;
 DECL|method|FvhContainer
+specifier|public
 name|FvhContainer
 parameter_list|(
 name|FastVectorHighlighter
