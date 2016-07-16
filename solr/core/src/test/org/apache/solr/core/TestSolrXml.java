@@ -462,7 +462,9 @@ argument_list|,
 name|cfg
 operator|.
 name|getCoreLoadThreadCount
-argument_list|()
+argument_list|(
+literal|0
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertThat

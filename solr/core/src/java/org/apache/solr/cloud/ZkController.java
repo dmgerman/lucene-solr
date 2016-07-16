@@ -1249,7 +1249,6 @@ end_comment
 begin_class
 DECL|class|ZkController
 specifier|public
-specifier|final
 class|class
 name|ZkController
 block|{
