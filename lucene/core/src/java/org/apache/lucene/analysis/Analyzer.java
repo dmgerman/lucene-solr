@@ -800,7 +800,7 @@ return|return
 name|reader
 return|;
 block|}
-comment|/** Return the {@link AttributeFactory} to be used for    *  {@link #tokenStream analysis} and    *  {@link #normalize(String, String) normalization}. The default    *  implementation returns {@link AttributeFactory#DEFAULT_ATTRIBUTE_FACTORY}. */
+comment|/** Return the {@link AttributeFactory} to be used for    *  {@link #tokenStream analysis} and    *  {@link #normalize(String, String) normalization}. The default    *  implementation returns {@link TokenStream#DEFAULT_TOKEN_ATTRIBUTE_FACTORY}. */
 DECL|method|attributeFactory
 specifier|protected
 name|AttributeFactory
@@ -808,9 +808,9 @@ name|attributeFactory
 parameter_list|()
 block|{
 return|return
-name|AttributeFactory
+name|TokenStream
 operator|.
-name|DEFAULT_ATTRIBUTE_FACTORY
+name|DEFAULT_TOKEN_ATTRIBUTE_FACTORY
 return|;
 block|}
 comment|/**    * Invoked before indexing a IndexableField instance if    * terms have already been added to that field.  This allows custom    * analyzers to place an automatic position increment gap between    * IndexbleField instances using the same field name.  The default value    * position increment gap is 0.  With a 0 position increment gap and    * the typical default token position increment of 1, all terms in a field,    * including across IndexableField instances, are in successive positions, allowing    * exact PhraseQuery matches, for instance, across IndexableField instance boundaries.    *    * @param fieldName IndexableField name being indexed.    * @return position increment gap, added to the next token emitted from {@link #tokenStream(String,Reader)}.    *         This value must be {@code>= 0}.    */
