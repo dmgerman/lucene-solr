@@ -1452,7 +1452,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"going to send config command. path {} , payload: "
+literal|"going to send config command. path {} , payload: {}"
 argument_list|,
 name|uri
 argument_list|,
