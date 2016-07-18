@@ -150,6 +150,11 @@ name|CoreParser
 implements|implements
 name|QueryBuilder
 block|{
+DECL|field|defaultField
+specifier|protected
+name|String
+name|defaultField
+decl_stmt|;
 DECL|field|analyzer
 specifier|protected
 name|Analyzer
@@ -229,6 +234,12 @@ name|QueryParser
 name|parser
 parameter_list|)
 block|{
+name|this
+operator|.
+name|defaultField
+operator|=
+name|defaultField
+expr_stmt|;
 name|this
 operator|.
 name|analyzer
