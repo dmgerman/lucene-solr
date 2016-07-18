@@ -407,7 +407,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** @see TestPseudoReturnFields */
+comment|/**   * @see TestPseudoReturnFields   * @see TestRandomFlRTGCloud  */
 end_comment
 
 begin_class
