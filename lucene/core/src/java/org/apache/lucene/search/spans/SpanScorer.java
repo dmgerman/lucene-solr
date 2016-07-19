@@ -301,10 +301,7 @@ literal|1
 operator|:
 literal|"incorrect initial start position, "
 operator|+
-name|this
-operator|.
-name|toString
-argument_list|()
+name|spans
 assert|;
 assert|assert
 name|spans
@@ -317,10 +314,7 @@ literal|1
 operator|:
 literal|"incorrect initial end position, "
 operator|+
-name|this
-operator|.
-name|toString
-argument_list|()
+name|spans
 assert|;
 name|int
 name|prevStartPos
@@ -351,10 +345,7 @@ name|NO_MORE_POSITIONS
 operator|:
 literal|"initial startPos NO_MORE_POSITIONS, "
 operator|+
-name|this
-operator|.
-name|toString
-argument_list|()
+name|spans
 assert|;
 do|do
 block|{
@@ -468,10 +459,7 @@ name|NO_MORE_POSITIONS
 operator|:
 literal|"incorrect final start position, "
 operator|+
-name|this
-operator|.
-name|toString
-argument_list|()
+name|spans
 assert|;
 assert|assert
 name|spans
@@ -485,10 +473,7 @@ name|NO_MORE_POSITIONS
 operator|:
 literal|"incorrect final end position, "
 operator|+
-name|this
-operator|.
-name|toString
-argument_list|()
+name|spans
 assert|;
 block|}
 comment|/**    * Ensure setFreqCurrentDoc is called, if not already called for the current doc.    */
