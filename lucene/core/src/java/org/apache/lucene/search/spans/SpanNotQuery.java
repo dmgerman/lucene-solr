@@ -733,16 +733,7 @@ literal|null
 condition|)
 block|{
 return|return
-operator|new
-name|ScoringWrapperSpans
-argument_list|(
 name|includeSpans
-argument_list|,
-name|getSimScorer
-argument_list|(
-name|context
-argument_list|)
-argument_list|)
 return|;
 block|}
 name|TwoPhaseIterator
