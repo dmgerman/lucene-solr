@@ -514,12 +514,7 @@ argument_list|()
 argument_list|)
 decl_stmt|;
 return|return
-name|searcher
-operator|.
-name|getSimilarity
-argument_list|(
-literal|true
-argument_list|)
+name|similarity
 operator|.
 name|computeWeight
 argument_list|(
