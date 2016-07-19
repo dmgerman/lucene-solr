@@ -378,9 +378,7 @@ name|this
 operator|.
 name|getCoreLoadThreadCount
 argument_list|(
-name|NodeConfigBuilder
-operator|.
-name|DEFAULT_CORE_LOAD_THREADS
+literal|false
 argument_list|)
 operator|<
 literal|2
@@ -452,8 +450,8 @@ specifier|public
 name|int
 name|getCoreLoadThreadCount
 parameter_list|(
-name|int
-name|def
+name|boolean
+name|zkAware
 parameter_list|)
 block|{
 return|return
@@ -461,7 +459,17 @@ name|coreLoadThreads
 operator|==
 literal|null
 condition|?
-name|def
+operator|(
+name|zkAware
+condition|?
+name|NodeConfigBuilder
+operator|.
+name|DEFAULT_CORE_LOAD_THREADS_IN_CLOUD
+else|:
+name|NodeConfigBuilder
+operator|.
+name|DEFAULT_CORE_LOAD_THREADS
+operator|)
 else|:
 name|coreLoadThreads
 return|;
@@ -766,7 +774,7 @@ name|DEFAULT_CORE_LOAD_THREADS
 init|=
 literal|3
 decl_stmt|;
-comment|//No:of core load threads in cloud mode is set to a default of 24
+comment|//No:of core load threads in cloud mode is set to a default of 8
 DECL|field|DEFAULT_CORE_LOAD_THREADS_IN_CLOUD
 specifier|public
 specifier|static
@@ -774,7 +782,7 @@ specifier|final
 name|int
 name|DEFAULT_CORE_LOAD_THREADS_IN_CLOUD
 init|=
-literal|24
+literal|8
 decl_stmt|;
 DECL|field|DEFAULT_TRANSIENT_CACHE_SIZE
 specifier|private

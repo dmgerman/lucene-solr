@@ -463,7 +463,7 @@ name|cfg
 operator|.
 name|getCoreLoadThreadCount
 argument_list|(
-literal|0
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
