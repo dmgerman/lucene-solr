@@ -2232,7 +2232,7 @@ throw|;
 block|}
 block|}
 block|}
-comment|/**     * trivial helper method to deal with diff response structure between using a single 'id' param vs    * 2 or more 'id' params (or 1 or more 'ids' params).    *    * NOTE:<code>expectList</code> is currently ignored due to SOLR-9309 -- instead best efforst are made to    * return a synthetic list based on whatever can be found in the response.    *    * @return List from response, or a synthetic one created from single response doc if     *<code>expectList</code> was false; May be empty; May be null if response included null list.    */
+comment|/**     * trivial helper method to deal with diff response structure between using a single 'id' param vs    * 2 or more 'id' params (or 1 or more 'ids' params).    *    * @return List from response, or a synthetic one created from single response doc if     *<code>expectList</code> was false; May be empty; May be null if response included null list.    */
 DECL|method|getDocsFromRTGResponse
 specifier|private
 specifier|static
@@ -2248,19 +2248,11 @@ name|QueryResponse
 name|rsp
 parameter_list|)
 block|{
-comment|// TODO: blocked by SOLR-9309 (once this can be fixed, update jdocs)
 if|if
 condition|(
-literal|null
-operator|!=
-name|rsp
-operator|.
-name|getResults
-argument_list|()
+name|expectList
 condition|)
 block|{
-comment|// TODO: replace this..
-comment|// if (expectList) {            // TODO: ...with this tighter check.
 return|return
 name|rsp
 operator|.
