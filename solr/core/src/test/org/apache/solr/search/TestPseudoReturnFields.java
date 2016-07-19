@@ -2447,13 +2447,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9288"
-argument_list|)
 DECL|method|testDocIdAugmenterRTG
 specifier|public
 name|void
@@ -2462,12 +2455,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// NOTE: once this test is fixed to pass, testAugmentersRTG should also be updated to test [docid]
-comment|// TODO: behavior of fl=[docid] should be consistent regardless of wether doc is committed
-comment|// what should behavior be?
-comment|// right now, for an uncommited doc, [docid] is silently ignored and no value included in result
-comment|// perhaps it should be "null" or "-1" ?
-comment|// behavior shouldn't matter if we are committed or uncommitted
+comment|// for an uncommitted doc, we should get -1
 for|for
 control|(
 name|String
@@ -2510,7 +2498,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
-literal|"//doc/int[@name='[docid]']"
+literal|"//doc/int[@name='[docid]'][.>=-1]"
 argument_list|,
 literal|"//doc[count(*)=1]"
 argument_list|)
@@ -2541,7 +2529,6 @@ literal|"99"
 argument_list|)
 control|)
 block|{
-comment|// NOTE: once testDocIdAugmenterRTG can pass, [docid] should be tested here as well.
 for|for
 control|(
 name|SolrParams
@@ -2555,14 +2542,14 @@ name|params
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"[shard],[explain],x_alias:[value v=10 t=int],abs(val_i)"
+literal|"[docid],[shard],[explain],x_alias:[value v=10 t=int],abs(val_i)"
 argument_list|)
 argument_list|,
 name|params
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"[shard],abs(val_i)"
+literal|"[docid],[shard],abs(val_i)"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -2573,7 +2560,7 @@ name|params
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"[shard]"
+literal|"[docid],[shard]"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -2586,6 +2573,10 @@ argument_list|)
 argument_list|,
 name|params
 argument_list|(
+literal|"fl"
+argument_list|,
+literal|"[docid]"
+argument_list|,
 literal|"fl"
 argument_list|,
 literal|"[shard]"
@@ -2631,7 +2622,8 @@ literal|"xml"
 argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
-comment|// ,"//doc/int[@name='[docid]']" // TODO
+argument_list|,
+literal|"//doc/int[@name='[docid]'][.>=-1]"
 argument_list|,
 literal|"//doc/float[@name='abs(val_i)'][.='1.0']"
 argument_list|,
@@ -2640,7 +2632,7 @@ comment|// RTG: [explain] should be missing (ignored)
 argument_list|,
 literal|"//doc/int[@name='x_alias'][.=10]"
 argument_list|,
-literal|"//doc[count(*)=3]"
+literal|"//doc[count(*)=4]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2761,7 +2753,6 @@ literal|"99"
 argument_list|)
 control|)
 block|{
-comment|// NOTE: once testDocIdAugmenterRTG can pass, [docid] should be tested here as well.
 for|for
 control|(
 name|SolrParams
@@ -2775,14 +2766,14 @@ name|params
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"id,[explain],x_alias:[value v=10 t=int],abs(val_i)"
+literal|"id,[docid],[explain],x_alias:[value v=10 t=int],abs(val_i)"
 argument_list|)
 argument_list|,
 name|params
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"id,abs(val_i)"
+literal|"id,[docid],abs(val_i)"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -2794,6 +2785,10 @@ argument_list|(
 literal|"fl"
 argument_list|,
 literal|"id"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"[docid]"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -2838,14 +2833,15 @@ argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
 literal|"//doc/str[@name='id']"
-comment|// ,"//doc/int[@name='[docid]']" // TODO
+argument_list|,
+literal|"//doc/int[@name='[docid]'][.>=-1]"
 argument_list|,
 literal|"//doc/float[@name='abs(val_i)'][.='1.0']"
 comment|// RTG: [explain] should be missing (ignored)
 argument_list|,
 literal|"//doc/int[@name='x_alias'][.=10]"
 argument_list|,
-literal|"//doc[count(*)=3]"
+literal|"//doc[count(*)=4]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2998,7 +2994,6 @@ literal|"99"
 argument_list|)
 control|)
 block|{
-comment|// NOTE: once testDocIdAugmenterRTG can pass, [docid] should be tested here as well.
 name|assertQ
 argument_list|(
 name|id
@@ -3019,15 +3014,16 @@ literal|"xml"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"x_alias:[value v=10 t=int],score,abs(val_i)"
+literal|"x_alias:[value v=10 t=int],score,abs(val_i),[docid]"
 argument_list|)
-comment|// ,"//doc/int[@name='[docid]']" // TODO
+argument_list|,
+literal|"//doc/int[@name='[docid]'][.>=-1]"
 argument_list|,
 literal|"//doc/float[@name='abs(val_i)'][.='1.0']"
 argument_list|,
 literal|"//doc/int[@name='x_alias'][.=10]"
 argument_list|,
-literal|"//doc[count(*)=2]"
+literal|"//doc[count(*)=3]"
 argument_list|)
 expr_stmt|;
 for|for
@@ -3043,7 +3039,7 @@ name|params
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"x_alias:[value v=10 t=int],[explain],score,abs(val_i)"
+literal|"[docid],x_alias:[value v=10 t=int],[explain],score,abs(val_i)"
 argument_list|)
 argument_list|,
 name|params
@@ -3054,11 +3050,15 @@ literal|"x_alias:[value v=10 t=int],[explain]"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"score,abs(val_i)"
+literal|"[docid],score,abs(val_i)"
 argument_list|)
 argument_list|,
 name|params
 argument_list|(
+literal|"fl"
+argument_list|,
+literal|"[docid]"
+argument_list|,
 literal|"fl"
 argument_list|,
 literal|"x_alias:[value v=10 t=int]"
@@ -3101,14 +3101,16 @@ literal|"wt"
 argument_list|,
 literal|"xml"
 argument_list|)
-comment|// ,"//doc/int[@name='[docid]']" // TODO
+argument_list|,
+literal|"//doc/int[@name='[docid]']"
+comment|// TODO
 argument_list|,
 literal|"//doc/float[@name='abs(val_i)'][.='1.0']"
 argument_list|,
 literal|"//doc/int[@name='x_alias'][.=10]"
 comment|// RTG: [explain] and score should be missing (ignored)
 argument_list|,
-literal|"//doc[count(*)=2]"
+literal|"//doc[count(*)=3]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3322,7 +3324,6 @@ init|=
 name|Arrays
 operator|.
 name|asList
-comment|// NOTE: once testDocIdAugmenterRTG can pass, [docid] should be tested here as well.
 argument_list|(
 literal|"id"
 argument_list|,
@@ -3335,6 +3336,8 @@ argument_list|,
 literal|"subj*"
 argument_list|,
 literal|"abs(val_i)"
+argument_list|,
+literal|"[docid]"
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -3477,7 +3480,8 @@ argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
 literal|"//doc/str[@name='id']"
-comment|// ,"//doc/int[@name='[docid]']" // TODO
+argument_list|,
+literal|"//doc/int[@name='[docid]'][.>=-1]"
 argument_list|,
 literal|"//doc/float[@name='abs(val_i)'][.='1.0']"
 comment|// RTG: [explain] and score should be missing (ignored)
@@ -3486,7 +3490,7 @@ literal|"//doc/int[@name='val_i'][.=1]"
 argument_list|,
 literal|"//doc/str[@name='subject']"
 argument_list|,
-literal|"//doc[count(*)=4]"
+literal|"//doc[count(*)=5]"
 argument_list|)
 expr_stmt|;
 block|}
