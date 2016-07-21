@@ -2212,7 +2212,7 @@ name|Exception
 block|{
 name|op
 operator|.
-name|call
+name|execute
 argument_list|(
 name|this
 argument_list|)
@@ -2256,12 +2256,10 @@ block|}
 comment|/**    * used by the INVOKE action of core admin handler    */
 DECL|interface|Invocable
 specifier|public
-specifier|static
 interface|interface
 name|Invocable
 block|{
 DECL|method|invoke
-specifier|public
 name|Map
 argument_list|<
 name|String
@@ -2273,6 +2271,21 @@ parameter_list|(
 name|SolrQueryRequest
 name|req
 parameter_list|)
+function_decl|;
+block|}
+DECL|interface|CoreAdminOp
+interface|interface
+name|CoreAdminOp
+block|{
+DECL|method|execute
+name|void
+name|execute
+parameter_list|(
+name|CallInfo
+name|it
+parameter_list|)
+throws|throws
+name|Exception
 function_decl|;
 block|}
 block|}
