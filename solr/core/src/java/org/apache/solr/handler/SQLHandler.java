@@ -9149,11 +9149,9 @@ operator|.
 name|getZkStateReader
 argument_list|()
 decl_stmt|;
-name|Map
+name|Set
 argument_list|<
 name|String
-argument_list|,
-name|DocCollection
 argument_list|>
 name|collections
 init|=
@@ -9162,7 +9160,10 @@ operator|.
 name|getClusterState
 argument_list|()
 operator|.
-name|getCollectionsMap
+name|getCollectionStates
+argument_list|()
+operator|.
+name|keySet
 argument_list|()
 decl_stmt|;
 if|if
@@ -9182,9 +9183,6 @@ operator|.
 name|addAll
 argument_list|(
 name|collections
-operator|.
-name|keySet
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
