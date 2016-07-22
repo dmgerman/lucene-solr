@@ -845,7 +845,7 @@ throw|;
 block|}
 if|if
 condition|(
-name|dimensionCount
+name|dimensionNumBytes
 operator|>
 name|PointValues
 operator|.
