@@ -676,7 +676,16 @@ block|{
 comment|// add the document iff:
 if|if
 condition|(
+name|Arrays
+operator|.
+name|equals
+argument_list|(
+name|ranges
+argument_list|,
+name|leaf
+argument_list|)
 comment|// target is within cell and queryType is INTERSECTS or CONTAINS:
+operator|||
 operator|(
 name|comparator
 operator|.
@@ -784,6 +793,24 @@ if|if
 condition|(
 name|comparator
 operator|.
+name|isWithin
+argument_list|(
+name|node
+argument_list|)
+condition|)
+block|{
+comment|// target within cell; continue traversing:
+return|return
+name|Relation
+operator|.
+name|CELL_CROSSES_QUERY
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|comparator
+operator|.
 name|contains
 argument_list|(
 name|node
@@ -807,24 +834,6 @@ else|:
 name|Relation
 operator|.
 name|CELL_INSIDE_QUERY
-return|;
-block|}
-elseif|else
-if|if
-condition|(
-name|comparator
-operator|.
-name|isWithin
-argument_list|(
-name|node
-argument_list|)
-condition|)
-block|{
-comment|// target within cell; continue traversing:
-return|return
-name|Relation
-operator|.
-name|CELL_CROSSES_QUERY
 return|;
 block|}
 comment|// target intersects cell; continue traversing:
@@ -953,10 +962,20 @@ name|field
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// if the internal node is not contained by the query, all docs do not match
+comment|// if the internal node is not equal and not contained by the query, all docs do not match
 if|if
 condition|(
 operator|(
+operator|!
+name|Arrays
+operator|.
+name|equals
+argument_list|(
+name|ranges
+argument_list|,
+name|range
+argument_list|)
+operator|&&
 operator|(
 name|comparator
 operator|.
@@ -966,7 +985,7 @@ name|range
 argument_list|)
 operator|&&
 name|queryType
-operator|==
+operator|!=
 name|QueryType
 operator|.
 name|CONTAINS
