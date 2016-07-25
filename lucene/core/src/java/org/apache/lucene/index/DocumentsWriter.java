@@ -1571,26 +1571,6 @@ literal|0
 condition|)
 block|{
 comment|// Help out flushing any queued DWPTs so we can un-stall:
-if|if
-condition|(
-name|infoStream
-operator|.
-name|isEnabled
-argument_list|(
-literal|"DW"
-argument_list|)
-condition|)
-block|{
-name|infoStream
-operator|.
-name|message
-argument_list|(
-literal|"DW"
-argument_list|,
-literal|"DocumentsWriter has queued dwpt; will hijack this thread to flush pending segment(s)"
-argument_list|)
-expr_stmt|;
-block|}
 do|do
 block|{
 comment|// Try pick up pending threads here if possible
@@ -1620,31 +1600,6 @@ name|flushingDWPT
 argument_list|)
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|infoStream
-operator|.
-name|isEnabled
-argument_list|(
-literal|"DW"
-argument_list|)
-operator|&&
-name|flushControl
-operator|.
-name|anyStalledThreads
-argument_list|()
-condition|)
-block|{
-name|infoStream
-operator|.
-name|message
-argument_list|(
-literal|"DW"
-argument_list|,
-literal|"WARNING DocumentsWriter has stalled threads; waiting"
-argument_list|)
-expr_stmt|;
-block|}
 name|flushControl
 operator|.
 name|waitIfStalled
@@ -1663,26 +1618,6 @@ literal|0
 condition|)
 do|;
 comment|// still queued DWPTs try help flushing
-if|if
-condition|(
-name|infoStream
-operator|.
-name|isEnabled
-argument_list|(
-literal|"DW"
-argument_list|)
-condition|)
-block|{
-name|infoStream
-operator|.
-name|message
-argument_list|(
-literal|"DW"
-argument_list|,
-literal|"continue indexing after helping out flushing DocumentsWriter is healthy"
-argument_list|)
-expr_stmt|;
-block|}
 block|}
 return|return
 name|hasEvents
