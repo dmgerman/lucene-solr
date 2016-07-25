@@ -232,6 +232,7 @@ end_comment
 
 begin_class
 DECL|class|Node
+specifier|public
 specifier|abstract
 class|class
 name|Node
@@ -239,6 +240,7 @@ implements|implements
 name|Closeable
 block|{
 DECL|field|VERBOSE_FILES
+specifier|public
 specifier|static
 name|boolean
 name|VERBOSE_FILES
@@ -246,6 +248,7 @@ init|=
 literal|true
 decl_stmt|;
 DECL|field|VERBOSE_CONNECTIONS
+specifier|public
 specifier|static
 name|boolean
 name|VERBOSE_CONNECTIONS
@@ -388,6 +391,31 @@ name|printStream
 operator|=
 name|printStream
 expr_stmt|;
+block|}
+comment|/** Returns the {@link ReferenceManager} to use for acquiring and releasing searchers */
+DECL|method|getSearcherManager
+specifier|public
+name|ReferenceManager
+argument_list|<
+name|IndexSearcher
+argument_list|>
+name|getSearcherManager
+parameter_list|()
+block|{
+return|return
+name|mgr
+return|;
+block|}
+comment|/** Returns the {@link Directory} this node is writing to */
+DECL|method|getDirectory
+specifier|public
+name|Directory
+name|getDirectory
+parameter_list|()
+block|{
+return|return
+name|dir
+return|;
 block|}
 annotation|@
 name|Override
@@ -570,7 +598,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|message
-specifier|protected
+specifier|public
 name|void
 name|message
 parameter_list|(

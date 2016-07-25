@@ -731,6 +731,17 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** Returns the current primary generation, which is incremented each time a new primary is started for this index */
+DECL|method|getPrimaryGen
+specifier|public
+name|long
+name|getPrimaryGen
+parameter_list|()
+block|{
+return|return
+name|primaryGen
+return|;
+block|}
 comment|// TODO: in the future, we should separate "flush" (returns an incRef'd SegmentInfos) from "refresh" (open new NRT reader from
 comment|// IndexWriter) so that the latter can be done concurrently while copying files out to replicas, minimizing the refresh time from the
 comment|// replicas.  But fixing this is tricky because e.g. IndexWriter may complete a big merge just after returning the incRef'd SegmentInfos
