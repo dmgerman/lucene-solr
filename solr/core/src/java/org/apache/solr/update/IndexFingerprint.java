@@ -280,10 +280,12 @@ specifier|private
 name|long
 name|maxVersionEncountered
 decl_stmt|;
-DECL|field|maxVersionsUsedInHash
+comment|// this actually means max versions used in computing the hash.
+comment|// we cannot change this now because it changes back-compat
+DECL|field|maxInHash
 specifier|private
 name|long
-name|maxVersionsUsedInHash
+name|maxInHash
 decl_stmt|;
 DECL|field|versionsHash
 specifier|private
@@ -325,14 +327,14 @@ return|return
 name|maxVersionEncountered
 return|;
 block|}
-DECL|method|getMaxVersionsUsedInHash
+DECL|method|getMaxInHash
 specifier|public
 name|long
-name|getMaxVersionsUsedInHash
+name|getMaxInHash
 parameter_list|()
 block|{
 return|return
-name|maxVersionsUsedInHash
+name|maxInHash
 return|;
 block|}
 DECL|method|getVersionsHash
@@ -673,7 +675,7 @@ condition|)
 block|{
 name|f
 operator|.
-name|maxVersionsUsedInHash
+name|maxInHash
 operator|=
 name|Math
 operator|.
@@ -683,7 +685,7 @@ name|v
 argument_list|,
 name|f
 operator|.
-name|maxVersionsUsedInHash
+name|maxInHash
 argument_list|)
 expr_stmt|;
 name|f
@@ -795,11 +797,11 @@ name|compare
 argument_list|(
 name|f1
 operator|.
-name|maxVersionsUsedInHash
+name|maxInHash
 argument_list|,
 name|f2
 operator|.
-name|maxVersionsUsedInHash
+name|maxInHash
 argument_list|)
 expr_stmt|;
 if|if
@@ -898,9 +900,9 @@ name|map
 operator|.
 name|put
 argument_list|(
-literal|"maxVersionsUsedInHash"
+literal|"maxInHash"
 argument_list|,
-name|maxVersionsUsedInHash
+name|maxInHash
 argument_list|)
 expr_stmt|;
 name|map
@@ -1081,13 +1083,13 @@ argument_list|)
 expr_stmt|;
 name|f
 operator|.
-name|maxVersionsUsedInHash
+name|maxInHash
 operator|=
 name|getLong
 argument_list|(
 name|o
 argument_list|,
-literal|"maxVersionsUsedInHash"
+literal|"maxInHash"
 argument_list|,
 operator|-
 literal|1
