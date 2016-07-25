@@ -64,6 +64,22 @@ name|MergeState
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|bkd
+operator|.
+name|BKDWriter
+import|;
+end_import
+
 begin_comment
 comment|/** Abstract API to write points  *  * @lucene.experimental  */
 end_comment
@@ -83,7 +99,7 @@ specifier|protected
 name|PointsWriter
 parameter_list|()
 block|{   }
-comment|/** Write all values contained in the provided reader */
+comment|/** Write all values contained in the provided reader.  {@code maxMBSortInHeap} is the maximum    *  transient heap that can be used to sort values, before spilling to disk for offline sorting */
 DECL|method|writeField
 specifier|public
 specifier|abstract
@@ -95,6 +111,9 @@ name|fieldInfo
 parameter_list|,
 name|PointsReader
 name|values
+parameter_list|,
+name|double
+name|maxMBSortInHeap
 parameter_list|)
 throws|throws
 name|IOException
@@ -570,6 +589,12 @@ name|finalDocCount
 return|;
 block|}
 block|}
+argument_list|,
+comment|// TODO: also let merging of> 1D fields tap into IW's indexing buffer size, somehow (1D fields do an optimized merge sort
+comment|// and don't need heap)
+name|BKDWriter
+operator|.
+name|DEFAULT_MAX_MB_SORT_IN_HEAP
 argument_list|)
 expr_stmt|;
 block|}

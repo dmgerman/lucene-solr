@@ -283,7 +283,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** Writes dimensional values */
+comment|/** Writes dimensional values  *  * @lucene.experimental */
 end_comment
 
 begin_class
@@ -330,11 +330,6 @@ specifier|final
 name|int
 name|maxPointsInLeafNode
 decl_stmt|;
-DECL|field|maxMBSortInHeap
-specifier|final
-name|double
-name|maxMBSortInHeap
-decl_stmt|;
 DECL|field|finished
 specifier|private
 name|boolean
@@ -350,9 +345,6 @@ name|writeState
 parameter_list|,
 name|int
 name|maxPointsInLeafNode
-parameter_list|,
-name|double
-name|maxMBSortInHeap
 parameter_list|)
 throws|throws
 name|IOException
@@ -376,12 +368,6 @@ operator|.
 name|maxPointsInLeafNode
 operator|=
 name|maxPointsInLeafNode
-expr_stmt|;
-name|this
-operator|.
-name|maxMBSortInHeap
-operator|=
-name|maxMBSortInHeap
 expr_stmt|;
 name|String
 name|dataFileName
@@ -495,10 +481,6 @@ argument_list|,
 name|BKDWriter
 operator|.
 name|DEFAULT_MAX_POINTS_IN_LEAF_NODE
-argument_list|,
-name|BKDWriter
-operator|.
-name|DEFAULT_MAX_MB_SORT_IN_HEAP
 argument_list|)
 expr_stmt|;
 block|}
@@ -514,6 +496,9 @@ name|fieldInfo
 parameter_list|,
 name|PointsReader
 name|values
+parameter_list|,
+name|double
+name|maxMBSortInHeap
 parameter_list|)
 throws|throws
 name|IOException
@@ -968,7 +953,10 @@ argument_list|()
 argument_list|,
 name|maxPointsInLeafNode
 argument_list|,
-name|maxMBSortInHeap
+comment|// NOTE: not used, since BKDWriter.merge does a merge sort:
+name|BKDWriter
+operator|.
+name|DEFAULT_MAX_MB_SORT_IN_HEAP
 argument_list|,
 name|totMaxSize
 argument_list|,
