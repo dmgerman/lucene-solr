@@ -246,7 +246,7 @@ name|solr
 operator|.
 name|security
 operator|.
-name|HttpParamDelegationTokenAuthenticationHandler
+name|HttpParamDelegationTokenPlugin
 operator|.
 name|USER_PARAM
 import|;
@@ -274,7 +274,7 @@ name|solr
 operator|.
 name|security
 operator|.
-name|HttpParamDelegationTokenAuthenticationHandler
+name|HttpParamDelegationTokenPlugin
 import|;
 end_import
 
@@ -454,7 +454,7 @@ name|setProperty
 argument_list|(
 literal|"authenticationPlugin"
 argument_list|,
-name|KerberosPlugin
+name|HttpParamDelegationTokenPlugin
 operator|.
 name|class
 operator|.
@@ -471,22 +471,6 @@ operator|.
 name|DELEGATION_TOKEN_ENABLED
 argument_list|,
 literal|"true"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
-name|KerberosPlugin
-operator|.
-name|AUTH_HANDLER_PARAM
-argument_list|,
-name|HttpParamDelegationTokenAuthenticationHandler
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|System
@@ -639,15 +623,6 @@ argument_list|(
 name|KerberosPlugin
 operator|.
 name|DELEGATION_TOKEN_ENABLED
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|clearProperty
-argument_list|(
-name|KerberosPlugin
-operator|.
-name|AUTH_HANDLER_PARAM
 argument_list|)
 expr_stmt|;
 name|System
