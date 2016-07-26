@@ -815,7 +815,6 @@ name|AtomicLong
 name|pendingNumDocs
 decl_stmt|;
 DECL|field|indexWriterConfig
-specifier|private
 specifier|final
 name|LiveIndexWriterConfig
 name|indexWriterConfig

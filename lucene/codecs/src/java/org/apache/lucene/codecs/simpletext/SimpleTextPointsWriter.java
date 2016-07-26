@@ -555,6 +555,9 @@ name|fieldInfo
 parameter_list|,
 name|PointsReader
 name|values
+parameter_list|,
+name|double
+name|maxMBSortInHeap
 parameter_list|)
 throws|throws
 name|IOException
@@ -620,9 +623,7 @@ name|BKDWriter
 operator|.
 name|DEFAULT_MAX_POINTS_IN_LEAF_NODE
 argument_list|,
-name|BKDWriter
-operator|.
-name|DEFAULT_MAX_MB_SORT_IN_HEAP
+name|maxMBSortInHeap
 argument_list|,
 name|values
 operator|.

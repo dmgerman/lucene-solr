@@ -110,6 +110,22 @@ name|Counter
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|bkd
+operator|.
+name|BKDWriter
+import|;
+end_import
+
 begin_comment
 comment|/** Buffers up pending byte[][] value(s) per doc, then flushes when segment flushes. */
 end_comment
@@ -167,6 +183,12 @@ specifier|final
 name|byte
 index|[]
 name|packedValue
+decl_stmt|;
+DECL|field|indexWriterConfig
+specifier|private
+specifier|final
+name|LiveIndexWriterConfig
+name|indexWriterConfig
 decl_stmt|;
 DECL|method|PointValuesWriter
 specifier|public
@@ -239,6 +261,12 @@ operator|.
 name|getPointNumBytes
 argument_list|()
 index|]
+expr_stmt|;
+name|indexWriterConfig
+operator|=
+name|docWriter
+operator|.
+name|indexWriterConfig
 expr_stmt|;
 block|}
 comment|// TODO: if exactly the same value is added to exactly the same doc, should we dedup?
@@ -632,6 +660,22 @@ name|numDocs
 return|;
 block|}
 block|}
+argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
+name|indexWriterConfig
+operator|.
+name|getRAMBufferSizeMB
+argument_list|()
+operator|/
+literal|8.0
+argument_list|,
+name|BKDWriter
+operator|.
+name|DEFAULT_MAX_MB_SORT_IN_HEAP
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
