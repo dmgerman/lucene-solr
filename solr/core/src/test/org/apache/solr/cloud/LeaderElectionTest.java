@@ -729,6 +729,11 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+name|zkStateReader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 DECL|class|ClientThread

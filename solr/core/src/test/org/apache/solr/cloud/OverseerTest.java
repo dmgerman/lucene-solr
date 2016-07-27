@@ -1063,6 +1063,11 @@ operator|+
 name|nodeName
 argument_list|)
 expr_stmt|;
+name|zkStateReader
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|zkClient
 operator|.
 name|close

@@ -403,6 +403,8 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|ZkStateReader
 name|reader
 init|=
@@ -411,7 +413,8 @@ name|ZkStateReader
 argument_list|(
 name|zkClient
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|reader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -909,6 +912,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 finally|finally
 block|{
 name|IOUtils
@@ -1010,6 +1014,8 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|ZkStateReader
 name|reader
 init|=
@@ -1018,7 +1024,8 @@ name|ZkStateReader
 argument_list|(
 name|zkClient
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|reader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -1174,6 +1181,7 @@ name|exists
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 finally|finally
 block|{
 name|IOUtils
@@ -1275,6 +1283,8 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|ZkStateReader
 name|reader
 init|=
@@ -1283,7 +1293,8 @@ name|ZkStateReader
 argument_list|(
 name|zkClient
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|reader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -1457,6 +1468,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 finally|finally
 block|{
 name|IOUtils
@@ -1558,6 +1570,8 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|ZkStateReader
 name|reader
 init|=
@@ -1566,7 +1580,8 @@ name|ZkStateReader
 argument_list|(
 name|zkClient
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|reader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -1897,6 +1912,7 @@ block|{
 comment|// expected
 block|}
 block|}
+block|}
 finally|finally
 block|{
 name|IOUtils
@@ -1998,6 +2014,8 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|ZkStateReader
 name|reader
 init|=
@@ -2006,7 +2024,8 @@ name|ZkStateReader
 argument_list|(
 name|zkClient
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|reader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -2417,6 +2436,7 @@ name|e
 parameter_list|)
 block|{
 comment|// expected
+block|}
 block|}
 block|}
 finally|finally
