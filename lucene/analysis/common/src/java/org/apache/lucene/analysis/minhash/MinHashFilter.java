@@ -2157,6 +2157,12 @@ return|;
 comment|// no shift needed
 block|}
 comment|/** Returns the MurmurHash3_x64_128 hash, placing the result in "out". */
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"fallthrough"
+argument_list|)
+comment|// the huge switch is designed to use fall through into cases!
 DECL|method|murmurhash3_x64_128
 specifier|static
 name|void
