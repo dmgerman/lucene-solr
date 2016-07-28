@@ -738,6 +738,10 @@ argument_list|,
 name|bytesPerDim
 argument_list|)
 expr_stmt|;
+name|lastDocID
+operator|=
+name|docID
+expr_stmt|;
 block|}
 name|in
 operator|.
