@@ -4591,6 +4591,7 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Get a cluster property    *    * N.B. Cluster properties are updated via ZK watchers, and so may not necessarily    * be completely up-to-date.  If you need to get the latest version, then use a    * {@link ClusterProperties} instance.    *    * @param key           the property to read    * @param defaultValue  a default value to use if no such property exists    * @param<T>           the type of the property    * @return the cluster property, or a default if the property is not set    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -4637,6 +4638,7 @@ return|return
 name|value
 return|;
 block|}
+comment|/**    * Get all cluster properties for this cluster    *    * N.B. Cluster properties are updated via ZK watchers, and so may not necessarily    * be completely up-to-date.  If you need to get the latest version, then use a    * {@link ClusterProperties} instance.    *    * @return a Map of cluster properties    */
 DECL|method|getClusterProperties
 specifier|public
 name|Map
