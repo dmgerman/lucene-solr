@@ -119,6 +119,8 @@ operator|new
 name|DefaultICUTokenizerConfig
 argument_list|(
 literal|true
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 argument_list|)
