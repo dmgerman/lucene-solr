@@ -96,6 +96,8 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// heap sort
+comment|// TODO: use median of median instead to have linear worst-case rather than
+comment|// n*log(n)
 DECL|method|slowSelect
 name|void
 name|slowSelect

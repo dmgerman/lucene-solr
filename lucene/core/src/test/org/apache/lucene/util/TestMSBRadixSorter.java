@@ -152,12 +152,20 @@ default|default:
 comment|// leave unchanged
 break|break;
 block|}
+specifier|final
+name|int
+name|finalMaxLength
+init|=
+name|maxLength
+decl_stmt|;
 operator|new
 name|MSBRadixSorter
 argument_list|(
 name|maxLength
 argument_list|)
 block|{
+annotation|@
+name|Override
 specifier|protected
 name|int
 name|byteAt
@@ -169,6 +177,13 @@ name|int
 name|k
 parameter_list|)
 block|{
+name|assertTrue
+argument_list|(
+name|k
+operator|<
+name|finalMaxLength
+argument_list|)
+expr_stmt|;
 name|BytesRef
 name|ref
 init|=

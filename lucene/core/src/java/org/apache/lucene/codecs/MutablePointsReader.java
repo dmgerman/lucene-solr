@@ -16,6 +16,20 @@ name|codecs
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
 begin_comment
 comment|/** {@link PointsReader} whose order of points can be changed.  *  This class is useful for codecs to optimize flush.  *  @lucene.internal */
 end_comment
@@ -35,7 +49,7 @@ specifier|protected
 name|MutablePointsReader
 parameter_list|()
 block|{}
-comment|/** Fill {@code packedValue} with the packed bytes of the i-th value. */
+comment|/** Set {@code packedValue} with a reference to the packed bytes of the i-th value. */
 DECL|method|getValue
 specifier|public
 specifier|abstract
@@ -45,8 +59,7 @@ parameter_list|(
 name|int
 name|i
 parameter_list|,
-name|byte
-index|[]
+name|BytesRef
 name|packedValue
 parameter_list|)
 function_decl|;
