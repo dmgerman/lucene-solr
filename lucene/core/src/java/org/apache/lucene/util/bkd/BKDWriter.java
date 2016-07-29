@@ -1026,7 +1026,7 @@ comment|// time in the recursion, we hold the number of points at that level, pl
 comment|// all recursive halves (i.e. 16 + 8 + 4 + 2) so the memory usage is 2X
 comment|// what that level would consume, so we multiply by 0.5 to convert from
 comment|// bytes to points here.  Each dimension has its own sorted partition, so
-comment|// we must divide by numDims as well.
+comment|// we must divide by numDims as wel.
 name|maxPointsSortInHeap
 operator|=
 call|(

@@ -688,6 +688,22 @@ name|TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|bkd
+operator|.
+name|BKDWriter
+import|;
+end_import
+
 begin_comment
 comment|/**  * Abstract class to do basic tests for a geospatial impl (high level  * fields and queries)  * NOTE: This test focuses on geospatial (distance queries, polygon  * queries, etc) indexing and search, not any underlying storage  * format or encoding: it merely supplies two hooks for the encoding  * so that tests can be exact. The [stretch] goal is for this test to be  * so thorough in testing a new geo impl that if this  * test passes, then all Lucene/Solr tests should also pass.  Ie,  * if there is some bug in a given geo impl that this  * test fails to catch then this test needs to be improved! */
 end_comment
@@ -8351,6 +8367,10 @@ argument_list|(
 name|writeState
 argument_list|,
 name|pointsInLeaf
+argument_list|,
+name|BKDWriter
+operator|.
+name|DEFAULT_MAX_MB_SORT_IN_HEAP
 argument_list|)
 return|;
 block|}

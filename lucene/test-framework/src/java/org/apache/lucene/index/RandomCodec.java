@@ -683,6 +683,12 @@ specifier|final
 name|int
 name|maxPointsInLeafNode
 decl_stmt|;
+DECL|field|maxMBSortInHeap
+specifier|private
+specifier|final
+name|double
+name|maxMBSortInHeap
+decl_stmt|;
 DECL|field|bkdSplitRandomSeed
 specifier|private
 specifier|final
@@ -725,6 +731,8 @@ argument_list|(
 name|writeState
 argument_list|,
 name|maxPointsInLeafNode
+argument_list|,
+name|maxMBSortInHeap
 argument_list|)
 block|{
 annotation|@
@@ -738,9 +746,6 @@ name|fieldInfo
 parameter_list|,
 name|PointsReader
 name|values
-parameter_list|,
-name|double
-name|maxMBSortInHeap
 parameter_list|)
 throws|throws
 name|IOException
@@ -1215,6 +1220,19 @@ argument_list|,
 literal|2048
 argument_list|)
 expr_stmt|;
+name|maxMBSortInHeap
+operator|=
+literal|5.0
+operator|+
+operator|(
+literal|3
+operator|*
+name|random
+operator|.
+name|nextDouble
+argument_list|()
+operator|)
+expr_stmt|;
 name|bkdSplitRandomSeed
 operator|=
 name|random
@@ -1667,6 +1685,10 @@ operator|+
 literal|", maxPointsInLeafNode="
 operator|+
 name|maxPointsInLeafNode
+operator|+
+literal|", maxMBSortInHeap="
+operator|+
+name|maxMBSortInHeap
 return|;
 block|}
 comment|/** Just like {@link BKDWriter} except it evilly picks random ways to split cells on    *  recursion to try to provoke geo APIs that get upset at fun rectangles. */

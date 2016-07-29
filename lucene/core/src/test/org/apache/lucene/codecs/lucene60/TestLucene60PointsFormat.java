@@ -211,6 +211,21 @@ argument_list|,
 literal|500
 argument_list|)
 decl_stmt|;
+name|double
+name|maxMBSortInHeap
+init|=
+literal|3.0
+operator|+
+operator|(
+literal|3
+operator|*
+name|random
+argument_list|()
+operator|.
+name|nextDouble
+argument_list|()
+operator|)
+decl_stmt|;
 if|if
 condition|(
 name|VERBOSE
@@ -225,6 +240,10 @@ argument_list|(
 literal|"TEST: using Lucene60PointsFormat with maxPointsInLeafNode="
 operator|+
 name|maxPointsInLeafNode
+operator|+
+literal|" and maxMBSortInHeap="
+operator|+
+name|maxMBSortInHeap
 argument_list|)
 expr_stmt|;
 block|}
@@ -273,6 +292,8 @@ argument_list|(
 name|writeState
 argument_list|,
 name|maxPointsInLeafNode
+argument_list|,
+name|maxMBSortInHeap
 argument_list|)
 return|;
 block|}
