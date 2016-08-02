@@ -1944,9 +1944,11 @@ literal|"fq"
 argument_list|,
 name|numericFieldName
 operator|+
-literal|":"
+literal|":\""
 operator|+
 name|expect
+operator|+
+literal|"\""
 argument_list|)
 decl_stmt|;
 name|SolrDocument

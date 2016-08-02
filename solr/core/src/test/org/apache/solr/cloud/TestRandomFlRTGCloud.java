@@ -634,6 +634,16 @@ literal|"a*"
 argument_list|)
 argument_list|,
 operator|new
+name|DocIdValidator
+argument_list|()
+argument_list|,
+operator|new
+name|DocIdValidator
+argument_list|(
+literal|"my_docid_alias"
+argument_list|)
+argument_list|,
+operator|new
 name|SimpleFieldValueValidator
 argument_list|(
 literal|"aaa_i"
@@ -643,6 +653,45 @@ operator|new
 name|SimpleFieldValueValidator
 argument_list|(
 literal|"ccc_s"
+argument_list|)
+argument_list|,
+operator|new
+name|FunctionValidator
+argument_list|(
+literal|"aaa_i"
+argument_list|)
+argument_list|,
+comment|// fq field
+operator|new
+name|FunctionValidator
+argument_list|(
+literal|"aaa_i"
+argument_list|,
+literal|"func_aaa_alias"
+argument_list|)
+argument_list|,
+operator|new
+name|RenameFieldValueValidator
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"my_id_alias"
+argument_list|)
+argument_list|,
+operator|new
+name|RenameFieldValueValidator
+argument_list|(
+literal|"bbb_i"
+argument_list|,
+literal|"my_int_field_alias"
+argument_list|)
+argument_list|,
+operator|new
+name|RenameFieldValueValidator
+argument_list|(
+literal|"ddd_s"
+argument_list|,
+literal|"my_str_field_alias"
 argument_list|)
 argument_list|,
 operator|new
@@ -705,77 +754,9 @@ condition|(
 name|singleCoreMode
 condition|)
 block|{
-comment|// these don't work in distrib cloud mode due to SOLR-9286
-name|FL_VALIDATORS
-operator|.
-name|addAll
-argument_list|(
-name|Arrays
-operator|.
-name|asList
-argument_list|(
-operator|new
-name|FunctionValidator
-argument_list|(
-literal|"aaa_i"
-argument_list|)
-argument_list|,
-comment|// fq field
-operator|new
-name|FunctionValidator
-argument_list|(
-literal|"aaa_i"
-argument_list|,
-literal|"func_aaa_alias"
-argument_list|)
-argument_list|,
-operator|new
-name|RenameFieldValueValidator
-argument_list|(
-literal|"id"
-argument_list|,
-literal|"my_id_alias"
-argument_list|)
-argument_list|,
-operator|new
-name|RenameFieldValueValidator
-argument_list|(
-literal|"bbb_i"
-argument_list|,
-literal|"my_int_field_alias"
-argument_list|)
-argument_list|,
-operator|new
-name|RenameFieldValueValidator
-argument_list|(
-literal|"ddd_s"
-argument_list|,
-literal|"my_str_field_alias"
-argument_list|)
-argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// SOLR-9289...
-name|FL_VALIDATORS
-operator|.
-name|add
-argument_list|(
-operator|new
-name|DocIdValidator
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|FL_VALIDATORS
-operator|.
-name|add
-argument_list|(
-operator|new
-name|DocIdValidator
-argument_list|(
-literal|"my_docid_alias"
-argument_list|)
-argument_list|)
-expr_stmt|;
+comment|// No-Op
+comment|// At the moment, there are no known transformers that (we have FlValidators for and) only
+comment|// work in single core mode.
 block|}
 else|else
 block|{
@@ -1729,21 +1710,43 @@ argument_list|,
 literal|"/get"
 argument_list|)
 decl_stmt|;
-comment|// TODO: fq testing blocked by SOLR-9308
-comment|//
-comment|// // random fq -- nothing fancy, secondary concern for our test
+comment|// random fq -- nothing fancy, secondary concern for our test
 specifier|final
 name|Integer
 name|FQ_MAX
 init|=
+name|usually
+argument_list|()
+condition|?
 literal|null
+else|:
+name|random
+argument_list|()
+operator|.
+name|nextInt
+argument_list|()
 decl_stmt|;
-comment|// TODO: replace this...
-comment|// final Integer FQ_MAX = usually() ? null : random().nextInt();       //       ... with this
-comment|// if (null != FQ_MAX) {
-comment|//   params.add("fq", "aaa_i:[* TO " + FQ_MAX + "]");
-comment|// }
-comment|// TODO: END
+if|if
+condition|(
+literal|null
+operator|!=
+name|FQ_MAX
+condition|)
+block|{
+name|params
+operator|.
+name|add
+argument_list|(
+literal|"fq"
+argument_list|,
+literal|"aaa_i:[* TO "
+operator|+
+name|FQ_MAX
+operator|+
+literal|"]"
+argument_list|)
+expr_stmt|;
+block|}
 specifier|final
 name|Set
 argument_list|<
