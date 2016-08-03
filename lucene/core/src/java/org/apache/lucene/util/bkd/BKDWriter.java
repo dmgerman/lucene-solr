@@ -2942,20 +2942,6 @@ specifier|final
 name|IndexOutput
 name|out
 decl_stmt|;
-DECL|field|pointsPerLeafBlock
-specifier|final
-name|int
-name|pointsPerLeafBlock
-init|=
-call|(
-name|int
-call|)
-argument_list|(
-literal|0.75
-operator|*
-name|maxPointsInLeafNode
-argument_list|)
-decl_stmt|;
 DECL|field|leafBlockFPs
 specifier|final
 name|List
@@ -2992,7 +2978,7 @@ init|=
 operator|new
 name|byte
 index|[
-name|pointsPerLeafBlock
+name|maxPointsInLeafNode
 operator|*
 name|packedBytesLength
 index|]
@@ -3006,7 +2992,7 @@ init|=
 operator|new
 name|int
 index|[
-name|pointsPerLeafBlock
+name|maxPointsInLeafNode
 index|]
 decl_stmt|;
 DECL|field|valueCount
@@ -3202,7 +3188,7 @@ if|if
 condition|(
 name|leafCount
 operator|==
-name|pointsPerLeafBlock
+name|maxPointsInLeafNode
 condition|)
 block|{
 comment|// We write a block once we hit exactly the max count ... this is different from
