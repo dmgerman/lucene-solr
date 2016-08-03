@@ -707,6 +707,15 @@ name|GRAPH_SOURCE
 init|=
 literal|"graph-source"
 decl_stmt|;
+DECL|field|MACHINE_LEARNING_MODEL
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|MACHINE_LEARNING_MODEL
+init|=
+literal|"ml-model"
+decl_stmt|;
 DECL|field|STREAM_SOURCE
 specifier|public
 specifier|static
