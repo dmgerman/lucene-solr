@@ -4740,6 +4740,7 @@ modifier|...
 name|bounds
 parameter_list|)
 block|{
+comment|//System.out.println("Finding intersection bounds");
 comment|// Unnormalized, unchecked...
 specifier|final
 name|double
@@ -4820,7 +4821,7 @@ name|MINIMUM_RESOLUTION
 condition|)
 block|{
 comment|// Degenerate case: parallel planes
-comment|//System.err.println(" planes are parallel - no intersection");
+comment|//System.out.println(" planes are parallel - no intersection");
 return|return;
 block|}
 comment|// The line will have the equation: A t + A0 = x, B t + B0 = y, C t + C0 = z.
@@ -4934,6 +4935,7 @@ name|denomXY
 argument_list|)
 condition|)
 block|{
+comment|//System.out.println("X biggest");
 comment|// X is the biggest, so our point will have x0 = 0.0
 if|if
 condition|(
@@ -4947,7 +4949,7 @@ operator|<
 name|MINIMUM_RESOLUTION_SQUARED
 condition|)
 block|{
-comment|//System.err.println(" Denominator is zero: no intersection");
+comment|//System.out.println(" Denominator is zero: no intersection");
 return|return;
 block|}
 specifier|final
@@ -5296,6 +5298,7 @@ name|denomYZ
 argument_list|)
 condition|)
 block|{
+comment|//System.out.println("Y biggest");
 comment|// Y is the biggest, so y0 = 0.0
 if|if
 condition|(
@@ -5309,7 +5312,7 @@ operator|<
 name|MINIMUM_RESOLUTION_SQUARED
 condition|)
 block|{
-comment|//System.err.println(" Denominator is zero: no intersection");
+comment|//System.out.println(" Denominator is zero: no intersection");
 return|return;
 block|}
 specifier|final
@@ -5627,6 +5630,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|//System.out.println("Z biggest");
 comment|// Z is the biggest, so Z0 = 0.0
 if|if
 condition|(
@@ -5640,7 +5644,7 @@ operator|<
 name|MINIMUM_RESOLUTION_SQUARED
 condition|)
 block|{
-comment|//System.err.println(" Denominator is zero: no intersection");
+comment|//System.out.println(" Denominator is zero: no intersection");
 return|return;
 block|}
 specifier|final
@@ -6455,6 +6459,18 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+else|else
+block|{
+comment|// If we can't intersect line with world, then it's outside the world, so
+comment|// we have to assume everything is included.
+name|boundsInfo
+operator|.
+name|noBound
+argument_list|(
+name|planetModel
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 comment|/*   protected void verifyPoint(final PlanetModel planetModel, final GeoPoint point, final Plane q) {     if (!evaluateIsZero(point))       throw new RuntimeException("Intersection point not on original plane; point="+point+", plane="+this);     if (!q.evaluateIsZero(point))       throw new RuntimeException("Intersection point not on intersected plane; point="+point+", plane="+q);     if (Math.abs(point.x * point.x * planetModel.inverseASquared + point.y * point.y * planetModel.inverseBSquared + point.z * point.z * planetModel.inverseCSquared - 1.0)>= MINIMUM_RESOLUTION)        throw new RuntimeException("Intersection point not on ellipsoid; point="+point);   }   */

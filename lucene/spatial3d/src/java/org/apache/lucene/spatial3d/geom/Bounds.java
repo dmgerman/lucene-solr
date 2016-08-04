@@ -192,6 +192,17 @@ name|Bounds
 name|noBottomLatitudeBound
 parameter_list|()
 function_decl|;
+comment|/** Signal that there is no bound whatsoever.    * The bound is limited only by the constraints of the    * planet.    *@return the updated Bounds object.,    */
+DECL|method|noBound
+specifier|public
+name|Bounds
+name|noBound
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

@@ -617,6 +617,29 @@ return|return
 name|this
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|noBound
+specifier|public
+name|Bounds
+name|noBound
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|)
+block|{
+return|return
+name|noLongitudeBound
+argument_list|()
+operator|.
+name|noTopLatitudeBound
+argument_list|()
+operator|.
+name|noBottomLatitudeBound
+argument_list|()
+return|;
+block|}
 comment|// Protected methods
 comment|/** Update latitude bound.    *@param latitude is the latitude.    */
 DECL|method|addLatitudeBound
