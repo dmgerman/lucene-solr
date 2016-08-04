@@ -20,20 +20,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Constants
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -63,15 +49,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|assumeFalse
-argument_list|(
-literal|"Backup/Restore is currently buggy on Windows. Tracking the fix on SOLR-9242"
-argument_list|,
-name|Constants
-operator|.
-name|WINDOWS
-argument_list|)
-expr_stmt|;
 name|configureCluster
 argument_list|(
 name|NUM_SHARDS
