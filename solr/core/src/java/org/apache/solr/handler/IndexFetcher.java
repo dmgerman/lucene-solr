@@ -4884,19 +4884,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SolrQueryRequest
-name|req
-init|=
-operator|new
-name|LocalSolrQueryRequest
-argument_list|(
-name|solrCore
-argument_list|,
-operator|new
-name|ModifiableSolrParams
-argument_list|()
-argument_list|)
-decl_stmt|;
 name|RefCounted
 argument_list|<
 name|SolrIndexSearcher
@@ -4907,6 +4894,27 @@ literal|null
 decl_stmt|;
 name|IndexCommit
 name|commitPoint
+decl_stmt|;
+comment|// must get the latest solrCore object because the one we have might be closed because of a reload
+comment|// todo stop keeping solrCore around
+name|SolrCore
+name|core
+init|=
+name|solrCore
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|getCore
+argument_list|(
+name|solrCore
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -4922,7 +4930,7 @@ index|]
 decl_stmt|;
 name|searcher
 operator|=
-name|solrCore
+name|core
 operator|.
 name|getSearcher
 argument_list|(
@@ -4991,11 +4999,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|req
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|searcher
@@ -5009,6 +5012,11 @@ name|decref
 argument_list|()
 expr_stmt|;
 block|}
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// update the commit point in replication handler
 name|replicationHandler

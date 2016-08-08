@@ -1981,6 +1981,8 @@ operator|.
 name|UPDATE_CHAIN
 argument_list|,
 name|TEST_DISTRIB_SKIP_SERVERS
+argument_list|,
+name|VERSION_FIELD
 argument_list|)
 expr_stmt|;
 name|CoreDescriptor

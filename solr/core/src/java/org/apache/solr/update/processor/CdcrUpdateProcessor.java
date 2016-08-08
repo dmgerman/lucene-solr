@@ -461,42 +461,11 @@ argument_list|,
 literal|""
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|params
-operator|.
-name|get
-argument_list|(
-name|DistributedUpdateProcessor
-operator|.
-name|VERSION_FIELD
-argument_list|)
-operator|==
-literal|null
-condition|)
-block|{
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"+++ cdcr.update but no version field, params are: "
-operator|+
-name|params
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"+++ cdcr.update version present, params are: "
-operator|+
-name|params
-argument_list|)
-expr_stmt|;
-block|}
+comment|//      if (params.get(DistributedUpdateProcessor.VERSION_FIELD) == null) {
+comment|//        log.warn("+++ cdcr.update but no version field, params are: " + params);
+comment|//      } else {
+comment|//        log.info("+++ cdcr.update version present, params are: " + params);
+comment|//      }
 name|result
 operator|.
 name|set

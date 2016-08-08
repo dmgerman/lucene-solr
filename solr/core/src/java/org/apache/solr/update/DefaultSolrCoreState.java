@@ -1792,6 +1792,18 @@ operator|=
 name|success
 expr_stmt|;
 block|}
+annotation|@
+name|Override
+DECL|method|getRecoveryLock
+specifier|public
+name|Lock
+name|getRecoveryLock
+parameter_list|()
+block|{
+return|return
+name|recoveryLock
+return|;
+block|}
 block|}
 end_class
 
