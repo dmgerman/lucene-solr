@@ -815,11 +815,10 @@ argument_list|(
 literal|"explain_alias"
 argument_list|)
 argument_list|,
-comment|//
-comment|// SOLR-9377: SubQueryValidator fails on uncommited docs because not using RT seacher for sub query
-comment|//
-comment|// new SubQueryValidator(),
-comment|//
+operator|new
+name|SubQueryValidator
+argument_list|()
+argument_list|,
 operator|new
 name|NotIncludedValidator
 argument_list|(
@@ -1188,11 +1187,6 @@ name|Arrays
 operator|.
 name|asList
 argument_list|(
-name|SubQueryValidator
-operator|.
-name|NAME
-argument_list|,
-comment|// SOLR-9377
 literal|"xml"
 argument_list|,
 literal|"json"
@@ -1938,6 +1932,29 @@ name|random
 argument_list|()
 argument_list|)
 argument_list|,
+comment|// for testing subqueries
+literal|"next_2_ids_ss"
+argument_list|,
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|docId
+operator|+
+literal|1
+argument_list|)
+argument_list|,
+literal|"next_2_ids_ss"
+argument_list|,
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|docId
+operator|+
+literal|2
+argument_list|)
+argument_list|,
 comment|// for testing prefix globbing
 literal|"axx_i"
 argument_list|,
@@ -2106,37 +2123,11 @@ argument_list|)
 expr_stmt|;
 name|FlValidator
 operator|.
-name|addFlParams
+name|addParams
 argument_list|(
 name|validators
 argument_list|,
 name|params
-argument_list|)
-expr_stmt|;
-comment|// HACK: [subquery] expects this to be top level params
-name|params
-operator|.
-name|add
-argument_list|(
-name|SubQueryValidator
-operator|.
-name|SUBQ_KEY
-operator|+
-literal|".q"
-argument_list|,
-literal|"{!field f="
-operator|+
-name|SubQueryValidator
-operator|.
-name|SUBQ_FIELD
-operator|+
-literal|" v=$row."
-operator|+
-name|SubQueryValidator
-operator|.
-name|SUBQ_FIELD
-operator|+
-literal|"}"
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -2465,19 +2456,16 @@ block|{
 name|int
 name|actualId
 init|=
-name|Integer
-operator|.
-name|parseInt
+name|assertParseInt
 argument_list|(
+literal|"id"
+argument_list|,
 name|actual
 operator|.
 name|getFirstValue
 argument_list|(
 literal|"id"
 argument_list|)
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -2775,12 +2763,12 @@ specifier|private
 interface|interface
 name|FlValidator
 block|{
-comment|/** Given a list of FlValidators, adds one or more fl params that corrispond to the entire set */
-DECL|method|addFlParams
+comment|/**       * Given a list of FlValidators, adds one or more fl params that corrispond to the entire set,       * as well as any other special case top level params required by the validators.      */
+DECL|method|addParams
 specifier|public
 specifier|static
 name|void
-name|addFlParams
+name|addParams
 parameter_list|(
 specifier|final
 name|Collection
@@ -2819,6 +2807,16 @@ range|:
 name|validators
 control|)
 block|{
+name|params
+operator|.
+name|add
+argument_list|(
+name|v
+operator|.
+name|getExtraRequestParams
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|fls
 operator|.
 name|add
@@ -2868,6 +2866,19 @@ parameter_list|()
 block|{
 return|return
 literal|null
+return|;
+block|}
+comment|/**      * Any special case params that must be added to the request for this validator      */
+DECL|method|getExtraRequestParams
+specifier|public
+specifier|default
+name|SolrParams
+name|getExtraRequestParams
+parameter_list|()
+block|{
+return|return
+name|params
+argument_list|()
 return|;
 block|}
 comment|/**       * Must return a non null String that can be used in an fl param -- either by itself,       * or with other items separated by commas      */
@@ -4150,7 +4161,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**     * Trivial validator of a SubQueryAugmenter.      *    * This validator ignores 90% of the features/complexity    * of SubQueryAugmenter, and instead just focuses on the basics of     * "did we match at least one doc based on a field value of the requested doc?"    */
+comment|/**     * Trivial validator of a SubQueryAugmenter.      *    * This validator ignores 90% of the features/complexity    * of SubQueryAugmenter, and instead just focuses on the basics of:    *<ul>    *<li>do a subquery for docs where SUBQ_FIELD contains the id of the top level doc</li>    *<li>verify that any subquery match is expected based on indexing pattern</li>    *</ul>    */
 DECL|class|SubQueryValidator
 specifier|private
 specifier|static
@@ -4159,6 +4170,11 @@ name|SubQueryValidator
 implements|implements
 name|FlValidator
 block|{
+comment|// HACK to work around SOLR-9396...
+comment|//
+comment|// we're using "id" (and only "id") in the subquery.q as a workarround limitation in
+comment|// "$rows.foo" parsing -- it only works reliably if "foo" is in fl, so we only use "$rows.id",
+comment|// which we know is in every request (and is a valid integer)
 DECL|field|NAME
 specifier|public
 specifier|final
@@ -4184,19 +4200,8 @@ specifier|static
 name|String
 name|SUBQ_FIELD
 init|=
-literal|"aaa_i"
+literal|"next_2_ids_i"
 decl_stmt|;
-comment|/** always returns true */
-DECL|method|requiresRealtimeSearcherReOpen
-specifier|public
-name|boolean
-name|requiresRealtimeSearcherReOpen
-parameter_list|()
-block|{
-return|return
-literal|true
-return|;
-block|}
 DECL|method|getFlParam
 specifier|public
 name|String
@@ -4238,14 +4243,19 @@ name|actual
 parameter_list|)
 block|{
 specifier|final
-name|Object
-name|origVal
+name|int
+name|compVal
 init|=
+name|assertParseInt
+argument_list|(
+literal|"expected id"
+argument_list|,
 name|expected
 operator|.
 name|getFieldValue
 argument_list|(
-name|SUBQ_FIELD
+literal|"id"
+argument_list|)
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -4270,24 +4280,23 @@ operator|instanceof
 name|SolrDocumentList
 argument_list|)
 expr_stmt|;
-name|SolrDocumentList
-name|subList
-init|=
+name|assertTrue
+argument_list|(
+literal|"should be at most 2 docs in doc list: "
+operator|+
+name|actualVal
+argument_list|,
+operator|(
 operator|(
 name|SolrDocumentList
 operator|)
 name|actualVal
-decl_stmt|;
-name|assertTrue
-argument_list|(
-literal|"sub query should have producted at least one result (this doc)"
-argument_list|,
-literal|1
-operator|<=
-name|subList
+operator|)
 operator|.
 name|getNumFound
 argument_list|()
+operator|<=
+literal|2
 argument_list|)
 expr_stmt|;
 for|for
@@ -4295,21 +4304,73 @@ control|(
 name|SolrDocument
 name|subDoc
 range|:
-name|subList
+operator|(
+name|SolrDocumentList
+operator|)
+name|actualVal
 control|)
 block|{
-name|assertEquals
+specifier|final
+name|int
+name|subDocIdVal
+init|=
+name|assertParseInt
 argument_list|(
-literal|"orig doc value doesn't match subquery doc value"
-argument_list|,
-name|origVal
+literal|"subquery id"
 argument_list|,
 name|subDoc
 operator|.
 name|getFirstValue
 argument_list|(
-name|SUBQ_FIELD
+literal|"id"
 argument_list|)
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"subDocId="
+operator|+
+name|subDocIdVal
+operator|+
+literal|" not in valid range for id="
+operator|+
+name|compVal
+operator|+
+literal|" (expected "
+operator|+
+operator|(
+name|compVal
+operator|-
+literal|1
+operator|)
+operator|+
+literal|" or "
+operator|+
+operator|(
+name|compVal
+operator|-
+literal|2
+operator|)
+operator|+
+literal|")"
+argument_list|,
+operator|(
+operator|(
+name|subDocIdVal
+operator|<
+name|compVal
+operator|)
+operator|&&
+operator|(
+operator|(
+name|compVal
+operator|-
+literal|2
+operator|)
+operator|<=
+name|subDocIdVal
+operator|)
+operator|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -4333,6 +4394,31 @@ parameter_list|()
 block|{
 return|return
 name|NAME
+return|;
+block|}
+DECL|method|getExtraRequestParams
+specifier|public
+name|SolrParams
+name|getExtraRequestParams
+parameter_list|()
+block|{
+return|return
+name|params
+argument_list|(
+name|SubQueryValidator
+operator|.
+name|SUBQ_KEY
+operator|+
+literal|".q"
+argument_list|,
+literal|"{!field f="
+operator|+
+name|SubQueryValidator
+operator|.
+name|SUBQ_FIELD
+operator|+
+literal|" v=$row.id}"
+argument_list|)
 return|;
 block|}
 block|}
@@ -5343,6 +5429,77 @@ block|}
 return|return
 name|result
 return|;
+block|}
+comment|/** helper method for asserting an object is a non-null String can be parsed as an int */
+DECL|method|assertParseInt
+specifier|public
+specifier|static
+name|int
+name|assertParseInt
+parameter_list|(
+name|String
+name|msg
+parameter_list|,
+name|Object
+name|orig
+parameter_list|)
+block|{
+name|assertNotNull
+argument_list|(
+name|msg
+operator|+
+literal|": is null"
+argument_list|,
+name|orig
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|msg
+operator|+
+literal|": is not a string: "
+operator|+
+name|orig
+argument_list|,
+name|orig
+operator|instanceof
+name|String
+argument_list|)
+expr_stmt|;
+try|try
+block|{
+return|return
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|orig
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+return|;
+block|}
+catch|catch
+parameter_list|(
+name|NumberFormatException
+name|nfe
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
+argument_list|(
+name|msg
+operator|+
+literal|": can't be parsed as a number: "
+operator|+
+name|orig
+argument_list|,
+name|nfe
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 end_class
