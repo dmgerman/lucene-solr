@@ -2853,8 +2853,6 @@ name|getParser
 argument_list|(
 name|qs
 argument_list|,
-literal|null
-argument_list|,
 name|req
 argument_list|)
 operator|.
@@ -5088,8 +5086,6 @@ operator|.
 name|getParser
 argument_list|(
 name|q
-argument_list|,
-literal|null
 argument_list|,
 name|req
 argument_list|)

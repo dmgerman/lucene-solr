@@ -823,8 +823,6 @@ name|getParser
 argument_list|(
 name|v
 argument_list|,
-literal|"lucene"
-argument_list|,
 name|otherReq
 argument_list|)
 decl_stmt|;

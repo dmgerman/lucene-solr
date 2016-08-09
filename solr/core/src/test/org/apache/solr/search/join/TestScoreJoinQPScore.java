@@ -870,8 +870,6 @@ argument_list|(
 literal|"q"
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|req
 argument_list|)
 operator|.

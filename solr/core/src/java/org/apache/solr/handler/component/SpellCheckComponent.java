@@ -1772,10 +1772,6 @@ name|getParser
 argument_list|(
 name|maxResultsFilterQueryString
 argument_list|,
-name|QParserPlugin
-operator|.
-name|DEFAULT_QTYPE
-argument_list|,
 name|rb
 operator|.
 name|req
