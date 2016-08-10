@@ -880,8 +880,6 @@ name|getParser
 argument_list|(
 literal|"id:1"
 argument_list|,
-literal|"lucene"
-argument_list|,
 name|req
 argument_list|)
 decl_stmt|;

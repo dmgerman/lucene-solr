@@ -1255,8 +1255,6 @@ name|u
 operator|+
 literal|"]"
 argument_list|,
-literal|null
-argument_list|,
 name|req
 argument_list|)
 decl_stmt|;
@@ -1284,8 +1282,6 @@ operator|+
 name|u
 operator|+
 literal|"}foomany_s"
-argument_list|,
-literal|null
 argument_list|,
 name|req
 argument_list|)
@@ -1409,8 +1405,6 @@ name|u
 operator|+
 literal|"]"
 argument_list|,
-literal|null
-argument_list|,
 name|req
 argument_list|)
 decl_stmt|;
@@ -1471,8 +1465,6 @@ name|t
 argument_list|(
 literal|2
 argument_list|)
-argument_list|,
-literal|null
 argument_list|,
 name|req
 argument_list|)

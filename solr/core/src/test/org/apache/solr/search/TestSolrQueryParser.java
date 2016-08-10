@@ -716,8 +716,6 @@ name|getParser
 argument_list|(
 literal|"text:x^=3"
 argument_list|,
-literal|"lucene"
-argument_list|,
 name|req
 argument_list|)
 decl_stmt|;
@@ -775,8 +773,6 @@ operator|.
 name|getParser
 argument_list|(
 literal|"(text:x text:y)^=-3"
-argument_list|,
-literal|"lucene"
 argument_list|,
 name|req
 argument_list|)

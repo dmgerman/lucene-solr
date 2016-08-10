@@ -642,8 +642,6 @@ name|getParser
 argument_list|(
 name|reRankQueryString
 argument_list|,
-literal|null
-argument_list|,
 name|req
 argument_list|)
 decl_stmt|;

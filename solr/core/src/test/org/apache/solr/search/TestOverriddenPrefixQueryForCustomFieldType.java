@@ -671,8 +671,6 @@ index|[
 name|i
 index|]
 argument_list|,
-literal|null
-argument_list|,
 name|req
 argument_list|)
 operator|.

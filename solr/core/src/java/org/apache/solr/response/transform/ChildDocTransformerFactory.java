@@ -458,8 +458,6 @@ name|getParser
 argument_list|(
 name|parentFilter
 argument_list|,
-literal|null
-argument_list|,
 name|req
 argument_list|)
 operator|.
@@ -518,8 +516,6 @@ operator|.
 name|getParser
 argument_list|(
 name|childFilter
-argument_list|,
-literal|null
 argument_list|,
 name|req
 argument_list|)

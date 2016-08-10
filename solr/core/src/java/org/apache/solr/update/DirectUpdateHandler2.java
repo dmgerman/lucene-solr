@@ -2338,8 +2338,6 @@ operator|.
 name|getQuery
 argument_list|()
 argument_list|,
-literal|"lucene"
-argument_list|,
 name|cmd
 operator|.
 name|req

@@ -2310,8 +2310,6 @@ name|parsed
 operator|.
 name|facetValue
 argument_list|,
-literal|null
-argument_list|,
 name|req
 argument_list|)
 operator|.

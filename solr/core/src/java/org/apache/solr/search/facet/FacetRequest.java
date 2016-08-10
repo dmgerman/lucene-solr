@@ -2549,8 +2549,6 @@ name|getParser
 argument_list|(
 name|qstring
 argument_list|,
-literal|null
-argument_list|,
 name|getSolrRequest
 argument_list|()
 argument_list|)

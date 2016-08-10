@@ -4151,8 +4151,6 @@ name|getParser
 argument_list|(
 name|query
 argument_list|,
-literal|null
-argument_list|,
 name|queryRequest
 argument_list|)
 operator|.

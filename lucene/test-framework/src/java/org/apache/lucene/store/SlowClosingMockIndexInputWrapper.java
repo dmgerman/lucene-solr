@@ -72,6 +72,8 @@ argument_list|,
 name|name
 argument_list|,
 name|delegate
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
