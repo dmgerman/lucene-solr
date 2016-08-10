@@ -6908,7 +6908,6 @@ comment|//
 comment|// m^2 * [A^2*ab^2*r^2 + B^2*ab^2*r^2 + C^2*c^2*r^2 - 4] +
 comment|// m * [- 2*A*ab^2*r + 2*A^2*ab^2*r*q + 2*B^2*ab^2*r*q + 2*C^2*c^2*r*q] +
 comment|// [ab^2 - 2*A*ab^2*q + A^2*ab^2*q^2 + B^2*ab^2*q^2 + C^2*c^2*q^2]  =  0
-comment|//System.err.println("    computing X bound");
 comment|// Useful subexpressions for this bound
 specifier|final
 name|double
@@ -7275,6 +7274,27 @@ argument_list|)
 operator|<
 name|MINIMUM_RESOLUTION
 assert|;
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|m1
+argument_list|)
+operator|>=
+name|MINIMUM_RESOLUTION
+operator|||
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|m2
+argument_list|)
+operator|>=
+name|MINIMUM_RESOLUTION
+condition|)
+block|{
 specifier|final
 name|double
 name|l1
@@ -7418,6 +7438,21 @@ expr_stmt|;
 block|}
 else|else
 block|{
+comment|// This is a plane of the form A=n B=0 C=0.  We can set a bound only by noting the D value.
+name|boundsInfo
+operator|.
+name|addXValue
+argument_list|(
+operator|-
+name|D
+operator|/
+name|A
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
 comment|// No solutions
 block|}
 block|}
@@ -7434,7 +7469,6 @@ operator|>
 name|MINIMUM_RESOLUTION_SQUARED
 condition|)
 block|{
-comment|//System.err.println("Not x quadratic");
 comment|// a = 0, so m = - c / b
 specifier|final
 name|double
@@ -7993,6 +8027,27 @@ argument_list|)
 operator|<
 name|MINIMUM_RESOLUTION
 assert|;
+if|if
+condition|(
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|m1
+argument_list|)
+operator|>=
+name|MINIMUM_RESOLUTION
+operator|||
+name|Math
+operator|.
+name|abs
+argument_list|(
+name|m2
+argument_list|)
+operator|>=
+name|MINIMUM_RESOLUTION
+condition|)
+block|{
 specifier|final
 name|double
 name|l1
@@ -8133,6 +8188,21 @@ argument_list|,
 name|thePoint2
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// This is a plane of the form A=0 B=n C=0.  We can set a bound only by noting the D value.
+name|boundsInfo
+operator|.
+name|addYValue
+argument_list|(
+operator|-
+name|D
+operator|/
+name|B
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 else|else
 block|{
