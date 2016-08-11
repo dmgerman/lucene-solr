@@ -1390,8 +1390,6 @@ argument_list|,
 name|version
 argument_list|)
 argument_list|,
-literal|"lucene"
-argument_list|,
 name|req
 argument_list|)
 decl_stmt|;

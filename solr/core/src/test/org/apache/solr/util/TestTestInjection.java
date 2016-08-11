@@ -360,6 +360,24 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|testUsingConsistentRandomization
+specifier|public
+name|void
+name|testUsingConsistentRandomization
+parameter_list|()
+block|{
+name|assertSame
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+name|TestInjection
+operator|.
+name|random
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

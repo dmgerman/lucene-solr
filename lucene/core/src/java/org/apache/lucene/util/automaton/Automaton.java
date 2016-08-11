@@ -1610,7 +1610,7 @@ condition|(
 name|nextState
 operator|+
 literal|2
-operator|>=
+operator|>
 name|states
 operator|.
 name|length
@@ -1642,7 +1642,7 @@ condition|(
 name|nextTransition
 operator|+
 literal|3
-operator|>=
+operator|>
 name|transitions
 operator|.
 name|length

@@ -148,6 +148,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Before
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|BeforeClass
 import|;
 end_import
@@ -333,7 +343,20 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// uncommitted doc in transaction log
+block|}
+annotation|@
+name|Before
+DECL|method|addUncommittedDoc99
+specifier|private
+name|void
+name|addUncommittedDoc99
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// uncommitted doc in transaction log at start of every test
+comment|// Even if an RTG causes ulog to re-open realtime searcher, next test method
+comment|// will get another copy of doc 99 in the ulog
 name|assertU
 argument_list|(
 name|adoc
@@ -669,6 +692,57 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+DECL|method|testFilterAndOneRealFieldRTG
+specifier|public
+name|void
+name|testFilterAndOneRealFieldRTG
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// shouldn't matter if we use RTG (committed or otherwise)
+comment|// only one of these docs should match...
+name|assertQ
+argument_list|(
+literal|"RTG w/ 2 ids& fq that only matches 1 uncommitted doc"
+argument_list|,
+name|req
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"/get"
+argument_list|,
+literal|"ids"
+argument_list|,
+literal|"42,99"
+argument_list|,
+literal|"wt"
+argument_list|,
+literal|"xml"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,val_i"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!field f='subject' v=$my_var}"
+argument_list|,
+literal|"my_var"
+argument_list|,
+literal|"uncommitted"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound='1']"
+argument_list|,
+literal|"//result/doc/str[@name='id'][.='99']"
+argument_list|,
+literal|"//result/doc/int[@name='val_i'][.='1']"
+argument_list|,
+literal|"//result/doc[count(*)=2]"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testScoreAndAllRealFields
 specifier|public

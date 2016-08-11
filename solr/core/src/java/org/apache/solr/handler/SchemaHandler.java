@@ -1385,8 +1385,6 @@ name|fieldName
 init|=
 name|IndexSchema
 operator|.
-name|SchemaProps
-operator|.
 name|nameMapping
 operator|.
 name|get

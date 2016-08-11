@@ -282,6 +282,12 @@ specifier|final
 name|boolean
 name|cjkAsWords
 decl_stmt|;
+DECL|field|myanmarAsWords
+specifier|private
+specifier|final
+name|boolean
+name|myanmarAsWords
+decl_stmt|;
 comment|/** Creates a new ICUTokenizerFactory */
 DECL|method|ICUTokenizerFactory
 specifier|public
@@ -415,6 +421,17 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|myanmarAsWords
+operator|=
+name|getBoolean
+argument_list|(
+name|args
+argument_list|,
+literal|"myanmarAsWords"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -469,6 +486,8 @@ operator|new
 name|DefaultICUTokenizerConfig
 argument_list|(
 name|cjkAsWords
+argument_list|,
+name|myanmarAsWords
 argument_list|)
 expr_stmt|;
 block|}
@@ -540,6 +559,8 @@ operator|new
 name|DefaultICUTokenizerConfig
 argument_list|(
 name|cjkAsWords
+argument_list|,
+name|myanmarAsWords
 argument_list|)
 block|{
 annotation|@

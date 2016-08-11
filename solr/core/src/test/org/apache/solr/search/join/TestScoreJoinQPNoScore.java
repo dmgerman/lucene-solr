@@ -1058,8 +1058,6 @@ argument_list|(
 literal|"q"
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|req
 argument_list|)
 operator|.
@@ -1117,8 +1115,6 @@ operator|.
 name|getParser
 argument_list|(
 literal|"{!join from=dept_id_s to=dept_ss}text_t:develop"
-argument_list|,
-literal|null
 argument_list|,
 name|req
 argument_list|)

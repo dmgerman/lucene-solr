@@ -356,6 +356,16 @@ name|BACKUP_LOCATION
 init|=
 literal|"location"
 decl_stmt|;
+comment|/**    * A parameter to specify the name of the commit to be stored during the backup operation.    */
+DECL|field|COMMIT_NAME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|COMMIT_NAME
+init|=
+literal|"commitName"
+decl_stmt|;
 DECL|enum|CoreAdminAction
 specifier|public
 enum|enum
@@ -431,6 +441,15 @@ name|BACKUPCORE
 block|,
 DECL|enum constant|RESTORECORE
 name|RESTORECORE
+block|,
+DECL|enum constant|CREATESNAPSHOT
+name|CREATESNAPSHOT
+block|,
+DECL|enum constant|DELETESNAPSHOT
+name|DELETESNAPSHOT
+block|,
+DECL|enum constant|LISTSNAPSHOTS
+name|LISTSNAPSHOTS
 block|;
 DECL|field|isRead
 specifier|public

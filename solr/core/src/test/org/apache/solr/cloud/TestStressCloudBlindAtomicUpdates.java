@@ -717,6 +717,14 @@ specifier|static
 name|int
 name|DOC_ID_INCR
 decl_stmt|;
+comment|/**    * The TestInjection configuration to be used for the current test method.    *    * Value is set by {@link #clearCloudCollection}, and used by {@link #startTestInjection} -- but only once     * initial index seeding has finished (we're focusing on testing atomic updates, not basic indexing).    */
+DECL|field|testInjection
+specifier|private
+name|String
+name|testInjection
+init|=
+literal|null
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|createMiniSolrCloudCluster
@@ -1090,10 +1098,8 @@ operator|/
 literal|2
 argument_list|)
 decl_stmt|;
-specifier|final
-name|String
 name|testInjection
-init|=
+operator|=
 name|usually
 argument_list|()
 condition|?
@@ -1104,7 +1110,15 @@ literal|"true:"
 operator|+
 name|injectionPercentage
 operator|)
-decl_stmt|;
+expr_stmt|;
+block|}
+comment|/**    * Assigns {@link #testInjection} to various TestInjection variables.  Calling this     * method multiple times in the same method should always result in the same setting being applied     * (even if {@link TestInjection#reset} was called in between.    */
+DECL|method|startTestInjection
+specifier|private
+name|void
+name|startTestInjection
+parameter_list|()
+block|{
 name|log
 operator|.
 name|info
@@ -1590,6 +1604,11 @@ index|]
 argument_list|)
 expr_stmt|;
 comment|// sanity check index contents
+name|waitForRecoveriesToFinish
+argument_list|(
+name|CLOUD_CLIENT
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|0
@@ -1625,6 +1644,9 @@ operator|.
 name|getNumFound
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|startTestInjection
+argument_list|()
 expr_stmt|;
 comment|// spin up parallel workers to hammer updates
 name|List
@@ -1922,9 +1944,11 @@ literal|"fq"
 argument_list|,
 name|numericFieldName
 operator|+
-literal|":"
+literal|":\""
 operator|+
 name|expect
+operator|+
+literal|"\""
 argument_list|)
 decl_stmt|;
 name|SolrDocument

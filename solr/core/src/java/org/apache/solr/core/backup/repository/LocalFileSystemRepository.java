@@ -214,6 +214,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|common
@@ -345,6 +359,43 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
+name|String
+name|basePath
+init|=
+name|Preconditions
+operator|.
+name|checkNotNull
+argument_list|(
+name|pathComponents
+index|[
+literal|0
+index|]
+argument_list|)
+decl_stmt|;
+comment|// Note the URI.getPath() invocation on Windows platform generates an invalid URI.
+comment|// Refer to http://stackoverflow.com/questions/9834776/java-nio-file-path-issue
+comment|// Since the caller may have used this method to generate the string representation
+comment|// for the pathComponents, we implement a work-around specifically for Windows platform
+comment|// to remove the leading '/' character.
+if|if
+condition|(
+name|Constants
+operator|.
+name|WINDOWS
+condition|)
+block|{
+name|basePath
+operator|=
+name|basePath
+operator|.
+name|replaceFirst
+argument_list|(
+literal|"^/(.:/)"
+argument_list|,
+literal|"$1"
+argument_list|)
+expr_stmt|;
+block|}
 name|Path
 name|result
 init|=
@@ -352,10 +403,7 @@ name|Paths
 operator|.
 name|get
 argument_list|(
-name|pathComponents
-index|[
-literal|0
-index|]
+name|basePath
 argument_list|)
 decl_stmt|;
 for|for

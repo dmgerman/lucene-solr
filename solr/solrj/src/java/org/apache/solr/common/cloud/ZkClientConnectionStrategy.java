@@ -482,6 +482,16 @@ operator|!=
 literal|null
 return|;
 block|}
+DECL|method|getZkCredentialsToAddAutomatically
+specifier|public
+name|ZkCredentialsProvider
+name|getZkCredentialsToAddAutomatically
+parameter_list|()
+block|{
+return|return
+name|zkCredentialsToAddAutomatically
+return|;
+block|}
 DECL|method|createSolrZooKeeper
 specifier|protected
 name|SolrZooKeeper

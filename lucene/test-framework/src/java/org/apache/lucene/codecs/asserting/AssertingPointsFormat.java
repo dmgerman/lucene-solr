@@ -738,6 +738,10 @@ argument_list|,
 name|bytesPerDim
 argument_list|)
 expr_stmt|;
+name|lastDocID
+operator|=
+name|docID
+expr_stmt|;
 block|}
 name|in
 operator|.
@@ -1383,9 +1387,6 @@ name|fieldInfo
 parameter_list|,
 name|PointsReader
 name|values
-parameter_list|,
-name|double
-name|maxMBSortInHeap
 parameter_list|)
 throws|throws
 name|IOException
@@ -1421,8 +1422,6 @@ argument_list|(
 name|fieldInfo
 argument_list|,
 name|values
-argument_list|,
-name|maxMBSortInHeap
 argument_list|)
 expr_stmt|;
 block|}

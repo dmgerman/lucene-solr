@@ -8297,8 +8297,8 @@ block|}
 end_function
 
 begin_decl_stmt
+unit|}    public
 DECL|field|nameMapping
-specifier|public
 specifier|static
 name|Map
 argument_list|<
@@ -8316,6 +8316,8 @@ name|Stream
 operator|.
 name|of
 argument_list|(
+name|SchemaProps
+operator|.
 name|Handler
 operator|.
 name|values
@@ -8328,10 +8330,14 @@ name|Collectors
 operator|.
 name|toMap
 argument_list|(
+name|SchemaProps
+operator|.
 name|Handler
 operator|::
 name|getNameLower
 argument_list|,
+name|SchemaProps
+operator|.
 name|Handler
 operator|::
 name|getRealName
@@ -8342,8 +8348,8 @@ decl_stmt|;
 end_decl_stmt
 
 begin_function
-unit|}    public
 DECL|method|getNamedPropertyValues
+specifier|public
 name|Map
 argument_list|<
 name|String

@@ -231,7 +231,7 @@ name|IOException
 block|{
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"Connection expired - starting a new one..."
 argument_list|)
@@ -293,7 +293,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"Reconnect to ZooKeeper failed"
 argument_list|)

@@ -1222,6 +1222,35 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** Create a<code>QParser</code> to parse<code>qstr</code>,    * using the "lucene" (QParserPlugin.DEFAULT_QTYPE) query parser.    * The query parser may be overridden by local parameters in the query    * string itself.  For example if    * qstr=<code>{!prefix f=myfield}foo</code>    * then the prefix query parser will be used.    */
+DECL|method|getParser
+specifier|public
+specifier|static
+name|QParser
+name|getParser
+parameter_list|(
+name|String
+name|qstr
+parameter_list|,
+name|SolrQueryRequest
+name|req
+parameter_list|)
+throws|throws
+name|SyntaxError
+block|{
+return|return
+name|getParser
+argument_list|(
+name|qstr
+argument_list|,
+name|QParserPlugin
+operator|.
+name|DEFAULT_QTYPE
+argument_list|,
+name|req
+argument_list|)
+return|;
+block|}
 comment|/** Create a<code>QParser</code> to parse<code>qstr</code>,    * assuming that the default query parser is<code>defaultParser</code>.    * The query parser may be overridden by local parameters in the query    * string itself.  For example if defaultParser=<code>"dismax"</code>    * and qstr=<code>foo</code>, then the dismax query parser will be used    * to parse and construct the query object.  However    * if qstr=<code>{!prefix f=myfield}foo</code>    * then the prefix query parser will be used.    */
 DECL|method|getParser
 specifier|public

@@ -128,6 +128,60 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|Watcher
+operator|.
+name|Event
+operator|.
+name|KeeperState
+operator|.
+name|AuthFailed
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|Watcher
+operator|.
+name|Event
+operator|.
+name|KeeperState
+operator|.
+name|Disconnected
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|Watcher
+operator|.
+name|Event
+operator|.
+name|KeeperState
+operator|.
+name|Expired
+import|;
+end_import
+
 begin_class
 DECL|class|ConnectionManager
 specifier|public
@@ -495,6 +549,63 @@ parameter_list|)
 block|{
 if|if
 condition|(
+name|event
+operator|.
+name|getState
+argument_list|()
+operator|==
+name|AuthFailed
+operator|||
+name|event
+operator|.
+name|getState
+argument_list|()
+operator|==
+name|Disconnected
+operator|||
+name|event
+operator|.
+name|getState
+argument_list|()
+operator|==
+name|Expired
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Watcher "
+operator|+
+name|this
+operator|+
+literal|" name:"
+operator|+
+name|name
+operator|+
+literal|" got event "
+operator|+
+name|event
+operator|+
+literal|" path:"
+operator|+
+name|event
+operator|.
+name|getPath
+argument_list|()
+operator|+
+literal|" type:"
+operator|+
+name|event
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
 name|log
 operator|.
 name|isInfoEnabled
@@ -578,8 +689,6 @@ if|if
 condition|(
 name|state
 operator|==
-name|KeeperState
-operator|.
 name|Expired
 condition|)
 block|{
@@ -596,7 +705,7 @@ name|EXPIRED
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"Our previous ZooKeeper session was expired. Attempting to reconnect to recover relationship with ZooKeeper..."
 argument_list|)
@@ -839,7 +948,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"zkClient has disconnected"
 argument_list|)

@@ -4591,6 +4591,7 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Get a cluster property    *    * N.B. Cluster properties are updated via ZK watchers, and so may not necessarily    * be completely up-to-date.  If you need to get the latest version, then use a    * {@link ClusterProperties} instance.    *    * @param key           the property to read    * @param defaultValue  a default value to use if no such property exists    * @param<T>           the type of the property    * @return the cluster property, or a default if the property is not set    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -4637,6 +4638,7 @@ return|return
 name|value
 return|;
 block|}
+comment|/**    * Get all cluster properties for this cluster    *    * N.B. Cluster properties are updated via ZK watchers, and so may not necessarily    * be completely up-to-date.  If you need to get the latest version, then use a    * {@link ClusterProperties} instance.    *    * @return a Map of cluster properties    */
 DECL|method|getClusterProperties
 specifier|public
 name|Map
@@ -4693,17 +4695,6 @@ argument_list|()
 expr_stmt|;
 block|}
 decl_stmt|;
-comment|/**    * We should try keeping this to a minimum. Only in scenarios where the value being read is a user facing property    * should we force update to make sure we are reading the latest value.    */
-DECL|method|forceUpdateClusterProperties
-specifier|public
-name|void
-name|forceUpdateClusterProperties
-parameter_list|()
-block|{
-name|loadClusterProperties
-argument_list|()
-expr_stmt|;
-block|}
 annotation|@
 name|SuppressWarnings
 argument_list|(

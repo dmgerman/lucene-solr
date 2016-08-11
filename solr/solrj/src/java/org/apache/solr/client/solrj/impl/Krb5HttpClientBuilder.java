@@ -112,6 +112,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|annotations
+operator|.
+name|VisibleForTesting
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -368,7 +382,6 @@ decl_stmt|;
 DECL|field|jaasConfig
 specifier|private
 specifier|static
-specifier|final
 name|Configuration
 name|jaasConfig
 init|=
@@ -381,6 +394,23 @@ specifier|public
 name|Krb5HttpClientBuilder
 parameter_list|()
 block|{    }
+comment|/**    * The jaasConfig is static, which makes it problematic for testing in the same jvm.    * Call this function to regenerate the static config (this is not thread safe).    */
+annotation|@
+name|VisibleForTesting
+DECL|method|regenerateJaasConfiguration
+specifier|public
+specifier|static
+name|void
+name|regenerateJaasConfiguration
+parameter_list|()
+block|{
+name|jaasConfig
+operator|=
+operator|new
+name|SolrJaasConfiguration
+argument_list|()
+expr_stmt|;
+block|}
 DECL|method|getBuilder
 specifier|public
 name|SolrHttpClientBuilder
