@@ -51,7 +51,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A guard that is created for every {@link ByteBufferIndexInput} that tries on best effort  * to reject any access to the {@link ByteBuffer} behind, once it is unmapped. A single instance  * of this is used for the original and all clones, so once the original is closed and unmapped  * all clones also throw {@link AlreadyClosedException}, triggered by a {@link NullPointerException}.  *<p>  * This code uses the trick that is also used in  * {@link java.lang.invoke.MutableCallSite#syncAll(java.lang.invoke.MutableCallSite[])} to  * invalidate switch points. It also yields the current thread to give other threads a chance  * to finish in-flight requests...  */
+comment|/**  * A guard that is created for every {@link ByteBufferIndexInput} that tries on best effort  * to reject any access to the {@link ByteBuffer} behind, once it is unmapped. A single instance  * of this is used for the original and all clones, so once the original is closed and unmapped  * all clones also throw {@link AlreadyClosedException}, triggered by a {@link NullPointerException}.  *<p>  * This code tries to hopefully flush any CPU caches using a store-store barrier. It also yields the  * current thread to give other threads a chance to finish in-flight requests...  */
 end_comment
 
 begin_class
@@ -94,7 +94,7 @@ specifier|final
 name|BufferCleaner
 name|cleaner
 decl_stmt|;
-comment|/** not volatile, we use store-store barrier! */
+comment|/** Not volatile; see comments on visibility below! */
 DECL|field|invalidated
 specifier|private
 name|boolean
@@ -102,7 +102,7 @@ name|invalidated
 init|=
 literal|false
 decl_stmt|;
-comment|/** the actual store-store barrier. */
+comment|/** Used as a store-store barrier; see comments below! */
 DECL|field|barrier
 specifier|private
 specifier|final
@@ -162,7 +162,13 @@ name|invalidated
 operator|=
 literal|true
 expr_stmt|;
-comment|// this should trigger a happens-before - so flushes all caches
+comment|// This call should hopefully flush any CPU caches and as a result make
+comment|// the "invalidated" field update visible to other threads. We specifically
+comment|// don't make "invalidated" field volatile for performance reasons, hoping the
+comment|// JVM won't optimize away reads of that field and hardware should ensure
+comment|// caches are in sync after this call. This isn't entirely "fool-proof"
+comment|// (see LUCENE-7409 discussion), but it has been shown to work in practice
+comment|// and we count on this behavior.
 name|barrier
 operator|.
 name|lazySet
@@ -170,11 +176,13 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+comment|// we give other threads a bit of time to finish reads on their ByteBuffer...:
 name|Thread
 operator|.
 name|yield
 argument_list|()
 expr_stmt|;
+comment|// finally unmap the ByteBuffers:
 for|for
 control|(
 name|ByteBuffer
