@@ -44,6 +44,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|CountDownLatch
@@ -181,6 +191,12 @@ operator|.
 name|DEFAULT
 argument_list|)
 decl_stmt|;
+name|Random
+name|random
+init|=
+name|random
+argument_list|()
+decl_stmt|;
 for|for
 control|(
 name|int
@@ -205,7 +221,6 @@ operator|.
 name|writeInt
 argument_list|(
 name|random
-argument_list|()
 operator|.
 name|nextInt
 argument_list|()
