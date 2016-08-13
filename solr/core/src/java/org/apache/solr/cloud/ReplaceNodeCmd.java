@@ -54,6 +54,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -244,22 +254,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|Utils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|zookeeper
 operator|.
 name|KeeperException
@@ -377,7 +371,7 @@ annotation|@
 name|Override
 DECL|method|call
 specifier|public
-name|Object
+name|void
 name|call
 parameter_list|(
 name|ClusterState
@@ -572,14 +566,23 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"going to create replica {}"
+literal|"Going to create replica for collection={} shard={} on node={}"
 argument_list|,
-name|Utils
-operator|.
-name|toJSONString
-argument_list|(
 name|sourceReplica
+operator|.
+name|getStr
+argument_list|(
+name|COLLECTION_PROP
 argument_list|)
+argument_list|,
+name|sourceReplica
+operator|.
+name|getStr
+argument_list|(
+name|SHARD_ID_PROP
+argument_list|)
+argument_list|,
+name|target
 argument_list|)
 expr_stmt|;
 name|ZkNodeProps
@@ -642,18 +645,43 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|String
+name|errorString
+init|=
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+literal|"Failed to create replica for collection=%s shard=%s"
+operator|+
+literal|" on node=%s"
+argument_list|,
+name|sourceReplica
+operator|.
+name|getStr
+argument_list|(
+name|COLLECTION_PROP
+argument_list|)
+argument_list|,
+name|sourceReplica
+operator|.
+name|getStr
+argument_list|(
+name|SHARD_ID_PROP
+argument_list|)
+argument_list|,
+name|target
+argument_list|)
+decl_stmt|;
 name|log
 operator|.
 name|warn
 argument_list|(
-literal|"failed to create : "
-operator|+
-name|Utils
-operator|.
-name|toJSONString
-argument_list|(
-name|msg
-argument_list|)
+name|errorString
 argument_list|)
 expr_stmt|;
 comment|// one replica creation failed. Make the best attempt to
@@ -670,14 +698,7 @@ name|add
 argument_list|(
 literal|"failure"
 argument_list|,
-literal|"Could not create copy of replica "
-operator|+
-name|Utils
-operator|.
-name|toJSONString
-argument_list|(
-name|sourceReplica
-argument_list|)
+name|errorString
 argument_list|)
 expr_stmt|;
 name|anyOneFailed
@@ -693,16 +714,25 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"successfully created : "
-operator|+
-name|Utils
+literal|"Successfully created replica for collection={} shard={} on node={}"
+argument_list|,
+name|sourceReplica
 operator|.
-name|toJSONString
+name|getStr
 argument_list|(
-name|msg
+name|COLLECTION_PROP
 argument_list|)
+argument_list|,
+name|sourceReplica
+operator|.
+name|getStr
+argument_list|(
+name|SHARD_ID_PROP
+argument_list|)
+argument_list|,
+name|target
 argument_list|)
 expr_stmt|;
 block|}
@@ -727,9 +757,9 @@ block|}
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Waiting for creates to complete "
+literal|"Waiting for replace node action to complete"
 argument_list|)
 expr_stmt|;
 name|countDownLatch
@@ -745,9 +775,9 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Waiting over for creates to complete "
+literal|"Finished waiting for replace node action to complete"
 argument_list|)
 expr_stmt|;
 if|if
@@ -762,14 +792,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"failed to create some cores delete all "
-operator|+
-name|Utils
-operator|.
-name|toJSONString
-argument_list|(
-name|createdReplicas
-argument_list|)
+literal|"Failed to create some replicas. Cleaning up all replicas on target node"
 argument_list|)
 expr_stmt|;
 name|CountDownLatch
@@ -852,22 +875,13 @@ name|add
 argument_list|(
 literal|"failure"
 argument_list|,
-literal|"could not cleanup, because  : "
+literal|"Could not cleanup, because of : "
 operator|+
 name|deleteResult
 operator|.
 name|get
 argument_list|(
 literal|"failure"
-argument_list|)
-operator|+
-literal|"  "
-operator|+
-name|Utils
-operator|.
-name|toJSONString
-argument_list|(
-name|createdReplica
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -890,9 +904,9 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
-literal|"Error deleting "
+literal|"Error deleting replica "
 argument_list|,
 name|e
 argument_list|)
@@ -906,9 +920,9 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|error
+name|warn
 argument_list|(
-literal|"Unknown Error deleteing"
+literal|"Error deleting replica "
 argument_list|,
 name|e
 argument_list|)
@@ -934,9 +948,6 @@ operator|.
 name|MINUTES
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
 block|}
 comment|// we have reached this far means all replicas could be recreated
 comment|//now cleanup the replicas in the source node
@@ -951,6 +962,8 @@ argument_list|,
 name|sourceReplicas
 argument_list|,
 name|ocmh
+argument_list|,
+name|source
 argument_list|)
 expr_stmt|;
 name|results
@@ -959,7 +972,7 @@ name|add
 argument_list|(
 literal|"success"
 argument_list|,
-literal|"REPLACENODE completed successfully from  : "
+literal|"REPLACENODE action completed successfully from  : "
 operator|+
 name|source
 operator|+
@@ -968,9 +981,6 @@ operator|+
 name|target
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
 block|}
 DECL|method|getReplicasOfNode
 specifier|static
@@ -1102,20 +1112,6 @@ argument_list|,
 name|source
 argument_list|)
 decl_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"src_core : {}"
-argument_list|,
-name|Utils
-operator|.
-name|toJSONString
-argument_list|(
-name|props
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|sourceReplicas
 operator|.
 name|add

@@ -5174,20 +5174,6 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"deleteReplica() : {}"
-argument_list|,
-name|Utils
-operator|.
-name|toJSONString
-argument_list|(
-name|message
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|checkRequired
 argument_list|(
 name|message
@@ -5613,17 +5599,6 @@ name|get
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|AtomicReference
-argument_list|<
-name|Exception
-argument_list|>
-name|exp
-init|=
-operator|new
-name|AtomicReference
-argument_list|<>
-argument_list|()
-decl_stmt|;
 name|Callable
 argument_list|<
 name|Boolean
@@ -20530,7 +20505,7 @@ interface|interface
 name|Cmd
 block|{
 DECL|method|call
-name|Object
+name|void
 name|call
 parameter_list|(
 name|ClusterState

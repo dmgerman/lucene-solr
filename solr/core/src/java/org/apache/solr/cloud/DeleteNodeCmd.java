@@ -44,6 +44,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|concurrent
 operator|.
 name|CountDownLatch
@@ -130,22 +140,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|Utils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|zookeeper
 operator|.
 name|KeeperException
@@ -169,6 +163,42 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
+name|COLLECTION_PROP
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
+name|SHARD_ID_PROP
 import|;
 end_import
 
@@ -227,7 +257,7 @@ annotation|@
 name|Override
 DECL|method|call
 specifier|public
-name|Object
+name|void
 name|call
 parameter_list|(
 name|ClusterState
@@ -314,11 +344,10 @@ argument_list|,
 name|sourceReplicas
 argument_list|,
 name|ocmh
+argument_list|,
+name|node
 argument_list|)
 expr_stmt|;
-return|return
-literal|null
-return|;
 block|}
 DECL|method|cleanupReplicas
 specifier|static
@@ -339,6 +368,9 @@ name|sourceReplicas
 parameter_list|,
 name|OverseerCollectionMessageHandler
 name|ocmh
+parameter_list|,
+name|String
+name|node
 parameter_list|)
 throws|throws
 name|InterruptedException
@@ -367,14 +399,23 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"deleting replica from from node {} "
+literal|"Deleting replica for collection={} shard={} on node={}"
 argument_list|,
-name|Utils
-operator|.
-name|toJSONString
-argument_list|(
 name|sourceReplica
+operator|.
+name|getStr
+argument_list|(
+name|COLLECTION_PROP
 argument_list|)
+argument_list|,
+name|sourceReplica
+operator|.
+name|getStr
+argument_list|(
+name|SHARD_ID_PROP
+argument_list|)
+argument_list|,
+name|node
 argument_list|)
 expr_stmt|;
 name|NamedList
@@ -434,22 +475,33 @@ name|add
 argument_list|(
 literal|"failure"
 argument_list|,
-literal|"could not delete because  "
-operator|+
-name|deleteResult
+name|String
 operator|.
-name|get
+name|format
 argument_list|(
-literal|"failure"
-argument_list|)
-operator|+
-literal|"  "
-operator|+
-name|Utils
+name|Locale
 operator|.
-name|toJSONString
-argument_list|(
+name|ROOT
+argument_list|,
+literal|"Failed to delete replica for collection=%s shard=%s"
+operator|+
+literal|" on node=%s"
+argument_list|,
 name|sourceReplica
+operator|.
+name|getStr
+argument_list|(
+name|COLLECTION_PROP
+argument_list|)
+argument_list|,
+name|sourceReplica
+operator|.
+name|getStr
+argument_list|(
+name|SHARD_ID_PROP
+argument_list|)
+argument_list|,
+name|node
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -467,7 +519,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"Error deleting "
 argument_list|,
@@ -486,6 +538,15 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Error deleting "
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
 name|cleanupLatch
 operator|.
 name|countDown
@@ -498,9 +559,9 @@ block|}
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Waiting for deletes to complete"
+literal|"Waiting for delete node action to complete"
 argument_list|)
 expr_stmt|;
 name|cleanupLatch
