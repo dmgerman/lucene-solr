@@ -1631,7 +1631,7 @@ specifier|private
 name|void
 name|getCounts
 parameter_list|(
-name|FacetFieldProcessorUIF
+name|FacetFieldProcessorByArrayUIF
 name|processor
 parameter_list|,
 name|CountSlotAcc
@@ -2073,7 +2073,7 @@ specifier|public
 name|void
 name|collectDocs
 parameter_list|(
-name|FacetFieldProcessorUIF
+name|FacetFieldProcessorByArrayUIF
 name|processor
 parameter_list|)
 throws|throws
@@ -2130,7 +2130,7 @@ specifier|public
 name|void
 name|collectDocsGeneric
 parameter_list|(
-name|FacetFieldProcessorUIF
+name|FacetFieldProcessorByArrayUIF
 name|processor
 parameter_list|)
 throws|throws
