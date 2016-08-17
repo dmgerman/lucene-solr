@@ -100,6 +100,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
+operator|.
+name|Slow
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -121,6 +137,9 @@ comment|/**  * subclass of TestSimpleExplanations that adds a lot of filler docs
 end_comment
 
 begin_class
+annotation|@
+name|Slow
+comment|// can this be sped up to be non-slow? filler docs make it quite a bit slower and many test methods...
 DECL|class|TestSimpleExplanationsWithFillerDocs
 specifier|public
 class|class
