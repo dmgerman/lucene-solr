@@ -369,28 +369,28 @@ comment|/**       * Single-valued Integer, (e.g. indexed with {@link org.apache.
 DECL|enum constant|DOUBLE_POINT
 name|DOUBLE_POINT
 block|,
-comment|/**       * Single-valued Integer, (e.g. indexed with {@link org.apache.lucene.document.LegacyIntField})      *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      * @deprecated Index with points and use {@link #INTEGER_POINT} instead.      */
+comment|/**       * Single-valued Integer, (e.g. indexed with {@link org.apache.lucene.legacy.LegacyIntField})      *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      * @deprecated Index with points and use {@link #INTEGER_POINT} instead.      */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
 DECL|enum constant|LEGACY_INTEGER
 name|LEGACY_INTEGER
 block|,
-comment|/**       * Single-valued Long, (e.g. indexed with {@link org.apache.lucene.document.LegacyLongField})      *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      * @deprecated Index with points and use {@link #LONG_POINT} instead.      */
+comment|/**       * Single-valued Long, (e.g. indexed with {@link org.apache.lucene.legacy.LegacyLongField})      *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      * @deprecated Index with points and use {@link #LONG_POINT} instead.      */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
 DECL|enum constant|LEGACY_LONG
 name|LEGACY_LONG
 block|,
-comment|/**       * Single-valued Float, (e.g. indexed with {@link org.apache.lucene.document.LegacyFloatField})      *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      * @deprecated Index with points and use {@link #FLOAT_POINT} instead.      */
+comment|/**       * Single-valued Float, (e.g. indexed with {@link org.apache.lucene.legacy.LegacyFloatField})      *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      * @deprecated Index with points and use {@link #FLOAT_POINT} instead.      */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
 DECL|enum constant|LEGACY_FLOAT
 name|LEGACY_FLOAT
 block|,
-comment|/**       * Single-valued Double, (e.g. indexed with {@link org.apache.lucene.document.LegacyDoubleField})      *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      * @deprecated Index with points and use {@link #DOUBLE_POINT} instead.      */
+comment|/**       * Single-valued Double, (e.g. indexed with {@link org.apache.lucene.legacy.LegacyDoubleField})      *<p>      * Fields with this type act as if they were indexed with      * {@link NumericDocValuesField}.      * @deprecated Index with points and use {@link #DOUBLE_POINT} instead.      */
 DECL|enum constant|Deprecated
 annotation|@
 name|Deprecated
@@ -409,19 +409,19 @@ comment|/**       * Multi-valued Binary, (e.g. indexed with {@link StringField})
 DECL|enum constant|SORTED_SET_BINARY
 name|SORTED_SET_BINARY
 block|,
-comment|/**       * Multi-valued Integer, (e.g. indexed with {@link org.apache.lucene.document.LegacyIntField})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
+comment|/**       * Multi-valued Integer, (e.g. indexed with {@link org.apache.lucene.legacy.LegacyIntField})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
 DECL|enum constant|SORTED_SET_INTEGER
 name|SORTED_SET_INTEGER
 block|,
-comment|/**       * Multi-valued Float, (e.g. indexed with {@link org.apache.lucene.document.LegacyFloatField})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
+comment|/**       * Multi-valued Float, (e.g. indexed with {@link org.apache.lucene.legacy.LegacyFloatField})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
 DECL|enum constant|SORTED_SET_FLOAT
 name|SORTED_SET_FLOAT
 block|,
-comment|/**       * Multi-valued Long, (e.g. indexed with {@link org.apache.lucene.document.LegacyLongField})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
+comment|/**       * Multi-valued Long, (e.g. indexed with {@link org.apache.lucene.legacy.LegacyLongField})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
 DECL|enum constant|SORTED_SET_LONG
 name|SORTED_SET_LONG
 block|,
-comment|/**       * Multi-valued Double, (e.g. indexed with {@link org.apache.lucene.document.LegacyDoubleField})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
+comment|/**       * Multi-valued Double, (e.g. indexed with {@link org.apache.lucene.legacy.LegacyDoubleField})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
 DECL|enum constant|SORTED_SET_DOUBLE
 name|SORTED_SET_DOUBLE
 block|}

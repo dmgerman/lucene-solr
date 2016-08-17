@@ -30,9 +30,23 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
+name|legacy
 operator|.
-name|FieldType
+name|LegacyNumericRangeQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|legacy
+operator|.
+name|LegacyNumericType
 import|;
 end_import
 
@@ -192,22 +206,8 @@ name|LegacyNumericRangeQueryNode
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|LegacyNumericRangeQuery
-import|;
-end_import
-
 begin_comment
-comment|/**  * Builds {@link org.apache.lucene.search.LegacyNumericRangeQuery}s out of {@link LegacyNumericRangeQueryNode}s.  *  * @see org.apache.lucene.search.LegacyNumericRangeQuery  * @see LegacyNumericRangeQueryNode  * @deprecated Index with points and use {@link PointRangeQueryNodeBuilder} instead.  */
+comment|/**  * Builds {@link org.apache.lucene.legacy.LegacyNumericRangeQuery}s out of {@link LegacyNumericRangeQueryNode}s.  *  * @see org.apache.lucene.legacy.LegacyNumericRangeQuery  * @see LegacyNumericRangeQueryNode  * @deprecated Index with points and use {@link PointRangeQueryNodeBuilder} instead.  */
 end_comment
 
 begin_class
@@ -294,8 +294,6 @@ operator|.
 name|getNumericConfig
 argument_list|()
 decl_stmt|;
-name|FieldType
-operator|.
 name|LegacyNumericType
 name|numberType
 init|=

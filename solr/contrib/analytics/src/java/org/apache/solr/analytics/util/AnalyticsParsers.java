@@ -56,9 +56,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|legacy
 operator|.
-name|BytesRef
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -72,7 +72,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|LegacyNumericUtils
+name|BytesRef
 import|;
 end_import
 

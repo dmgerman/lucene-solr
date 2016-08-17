@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.util
+DECL|package|org.apache.lucene.legacy
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|util
+name|legacy
 package|;
 end_package
 
@@ -82,8 +82,36 @@ name|TermsEnum
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRef
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|BytesRefBuilder
+import|;
+end_import
+
 begin_comment
-comment|/**  * This is a helper class to generate prefix-encoded representations for numerical values  * and supplies converters to represent float/double values as sortable integers/longs.  *  *<p>To quickly execute range queries in Apache Lucene, a range is divided recursively  * into multiple intervals for searching: The center of the range is searched only with  * the lowest possible precision in the trie, while the boundaries are matched  * more exactly. This reduces the number of terms dramatically.  *  *<p>This class generates terms to achieve this: First the numerical integer values need to  * be converted to bytes. For that integer values (32 bit or 64 bit) are made unsigned  * and the bits are converted to ASCII chars with each 7 bit. The resulting byte[] is  * sortable like the original integer value (even using UTF-8 sort order). Each value is also  * prefixed (in the first char) by the<code>shift</code> value (number of bits removed) used  * during encoding.  *  *<p>For easy usage, the trie algorithm is implemented for indexing inside  * {@link org.apache.lucene.analysis.LegacyNumericTokenStream} that can index<code>int</code>,<code>long</code>,  *<code>float</code>, and<code>double</code>. For querying,  * {@link org.apache.lucene.search.LegacyNumericRangeQuery} implements the query part  * for the same data types.  *  * @lucene.internal  *  * @deprecated Please use {@link org.apache.lucene.index.PointValues} instead.  *  * @since 2.9, API changed non backwards-compliant in 4.0  */
+comment|/**  * This is a helper class to generate prefix-encoded representations for numerical values  * and supplies converters to represent float/double values as sortable integers/longs.  *  *<p>To quickly execute range queries in Apache Lucene, a range is divided recursively  * into multiple intervals for searching: The center of the range is searched only with  * the lowest possible precision in the trie, while the boundaries are matched  * more exactly. This reduces the number of terms dramatically.  *  *<p>This class generates terms to achieve this: First the numerical integer values need to  * be converted to bytes. For that integer values (32 bit or 64 bit) are made unsigned  * and the bits are converted to ASCII chars with each 7 bit. The resulting byte[] is  * sortable like the original integer value (even using UTF-8 sort order). Each value is also  * prefixed (in the first char) by the<code>shift</code> value (number of bits removed) used  * during encoding.  *  *<p>For easy usage, the trie algorithm is implemented for indexing inside  * {@link org.apache.lucene.legacy.LegacyNumericTokenStream} that can index<code>int</code>,<code>long</code>,  *<code>float</code>, and<code>double</code>. For querying,  * {@link org.apache.lucene.legacy.LegacyNumericRangeQuery} implements the query part  * for the same data types.  *  * @lucene.internal  *  * @deprecated Please use {@link org.apache.lucene.index.PointValues} instead.  *  * @since 2.9, API changed non backwards-compliant in 4.0  */
 end_comment
 
 begin_class
@@ -101,7 +129,7 @@ name|LegacyNumericUtils
 parameter_list|()
 block|{}
 comment|// no instance!
-comment|/**    * The default precision step used by {@link org.apache.lucene.document.LegacyLongField},    * {@link org.apache.lucene.document.LegacyDoubleField}, {@link org.apache.lucene.analysis.LegacyNumericTokenStream}, {@link    * org.apache.lucene.search.LegacyNumericRangeQuery}.    */
+comment|/**    * The default precision step used by {@link org.apache.lucene.legacy.LegacyLongField},    * {@link org.apache.lucene.legacy.LegacyDoubleField}, {@link org.apache.lucene.legacy.LegacyNumericTokenStream}, {@link    * org.apache.lucene.legacy.LegacyNumericRangeQuery}.    */
 DECL|field|PRECISION_STEP_DEFAULT
 specifier|public
 specifier|static
@@ -111,7 +139,7 @@ name|PRECISION_STEP_DEFAULT
 init|=
 literal|16
 decl_stmt|;
-comment|/**    * The default precision step used by {@link org.apache.lucene.document.LegacyIntField} and    * {@link org.apache.lucene.document.LegacyFloatField}.    */
+comment|/**    * The default precision step used by {@link org.apache.lucene.legacy.LegacyIntField} and    * {@link org.apache.lucene.legacy.LegacyFloatField}.    */
 DECL|field|PRECISION_STEP_DEFAULT_32
 specifier|public
 specifier|static
@@ -169,7 +197,7 @@ literal|7
 operator|+
 literal|2
 decl_stmt|;
-comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link org.apache.lucene.analysis.LegacyNumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.     * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    */
+comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link org.apache.lucene.legacy.LegacyNumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.     * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    */
 DECL|method|longToPrefixCoded
 specifier|public
 specifier|static
@@ -308,7 +336,7 @@ literal|7
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link org.apache.lucene.analysis.LegacyNumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    */
+comment|/**    * Returns prefix coded bits after reducing the precision by<code>shift</code> bits.    * This is method is used by {@link org.apache.lucene.legacy.LegacyNumericTokenStream}.    * After encoding, {@code bytes.offset} will always be 0.    * @param val the numeric value    * @param shift how many bits to strip from the right    * @param bytes will contain the encoded value    */
 DECL|method|intToPrefixCoded
 specifier|public
 specifier|static
@@ -780,7 +808,7 @@ operator|^
 literal|0x80000000
 return|;
 block|}
-comment|/**    * Splits a long range recursively.    * You may implement a builder that adds clauses to a    * {@link org.apache.lucene.search.BooleanQuery} for each call to its    * {@link LongRangeBuilder#addRange(BytesRef,BytesRef)}    * method.    *<p>This method is used by {@link org.apache.lucene.search.LegacyNumericRangeQuery}.    */
+comment|/**    * Splits a long range recursively.    * You may implement a builder that adds clauses to a    * {@link org.apache.lucene.search.BooleanQuery} for each call to its    * {@link LongRangeBuilder#addRange(BytesRef,BytesRef)}    * method.    *<p>This method is used by {@link org.apache.lucene.legacy.LegacyNumericRangeQuery}.    */
 DECL|method|splitLongRange
 specifier|public
 specifier|static
@@ -818,7 +846,7 @@ name|maxBound
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Splits an int range recursively.    * You may implement a builder that adds clauses to a    * {@link org.apache.lucene.search.BooleanQuery} for each call to its    * {@link IntRangeBuilder#addRange(BytesRef,BytesRef)}    * method.    *<p>This method is used by {@link org.apache.lucene.search.LegacyNumericRangeQuery}.    */
+comment|/**    * Splits an int range recursively.    * You may implement a builder that adds clauses to a    * {@link org.apache.lucene.search.BooleanQuery} for each call to its    * {@link IntRangeBuilder#addRange(BytesRef,BytesRef)}    * method.    *<p>This method is used by {@link org.apache.lucene.legacy.LegacyNumericRangeQuery}.    */
 DECL|method|splitIntRange
 specifier|public
 specifier|static
