@@ -290,6 +290,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|legacy
+operator|.
+name|LegacyNumericType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|queries
 operator|.
 name|function
@@ -2622,16 +2636,6 @@ block|}
 comment|/** Return the numeric type of this field, or null if this field is not a    *  numeric field. */
 DECL|method|getNumericType
 specifier|public
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FieldType
-operator|.
 name|LegacyNumericType
 name|getNumericType
 parameter_list|()

@@ -71,22 +71,6 @@ operator|.
 name|document
 operator|.
 name|Field
-operator|.
-name|Store
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
 import|;
 end_import
 
@@ -114,7 +98,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LegacyFloatField
+name|SortedDocValuesField
 import|;
 end_import
 
@@ -128,7 +112,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|SortedDocValuesField
+name|StoredField
 import|;
 end_import
 
@@ -1547,15 +1531,11 @@ name|Field
 name|weeksStoredField
 init|=
 operator|new
-name|LegacyFloatField
+name|StoredField
 argument_list|(
 literal|"weeks"
 argument_list|,
 literal|0.0F
-argument_list|,
-name|Store
-operator|.
-name|YES
 argument_list|)
 decl_stmt|;
 name|Field
