@@ -60,9 +60,15 @@ name|CountDownLatch
 import|;
 end_import
 
-begin_comment
-comment|// import org.junit.Ignore;
-end_comment
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|Ignore
+import|;
+end_import
 
 begin_comment
 comment|/**  * Tests MMapDirectory  */
@@ -142,7 +148,11 @@ name|UNMAP_SUPPORTED
 argument_list|)
 expr_stmt|;
 block|}
-comment|// TODO: @Ignore("This test is for JVM testing purposes. There are no guarantees that it may not fail with SIGSEGV!")
+annotation|@
+name|Ignore
+argument_list|(
+literal|"This test is for JVM testing purposes. There are no guarantees that it may not fail with SIGSEGV!"
+argument_list|)
 DECL|method|testAceWithThreads
 specifier|public
 name|void
