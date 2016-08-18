@@ -485,17 +485,33 @@ name|snapshot_numRecords
 decl_stmt|;
 comment|// write a BytesRef as a byte array
 DECL|field|resolver
+specifier|static
+specifier|final
 name|JavaBinCodec
 operator|.
 name|ObjectResolver
 name|resolver
 init|=
+operator|new
+name|JavaBinCodec
+operator|.
+name|ObjectResolver
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|Object
+name|resolve
 parameter_list|(
+name|Object
 name|o
 parameter_list|,
+name|JavaBinCodec
 name|codec
 parameter_list|)
-lambda|->
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -554,6 +570,7 @@ operator|+
 literal|"; try implementing ObjectResolver?"
 argument_list|)
 throw|;
+block|}
 block|}
 decl_stmt|;
 DECL|class|LogCodec
