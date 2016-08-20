@@ -544,6 +544,27 @@ operator|.
 name|SHARD
 argument_list|)
 block|,
+comment|//TODO when we have a node level lock use it here
+DECL|enum constant|REPLACENODE
+name|REPLACENODE
+argument_list|(
+literal|true
+argument_list|,
+name|LockLevel
+operator|.
+name|NONE
+argument_list|)
+block|,
+DECL|enum constant|DELETENODE
+name|DELETENODE
+argument_list|(
+literal|true
+argument_list|,
+name|LockLevel
+operator|.
+name|NONE
+argument_list|)
+block|,
 DECL|enum constant|MOCK_REPLICA_TASK
 name|MOCK_REPLICA_TASK
 argument_list|(

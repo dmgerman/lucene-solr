@@ -104,9 +104,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|FieldType
+name|legacy
 operator|.
 name|LegacyNumericType
 import|;

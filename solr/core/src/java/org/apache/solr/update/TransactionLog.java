@@ -485,6 +485,8 @@ name|snapshot_numRecords
 decl_stmt|;
 comment|// write a BytesRef as a byte array
 DECL|field|resolver
+specifier|static
+specifier|final
 name|JavaBinCodec
 operator|.
 name|ObjectResolver

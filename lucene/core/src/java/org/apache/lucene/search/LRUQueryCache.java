@@ -1604,6 +1604,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
+comment|// Note that this also clears the uniqueQueries map since mostRecentlyUsedQueries is the uniqueQueries.keySet view:
 name|mostRecentlyUsedQueries
 operator|.
 name|clear

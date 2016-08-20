@@ -50,30 +50,14 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|FieldType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FieldType
+name|legacy
 operator|.
 name|LegacyNumericType
 import|;
 end_import
 
 begin_comment
-comment|/**  * This class holds the configuration used to parse numeric queries and create  * {@link org.apache.lucene.search.LegacyNumericRangeQuery}s.  *   * @see org.apache.lucene.search.LegacyNumericRangeQuery  * @see NumberFormat  * @deprecated Index with Points instead and use {@link PointsConfig}  */
+comment|/**  * This class holds the configuration used to parse numeric queries and create  * {@link org.apache.lucene.legacy.LegacyNumericRangeQuery}s.  *   * @see org.apache.lucene.legacy.LegacyNumericRangeQuery  * @see NumberFormat  * @deprecated Index with Points instead and use {@link PointsConfig}  */
 end_comment
 
 begin_class
@@ -96,12 +80,10 @@ name|format
 decl_stmt|;
 DECL|field|type
 specifier|private
-name|FieldType
-operator|.
 name|LegacyNumericType
 name|type
 decl_stmt|;
-comment|/**    * Constructs a {@link LegacyNumericConfig} object.    *     * @param precisionStep    *          the precision used to index the numeric values    * @param format    *          the {@link NumberFormat} used to parse a {@link String} to    *          {@link Number}    * @param type    *          the numeric type used to index the numeric values    *     * @see LegacyNumericConfig#setPrecisionStep(int)    * @see LegacyNumericConfig#setNumberFormat(NumberFormat)    * @see #setType(org.apache.lucene.document.FieldType.LegacyNumericType)    */
+comment|/**    * Constructs a {@link LegacyNumericConfig} object.    *     * @param precisionStep    *          the precision used to index the numeric values    * @param format    *          the {@link NumberFormat} used to parse a {@link String} to    *          {@link Number}    * @param type    *          the numeric type used to index the numeric values    *     * @see LegacyNumericConfig#setPrecisionStep(int)    * @see LegacyNumericConfig#setNumberFormat(NumberFormat)    * @see #setType(LegacyNumericType)    */
 DECL|method|LegacyNumericConfig
 specifier|public
 name|LegacyNumericConfig
@@ -132,7 +114,7 @@ name|type
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Returns the precision used to index the numeric values    *     * @return the precision used to index the numeric values    *     * @see org.apache.lucene.search.LegacyNumericRangeQuery#getPrecisionStep()    */
+comment|/**    * Returns the precision used to index the numeric values    *     * @return the precision used to index the numeric values    *     * @see org.apache.lucene.legacy.LegacyNumericRangeQuery#getPrecisionStep()    */
 DECL|method|getPrecisionStep
 specifier|public
 name|int
@@ -143,7 +125,7 @@ return|return
 name|precisionStep
 return|;
 block|}
-comment|/**    * Sets the precision used to index the numeric values    *     * @param precisionStep    *          the precision used to index the numeric values    *     * @see org.apache.lucene.search.LegacyNumericRangeQuery#getPrecisionStep()    */
+comment|/**    * Sets the precision used to index the numeric values    *     * @param precisionStep    *          the precision used to index the numeric values    *     * @see org.apache.lucene.legacy.LegacyNumericRangeQuery#getPrecisionStep()    */
 DECL|method|setPrecisionStep
 specifier|public
 name|void

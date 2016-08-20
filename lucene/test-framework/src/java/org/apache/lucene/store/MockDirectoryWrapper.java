@@ -4192,7 +4192,14 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"MockDirectoryWrapper: cannot close: there are still open files: "
+literal|"MockDirectoryWrapper: cannot close: there are still "
+operator|+
+name|openFiles
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" open files: "
 operator|+
 name|openFiles
 argument_list|,

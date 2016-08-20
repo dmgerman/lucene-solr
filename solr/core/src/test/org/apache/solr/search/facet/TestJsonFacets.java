@@ -315,11 +315,11 @@ literal|true
 expr_stmt|;
 name|origTableSize
 operator|=
-name|FacetFieldProcessorNumeric
+name|FacetFieldProcessorByHashNumeric
 operator|.
 name|MAXIMUM_STARTING_TABLE_SIZE
 expr_stmt|;
-name|FacetFieldProcessorNumeric
+name|FacetFieldProcessorByHashNumeric
 operator|.
 name|MAXIMUM_STARTING_TABLE_SIZE
 operator|=
@@ -381,7 +381,7 @@ name|failRepeatedKeys
 operator|=
 literal|false
 expr_stmt|;
-name|FacetFieldProcessorNumeric
+name|FacetFieldProcessorByHashNumeric
 operator|.
 name|MAXIMUM_STARTING_TABLE_SIZE
 operator|=
@@ -2489,7 +2489,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// multi-valued docvalues
-name|FacetFieldProcessorDV
+name|FacetFieldProcessorByArrayDV
 operator|.
 name|unwrap_singleValued_multiDv
 operator|=
@@ -2559,7 +2559,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// multi-valued docvalues
-name|FacetFieldProcessorDV
+name|FacetFieldProcessorByArrayDV
 operator|.
 name|unwrap_singleValued_multiDv
 operator|=

@@ -487,6 +487,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Slow
 DECL|method|testStressUpdateSameID
 specifier|public
 name|void
@@ -991,6 +993,8 @@ name|long
 name|seqNo
 decl_stmt|;
 block|}
+annotation|@
+name|Slow
 DECL|method|testStressConcurrentCommit
 specifier|public
 name|void
@@ -2168,6 +2172,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Slow
 DECL|method|testStressConcurrentDocValuesUpdatesCommit
 specifier|public
 name|void
@@ -3256,6 +3262,8 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|Slow
 DECL|method|testStressConcurrentAddAndDeleteAndCommit
 specifier|public
 name|void

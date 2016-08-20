@@ -1462,6 +1462,14 @@ name|v
 operator|!=
 literal|null
 assert|;
+comment|// for the first element, check that remove is not supported
+if|if
+condition|(
+name|i
+operator|==
+literal|0
+condition|)
+block|{
 try|try
 block|{
 name|iterator
@@ -1486,6 +1494,7 @@ name|expected
 parameter_list|)
 block|{
 comment|// ok
+block|}
 block|}
 block|}
 assert|assert
