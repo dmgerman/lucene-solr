@@ -512,8 +512,6 @@ parameter_list|)
 block|{
 name|StorageIO
 name|storageIO
-init|=
-literal|null
 decl_stmt|;
 name|SolrZkClient
 name|zkClient
@@ -580,16 +578,28 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"Failed to get config name for collection {} due to: {}"
-argument_list|,
-name|collection
+literal|"Failed to get config name due to"
 argument_list|,
 name|e
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Failed to load config name for collection:"
+operator|+
+name|collection
+operator|+
+literal|" due to: "
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 if|if
 condition|(
