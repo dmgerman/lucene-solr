@@ -736,6 +736,17 @@ argument_list|,
 name|core
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|lookup
+operator|!=
+literal|null
+operator|&&
+name|lookup
+operator|instanceof
+name|Closeable
+condition|)
+block|{
 name|core
 operator|.
 name|addCloseHook
@@ -753,17 +764,6 @@ parameter_list|(
 name|SolrCore
 name|core
 parameter_list|)
-block|{
-if|if
-condition|(
-name|lookup
-operator|!=
-literal|null
-operator|&&
-name|lookup
-operator|instanceof
-name|Closeable
-condition|)
 block|{
 try|try
 block|{
@@ -795,7 +795,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-block|}
 annotation|@
 name|Override
 specifier|public
@@ -805,10 +804,11 @@ parameter_list|(
 name|SolrCore
 name|core
 parameter_list|)
-block|{}
+block|{         }
 block|}
 argument_list|)
 expr_stmt|;
+block|}
 comment|// if store directory is provided make it or load up the lookup with its content
 if|if
 condition|(
