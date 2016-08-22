@@ -173,6 +173,17 @@ argument_list|,
 name|analyzer
 argument_list|)
 expr_stmt|;
+name|queryFactory
+operator|.
+name|addBuilder
+argument_list|(
+literal|"LegacyNumericRangeQuery"
+argument_list|,
+operator|new
+name|LegacyNumericRangeQueryBuilder
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|req

@@ -504,48 +504,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
-comment|/**      * Key used to set a field to its {@link LegacyNumericConfig}.      *       * @see StandardQueryParser#setLegacyNumericConfigMap(Map)      * @see StandardQueryParser#getLegacyNumericConfigMap()      * @deprecated Index with Points instead and use {@link #POINTS_CONFIG}      */
-annotation|@
-name|Deprecated
-DECL|field|LEGACY_NUMERIC_CONFIG
-specifier|final
-specifier|public
-specifier|static
-name|ConfigurationKey
-argument_list|<
-name|LegacyNumericConfig
-argument_list|>
-name|LEGACY_NUMERIC_CONFIG
-init|=
-name|ConfigurationKey
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
-comment|/**      * Key used to set the {@link LegacyNumericConfig} in {@link FieldConfig} for numeric fields.      *       * @see StandardQueryParser#setLegacyNumericConfigMap(Map)      * @see StandardQueryParser#getLegacyNumericConfigMap()      * @deprecated Index with Points instead and use {@link #POINTS_CONFIG_MAP}      */
-annotation|@
-name|Deprecated
-DECL|field|LEGACY_NUMERIC_CONFIG_MAP
-specifier|final
-specifier|public
-specifier|static
-name|ConfigurationKey
-argument_list|<
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|LegacyNumericConfig
-argument_list|>
-argument_list|>
-name|LEGACY_NUMERIC_CONFIG_MAP
-init|=
-name|ConfigurationKey
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
-comment|/**      * Key used to set a field to its {@link PointsConfig}.      *       * @see StandardQueryParser#setLegacyNumericConfigMap(Map)      * @see StandardQueryParser#getLegacyNumericConfigMap()      */
+comment|/**      * Key used to set a field to its {@link PointsConfig}.      *       * @see StandardQueryParser#setPointsConfigMap(Map)      * @see StandardQueryParser#getPointsConfigMap()      */
 DECL|field|POINTS_CONFIG
 specifier|final
 specifier|public
@@ -561,7 +520,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
-comment|/**      * Key used to set the {@link PointsConfig} in {@link FieldConfig} for point fields.      *       * @see StandardQueryParser#setLegacyNumericConfigMap(Map)      * @see StandardQueryParser#getLegacyNumericConfigMap()      */
+comment|/**      * Key used to set the {@link PointsConfig} in {@link FieldConfig} for point fields.      *       * @see StandardQueryParser#setPointsConfigMap(Map)      * @see StandardQueryParser#getPointsConfigMap()      */
 DECL|field|POINTS_CONFIG_MAP
 specifier|final
 specifier|public
@@ -615,15 +574,6 @@ name|addFieldConfigListener
 argument_list|(
 operator|new
 name|FieldDateResolutionFCListener
-argument_list|(
-name|this
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|addFieldConfigListener
-argument_list|(
-operator|new
-name|LegacyNumericFieldConfigListener
 argument_list|(
 name|this
 argument_list|)
