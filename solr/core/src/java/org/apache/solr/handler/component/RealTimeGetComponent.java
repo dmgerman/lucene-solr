@@ -3800,14 +3800,6 @@ operator|==
 literal|null
 condition|)
 return|return;
-comment|//get all available versions by default
-name|long
-name|maxVersion
-init|=
-name|Long
-operator|.
-name|MAX_VALUE
-decl_stmt|;
 comment|// get fingerprint first as it will cause a soft commit
 comment|// and would avoid mismatch if documents are being actively index especially during PeerSync
 if|if
@@ -3846,15 +3838,6 @@ name|toObject
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// if fingerprint is calculated, it makes sense to get only those versions
-comment|// which were used in computing the the fingerprint
-name|maxVersion
-operator|=
-name|fingerprint
-operator|.
-name|getMaxVersionEncountered
-argument_list|()
-expr_stmt|;
 block|}
 try|try
 init|(
@@ -3880,8 +3863,6 @@ operator|.
 name|getVersions
 argument_list|(
 name|nVersions
-argument_list|,
-name|maxVersion
 argument_list|)
 decl_stmt|;
 name|rb
