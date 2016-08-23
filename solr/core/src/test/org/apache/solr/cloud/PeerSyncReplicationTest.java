@@ -995,8 +995,10 @@ argument_list|,
 literal|"document number "
 operator|+
 name|docId
-operator|++
 argument_list|)
+expr_stmt|;
+name|docId
+operator|++
 expr_stmt|;
 comment|// slow down adds, to get documents indexed while in PeerSync
 name|Thread
@@ -1014,13 +1016,16 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-throw|throw
-operator|new
-name|RuntimeException
+name|log
+operator|.
+name|error
 argument_list|(
+literal|"Error indexing doc in background"
+argument_list|,
 name|e
 argument_list|)
-throw|;
+expr_stmt|;
+comment|//Throwing an error here will kill the thread
 block|}
 block|}
 argument_list|,
