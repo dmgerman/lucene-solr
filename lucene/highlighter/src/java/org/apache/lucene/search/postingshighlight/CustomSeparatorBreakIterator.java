@@ -294,7 +294,7 @@ argument_list|()
 condition|)
 block|{
 comment|// this conflicts with the javadocs, but matches actual behavior (Oracle has a bug in something)
-comment|// http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=9000909
+comment|// https://bugs.openjdk.java.net/browse/JDK-8015110
 name|text
 operator|.
 name|setIndex
@@ -484,7 +484,7 @@ argument_list|()
 condition|)
 block|{
 comment|// this conflicts with the javadocs, but matches actual behavior (Oracle has a bug in something)
-comment|// http://bugs.sun.com/bugdatabase/view_bug.do?bug_id=9000909
+comment|// https://bugs.openjdk.java.net/browse/JDK-8015110
 name|text
 operator|.
 name|setIndex
