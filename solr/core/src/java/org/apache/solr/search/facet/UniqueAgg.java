@@ -630,7 +630,7 @@ parameter_list|(
 name|FacetSortableMerger
 name|other
 parameter_list|,
-name|FacetField
+name|FacetRequest
 operator|.
 name|SortDirection
 name|direction

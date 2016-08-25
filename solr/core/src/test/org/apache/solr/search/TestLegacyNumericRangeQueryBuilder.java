@@ -4,19 +4,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.queryparser.xml.builders
+DECL|package|org.apache.solr.search
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|queryparser
-operator|.
-name|xml
-operator|.
-name|builders
+name|search
 package|;
 end_package
 
@@ -181,10 +177,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TestNumericRangeQueryBuilder
+DECL|class|TestLegacyNumericRangeQueryBuilder
 specifier|public
 class|class
-name|TestNumericRangeQueryBuilder
+name|TestLegacyNumericRangeQueryBuilder
 extends|extends
 name|LuceneTestCase
 block|{

@@ -6548,18 +6548,9 @@ name|State
 operator|.
 name|ACTIVE
 operator|&&
-operator|(
-name|cmd
-operator|.
-name|getFlags
-argument_list|()
-operator|&
-name|UpdateCommand
-operator|.
-name|REPLAY
-operator|)
+name|isReplayOrPeersync
 operator|==
-literal|0
+literal|false
 condition|)
 block|{
 comment|// we're not in an active state, and this update isn't from a replay, so buffer it.
@@ -6750,18 +6741,9 @@ name|State
 operator|.
 name|ACTIVE
 operator|&&
-operator|(
-name|cmd
-operator|.
-name|getFlags
-argument_list|()
-operator|&
-name|UpdateCommand
-operator|.
-name|REPLAY
-operator|)
+name|isReplayOrPeersync
 operator|==
-literal|0
+literal|false
 condition|)
 block|{
 comment|// we're not in an active state, and this update isn't from a replay, so buffer it.
@@ -8982,18 +8964,9 @@ name|State
 operator|.
 name|ACTIVE
 operator|&&
-operator|(
-name|cmd
-operator|.
-name|getFlags
-argument_list|()
-operator|&
-name|UpdateCommand
-operator|.
-name|REPLAY
-operator|)
+name|isReplayOrPeersync
 operator|==
-literal|0
+literal|false
 condition|)
 block|{
 comment|// we're not in an active state, and this update isn't from a replay, so buffer it.
@@ -9516,18 +9489,8 @@ name|State
 operator|.
 name|ACTIVE
 operator|&&
-operator|(
-name|cmd
-operator|.
-name|getFlags
-argument_list|()
-operator|&
-name|UpdateCommand
-operator|.
-name|REPLAY
-operator|)
-operator|==
-literal|0
+operator|!
+name|isReplayOrPeersync
 condition|)
 block|{
 comment|// we're not in an active state, and this update isn't from a replay, so buffer it.
@@ -9707,18 +9670,9 @@ name|State
 operator|.
 name|ACTIVE
 operator|&&
-operator|(
-name|cmd
-operator|.
-name|getFlags
-argument_list|()
-operator|&
-name|UpdateCommand
-operator|.
-name|REPLAY
-operator|)
+name|isReplayOrPeersync
 operator|==
-literal|0
+literal|false
 condition|)
 block|{
 comment|// we're not in an active state, and this update isn't from a replay, so buffer it.

@@ -1786,7 +1786,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 name|boolean
-name|checkStale
+name|isStale
 init|=
 literal|false
 decl_stmt|;
@@ -1843,7 +1843,7 @@ argument_list|,
 name|actualVersion
 argument_list|)
 expr_stmt|;
-name|checkStale
+name|isStale
 operator|=
 literal|true
 expr_stmt|;
@@ -1918,7 +1918,7 @@ argument_list|,
 name|actualVersion
 argument_list|)
 expr_stmt|;
-name|checkStale
+name|isStale
 operator|=
 literal|true
 expr_stmt|;
@@ -1944,7 +1944,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|checkStale
+name|isStale
 operator|&&
 name|req
 operator|.
@@ -2061,9 +2061,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"checkStale {} , resourceloader {}"
+literal|"isStale {} , resourceloader {}"
 argument_list|,
-name|checkStale
+name|isStale
 argument_list|,
 name|req
 operator|.
@@ -2565,8 +2565,6 @@ control|)
 block|{
 name|Map
 name|val
-init|=
-literal|null
 decl_stmt|;
 name|String
 name|key
@@ -2928,7 +2926,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"persisting params data : {}"
 argument_list|,
@@ -2971,7 +2969,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"persisted to version : {} "
 argument_list|,

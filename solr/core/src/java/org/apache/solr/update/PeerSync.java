@@ -3355,6 +3355,8 @@ literal|true
 return|;
 try|try
 block|{
+comment|// check our fingerprint only upto the max version in the other fingerprint.
+comment|// Otherwise for missed updates (look at missed update test in PeerSyncTest) ourFingerprint won't match with otherFingerprint
 name|IndexFingerprint
 name|ourFingerprint
 init|=
@@ -3364,9 +3366,12 @@ name|getFingerprint
 argument_list|(
 name|core
 argument_list|,
-name|Long
+name|sreq
 operator|.
-name|MAX_VALUE
+name|fingerprint
+operator|.
+name|getMaxVersionSpecified
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|int
@@ -3376,22 +3381,43 @@ name|IndexFingerprint
 operator|.
 name|compare
 argument_list|(
-name|ourFingerprint
-argument_list|,
 name|sreq
 operator|.
 name|fingerprint
+argument_list|,
+name|ourFingerprint
 argument_list|)
 decl_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Fingerprint comparison: "
-operator|+
+literal|"Fingerprint comparison: {}"
+argument_list|,
 name|cmp
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|cmp
+operator|!=
+literal|0
+condition|)
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Other fingerprint: {}, Our fingerprint: {}"
+argument_list|,
+name|sreq
+operator|.
+name|fingerprint
+argument_list|,
+name|ourFingerprint
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|cmp
 operator|==
@@ -3537,6 +3563,21 @@ argument_list|,
 name|onlyIfActive
 argument_list|)
 expr_stmt|;
+comment|// fingerprint should really be requested only for the maxversion  we are requesting updates for
+comment|// In case updates are coming in while node is coming up after restart, node would have already
+comment|// buffered some of the updates. fingerprint we requested with versions would reflect versions
+comment|// in our buffer as well and will definitely cause a mismatch
+name|sreq
+operator|.
+name|params
+operator|.
+name|set
+argument_list|(
+literal|"fingerprint"
+argument_list|,
+name|doFingerprint
+argument_list|)
+expr_stmt|;
 name|sreq
 operator|.
 name|responses
@@ -3636,10 +3677,7 @@ literal|" Requested "
 operator|+
 name|sreq
 operator|.
-name|requestedUpdates
-operator|.
-name|size
-argument_list|()
+name|totalRequestedUpdates
 operator|+
 literal|" updates from "
 operator|+
@@ -3661,6 +3699,42 @@ expr_stmt|;
 return|return
 literal|false
 return|;
+block|}
+comment|// overwrite fingerprint we saved in 'handleVersions()'
+name|Object
+name|fingerprint
+init|=
+name|srsp
+operator|.
+name|getSolrResponse
+argument_list|()
+operator|.
+name|getResponse
+argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|"fingerprint"
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fingerprint
+operator|!=
+literal|null
+condition|)
+block|{
+name|sreq
+operator|.
+name|fingerprint
+operator|=
+name|IndexFingerprint
+operator|.
+name|fromObject
+argument_list|(
+name|fingerprint
+argument_list|)
+expr_stmt|;
 block|}
 name|ModifiableSolrParams
 name|params

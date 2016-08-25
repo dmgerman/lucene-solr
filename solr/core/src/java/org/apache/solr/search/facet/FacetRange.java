@@ -252,7 +252,7 @@ specifier|public
 class|class
 name|FacetRange
 extends|extends
-name|FacetRequest
+name|FacetRequestSorted
 block|{
 DECL|field|field
 name|String
@@ -294,12 +294,18 @@ name|FacetRangeOther
 argument_list|>
 name|others
 decl_stmt|;
-DECL|field|mincount
-name|long
+block|{
+comment|// defaults
 name|mincount
-init|=
+operator|=
 literal|0
-decl_stmt|;
+expr_stmt|;
+name|limit
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|createFacetProcessor
