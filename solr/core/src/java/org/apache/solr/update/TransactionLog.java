@@ -2654,6 +2654,13 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/** Move to a read-only state, closing and releasing resources while keeping the log available for reads */
+DECL|method|closeOutput
+specifier|public
+name|void
+name|closeOutput
+parameter_list|()
+block|{    }
 DECL|method|finish
 specifier|public
 name|void

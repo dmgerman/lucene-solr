@@ -4119,6 +4119,11 @@ condition|)
 block|{
 name|ll
 operator|.
+name|closeOutput
+argument_list|()
+expr_stmt|;
+name|ll
+operator|.
 name|decref
 argument_list|()
 expr_stmt|;
@@ -4141,6 +4146,11 @@ name|ll
 argument_list|,
 name|e
 argument_list|)
+expr_stmt|;
+name|ll
+operator|.
+name|closeOutput
+argument_list|()
 expr_stmt|;
 name|ll
 operator|.
