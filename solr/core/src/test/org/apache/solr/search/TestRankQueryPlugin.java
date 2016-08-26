@@ -4135,15 +4135,6 @@ throws|throws
 name|IOException
 block|{}
 specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-return|return
-literal|false
-return|;
-block|}
-specifier|public
 name|void
 name|collect
 parameter_list|(

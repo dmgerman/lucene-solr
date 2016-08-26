@@ -5220,17 +5220,6 @@ throw|;
 block|}
 block|}
 block|}
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-comment|//Documents must be sent in order to this collector.
-return|return
-literal|false
-return|;
-block|}
 DECL|method|setScorer
 specifier|public
 name|void
@@ -6212,17 +6201,6 @@ argument_list|)
 throw|;
 block|}
 block|}
-block|}
-DECL|method|acceptsDocsOutOfOrder
-specifier|public
-name|boolean
-name|acceptsDocsOutOfOrder
-parameter_list|()
-block|{
-comment|//Documents must be sent in order to this collector.
-return|return
-literal|false
-return|;
 block|}
 DECL|method|setScorer
 specifier|public
