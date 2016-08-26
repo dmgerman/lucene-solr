@@ -22,6 +22,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Set
 import|;
 end_import
@@ -87,6 +97,19 @@ argument_list|<
 name|String
 argument_list|>
 name|getRequestedFieldNames
+parameter_list|()
+function_decl|;
+comment|/**    * Get the fields which have been renamed    * @return a mapping of renamed fields    */
+DECL|method|getFieldRenames
+specifier|public
+specifier|abstract
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|getFieldRenames
 parameter_list|()
 function_decl|;
 comment|/** Returns<code>true</code> if the specified field should be returned. */
