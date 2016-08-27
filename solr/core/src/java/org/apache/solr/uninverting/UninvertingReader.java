@@ -1705,6 +1705,24 @@ return|return
 name|info
 return|;
 block|}
+DECL|method|getUninvertedStatsSize
+specifier|public
+specifier|static
+name|int
+name|getUninvertedStatsSize
+parameter_list|()
+block|{
+return|return
+name|FieldCache
+operator|.
+name|DEFAULT
+operator|.
+name|getCacheEntries
+argument_list|()
+operator|.
+name|length
+return|;
+block|}
 block|}
 end_class
 
