@@ -532,6 +532,9 @@ name|getValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+return|return
+name|latestConf
+return|;
 block|}
 else|else
 block|{
@@ -974,7 +977,12 @@ name|authenticationFailure
 argument_list|(
 name|response
 argument_list|,
-literal|"require authentication"
+literal|"require authentication for pathinfo :"
+operator|+
+name|request
+operator|.
+name|getPathInfo
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
