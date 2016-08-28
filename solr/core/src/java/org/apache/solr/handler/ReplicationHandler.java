@@ -3030,6 +3030,16 @@ name|getDataDir
 argument_list|()
 expr_stmt|;
 block|}
+name|URI
+name|locationUri
+init|=
+name|repo
+operator|.
+name|createURI
+argument_list|(
+name|location
+argument_list|)
+decl_stmt|;
 comment|//If name is not provided then look for the last unnamed( the ones with the snapshot.timestamp format)
 comment|//snapshot folder since we allow snapshots to be taken without providing a name. Pick the latest timestamp.
 if|if
@@ -3039,16 +3049,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|URI
-name|basePath
-init|=
-name|repo
-operator|.
-name|createURI
-argument_list|(
-name|location
-argument_list|)
-decl_stmt|;
 name|String
 index|[]
 name|filePaths
@@ -3057,7 +3057,7 @@ name|repo
 operator|.
 name|listAll
 argument_list|(
-name|basePath
+name|locationUri
 argument_list|)
 decl_stmt|;
 name|List
@@ -3085,7 +3085,7 @@ init|=
 operator|new
 name|OldBackupDirectory
 argument_list|(
-name|basePath
+name|locationUri
 argument_list|,
 name|f
 argument_list|)
@@ -3177,7 +3177,7 @@ name|repo
 argument_list|,
 name|core
 argument_list|,
-name|location
+name|locationUri
 argument_list|,
 name|name
 argument_list|)
@@ -3737,6 +3737,16 @@ expr_stmt|;
 block|}
 block|}
 comment|// small race here before the commit point is saved
+name|URI
+name|locationUri
+init|=
+name|repo
+operator|.
+name|createURI
+argument_list|(
+name|location
+argument_list|)
+decl_stmt|;
 name|SnapShooter
 name|snapShooter
 init|=
@@ -3747,7 +3757,7 @@ name|repo
 argument_list|,
 name|core
 argument_list|,
-name|location
+name|locationUri
 argument_list|,
 name|params
 operator|.
