@@ -977,12 +977,7 @@ name|authenticationFailure
 argument_list|(
 name|response
 argument_list|,
-literal|"require authentication for pathinfo :"
-operator|+
-name|request
-operator|.
-name|getPathInfo
-argument_list|()
+literal|"require authentication"
 argument_list|)
 expr_stmt|;
 block|}
