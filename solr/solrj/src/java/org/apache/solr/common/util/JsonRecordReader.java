@@ -2369,7 +2369,7 @@ specifier|public
 interface|interface
 name|Handler
 block|{
-comment|/**      * @param record The record map. The key is the field name as provided in      *               the addField() methods. The value can be a single String (for single      *               valued fields) or a List&lt;String&gt; (for multiValued).      * @param path   The forEach path for which this record is being emitted      *               If there is any change all parsing will be aborted and the Exception      *               is propagated up      */
+comment|/**      * @param record The record map. The key is the field name as provided in      *               the addField() methods. The value can be a single String (for single      *               valued fields) or a List&lt;String&gt; (for multiValued).      *               This map is mutable. DO NOT alter the map or store it for later use.      *               If it must be stored, make a deep copy before doing so      * @param path   The forEach path for which this record is being emitted      *               If there is any change all parsing will be aborted and the Exception      *               is propagated up      */
 DECL|method|handle
 name|void
 name|handle
