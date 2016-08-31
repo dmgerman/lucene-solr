@@ -226,17 +226,23 @@ block|{
 DECL|enum constant|DV
 name|DV
 block|,
-comment|// DocValues
+comment|// DocValues, collect into ordinal array
 DECL|enum constant|UIF
 name|UIF
 block|,
-comment|// UnInvertedField
+comment|// UnInvertedField, collect into ordinal array
+DECL|enum constant|DVHASH
+name|DVHASH
+block|,
+comment|// DocValues, collect into hash
 DECL|enum constant|ENUM
 name|ENUM
 block|,
+comment|// TermsEnum then intersect DocSet (stream-able)
 DECL|enum constant|STREAM
 name|STREAM
 block|,
+comment|// presently equivalent to ENUM
 DECL|enum constant|SMART
 name|SMART
 block|,     ;
@@ -264,82 +270,51 @@ operator|==
 literal|0
 condition|)
 return|return
-literal|null
+name|DEFAULT_METHOD
 return|;
-if|if
+switch|switch
 condition|(
-literal|"dv"
-operator|.
-name|equals
-argument_list|(
 name|method
-argument_list|)
 condition|)
 block|{
+case|case
+literal|"dv"
+case|:
 return|return
 name|DV
 return|;
-block|}
-elseif|else
-if|if
-condition|(
+case|case
 literal|"uif"
-operator|.
-name|equals
-argument_list|(
-name|method
-argument_list|)
-condition|)
-block|{
+case|:
 return|return
 name|UIF
 return|;
-block|}
-elseif|else
-if|if
-condition|(
+case|case
+literal|"dvhash"
+case|:
+return|return
+name|DVHASH
+return|;
+case|case
 literal|"enum"
-operator|.
-name|equals
-argument_list|(
-name|method
-argument_list|)
-condition|)
-block|{
+case|:
 return|return
 name|ENUM
 return|;
-block|}
-elseif|else
-if|if
-condition|(
-literal|"smart"
-operator|.
-name|equals
-argument_list|(
-name|method
-argument_list|)
-condition|)
-block|{
-return|return
-name|SMART
-return|;
-block|}
-elseif|else
-if|if
-condition|(
+case|case
 literal|"stream"
-operator|.
-name|equals
-argument_list|(
-name|method
-argument_list|)
-condition|)
-block|{
+case|:
 return|return
 name|STREAM
 return|;
-block|}
+comment|// TODO replace with enum?
+case|case
+literal|"smart"
+case|:
+return|return
+name|SMART
+return|;
+default|default:
 throw|throw
 operator|new
 name|SolrException
@@ -356,6 +331,15 @@ name|method
 argument_list|)
 throw|;
 block|}
+block|}
+DECL|field|DEFAULT_METHOD
+specifier|static
+name|FacetMethod
+name|DEFAULT_METHOD
+init|=
+name|SMART
+decl_stmt|;
+comment|// non-final for tests to vary
 block|}
 annotation|@
 name|Override
@@ -404,6 +388,67 @@ operator|.
 name|multiValuedFieldCache
 argument_list|()
 decl_stmt|;
+name|LegacyNumericType
+name|ntype
+init|=
+name|ft
+operator|.
+name|getNumericType
+argument_list|()
+decl_stmt|;
+comment|// ensure we can support the requested options for numeric faceting:
+if|if
+condition|(
+name|ntype
+operator|!=
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|prefix
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Doesn't make sense to set facet prefix on a numeric field"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|mincount
+operator|==
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Numeric fields do not support facet mincount=0; try indexing as terms"
+argument_list|)
+throw|;
+comment|// TODO if indexed=true then we could add support
+block|}
+block|}
+comment|// TODO auto-pick ENUM/STREAM SOLR-9351 when index asc and DocSet cardinality is *not* much smaller than term cardinality
 if|if
 condition|(
 name|method
@@ -411,20 +456,16 @@ operator|==
 name|FacetMethod
 operator|.
 name|ENUM
-operator|&&
-name|sf
-operator|.
-name|indexed
-argument_list|()
 condition|)
 block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+comment|// at the moment these two are the same
+name|method
+operator|=
+name|FacetMethod
+operator|.
+name|STREAM
+expr_stmt|;
 block|}
-elseif|else
 if|if
 condition|(
 name|method
@@ -437,6 +478,19 @@ name|sf
 operator|.
 name|indexed
 argument_list|()
+operator|&&
+literal|"index"
+operator|.
+name|equals
+argument_list|(
+name|sortVariable
+argument_list|)
+operator|&&
+name|sortDirection
+operator|==
+name|SortDirection
+operator|.
+name|asc
 condition|)
 block|{
 return|return
@@ -451,14 +505,7 @@ name|sf
 argument_list|)
 return|;
 block|}
-name|LegacyNumericType
-name|ntype
-init|=
-name|ft
-operator|.
-name|getNumericType
-argument_list|()
-decl_stmt|;
+comment|// TODO if method=UIF and not single-valued numerics then simply choose that now? TODO add FieldType.getDocValuesType()
 if|if
 condition|(
 operator|!
@@ -467,12 +514,29 @@ condition|)
 block|{
 if|if
 condition|(
+name|mincount
+operator|>
+literal|0
+operator|&&
+name|prefix
+operator|==
+literal|null
+operator|&&
+operator|(
 name|ntype
 operator|!=
 literal|null
+operator|||
+name|method
+operator|==
+name|FacetMethod
+operator|.
+name|DVHASH
+operator|)
 condition|)
 block|{
-comment|// single valued numeric (docvalues or fieldcache)
+comment|// TODO can we auto-pick for strings when term cardinality is much greater than DocSet cardinality?
+comment|//   or if we don't know cardinality but DocSet size is very small
 return|return
 operator|new
 name|FacetFieldProcessorByHashNumeric
@@ -485,7 +549,13 @@ name|sf
 argument_list|)
 return|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|ntype
+operator|==
+literal|null
+condition|)
 block|{
 comment|// single valued string...
 return|return
@@ -499,6 +569,24 @@ argument_list|,
 name|sf
 argument_list|)
 return|;
+block|}
+else|else
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Couldn't pick facet algorithm for field "
+operator|+
+name|sf
+argument_list|)
+throw|;
 block|}
 block|}
 comment|// multi-valued after this point
