@@ -337,11 +337,11 @@ literal|true
 expr_stmt|;
 name|origTableSize
 operator|=
-name|FacetFieldProcessorByHashNumeric
+name|FacetFieldProcessorByHashDV
 operator|.
 name|MAXIMUM_STARTING_TABLE_SIZE
 expr_stmt|;
-name|FacetFieldProcessorByHashNumeric
+name|FacetFieldProcessorByHashDV
 operator|.
 name|MAXIMUM_STARTING_TABLE_SIZE
 operator|=
@@ -413,7 +413,7 @@ name|failRepeatedKeys
 operator|=
 literal|false
 expr_stmt|;
-name|FacetFieldProcessorByHashNumeric
+name|FacetFieldProcessorByHashDV
 operator|.
 name|MAXIMUM_STARTING_TABLE_SIZE
 operator|=

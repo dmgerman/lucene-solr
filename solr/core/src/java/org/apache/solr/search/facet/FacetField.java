@@ -539,7 +539,7 @@ comment|// TODO can we auto-pick for strings when term cardinality is much great
 comment|//   or if we don't know cardinality but DocSet size is very small
 return|return
 operator|new
-name|FacetFieldProcessorByHashNumeric
+name|FacetFieldProcessorByHashDV
 argument_list|(
 name|fcontext
 argument_list|,

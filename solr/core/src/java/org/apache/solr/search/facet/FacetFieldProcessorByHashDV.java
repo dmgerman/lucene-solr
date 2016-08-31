@@ -280,14 +280,10 @@ begin_comment
 comment|/**  * Facets numbers into a hash table.  The number is either a raw numeric DocValues value, or  * a term global ordinal integer.  * Limitations:  *<ul>  *<li>doesn't handle multiValued, but could easily be added</li>  *<li>doesn't handle prefix, but could easily be added</li>  *<li>doesn't handle mincount==0 -- you're better off with an array alg</li>  *</ul>  */
 end_comment
 
-begin_comment
-comment|// TODO rename: FacetFieldProcessorByHashDV
-end_comment
-
 begin_class
-DECL|class|FacetFieldProcessorByHashNumeric
+DECL|class|FacetFieldProcessorByHashDV
 class|class
-name|FacetFieldProcessorByHashNumeric
+name|FacetFieldProcessorByHashDV
 extends|extends
 name|FacetFieldProcessor
 block|{
@@ -923,8 +919,8 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-DECL|method|FacetFieldProcessorByHashNumeric
-name|FacetFieldProcessorByHashNumeric
+DECL|method|FacetFieldProcessorByHashDV
+name|FacetFieldProcessorByHashDV
 parameter_list|(
 name|FacetContext
 name|fcontext
