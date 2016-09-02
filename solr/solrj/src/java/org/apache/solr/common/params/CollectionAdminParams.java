@@ -18,34 +18,33 @@ name|params
 package|;
 end_package
 
-begin_class
-DECL|class|CollectionAdminParams
+begin_interface
+DECL|interface|CollectionAdminParams
 specifier|public
-specifier|abstract
-class|class
+interface|interface
 name|CollectionAdminParams
 block|{
 comment|/* Param used by DELETESTATUS call to clear all stored responses */
 DECL|field|FLUSH
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|FLUSH
 init|=
 literal|"flush"
 decl_stmt|;
 DECL|field|COLLECTION
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|COLLECTION
 init|=
 literal|"collection"
 decl_stmt|;
+DECL|field|COUNT_PROP
+name|String
+name|COUNT_PROP
+init|=
+literal|"count"
+decl_stmt|;
 block|}
-end_class
+end_interface
 
 end_unit
 
