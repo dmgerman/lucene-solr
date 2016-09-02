@@ -564,7 +564,7 @@ specifier|public
 name|Properties
 name|readBackupProperties
 parameter_list|(
-name|String
+name|URI
 name|backupLoc
 parameter_list|,
 name|String
@@ -593,7 +593,7 @@ name|backupPath
 init|=
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|backupLoc
 argument_list|,
@@ -681,7 +681,7 @@ specifier|public
 name|void
 name|writeBackupProperties
 parameter_list|(
-name|String
+name|URI
 name|backupLoc
 parameter_list|,
 name|String
@@ -698,7 +698,7 @@ name|dest
 init|=
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|backupLoc
 argument_list|,
@@ -745,7 +745,7 @@ specifier|public
 name|DocCollection
 name|readCollectionState
 parameter_list|(
-name|String
+name|URI
 name|backupLoc
 parameter_list|,
 name|String
@@ -769,7 +769,7 @@ name|zkStateDir
 init|=
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|backupLoc
 argument_list|,
@@ -865,7 +865,7 @@ specifier|public
 name|void
 name|writeCollectionState
 parameter_list|(
-name|String
+name|URI
 name|backupLoc
 parameter_list|,
 name|String
@@ -885,7 +885,7 @@ name|dest
 init|=
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|backupLoc
 argument_list|,
@@ -936,7 +936,7 @@ specifier|public
 name|void
 name|uploadConfigDir
 parameter_list|(
-name|String
+name|URI
 name|backupLoc
 parameter_list|,
 name|String
@@ -956,7 +956,7 @@ name|source
 init|=
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|backupLoc
 argument_list|,
@@ -999,7 +999,7 @@ specifier|public
 name|void
 name|downloadConfigDir
 parameter_list|(
-name|String
+name|URI
 name|backupLoc
 parameter_list|,
 name|String
@@ -1016,7 +1016,7 @@ name|dest
 init|=
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|backupLoc
 argument_list|,
@@ -1035,7 +1035,7 @@ name|createDirectory
 argument_list|(
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|backupLoc
 argument_list|,
@@ -1051,7 +1051,7 @@ name|createDirectory
 argument_list|(
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|backupLoc
 argument_list|,
@@ -1224,12 +1224,9 @@ name|createOutput
 argument_list|(
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|dir
-operator|.
-name|getPath
-argument_list|()
 argument_list|,
 name|file
 argument_list|)
@@ -1259,12 +1256,9 @@ name|file
 argument_list|,
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|dir
-operator|.
-name|getPath
-argument_list|()
 argument_list|,
 name|file
 argument_list|)
@@ -1386,12 +1380,9 @@ name|path
 init|=
 name|repository
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|sourceDir
-operator|.
-name|getPath
-argument_list|()
 argument_list|,
 name|file
 argument_list|)
