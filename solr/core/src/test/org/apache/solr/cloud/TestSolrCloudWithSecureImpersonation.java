@@ -510,6 +510,21 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|String
+name|group
+init|=
+literal|"*"
+decl_stmt|;
+comment|// accept any group if a group can't be found
+if|if
+condition|(
+operator|!
+name|Constants
+operator|.
+name|WINDOWS
+condition|)
+block|{
+comment|// does not work on Windows!
 name|org
 operator|.
 name|apache
@@ -537,12 +552,6 @@ name|Configuration
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|String
-name|group
-init|=
-literal|"*"
-decl_stmt|;
-comment|// accept any group if a group can't be found
 try|try
 block|{
 name|List
@@ -595,6 +604,7 @@ name|npe
 parameter_list|)
 block|{
 comment|// if user/group doesn't exist on test box
+block|}
 block|}
 return|return
 name|group
@@ -1222,11 +1232,19 @@ name|miniCluster
 operator|=
 literal|null
 expr_stmt|;
+if|if
+condition|(
+name|solrClient
+operator|!=
+literal|null
+condition|)
+block|{
 name|solrClient
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 name|solrClient
 operator|=
 literal|null
