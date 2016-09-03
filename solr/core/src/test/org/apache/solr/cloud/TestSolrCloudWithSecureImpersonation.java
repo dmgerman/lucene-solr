@@ -112,6 +112,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -814,6 +828,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeFalse
+argument_list|(
+literal|"Hadoop does not work on Windows"
+argument_list|,
+name|Constants
+operator|.
+name|WINDOWS
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|setProperty
