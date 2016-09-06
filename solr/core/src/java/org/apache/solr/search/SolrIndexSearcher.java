@@ -11751,6 +11751,33 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+comment|/** @lucene.internal */
+DECL|method|intersects
+specifier|public
+name|boolean
+name|intersects
+parameter_list|(
+name|DocSet
+name|a
+parameter_list|,
+name|DocsEnumState
+name|deState
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+return|return
+name|a
+operator|.
+name|intersects
+argument_list|(
+name|getDocSet
+argument_list|(
+name|deState
+argument_list|)
+argument_list|)
+return|;
+block|}
 comment|/**    * Takes a list of document IDs, and returns an array of Documents containing all of the stored fields.    */
 DECL|method|readDocs
 specifier|public

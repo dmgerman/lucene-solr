@@ -102,6 +102,20 @@ begin_import
 import|import
 name|com
 operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|ParametersFactory
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
 name|tdunning
 operator|.
 name|math
@@ -296,6 +310,14 @@ specifier|static
 name|int
 name|origTableSize
 decl_stmt|;
+DECL|field|origDefaultFacetMethod
+specifier|private
+specifier|static
+name|FacetField
+operator|.
+name|FacetMethod
+name|origDefaultFacetMethod
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeTests
@@ -315,17 +337,27 @@ literal|true
 expr_stmt|;
 name|origTableSize
 operator|=
-name|FacetFieldProcessorByHashNumeric
+name|FacetFieldProcessorByHashDV
 operator|.
 name|MAXIMUM_STARTING_TABLE_SIZE
 expr_stmt|;
-name|FacetFieldProcessorByHashNumeric
+name|FacetFieldProcessorByHashDV
 operator|.
 name|MAXIMUM_STARTING_TABLE_SIZE
 operator|=
 literal|2
 expr_stmt|;
 comment|// stress test resizing
+name|origDefaultFacetMethod
+operator|=
+name|FacetField
+operator|.
+name|FacetMethod
+operator|.
+name|DEFAULT_METHOD
+expr_stmt|;
+comment|// instead of the following, see the constructor
+comment|//FacetField.FacetMethod.DEFAULT_METHOD = rand(FacetField.FacetMethod.values());
 name|initCore
 argument_list|(
 literal|"solrconfig-tlog.xml"
@@ -381,11 +413,19 @@ name|failRepeatedKeys
 operator|=
 literal|false
 expr_stmt|;
-name|FacetFieldProcessorByHashNumeric
+name|FacetFieldProcessorByHashDV
 operator|.
 name|MAXIMUM_STARTING_TABLE_SIZE
 operator|=
 name|origTableSize
+expr_stmt|;
+name|FacetField
+operator|.
+name|FacetMethod
+operator|.
+name|DEFAULT_METHOD
+operator|=
+name|origDefaultFacetMethod
 expr_stmt|;
 if|if
 condition|(
@@ -404,6 +444,72 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
+block|}
+comment|// tip: when debugging a test, comment out the @ParametersFactory and edit the constructor to be no-arg
+annotation|@
+name|ParametersFactory
+DECL|method|parameters
+specifier|public
+specifier|static
+name|Iterable
+argument_list|<
+name|Object
+index|[]
+argument_list|>
+name|parameters
+parameter_list|()
+block|{
+comment|// wrap each enum val in an Object[] and return as Iterable
+return|return
+parameter_list|()
+lambda|->
+name|Arrays
+operator|.
+name|stream
+argument_list|(
+name|FacetField
+operator|.
+name|FacetMethod
+operator|.
+name|values
+argument_list|()
+argument_list|)
+operator|.
+name|map
+argument_list|(
+name|it
+lambda|->
+operator|new
+name|Object
+index|[]
+block|{
+name|it
+block|}
+argument_list|)
+operator|.
+name|iterator
+argument_list|()
+return|;
+block|}
+DECL|method|TestJsonFacets
+specifier|public
+name|TestJsonFacets
+parameter_list|(
+name|FacetField
+operator|.
+name|FacetMethod
+name|defMethod
+parameter_list|)
+block|{
+name|FacetField
+operator|.
+name|FacetMethod
+operator|.
+name|DEFAULT_METHOD
+operator|=
+name|defMethod
+expr_stmt|;
+comment|// note: the real default is restored in afterTests
 block|}
 comment|// attempt to reproduce https://github.com/Heliosearch/heliosearch/issues/33
 annotation|@
@@ -1255,10 +1361,12 @@ name|commit
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|testStatsSimple
+annotation|@
+name|Test
+DECL|method|testMethodStream
 specifier|public
 name|void
-name|testStatsSimple
+name|testMethodStream
 parameter_list|()
 throws|throws
 name|Exception
@@ -1318,16 +1426,16 @@ literal|"json.facet"
 argument_list|,
 literal|"{   cat:{terms:{field:'cat_s', method:stream }}"
 operator|+
+comment|// won't stream; need sort:index asc
 literal|", cat2:{terms:{field:'cat_s', method:stream, sort:'index asc' }}"
 operator|+
-comment|// default sort
-literal|", cat3:{terms:{field:'cat_s', method:stream, mincount:3 }}"
+literal|", cat3:{terms:{field:'cat_s', method:stream, sort:'index asc', mincount:3 }}"
 operator|+
 comment|// mincount
-literal|", cat4:{terms:{field:'cat_s', method:stream, prefix:B }}"
+literal|", cat4:{terms:{field:'cat_s', method:stream, sort:'index asc', prefix:B }}"
 operator|+
 comment|// prefix
-literal|", cat5:{terms:{field:'cat_s', method:stream, offset:1 }}"
+literal|", cat5:{terms:{field:'cat_s', method:stream, sort:'index asc', offset:1 }}"
 operator|+
 comment|// offset
 literal|" }"
@@ -1335,7 +1443,7 @@ argument_list|)
 argument_list|,
 literal|"facets=={count:6 "
 operator|+
-literal|", cat :{buckets:[{val:A, count:2},{val:B, count:3}]}"
+literal|", cat :{buckets:[{val:B, count:3},{val:A, count:2}]}"
 operator|+
 literal|", cat2:{buckets:[{val:A, count:2},{val:B, count:3}]}"
 operator|+
@@ -1363,7 +1471,7 @@ literal|"0"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{   cat:{terms:{field:'cat_s', sort:'index asc', facet:{where:{terms:{field:where_s,method:stream}}}   }}}"
+literal|"{   cat:{terms:{field:'cat_s', sort:'index asc', facet:{where:{terms:{field:where_s,method:stream,sort:'index asc'}}}   }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={count:6 "
@@ -1388,7 +1496,7 @@ literal|"0"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{   cat:{terms:{field:'cat_s', method:stream, facet:{where:{terms:{field:where_s,method:stream}}}   }}}"
+literal|"{   cat:{terms:{field:'cat_s', method:stream,sort:'index asc', facet:{where:{terms:{field:where_s,method:stream,sort:'index asc'}}}   }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={count:6 "
@@ -1413,7 +1521,7 @@ literal|"0"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{   cat:{terms:{field:'cat_s', method:stream, facet:{  where:{terms:{field:where_s,method:stream, facet:{x:'max(num_d)'}     }}}   }}}"
+literal|"{   cat:{terms:{field:'cat_s', method:stream,sort:'index asc', facet:{  where:{terms:{field:where_s,method:stream,sort:'index asc',sort:'index asc', facet:{x:'max(num_d)'}     }}}   }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={count:6 "
@@ -1442,7 +1550,7 @@ literal|"true"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{   cat:{terms:{field:'cat_s', method:stream, facet:{ y:'min(num_d)',  where:{terms:{field:where_s,method:stream, facet:{x:'max(num_d)'}     }}}   }}}"
+literal|"{   cat:{terms:{field:'cat_s', method:stream,sort:'index asc', facet:{ y:'min(num_d)',  where:{terms:{field:where_s,method:stream,sort:'index asc', facet:{x:'max(num_d)'}     }}}   }}}"
 argument_list|)
 argument_list|,
 literal|"facets=={count:6 "
@@ -1912,10 +2020,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testDistrib
+DECL|method|testStatsDistrib
 specifier|public
 name|void
-name|testDistrib
+name|testStatsDistrib
 parameter_list|()
 throws|throws
 name|Exception

@@ -210,11 +210,23 @@ name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/**    * This method creates a URI using the specified path components (as method arguments).    *    * @param pathComponents    *          The directory (or file-name) to be included in the URI.    * @return A URI containing absolute path    */
+comment|/**    * This method returns the URI representation for the specified path.    * Note - the specified path could be a fully qualified URI OR a relative path for a file-system.    *    * @param path The path specified by the user.    * @return the URI representation of the user supplied value    */
 DECL|method|createURI
 name|URI
 name|createURI
 parameter_list|(
+name|String
+name|path
+parameter_list|)
+function_decl|;
+comment|/**    * This method resolves a URI using the specified path components (as method arguments).    *    * @param baseUri The base URI to use for creating the path    * @param pathComponents    *          The directory (or file-name) to be included in the URI.    * @return A URI containing absolute path    */
+DECL|method|resolve
+name|URI
+name|resolve
+parameter_list|(
+name|URI
+name|baseUri
+parameter_list|,
 name|String
 modifier|...
 name|pathComponents
