@@ -2951,6 +2951,7 @@ literal|"Need currentTimeMillis, commit time should be used only for debugging p
 operator|+
 literal|" but currently suspiciously used for replication as well"
 argument_list|)
+comment|/*   Also see SolrIndexSplitter.setCommitData    */
 DECL|method|setCommitData
 specifier|private
 name|void

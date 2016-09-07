@@ -2346,6 +2346,24 @@ argument_list|(
 name|GENERATION
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Master's generation: "
+operator|+
+name|latestGeneration
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Master's version: "
+operator|+
+name|latestVersion
+argument_list|)
+expr_stmt|;
 comment|// TODO: make sure that getLatestCommit only returns commit points for the main index (i.e. no side-car indexes)
 name|IndexCommit
 name|commit
@@ -2432,6 +2450,18 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Slave's generation: "
+operator|+
+name|commit
+operator|.
+name|getGeneration
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|latestVersion
@@ -2562,27 +2592,6 @@ return|return
 literal|true
 return|;
 block|}
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Master's generation: "
-operator|+
-name|latestGeneration
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Slave's generation: "
-operator|+
-name|commit
-operator|.
-name|getGeneration
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|LOG
 operator|.
 name|info
