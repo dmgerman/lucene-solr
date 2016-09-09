@@ -202,6 +202,7 @@ name|HASH_CACHE_SIZE
 index|]
 decl_stmt|;
 DECL|field|DEFAULT_HASH_COUNT
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -210,6 +211,7 @@ init|=
 literal|1
 decl_stmt|;
 DECL|field|DEFAULT_HASH_SET_SIZE
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -218,6 +220,7 @@ init|=
 literal|1
 decl_stmt|;
 DECL|field|DEFAULT_BUCKET_COUNT
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -512,6 +515,7 @@ return|;
 block|}
 comment|/**    * create a MinHash filter    *    * @param input the token stream    * @param hashCount the no. of hashes    * @param bucketCount the no. of buckets for hashing    * @param hashSetSize the no. of min hashes to keep    * @param withRotation whether rotate or not hashes while incrementing tokens    */
 DECL|method|MinHashFilter
+specifier|public
 name|MinHashFilter
 parameter_list|(
 name|TokenStream
