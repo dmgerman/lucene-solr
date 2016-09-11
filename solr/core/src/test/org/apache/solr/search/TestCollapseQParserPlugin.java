@@ -1583,6 +1583,93 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+comment|// https://issues.apache.org/jira/browse/SOLR-9494
+DECL|method|testNeedsScoreBugFixed
+specifier|public
+name|void
+name|testNeedsScoreBugFixed
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|String
+index|[]
+name|doc
+init|=
+block|{
+literal|"id"
+block|,
+literal|"1"
+block|,
+literal|"group_s"
+block|,
+literal|"xyz"
+block|,
+literal|"text_ws"
+block|,
+literal|"hello xxx world"
+block|}
+decl_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+name|doc
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|ModifiableSolrParams
+name|params
+init|=
+name|params
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"{!surround df=text_ws} 2W(hello, world)"
+argument_list|,
+comment|// a SpanQuery that matches
+literal|"fq"
+argument_list|,
+literal|"{!collapse field=group_s}"
+argument_list|,
+comment|// collapse on some field
+comment|// note: rows= whatever; doesn't matter
+literal|"facet"
+argument_list|,
+literal|"true"
+argument_list|,
+comment|// facet on something
+literal|"facet.field"
+argument_list|,
+literal|"group_s"
+argument_list|)
+decl_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// fails *second* time!
+block|}
+annotation|@
+name|Test
 DECL|method|testMergeBoost
 specifier|public
 name|void
