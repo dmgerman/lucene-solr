@@ -101,7 +101,6 @@ end_comment
 begin_class
 DECL|class|StopFilter
 specifier|public
-specifier|final
 class|class
 name|StopFilter
 extends|extends
