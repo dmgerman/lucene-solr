@@ -939,6 +939,18 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|zkStateReader
+operator|.
+name|getZkClient
+argument_list|()
+operator|.
+name|isClosed
+argument_list|()
+condition|)
+block|{
 name|log
 operator|.
 name|error
@@ -948,6 +960,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// TODO: Make maxThreads configurable.
 name|this
