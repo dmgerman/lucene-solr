@@ -106,11 +106,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|sandbox
+name|search
 operator|.
-name|queries
-operator|.
-name|SlowFuzzyQuery
+name|BoostQuery
 import|;
 end_import
 
@@ -124,7 +122,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BoostQuery
+name|FuzzyQuery
 import|;
 end_import
 
@@ -194,7 +192,7 @@ specifier|final
 name|float
 name|DEFAULT_MIN_SIMILARITY
 init|=
-name|SlowFuzzyQuery
+name|FuzzyQuery
 operator|.
 name|defaultMinSimilarity
 decl_stmt|;
