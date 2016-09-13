@@ -102,6 +102,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -326,6 +340,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|update
+operator|.
+name|SolrIndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|RTimer
@@ -349,20 +377,6 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
 import|;
 end_import
 
@@ -1065,6 +1079,15 @@ name|timer
 operator|.
 name|getTime
 argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// Set Solr's commit data so the created index is usable by SolrCloud. E.g. Currently SolrCloud relies on
+comment|// commitTimeMSec in the commit data to do replication.
+name|SolrIndexWriter
+operator|.
+name|setCommitData
+argument_list|(
+name|writer
 argument_list|)
 expr_stmt|;
 name|timer

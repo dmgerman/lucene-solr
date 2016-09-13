@@ -512,7 +512,7 @@ literal|"smith"
 argument_list|,
 literal|"name"
 argument_list|,
-literal|0.3f
+literal|2
 argument_list|,
 literal|1
 argument_list|)
@@ -708,7 +708,7 @@ literal|"jonathin smoth"
 argument_list|,
 literal|"name"
 argument_list|,
-literal|0.3f
+literal|2
 argument_list|,
 literal|1
 argument_list|)
@@ -886,7 +886,7 @@ literal|"jonathin smoth"
 argument_list|,
 literal|"name"
 argument_list|,
-literal|0.3f
+literal|2
 argument_list|,
 literal|1
 argument_list|)
@@ -899,7 +899,7 @@ literal|"jonathin smoth"
 argument_list|,
 literal|"this field does not exist"
 argument_list|,
-literal|0.3f
+literal|2
 argument_list|,
 literal|1
 argument_list|)
@@ -1078,7 +1078,7 @@ literal|"fernando smith"
 argument_list|,
 literal|"name"
 argument_list|,
-literal|0.3f
+literal|2
 argument_list|,
 literal|1
 argument_list|)
@@ -1245,7 +1245,7 @@ literal|"javi"
 argument_list|,
 literal|"subject"
 argument_list|,
-literal|0.5f
+literal|2
 argument_list|,
 literal|2
 argument_list|)
@@ -1269,7 +1269,7 @@ literal|"javi"
 argument_list|,
 literal|"subject"
 argument_list|,
-literal|0.5f
+literal|2
 argument_list|,
 literal|2
 argument_list|)

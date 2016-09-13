@@ -1887,6 +1887,18 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|cc
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
+else|else
+block|{
 throw|throw
 operator|new
 name|SolrException
@@ -1907,6 +1919,7 @@ name|getCoreNames
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 name|MDCLoggingContext
 operator|.
@@ -2070,6 +2083,18 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+operator|!
+name|zkController
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
 name|cancelElection
 argument_list|()
 expr_stmt|;
@@ -2093,6 +2118,11 @@ name|getCoreNames
 argument_list|()
 argument_list|)
 throw|;
+block|}
+else|else
+block|{
+return|return;
+block|}
 block|}
 comment|// should I be leader?
 if|if

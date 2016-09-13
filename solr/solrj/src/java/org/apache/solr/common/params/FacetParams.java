@@ -397,6 +397,18 @@ name|FACET
 operator|+
 literal|".enum.cache.minDf"
 decl_stmt|;
+comment|/**    *  A boolean parameter that caps the facet counts at 1.     *  With this set, a returned count will only be 0 or 1.     *  For apps that don't need the count, this should be an optimization    */
+DECL|field|FACET_EXISTS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_EXISTS
+init|=
+name|FACET
+operator|+
+literal|".exists"
+decl_stmt|;
 comment|/**    * Any field whose terms the user wants to enumerate over for    * Facet Contraint Counts (multi-value)    */
 DECL|field|FACET_DATE
 specifier|public

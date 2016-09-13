@@ -8955,7 +8955,12 @@ comment|// this is no longer true if there was a query timeout on an up shard
 comment|// assertTrue("Expected to find numFound in the up shard info",info.get("numFound") != null);
 name|assertTrue
 argument_list|(
-literal|"Expected to find shardAddress in the up shard info"
+literal|"Expected to find shardAddress in the up shard info: "
+operator|+
+name|info
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|info
 operator|.
@@ -8999,7 +9004,12 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Expected to find error in the down shard info"
+literal|"Expected to find error in the down shard info: "
+operator|+
+name|info
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 name|info
 operator|.

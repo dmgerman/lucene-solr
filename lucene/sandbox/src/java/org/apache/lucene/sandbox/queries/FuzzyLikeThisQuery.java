@@ -300,6 +300,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|FuzzyTermsEnum
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|MaxNonCompetitiveBoostAttribute
 import|;
 end_import
@@ -403,6 +417,22 @@ operator|.
 name|util
 operator|.
 name|PriorityQueue
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|automaton
+operator|.
+name|LevenshteinAutomata
 import|;
 end_import
 
@@ -609,7 +639,7 @@ operator|.
 name|maxNumTerms
 return|;
 block|}
-comment|/**      *       * @param maxNumTerms The total number of terms clauses that will appear once rewritten as a BooleanQuery      */
+comment|/**    *     * @param maxNumTerms The total number of terms clauses that will appear once rewritten as a BooleanQuery    */
 DECL|method|FuzzyLikeThisQuery
 specifier|public
 name|FuzzyLikeThisQuery
@@ -646,9 +676,9 @@ DECL|field|fieldName
 name|String
 name|fieldName
 decl_stmt|;
-DECL|field|minSimilarity
-name|float
-name|minSimilarity
+DECL|field|maxEdits
+name|int
+name|maxEdits
 decl_stmt|;
 DECL|field|prefixLength
 name|int
@@ -661,8 +691,8 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|float
-name|similarity
+name|int
+name|maxEdits
 parameter_list|,
 name|int
 name|length
@@ -675,9 +705,11 @@ name|fieldName
 operator|=
 name|name
 expr_stmt|;
-name|minSimilarity
+name|this
+operator|.
+name|maxEdits
 operator|=
-name|similarity
+name|maxEdits
 expr_stmt|;
 name|prefixLength
 operator|=
@@ -736,12 +768,7 @@ name|prime
 operator|*
 name|result
 operator|+
-name|Float
-operator|.
-name|floatToIntBits
-argument_list|(
-name|minSimilarity
-argument_list|)
+name|maxEdits
 expr_stmt|;
 name|result
 operator|=
@@ -863,25 +890,17 @@ literal|false
 return|;
 if|if
 condition|(
-name|Float
-operator|.
-name|floatToIntBits
-argument_list|(
-name|minSimilarity
-argument_list|)
+name|maxEdits
 operator|!=
-name|Float
-operator|.
-name|floatToIntBits
-argument_list|(
 name|other
 operator|.
-name|minSimilarity
-argument_list|)
+name|maxEdits
 condition|)
+block|{
 return|return
 literal|false
 return|;
+block|}
 if|if
 condition|(
 name|prefixLength
@@ -933,7 +952,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**      * Adds user input for "fuzzification"       * @param queryString The string which will be parsed by the analyzer and for which fuzzy variants will be parsed      * @param minSimilarity The minimum similarity of the term variants (see FuzzyTermsEnum)      * @param prefixLength Length of required common prefix on variant terms (see FuzzyTermsEnum)      */
+comment|/**    * Adds user input for "fuzzification"     * @param queryString The string which will be parsed by the analyzer and for which fuzzy variants will be parsed    * @param minSimilarity The minimum similarity of the term variants; must be 0, 1 or 2 (see FuzzyTermsEnum)    * @param prefixLength Length of required common prefix on variant terms (see FuzzyTermsEnum)    */
 DECL|method|addTerms
 specifier|public
 name|void
@@ -952,6 +971,47 @@ name|int
 name|prefixLength
 parameter_list|)
 block|{
+name|int
+name|maxEdits
+init|=
+operator|(
+name|int
+operator|)
+name|minSimilarity
+decl_stmt|;
+if|if
+condition|(
+name|maxEdits
+operator|!=
+name|minSimilarity
+operator|||
+name|maxEdits
+argument_list|<
+literal|0
+operator|||
+name|maxEdits
+argument_list|>
+name|LevenshteinAutomata
+operator|.
+name|MAXIMUM_SUPPORTED_DISTANCE
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"minSimilarity must integer value between 0 and "
+operator|+
+name|LevenshteinAutomata
+operator|.
+name|MAXIMUM_SUPPORTED_DISTANCE
+operator|+
+literal|", inclusive; got "
+operator|+
+name|minSimilarity
+argument_list|)
+throw|;
+block|}
 name|fieldVals
 operator|.
 name|add
@@ -961,7 +1021,7 @@ name|FieldVals
 argument_list|(
 name|fieldName
 argument_list|,
-name|minSimilarity
+name|maxEdits
 argument_list|,
 name|prefixLength
 argument_list|,
@@ -1156,11 +1216,11 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-name|SlowFuzzyTermsEnum
+name|FuzzyTermsEnum
 name|fe
 init|=
 operator|new
-name|SlowFuzzyTermsEnum
+name|FuzzyTermsEnum
 argument_list|(
 name|terms
 argument_list|,
@@ -1170,11 +1230,13 @@ name|startTerm
 argument_list|,
 name|f
 operator|.
-name|minSimilarity
+name|maxEdits
 argument_list|,
 name|f
 operator|.
 name|prefixLength
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|//store the df so all variants use same idf
@@ -2007,7 +2069,7 @@ name|size
 argument_list|)
 expr_stmt|;
 block|}
-comment|/* (non-Javadoc)          * @see org.apache.lucene.util.PriorityQueue#lessThan(java.lang.Object, java.lang.Object)          */
+comment|/* (non-Javadoc)      * @see org.apache.lucene.util.PriorityQueue#lessThan(java.lang.Object, java.lang.Object)      */
 annotation|@
 name|Override
 DECL|method|lessThan
@@ -2058,7 +2120,7 @@ name|score
 return|;
 block|}
 block|}
-comment|/* (non-Javadoc)      * @see org.apache.lucene.search.Query#toString(java.lang.String)      */
+comment|/* (non-Javadoc)    * @see org.apache.lucene.search.Query#toString(java.lang.String)    */
 annotation|@
 name|Override
 DECL|method|toString

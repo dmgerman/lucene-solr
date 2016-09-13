@@ -681,6 +681,14 @@ name|State
 operator|.
 name|CONSTRUCTION
 operator|)
+operator|||
+name|state
+operator|==
+name|Slice
+operator|.
+name|State
+operator|.
+name|RECOVERY_FAILED
 condition|)
 block|{
 throw|throw

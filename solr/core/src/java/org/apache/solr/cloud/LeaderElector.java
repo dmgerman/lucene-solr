@@ -1793,6 +1793,15 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|zkClient
+operator|.
+name|isClosed
+argument_list|()
+condition|)
+block|{
 name|log
 operator|.
 name|warn
@@ -1802,6 +1811,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
