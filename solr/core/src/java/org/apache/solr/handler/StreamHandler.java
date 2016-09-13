@@ -958,6 +958,15 @@ name|TopicStream
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"commit"
+argument_list|,
+name|CommitStream
+operator|.
+name|class
+argument_list|)
 comment|// decorator streams
 operator|.
 name|withFunctionName
