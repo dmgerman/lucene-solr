@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -160,11 +170,11 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|junit
 operator|.
-name|IOException
+name|Ignore
 import|;
 end_import
 
@@ -376,6 +386,11 @@ return|;
 block|}
 block|}
 comment|/**    * Tests timing out of TermsEnum iterations    * @throws Exception on error    */
+annotation|@
+name|Ignore
+argument_list|(
+literal|"this test relies on wall clock time and sometimes false fails"
+argument_list|)
 DECL|method|testExitableFilterIndexReader
 specifier|public
 name|void
