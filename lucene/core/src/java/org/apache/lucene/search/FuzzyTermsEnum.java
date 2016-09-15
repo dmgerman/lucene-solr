@@ -898,8 +898,6 @@ name|maxEdits
 operator|--
 expr_stmt|;
 block|}
-comment|// TODO: this opto could be improved, e.g. if the worst term in the queue is zzzz with ed=2, then, really, on the next segment, we
-comment|// should only be looking for ed=1 terms up until zzzz, then ed=2.  Tricky :)
 if|if
 condition|(
 name|oldMaxEdits
@@ -955,12 +953,6 @@ block|}
 name|BytesRef
 name|term
 decl_stmt|;
-comment|// while loop because we skip short terms even if they are within the specified edit distance (see the NOTE in FuzzyQuery class javadocs)
-while|while
-condition|(
-literal|true
-condition|)
-block|{
 name|term
 operator|=
 name|actualEnum
@@ -976,7 +968,9 @@ literal|null
 condition|)
 block|{
 comment|// end
-break|break;
+return|return
+literal|null
+return|;
 block|}
 name|int
 name|ed
@@ -1028,7 +1022,6 @@ argument_list|(
 literal|1.0F
 argument_list|)
 expr_stmt|;
-break|break;
 block|}
 else|else
 block|{
@@ -1055,14 +1048,6 @@ argument_list|,
 name|termLength
 argument_list|)
 decl_stmt|;
-comment|// only accept a matching term if it's longer than the edit distance:
-if|if
-condition|(
-name|minTermLength
-operator|>
-name|ed
-condition|)
-block|{
 name|float
 name|similarity
 init|=
@@ -1085,9 +1070,6 @@ argument_list|(
 name|similarity
 argument_list|)
 expr_stmt|;
-break|break;
-block|}
-block|}
 block|}
 specifier|final
 name|float

@@ -875,6 +875,8 @@ name|toBytesRef
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|// We allow negative term scores (fuzzy query does this, for example) while collecting the terms,
+comment|// but truncate such boosts to 0.0f when building the query:
 name|addClause
 argument_list|(
 name|b
@@ -888,9 +890,16 @@ operator|.
 name|docFreq
 argument_list|()
 argument_list|,
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0.0f
+argument_list|,
 name|st
 operator|.
 name|boost
+argument_list|)
 argument_list|,
 name|st
 operator|.
