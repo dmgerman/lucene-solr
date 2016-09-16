@@ -2690,6 +2690,13 @@ name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|MDCLoggingContext
+operator|.
+name|setNode
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 name|ZkStateReader
 operator|.
 name|ConfigData
