@@ -1170,9 +1170,9 @@ name|collection
 decl_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Load collection config from: [{}]"
+literal|"Loading collection config from: [{}]"
 argument_list|,
 name|path
 argument_list|)
@@ -1230,6 +1230,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|String
+name|configPath
+init|=
+name|CONFIGS_ZKNODE
+operator|+
+literal|"/"
+operator|+
+name|configName
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -1237,11 +1246,7 @@ name|zkClient
 operator|.
 name|exists
 argument_list|(
-name|CONFIGS_ZKNODE
-operator|+
-literal|"/"
-operator|+
-name|configName
+name|configPath
 argument_list|,
 literal|true
 argument_list|)
@@ -1251,9 +1256,11 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Specified config does not exist in ZooKeeper: [{}]"
+literal|"Specified config=[{}] does not exist in ZooKeeper at location=[{}]"
 argument_list|,
 name|configName
+argument_list|,
+name|configPath
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1274,11 +1281,11 @@ else|else
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"path=[{}] [{}]=[{}] specified config exists in ZooKeeper"
 argument_list|,
-name|path
+name|configPath
 argument_list|,
 name|CONFIGNAME_PROP
 argument_list|,
