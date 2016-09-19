@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.core
+DECL|package|org.apache.solr.common
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 package|;
 end_package
 
@@ -26,22 +26,29 @@ name|Map
 import|;
 end_import
 
+begin_comment
+comment|/**This is to facilitate just in time creation of objects before writing  * it to the response.  */
+end_comment
+
 begin_interface
 DECL|interface|MapSerializable
 specifier|public
 interface|interface
 name|MapSerializable
 block|{
+comment|/**Use the passed map to minimize object creation.    * Do not keep a reference to the passed map and reuse it.    * it may be reused by the framework    */
 DECL|method|toMap
-specifier|public
+name|Map
+name|toMap
+parameter_list|(
 name|Map
 argument_list|<
 name|String
 argument_list|,
 name|Object
 argument_list|>
-name|toMap
-parameter_list|()
+name|map
+parameter_list|)
 function_decl|;
 block|}
 end_interface

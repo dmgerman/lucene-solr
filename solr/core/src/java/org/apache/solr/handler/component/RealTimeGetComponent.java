@@ -3833,9 +3833,6 @@ argument_list|(
 literal|"fingerprint"
 argument_list|,
 name|fingerprint
-operator|.
-name|toObject
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -4251,9 +4248,6 @@ argument_list|(
 literal|"fingerprint"
 argument_list|,
 name|fingerprint
-operator|.
-name|toObject
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

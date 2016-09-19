@@ -34,6 +34,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|LinkedHashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -145,6 +155,20 @@ operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|MapSerializable
 import|;
 end_import
 
@@ -1114,7 +1138,12 @@ init|=
 name|solrIndexConfig
 operator|.
 name|toMap
+argument_list|(
+operator|new
+name|LinkedHashMap
+argument_list|<>
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|int
 name|mSizeExpected
@@ -1340,7 +1369,7 @@ argument_list|(
 literal|"mergeScheduler"
 argument_list|)
 operator|instanceof
-name|Map
+name|MapSerializable
 argument_list|)
 expr_stmt|;
 if|if
@@ -1382,7 +1411,7 @@ argument_list|(
 literal|"mergePolicyFactory"
 argument_list|)
 operator|instanceof
-name|Map
+name|MapSerializable
 argument_list|)
 expr_stmt|;
 block|}
@@ -1400,7 +1429,7 @@ argument_list|(
 literal|"mergePolicy"
 argument_list|)
 operator|instanceof
-name|Map
+name|MapSerializable
 argument_list|)
 expr_stmt|;
 name|assertNull
@@ -1443,7 +1472,7 @@ argument_list|(
 literal|"mergedSegmentWarmer"
 argument_list|)
 operator|instanceof
-name|Map
+name|MapSerializable
 argument_list|)
 expr_stmt|;
 block|}

@@ -128,7 +128,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
 name|MapSerializable
 import|;
@@ -1062,7 +1062,15 @@ argument_list|,
 name|Object
 argument_list|>
 name|toMap
-parameter_list|()
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|map
+parameter_list|)
 block|{
 name|Map
 name|result

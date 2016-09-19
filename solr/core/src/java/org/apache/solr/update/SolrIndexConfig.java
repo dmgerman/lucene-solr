@@ -282,7 +282,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
 name|MapSerializable
 import|;
@@ -1258,7 +1258,15 @@ argument_list|,
 name|Object
 argument_list|>
 name|toMap
-parameter_list|()
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|map
+parameter_list|)
 block|{
 name|Map
 argument_list|<
@@ -1322,9 +1330,6 @@ argument_list|(
 literal|"mergeScheduler"
 argument_list|,
 name|mergeSchedulerInfo
-operator|.
-name|toMap
-argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
@@ -1341,9 +1346,6 @@ argument_list|(
 literal|"mergePolicy"
 argument_list|,
 name|mergePolicyInfo
-operator|.
-name|toMap
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1362,9 +1364,6 @@ argument_list|(
 literal|"mergePolicyFactory"
 argument_list|,
 name|mergePolicyFactoryInfo
-operator|.
-name|toMap
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1381,9 +1380,6 @@ argument_list|(
 literal|"mergedSegmentWarmer"
 argument_list|,
 name|mergedSegmentWarmerInfo
-operator|.
-name|toMap
-argument_list|()
 argument_list|)
 expr_stmt|;
 return|return
