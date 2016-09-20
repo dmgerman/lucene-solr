@@ -9932,13 +9932,6 @@ operator|=
 literal|null
 expr_stmt|;
 comment|// isClosed() does check this
-name|infoRegistry
-operator|.
-name|remove
-argument_list|(
-literal|"currentSearcher"
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}
