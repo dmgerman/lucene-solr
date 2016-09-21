@@ -2056,7 +2056,9 @@ init|=
 name|ObjectReleaseTracker
 operator|.
 name|clearObjectTrackerAndCheckEmpty
-argument_list|()
+argument_list|(
+literal|30
+argument_list|)
 decl_stmt|;
 name|assertNull
 argument_list|(
