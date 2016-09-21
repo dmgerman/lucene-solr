@@ -2581,6 +2581,18 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|libDir
+operator|.
+name|equals
+argument_list|(
+literal|"lib"
+argument_list|)
+condition|)
+block|{
+comment|// Don't complain if default "lib" dir does not exist
 name|log
 operator|.
 name|warn
@@ -2595,6 +2607,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|shardHandlerFactory
