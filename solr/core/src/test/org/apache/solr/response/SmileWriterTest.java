@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.request
+DECL|package|org.apache.solr.response
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 package|;
 end_package
 
@@ -376,9 +376,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|response
+name|request
 operator|.
-name|SmileResponseWriter
+name|SolrQueryRequest
 import|;
 end_import
 
@@ -390,9 +390,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|response
+name|request
 operator|.
-name|SolrQueryResponse
+name|LocalSolrQueryRequest
 import|;
 end_import
 
@@ -484,13 +484,7 @@ name|ObjectBuilder
 import|;
 end_import
 
-begin_comment
-comment|/** @Deprecated use {@link org.apache.solr.response.SmileWriterTest} instead.  *  */
-end_comment
-
 begin_class
-annotation|@
-name|Deprecated
 DECL|class|SmileWriterTest
 specifier|public
 class|class

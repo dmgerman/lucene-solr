@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.request
+DECL|package|org.apache.solr.response
 package|package
 name|org
 operator|.
@@ -12,7 +12,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 package|;
 end_package
 
@@ -142,65 +142,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|response
+name|request
 operator|.
-name|JSONResponseWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|response
-operator|.
-name|PythonResponseWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|response
-operator|.
-name|QueryResponseWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|response
-operator|.
-name|RubyResponseWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|response
-operator|.
-name|SolrQueryResponse
+name|SolrQueryRequest
 import|;
 end_import
 
@@ -239,12 +183,10 @@ import|;
 end_import
 
 begin_comment
-comment|/** Test some aspects of JSON/python writer output (very incomplete)  * @Deprecated use {@link org.apache.solr.response.JSONWriterTest} instead  *  */
+comment|/** Test some aspects of JSON/python writer output (very incomplete)  *  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
 DECL|class|JSONWriterTest
 specifier|public
 class|class
