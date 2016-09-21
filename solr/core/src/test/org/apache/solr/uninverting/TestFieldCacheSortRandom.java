@@ -1968,6 +1968,18 @@ name|docID
 argument_list|)
 expr_stmt|;
 comment|//System.out.println("  acc id=" + idSource.getInt(docID) + " docID=" + docID);
+name|assertEquals
+argument_list|(
+name|docID
+argument_list|,
+name|idSource
+operator|.
+name|advance
+argument_list|(
+name|docID
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|matchValues
 operator|.
 name|add
@@ -1981,10 +1993,8 @@ name|int
 operator|)
 name|idSource
 operator|.
-name|get
-argument_list|(
-name|docID
-argument_list|)
+name|longValue
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;

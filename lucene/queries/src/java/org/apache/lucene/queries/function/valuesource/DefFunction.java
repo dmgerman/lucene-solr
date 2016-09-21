@@ -198,6 +198,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -253,6 +255,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|get
@@ -275,6 +279,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|get
@@ -297,6 +303,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|get
@@ -319,6 +327,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|get
@@ -341,6 +351,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|get
@@ -363,6 +375,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|get
@@ -385,6 +399,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|get
@@ -407,6 +423,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|get
@@ -432,6 +450,8 @@ parameter_list|,
 name|BytesRefBuilder
 name|target
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|get
@@ -456,6 +476,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|get
@@ -478,6 +500,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|// return true if any source is exists?
 for|for

@@ -1396,6 +1396,8 @@ parameter_list|,
 name|int
 name|slotNum
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|double
 name|val
@@ -1463,6 +1465,8 @@ parameter_list|,
 name|int
 name|slotNum
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|double
 name|val
@@ -1539,6 +1543,8 @@ parameter_list|,
 name|int
 name|slotNum
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|double
 name|val
@@ -1645,6 +1651,8 @@ parameter_list|,
 name|int
 name|slotNum
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|double
 name|val
@@ -1799,6 +1807,8 @@ parameter_list|,
 name|int
 name|slotNum
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|double
 name|val

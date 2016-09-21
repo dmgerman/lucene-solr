@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -149,6 +159,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -164,6 +176,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -179,6 +193,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -194,6 +210,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -209,6 +227,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -224,6 +244,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -240,6 +262,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -255,6 +279,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|intVal
@@ -277,6 +303,8 @@ parameter_list|,
 name|BytesRefBuilder
 name|target
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|String
 name|s
@@ -322,6 +350,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|// most FunctionValues are functions, so by default return a Float()
 return|return
@@ -340,6 +370,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 literal|true
@@ -354,6 +386,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -383,6 +417,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Abstraction of the logic required to fill the value of a specified doc into    * a reusable {@link MutableValue}.  Implementations of {@link FunctionValues}    * are encouraged to define their own implementations of ValueFiller if their    * value is not a float.    *    * @lucene.experimental    */
 DECL|class|ValueFiller
@@ -410,6 +446,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 comment|/** @lucene.experimental  */
@@ -453,6 +491,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|mval
 operator|.
@@ -480,6 +520,8 @@ name|byte
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -499,6 +541,8 @@ name|short
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -518,6 +562,8 @@ name|float
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -537,6 +583,8 @@ name|int
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -556,6 +604,8 @@ name|long
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -575,6 +625,8 @@ name|double
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -595,6 +647,8 @@ name|String
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -610,6 +664,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Explanation
@@ -689,6 +745,8 @@ parameter_list|,
 name|boolean
 name|includeUpper
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|float
 name|lower
@@ -785,6 +843,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -845,6 +905,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -905,6 +967,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -958,6 +1022,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(

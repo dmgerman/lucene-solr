@@ -20,6 +20,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|List
@@ -172,6 +182,8 @@ specifier|abstract
 name|int
 name|nextDoc
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 block|}
 comment|/** Construct this from the provided subs, specifying the maximum sub count */
@@ -191,6 +203,8 @@ parameter_list|,
 name|boolean
 name|indexIsSorted
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|this
 operator|.
@@ -279,6 +293,8 @@ parameter_list|,
 name|boolean
 name|indexIsSorted
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|this
 argument_list|(
@@ -299,6 +315,8 @@ specifier|public
 name|void
 name|reset
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -434,6 +452,8 @@ specifier|public
 name|T
 name|next
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|// Loop until we find a non-deleted document
 if|if

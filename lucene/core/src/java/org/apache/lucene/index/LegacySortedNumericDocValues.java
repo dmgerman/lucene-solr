@@ -17,41 +17,52 @@ package|;
 end_package
 
 begin_comment
-comment|/**   * Extension of {@link SortedSetDocValues} that supports random access  * to the ordinals of a document.  *<p>  * Operations via this API are independent of the iterator api ({@link #nextOrd()})  * and do not impact its state.  *<p>  * Codecs can optionally extend this API if they support constant-time access  * to ordinals for the document.  */
+comment|/**  * A list of per-document numeric values, sorted   * according to {@link Long#compare(long, long)}.  *  * @deprecated Use {@link SortedNumericDocValues} instead.  */
 end_comment
 
 begin_class
-DECL|class|RandomAccessOrds
+annotation|@
+name|Deprecated
+DECL|class|LegacySortedNumericDocValues
 specifier|public
 specifier|abstract
 class|class
-name|RandomAccessOrds
-extends|extends
-name|SortedSetDocValues
+name|LegacySortedNumericDocValues
 block|{
-comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
-DECL|method|RandomAccessOrds
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
+DECL|method|LegacySortedNumericDocValues
 specifier|protected
-name|RandomAccessOrds
+name|LegacySortedNumericDocValues
 parameter_list|()
 block|{}
-comment|/**     * Retrieve the ordinal for the current document (previously    * set by {@link #setDocument(int)} at the specified index.    *<p>    * An index ranges from {@code 0} to {@code cardinality()-1}.    * The first ordinal value is at index {@code 0}, the next at index {@code 1},    * and so on, as for array indexing.    * @param index index of the ordinal for the document.    * @return ordinal for the document at the specified index.    */
-DECL|method|ordAt
+comment|/**     * Positions to the specified document     */
+DECL|method|setDocument
+specifier|public
+specifier|abstract
+name|void
+name|setDocument
+parameter_list|(
+name|int
+name|doc
+parameter_list|)
+function_decl|;
+comment|/**     * Retrieve the value for the current document at the specified index.     * An index ranges from {@code 0} to {@code count()-1}.     */
+DECL|method|valueAt
 specifier|public
 specifier|abstract
 name|long
-name|ordAt
+name|valueAt
 parameter_list|(
 name|int
 name|index
 parameter_list|)
 function_decl|;
-comment|/**     * Returns the cardinality for the current document (previously    * set by {@link #setDocument(int)}.    */
-DECL|method|cardinality
+comment|/**     * Retrieves the count of values for the current document.     * This may be zero if a document has no values.    */
+DECL|method|count
 specifier|public
 specifier|abstract
 name|int
-name|cardinality
+name|count
 parameter_list|()
 function_decl|;
 block|}

@@ -134,20 +134,6 @@ name|Accountable
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
-import|;
-end_import
-
 begin_comment
 comment|/** Abstract API that produces numeric, binary, sorted, sortedset,  *  and sortednumeric docvalues.  *  * @lucene.experimental  */
 end_comment
@@ -227,19 +213,6 @@ specifier|public
 specifier|abstract
 name|SortedSetDocValues
 name|getSortedSet
-parameter_list|(
-name|FieldInfo
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Returns a {@link Bits} at the size of<code>reader.maxDoc()</code>,     *  with turned on bits for each docid that does have a value for this field.    *  The returned instance need not be thread-safe: it will only be    *  used by a single thread. */
-DECL|method|getDocsWithField
-specifier|public
-specifier|abstract
-name|Bits
-name|getDocsWithField
 parameter_list|(
 name|FieldInfo
 name|field

@@ -390,6 +390,8 @@ parameter_list|,
 name|float
 name|freq
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|float
 name|sum
@@ -433,6 +435,8 @@ parameter_list|,
 name|Explanation
 name|freq
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|List
 argument_list|<

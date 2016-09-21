@@ -246,6 +246,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -279,6 +281,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -312,6 +316,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -345,6 +351,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -378,6 +386,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -411,6 +421,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -444,6 +456,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -477,6 +491,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -513,6 +529,8 @@ parameter_list|,
 name|BytesRefBuilder
 name|target
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -550,6 +568,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -583,6 +603,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ifVals
@@ -632,6 +654,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 literal|"if("

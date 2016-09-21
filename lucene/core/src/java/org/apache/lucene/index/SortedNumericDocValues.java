@@ -16,6 +16,30 @@ name|index
 package|;
 end_package
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
 begin_comment
 comment|/**  * A list of per-document numeric values, sorted   * according to {@link Long#compare(long, long)}.  */
 end_comment
@@ -26,41 +50,31 @@ specifier|public
 specifier|abstract
 class|class
 name|SortedNumericDocValues
+extends|extends
+name|DocIdSetIterator
 block|{
-comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|SortedNumericDocValues
 specifier|protected
 name|SortedNumericDocValues
 parameter_list|()
 block|{}
-comment|/**     * Positions to the specified document     */
-DECL|method|setDocument
-specifier|public
-specifier|abstract
-name|void
-name|setDocument
-parameter_list|(
-name|int
-name|doc
-parameter_list|)
-function_decl|;
 comment|/**     * Retrieve the value for the current document at the specified index.     * An index ranges from {@code 0} to {@code count()-1}.     */
-DECL|method|valueAt
+DECL|method|nextValue
 specifier|public
 specifier|abstract
 name|long
-name|valueAt
-parameter_list|(
-name|int
-name|index
-parameter_list|)
+name|nextValue
+parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
-comment|/**     * Retrieves the count of values for the current document.     * This may be zero if a document has no values.    */
-DECL|method|count
+comment|/**     * Retrieves the number of values for the current document.  This must always    * be greater than zero.    */
+DECL|method|docValueCount
 specifier|public
 specifier|abstract
 name|int
-name|count
+name|docValueCount
 parameter_list|()
 function_decl|;
 block|}

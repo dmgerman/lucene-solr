@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|NumericDocValues
+name|LegacyNumericDocValues
 import|;
 end_import
 
@@ -1351,7 +1351,7 @@ specifier|abstract
 class|class
 name|Reader
 extends|extends
-name|NumericDocValues
+name|LegacyNumericDocValues
 implements|implements
 name|Accountable
 block|{

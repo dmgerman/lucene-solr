@@ -113,6 +113,8 @@ parameter_list|(
 name|int
 name|docID
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Accumulate the values based on the given value    *    * @param value Value to use to accumulate the current values    * @param count number of times to accumulate this value    */
 DECL|method|accumulate

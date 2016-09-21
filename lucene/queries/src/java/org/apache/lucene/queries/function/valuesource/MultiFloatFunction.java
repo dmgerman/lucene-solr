@@ -184,6 +184,8 @@ name|FunctionValues
 index|[]
 name|valsArr
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**     * Called by {@link FunctionValues#exists} for each document.    *    * Default impl returns true if<em>all</em> of the specified<code>values</code>     * {@link FunctionValues#exists} for the specified doc, else false.    *    * @see FunctionValues#exists    * @see MultiFunction#allExists    */
 DECL|method|exists
@@ -198,6 +200,8 @@ name|FunctionValues
 index|[]
 name|valsArr
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|MultiFunction
@@ -373,6 +377,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|func
@@ -390,6 +396,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|MultiFloatFunction
@@ -413,6 +421,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|MultiFunction

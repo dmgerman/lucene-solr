@@ -1793,6 +1793,8 @@ specifier|public
 name|float
 name|score
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|// TODO: we could probably do better here, e.g. look @ freqs of actual terms involved in this doc and score differently
 return|return

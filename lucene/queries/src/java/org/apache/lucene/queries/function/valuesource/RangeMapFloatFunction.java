@@ -389,6 +389,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|float
 name|val
@@ -443,6 +445,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 literal|"map("

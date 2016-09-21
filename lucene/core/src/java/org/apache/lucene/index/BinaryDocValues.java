@@ -24,6 +24,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -31,7 +45,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A per-document byte[]  */
+comment|/**  * A per-document numeric value.  */
 end_comment
 
 begin_class
@@ -40,23 +54,22 @@ specifier|public
 specifier|abstract
 class|class
 name|BinaryDocValues
+extends|extends
+name|DocIdSetIterator
 block|{
-comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
+comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|BinaryDocValues
 specifier|protected
 name|BinaryDocValues
 parameter_list|()
 block|{}
-comment|/** Lookup the value for document.  The returned {@link BytesRef} may be    * re-used across calls to {@link #get(int)} so make sure to    * {@link BytesRef#deepCopyOf(BytesRef) copy it} if you want to keep it    * around. */
-DECL|method|get
+comment|/**    * Returns the numeric value for the current document ID.    * @return numeric value    */
+DECL|method|binaryValue
 specifier|public
 specifier|abstract
 name|BytesRef
-name|get
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
+name|binaryValue
+parameter_list|()
 function_decl|;
 block|}
 end_class

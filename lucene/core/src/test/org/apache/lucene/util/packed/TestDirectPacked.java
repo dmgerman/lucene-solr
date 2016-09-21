@@ -38,7 +38,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|NumericDocValues
+name|LegacyNumericDocValues
 import|;
 end_import
 
@@ -292,7 +292,7 @@ operator|.
 name|DEFAULT
 argument_list|)
 decl_stmt|;
-name|NumericDocValues
+name|LegacyNumericDocValues
 name|reader
 init|=
 name|DirectReader
@@ -828,7 +828,7 @@ operator|.
 name|DEFAULT
 argument_list|)
 decl_stmt|;
-name|NumericDocValues
+name|LegacyNumericDocValues
 name|reader
 init|=
 name|DirectReader

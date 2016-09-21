@@ -2583,6 +2583,8 @@ DECL|method|match
 name|boolean
 name|match
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|// longitude should generally be more restrictive than latitude
 comment|// (e.g. in the US, it immediately separates the coasts, and in world search separates

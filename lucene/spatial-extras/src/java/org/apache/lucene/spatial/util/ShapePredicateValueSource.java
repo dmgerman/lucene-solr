@@ -347,6 +347,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|Shape
 name|indexedShape
@@ -390,6 +392,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|Explanation
 name|exp

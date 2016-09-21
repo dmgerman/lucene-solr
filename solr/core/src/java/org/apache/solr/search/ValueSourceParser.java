@@ -1641,6 +1641,8 @@ parameter_list|,
 name|FunctionValues
 name|bVals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|aVals
@@ -1808,6 +1810,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -2051,6 +2055,8 @@ parameter_list|,
 name|FunctionValues
 name|bVals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|aVals
@@ -3009,6 +3015,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|vals
@@ -3046,6 +3054,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|vals
@@ -3083,6 +3093,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3121,6 +3133,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3159,6 +3173,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3197,6 +3213,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3235,6 +3253,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3273,6 +3293,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3311,6 +3333,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3349,6 +3373,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3387,6 +3413,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3425,6 +3453,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3463,6 +3493,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3501,6 +3533,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3539,6 +3573,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3577,6 +3613,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3615,6 +3653,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3653,6 +3693,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3691,6 +3733,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3732,6 +3776,8 @@ parameter_list|,
 name|FunctionValues
 name|b
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3780,6 +3826,8 @@ parameter_list|,
 name|FunctionValues
 name|b
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -3828,6 +3876,8 @@ parameter_list|,
 name|FunctionValues
 name|b
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Math
@@ -4696,6 +4746,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|vals
@@ -4759,6 +4811,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|!
@@ -4849,6 +4903,8 @@ name|FunctionValues
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -4942,6 +4998,8 @@ name|FunctionValues
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -5034,6 +5092,8 @@ name|FunctionValues
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|int
 name|nTrue
@@ -6735,6 +6795,8 @@ parameter_list|,
 name|FunctionValues
 name|bVals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|ms1
@@ -6799,6 +6861,8 @@ parameter_list|,
 name|FunctionValues
 name|bVals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|aVals
@@ -6859,6 +6923,8 @@ parameter_list|,
 name|FunctionValues
 name|bVals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|aVals
@@ -7278,6 +7344,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 annotation|@
 name|Override
@@ -7385,6 +7453,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|func
@@ -7404,6 +7474,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|name
@@ -7465,6 +7537,8 @@ parameter_list|,
 name|FunctionValues
 name|b
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 annotation|@
 name|Override
@@ -7625,6 +7699,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|func
@@ -7646,6 +7722,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|name

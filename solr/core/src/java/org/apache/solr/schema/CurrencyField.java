@@ -2280,6 +2280,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|amounts
@@ -2299,6 +2301,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -2319,6 +2323,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -2339,6 +2345,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|CurrencyValue
@@ -2374,6 +2382,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|CurrencyValue
@@ -2414,6 +2424,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Double
@@ -2436,6 +2448,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|name
@@ -2948,6 +2962,8 @@ parameter_list|,
 name|int
 name|currencyOrd
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -3048,6 +3064,8 @@ parameter_list|,
 name|int
 name|currencyOrd
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|String
 name|code
@@ -3103,6 +3121,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|amounts
@@ -3122,6 +3142,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|long
 name|amount
@@ -3375,6 +3397,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -3395,6 +3419,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -3415,6 +3441,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -3435,6 +3463,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Long
@@ -3457,6 +3487,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|name
