@@ -1434,8 +1434,8 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Using Lucene MatchVersion: "
-operator|+
+literal|"Using Lucene MatchVersion: {}"
+argument_list|,
 name|luceneMatchVersion
 argument_list|)
 expr_stmt|;
@@ -2073,8 +2073,8 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Loaded SolrConfig: "
-operator|+
+literal|"Loaded SolrConfig: {}"
+argument_list|,
 name|name
 argument_list|)
 expr_stmt|;
@@ -2733,9 +2733,9 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"config overlay loaded . version : {} "
+literal|"Config overlay loaded. version : {} "
 argument_list|,
 name|version
 argument_list|)
@@ -4463,7 +4463,7 @@ condition|)
 return|return;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Adding specified lib dirs to ClassLoader"
 argument_list|)
@@ -5640,7 +5640,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"current version of requestparams : {}"
 argument_list|,

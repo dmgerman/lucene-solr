@@ -1617,7 +1617,7 @@ name|IOException
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Loading from snapshot metadata file..."
 argument_list|)

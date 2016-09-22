@@ -2996,8 +2996,18 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"default search field in schema is "
-operator|+
+literal|"[{}] default search field in schema is {}. WARNING: Deprecated, please use 'df' on request instead."
+argument_list|,
+name|loader
+operator|.
+name|getCoreProperties
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+name|SOLR_CORE_NAME
+argument_list|)
+argument_list|,
 name|defaultSearchFieldName
 argument_list|)
 expr_stmt|;
@@ -3045,7 +3055,7 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"using default query parser operator (OR)"
+literal|"Default query parser operator not set in Schema"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3069,8 +3079,18 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"query parser default operator is "
-operator|+
+literal|"[{}] query parser default operator is {}. WARNING: Deprecated, please use 'q.op' on request instead."
+argument_list|,
+name|loader
+operator|.
+name|getCoreProperties
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+name|SOLR_CORE_NAME
+argument_list|)
+argument_list|,
 name|queryParserDefaultOperator
 argument_list|)
 expr_stmt|;
@@ -3261,8 +3281,18 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"unique key field: "
-operator|+
+literal|"[{}] unique key field: {}"
+argument_list|,
+name|loader
+operator|.
+name|getCoreProperties
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+name|SOLR_CORE_NAME
+argument_list|)
+argument_list|,
 name|uniqueKeyFieldName
 argument_list|)
 expr_stmt|;

@@ -249,7 +249,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Did not find ConfigSet properties, assuming default properties: "
 operator|+

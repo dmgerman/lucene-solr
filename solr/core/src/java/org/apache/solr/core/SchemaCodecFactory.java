@@ -410,7 +410,7 @@ throw|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Using compressionMode: "
 operator|+
@@ -426,7 +426,7 @@ name|SOLR_DEFAULT_COMPRESSION_MODE
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Using default compressionMode: "
 operator|+
