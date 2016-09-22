@@ -863,7 +863,7 @@ comment|// not a no, not a yes, try ask again
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Starting to work on the main queue"
 argument_list|)
@@ -1005,7 +1005,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"processMessage: workQueueSize: {}, message = {}"
 argument_list|,
@@ -1259,7 +1259,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"processMessage: queueSize: {}, message = {} current state version: {}"
 argument_list|,
@@ -1820,9 +1820,9 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
-literal|"I'm exiting , but I'm still the leader"
+literal|"I'm exiting, but I'm still the leader"
 argument_list|)
 expr_stmt|;
 name|zkClient
@@ -1871,7 +1871,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"somebody else has already taken up the overseer position"
 argument_list|)
@@ -2663,25 +2663,13 @@ name|e
 operator|.
 name|code
 argument_list|()
-operator|==
+operator|!=
 name|KeeperException
 operator|.
 name|Code
 operator|.
 name|SESSIONEXPIRED
 condition|)
-block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|""
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|log
 operator|.
@@ -3290,6 +3278,10 @@ block|{
 if|if
 condition|(
 name|closed
+operator|||
+name|id
+operator|==
+literal|null
 condition|)
 return|return;
 name|log

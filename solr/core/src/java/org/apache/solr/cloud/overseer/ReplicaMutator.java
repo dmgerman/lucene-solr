@@ -1021,20 +1021,21 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Setting property "
-operator|+
+literal|"Setting property {} with value {} for collection {}"
+argument_list|,
 name|property
-operator|+
-literal|" with value: "
-operator|+
+argument_list|,
 name|propVal
-operator|+
-literal|" for collection: "
-operator|+
+argument_list|,
 name|collectionName
-operator|+
-literal|". Full message: "
-operator|+
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Full message: {}"
+argument_list|,
 name|message
 argument_list|)
 expr_stmt|;
@@ -1436,24 +1437,23 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Deleting property "
-operator|+
+literal|"Deleting property {} for collection: {} slice: {} replica: {}"
+argument_list|,
 name|property
-operator|+
-literal|" for collection: "
-operator|+
+argument_list|,
 name|collectionName
-operator|+
-literal|" slice "
-operator|+
+argument_list|,
 name|sliceName
-operator|+
-literal|" replica "
-operator|+
+argument_list|,
 name|replicaName
-operator|+
-literal|". Full message: "
-operator|+
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Full message: {}"
+argument_list|,
 name|message
 argument_list|)
 expr_stmt|;
@@ -1479,31 +1479,6 @@ operator|.
 name|NO_OP
 return|;
 comment|// not there anyway, nothing to do.
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Deleting property "
-operator|+
-name|property
-operator|+
-literal|" for collection: "
-operator|+
-name|collectionName
-operator|+
-literal|" slice "
-operator|+
-name|sliceName
-operator|+
-literal|" replica "
-operator|+
-name|replicaName
-operator|+
-literal|". Full message: "
-operator|+
-name|message
-argument_list|)
-expr_stmt|;
 name|Slice
 name|slice
 init|=
@@ -1643,7 +1618,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Update state numShards={} message={}"
 argument_list|,
@@ -1890,7 +1865,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"node="
 operator|+
@@ -1957,7 +1932,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"shard="
 operator|+
@@ -1994,7 +1969,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Collection already exists with "
 operator|+

@@ -4510,7 +4510,7 @@ return|;
 block|}
 name|log
 operator|.
-name|info
+name|trace
 argument_list|(
 literal|"zkHost includes chroot"
 argument_list|)
@@ -4894,39 +4894,24 @@ name|getNodeName
 argument_list|()
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
 name|log
 operator|.
-name|isInfoEnabled
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Register replica - core:"
-operator|+
+literal|"Register replica - core:{} address:{} collection:{} shard:{}"
+argument_list|,
 name|coreName
-operator|+
-literal|" address:"
-operator|+
+argument_list|,
 name|baseUrl
-operator|+
-literal|" collection:"
-operator|+
+argument_list|,
 name|cloudDesc
 operator|.
 name|getCollectionName
 argument_list|()
-operator|+
-literal|" shard:"
-operator|+
+argument_list|,
 name|shardId
 argument_list|)
 expr_stmt|;
-block|}
 name|ZkNodeProps
 name|leaderProps
 init|=
@@ -5080,7 +5065,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"We are "
 operator|+
@@ -5232,17 +5217,15 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"No LogReplay needed for core="
-operator|+
+literal|"No LogReplay needed for core={} baseURL={}"
+argument_list|,
 name|core
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|" baseURL="
-operator|+
+argument_list|,
 name|baseUrl
 argument_list|)
 expr_stmt|;
@@ -6433,7 +6416,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"publishing state={}"
 argument_list|,
@@ -6465,7 +6448,7 @@ block|{
 comment|// XXX sys prop hack
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"numShards not found on descriptor - reading it from system property"
 argument_list|)
@@ -7307,7 +7290,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Check for collection zkNode:"
 operator|+
@@ -7342,7 +7325,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Creating collection in ZooKeeper:"
 operator|+
@@ -7642,7 +7625,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Collection zkNode exists"
 argument_list|)
@@ -7739,7 +7722,7 @@ block|{
 comment|// check for configName
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Looking for collection configName"
 argument_list|)
@@ -8052,7 +8035,7 @@ literal|320
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"look for our core node name"
 argument_list|)
@@ -8230,7 +8213,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"waiting to find shard id in clusterstate for "
 operator|+
@@ -8481,7 +8464,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|collection
 operator|==
@@ -9177,7 +9160,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Replica "
 operator|+
@@ -9523,24 +9506,15 @@ literal|"/"
 operator|+
 name|collection
 decl_stmt|;
-if|if
-condition|(
 name|log
 operator|.
-name|isInfoEnabled
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Load collection config from:"
 operator|+
 name|path
 argument_list|)
 expr_stmt|;
-block|}
 name|byte
 index|[]
 name|data
@@ -11837,7 +11811,7 @@ block|}
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Wrote {} to {}"
 argument_list|,
@@ -12419,7 +12393,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Added new OnReconnect listener "
 operator|+
@@ -12471,7 +12445,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Removed OnReconnect listener "
 operator|+
@@ -12705,7 +12679,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"failed to set data version in zk is {} and expected version is {} "
 argument_list|,
@@ -13130,7 +13104,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"removed listener for config directory [{}]"
 argument_list|,
@@ -13149,7 +13123,7 @@ block|{
 comment|// no more listeners for this confDir, remove it from the map
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No more listeners for config directory [{}]"
 argument_list|,
@@ -13310,7 +13284,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"watch zkdir {}"
 argument_list|,
@@ -13509,7 +13483,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"A node got unwatched for {}"
 argument_list|,
@@ -13535,7 +13509,7 @@ expr_stmt|;
 else|else
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"A node got unwatched for {}"
 argument_list|,
@@ -13574,7 +13548,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Watcher on {} is removed "
 argument_list|,
@@ -13635,7 +13609,7 @@ lambda|->
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Running listeners for {}"
 argument_list|,
@@ -14086,7 +14060,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Publish node as down was interrupted."
 argument_list|)
@@ -14100,7 +14074,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"Could not publish node as down: "
 operator|+

@@ -575,27 +575,19 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Watcher "
-operator|+
+literal|"Watcher {} name: {} got event {} path: {} type: {}"
+argument_list|,
 name|this
-operator|+
-literal|" name:"
-operator|+
+argument_list|,
 name|name
-operator|+
-literal|" got event "
-operator|+
+argument_list|,
 name|event
-operator|+
-literal|" path:"
-operator|+
+argument_list|,
 name|event
 operator|.
 name|getPath
 argument_list|()
-operator|+
-literal|" type:"
-operator|+
+argument_list|,
 name|event
 operator|.
 name|getType
@@ -603,40 +595,25 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-elseif|else
-if|if
-condition|(
-name|log
-operator|.
-name|isInfoEnabled
-argument_list|()
-condition|)
+else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Watcher "
-operator|+
+literal|"Watcher {} name: {} got event {} path: {} type: {}"
+argument_list|,
 name|this
-operator|+
-literal|" name:"
-operator|+
+argument_list|,
 name|name
-operator|+
-literal|" got event "
-operator|+
+argument_list|,
 name|event
-operator|+
-literal|" path:"
-operator|+
+argument_list|,
 name|event
 operator|.
 name|getPath
 argument_list|()
-operator|+
-literal|" type:"
-operator|+
+argument_list|,
 name|event
 operator|.
 name|getType
@@ -651,7 +628,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Client->ZooKeeper status change trigger but we are already closed"
 argument_list|)
@@ -1093,7 +1070,7 @@ name|TimeoutException
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Waiting for client to connect to ZooKeeper"
 argument_list|)

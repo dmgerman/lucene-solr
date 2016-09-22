@@ -808,7 +808,7 @@ parameter_list|()
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Process current queue of overseer operations"
 argument_list|)
@@ -1574,7 +1574,7 @@ continue|continue;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|messageHandler
 operator|.
@@ -2226,25 +2226,13 @@ name|e
 operator|.
 name|code
 argument_list|()
-operator|==
+operator|!=
 name|KeeperException
 operator|.
 name|Code
 operator|.
 name|SESSIONEXPIRED
 condition|)
-block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|""
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|log
 operator|.
@@ -2740,7 +2728,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|messageHandler
 operator|.

@@ -1894,7 +1894,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"OverseerCollectionMessageHandler.processMessage : "
 operator|+
@@ -3927,7 +3927,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Calling soft commit to make sub shard updates visible"
 argument_list|)
@@ -4288,7 +4288,7 @@ name|InterruptedException
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Waiting for slice {} of collection {} to be available"
 argument_list|,
@@ -4372,7 +4372,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Waited for {}ms for slice {} of collection {} to be available"
 argument_list|,
@@ -6086,7 +6086,7 @@ name|coll
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"creating collections conf node {} "
 argument_list|,

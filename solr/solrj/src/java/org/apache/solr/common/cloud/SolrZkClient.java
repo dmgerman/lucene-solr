@@ -1274,7 +1274,7 @@ block|}
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Using default ZkCredentialsProvider"
 argument_list|)
@@ -1370,7 +1370,7 @@ block|}
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Using default ZkACLProvider"
 argument_list|)
@@ -2434,24 +2434,15 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-if|if
-condition|(
 name|log
 operator|.
-name|isInfoEnabled
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|info
+name|debug
 argument_list|(
-literal|"makePath: "
-operator|+
+literal|"makePath: {}"
+argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
-block|}
 name|boolean
 name|retry
 init|=
@@ -2913,31 +2904,20 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-if|if
-condition|(
 name|log
 operator|.
-name|isInfoEnabled
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Write to ZooKeepeer "
-operator|+
+literal|"Write to ZooKeeper: {} to {}"
+argument_list|,
 name|file
 operator|.
 name|getAbsolutePath
 argument_list|()
-operator|+
-literal|" to "
-operator|+
+argument_list|,
 name|path
 argument_list|)
 expr_stmt|;
-block|}
 name|byte
 index|[]
 name|data
@@ -3897,10 +3877,10 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Updated ACL on "
-operator|+
+literal|"Updated ACL on {}"
+argument_list|,
 name|path
 argument_list|)
 expr_stmt|;

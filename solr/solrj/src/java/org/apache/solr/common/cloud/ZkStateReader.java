@@ -1738,7 +1738,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"ClusterState watchers have not been initialized"
 argument_list|)
@@ -1775,7 +1775,7 @@ comment|// We either don't know anything about this collection (maybe it's new?)
 comment|// First update the legacy cluster state.
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Checking legacy cluster state for collection {}"
 argument_list|,
@@ -1821,7 +1821,7 @@ block|{
 comment|// What do you know, it exists!
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Adding lazily-loaded reference for collection {}"
 argument_list|,
@@ -1861,7 +1861,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Refreshing lazily-loaded state for collection {}"
 argument_list|,
@@ -1901,7 +1901,7 @@ block|{
 comment|// Exists as a watched collection, force a refresh.
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Forcing refresh of watched collection state for {}"
 argument_list|,
@@ -2341,7 +2341,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"New alias definition is: "
 operator|+
@@ -4743,7 +4743,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Loaded cluster properties: {}"
 argument_list|,
@@ -4773,7 +4773,7 @@ argument_list|()
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Loaded empty cluster properties"
 argument_list|)
@@ -5199,7 +5199,7 @@ block|{
 comment|// This collection is no longer interesting, stop watching.
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Uninteresting collection {}"
 argument_list|,
@@ -5431,7 +5431,7 @@ argument_list|()
 decl_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"A cluster state change: [{}], has occurred - updating... (live nodes size: [{}])"
 argument_list|,
@@ -5607,7 +5607,7 @@ return|return;
 block|}
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"A collections change: [{}], has occurred - updating..."
 argument_list|,
@@ -5769,7 +5769,7 @@ return|return;
 block|}
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"A live node change: [{}], has occurred - updating... (live nodes size: [{}])"
 argument_list|,
@@ -6739,9 +6739,9 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Deleting data for [{}]"
+literal|"Removing cached collection state for [{}]"
 argument_list|,
 name|coll
 argument_list|)
@@ -6814,7 +6814,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Add data for [{}] ver [{}]"
 argument_list|,
@@ -6872,7 +6872,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Updating data for [{}] from [{}] to [{}]"
 argument_list|,
@@ -6918,7 +6918,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Removing uninteresting collection [{}]"
 argument_list|,

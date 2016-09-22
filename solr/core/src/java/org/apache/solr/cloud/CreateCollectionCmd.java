@@ -1299,7 +1299,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Finished create command for collection: {}"
 argument_list|,
@@ -1324,7 +1324,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|formatString
 argument_list|(
@@ -1412,7 +1412,7 @@ operator|)
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|formatString
 argument_list|(
@@ -1913,11 +1913,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Cleaned up  artifacts for failed create collection for ["
-operator|+
+literal|"Cleaned up artifacts for failed create collection for [{}]"
+argument_list|,
 name|collectionName
-operator|+
-literal|"]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1927,8 +1925,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"Finished create command on all shards for collection: "
-operator|+
+literal|"Finished create command on all shards for collection: {}"
+argument_list|,
 name|collectionName
 argument_list|)
 expr_stmt|;
