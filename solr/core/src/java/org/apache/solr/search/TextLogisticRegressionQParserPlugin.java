@@ -1006,7 +1006,7 @@ name|leafOutcomeValue
 operator|.
 name|advance
 argument_list|(
-name|valuesDocID
+name|doc
 argument_list|)
 expr_stmt|;
 block|}
