@@ -3380,10 +3380,6 @@ DECL|field|tokenStream
 name|TokenStream
 name|tokenStream
 decl_stmt|;
-DECL|field|indexOptions
-name|IndexOptions
-name|indexOptions
-decl_stmt|;
 DECL|method|PerField
 specifier|public
 name|PerField
