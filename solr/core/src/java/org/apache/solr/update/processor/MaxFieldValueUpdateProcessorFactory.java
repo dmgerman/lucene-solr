@@ -164,6 +164,9 @@ name|Collections
 operator|.
 name|singletonList
 argument_list|(
+operator|(
+name|Object
+operator|)
 name|Collections
 operator|.
 name|max
