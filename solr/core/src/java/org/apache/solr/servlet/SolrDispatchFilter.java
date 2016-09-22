@@ -749,6 +749,21 @@ parameter_list|)
 throws|throws
 name|ServletException
 block|{
+name|log
+operator|.
+name|trace
+argument_list|(
+literal|"SolrDispatchFilter.init(): {}"
+argument_list|,
+name|this
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getClassLoader
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|String
 name|muteConsole
 init|=
@@ -965,7 +980,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"user.dir="
 operator|+
@@ -1016,7 +1031,7 @@ block|}
 block|}
 name|log
 operator|.
-name|info
+name|trace
 argument_list|(
 literal|"SolrDispatchFilter.init() done"
 argument_list|)

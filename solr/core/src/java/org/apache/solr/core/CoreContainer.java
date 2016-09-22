@@ -1402,7 +1402,7 @@ comment|// private ClientConnectionManager clientConnectionManager = new Pooling
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"New CoreContainer "
 operator|+
@@ -1808,7 +1808,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Security conf doesn't exist. Skipping setup for authorization module."
 argument_list|)
@@ -1980,7 +1980,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No authentication plugin used."
 argument_list|)
@@ -2148,7 +2148,7 @@ comment|// configured using the default httpclient configurer. We need to reconf
 comment|// http client configurer to set it up for internode communication.
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Reconfiguring HttpClient settings."
 argument_list|)
@@ -2516,7 +2516,7 @@ parameter_list|()
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Loading cores into CoreContainer [instanceDir={}]"
 argument_list|,
@@ -4176,7 +4176,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"registering core: "
 operator|+
@@ -4206,7 +4206,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"replacing core: "
 operator|+

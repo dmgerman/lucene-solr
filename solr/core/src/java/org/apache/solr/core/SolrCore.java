@@ -3087,7 +3087,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"[{}] Added SolrEventListener for firstSearcher: [{}]"
 argument_list|,
@@ -3131,7 +3131,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"[{}] Added SolrEventListener for newSearcher: [{}]"
 argument_list|,
@@ -3413,7 +3413,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|info
 operator|.
@@ -3462,7 +3462,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"solr.NRTCachingDirectoryFactory"
 argument_list|)
@@ -5131,7 +5131,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Ignoring JMX bean [{}] due to name conflict."
 argument_list|,
@@ -5684,7 +5684,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"JMX monitoring not detected for core: "
 operator|+
@@ -6317,7 +6317,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Using statsCache impl: "
 operator|+
@@ -6335,7 +6335,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Using default statsCache cache: "
 operator|+
@@ -6439,7 +6439,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"no updateRequestProcessorChain defined as default, creating implicit default"
 argument_list|)
@@ -8405,7 +8405,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"SolrIndexSearcher has not changed - not re-opening: "
 operator|+
@@ -13119,7 +13119,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|zkPath
 operator|+
@@ -13246,7 +13246,7 @@ lambda|->
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Looking for old index directories to cleanup for core {} in {}"
 argument_list|,

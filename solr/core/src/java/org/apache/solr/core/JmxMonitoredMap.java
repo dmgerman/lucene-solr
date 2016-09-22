@@ -466,12 +466,12 @@ argument_list|,
 name|SolrInfoMBean
 argument_list|>
 block|{
-DECL|field|LOG
+DECL|field|log
 specifier|private
 specifier|static
 specifier|final
 name|Logger
-name|LOG
+name|log
 init|=
 name|LoggerFactory
 operator|.
@@ -669,9 +669,9 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
-name|LOG
+name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No JMX servers found, not exposing Solr information with JMX."
 argument_list|)
@@ -687,7 +687,7 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-name|LOG
+name|log
 operator|.
 name|info
 argument_list|(
@@ -734,7 +734,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-name|LOG
+name|log
 operator|.
 name|info
 argument_list|(
@@ -846,7 +846,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
+name|log
 operator|.
 name|warn
 argument_list|(
@@ -887,7 +887,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
+name|log
 operator|.
 name|warn
 argument_list|(
@@ -991,7 +991,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
+name|log
 operator|.
 name|warn
 argument_list|(
@@ -1061,7 +1061,7 @@ name|RuntimeException
 name|e
 parameter_list|)
 block|{
-name|LOG
+name|log
 operator|.
 name|warn
 argument_list|(
@@ -1719,7 +1719,7 @@ operator|instanceof
 name|AlreadyClosedException
 operator|)
 condition|)
-name|LOG
+name|log
 operator|.
 name|warn
 argument_list|(
@@ -2158,7 +2158,7 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|LOG
+name|log
 operator|.
 name|warn
 argument_list|(

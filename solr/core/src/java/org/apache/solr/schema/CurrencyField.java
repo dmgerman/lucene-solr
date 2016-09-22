@@ -4282,7 +4282,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Reloading exchange rates from file "
 operator|+
