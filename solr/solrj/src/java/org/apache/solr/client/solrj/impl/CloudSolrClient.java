@@ -6667,6 +6667,16 @@ return|return
 name|lbClient
 return|;
 block|}
+DECL|method|getHttpClient
+specifier|public
+name|HttpClient
+name|getHttpClient
+parameter_list|()
+block|{
+return|return
+name|myClient
+return|;
+block|}
 DECL|method|isUpdatesToLeaders
 specifier|public
 name|boolean
