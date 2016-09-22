@@ -154,6 +154,24 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|update
+operator|.
+name|processor
+operator|.
+name|FieldMutatingUpdateProcessor
+operator|.
+name|FieldNameSelector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|plugin
@@ -162,8 +180,26 @@ name|SolrCoreAware
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|update
+operator|.
+name|processor
+operator|.
+name|FieldMutatingUpdateProcessor
+operator|.
+name|SELECT_ALL_FIELDS
+import|;
+end_import
+
 begin_comment
-comment|/**  * Base class for implementing Factories for FieldMutatingUpdateProcessors and   * FieldValueMutatingUpdateProcessors.  *  *<p>  * This class provides all of the plumbing for configuring the   * FieldNameSelector using the following init params to specify selection   * criteria...  *</p>  *<ul>  *<li><code>fieldName</code> - selecting specific fields by field name lookup</li>  *<li><code>fieldRegex</code> - selecting specific fields by field name regex match (regexes are checked in the order specified)</li>  *<li><code>typeName</code> - selecting specific fields by fieldType name lookup</li>  *<li><code>typeClass</code> - selecting specific fields by fieldType class lookup, including inheritence and interfaces</li>  *</ul>  *  *<p>  * Each criteria can specified as either an&lt;arr&gt; of&lt;str&gt;, or   * multiple&lt;str&gt; with the same name.  When multiple criteria of a   * single type exist, fields must match<b>at least one</b> to be selected.    * If more then one type of criteria exist, fields must match   *<b>at least one of each</b> to be selected.  *</p>  *<p>  * The following additional selector may be specified as a&lt;bool&gt; - when specified  * as false, only fields that<b>do not</b> match a schema field/dynamic field are selected;  * when specified as true, only fields that<b>do</b> match a schema field/dynamic field are  * selected:  *</p>  *<ul>  *<li><code>fieldNameMatchesSchemaField</code> - selecting specific fields based on whether or not they match a schema field</li>  *</ul>  *<p>  * One or more<code>excludes</code>&lt;lst&gt; params may also be specified,   * containing any of the above criteria, identifying fields to be excluded   * from seelction even if they match the selection criteria.  As with the main   * selection critiera a field must match all of criteria in a single exclusion   * in order to be excluded, but multiple exclusions may be specified to get an  *<code>OR</code> behavior  *</p>  *  *<p>  * In the ExampleFieldMutatingUpdateProcessorFactory configured below,   * fields will be mutated if the name starts with "foo"<i>or</i> "bar";   *<b>unless</b> the field name contains the substring "SKIP"<i>or</i>   * the fieldType is (or subclasses) TrieDateField.  Meaning a field named  * "foo_SKIP" is guaranteed not to be selected, but a field named "bar_smith"   * that uses StrField will be selected.  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.ExampleFieldMutatingUpdateProcessorFactory"&gt;  *&lt;str name="fieldRegex"&gt;foo.*&lt;/str&gt;  *&lt;str name="fieldRegex"&gt;bar.*&lt;/str&gt;  *&lt;!-- each set of exclusions is checked independently --&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="fieldRegex"&gt;.*SKIP.*&lt;/str&gt;  *&lt;/lst&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="typeClass"&gt;solr.TrieDateField&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/processor&gt;</pre>  *   *<p>  * Subclasses define the default selection behavior to be applied if no   * criteria is configured by the user.  User configured "exclude" criteria   * will be applied to the subclass defined default selector.  *</p>  *   * @see FieldMutatingUpdateProcessor  * @see FieldValueMutatingUpdateProcessor  * @see FieldMutatingUpdateProcessor.FieldNameSelector  */
+comment|/**  * Base class for implementing Factories for FieldMutatingUpdateProcessors and   * FieldValueMutatingUpdateProcessors.  *  *<p>  * This class provides all of the plumbing for configuring the   * FieldNameSelector using the following init params to specify selection   * criteria...  *</p>  *<ul>  *<li><code>fieldName</code> - selecting specific fields by field name lookup</li>  *<li><code>fieldRegex</code> - selecting specific fields by field name regex match (regexes are checked in the order specified)</li>  *<li><code>typeName</code> - selecting specific fields by fieldType name lookup</li>  *<li><code>typeClass</code> - selecting specific fields by fieldType class lookup, including inheritence and interfaces</li>  *</ul>  *  *<p>  * Each criteria can specified as either an&lt;arr&gt; of&lt;str&gt;, or   * multiple&lt;str&gt; with the same name.  When multiple criteria of a   * single type exist, fields must match<b>at least one</b> to be selected.    * If more then one type of criteria exist, fields must match   *<b>at least one of each</b> to be selected.  *</p>  *<p>  * The following additional selector may be specified as a&lt;bool&gt; - when specified  * as false, only fields that<b>do not</b> match a schema field/dynamic field are selected;  * when specified as true, only fields that<b>do</b> match a schema field/dynamic field are  * selected:  *</p>  *<ul>  *<li><code>fieldNameMatchesSchemaField</code> - selecting specific fields based on whether or not they match a schema field</li>  *</ul>  *<p>  * One or more<code>excludes</code>&lt;lst&gt; params may also be specified,   * containing any of the above criteria, identifying fields to be excluded   * from seelction even if they match the selection criteria.  As with the main   * selection critiera a field must match all of criteria in a single exclusion   * in order to be excluded, but multiple exclusions may be specified to get an  *<code>OR</code> behavior  *</p>  *  *<p>  * In the ExampleFieldMutatingUpdateProcessorFactory configured below,   * fields will be mutated if the name starts with "foo"<i>or</i> "bar";   *<b>unless</b> the field name contains the substring "SKIP"<i>or</i>   * the fieldType is (or subclasses) TrieDateField.  Meaning a field named  * "foo_SKIP" is guaranteed not to be selected, but a field named "bar_smith"   * that uses StrField will be selected.  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.ExampleFieldMutatingUpdateProcessorFactory"&gt;  *&lt;str name="fieldRegex"&gt;foo.*&lt;/str&gt;  *&lt;str name="fieldRegex"&gt;bar.*&lt;/str&gt;  *&lt;!-- each set of exclusions is checked independently --&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="fieldRegex"&gt;.*SKIP.*&lt;/str&gt;  *&lt;/lst&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="typeClass"&gt;solr.TrieDateField&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/processor&gt;</pre>  *   *<p>  * Subclasses define the default selection behavior to be applied if no   * criteria is configured by the user.  User configured "exclude" criteria   * will be applied to the subclass defined default selector.  *</p>  *   * @see FieldMutatingUpdateProcessor  * @see FieldValueMutatingUpdateProcessor  * @see FieldNameSelector  */
 end_comment
 
 begin_class
@@ -301,8 +337,6 @@ argument_list|()
 decl_stmt|;
 DECL|field|selector
 specifier|private
-name|FieldMutatingUpdateProcessor
-operator|.
 name|FieldNameSelector
 name|selector
 init|=
@@ -311,8 +345,6 @@ decl_stmt|;
 DECL|method|getSelector
 specifier|protected
 specifier|final
-name|FieldMutatingUpdateProcessor
-operator|.
 name|FieldNameSelector
 name|getSelector
 parameter_list|()
@@ -795,21 +827,16 @@ expr_stmt|;
 block|}
 block|}
 comment|/**    * Defines the default selection behavior when the user has not     * configured any specific criteria for selecting fields. The Default     * implementation matches all fields, and should be overridden by subclasses     * as needed.    *     * @see FieldMutatingUpdateProcessor#SELECT_ALL_FIELDS    */
-specifier|protected
-name|FieldMutatingUpdateProcessor
-operator|.
-name|FieldNameSelector
 DECL|method|getDefaultSelector
+specifier|protected
+name|FieldNameSelector
 name|getDefaultSelector
 parameter_list|(
-specifier|final
 name|SolrCore
 name|core
 parameter_list|)
 block|{
 return|return
-name|FieldMutatingUpdateProcessor
-operator|.
 name|SELECT_ALL_FIELDS
 return|;
 block|}
