@@ -1274,6 +1274,7 @@ name|leaderUrl
 operator|+
 literal|" gen:"
 operator|+
+operator|(
 name|core
 operator|.
 name|getDeletionPolicy
@@ -1296,6 +1297,7 @@ argument_list|()
 operator|.
 name|getGeneration
 argument_list|()
+operator|)
 operator|+
 literal|" data:"
 operator|+

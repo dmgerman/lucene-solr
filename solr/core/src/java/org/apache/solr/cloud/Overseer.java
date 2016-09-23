@@ -1395,9 +1395,12 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Bad version writing to ZK using compare-and-set, will force refresh cluster state"
+literal|"Bad version writing to ZK using compare-and-set, will force refresh cluster state: {}"
 argument_list|,
 name|bve
+operator|.
+name|getMessage
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|refreshClusterState

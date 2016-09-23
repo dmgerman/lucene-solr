@@ -587,7 +587,7 @@ name|InterruptedException
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"deleteReplica() : {}"
 argument_list|,
@@ -1033,7 +1033,7 @@ control|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Deleting replica {}  for shard {} based on count {}"
 argument_list|,

@@ -676,7 +676,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Canceling election {}"
 argument_list|,
@@ -705,7 +705,7 @@ block|{
 comment|// fine
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"cancelElection did not find election node to remove {}"
 argument_list|,
@@ -718,7 +718,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"cancelElection skipped as this context has not been initialized"
 argument_list|)
@@ -1032,7 +1032,7 @@ comment|// matches the version we expect - there is a setData call that incremen
 comment|// version whenever a leader registers.
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Removing leader registration node on cancel: {} {}"
 argument_list|,
@@ -1114,7 +1114,7 @@ block|{
 comment|// no problem
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No leader registration node found to remove: {}"
 argument_list|,
@@ -1261,7 +1261,7 @@ init|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Creating leader registration node {} after winning as {}"
 argument_list|,
@@ -1967,7 +1967,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Running the leader process for shard={} and weAreReplacement={} and leaderVoteWait={}"
 argument_list|,
@@ -2760,7 +2760,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"We have become the leader after core registration but are not in an ACTIVE state - publishing ACTIVE"
 argument_list|)
@@ -3757,7 +3757,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"All replicas are ready to participate in election."
 argument_list|)
@@ -3816,7 +3816,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Not rejoining election because CoreContainer is closed"
 argument_list|)
@@ -3878,7 +3878,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Checking if I should try and be the leader."
 argument_list|)
@@ -3890,7 +3890,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Bailing on leader process because we have been closed"
 argument_list|)
@@ -3933,7 +3933,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"My last published State was Active, it's okay to be the leader."
 argument_list|)
@@ -3944,7 +3944,7 @@ return|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"My last published State was "
 operator|+

@@ -728,7 +728,7 @@ block|}
 comment|// If latchEventType is not null, only fire if the type matches
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"{} fired on path {} state {} latchEventType {}"
 argument_list|,

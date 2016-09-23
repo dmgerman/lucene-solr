@@ -13995,7 +13995,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Publish node={} as DOWN"
 argument_list|,
