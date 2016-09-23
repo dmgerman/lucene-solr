@@ -49,7 +49,7 @@ specifier|protected
 name|SortedDocValues
 parameter_list|()
 block|{}
-comment|/**    * Returns the ordinal for the current docID.    * @return ordinal for the document: this is dense, starts at 0, then    *         increments by 1 for the next value in sorted order. Note that    *         missing values are indicated by -1.    */
+comment|/**    * Returns the ordinal for the current docID.    * @return ordinal for the document: this is dense, starts at 0, then    *         increments by 1 for the next value in sorted order.    */
 DECL|method|ordValue
 specifier|public
 specifier|abstract
