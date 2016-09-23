@@ -1188,6 +1188,17 @@ argument_list|(
 literal|"id"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|idValues
+operator|==
+literal|null
+condition|)
+block|{
+comment|// this is (surprisingly) OK, because if the random IWC flushes all 10 docs before the 11th doc is added, and force merge runs, it
+comment|// will drop the 100% deleted segments, and the "id" field never exists in the final single doc segment
+continue|continue;
+block|}
 name|int
 index|[]
 name|docIDToID
