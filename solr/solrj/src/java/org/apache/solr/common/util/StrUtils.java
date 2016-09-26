@@ -102,6 +102,18 @@ name|SolrException
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|singletonList
+import|;
+end_import
+
 begin_comment
 comment|/**  *  */
 end_comment
@@ -171,6 +183,24 @@ name|char
 name|separator
 parameter_list|)
 block|{
+if|if
+condition|(
+name|s
+operator|.
+name|indexOf
+argument_list|(
+name|separator
+argument_list|)
+operator|==
+operator|-
+literal|1
+condition|)
+return|return
+name|singletonList
+argument_list|(
+name|s
+argument_list|)
+return|;
 name|ArrayList
 argument_list|<
 name|String

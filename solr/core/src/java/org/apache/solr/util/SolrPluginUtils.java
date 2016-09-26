@@ -884,6 +884,18 @@ end_import
 
 begin_import
 import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|singletonList
+import|;
+end_import
+
+begin_import
+import|import static
 name|org
 operator|.
 name|apache
@@ -1519,6 +1531,15 @@ argument_list|,
 name|type
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|params
+operator|==
+literal|null
+condition|)
+return|return
+name|defaults
+return|;
 if|if
 condition|(
 name|type
