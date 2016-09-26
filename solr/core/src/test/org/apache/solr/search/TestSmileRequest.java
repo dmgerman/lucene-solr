@@ -208,7 +208,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|request
+name|response
 operator|.
 name|SmileWriterTest
 import|;
