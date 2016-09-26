@@ -1074,6 +1074,9 @@ name|core
 parameter_list|,
 name|boolean
 name|background
+parameter_list|,
+name|boolean
+name|skipRecovery
 parameter_list|)
 block|{
 name|Runnable
@@ -1106,6 +1109,8 @@ name|core
 operator|.
 name|getCoreDescriptor
 argument_list|()
+argument_list|,
+name|skipRecovery
 argument_list|)
 expr_stmt|;
 block|}

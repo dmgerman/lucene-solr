@@ -366,6 +366,16 @@ name|COMMIT_NAME
 init|=
 literal|"commitName"
 decl_stmt|;
+comment|/**    * A boolean parameter specifying if a core is being created as part of a new collection    */
+DECL|field|NEW_COLLECTION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|NEW_COLLECTION
+init|=
+literal|"newCollection"
+decl_stmt|;
 DECL|enum|CoreAdminAction
 specifier|public
 enum|enum

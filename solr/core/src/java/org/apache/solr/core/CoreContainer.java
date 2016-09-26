@@ -3170,6 +3170,8 @@ argument_list|(
 name|cd
 argument_list|,
 literal|false
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -3198,6 +3200,8 @@ argument_list|(
 name|core
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -4025,6 +4029,9 @@ name|core
 parameter_list|,
 name|boolean
 name|registerInZk
+parameter_list|,
+name|boolean
+name|skipRecovery
 parameter_list|)
 block|{
 if|if
@@ -4195,6 +4202,8 @@ argument_list|(
 name|core
 argument_list|,
 literal|false
+argument_list|,
+name|skipRecovery
 argument_list|)
 expr_stmt|;
 block|}
@@ -4230,6 +4239,8 @@ argument_list|(
 name|core
 argument_list|,
 literal|false
+argument_list|,
+name|skipRecovery
 argument_list|)
 expr_stmt|;
 block|}
@@ -4278,6 +4289,8 @@ name|coreName
 argument_list|)
 argument_list|,
 name|parameters
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}
@@ -4306,6 +4319,9 @@ argument_list|,
 name|String
 argument_list|>
 name|parameters
+parameter_list|,
+name|boolean
+name|newCollection
 parameter_list|)
 block|{
 name|CoreDescriptor
@@ -4439,6 +4455,8 @@ argument_list|(
 name|cd
 argument_list|,
 literal|true
+argument_list|,
+name|newCollection
 argument_list|)
 decl_stmt|;
 comment|// only write out the descriptor if the core is successfully created
@@ -4634,6 +4652,9 @@ name|dcore
 parameter_list|,
 name|boolean
 name|publishState
+parameter_list|,
+name|boolean
+name|newCollection
 parameter_list|)
 block|{
 if|if
@@ -4775,6 +4796,8 @@ argument_list|,
 name|core
 argument_list|,
 name|publishState
+argument_list|,
+name|newCollection
 argument_list|)
 expr_stmt|;
 return|return
@@ -5208,6 +5231,8 @@ argument_list|(
 name|name
 argument_list|,
 name|newCore
+argument_list|,
+literal|false
 argument_list|,
 literal|false
 argument_list|)
@@ -5717,6 +5742,8 @@ argument_list|,
 name|core
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|SolrCore
@@ -5997,6 +6024,8 @@ argument_list|(
 name|desc
 argument_list|,
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// This should throw an error if it fails.
