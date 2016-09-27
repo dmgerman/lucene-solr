@@ -1535,16 +1535,6 @@ literal|"targetCollection"
 argument_list|)
 decl_stmt|;
 name|String
-name|targetShard
-init|=
-name|message
-operator|.
-name|getStr
-argument_list|(
-literal|"targetShard"
-argument_list|)
-decl_stmt|;
-name|String
 name|expireAt
 init|=
 name|message
