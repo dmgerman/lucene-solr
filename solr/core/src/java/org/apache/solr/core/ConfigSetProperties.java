@@ -374,13 +374,7 @@ name|SERVER_ERROR
 argument_list|,
 literal|"Invalid JSON type "
 operator|+
-name|object
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
+name|objectClass
 operator|+
 literal|", expected Map"
 argument_list|)
