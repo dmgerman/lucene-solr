@@ -511,6 +511,13 @@ argument_list|(
 literal|"errors"
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"No errors"
+argument_list|,
+name|l
+argument_list|)
+expr_stmt|;
 name|List
 name|errorList
 init|=
@@ -560,7 +567,7 @@ operator|)
 operator|.
 name|contains
 argument_list|(
-literal|"No such field type"
+literal|"Field 'a1': Field type 'string1' not found.\n"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1383,6 +1390,214 @@ operator|+
 literal|" illegal dynamic field should not have been added to schema"
 argument_list|,
 name|map
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testAddIllegalFields
+specifier|public
+name|void
+name|testAddIllegalFields
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|RestTestHarness
+name|harness
+init|=
+name|restTestHarness
+decl_stmt|;
+comment|// 1. Make sure you can't create a new field with an asterisk in its name
+name|String
+name|newFieldName
+init|=
+literal|"asterisk*"
+decl_stmt|;
+name|String
+name|payload
+init|=
+literal|"{\n"
+operator|+
+literal|"    'add-field' : {\n"
+operator|+
+literal|"         'name':'"
+operator|+
+name|newFieldName
+operator|+
+literal|"',\n"
+operator|+
+literal|"         'type':'string',\n"
+operator|+
+literal|"         'stored':true,\n"
+operator|+
+literal|"         'indexed':true\n"
+operator|+
+literal|"     }\n"
+operator|+
+literal|"}"
+decl_stmt|;
+name|String
+name|response
+init|=
+name|harness
+operator|.
+name|post
+argument_list|(
+literal|"/schema?wt=json"
+argument_list|,
+name|json
+argument_list|(
+name|payload
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|Map
+name|map
+init|=
+operator|(
+name|Map
+operator|)
+name|ObjectBuilder
+operator|.
+name|getVal
+argument_list|(
+operator|new
+name|JSONParser
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+name|response
+argument_list|)
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|response
+argument_list|,
+name|map
+operator|.
+name|get
+argument_list|(
+literal|"errors"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|map
+operator|=
+name|getObj
+argument_list|(
+name|harness
+argument_list|,
+name|newFieldName
+argument_list|,
+literal|"fields"
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+name|newFieldName
+operator|+
+literal|" illegal dynamic field should not have been added to schema"
+argument_list|,
+name|map
+argument_list|)
+expr_stmt|;
+comment|// 2. Make sure you get an error when you try to create a field that already exists
+comment|// Make sure 'wdf_nocase' field exists
+name|newFieldName
+operator|=
+literal|"wdf_nocase"
+expr_stmt|;
+name|Map
+name|m
+init|=
+name|getObj
+argument_list|(
+name|harness
+argument_list|,
+name|newFieldName
+argument_list|,
+literal|"fields"
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"'"
+operator|+
+name|newFieldName
+operator|+
+literal|"' field does not exist in the schema"
+argument_list|,
+name|m
+argument_list|)
+expr_stmt|;
+name|payload
+operator|=
+literal|"{\n"
+operator|+
+literal|"    'add-field' : {\n"
+operator|+
+literal|"         'name':'"
+operator|+
+name|newFieldName
+operator|+
+literal|"',\n"
+operator|+
+literal|"         'type':'string',\n"
+operator|+
+literal|"         'stored':true,\n"
+operator|+
+literal|"         'indexed':true\n"
+operator|+
+literal|"     }\n"
+operator|+
+literal|"}"
+expr_stmt|;
+name|response
+operator|=
+name|harness
+operator|.
+name|post
+argument_list|(
+literal|"/schema?wt=json"
+argument_list|,
+name|json
+argument_list|(
+name|payload
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|map
+operator|=
+operator|(
+name|Map
+operator|)
+name|ObjectBuilder
+operator|.
+name|getVal
+argument_list|(
+operator|new
+name|JSONParser
+argument_list|(
+operator|new
+name|StringReader
+argument_list|(
+name|response
+argument_list|)
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|response
+argument_list|,
+name|map
+operator|.
+name|get
+argument_list|(
+literal|"errors"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
