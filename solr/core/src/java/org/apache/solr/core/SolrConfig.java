@@ -2071,7 +2071,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Loaded SolrConfig: {}"
 argument_list|,

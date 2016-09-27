@@ -2973,7 +2973,7 @@ block|}
 block|}
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"[{}] default search field in schema is {}. WARNING: Deprecated, please use 'df' on request instead."
 argument_list|,
@@ -3048,7 +3048,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"[{}] query parser default operator is {}. WARNING: Deprecated, please use 'q.op' on request instead."
 argument_list|,
@@ -3240,17 +3240,6 @@ operator|.
 name|getType
 argument_list|()
 expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"[{}] unique key field: {}"
-argument_list|,
-name|coreName
-argument_list|,
-name|uniqueKeyFieldName
-argument_list|)
-expr_stmt|;
 comment|// Unless the uniqueKeyField is marked 'required=false' then make sure it exists
 if|if
 condition|(
@@ -3380,6 +3369,19 @@ block|}
 comment|// create the field analyzers
 name|refreshAnalyzers
 argument_list|()
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Loaded schema {}/{} with uniqueid field {}"
+argument_list|,
+name|name
+argument_list|,
+name|version
+argument_list|,
+name|uniqueKeyFieldName
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|getCoreName

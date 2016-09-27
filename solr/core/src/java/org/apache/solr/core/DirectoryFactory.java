@@ -991,7 +991,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warn
+name|debug
 argument_list|(
 literal|"{} does not point to a valid data directory; skipping clean-up of old index directories."
 argument_list|,

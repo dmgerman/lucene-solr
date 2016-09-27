@@ -7709,7 +7709,7 @@ expr_stmt|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Took {}ms to seed version buckets with highest version {}"
 argument_list|,
@@ -7741,7 +7741,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Looking up max value of version field to seed version buckets"
 argument_list|)

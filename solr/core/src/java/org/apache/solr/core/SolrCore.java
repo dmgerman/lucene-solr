@@ -2689,7 +2689,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"New index directory detected: old="
 operator|+
@@ -3779,7 +3779,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warn
+name|debug
 argument_list|(
 name|logid
 operator|+

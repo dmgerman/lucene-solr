@@ -2850,7 +2850,7 @@ name|SolrException
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Initializing RestManager with initArgs: "
 operator|+
@@ -2922,7 +2922,7 @@ expr_stmt|;
 comment|// init registered managed resources
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Initializing {} registered ManagedResources"
 argument_list|,

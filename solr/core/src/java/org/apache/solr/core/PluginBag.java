@@ -1605,7 +1605,7 @@ block|{
 comment|// Aggregate logging
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"[{}] Initialized {} plugins of type {}: {}"
 argument_list|,
