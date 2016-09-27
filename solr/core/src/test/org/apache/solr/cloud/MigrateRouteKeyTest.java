@@ -386,6 +386,13 @@ name|getSolrClient
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Using legacyCloud=false for cluster"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 DECL|field|log
