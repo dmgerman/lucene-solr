@@ -2152,7 +2152,7 @@ block|{
 comment|// We need to fetch the current cluster state and the set of live nodes
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Updating cluster state from ZooKeeper... "
 argument_list|)
@@ -2288,7 +2288,7 @@ init|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Updating aliases... "
 argument_list|)
@@ -2627,7 +2627,7 @@ init|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Updating [{}] ... "
 argument_list|,
@@ -3750,6 +3750,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|oldLiveNodes
+operator|.
+name|size
+argument_list|()
+operator|!=
+name|newLiveNodes
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -3767,6 +3780,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG

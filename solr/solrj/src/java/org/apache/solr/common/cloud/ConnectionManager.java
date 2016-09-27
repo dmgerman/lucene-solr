@@ -721,7 +721,7 @@ block|}
 block|}
 do|do
 block|{
-comment|// This loop will break iff a valid connection is made. If a connection is not made then it will repeat and
+comment|// This loop will break if a valid connection is made. If a connection is not made then it will repeat and
 comment|// try again to create a new connection.
 try|try
 block|{
@@ -1176,7 +1176,7 @@ throw|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Client is connected to ZooKeeper"
 argument_list|)
