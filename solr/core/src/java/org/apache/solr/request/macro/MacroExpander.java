@@ -567,11 +567,6 @@ init|=
 literal|0
 decl_stmt|;
 comment|// start of the unprocessed part of the string
-name|int
-name|end
-init|=
-literal|0
-decl_stmt|;
 name|StringBuilder
 name|sb
 init|=

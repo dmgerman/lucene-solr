@@ -998,11 +998,6 @@ name|longs
 init|=
 literal|null
 decl_stmt|;
-name|Bits
-name|docsWithField
-init|=
-literal|null
-decl_stmt|;
 name|int
 name|missingCount
 init|=

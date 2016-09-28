@@ -1048,11 +1048,6 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
-name|int
-name|i
-init|=
-literal|0
-decl_stmt|;
 for|for
 control|(
 name|Iterator
