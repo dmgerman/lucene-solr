@@ -1501,14 +1501,7 @@ argument_list|>
 name|map
 parameter_list|)
 block|{
-name|Map
-name|result
-init|=
-operator|new
-name|LinkedHashMap
-argument_list|()
-decl_stmt|;
-name|result
+name|map
 operator|.
 name|put
 argument_list|(
@@ -1517,7 +1510,7 @@ argument_list|,
 name|znodeVersion
 argument_list|)
 expr_stmt|;
-name|result
+name|map
 operator|.
 name|putAll
 argument_list|(
@@ -1525,7 +1518,7 @@ name|data
 argument_list|)
 expr_stmt|;
 return|return
-name|result
+name|map
 return|;
 block|}
 DECL|method|getNamedPlugins
