@@ -4,13 +4,15 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.cloud.rule
+DECL|package|org.apache.solr.common.cloud.rule
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|solr
+operator|.
+name|common
 operator|.
 name|cloud
 operator|.

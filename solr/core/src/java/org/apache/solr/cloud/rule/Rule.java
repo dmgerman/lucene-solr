@@ -112,6 +112,8 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
 name|cloud
 operator|.
 name|rule
