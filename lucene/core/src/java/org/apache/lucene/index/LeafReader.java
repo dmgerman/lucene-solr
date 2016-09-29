@@ -34,6 +34,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|IndexReader
+operator|.
+name|ReaderClosedListener
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|search
 operator|.
 name|Sort
@@ -108,6 +124,7 @@ block|}
 comment|/**    * Called when the shared core for this {@link LeafReader}    * is closed.    *<p>    * If this {@link LeafReader} impl has the ability to share    * resources across instances that might only vary through    * deleted documents and doc values updates, then this listener    * will only be called when the shared core is closed.    * Otherwise, this listener will be called when this reader is    * closed.</p>    *<p>    * This is typically useful to manage per-segment caches: when    * the listener is called, it is safe to evict this reader from    * any caches keyed on {@link #getCoreCacheKey}.</p>    *    * @lucene.experimental    */
 DECL|interface|CoreClosedListener
 specifier|public
+specifier|static
 interface|interface
 name|CoreClosedListener
 block|{
