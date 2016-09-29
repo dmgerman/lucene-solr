@@ -873,16 +873,11 @@ operator|.
 name|CoreClosedListener
 name|purgeCore
 init|=
-name|ownerCoreCacheKey
-lambda|->
 name|FieldCacheImpl
 operator|.
 name|this
-operator|.
+operator|::
 name|purgeByCacheKey
-argument_list|(
-name|ownerCoreCacheKey
-argument_list|)
 decl_stmt|;
 DECL|method|initReader
 specifier|private
