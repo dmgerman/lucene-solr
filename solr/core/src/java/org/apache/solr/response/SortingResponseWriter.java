@@ -5207,6 +5207,10 @@ argument_list|,
 name|field
 argument_list|)
 expr_stmt|;
+name|lastDocID
+operator|=
+literal|0
+expr_stmt|;
 block|}
 DECL|method|setCurrentValue
 specifier|public
@@ -5615,6 +5619,10 @@ argument_list|()
 argument_list|,
 name|field
 argument_list|)
+expr_stmt|;
+name|lastDocID
+operator|=
+literal|0
 expr_stmt|;
 block|}
 DECL|method|setCurrentValue
@@ -6027,6 +6035,10 @@ argument_list|()
 argument_list|,
 name|field
 argument_list|)
+expr_stmt|;
+name|lastDocID
+operator|=
+literal|0
 expr_stmt|;
 block|}
 DECL|method|setCurrentValue
@@ -6465,6 +6477,10 @@ name|this
 operator|.
 name|field
 argument_list|)
+expr_stmt|;
+name|lastDocID
+operator|=
+literal|0
 expr_stmt|;
 block|}
 DECL|method|setCurrentValue
