@@ -488,6 +488,9 @@ argument_list|)
 argument_list|,
 literal|true
 argument_list|)
+operator|.
+name|isSuccess
+argument_list|()
 decl_stmt|;
 comment|// solrcloud_debug
 if|if

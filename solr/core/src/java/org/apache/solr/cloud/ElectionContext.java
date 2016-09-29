@@ -380,6 +380,20 @@ name|solr
 operator|.
 name|update
 operator|.
+name|PeerSync
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|update
+operator|.
 name|UpdateLog
 import|;
 end_import
@@ -2210,6 +2224,13 @@ argument_list|)
 throw|;
 block|}
 block|}
+name|PeerSync
+operator|.
+name|PeerSyncResult
+name|result
+init|=
+literal|null
+decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -2217,7 +2238,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|success
+name|result
 operator|=
 name|syncStrategy
 operator|.
@@ -2231,6 +2252,13 @@ name|leaderProps
 argument_list|,
 name|weAreReplacement
 argument_list|)
+expr_stmt|;
+name|success
+operator|=
+name|result
+operator|.
+name|isSuccess
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -2250,9 +2278,14 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|success
+name|result
 operator|=
-literal|false
+name|PeerSync
+operator|.
+name|PeerSyncResult
+operator|.
+name|failure
+argument_list|()
 expr_stmt|;
 block|}
 name|UpdateLog
@@ -2321,7 +2354,34 @@ condition|)
 block|{
 comment|// we failed sync, but we have no versions - we can't sync in that case
 comment|// - we were active
-comment|// before, so become leader anyway
+comment|// before, so become leader anyway if no one else has any versions either
+if|if
+condition|(
+name|result
+operator|.
+name|getOtherHasVersions
+argument_list|()
+operator|.
+name|orElse
+argument_list|(
+literal|false
+argument_list|)
+condition|)
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"We failed sync, but we have no versions - we can't sync in that case. But others have some versions, so we should not become leader"
+argument_list|)
+expr_stmt|;
+name|success
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
 name|log
 operator|.
 name|info
@@ -2333,6 +2393,7 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// solrcloud_debug

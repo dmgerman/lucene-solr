@@ -2363,6 +2363,9 @@ name|peerSync
 operator|.
 name|sync
 argument_list|()
+operator|.
+name|isSuccess
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
