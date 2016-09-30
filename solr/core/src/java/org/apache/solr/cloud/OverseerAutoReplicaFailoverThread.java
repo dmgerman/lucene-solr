@@ -716,6 +716,7 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+return|return;
 block|}
 block|}
 block|}
