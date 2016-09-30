@@ -176,7 +176,7 @@ operator|new
 name|HashMap
 argument_list|<>
 argument_list|(
-literal|7
+literal|9
 argument_list|,
 literal|1.0f
 argument_list|)
