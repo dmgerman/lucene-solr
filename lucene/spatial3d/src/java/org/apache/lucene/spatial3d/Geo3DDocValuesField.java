@@ -321,6 +321,18 @@ literal|1.0
 operator|/
 name|inverseZFactor
 decl_stmt|;
+comment|// Fudge factor for step adjustments.  This is here solely to handle inaccuracies in bounding boxes
+comment|// that occur because of quantization.  For unknown reasons, the fudge factor needs to be
+comment|// 10.0 rather than 1.0.  See LUCENE-7430.
+DECL|field|STEP_FUDGE
+specifier|private
+specifier|final
+specifier|static
+name|double
+name|STEP_FUDGE
+init|=
+literal|10.0
+decl_stmt|;
 comment|// These values are the delta between a value and the next value in each specific dimension
 DECL|field|xStep
 specifier|private
@@ -330,6 +342,8 @@ name|double
 name|xStep
 init|=
 name|inverseXFactor
+operator|*
+name|STEP_FUDGE
 decl_stmt|;
 DECL|field|yStep
 specifier|private
@@ -339,6 +353,8 @@ name|double
 name|yStep
 init|=
 name|inverseYFactor
+operator|*
+name|STEP_FUDGE
 decl_stmt|;
 DECL|field|zStep
 specifier|private
@@ -348,6 +364,8 @@ name|double
 name|zStep
 init|=
 name|inverseZFactor
+operator|*
+name|STEP_FUDGE
 decl_stmt|;
 comment|/**    * Type for a Geo3DDocValuesField    *<p>    * Each value stores a 64-bit long where the three values (x, y, and z) are given    * 21 bits each.  Each 21-bit value represents the maximum extent in that dimension    * for the WGS84 planet model.    */
 DECL|field|TYPE
