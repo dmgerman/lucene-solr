@@ -16,6 +16,20 @@ name|index
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
 begin_comment
 comment|/**  * A per-document numeric value.  */
 end_comment
@@ -26,6 +40,8 @@ specifier|public
 specifier|abstract
 class|class
 name|NumericDocValues
+extends|extends
+name|DocIdSetIterator
 block|{
 comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|NumericDocValues
@@ -33,16 +49,13 @@ specifier|protected
 name|NumericDocValues
 parameter_list|()
 block|{}
-comment|/**    * Returns the numeric value for the specified document ID.    * @param docID document ID to lookup    * @return numeric value    */
-DECL|method|get
+comment|/**    * Returns the numeric value for the current document ID.    * @return numeric value    */
+DECL|method|longValue
 specifier|public
 specifier|abstract
 name|long
-name|get
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
+name|longValue
+parameter_list|()
 function_decl|;
 block|}
 end_class

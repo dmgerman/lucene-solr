@@ -826,7 +826,33 @@ argument_list|,
 name|UnicodeWhitespaceTokenizer
 operator|.
 name|class
+argument_list|,
 comment|// a supported option via WhitespaceTokenizerFactory
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|StopFilter
+operator|.
+name|class
+argument_list|,
+comment|// class from core, but StopFilterFactory creates one from this module
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|LowerCaseFilter
+operator|.
+name|class
+comment|// class from core, but LowerCaseFilterFactory creates one from this module
 argument_list|)
 expr_stmt|;
 block|}

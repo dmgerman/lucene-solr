@@ -1402,7 +1402,7 @@ comment|// private ClientConnectionManager clientConnectionManager = new Pooling
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"New CoreContainer "
 operator|+
@@ -1808,7 +1808,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Security conf doesn't exist. Skipping setup for authorization module."
 argument_list|)
@@ -1980,7 +1980,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No authentication plugin used."
 argument_list|)
@@ -2148,7 +2148,7 @@ comment|// configured using the default httpclient configurer. We need to reconf
 comment|// http client configurer to set it up for internode communication.
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Reconfiguring HttpClient settings."
 argument_list|)
@@ -2516,7 +2516,7 @@ parameter_list|()
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Loading cores into CoreContainer [instanceDir={}]"
 argument_list|,
@@ -2581,6 +2581,18 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|libDir
+operator|.
+name|equals
+argument_list|(
+literal|"lib"
+argument_list|)
+condition|)
+block|{
+comment|// Don't complain if default "lib" dir does not exist
 name|log
 operator|.
 name|warn
@@ -2595,6 +2607,7 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 name|shardHandlerFactory
@@ -2688,6 +2701,13 @@ argument_list|()
 operator|.
 name|getNodeName
 argument_list|()
+argument_list|)
+expr_stmt|;
+name|MDCLoggingContext
+operator|.
+name|setNode
+argument_list|(
+name|this
 argument_list|)
 expr_stmt|;
 name|ZkStateReader
@@ -4156,7 +4176,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"registering core: "
 operator|+
@@ -4186,7 +4206,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"replacing core: "
 operator|+
@@ -5462,6 +5482,7 @@ name|cd
 operator|==
 literal|null
 condition|)
+block|{
 throw|throw
 operator|new
 name|SolrException
@@ -5477,6 +5498,7 @@ operator|+
 literal|"]"
 argument_list|)
 throw|;
+block|}
 name|boolean
 name|close
 init|=

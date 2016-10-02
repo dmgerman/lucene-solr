@@ -189,6 +189,8 @@ name|FunctionValues
 index|[]
 name|values
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -232,6 +234,8 @@ name|FunctionValues
 index|[]
 name|values
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -276,6 +280,8 @@ parameter_list|,
 name|FunctionValues
 name|values2
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|values1
@@ -309,6 +315,8 @@ parameter_list|,
 name|FunctionValues
 name|values2
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|values1
@@ -524,6 +532,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|MultiFunction
@@ -572,6 +582,8 @@ parameter_list|,
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|StringBuilder
 name|sb

@@ -223,6 +223,8 @@ parameter_list|,
 name|FunctionValues
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 annotation|@
 name|Override
@@ -269,6 +271,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|CharSequence
 name|cs
@@ -305,6 +309,8 @@ parameter_list|,
 name|BytesRefBuilder
 name|bytes
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|CharSequence
 name|cs
@@ -360,6 +366,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|strVal
@@ -377,6 +385,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|vals
@@ -396,6 +406,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|name
@@ -452,6 +464,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|mval
 operator|.

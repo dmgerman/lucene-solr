@@ -548,7 +548,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"SolrCoreState ref count has reached 0 - closing IndexWriter"
 argument_list|)
@@ -562,7 +562,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"closing IndexWriter with IndexWriterCloser"
 argument_list|)
@@ -585,7 +585,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"closing IndexWriter..."
 argument_list|)
@@ -946,7 +946,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Closing old IndexWriter... core="
 operator|+
@@ -986,7 +986,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Rollback old IndexWriter... core="
 operator|+
@@ -1698,6 +1698,10 @@ name|void
 name|recovered
 parameter_list|()
 block|{
+name|recoveryStrat
+operator|=
+literal|null
+expr_stmt|;
 name|recoveringAfterStartup
 operator|=
 literal|false
@@ -1712,7 +1716,12 @@ specifier|public
 name|void
 name|failed
 parameter_list|()
-block|{}
+block|{
+name|recoveryStrat
+operator|=
+literal|null
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|close

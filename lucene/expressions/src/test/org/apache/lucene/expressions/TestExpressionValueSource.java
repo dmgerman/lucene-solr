@@ -1150,6 +1150,24 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// just the first doc
+name|values
+operator|=
+name|vs
+operator|.
+name|getValues
+argument_list|(
+operator|new
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+argument_list|()
+argument_list|,
+name|leaf
+argument_list|)
+expr_stmt|;
 name|scorer
 operator|=
 name|values

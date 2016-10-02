@@ -539,7 +539,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"A LogWatcher is not enabled"
 argument_list|)
@@ -577,7 +577,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Registering Log Listener [{}]"
 argument_list|,
@@ -641,7 +641,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"SLF4J impl is "
 operator|+
@@ -732,7 +732,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No LogWatcher configured"
 argument_list|)

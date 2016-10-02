@@ -18,15 +18,11 @@ end_package
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|io
 operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|LeafReader
+name|IOException
 import|;
 end_import
 
@@ -55,6 +51,20 @@ operator|.
 name|index
 operator|.
 name|FieldInfos
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|LeafReader
 import|;
 end_import
 
@@ -143,16 +153,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -489,11 +489,14 @@ argument_list|(
 literal|"stringdv"
 argument_list|)
 decl_stmt|;
-name|dv
-operator|.
-name|setDocument
+name|assertEquals
 argument_list|(
 literal|0
+argument_list|,
+name|dv
+operator|.
+name|nextDoc
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -537,11 +540,14 @@ argument_list|(
 literal|"booldv"
 argument_list|)
 expr_stmt|;
-name|dv
-operator|.
-name|setDocument
+name|assertEquals
 argument_list|(
 literal|0
+argument_list|,
+name|dv
+operator|.
+name|nextDoc
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|assertEquals

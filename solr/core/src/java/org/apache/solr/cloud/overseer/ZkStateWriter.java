@@ -914,7 +914,7 @@ block|{
 comment|// let's clean up the collections path for this collection
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"going to delete_collection {}"
 argument_list|,
@@ -981,7 +981,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"going to update_collection {} version: {}"
 argument_list|,
@@ -1062,7 +1062,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"going to create_collection {}"
 argument_list|,

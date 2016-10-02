@@ -884,15 +884,6 @@ name|DEFAULT_COLLECTION
 init|=
 literal|"collection1"
 decl_stmt|;
-DECL|field|DEBUG
-specifier|protected
-specifier|static
-specifier|final
-name|boolean
-name|DEBUG
-init|=
-literal|false
-decl_stmt|;
 DECL|field|t1
 name|String
 name|t1
@@ -3315,18 +3306,6 @@ expr_stmt|;
 name|testStopAndStartCoresInOneInstance
 argument_list|()
 expr_stmt|;
-comment|// Thread.sleep(10000000000L);
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|super
-operator|.
-name|printLayout
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 comment|// Insure that total docs found is the expected number.
 DECL|method|waitForDocCount

@@ -808,6 +808,8 @@ specifier|static
 name|void
 name|unusedTestCompile
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|FunctionValues
 name|f

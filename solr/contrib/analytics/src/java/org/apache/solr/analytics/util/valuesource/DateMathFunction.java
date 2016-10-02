@@ -24,6 +24,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|text
 operator|.
 name|ParseException
@@ -197,6 +207,8 @@ name|FunctionValues
 index|[]
 name|valsArr
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|long
 name|time

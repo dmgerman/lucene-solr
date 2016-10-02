@@ -932,6 +932,10 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+name|loadedResource
+operator|=
+name|managedSchemaPath
+expr_stmt|;
 name|warnIfNonManagedSchemaExists
 argument_list|()
 expr_stmt|;

@@ -301,6 +301,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|//? limit to Rect or call getBoundingBox()? latter would encourage bad practice
 specifier|final
@@ -341,6 +343,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|shapeValues
@@ -360,6 +364,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 specifier|final
 name|Rectangle
@@ -381,6 +387,7 @@ name|rect
 operator|==
 literal|null
 condition|)
+block|{
 return|return
 name|Explanation
 operator|.
@@ -389,6 +396,7 @@ argument_list|(
 literal|"no rect"
 argument_list|)
 return|;
+block|}
 name|AtomicReference
 argument_list|<
 name|Explanation

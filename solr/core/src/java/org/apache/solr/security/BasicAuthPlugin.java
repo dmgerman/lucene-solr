@@ -532,6 +532,9 @@ name|getValue
 argument_list|()
 argument_list|)
 expr_stmt|;
+return|return
+name|latestConf
+return|;
 block|}
 else|else
 block|{

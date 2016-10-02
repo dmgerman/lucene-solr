@@ -349,6 +349,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|distance
@@ -370,6 +372,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|StringBuilder
 name|sb
@@ -449,6 +453,8 @@ parameter_list|,
 name|FunctionValues
 name|gh2DV
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|double
 name|result

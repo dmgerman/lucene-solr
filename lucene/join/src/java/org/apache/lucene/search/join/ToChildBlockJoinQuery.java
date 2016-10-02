@@ -210,14 +210,16 @@ name|ToChildBlockJoinQuery
 extends|extends
 name|Query
 block|{
-comment|/** Message thrown from {@link    *  ToChildBlockJoinScorer#validateParentDoc} on mis-use,    *  when the parent query incorrectly returns child docs. */
+comment|/** Message thrown from {@link    *  ToChildBlockJoinScorer#validateParentDoc} on misuse,    *  when the parent query incorrectly returns child docs. */
 DECL|field|INVALID_QUERY_MESSAGE
 specifier|static
 specifier|final
 name|String
 name|INVALID_QUERY_MESSAGE
 init|=
-literal|"Parent query yields document which is not matched by parents filter, docID="
+literal|"Parent query must not match any docs besides parent filter. "
+operator|+
+literal|"Combine them as must (+) and must-not (-) clauses to find a problem doc. docID="
 decl_stmt|;
 DECL|field|ILLEGAL_ADVANCE_ON_PARENT
 specifier|static

@@ -969,6 +969,8 @@ name|this
 operator|.
 name|iterator
 operator|=
+name|this
+operator|.
 name|sortedPackedPoints
 operator|.
 name|iterator

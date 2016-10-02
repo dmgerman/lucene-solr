@@ -2689,7 +2689,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"New index directory detected: old="
 operator|+
@@ -3087,7 +3087,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"[{}] Added SolrEventListener for firstSearcher: [{}]"
 argument_list|,
@@ -3131,7 +3131,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"[{}] Added SolrEventListener for newSearcher: [{}]"
 argument_list|,
@@ -3413,7 +3413,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|info
 operator|.
@@ -3462,7 +3462,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"solr.NRTCachingDirectoryFactory"
 argument_list|)
@@ -3779,7 +3779,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warn
+name|debug
 argument_list|(
 name|logid
 operator|+
@@ -5131,7 +5131,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Ignoring JMX bean [{}] due to name conflict."
 argument_list|,
@@ -5684,7 +5684,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"JMX monitoring not detected for core: "
 operator|+
@@ -6317,7 +6317,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Using statsCache impl: "
 operator|+
@@ -6335,7 +6335,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Using default statsCache cache: "
 operator|+
@@ -6439,7 +6439,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"no updateRequestProcessorChain defined as default, creating implicit default"
 argument_list|)
@@ -8405,7 +8405,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"SolrIndexSearcher has not changed - not re-opening: "
 operator|+
@@ -9885,7 +9885,7 @@ parameter_list|()
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|logid
 operator|+
@@ -9932,13 +9932,6 @@ operator|=
 literal|null
 expr_stmt|;
 comment|// isClosed() does check this
-name|infoRegistry
-operator|.
-name|remove
-argument_list|(
-literal|"currentSearcher"
-argument_list|)
-expr_stmt|;
 block|}
 block|}
 block|}
@@ -10929,6 +10922,37 @@ argument_list|(
 name|m
 argument_list|)
 expr_stmt|;
+try|try
+block|{
+name|m
+operator|.
+name|put
+argument_list|(
+literal|"xlsx"
+argument_list|,
+operator|(
+name|QueryResponseWriter
+operator|)
+name|Class
+operator|.
+name|forName
+argument_list|(
+literal|"org.apache.solr.handler.extraction.XLSXResponseWriter"
+argument_list|)
+operator|.
+name|newInstance
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|//don't worry; solrcell contrib not in class path
+block|}
 block|}
 DECL|method|getFileStreamWriter
 specifier|private
@@ -11030,7 +11054,6 @@ interface|interface
 name|RawWriter
 block|{
 DECL|method|write
-specifier|public
 name|void
 name|write
 parameter_list|(
@@ -13089,7 +13112,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|zkPath
 operator|+
@@ -13216,7 +13239,7 @@ lambda|->
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Looking for old index directories to cleanup for core {} in {}"
 argument_list|,

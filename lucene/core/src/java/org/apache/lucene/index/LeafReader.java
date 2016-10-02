@@ -130,7 +130,6 @@ name|CoreClosedListener
 block|{
 comment|/** Invoked when the shared core of the original {@code      *  SegmentReader} has closed. The provided {@code      *  ownerCoreCacheKey} will be the same key as the one      *  returned by {@link LeafReader#getCoreCacheKey()}. */
 DECL|method|onClose
-specifier|public
 name|void
 name|onClose
 parameter_list|(
@@ -740,7 +739,7 @@ name|FREQS
 argument_list|)
 return|;
 block|}
-comment|/** Returns {@link NumericDocValues} for this field, or    *  null if no {@link NumericDocValues} were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
+comment|/** Returns {@link NumericDocValues} for this field, or    *  null if no numeric doc values were indexed for    *  this field.  The returned instance should only be    *  used by a single thread.  This will never return null. */
 DECL|method|getNumericDocValues
 specifier|public
 specifier|abstract
@@ -753,7 +752,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns {@link BinaryDocValues} for this field, or    *  null if no {@link BinaryDocValues} were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
+comment|/** Returns {@link BinaryDocValues} for this field, or    *  null if no binary doc values were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
 DECL|method|getBinaryDocValues
 specifier|public
 specifier|abstract
@@ -798,19 +797,6 @@ specifier|public
 specifier|abstract
 name|SortedSetDocValues
 name|getSortedSetDocValues
-parameter_list|(
-name|String
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/** Returns a {@link Bits} at the size of<code>reader.maxDoc()</code>,    *  with turned on bits for each docid that does have a value for this field,    *  or null if no DocValues were indexed for this field. The    *  returned instance should only be used by a single thread */
-DECL|method|getDocsWithField
-specifier|public
-specifier|abstract
-name|Bits
-name|getDocsWithField
 parameter_list|(
 name|String
 name|field

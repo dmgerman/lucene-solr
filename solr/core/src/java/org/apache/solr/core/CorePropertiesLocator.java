@@ -226,6 +226,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|stream
+operator|.
+name|Collectors
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|google
@@ -335,7 +347,7 @@ name|coreDiscoveryRoot
 expr_stmt|;
 name|logger
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Config-defined core root directory: {}"
 argument_list|,
@@ -728,7 +740,7 @@ parameter_list|)
 block|{
 name|logger
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Looking for core definitions underneath {}"
 argument_list|,
@@ -837,7 +849,7 @@ argument_list|)
 decl_stmt|;
 name|logger
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Found core {} in {}"
 argument_list|,
@@ -974,14 +986,54 @@ name|logger
 operator|.
 name|info
 argument_list|(
-literal|"Found {} core definitions"
+literal|"Found {} core definitions underneath {}"
 argument_list|,
 name|cds
 operator|.
 name|size
 argument_list|()
+argument_list|,
+name|rootDirectory
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|cds
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|logger
+operator|.
+name|info
+argument_list|(
+literal|"Cores are: {}"
+argument_list|,
+name|cds
+operator|.
+name|stream
+argument_list|()
+operator|.
+name|map
+argument_list|(
+name|CoreDescriptor
+operator|::
+name|getName
+argument_list|)
+operator|.
+name|collect
+argument_list|(
+name|Collectors
+operator|.
+name|toList
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|cds
 return|;

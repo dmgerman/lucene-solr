@@ -1083,7 +1083,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Refreshing highest value of {} for {} version buckets from index"
 argument_list|,
@@ -1165,7 +1165,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Found MAX value {} from Terms for {} in index"
 argument_list|,
@@ -1179,7 +1179,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No terms found for {}, cannot seed version bucket highest value from index"
 argument_list|,

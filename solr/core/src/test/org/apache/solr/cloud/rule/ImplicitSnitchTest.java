@@ -56,6 +56,42 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|rule
+operator|.
+name|ImplicitSnitch
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|rule
+operator|.
+name|SnitchContext
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|Before
@@ -225,7 +261,7 @@ expr_stmt|;
 name|context
 operator|=
 operator|new
-name|SnitchContext
+name|ServerSnitchContext
 argument_list|(
 literal|null
 argument_list|,
@@ -235,6 +271,8 @@ operator|new
 name|HashMap
 argument_list|<>
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -511,7 +549,7 @@ name|SnitchContext
 name|context
 init|=
 operator|new
-name|SnitchContext
+name|ServerSnitchContext
 argument_list|(
 literal|null
 argument_list|,
@@ -521,6 +559,8 @@ operator|new
 name|HashMap
 argument_list|<>
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|snitch
@@ -620,7 +660,7 @@ name|SnitchContext
 name|context
 init|=
 operator|new
-name|SnitchContext
+name|ServerSnitchContext
 argument_list|(
 literal|null
 argument_list|,
@@ -630,6 +670,8 @@ operator|new
 name|HashMap
 argument_list|<>
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|snitch
@@ -697,7 +739,7 @@ name|SnitchContext
 name|context
 init|=
 operator|new
-name|SnitchContext
+name|ServerSnitchContext
 argument_list|(
 literal|null
 argument_list|,
@@ -707,6 +749,8 @@ operator|new
 name|HashMap
 argument_list|<>
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|snitch
@@ -834,7 +878,7 @@ name|SnitchContext
 name|context
 init|=
 operator|new
-name|SnitchContext
+name|ServerSnitchContext
 argument_list|(
 literal|null
 argument_list|,
@@ -844,6 +888,8 @@ operator|new
 name|HashMap
 argument_list|<>
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 comment|//We need mocking here otherwise, we would need proper DNS entry for this test to pass
@@ -1004,7 +1050,7 @@ name|SnitchContext
 name|context
 init|=
 operator|new
-name|SnitchContext
+name|ServerSnitchContext
 argument_list|(
 literal|null
 argument_list|,
@@ -1014,6 +1060,8 @@ operator|new
 name|HashMap
 argument_list|<>
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 comment|//We need mocking here otherwise, we would need proper DNS entry for this test to pass
@@ -1123,7 +1171,7 @@ name|SnitchContext
 name|context
 init|=
 operator|new
-name|SnitchContext
+name|ServerSnitchContext
 argument_list|(
 literal|null
 argument_list|,
@@ -1133,6 +1181,8 @@ operator|new
 name|HashMap
 argument_list|<>
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 comment|//We need mocking here otherwise, we would need proper DNS entry for this test to pass

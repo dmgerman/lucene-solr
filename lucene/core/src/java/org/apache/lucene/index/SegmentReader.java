@@ -906,16 +906,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-try|try
-block|{
-name|super
-operator|.
-name|doClose
-argument_list|()
-expr_stmt|;
-block|}
-finally|finally
-block|{
 if|if
 condition|(
 name|docValuesProducer
@@ -959,7 +949,6 @@ literal|1L
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

@@ -49,6 +49,8 @@ operator|.
 name|facet
 operator|.
 name|FacetsCollector
+operator|.
+name|MatchingDocs
 import|;
 end_import
 
@@ -63,8 +65,6 @@ operator|.
 name|facet
 operator|.
 name|FacetsCollector
-operator|.
-name|MatchingDocs
 import|;
 end_import
 
@@ -286,16 +286,42 @@ block|{
 comment|//System.out.println("  doc=" + doc);
 comment|// TODO: use OrdinalsReader?  we'd need to add a
 comment|// BytesRef getAssociation()?
+if|if
+condition|(
+name|dv
+operator|.
+name|docID
+argument_list|()
+operator|<
+name|doc
+condition|)
+block|{
+name|dv
+operator|.
+name|advance
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|dv
+operator|.
+name|docID
+argument_list|()
+operator|==
+name|doc
+condition|)
+block|{
 specifier|final
 name|BytesRef
 name|bytesRef
 init|=
 name|dv
 operator|.
-name|get
-argument_list|(
-name|doc
-argument_list|)
+name|binaryValue
+argument_list|()
 decl_stmt|;
 name|byte
 index|[]
@@ -464,6 +490,7 @@ argument_list|(
 name|value
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

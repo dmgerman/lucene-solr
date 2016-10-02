@@ -1645,12 +1645,30 @@ return|;
 block|}
 comment|// ------------------------------------------------------------------------------------------------
 comment|// ------------------------------------------------------------------------------------------------
-comment|/**    * Start the Jetty server    *    * @throws Exception if an error occurs on startup    */
+comment|/**    * Start the Jetty server    *    * If the server has been started before, it will restart using the same port    *    * @throws Exception if an error occurs on startup    */
 DECL|method|start
 specifier|public
 name|void
 name|start
 parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|start
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Start the Jetty server    *    * @param reusePort when true, will start up on the same port as used by any    *                  previous runs of this JettySolrRunner.  If false, will use    *                  the port specified by the server's JettyConfig.    *    * @throws Exception if an error occurs on startup    */
+DECL|method|start
+specifier|public
+name|void
+name|start
+parameter_list|(
+name|boolean
+name|reusePort
+parameter_list|)
 throws|throws
 name|Exception
 block|{
@@ -1685,9 +1703,22 @@ name|waitOnSolr
 operator|=
 literal|false
 expr_stmt|;
+name|int
+name|port
+init|=
+name|reusePort
+condition|?
+name|lastPort
+else|:
+name|this
+operator|.
+name|config
+operator|.
+name|port
+decl_stmt|;
 name|init
 argument_list|(
-name|lastPort
+name|port
 argument_list|)
 expr_stmt|;
 block|}

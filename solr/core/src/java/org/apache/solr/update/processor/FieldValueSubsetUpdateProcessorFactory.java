@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -61,12 +71,20 @@ import|;
 end_import
 
 begin_import
-import|import
-name|java
+import|import static
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Collection
+name|solr
+operator|.
+name|update
+operator|.
+name|processor
+operator|.
+name|FieldMutatingUpdateProcessor
+operator|.
+name|mutator
 import|;
 end_import
 
@@ -102,25 +120,15 @@ name|next
 parameter_list|)
 block|{
 return|return
-operator|new
-name|FieldMutatingUpdateProcessor
+name|mutator
 argument_list|(
 name|getSelector
 argument_list|()
 argument_list|,
 name|next
-argument_list|)
-block|{
-annotation|@
-name|Override
-specifier|protected
-name|SolrInputField
-name|mutate
-parameter_list|(
-specifier|final
-name|SolrInputField
+argument_list|,
 name|src
-parameter_list|)
+lambda|->
 block|{
 if|if
 condition|(
@@ -168,7 +176,7 @@ return|return
 name|result
 return|;
 block|}
-block|}
+argument_list|)
 return|;
 block|}
 comment|/**    * Method subclasses must override to specify which values should be kept.      * This method will not be called unless the collection contains more then     * one value.    */

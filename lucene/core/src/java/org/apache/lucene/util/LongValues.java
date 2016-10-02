@@ -26,6 +26,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|LegacyNumericDocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|NumericDocValues
 import|;
 end_import
@@ -47,17 +61,20 @@ import|;
 end_import
 
 begin_comment
-comment|/** Abstraction over an array of longs.  *  This class extends NumericDocValues so that we don't need to add another  *  level of abstraction every time we want eg. to use the {@link PackedInts}  *  utility classes to represent a {@link NumericDocValues} instance.  *  @lucene.internal */
+comment|/** Abstraction over an array of longs.  *  This class extends NumericDocValues so that we don't need to add another  *  level of abstraction every time we want eg. to use the {@link PackedInts}  *  utility classes to represent a {@link LegacyNumericDocValues} instance.  *  @lucene.internal  *  *  @deprecated Switch to {@link NumericDocValues} instead. */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
+comment|// TODO: cutover to iterator once codecs have all cutover?
 DECL|class|LongValues
 specifier|public
 specifier|abstract
 class|class
 name|LongValues
 extends|extends
-name|NumericDocValues
+name|LegacyNumericDocValues
 block|{
 comment|/** An instance that returns the provided value. */
 DECL|field|IDENTITY

@@ -906,7 +906,13 @@ name|toString
 parameter_list|()
 block|{
 return|return
-literal|"BlockTreeTerms(terms="
+literal|"BlockTreeTerms(seg="
+operator|+
+name|parent
+operator|.
+name|segment
+operator|+
+literal|" terms="
 operator|+
 name|numTerms
 operator|+

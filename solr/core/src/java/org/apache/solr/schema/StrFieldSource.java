@@ -190,11 +190,11 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
-name|termsIndex
-operator|.
-name|getOrd
+name|getOrdForDoc
 argument_list|(
 name|doc
 argument_list|)
@@ -223,6 +223,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|strVal
@@ -240,6 +242,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|description

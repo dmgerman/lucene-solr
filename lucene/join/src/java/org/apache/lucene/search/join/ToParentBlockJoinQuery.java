@@ -1047,30 +1047,13 @@ argument_list|)
 expr_stmt|;
 comment|// Parent& child docs are supposed to be
 comment|// orthogonal:
-if|if
-condition|(
-name|nextChildDoc
-operator|==
-name|parentDoc
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
+name|checkOrthogonal
 argument_list|(
-literal|"child query must only match non-parent docs, but parent docID="
-operator|+
 name|nextChildDoc
-operator|+
-literal|" matched childScorer="
-operator|+
-name|childScorer
-operator|.
-name|getClass
-argument_list|()
+argument_list|,
+name|parentDoc
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 comment|//System.out.println("  parentDoc=" + parentDoc);
 assert|assert
 name|parentDoc
@@ -1270,30 +1253,13 @@ condition|)
 do|;
 comment|// Parent& child docs are supposed to be
 comment|// orthogonal:
-if|if
-condition|(
-name|nextChildDoc
-operator|==
-name|parentDoc
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
+name|checkOrthogonal
 argument_list|(
-literal|"child query must only match non-parent docs, but parent docID="
-operator|+
 name|nextChildDoc
-operator|+
-literal|" matched childScorer="
-operator|+
-name|childScorer
-operator|.
-name|getClass
-argument_list|()
+argument_list|,
+name|parentDoc
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 switch|switch
 condition|(
 name|scoreMode
@@ -1425,30 +1391,13 @@ comment|//} else {
 comment|//System.out.println("  skip childScorer advance");
 block|}
 comment|// Parent& child docs are supposed to be orthogonal:
-if|if
-condition|(
-name|nextChildDoc
-operator|==
-name|prevParentDoc
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
+name|checkOrthogonal
 argument_list|(
-literal|"child query must only match non-parent docs, but parent docID="
-operator|+
 name|nextChildDoc
-operator|+
-literal|" matched childScorer="
-operator|+
-name|childScorer
-operator|.
-name|getClass
-argument_list|()
+argument_list|,
+name|prevParentDoc
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 specifier|final
 name|int
 name|nd
@@ -1488,6 +1437,47 @@ return|;
 block|}
 block|}
 return|;
+block|}
+DECL|method|checkOrthogonal
+specifier|private
+name|void
+name|checkOrthogonal
+parameter_list|(
+name|int
+name|childDoc
+parameter_list|,
+name|int
+name|parentDoc
+parameter_list|)
+block|{
+if|if
+condition|(
+name|childDoc
+operator|==
+name|parentDoc
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Child query must not match same docs with parent filter. "
+operator|+
+literal|"Combine them as must clauses (+) to find a problem doc. "
+operator|+
+literal|"docId="
+operator|+
+name|nextChildDoc
+operator|+
+literal|", "
+operator|+
+name|childScorer
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
+throw|;
+block|}
 block|}
 annotation|@
 name|Override

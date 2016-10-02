@@ -249,7 +249,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Did not find ConfigSet properties, assuming default properties: "
 operator|+
@@ -374,13 +374,7 @@ name|SERVER_ERROR
 argument_list|,
 literal|"Invalid JSON type "
 operator|+
-name|object
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getName
-argument_list|()
+name|objectClass
 operator|+
 literal|", expected Map"
 argument_list|)

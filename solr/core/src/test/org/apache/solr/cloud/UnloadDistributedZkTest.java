@@ -467,17 +467,6 @@ comment|// long
 name|testUnloadShardAndCollection
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|DEBUG
-condition|)
-block|{
-name|super
-operator|.
-name|printLayout
-argument_list|()
-expr_stmt|;
-block|}
 block|}
 DECL|method|checkCoreNamePresenceAndSliceCount
 specifier|private

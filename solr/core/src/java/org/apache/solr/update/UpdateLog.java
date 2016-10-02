@@ -4119,6 +4119,11 @@ condition|)
 block|{
 name|ll
 operator|.
+name|closeOutput
+argument_list|()
+expr_stmt|;
+name|ll
+operator|.
 name|decref
 argument_list|()
 expr_stmt|;
@@ -4141,6 +4146,11 @@ name|ll
 argument_list|,
 name|e
 argument_list|)
+expr_stmt|;
+name|ll
+operator|.
+name|closeOutput
+argument_list|()
 expr_stmt|;
 name|ll
 operator|.
@@ -7699,7 +7709,7 @@ expr_stmt|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Took {}ms to seed version buckets with highest version {}"
 argument_list|,
@@ -7731,7 +7741,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Looking up max value of version field to seed version buckets"
 argument_list|)

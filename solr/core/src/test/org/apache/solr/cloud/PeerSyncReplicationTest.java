@@ -360,6 +360,18 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+operator|.
+name|singletonList
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test sync peer sync when a node restarts and documents are indexed when node was down.  *  * This test is modeled after SyncSliceTest  */
 end_comment
@@ -708,9 +720,7 @@ expr_stmt|;
 comment|// first shutdown a node that will never be a leader
 name|forceNodeFailures
 argument_list|(
-name|Arrays
-operator|.
-name|asList
+name|singletonList
 argument_list|(
 name|neverLeader
 argument_list|)
@@ -841,9 +851,7 @@ argument_list|)
 expr_stmt|;
 name|forceNodeFailures
 argument_list|(
-name|Arrays
-operator|.
-name|asList
+name|singletonList
 argument_list|(
 name|initialLeaderJetty
 argument_list|)
@@ -856,14 +864,26 @@ argument_list|(
 literal|"Updating mappings from zk"
 argument_list|)
 expr_stmt|;
-name|Thread
+name|LeaderFailureAfterFreshStartTest
 operator|.
-name|sleep
+name|waitForNewLeader
 argument_list|(
-literal|15000
+name|cloudClient
+argument_list|,
+literal|"shard1"
+argument_list|,
+operator|(
+name|Replica
+operator|)
+name|initialLeaderJetty
+operator|.
+name|client
+operator|.
+name|info
+argument_list|,
+literal|15
 argument_list|)
 expr_stmt|;
-comment|// sleep for a while for leader to change ...
 name|updateMappingsFromZk
 argument_list|(
 name|jettys

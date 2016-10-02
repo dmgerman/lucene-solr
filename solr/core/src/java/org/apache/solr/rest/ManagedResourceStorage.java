@@ -672,7 +672,7 @@ name|zkConfigName
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Setting up ZooKeeper-based storage for the RestManager with znodeBase: "
 operator|+
@@ -1441,7 +1441,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Read {} bytes from znode {}"
 argument_list|,
@@ -1465,7 +1465,7 @@ index|]
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No data found for znode {}"
 argument_list|,
@@ -1722,7 +1722,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Attempting to delete znode {}"
 argument_list|,
@@ -2368,7 +2368,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Reading {} using {}"
 argument_list|,

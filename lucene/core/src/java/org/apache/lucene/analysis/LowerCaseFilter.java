@@ -91,7 +91,6 @@ end_comment
 begin_class
 DECL|class|LowerCaseFilter
 specifier|public
-specifier|final
 class|class
 name|LowerCaseFilter
 extends|extends

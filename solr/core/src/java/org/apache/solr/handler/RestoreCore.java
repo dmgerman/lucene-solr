@@ -328,7 +328,7 @@ decl_stmt|;
 DECL|field|backupLocation
 specifier|private
 specifier|final
-name|String
+name|URI
 name|backupLocation
 decl_stmt|;
 DECL|field|core
@@ -353,7 +353,7 @@ parameter_list|,
 name|SolrCore
 name|core
 parameter_list|,
-name|String
+name|URI
 name|location
 parameter_list|,
 name|String
@@ -413,7 +413,7 @@ name|backupPath
 init|=
 name|backupRepo
 operator|.
-name|createURI
+name|resolve
 argument_list|(
 name|backupLocation
 argument_list|,

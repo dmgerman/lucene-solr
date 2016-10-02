@@ -352,7 +352,7 @@ argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
-comment|//these don't
+comment|// LUCENE-7439: these now work as well:
 name|countHits
 argument_list|(
 name|a
@@ -378,7 +378,7 @@ argument_list|,
 literal|1
 argument_list|)
 argument_list|,
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 name|countHits
@@ -406,7 +406,7 @@ argument_list|,
 literal|1
 argument_list|)
 argument_list|,
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 name|countHits
@@ -434,7 +434,7 @@ argument_list|,
 literal|2
 argument_list|)
 argument_list|,
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 name|countHits
@@ -462,7 +462,7 @@ argument_list|,
 literal|2
 argument_list|)
 argument_list|,
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 name|countHits
@@ -490,7 +490,7 @@ argument_list|,
 literal|2
 argument_list|)
 argument_list|,
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 name|countHits
@@ -518,7 +518,7 @@ argument_list|,
 literal|2
 argument_list|)
 argument_list|,
-literal|0
+literal|1
 argument_list|)
 expr_stmt|;
 block|}

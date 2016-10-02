@@ -561,7 +561,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Starting "
 operator|+
@@ -716,6 +716,7 @@ operator|.
 name|interrupt
 argument_list|()
 expr_stmt|;
+return|return;
 block|}
 block|}
 block|}

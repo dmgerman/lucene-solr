@@ -49,6 +49,8 @@ operator|.
 name|facet
 operator|.
 name|FacetsCollector
+operator|.
+name|MatchingDocs
 import|;
 end_import
 
@@ -63,8 +65,6 @@ operator|.
 name|facet
 operator|.
 name|FacetsCollector
-operator|.
-name|MatchingDocs
 import|;
 end_import
 

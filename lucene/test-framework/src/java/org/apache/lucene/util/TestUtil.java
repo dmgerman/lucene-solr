@@ -2528,17 +2528,6 @@ name|name
 argument_list|)
 operator|!=
 literal|null
-operator|||
-name|reader
-operator|.
-name|getDocsWithField
-argument_list|(
-name|info
-operator|.
-name|name
-argument_list|)
-operator|!=
-literal|null
 condition|)
 block|{
 throw|throw

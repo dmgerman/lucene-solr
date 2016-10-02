@@ -808,7 +808,7 @@ parameter_list|()
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Process current queue of overseer operations"
 argument_list|)
@@ -939,6 +939,18 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|zkStateReader
+operator|.
+name|getZkClient
+argument_list|()
+operator|.
+name|isClosed
+argument_list|()
+condition|)
+block|{
 name|log
 operator|.
 name|error
@@ -948,6 +960,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// TODO: Make maxThreads configurable.
 name|this
@@ -1561,7 +1574,7 @@ continue|continue;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|messageHandler
 operator|.
@@ -2213,25 +2226,13 @@ name|e
 operator|.
 name|code
 argument_list|()
-operator|==
+operator|!=
 name|KeeperException
 operator|.
 name|Code
 operator|.
 name|SESSIONEXPIRED
 condition|)
-block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|""
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-else|else
 block|{
 name|log
 operator|.
@@ -2727,7 +2728,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 name|messageHandler
 operator|.

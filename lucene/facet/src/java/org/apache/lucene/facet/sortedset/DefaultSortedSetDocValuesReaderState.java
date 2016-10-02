@@ -642,6 +642,8 @@ if|if
 condition|(
 name|dv
 operator|instanceof
+name|MultiDocValues
+operator|.
 name|MultiSortedSetDocValues
 condition|)
 block|{
@@ -649,6 +651,8 @@ name|map
 operator|=
 operator|(
 operator|(
+name|MultiDocValues
+operator|.
 name|MultiSortedSetDocValues
 operator|)
 name|dv
@@ -723,6 +727,11 @@ name|size
 operator|+
 literal|1
 index|]
+decl_stmt|;
+name|long
+name|cost
+init|=
+literal|0
 decl_stmt|;
 for|for
 control|(
@@ -836,6 +845,13 @@ name|context
 operator|.
 name|docBase
 expr_stmt|;
+name|cost
+operator|+=
+name|v
+operator|.
+name|cost
+argument_list|()
+expr_stmt|;
 block|}
 name|starts
 index|[
@@ -856,6 +872,8 @@ argument_list|,
 name|starts
 argument_list|,
 name|map
+argument_list|,
+name|cost
 argument_list|)
 return|;
 block|}

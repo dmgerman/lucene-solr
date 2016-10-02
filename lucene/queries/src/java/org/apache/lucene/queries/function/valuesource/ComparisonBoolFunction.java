@@ -198,6 +198,8 @@ parameter_list|,
 name|FunctionValues
 name|rhs
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Uniquely identify the operation (ie "gt", "lt" "gte", etc) */
 DECL|method|name
@@ -283,6 +285,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|compare
@@ -304,6 +308,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|compLabel
@@ -338,6 +344,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|lhsVal

@@ -2768,6 +2768,8 @@ specifier|public
 name|float
 name|score
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|docScorer

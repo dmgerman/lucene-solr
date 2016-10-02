@@ -283,6 +283,8 @@ parameter_list|,
 name|float
 name|freq
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Computes the amount of a sloppy phrase match, based on an edit distance. */
 DECL|method|computeSlopFactor
@@ -327,6 +329,8 @@ parameter_list|,
 name|Explanation
 name|freq
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Explanation

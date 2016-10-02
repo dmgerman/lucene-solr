@@ -1170,9 +1170,9 @@ name|collection
 decl_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Load collection config from: [{}]"
+literal|"Loading collection config from: [{}]"
 argument_list|,
 name|path
 argument_list|)
@@ -1230,6 +1230,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|String
+name|configPath
+init|=
+name|CONFIGS_ZKNODE
+operator|+
+literal|"/"
+operator|+
+name|configName
+decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -1237,11 +1246,7 @@ name|zkClient
 operator|.
 name|exists
 argument_list|(
-name|CONFIGS_ZKNODE
-operator|+
-literal|"/"
-operator|+
-name|configName
+name|configPath
 argument_list|,
 literal|true
 argument_list|)
@@ -1251,9 +1256,11 @@ name|LOG
 operator|.
 name|error
 argument_list|(
-literal|"Specified config does not exist in ZooKeeper: [{}]"
+literal|"Specified config=[{}] does not exist in ZooKeeper at location=[{}]"
 argument_list|,
 name|configName
+argument_list|,
+name|configPath
 argument_list|)
 expr_stmt|;
 throw|throw
@@ -1274,11 +1281,11 @@ else|else
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"path=[{}] [{}]=[{}] specified config exists in ZooKeeper"
 argument_list|,
-name|path
+name|configPath
 argument_list|,
 name|CONFIGNAME_PROP
 argument_list|,
@@ -1731,7 +1738,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"ClusterState watchers have not been initialized"
 argument_list|)
@@ -1768,7 +1775,7 @@ comment|// We either don't know anything about this collection (maybe it's new?)
 comment|// First update the legacy cluster state.
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Checking legacy cluster state for collection {}"
 argument_list|,
@@ -1814,7 +1821,7 @@ block|{
 comment|// What do you know, it exists!
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Adding lazily-loaded reference for collection {}"
 argument_list|,
@@ -1854,7 +1861,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Refreshing lazily-loaded state for collection {}"
 argument_list|,
@@ -1894,7 +1901,7 @@ block|{
 comment|// Exists as a watched collection, force a refresh.
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Forcing refresh of watched collection state for {}"
 argument_list|,
@@ -2145,7 +2152,7 @@ block|{
 comment|// We need to fetch the current cluster state and the set of live nodes
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Updating cluster state from ZooKeeper... "
 argument_list|)
@@ -2281,7 +2288,7 @@ init|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Updating aliases... "
 argument_list|)
@@ -2334,7 +2341,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"New alias definition is: "
 operator|+
@@ -2620,7 +2627,7 @@ init|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Updating [{}] ... "
 argument_list|,
@@ -3743,6 +3750,19 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|oldLiveNodes
+operator|.
+name|size
+argument_list|()
+operator|!=
+name|newLiveNodes
+operator|.
+name|size
+argument_list|()
+condition|)
+block|{
 name|LOG
 operator|.
 name|info
@@ -3760,6 +3780,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 if|if
 condition|(
 name|LOG
@@ -4736,7 +4757,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Loaded cluster properties: {}"
 argument_list|,
@@ -4766,7 +4787,7 @@ argument_list|()
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Loaded empty cluster properties"
 argument_list|)
@@ -5192,7 +5213,7 @@ block|{
 comment|// This collection is no longer interesting, stop watching.
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Uninteresting collection {}"
 argument_list|,
@@ -5424,7 +5445,7 @@ argument_list|()
 decl_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"A cluster state change: [{}], has occurred - updating... (live nodes size: [{}])"
 argument_list|,
@@ -5600,7 +5621,7 @@ return|return;
 block|}
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"A collections change: [{}], has occurred - updating..."
 argument_list|,
@@ -5762,7 +5783,7 @@ return|return;
 block|}
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"A live node change: [{}], has occurred - updating... (live nodes size: [{}])"
 argument_list|,
@@ -6732,9 +6753,9 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Deleting data for [{}]"
+literal|"Removing cached collection state for [{}]"
 argument_list|,
 name|coll
 argument_list|)
@@ -6807,7 +6828,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Add data for [{}] ver [{}]"
 argument_list|,
@@ -6865,7 +6886,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Updating data for [{}] from [{}] to [{}]"
 argument_list|,
@@ -6911,7 +6932,7 @@ argument_list|)
 expr_stmt|;
 name|LOG
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Removing uninteresting collection [{}]"
 argument_list|,

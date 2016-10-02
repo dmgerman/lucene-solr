@@ -486,6 +486,24 @@ name|MDC
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ADMIN_PATHS
+import|;
+end_import
+
 begin_comment
 comment|/**  * LBHttpSolrClient or "LoadBalanced HttpSolrClient" is a load balancing wrapper around  * {@link HttpSolrClient}. This is useful when you  * have multiple Solr servers and the requests need to be Load Balanced among them.  *  * Do<b>NOT</b> use this class for indexing in master/slave scenarios since documents must be sent to the  * correct master; no inter-node routing is done.  *  * In SolrCloud (leader/replica) scenarios, it is usually better to use  * {@link CloudSolrClient}, but this class may be used  * for updates because the server will forward them to the appropriate leader.  *  *<p>  * It offers automatic failover when a server goes down and it detects when the server comes back up.  *<p>  * Load balancing is done using a simple round-robin on the list of servers.  *<p>  * If a request to a server fails by an IOException due to a connection timeout or read timeout then the host is taken  * off the list of live servers and moved to a 'dead server list' and the request is resent to the next live server.  * This process is continued till it tries all the live servers. If at least one server is alive, the request succeeds,  * and if not it fails.  *<blockquote><pre>  * SolrClient lbHttpSolrClient = new LBHttpSolrClient("http://host1:8080/solr/", "http://host2:8080/solr", "http://host2:8080/solr");  * //or if you wish to pass the HttpClient do as follows  * httpClient httpClient = new HttpClient();  * SolrClient lbHttpSolrClient = new LBHttpSolrClient(httpClient, "http://host1:8080/solr/", "http://host2:8080/solr", "http://host2:8080/solr");  *</pre></blockquote>  * This detects if a dead server comes alive automatically. The check is done in fixed intervals in a dedicated thread.  * This interval can be set using {@link #setAliveCheckInterval} , the default is set to one minute.  *<p>  *<b>When to use this?</b><br> This can be used as a software load balancer when you do not wish to setup an external  * load balancer. Alternatives to this code are to use  * a dedicated hardware load balancer or using Apache httpd with mod_proxy_balancer as a load balancer. See<a  * href="http://en.wikipedia.org/wiki/Load_balancing_(computing)">Load balancing on Wikipedia</a>  *  * @since solr 1.4  */
 end_comment
@@ -1407,13 +1425,25 @@ init|=
 literal|null
 decl_stmt|;
 name|boolean
-name|isUpdate
+name|isNonRetryable
 init|=
 name|req
 operator|.
 name|request
 operator|instanceof
 name|IsUpdateRequest
+operator|||
+name|ADMIN_PATHS
+operator|.
+name|contains
+argument_list|(
+name|req
+operator|.
+name|request
+operator|.
+name|getPath
+argument_list|()
+argument_list|)
 decl_stmt|;
 name|List
 argument_list|<
@@ -1584,7 +1614,7 @@ name|req
 argument_list|,
 name|rsp
 argument_list|,
-name|isUpdate
+name|isNonRetryable
 argument_list|,
 literal|false
 argument_list|,
@@ -1655,7 +1685,7 @@ name|req
 argument_list|,
 name|rsp
 argument_list|,
-name|isUpdate
+name|isNonRetryable
 argument_list|,
 literal|true
 argument_list|,
@@ -1775,7 +1805,7 @@ name|Rsp
 name|rsp
 parameter_list|,
 name|boolean
-name|isUpdate
+name|isNonRetryable
 parameter_list|,
 name|boolean
 name|isZombie
@@ -1848,7 +1878,7 @@ comment|// unless it's an update - then we only retry on connect exception
 if|if
 condition|(
 operator|!
-name|isUpdate
+name|isNonRetryable
 operator|&&
 name|RETRY_CODES
 operator|.
@@ -1908,7 +1938,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|isUpdate
+name|isNonRetryable
 operator|||
 name|e
 operator|instanceof
@@ -1948,7 +1978,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|isUpdate
+name|isNonRetryable
 condition|)
 block|{
 name|ex
@@ -1992,7 +2022,7 @@ decl_stmt|;
 if|if
 condition|(
 operator|!
-name|isUpdate
+name|isNonRetryable
 operator|&&
 name|rootCause
 operator|instanceof
@@ -2019,7 +2049,7 @@ block|}
 elseif|else
 if|if
 condition|(
-name|isUpdate
+name|isNonRetryable
 operator|&&
 name|rootCause
 operator|instanceof

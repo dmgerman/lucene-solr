@@ -275,6 +275,8 @@ parameter_list|,
 name|FunctionValues
 name|dv2
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|//Handle some special cases:
 name|double
@@ -768,6 +770,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|distance
@@ -789,6 +793,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|StringBuilder
 name|sb

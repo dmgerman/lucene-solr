@@ -36,7 +36,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|DocValues
 import|;
 end_import
 
@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|LeafReaderContext
 import|;
 end_import
 
@@ -460,9 +460,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|SortedSetDocValues
-name|sortedSet
-init|=
+return|return
+name|SortedSetSelector
+operator|.
+name|wrap
+argument_list|(
 name|DocValues
 operator|.
 name|getSortedSet
@@ -474,13 +476,6 @@ argument_list|()
 argument_list|,
 name|field
 argument_list|)
-decl_stmt|;
-return|return
-name|SortedSetSelector
-operator|.
-name|wrap
-argument_list|(
-name|sortedSet
 argument_list|,
 name|selector
 argument_list|)
