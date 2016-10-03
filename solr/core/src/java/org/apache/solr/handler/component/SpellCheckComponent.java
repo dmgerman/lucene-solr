@@ -4992,7 +4992,7 @@ condition|)
 block|{
 name|LOG
 operator|.
-name|info
+name|trace
 argument_list|(
 literal|"No queryConverter defined, using default converter"
 argument_list|)
