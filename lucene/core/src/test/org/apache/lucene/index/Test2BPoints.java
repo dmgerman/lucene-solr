@@ -1083,7 +1083,7 @@ name|Codec
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene62"
+literal|"Lucene70"
 argument_list|)
 return|;
 block|}

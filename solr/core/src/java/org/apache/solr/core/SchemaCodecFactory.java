@@ -118,9 +118,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene62
+name|lucene70
 operator|.
-name|Lucene62Codec
+name|Lucene70Codec
 import|;
 end_import
 
@@ -437,7 +437,7 @@ block|}
 name|codec
 operator|=
 operator|new
-name|Lucene62Codec
+name|Lucene70Codec
 argument_list|(
 name|compressionMode
 argument_list|)

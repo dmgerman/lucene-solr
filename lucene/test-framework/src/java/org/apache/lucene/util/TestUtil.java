@@ -440,9 +440,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene54
+name|lucene70
 operator|.
-name|Lucene54DocValuesFormat
+name|Lucene70Codec
 import|;
 end_import
 
@@ -456,9 +456,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene62
+name|lucene70
 operator|.
-name|Lucene62Codec
+name|Lucene70DocValuesFormat
 import|;
 end_import
 
@@ -6905,7 +6905,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Lucene62Codec
+name|Lucene70Codec
 argument_list|()
 return|;
 block|}
@@ -7004,7 +7004,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Lucene54DocValuesFormat
+name|Lucene70DocValuesFormat
 argument_list|()
 return|;
 block|}
