@@ -50,20 +50,6 @@ end_import
 
 begin_import
 import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|annotations
-operator|.
-name|VisibleForTesting
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -346,8 +332,7 @@ name|digestReadonlyPassword
 argument_list|)
 return|;
 block|}
-annotation|@
-name|VisibleForTesting
+comment|/**    * Note: only used for tests    */
 DECL|method|createACLsToAdd
 specifier|protected
 name|List
