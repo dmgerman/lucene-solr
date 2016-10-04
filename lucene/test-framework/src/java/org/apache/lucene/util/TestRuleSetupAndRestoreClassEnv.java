@@ -224,9 +224,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene62
+name|lucene70
 operator|.
-name|Lucene62Codec
+name|Lucene70Codec
 import|;
 end_import
 
@@ -1305,7 +1305,7 @@ block|}
 elseif|else
 if|if
 condition|(
-literal|"Lucene62"
+literal|"Lucene70"
 operator|.
 name|equals
 argument_list|(
@@ -1327,7 +1327,7 @@ operator|&&
 operator|!
 name|shouldAvoidCodec
 argument_list|(
-literal|"Lucene62"
+literal|"Lucene70"
 argument_list|)
 operator|)
 condition|)
@@ -1335,7 +1335,7 @@ block|{
 name|codec
 operator|=
 operator|new
-name|Lucene62Codec
+name|Lucene70Codec
 argument_list|(
 name|RandomPicks
 operator|.

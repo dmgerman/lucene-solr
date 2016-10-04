@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene54
+DECL|package|org.apache.lucene.codecs.lucene70
 package|package
 name|org
 operator|.
@@ -14,7 +14,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene54
+name|lucene70
 package|;
 end_package
 
@@ -67,22 +67,6 @@ operator|.
 name|codecs
 operator|.
 name|DocValuesProducer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene70
-operator|.
-name|Lucene70DocValuesFormat
 import|;
 end_import
 
@@ -159,29 +143,27 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 5.4 DocValues format.  *<p>  * Encodes the five per-document value types (Numeric,Binary,Sorted,SortedSet,SortedNumeric) with these strategies:  *<p>  * {@link DocValuesType#NUMERIC NUMERIC}:  *<ul>  *<li>Delta-compressed: per-document integers written as deltas from the minimum value,  *        compressed with bitpacking. For more information, see {@link DirectWriter}.  *<li>Table-compressed: when the number of unique values is very small (&lt; 256), and  *        when there are unused "gaps" in the range of values used (such as {@link SmallFloat}),   *        a lookup table is written instead. Each per-document entry is instead the ordinal   *        to this table, and those ordinals are compressed with bitpacking ({@link DirectWriter}).   *<li>GCD-compressed: when all numbers share a common divisor, such as dates, the greatest  *        common denominator (GCD) is computed, and quotients are stored using Delta-compressed Numerics.  *<li>Monotonic-compressed: when all numbers are monotonically increasing offsets, they are written  *        as blocks of bitpacked integers, encoding the deviation from the expected delta.  *<li>Const-compressed: when there is only one possible non-missing value, only the missing  *        bitset is encoded.  *<li>Sparse-compressed: only documents with a value are stored, and lookups are performed  *        using binary search.  *</ul>  *<p>  * {@link DocValuesType#BINARY BINARY}:  *<ul>  *<li>Fixed-width Binary: one large concatenated byte[] is written, along with the fixed length.  *        Each document's value can be addressed directly with multiplication ({@code docID * length}).   *<li>Variable-width Binary: one large concatenated byte[] is written, along with end addresses   *        for each document. The addresses are written as Monotonic-compressed numerics.  *<li>Prefix-compressed Binary: values are written in chunks of 16, with the first value written  *        completely and other values sharing prefixes. chunk addresses are written as Monotonic-compressed  *        numerics. A reverse lookup index is written from a portion of every 1024th term.  *</ul>  *<p>  * {@link DocValuesType#SORTED SORTED}:  *<ul>  *<li>Sorted: a mapping of ordinals to deduplicated terms is written as Binary,   *        along with the per-document ordinals written using one of the numeric strategies above.  *</ul>  *<p>  * {@link DocValuesType#SORTED_SET SORTED_SET}:  *<ul>  *<li>Single: if all documents have 0 or 1 value, then data are written like SORTED.  *<li>SortedSet table: when there are few unique sets of values (&lt; 256) then each set is assigned  *        an id, a lookup table is written and the mapping from document to set id is written using the  *        numeric strategies above.  *<li>SortedSet: a mapping of ordinals to deduplicated terms is written as Binary,   *        an ordinal list and per-document index into this list are written using the numeric strategies   *        above.  *</ul>  *<p>  * {@link DocValuesType#SORTED_NUMERIC SORTED_NUMERIC}:  *<ul>  *<li>Single: if all documents have 0 or 1 value, then data are written like NUMERIC.  *<li>SortedSet table: when there are few unique sets of values (&lt; 256) then each set is assigned  *        an id, a lookup table is written and the mapping from document to set id is written using the  *        numeric strategies above.  *<li>SortedNumeric: a value list and per-document index into this list are written using the numeric  *        strategies above.  *</ul>  *<p>  * Files:  *<ol>  *<li><tt>.dvd</tt>: DocValues data</li>  *<li><tt>.dvm</tt>: DocValues metadata</li>  *</ol>  * @lucene.experimental  * @deprecated Use {@link Lucene70DocValuesFormat}.  */
+comment|/**  * Lucene 7.0 DocValues format.  *<p>  * Encodes the five per-document value types (Numeric,Binary,Sorted,SortedSet,SortedNumeric) with these strategies:  *<p>  * {@link DocValuesType#NUMERIC NUMERIC}:  *<ul>  *<li>Delta-compressed: per-document integers written as deltas from the minimum value,  *        compressed with bitpacking. For more information, see {@link DirectWriter}.  *<li>Table-compressed: when the number of unique values is very small (&lt; 256), and  *        when there are unused "gaps" in the range of values used (such as {@link SmallFloat}),   *        a lookup table is written instead. Each per-document entry is instead the ordinal   *        to this table, and those ordinals are compressed with bitpacking ({@link DirectWriter}).   *<li>GCD-compressed: when all numbers share a common divisor, such as dates, the greatest  *        common denominator (GCD) is computed, and quotients are stored using Delta-compressed Numerics.  *<li>Monotonic-compressed: when all numbers are monotonically increasing offsets, they are written  *        as blocks of bitpacked integers, encoding the deviation from the expected delta.  *<li>Const-compressed: when there is only one possible non-missing value, only the missing  *        bitset is encoded.  *<li>Sparse-compressed: only documents with a value are stored, and lookups are performed  *        using binary search.  *</ul>  *<p>  * {@link DocValuesType#BINARY BINARY}:  *<ul>  *<li>Fixed-width Binary: one large concatenated byte[] is written, along with the fixed length.  *        Each document's value can be addressed directly with multiplication ({@code docID * length}).   *<li>Variable-width Binary: one large concatenated byte[] is written, along with end addresses   *        for each document. The addresses are written as Monotonic-compressed numerics.  *<li>Prefix-compressed Binary: values are written in chunks of 16, with the first value written  *        completely and other values sharing prefixes. chunk addresses are written as Monotonic-compressed  *        numerics. A reverse lookup index is written from a portion of every 1024th term.  *</ul>  *<p>  * {@link DocValuesType#SORTED SORTED}:  *<ul>  *<li>Sorted: a mapping of ordinals to deduplicated terms is written as Binary,   *        along with the per-document ordinals written using one of the numeric strategies above.  *</ul>  *<p>  * {@link DocValuesType#SORTED_SET SORTED_SET}:  *<ul>  *<li>Single: if all documents have 0 or 1 value, then data are written like SORTED.  *<li>SortedSet table: when there are few unique sets of values (&lt; 256) then each set is assigned  *        an id, a lookup table is written and the mapping from document to set id is written using the  *        numeric strategies above.  *<li>SortedSet: a mapping of ordinals to deduplicated terms is written as Binary,   *        an ordinal list and per-document index into this list are written using the numeric strategies   *        above.  *</ul>  *<p>  * {@link DocValuesType#SORTED_NUMERIC SORTED_NUMERIC}:  *<ul>  *<li>Single: if all documents have 0 or 1 value, then data are written like NUMERIC.  *<li>SortedSet table: when there are few unique sets of values (&lt; 256) then each set is assigned  *        an id, a lookup table is written and the mapping from document to set id is written using the  *        numeric strategies above.  *<li>SortedNumeric: a value list and per-document index into this list are written using the numeric  *        strategies above.  *</ul>  *<p>  * Files:  *<ol>  *<li><tt>.dvd</tt>: DocValues data</li>  *<li><tt>.dvm</tt>: DocValues metadata</li>  *</ol>  * @lucene.experimental  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
-DECL|class|Lucene54DocValuesFormat
+DECL|class|Lucene70DocValuesFormat
 specifier|public
 specifier|final
 class|class
-name|Lucene54DocValuesFormat
+name|Lucene70DocValuesFormat
 extends|extends
 name|DocValuesFormat
 block|{
 comment|/** Sole Constructor */
-DECL|method|Lucene54DocValuesFormat
+DECL|method|Lucene70DocValuesFormat
 specifier|public
-name|Lucene54DocValuesFormat
+name|Lucene70DocValuesFormat
 parameter_list|()
 block|{
 name|super
 argument_list|(
-literal|"Lucene54"
+literal|"Lucene70"
 argument_list|)
 expr_stmt|;
 block|}
@@ -200,7 +182,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene54DocValuesConsumer
+name|Lucene70DocValuesConsumer
 argument_list|(
 name|state
 argument_list|,
@@ -229,7 +211,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene54DocValuesProducer
+name|Lucene70DocValuesProducer
 argument_list|(
 name|state
 argument_list|,

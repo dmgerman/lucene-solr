@@ -3750,15 +3750,54 @@ literal|"'"
 argument_list|)
 throw|;
 block|}
+elseif|else
+if|if
+condition|(
+name|posIncr
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"position increment must be>= 0 (got "
+operator|+
+name|posIncr
+operator|+
+literal|") for field '"
+operator|+
+name|field
+operator|.
+name|name
+argument_list|()
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
 else|else
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"position increments (and gaps) must be>= 0 (got "
+literal|"position overflowed Integer.MAX_VALUE (got posIncr="
 operator|+
 name|posIncr
+operator|+
+literal|" lastPosition="
+operator|+
+name|invertState
+operator|.
+name|lastPosition
+operator|+
+literal|" position="
+operator|+
+name|invertState
+operator|.
+name|position
 operator|+
 literal|") for field '"
 operator|+

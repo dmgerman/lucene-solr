@@ -8310,7 +8310,7 @@ argument_list|(
 operator|new
 name|FilterCodec
 argument_list|(
-literal|"Lucene62"
+literal|"Lucene70"
 argument_list|,
 name|TestUtil
 operator|.

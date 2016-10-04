@@ -1034,6 +1034,13 @@ name|fail
 argument_list|(
 name|message
 operator|+
+literal|"\n"
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|+
 literal|"\nLast available state: "
 operator|+
 name|state
@@ -1066,6 +1073,15 @@ name|collectionState
 parameter_list|)
 lambda|->
 block|{
+if|if
+condition|(
+name|collectionState
+operator|==
+literal|null
+condition|)
+return|return
+literal|false
+return|;
 if|if
 condition|(
 name|collectionState
@@ -1134,6 +1150,7 @@ block|}
 comment|/**    * Get a (reproducibly) random shard from a {@link DocCollection}    */
 DECL|method|getRandomShard
 specifier|protected
+specifier|static
 name|Slice
 name|getRandomShard
 parameter_list|(
@@ -1198,6 +1215,7 @@ block|}
 comment|/**    * Get a (reproducibly) random replica from a {@link Slice}    */
 DECL|method|getRandomReplica
 specifier|protected
+specifier|static
 name|Replica
 name|getRandomReplica
 parameter_list|(
@@ -1262,6 +1280,7 @@ block|}
 comment|/**    * Get a (reproducibly) random replica from a {@link Slice} matching a predicate    */
 DECL|method|getRandomReplica
 specifier|protected
+specifier|static
 name|Replica
 name|getRandomReplica
 parameter_list|(
@@ -1359,6 +1378,7 @@ block|}
 comment|/**    * Get the {@link CoreStatus} data for a {@link Replica}    *    * This assumes that the replica is hosted on a live node.    */
 DECL|method|getCoreStatus
 specifier|protected
+specifier|static
 name|CoreStatus
 name|getCoreStatus
 parameter_list|(

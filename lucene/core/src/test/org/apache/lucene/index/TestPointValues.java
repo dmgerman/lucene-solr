@@ -3111,7 +3111,7 @@ block|}
 end_function
 
 begin_comment
-comment|// Write point values, one segment with Lucene62, another with SimpleText, then forceMerge with SimpleText
+comment|// Write point values, one segment with Lucene70, another with SimpleText, then forceMerge with SimpleText
 end_comment
 
 begin_function
@@ -3151,7 +3151,7 @@ name|Codec
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene62"
+literal|"Lucene70"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3280,7 +3280,7 @@ block|}
 end_function
 
 begin_comment
-comment|// Write point values, one segment with Lucene62, another with SimpleText, then forceMerge with Lucene60
+comment|// Write point values, one segment with Lucene70, another with SimpleText, then forceMerge with Lucene70
 end_comment
 
 begin_function
@@ -3388,7 +3388,7 @@ name|Codec
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene62"
+literal|"Lucene70"
 argument_list|)
 argument_list|)
 expr_stmt|;

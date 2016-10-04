@@ -8757,7 +8757,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"Lucene62"
+literal|"Lucene70"
 argument_list|)
 condition|)
 block|{
@@ -8816,7 +8816,7 @@ return|return
 operator|new
 name|FilterCodec
 argument_list|(
-literal|"Lucene62"
+literal|"Lucene70"
 argument_list|,
 name|Codec
 operator|.
