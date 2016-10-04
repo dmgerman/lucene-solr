@@ -629,7 +629,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"not present in cluster state"
+literal|"does not exist in shard"
 argument_list|)
 argument_list|)
 expr_stmt|;
