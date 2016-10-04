@@ -146,20 +146,6 @@ name|Query
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|TermQuery
-import|;
-end_import
-
 begin_comment
 comment|/**  * A QueryParser which constructs queries to search multiple fields.  *  */
 end_comment
