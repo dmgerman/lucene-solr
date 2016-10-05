@@ -637,9 +637,7 @@ argument_list|,
 name|HttpClientUtil
 operator|.
 name|createNewHttpClientRequestContext
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 argument_list|)
 operator|.
 name|getEntity

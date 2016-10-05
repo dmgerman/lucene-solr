@@ -22,26 +22,6 @@ end_package
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|ByteArrayInputStream
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -250,6 +230,26 @@ name|ObjectBuilder
 import|;
 end_import
 
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
+name|ByteArrayInputStream
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
 begin_comment
 comment|/**  * TODO? perhaps use:  *  http://docs.codehaus.org/display/JETTY/ServletTester  * rather then open a real connection?  *   */
 end_comment
@@ -455,9 +455,7 @@ argument_list|,
 name|HttpClientUtil
 operator|.
 name|createNewHttpClientRequestContext
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|assertEquals

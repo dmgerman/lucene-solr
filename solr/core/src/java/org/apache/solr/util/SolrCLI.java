@@ -4452,9 +4452,7 @@ argument_list|,
 name|HttpClientUtil
 operator|.
 name|createNewHttpClientRequestContext
-argument_list|(
-literal|null
-argument_list|)
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// check the response JSON from Solr to see if it is an error
