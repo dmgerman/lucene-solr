@@ -1135,6 +1135,19 @@ name|createClient
 argument_list|(
 name|params
 argument_list|,
+name|createPoolingConnectionManager
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** test usage subject to change @lucene.experimental */
+DECL|method|createPoolingConnectionManager
+specifier|static
+name|PoolingHttpClientConnectionManager
+name|createPoolingConnectionManager
+parameter_list|()
+block|{
+return|return
 operator|new
 name|PoolingHttpClientConnectionManager
 argument_list|(
@@ -1142,7 +1155,6 @@ name|schemaRegistryProvider
 operator|.
 name|getSchemaRegistry
 argument_list|()
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -2146,7 +2158,7 @@ operator|=
 name|httpClientContextBuilder
 expr_stmt|;
 block|}
-comment|/**    *     */
+comment|/**    * Create a HttpClientContext object and {@link HttpClientContext#setUserToken(Object)}    * to an internal singleton. It allows to reuse underneath {@link HttpClient}     * in connection pools if client authentication is enabled.    */
 DECL|method|createNewHttpClientRequestContext
 specifier|public
 specifier|static
@@ -2154,11 +2166,24 @@ name|HttpClientContext
 name|createNewHttpClientRequestContext
 parameter_list|()
 block|{
-return|return
-name|httpClientRequestContextBuilder
-operator|.
-name|createContext
+name|HttpClientContext
+name|context
+init|=
+operator|new
+name|HttpClientContext
 argument_list|()
+decl_stmt|;
+name|context
+operator|.
+name|setUserToken
+argument_list|(
+name|HttpSolrClient
+operator|.
+name|cacheKey
+argument_list|)
+expr_stmt|;
+return|return
+name|context
 return|;
 block|}
 DECL|method|createDefaultRequestConfigBuilder
