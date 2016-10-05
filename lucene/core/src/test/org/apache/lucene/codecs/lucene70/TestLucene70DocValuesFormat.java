@@ -3691,9 +3691,6 @@ argument_list|()
 argument_list|,
 literal|0
 argument_list|,
-operator|(
-name|int
-operator|)
 name|maxDoc
 argument_list|)
 decl_stmt|;
