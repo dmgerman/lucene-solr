@@ -212,7 +212,7 @@ operator|.
 name|searcher
 argument_list|()
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|getSortedDocValues
@@ -264,7 +264,7 @@ operator|.
 name|searcher
 argument_list|()
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|getSortedSetDocValues

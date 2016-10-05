@@ -842,7 +842,7 @@ name|fcontext
 operator|.
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|fields
@@ -1146,7 +1146,7 @@ name|fcontext
 operator|.
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|getLiveDocs

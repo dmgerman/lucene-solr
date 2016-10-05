@@ -7423,7 +7423,7 @@ name|ReaderWrapper
 argument_list|(
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 name|collapseField
@@ -7489,7 +7489,7 @@ name|getSorted
 argument_list|(
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 name|collapseField

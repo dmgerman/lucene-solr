@@ -727,7 +727,7 @@ name|liveDocs
 operator|=
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|getLiveDocs
@@ -1295,7 +1295,7 @@ name|getOrdTermsEnum
 argument_list|(
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|)
 expr_stmt|;

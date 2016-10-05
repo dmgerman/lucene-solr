@@ -465,7 +465,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 name|proto
@@ -3701,7 +3701,7 @@ name|getSortedSet
 argument_list|(
 name|currentSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 literal|"f0_ws"
@@ -3716,7 +3716,7 @@ name|getSortedSet
 argument_list|(
 name|currentSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 literal|"f1_ws"
@@ -3731,7 +3731,7 @@ name|getSortedSet
 argument_list|(
 name|currentSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 literal|"f2_ws"
@@ -3746,7 +3746,7 @@ name|getSortedSet
 argument_list|(
 name|currentSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 literal|"f3_ws"
@@ -3761,7 +3761,7 @@ name|getSortedSet
 argument_list|(
 name|currentSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 literal|"f4_ws"
@@ -3776,7 +3776,7 @@ name|getSortedSet
 argument_list|(
 name|currentSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 literal|"f5_ws"
@@ -3791,7 +3791,7 @@ name|getSortedSet
 argument_list|(
 name|currentSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 literal|"f6_ws"
@@ -3806,7 +3806,7 @@ name|getSortedSet
 argument_list|(
 name|currentSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 literal|"f7_ws"
@@ -3821,7 +3821,7 @@ name|getSortedSet
 argument_list|(
 name|currentSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 literal|"f8_ws"
@@ -3836,7 +3836,7 @@ name|getSortedSet
 argument_list|(
 name|currentSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 literal|"f9_ws"

@@ -1856,7 +1856,7 @@ name|fromFields
 init|=
 name|fromSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|fields
@@ -1873,7 +1873,7 @@ name|fromFields
 else|:
 name|toSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|fields
@@ -2040,7 +2040,7 @@ name|fromLiveDocs
 init|=
 name|fromSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|getLiveDocs
@@ -2057,7 +2057,7 @@ name|fromLiveDocs
 else|:
 name|toSearcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|getLiveDocs

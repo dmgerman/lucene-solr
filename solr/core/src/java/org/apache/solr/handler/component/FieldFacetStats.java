@@ -335,7 +335,7 @@ name|topLevelReader
 operator|=
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 expr_stmt|;
 name|valueSource

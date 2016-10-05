@@ -1576,7 +1576,7 @@ name|reader
 init|=
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 decl_stmt|;
 name|FieldType
@@ -1663,7 +1663,7 @@ name|ReaderWrapper
 argument_list|(
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 name|field
@@ -2741,7 +2741,7 @@ name|ReaderWrapper
 argument_list|(
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|,
 name|field

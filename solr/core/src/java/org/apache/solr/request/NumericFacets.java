@@ -1891,7 +1891,7 @@ name|terms
 init|=
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|terms
@@ -2290,7 +2290,7 @@ name|terms
 init|=
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|terms

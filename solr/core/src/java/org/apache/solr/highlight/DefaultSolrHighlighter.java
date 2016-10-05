@@ -1585,7 +1585,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|fields
@@ -2386,7 +2386,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|)
 decl_stmt|;

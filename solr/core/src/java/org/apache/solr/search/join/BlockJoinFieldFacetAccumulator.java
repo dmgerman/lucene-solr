@@ -394,7 +394,7 @@ name|topSSDV
 operator|=
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|getSortedSetDocValues
@@ -433,7 +433,7 @@ name|single
 init|=
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|getSortedDocValues

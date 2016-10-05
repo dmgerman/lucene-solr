@@ -498,7 +498,7 @@ operator|)
 name|o
 operator|)
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 expr_stmt|;
 block|}

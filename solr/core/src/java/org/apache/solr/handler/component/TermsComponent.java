@@ -893,7 +893,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 decl_stmt|;
 name|Fields
