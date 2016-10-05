@@ -3832,7 +3832,9 @@ argument_list|,
 name|HttpClientUtil
 operator|.
 name|createNewHttpClientRequestContext
-argument_list|()
+argument_list|(
+name|cores
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|int

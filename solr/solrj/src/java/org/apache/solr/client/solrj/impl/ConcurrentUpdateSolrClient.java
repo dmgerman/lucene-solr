@@ -1750,7 +1750,9 @@ argument_list|,
 name|HttpClientUtil
 operator|.
 name|createNewHttpClientRequestContext
-argument_list|()
+argument_list|(
+name|scheduler
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|rspBody

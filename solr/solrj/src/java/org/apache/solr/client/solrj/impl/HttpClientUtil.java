@@ -1135,6 +1135,19 @@ name|createClient
 argument_list|(
 name|params
 argument_list|,
+name|createPoolingConnectionManager
+argument_list|()
+argument_list|)
+return|;
+block|}
+comment|/** test usage subject to change @lucene.experimental */
+DECL|method|createPoolingConnectionManager
+specifier|static
+name|PoolingHttpClientConnectionManager
+name|createPoolingConnectionManager
+parameter_list|()
+block|{
+return|return
 operator|new
 name|PoolingHttpClientConnectionManager
 argument_list|(
@@ -1142,7 +1155,6 @@ name|schemaRegistryProvider
 operator|.
 name|getSchemaRegistry
 argument_list|()
-argument_list|)
 argument_list|)
 return|;
 block|}
@@ -2146,7 +2158,9 @@ operator|=
 name|httpClientContextBuilder
 expr_stmt|;
 block|}
-comment|/**    *     */
+comment|/**    * @deprecated Use {@link #createNewHttpClientRequestContext(Object)}    */
+annotation|@
+name|Deprecated
 DECL|method|createNewHttpClientRequestContext
 specifier|public
 specifier|static
@@ -2158,7 +2172,29 @@ return|return
 name|httpClientRequestContextBuilder
 operator|.
 name|createContext
-argument_list|()
+argument_list|(
+literal|null
+argument_list|)
+return|;
+block|}
+comment|/**    * Create a HttpClientContext object    *    * If the client is going to be re-used, then you should pass in an object that    * can be used by internal connection pools as a cache key.  This is particularly    * important if client authentication is enabled, as SSL connections will not    * be re-used if no cache key is provided.    *    * @param cacheKey an Object to be used as a cache key for pooling connections    */
+DECL|method|createNewHttpClientRequestContext
+specifier|public
+specifier|static
+name|HttpClientContext
+name|createNewHttpClientRequestContext
+parameter_list|(
+name|Object
+name|cacheKey
+parameter_list|)
+block|{
+return|return
+name|httpClientRequestContextBuilder
+operator|.
+name|createContext
+argument_list|(
+name|cacheKey
+argument_list|)
 return|;
 block|}
 DECL|method|createDefaultRequestConfigBuilder
