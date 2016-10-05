@@ -1378,7 +1378,7 @@ block|}
 return|;
 block|}
 DECL|method|getNumericDocsWithField
-specifier|private
+specifier|public
 name|Bits
 name|getNumericDocsWithField
 parameter_list|(

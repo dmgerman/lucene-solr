@@ -709,7 +709,6 @@ annotation|@
 name|Override
 DECL|method|normsFormat
 specifier|public
-specifier|final
 name|NormsFormat
 name|normsFormat
 parameter_list|()

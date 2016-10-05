@@ -178,20 +178,6 @@ name|Accountable
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Bits
-import|;
-end_import
-
 begin_comment
 comment|/**  * plain-text norms format.  *<p>  *<b>FOR RECREATIONAL USE ONLY</b>  *   * @lucene.experimental  */
 end_comment
@@ -310,14 +296,11 @@ return|return
 operator|new
 name|LegacyNumericDocValuesWrapper
 argument_list|(
-operator|new
-name|Bits
-operator|.
-name|MatchAllBits
-argument_list|(
 name|impl
 operator|.
-name|maxDoc
+name|getNumericDocsWithField
+argument_list|(
+name|field
 argument_list|)
 argument_list|,
 name|impl
@@ -488,6 +471,8 @@ argument_list|,
 name|impl
 operator|.
 name|numDocs
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;

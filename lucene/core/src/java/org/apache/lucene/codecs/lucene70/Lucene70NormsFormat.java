@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene53
+DECL|package|org.apache.lucene.codecs.lucene70
 package|package
 name|org
 operator|.
@@ -14,7 +14,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene53
+name|lucene70
 package|;
 end_package
 
@@ -127,21 +127,21 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Lucene 5.3 Score normalization format.  *<p>  * Encodes normalization values by encoding each value with the minimum  * number of bytes needed to represent the range (which can be zero).  *<p>  * Files:  *<ol>  *<li><tt>.nvd</tt>: Norms data</li>  *<li><tt>.nvm</tt>: Norms metadata</li>  *</ol>  *<ol>  *<li><a name="nvm"></a>  *<p>The Norms metadata or .nvm file.</p>  *<p>For each norms field, this stores metadata, such as the offset into the   *      Norms data (.nvd)</p>  *<p>Norms metadata (.dvm) --&gt; Header,&lt;Entry&gt;<sup>NumFields</sup>,Footer</p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>Entry --&gt; FieldNumber,BytesPerValue, Address</li>  *<li>FieldNumber --&gt; {@link DataOutput#writeVInt vInt}</li>  *<li>BytesPerValue --&gt; {@link DataOutput#writeByte byte}</li>  *<li>Offset --&gt; {@link DataOutput#writeLong Int64}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *<p>FieldNumber of -1 indicates the end of metadata.</p>  *<p>Offset is the pointer to the start of the data in the norms data (.nvd), or the singleton value   *      when BytesPerValue = 0</p>  *<li><a name="nvd"></a>  *<p>The Norms data or .nvd file.</p>  *<p>For each Norms field, this stores the actual per-document data (the heavy-lifting)</p>  *<p>Norms data (.nvd) --&gt; Header,&lt; Data&gt;<sup>NumFields</sup>,Footer</p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>Data --&gt; {@link DataOutput#writeByte(byte) byte}<sup>MaxDoc * BytesPerValue</sup></li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *</ol>  * @lucene.experimental  */
+comment|/**  * Lucene 7.0 Score normalization format.  *<p>  * Encodes normalization values by encoding each value with the minimum  * number of bytes needed to represent the range (which can be zero).  *<p>  * Files:  *<ol>  *<li><tt>.nvd</tt>: Norms data</li>  *<li><tt>.nvm</tt>: Norms metadata</li>  *</ol>  *<ol>  *<li><a name="nvm"></a>  *<p>The Norms metadata or .nvm file.</p>  *<p>For each norms field, this stores metadata, such as the offset into the   *      Norms data (.nvd)</p>  *<p>Norms metadata (.dvm) --&gt; Header,&lt;Entry&gt;<sup>NumFields</sup>,Footer</p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>Entry --&gt; FieldNumber, DocsWithFieldAddress, NumDocsWithField, BytesPerNorm, NormsAddress</li>  *<li>FieldNumber --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>DocsWithFieldAddress --&gt; {@link DataOutput#writeLong Int64}</li>  *<li>NumDocsWithField --&gt; {@link DataOutput#writeInt Int32}</li>  *<li>BytesPerNorm --&gt; {@link DataOutput#writeByte byte}</li>  *<li>NormsAddress --&gt; {@link DataOutput#writeLong Int64}</li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *<p>FieldNumber of -1 indicates the end of metadata.</p>  *<p>NormsAddress is the pointer to the start of the data in the norms data (.nvd), or the singleton value   *      when BytesPerValue = 0. If BytesPerValue is different from 0 then there are NumDocsWithField values  *      to read at that offset.</p>  *<p>DocsWithFieldAddress is the pointer to the start of the bit set containing documents that have a norm  *      in the norms data (.nvd), or -2 if no documents have a norm value, or -1 if all documents have a norm  *      value.</p>  *<li><a name="nvd"></a>  *<p>The Norms data or .nvd file.</p>  *<p>For each Norms field, this stores the actual per-document data (the heavy-lifting)</p>  *<p>Norms data (.nvd) --&gt; Header,&lt; Data&gt;<sup>NumFields</sup>,Footer</p>  *<ul>  *<li>Header --&gt; {@link CodecUtil#writeIndexHeader IndexHeader}</li>  *<li>DocsWithFieldData --&gt; Bit set of MaxDoc bits</li>  *<li>NormsData --&gt; {@link DataOutput#writeByte(byte) byte}<sup>NumDocsWithField * BytesPerValue</sup></li>  *<li>Footer --&gt; {@link CodecUtil#writeFooter CodecFooter}</li>  *</ul>  *</ol>  * @lucene.experimental  */
 end_comment
 
 begin_class
-DECL|class|Lucene53NormsFormat
+DECL|class|Lucene70NormsFormat
 specifier|public
 class|class
-name|Lucene53NormsFormat
+name|Lucene70NormsFormat
 extends|extends
 name|NormsFormat
 block|{
 comment|/** Sole Constructor */
-DECL|method|Lucene53NormsFormat
+DECL|method|Lucene70NormsFormat
 specifier|public
-name|Lucene53NormsFormat
+name|Lucene70NormsFormat
 parameter_list|()
 block|{}
 annotation|@
@@ -159,7 +159,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene53NormsConsumer
+name|Lucene70NormsConsumer
 argument_list|(
 name|state
 argument_list|,
@@ -188,7 +188,7 @@ name|IOException
 block|{
 return|return
 operator|new
-name|Lucene53NormsProducer
+name|Lucene70NormsProducer
 argument_list|(
 name|state
 argument_list|,
@@ -209,7 +209,7 @@ specifier|final
 name|String
 name|DATA_CODEC
 init|=
-literal|"Lucene53NormsData"
+literal|"Lucene70NormsData"
 decl_stmt|;
 DECL|field|DATA_EXTENSION
 specifier|private
@@ -227,7 +227,7 @@ specifier|final
 name|String
 name|METADATA_CODEC
 init|=
-literal|"Lucene53NormsMetadata"
+literal|"Lucene70NormsMetadata"
 decl_stmt|;
 DECL|field|METADATA_EXTENSION
 specifier|private

@@ -398,6 +398,8 @@ argument_list|,
 name|normsProducer
 argument_list|,
 name|maxDoc
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;

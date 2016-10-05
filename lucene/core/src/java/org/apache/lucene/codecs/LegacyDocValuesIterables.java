@@ -1401,6 +1401,9 @@ parameter_list|,
 specifier|final
 name|int
 name|maxDoc
+parameter_list|,
+name|boolean
+name|missingAsZero
 parameter_list|)
 block|{
 return|return
@@ -1562,12 +1565,23 @@ argument_list|)
 throw|;
 block|}
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|missingAsZero
+condition|)
 block|{
 comment|// Unlike NumericDocValues, norms should return for missing values:
 name|result
 operator|=
 literal|0
+expr_stmt|;
+block|}
+else|else
+block|{
+name|result
+operator|=
+literal|null
 expr_stmt|;
 block|}
 return|return

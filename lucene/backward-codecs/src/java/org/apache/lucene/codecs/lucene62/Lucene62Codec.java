@@ -241,24 +241,6 @@ operator|.
 name|lucene50
 operator|.
 name|Lucene50StoredFieldsFormat
-operator|.
-name|Mode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|lucene50
-operator|.
-name|Lucene50StoredFieldsFormat
 import|;
 end_import
 
@@ -275,6 +257,24 @@ operator|.
 name|lucene50
 operator|.
 name|Lucene50TermVectorsFormat
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|lucene50
+operator|.
+name|Lucene50StoredFieldsFormat
+operator|.
+name|Mode
 import|;
 end_import
 
@@ -723,7 +723,6 @@ annotation|@
 name|Override
 DECL|method|normsFormat
 specifier|public
-specifier|final
 name|NormsFormat
 name|normsFormat
 parameter_list|()

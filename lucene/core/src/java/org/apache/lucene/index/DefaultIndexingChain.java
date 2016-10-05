@@ -3515,14 +3515,40 @@ name|omitsNorms
 argument_list|()
 operator|==
 literal|false
-operator|&&
+condition|)
+block|{
+name|long
+name|normValue
+decl_stmt|;
+if|if
+condition|(
 name|invertState
 operator|.
 name|length
-operator|!=
+operator|==
 literal|0
 condition|)
 block|{
+comment|// the field exists in this document, but it did not have
+comment|// any indexed tokens, so we assign a default value of zero
+comment|// to the norm
+name|normValue
+operator|=
+literal|0
+expr_stmt|;
+block|}
+else|else
+block|{
+name|normValue
+operator|=
+name|similarity
+operator|.
+name|computeNorm
+argument_list|(
+name|invertState
+argument_list|)
+expr_stmt|;
+block|}
 name|norms
 operator|.
 name|addValue
@@ -3531,12 +3557,7 @@ name|docState
 operator|.
 name|docID
 argument_list|,
-name|similarity
-operator|.
-name|computeNorm
-argument_list|(
-name|invertState
-argument_list|)
+name|normValue
 argument_list|)
 expr_stmt|;
 block|}
