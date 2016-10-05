@@ -2221,6 +2221,8 @@ specifier|public
 name|long
 name|longValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|assertThread
 argument_list|(

@@ -1052,6 +1052,8 @@ specifier|public
 name|long
 name|longValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|long
 name|bits
@@ -1106,6 +1108,8 @@ specifier|public
 name|long
 name|longValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|long
 name|bits

@@ -640,6 +640,8 @@ specifier|public
 name|long
 name|longValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|currentValues
@@ -1111,6 +1113,8 @@ specifier|public
 name|long
 name|longValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|currentValues

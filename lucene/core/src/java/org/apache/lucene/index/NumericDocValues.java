@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -56,6 +66,8 @@ specifier|abstract
 name|long
 name|longValue
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_class

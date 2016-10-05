@@ -971,6 +971,8 @@ specifier|public
 name|long
 name|longValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|// undo the numericutils sortability
 return|return
@@ -1133,6 +1135,8 @@ specifier|public
 name|long
 name|longValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|// undo the numericutils sortability
 return|return
