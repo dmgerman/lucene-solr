@@ -3019,6 +3019,21 @@ name|decref
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+name|boolean
+name|reloadCore
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+comment|// we have to be careful and do this after we know isFullCopyNeeded won't be flipped
+if|if
+condition|(
+operator|!
+name|isFullCopyNeeded
+condition|)
+block|{
 name|solrCore
 operator|.
 name|getUpdateHandler
@@ -3035,13 +3050,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-name|boolean
-name|reloadCore
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
 name|LOG
 operator|.
 name|info
