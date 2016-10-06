@@ -1940,12 +1940,45 @@ return|return
 name|jetty
 return|;
 block|}
+comment|/**    * @deprecated Use {@link #uploadConfigSet(Path, String)}    */
+annotation|@
+name|Deprecated
 DECL|method|uploadConfigDir
 specifier|public
 name|void
 name|uploadConfigDir
 parameter_list|(
 name|File
+name|configDir
+parameter_list|,
+name|String
+name|configName
+parameter_list|)
+throws|throws
+name|IOException
+throws|,
+name|KeeperException
+throws|,
+name|InterruptedException
+block|{
+name|uploadConfigSet
+argument_list|(
+name|configDir
+operator|.
+name|toPath
+argument_list|()
+argument_list|,
+name|configName
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Upload a config set    * @param configDir a path to the config set to upload    * @param configName the name to give the configset    */
+DECL|method|uploadConfigSet
+specifier|public
+name|void
+name|uploadConfigSet
+parameter_list|(
+name|Path
 name|configDir
 parameter_list|,
 name|String
@@ -1997,9 +2030,6 @@ operator|.
 name|uploadConfigDir
 argument_list|(
 name|configDir
-operator|.
-name|toPath
-argument_list|()
 argument_list|,
 name|configName
 argument_list|)
@@ -2069,6 +2099,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**    * @deprecated Use {@link CollectionAdminRequest#createCollection(String, String, int, int)}    */
+annotation|@
+name|Deprecated
 DECL|method|createCollection
 specifier|public
 name|NamedList
@@ -2121,6 +2154,9 @@ name|collectionProperties
 argument_list|)
 return|;
 block|}
+comment|/**    * @deprecated Use {@link CollectionAdminRequest#createCollection(String, String, int, int)}    */
+annotation|@
+name|Deprecated
 DECL|method|createCollection
 specifier|public
 name|NamedList
@@ -2313,6 +2349,9 @@ name|params
 argument_list|)
 return|;
 block|}
+comment|/**    * @deprecated use {@link CollectionAdminRequest#deleteCollection(String)}    */
+annotation|@
+name|Deprecated
 DECL|method|deleteCollection
 specifier|public
 name|NamedList

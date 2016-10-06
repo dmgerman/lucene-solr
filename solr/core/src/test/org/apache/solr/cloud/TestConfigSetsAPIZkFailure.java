@@ -1065,9 +1065,12 @@ expr_stmt|;
 block|}
 name|solrCluster
 operator|.
-name|uploadConfigDir
+name|uploadConfigSet
 argument_list|(
 name|tmpConfigDir
+operator|.
+name|toPath
+argument_list|()
 argument_list|,
 name|baseConfigSetName
 argument_list|)
