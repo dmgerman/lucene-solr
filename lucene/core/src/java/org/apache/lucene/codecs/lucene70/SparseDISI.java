@@ -70,20 +70,6 @@ name|IndexOutput
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
-name|RandomAccessInput
-import|;
-end_import
-
 begin_class
 DECL|class|SparseDISI
 specifier|final
@@ -268,7 +254,7 @@ name|cost
 decl_stmt|;
 DECL|field|slice
 specifier|final
-name|RandomAccessInput
+name|IndexInput
 name|slice
 decl_stmt|;
 DECL|field|doc
@@ -343,8 +329,10 @@ name|slice
 operator|=
 name|in
 operator|.
-name|randomAccessSlice
+name|slice
 argument_list|(
+literal|"docs"
+argument_list|,
 name|offset
 argument_list|,
 name|numWords
@@ -415,11 +403,7 @@ operator|=
 name|slice
 operator|.
 name|readLong
-argument_list|(
-name|i
-operator|<<
-literal|3
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|index
 operator|+=
@@ -475,11 +459,7 @@ operator|=
 name|slice
 operator|.
 name|readLong
-argument_list|(
-name|wordIndex
-operator|<<
-literal|3
-argument_list|)
+argument_list|()
 expr_stmt|;
 if|if
 condition|(
