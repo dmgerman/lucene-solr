@@ -731,13 +731,9 @@ block|{
 comment|/* The stream factory will always contain the zkUrl for the given collection      * Adds default streams with their corresponding function names. These      * defaults can be overridden or added to in the solrConfig in the stream      * RequestHandler def. Example config override      *<lst name="streamFunctions">      *<str name="group">org.apache.solr.client.solrj.io.stream.ReducerStream</str>      *<str name="count">org.apache.solr.client.solrj.io.stream.RecordCountStream</str>      *</lst>      * */
 name|String
 name|defaultCollection
-init|=
-literal|null
 decl_stmt|;
 name|String
 name|defaultZkhost
-init|=
-literal|null
 decl_stmt|;
 name|CoreContainer
 name|coreContainer
@@ -1170,6 +1166,8 @@ block|{
 name|Class
 argument_list|<
 name|?
+extends|extends
+name|Expressible
 argument_list|>
 name|clazz
 init|=
