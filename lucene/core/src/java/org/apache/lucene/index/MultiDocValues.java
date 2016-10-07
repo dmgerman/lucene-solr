@@ -1586,6 +1586,8 @@ specifier|public
 name|BytesRef
 name|binaryValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|currentValues
@@ -4650,6 +4652,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|int
 name|subIndex
@@ -5134,6 +5138,8 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|int
 name|subIndex

@@ -10297,6 +10297,8 @@ parameter_list|(
 name|BinaryDocValues
 name|bdv
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|BytesRef
 name|term

@@ -957,6 +957,8 @@ name|Integer
 argument_list|>
 name|getFacetValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|NamedList
 argument_list|<

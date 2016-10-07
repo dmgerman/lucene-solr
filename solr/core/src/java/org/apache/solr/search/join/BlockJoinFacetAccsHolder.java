@@ -394,6 +394,8 @@ DECL|method|getFacets
 name|NamedList
 name|getFacets
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|NamedList
 argument_list|<

@@ -525,6 +525,8 @@ parameter_list|,
 name|int
 name|topN
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|TopOrdAndIntQueue
 name|q
@@ -1368,6 +1370,8 @@ name|String
 modifier|...
 name|path
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(

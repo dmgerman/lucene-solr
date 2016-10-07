@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -63,13 +73,15 @@ specifier|protected
 name|BinaryDocValues
 parameter_list|()
 block|{}
-comment|/**    * Returns the numeric value for the current document ID.    * @return numeric value    */
+comment|/**    * Returns the binary value for the current document ID.    * @return binary value    */
 DECL|method|binaryValue
 specifier|public
 specifier|abstract
 name|BytesRef
 name|binaryValue
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_class

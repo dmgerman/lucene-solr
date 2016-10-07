@@ -1894,6 +1894,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|in
@@ -2184,6 +2186,8 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|in

@@ -152,6 +152,8 @@ specifier|public
 name|BytesRef
 name|binaryValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|in

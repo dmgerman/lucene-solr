@@ -694,6 +694,8 @@ specifier|public
 name|SearchGroupsFieldCommandResult
 name|result
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 specifier|final
 name|Collection

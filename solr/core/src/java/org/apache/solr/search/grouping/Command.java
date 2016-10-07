@@ -95,6 +95,8 @@ DECL|method|result
 name|T
 name|result
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * @return The key of this command to uniquely identify itself    */
 DECL|method|getKey

@@ -105,6 +105,8 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Returns the number of unique values.    * @return number of unique values in this SortedDocValues. This is    *         also equivalent to one plus the maximum ordinal.    */
 DECL|method|getValueCount
@@ -123,6 +125,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|long
 name|low

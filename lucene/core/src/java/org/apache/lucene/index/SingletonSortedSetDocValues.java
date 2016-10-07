@@ -272,6 +272,8 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|// cast is ok: single-valued cannot exceed Integer.MAX_VALUE
 return|return
@@ -311,6 +313,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|in

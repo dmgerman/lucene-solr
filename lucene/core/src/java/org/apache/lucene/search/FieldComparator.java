@@ -2909,6 +2909,8 @@ specifier|final
 name|int
 name|bottom
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|bottomSlot
 operator|=

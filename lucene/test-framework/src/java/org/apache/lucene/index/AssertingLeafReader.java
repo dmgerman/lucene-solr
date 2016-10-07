@@ -2527,6 +2527,8 @@ specifier|public
 name|BytesRef
 name|binaryValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|assertThread
 argument_list|(
@@ -2885,6 +2887,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|assertThread
 argument_list|(
@@ -2965,6 +2969,8 @@ specifier|public
 name|BytesRef
 name|binaryValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|assertThread
 argument_list|(
@@ -3002,6 +3008,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|assertThread
 argument_list|(
@@ -3715,6 +3723,8 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|assertThread
 argument_list|(
@@ -3798,6 +3808,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|assertThread
 argument_list|(

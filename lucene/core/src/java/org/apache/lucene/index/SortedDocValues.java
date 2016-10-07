@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -67,6 +77,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 DECL|field|empty
 specifier|private
@@ -85,6 +97,8 @@ specifier|public
 name|BytesRef
 name|binaryValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|int
 name|ord
@@ -131,6 +145,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|int
 name|low

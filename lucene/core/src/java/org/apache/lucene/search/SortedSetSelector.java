@@ -403,6 +403,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|in
@@ -441,6 +443,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -628,6 +632,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|in
@@ -666,6 +672,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -885,6 +893,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|in
@@ -923,6 +933,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -1205,6 +1217,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|in
@@ -1243,6 +1257,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(

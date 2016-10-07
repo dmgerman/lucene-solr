@@ -414,6 +414,8 @@ parameter_list|(
 name|int
 name|slot
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(

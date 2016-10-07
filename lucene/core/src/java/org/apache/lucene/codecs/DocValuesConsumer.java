@@ -1441,6 +1441,8 @@ specifier|public
 name|BytesRef
 name|binaryValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|current
@@ -2671,6 +2673,8 @@ literal|null
 condition|)
 block|{
 return|return
+name|docID
+operator|=
 name|NO_MORE_DOCS
 return|;
 block|}
@@ -2778,6 +2782,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|int
 name|segmentNumber
@@ -3663,6 +3669,8 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|int
 name|segmentNumber

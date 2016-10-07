@@ -45,6 +45,8 @@ specifier|final
 name|int
 name|slot
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Compare the bottom of the queue with this doc.  This will    * only invoked after setBottom has been called.  This    * should return the same result as {@link    * FieldComparator#compare(int,int)}} as if bottom were slot1 and the new    * document were slot 2.    *        *<p>For a search that hits many results, this method    * will be the hotspot (invoked by far the most    * frequently).</p>    *     * @param doc that was hit    * @return any {@code N< 0} if the doc's value is sorted after    * the bottom entry (not competitive), any {@code N> 0} if the    * doc's value is sorted before the bottom entry and {@code 0} if    * they are equal.    */
 DECL|method|compareBottom

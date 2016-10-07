@@ -429,6 +429,8 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 specifier|final
 name|BytesRef

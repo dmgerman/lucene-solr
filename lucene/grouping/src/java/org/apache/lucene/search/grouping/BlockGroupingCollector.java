@@ -589,6 +589,8 @@ specifier|private
 name|void
 name|processGroup
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|totalGroupCount
 operator|++

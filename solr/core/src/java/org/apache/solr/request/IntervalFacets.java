@@ -3017,6 +3017,8 @@ parameter_list|(
 name|SortedDocValues
 name|sdv
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -3147,6 +3149,8 @@ parameter_list|(
 name|SortedSetDocValues
 name|sdv
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(

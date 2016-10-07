@@ -1362,6 +1362,8 @@ parameter_list|,
 name|int
 name|facetOrd
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
