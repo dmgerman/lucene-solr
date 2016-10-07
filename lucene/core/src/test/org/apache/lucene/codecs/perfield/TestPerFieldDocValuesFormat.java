@@ -1091,7 +1091,8 @@ decl_stmt|;
 name|IndexWriterConfig
 name|iwc
 init|=
-name|newIndexWriterConfig
+operator|new
+name|IndexWriterConfig
 argument_list|()
 decl_stmt|;
 name|iwc
