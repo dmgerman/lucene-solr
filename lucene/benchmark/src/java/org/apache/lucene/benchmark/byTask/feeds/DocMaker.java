@@ -320,8 +320,22 @@ name|TextField
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|IndexOptions
+import|;
+end_import
+
 begin_comment
-comment|/**  * Creates {@link Document} objects. Uses a {@link ContentSource} to generate  * {@link DocData} objects. Supports the following parameters:  *<ul>  *<li><b>content.source</b> - specifies the {@link ContentSource} class to use  * (default<b>SingleDocSource</b>).  *<li><b>doc.stored</b> - specifies whether fields should be stored (default  *<b>false</b>).  *<li><b>doc.body.stored</b> - specifies whether the body field should be stored (default  * =<b>doc.stored</b>).  *<li><b>doc.tokenized</b> - specifies whether fields should be tokenized  * (default<b>true</b>).  *<li><b>doc.body.tokenized</b> - specifies whether the  * body field should be tokenized (default =<b>doc.tokenized</b>).  *<li><b>doc.tokenized.norms</b> - specifies whether norms should be stored in  * the index or not. (default<b>false</b>).  *<li><b>doc.body.tokenized.norms</b> - specifies whether norms should be  * stored in the index for the body field. This can be set to true, while  *<code>doc.tokenized.norms</code> is set to false, to allow norms storing just  * for the body field. (default<b>true</b>).  *<li><b>doc.term.vector</b> - specifies whether term vectors should be stored  * for fields (default<b>false</b>).  *<li><b>doc.term.vector.positions</b> - specifies whether term vectors should  * be stored with positions (default<b>false</b>).  *<li><b>doc.term.vector.offsets</b> - specifies whether term vectors should be  * stored with offsets (default<b>false</b>).  *<li><b>doc.store.body.bytes</b> - specifies whether to store the raw bytes of  * the document's content in the document (default<b>false</b>).  *<li><b>doc.reuse.fields</b> - specifies whether Field and Document objects  * should be reused (default<b>true</b>).  *<li><b>doc.index.props</b> - specifies whether the properties returned by  *<li><b>doc.random.id.limit</b> - if specified, docs will be assigned random  * IDs from 0 to this limit.  This is useful with UpdateDoc  * for testing performance of IndexWriter.updateDocument.  * {@link DocData#getProps()} will be indexed. (default<b>false</b>).  *</ul>  */
+comment|/**  * Creates {@link Document} objects. Uses a {@link ContentSource} to generate  * {@link DocData} objects. Supports the following parameters:  *<ul>  *<li><b>content.source</b> - specifies the {@link ContentSource} class to use  * (default<b>SingleDocSource</b>).  *<li><b>doc.stored</b> - specifies whether fields should be stored (default  *<b>false</b>).  *<li><b>doc.body.stored</b> - specifies whether the body field should be stored (default  * =<b>doc.stored</b>).  *<li><b>doc.tokenized</b> - specifies whether fields should be tokenized  * (default<b>true</b>).  *<li><b>doc.body.tokenized</b> - specifies whether the  * body field should be tokenized (default =<b>doc.tokenized</b>).  *<li><b>doc.body.offsets</b> - specifies whether to add offsets into the postings index  *  for the body field.  It is useful for highlighting.  (default<b>false</b>)  *<li><b>doc.tokenized.norms</b> - specifies whether norms should be stored in  * the index or not. (default<b>false</b>).  *<li><b>doc.body.tokenized.norms</b> - specifies whether norms should be  * stored in the index for the body field. This can be set to true, while  *<code>doc.tokenized.norms</code> is set to false, to allow norms storing just  * for the body field. (default<b>true</b>).  *<li><b>doc.term.vector</b> - specifies whether term vectors should be stored  * for fields (default<b>false</b>).  *<li><b>doc.term.vector.positions</b> - specifies whether term vectors should  * be stored with positions (default<b>false</b>).  *<li><b>doc.term.vector.offsets</b> - specifies whether term vectors should be  * stored with offsets (default<b>false</b>).  *<li><b>doc.store.body.bytes</b> - specifies whether to store the raw bytes of  * the document's content in the document (default<b>false</b>).  *<li><b>doc.reuse.fields</b> - specifies whether Field and Document objects  * should be reused (default<b>true</b>).  *<li><b>doc.index.props</b> - specifies whether the properties returned by  *<li><b>doc.random.id.limit</b> - if specified, docs will be assigned random  * IDs from 0 to this limit.  This is useful with UpdateDoc  * for testing performance of IndexWriter.updateDocument.  * {@link DocData#getProps()} will be indexed. (default<b>false</b>).  *</ul>  */
 end_comment
 
 begin_class
@@ -2323,6 +2337,18 @@ literal|true
 argument_list|)
 decl_stmt|;
 name|boolean
+name|bodyOffsets
+init|=
+name|config
+operator|.
+name|get
+argument_list|(
+literal|"doc.body.offsets"
+argument_list|,
+literal|false
+argument_list|)
+decl_stmt|;
+name|boolean
 name|termVec
 init|=
 name|config
@@ -2448,6 +2474,23 @@ operator|!
 name|bodyNorms
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|bodyTokenized
+operator|&&
+name|bodyOffsets
+condition|)
+block|{
+name|bodyValType
+operator|.
+name|setIndexOptions
+argument_list|(
+name|IndexOptions
+operator|.
+name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
+argument_list|)
+expr_stmt|;
+block|}
 name|bodyValType
 operator|.
 name|setStoreTermVectors

@@ -1494,6 +1494,14 @@ argument_list|(
 name|indexReader
 argument_list|)
 expr_stmt|;
+comment|// TODO Some day we should make the query cache in this module configurable and control clearing the cache
+name|indexSearcher
+operator|.
+name|setQueryCache
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 else|else
 block|{
