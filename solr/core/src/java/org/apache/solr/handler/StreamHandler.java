@@ -1218,6 +1218,15 @@ name|ClassifyStream
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"fetch"
+argument_list|,
+name|FetchStream
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
