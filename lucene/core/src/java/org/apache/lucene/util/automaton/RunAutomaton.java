@@ -29,7 +29,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Finite-state automaton with fast run operation.  *   * @lucene.experimental  */
+comment|/**  * Finite-state automaton with fast run operation.  The initial state is always 0.  *   * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -59,11 +59,6 @@ specifier|final
 name|boolean
 index|[]
 name|accept
-decl_stmt|;
-DECL|field|initial
-specifier|final
-name|int
-name|initial
 decl_stmt|;
 DECL|field|transitions
 specifier|final
@@ -107,17 +102,7 @@ name|b
 operator|.
 name|append
 argument_list|(
-literal|"initial state: "
-argument_list|)
-operator|.
-name|append
-argument_list|(
-name|initial
-argument_list|)
-operator|.
-name|append
-argument_list|(
-literal|"\n"
+literal|"initial state: 0\n"
 argument_list|)
 expr_stmt|;
 for|for
@@ -341,18 +326,6 @@ name|state
 index|]
 return|;
 block|}
-comment|/**    * Returns initial state.    */
-DECL|method|getInitialState
-specifier|public
-specifier|final
-name|int
-name|getInitialState
-parameter_list|()
-block|{
-return|return
-name|initial
-return|;
-block|}
 comment|/**    * Returns array of codepoint class interval start points. The array should    * not be modified by the caller.    */
 DECL|method|getCharIntervals
 specifier|public
@@ -466,10 +439,6 @@ name|a
 operator|.
 name|getStartPoints
 argument_list|()
-expr_stmt|;
-name|initial
-operator|=
-literal|0
 expr_stmt|;
 name|size
 operator|=
@@ -757,14 +726,6 @@ name|prime
 operator|*
 name|result
 operator|+
-name|initial
-expr_stmt|;
-name|result
-operator|=
-name|prime
-operator|*
-name|result
-operator|+
 name|maxInterval
 expr_stmt|;
 name|result
@@ -839,17 +800,6 @@ name|RunAutomaton
 operator|)
 name|obj
 decl_stmt|;
-if|if
-condition|(
-name|initial
-operator|!=
-name|other
-operator|.
-name|initial
-condition|)
-return|return
-literal|false
-return|;
 if|if
 condition|(
 name|maxInterval

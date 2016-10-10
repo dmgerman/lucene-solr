@@ -4067,10 +4067,7 @@ name|frame
 operator|.
 name|state
 operator|=
-name|fsa
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 expr_stmt|;
 return|return
 name|frame

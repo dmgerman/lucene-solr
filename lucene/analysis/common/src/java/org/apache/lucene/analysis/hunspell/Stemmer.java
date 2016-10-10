@@ -3025,10 +3025,7 @@ decl_stmt|;
 name|int
 name|state
 init|=
-name|pattern
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 decl_stmt|;
 for|for
 control|(

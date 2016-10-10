@@ -1235,10 +1235,7 @@ comment|//if (DEBUG) System.out.println("CA.floor input=" + input.utf8ToString()
 name|int
 name|state
 init|=
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 decl_stmt|;
 comment|// Special case empty string:
 if|if

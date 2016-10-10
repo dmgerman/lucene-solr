@@ -88,7 +88,7 @@ block|{
 name|int
 name|p
 init|=
-name|initial
+literal|0
 decl_stmt|;
 name|int
 name|l
@@ -177,7 +177,7 @@ block|{
 name|int
 name|p
 init|=
-name|initial
+literal|0
 decl_stmt|;
 name|int
 name|l

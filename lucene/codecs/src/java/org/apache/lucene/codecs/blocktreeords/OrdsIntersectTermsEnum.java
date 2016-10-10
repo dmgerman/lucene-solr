@@ -509,10 +509,7 @@ name|f
 operator|.
 name|setState
 argument_list|(
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 argument_list|)
 expr_stmt|;
 name|f

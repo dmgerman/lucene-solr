@@ -1179,12 +1179,7 @@ block|{
 name|int
 name|state
 init|=
-name|c
-operator|.
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 decl_stmt|;
 for|for
 control|(
@@ -2034,12 +2029,7 @@ block|{
 name|int
 name|state
 init|=
-name|c
-operator|.
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 decl_stmt|;
 for|for
 control|(

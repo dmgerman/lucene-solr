@@ -449,10 +449,7 @@ name|runAutomaton
 operator|.
 name|isAccept
 argument_list|(
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 argument_list|)
 condition|)
 block|{
@@ -524,10 +521,7 @@ assert|;
 name|int
 name|state
 init|=
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 decl_stmt|;
 assert|assert
 name|state
@@ -791,10 +785,7 @@ name|setIntAt
 argument_list|(
 literal|0
 argument_list|,
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 argument_list|)
 expr_stmt|;
 while|while
