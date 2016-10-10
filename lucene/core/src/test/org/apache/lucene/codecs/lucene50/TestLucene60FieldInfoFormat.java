@@ -61,14 +61,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests Lucene50FieldInfoFormat  */
+comment|/**  * Tests Lucene60FieldInfoFormat  */
 end_comment
 
 begin_class
-DECL|class|TestLucene50FieldInfoFormat
+DECL|class|TestLucene60FieldInfoFormat
 specifier|public
 class|class
-name|TestLucene50FieldInfoFormat
+name|TestLucene60FieldInfoFormat
 extends|extends
 name|BaseFieldInfoFormatTestCase
 block|{
