@@ -112,7 +112,9 @@ decl_stmt|;
 name|float
 name|scoreMax
 init|=
-literal|0
+name|Float
+operator|.
+name|NEGATIVE_INFINITY
 decl_stmt|;
 for|for
 control|(
