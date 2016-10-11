@@ -34,6 +34,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Collection
 import|;
 end_import
@@ -796,9 +806,61 @@ operator|.
 name|bucketWasMissing
 argument_list|()
 decl_stmt|;
+comment|// Was this whole facet missing (i.e. inside a bucket that was missing)?
+comment|// TODO: add information in sub-shard response about dropped buckets (i.e. not all returned due to limit)
+comment|// If we know we've seen all the buckets from a shard, then we don't have to add to leafBuckets or missingBuckets, only skipBuckets
+name|boolean
+name|isCommandPartial
+init|=
+name|freq
+operator|.
+name|returnsPartial
+argument_list|()
+decl_stmt|;
+name|boolean
+name|returnedAllBuckets
+init|=
+operator|!
+name|isCommandPartial
+operator|&&
+operator|!
+name|thisMissing
+decl_stmt|;
+comment|// did the shard return all of the possible buckets?
+if|if
+condition|(
+name|returnedAllBuckets
+operator|&&
+name|tags
+operator|.
+name|isEmpty
+argument_list|()
+operator|&&
+name|tagsWithPartial
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
+block|{
+comment|// this facet returned all possible buckets, and there were no sub-facets with partial results
+comment|// and sub-facets that require refining
+return|return
+literal|null
+return|;
+block|}
 name|int
 name|num
 init|=
+name|freq
+operator|.
+name|limit
+operator|<
+literal|0
+condition|?
+name|Integer
+operator|.
+name|MAX_VALUE
+else|:
 call|(
 name|int
 call|)
@@ -890,7 +952,7 @@ name|missingBuckets
 init|=
 literal|null
 decl_stmt|;
-comment|// "_m" missing buckets that need to specify values for partial facets
+comment|// "_m" missing buckets that need to specify values for partial facets.. each entry is [bucketval, subs]
 name|ArrayList
 argument_list|<
 name|Object
@@ -899,7 +961,7 @@ name|skipBuckets
 init|=
 literal|null
 decl_stmt|;
-comment|// "_s" present buckets that we need to recurse into because children facets have refinement requirements
+comment|// "_s" present buckets that we need to recurse into because children facets have refinement requirements. each entry is [bucketval, subs]
 for|for
 control|(
 name|FacetBucket
@@ -1031,7 +1093,16 @@ name|missingBuckets
 operator|.
 name|add
 argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|bucket
+operator|.
+name|bucketValue
+argument_list|,
 name|bucketRefinement
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1120,7 +1191,16 @@ name|skipBuckets
 operator|.
 name|add
 argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|bucket
+operator|.
+name|bucketValue
+argument_list|,
 name|bucketRefinement
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
