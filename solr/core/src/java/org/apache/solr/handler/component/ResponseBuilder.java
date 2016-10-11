@@ -1808,14 +1808,14 @@ name|void
 name|setSortSpec
 parameter_list|(
 name|SortSpec
-name|sort
+name|sortSpec
 parameter_list|)
 block|{
 name|this
 operator|.
 name|sortSpec
 operator|=
-name|sort
+name|sortSpec
 expr_stmt|;
 block|}
 DECL|method|getGroupingSpec
