@@ -1457,10 +1457,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|f
-operator|.
-name|fieldType
-argument_list|()
+name|type
 operator|.
 name|setIndexOptions
 argument_list|(
@@ -1469,10 +1466,7 @@ operator|.
 name|NONE
 argument_list|)
 expr_stmt|;
-name|f
-operator|.
-name|fieldType
-argument_list|()
+name|type
 operator|.
 name|setTokenized
 argument_list|(

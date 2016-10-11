@@ -184,7 +184,7 @@ comment|/**    * Field's type    */
 DECL|field|type
 specifier|protected
 specifier|final
-name|FieldType
+name|IndexableFieldType
 name|type
 decl_stmt|;
 comment|/**    * Field's name    */
@@ -222,7 +222,7 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|FieldType
+name|IndexableFieldType
 name|type
 parameter_list|)
 block|{
@@ -280,7 +280,7 @@ parameter_list|,
 name|Reader
 name|reader
 parameter_list|,
-name|FieldType
+name|IndexableFieldType
 name|type
 parameter_list|)
 block|{
@@ -401,7 +401,7 @@ parameter_list|,
 name|TokenStream
 name|tokenStream
 parameter_list|,
-name|FieldType
+name|IndexableFieldType
 name|type
 parameter_list|)
 block|{
@@ -514,7 +514,7 @@ name|byte
 index|[]
 name|value
 parameter_list|,
-name|FieldType
+name|IndexableFieldType
 name|type
 parameter_list|)
 block|{
@@ -552,7 +552,7 @@ parameter_list|,
 name|int
 name|length
 parameter_list|,
-name|FieldType
+name|IndexableFieldType
 name|type
 parameter_list|)
 block|{
@@ -585,7 +585,7 @@ parameter_list|,
 name|BytesRef
 name|bytes
 parameter_list|,
-name|FieldType
+name|IndexableFieldType
 name|type
 parameter_list|)
 block|{
@@ -650,7 +650,7 @@ parameter_list|,
 name|String
 name|value
 parameter_list|,
-name|FieldType
+name|IndexableFieldType
 name|type
 parameter_list|)
 block|{
@@ -1543,7 +1543,7 @@ annotation|@
 name|Override
 DECL|method|fieldType
 specifier|public
-name|FieldType
+name|IndexableFieldType
 name|fieldType
 parameter_list|()
 block|{
