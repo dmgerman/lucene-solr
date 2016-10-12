@@ -332,6 +332,8 @@ specifier|public
 name|TermsEnum
 name|termsEnum
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|in

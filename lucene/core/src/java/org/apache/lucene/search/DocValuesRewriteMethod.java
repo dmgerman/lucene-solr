@@ -374,6 +374,8 @@ specifier|public
 name|TermsEnum
 name|iterator
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 name|fcsi

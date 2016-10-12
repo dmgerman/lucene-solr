@@ -126,6 +126,8 @@ parameter_list|(
 name|FieldInfo
 name|field
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new
@@ -143,6 +145,8 @@ parameter_list|(
 name|FieldInfo
 name|field
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 throw|throw
 operator|new

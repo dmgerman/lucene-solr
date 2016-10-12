@@ -162,11 +162,6 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-DECL|field|numValues
-specifier|final
-name|long
-name|numValues
-decl_stmt|;
 DECL|field|blockShift
 specifier|final
 name|int
@@ -211,12 +206,6 @@ name|int
 name|blockShift
 parameter_list|)
 block|{
-name|this
-operator|.
-name|numValues
-operator|=
-name|numValues
-expr_stmt|;
 name|this
 operator|.
 name|blockShift
