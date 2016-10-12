@@ -640,6 +640,52 @@ operator|=
 name|dimensionNumBytes
 expr_stmt|;
 block|}
+elseif|else
+if|if
+condition|(
+name|this
+operator|.
+name|pointDimensionCount
+operator|!=
+name|dimensionCount
+operator|||
+name|this
+operator|.
+name|pointNumBytes
+operator|!=
+name|dimensionNumBytes
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"cannot change field \""
+operator|+
+name|name
+operator|+
+literal|"\" from points dimensionCount="
+operator|+
+name|this
+operator|.
+name|pointDimensionCount
+operator|+
+literal|", numBytes="
+operator|+
+name|this
+operator|.
+name|pointNumBytes
+operator|+
+literal|" to inconsistent dimensionCount="
+operator|+
+name|dimensionCount
+operator|+
+literal|", numBytes="
+operator|+
+name|dimensionNumBytes
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 name|this
@@ -918,6 +964,10 @@ name|pointNumBytes
 operator|=
 name|numBytes
 expr_stmt|;
+assert|assert
+name|checkConsistency
+argument_list|()
+assert|;
 block|}
 comment|/** Return point dimension count */
 DECL|method|getPointDimensionCount

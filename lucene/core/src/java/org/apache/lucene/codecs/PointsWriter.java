@@ -182,6 +182,13 @@ condition|(
 name|readerFieldInfo
 operator|!=
 literal|null
+operator|&&
+name|readerFieldInfo
+operator|.
+name|getPointDimensionCount
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
 name|maxPointCount
@@ -328,6 +335,19 @@ literal|null
 condition|)
 block|{
 comment|// This segment never saw this field
+continue|continue;
+block|}
+if|if
+condition|(
+name|readerFieldInfo
+operator|.
+name|getPointDimensionCount
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|// This segment saw this field, but the field did not index points in it:
 continue|continue;
 block|}
 name|MergeState

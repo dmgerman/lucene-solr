@@ -954,6 +954,13 @@ condition|(
 name|readerFieldInfo
 operator|!=
 literal|null
+operator|&&
+name|readerFieldInfo
+operator|.
+name|getPointDimensionCount
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
 name|totMaxSize
@@ -1143,6 +1150,13 @@ condition|(
 name|readerFieldInfo
 operator|!=
 literal|null
+operator|&&
+name|readerFieldInfo
+operator|.
+name|getPointDimensionCount
+argument_list|()
+operator|>
+literal|0
 condition|)
 block|{
 name|BKDReader
