@@ -643,6 +643,11 @@ block|}
 elseif|else
 if|if
 condition|(
+name|dimensionCount
+operator|!=
+literal|0
+operator|&&
+operator|(
 name|this
 operator|.
 name|pointDimensionCount
@@ -654,6 +659,7 @@ operator|.
 name|pointNumBytes
 operator|!=
 name|dimensionNumBytes
+operator|)
 condition|)
 block|{
 throw|throw
