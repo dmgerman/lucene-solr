@@ -2144,7 +2144,7 @@ literal|0
 assert|;
 assert|assert
 name|target
-operator|>=
+operator|>
 name|in
 operator|.
 name|docID
@@ -2450,7 +2450,7 @@ literal|0
 assert|;
 assert|assert
 name|target
-operator|>=
+operator|>
 name|in
 operator|.
 name|docID
@@ -2770,7 +2770,7 @@ literal|0
 assert|;
 assert|assert
 name|target
-operator|>=
+operator|>
 name|in
 operator|.
 name|docID
@@ -3220,7 +3220,7 @@ literal|0
 assert|;
 assert|assert
 name|target
-operator|>=
+operator|>
 name|in
 operator|.
 name|docID
@@ -3578,7 +3578,7 @@ literal|0
 assert|;
 assert|assert
 name|target
-operator|>=
+operator|>
 name|in
 operator|.
 name|docID

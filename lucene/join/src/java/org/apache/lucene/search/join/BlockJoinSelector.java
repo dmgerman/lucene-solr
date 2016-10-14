@@ -739,6 +739,16 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|values
+operator|.
+name|docID
+argument_list|()
+operator|<=
+name|prevParentDocID
+condition|)
+block|{
 name|values
 operator|.
 name|advance
@@ -748,6 +758,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|nextDoc
 argument_list|()
