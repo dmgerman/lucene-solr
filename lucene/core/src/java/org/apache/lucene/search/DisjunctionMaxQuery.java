@@ -538,7 +538,9 @@ decl_stmt|;
 name|float
 name|max
 init|=
-literal|0.0f
+name|Float
+operator|.
+name|NEGATIVE_INFINITY
 decl_stmt|,
 name|sum
 init|=
