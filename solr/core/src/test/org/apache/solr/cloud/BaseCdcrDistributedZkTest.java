@@ -3438,6 +3438,17 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|this
+operator|.
+name|waitForRecoveriesToFinish
+argument_list|(
+name|temporaryCollection
+argument_list|,
+name|zkStateReader
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 comment|// delete the temporary collection - we will create our own collections later
 name|this
 operator|.
