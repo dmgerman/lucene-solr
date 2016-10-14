@@ -797,6 +797,11 @@ name|getClassLoader
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|StartupLoggingUtils
+operator|.
+name|checkLogDir
+argument_list|()
+expr_stmt|;
 name|logWelcomeBanner
 argument_list|()
 expr_stmt|;

@@ -176,6 +176,34 @@ operator|.
 name|getSingleton
 argument_list|()
 decl_stmt|;
+comment|/**    * Checks whether mandatory log dir is given    */
+DECL|method|checkLogDir
+specifier|static
+name|void
+name|checkLogDir
+parameter_list|()
+block|{
+if|if
+condition|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"solr.log.dir"
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"Missing Java Option solr.log.dir. Logging may be missing or incomplete."
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|/**    * Disables all log4j ConsoleAppender's by modifying log4j configuration dynamically.    * Must only be used during early startup    * @return true if ok or else false if something happened, e.g. log4j classes were not in classpath    */
 annotation|@
 name|SuppressForbidden
