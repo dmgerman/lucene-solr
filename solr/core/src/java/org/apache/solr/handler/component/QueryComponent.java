@@ -2187,7 +2187,7 @@ expr_stmt|;
 block|}
 comment|// groupSort defaults to sort
 name|String
-name|groupSortStr
+name|sortWithinGroupStr
 init|=
 name|params
 operator|.
@@ -2202,7 +2202,7 @@ comment|//TODO: move weighting of sort
 name|Sort
 name|sortWithinGroup
 init|=
-name|groupSortStr
+name|sortWithinGroupStr
 operator|==
 literal|null
 condition|?
@@ -2216,7 +2216,7 @@ name|SortSpecParsing
 operator|.
 name|parseSortSpec
 argument_list|(
-name|groupSortStr
+name|sortWithinGroupStr
 argument_list|,
 name|req
 argument_list|)
