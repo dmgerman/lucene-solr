@@ -476,6 +476,10 @@ name|docID
 argument_list|()
 condition|)
 block|{
+name|lastDocID
+operator|=
+name|docID
+expr_stmt|;
 return|return
 name|docID
 operator|==
