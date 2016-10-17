@@ -1759,7 +1759,7 @@ name|setSortSpec
 argument_list|(
 name|parser
 operator|.
-name|getSort
+name|getSortSpec
 argument_list|(
 literal|true
 argument_list|)
