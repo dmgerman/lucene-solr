@@ -833,13 +833,18 @@ name|Bits
 name|getLiveDocs
 parameter_list|()
 function_decl|;
-comment|/** Returns the {@link PointValues} used for numeric or    *  spatial searches, or null if there are no point fields. */
+comment|/** Returns the {@link PointValues} used for numeric or    *  spatial searches for the given field, or null if there    *  are no point fields. */
 DECL|method|getPointValues
 specifier|public
 specifier|abstract
 name|PointValues
 name|getPointValues
-parameter_list|()
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Checks consistency of this reader.    *<p>    * Note that this may be costly in terms of I/O, e.g.    * may involve computing a checksum value against large data files.    * @lucene.internal    */
 DECL|method|checkIntegrity

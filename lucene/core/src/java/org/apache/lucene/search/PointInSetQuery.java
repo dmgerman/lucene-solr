@@ -100,20 +100,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInfo
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|LeafReader
 import|;
 end_import
@@ -662,7 +648,9 @@ init|=
 name|reader
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+name|field
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -671,41 +659,16 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// No docs in this segment indexed any points
-return|return
-literal|null
-return|;
-block|}
-name|FieldInfo
-name|fieldInfo
-init|=
-name|reader
-operator|.
-name|getFieldInfos
-argument_list|()
-operator|.
-name|fieldInfo
-argument_list|(
-name|field
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|fieldInfo
-operator|==
-literal|null
-condition|)
-block|{
-comment|// No docs in this segment indexed this field at all
+comment|// No docs in this segment/field indexed any points
 return|return
 literal|null
 return|;
 block|}
 if|if
 condition|(
-name|fieldInfo
+name|values
 operator|.
-name|getPointDimensionCount
+name|getNumDimensions
 argument_list|()
 operator|!=
 name|numDims
@@ -721,9 +684,9 @@ name|field
 operator|+
 literal|"\" was indexed with numDims="
 operator|+
-name|fieldInfo
+name|values
 operator|.
-name|getPointDimensionCount
+name|getNumDimensions
 argument_list|()
 operator|+
 literal|" but this query has numDims="
@@ -734,9 +697,9 @@ throw|;
 block|}
 if|if
 condition|(
-name|fieldInfo
+name|values
 operator|.
-name|getPointNumBytes
+name|getBytesPerDimension
 argument_list|()
 operator|!=
 name|bytesPerDim
@@ -752,9 +715,9 @@ name|field
 operator|+
 literal|"\" was indexed with bytesPerDim="
 operator|+
-name|fieldInfo
+name|values
 operator|.
-name|getPointNumBytes
+name|getBytesPerDimension
 argument_list|()
 operator|+
 literal|" but this query has bytesPerDim="
@@ -791,8 +754,6 @@ name|values
 operator|.
 name|intersect
 argument_list|(
-name|field
-argument_list|,
 operator|new
 name|MergePointVisitor
 argument_list|(
@@ -858,8 +819,6 @@ name|values
 operator|.
 name|intersect
 argument_list|(
-name|field
-argument_list|,
 name|visitor
 argument_list|)
 expr_stmt|;

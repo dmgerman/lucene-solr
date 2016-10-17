@@ -606,8 +606,6 @@ name|values
 operator|.
 name|intersect
 argument_list|(
-name|field
-argument_list|,
 operator|new
 name|IntersectVisitor
 argument_list|()
@@ -879,7 +877,9 @@ init|=
 name|reader
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+name|field
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -930,9 +930,7 @@ condition|(
 name|values
 operator|.
 name|getDocCount
-argument_list|(
-name|field
-argument_list|)
+argument_list|()
 operator|==
 name|reader
 operator|.
@@ -950,16 +948,12 @@ argument_list|(
 name|values
 operator|.
 name|getMinPackedValue
-argument_list|(
-name|field
-argument_list|)
+argument_list|()
 argument_list|,
 name|values
 operator|.
 name|getMaxPackedValue
-argument_list|(
-name|field
-argument_list|)
+argument_list|()
 argument_list|)
 decl_stmt|;
 comment|// if the internal node is not equal and not contained by the query, all docs do not match

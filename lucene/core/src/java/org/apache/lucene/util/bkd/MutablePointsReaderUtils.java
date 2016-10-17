@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|MutablePointsReader
+name|MutablePointValues
 import|;
 end_import
 
@@ -156,7 +156,7 @@ DECL|method|MutablePointsReaderUtils
 name|MutablePointsReaderUtils
 parameter_list|()
 block|{}
-comment|/** Sort the given {@link MutablePointsReader} based on its packed value then doc ID. */
+comment|/** Sort the given {@link MutablePointValues} based on its packed value then doc ID. */
 DECL|method|sort
 specifier|static
 name|void
@@ -168,7 +168,7 @@ parameter_list|,
 name|int
 name|packedBytesLength
 parameter_list|,
-name|MutablePointsReader
+name|MutablePointValues
 name|reader
 parameter_list|,
 name|int
@@ -511,7 +511,7 @@ name|int
 index|[]
 name|commonPrefixLengths
 parameter_list|,
-name|MutablePointsReader
+name|MutablePointValues
 name|reader
 parameter_list|,
 name|int
@@ -721,7 +721,7 @@ parameter_list|,
 name|int
 name|commonPrefixLen
 parameter_list|,
-name|MutablePointsReader
+name|MutablePointValues
 name|reader
 parameter_list|,
 name|int

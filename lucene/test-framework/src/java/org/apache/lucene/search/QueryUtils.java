@@ -1239,7 +1239,10 @@ name|Override
 specifier|public
 name|PointValues
 name|getPointValues
-parameter_list|()
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
 block|{
 return|return
 literal|null

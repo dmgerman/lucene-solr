@@ -114,7 +114,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|MutablePointsReader
+name|MutablePointValues
 import|;
 end_import
 
@@ -2175,7 +2175,7 @@ name|docID
 return|;
 block|}
 block|}
-comment|/** Write a field from a {@link MutablePointsReader}. This way of writing    *  points is faster than regular writes with {@link BKDWriter#add} since    *  there is opportunity for reordering points before writing them to    *  disk. This method does not use transient disk in order to reorder points.    */
+comment|/** Write a field from a {@link MutablePointValues}. This way of writing    *  points is faster than regular writes with {@link BKDWriter#add} since    *  there is opportunity for reordering points before writing them to    *  disk. This method does not use transient disk in order to reorder points.    */
 DECL|method|writeField
 specifier|public
 name|long
@@ -2187,7 +2187,7 @@ parameter_list|,
 name|String
 name|fieldName
 parameter_list|,
-name|MutablePointsReader
+name|MutablePointValues
 name|reader
 parameter_list|)
 throws|throws
@@ -2237,8 +2237,8 @@ parameter_list|,
 name|String
 name|fieldName
 parameter_list|,
-name|MutablePointsReader
-name|reader
+name|MutablePointValues
+name|values
 parameter_list|)
 throws|throws
 name|IOException
@@ -2288,12 +2288,10 @@ name|countPerLeaf
 init|=
 name|pointCount
 operator|=
-name|reader
+name|values
 operator|.
 name|size
-argument_list|(
-name|fieldName
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|long
 name|innerNodeCount
@@ -2410,7 +2408,7 @@ operator|++
 name|i
 control|)
 block|{
-name|reader
+name|values
 operator|.
 name|getValue
 argument_list|(
@@ -2542,7 +2540,7 @@ name|docsSeen
 operator|.
 name|set
 argument_list|(
-name|reader
+name|values
 operator|.
 name|getDocID
 argument_list|(
@@ -2557,7 +2555,7 @@ literal|1
 argument_list|,
 name|numLeaves
 argument_list|,
-name|reader
+name|values
 argument_list|,
 literal|0
 argument_list|,
@@ -2618,7 +2616,7 @@ parameter_list|,
 name|String
 name|fieldName
 parameter_list|,
-name|MutablePointsReader
+name|MutablePointValues
 name|reader
 parameter_list|)
 throws|throws
@@ -2643,9 +2641,7 @@ argument_list|(
 name|reader
 operator|.
 name|size
-argument_list|(
-name|fieldName
-argument_list|)
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2663,8 +2659,6 @@ name|reader
 operator|.
 name|intersect
 argument_list|(
-name|fieldName
-argument_list|,
 operator|new
 name|IntersectVisitor
 argument_list|()
@@ -6706,7 +6700,7 @@ parameter_list|,
 name|int
 name|leafNodeOffset
 parameter_list|,
-name|MutablePointsReader
+name|MutablePointValues
 name|reader
 parameter_list|,
 name|int

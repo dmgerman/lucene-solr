@@ -1997,7 +1997,10 @@ name|Override
 specifier|public
 name|PointValues
 name|getPointValues
-parameter_list|()
+parameter_list|(
+name|String
+name|field
+parameter_list|)
 block|{
 return|return
 literal|null

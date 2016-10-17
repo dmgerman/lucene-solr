@@ -1160,7 +1160,10 @@ DECL|method|getPointValues
 specifier|public
 name|PointValues
 name|getPointValues
-parameter_list|()
+parameter_list|(
+name|String
+name|field
+parameter_list|)
 block|{
 name|ensureOpen
 argument_list|()

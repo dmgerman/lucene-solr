@@ -573,7 +573,9 @@ init|=
 name|sub
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+literal|"dim"
+argument_list|)
 decl_stmt|;
 comment|// Simple test: make sure intersect can visit every doc:
 name|BitSet
@@ -587,8 +589,6 @@ name|values
 operator|.
 name|intersect
 argument_list|(
-literal|"dim"
-argument_list|,
 operator|new
 name|IntersectVisitor
 argument_list|()
@@ -839,7 +839,9 @@ init|=
 name|sub
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+literal|"dim"
+argument_list|)
 decl_stmt|;
 comment|// Simple test: make sure intersect can visit every doc:
 name|BitSet
@@ -853,8 +855,6 @@ name|values
 operator|.
 name|intersect
 argument_list|(
-literal|"dim"
-argument_list|,
 operator|new
 name|IntersectVisitor
 argument_list|()
@@ -1173,7 +1173,9 @@ name|reader
 argument_list|()
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+literal|"dim"
+argument_list|)
 decl_stmt|;
 name|NumericDocValues
 name|idValues
@@ -1264,8 +1266,6 @@ name|values
 operator|.
 name|intersect
 argument_list|(
-literal|"dim"
-argument_list|,
 operator|new
 name|IntersectVisitor
 argument_list|()
@@ -3074,7 +3074,9 @@ name|reader
 argument_list|()
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+literal|"field"
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -3097,8 +3099,6 @@ name|dimValues
 operator|.
 name|intersect
 argument_list|(
-literal|"field"
-argument_list|,
 operator|new
 name|IntersectVisitor
 argument_list|()
@@ -4997,7 +4997,9 @@ name|reader
 argument_list|()
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+literal|"field"
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -5015,9 +5017,7 @@ init|=
 name|dimValues
 operator|.
 name|getMinPackedValue
-argument_list|(
-literal|"field"
-argument_list|)
+argument_list|()
 decl_stmt|;
 name|byte
 index|[]
@@ -5026,9 +5026,7 @@ init|=
 name|dimValues
 operator|.
 name|getMaxPackedValue
-argument_list|(
-literal|"field"
-argument_list|)
+argument_list|()
 decl_stmt|;
 for|for
 control|(
@@ -5488,7 +5486,9 @@ name|reader
 argument_list|()
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+literal|"field"
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -5511,8 +5511,6 @@ name|dimValues
 operator|.
 name|intersect
 argument_list|(
-literal|"field"
-argument_list|,
 operator|new
 name|PointValues
 operator|.

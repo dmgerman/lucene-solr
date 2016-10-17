@@ -14087,7 +14087,9 @@ name|reader
 argument_list|()
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+name|fieldName
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -14102,8 +14104,6 @@ name|points
 operator|.
 name|intersect
 argument_list|(
-name|fieldName
-argument_list|,
 operator|new
 name|PointValues
 operator|.

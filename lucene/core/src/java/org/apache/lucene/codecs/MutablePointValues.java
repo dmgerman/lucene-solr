@@ -24,6 +24,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|PointValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -31,22 +45,22 @@ import|;
 end_import
 
 begin_comment
-comment|/** {@link PointsReader} whose order of points can be changed.  *  This class is useful for codecs to optimize flush.  *  @lucene.internal */
+comment|/** {@link PointValues} whose order of points can be changed.  *  This class is useful for codecs to optimize flush.  *  @lucene.internal */
 end_comment
 
 begin_class
-DECL|class|MutablePointsReader
+DECL|class|MutablePointValues
 specifier|public
 specifier|abstract
 class|class
-name|MutablePointsReader
+name|MutablePointValues
 extends|extends
-name|PointsReader
+name|PointValues
 block|{
 comment|/** Sole constructor. */
-DECL|method|MutablePointsReader
+DECL|method|MutablePointValues
 specifier|protected
-name|MutablePointsReader
+name|MutablePointValues
 parameter_list|()
 block|{}
 comment|/** Set {@code packedValue} with a reference to the packed bytes of the i-th value. */
