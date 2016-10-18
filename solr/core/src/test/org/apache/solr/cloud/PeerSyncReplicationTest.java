@@ -864,6 +864,8 @@ argument_list|(
 literal|"Updating mappings from zk"
 argument_list|)
 expr_stmt|;
+name|LeaderFailureAfterFreshStartTest
+operator|.
 name|waitForNewLeader
 argument_list|(
 name|cloudClient
