@@ -2238,8 +2238,7 @@ name|DirectoryReader
 operator|)
 name|super
 operator|.
-name|getTopReaderContext
-argument_list|()
+name|readerContext
 operator|.
 name|reader
 argument_list|()
