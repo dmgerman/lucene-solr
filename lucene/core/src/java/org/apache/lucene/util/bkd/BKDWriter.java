@@ -472,6 +472,15 @@ name|VERSION_COMPRESSED_VALUES
 init|=
 literal|2
 decl_stmt|;
+DECL|field|VERSION_IMPLICIT_SPLIT_DIM_1D
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_IMPLICIT_SPLIT_DIM_1D
+init|=
+literal|3
+decl_stmt|;
 DECL|field|VERSION_CURRENT
 specifier|public
 specifier|static
@@ -479,7 +488,7 @@ specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_COMPRESSED_VALUES
+name|VERSION_IMPLICIT_SPLIT_DIM_1D
 decl_stmt|;
 comment|/** How many bytes each docs takes in the fixed-width offline format */
 DECL|field|bytesPerDoc
@@ -5365,8 +5374,50 @@ name|cardinality
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// TODO: for 1D case, don't waste the first byte of each split value (it's always 0)
 comment|// NOTE: splitPackedValues[0] is unused, because nodeID is 1-based:
+if|if
+condition|(
+name|numDims
+operator|==
+literal|1
+condition|)
+block|{
+comment|// write the index, skipping the byte used to store the split dim since it is always 0
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|1
+init|;
+name|i
+operator|<
+name|splitPackedValues
+operator|.
+name|length
+condition|;
+name|i
+operator|+=
+literal|1
+operator|+
+name|bytesPerDim
+control|)
+block|{
+name|out
+operator|.
+name|writeBytes
+argument_list|(
+name|splitPackedValues
+argument_list|,
+name|i
+argument_list|,
+name|bytesPerDim
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+else|else
+block|{
 name|out
 operator|.
 name|writeBytes
@@ -5380,6 +5431,7 @@ operator|.
 name|length
 argument_list|)
 expr_stmt|;
+block|}
 name|long
 name|lastFP
 init|=
