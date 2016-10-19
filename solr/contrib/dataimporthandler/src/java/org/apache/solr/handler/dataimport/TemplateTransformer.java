@@ -167,16 +167,12 @@ block|{
 name|VariableResolver
 name|resolver
 init|=
-operator|(
-name|VariableResolver
-operator|)
 name|context
 operator|.
 name|getVariableResolver
 argument_list|()
 decl_stmt|;
 comment|// Add current row to the copy of resolver map
-comment|//    for (Map.Entry<String, Object> entry : row.entrySet())
 for|for
 control|(
 name|Map
@@ -193,6 +189,11 @@ name|getAllEntityFields
 argument_list|()
 control|)
 block|{
+name|map
+operator|.
+name|entrySet
+argument_list|()
+expr_stmt|;
 name|String
 name|expr
 init|=
