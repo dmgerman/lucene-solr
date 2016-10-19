@@ -798,7 +798,7 @@ operator|==
 literal|false
 condition|)
 block|{
-comment|// this is a borrible hack in order to make sure IndexSearcher will not
+comment|// this is a horrible hack in order to make sure IndexSearcher will not
 comment|// attempt to cache the DrillSidewaysQuery
 name|hitCollector
 operator|=
