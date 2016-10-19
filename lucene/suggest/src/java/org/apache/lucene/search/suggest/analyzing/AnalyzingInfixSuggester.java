@@ -2892,7 +2892,7 @@ condition|(
 name|allMustNot
 condition|)
 block|{
-comment|//all are MUST_NOT: add the contextQuery to the main query instead (not as sub-query)
+comment|// All are MUST_NOT: add the contextQuery to the main query instead (not as sub-query)
 for|for
 control|(
 name|BooleanClause
@@ -2913,9 +2913,63 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+elseif|else
+if|if
+condition|(
+name|allTermsRequired
+operator|==
+literal|false
+condition|)
+block|{
+comment|// We must carefully upgrade the query clauses to MUST:
+name|BooleanQuery
+operator|.
+name|Builder
+name|newQuery
+init|=
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|newQuery
+operator|.
+name|add
+argument_list|(
+name|query
+operator|.
+name|build
+argument_list|()
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
+argument_list|)
+expr_stmt|;
+name|newQuery
+operator|.
+name|add
+argument_list|(
+name|contextQuery
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
+argument_list|)
+expr_stmt|;
+name|query
+operator|=
+name|newQuery
+expr_stmt|;
+block|}
 else|else
 block|{
-comment|//Add contextQuery as sub-query
+comment|// Add contextQuery as sub-query
 name|query
 operator|.
 name|add
@@ -2945,7 +2999,7 @@ argument_list|,
 name|allTermsRequired
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("finalQuery=" + query);
+comment|//System.out.println("finalQuery=" + finalQuery);
 comment|// Sort by weight, descending:
 name|TopFieldCollector
 name|c
