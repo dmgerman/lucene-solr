@@ -150,6 +150,14 @@ name|AddUpdateCommand
 import|;
 end_import
 
+begin_comment
+comment|//Adds new fields to documents based on a template pattern specified via Template.field
+end_comment
+
+begin_comment
+comment|// request parameters (multi-valued) or 'field' value specified in initArgs
+end_comment
+
 begin_class
 DECL|class|TemplateUpdateProcessorFactory
 specifier|public
