@@ -19776,7 +19776,7 @@ name|getName
 parameter_list|()
 block|{
 return|return
-literal|"prestart"
+literal|"utils"
 return|;
 block|}
 annotation|@
@@ -20559,7 +20559,9 @@ operator|.
 name|size
 argument_list|()
 operator|+
-literal|" console log files"
+literal|" console log files to "
+operator|+
+name|archivePath
 argument_list|)
 expr_stmt|;
 for|for
@@ -21130,13 +21132,12 @@ operator|.
 name|isAbsolute
 argument_list|()
 operator|&&
-name|serverPath
-operator|.
-name|toFile
-argument_list|()
+name|Files
 operator|.
 name|exists
-argument_list|()
+argument_list|(
+name|serverPath
+argument_list|)
 condition|)
 block|{
 name|logsPath
