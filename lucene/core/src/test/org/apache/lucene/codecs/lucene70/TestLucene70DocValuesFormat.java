@@ -894,6 +894,8 @@ argument_list|(
 literal|300
 argument_list|)
 argument_list|,
+literal|1d
+argument_list|,
 literal|1
 argument_list|,
 literal|32766
@@ -947,6 +949,8 @@ literal|1024
 argument_list|,
 literal|2049
 argument_list|)
+argument_list|,
+literal|1d
 argument_list|,
 literal|1
 argument_list|,

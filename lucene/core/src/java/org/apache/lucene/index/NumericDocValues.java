@@ -26,20 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DocIdSetIterator
-import|;
-end_import
-
 begin_comment
 comment|/**  * A per-document numeric value.  */
 end_comment
@@ -51,7 +37,7 @@ specifier|abstract
 class|class
 name|NumericDocValues
 extends|extends
-name|DocIdSetIterator
+name|DocValuesIterator
 block|{
 comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|NumericDocValues
@@ -59,7 +45,7 @@ specifier|protected
 name|NumericDocValues
 parameter_list|()
 block|{}
-comment|/**    * Returns the numeric value for the current document ID.    * @return numeric value    */
+comment|/**    * Returns the numeric value for the current document ID.    * It is illegal to call this method after {@link #advanceExact(int)}    * returned {@code false}.    * @return numeric value    */
 DECL|method|longValue
 specifier|public
 specifier|abstract
