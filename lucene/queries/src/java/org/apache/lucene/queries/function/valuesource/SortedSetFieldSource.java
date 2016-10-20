@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|DocValues
 import|;
 end_import
 
@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|LeafReaderContext
 import|;
 end_import
 
@@ -312,6 +312,10 @@ operator|new
 name|DocTermsIndexDocValues
 argument_list|(
 name|this
+operator|.
+name|field
+argument_list|,
+name|this
 argument_list|,
 name|view
 argument_list|)
@@ -339,6 +343,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|strVal

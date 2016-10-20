@@ -2296,6 +2296,24 @@ argument_list|(
 name|GENERATION
 argument_list|)
 decl_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Master's generation: "
+operator|+
+name|latestGeneration
+argument_list|)
+expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Master's version: "
+operator|+
+name|latestVersion
+argument_list|)
+expr_stmt|;
 comment|// TODO: make sure that getLatestCommit only returns commit points for the main index (i.e. no side-car indexes)
 name|IndexCommit
 name|commit
@@ -2382,6 +2400,18 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Slave's generation: "
+operator|+
+name|commit
+operator|.
+name|getGeneration
+argument_list|()
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|latestVersion
@@ -2512,27 +2542,6 @@ return|return
 literal|true
 return|;
 block|}
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Master's generation: "
-operator|+
-name|latestGeneration
-argument_list|)
-expr_stmt|;
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"Slave's generation: "
-operator|+
-name|commit
-operator|.
-name|getGeneration
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|LOG
 operator|.
 name|info
@@ -2960,6 +2969,21 @@ name|decref
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+name|boolean
+name|reloadCore
+init|=
+literal|false
+decl_stmt|;
+try|try
+block|{
+comment|// we have to be careful and do this after we know isFullCopyNeeded won't be flipped
+if|if
+condition|(
+operator|!
+name|isFullCopyNeeded
+condition|)
+block|{
 name|solrCore
 operator|.
 name|getUpdateHandler
@@ -2976,13 +3000,6 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-name|boolean
-name|reloadCore
-init|=
-literal|false
-decl_stmt|;
-try|try
-block|{
 name|LOG
 operator|.
 name|info
@@ -3182,15 +3199,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|LOG
-operator|.
-name|info
-argument_list|(
-literal|"removing old index directory "
-operator|+
-name|indexDir
-argument_list|)
-expr_stmt|;
 name|solrCore
 operator|.
 name|getDirectoryFactory
@@ -3201,14 +3209,12 @@ argument_list|(
 name|indexDir
 argument_list|)
 expr_stmt|;
+comment|// Cleanup all index files not associated with any *named* snapshot.
 name|solrCore
 operator|.
-name|getDirectoryFactory
-argument_list|()
-operator|.
-name|remove
+name|deleteNonSnapshotIndexFiles
 argument_list|(
-name|indexDir
+name|indexDirPath
 argument_list|)
 expr_stmt|;
 block|}
@@ -3629,6 +3635,21 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+if|if
+condition|(
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|isZooKeeperAware
+argument_list|()
+condition|)
+block|{
+comment|// we only track replication success in SolrCloud mode
 name|core
 operator|.
 name|getUpdateHandler
@@ -3642,6 +3663,7 @@ argument_list|(
 name|successfulInstall
 argument_list|)
 expr_stmt|;
+block|}
 name|filesToDownload
 operator|=
 name|filesDownloaded
@@ -4775,19 +4797,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|SolrQueryRequest
-name|req
-init|=
-operator|new
-name|LocalSolrQueryRequest
-argument_list|(
-name|solrCore
-argument_list|,
-operator|new
-name|ModifiableSolrParams
-argument_list|()
-argument_list|)
-decl_stmt|;
 name|RefCounted
 argument_list|<
 name|SolrIndexSearcher
@@ -4798,6 +4807,27 @@ literal|null
 decl_stmt|;
 name|IndexCommit
 name|commitPoint
+decl_stmt|;
+comment|// must get the latest solrCore object because the one we have might be closed because of a reload
+comment|// todo stop keeping solrCore around
+name|SolrCore
+name|core
+init|=
+name|solrCore
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|getCore
+argument_list|(
+name|solrCore
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 decl_stmt|;
 try|try
 block|{
@@ -4813,7 +4843,7 @@ index|]
 decl_stmt|;
 name|searcher
 operator|=
-name|solrCore
+name|core
 operator|.
 name|getSearcher
 argument_list|(
@@ -4882,11 +4912,6 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|req
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 if|if
 condition|(
 name|searcher
@@ -4900,6 +4925,11 @@ name|decref
 argument_list|()
 expr_stmt|;
 block|}
+name|core
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 block|}
 comment|// update the commit point in replication handler
 name|replicationHandler
@@ -4927,14 +4957,9 @@ argument_list|)
 decl_stmt|;
 operator|new
 name|Thread
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|run
+argument_list|(
 parameter_list|()
+lambda|->
 block|{
 try|try
 block|{
@@ -4980,7 +5005,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-block|}
+argument_list|)
 operator|.
 name|start
 argument_list|()

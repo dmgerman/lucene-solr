@@ -183,14 +183,6 @@ init|=
 name|newMockDirectory
 argument_list|()
 decl_stmt|;
-comment|// Allow writing to same file more than once:
-name|dir
-operator|.
-name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 name|IndexWriterConfig
 name|iwc
 init|=

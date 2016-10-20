@@ -965,7 +965,7 @@ parameter_list|)
 block|{
 name|fail
 argument_list|(
-literal|"Sholdn't have sat around here this long waiting for the threads to join."
+literal|"Shouldn't have sat around here this long waiting for the threads to join."
 argument_list|)
 expr_stmt|;
 block|}
@@ -980,7 +980,7 @@ block|{
 comment|// Probably a silly test, but what the heck.
 name|assertFalse
 argument_list|(
-literal|"All threads shoul be dead, but at least thread "
+literal|"All threads should be dead, but at least thread "
 operator|+
 name|thread
 operator|.

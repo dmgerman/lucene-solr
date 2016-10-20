@@ -20,6 +20,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -99,20 +119,6 @@ operator|.
 name|index
 operator|.
 name|DirectoryReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|NoMergePolicy
 import|;
 end_import
 
@@ -294,26 +300,6 @@ name|Test
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_comment
 comment|/**  */
 end_comment
@@ -367,9 +353,8 @@ argument_list|)
 operator|.
 name|setMergePolicy
 argument_list|(
-name|NoMergePolicy
-operator|.
-name|INSTANCE
+name|newLogMergePolicy
+argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;

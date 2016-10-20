@@ -178,20 +178,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|SortingMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|Sort
@@ -237,6 +223,8 @@ operator|.
 name|common
 operator|.
 name|SolrException
+operator|.
+name|ErrorCode
 import|;
 end_import
 
@@ -251,8 +239,6 @@ operator|.
 name|common
 operator|.
 name|SolrException
-operator|.
-name|ErrorCode
 import|;
 end_import
 
@@ -309,6 +295,20 @@ operator|.
 name|core
 operator|.
 name|SolrCore
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|index
+operator|.
+name|SortingMergePolicy
 import|;
 end_import
 
@@ -548,7 +548,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"SolrCoreState ref count has reached 0 - closing IndexWriter"
 argument_list|)
@@ -562,7 +562,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"closing IndexWriter with IndexWriterCloser"
 argument_list|)
@@ -585,7 +585,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"closing IndexWriter..."
 argument_list|)
@@ -946,7 +946,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Closing old IndexWriter... core="
 operator|+
@@ -986,7 +986,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Rollback old IndexWriter... core="
 operator|+
@@ -1698,6 +1698,10 @@ name|void
 name|recovered
 parameter_list|()
 block|{
+name|recoveryStrat
+operator|=
+literal|null
+expr_stmt|;
 name|recoveringAfterStartup
 operator|=
 literal|false
@@ -1712,7 +1716,12 @@ specifier|public
 name|void
 name|failed
 parameter_list|()
-block|{}
+block|{
+name|recoveryStrat
+operator|=
+literal|null
+expr_stmt|;
+block|}
 annotation|@
 name|Override
 DECL|method|close
@@ -1791,6 +1800,18 @@ name|lastReplicationSuccess
 operator|=
 name|success
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|getRecoveryLock
+specifier|public
+name|Lock
+name|getRecoveryLock
+parameter_list|()
+block|{
+return|return
+name|recoveryLock
+return|;
 block|}
 block|}
 end_class

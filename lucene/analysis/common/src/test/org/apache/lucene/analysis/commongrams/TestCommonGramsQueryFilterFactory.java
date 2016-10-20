@@ -28,7 +28,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|MockTokenizer
+name|CharArraySet
 import|;
 end_import
 
@@ -72,7 +72,7 @@ name|analysis
 operator|.
 name|core
 operator|.
-name|TestStopFilter
+name|TestStopFilterFactory
 import|;
 end_import
 
@@ -89,22 +89,6 @@ operator|.
 name|util
 operator|.
 name|BaseTokenStreamFactoryTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|CharArraySet
 import|;
 end_import
 
@@ -154,16 +138,6 @@ name|Version
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|StringReader
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests pretty much copied from StopFilterFactoryTest We use the test files  * used by the StopFilterFactoryTest TODO: consider creating separate test files  * so this won't break if stop filter test files change  **/
 end_comment
@@ -190,7 +164,7 @@ init|=
 operator|new
 name|ClasspathResourceLoader
 argument_list|(
-name|TestStopFilter
+name|TestStopFilterFactory
 operator|.
 name|class
 argument_list|)

@@ -244,8 +244,9 @@ name|delete
 argument_list|(
 name|buffer
 argument_list|,
-operator|++
 name|i
+operator|+
+literal|1
 argument_list|,
 name|length
 argument_list|)

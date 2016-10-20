@@ -1828,10 +1828,6 @@ DECL|field|level
 name|float
 name|level
 decl_stmt|;
-DECL|field|index
-name|int
-name|index
-decl_stmt|;
 DECL|method|SegmentInfoAndLevel
 specifier|public
 name|SegmentInfoAndLevel
@@ -1841,9 +1837,6 @@ name|info
 parameter_list|,
 name|float
 name|level
-parameter_list|,
-name|int
-name|index
 parameter_list|)
 block|{
 name|this
@@ -1857,12 +1850,6 @@ operator|.
 name|level
 operator|=
 name|level
-expr_stmt|;
-name|this
-operator|.
-name|index
-operator|=
-name|index
 expr_stmt|;
 block|}
 comment|// Sorts largest to smallest
@@ -2051,8 +2038,6 @@ name|size
 argument_list|)
 operator|/
 name|norm
-argument_list|,
-name|i
 argument_list|)
 decl_stmt|;
 name|levels

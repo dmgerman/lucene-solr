@@ -62,6 +62,24 @@ name|SolrQueryResponse
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|update
+operator|.
+name|processor
+operator|.
+name|FieldValueMutatingUpdateProcessor
+operator|.
+name|valueMutator
+import|;
+end_import
+
 begin_comment
 comment|/**  * Trims leading and trailing whitespace from any CharSequence values   * found in fields matching the specified conditions and returns the   * resulting String.  *<p>  * By default this processor matches all fields  *</p>  *  *<p>For example, with the configuration listed all String field values   * will have leading and trailing spaces removed except for fields whose   * named ends with "<code>_literal</code>".  *</p>  *<pre class="prettyprint">  *&lt;processor class="solr.TrimFieldUpdateProcessorFactory"&gt;  *&lt;lst name="exclude"&gt;  *&lt;str name="fieldRegex"&gt;.*_literal&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/processor&gt;</pre>  */
 end_comment
@@ -118,25 +136,15 @@ name|next
 parameter_list|)
 block|{
 return|return
-operator|new
-name|FieldValueMutatingUpdateProcessor
+name|valueMutator
 argument_list|(
 name|getSelector
 argument_list|()
 argument_list|,
 name|next
-argument_list|)
-block|{
-annotation|@
-name|Override
-specifier|protected
-name|Object
-name|mutateValue
-parameter_list|(
-specifier|final
-name|Object
+argument_list|,
 name|src
-parameter_list|)
+lambda|->
 block|{
 if|if
 condition|(
@@ -146,12 +154,7 @@ name|CharSequence
 condition|)
 block|{
 return|return
-operator|(
-operator|(
-name|CharSequence
-operator|)
 name|src
-operator|)
 operator|.
 name|toString
 argument_list|()
@@ -164,7 +167,7 @@ return|return
 name|src
 return|;
 block|}
-block|}
+argument_list|)
 return|;
 block|}
 block|}

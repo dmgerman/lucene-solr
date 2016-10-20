@@ -118,23 +118,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene60
+name|lucene70
 operator|.
-name|Lucene60Codec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
+name|Lucene70Codec
 import|;
 end_import
 
@@ -151,6 +137,20 @@ operator|.
 name|SolrException
 operator|.
 name|ErrorCode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|SolrException
 import|;
 end_import
 
@@ -410,7 +410,7 @@ throw|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Using compressionMode: "
 operator|+
@@ -426,7 +426,7 @@ name|SOLR_DEFAULT_COMPRESSION_MODE
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Using default compressionMode: "
 operator|+
@@ -437,7 +437,7 @@ block|}
 name|codec
 operator|=
 operator|new
-name|Lucene60Codec
+name|Lucene70Codec
 argument_list|(
 name|compressionMode
 argument_list|)

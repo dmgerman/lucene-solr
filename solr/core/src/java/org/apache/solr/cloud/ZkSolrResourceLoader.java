@@ -492,6 +492,18 @@ name|exception
 operator|=
 name|e
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|zkController
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
 comment|// Retry in case of session expiry
 try|try
 block|{
@@ -537,6 +549,7 @@ argument_list|,
 name|ie
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 catch|catch

@@ -283,8 +283,6 @@ name|getParser
 argument_list|(
 name|groupQueryString
 argument_list|,
-literal|null
-argument_list|,
 name|request
 argument_list|)
 decl_stmt|;

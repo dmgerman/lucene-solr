@@ -254,6 +254,29 @@ name|FACET_OVERREQUEST
 operator|+
 literal|".count"
 decl_stmt|;
+DECL|field|FACET_DISTRIB
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_DISTRIB
+init|=
+name|FACET
+operator|+
+literal|".distrib"
+decl_stmt|;
+comment|/**    * If we are returning facet field counts, are sorting those facets by their count, and the minimum count to return is&gt; 0,    * then allow the use of facet.mincount = 1 in cloud mode. To enable this use facet.distrib.mco=true.    *    * i.e. If the following three conditions are met in cloud mode: facet.sort=count, facet.limit&gt; 0, facet.mincount&gt; 0.    * Then use facet.mincount=1.    *    * Previously and by default facet.mincount will be explicitly set to 0 when in cloud mode for this condition.    * In SOLR-8599 and SOLR-8988, significant performance increase has been seen when enabling this optimization.    *    * Note: enabling this flag has no effect when the conditions above are not met. For those other cases the default behavior is sufficient.    */
+DECL|field|FACET_DISTRIB_MCO
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_DISTRIB_MCO
+init|=
+name|FACET_DISTRIB
+operator|+
+literal|".mco"
+decl_stmt|;
 comment|/**    * Comma separated list of fields to pivot    *     * example: author,type  (for types by author / types within author)    */
 DECL|field|FACET_PIVOT
 specifier|public
@@ -373,6 +396,18 @@ init|=
 name|FACET
 operator|+
 literal|".enum.cache.minDf"
+decl_stmt|;
+comment|/**    *  A boolean parameter that caps the facet counts at 1.     *  With this set, a returned count will only be 0 or 1.     *  For apps that don't need the count, this should be an optimization    */
+DECL|field|FACET_EXISTS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_EXISTS
+init|=
+name|FACET
+operator|+
+literal|".exists"
 decl_stmt|;
 comment|/**    * Any field whose terms the user wants to enumerate over for    * Facet Contraint Counts (multi-value)    */
 DECL|field|FACET_DATE

@@ -70,22 +70,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|lucene60
-operator|.
-name|Lucene60PointsReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|geo
 operator|.
 name|GeoUtils
@@ -243,6 +227,20 @@ operator|.
 name|search
 operator|.
 name|MatchNoDocsQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|PointRangeQuery
 import|;
 end_import
 
@@ -1002,7 +1000,9 @@ comment|// range cannot match as 90.0 can never exist
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"LatLonPoint.newBoxQuery with minLatitude=90.0"
+argument_list|)
 return|;
 block|}
 if|if
@@ -1023,7 +1023,9 @@ comment|// range cannot match as 180.0 can never exist
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"LatLonPoint.newBoxQuery with minLongitude=maxLongitude=180.0"
+argument_list|)
 return|;
 block|}
 elseif|else
@@ -1084,13 +1086,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|q
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 comment|// E.g.: maxLon = -179, minLon = 179
 name|byte
 index|[]
@@ -1245,7 +1240,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|LatLonPointBoxQuery
+name|PointRangeQuery
 argument_list|(
 name|field
 argument_list|,
@@ -1532,7 +1527,9 @@ name|reader
 argument_list|()
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+name|field
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -1545,7 +1542,7 @@ if|if
 condition|(
 name|points
 operator|instanceof
-name|Lucene60PointsReader
+name|BKDReader
 operator|==
 literal|false
 condition|)
@@ -1565,24 +1562,15 @@ operator|+=
 name|points
 operator|.
 name|getDocCount
-argument_list|(
-name|field
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|BKDReader
 name|reader
 init|=
 operator|(
-operator|(
-name|Lucene60PointsReader
+name|BKDReader
 operator|)
 name|points
-operator|)
-operator|.
-name|getBKDReader
-argument_list|(
-name|field
-argument_list|)
 decl_stmt|;
 if|if
 condition|(

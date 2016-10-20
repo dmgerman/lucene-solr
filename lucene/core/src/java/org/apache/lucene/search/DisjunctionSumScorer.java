@@ -48,14 +48,7 @@ name|DisjunctionSumScorer
 extends|extends
 name|DisjunctionScorer
 block|{
-DECL|field|coord
-specifier|private
-specifier|final
-name|float
-index|[]
-name|coord
-decl_stmt|;
-comment|/** Construct a<code>DisjunctionScorer</code>.    * @param weight The weight to be used.    * @param subScorers Array of at least two subscorers.    * @param coord Table of coordination factors    */
+comment|/** Construct a<code>DisjunctionScorer</code>.    * @param weight The weight to be used.    * @param subScorers Array of at least two subscorers.    */
 DECL|method|DisjunctionSumScorer
 name|DisjunctionSumScorer
 parameter_list|(
@@ -67,10 +60,6 @@ argument_list|<
 name|Scorer
 argument_list|>
 name|subScorers
-parameter_list|,
-name|float
-index|[]
-name|coord
 parameter_list|,
 name|boolean
 name|needsScores
@@ -84,12 +73,6 @@ name|subScorers
 argument_list|,
 name|needsScores
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|coord
-operator|=
-name|coord
 expr_stmt|;
 block|}
 annotation|@
@@ -107,11 +90,6 @@ name|IOException
 block|{
 name|double
 name|score
-init|=
-literal|0
-decl_stmt|;
-name|int
-name|freq
 init|=
 literal|0
 decl_stmt|;
@@ -142,21 +120,12 @@ operator|.
 name|score
 argument_list|()
 expr_stmt|;
-name|freq
-operator|+=
-literal|1
-expr_stmt|;
 block|}
 return|return
 operator|(
 name|float
 operator|)
 name|score
-operator|*
-name|coord
-index|[
-name|freq
-index|]
 return|;
 block|}
 block|}

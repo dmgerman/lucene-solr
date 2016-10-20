@@ -1664,6 +1664,8 @@ literal|"config"
 argument_list|,
 literal|"solrconfig-searcher-listeners1.xml"
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|//validate that the new core was created with the correct solrconfig
@@ -1979,6 +1981,8 @@ literal|"config"
 argument_list|,
 literal|"solrconfig-searcher-listeners1.xml"
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|coreCreated
@@ -2307,6 +2311,8 @@ literal|"config"
 argument_list|,
 literal|"solrconfig-searcher-listeners1.xml"
 argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|coreCreated

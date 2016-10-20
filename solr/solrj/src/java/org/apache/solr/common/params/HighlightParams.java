@@ -301,6 +301,17 @@ name|HIGHLIGHT
 operator|+
 literal|".maxAlternateFieldLength"
 decl_stmt|;
+DECL|field|HIGHLIGHT_ALTERNATE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|HIGHLIGHT_ALTERNATE
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".highlightAlternate"
+decl_stmt|;
 DECL|field|MAX_MULTIVALUED_TO_EXAMINE
 specifier|public
 specifier|static

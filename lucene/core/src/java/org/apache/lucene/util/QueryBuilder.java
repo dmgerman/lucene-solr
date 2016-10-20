@@ -536,16 +536,6 @@ argument_list|()
 decl_stmt|;
 name|builder
 operator|.
-name|setDisableCoord
-argument_list|(
-name|bq
-operator|.
-name|isCoordDisabled
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|builder
-operator|.
 name|setMinimumNumberShouldMatch
 argument_list|(
 call|(

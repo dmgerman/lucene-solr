@@ -98,6 +98,8 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+try|try
+init|(
 name|TaxonomyReader
 name|taxoReader
 init|=
@@ -106,7 +108,8 @@ argument_list|()
 operator|.
 name|getTaxonomyReader
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|getRunData
 argument_list|()
 operator|.
@@ -140,11 +143,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|taxoReader
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
+block|}
 return|return
 literal|1
 return|;

@@ -143,7 +143,7 @@ specifier|abstract
 class|class
 name|ValueSource
 block|{
-comment|/**    * Gets the values for this reader and the context that was previously    * passed to createWeight()    */
+comment|/**    * Gets the values for this reader and the context that was previously    * passed to createWeight().  The values must be consumed in a forward    * docID manner, and you must call this method again to iterate through    * the values again.    */
 DECL|method|getValues
 specifier|public
 specifier|abstract
@@ -511,6 +511,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Double
@@ -541,6 +543,8 @@ parameter_list|,
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|values
 index|[
@@ -650,6 +654,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 specifier|final
 name|double

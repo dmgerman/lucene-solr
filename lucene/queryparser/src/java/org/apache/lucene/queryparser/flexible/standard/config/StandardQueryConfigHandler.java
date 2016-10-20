@@ -280,22 +280,6 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
-comment|/**      * Key used to set whether expanded terms should be lower-cased      *       * @see StandardQueryParser#setLowercaseExpandedTerms(boolean)      * @see StandardQueryParser#getLowercaseExpandedTerms()      */
-DECL|field|LOWERCASE_EXPANDED_TERMS
-specifier|final
-specifier|public
-specifier|static
-name|ConfigurationKey
-argument_list|<
-name|Boolean
-argument_list|>
-name|LOWERCASE_EXPANDED_TERMS
-init|=
-name|ConfigurationKey
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
 comment|/**      * Key used to set whether leading wildcards are supported      *       * @see StandardQueryParser#setAllowLeadingWildcard(boolean)      * @see StandardQueryParser#getAllowLeadingWildcard()      */
 DECL|field|ALLOW_LEADING_WILDCARD
 specifier|final
@@ -520,48 +504,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
-comment|/**      * Key used to set a field to its {@link LegacyNumericConfig}.      *       * @see StandardQueryParser#setLegacyNumericConfigMap(Map)      * @see StandardQueryParser#getLegacyNumericConfigMap()      * @deprecated Index with Points instead and use {@link #POINTS_CONFIG}      */
-annotation|@
-name|Deprecated
-DECL|field|LEGACY_NUMERIC_CONFIG
-specifier|final
-specifier|public
-specifier|static
-name|ConfigurationKey
-argument_list|<
-name|LegacyNumericConfig
-argument_list|>
-name|LEGACY_NUMERIC_CONFIG
-init|=
-name|ConfigurationKey
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
-comment|/**      * Key used to set the {@link LegacyNumericConfig} in {@link FieldConfig} for numeric fields.      *       * @see StandardQueryParser#setLegacyNumericConfigMap(Map)      * @see StandardQueryParser#getLegacyNumericConfigMap()      * @deprecated Index with Points instead and use {@link #POINTS_CONFIG_MAP}      */
-annotation|@
-name|Deprecated
-DECL|field|LEGACY_NUMERIC_CONFIG_MAP
-specifier|final
-specifier|public
-specifier|static
-name|ConfigurationKey
-argument_list|<
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|LegacyNumericConfig
-argument_list|>
-argument_list|>
-name|LEGACY_NUMERIC_CONFIG_MAP
-init|=
-name|ConfigurationKey
-operator|.
-name|newInstance
-argument_list|()
-decl_stmt|;
-comment|/**      * Key used to set a field to its {@link PointsConfig}.      *       * @see StandardQueryParser#setLegacyNumericConfigMap(Map)      * @see StandardQueryParser#getLegacyNumericConfigMap()      */
+comment|/**      * Key used to set a field to its {@link PointsConfig}.      *       * @see StandardQueryParser#setPointsConfigMap(Map)      * @see StandardQueryParser#getPointsConfigMap()      */
 DECL|field|POINTS_CONFIG
 specifier|final
 specifier|public
@@ -577,7 +520,7 @@ operator|.
 name|newInstance
 argument_list|()
 decl_stmt|;
-comment|/**      * Key used to set the {@link PointsConfig} in {@link FieldConfig} for point fields.      *       * @see StandardQueryParser#setLegacyNumericConfigMap(Map)      * @see StandardQueryParser#getLegacyNumericConfigMap()      */
+comment|/**      * Key used to set the {@link PointsConfig} in {@link FieldConfig} for point fields.      *       * @see StandardQueryParser#setPointsConfigMap(Map)      * @see StandardQueryParser#getPointsConfigMap()      */
 DECL|field|POINTS_CONFIG_MAP
 specifier|final
 specifier|public
@@ -639,15 +582,6 @@ expr_stmt|;
 name|addFieldConfigListener
 argument_list|(
 operator|new
-name|LegacyNumericFieldConfigListener
-argument_list|(
-name|this
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|addFieldConfigListener
-argument_list|(
-operator|new
 name|PointsConfigListener
 argument_list|(
 name|this
@@ -693,16 +627,6 @@ operator|.
 name|PHRASE_SLOP
 argument_list|,
 literal|0
-argument_list|)
-expr_stmt|;
-comment|//default value 2.4
-name|set
-argument_list|(
-name|ConfigurationKeys
-operator|.
-name|LOWERCASE_EXPANDED_TERMS
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 comment|//default value 2.4

@@ -144,16 +144,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
 begin_class
 DECL|class|TestMultiPhraseQueryParsing
 specifier|public

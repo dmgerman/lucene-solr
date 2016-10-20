@@ -102,20 +102,6 @@ name|SuggestMode
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|BytesRef
-import|;
-end_import
-
 begin_comment
 comment|/**  *<p>  * A spell checker whose sole function is to offer suggestions by combining  * multiple terms into one word and/or breaking terms into multiple words.  *</p>  */
 end_comment

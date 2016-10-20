@@ -230,6 +230,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexableFieldType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|RandomIndexWriter
 import|;
 end_import
@@ -4398,7 +4412,7 @@ literal|0
 condition|)
 block|{
 comment|// pile up a multivalued field
-name|FieldType
+name|IndexableFieldType
 name|ft
 init|=
 name|field
@@ -5953,6 +5967,16 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|a
+operator|.
+name|normalize
+argument_list|(
+literal|"dummy"
+argument_list|,
+name|text
+argument_list|)
+expr_stmt|;
+comment|// TODO: what can we do besides testing that the above method does not throw?
 if|if
 condition|(
 name|field

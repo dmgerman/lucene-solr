@@ -417,16 +417,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|newBqB
-operator|.
-name|setDisableCoord
-argument_list|(
-name|bq
-operator|.
-name|isCoordDisabled
-argument_list|()
-argument_list|)
-expr_stmt|;
 comment|// ignore minNrShouldMatch... it doesn't make sense for a negative query
 comment|// the inverse of -a -b is a OR b
 for|for
@@ -574,16 +564,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|newBqB
-operator|.
-name|setDisableCoord
-argument_list|(
-name|bq
-operator|.
-name|isCoordDisabled
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|newBqB
 operator|.
 name|setMinimumNumberShouldMatch

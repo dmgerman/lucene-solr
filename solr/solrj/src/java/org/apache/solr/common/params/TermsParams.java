@@ -74,6 +74,30 @@ name|TERMS_PREFIX
 operator|+
 literal|"fl"
 decl_stmt|;
+comment|/**    * Optional. The list of terms to be retrieved.    *    */
+DECL|field|TERMS_LIST
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_LIST
+init|=
+name|TERMS_PREFIX
+operator|+
+literal|"list"
+decl_stmt|;
+comment|/**    * Optional. The list of terms to be retrieved.    *    */
+DECL|field|TERMS_STATS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_STATS
+init|=
+name|TERMS_PREFIX
+operator|+
+literal|"stats"
+decl_stmt|;
 comment|/**    * Optional.  The lower bound term to start at.  The TermEnum will start at the next term after this term in the dictionary.    *    * If not specified, the empty string is used    */
 DECL|field|TERMS_LOWER
 specifier|public

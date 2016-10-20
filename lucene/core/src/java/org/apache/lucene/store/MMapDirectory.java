@@ -226,7 +226,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|ByteBufferIndexInput
+name|ByteBufferGuard
 operator|.
 name|BufferCleaner
 import|;
@@ -639,13 +639,17 @@ argument_list|()
 argument_list|,
 name|chunkSizePower
 argument_list|,
+operator|new
+name|ByteBufferGuard
+argument_list|(
+name|resourceDescription
+argument_list|,
 name|useUnmap
 condition|?
 name|CLEANER
 else|:
 literal|null
-argument_list|,
-name|useUnmap
+argument_list|)
 argument_list|)
 return|;
 block|}
@@ -1380,8 +1384,8 @@ call|(
 name|BufferCleaner
 call|)
 argument_list|(
-name|ByteBufferIndexInput
-name|parent
+name|String
+name|resourceDescription
 argument_list|,
 name|ByteBuffer
 name|buffer
@@ -1454,10 +1458,7 @@ name|IOException
 argument_list|(
 literal|"Unable to unmap the mapped buffer: "
 operator|+
-name|parent
-operator|.
-name|toString
-argument_list|()
+name|resourceDescription
 argument_list|,
 name|error
 argument_list|)

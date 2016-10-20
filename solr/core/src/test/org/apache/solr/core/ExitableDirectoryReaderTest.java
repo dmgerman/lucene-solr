@@ -424,7 +424,7 @@ expr_stmt|;
 block|}
 comment|// There are lots of assumptions about how/when cache entries should be changed in this method. The
 comment|// simple case above shows the root problem without the confusion. testFilterSimpleCase should be
-comment|// removed once it is running and this test should be un-ignored and the assumptiions verified.
+comment|// removed once it is running and this test should be un-ignored and the assumptions verified.
 comment|// With all the weirdness, I'm not going to vouch for this test. Feel free to change it.
 annotation|@
 name|Test

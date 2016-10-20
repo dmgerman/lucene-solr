@@ -119,7 +119,9 @@ argument_list|(
 name|ObjectReleaseTracker
 operator|.
 name|clearObjectTrackerAndCheckEmpty
-argument_list|()
+argument_list|(
+literal|1
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertNull
@@ -127,7 +129,9 @@ argument_list|(
 name|ObjectReleaseTracker
 operator|.
 name|clearObjectTrackerAndCheckEmpty
-argument_list|()
+argument_list|(
+literal|1
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Object
@@ -156,7 +160,9 @@ argument_list|(
 name|ObjectReleaseTracker
 operator|.
 name|clearObjectTrackerAndCheckEmpty
-argument_list|()
+argument_list|(
+literal|1
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|Object
@@ -227,7 +233,9 @@ argument_list|(
 name|ObjectReleaseTracker
 operator|.
 name|clearObjectTrackerAndCheckEmpty
-argument_list|()
+argument_list|(
+literal|1
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|ObjectReleaseTracker
@@ -271,7 +279,9 @@ argument_list|(
 name|ObjectReleaseTracker
 operator|.
 name|clearObjectTrackerAndCheckEmpty
-argument_list|()
+argument_list|(
+literal|1
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertNull
@@ -279,7 +289,9 @@ argument_list|(
 name|ObjectReleaseTracker
 operator|.
 name|clearObjectTrackerAndCheckEmpty
-argument_list|()
+argument_list|(
+literal|1
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

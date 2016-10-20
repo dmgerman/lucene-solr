@@ -628,7 +628,7 @@ argument_list|)
 expr_stmt|;
 name|writer
 operator|.
-name|setCommitData
+name|setLiveCommitData
 argument_list|(
 name|Collections
 operator|.
@@ -645,6 +645,9 @@ argument_list|,
 literal|16
 argument_list|)
 argument_list|)
+operator|.
+name|entrySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|writer

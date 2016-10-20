@@ -66,23 +66,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|util
-operator|.
 name|CharArraySet
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Version
 import|;
 end_import
 

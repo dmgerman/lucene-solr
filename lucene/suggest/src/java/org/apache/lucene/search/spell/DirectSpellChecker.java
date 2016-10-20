@@ -168,35 +168,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|CharsRef
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
 name|CharsRefBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|UnicodeUtil
 import|;
 end_import
 
@@ -1491,9 +1463,9 @@ operator|!=
 literal|null
 condition|)
 block|{
-specifier|final
+comment|// For FuzzyQuery, boost is the score:
 name|float
-name|boost
+name|score
 init|=
 name|boostAtt
 operator|.
@@ -1510,7 +1482,7 @@ argument_list|()
 operator|>=
 name|numSug
 operator|&&
-name|boost
+name|score
 operator|<=
 name|stQueue
 operator|.
@@ -1519,7 +1491,9 @@ argument_list|()
 operator|.
 name|boost
 condition|)
+block|{
 continue|continue;
+block|}
 comment|// ignore exact match of the same term
 if|if
 condition|(
@@ -1530,7 +1504,9 @@ argument_list|(
 name|candidateTerm
 argument_list|)
 condition|)
+block|{
 continue|continue;
+block|}
 name|int
 name|df
 init|=
@@ -1546,11 +1522,9 @@ name|df
 operator|<=
 name|docfreq
 condition|)
+block|{
 continue|continue;
-specifier|final
-name|float
-name|score
-decl_stmt|;
+block|}
 specifier|final
 name|String
 name|termAsString
@@ -1566,21 +1540,6 @@ comment|// delay creating strings until the end
 name|termAsString
 operator|=
 literal|null
-expr_stmt|;
-comment|// undo FuzzyTermsEnum's scale factor for a real scaled lev score
-name|score
-operator|=
-name|boost
-operator|/
-name|e
-operator|.
-name|getScaleFactor
-argument_list|()
-operator|+
-name|e
-operator|.
-name|getMinSimilarity
-argument_list|()
 expr_stmt|;
 block|}
 else|else
@@ -1620,7 +1579,9 @@ name|score
 operator|<
 name|accuracy
 condition|)
+block|{
 continue|continue;
+block|}
 comment|// add new entry in PQ
 name|st
 operator|.
@@ -1637,7 +1598,7 @@ name|st
 operator|.
 name|boost
 operator|=
-name|boost
+name|score
 expr_stmt|;
 name|st
 operator|.

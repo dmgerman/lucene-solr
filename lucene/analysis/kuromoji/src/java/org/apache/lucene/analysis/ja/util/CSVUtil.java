@@ -404,6 +404,8 @@ literal|0
 condition|)
 block|{
 name|result
+operator|=
+name|result
 operator|.
 name|replace
 argument_list|(

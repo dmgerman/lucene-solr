@@ -435,7 +435,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**     * compares the two lists of queries in an unordered manner such that this method     * returns true if the 2 lists are the same size, and contain the same elements.    *    * This method should only be used if the lists come from QueryResultKeys which have     * already been found to have equal hashCodes, since the unordered comparison aspects     * of the logic are not cheap.    *     * @return true if the lists of equivilent other then the ordering    */
+comment|/**     * compares the two lists of queries in an unordered manner such that this method     * returns true if the 2 lists are the same size, and contain the same elements.    *    * This method should only be used if the lists come from QueryResultKeys which have     * already been found to have equal hashCodes, since the unordered comparison aspects     * of the logic are not cheap.    *     * @return true if the lists of equivalent other then the ordering    */
 DECL|method|unorderedCompare
 specifier|private
 specifier|static
@@ -555,7 +555,7 @@ return|return
 literal|true
 return|;
 block|}
-comment|/**     * Does an unordered comparison of the elements of two lists of queries starting at     * the specified start index.    *     * This method should only be called on lists which are the same size, and where     * all items with an index less then the specified start index are the same.    *    * @return true if the list items after start are equivilent other then the ordering    */
+comment|/**     * Does an unordered comparison of the elements of two lists of queries starting at     * the specified start index.    *     * This method should only be called on lists which are the same size, and where     * all items with an index less then the specified start index are the same.    *    * @return true if the list items after start are equivalent other then the ordering    */
 DECL|method|unorderedCompare
 specifier|private
 specifier|static
@@ -605,8 +605,8 @@ argument_list|()
 operator|==
 name|sz
 assert|;
-comment|// SOLR-5618: if we had a garuntee that the lists never contained any duplicates,
-comment|// this logic could be a lot simplier
+comment|// SOLR-5618: if we had a guarantee that the lists never contained any duplicates,
+comment|// this logic could be a lot simpler
 comment|//
 comment|// (And of course: if the SolrIndexSearcher / QueryCommmand was ever changed to
 comment|// sort the filter query list, then this whole method could be eliminated).

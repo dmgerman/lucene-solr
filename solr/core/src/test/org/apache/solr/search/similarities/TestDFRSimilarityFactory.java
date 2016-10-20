@@ -270,7 +270,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** dfr with parameterized normalization */
+comment|/** dfr with parametrized normalization */
 DECL|method|testParameters
 specifier|public
 name|void

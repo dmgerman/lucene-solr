@@ -188,11 +188,11 @@ throws|throws
 name|IOException
 function_decl|;
 comment|/**    * Renames {@code source} to {@code dest} as an atomic operation,    * where {@code dest} does not yet exist in the directory.    *<p>    * Notes: This method is used by IndexWriter to publish commits.    * It is ok if this operation is not truly atomic, for example    * both {@code source} and {@code dest} can be visible temporarily.    * It is just important that the contents of {@code dest} appear    * atomically, or an exception is thrown.    */
-DECL|method|renameFile
+DECL|method|rename
 specifier|public
 specifier|abstract
 name|void
-name|renameFile
+name|rename
 parameter_list|(
 name|String
 name|source
@@ -200,6 +200,16 @@ parameter_list|,
 name|String
 name|dest
 parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Ensure that directory metadata, such as recent file renames, are made    * durable.    */
+DECL|method|syncMetaData
+specifier|public
+specifier|abstract
+name|void
+name|syncMetaData
+parameter_list|()
 throws|throws
 name|IOException
 function_decl|;

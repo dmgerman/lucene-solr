@@ -56,20 +56,6 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|BooleanQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
 name|CollectionStatistics
 import|;
 end_import
@@ -209,7 +195,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * Similarity defines the components of Lucene scoring.  *<p>  * Expert: Scoring API.  *<p>  * This is a low-level API, you should only extend this API if you want to implement   * an information retrieval<i>model</i>.  If you are instead looking for a convenient way   * to alter Lucene's scoring, consider extending a higher-level implementation  * such as {@link TFIDFSimilarity}, which implements the vector space model with this API, or   * just tweaking the default implementation: {@link BM25Similarity}.  *<p>  * Similarity determines how Lucene weights terms, and Lucene interacts with  * this class at both<a href="#indextime">index-time</a> and   *<a href="#querytime">query-time</a>.  *<p>  *<a name="indextime">Indexing Time</a>  * At indexing time, the indexer calls {@link #computeNorm(FieldInvertState)}, allowing  * the Similarity implementation to set a per-document value for the field that will   * be later accessible via {@link org.apache.lucene.index.LeafReader#getNormValues(String)}.  Lucene makes no assumption  * about what is in this norm, but it is most useful for encoding length normalization   * information.  *<p>  * Implementations should carefully consider how the normalization is encoded: while  * Lucene's {@link BM25Similarity} encodes a combination of index-time boost  * and length normalization information with {@link SmallFloat} into a single byte, this   * might not be suitable for all purposes.  *<p>  * Many formulas require the use of average document length, which can be computed via a   * combination of {@link CollectionStatistics#sumTotalTermFreq()} and   * {@link CollectionStatistics#maxDoc()} or {@link CollectionStatistics#docCount()},   * depending upon whether the average should reflect field sparsity.  *<p>  * Additional scoring factors can be stored in named  *<code>NumericDocValuesField</code>s and accessed  * at query-time with {@link org.apache.lucene.index.LeafReader#getNumericDocValues(String)}.  *<p>  * Finally, using index-time boosts (either via folding into the normalization byte or  * via DocValues), is an inefficient way to boost the scores of different fields if the  * boost will be the same for every document, instead the Similarity can simply take a constant  * boost parameter<i>C</i>, and {@link PerFieldSimilarityWrapper} can return different   * instances with different boosts depending upon field name.  *<p>  *<a name="querytime">Query time</a>  * At query-time, Queries interact with the Similarity via these steps:  *<ol>  *<li>The {@link #computeWeight(CollectionStatistics, TermStatistics...)} method is called a single time,  *       allowing the implementation to compute any statistics (such as IDF, average document length, etc)  *       across<i>the entire collection</i>. The {@link TermStatistics} and {@link CollectionStatistics} passed in   *       already contain all of the raw statistics involved, so a Similarity can freely use any combination  *       of statistics without causing any additional I/O. Lucene makes no assumption about what is   *       stored in the returned {@link Similarity.SimWeight} object.  *<li>The query normalization process occurs a single time: {@link Similarity.SimWeight#getValueForNormalization()}  *       is called for each query leaf node, {@link Similarity#queryNorm(float)} is called for the top-level  *       query, and finally {@link Similarity.SimWeight#normalize(float, float)} passes down the normalization value  *       and any top-level boosts (e.g. from enclosing {@link BooleanQuery}s).  *<li>For each segment in the index, the Query creates a {@link #simScorer(SimWeight, org.apache.lucene.index.LeafReaderContext)}  *       The score() method is called for each matching document.  *</ol>  *<p>  *<a name="explaintime">Explanations</a>  * When {@link IndexSearcher#explain(org.apache.lucene.search.Query, int)} is called, queries consult the Similarity's DocScorer for an   * explanation of how it computed its score. The query passes in a the document id and an explanation of how the frequency  * was computed.  *  * @see org.apache.lucene.index.IndexWriterConfig#setSimilarity(Similarity)  * @see IndexSearcher#setSimilarity(Similarity)  * @lucene.experimental  */
+comment|/**   * Similarity defines the components of Lucene scoring.  *<p>  * Expert: Scoring API.  *<p>  * This is a low-level API, you should only extend this API if you want to implement   * an information retrieval<i>model</i>.  If you are instead looking for a convenient way   * to alter Lucene's scoring, consider extending a higher-level implementation  * such as {@link TFIDFSimilarity}, which implements the vector space model with this API, or   * just tweaking the default implementation: {@link BM25Similarity}.  *<p>  * Similarity determines how Lucene weights terms, and Lucene interacts with  * this class at both<a href="#indextime">index-time</a> and   *<a href="#querytime">query-time</a>.  *<p>  *<a name="indextime">Indexing Time</a>  * At indexing time, the indexer calls {@link #computeNorm(FieldInvertState)}, allowing  * the Similarity implementation to set a per-document value for the field that will   * be later accessible via {@link org.apache.lucene.index.LeafReader#getNormValues(String)}.  Lucene makes no assumption  * about what is in this norm, but it is most useful for encoding length normalization   * information.  *<p>  * Implementations should carefully consider how the normalization is encoded: while  * Lucene's {@link BM25Similarity} encodes a combination of index-time boost  * and length normalization information with {@link SmallFloat} into a single byte, this   * might not be suitable for all purposes.  *<p>  * Many formulas require the use of average document length, which can be computed via a   * combination of {@link CollectionStatistics#sumTotalTermFreq()} and   * {@link CollectionStatistics#maxDoc()} or {@link CollectionStatistics#docCount()},   * depending upon whether the average should reflect field sparsity.  *<p>  * Additional scoring factors can be stored in named  *<code>NumericDocValuesField</code>s and accessed  * at query-time with {@link org.apache.lucene.index.LeafReader#getNumericDocValues(String)}.  *<p>  * Finally, using index-time boosts (either via folding into the normalization byte or  * via DocValues), is an inefficient way to boost the scores of different fields if the  * boost will be the same for every document, instead the Similarity can simply take a constant  * boost parameter<i>C</i>, and {@link PerFieldSimilarityWrapper} can return different   * instances with different boosts depending upon field name.  *<p>  *<a name="querytime">Query time</a>  * At query-time, Queries interact with the Similarity via these steps:  *<ol>  *<li>The {@link #computeWeight(float, CollectionStatistics, TermStatistics...)} method is called a single time,  *       allowing the implementation to compute any statistics (such as IDF, average document length, etc)  *       across<i>the entire collection</i>. The {@link TermStatistics} and {@link CollectionStatistics} passed in   *       already contain all of the raw statistics involved, so a Similarity can freely use any combination  *       of statistics without causing any additional I/O. Lucene makes no assumption about what is   *       stored in the returned {@link Similarity.SimWeight} object.  *<li>For each segment in the index, the Query creates a {@link #simScorer(SimWeight, org.apache.lucene.index.LeafReaderContext)}  *       The score() method is called for each matching document.  *</ol>  *<p>  *<a name="explaintime">Explanations</a>  * When {@link IndexSearcher#explain(org.apache.lucene.search.Query, int)} is called, queries consult the Similarity's DocScorer for an   * explanation of how it computed its score. The query passes in a the document id and an explanation of how the frequency  * was computed.  *  * @see org.apache.lucene.index.IndexWriterConfig#setSimilarity(Similarity)  * @see IndexSearcher#setSimilarity(Similarity)  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -225,37 +211,6 @@ specifier|public
 name|Similarity
 parameter_list|()
 block|{}
-comment|/** Hook to integrate coordinate-level matching.    *<p>    * By default this is disabled (returns<code>1</code>), as with    * most modern models this will only skew performance, but some    * implementations such as {@link TFIDFSimilarity} override this.    *    * @param overlap the number of query terms matched in the document    * @param maxOverlap the total number of terms in the query    * @return a score factor based on term overlap with the query    */
-DECL|method|coord
-specifier|public
-name|float
-name|coord
-parameter_list|(
-name|int
-name|overlap
-parameter_list|,
-name|int
-name|maxOverlap
-parameter_list|)
-block|{
-return|return
-literal|1f
-return|;
-block|}
-comment|/** Computes the normalization value for a query given the sum of the    * normalized weights {@link SimWeight#getValueForNormalization()} of     * each of the query terms.  This value is passed back to the     * weight ({@link SimWeight#normalize(float, float)} of each query     * term, to provide a hook to attempt to make scores from different    * queries comparable.    *<p>    * By default this is disabled (returns<code>1</code>), but some    * implementations such as {@link TFIDFSimilarity} override this.    *     * @param valueForNormalization the sum of the term normalization values    * @return a normalization factor for query weights    */
-DECL|method|queryNorm
-specifier|public
-name|float
-name|queryNorm
-parameter_list|(
-name|float
-name|valueForNormalization
-parameter_list|)
-block|{
-return|return
-literal|1f
-return|;
-block|}
 comment|/**    * Computes the normalization value for a field, given the accumulated    * state of term processing for this field (see {@link FieldInvertState}).    *    *<p>Matches in longer fields are less precise, so implementations of this    * method usually set smaller values when<code>state.getLength()</code> is large,    * and larger values when<code>state.getLength()</code> is small.    *     * @lucene.experimental    *     * @param state current processing state for this field    * @return computed norm value    */
 DECL|method|computeNorm
 specifier|public
@@ -267,13 +222,16 @@ name|FieldInvertState
 name|state
 parameter_list|)
 function_decl|;
-comment|/**    * Compute any collection-level weight (e.g. IDF, average document length, etc) needed for scoring a query.    *    * @param collectionStats collection-level statistics, such as the number of tokens in the collection.    * @param termStats term-level statistics, such as the document frequency of a term across the collection.    * @return SimWeight object with the information this Similarity needs to score a query.    */
+comment|/**    * Compute any collection-level weight (e.g. IDF, average document length, etc) needed for scoring a query.    *    * @param boost a multiplicative factor to apply to the produces scores    * @param collectionStats collection-level statistics, such as the number of tokens in the collection.    * @param termStats term-level statistics, such as the document frequency of a term across the collection.    * @return SimWeight object with the information this Similarity needs to score a query.    */
 DECL|method|computeWeight
 specifier|public
 specifier|abstract
 name|SimWeight
 name|computeWeight
 parameter_list|(
+name|float
+name|boost
+parameter_list|,
 name|CollectionStatistics
 name|collectionStats
 parameter_list|,
@@ -282,7 +240,7 @@ modifier|...
 name|termStats
 parameter_list|)
 function_decl|;
-comment|/**    * Creates a new {@link Similarity.SimScorer} to score matching documents from a segment of the inverted index.    * @param weight collection information from {@link #computeWeight(CollectionStatistics, TermStatistics...)}    * @param context segment of the inverted index to be scored.    * @return SloppySimScorer for scoring documents across<code>context</code>    * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Creates a new {@link Similarity.SimScorer} to score matching documents from a segment of the inverted index.    * @param weight collection information from {@link #computeWeight(float, CollectionStatistics, TermStatistics...)}    * @param context segment of the inverted index to be scored.    * @return SloppySimScorer for scoring documents across<code>context</code>    * @throws IOException if there is a low-level I/O error    */
 DECL|method|simScorer
 specifier|public
 specifier|abstract
@@ -325,6 +283,8 @@ parameter_list|,
 name|float
 name|freq
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Computes the amount of a sloppy phrase match, based on an edit distance. */
 DECL|method|computeSlopFactor
@@ -369,6 +329,8 @@ parameter_list|,
 name|Explanation
 name|freq
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Explanation
@@ -422,28 +384,6 @@ specifier|public
 name|SimWeight
 parameter_list|()
 block|{}
-comment|/** The value for normalization of contained query clauses (e.g. sum of squared weights).      *<p>      * NOTE: a Similarity implementation might not use any query normalization at all,      * it's not required. However, if it wants to participate in query normalization,      * it can return a value here.      */
-DECL|method|getValueForNormalization
-specifier|public
-specifier|abstract
-name|float
-name|getValueForNormalization
-parameter_list|()
-function_decl|;
-comment|/** Assigns the query normalization factor and boost from parent queries to this.      *<p>      * NOTE: a Similarity implementation might not use this normalized value at all,      * it's not required. However, it's usually a good idea to at least incorporate       * the boost into its score.      *<p>      * NOTE: If this method is called several times, it behaves as if only the      * last call was performed.      */
-DECL|method|normalize
-specifier|public
-specifier|abstract
-name|void
-name|normalize
-parameter_list|(
-name|float
-name|queryNorm
-parameter_list|,
-name|float
-name|boost
-parameter_list|)
-function_decl|;
 block|}
 block|}
 end_class

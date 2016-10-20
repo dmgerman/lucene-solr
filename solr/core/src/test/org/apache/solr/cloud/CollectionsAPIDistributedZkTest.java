@@ -1377,7 +1377,7 @@ name|getSolrXml
 parameter_list|()
 block|{
 return|return
-literal|"solr-no-core.xml"
+literal|"solr.xml"
 return|;
 block|}
 DECL|method|CollectionsAPIDistributedZkTest
@@ -8639,12 +8639,14 @@ operator|.
 name|getZkStateReader
 argument_list|()
 operator|.
-name|getClusterProps
-argument_list|()
-operator|.
-name|get
+name|getClusterProperty
 argument_list|(
 name|name
+argument_list|,
+operator|(
+name|String
+operator|)
+literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -440,9 +440,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene54
+name|lucene70
 operator|.
-name|Lucene54DocValuesFormat
+name|Lucene70Codec
 import|;
 end_import
 
@@ -456,9 +456,9 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene60
+name|lucene70
 operator|.
-name|Lucene60Codec
+name|Lucene70DocValuesFormat
 import|;
 end_import
 
@@ -1462,6 +1462,14 @@ name|v
 operator|!=
 literal|null
 assert|;
+comment|// for the first element, check that remove is not supported
+if|if
+condition|(
+name|i
+operator|==
+literal|0
+condition|)
+block|{
 try|try
 block|{
 name|iterator
@@ -1486,6 +1494,7 @@ name|expected
 parameter_list|)
 block|{
 comment|// ok
+block|}
 block|}
 block|}
 assert|assert
@@ -2512,17 +2521,6 @@ operator|||
 name|reader
 operator|.
 name|getSortedSetDocValues
-argument_list|(
-name|info
-operator|.
-name|name
-argument_list|)
-operator|!=
-literal|null
-operator|||
-name|reader
-operator|.
-name|getDocsWithField
 argument_list|(
 name|info
 operator|.
@@ -6907,7 +6905,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Lucene60Codec
+name|Lucene70Codec
 argument_list|()
 return|;
 block|}
@@ -7006,7 +7004,7 @@ parameter_list|()
 block|{
 return|return
 operator|new
-name|Lucene54DocValuesFormat
+name|Lucene70DocValuesFormat
 argument_list|()
 return|;
 block|}

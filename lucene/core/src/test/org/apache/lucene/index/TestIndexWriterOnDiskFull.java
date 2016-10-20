@@ -280,22 +280,6 @@ name|TestUtil
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|TestIndexWriter
-operator|.
-name|assertNoUnreferencedFiles
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tests for IndexWriter when the disk runs out of space  */
 end_comment
@@ -1311,13 +1295,6 @@ name|startDir
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|dir
-operator|.
-name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 name|IndexWriterConfig
 name|iwc
 init|=

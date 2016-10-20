@@ -244,6 +244,16 @@ name|COUNTER_DELETES
 init|=
 literal|"deletes"
 decl_stmt|;
+comment|/**    * Counter for Bootstrap operations *    */
+DECL|field|COUNTER_BOOTSTRAP
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|COUNTER_BOOTSTRAP
+init|=
+literal|"bootstraps"
+decl_stmt|;
 comment|/**    * A list of errors per target collection *    */
 DECL|field|ERRORS
 specifier|public
@@ -342,6 +352,15 @@ name|OPS
 block|,
 DECL|enum constant|ERRORS
 name|ERRORS
+block|,
+DECL|enum constant|BOOTSTRAP
+name|BOOTSTRAP
+block|,
+DECL|enum constant|BOOTSTRAP_STATUS
+name|BOOTSTRAP_STATUS
+block|,
+DECL|enum constant|CANCEL_BOOTSTRAP
+name|CANCEL_BOOTSTRAP
 block|;
 DECL|method|get
 specifier|public

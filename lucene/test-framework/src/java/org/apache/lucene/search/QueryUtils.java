@@ -90,20 +90,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|PointValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|FieldInfo
 import|;
 end_import
@@ -216,6 +202,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|PointValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SortedDocValues
 import|;
 end_import
@@ -305,6 +305,16 @@ import|;
 end_import
 
 begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|Assert
+import|;
+end_import
+
+begin_import
 import|import static
 name|junit
 operator|.
@@ -337,16 +347,6 @@ operator|.
 name|Assert
 operator|.
 name|assertTrue
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
 import|;
 end_import
 
@@ -416,6 +416,38 @@ parameter_list|)
 block|{
 return|return
 literal|"My Whacky Query"
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+return|return
+name|o
+operator|==
+name|this
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 block|}
@@ -566,7 +598,7 @@ literal|true
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**     * Various query sanity checks on a searcher, some checks are only done for    * instanceof IndexSearcher.    *    * @see #check(Query)    * @see #checkFirstSkipTo    * @see #checkSkipTo    * @see #checkExplanations    * @see #checkEqual    */
+comment|/**    * Various query sanity checks on a searcher, some checks are only done for    * instanceof IndexSearcher.    *    * @see #check(Query)    * @see #checkFirstSkipTo    * @see #checkSkipTo    * @see #checkExplanations    * @see #checkEqual    */
 DECL|method|check
 specifier|public
 specifier|static
@@ -798,7 +830,7 @@ name|cacheKey
 return|;
 block|}
 block|}
-comment|/**    * Given an IndexSearcher, returns a new IndexSearcher whose IndexReader     * is a MultiReader containing the Reader of the original IndexSearcher,     * as well as several "empty" IndexReaders -- some of which will have     * deleted documents in them.  This new IndexSearcher should     * behave exactly the same as the original IndexSearcher.    * @param s the searcher to wrap    * @param edge if negative, s will be the first sub; if 0, s will be in the middle, if positive s will be the last sub    */
+comment|/**    * Given an IndexSearcher, returns a new IndexSearcher whose IndexReader    * is a MultiReader containing the Reader of the original IndexSearcher,    * as well as several "empty" IndexReaders -- some of which will have    * deleted documents in them.  This new IndexSearcher should    * behave exactly the same as the original IndexSearcher.    * @param s the searcher to wrap    * @param edge if negative, s will be the first sub; if 0, s will be in the middle, if positive s will be the last sub    */
 DECL|method|wrapUnderlyingReader
 specifier|public
 specifier|static
@@ -1147,22 +1179,6 @@ block|}
 annotation|@
 name|Override
 specifier|public
-name|Bits
-name|getDocsWithField
-parameter_list|(
-name|String
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-block|{
-return|return
-literal|null
-return|;
-block|}
-annotation|@
-name|Override
-specifier|public
 name|NumericDocValues
 name|getNormValues
 parameter_list|(
@@ -1223,7 +1239,10 @@ name|Override
 specifier|public
 name|PointValues
 name|getPointValues
-parameter_list|()
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
 block|{
 return|return
 literal|null
@@ -1300,6 +1319,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{}
+annotation|@
+name|Override
+specifier|public
+name|Sort
+name|getIndexSort
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 return|;
 block|}

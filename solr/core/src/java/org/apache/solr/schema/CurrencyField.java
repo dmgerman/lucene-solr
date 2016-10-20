@@ -230,6 +230,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|StoredField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|LeafReaderContext
@@ -360,7 +374,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|uninverting
 operator|.
@@ -1268,43 +1282,6 @@ name|stored
 argument_list|()
 condition|)
 block|{
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FieldType
-name|customType
-init|=
-operator|new
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FieldType
-argument_list|()
-decl_stmt|;
-assert|assert
-operator|!
-name|customType
-operator|.
-name|omitNorms
-argument_list|()
-assert|;
-name|customType
-operator|.
-name|setStored
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|String
 name|storedValue
 init|=
@@ -1348,7 +1325,9 @@ argument_list|()
 argument_list|,
 name|storedValue
 argument_list|,
-name|customType
+name|StoredField
+operator|.
+name|TYPE
 argument_list|,
 literal|1F
 argument_list|)
@@ -2280,6 +2259,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|amounts
@@ -2299,6 +2280,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -2319,6 +2302,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -2339,6 +2324,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|CurrencyValue
@@ -2374,6 +2361,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|CurrencyValue
@@ -2414,6 +2403,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Double
@@ -2436,6 +2427,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|name
@@ -2948,6 +2941,8 @@ parameter_list|,
 name|int
 name|currencyOrd
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -3048,6 +3043,8 @@ parameter_list|,
 name|int
 name|currencyOrd
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|String
 name|code
@@ -3103,6 +3100,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|amounts
@@ -3122,6 +3121,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|long
 name|amount
@@ -3133,7 +3134,7 @@ argument_list|(
 name|doc
 argument_list|)
 decl_stmt|;
-comment|// bail fast using whatever ammounts defaults to if no value
+comment|// bail fast using whatever amounts defaults to if no value
 comment|// (if we don't do this early, currencyOrd may be< 0,
 comment|// causing index bounds exception
 if|if
@@ -3375,6 +3376,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -3395,6 +3398,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -3415,6 +3420,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
@@ -3435,6 +3442,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|Long
@@ -3457,6 +3466,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|name
@@ -4250,7 +4261,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Reloading exchange rates from file "
 operator|+

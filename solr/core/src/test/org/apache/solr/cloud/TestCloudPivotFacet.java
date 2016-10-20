@@ -516,6 +516,24 @@ name|FACET_SORT
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|FacetParams
+operator|.
+name|FACET_DISTRIB_MCO
+import|;
+end_import
+
 begin_comment
 comment|/**  *<p>  * Randomized testing of Pivot Faceting using SolrCloud.  *</p>  *<p>  * After indexing a bunch of random docs, picks some random fields to pivot facet on,   * and then confirms that the resulting counts match the results of filtering on those   * values.  This gives us strong assertions on the correctness of the total counts for   * each pivot value, but no assertions that the correct "top" counts were chosen.  *</p>  *<p>  * NOTE: this test ignores the control collection and only deals with the   * CloudSolrServer - this is because the randomized field values make it very easy for   * the term stats to miss values even with the overrequest.  * (because so many values will tie for "1").  What we care about here is   * that the counts we get back are correct and match what we get when filtering on those   * constraints.  *</p>  *  *  *  */
 end_comment
@@ -559,6 +577,15 @@ name|String
 name|TRACE_MIN
 init|=
 literal|"_test_min"
+decl_stmt|;
+comment|// param used by test purely for tracing& validation
+DECL|field|TRACE_DISTRIB_MIN
+specifier|private
+specifier|static
+name|String
+name|TRACE_DISTRIB_MIN
+init|=
+literal|"_test_distrib_min"
 decl_stmt|;
 comment|// param used by test purely for tracing& validation
 DECL|field|TRACE_MISS
@@ -1144,6 +1171,35 @@ argument_list|(
 name|TRACE_MIN
 argument_list|,
 name|min
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+name|pivotP
+operator|.
+name|add
+argument_list|(
+name|FACET_DISTRIB_MCO
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+comment|// trace param for validation
+name|baseP
+operator|.
+name|add
+argument_list|(
+name|TRACE_DISTRIB_MIN
+argument_list|,
+literal|"true"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2773,7 +2829,7 @@ parameter_list|)
 block|{
 comment|// randomly decide which stat tag to use
 comment|// if this is 0, or stats aren't enabled, we'll be asking for a tag that doesn't exist
-comment|// ...which should be fine (just like excluding a taged fq that doesn't exist)
+comment|// ...which should be fine (just like excluding a tagged fq that doesn't exist)
 specifier|final
 name|int
 name|statTag

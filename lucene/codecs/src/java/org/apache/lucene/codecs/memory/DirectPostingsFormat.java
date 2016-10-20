@@ -5012,10 +5012,7 @@ index|]
 operator|.
 name|state
 operator|=
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 expr_stmt|;
 name|states
 index|[

@@ -33,6 +33,7 @@ end_import
 begin_class
 DECL|class|ExtendedQueryBase
 specifier|public
+specifier|abstract
 class|class
 name|ExtendedQueryBase
 extends|extends

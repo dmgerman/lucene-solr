@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**   * {@link org.apache.solr.highlight.SolrHighlighter} API and related implementaions and utilities  *<p>  * See {@link org.apache.lucene.search.highlight} for addition information.  */
+comment|/**   * {@link org.apache.solr.highlight.SolrHighlighter} API and related implementations and utilities  *<p>  * See {@link org.apache.lucene.search.highlight} for addition information.  */
 end_comment
 
 begin_package

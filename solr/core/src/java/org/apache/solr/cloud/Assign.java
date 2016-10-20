@@ -52,16 +52,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -964,7 +954,7 @@ name|entrySet
 argument_list|()
 control|)
 block|{
-comment|//ADDREPLICA can put more than maxShardsPerNode on an instnace, so this test is necessary.
+comment|//ADDREPLICA can put more than maxShardsPerNode on an instance, so this test is necessary.
 if|if
 condition|(
 name|maxShardsPerNode

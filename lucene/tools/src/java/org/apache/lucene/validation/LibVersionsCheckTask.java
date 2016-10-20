@@ -856,11 +856,11 @@ specifier|private
 name|File
 name|ignoreConflictsFile
 decl_stmt|;
-comment|/**    * Ivy settings file: ivy-settings.xml    */
-DECL|field|ivySettingsFile
+comment|/**    * Ivy settings file: top-level-ivy-settings.xml    */
+DECL|field|topLevelIvySettingsFile
 specifier|private
 name|File
-name|ivySettingsFile
+name|topLevelIvySettingsFile
 decl_stmt|;
 comment|/**    * Location of common build dir: lucene/build/    */
 DECL|field|commonBuildDir
@@ -1059,16 +1059,16 @@ operator|=
 name|file
 expr_stmt|;
 block|}
-DECL|method|setIvySettingsFile
+DECL|method|setTopLevelIvySettingsFile
 specifier|public
 name|void
-name|setIvySettingsFile
+name|setTopLevelIvySettingsFile
 parameter_list|(
 name|File
 name|file
 parameter_list|)
 block|{
-name|ivySettingsFile
+name|topLevelIvySettingsFile
 operator|=
 name|file
 expr_stmt|;
@@ -4397,6 +4397,22 @@ argument_list|)
 expr_stmt|;
 name|ivySettings
 operator|.
+name|setVariable
+argument_list|(
+literal|"ivysettings.xml"
+argument_list|,
+name|getProject
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+literal|"ivysettings.xml"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// nested settings file
+name|ivySettings
+operator|.
 name|setBaseDir
 argument_list|(
 name|commonBuildDir
@@ -4424,7 +4440,7 @@ name|ivy
 operator|.
 name|configure
 argument_list|(
-name|ivySettingsFile
+name|topLevelIvySettingsFile
 argument_list|)
 expr_stmt|;
 block|}
@@ -4440,7 +4456,7 @@ name|BuildException
 argument_list|(
 literal|"Exception reading "
 operator|+
-name|ivySettingsFile
+name|topLevelIvySettingsFile
 operator|.
 name|getPath
 argument_list|()

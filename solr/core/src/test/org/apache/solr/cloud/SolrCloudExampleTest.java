@@ -74,16 +74,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Comparator
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -129,20 +119,6 @@ operator|.
 name|cli
 operator|.
 name|CommandLine
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LuceneTestCase
 import|;
 end_import
 
@@ -560,6 +536,29 @@ operator|.
 name|setDefaultCollection
 argument_list|(
 name|testCollectionName
+argument_list|)
+expr_stmt|;
+name|int
+name|invalidToolExitStatus
+init|=
+literal|1
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Collection '"
+operator|+
+name|testCollectionName
+operator|+
+literal|"' created even though it already existed"
+argument_list|,
+name|invalidToolExitStatus
+argument_list|,
+name|tool
+operator|.
+name|runTool
+argument_list|(
+name|cli
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// now index docs like bin/post would do but we can't use SimplePostTool because it uses System.exit when

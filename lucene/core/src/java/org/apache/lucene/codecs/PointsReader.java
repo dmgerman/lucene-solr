@@ -74,8 +74,6 @@ specifier|public
 specifier|abstract
 class|class
 name|PointsReader
-extends|extends
-name|PointValues
 implements|implements
 name|Closeable
 implements|,
@@ -94,6 +92,19 @@ specifier|abstract
 name|void
 name|checkIntegrity
 parameter_list|()
+throws|throws
+name|IOException
+function_decl|;
+comment|/** Return {@link PointValues} for the given {@code field}. */
+DECL|method|getValues
+specifier|public
+specifier|abstract
+name|PointValues
+name|getValues
+parameter_list|(
+name|String
+name|field
+parameter_list|)
 throws|throws
 name|IOException
 function_decl|;

@@ -391,6 +391,15 @@ assert|;
 comment|// Should never happen
 try|try
 block|{
+if|if
+condition|(
+operator|!
+name|state
+operator|.
+name|isBootstrapInProgress
+argument_list|()
+condition|)
+block|{
 operator|new
 name|CdcrReplicator
 argument_list|(
@@ -402,6 +411,22 @@ operator|.
 name|run
 argument_list|()
 expr_stmt|;
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Replicator state is bootstrapping, skipping replication for target collection {}"
+argument_list|,
+name|state
+operator|.
+name|getTargetCollection
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 finally|finally
 block|{

@@ -104,7 +104,6 @@ end_comment
 
 begin_class
 DECL|class|SimpleTextDocValuesFormat
-specifier|public
 class|class
 name|SimpleTextDocValuesFormat
 extends|extends

@@ -896,11 +896,11 @@ expr_stmt|;
 block|}
 name|w
 operator|.
-name|setCommitData
+name|setLiveCommitData
 argument_list|(
 name|w
 operator|.
-name|getCommitData
+name|getLiveCommitData
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -649,6 +649,17 @@ name|in
 operator|.
 name|length
 argument_list|()
+operator|:
+literal|"index="
+operator|+
+name|index
+operator|+
+literal|" vs in.length()="
+operator|+
+name|in
+operator|.
+name|length
+argument_list|()
 assert|;
 return|return
 name|in

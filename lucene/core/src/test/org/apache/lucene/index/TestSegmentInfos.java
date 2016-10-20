@@ -54,20 +54,6 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|Directory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|store
-operator|.
 name|IOContext
 import|;
 end_import
@@ -303,6 +289,8 @@ name|String
 operator|>
 name|emptyMap
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|info
@@ -497,6 +485,8 @@ name|String
 operator|>
 name|emptyMap
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|info
@@ -598,6 +588,8 @@ name|String
 operator|>
 name|emptyMap
 argument_list|()
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 name|info

@@ -18,6 +18,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -31,7 +41,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A per-document byte[] with presorted values.  *<p>  * Per-Document values in a SortedDocValues are deduplicated, dereferenced,  * and sorted into a dictionary of unique values. A pointer to the  * dictionary value (ordinal) can be retrieved for each document. Ordinals  * are dense and in increasing sorted order.  */
+comment|/**  * A per-document byte[] with presorted values.  This is fundamentally an  * iterator over the int ord values per document, with random access APIs  * to resolve an int ord to BytesRef.  *<p>  * Per-Document values in a SortedDocValues are deduplicated, dereferenced,  * and sorted into a dictionary of unique values. A pointer to the  * dictionary value (ordinal) can be retrieved for each document. Ordinals  * are dense and in increasing sorted order.  */
 end_comment
 
 begin_class
@@ -49,18 +59,15 @@ specifier|protected
 name|SortedDocValues
 parameter_list|()
 block|{}
-comment|/**    * Returns the ordinal for the specified docID.    * @param  docID document ID to lookup    * @return ordinal for the document: this is dense, starts at 0, then    *         increments by 1 for the next value in sorted order. Note that    *         missing values are indicated by -1.    */
-DECL|method|getOrd
+comment|/**    * Returns the ordinal for the current docID.    * @return ordinal for the document: this is dense, starts at 0, then    *         increments by 1 for the next value in sorted order.    */
+DECL|method|ordValue
 specifier|public
 specifier|abstract
 name|int
-name|getOrd
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
+name|ordValue
+parameter_list|()
 function_decl|;
-comment|/** Retrieves the value for the specified ordinal. The returned    * {@link BytesRef} may be re-used across calls to {@link #lookupOrd(int)}    * so make sure to {@link BytesRef#deepCopyOf(BytesRef) copy it} if you want    * to keep it around.    * @param ord ordinal to lookup (must be&gt;= 0 and&lt; {@link #getValueCount()})    * @see #getOrd(int)     */
+comment|/** Retrieves the value for the specified ordinal. The returned    * {@link BytesRef} may be re-used across calls to {@link #lookupOrd(int)}    * so make sure to {@link BytesRef#deepCopyOf(BytesRef) copy it} if you want    * to keep it around.    * @param ord ordinal to lookup (must be&gt;= 0 and&lt; {@link #getValueCount()})    * @see #ordValue()     */
 DECL|method|lookupOrd
 specifier|public
 specifier|abstract
@@ -70,14 +77,8 @@ parameter_list|(
 name|int
 name|ord
 parameter_list|)
-function_decl|;
-comment|/**    * Returns the number of unique values.    * @return number of unique values in this SortedDocValues. This is    *         also equivalent to one plus the maximum ordinal.    */
-DECL|method|getValueCount
-specifier|public
-specifier|abstract
-name|int
-name|getValueCount
-parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 DECL|field|empty
 specifier|private
@@ -91,22 +92,19 @@ argument_list|()
 decl_stmt|;
 annotation|@
 name|Override
-DECL|method|get
+DECL|method|binaryValue
 specifier|public
 name|BytesRef
-name|get
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
+name|binaryValue
+parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|int
 name|ord
 init|=
-name|getOrd
-argument_list|(
-name|docID
-argument_list|)
+name|ordValue
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -130,6 +128,14 @@ argument_list|)
 return|;
 block|}
 block|}
+comment|/**    * Returns the number of unique values.    * @return number of unique values in this SortedDocValues. This is    *         also equivalent to one plus the maximum ordinal.    */
+DECL|method|getValueCount
+specifier|public
+specifier|abstract
+name|int
+name|getValueCount
+parameter_list|()
+function_decl|;
 comment|/** If {@code key} exists, returns its ordinal, else    *  returns {@code -insertionPoint-1}, like {@code    *  Arrays.binarySearch}.    *    *  @param key Key to look up    **/
 DECL|method|lookupTerm
 specifier|public
@@ -139,6 +145,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|int
 name|low
@@ -243,6 +251,8 @@ specifier|public
 name|TermsEnum
 name|termsEnum
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 operator|new

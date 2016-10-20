@@ -20,6 +20,38 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -240,21 +272,21 @@ end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|HashMap
+name|Logger
 import|;
 end_import
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|util
+name|slf4j
 operator|.
-name|Map
+name|LoggerFactory
 import|;
 end_import
 
@@ -266,6 +298,26 @@ name|ZkStateWriterTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|MethodHandles
+operator|.
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
+argument_list|)
+decl_stmt|;
 DECL|method|testZkStateWriterBatching
 specifier|public
 name|void
@@ -351,6 +403,8 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|ZkStateReader
 name|reader
 init|=
@@ -359,7 +413,8 @@ name|ZkStateReader
 argument_list|(
 name|zkClient
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|reader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -857,6 +912,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 finally|finally
 block|{
 name|IOUtils
@@ -958,6 +1014,8 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|ZkStateReader
 name|reader
 init|=
@@ -966,7 +1024,8 @@ name|ZkStateReader
 argument_list|(
 name|zkClient
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|reader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -1122,6 +1181,7 @@ name|exists
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 finally|finally
 block|{
 name|IOUtils
@@ -1223,6 +1283,8 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|ZkStateReader
 name|reader
 init|=
@@ -1231,7 +1293,8 @@ name|ZkStateReader
 argument_list|(
 name|zkClient
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|reader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -1405,6 +1468,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 finally|finally
 block|{
 name|IOUtils
@@ -1506,6 +1570,8 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|ZkStateReader
 name|reader
 init|=
@@ -1514,7 +1580,8 @@ name|ZkStateReader
 argument_list|(
 name|zkClient
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|reader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -1811,7 +1878,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"enqueueUpdate after BadVersionException should not have suceeded"
+literal|"enqueueUpdate after BadVersionException should not have succeeded"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1832,7 +1899,7 @@ argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"writePendingUpdates after BadVersionException should not have suceeded"
+literal|"writePendingUpdates after BadVersionException should not have succeeded"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1843,6 +1910,7 @@ name|e
 parameter_list|)
 block|{
 comment|// expected
+block|}
 block|}
 block|}
 finally|finally
@@ -1946,6 +2014,8 @@ argument_list|(
 name|zkClient
 argument_list|)
 expr_stmt|;
+try|try
+init|(
 name|ZkStateReader
 name|reader
 init|=
@@ -1954,7 +2024,8 @@ name|ZkStateReader
 argument_list|(
 name|zkClient
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|reader
 operator|.
 name|createClusterStateWatchersAndUpdate
@@ -2156,6 +2227,15 @@ operator|.
 name|getClusterState
 argument_list|()
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Cluster state: {}"
+argument_list|,
+name|state
+argument_list|)
+expr_stmt|;
 name|assertTrue
 argument_list|(
 name|state
@@ -2324,7 +2404,7 @@ argument_list|)
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"enqueueUpdate after BadVersionException should not have suceeded"
+literal|"enqueueUpdate after BadVersionException should not have succeeded"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2345,7 +2425,7 @@ argument_list|()
 expr_stmt|;
 name|fail
 argument_list|(
-literal|"writePendingUpdates after BadVersionException should not have suceeded"
+literal|"writePendingUpdates after BadVersionException should not have succeeded"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2356,6 +2436,7 @@ name|e
 parameter_list|)
 block|{
 comment|// expected
+block|}
 block|}
 block|}
 finally|finally

@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|DocValues
 import|;
 end_import
 
@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|LeafReaderContext
 import|;
 end_import
 
@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concrete implementation of {@link org.apache.lucene.search.grouping.AbstractSecondPassGroupingCollector} that groups based on  * field values and more specifically uses {@link org.apache.lucene.index.SortedDocValues}  * to collect grouped docs.  *  * @lucene.experimental  */
+comment|/**  * Concrete implementation of {@link org.apache.lucene.search.grouping.AbstractSecondPassGroupingCollector} that groups based on  * field values and more specifically uses {@link SortedDocValues}  * to collect grouped docs.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -415,6 +415,53 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|doc
+operator|>
+name|index
+operator|.
+name|docID
+argument_list|()
+condition|)
+block|{
+name|index
+operator|.
+name|advance
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+block|}
+name|int
+name|ord
+decl_stmt|;
+if|if
+condition|(
+name|doc
+operator|==
+name|index
+operator|.
+name|docID
+argument_list|()
+condition|)
+block|{
+name|ord
+operator|=
+name|index
+operator|.
+name|ordValue
+argument_list|()
+expr_stmt|;
+block|}
+else|else
+block|{
+name|ord
+operator|=
+operator|-
+literal|1
+expr_stmt|;
+block|}
 name|int
 name|slot
 init|=
@@ -422,12 +469,7 @@ name|ordSet
 operator|.
 name|find
 argument_list|(
-name|index
-operator|.
-name|getOrd
-argument_list|(
-name|doc
-argument_list|)
+name|ord
 argument_list|)
 decl_stmt|;
 if|if

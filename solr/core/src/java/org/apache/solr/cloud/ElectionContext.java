@@ -310,24 +310,6 @@ name|common
 operator|.
 name|util
 operator|.
-name|RetryUtil
-operator|.
-name|RetryCmd
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
 name|Utils
 import|;
 end_import
@@ -385,6 +367,20 @@ operator|.
 name|search
 operator|.
 name|SolrIndexSearcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|update
+operator|.
+name|PeerSync
 import|;
 end_import
 
@@ -694,7 +690,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Canceling election {}"
 argument_list|,
@@ -723,7 +719,7 @@ block|{
 comment|// fine
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"cancelElection did not find election node to remove {}"
 argument_list|,
@@ -736,7 +732,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"cancelElection skipped as this context has not been initialized"
 argument_list|)
@@ -1050,7 +1046,7 @@ comment|// matches the version we expect - there is a setData call that incremen
 comment|// version whenever a leader registers.
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Removing leader registration node on cancel: {} {}"
 argument_list|,
@@ -1132,7 +1128,7 @@ block|{
 comment|// no problem
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No leader registration node found to remove: {}"
 argument_list|,
@@ -1269,20 +1265,8 @@ literal|60000
 argument_list|,
 literal|5000
 argument_list|,
-operator|new
-name|RetryCmd
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|void
-name|execute
 parameter_list|()
-throws|throws
-name|InterruptedException
-throws|,
-name|KeeperException
+lambda|->
 block|{
 synchronized|synchronized
 init|(
@@ -1291,7 +1275,7 @@ init|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Creating leader registration node {} after winning as {}"
 argument_list|,
@@ -1452,7 +1436,6 @@ name|leaderZkNodeParentVersion
 operator|!=
 literal|null
 assert|;
-block|}
 block|}
 block|}
 argument_list|)
@@ -1918,6 +1901,18 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+name|cc
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
+return|return;
+block|}
+else|else
+block|{
 throw|throw
 operator|new
 name|SolrException
@@ -1938,6 +1933,7 @@ name|getCoreNames
 argument_list|()
 argument_list|)
 throw|;
+block|}
 block|}
 name|MDCLoggingContext
 operator|.
@@ -1985,7 +1981,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Running the leader process for shard={} and weAreReplacement={} and leaderVoteWait={}"
 argument_list|,
@@ -2101,6 +2097,18 @@ operator|==
 literal|null
 condition|)
 block|{
+if|if
+condition|(
+operator|!
+name|zkController
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|isShutDown
+argument_list|()
+condition|)
+block|{
 name|cancelElection
 argument_list|()
 expr_stmt|;
@@ -2124,6 +2132,11 @@ name|getCoreNames
 argument_list|()
 argument_list|)
 throw|;
+block|}
+else|else
+block|{
+return|return;
+block|}
 block|}
 comment|// should I be leader?
 if|if
@@ -2211,6 +2224,13 @@ argument_list|)
 throw|;
 block|}
 block|}
+name|PeerSync
+operator|.
+name|PeerSyncResult
+name|result
+init|=
+literal|null
+decl_stmt|;
 name|boolean
 name|success
 init|=
@@ -2218,7 +2238,7 @@ literal|false
 decl_stmt|;
 try|try
 block|{
-name|success
+name|result
 operator|=
 name|syncStrategy
 operator|.
@@ -2232,6 +2252,13 @@ name|leaderProps
 argument_list|,
 name|weAreReplacement
 argument_list|)
+expr_stmt|;
+name|success
+operator|=
+name|result
+operator|.
+name|isSuccess
+argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -2251,9 +2278,14 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
-name|success
+name|result
 operator|=
-literal|false
+name|PeerSync
+operator|.
+name|PeerSyncResult
+operator|.
+name|failure
+argument_list|()
 expr_stmt|;
 block|}
 name|UpdateLog
@@ -2322,7 +2354,34 @@ condition|)
 block|{
 comment|// we failed sync, but we have no versions - we can't sync in that case
 comment|// - we were active
-comment|// before, so become leader anyway
+comment|// before, so become leader anyway if no one else has any versions either
+if|if
+condition|(
+name|result
+operator|.
+name|getOtherHasVersions
+argument_list|()
+operator|.
+name|orElse
+argument_list|(
+literal|false
+argument_list|)
+condition|)
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"We failed sync, but we have no versions - we can't sync in that case. But others have some versions, so we should not become leader"
+argument_list|)
+expr_stmt|;
+name|success
+operator|=
+literal|false
+expr_stmt|;
+block|}
+else|else
+block|{
 name|log
 operator|.
 name|info
@@ -2334,6 +2393,7 @@ name|success
 operator|=
 literal|true
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// solrcloud_debug
@@ -2761,7 +2821,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"We have become the leader after core registration but are not in an ACTIVE state - publishing ACTIVE"
 argument_list|)
@@ -3758,7 +3818,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"All replicas are ready to participate in election."
 argument_list|)
@@ -3817,7 +3877,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Not rejoining election because CoreContainer is closed"
 argument_list|)
@@ -3879,7 +3939,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Checking if I should try and be the leader."
 argument_list|)
@@ -3891,7 +3951,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Bailing on leader process because we have been closed"
 argument_list|)
@@ -3934,7 +3994,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"My last published State was Active, it's okay to be the leader."
 argument_list|)
@@ -3945,7 +4005,7 @@ return|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"My last published State was "
 operator|+

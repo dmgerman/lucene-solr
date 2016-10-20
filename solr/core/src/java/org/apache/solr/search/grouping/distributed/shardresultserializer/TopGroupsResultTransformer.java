@@ -1063,7 +1063,7 @@ name|transformToNativeShardDoc
 argument_list|(
 name|documents
 argument_list|,
-name|groupSort
+name|sortWithinGroup
 argument_list|,
 name|shard
 argument_list|,

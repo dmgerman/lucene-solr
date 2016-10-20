@@ -150,23 +150,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|document
-operator|.
-name|FieldType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|FieldType
+name|legacy
 operator|.
 name|LegacyNumericType
 import|;
@@ -938,7 +922,7 @@ name|Stat
 argument_list|>
 name|distribDeps
 decl_stmt|;
-comment|/**      * Sole constructor for Stat enum values      * @param deps the set of stat values, other then this one, which are a distributed       *        dependency and must be computed and returned by each individual shards in       *        order to compute<i>this</i> stat over the entire distributed result set.      * @param selfDep indicates that when computing this stat across a distributed result       *        set, each shard must compute this stat<i>in addition to</i> any other       *        distributed dependences.      * @see #getDistribDeps      */
+comment|/**      * Sole constructor for Stat enum values      * @param deps the set of stat values, other then this one, which are a distributed       *        dependency and must be computed and returned by each individual shards in       *        order to compute<i>this</i> stat over the entire distributed result set.      * @param selfDep indicates that when computing this stat across a distributed result       *        set, each shard must compute this stat<i>in addition to</i> any other       *        distributed dependencies.      * @see #getDistribDeps      */
 DECL|method|Stat
 name|Stat
 parameter_list|(
@@ -3031,8 +3015,6 @@ literal|null
 return|;
 block|}
 specifier|final
-name|FieldType
-operator|.
 name|LegacyNumericType
 name|hashableNumType
 init|=
@@ -3065,8 +3047,6 @@ argument_list|(
 name|hashableNumType
 argument_list|)
 operator|||
-name|FieldType
-operator|.
 name|LegacyNumericType
 operator|.
 name|INT
@@ -3359,8 +3339,6 @@ operator|==
 name|field
 operator|||
 operator|!
-name|FieldType
-operator|.
 name|LegacyNumericType
 operator|.
 name|LONG
@@ -3471,7 +3449,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns the effective {@link org.apache.lucene.document.FieldType.LegacyNumericType} for the field for the purposes of hash values.    * ie: If the field has an explict LegacyNumericType that is returned; If the field has no explicit    * LegacyNumericType then {@link org.apache.lucene.document.FieldType.LegacyNumericType#LONG} is returned;  If field is null, then    * {@link org.apache.lucene.document.FieldType.LegacyNumericType#FLOAT} is assumed for ValueSource.    */
+comment|/**    * Returns the effective {@link LegacyNumericType} for the field for the purposes of hash values.    * ie: If the field has an explict LegacyNumericType that is returned; If the field has no explicit    * LegacyNumericType then {@link LegacyNumericType#LONG} is returned;  If field is null, then    * {@link LegacyNumericType#FLOAT} is assumed for ValueSource.    */
 DECL|method|getHashableNumericType
 specifier|private
 specifier|static
@@ -3512,8 +3490,6 @@ literal|null
 operator|==
 name|result
 condition|?
-name|FieldType
-operator|.
 name|LegacyNumericType
 operator|.
 name|LONG

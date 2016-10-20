@@ -703,6 +703,45 @@ operator|-
 literal|1
 index|]
 decl_stmt|;
+if|if
+condition|(
+name|TLOG_NAME
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|1
+operator|>
+name|last
+operator|.
+name|lastIndexOf
+argument_list|(
+literal|'.'
+argument_list|)
+condition|)
+block|{
+comment|// old tlog created by default UpdateLog impl
+return|return
+name|Long
+operator|.
+name|parseLong
+argument_list|(
+name|last
+operator|.
+name|substring
+argument_list|(
+name|TLOG_NAME
+operator|.
+name|length
+argument_list|()
+operator|+
+literal|1
+argument_list|)
+argument_list|)
+return|;
+block|}
+else|else
+block|{
 return|return
 name|Long
 operator|.
@@ -728,6 +767,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 return|;
+block|}
 block|}
 annotation|@
 name|Override
@@ -2652,7 +2692,7 @@ name|subReader
 parameter_list|)
 block|{
 comment|// If a subreader has a null tlog reader, does nothing
-comment|// This can happend if a subreader is instantiated from a non-initialised parent reader, or if the subreader
+comment|// This can happened if a subreader is instantiated from a non-initialised parent reader, or if the subreader
 comment|// has been closed.
 if|if
 condition|(

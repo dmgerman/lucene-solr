@@ -450,6 +450,15 @@ name|lookupClass
 argument_list|()
 argument_list|)
 decl_stmt|;
+DECL|field|BATCH_INDEXED_FIELD_NAME
+specifier|public
+specifier|static
+name|String
+name|BATCH_INDEXED_FIELD_NAME
+init|=
+literal|"batchIndexed"
+decl_stmt|;
+comment|// field name in summary tuple for #docs updated in batch
 DECL|field|collection
 specifier|private
 name|String
@@ -2045,7 +2054,7 @@ name|m
 operator|.
 name|put
 argument_list|(
-literal|"batchIndexed"
+name|BATCH_INDEXED_FIELD_NAME
 argument_list|,
 name|batchSize
 argument_list|)

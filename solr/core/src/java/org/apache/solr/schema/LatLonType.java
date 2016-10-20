@@ -66,7 +66,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|FieldType
+name|StoredField
 import|;
 end_import
 
@@ -94,7 +94,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|IndexableField
 import|;
 end_import
 
@@ -108,7 +108,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexableField
+name|LeafReaderContext
 import|;
 end_import
 
@@ -308,22 +308,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|uninverting
-operator|.
-name|UninvertingReader
-operator|.
-name|Type
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|common
@@ -413,6 +397,22 @@ operator|.
 name|search
 operator|.
 name|SpatialOptions
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|uninverting
+operator|.
+name|UninvertingReader
+operator|.
+name|Type
 import|;
 end_import
 
@@ -723,20 +723,6 @@ name|stored
 argument_list|()
 condition|)
 block|{
-name|FieldType
-name|customType
-init|=
-operator|new
-name|FieldType
-argument_list|()
-decl_stmt|;
-name|customType
-operator|.
-name|setStored
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|f
 operator|.
 name|add
@@ -750,7 +736,9 @@ argument_list|()
 argument_list|,
 name|externalVal
 argument_list|,
-name|customType
+name|StoredField
+operator|.
+name|TYPE
 argument_list|,
 literal|1f
 argument_list|)
@@ -862,13 +850,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|result
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 comment|// points must currently be ordered... should we support specifying any two opposite corner points?
 name|result
 operator|.
@@ -1049,13 +1030,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|result
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 name|result
 operator|.
 name|add
@@ -2131,6 +2105,9 @@ name|SpatialWeight
 parameter_list|(
 name|IndexSearcher
 name|searcher
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -2140,6 +2117,8 @@ argument_list|(
 name|SpatialDistanceQuery
 operator|.
 name|this
+argument_list|,
+name|boost
 argument_list|)
 expr_stmt|;
 name|this
@@ -2592,6 +2571,8 @@ DECL|method|match
 name|boolean
 name|match
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|// longitude should generally be more restrictive than latitude
 comment|// (e.g. in the US, it immediately separates the coasts, and in world search separates
@@ -3136,6 +3117,8 @@ operator|new
 name|SpatialWeight
 argument_list|(
 name|searcher
+argument_list|,
+literal|1f
 argument_list|)
 argument_list|)
 return|;
@@ -3285,6 +3268,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -3300,6 +3286,8 @@ operator|new
 name|SpatialWeight
 argument_list|(
 name|searcher
+argument_list|,
+name|boost
 argument_list|)
 return|;
 block|}
@@ -3406,9 +3394,7 @@ block|{
 if|if
 condition|(
 operator|!
-name|super
-operator|.
-name|equals
+name|sameClassAs
 argument_list|(
 name|o
 argument_list|)
@@ -3549,13 +3535,22 @@ comment|// don't bother making the hash expensive - the center latitude + min lo
 name|long
 name|hash
 init|=
+name|classHash
+argument_list|()
+decl_stmt|;
+name|hash
+operator|=
+name|hash
+operator|*
+literal|31
+operator|+
 name|Double
 operator|.
 name|doubleToLongBits
 argument_list|(
 name|latCenter
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|hash
 operator|=
 name|hash
@@ -3568,20 +3563,6 @@ name|doubleToLongBits
 argument_list|(
 name|lonMin
 argument_list|)
-expr_stmt|;
-name|hash
-operator|=
-name|hash
-operator|*
-literal|31
-operator|+
-operator|(
-name|long
-operator|)
-name|super
-operator|.
-name|hashCode
-argument_list|()
 expr_stmt|;
 return|return
 call|(

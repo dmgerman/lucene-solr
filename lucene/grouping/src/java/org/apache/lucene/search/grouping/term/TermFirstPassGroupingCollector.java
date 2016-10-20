@@ -40,7 +40,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|DocValues
 import|;
 end_import
 
@@ -54,7 +54,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
+name|LeafReaderContext
 import|;
 end_import
 
@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concrete implementation of {@link org.apache.lucene.search.grouping.AbstractFirstPassGroupingCollector} that groups based on  * field values and more specifically uses {@link org.apache.lucene.index.SortedDocValues}  * to collect groups.  *  * @lucene.experimental  */
+comment|/**  * Concrete implementation of {@link org.apache.lucene.search.grouping.AbstractFirstPassGroupingCollector} that groups based on  * field values and more specifically uses {@link SortedDocValues}  * to collect groups.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -196,39 +196,48 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
-specifier|final
-name|int
-name|ord
-init|=
+if|if
+condition|(
+name|doc
+operator|>
 name|index
 operator|.
-name|getOrd
+name|docID
+argument_list|()
+condition|)
+block|{
+name|index
+operator|.
+name|advance
 argument_list|(
 name|doc
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 if|if
 condition|(
-name|ord
+name|doc
 operator|==
-operator|-
-literal|1
+name|index
+operator|.
+name|docID
+argument_list|()
 condition|)
 block|{
 return|return
-literal|null
+name|index
+operator|.
+name|binaryValue
+argument_list|()
 return|;
 block|}
 else|else
 block|{
 return|return
-name|index
-operator|.
-name|lookupOrd
-argument_list|(
-name|ord
-argument_list|)
+literal|null
 return|;
 block|}
 block|}

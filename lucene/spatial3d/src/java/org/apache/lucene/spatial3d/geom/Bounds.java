@@ -96,6 +96,30 @@ modifier|...
 name|bounds
 parameter_list|)
 function_decl|;
+comment|/** Add the intersection between two planes to the bounds description.    * Where the shape has intersecting planes, it is better to use this method    * than just adding the point, since this method takes each plane's error envelope into    * account.    *@param planetModel is the planet model.    *@param plane1 is the first plane.    *@param plane2 is the second plane.    *@param bounds are the membership bounds for the intersection.    */
+DECL|method|addIntersection
+specifier|public
+name|Bounds
+name|addIntersection
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|,
+specifier|final
+name|Plane
+name|plane1
+parameter_list|,
+specifier|final
+name|Plane
+name|plane2
+parameter_list|,
+specifier|final
+name|Membership
+modifier|...
+name|bounds
+parameter_list|)
+function_decl|;
 comment|/** Add a single point.    *@param point is the point.    *@return the updated Bounds object.    */
 DECL|method|addPoint
 specifier|public
@@ -167,6 +191,17 @@ specifier|public
 name|Bounds
 name|noBottomLatitudeBound
 parameter_list|()
+function_decl|;
+comment|/** Signal that there is no bound whatsoever.    * The bound is limited only by the constraints of the    * planet.    *@return the updated Bounds object.,    */
+DECL|method|noBound
+specifier|public
+name|Bounds
+name|noBound
+parameter_list|(
+specifier|final
+name|PlanetModel
+name|planetModel
+parameter_list|)
 function_decl|;
 block|}
 end_interface

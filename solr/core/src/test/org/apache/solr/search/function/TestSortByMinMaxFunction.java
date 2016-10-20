@@ -34,30 +34,6 @@ name|SuppressCodecs
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|AbstractSolrTestCase
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|junit
-operator|.
-name|BeforeClass
-import|;
-end_import
-
 begin_comment
 comment|/**  * Split out from SortByFunctionTest due to codec support limitations for SortedSetSelector  *  * @see SortByFunctionTest  **/
 end_comment

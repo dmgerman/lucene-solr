@@ -60,16 +60,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Locale
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -452,7 +442,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// SOLR-4547: log basic data at INFO, add filenames at DEBUG.
 if|if
 condition|(
 name|commits
@@ -463,19 +452,6 @@ condition|)
 block|{
 return|return;
 block|}
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"SolrDeletionPolicy.onInit: commits: {}"
-argument_list|,
-operator|new
-name|CommitsLoggingInfo
-argument_list|(
-name|commits
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|log
 operator|.
 name|debug
@@ -514,20 +490,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// SOLR-4547: log basic data at INFO, add filenames at DEBUG.
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"SolrDeletionPolicy.onCommit: commits: {}"
-argument_list|,
-operator|new
-name|CommitsLoggingInfo
-argument_list|(
-name|commits
-argument_list|)
-argument_list|)
-expr_stmt|;
 name|log
 operator|.
 name|debug
@@ -876,12 +838,9 @@ operator|-
 literal|1
 argument_list|)
 decl_stmt|;
-comment|// SOLR-4547: Removed the filenames from this log entry because this
-comment|// method is only called from methods that have just logged them
-comment|// at DEBUG.
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"newest commit generation = "
 operator|+
@@ -970,10 +929,6 @@ argument_list|(
 name|DateMathParser
 operator|.
 name|UTC
-argument_list|,
-name|Locale
-operator|.
-name|ROOT
 argument_list|)
 decl_stmt|;
 name|maxCommitAgeTimeStamp

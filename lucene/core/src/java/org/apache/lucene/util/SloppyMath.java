@@ -684,6 +684,42 @@ block|}
 block|}
 block|}
 block|}
+comment|/**    * Convert to degrees.    * @param radians radians to convert to degrees    * @return degrees    */
+DECL|method|toDegrees
+specifier|public
+specifier|static
+name|double
+name|toDegrees
+parameter_list|(
+specifier|final
+name|double
+name|radians
+parameter_list|)
+block|{
+return|return
+name|radians
+operator|*
+name|TO_DEGREES
+return|;
+block|}
+comment|/**    * Convert to radians.    * @param degrees degrees to convert to radians    * @return radians    */
+DECL|method|toRadians
+specifier|public
+specifier|static
+name|double
+name|toRadians
+parameter_list|(
+specifier|final
+name|double
+name|degrees
+parameter_list|)
+block|{
+return|return
+name|degrees
+operator|*
+name|TO_RADIANS
+return|;
+block|}
 comment|// haversin
 comment|// TODO: remove these for java 9, they fixed Math.toDegrees()/toRadians() to work just like this.
 DECL|field|TO_RADIANS
@@ -944,8 +980,6 @@ name|StrictMath
 operator|.
 name|sin
 argument_list|(
-name|Math
-operator|.
 name|toRadians
 argument_list|(
 literal|73.0

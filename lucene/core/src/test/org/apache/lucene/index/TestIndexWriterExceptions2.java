@@ -522,18 +522,6 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-operator|(
-operator|(
-name|MockDirectoryWrapper
-operator|)
-name|dir
-operator|)
-operator|.
-name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 comment|// log all exceptions we hit, in case we fail (for debugging)
 name|ByteArrayOutputStream

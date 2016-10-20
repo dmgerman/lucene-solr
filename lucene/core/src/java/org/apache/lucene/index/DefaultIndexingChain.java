@@ -3380,10 +3380,6 @@ DECL|field|tokenStream
 name|TokenStream
 name|tokenStream
 decl_stmt|;
-DECL|field|indexOptions
-name|IndexOptions
-name|indexOptions
-decl_stmt|;
 DECL|method|PerField
 specifier|public
 name|PerField
@@ -3519,14 +3515,40 @@ name|omitsNorms
 argument_list|()
 operator|==
 literal|false
-operator|&&
+condition|)
+block|{
+name|long
+name|normValue
+decl_stmt|;
+if|if
+condition|(
 name|invertState
 operator|.
 name|length
-operator|!=
+operator|==
 literal|0
 condition|)
 block|{
+comment|// the field exists in this document, but it did not have
+comment|// any indexed tokens, so we assign a default value of zero
+comment|// to the norm
+name|normValue
+operator|=
+literal|0
+expr_stmt|;
+block|}
+else|else
+block|{
+name|normValue
+operator|=
+name|similarity
+operator|.
+name|computeNorm
+argument_list|(
+name|invertState
+argument_list|)
+expr_stmt|;
+block|}
 name|norms
 operator|.
 name|addValue
@@ -3535,12 +3557,7 @@ name|docState
 operator|.
 name|docID
 argument_list|,
-name|similarity
-operator|.
-name|computeNorm
-argument_list|(
-name|invertState
-argument_list|)
+name|normValue
 argument_list|)
 expr_stmt|;
 block|}
@@ -3754,15 +3771,54 @@ literal|"'"
 argument_list|)
 throw|;
 block|}
+elseif|else
+if|if
+condition|(
+name|posIncr
+operator|<
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"position increment must be>= 0 (got "
+operator|+
+name|posIncr
+operator|+
+literal|") for field '"
+operator|+
+name|field
+operator|.
+name|name
+argument_list|()
+operator|+
+literal|"'"
+argument_list|)
+throw|;
+block|}
 else|else
 block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"position increments (and gaps) must be>= 0 (got "
+literal|"position overflowed Integer.MAX_VALUE (got posIncr="
 operator|+
 name|posIncr
+operator|+
+literal|" lastPosition="
+operator|+
+name|invertState
+operator|.
+name|lastPosition
+operator|+
+literal|" position="
+operator|+
+name|invertState
+operator|.
+name|position
 operator|+
 literal|") for field '"
 operator|+

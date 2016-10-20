@@ -413,10 +413,7 @@ name|this
 operator|.
 name|state
 operator|=
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 expr_stmt|;
 name|this
 operator|.
@@ -1264,10 +1261,7 @@ condition|)
 block|{
 name|state
 operator|=
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 expr_stmt|;
 block|}
 name|state
@@ -1340,10 +1334,7 @@ argument_list|()
 expr_stmt|;
 name|state
 operator|=
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 expr_stmt|;
 name|lastOffset
 operator|=

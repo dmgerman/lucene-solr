@@ -176,35 +176,7 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrDocumentList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|SolrInputDocument
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
 import|;
 end_import
 
@@ -221,22 +193,6 @@ operator|.
 name|params
 operator|.
 name|SolrParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|ModifiableSolrParams
 import|;
 end_import
 
@@ -1136,11 +1092,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|// work arround for SOLR-8082...
+comment|// workaround for SOLR-8082...
 comment|//
 comment|// what's important is that we already did the collapsing on the *real* collapseField
 comment|// to verify the groupHead returned is really the best our verification filter
-comment|// on docs with that value in a differnet ifeld containing the exact same values
+comment|// on docs with that value in a different field containing the exact same values
 specifier|final
 name|String
 name|checkField

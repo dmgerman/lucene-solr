@@ -16,6 +16,20 @@ name|analysis
 package|;
 end_package
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|AttributeFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Analyzer for testing that encodes terms as UTF-16 bytes.  */
 end_comment
@@ -67,6 +81,20 @@ name|TokenStreamComponents
 argument_list|(
 name|t
 argument_list|)
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|attributeFactory
+specifier|protected
+name|AttributeFactory
+name|attributeFactory
+parameter_list|()
+block|{
+return|return
+name|MockUTF16TermAttributeImpl
+operator|.
+name|UTF16_TERM_ATTRIBUTE_FACTORY
 return|;
 block|}
 block|}

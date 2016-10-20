@@ -22,9 +22,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
+name|io
 operator|.
-name|Map
+name|IOException
 import|;
 end_import
 
@@ -32,9 +32,9 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
+name|util
 operator|.
-name|IOException
+name|Map
 import|;
 end_import
 
@@ -48,9 +48,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|miscellaneous
-operator|.
-name|SetKeywordMarkerFilter
+name|CharArraySet
 import|;
 end_import
 
@@ -92,9 +90,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|util
+name|miscellaneous
 operator|.
-name|CharArraySet
+name|SetKeywordMarkerFilter
 import|;
 end_import
 

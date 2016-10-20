@@ -72,22 +72,6 @@ name|CharTermAttribute
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|CharacterUtils
-import|;
-end_import
-
 begin_comment
 comment|/**  * Normalizes token text to lower case, removes some Greek diacritics,  * and standardizes final sigma to sigma.   */
 end_comment
@@ -113,17 +97,6 @@ name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
-decl_stmt|;
-DECL|field|charUtils
-specifier|private
-specifier|final
-name|CharacterUtils
-name|charUtils
-init|=
-name|CharacterUtils
-operator|.
-name|getInstance
-argument_list|()
 decl_stmt|;
 comment|/**    * Create a GreekLowerCaseFilter that normalizes Greek token text.    *     * @param in TokenStream to filter    */
 DECL|method|GreekLowerCaseFilter
@@ -196,7 +169,7 @@ name|toChars
 argument_list|(
 name|lowerCase
 argument_list|(
-name|charUtils
+name|Character
 operator|.
 name|codePointAt
 argument_list|(

@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**  * Components from the Lucene 5.0 index format  * See {@link org.apache.lucene.codecs.lucene53} for an overview  * of the index format.  */
+comment|/**  * Components from the Lucene 5.0 index format  * See {@link org.apache.lucene.codecs.lucene50} for an overview  * of the index format.  */
 end_comment
 
 begin_package

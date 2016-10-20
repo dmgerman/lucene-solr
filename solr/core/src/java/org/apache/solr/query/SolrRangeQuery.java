@@ -1054,6 +1054,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -1065,6 +1068,8 @@ argument_list|(
 name|searcher
 argument_list|,
 name|needScores
+argument_list|,
+name|boost
 argument_list|)
 return|;
 comment|/*     DocSet docs = createDocSet(searcher.getIndexReader().leaves(), searcher.getIndexReader().maxDoc());     SolrConstantScoreQuery csq = new SolrConstantScoreQuery( docs.getTopFilter() );     return csq.createWeight(searcher, needScores);     */
@@ -1884,6 +1889,9 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needScores
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 block|{
 name|super
@@ -1891,6 +1899,8 @@ argument_list|(
 name|SolrRangeQuery
 operator|.
 name|this
+argument_list|,
+name|boost
 argument_list|)
 expr_stmt|;
 name|this
@@ -2013,21 +2023,6 @@ operator|.
 name|termState
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|state
-operator|.
-name|isRealTerm
-argument_list|()
-operator|==
-literal|false
-condition|)
-block|{
-comment|// TermQuery does not accept fake terms for now
-return|return
-name|count
-return|;
-block|}
 name|int
 name|df
 init|=
@@ -2207,6 +2202,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+block|}
+else|else
+block|{
+name|doCheck
+operator|=
+literal|false
+expr_stmt|;
 block|}
 if|if
 condition|(
@@ -2444,18 +2446,11 @@ argument_list|(
 name|searcher
 argument_list|,
 name|needScores
-argument_list|)
-decl_stmt|;
-name|weight
-operator|.
-name|normalize
-argument_list|(
-literal|1f
 argument_list|,
 name|score
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 return|return
 name|segStates
 index|[

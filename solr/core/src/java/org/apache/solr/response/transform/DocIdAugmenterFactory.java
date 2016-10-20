@@ -63,7 +63,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  * @since solr 4.0  */
+comment|/**  * Augments the document with a<code>[docid]</code> integer containing it's current  * (internal) id in the lucene index.  May be<code>-1</code> if this document did not come from the   * index (ie: a RealTimeGet from  the transaction log)  *   * @since solr 4.0  */
 end_comment
 
 begin_class
@@ -158,13 +158,12 @@ name|float
 name|score
 parameter_list|)
 block|{
-if|if
-condition|(
+assert|assert
+operator|-
+literal|1
+operator|<=
 name|docid
-operator|>=
-literal|0
-condition|)
-block|{
+assert|;
 name|doc
 operator|.
 name|setField
@@ -174,7 +173,6 @@ argument_list|,
 name|docid
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 end_class

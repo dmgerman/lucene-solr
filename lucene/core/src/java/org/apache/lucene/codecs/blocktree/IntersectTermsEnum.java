@@ -635,10 +635,7 @@ name|f
 operator|.
 name|setState
 argument_list|(
-name|runAutomaton
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 argument_list|)
 expr_stmt|;
 name|f
@@ -1915,14 +1912,6 @@ assert|;
 name|useAutoPrefixTerm
 operator|=
 literal|false
-expr_stmt|;
-name|currentFrame
-operator|.
-name|termState
-operator|.
-name|isRealTerm
-operator|=
-literal|true
 expr_stmt|;
 comment|// If we last returned an auto-prefix term, we must now skip all
 comment|// actual terms sharing that prefix.  At most, that skipping
@@ -3251,14 +3240,6 @@ block|{
 comment|// All suffixes of this auto-prefix term are accepted by the automaton, so we can use it:
 name|copyTerm
 argument_list|()
-expr_stmt|;
-name|currentFrame
-operator|.
-name|termState
-operator|.
-name|isRealTerm
-operator|=
-literal|false
 expr_stmt|;
 return|return
 name|term

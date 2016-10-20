@@ -117,6 +117,7 @@ name|NumericDocValuesFieldUpdates
 extends|extends
 name|DocValuesFieldUpdates
 block|{
+comment|// TODO: can't this just be NumericDocValues now?  avoid boxing the long value...
 DECL|class|Iterator
 specifier|final
 specifier|static

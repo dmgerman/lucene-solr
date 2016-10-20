@@ -26,36 +26,6 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-operator|.
-name|ErrorCode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|NamedList
@@ -270,7 +240,7 @@ name|minIndex
 argument_list|)
 return|;
 block|}
-comment|// otherweise...
+comment|// otherwise...
 comment|// scan starting at the min/optional index
 return|return
 name|pivotList

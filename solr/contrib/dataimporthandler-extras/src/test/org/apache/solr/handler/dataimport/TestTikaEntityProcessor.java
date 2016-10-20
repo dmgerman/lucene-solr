@@ -22,20 +22,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|Constants
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|BeforeClass
@@ -309,15 +295,6 @@ operator|.
 name|getLanguage
 argument_list|()
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assumeFalse
-argument_list|(
-literal|"This test fails with Java 9 (https://issues.apache.org/jira/browse/PDFBOX-3155)"
-argument_list|,
-name|Constants
-operator|.
-name|JRE_IS_MINIMUM_JAVA9
 argument_list|)
 expr_stmt|;
 name|initCore

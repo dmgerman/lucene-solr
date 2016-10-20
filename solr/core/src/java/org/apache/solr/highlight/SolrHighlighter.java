@@ -198,7 +198,7 @@ literal|false
 argument_list|)
 return|;
 block|}
-comment|/**    * Return a String array of the fields to be highlighted.    * Falls back to the programatic defaults, or the default search field if the list of fields    * is not specified in either the handler configuration or the request.    * @param query The current Query    * @param request The current SolrQueryRequest    * @param defaultFields Programmatic default highlight fields, used if nothing is specified in the handler config or the request.    */
+comment|/**    * Return a String array of the fields to be highlighted.    * Falls back to the programmatic defaults, or the default search field if the list of fields    * is not specified in either the handler configuration or the request.    * @param query The current Query    * @param request The current SolrQueryRequest    * @param defaultFields Programmatic default highlight fields, used if nothing is specified in the handler config or the request.    */
 DECL|method|getHighlightFields
 specifier|public
 name|String

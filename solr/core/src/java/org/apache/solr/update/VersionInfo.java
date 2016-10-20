@@ -114,7 +114,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowCompositeReaderWrapper
+name|Terms
 import|;
 end_import
 
@@ -126,9 +126,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
+name|legacy
 operator|.
-name|Terms
+name|LegacyNumericUtils
 import|;
 end_import
 
@@ -212,20 +212,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|LegacyNumericUtils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|common
@@ -247,6 +233,20 @@ operator|.
 name|util
 operator|.
 name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|index
+operator|.
+name|SlowCompositeReaderWrapper
 import|;
 end_import
 
@@ -1083,7 +1083,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Refreshing highest value of {} for {} version buckets from index"
 argument_list|,
@@ -1165,7 +1165,7 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Found MAX value {} from Terms for {} in index"
 argument_list|,
@@ -1179,7 +1179,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"No terms found for {}, cannot seed version bucket highest value from index"
 argument_list|,

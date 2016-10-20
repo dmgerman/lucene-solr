@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
+name|IndexReader
 import|;
 end_import
 
@@ -323,13 +323,13 @@ specifier|private
 name|int
 name|docsWithClassSize
 decl_stmt|;
-comment|/**    * Creates a new NaiveBayes classifier with inside caching. If you want less memory usage you could call    * {@link #reInitCache(int, boolean) reInitCache()}.    *    * @param leafReader     the reader on the index to be used for classification    * @param analyzer       an {@link Analyzer} used to analyze unseen text    * @param query          a {@link Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param classFieldName the name of the field used as the output for the classifier    * @param textFieldNames the name of the fields used as the inputs for the classifier    */
+comment|/**    * Creates a new NaiveBayes classifier with inside caching. If you want less memory usage you could call    * {@link #reInitCache(int, boolean) reInitCache()}.    *    * @param indexReader     the reader on the index to be used for classification    * @param analyzer       an {@link Analyzer} used to analyze unseen text    * @param query          a {@link Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param classFieldName the name of the field used as the output for the classifier    * @param textFieldNames the name of the fields used as the inputs for the classifier    */
 DECL|method|CachingNaiveBayesClassifier
 specifier|public
 name|CachingNaiveBayesClassifier
 parameter_list|(
-name|LeafReader
-name|leafReader
+name|IndexReader
+name|indexReader
 parameter_list|,
 name|Analyzer
 name|analyzer
@@ -347,7 +347,7 @@ parameter_list|)
 block|{
 name|super
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 name|analyzer
 argument_list|,
@@ -1057,10 +1057,12 @@ block|{
 name|TermsEnum
 name|termsEnum
 init|=
-name|leafReader
+name|MultiFields
 operator|.
-name|terms
+name|getTerms
 argument_list|(
+name|indexReader
+argument_list|,
 name|textFieldName
 argument_list|)
 operator|.
@@ -1189,7 +1191,7 @@ name|MultiFields
 operator|.
 name|getTerms
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 name|classFieldName
 argument_list|)
@@ -1258,7 +1260,7 @@ name|MultiFields
 operator|.
 name|getTerms
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 name|textFieldName
 argument_list|)
@@ -1288,7 +1290,7 @@ block|}
 name|int
 name|docsWithC
 init|=
-name|leafReader
+name|indexReader
 operator|.
 name|docFreq
 argument_list|(

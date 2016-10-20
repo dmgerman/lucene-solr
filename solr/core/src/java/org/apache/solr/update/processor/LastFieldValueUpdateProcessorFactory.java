@@ -34,6 +34,24 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|update
+operator|.
+name|processor
+operator|.
+name|FieldMutatingUpdateProcessor
+operator|.
+name|FieldNameSelector
+import|;
+end_import
+
+begin_import
+import|import
 name|java
 operator|.
 name|util
@@ -73,12 +91,20 @@ import|;
 end_import
 
 begin_import
-import|import
-name|java
+import|import static
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Iterator
+name|solr
+operator|.
+name|update
+operator|.
+name|processor
+operator|.
+name|FieldMutatingUpdateProcessor
+operator|.
+name|SELECT_NO_FIELDS
 import|;
 end_import
 
@@ -198,11 +224,9 @@ return|;
 block|}
 annotation|@
 name|Override
-specifier|public
-name|FieldMutatingUpdateProcessor
-operator|.
-name|FieldNameSelector
 DECL|method|getDefaultSelector
+specifier|public
+name|FieldNameSelector
 name|getDefaultSelector
 parameter_list|(
 specifier|final
@@ -211,8 +235,6 @@ name|core
 parameter_list|)
 block|{
 return|return
-name|FieldMutatingUpdateProcessor
-operator|.
 name|SELECT_NO_FIELDS
 return|;
 block|}

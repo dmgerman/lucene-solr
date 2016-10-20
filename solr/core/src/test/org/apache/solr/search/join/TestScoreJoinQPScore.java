@@ -870,8 +870,6 @@ argument_list|(
 literal|"q"
 argument_list|)
 argument_list|,
-literal|null
-argument_list|,
 name|req
 argument_list|)
 operator|.
@@ -885,7 +883,7 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|)
 decl_stmt|;

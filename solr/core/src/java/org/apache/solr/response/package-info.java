@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_comment
-comment|/**   * API and implementations of {@link org.apache.solr.response.QueryResponseWriter} for formating Solr request responses  */
+comment|/**   * API and implementations of {@link org.apache.solr.response.QueryResponseWriter} for formatting Solr request responses  */
 end_comment
 
 begin_package

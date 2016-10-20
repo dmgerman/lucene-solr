@@ -76,6 +76,26 @@ return|return
 name|codec
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|testCorruptFilesAreCaught
+specifier|public
+name|void
+name|testCorruptFilesAreCaught
+parameter_list|()
+block|{
+comment|// SimpleText does not catch broken sub-files in CFS!
+block|}
+annotation|@
+name|Override
+DECL|method|testMissingCodecHeadersAreCaught
+specifier|public
+name|void
+name|testMissingCodecHeadersAreCaught
+parameter_list|()
+block|{
+comment|// SimpleText does not catch broken sub-files in CFS!
+block|}
 block|}
 end_class
 

@@ -711,7 +711,7 @@ name|getReservedEndpointsPattern
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**      * Returns the set of non-registerable endpoints.      */
+comment|/**      * Returns the set of non-registrable endpoints.      */
 DECL|method|getReservedEndpoints
 specifier|public
 name|Set
@@ -2850,7 +2850,7 @@ name|SolrException
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Initializing RestManager with initArgs: "
 operator|+
@@ -2922,7 +2922,7 @@ expr_stmt|;
 comment|// init registered managed resources
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Initializing {} registered ManagedResources"
 argument_list|,
@@ -2991,11 +2991,11 @@ argument_list|>
 name|clazz
 parameter_list|)
 block|{
+specifier|final
 name|ManagedResource
 name|res
-init|=
-literal|null
 decl_stmt|;
+specifier|final
 name|ManagedResourceRegistration
 name|existingReg
 init|=
@@ -3026,6 +3026,8 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|res
+operator|=
 name|addRegisteredResource
 argument_list|(
 name|registry

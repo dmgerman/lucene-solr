@@ -3379,13 +3379,6 @@ argument_list|)
 decl_stmt|;
 name|dir
 operator|.
-name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|dir
-operator|.
 name|setAllowRandomFileNotFoundException
 argument_list|(
 literal|false
@@ -7363,6 +7356,9 @@ name|r
 argument_list|,
 literal|1
 argument_list|)
+operator|!=
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -7386,6 +7382,9 @@ argument_list|()
 argument_list|,
 literal|0
 argument_list|)
+operator|!=
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|r

@@ -56,7 +56,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Version
+name|AttributeFactory
 import|;
 end_import
 
@@ -108,6 +108,18 @@ argument_list|(
 name|collator
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|attributeFactory
+specifier|protected
+name|AttributeFactory
+name|attributeFactory
+parameter_list|()
+block|{
+return|return
+name|factory
+return|;
 block|}
 annotation|@
 name|Override

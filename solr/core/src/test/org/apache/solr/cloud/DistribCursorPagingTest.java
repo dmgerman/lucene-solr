@@ -18,20 +18,6 @@ end_package
 
 begin_import
 import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|Seed
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -71,6 +57,20 @@ operator|.
 name|util
 operator|.
 name|TestUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressSSL
 import|;
 end_import
 
@@ -362,24 +362,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|search
-operator|.
-name|CursorMark
-import|;
-end_import
-
-begin_comment
-comment|//jdoc
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|Test
@@ -475,6 +457,13 @@ end_comment
 begin_class
 annotation|@
 name|Slow
+annotation|@
+name|SuppressSSL
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-9182 - causes OOM"
+argument_list|)
 DECL|class|DistribCursorPagingTest
 specifier|public
 class|class
@@ -642,7 +631,7 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// sometimes seed some data, othertimes use an empty index
+comment|// sometimes seed some data, other times use an empty index
 if|if
 condition|(
 name|random
@@ -4510,7 +4499,7 @@ return|return
 name|docs
 return|;
 block|}
-comment|/**    *<p>    * Given a set of params, executes a cursor query using {@link CursorMarkParams#CURSOR_MARK_START}     * and then continuously walks the results using {@link CursorMarkParams#CURSOR_MARK_START} as long     * as a non-0 number of docs ar returned.  This method records the the set of all id's    * (must be postive ints) encountered and throws an assertion failure if any id is     * encountered more then once, or if the set grows above maxSize    *</p>    *    *<p>    * Note that this method explicily uses the "cloudClient" for executing the queries,     * instead of relying on the test infrastructure to execute the queries redundently    * aainst both the cloud client as well as a control client.  This is because term stat     * differences in a sharded setup can result in differnent scores for documents compared     * to the control index -- which can affect the sorting in some cases and cause false     * negatives in the response comparisons (even if we don't include "score" in the "fl")    *</p>    */
+comment|/**    *<p>    * Given a set of params, executes a cursor query using {@link CursorMarkParams#CURSOR_MARK_START}     * and then continuously walks the results using {@link CursorMarkParams#CURSOR_MARK_START} as long     * as a non-0 number of docs ar returned.  This method records the the set of all id's    * (must be positive ints) encountered and throws an assertion failure if any id is     * encountered more then once, or if the set grows above maxSize    *</p>    *    *<p>    * Note that this method explicitly uses the "cloudClient" for executing the queries,     * instead of relying on the test infrastructure to execute the queries redundently    * against both the cloud client as well as a control client.  This is because term stat     * differences in a sharded setup can result in different scores for documents compared     * to the control index -- which can affect the sorting in some cases and cause false     * negatives in the response comparisons (even if we don't include "score" in the "fl")    *</p>    */
 DECL|method|assertFullWalkNoDups
 specifier|public
 name|SentinelIntSet

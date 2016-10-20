@@ -234,6 +234,17 @@ operator|=
 name|cost
 expr_stmt|;
 block|}
+comment|/** Return the wrapped {@link BitSet}. */
+DECL|method|getBitSet
+specifier|public
+name|BitSet
+name|getBitSet
+parameter_list|()
+block|{
+return|return
+name|bits
+return|;
+block|}
 annotation|@
 name|Override
 DECL|method|docID
@@ -245,6 +256,23 @@ block|{
 return|return
 name|doc
 return|;
+block|}
+comment|/** Set the current doc id that this iterator is on. */
+DECL|method|setDocId
+specifier|public
+name|void
+name|setDocId
+parameter_list|(
+name|int
+name|docId
+parameter_list|)
+block|{
+name|this
+operator|.
+name|doc
+operator|=
+name|docId
+expr_stmt|;
 block|}
 annotation|@
 name|Override

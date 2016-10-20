@@ -791,17 +791,6 @@ argument_list|(
 name|solrDoc
 argument_list|)
 decl_stmt|;
-name|SchemaField
-name|uniq
-init|=
-name|req
-operator|.
-name|getSchema
-argument_list|()
-operator|.
-name|getUniqueKeyField
-argument_list|()
-decl_stmt|;
 name|String
 name|idField
 init|=

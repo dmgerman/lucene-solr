@@ -1103,7 +1103,7 @@ name|CharSequence
 condition|)
 block|{
 comment|// in theory, the FieldType might still be CharSequence based,
-comment|// but in that case trust it to do an identiy conversion...
+comment|// but in that case trust it to do an identity conversion...
 name|FieldType
 name|fieldType
 init|=
@@ -2211,7 +2211,7 @@ comment|//   - deleteVersionParam to do a version check
 comment|//   - some new boolean param to determine if a stub document gets added in place?
 try|try
 block|{
-comment|// drop the delete, and instead propogate an AddDoc that
+comment|// drop the delete, and instead propagate an AddDoc that
 comment|// replaces the doc with a new "empty" one that records the deleted version
 name|SolrInputDocument
 name|newDoc

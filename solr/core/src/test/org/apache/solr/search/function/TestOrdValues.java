@@ -98,34 +98,6 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|LegacyFloatField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|LegacyIntField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|NumericDocValuesField
 import|;
 end_import
@@ -227,6 +199,34 @@ operator|.
 name|index
 operator|.
 name|RandomIndexWriter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|legacy
+operator|.
+name|LegacyFloatField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|legacy
+operator|.
+name|LegacyIntField
 import|;
 end_import
 
@@ -1011,7 +1011,7 @@ literal|"score of result "
 operator|+
 name|i
 operator|+
-literal|" shuould be "
+literal|" should be "
 operator|+
 name|expectedScore
 operator|+
@@ -1053,7 +1053,7 @@ literal|"id of result "
 operator|+
 name|i
 operator|+
-literal|" shuould be "
+literal|" should be "
 operator|+
 name|expectedId
 operator|+

@@ -50,6 +50,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|LinkedHashMap
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -914,7 +924,12 @@ init|=
 name|sic
 operator|.
 name|toMap
+argument_list|(
+operator|new
+name|LinkedHashMap
+argument_list|<>
 argument_list|()
+argument_list|)
 operator|.
 name|size
 argument_list|()
@@ -926,7 +941,12 @@ operator|+
 name|sic
 operator|.
 name|toMap
+argument_list|(
+operator|new
+name|LinkedHashMap
+argument_list|<>
 argument_list|()
+argument_list|)
 operator|.
 name|keySet
 argument_list|()

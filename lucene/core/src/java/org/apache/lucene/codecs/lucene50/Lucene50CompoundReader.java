@@ -535,7 +535,6 @@ block|}
 comment|/** Helper method that reads CFS entries from an input stream */
 DECL|method|readEntries
 specifier|private
-specifier|final
 name|Map
 argument_list|<
 name|String
@@ -818,6 +817,22 @@ operator|==
 literal|null
 condition|)
 block|{
+name|String
+name|datFileName
+init|=
+name|IndexFileNames
+operator|.
+name|segmentFileName
+argument_list|(
+name|segmentName
+argument_list|,
+literal|""
+argument_list|,
+name|Lucene50CompoundFormat
+operator|.
+name|DATA_EXTENSION
+argument_list|)
+decl_stmt|;
 throw|throw
 operator|new
 name|FileNotFoundException
@@ -826,7 +841,11 @@ literal|"No sub-file with id "
 operator|+
 name|id
 operator|+
-literal|" found (fileName="
+literal|" found in compound file \""
+operator|+
+name|datFileName
+operator|+
+literal|"\" (fileName="
 operator|+
 name|name
 operator|+
@@ -946,10 +965,12 @@ argument_list|()
 throw|;
 block|}
 comment|/** Not implemented    * @throws UnsupportedOperationException always: not supported by CFS */
-DECL|method|renameFile
+annotation|@
+name|Override
+DECL|method|rename
 specifier|public
 name|void
-name|renameFile
+name|rename
 parameter_list|(
 name|String
 name|from
@@ -964,6 +985,14 @@ name|UnsupportedOperationException
 argument_list|()
 throw|;
 block|}
+annotation|@
+name|Override
+DECL|method|syncMetaData
+specifier|public
+name|void
+name|syncMetaData
+parameter_list|()
+block|{   }
 comment|/** Returns the length of a file in the directory.    * @throws IOException if the file does not exist */
 annotation|@
 name|Override

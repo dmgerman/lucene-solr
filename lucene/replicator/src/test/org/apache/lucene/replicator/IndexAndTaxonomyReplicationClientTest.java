@@ -1198,7 +1198,7 @@ argument_list|)
 expr_stmt|;
 name|publishIndexWriter
 operator|.
-name|setCommitData
+name|setLiveCommitData
 argument_list|(
 operator|new
 name|HashMap
@@ -1226,6 +1226,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+operator|.
+name|entrySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|publishIndexWriter
@@ -1857,29 +1860,6 @@ name|callback
 operator|.
 name|close
 argument_list|()
-expr_stmt|;
-comment|// Replicator violates write-once policy. It may be that the
-comment|// handler copies files to the index dir, then fails to copy a
-comment|// file and reverts the copy operation. On the next attempt, it
-comment|// will copy the same file again. There is nothing wrong with this
-comment|// in a real system, but it does violate write-once, and MDW
-comment|// doesn't like it. Disabling it means that we won't catch cases
-comment|// where the handler overwrites an existing index file, but
-comment|// there's nothing currently we can do about it, unless we don't
-comment|// use MDW.
-name|handlerIndexDir
-operator|.
-name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
-name|handlerTaxoDir
-operator|.
-name|setPreventDoubleWrite
-argument_list|(
-literal|false
-argument_list|)
 expr_stmt|;
 comment|// wrap sourceDirFactory to return a MockDirWrapper so we can simulate errors
 specifier|final

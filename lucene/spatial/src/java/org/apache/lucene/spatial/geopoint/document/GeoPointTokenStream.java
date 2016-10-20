@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.lucene.spatial.geopoint.document
 package|package
@@ -15,10 +19,6 @@ operator|.
 name|document
 package|;
 end_package
-
-begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
 
 begin_import
 import|import
@@ -217,7 +217,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<b>Expert:</b> This class provides a {@link TokenStream} used by {@link GeoPointField}  * for encoding {@link GeoPointField.TermEncoding#PREFIX} only GeoPointTerms.  *  *<p><i>NOTE: This is used as the default encoding unless  * {@code GeoPointField.setNumericType(FieldType.LegacyNumericType.LONG)} is set</i></p>  *  * This class is similar to {@link org.apache.lucene.analysis.LegacyNumericTokenStream} but encodes terms up to a  * a maximum of {@link #MAX_SHIFT} using a fixed precision step defined by  * {@link GeoPointField#PRECISION_STEP}. This yields a total of 4 terms per GeoPoint  * each consisting of 5 bytes (4 prefix bytes + 1 precision byte).  *  *<p>For best performance use the provided {@link GeoPointField#PREFIX_TYPE_NOT_STORED} or  * {@link GeoPointField#PREFIX_TYPE_STORED}</p>  *  *<p>If prefix terms are used then the default GeoPoint query constructors may be used, but if  * {@link org.apache.lucene.analysis.LegacyNumericTokenStream} is used, then be sure to pass  * {@link GeoPointField.TermEncoding#NUMERIC} to all GeoPointQuery constructors</p>  *  * Here's an example usage:  *  *<pre class="prettyprint">  *   // using prefix terms  *   GeoPointField geoPointField = new GeoPointField(fieldName1, lat, lon, GeoPointField.PREFIX_TYPE_NOT_STORED);  *   document.add(geoPointField);  *  *   // query by bounding box (default uses TermEncoding.PREFIX)  *   Query q = new GeoPointInBBoxQuery(fieldName1, minLat, maxLat, minLon, maxLon);  *  *   // using numeric terms  *   geoPointField = new GeoPointField(fieldName2, lat, lon, GeoPointField.NUMERIC_TYPE_NOT_STORED);  *   document.add(geoPointField);  *  *   // query by distance (requires TermEncoding.NUMERIC)  *   q = new GeoPointDistanceQuery(fieldName2, TermEncoding.NUMERIC, centerLat, centerLon, radiusMeters);  *</pre>  *  * @lucene.experimental  */
+comment|/**  *<b>Expert:</b> This class provides a {@link TokenStream} used by {@link GeoPointField}  * for encoding GeoPoint terms.  *  * This class encodes terms up to a maximum of {@link #MAX_SHIFT} using a fixed precision step defined by  * {@link GeoPointField#PRECISION_STEP}. This yields a total of 4 terms per GeoPoint  * each consisting of 5 bytes (4 prefix bytes + 1 precision byte).  *  * Here's an example usage:  *  *<pre class="prettyprint">  *   // using prefix terms  *   GeoPointField geoPointField = new GeoPointField(fieldName1, lat, lon, GeoPointField.TYPE_NOT_STORED);  *   document.add(geoPointField);  *  *   // query by bounding box  *   Query q = new GeoPointInBBoxQuery(fieldName1, minLat, maxLat, minLon, maxLon);  *  *   // query by distance  *   q = new GeoPointDistanceQuery(fieldName2, centerLat, centerLon, radiusMeters);  *</pre>  *  * @lucene.experimental  */
 end_comment
 
 begin_class

@@ -383,9 +383,12 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|setCommitData
+name|setLiveCommitData
 argument_list|(
 name|data
+operator|.
+name|entrySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|w
@@ -733,9 +736,12 @@ argument_list|)
 expr_stmt|;
 name|w
 operator|.
-name|setCommitData
+name|setLiveCommitData
 argument_list|(
 name|data
+operator|.
+name|entrySet
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|w

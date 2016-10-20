@@ -1869,7 +1869,7 @@ name|ENGLISH
 argument_list|)
 return|;
 block|}
-comment|/**      * Lowercases the element name, but returns null for&lt;BR&gt;,      * which suppresses the start-element event for lt;BR&gt; tags.      */
+comment|/**      * Lowercases the element name, but returns null for&lt;BR&gt;,      * which suppresses the start-element event for lt;BR&gt; tags.      * This also suppresses the&lt;BODY&gt; tags because those      * are handled internally by Tika's XHTMLContentHandler.      */
 annotation|@
 name|Override
 DECL|method|mapSafeElement
@@ -1894,12 +1894,21 @@ name|ROOT
 argument_list|)
 decl_stmt|;
 return|return
+operator|(
 name|lowerName
 operator|.
 name|equals
 argument_list|(
 literal|"br"
 argument_list|)
+operator|||
+name|lowerName
+operator|.
+name|equals
+argument_list|(
+literal|"body"
+argument_list|)
+operator|)
 condition|?
 literal|null
 else|:

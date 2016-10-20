@@ -117,6 +117,8 @@ operator|.
 name|facet
 operator|.
 name|FacetsCollector
+operator|.
+name|MatchingDocs
 import|;
 end_import
 
@@ -131,8 +133,6 @@ operator|.
 name|facet
 operator|.
 name|FacetsCollector
-operator|.
-name|MatchingDocs
 import|;
 end_import
 
@@ -206,20 +206,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -234,7 +220,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|MultiDocValues
+name|LeafReader
 import|;
 end_import
 
@@ -251,6 +237,20 @@ operator|.
 name|MultiDocValues
 operator|.
 name|MultiSortedSetDocValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|MultiDocValues
 import|;
 end_import
 
@@ -525,6 +525,8 @@ parameter_list|,
 name|int
 name|topN
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|TopOrdAndIntQueue
 name|q
@@ -833,6 +835,8 @@ if|if
 condition|(
 name|dv
 operator|instanceof
+name|MultiDocValues
+operator|.
 name|MultiSortedSetDocValues
 operator|&&
 name|matchingDocs
@@ -1028,13 +1032,34 @@ name|NO_MORE_DOCS
 condition|)
 block|{
 comment|//System.out.println("    doc=" + doc);
+if|if
+condition|(
+name|doc
+operator|>
 name|segValues
 operator|.
-name|setDocument
+name|docID
+argument_list|()
+condition|)
+block|{
+name|segValues
+operator|.
+name|advance
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|doc
+operator|==
+name|segValues
+operator|.
+name|docID
+argument_list|()
+condition|)
+block|{
 name|int
 name|term
 init|=
@@ -1083,6 +1108,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
 else|else
 block|{
 comment|//System.out.println("    count in seg ord first");
@@ -1118,13 +1144,34 @@ name|NO_MORE_DOCS
 condition|)
 block|{
 comment|//System.out.println("    doc=" + doc);
+if|if
+condition|(
+name|doc
+operator|>
 name|segValues
 operator|.
-name|setDocument
+name|docID
+argument_list|()
+condition|)
+block|{
+name|segValues
+operator|.
+name|advance
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|doc
+operator|==
+name|segValues
+operator|.
+name|docID
+argument_list|()
+condition|)
+block|{
 name|int
 name|term
 init|=
@@ -1162,6 +1209,7 @@ operator|.
 name|nextOrd
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// Then, migrate to global ords:
@@ -1238,13 +1286,34 @@ operator|.
 name|NO_MORE_DOCS
 condition|)
 block|{
+if|if
+condition|(
+name|doc
+operator|>
 name|segValues
 operator|.
-name|setDocument
+name|docID
+argument_list|()
+condition|)
+block|{
+name|segValues
+operator|.
+name|advance
 argument_list|(
 name|doc
 argument_list|)
 expr_stmt|;
+block|}
+if|if
+condition|(
+name|doc
+operator|==
+name|segValues
+operator|.
+name|docID
+argument_list|()
+condition|)
+block|{
 name|int
 name|term
 init|=
@@ -1286,6 +1355,7 @@ block|}
 block|}
 block|}
 block|}
+block|}
 annotation|@
 name|Override
 DECL|method|getSpecificValue
@@ -1300,6 +1370,8 @@ name|String
 modifier|...
 name|path
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(

@@ -260,6 +260,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -967,6 +983,13 @@ return|;
 block|}
 annotation|@
 name|Override
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Implements deprecated method"
+argument_list|)
 DECL|method|getBigDecimal
 specifier|public
 name|BigDecimal

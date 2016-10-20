@@ -316,20 +316,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|TrackingIndexWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|Directory
@@ -441,7 +427,7 @@ name|nrtDeletes
 decl_stmt|;
 DECL|field|genWriter
 specifier|private
-name|TrackingIndexWriter
+name|IndexWriter
 name|genWriter
 decl_stmt|;
 DECL|field|nrtDeletesThread
@@ -661,9 +647,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: verify "
+literal|": nrt: verify updateDocuments "
 operator|+
 name|id
+operator|+
+literal|" gen="
+operator|+
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -712,7 +702,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: got searcher="
+literal|": nrt: got deletes searcher="
 operator|+
 name|s
 argument_list|)
@@ -833,9 +823,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: verify "
+literal|": nrt: verify addDocuments "
 operator|+
 name|id
+operator|+
+literal|" gen="
+operator|+
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -884,7 +878,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: got searcher="
+literal|": nrt: got noDeletes searcher="
 operator|+
 name|s
 argument_list|)
@@ -1000,9 +994,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: verify "
+literal|": nrt: verify addDocument "
 operator|+
 name|id
+operator|+
+literal|" gen="
+operator|+
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -1051,7 +1049,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: got searcher="
+literal|": nrt: got noDeletes searcher="
 operator|+
 name|s
 argument_list|)
@@ -1166,9 +1164,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: verify "
+literal|": nrt: verify updateDocument "
 operator|+
 name|id
+operator|+
+literal|" gen="
+operator|+
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -1217,7 +1219,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: got searcher="
+literal|": nrt: got deletes searcher="
 operator|+
 name|s
 argument_list|)
@@ -1322,9 +1324,13 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: verify del "
+literal|": nrt: verify deleteDocuments "
 operator|+
 name|id
+operator|+
+literal|" gen="
+operator|+
+name|gen
 argument_list|)
 expr_stmt|;
 block|}
@@ -1373,7 +1379,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|": nrt: got searcher="
+literal|": nrt: got deletes searcher="
 operator|+
 name|s
 argument_list|)
@@ -1490,11 +1496,7 @@ expr_stmt|;
 block|}
 name|genWriter
 operator|=
-operator|new
-name|TrackingIndexWriter
-argument_list|(
 name|writer
-argument_list|)
 expr_stmt|;
 specifier|final
 name|SearcherFactory
@@ -1966,7 +1968,7 @@ literal|1
 argument_list|)
 decl_stmt|;
 name|LatchedIndexWriter
-name|_writer
+name|writer
 init|=
 operator|new
 name|LatchedIndexWriter
@@ -1981,23 +1983,13 @@ name|signal
 argument_list|)
 decl_stmt|;
 specifier|final
-name|TrackingIndexWriter
-name|writer
-init|=
-operator|new
-name|TrackingIndexWriter
-argument_list|(
-name|_writer
-argument_list|)
-decl_stmt|;
-specifier|final
 name|SearcherManager
 name|manager
 init|=
 operator|new
 name|SearcherManager
 argument_list|(
-name|_writer
+name|writer
 argument_list|,
 literal|false
 argument_list|,
@@ -2122,7 +2114,7 @@ operator|.
 name|start
 argument_list|()
 expr_stmt|;
-name|_writer
+name|writer
 operator|.
 name|waitAfterUpdate
 operator|=
@@ -2348,7 +2340,7 @@ operator|.
 name|join
 argument_list|()
 expr_stmt|;
-name|_writer
+name|writer
 operator|.
 name|close
 argument_list|()
@@ -2430,7 +2422,7 @@ annotation|@
 name|Override
 DECL|method|updateDocument
 specifier|public
-name|void
+name|long
 name|updateDocument
 parameter_list|(
 name|Term
@@ -2447,6 +2439,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|long
+name|result
+init|=
 name|super
 operator|.
 name|updateDocument
@@ -2455,7 +2450,7 @@ name|term
 argument_list|,
 name|doc
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 try|try
 block|{
 if|if
@@ -2489,6 +2484,9 @@ name|e
 argument_list|)
 throw|;
 block|}
+return|return
+name|result
+return|;
 block|}
 block|}
 DECL|method|testEvilSearcherFactory
@@ -2942,16 +2940,6 @@ name|SearcherFactory
 argument_list|()
 argument_list|)
 decl_stmt|;
-specifier|final
-name|TrackingIndexWriter
-name|tiw
-init|=
-operator|new
-name|TrackingIndexWriter
-argument_list|(
-name|iw
-argument_list|)
-decl_stmt|;
 name|ControlledRealTimeReopenThread
 argument_list|<
 name|IndexSearcher
@@ -2962,7 +2950,7 @@ operator|new
 name|ControlledRealTimeReopenThread
 argument_list|<>
 argument_list|(
-name|tiw
+name|iw
 argument_list|,
 name|sm
 argument_list|,
@@ -3168,7 +3156,7 @@ decl_stmt|;
 name|long
 name|l
 init|=
-name|tiw
+name|iw
 operator|.
 name|addDocument
 argument_list|(
@@ -3289,6 +3277,120 @@ name|dir
 operator|.
 name|close
 argument_list|()
+expr_stmt|;
+block|}
+DECL|method|testDeleteAll
+specifier|public
+name|void
+name|testDeleteAll
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Directory
+name|dir
+init|=
+name|newDirectory
+argument_list|()
+decl_stmt|;
+name|IndexWriter
+name|w
+init|=
+operator|new
+name|IndexWriter
+argument_list|(
+name|dir
+argument_list|,
+name|newIndexWriterConfig
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|SearcherManager
+name|mgr
+init|=
+operator|new
+name|SearcherManager
+argument_list|(
+name|w
+argument_list|,
+operator|new
+name|SearcherFactory
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|nrtDeletesThread
+operator|=
+operator|new
+name|ControlledRealTimeReopenThread
+argument_list|<>
+argument_list|(
+name|w
+argument_list|,
+name|mgr
+argument_list|,
+literal|0.1
+argument_list|,
+literal|0.01
+argument_list|)
+expr_stmt|;
+name|nrtDeletesThread
+operator|.
+name|setName
+argument_list|(
+literal|"NRTDeletes Reopen Thread"
+argument_list|)
+expr_stmt|;
+name|nrtDeletesThread
+operator|.
+name|setDaemon
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+name|nrtDeletesThread
+operator|.
+name|start
+argument_list|()
+expr_stmt|;
+name|long
+name|gen1
+init|=
+name|w
+operator|.
+name|addDocument
+argument_list|(
+operator|new
+name|Document
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|long
+name|gen2
+init|=
+name|w
+operator|.
+name|deleteAll
+argument_list|()
+decl_stmt|;
+name|nrtDeletesThread
+operator|.
+name|waitForGeneration
+argument_list|(
+name|gen2
+argument_list|)
+expr_stmt|;
+name|IOUtils
+operator|.
+name|close
+argument_list|(
+name|nrtDeletesThread
+argument_list|,
+name|nrtDeletes
+argument_list|,
+name|w
+argument_list|,
+name|dir
+argument_list|)
 expr_stmt|;
 block|}
 block|}

@@ -50,6 +50,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|Sort
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Bits
@@ -116,7 +130,6 @@ name|CoreClosedListener
 block|{
 comment|/** Invoked when the shared core of the original {@code      *  SegmentReader} has closed. The provided {@code      *  ownerCoreCacheKey} will be the same key as the one      *  returned by {@link LeafReader#getCoreCacheKey()}. */
 DECL|method|onClose
-specifier|public
 name|void
 name|onClose
 parameter_list|(
@@ -726,7 +739,7 @@ name|FREQS
 argument_list|)
 return|;
 block|}
-comment|/** Returns {@link NumericDocValues} for this field, or    *  null if no {@link NumericDocValues} were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
+comment|/** Returns {@link NumericDocValues} for this field, or    *  null if no numeric doc values were indexed for    *  this field.  The returned instance should only be    *  used by a single thread.  This will never return null. */
 DECL|method|getNumericDocValues
 specifier|public
 specifier|abstract
@@ -739,7 +752,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns {@link BinaryDocValues} for this field, or    *  null if no {@link BinaryDocValues} were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
+comment|/** Returns {@link BinaryDocValues} for this field, or    *  null if no binary doc values were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
 DECL|method|getBinaryDocValues
 specifier|public
 specifier|abstract
@@ -791,19 +804,6 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns a {@link Bits} at the size of<code>reader.maxDoc()</code>,    *  with turned on bits for each docid that does have a value for this field,    *  or null if no DocValues were indexed for this field. The    *  returned instance should only be used by a single thread */
-DECL|method|getDocsWithField
-specifier|public
-specifier|abstract
-name|Bits
-name|getDocsWithField
-parameter_list|(
-name|String
-name|field
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
 comment|/** Returns {@link NumericDocValues} representing norms    *  for this field, or null if no {@link NumericDocValues}    *  were indexed. The returned instance should only be    *  used by a single thread. */
 DECL|method|getNormValues
 specifier|public
@@ -833,13 +833,18 @@ name|Bits
 name|getLiveDocs
 parameter_list|()
 function_decl|;
-comment|/** Returns the {@link PointValues} used for numeric or    *  spatial searches, or null if there are no point fields. */
+comment|/** Returns the {@link PointValues} used for numeric or    *  spatial searches for the given field, or null if there    *  are no point fields. */
 DECL|method|getPointValues
 specifier|public
 specifier|abstract
 name|PointValues
 name|getPointValues
-parameter_list|()
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Checks consistency of this reader.    *<p>    * Note that this may be costly in terms of I/O, e.g.    * may involve computing a checksum value against large data files.    * @lucene.internal    */
 DECL|method|checkIntegrity
@@ -850,6 +855,14 @@ name|checkIntegrity
 parameter_list|()
 throws|throws
 name|IOException
+function_decl|;
+comment|/** Returns null if this leaf is unsorted, or the {@link Sort} that it was sorted by */
+DECL|method|getIndexSort
+specifier|public
+specifier|abstract
+name|Sort
+name|getIndexSort
+parameter_list|()
 function_decl|;
 block|}
 end_class

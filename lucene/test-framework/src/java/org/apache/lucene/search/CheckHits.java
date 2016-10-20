@@ -1771,6 +1771,52 @@ block|{
 return|return;
 comment|// something more complicated.
 block|}
+name|String
+name|descr
+init|=
+name|expl
+operator|.
+name|getDescription
+argument_list|()
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|descr
+operator|.
+name|startsWith
+argument_list|(
+literal|"score based on "
+argument_list|)
+operator|&&
+name|descr
+operator|.
+name|contains
+argument_list|(
+literal|"child docs in range"
+argument_list|)
+condition|)
+block|{
+name|Assert
+operator|.
+name|assertTrue
+argument_list|(
+literal|"Child doc explanations are missing"
+argument_list|,
+name|detail
+operator|.
+name|length
+operator|>
+literal|0
+argument_list|)
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|detail
@@ -1793,7 +1839,6 @@ comment|// simple containment, unless it's a freq of: (which lets a query explai
 comment|// just verify contained expl has same score
 if|if
 condition|(
-operator|!
 name|expl
 operator|.
 name|getDescription
@@ -1803,7 +1848,30 @@ name|endsWith
 argument_list|(
 literal|"with freq of:"
 argument_list|)
+operator|==
+literal|false
+comment|// with dismax, even if there is a single sub explanation, its
+comment|// score might be different if the score is negative
+operator|&&
+operator|(
+name|score
+operator|>=
+literal|0
+operator|||
+name|expl
+operator|.
+name|getDescription
+argument_list|()
+operator|.
+name|endsWith
+argument_list|(
+literal|"times others of:"
+argument_list|)
+operator|==
+literal|false
+operator|)
 condition|)
+block|{
 name|verifyExplanation
 argument_list|(
 name|q
@@ -1821,6 +1889,7 @@ index|]
 argument_list|)
 expr_stmt|;
 block|}
+block|}
 else|else
 block|{
 comment|// explanation must either:
@@ -1830,21 +1899,6 @@ name|float
 name|x
 init|=
 literal|0
-decl_stmt|;
-name|String
-name|descr
-init|=
-name|expl
-operator|.
-name|getDescription
-argument_list|()
-operator|.
-name|toLowerCase
-argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|)
 decl_stmt|;
 name|boolean
 name|productOf

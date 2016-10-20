@@ -42,22 +42,6 @@ name|NamedList
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrInfoMBean
-operator|.
-name|Category
-import|;
-end_import
-
 begin_class
 DECL|class|MockInfoMBean
 class|class

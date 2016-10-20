@@ -87,6 +87,9 @@ decl_stmt|;
 DECL|field|elapse
 name|long
 name|elapse
+init|=
+operator|-
+literal|1
 decl_stmt|;
 DECL|field|filter
 name|String
@@ -300,6 +303,12 @@ argument_list|,
 name|filter
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|processor
+operator|!=
+literal|null
+condition|)
 name|info
 operator|.
 name|add
@@ -309,6 +318,13 @@ argument_list|,
 name|processor
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|elapse
+operator|!=
+operator|-
+literal|1
+condition|)
 name|info
 operator|.
 name|add

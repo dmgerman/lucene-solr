@@ -82,10 +82,10 @@ name|to
 operator|-
 name|from
 operator|<
-name|THRESHOLD
+name|BINARY_SORT_THRESHOLD
 condition|)
 block|{
-name|insertionSort
+name|binarySort
 argument_list|(
 name|from
 argument_list|,

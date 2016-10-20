@@ -371,6 +371,8 @@ parameter_list|,
 name|boolean
 name|fillFields
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|//System.out.println("FP.getTopGroups groupOffset=" + groupOffset + " fillFields=" + fillFields + " groupMap.size()=" + groupMap.size());
 if|if
@@ -1207,6 +1209,8 @@ specifier|private
 name|void
 name|buildSortedSet
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 specifier|final
 name|Comparator
@@ -1437,6 +1441,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Returns a copy of the specified group value by creating a new instance and copying the value from the specified    * groupValue in the new instance. Or optionally the reuse argument can be used to copy the group value in.    *    * @param groupValue The group value to copy    * @param reuse Optionally a reuse instance to prevent a new instance creation    * @return a copy of the specified group value    */
 DECL|method|copyDocGroupValue

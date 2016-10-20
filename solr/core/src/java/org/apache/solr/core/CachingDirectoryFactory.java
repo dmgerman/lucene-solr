@@ -800,10 +800,10 @@ init|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"Closing "
-operator|+
+literal|"Closing {} - {} directories currently being tracked"
+argument_list|,
 name|this
 operator|.
 name|getClass
@@ -811,15 +811,11 @@ argument_list|()
 operator|.
 name|getSimpleName
 argument_list|()
-operator|+
-literal|" - "
-operator|+
+argument_list|,
 name|byDirectoryCache
 operator|.
 name|size
 argument_list|()
-operator|+
-literal|" directories currently being tracked"
 argument_list|)
 expr_stmt|;
 name|this
@@ -1078,7 +1074,7 @@ control|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Removing directory after core close: "
 operator|+
@@ -1180,16 +1176,14 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"looking to close "
-operator|+
+literal|"looking to close {} {}"
+argument_list|,
 name|cacheValue
 operator|.
 name|path
-operator|+
-literal|" "
-operator|+
+argument_list|,
 name|cacheValue
 operator|.
 name|closeEntries
@@ -1440,7 +1434,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Removing directory before core close: "
 operator|+
@@ -1469,7 +1463,13 @@ name|log
 argument_list|(
 name|log
 argument_list|,
-literal|"Error removing directory"
+literal|"Error removing directory "
+operator|+
+name|val
+operator|.
+name|path
+operator|+
+literal|" before core close"
 argument_list|,
 name|e
 argument_list|)
@@ -1545,7 +1545,7 @@ parameter_list|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Closing directory, CoreContainer#isShutdown={}"
 argument_list|,
@@ -1583,7 +1583,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Closing directory on shutdown: "
 operator|+
@@ -1609,7 +1609,7 @@ else|else
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Closing directory: "
 operator|+
@@ -1894,10 +1894,10 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
-literal|"return new directory for "
-operator|+
+literal|"return new directory for {}"
+argument_list|,
 name|fullPath
 argument_list|)
 expr_stmt|;
@@ -2578,6 +2578,27 @@ name|deleteOldIndexDirectory
 argument_list|(
 name|oldDirPath
 argument_list|)
+return|;
+block|}
+DECL|method|getPath
+specifier|protected
+specifier|synchronized
+name|String
+name|getPath
+parameter_list|(
+name|Directory
+name|directory
+parameter_list|)
+block|{
+return|return
+name|byDirectoryCache
+operator|.
+name|get
+argument_list|(
+name|directory
+argument_list|)
+operator|.
+name|path
 return|;
 block|}
 block|}

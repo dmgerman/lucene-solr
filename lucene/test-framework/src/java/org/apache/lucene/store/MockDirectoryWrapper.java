@@ -441,12 +441,6 @@ name|assertNoDeleteOpenFile
 init|=
 literal|false
 decl_stmt|;
-DECL|field|preventDoubleWrite
-name|boolean
-name|preventDoubleWrite
-init|=
-literal|true
-decl_stmt|;
 DECL|field|trackDiskUsage
 name|boolean
 name|trackDiskUsage
@@ -542,6 +536,11 @@ else|:
 name|Throttling
 operator|.
 name|NEVER
+decl_stmt|;
+comment|// for testing
+DECL|field|alwaysCorrupt
+name|boolean
+name|alwaysCorrupt
 decl_stmt|;
 DECL|field|inputCloneCount
 specifier|final
@@ -773,21 +772,6 @@ operator|=
 name|v
 expr_stmt|;
 block|}
-comment|/** If set to true, we throw an IOException if the same    *  file is opened by createOutput, ever. */
-DECL|method|setPreventDoubleWrite
-specifier|public
-name|void
-name|setPreventDoubleWrite
-parameter_list|(
-name|boolean
-name|value
-parameter_list|)
-block|{
-name|preventDoubleWrite
-operator|=
-name|value
-expr_stmt|;
-block|}
 comment|/** If set to true (the default), when we throw random    *  IOException on openInput or createOutput, we may    *  sometimes throw FileNotFoundException or    *  NoSuchFileException. */
 DECL|method|setAllowRandomFileNotFoundException
 specifier|public
@@ -943,11 +927,11 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|renameFile
+DECL|method|rename
 specifier|public
 specifier|synchronized
 name|void
-name|renameFile
+name|rename
 parameter_list|(
 name|String
 name|source
@@ -1054,7 +1038,7 @@ try|try
 block|{
 name|in
 operator|.
-name|renameFile
+name|rename
 argument_list|(
 name|source
 argument_list|,
@@ -1108,6 +1092,13 @@ argument_list|)
 expr_stmt|;
 name|createdFiles
 operator|.
+name|remove
+argument_list|(
+name|source
+argument_list|)
+expr_stmt|;
+name|createdFiles
+operator|.
 name|add
 argument_list|(
 name|dest
@@ -1115,6 +1106,42 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|syncMetaData
+specifier|public
+specifier|synchronized
+name|void
+name|syncMetaData
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|maybeYield
+argument_list|()
+expr_stmt|;
+name|maybeThrowDeterministicException
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|crashed
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"cannot rename after crash"
+argument_list|)
+throw|;
+block|}
+name|in
+operator|.
+name|syncMetaData
+argument_list|()
+expr_stmt|;
 block|}
 DECL|method|sizeInBytes
 specifier|public
@@ -1422,6 +1449,58 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|boolean
+name|disabled
+init|=
+name|TestUtil
+operator|.
+name|disableVirusChecker
+argument_list|(
+name|in
+argument_list|)
+decl_stmt|;
+try|try
+block|{
+name|_corruptFiles
+argument_list|(
+name|files
+argument_list|)
+expr_stmt|;
+block|}
+finally|finally
+block|{
+if|if
+condition|(
+name|disabled
+condition|)
+block|{
+name|TestUtil
+operator|.
+name|enableVirusChecker
+argument_list|(
+name|in
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+block|}
+DECL|method|_corruptFiles
+specifier|private
+specifier|synchronized
+name|void
+name|_corruptFiles
+parameter_list|(
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|files
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// TODO: we should also mess with any recent file renames, file deletions, if
+comment|// syncMetaData was not called!!
 comment|// Must make a copy because we change the incoming unsyncedFiles
 comment|// when we create temp files, delete, etc., below:
 specifier|final
@@ -1465,6 +1544,20 @@ argument_list|(
 literal|6
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|alwaysCorrupt
+operator|&&
+name|damage
+operator|==
+literal|3
+condition|)
+block|{
+name|damage
+operator|=
+literal|4
+expr_stmt|;
+block|}
 name|String
 name|action
 init|=
@@ -1515,9 +1608,24 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// Ignore
-continue|continue;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
+comment|// Delete original and write zeros back:
+name|deleteFile
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 name|byte
 index|[]
 name|zeroes
@@ -1603,7 +1711,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 break|break;
 case|case
@@ -1689,7 +1807,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 comment|// Delete original and copy bytes back:
 name|deleteFile
@@ -1753,7 +1881,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 name|deleteFile
 argument_list|(
@@ -1978,7 +2116,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 comment|// Delete original and copy bytes back:
 name|deleteFile
@@ -2042,7 +2190,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 name|deleteFile
 argument_list|(
@@ -2097,7 +2255,17 @@ name|IOException
 name|ioe
 parameter_list|)
 block|{
-comment|// ignore
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"hit unexpected IOException while trying to corrupt file "
+operator|+
+name|name
+argument_list|,
+name|ioe
+argument_list|)
+throw|;
 block|}
 break|break;
 default|default:
@@ -2954,8 +3122,6 @@ init|)
 block|{
 if|if
 condition|(
-name|preventDoubleWrite
-operator|&&
 name|createdFiles
 operator|.
 name|contains
@@ -3023,113 +3189,6 @@ argument_list|(
 name|name
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|in
-operator|instanceof
-name|RAMDirectory
-condition|)
-block|{
-name|RAMDirectory
-name|ramdir
-init|=
-operator|(
-name|RAMDirectory
-operator|)
-name|in
-decl_stmt|;
-name|RAMFile
-name|file
-init|=
-operator|new
-name|RAMFile
-argument_list|(
-name|ramdir
-argument_list|)
-decl_stmt|;
-name|RAMFile
-name|existing
-init|=
-name|ramdir
-operator|.
-name|fileMap
-operator|.
-name|get
-argument_list|(
-name|name
-argument_list|)
-decl_stmt|;
-comment|// Enforce write once:
-if|if
-condition|(
-name|existing
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|name
-operator|.
-name|equals
-argument_list|(
-literal|"segments.gen"
-argument_list|)
-operator|&&
-name|preventDoubleWrite
-condition|)
-block|{
-throw|throw
-operator|new
-name|IOException
-argument_list|(
-literal|"file "
-operator|+
-name|name
-operator|+
-literal|" already exists"
-argument_list|)
-throw|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|existing
-operator|!=
-literal|null
-condition|)
-block|{
-name|ramdir
-operator|.
-name|sizeInBytes
-operator|.
-name|getAndAdd
-argument_list|(
-operator|-
-name|existing
-operator|.
-name|sizeInBytes
-argument_list|)
-expr_stmt|;
-name|existing
-operator|.
-name|directory
-operator|=
-literal|null
-expr_stmt|;
-block|}
-name|ramdir
-operator|.
-name|fileMap
-operator|.
-name|put
-argument_list|(
-name|name
-argument_list|,
-name|file
-argument_list|)
-expr_stmt|;
-block|}
-block|}
 comment|//System.out.println(Thread.currentThread().getName() + ": MDW: create " + name);
 name|IndexOutput
 name|delegateOutput
@@ -3858,6 +3917,8 @@ argument_list|,
 name|name
 argument_list|,
 name|delegateInput
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
@@ -4131,7 +4192,14 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"MockDirectoryWrapper: cannot close: there are still open files: "
+literal|"MockDirectoryWrapper: cannot close: there are still "
+operator|+
+name|openFiles
+operator|.
+name|size
+argument_list|()
+operator|+
+literal|" open files: "
 operator|+
 name|openFiles
 argument_list|,

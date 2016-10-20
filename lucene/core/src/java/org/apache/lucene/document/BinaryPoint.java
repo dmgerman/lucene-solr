@@ -46,6 +46,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|IndexableFieldType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|PointValues
 import|;
 end_import
@@ -601,7 +615,7 @@ name|byte
 index|[]
 name|packedPoint
 parameter_list|,
-name|FieldType
+name|IndexableFieldType
 name|type
 parameter_list|)
 block|{
@@ -970,7 +984,9 @@ comment|// There are no points, and we cannot guess the bytesPerDim here, so we 
 return|return
 operator|new
 name|MatchNoDocsQuery
-argument_list|()
+argument_list|(
+literal|"empty BinaryPoint.newSetQuery"
+argument_list|)
 return|;
 block|}
 comment|// Don't unexpectedly change the user's incoming values array:

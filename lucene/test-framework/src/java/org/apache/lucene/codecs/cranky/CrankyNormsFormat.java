@@ -318,11 +318,8 @@ parameter_list|(
 name|FieldInfo
 name|field
 parameter_list|,
-name|Iterable
-argument_list|<
-name|Number
-argument_list|>
-name|values
+name|NormsProducer
+name|valuesProducer
 parameter_list|)
 throws|throws
 name|IOException
@@ -353,7 +350,7 @@ name|addNormsField
 argument_list|(
 name|field
 argument_list|,
-name|values
+name|valuesProducer
 argument_list|)
 expr_stmt|;
 block|}

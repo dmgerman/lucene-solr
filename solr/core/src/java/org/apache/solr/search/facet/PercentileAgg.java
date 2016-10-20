@@ -580,6 +580,8 @@ parameter_list|,
 name|int
 name|slotNum
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -1103,7 +1105,7 @@ parameter_list|(
 name|FacetSortableMerger
 name|other
 parameter_list|,
-name|FacetField
+name|FacetRequest
 operator|.
 name|SortDirection
 name|direction

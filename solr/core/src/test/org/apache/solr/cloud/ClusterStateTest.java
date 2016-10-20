@@ -212,18 +212,6 @@ name|createMock
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|easymock
-operator|.
-name|EasyMock
-operator|.
-name|createStrictMock
-import|;
-end_import
-
 begin_class
 DECL|class|ClusterStateTest
 specifier|public

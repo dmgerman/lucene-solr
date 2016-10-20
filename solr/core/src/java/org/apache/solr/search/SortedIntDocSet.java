@@ -516,7 +516,7 @@ comment|// (density could be cached in the DocSet)... length/maxDoc
 comment|// FUTURE: try partitioning like a sort algorithm.  Pick the midpoint of the big
 comment|// array, find where that should be in the small array, and then recurse with
 comment|// the top and bottom half of both arrays until they are small enough to use
-comment|// a fallback insersection method.
+comment|// a fallback intersection method.
 comment|// NOTE: I tried this and it worked, but it was actually slower than this current
 comment|// highly optimized approach.
 name|int
@@ -1153,7 +1153,7 @@ init|;
 condition|;
 control|)
 block|{
-comment|// switch on the sign bit somehow?  Hopefull JVM is smart enough to just test once.
+comment|// switch on the sign bit somehow? Hopefully JVM is smart enough to just test once.
 comment|// Since set a is less dense then set b, doca is likely to be greater than docb so
 comment|// check that case first.  This resulted in a 13% speedup.
 if|if
@@ -3661,6 +3661,39 @@ parameter_list|)
 block|{
 return|return
 literal|"SortedIntDocSetTopFilter"
+return|;
+block|}
+comment|// Equivalence should/could be based on docs here? How did it work previously?
+annotation|@
+name|Override
+specifier|public
+name|boolean
+name|equals
+parameter_list|(
+name|Object
+name|other
+parameter_list|)
+block|{
+return|return
+name|other
+operator|==
+name|this
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|int
+name|hashCode
+parameter_list|()
+block|{
+return|return
+name|System
+operator|.
+name|identityHashCode
+argument_list|(
+name|this
+argument_list|)
 return|;
 block|}
 block|}

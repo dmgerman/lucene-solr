@@ -142,20 +142,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|SlowCompositeReaderWrapper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|Term
 import|;
 end_import
@@ -199,20 +185,6 @@ operator|.
 name|search
 operator|.
 name|TermQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|uninverting
-operator|.
-name|DocTermOrds
 import|;
 end_import
 
@@ -280,9 +252,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|index
 operator|.
-name|SolrCore
+name|SlowCompositeReaderWrapper
 import|;
 end_import
 
@@ -381,6 +353,20 @@ operator|.
 name|search
 operator|.
 name|SolrIndexSearcher
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|uninverting
+operator|.
+name|DocTermOrds
 import|;
 end_import
 
@@ -741,7 +727,7 @@ name|liveDocs
 operator|=
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 operator|.
 name|getLiveDocs
@@ -1309,7 +1295,7 @@ name|getOrdTermsEnum
 argument_list|(
 name|searcher
 operator|.
-name|getLeafReader
+name|getSlowAtomicReader
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1645,7 +1631,7 @@ specifier|private
 name|void
 name|getCounts
 parameter_list|(
-name|FacetFieldProcessorUIF
+name|FacetFieldProcessorByArrayUIF
 name|processor
 parameter_list|,
 name|CountSlotAcc
@@ -2087,7 +2073,7 @@ specifier|public
 name|void
 name|collectDocs
 parameter_list|(
-name|FacetFieldProcessorUIF
+name|FacetFieldProcessorByArrayUIF
 name|processor
 parameter_list|)
 throws|throws
@@ -2144,7 +2130,7 @@ specifier|public
 name|void
 name|collectDocsGeneric
 parameter_list|(
-name|FacetFieldProcessorUIF
+name|FacetFieldProcessorByArrayUIF
 name|processor
 parameter_list|)
 throws|throws

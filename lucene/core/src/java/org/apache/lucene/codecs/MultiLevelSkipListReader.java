@@ -153,7 +153,7 @@ name|int
 name|skipInterval
 index|[]
 decl_stmt|;
-comment|/** Number of docs skipped per level. */
+comment|/** Number of docs skipped per level.    * It's possible for some values to overflow a signed int, but this has been accounted for.    */
 DECL|field|numSkipped
 specifier|private
 name|int
@@ -534,14 +534,22 @@ index|[
 name|level
 index|]
 expr_stmt|;
+comment|// numSkipped may overflow a signed int, so compare as unsigned.
 if|if
 condition|(
+name|Integer
+operator|.
+name|compareUnsigned
+argument_list|(
 name|numSkipped
 index|[
 name|level
 index|]
-operator|>
+argument_list|,
 name|docCount
+argument_list|)
+operator|>
+literal|0
 condition|)
 block|{
 comment|// this skip list is exhausted

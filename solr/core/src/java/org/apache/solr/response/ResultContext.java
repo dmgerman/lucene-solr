@@ -62,22 +62,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|handler
-operator|.
-name|component
-operator|.
-name|ResponseBuilder
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|request
 operator|.
 name|SolrQueryRequest
@@ -165,7 +149,7 @@ name|Query
 name|getQuery
 parameter_list|()
 function_decl|;
-comment|// TODO: any reason to allow for retrievial of any filters as well?
+comment|// TODO: any reason to allow for retrieval of any filters as well?
 comment|/** Note: do not use the request to get the searcher!  A cross-core request may have a different    *  searcher (for the other core) than the original request.    */
 DECL|method|getRequest
 specifier|public
@@ -183,9 +167,19 @@ block|{
 return|return
 name|getReturnFields
 argument_list|()
+operator|!=
+literal|null
+operator|&&
+name|getReturnFields
+argument_list|()
 operator|.
 name|wantsScore
 argument_list|()
+operator|&&
+name|getDocList
+argument_list|()
+operator|!=
+literal|null
 operator|&&
 name|getDocList
 argument_list|()

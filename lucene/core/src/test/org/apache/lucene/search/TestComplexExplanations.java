@@ -120,7 +120,6 @@ name|TestComplexExplanations
 extends|extends
 name|BaseExplanationTestCase
 block|{
-comment|/**    * Override the Similarity used in our searcher with one that plays    * nice with boosts of 0.0    */
 annotation|@
 name|Override
 DECL|method|setUp
@@ -136,11 +135,13 @@ operator|.
 name|setUp
 argument_list|()
 expr_stmt|;
+comment|// TODO: switch to BM25?
 name|searcher
 operator|.
 name|setSimilarity
 argument_list|(
-name|createQnorm1Similarity
+operator|new
+name|ClassicSimilarity
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -170,37 +171,6 @@ operator|.
 name|tearDown
 argument_list|()
 expr_stmt|;
-block|}
-comment|// must be static for weight serialization tests
-DECL|method|createQnorm1Similarity
-specifier|private
-specifier|static
-name|ClassicSimilarity
-name|createQnorm1Similarity
-parameter_list|()
-block|{
-return|return
-operator|new
-name|ClassicSimilarity
-argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|float
-name|queryNorm
-parameter_list|(
-name|float
-name|sumOfSquaredWeights
-parameter_list|)
-block|{
-return|return
-literal|1.0f
-return|;
-comment|// / (float) Math.sqrt(1.0f + sumOfSquaredWeights);
-block|}
-block|}
-return|;
 block|}
 DECL|method|test1
 specifier|public

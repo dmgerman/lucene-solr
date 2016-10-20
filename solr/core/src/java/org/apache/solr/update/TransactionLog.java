@@ -485,6 +485,8 @@ name|snapshot_numRecords
 decl_stmt|;
 comment|// write a BytesRef as a byte array
 DECL|field|resolver
+specifier|static
+specifier|final
 name|JavaBinCodec
 operator|.
 name|ObjectResolver
@@ -2652,6 +2654,13 @@ argument_list|()
 return|;
 block|}
 block|}
+comment|/** Move to a read-only state, closing and releasing resources while keeping the log available for reads */
+DECL|method|closeOutput
+specifier|public
+name|void
+name|closeOutput
+parameter_list|()
+block|{    }
 DECL|method|finish
 specifier|public
 name|void

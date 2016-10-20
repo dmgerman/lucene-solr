@@ -176,7 +176,7 @@ operator|new
 name|HashMap
 argument_list|<>
 argument_list|(
-literal|7
+literal|9
 argument_list|,
 literal|1.0f
 argument_list|)
@@ -235,6 +235,17 @@ literal|"child"
 argument_list|,
 operator|new
 name|ChildDocTransformerFactory
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|defaultFactories
+operator|.
+name|put
+argument_list|(
+literal|"subquery"
+argument_list|,
+operator|new
+name|SubQueryAugmenterFactory
 argument_list|()
 argument_list|)
 expr_stmt|;

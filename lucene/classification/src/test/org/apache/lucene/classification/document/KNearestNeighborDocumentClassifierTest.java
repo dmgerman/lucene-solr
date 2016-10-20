@@ -128,7 +128,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -166,7 +166,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -205,7 +205,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -239,7 +239,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -273,12 +273,12 @@ finally|finally
 block|{
 if|if
 condition|(
-name|leafReader
+name|indexReader
 operator|!=
 literal|null
 condition|)
 block|{
-name|leafReader
+name|indexReader
 operator|.
 name|close
 argument_list|()
@@ -318,7 +318,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -368,7 +368,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -419,7 +419,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -465,7 +465,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -508,12 +508,12 @@ finally|finally
 block|{
 if|if
 condition|(
-name|leafReader
+name|indexReader
 operator|!=
 literal|null
 condition|)
 block|{
-name|leafReader
+name|indexReader
 operator|.
 name|close
 argument_list|()
@@ -538,7 +538,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -580,7 +580,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -619,12 +619,12 @@ finally|finally
 block|{
 if|if
 condition|(
-name|leafReader
+name|indexReader
 operator|!=
 literal|null
 condition|)
 block|{
-name|leafReader
+name|indexReader
 operator|.
 name|close
 argument_list|()
@@ -664,7 +664,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -703,7 +703,7 @@ argument_list|(
 operator|new
 name|KNearestNeighborDocumentClassifier
 argument_list|(
-name|leafReader
+name|indexReader
 argument_list|,
 literal|null
 argument_list|,
@@ -742,12 +742,12 @@ finally|finally
 block|{
 if|if
 condition|(
-name|leafReader
+name|indexReader
 operator|!=
 literal|null
 condition|)
 block|{
-name|leafReader
+name|indexReader
 operator|.
 name|close
 argument_list|()

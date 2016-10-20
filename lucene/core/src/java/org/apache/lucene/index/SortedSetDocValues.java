@@ -18,6 +18,30 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -31,7 +55,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A per-document set of presorted byte[] values.  *<p>  * Per-Document values in a SortedDocValues are deduplicated, dereferenced,  * and sorted into a dictionary of unique values. A pointer to the  * dictionary value (ordinal) can be retrieved for each document. Ordinals  * are dense and in increasing sorted order.  */
+comment|/**  * A multi-valued version of {@link SortedDocValues}.  *<p>  * Per-Document values in a SortedSetDocValues are deduplicated, dereferenced,  * and sorted into a dictionary of unique values. A pointer to the  * dictionary value (ordinal) can be retrieved for each document. Ordinals  * are dense and in increasing sorted order.  */
 end_comment
 
 begin_class
@@ -40,6 +64,8 @@ specifier|public
 specifier|abstract
 class|class
 name|SortedSetDocValues
+extends|extends
+name|DocIdSetIterator
 block|{
 comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
 DECL|method|SortedSetDocValues
@@ -58,25 +84,17 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**     * Returns the next ordinal for the current document (previously    * set by {@link #setDocument(int)}.    * @return next ordinal for the document, or {@link #NO_MORE_ORDS}.     *         ordinals are dense, start at 0, then increment by 1 for     *         the next value in sorted order.     */
+comment|/**     * Returns the next ordinal for the current document.    * @return next ordinal for the document, or {@link #NO_MORE_ORDS}.     *         ordinals are dense, start at 0, then increment by 1 for     *         the next value in sorted order.     */
 DECL|method|nextOrd
 specifier|public
 specifier|abstract
 name|long
 name|nextOrd
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
-comment|/**     * Sets iteration to the specified docID     * @param docID document ID     */
-DECL|method|setDocument
-specifier|public
-specifier|abstract
-name|void
-name|setDocument
-parameter_list|(
-name|int
-name|docID
-parameter_list|)
-function_decl|;
+comment|// TODO: should we have a docValueCount, like SortedNumeric?
 comment|/** Retrieves the value for the specified ordinal. The returned    * {@link BytesRef} may be re-used across calls to lookupOrd so make sure to    * {@link BytesRef#deepCopyOf(BytesRef) copy it} if you want to keep it    * around.    * @param ord ordinal to lookup    * @see #nextOrd    */
 DECL|method|lookupOrd
 specifier|public
@@ -87,6 +105,8 @@ parameter_list|(
 name|long
 name|ord
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * Returns the number of unique values.    * @return number of unique values in this SortedDocValues. This is    *         also equivalent to one plus the maximum ordinal.    */
 DECL|method|getValueCount
@@ -105,6 +125,8 @@ parameter_list|(
 name|BytesRef
 name|key
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|long
 name|low
@@ -209,6 +231,8 @@ specifier|public
 name|TermsEnum
 name|termsEnum
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 operator|new

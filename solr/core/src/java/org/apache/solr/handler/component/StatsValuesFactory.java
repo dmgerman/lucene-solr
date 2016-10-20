@@ -50,18 +50,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|StandardCharsets
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -223,20 +211,6 @@ operator|.
 name|stats
 operator|.
 name|AVLTreeDigest
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|hash
-operator|.
-name|Hashing
 import|;
 end_import
 
@@ -2282,6 +2256,8 @@ parameter_list|(
 name|int
 name|docID
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -2546,7 +2522,7 @@ operator|.
 name|minD
 condition|)
 block|{
-comment|// Double for result& cached primitive doulbe to minimize unboxing in future comparisons
+comment|// Double for result& cached primitive double to minimize unboxing in future comparisons
 name|this
 operator|.
 name|min
@@ -2596,7 +2572,7 @@ operator|<
 name|maxD
 condition|)
 block|{
-comment|// Double for result& cached primitive doulbe to minimize unboxing in future comparisons
+comment|// Double for result& cached primitive double to minimize unboxing in future comparisons
 name|this
 operator|.
 name|max
@@ -2995,6 +2971,8 @@ parameter_list|(
 name|int
 name|docID
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -3323,6 +3301,8 @@ parameter_list|(
 name|int
 name|docID
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -3801,6 +3781,8 @@ parameter_list|(
 name|int
 name|docID
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(

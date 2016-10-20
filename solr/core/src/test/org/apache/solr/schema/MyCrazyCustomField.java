@@ -125,7 +125,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Custom field that overrides the PrefixQuery behaviour to map queries such that:  * (foo* becomes bar*) and (bar* becomes foo*).  * This is used for testing overridded prefix query for custom fields in TestOverriddenPrefixQueryForCustomFieldType  */
+comment|/**  * Custom field that overrides the PrefixQuery behaviour to map queries such that:  * (foo* becomes bar*) and (bar* becomes foo*).  * This is used for testing overridden prefix query for custom fields in TestOverriddenPrefixQueryForCustomFieldType  */
 end_comment
 
 begin_class

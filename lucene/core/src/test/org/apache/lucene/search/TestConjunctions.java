@@ -641,6 +641,9 @@ specifier|public
 name|SimWeight
 name|computeWeight
 parameter_list|(
+name|float
+name|boost
+parameter_list|,
 name|CollectionStatistics
 name|collectionStats
 parameter_list|,
@@ -653,35 +656,7 @@ return|return
 operator|new
 name|SimWeight
 argument_list|()
-block|{
-annotation|@
-name|Override
-specifier|public
-name|float
-name|getValueForNormalization
-parameter_list|()
-block|{
-return|return
-literal|1
-return|;
-comment|// we don't care
-block|}
-annotation|@
-name|Override
-specifier|public
-name|void
-name|normalize
-parameter_list|(
-name|float
-name|queryNorm
-parameter_list|,
-name|float
-name|topLevelBoost
-parameter_list|)
-block|{
-comment|// we don't care
-block|}
-block|}
+block|{}
 return|;
 block|}
 annotation|@

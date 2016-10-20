@@ -119,7 +119,7 @@ import|;
 end_import
 
 begin_comment
-comment|//Unlike TestSolr4Spatial, not parameterized / not generic.
+comment|//Unlike TestSolr4Spatial, not parametrized / not generic.
 end_comment
 
 begin_class

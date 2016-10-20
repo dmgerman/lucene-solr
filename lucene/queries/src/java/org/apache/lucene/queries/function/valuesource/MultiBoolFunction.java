@@ -188,6 +188,8 @@ name|FunctionValues
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 annotation|@
 name|Override
@@ -264,6 +266,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|func
@@ -283,6 +287,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|StringBuilder
 name|sb

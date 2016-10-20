@@ -285,7 +285,7 @@ argument_list|)
 expr_stmt|;
 name|assumeFalse
 argument_list|(
-literal|"This test fails with Java 9 (https://issues.apache.org/jira/browse/PDFBOX-3155, https://issues.apache.org/jira/browse/SOLR-8876)"
+literal|"This test fails with Java 9 (https://issues.apache.org/jira/browse/SOLR-8876)"
 argument_list|,
 name|Constants
 operator|.
@@ -1301,6 +1301,13 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-9220"
+argument_list|)
 DECL|method|testSolrCellDocumentTypes2
 specifier|public
 name|void

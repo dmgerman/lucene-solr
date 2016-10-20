@@ -1112,7 +1112,7 @@ expr_stmt|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Created CoreDescriptor: "
 operator|+

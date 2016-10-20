@@ -646,7 +646,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Reloading exchange rates from "
 operator|+
@@ -847,7 +847,7 @@ expr_stmt|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Initialized with rates="
 operator|+

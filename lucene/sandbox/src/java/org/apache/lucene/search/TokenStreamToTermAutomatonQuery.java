@@ -118,36 +118,6 @@ name|BytesRef
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|RollingBuffer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|automaton
-operator|.
-name|Automaton
-import|;
-end_import
-
 begin_comment
 comment|/** Consumes a TokenStream and creates an {@link TermAutomatonQuery}  *  where the transition labels are tokens from the {@link  *  TermToBytesRefAttribute}.  *  *<p>This code is very new and likely has exciting bugs!  *  *  @lucene.experimental */
 end_comment

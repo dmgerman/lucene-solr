@@ -1046,7 +1046,7 @@ block|{
 name|SolrInputDocument
 name|d
 decl_stmt|;
-comment|// regardless of chain, all of these checks should be equivilent
+comment|// regardless of chain, all of these checks should be equivalent
 for|for
 control|(
 name|String
@@ -1301,7 +1301,7 @@ literal|0.0f
 argument_list|)
 expr_stmt|;
 block|}
-comment|// should be equivilent for any chain matching source1_s and source2_s (but not source0_s)
+comment|// should be equivalent for any chain matching source1_s and source2_s (but not source0_s)
 for|for
 control|(
 name|String
@@ -1620,7 +1620,7 @@ literal|0.0f
 argument_list|)
 expr_stmt|;
 block|}
-comment|// any chain that copies source1_s to dest_s should be equivilent for these assertions
+comment|// any chain that copies source1_s to dest_s should be equivalent for these assertions
 for|for
 control|(
 name|String

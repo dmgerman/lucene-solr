@@ -416,7 +416,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|uninverting
 operator|.
@@ -602,7 +602,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
+name|common
 operator|.
 name|MapSerializable
 import|;
@@ -2483,6 +2483,14 @@ operator|.
 name|NODE
 argument_list|)
 decl_stmt|;
+name|String
+name|coreName
+init|=
+name|getCoreName
+argument_list|(
+literal|"null"
+argument_list|)
+decl_stmt|;
 name|StringBuilder
 name|sb
 init|=
@@ -2498,42 +2506,13 @@ argument_list|(
 literal|"["
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|loader
-operator|.
-name|getCoreProperties
-argument_list|()
-operator|!=
-literal|null
-condition|)
-block|{
 name|sb
 operator|.
 name|append
 argument_list|(
-name|loader
-operator|.
-name|getCoreProperties
-argument_list|()
-operator|.
-name|getProperty
-argument_list|(
-name|SOLR_CORE_NAME
-argument_list|)
+name|coreName
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-name|sb
-operator|.
-name|append
-argument_list|(
-literal|"null"
-argument_list|)
-expr_stmt|;
-block|}
 name|sb
 operator|.
 name|append
@@ -2994,10 +2973,12 @@ block|}
 block|}
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
-literal|"default search field in schema is "
-operator|+
+literal|"[{}] default search field in schema is {}. WARNING: Deprecated, please use 'df' on request instead."
+argument_list|,
+name|coreName
+argument_list|,
 name|defaultSearchFieldName
 argument_list|)
 expr_stmt|;
@@ -3045,7 +3026,7 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"using default query parser operator (OR)"
+literal|"Default query parser operator not set in Schema"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3067,10 +3048,12 @@ argument_list|()
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
-literal|"query parser default operator is "
-operator|+
+literal|"[{}] query parser default operator is {}. WARNING: Deprecated, please use 'q.op' on request instead."
+argument_list|,
+name|coreName
+argument_list|,
 name|queryParserDefaultOperator
 argument_list|)
 expr_stmt|;
@@ -3257,15 +3240,6 @@ operator|.
 name|getType
 argument_list|()
 expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"unique key field: "
-operator|+
-name|uniqueKeyFieldName
-argument_list|)
-expr_stmt|;
 comment|// Unless the uniqueKeyField is marked 'required=false' then make sure it exists
 if|if
 condition|(
@@ -3396,6 +3370,63 @@ comment|// create the field analyzers
 name|refreshAnalyzers
 argument_list|()
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Loaded schema {}/{} with uniqueid field {}"
+argument_list|,
+name|name
+argument_list|,
+name|version
+argument_list|,
+name|uniqueKeyFieldName
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|getCoreName
+specifier|private
+name|String
+name|getCoreName
+parameter_list|(
+name|String
+name|defaultVal
+parameter_list|)
+block|{
+if|if
+condition|(
+name|loader
+operator|!=
+literal|null
+operator|&&
+name|loader
+operator|.
+name|getCoreProperties
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|loader
+operator|.
+name|getCoreProperties
+argument_list|()
+operator|.
+name|getProperty
+argument_list|(
+name|SOLR_CORE_NAME
+argument_list|,
+name|defaultVal
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+return|return
+name|defaultVal
+return|;
+block|}
 block|}
 DECL|method|postReadInform
 specifier|protected
@@ -8199,7 +8230,15 @@ argument_list|,
 name|Object
 argument_list|>
 name|toMap
-parameter_list|()
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|map
+parameter_list|)
 block|{
 return|return
 name|Stream
@@ -8259,7 +8298,7 @@ name|it
 lambda|->
 name|it
 operator|.
-name|getValue
+name|second
 argument_list|()
 operator|!=
 literal|null
@@ -8273,11 +8312,11 @@ name|toMap
 argument_list|(
 name|Pair
 operator|::
-name|getKey
+name|first
 argument_list|,
 name|Pair
 operator|::
-name|getValue
+name|second
 argument_list|,
 parameter_list|(
 name|v1
@@ -8297,8 +8336,8 @@ block|}
 end_function
 
 begin_decl_stmt
+unit|}    public
 DECL|field|nameMapping
-specifier|public
 specifier|static
 name|Map
 argument_list|<
@@ -8316,6 +8355,8 @@ name|Stream
 operator|.
 name|of
 argument_list|(
+name|SchemaProps
+operator|.
 name|Handler
 operator|.
 name|values
@@ -8328,10 +8369,14 @@ name|Collectors
 operator|.
 name|toMap
 argument_list|(
+name|SchemaProps
+operator|.
 name|Handler
 operator|::
 name|getNameLower
 argument_list|,
+name|SchemaProps
+operator|.
 name|Handler
 operator|::
 name|getRealName
@@ -8342,8 +8387,8 @@ decl_stmt|;
 end_decl_stmt
 
 begin_function
-unit|}    public
 DECL|method|getNamedPropertyValues
+specifier|public
 name|Map
 argument_list|<
 name|String
@@ -8371,7 +8416,12 @@ name|this
 argument_list|)
 operator|.
 name|toMap
+argument_list|(
+operator|new
+name|LinkedHashMap
+argument_list|<>
 argument_list|()
+argument_list|)
 return|;
 block|}
 end_function

@@ -723,7 +723,7 @@ name|assertCommitSomeNewDocs
 argument_list|()
 expr_stmt|;
 comment|// even though we have a single segment (which is 100% of the size of
-comment|// the index which is higher then our 0.6D threashold) the
+comment|// the index which is higher then our 0.6D threshold) the
 comment|// compound ratio doesn't matter because the segment was never merged
 name|assertCompoundSegments
 argument_list|(

@@ -3209,13 +3209,6 @@ argument_list|()
 decl_stmt|;
 name|newq
 operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
-name|newq
-operator|.
 name|add
 argument_list|(
 name|query

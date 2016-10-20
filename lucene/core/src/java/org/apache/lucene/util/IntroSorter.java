@@ -98,10 +98,10 @@ name|to
 operator|-
 name|from
 operator|<
-name|THRESHOLD
+name|BINARY_SORT_THRESHOLD
 condition|)
 block|{
-name|insertionSort
+name|binarySort
 argument_list|(
 name|from
 argument_list|,
@@ -307,7 +307,10 @@ name|maxDepth
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Save the value at slot<code>i</code> so that it can later be used as a    * pivot, see {@link #comparePivot(int)}. */
+comment|// Don't rely on the slow default impl of setPivot/comparePivot since
+comment|// quicksort relies on these methods to be fast for good performance
+annotation|@
+name|Override
 DECL|method|setPivot
 specifier|protected
 specifier|abstract
@@ -318,7 +321,8 @@ name|int
 name|i
 parameter_list|)
 function_decl|;
-comment|/** Compare the pivot with the slot at<code>j</code>, similarly to    *  {@link #compare(int, int) compare(i, j)}. */
+annotation|@
+name|Override
 DECL|method|comparePivot
 specifier|protected
 specifier|abstract
@@ -329,6 +333,32 @@ name|int
 name|j
 parameter_list|)
 function_decl|;
+annotation|@
+name|Override
+DECL|method|compare
+specifier|protected
+name|int
+name|compare
+parameter_list|(
+name|int
+name|i
+parameter_list|,
+name|int
+name|j
+parameter_list|)
+block|{
+name|setPivot
+argument_list|(
+name|i
+argument_list|)
+expr_stmt|;
+return|return
+name|comparePivot
+argument_list|(
+name|j
+argument_list|)
+return|;
+block|}
 block|}
 end_class
 

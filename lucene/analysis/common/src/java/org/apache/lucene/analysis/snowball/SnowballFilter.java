@@ -38,6 +38,20 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|LowerCaseFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenFilter
 import|;
 end_import
@@ -66,9 +80,9 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
+name|tokenattributes
 operator|.
-name|LowerCaseFilter
+name|CharTermAttribute
 import|;
 end_import
 
@@ -85,22 +99,6 @@ operator|.
 name|tokenattributes
 operator|.
 name|KeywordAttribute
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|tokenattributes
-operator|.
-name|CharTermAttribute
 import|;
 end_import
 

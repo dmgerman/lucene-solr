@@ -270,7 +270,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** ll/ttf/h3 with parameterized normalization */
+comment|/** ll/ttf/h3 with parametrized normalization */
 DECL|method|testParameters
 specifier|public
 name|void

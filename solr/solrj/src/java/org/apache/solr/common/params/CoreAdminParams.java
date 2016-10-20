@@ -336,6 +336,46 @@ name|NODE
 init|=
 literal|"node"
 decl_stmt|;
+comment|/**    * A parameter to specify the name of the backup repository to be used.    */
+DECL|field|BACKUP_REPOSITORY
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|BACKUP_REPOSITORY
+init|=
+literal|"repository"
+decl_stmt|;
+comment|/**    * A parameter to specify the location where the backup should be stored.    */
+DECL|field|BACKUP_LOCATION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|BACKUP_LOCATION
+init|=
+literal|"location"
+decl_stmt|;
+comment|/**    * A parameter to specify the name of the commit to be stored during the backup operation.    */
+DECL|field|COMMIT_NAME
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|COMMIT_NAME
+init|=
+literal|"commitName"
+decl_stmt|;
+comment|/**    * A boolean parameter specifying if a core is being created as part of a new collection    */
+DECL|field|NEW_COLLECTION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|NEW_COLLECTION
+init|=
+literal|"newCollection"
+decl_stmt|;
 DECL|enum|CoreAdminAction
 specifier|public
 enum|enum
@@ -411,6 +451,15 @@ name|BACKUPCORE
 block|,
 DECL|enum constant|RESTORECORE
 name|RESTORECORE
+block|,
+DECL|enum constant|CREATESNAPSHOT
+name|CREATESNAPSHOT
+block|,
+DECL|enum constant|DELETESNAPSHOT
+name|DELETESNAPSHOT
+block|,
+DECL|enum constant|LISTSNAPSHOTS
+name|LISTSNAPSHOTS
 block|;
 DECL|field|isRead
 specifier|public

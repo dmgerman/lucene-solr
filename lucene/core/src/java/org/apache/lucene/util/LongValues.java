@@ -16,38 +16,8 @@ name|util
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|NumericDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|packed
-operator|.
-name|PackedInts
-import|;
-end_import
-
 begin_comment
-comment|/** Abstraction over an array of longs.  *  This class extends NumericDocValues so that we don't need to add another  *  level of abstraction every time we want eg. to use the {@link PackedInts}  *  utility classes to represent a {@link NumericDocValues} instance.  *  @lucene.internal */
+comment|/** Abstraction over an array of longs.  *  @lucene.internal */
 end_comment
 
 begin_class
@@ -56,8 +26,6 @@ specifier|public
 specifier|abstract
 class|class
 name|LongValues
-extends|extends
-name|NumericDocValues
 block|{
 comment|/** An instance that returns the provided value. */
 DECL|field|IDENTITY
@@ -98,27 +66,6 @@ name|long
 name|index
 parameter_list|)
 function_decl|;
-annotation|@
-name|Override
-DECL|method|get
-specifier|public
-name|long
-name|get
-parameter_list|(
-name|int
-name|idx
-parameter_list|)
-block|{
-return|return
-name|get
-argument_list|(
-operator|(
-name|long
-operator|)
-name|idx
-argument_list|)
-return|;
-block|}
 block|}
 end_class
 

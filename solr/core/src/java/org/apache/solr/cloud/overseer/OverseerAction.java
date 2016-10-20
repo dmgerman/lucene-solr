@@ -28,20 +28,6 @@ name|Locale
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|cloud
-operator|.
-name|Overseer
-import|;
-end_import
-
 begin_comment
 comment|/**  * Enum of actions supported by the overseer only.  *  * There are other actions supported which are public and defined  * in {@link org.apache.solr.common.params.CollectionParams.CollectionAction}  */
 end_comment

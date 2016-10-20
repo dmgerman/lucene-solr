@@ -2880,6 +2880,15 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+parameter_list|()
+lambda|->
+block|{
 name|doc
 operator|.
 name|add
@@ -2899,22 +2908,6 @@ operator|+
 literal|1
 index|]
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|expectThrows
-argument_list|(
-name|IllegalArgumentException
-operator|.
-name|class
-argument_list|,
-parameter_list|()
-lambda|->
-block|{
-name|w
-operator|.
-name|addDocument
-argument_list|(
-name|doc
 argument_list|)
 expr_stmt|;
 block|}
@@ -3118,7 +3111,7 @@ block|}
 end_function
 
 begin_comment
-comment|// Write point values, one segment with Lucene60, another with SimpleText, then forceMerge with SimpleText
+comment|// Write point values, one segment with Lucene70, another with SimpleText, then forceMerge with SimpleText
 end_comment
 
 begin_function
@@ -3158,7 +3151,7 @@ name|Codec
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene60"
+literal|"Lucene70"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3287,7 +3280,7 @@ block|}
 end_function
 
 begin_comment
-comment|// Write point values, one segment with Lucene60, another with SimpleText, then forceMerge with Lucene60
+comment|// Write point values, one segment with Lucene70, another with SimpleText, then forceMerge with Lucene70
 end_comment
 
 begin_function
@@ -3395,7 +3388,7 @@ name|Codec
 operator|.
 name|forName
 argument_list|(
-literal|"Lucene60"
+literal|"Lucene70"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3826,14 +3819,14 @@ name|reader
 argument_list|()
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+literal|"int"
+argument_list|)
 decl_stmt|;
 name|points
 operator|.
 name|intersect
 argument_list|(
-literal|"int"
-argument_list|,
 operator|new
 name|IntersectVisitor
 argument_list|()
@@ -4079,10 +4072,8 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
-name|assertEquals
+name|assertNull
 argument_list|(
-literal|0
-argument_list|,
 name|r
 operator|.
 name|leaves
@@ -4097,35 +4088,6 @@ name|reader
 argument_list|()
 operator|.
 name|getPointValues
-argument_list|()
-operator|.
-name|size
-argument_list|(
-literal|"int"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|0
-argument_list|,
-name|r
-operator|.
-name|leaves
-argument_list|()
-operator|.
-name|get
-argument_list|(
-literal|0
-argument_list|)
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getPointValues
-argument_list|()
-operator|.
-name|getDocCount
 argument_list|(
 literal|"int"
 argument_list|)
@@ -4550,22 +4512,13 @@ name|reader
 argument_list|()
 operator|.
 name|getPointValues
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|ctx
-operator|.
-name|reader
-argument_list|()
-operator|.
-name|getFieldInfos
-argument_list|()
-operator|.
-name|fieldInfo
 argument_list|(
 name|fieldName
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|points
 operator|!=
 literal|null
 condition|)
@@ -4575,18 +4528,14 @@ operator|+=
 name|points
 operator|.
 name|getDocCount
-argument_list|(
-name|fieldName
-argument_list|)
+argument_list|()
 expr_stmt|;
 name|size
 operator|+=
 name|points
 operator|.
 name|size
-argument_list|(
-name|fieldName
-argument_list|)
+argument_list|()
 expr_stmt|;
 block|}
 block|}
@@ -5634,7 +5583,9 @@ name|reader2
 argument_list|)
 operator|.
 name|getPointValues
-argument_list|()
+argument_list|(
+literal|"field"
+argument_list|)
 decl_stmt|;
 if|if
 condition|(
@@ -5703,9 +5654,7 @@ argument_list|(
 name|expected
 operator|.
 name|getMinPackedValue
-argument_list|(
-literal|"field"
-argument_list|)
+argument_list|()
 argument_list|,
 name|PointValues
 operator|.
@@ -5722,9 +5671,7 @@ argument_list|(
 name|expected
 operator|.
 name|getMaxPackedValue
-argument_list|(
-literal|"field"
-argument_list|)
+argument_list|()
 argument_list|,
 name|PointValues
 operator|.
@@ -5741,9 +5688,7 @@ argument_list|(
 name|expected
 operator|.
 name|getDocCount
-argument_list|(
-literal|"field"
-argument_list|)
+argument_list|()
 argument_list|,
 name|PointValues
 operator|.
@@ -5760,9 +5705,7 @@ argument_list|(
 name|expected
 operator|.
 name|size
-argument_list|(
-literal|"field"
-argument_list|)
+argument_list|()
 argument_list|,
 name|PointValues
 operator|.

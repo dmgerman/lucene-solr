@@ -64,16 +64,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Locale
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Set
 import|;
 end_import
@@ -202,89 +192,9 @@ name|solr
 operator|.
 name|common
 operator|.
-name|cloud
-operator|.
-name|DocCollection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|Slice
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|ShardParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|SolrParams
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|NamedList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|SimpleOrderedMap
 import|;
 end_import
 
@@ -956,8 +866,8 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-comment|// we're not tolerante of errors from this type of command, but we
-comment|// do need to track it so we can annotate it with any other errors we were allready tolerant of
+comment|// we're not tolerant of errors from this type of command, but we
+comment|// do need to track it so we can annotate it with any other errors we were already tolerant of
 name|firstErrTracker
 operator|.
 name|caught
@@ -999,8 +909,8 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-comment|// we're not tolerante of errors from this type of command, but we
-comment|// do need to track it so we can annotate it with any other errors we were allready tolerant of
+comment|// we're not tolerant of errors from this type of command, but we
+comment|// do need to track it so we can annotate it with any other errors we were already tolerant of
 name|firstErrTracker
 operator|.
 name|caught
@@ -1042,8 +952,8 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
-comment|// we're not tolerante of errors from this type of command, but we
-comment|// do need to track it so we can annotate it with any other errors we were allready tolerant of
+comment|// we're not tolerant of errors from this type of command, but we
+comment|// do need to track it so we can annotate it with any other errors we were already tolerant of
 name|firstErrTracker
 operator|.
 name|caught
@@ -1337,7 +1247,7 @@ name|size
 argument_list|()
 condition|)
 block|{
-comment|// NOTE: even if maxErrors wasn't exceeeded, we need to throw an error when we have any errors if we're
+comment|// NOTE: even if maxErrors wasn't exceeded, we need to throw an error when we have any errors if we're
 comment|// a leader that was forwarded to by another node so that the forwarding node knows we encountered some
 comment|// problems and can aggregate the results
 name|firstErrTracker
@@ -1475,7 +1385,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**       * Call this method in place of any situation where you would normally (re)throw an exception       * (already passed to the {@link #caught} method because maxErrors was exceeded      * is exceed.      *      * This method will keep a record that this update processor has already thrown the exception, and do       * nothing on future calls, so subsequent update processor methods can update the metadata but won't       * inadvertantly re-throw this (or any other) cascading exception by mistake.      */
+comment|/**       * Call this method in place of any situation where you would normally (re)throw an exception       * (already passed to the {@link #caught} method because maxErrors was exceeded      * is exceed.      *      * This method will keep a record that this update processor has already thrown the exception, and do       * nothing on future calls, so subsequent update processor methods can update the metadata but won't       * inadvertently re-throw this (or any other) cascading exception by mistake.      */
 DECL|method|throwFirst
 specifier|public
 name|void

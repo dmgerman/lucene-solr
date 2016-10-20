@@ -116,26 +116,6 @@ name|ArrayList
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
-import|;
-end_import
-
 begin_comment
 comment|/** Inspired by LUCENE-5790 */
 end_comment
@@ -487,7 +467,7 @@ expr_stmt|;
 comment|// mess with the segment counts
 block|}
 block|}
-comment|// doc#0: at least one doc that is garunteed not special and has no chance of being filtered
+comment|// doc#0: at least one doc that is guaranteed not special and has no chance of being filtered
 name|assertU
 argument_list|(
 name|adoc

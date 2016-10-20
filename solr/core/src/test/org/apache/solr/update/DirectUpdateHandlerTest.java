@@ -865,7 +865,7 @@ name|duh2
 operator|.
 name|addCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -877,7 +877,7 @@ name|duh2
 operator|.
 name|addCommandsCumulative
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -889,7 +889,7 @@ name|duh2
 operator|.
 name|commitCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -908,7 +908,7 @@ name|duh2
 operator|.
 name|addCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -920,7 +920,7 @@ name|duh2
 operator|.
 name|addCommandsCumulative
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -932,7 +932,7 @@ name|duh2
 operator|.
 name|commitCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -974,7 +974,7 @@ name|duh2
 operator|.
 name|addCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -986,7 +986,7 @@ name|duh2
 operator|.
 name|addCommandsCumulative
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -998,7 +998,7 @@ name|duh2
 operator|.
 name|rollbackCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1017,7 +1017,7 @@ name|duh2
 operator|.
 name|addCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1029,7 +1029,7 @@ name|duh2
 operator|.
 name|addCommandsCumulative
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1041,7 +1041,7 @@ name|duh2
 operator|.
 name|rollbackCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1249,7 +1249,7 @@ name|duh2
 operator|.
 name|addCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1261,7 +1261,7 @@ name|duh2
 operator|.
 name|addCommandsCumulative
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1273,7 +1273,7 @@ name|duh2
 operator|.
 name|commitCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1292,7 +1292,7 @@ name|duh2
 operator|.
 name|addCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1304,7 +1304,7 @@ name|duh2
 operator|.
 name|addCommandsCumulative
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1316,7 +1316,7 @@ name|duh2
 operator|.
 name|commitCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1433,7 +1433,7 @@ name|duh2
 operator|.
 name|deleteByIdCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1445,7 +1445,7 @@ name|duh2
 operator|.
 name|deleteByIdCommandsCumulative
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1457,7 +1457,7 @@ name|duh2
 operator|.
 name|rollbackCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1481,7 +1481,7 @@ name|duh2
 operator|.
 name|deleteByIdCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1493,7 +1493,7 @@ name|duh2
 operator|.
 name|deleteByIdCommandsCumulative
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1505,7 +1505,7 @@ name|duh2
 operator|.
 name|rollbackCommands
 operator|.
-name|get
+name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;

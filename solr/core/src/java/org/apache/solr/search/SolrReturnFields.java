@@ -118,22 +118,6 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
-operator|.
-name|ErrorCode
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|params
 operator|.
 name|CommonParams
@@ -314,6 +298,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashSet
 import|;
 end_import
@@ -335,6 +329,16 @@ operator|.
 name|util
 operator|.
 name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -447,6 +451,21 @@ name|boolean
 name|_wantsAllFields
 init|=
 literal|false
+decl_stmt|;
+DECL|field|renameFields
+specifier|protected
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|renameFields
+init|=
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
 decl_stmt|;
 DECL|method|SolrReturnFields
 specifier|public
@@ -838,6 +857,24 @@ expr_stmt|;
 block|}
 if|if
 condition|(
+name|rename
+operator|.
+name|size
+argument_list|()
+operator|>
+literal|0
+condition|)
+block|{
+name|renameFields
+operator|=
+name|rename
+operator|.
+name|asShallowMap
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
 operator|!
 name|_wantsAllFields
 operator|&&
@@ -851,7 +888,7 @@ block|{
 comment|// TODO??? need to fill up the fields with matching field names in the index
 comment|// and add them to okFieldNames?
 comment|// maybe just get all fields?
-comment|// this would disable field selection optimization... i think thatis OK
+comment|// this would disable field selection optimization... i think that is OK
 name|fields
 operator|.
 name|clear
@@ -895,6 +932,23 @@ operator|=
 name|augmenters
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|getFieldRenames
+specifier|public
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|String
+argument_list|>
+name|getFieldRenames
+parameter_list|()
+block|{
+return|return
+name|renameFields
+return|;
 block|}
 comment|// like getId, but also accepts dashes for legacy fields
 DECL|method|getFieldName

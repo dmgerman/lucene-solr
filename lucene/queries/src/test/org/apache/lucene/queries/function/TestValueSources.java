@@ -3192,6 +3192,8 @@ name|FunctionValues
 index|[]
 name|valsArr
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|valsArr
@@ -3218,6 +3220,8 @@ name|FunctionValues
 index|[]
 name|valsArr
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 comment|// if tf> 0, then it should exist
 return|return

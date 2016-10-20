@@ -247,9 +247,6 @@ name|i
 operator|++
 control|)
 block|{
-name|LineNumberReader
-name|in
-decl_stmt|;
 comment|// System.out.println("[" + args[i] + "]");
 name|Diff
 name|diff
@@ -278,8 +275,11 @@ argument_list|,
 literal|"UTF-8"
 argument_list|)
 decl_stmt|;
+try|try
+init|(
+name|LineNumberReader
 name|in
-operator|=
+init|=
 operator|new
 name|LineNumberReader
 argument_list|(
@@ -305,7 +305,8 @@ name|charset
 argument_list|)
 argument_list|)
 argument_list|)
-expr_stmt|;
+init|)
+block|{
 for|for
 control|(
 name|String
@@ -431,6 +432,7 @@ name|x
 parameter_list|)
 block|{
 comment|// no base token (stem) on a line
+block|}
 block|}
 block|}
 block|}

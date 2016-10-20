@@ -1,4 +1,8 @@
 begin_unit|revision:0.9.5;language:Java;cregit-version:0.0.1
+begin_comment
+comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
+end_comment
+
 begin_package
 DECL|package|org.apache.solr.update.processor
 package|package
@@ -144,7 +148,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReader
+name|IndexReader
 import|;
 end_import
 
@@ -219,10 +223,6 @@ import|;
 end_import
 
 begin_comment
-comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
-end_comment
-
-begin_comment
 comment|/**  * This Class is a Request Update Processor to classify the document in input and add a field  * containing the class to the Document.  * It uses the Lucene Document Classification module, see {@link DocumentClassifier}.  */
 end_comment
 
@@ -274,7 +274,7 @@ parameter_list|,
 name|UpdateRequestProcessor
 name|next
 parameter_list|,
-name|LeafReader
+name|IndexReader
 name|indexReader
 parameter_list|,
 name|IndexSchema
@@ -403,7 +403,7 @@ expr_stmt|;
 break|break;
 block|}
 block|}
-comment|/**    * @param cmd the update command in input conaining the Document to classify    * @throws IOException If there is a low-level I/O error    */
+comment|/**    * @param cmd the update command in input containing the Document to classify    * @throws IOException If there is a low-level I/O error    */
 annotation|@
 name|Override
 DECL|method|processAdd

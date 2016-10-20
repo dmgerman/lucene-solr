@@ -54,6 +54,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Iterator
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|LinkedHashMap
 import|;
 end_import
@@ -109,6 +119,11 @@ class|class
 name|Slice
 extends|extends
 name|ZkNodeProps
+implements|implements
+name|Iterable
+argument_list|<
+name|Replica
+argument_list|>
 block|{
 comment|/** Loads multiple slices into a Map from a generic Map that probably came from deserialized JSON. */
 DECL|method|loadAllFromMap
@@ -254,6 +269,27 @@ return|return
 name|result
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|iterator
+specifier|public
+name|Iterator
+argument_list|<
+name|Replica
+argument_list|>
+name|iterator
+parameter_list|()
+block|{
+return|return
+name|replicas
+operator|.
+name|values
+argument_list|()
+operator|.
+name|iterator
+argument_list|()
+return|;
+block|}
 comment|/** The slice's state. */
 DECL|enum|State
 specifier|public
@@ -275,6 +311,10 @@ block|,
 comment|/**      * Sub-shards of a split shard are put in that state, when they need to      * create replicas in order to meet the collection's replication factor. A      * shard in that state still receives update requests from the parent shard      * leader, however does not participate in distributed search.      */
 DECL|enum constant|RECOVERY
 name|RECOVERY
+block|,
+comment|/**      * Sub-shards of a split shard are put in that state when the split is deemed failed      * by the overseer even though all replicas are active because either the leader node is      * no longer live or has a different ephemeral owner (zk session id). Such conditions can potentially      * lead to data loss. See SOLR-9438 for details. A shard in that state will neither receive      * update requests from the parent shard leader, nor participate in distributed search.      */
+DECL|enum constant|RECOVERY_FAILED
+name|RECOVERY_FAILED
 block|;
 annotation|@
 name|Override

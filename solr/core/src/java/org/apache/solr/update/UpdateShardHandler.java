@@ -328,15 +328,42 @@ operator|new
 name|ModifiableSolrParams
 argument_list|()
 decl_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Creating UpdateShardHandler HTTP client with params: {}"
-argument_list|,
+if|if
+condition|(
+name|cfg
+operator|!=
+literal|null
+condition|)
+block|{
 name|clientParams
+operator|.
+name|set
+argument_list|(
+name|HttpClientUtil
+operator|.
+name|PROP_SO_TIMEOUT
+argument_list|,
+name|cfg
+operator|.
+name|getDistributedSocketTimeout
+argument_list|()
 argument_list|)
 expr_stmt|;
+name|clientParams
+operator|.
+name|set
+argument_list|(
+name|HttpClientUtil
+operator|.
+name|PROP_CONNECTION_TIMEOUT
+argument_list|,
+name|cfg
+operator|.
+name|getDistributedConnectionTimeout
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 name|client
 operator|=
 name|HttpClientUtil
@@ -346,6 +373,53 @@ argument_list|(
 name|clientParams
 argument_list|,
 name|clientConnectionManager
+argument_list|)
+expr_stmt|;
+comment|// following is done only for logging complete configuration.
+comment|// The maxConnections and maxConnectionsPerHost have already been specified on the connection manager
+if|if
+condition|(
+name|cfg
+operator|!=
+literal|null
+condition|)
+block|{
+name|clientParams
+operator|.
+name|set
+argument_list|(
+name|HttpClientUtil
+operator|.
+name|PROP_MAX_CONNECTIONS
+argument_list|,
+name|cfg
+operator|.
+name|getMaxUpdateConnections
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|clientParams
+operator|.
+name|set
+argument_list|(
+name|HttpClientUtil
+operator|.
+name|PROP_MAX_CONNECTIONS_PER_HOST
+argument_list|,
+name|cfg
+operator|.
+name|getMaxUpdateConnectionsPerHost
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Created UpdateShardHandler HTTP client with params: {}"
+argument_list|,
+name|clientParams
 argument_list|)
 expr_stmt|;
 block|}
@@ -380,7 +454,7 @@ return|return
 name|clientConnectionManager
 return|;
 block|}
-comment|/**    * In general, RecoveryStrategy threads do not do disk IO, but they open and close SolrCores    * in async threads, amoung other things, and can trigger disk IO, so we use this alternate     * executor rather than the 'updateExecutor', which is interrupted on shutdown.    *     * @return executor for {@link RecoveryStrategy} thread which will not be interrupted on close.    */
+comment|/**    * In general, RecoveryStrategy threads do not do disk IO, but they open and close SolrCores    * in async threads, among other things, and can trigger disk IO, so we use this alternate     * executor rather than the 'updateExecutor', which is interrupted on shutdown.    *     * @return executor for {@link RecoveryStrategy} thread which will not be interrupted on close.    */
 DECL|method|getRecoveryExecutor
 specifier|public
 name|ExecutorService
@@ -399,7 +473,7 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|// we interrupt on purpose here, but this exectuor should not run threads that do disk IO!
+comment|// we interrupt on purpose here, but this executor should not run threads that do disk IO!
 name|ExecutorUtil
 operator|.
 name|shutdownWithInterruptAndAwaitTermination

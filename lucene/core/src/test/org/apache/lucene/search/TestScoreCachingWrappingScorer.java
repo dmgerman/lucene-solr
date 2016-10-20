@@ -534,6 +534,8 @@ argument_list|(
 name|searcher
 argument_list|,
 literal|true
+argument_list|,
+literal|1f
 argument_list|)
 decl_stmt|;
 name|Scorer

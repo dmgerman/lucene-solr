@@ -818,13 +818,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|query
-operator|.
-name|setDisableCoord
-argument_list|(
-literal|true
-argument_list|)
-expr_stmt|;
 comment|/* * * Main User Query * * */
 name|parsedUserQuery
 operator|=
@@ -1723,8 +1716,8 @@ return|return
 literal|null
 return|;
 block|}
-comment|// For correct lucene queries, turn off mm processing if there
-comment|// were explicit operators (except for AND).
+comment|// For correct lucene queries, turn off mm processing if no explicit mm spec was provided
+comment|// and there were explicit operators (except for AND).
 if|if
 condition|(
 name|query
@@ -1732,6 +1725,42 @@ operator|instanceof
 name|BooleanQuery
 condition|)
 block|{
+comment|// config.minShouldMatch holds the value of mm which MIGHT have come from the user,
+comment|// but could also have been derived from q.op.
+name|String
+name|mmSpec
+init|=
+name|config
+operator|.
+name|minShouldMatch
+decl_stmt|;
+if|if
+condition|(
+name|foundOperators
+argument_list|(
+name|clauses
+argument_list|,
+name|config
+operator|.
+name|lowercaseOperators
+argument_list|)
+condition|)
+block|{
+name|mmSpec
+operator|=
+name|params
+operator|.
+name|get
+argument_list|(
+name|DisMaxParams
+operator|.
+name|MM
+argument_list|,
+literal|"0%"
+argument_list|)
+expr_stmt|;
+comment|// Use provided mm spec if present, otherwise turn off mm processing
+block|}
 name|query
 operator|=
 name|SolrPluginUtils
@@ -1743,9 +1772,7 @@ name|BooleanQuery
 operator|)
 name|query
 argument_list|,
-name|config
-operator|.
-name|minShouldMatch
+name|mmSpec
 argument_list|,
 name|config
 operator|.
@@ -1994,6 +2021,119 @@ name|sb
 operator|.
 name|toString
 argument_list|()
+return|;
+block|}
+comment|/**    * Returns true if at least one of the clauses is/has an explicit operator (except for AND)    */
+DECL|method|foundOperators
+specifier|private
+name|boolean
+name|foundOperators
+parameter_list|(
+name|List
+argument_list|<
+name|Clause
+argument_list|>
+name|clauses
+parameter_list|,
+name|boolean
+name|lowercaseOperators
+parameter_list|)
+block|{
+for|for
+control|(
+name|Clause
+name|clause
+range|:
+name|clauses
+control|)
+block|{
+if|if
+condition|(
+name|clause
+operator|.
+name|must
+operator|==
+literal|'+'
+condition|)
+return|return
+literal|true
+return|;
+if|if
+condition|(
+name|clause
+operator|.
+name|must
+operator|==
+literal|'-'
+condition|)
+return|return
+literal|true
+return|;
+if|if
+condition|(
+name|clause
+operator|.
+name|isBareWord
+argument_list|()
+condition|)
+block|{
+name|String
+name|s
+init|=
+name|clause
+operator|.
+name|val
+decl_stmt|;
+if|if
+condition|(
+literal|"OR"
+operator|.
+name|equals
+argument_list|(
+name|s
+argument_list|)
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+literal|"NOT"
+operator|.
+name|equals
+argument_list|(
+name|s
+argument_list|)
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+elseif|else
+if|if
+condition|(
+name|lowercaseOperators
+operator|&&
+literal|"or"
+operator|.
+name|equals
+argument_list|(
+name|s
+argument_list|)
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+block|}
+block|}
+return|return
+literal|false
 return|;
 block|}
 comment|/**    * Generates a query string from the raw clauses, uppercasing     * 'and' and 'or' as needed.    * @param clauses the clauses of the query string to be rebuilt    * @param lowercaseOperators if true, lowercase 'and' and 'or' clauses will     *        be recognized as operators and uppercased in the final query string.    * @return the generated query string.    */
@@ -4518,12 +4658,6 @@ name|makeDismax
 init|=
 literal|true
 decl_stmt|;
-DECL|field|disableCoord
-name|boolean
-name|disableCoord
-init|=
-literal|true
-decl_stmt|;
 DECL|field|allowWildcard
 name|boolean
 name|allowWildcard
@@ -5385,7 +5519,6 @@ return|;
 block|}
 else|else
 block|{
-comment|// should we disable coord?
 name|BooleanQuery
 operator|.
 name|Builder
@@ -5397,13 +5530,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|q
-operator|.
-name|setDisableCoord
-argument_list|(
-name|disableCoord
-argument_list|)
-expr_stmt|;
 for|for
 control|(
 name|Query
@@ -5800,12 +5926,8 @@ operator|.
 name|PHRASE
 argument_list|)
 decl_stmt|;
-comment|// A BooleanQuery is only possible from getFieldQuery if it came from
-comment|// a single whitespace separated term. In this case, check the coordination
-comment|// factor on the query: if it's enabled, that means we aren't a set of synonyms
-comment|// but instead multiple terms from one whitespace-separated term, we must
-comment|// apply minShouldMatch here so that it works correctly with other things
-comment|// like aliasing.
+comment|// Boolean query on a whitespace-separated string
+comment|// If these were synonyms we would have a SynonymQuery
 if|if
 condition|(
 name|query
@@ -5821,15 +5943,6 @@ name|BooleanQuery
 operator|)
 name|query
 decl_stmt|;
-if|if
-condition|(
-operator|!
-name|bq
-operator|.
-name|isCoordDisabled
-argument_list|()
-condition|)
-block|{
 name|query
 operator|=
 name|SolrPluginUtils
@@ -5843,7 +5956,6 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 if|if
 condition|(

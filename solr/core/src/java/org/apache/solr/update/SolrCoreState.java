@@ -333,7 +333,7 @@ try|try
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Closing SolrCoreState"
 argument_list|)
@@ -558,6 +558,13 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+DECL|method|getRecoveryLock
+specifier|public
+specifier|abstract
+name|Lock
+name|getRecoveryLock
+parameter_list|()
+function_decl|;
 block|}
 end_class
 

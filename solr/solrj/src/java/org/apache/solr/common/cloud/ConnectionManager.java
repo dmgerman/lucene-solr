@@ -128,6 +128,60 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|Watcher
+operator|.
+name|Event
+operator|.
+name|KeeperState
+operator|.
+name|AuthFailed
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|Watcher
+operator|.
+name|Event
+operator|.
+name|KeeperState
+operator|.
+name|Disconnected
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|zookeeper
+operator|.
+name|Watcher
+operator|.
+name|Event
+operator|.
+name|KeeperState
+operator|.
+name|Expired
+import|;
+end_import
+
 begin_class
 DECL|class|ConnectionManager
 specifier|public
@@ -495,37 +549,71 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|log
+name|event
 operator|.
-name|isInfoEnabled
+name|getState
 argument_list|()
+operator|==
+name|AuthFailed
+operator|||
+name|event
+operator|.
+name|getState
+argument_list|()
+operator|==
+name|Disconnected
+operator|||
+name|event
+operator|.
+name|getState
+argument_list|()
+operator|==
+name|Expired
 condition|)
 block|{
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
-literal|"Watcher "
-operator|+
+literal|"Watcher {} name: {} got event {} path: {} type: {}"
+argument_list|,
 name|this
-operator|+
-literal|" name:"
-operator|+
+argument_list|,
 name|name
-operator|+
-literal|" got event "
-operator|+
+argument_list|,
 name|event
-operator|+
-literal|" path:"
-operator|+
+argument_list|,
 name|event
 operator|.
 name|getPath
 argument_list|()
-operator|+
-literal|" type:"
-operator|+
+argument_list|,
+name|event
+operator|.
+name|getType
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Watcher {} name: {} got event {} path: {} type: {}"
+argument_list|,
+name|this
+argument_list|,
+name|name
+argument_list|,
+name|event
+argument_list|,
+name|event
+operator|.
+name|getPath
+argument_list|()
+argument_list|,
 name|event
 operator|.
 name|getType
@@ -540,7 +628,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Client->ZooKeeper status change trigger but we are already closed"
 argument_list|)
@@ -578,8 +666,6 @@ if|if
 condition|(
 name|state
 operator|==
-name|KeeperState
-operator|.
 name|Expired
 condition|)
 block|{
@@ -596,7 +682,7 @@ name|EXPIRED
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"Our previous ZooKeeper session was expired. Attempting to reconnect to recover relationship with ZooKeeper..."
 argument_list|)
@@ -635,7 +721,7 @@ block|}
 block|}
 do|do
 block|{
-comment|// This loop will break iff a valid connection is made. If a connection is not made then it will repeat and
+comment|// This loop will break if a valid connection is made. If a connection is not made then it will repeat and
 comment|// try again to create a new connection.
 try|try
 block|{
@@ -839,7 +925,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|warn
 argument_list|(
 literal|"zkClient has disconnected"
 argument_list|)
@@ -984,7 +1070,7 @@ name|TimeoutException
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Waiting for client to connect to ZooKeeper"
 argument_list|)
@@ -1090,7 +1176,7 @@ throw|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Client is connected to ZooKeeper"
 argument_list|)

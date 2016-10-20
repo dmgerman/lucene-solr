@@ -102,6 +102,20 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|google
+operator|.
+name|common
+operator|.
+name|base
+operator|.
+name|Preconditions
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -308,11 +322,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|store
 operator|.
-name|NoLockFactory
+name|hdfs
+operator|.
+name|HdfsDirectory
 import|;
 end_import
 
@@ -324,11 +340,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|store
+name|update
 operator|.
-name|hdfs
-operator|.
-name|HdfsDirectory
+name|SolrIndexWriter
 import|;
 end_import
 
@@ -363,20 +377,6 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
 import|;
 end_import
 
@@ -669,10 +669,6 @@ name|HdfsDirectory
 argument_list|(
 name|workDir
 argument_list|,
-name|NoLockFactory
-operator|.
-name|INSTANCE
-argument_list|,
 name|context
 operator|.
 name|getConfiguration
@@ -852,10 +848,6 @@ name|get
 argument_list|(
 name|i
 argument_list|)
-argument_list|,
-name|NoLockFactory
-operator|.
-name|INSTANCE
 argument_list|,
 name|context
 operator|.
@@ -1087,6 +1079,15 @@ name|timer
 operator|.
 name|getTime
 argument_list|()
+argument_list|)
+expr_stmt|;
+comment|// Set Solr's commit data so the created index is usable by SolrCloud. E.g. Currently SolrCloud relies on
+comment|// commitTimeMSec in the commit data to do replication.
+name|SolrIndexWriter
+operator|.
+name|setCommitData
+argument_list|(
+name|writer
 argument_list|)
 expr_stmt|;
 name|timer

@@ -830,7 +830,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Watching path {} to know if I could be the leader"
 argument_list|,
@@ -1220,7 +1220,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Node {} trying to join election at the head"
 argument_list|,
@@ -1290,7 +1290,7 @@ argument_list|)
 decl_stmt|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"The current head: {}"
 argument_list|,
@@ -1388,7 +1388,7 @@ expr_stmt|;
 block|}
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Joined leadership election with path: {}"
 argument_list|,
@@ -1724,7 +1724,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"This watcher is not active anymore {}"
 argument_list|,
@@ -1793,6 +1793,15 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|zkClient
+operator|.
+name|isClosed
+argument_list|()
+condition|)
+block|{
 name|log
 operator|.
 name|warn
@@ -1802,6 +1811,7 @@ argument_list|,
 name|e
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}

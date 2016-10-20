@@ -79,7 +79,7 @@ name|int
 name|doc
 parameter_list|)
 function_decl|;
-comment|/**    * Adds a document the caller knows is not currently in the DocSet    * (optional operation).    *    *<p>    * This method may be faster then<code>add(doc)</code> in some    * implementaions provided the caller is certain of the precondition.    *</p>    *    * @see #add    * @throws SolrException if the implementation does not allow modifications    */
+comment|/**    * Adds a document the caller knows is not currently in the DocSet    * (optional operation).    *    *<p>    * This method may be faster then<code>add(doc)</code> in some    * implementations provided the caller is certain of the precondition.    *</p>    *    * @see #add    * @throws SolrException if the implementation does not allow modifications    */
 DECL|method|addUnique
 specifier|public
 name|void

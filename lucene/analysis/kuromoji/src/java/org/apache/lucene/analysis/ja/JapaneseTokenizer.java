@@ -718,15 +718,6 @@ name|nBestCost
 init|=
 literal|0
 decl_stmt|;
-comment|// Index of the last character of unknown word:
-DECL|field|unknownWordEndIndex
-specifier|private
-name|int
-name|unknownWordEndIndex
-init|=
-operator|-
-literal|1
-decl_stmt|;
 comment|// True once we've hit the EOF from the input reader:
 DECL|field|end
 specifier|private
@@ -1187,11 +1178,6 @@ name|positions
 operator|.
 name|reset
 argument_list|()
-expr_stmt|;
-name|unknownWordEndIndex
-operator|=
-operator|-
-literal|1
 expr_stmt|;
 name|pos
 operator|=
@@ -2114,6 +2100,8 @@ operator|+
 literal|" leftID="
 operator|+
 name|leftID
+operator|+
+literal|")"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3096,6 +3084,13 @@ literal|"\nPARSE"
 argument_list|)
 expr_stmt|;
 block|}
+comment|// Index of the last character of unknown word:
+name|int
+name|unknownWordEndIndex
+init|=
+operator|-
+literal|1
+decl_stmt|;
 comment|// Advances over each position (character):
 while|while
 condition|(
@@ -3636,6 +3631,20 @@ operator|.
 name|get
 argument_list|(
 name|pos
+argument_list|)
+operator|+
+literal|" hex="
+operator|+
+name|Integer
+operator|.
+name|toHexString
+argument_list|(
+name|buffer
+operator|.
+name|get
+argument_list|(
+name|pos
+argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;

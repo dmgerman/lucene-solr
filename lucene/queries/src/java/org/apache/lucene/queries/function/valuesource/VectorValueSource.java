@@ -277,6 +277,8 @@ name|byte
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|vals
 index|[
@@ -316,6 +318,8 @@ name|short
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|vals
 index|[
@@ -355,6 +359,8 @@ name|int
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|vals
 index|[
@@ -394,6 +400,8 @@ name|long
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|vals
 index|[
@@ -433,6 +441,8 @@ name|float
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|vals
 index|[
@@ -472,6 +482,8 @@ name|double
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|vals
 index|[
@@ -511,6 +523,8 @@ name|String
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|vals
 index|[
@@ -546,6 +560,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 return|return
 name|name
@@ -639,6 +655,8 @@ name|byte
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -687,6 +705,8 @@ name|short
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -735,6 +755,8 @@ name|float
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -783,6 +805,8 @@ name|int
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -831,6 +855,8 @@ name|long
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -879,6 +905,8 @@ name|double
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -927,6 +955,8 @@ name|String
 index|[]
 name|vals
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
@@ -971,6 +1001,8 @@ parameter_list|(
 name|int
 name|doc
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|StringBuilder
 name|sb

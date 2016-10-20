@@ -469,6 +469,16 @@ name|VERSION_AUTO_PREFIX_TERMS_COND
 init|=
 literal|2
 decl_stmt|;
+comment|/** Auto-prefix terms have been superseded by points. */
+DECL|field|VERSION_AUTO_PREFIX_TERMS_REMOVED
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|VERSION_AUTO_PREFIX_TERMS_REMOVED
+init|=
+literal|3
+decl_stmt|;
 comment|/** Current terms format. */
 DECL|field|VERSION_CURRENT
 specifier|public
@@ -477,7 +487,7 @@ specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_AUTO_PREFIX_TERMS_COND
+name|VERSION_AUTO_PREFIX_TERMS_REMOVED
 decl_stmt|;
 comment|/** Extension of terms index file */
 DECL|field|TERMS_INDEX_EXTENSION
@@ -657,9 +667,13 @@ condition|(
 name|version
 operator|<
 name|VERSION_AUTO_PREFIX_TERMS
+operator|||
+name|version
+operator|>=
+name|VERSION_AUTO_PREFIX_TERMS_REMOVED
 condition|)
 block|{
-comment|// Old (pre-5.2.0) index, no auto-prefix terms:
+comment|// Old (pre-5.2.0) or recent (6.2.0+) index, no auto-prefix terms:
 name|this
 operator|.
 name|anyAutoPrefixTerms
@@ -688,7 +702,7 @@ block|{
 comment|// 5.3.x index, we record up front if we may have written any auto-prefix terms:
 assert|assert
 name|version
-operator|>=
+operator|==
 name|VERSION_AUTO_PREFIX_TERMS_COND
 assert|;
 name|byte

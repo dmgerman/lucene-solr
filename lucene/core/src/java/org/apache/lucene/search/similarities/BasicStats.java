@@ -82,9 +82,10 @@ name|long
 name|totalTermFreq
 decl_stmt|;
 comment|// -------------------------- Boost-related stuff --------------------------
-comment|/** For most Similarities, the immediate and the top level query boosts are    * not handled differently. Hence, this field is just the product of the    * other two. */
+comment|/** A query boost. Should be applied as a multiplicative factor to the score. */
 DECL|field|boost
 specifier|protected
+specifier|final
 name|float
 name|boost
 decl_stmt|;
@@ -95,6 +96,9 @@ name|BasicStats
 parameter_list|(
 name|String
 name|field
+parameter_list|,
+name|float
+name|boost
 parameter_list|)
 block|{
 name|this
@@ -103,12 +107,11 @@ name|field
 operator|=
 name|field
 expr_stmt|;
-name|normalize
-argument_list|(
-literal|1f
-argument_list|,
-literal|1f
-argument_list|)
+name|this
+operator|.
+name|boost
+operator|=
+name|boost
 expr_stmt|;
 block|}
 comment|// ------------------------- Getter/setter methods -------------------------
@@ -250,61 +253,6 @@ operator|.
 name|totalTermFreq
 operator|=
 name|totalTermFreq
-expr_stmt|;
-block|}
-comment|// -------------------------- Boost-related stuff --------------------------
-comment|/** The square of the raw normalization value.    * @see #rawNormalizationValue() */
-annotation|@
-name|Override
-DECL|method|getValueForNormalization
-specifier|public
-name|float
-name|getValueForNormalization
-parameter_list|()
-block|{
-name|float
-name|rawValue
-init|=
-name|rawNormalizationValue
-argument_list|()
-decl_stmt|;
-return|return
-name|rawValue
-operator|*
-name|rawValue
-return|;
-block|}
-comment|/** Computes the raw normalization value. This basic implementation returns    * the query boost. Subclasses may override this method to include other    * factors (such as idf), or to save the value for inclusion in    * {@link #normalize(float, float)}, etc.    */
-DECL|method|rawNormalizationValue
-specifier|protected
-name|float
-name|rawNormalizationValue
-parameter_list|()
-block|{
-return|return
-name|boost
-return|;
-block|}
-comment|/** No normalization is done. {@code boost} is saved in the object, however. */
-annotation|@
-name|Override
-DECL|method|normalize
-specifier|public
-name|void
-name|normalize
-parameter_list|(
-name|float
-name|queryNorm
-parameter_list|,
-name|float
-name|boost
-parameter_list|)
-block|{
-name|this
-operator|.
-name|boost
-operator|=
-name|boost
 expr_stmt|;
 block|}
 comment|/** Returns the total boost. */

@@ -137,10 +137,7 @@ name|ctrl
 init|=
 operator|new
 name|DocumentsWriterStallControl
-argument_list|(
-name|newIndexWriterConfig
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|ctrl
 operator|.
@@ -276,10 +273,7 @@ name|ctrl
 init|=
 operator|new
 name|DocumentsWriterStallControl
-argument_list|(
-name|newIndexWriterConfig
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|ctrl
 operator|.
@@ -500,10 +494,7 @@ name|ctrl
 init|=
 operator|new
 name|DocumentsWriterStallControl
-argument_list|(
-name|newIndexWriterConfig
 argument_list|()
-argument_list|)
 decl_stmt|;
 name|ctrl
 operator|.

@@ -477,6 +477,11 @@ literal|"//result[@numFound=0]"
 argument_list|)
 expr_stmt|;
 comment|// Delete one document with commitWithin
+name|trigger
+operator|.
+name|pause
+argument_list|()
+expr_stmt|;
 name|req
 operator|.
 name|setContentStreams
@@ -524,6 +529,11 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound=1]"
 argument_list|)
+expr_stmt|;
+name|trigger
+operator|.
+name|unpause
+argument_list|()
 expr_stmt|;
 comment|// Wait for the commit to happen
 name|assertTrue

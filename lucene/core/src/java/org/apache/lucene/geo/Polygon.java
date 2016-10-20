@@ -20,6 +20,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|text
+operator|.
+name|ParseException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|Arrays
@@ -27,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a closed polygon on the earth's surface.  *<p>  * NOTES:  *<ol>  *<li>Coordinates must be in clockwise order, except for holes. Holes must be in counter-clockwise order.  *<li>The polygon must be closed: the first and last coordinates need to have the same values.  *<li>The polygon must not be self-crossing, otherwise may result in unexpected behavior.  *<li>All latitude/longitude values must be in decimal degrees.  *<li>Polygons cannot cross the 180th meridian. Instead, use two polygons: one on each side.  *<li>For more advanced GeoSpatial indexing and query operations see the {@code spatial-extras} module  *</ol>  * @lucene.experimental  */
+comment|/**  * Represents a closed polygon on the earth's surface.  You can either construct the Polygon directly yourself with {@code double[]}  * coordinates, or use {@link Polygon#fromGeoJSON} if you have a polygon already encoded as a  *<a href="http://geojson.org/geojson-spec.html">GeoJSON</a> string.  *<p>  * NOTES:  *<ol>  *<li>Coordinates must be in clockwise order, except for holes. Holes must be in counter-clockwise order.  *<li>The polygon must be closed: the first and last coordinates need to have the same values.  *<li>The polygon must not be self-crossing, otherwise may result in unexpected behavior.  *<li>All latitude/longitude values must be in decimal degrees.  *<li>Polygons cannot cross the 180th meridian. Instead, use two polygons: one on each side.  *<li>For more advanced GeoSpatial indexing and query operations see the {@code spatial-extras} module  *</ol>  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -855,6 +865,31 @@ return|return
 name|sb
 operator|.
 name|toString
+argument_list|()
+return|;
+block|}
+comment|/** Parses a standard GeoJSON polygon string.  The type of the incoming GeoJSON object must be a Polygon or MultiPolygon, optionally    *  embedded under a "type: Feature".  A Polygon will return as a length 1 array, while a MultiPolygon will be 1 or more in length.    *    *<p>See<a href="http://geojson.org/geojson-spec.html">the GeoJSON specification</a>. */
+DECL|method|fromGeoJSON
+specifier|public
+specifier|static
+name|Polygon
+index|[]
+name|fromGeoJSON
+parameter_list|(
+name|String
+name|geojson
+parameter_list|)
+throws|throws
+name|ParseException
+block|{
+return|return
+operator|new
+name|SimpleGeoJSONPolygonParser
+argument_list|(
+name|geojson
+argument_list|)
+operator|.
+name|parse
 argument_list|()
 return|;
 block|}

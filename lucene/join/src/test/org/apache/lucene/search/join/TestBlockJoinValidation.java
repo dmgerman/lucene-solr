@@ -641,7 +641,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"child query must only match non-parent docs"
+literal|"Child query must not match same docs with parent filter"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -802,7 +802,7 @@ argument_list|()
 operator|.
 name|contains
 argument_list|(
-literal|"child query must only match non-parent docs"
+literal|"Child query must not match same docs with parent filter"
 argument_list|)
 argument_list|)
 expr_stmt|;

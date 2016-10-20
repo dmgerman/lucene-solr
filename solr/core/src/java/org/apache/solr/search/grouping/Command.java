@@ -48,20 +48,6 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|schema
-operator|.
-name|SchemaField
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -109,6 +95,8 @@ DECL|method|result
 name|T
 name|result
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/**    * @return The key of this command to uniquely identify itself    */
 DECL|method|getKey

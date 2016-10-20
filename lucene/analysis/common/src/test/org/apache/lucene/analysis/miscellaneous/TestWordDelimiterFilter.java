@@ -20,6 +20,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|*
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -42,9 +62,21 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
+name|CharArraySet
+import|;
+end_import
+
+begin_import
+import|import
+name|org
 operator|.
-name|KeywordTokenizer
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|StopFilter
 import|;
 end_import
 
@@ -60,7 +92,7 @@ name|analysis
 operator|.
 name|core
 operator|.
-name|StopFilter
+name|KeywordTokenizer
 import|;
 end_import
 
@@ -92,7 +124,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|PositionIncrementAttribute
+name|CharTermAttribute
 import|;
 end_import
 
@@ -108,23 +140,7 @@ name|analysis
 operator|.
 name|tokenattributes
 operator|.
-name|CharTermAttribute
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
-name|util
-operator|.
-name|CharArraySet
+name|PositionIncrementAttribute
 import|;
 end_import
 
@@ -149,26 +165,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|*
 import|;
 end_import
 

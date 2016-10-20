@@ -133,7 +133,7 @@ comment|// jdoc
 end_comment
 
 begin_comment
-comment|/**  *<p>  * This FieldType accepts UUID string values, as well as the special value   * of "NEW" which triggers generation of a new random UUID.  *</p>  *<p>  *<b>NOTE:</b> Configuring a<code>UUIDField</code>   * instance with a default value of "<code>NEW</code>" is not advisable for   * most users when using SolrCloud (and not possible if the UUID value is   * configured as the unique key field) since the result will be that each   * replica of each document will get a unique UUID value.    * Using {@link UUIDUpdateProcessorFactory} to generate UUID values when   * documents are added is recomended instead.  *</p>  *   * @see UUID#toString  * @see UUID#randomUUID  *  */
+comment|/**  *<p>  * This FieldType accepts UUID string values, as well as the special value   * of "NEW" which triggers generation of a new random UUID.  *</p>  *<p>  *<b>NOTE:</b> Configuring a<code>UUIDField</code>   * instance with a default value of "<code>NEW</code>" is not advisable for   * most users when using SolrCloud (and not possible if the UUID value is   * configured as the unique key field) since the result will be that each   * replica of each document will get a unique UUID value.    * Using {@link UUIDUpdateProcessorFactory} to generate UUID values when   * documents are added is recommended instead.  *</p>  *   * @see UUID#toString  * @see UUID#randomUUID  *  */
 end_comment
 
 begin_class

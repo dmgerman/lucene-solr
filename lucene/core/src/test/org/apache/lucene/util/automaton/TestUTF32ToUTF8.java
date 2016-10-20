@@ -991,10 +991,7 @@ name|cra
 operator|.
 name|isAccept
 argument_list|(
-name|cra
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1033,10 +1030,7 @@ name|bra
 operator|.
 name|isAccept
 argument_list|(
-name|bra
-operator|.
-name|getInitialState
-argument_list|()
+literal|0
 argument_list|)
 argument_list|)
 expr_stmt|;

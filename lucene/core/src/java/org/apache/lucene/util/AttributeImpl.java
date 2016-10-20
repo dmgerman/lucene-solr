@@ -39,6 +39,17 @@ name|void
 name|clear
 parameter_list|()
 function_decl|;
+comment|/**    * Clears the values in this AttributeImpl and resets it to its value    * at the end of the field. If this implementation implements more than one Attribute interface    * it clears all.    *<p>    * The default implementation simply calls {@link #clear()}    */
+DECL|method|end
+specifier|public
+name|void
+name|end
+parameter_list|()
+block|{
+name|clear
+argument_list|()
+expr_stmt|;
+block|}
 comment|/**    * This method returns the current attribute values as a string in the following format    * by calling the {@link #reflectWith(AttributeReflector)} method:    *     *<ul>    *<li><em>iff {@code prependAttClass=true}:</em> {@code "AttributeClass#key=value,AttributeClass#key=value"}    *<li><em>iff {@code prependAttClass=false}:</em> {@code "key=value,key=value"}    *</ul>    *    * @see #reflectWith(AttributeReflector)    */
 DECL|method|reflectAsString
 specifier|public

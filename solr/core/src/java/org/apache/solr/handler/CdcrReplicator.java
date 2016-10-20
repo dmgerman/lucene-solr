@@ -603,7 +603,7 @@ argument_list|)
 expr_stmt|;
 name|log
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Forwarded {} updates to target {}"
 argument_list|,
@@ -807,9 +807,14 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to forward update request {}. Got response {}"
+literal|"Failed to forward update request {} to target: {}. Got response {}"
 argument_list|,
 name|req
+argument_list|,
+name|state
+operator|.
+name|getTargetCollection
+argument_list|()
 argument_list|,
 name|rsp
 argument_list|)
@@ -840,7 +845,12 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to forward update request"
+literal|"Failed to forward update request to target: "
+operator|+
+name|state
+operator|.
+name|getTargetCollection
+argument_list|()
 argument_list|,
 name|e
 argument_list|)
@@ -863,7 +873,12 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Failed to forward update request"
+literal|"Failed to forward update request to target: "
+operator|+
+name|state
+operator|.
+name|getTargetCollection
+argument_list|()
 argument_list|,
 name|e
 argument_list|)

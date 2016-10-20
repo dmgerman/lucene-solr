@@ -546,7 +546,7 @@ name|standard
 operator|.
 name|nodes
 operator|.
-name|StandardBooleanQueryNode
+name|SynonymQueryNode
 import|;
 end_import
 
@@ -1188,13 +1188,9 @@ operator|new
 name|GroupQueryNode
 argument_list|(
 operator|new
-name|StandardBooleanQueryNode
+name|SynonymQueryNode
 argument_list|(
 name|children
-argument_list|,
-name|positionCount
-operator|==
-literal|1
 argument_list|)
 argument_list|)
 return|;
@@ -1206,7 +1202,7 @@ name|QueryNode
 name|q
 init|=
 operator|new
-name|StandardBooleanQueryNode
+name|BooleanQueryNode
 argument_list|(
 name|Collections
 operator|.
@@ -1215,8 +1211,6 @@ name|QueryNode
 operator|>
 name|emptyList
 argument_list|()
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 name|QueryNode
@@ -1307,7 +1301,7 @@ decl_stmt|;
 name|currentQuery
 operator|=
 operator|new
-name|StandardBooleanQueryNode
+name|SynonymQueryNode
 argument_list|(
 name|Collections
 operator|.
@@ -1316,8 +1310,6 @@ name|QueryNode
 operator|>
 name|emptyList
 argument_list|()
-argument_list|,
-literal|true
 argument_list|)
 expr_stmt|;
 operator|(

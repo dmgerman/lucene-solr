@@ -304,6 +304,16 @@ operator|==
 literal|null
 condition|)
 return|return;
+name|boolean
+name|createNewReqInfo
+init|=
+name|SolrRequestInfo
+operator|.
+name|getRequestInfo
+argument_list|()
+operator|==
+literal|null
+decl_stmt|;
 for|for
 control|(
 name|NamedList
@@ -391,6 +401,13 @@ operator|new
 name|SolrQueryResponse
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|createNewReqInfo
+condition|)
+block|{
+comment|// SolrRequerstInfo for this thread could have been transferred from the parent
+comment|// thread.
 name|SolrRequestInfo
 operator|.
 name|setRequestInfo
@@ -404,6 +421,7 @@ name|rsp
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|getCore
 argument_list|()
 operator|.
@@ -559,6 +577,10 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|createNewReqInfo
+condition|)
 name|SolrRequestInfo
 operator|.
 name|clearRequestInfo

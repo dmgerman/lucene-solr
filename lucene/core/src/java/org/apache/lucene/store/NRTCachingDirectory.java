@@ -684,10 +684,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|renameFile
+DECL|method|rename
 specifier|public
 name|void
-name|renameFile
+name|rename
 parameter_list|(
 name|String
 name|source
@@ -727,7 +727,7 @@ throw|;
 block|}
 name|in
 operator|.
-name|renameFile
+name|rename
 argument_list|(
 name|source
 argument_list|,

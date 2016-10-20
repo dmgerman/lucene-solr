@@ -189,6 +189,7 @@ name|Integer
 name|znodeVersion
 decl_stmt|;
 DECL|field|collectionStates
+DECL|field|immutableCollectionStates
 specifier|private
 specifier|final
 name|Map
@@ -198,6 +199,8 @@ argument_list|,
 name|CollectionRef
 argument_list|>
 name|collectionStates
+decl_stmt|,
+name|immutableCollectionStates
 decl_stmt|;
 DECL|field|liveNodes
 specifier|private
@@ -386,6 +389,17 @@ operator|=
 operator|new
 name|LinkedHashMap
 argument_list|<>
+argument_list|(
+name|collectionStates
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|immutableCollectionStates
+operator|=
+name|Collections
+operator|.
+name|unmodifiableMap
 argument_list|(
 name|collectionStates
 argument_list|)
@@ -2132,8 +2146,9 @@ operator|=
 name|liveNodes
 expr_stmt|;
 block|}
-comment|/**For internal use only    */
+comment|/** Be aware that this may return collections which may not exist now.    * You can confirm that this collection exists after verifying    * CollectionRef.get() != null    */
 DECL|method|getCollectionStates
+specifier|public
 name|Map
 argument_list|<
 name|String
@@ -2144,7 +2159,7 @@ name|getCollectionStates
 parameter_list|()
 block|{
 return|return
-name|collectionStates
+name|immutableCollectionStates
 return|;
 block|}
 DECL|class|CollectionRef

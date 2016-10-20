@@ -60,16 +60,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|nio
 operator|.
 name|charset
@@ -168,37 +158,9 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
 name|util
 operator|.
 name|NamedList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|request
-operator|.
-name|SolrQueryRequest
 import|;
 end_import
 
@@ -1015,7 +977,7 @@ name|toByteArray
 argument_list|()
 argument_list|)
 argument_list|,
-comment|/* encoding irelevent */
+comment|/* encoding irrelevant */
 literal|null
 argument_list|)
 decl_stmt|;
@@ -1070,7 +1032,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Generates a new {@link RawResponseWriter} wraping the specified baseWriter name     * (which much either be an implicitly definied response writer, or one explicitly     * configured in solrconfig.xml)    *    * @param baseWriter null or the name of a valid base writer    */
+comment|/**    * Generates a new {@link RawResponseWriter} wrapping the specified baseWriter name     * (which much either be an implicitly defined response writer, or one explicitly     * configured in solrconfig.xml)    *    * @param baseWriter null or the name of a valid base writer    */
 DECL|method|newRawResponseWriter
 specifier|private
 specifier|static

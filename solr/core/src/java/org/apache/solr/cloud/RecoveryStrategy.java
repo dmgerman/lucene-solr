@@ -1274,6 +1274,7 @@ name|leaderUrl
 operator|+
 literal|" gen:"
 operator|+
+operator|(
 name|core
 operator|.
 name|getDeletionPolicy
@@ -1296,6 +1297,7 @@ argument_list|()
 operator|.
 name|getGeneration
 argument_list|()
+operator|)
 operator|+
 literal|" data:"
 operator|+
@@ -2361,6 +2363,9 @@ name|peerSync
 operator|.
 name|sync
 argument_list|()
+operator|.
+name|isSuccess
+argument_list|()
 decl_stmt|;
 if|if
 condition|(
@@ -3329,6 +3334,14 @@ operator|.
 name|State
 operator|.
 name|RECOVERY
+operator|&&
+name|state
+operator|!=
+name|Slice
+operator|.
+name|State
+operator|.
+name|RECOVERY_FAILED
 condition|)
 block|{
 name|prepCmd

@@ -2077,7 +2077,7 @@ name|Math
 operator|.
 name|cos
 argument_list|(
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -2092,7 +2092,7 @@ name|Math
 operator|.
 name|sin
 argument_list|(
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -2958,7 +2958,7 @@ name|Math
 operator|.
 name|cos
 argument_list|(
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(
@@ -2977,7 +2977,7 @@ name|Math
 operator|.
 name|sin
 argument_list|(
-name|Math
+name|SloppyMath
 operator|.
 name|toRadians
 argument_list|(

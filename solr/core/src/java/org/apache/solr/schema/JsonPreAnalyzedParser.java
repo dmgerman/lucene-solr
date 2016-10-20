@@ -334,16 +334,6 @@ name|org
 operator|.
 name|noggit
 operator|.
-name|JSONWriter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|noggit
-operator|.
 name|ObjectBuilder
 import|;
 end_import

@@ -118,20 +118,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|core
-operator|.
-name|SolrCore
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|handler
 operator|.
 name|RequestHandlerBase
@@ -1112,7 +1098,7 @@ init|(
 name|readerCache
 init|)
 block|{
-comment|// Map.clear() is optional and can throw UnsipportedOperationException,
+comment|// Map.clear() is optional and can throw UnsupportedOperationException,
 comment|// but readerCache is WeakHashMap and it supports clear().
 name|readerCache
 operator|.
