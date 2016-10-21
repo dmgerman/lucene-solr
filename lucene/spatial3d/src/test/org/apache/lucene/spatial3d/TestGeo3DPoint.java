@@ -896,7 +896,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -1718,7 +1718,7 @@ decl_stmt|;
 name|int
 name|recurseDepth
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -2618,7 +2618,7 @@ block|{
 name|int
 name|splitValue
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -2771,7 +2771,7 @@ block|{
 name|int
 name|splitValue
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -2924,7 +2924,7 @@ block|{
 name|int
 name|splitValue
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

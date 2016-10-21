@@ -318,7 +318,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -364,7 +364,7 @@ specifier|final
 name|int
 name|valueCount
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -1671,7 +1671,7 @@ specifier|final
 name|int
 name|valueCount
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -1869,7 +1869,7 @@ name|valueCount
 argument_list|,
 name|bpv
 argument_list|,
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -8058,7 +8058,7 @@ init|=
 operator|new
 name|long
 index|[
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -8113,7 +8113,7 @@ literal|63
 block|,
 literal|64
 block|,
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -8756,7 +8756,7 @@ specifier|final
 name|int
 name|bpv
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

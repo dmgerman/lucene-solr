@@ -50,7 +50,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -448,7 +448,7 @@ init|=
 operator|new
 name|byte
 index|[
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -511,7 +511,7 @@ name|decompressed
 init|=
 name|randomArray
 argument_list|(
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -542,7 +542,7 @@ specifier|final
 name|int
 name|matchOff
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -566,7 +566,7 @@ specifier|final
 name|int
 name|matchLength
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

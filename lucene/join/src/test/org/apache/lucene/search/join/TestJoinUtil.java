@@ -1050,7 +1050,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -4751,7 +4751,7 @@ decl_stmt|;
 name|int
 name|numParents
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -4860,7 +4860,7 @@ expr_stmt|;
 name|int
 name|numChildren
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -5476,7 +5476,7 @@ decl_stmt|;
 name|int
 name|numParents
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -5595,7 +5595,7 @@ expr_stmt|;
 name|int
 name|numChildren
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -5843,7 +5843,7 @@ decl_stmt|;
 name|int
 name|iters
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -5896,7 +5896,7 @@ decl_stmt|;
 name|int
 name|min
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -5913,7 +5913,7 @@ decl_stmt|;
 name|int
 name|max
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -9649,7 +9649,7 @@ name|numRandomValues
 init|=
 name|nDocs
 operator|/
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
