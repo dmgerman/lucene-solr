@@ -3628,9 +3628,12 @@ name|expectedScore
 argument_list|,
 name|actualScore
 argument_list|,
-literal|10e-5
+name|expectedScore
+operator|/
+literal|100
 argument_list|)
 expr_stmt|;
+comment|// error under 1%
 block|}
 block|}
 block|}
