@@ -486,6 +486,8 @@ operator|.
 name|getInt
 argument_list|(
 literal|"iteration"
+argument_list|,
+literal|0
 argument_list|)
 decl_stmt|;
 name|String

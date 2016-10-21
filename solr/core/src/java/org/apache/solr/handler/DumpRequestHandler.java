@@ -337,12 +337,6 @@ block|}
 block|}
 if|if
 condition|(
-name|Boolean
-operator|.
-name|TRUE
-operator|.
-name|equals
-argument_list|(
 name|req
 operator|.
 name|getParams
@@ -351,7 +345,8 @@ operator|.
 name|getBool
 argument_list|(
 literal|"getdefaults"
-argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 condition|)
 block|{
@@ -382,12 +377,6 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|Boolean
-operator|.
-name|TRUE
-operator|.
-name|equals
-argument_list|(
 name|req
 operator|.
 name|getParams
@@ -396,9 +385,11 @@ operator|.
 name|getBool
 argument_list|(
 literal|"initArgs"
-argument_list|)
+argument_list|,
+literal|false
 argument_list|)
 condition|)
+block|{
 name|rsp
 operator|.
 name|add
@@ -408,6 +399,7 @@ argument_list|,
 name|initArgs
 argument_list|)
 expr_stmt|;
+block|}
 comment|// Write the streams...
 if|if
 condition|(

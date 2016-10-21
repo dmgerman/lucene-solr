@@ -9241,8 +9241,6 @@ operator|.
 name|getLong
 argument_list|(
 name|GENERATION
-argument_list|,
-literal|null
 argument_list|)
 expr_stmt|;
 if|if
