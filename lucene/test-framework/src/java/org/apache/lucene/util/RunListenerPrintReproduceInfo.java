@@ -467,6 +467,11 @@ condition|(
 name|classEnvRule
 operator|!=
 literal|null
+operator|&&
+name|classEnvRule
+operator|.
+name|isInitialized
+argument_list|()
 condition|)
 block|{
 name|System
@@ -913,6 +918,11 @@ condition|(
 name|classEnvRule
 operator|!=
 literal|null
+operator|&&
+name|classEnvRule
+operator|.
+name|isInitialized
+argument_list|()
 condition|)
 block|{
 name|addVmOpt

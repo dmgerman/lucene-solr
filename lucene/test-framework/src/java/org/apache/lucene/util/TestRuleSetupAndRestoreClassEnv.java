@@ -602,6 +602,12 @@ DECL|field|codec
 name|Codec
 name|codec
 decl_stmt|;
+comment|/**    * Indicates whether the rule has executed its {@link #before()} method fully.    */
+DECL|field|initialized
+specifier|private
+name|boolean
+name|initialized
+decl_stmt|;
 comment|/**    * @see SuppressCodecs    */
 DECL|field|avoidCodecs
 name|HashSet
@@ -723,6 +729,16 @@ name|message
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+DECL|method|isInitialized
+specifier|public
+name|boolean
+name|isInitialized
+parameter_list|()
+block|{
+return|return
+name|initialized
+return|;
 block|}
 annotation|@
 name|Override
@@ -1638,6 +1654,10 @@ name|setLiveIWCFlushMode
 argument_list|(
 name|flushMode
 argument_list|)
+expr_stmt|;
+name|initialized
+operator|=
+literal|true
 expr_stmt|;
 block|}
 comment|/**    * Check codec restrictions.    *     * @throws AssumptionViolatedException if the class does not work with a given codec.    */
