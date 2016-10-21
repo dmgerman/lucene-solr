@@ -521,6 +521,36 @@ operator|.
 name|COLLECTION
 argument_list|)
 block|,
+DECL|enum constant|CREATESNAPSHOT
+name|CREATESNAPSHOT
+argument_list|(
+literal|true
+argument_list|,
+name|LockLevel
+operator|.
+name|COLLECTION
+argument_list|)
+block|,
+DECL|enum constant|DELETESNAPSHOT
+name|DELETESNAPSHOT
+argument_list|(
+literal|true
+argument_list|,
+name|LockLevel
+operator|.
+name|COLLECTION
+argument_list|)
+block|,
+DECL|enum constant|LISTSNAPSHOTS
+name|LISTSNAPSHOTS
+argument_list|(
+literal|false
+argument_list|,
+name|LockLevel
+operator|.
+name|NONE
+argument_list|)
+block|,
 comment|//only for testing. it just waits for specified time
 comment|// these are not exposed via collection API commands
 comment|// but the overseer is aware of these tasks
