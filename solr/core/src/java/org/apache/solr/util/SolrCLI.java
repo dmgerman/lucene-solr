@@ -19258,7 +19258,7 @@ name|cli
 operator|.
 name|hasOption
 argument_list|(
-literal|"s"
+literal|"S"
 argument_list|)
 condition|)
 block|{
