@@ -6220,8 +6220,7 @@ name|merge
 operator|.
 name|maxNumSegments
 operator|!=
-operator|-
-literal|1
+name|UNBOUNDED_MAX_MERGE_SEGMENTS
 condition|)
 block|{
 throw|throw
@@ -6293,8 +6292,7 @@ name|merge
 operator|.
 name|maxNumSegments
 operator|!=
-operator|-
-literal|1
+name|UNBOUNDED_MAX_MERGE_SEGMENTS
 condition|)
 return|return
 literal|true
@@ -6317,8 +6315,7 @@ name|merge
 operator|.
 name|maxNumSegments
 operator|!=
-operator|-
-literal|1
+name|UNBOUNDED_MAX_MERGE_SEGMENTS
 condition|)
 return|return
 literal|true
@@ -6741,8 +6738,7 @@ expr_stmt|;
 assert|assert
 name|maxNumSegments
 operator|==
-operator|-
-literal|1
+name|UNBOUNDED_MAX_MERGE_SEGMENTS
 operator|||
 name|maxNumSegments
 operator|>
@@ -9141,8 +9137,7 @@ literal|1
 argument_list|,
 literal|false
 argument_list|,
-operator|-
-literal|1
+name|UNBOUNDED_MAX_MERGE_SEGMENTS
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -13551,8 +13546,7 @@ name|merge
 operator|.
 name|maxNumSegments
 operator|!=
-operator|-
-literal|1
+name|UNBOUNDED_MAX_MERGE_SEGMENTS
 operator|&&
 operator|!
 name|dropSegment
@@ -13878,8 +13872,7 @@ name|merge
 operator|.
 name|maxNumSegments
 operator|!=
-operator|-
-literal|1
+name|UNBOUNDED_MAX_MERGE_SEGMENTS
 operator|||
 operator|(
 operator|!
@@ -14606,8 +14599,7 @@ name|merge
 operator|.
 name|maxNumSegments
 operator|==
-operator|-
-literal|1
+name|UNBOUNDED_MAX_MERGE_SEGMENTS
 operator|||
 name|merge
 operator|.
