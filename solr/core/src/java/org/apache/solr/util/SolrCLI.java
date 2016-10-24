@@ -20246,9 +20246,9 @@ name|getFileName
 argument_list|()
 argument_list|)
 operator|.
-name|startsWith
+name|matches
 argument_list|(
-literal|"solr_gc_"
+literal|"^solr_gc[_.].+"
 argument_list|)
 argument_list|)
 operator|.
@@ -20311,9 +20311,9 @@ name|getFileName
 argument_list|()
 argument_list|)
 operator|.
-name|startsWith
+name|matches
 argument_list|(
-literal|"solr_gc_"
+literal|"^solr_gc[_.].+"
 argument_list|)
 argument_list|)
 operator|.

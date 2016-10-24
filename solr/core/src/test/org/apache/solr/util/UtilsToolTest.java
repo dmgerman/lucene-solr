@@ -262,6 +262,14 @@ literal|"solr-8983-console.log"
 argument_list|,
 literal|"solr_gc_log_20160102"
 argument_list|,
+literal|"solr_gcnotremove"
+argument_list|,
+literal|"solr_gc.log"
+argument_list|,
+literal|"solr_gc.log.0"
+argument_list|,
+literal|"solr_gc.log.0.current"
+argument_list|,
 literal|"solr_gc_log_2"
 argument_list|)
 decl_stmt|;
@@ -838,7 +846,7 @@ operator|.
 name|size
 argument_list|()
 operator|-
-literal|2
+literal|5
 argument_list|,
 name|fileCount
 argument_list|()
