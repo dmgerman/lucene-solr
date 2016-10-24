@@ -118,6 +118,14 @@ DECL|field|limit
 name|long
 name|limit
 decl_stmt|;
+DECL|field|overrequest
+name|int
+name|overrequest
+init|=
+operator|-
+literal|1
+decl_stmt|;
+comment|// Number of buckets to request beyond the limit to do internally during distributed search. -1 means default.
 DECL|field|mincount
 name|long
 name|mincount

@@ -5349,6 +5349,106 @@ operator|+
 literal|"} "
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|client
+operator|.
+name|local
+argument_list|()
+condition|)
+block|{
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"cat0:{type:terms, field:${cat_s}, limit:1, overrequest:0}"
+operator|+
+literal|",cat1:{type:terms, field:${cat_s}, limit:1, overrequest:1}"
+operator|+
+literal|",catDef:{type:terms, field:${cat_s}, limit:1, overrequest:-1}"
+operator|+
+comment|// -1 is default overrequest
+literal|",catBig:{type:terms, field:${cat_s}, offset:1, limit:2147483647, overrequest:2147483647}"
+operator|+
+comment|// make sure overflows don't mess us up
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:6"
+operator|+
+literal|", cat0:{ buckets:[ {val:A,count:2} ] }"
+operator|+
+comment|// with no overrequest, we incorrectly conclude that A is the top bucket
+literal|", cat1:{ buckets:[ {val:B,count:3} ] }"
+operator|+
+literal|", catDef:{ buckets:[ {val:B,count:3} ] }"
+operator|+
+literal|", catBig:{ buckets:[ {val:A,count:2} ] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+comment|// In non-distrib mode, should still be able to specify overrequest, but it shouldn't matter.
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"cat0:{type:terms, field:${cat_s}, limit:1, overrequest:0}"
+operator|+
+literal|",cat1:{type:terms, field:${cat_s}, limit:1, overrequest:1}"
+operator|+
+literal|",catDef:{type:terms, field:${cat_s}, limit:1, overrequest:-1}"
+operator|+
+comment|// -1 is default overrequest
+literal|",catBig:{type:terms, field:${cat_s}, offset:1, limit:2147483647, overrequest:2147483647}"
+operator|+
+comment|// make sure overflows don't mess us up
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:6"
+operator|+
+literal|", cat0:{ buckets:[ {val:B,count:3} ] }"
+operator|+
+comment|// only change from distrib-mode test above
+literal|", cat1:{ buckets:[ {val:B,count:3} ] }"
+operator|+
+literal|", catDef:{ buckets:[ {val:B,count:3} ] }"
+operator|+
+literal|", catBig:{ buckets:[ {val:A,count:2} ] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Test
