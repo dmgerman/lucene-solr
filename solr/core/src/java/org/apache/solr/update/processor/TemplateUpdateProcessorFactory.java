@@ -171,11 +171,7 @@ import|;
 end_import
 
 begin_comment
-comment|//Adds new fields to documents based on a template pattern specified via Template.field
-end_comment
-
-begin_comment
-comment|// request parameters (multi-valued) or 'field' value specified in initArgs
+comment|/** * Adds new fields to documents based on a template pattern specified via Template.field * request parameters (multi-valued) or 'field' value specified in initArgs. *<p> * The format of the parameter is&lt;field-name&gt;:&lt;the-template-string&gt;, for example:<br> *<b>Template.field=fname:${somefield}some_string${someotherfield}</b> * */
 end_comment
 
 begin_class
