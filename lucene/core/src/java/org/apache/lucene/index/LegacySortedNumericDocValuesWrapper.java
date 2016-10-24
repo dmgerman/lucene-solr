@@ -248,6 +248,10 @@ argument_list|(
 name|docID
 argument_list|)
 expr_stmt|;
+name|upto
+operator|=
+literal|0
+expr_stmt|;
 return|return
 name|values
 operator|.
