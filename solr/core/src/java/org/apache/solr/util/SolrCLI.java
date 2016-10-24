@@ -2186,7 +2186,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Set HttpClientConfigurer from: "
+literal|"Set SolrHttpClientBuilder from: "
 operator|+
 name|builderClassName
 argument_list|)
@@ -2212,7 +2212,7 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"Error during loading of configurer '"
+literal|"Error during loading of builder '"
 operator|+
 name|builderClassName
 operator|+
