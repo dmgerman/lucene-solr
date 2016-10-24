@@ -34,20 +34,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|DocIdSetIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -65,7 +51,7 @@ specifier|abstract
 class|class
 name|SortedSetDocValues
 extends|extends
-name|DocIdSetIterator
+name|DocValuesIterator
 block|{
 comment|/** Sole constructor. (For invocation by subclass     * constructors, typically implicit.) */
 DECL|method|SortedSetDocValues
@@ -84,7 +70,7 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|/**     * Returns the next ordinal for the current document.    * @return next ordinal for the document, or {@link #NO_MORE_ORDS}.     *         ordinals are dense, start at 0, then increment by 1 for     *         the next value in sorted order.     */
+comment|/**     * Returns the next ordinal for the current document.    * It is illegal to call this method after {@link #advanceExact(int)}    * returned {@code false}.    * @return next ordinal for the document, or {@link #NO_MORE_ORDS}.     *         ordinals are dense, start at 0, then increment by 1 for     *         the next value in sorted order.     */
 DECL|method|nextOrd
 specifier|public
 specifier|abstract

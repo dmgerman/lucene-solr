@@ -26,42 +26,40 @@ name|IOException
 import|;
 end_import
 
-begin_comment
-comment|/**  * A list of per-document numeric values, sorted   * according to {@link Long#compare(long, long)}.  */
-end_comment
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
 
 begin_class
-DECL|class|SortedNumericDocValues
-specifier|public
+DECL|class|DocValuesIterator
 specifier|abstract
 class|class
-name|SortedNumericDocValues
-extends|extends
 name|DocValuesIterator
+extends|extends
+name|DocIdSetIterator
 block|{
-comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
-DECL|method|SortedNumericDocValues
-specifier|protected
-name|SortedNumericDocValues
-parameter_list|()
-block|{}
-comment|/**     * Iterates to the next value in the current document.  Do not call this more than {@link #docValueCount} times    * for the document.    */
-DECL|method|nextValue
+comment|/** Advance the iterator to exactly {@code target} and return whether    *  {@code target} has a value.    *  {@code target} must be greater than or equal to the current    *  {@link #docID() doc ID} and must be a valid doc ID, ie.&ge; 0 and    *&lt; {@code maxDoc}.    *  After this method returns, {@link #docID()} retuns {@code target}. */
+DECL|method|advanceExact
 specifier|public
 specifier|abstract
-name|long
-name|nextValue
-parameter_list|()
+name|boolean
+name|advanceExact
+parameter_list|(
+name|int
+name|target
+parameter_list|)
 throws|throws
 name|IOException
-function_decl|;
-comment|/**     * Retrieves the number of values for the current document.  This must always    * be greater than zero.    * It is illegal to call this method after {@link #advanceExact(int)}    * returned {@code false}.    */
-DECL|method|docValueCount
-specifier|public
-specifier|abstract
-name|int
-name|docValueCount
-parameter_list|()
 function_decl|;
 block|}
 end_class
