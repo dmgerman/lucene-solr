@@ -2314,6 +2314,7 @@ argument_list|)
 return|;
 block|}
 DECL|field|NOT_NULL_PREDICATE
+specifier|protected
 specifier|static
 specifier|final
 name|Predicate
@@ -2328,7 +2329,7 @@ decl_stmt|;
 comment|//the password is 'SolrRocks'
 comment|//this could be generated everytime. But , then we will not know if there is any regression
 DECL|field|STD_CONF
-specifier|private
+specifier|protected
 specifier|static
 specifier|final
 name|String
