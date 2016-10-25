@@ -249,7 +249,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Default implementation of {@link SortedSetDocValuesFacetCounts}  */
+comment|/**  * Default implementation of {@link SortedSetDocValuesFacetCounts}. You must ensure the original  * {@link IndexReader} passed to the constructor is not closed whenever you use this class!  */
 end_comment
 
 begin_class

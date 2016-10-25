@@ -378,6 +378,8 @@ operator|+
 literal|"\" was not indexed into field \""
 operator|+
 name|indexFieldName
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
