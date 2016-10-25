@@ -5374,14 +5374,14 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"cat0:{type:terms, field:${cat_s}, limit:1, overrequest:0}"
+literal|"cat0:{type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:0}"
 operator|+
-literal|",cat1:{type:terms, field:${cat_s}, limit:1, overrequest:1}"
+literal|",cat1:{type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:1}"
 operator|+
-literal|",catDef:{type:terms, field:${cat_s}, limit:1, overrequest:-1}"
+literal|",catDef:{type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:-1}"
 operator|+
 comment|// -1 is default overrequest
-literal|",catBig:{type:terms, field:${cat_s}, offset:1, limit:2147483647, overrequest:2147483647}"
+literal|",catBig:{type:terms, field:${cat_s}, sort:'count desc', offset:1, limit:2147483647, overrequest:2147483647}"
 operator|+
 comment|// make sure overflows don't mess us up
 literal|"}"
@@ -5421,14 +5421,14 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"cat0:{type:terms, field:${cat_s}, limit:1, overrequest:0}"
+literal|"cat0:{type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:0}"
 operator|+
-literal|",cat1:{type:terms, field:${cat_s}, limit:1, overrequest:1}"
+literal|",cat1:{type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:1}"
 operator|+
-literal|",catDef:{type:terms, field:${cat_s}, limit:1, overrequest:-1}"
+literal|",catDef:{type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:-1}"
 operator|+
 comment|// -1 is default overrequest
-literal|",catBig:{type:terms, field:${cat_s}, offset:1, limit:2147483647, overrequest:2147483647}"
+literal|",catBig:{type:terms, field:${cat_s}, sort:'count desc', offset:1, limit:2147483647, overrequest:2147483647}"
 operator|+
 comment|// make sure overflows don't mess us up
 literal|"}"
