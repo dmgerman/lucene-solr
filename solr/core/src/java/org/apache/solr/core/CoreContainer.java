@@ -2014,6 +2014,15 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Initializing authentication plugin: "
+operator|+
+name|pluginClassName
+argument_list|)
+expr_stmt|;
 name|authenticationPlugin
 operator|=
 operator|new
