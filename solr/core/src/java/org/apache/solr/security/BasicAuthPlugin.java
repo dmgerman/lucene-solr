@@ -312,10 +312,10 @@ name|lookupClass
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|field|zkAuthentication
+DECL|field|authenticationProvider
 specifier|private
 name|AuthenticationProvider
-name|zkAuthentication
+name|authenticationProvider
 decl_stmt|;
 DECL|field|authHeader
 specifier|private
@@ -352,7 +352,7 @@ name|pwd
 parameter_list|)
 block|{
 return|return
-name|zkAuthentication
+name|authenticationProvider
 operator|.
 name|authenticate
 argument_list|(
@@ -428,7 +428,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|zkAuthentication
+name|authenticationProvider
 operator|=
 name|getAuthenticationProvider
 argument_list|(
@@ -572,7 +572,7 @@ literal|null
 return|;
 if|if
 condition|(
-name|zkAuthentication
+name|authenticationProvider
 operator|instanceof
 name|ConfigEditablePlugin
 condition|)
@@ -583,7 +583,7 @@ init|=
 operator|(
 name|ConfigEditablePlugin
 operator|)
-name|zkAuthentication
+name|authenticationProvider
 decl_stmt|;
 return|return
 name|editablePlugin
@@ -668,7 +668,7 @@ name|String
 argument_list|>
 name|entry
 range|:
-name|zkAuthentication
+name|authenticationProvider
 operator|.
 name|getPromptHeaders
 argument_list|()
@@ -994,7 +994,7 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-name|zkAuthentication
+name|authenticationProvider
 operator|.
 name|getPromptHeaders
 argument_list|()

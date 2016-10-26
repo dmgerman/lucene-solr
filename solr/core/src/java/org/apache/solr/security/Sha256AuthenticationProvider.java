@@ -461,7 +461,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|warn
+name|debug
 argument_list|(
 literal|"No users configured yet"
 argument_list|)
