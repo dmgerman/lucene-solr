@@ -42,20 +42,6 @@ name|CoreContainer
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrResourceLoader
-import|;
-end_import
-
 begin_comment
 comment|/**  * Wrapper for use in tests  */
 end_comment
@@ -93,19 +79,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// Set JSON_PATH again since the test may have
-name|securityJsonPath
-operator|=
-name|SolrResourceLoader
-operator|.
-name|locateSolrHome
-argument_list|()
-operator|.
-name|resolve
-argument_list|(
-literal|"security.json"
-argument_list|)
-expr_stmt|;
 return|return
 name|super
 operator|.
