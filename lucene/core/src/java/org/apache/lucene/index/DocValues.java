@@ -121,7 +121,7 @@ operator|=
 name|target
 expr_stmt|;
 return|return
-literal|true
+literal|false
 return|;
 block|}
 annotation|@
