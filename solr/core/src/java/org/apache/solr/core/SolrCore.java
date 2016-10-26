@@ -3734,6 +3734,26 @@ literal|null
 decl_stmt|;
 try|try
 block|{
+name|CoreDescriptor
+name|cd
+init|=
+operator|new
+name|CoreDescriptor
+argument_list|(
+name|coreDescriptor
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|coreDescriptor
+argument_list|)
+decl_stmt|;
+name|cd
+operator|.
+name|loadExtraProperties
+argument_list|()
+expr_stmt|;
+comment|//Reload the extra properties
 name|core
 operator|=
 operator|new
@@ -3760,7 +3780,7 @@ operator|.
 name|getProperties
 argument_list|()
 argument_list|,
-name|coreDescriptor
+name|cd
 argument_list|,
 name|updateHandler
 argument_list|,
