@@ -1534,11 +1534,7 @@ name|cl
 argument_list|,
 name|baseUrl
 operator|+
-name|PKIAuthenticationPlugin
-operator|.
-name|PATH
-operator|+
-literal|"?wt=json"
+literal|"/admin/info/key?wt=json"
 argument_list|,
 literal|"key"
 argument_list|,
