@@ -2424,7 +2424,9 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Quit command received {}"
+literal|"Quit command received {} {}"
+argument_list|,
+name|message
 argument_list|,
 name|LeaderElector
 operator|.
