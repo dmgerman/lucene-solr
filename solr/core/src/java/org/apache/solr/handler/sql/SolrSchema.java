@@ -323,7 +323,10 @@ operator|.
 name|getClusterState
 argument_list|()
 operator|.
-name|getCollections
+name|getCollectionsMap
+argument_list|()
+operator|.
+name|keySet
 argument_list|()
 decl_stmt|;
 specifier|final

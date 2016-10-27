@@ -414,6 +414,8 @@ argument_list|()
 return|;
 block|}
 block|}
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}
@@ -753,6 +755,7 @@ name|RelNode
 name|rel
 parameter_list|)
 function_decl|;
+comment|/**      * @see ConverterRule      */
 annotation|@
 name|Override
 DECL|method|onMatch
@@ -764,7 +767,6 @@ name|RelOptRuleCall
 name|call
 parameter_list|)
 block|{
-comment|/** @see ConverterRule */
 name|RelNode
 name|rel
 init|=
@@ -1229,6 +1231,34 @@ name|SolrAggregateRule
 extends|extends
 name|SolrConverterRule
 block|{
+DECL|field|AGGREGATE_PREDICTE
+specifier|private
+specifier|static
+specifier|final
+name|Predicate
+argument_list|<
+name|RelNode
+argument_list|>
+name|AGGREGATE_PREDICTE
+init|=
+name|relNode
+lambda|->
+name|Aggregate
+operator|.
+name|IS_SIMPLE
+operator|.
+name|apply
+argument_list|(
+operator|(
+operator|(
+name|LogicalAggregate
+operator|)
+name|relNode
+operator|)
+argument_list|)
+decl_stmt|;
+comment|//&&
+comment|//        !((LogicalAggregate)relNode).containsDistinctCall();
 DECL|field|AGGREGATE_RULE
 specifier|private
 specifier|static
@@ -1251,21 +1281,7 @@ name|LogicalAggregate
 operator|.
 name|class
 argument_list|,
-name|relNode
-lambda|->
-name|Aggregate
-operator|.
-name|IS_SIMPLE
-operator|.
-name|apply
-argument_list|(
-operator|(
-operator|(
-name|LogicalAggregate
-operator|)
-name|relNode
-operator|)
-argument_list|)
+name|AGGREGATE_PREDICTE
 argument_list|,
 literal|"SolrAggregateRule"
 argument_list|)
