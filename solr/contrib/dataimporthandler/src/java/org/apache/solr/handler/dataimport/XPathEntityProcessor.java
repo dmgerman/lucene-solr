@@ -468,6 +468,13 @@ specifier|protected
 name|Thread
 name|publisherThread
 decl_stmt|;
+DECL|field|reinitXPathReader
+specifier|protected
+name|boolean
+name|reinitXPathReader
+init|=
+literal|true
+decl_stmt|;
 annotation|@
 name|Override
 annotation|@
@@ -493,9 +500,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|xpathReader
-operator|==
-literal|null
+name|reinitXPathReader
 condition|)
 name|initXpathReader
 argument_list|(
@@ -535,6 +540,10 @@ name|VariableResolver
 name|resolver
 parameter_list|)
 block|{
+name|reinitXPathReader
+operator|=
+literal|false
+expr_stmt|;
 name|useSolrAddXml
 operator|=
 name|Boolean
@@ -842,7 +851,7 @@ name|forEachXpath
 init|=
 name|context
 operator|.
-name|getEntityAttribute
+name|getResolvedEntityAttribute
 argument_list|(
 name|FOR_EACH
 argument_list|)
@@ -871,6 +880,24 @@ operator|+
 literal|" must have a 'forEach' attribute"
 argument_list|)
 throw|;
+if|if
+condition|(
+name|forEachXpath
+operator|.
+name|equals
+argument_list|(
+name|context
+operator|.
+name|getEntityAttribute
+argument_list|(
+name|FOR_EACH
+argument_list|)
+argument_list|)
+condition|)
+name|reinitXPathReader
+operator|=
+literal|true
+expr_stmt|;
 try|try
 block|{
 name|xpathReader
@@ -954,6 +981,34 @@ name|replaceTokens
 argument_list|(
 name|xpath
 argument_list|)
+expr_stmt|;
+comment|//!xpath.equals(field.get(XPATH) means the field xpath has a template
+comment|//in that case ensure that the XPathRecordReader is reinitialized
+comment|//for each xml
+if|if
+condition|(
+operator|!
+name|xpath
+operator|.
+name|equals
+argument_list|(
+name|field
+operator|.
+name|get
+argument_list|(
+name|XPATH
+argument_list|)
+argument_list|)
+operator|&&
+operator|!
+name|context
+operator|.
+name|isRootEntity
+argument_list|()
+condition|)
+name|reinitXPathReader
+operator|=
+literal|true
 expr_stmt|;
 name|xpathReader
 operator|.
