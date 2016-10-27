@@ -2394,9 +2394,9 @@ literal|"  ),"
 operator|+
 literal|"  select("
 operator|+
-literal|"    jdbc(connection=\"jdbc:hsqldb:mem:.\", sql=\"select PEOPLE.ID as PERSONID, PEOPLE.NAME, COUNTRIES.COUNTRY_NAME from PEOPLE inner join COUNTRIES on PEOPLE.COUNTRY_CODE = COUNTRIES.CODE order by PEOPLE.ID\", sort=\"ID asc\", get_column_name=true),"
+literal|"    jdbc(connection=\"jdbc:hsqldb:mem:.\", sql=\"select PEOPLE.ID as PERSONID, PEOPLE.NAME, COUNTRIES.COUNTRY_NAME from PEOPLE inner join COUNTRIES on PEOPLE.COUNTRY_CODE = COUNTRIES.CODE order by PEOPLE.ID\", sort=\"PERSONID asc\", get_column_name=true),"
 operator|+
-literal|"    ID as personId,"
+literal|"    PERSONID as personId,"
 operator|+
 literal|"    NAME as personName,"
 operator|+
