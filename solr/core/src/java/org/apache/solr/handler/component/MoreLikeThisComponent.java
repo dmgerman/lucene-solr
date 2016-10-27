@@ -1216,7 +1216,9 @@ name|MoreLikeThisParams
 operator|.
 name|DOC_COUNT
 argument_list|,
-literal|5
+name|MoreLikeThisParams
+operator|.
+name|DEFAULT_DOC_COUNT
 argument_list|)
 decl_stmt|;
 name|String
