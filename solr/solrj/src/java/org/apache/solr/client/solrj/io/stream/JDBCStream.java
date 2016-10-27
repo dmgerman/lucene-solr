@@ -1467,7 +1467,7 @@ name|columnName
 init|=
 name|metadata
 operator|.
-name|getColumnName
+name|getColumnLabel
 argument_list|(
 name|columnNumber
 argument_list|)
@@ -1568,8 +1568,11 @@ name|class
 operator|.
 name|getName
 argument_list|()
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|className
+argument_list|)
 condition|)
 block|{
 name|valueSelectors
@@ -1641,8 +1644,11 @@ name|class
 operator|.
 name|getName
 argument_list|()
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|className
+argument_list|)
 condition|)
 block|{
 name|valueSelectors
@@ -1714,8 +1720,11 @@ name|class
 operator|.
 name|getName
 argument_list|()
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|className
+argument_list|)
 condition|)
 block|{
 name|valueSelectors
