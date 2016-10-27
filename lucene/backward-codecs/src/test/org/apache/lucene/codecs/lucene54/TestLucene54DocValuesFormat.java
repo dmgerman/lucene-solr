@@ -930,6 +930,8 @@ argument_list|(
 literal|300
 argument_list|)
 argument_list|,
+literal|1d
+argument_list|,
 literal|1
 argument_list|,
 literal|32766
@@ -983,6 +985,8 @@ literal|1024
 argument_list|,
 literal|2049
 argument_list|)
+argument_list|,
+literal|1d
 argument_list|,
 literal|1
 argument_list|,
@@ -1644,6 +1648,13 @@ operator|.
 name|getReader
 argument_list|()
 decl_stmt|;
+name|TestUtil
+operator|.
+name|checkReader
+argument_list|(
+name|indexReader
+argument_list|)
+expr_stmt|;
 name|writer
 operator|.
 name|close

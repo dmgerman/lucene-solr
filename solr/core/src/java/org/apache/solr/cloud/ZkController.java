@@ -10583,6 +10583,8 @@ operator|.
 name|getBool
 argument_list|(
 name|REJOIN_AT_HEAD_PROP
+argument_list|,
+literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;

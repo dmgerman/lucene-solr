@@ -198,7 +198,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -440,7 +440,7 @@ specifier|final
 name|int
 name|valueLength
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

@@ -484,7 +484,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -2508,7 +2508,7 @@ name|iwConf
 operator|.
 name|setMaxBufferedDocs
 argument_list|(
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -2940,7 +2940,7 @@ name|iwConf
 operator|.
 name|setMaxBufferedDocs
 argument_list|(
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -3122,7 +3122,7 @@ name|iwConf
 operator|.
 name|setMaxBufferedDocs
 argument_list|(
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -3724,7 +3724,7 @@ name|iwConf
 operator|.
 name|setMaxBufferedDocs
 argument_list|(
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -3797,7 +3797,7 @@ init|=
 name|rarely
 argument_list|()
 condition|?
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -3809,7 +3809,7 @@ argument_list|,
 literal|500
 argument_list|)
 else|:
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -5212,7 +5212,7 @@ name|iwConf
 operator|.
 name|setMaxBufferedDocs
 argument_list|(
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -5375,7 +5375,7 @@ specifier|final
 name|int
 name|numFields
 init|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -5421,7 +5421,7 @@ literal|"fld"
 argument_list|,
 name|randomByteArray
 argument_list|(
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

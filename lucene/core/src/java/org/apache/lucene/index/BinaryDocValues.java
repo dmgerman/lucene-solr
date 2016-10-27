@@ -34,20 +34,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|DocIdSetIterator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|BytesRef
@@ -65,7 +51,7 @@ specifier|abstract
 class|class
 name|BinaryDocValues
 extends|extends
-name|DocIdSetIterator
+name|DocValuesIterator
 block|{
 comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|BinaryDocValues
@@ -73,7 +59,7 @@ specifier|protected
 name|BinaryDocValues
 parameter_list|()
 block|{}
-comment|/**    * Returns the binary value for the current document ID.    * @return binary value    */
+comment|/**    * Returns the binary value for the current document ID.    * It is illegal to call this method after {@link #advanceExact(int)}    * returned {@code false}.    * @return binary value    */
 DECL|method|binaryValue
 specifier|public
 specifier|abstract

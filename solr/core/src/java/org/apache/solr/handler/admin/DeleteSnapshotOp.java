@@ -209,6 +209,37 @@ argument_list|(
 name|commitName
 argument_list|)
 expr_stmt|;
+comment|// Ideally we shouldn't need this. This is added since the RPC logic in
+comment|// OverseerCollectionMessageHandler can not provide the coreName as part of the result.
+name|it
+operator|.
+name|rsp
+operator|.
+name|add
+argument_list|(
+name|CoreAdminParams
+operator|.
+name|CORE
+argument_list|,
+name|core
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|it
+operator|.
+name|rsp
+operator|.
+name|add
+argument_list|(
+name|CoreAdminParams
+operator|.
+name|COMMIT_NAME
+argument_list|,
+name|commitName
+argument_list|)
+expr_stmt|;
 block|}
 finally|finally
 block|{

@@ -244,7 +244,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -1673,7 +1673,7 @@ name|NO_MORE_DOCS
 return|;
 block|}
 return|return
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

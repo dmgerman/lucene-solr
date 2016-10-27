@@ -1088,7 +1088,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -2887,7 +2887,7 @@ name|end
 parameter_list|)
 block|{
 return|return
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -3791,7 +3791,7 @@ argument_list|(
 operator|(
 name|char
 operator|)
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

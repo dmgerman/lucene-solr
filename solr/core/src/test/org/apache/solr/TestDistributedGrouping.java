@@ -303,7 +303,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -338,7 +339,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -381,7 +383,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -424,7 +427,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -467,7 +471,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -520,7 +525,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1274,7 +1280,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1309,7 +1316,43 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+literal|0
+argument_list|,
+literal|"sort"
+argument_list|,
+name|i1
+operator|+
+literal|" asc, id asc"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|100
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"id,"
+operator|+
+name|i1
+argument_list|,
+literal|"group"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"group.field"
+argument_list|,
+name|i1
+argument_list|,
+literal|"group.limit"
+argument_list|,
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1342,7 +1385,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1379,7 +1423,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1422,7 +1467,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1465,7 +1511,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1512,7 +1559,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1559,7 +1607,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1602,7 +1651,8 @@ literal|5
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|5
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1649,7 +1699,8 @@ literal|5
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|5
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -1878,7 +1929,8 @@ literal|":eggs"
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -2002,7 +2054,8 @@ argument_list|,
 comment|// single doc, so only one shard will have it
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -2522,7 +2575,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -2571,7 +2625,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -2799,7 +2854,8 @@ name|i1
 block|,
 literal|"group.limit"
 block|,
-literal|10
+operator|-
+literal|1
 block|,
 literal|"group.ngroups"
 block|,
@@ -3004,7 +3060,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -3044,7 +3101,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -3077,7 +3135,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 comment|// some explicit checks of non default sorting, and sort/group.sort with diff clauses
@@ -3109,7 +3168,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -3146,7 +3206,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -3187,7 +3248,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -3236,7 +3298,8 @@ name|i1
 argument_list|,
 literal|"group.limit"
 argument_list|,
-literal|10
+operator|-
+literal|1
 argument_list|,
 literal|"sort"
 argument_list|,

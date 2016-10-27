@@ -286,7 +286,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -377,7 +377,7 @@ name|iwConf
 operator|.
 name|setMaxBufferedDocs
 argument_list|(
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

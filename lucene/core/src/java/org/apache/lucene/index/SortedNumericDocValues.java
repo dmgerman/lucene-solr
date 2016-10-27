@@ -26,20 +26,6 @@ name|IOException
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|DocIdSetIterator
-import|;
-end_import
-
 begin_comment
 comment|/**  * A list of per-document numeric values, sorted   * according to {@link Long#compare(long, long)}.  */
 end_comment
@@ -51,7 +37,7 @@ specifier|abstract
 class|class
 name|SortedNumericDocValues
 extends|extends
-name|DocIdSetIterator
+name|DocValuesIterator
 block|{
 comment|/** Sole constructor. (For invocation by subclass     *  constructors, typically implicit.) */
 DECL|method|SortedNumericDocValues
@@ -69,7 +55,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/**     * Retrieves the number of values for the current document.  This must always    * be greater than zero.    */
+comment|/**     * Retrieves the number of values for the current document.  This must always    * be greater than zero.    * It is illegal to call this method after {@link #advanceExact(int)}    * returned {@code false}.    */
 DECL|method|docValueCount
 specifier|public
 specifier|abstract

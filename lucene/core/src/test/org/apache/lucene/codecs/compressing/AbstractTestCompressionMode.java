@@ -118,7 +118,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -165,7 +165,7 @@ argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-literal|256
+literal|255
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -254,7 +254,7 @@ operator|=
 operator|(
 name|byte
 operator|)
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -1006,7 +1006,7 @@ init|=
 operator|new
 name|byte
 index|[
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

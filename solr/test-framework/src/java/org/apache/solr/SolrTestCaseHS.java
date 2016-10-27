@@ -1845,6 +1845,16 @@ operator|==
 literal|null
 return|;
 block|}
+DECL|method|getClientProvider
+specifier|public
+name|ClientProvider
+name|getClientProvider
+parameter_list|()
+block|{
+return|return
+name|provider
+return|;
+block|}
 DECL|method|testJQ
 specifier|public
 name|void

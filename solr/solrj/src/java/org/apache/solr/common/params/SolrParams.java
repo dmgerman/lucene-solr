@@ -468,7 +468,7 @@ name|param
 argument_list|)
 return|;
 block|}
-comment|/** Returns the Boolean value of the param, or null if not set */
+comment|/**     * Returns the Boolean value of the param, or null if not set.     * Use this method only when you want to be explicit     * about absence of a value (<code>null</code>) vs the default value<code>false</code>.      * @see #getBool(String, boolean)     * @see #getPrimitiveBool(String)     *      **/
 DECL|method|getBool
 specifier|public
 name|Boolean
@@ -498,6 +498,25 @@ operator|.
 name|parseBool
 argument_list|(
 name|val
+argument_list|)
+return|;
+block|}
+comment|/** Returns the boolean value of the param, or<code>false</code> if not set */
+DECL|method|getPrimitiveBool
+specifier|public
+name|boolean
+name|getPrimitiveBool
+parameter_list|(
+name|String
+name|param
+parameter_list|)
+block|{
+return|return
+name|getBool
+argument_list|(
+name|param
+argument_list|,
+literal|false
 argument_list|)
 return|;
 block|}
@@ -537,7 +556,7 @@ name|val
 argument_list|)
 return|;
 block|}
-comment|/** Returns the Boolean value of the field param,       or the value for param, or null if neither is set. */
+comment|/**     * Returns the Boolean value of the field param,    * or the value for param, or null if neither is set.     * Use this method only when you want to be explicit     * about absence of a value (<code>null</code>) vs the default value<code>false</code>.      * @see #getFieldBool(String, String, boolean)     * @see #getPrimitiveFieldBool(String, String)        **/
 DECL|method|getFieldBool
 specifier|public
 name|Boolean
@@ -575,7 +594,31 @@ name|val
 argument_list|)
 return|;
 block|}
-comment|/** Returns the boolean value of the field param,   or the value for param, or def if neither is set. */
+comment|/**    * Returns the boolean value of the field param, or    * the value for param or     * the default value of boolean -<code>false</code>     */
+DECL|method|getPrimitiveFieldBool
+specifier|public
+name|boolean
+name|getPrimitiveFieldBool
+parameter_list|(
+name|String
+name|field
+parameter_list|,
+name|String
+name|param
+parameter_list|)
+block|{
+return|return
+name|getFieldBool
+argument_list|(
+name|field
+argument_list|,
+name|param
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+comment|/**     * Returns the boolean value of the field param,    * or the value for param, or def if neither is set.     *     * */
 DECL|method|getFieldBool
 specifier|public
 name|boolean
@@ -616,7 +659,7 @@ name|val
 argument_list|)
 return|;
 block|}
-comment|/** Returns the Integer value of the param, or null if not set */
+comment|/**     * Returns the Integer value of the param, or null if not set     * Use this method only when you want to be explicit     * about absence of a value (<code>null</code>) vs the default value for int -    * zero (<code>0</code>).      * @see #getInt(String, int)     * @see #getPrimitiveInt(String)     * */
 DECL|method|getInt
 specifier|public
 name|Integer
@@ -677,69 +720,24 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns the Long value of the param, or null if not set */
-DECL|method|getLong
+comment|/**    * Returns int value of the the param or     * default value for int - zero (<code>0</code>) if not set.     */
+DECL|method|getPrimitiveInt
 specifier|public
-name|Long
-name|getLong
+name|int
+name|getPrimitiveInt
 parameter_list|(
 name|String
 name|param
-parameter_list|,
-name|Long
-name|def
 parameter_list|)
-block|{
-name|String
-name|val
-init|=
-name|get
-argument_list|(
-name|param
-argument_list|)
-decl_stmt|;
-try|try
 block|{
 return|return
-name|val
-operator|==
-literal|null
-condition|?
-name|def
-else|:
-name|Long
-operator|.
-name|parseLong
+name|getInt
 argument_list|(
-name|val
+name|param
+argument_list|,
+literal|0
 argument_list|)
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|ex
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
-name|ex
-operator|.
-name|getMessage
-argument_list|()
-argument_list|,
-name|ex
-argument_list|)
-throw|;
-block|}
 block|}
 comment|/** Returns the int value of the param, or def if not set */
 DECL|method|getInt
@@ -805,7 +803,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns the Long value of the param, or null if not set */
+comment|/**     * Returns the Long value of the param, or null if not set     * Use this method only when you want to be explicit     * about absence of a value (<code>null</code>) vs the default value zero (<code>0</code>).      * @see #getLong(String, long)     *    **/
 DECL|method|getLong
 specifier|public
 name|Long
@@ -930,7 +928,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * @return The int value of the field param, or the value for param    * or<code>null</code> if neither is set.    **/
+comment|/**    * Use this method only when you want to be explicit     * about absence of a value (<code>null</code>) vs the default value zero (<code>0</code>).    *     * @return The int value of the field param, or the value for param    * or<code>null</code> if neither is set.    *       * @see #getFieldInt(String, String, int)     **/
 DECL|method|getFieldInt
 specifier|public
 name|Integer
@@ -1065,7 +1063,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns the Float value of the param, or null if not set */
+comment|/**     * Returns the Float value of the param, or null if not set     * Use this method only when you want to be explicit     * about absence of a value (<code>null</code>) vs the default value zero (<code>0.0f</code>).    * @see #getFloat(String, float)    **/
 DECL|method|getFloat
 specifier|public
 name|Float
@@ -1190,7 +1188,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns the Float value of the param, or null if not set */
+comment|/**     * Returns the Float value of the param, or null if not set     * Use this method only when you want to be explicit     * about absence of a value (<code>null</code>) vs the default value zero (<code>0.0d</code>).    * @see #getDouble(String, double)    *    **/
 DECL|method|getDouble
 specifier|public
 name|Double
@@ -1315,7 +1313,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns the float value of the field param. */
+comment|/**     * Returns the float value of the field param.     * Use this method only when you want to be explicit     * about absence of a value (<code>null</code>) vs the default value zero (<code>0.0f</code>).    *     * @see #getFieldFloat(String, String, float)    * @see #getPrimitiveFieldFloat(String, String)    *     **/
 DECL|method|getFieldFloat
 specifier|public
 name|Float
@@ -1380,6 +1378,30 @@ name|ex
 argument_list|)
 throw|;
 block|}
+block|}
+comment|/**    * Returns the float value of the field param or    * the value for param or     * the default value for float - zero (<code>0.0f</code>)       */
+DECL|method|getPrimitiveFieldFloat
+specifier|public
+name|float
+name|getPrimitiveFieldFloat
+parameter_list|(
+name|String
+name|field
+parameter_list|,
+name|String
+name|param
+parameter_list|)
+block|{
+return|return
+name|getFieldFloat
+argument_list|(
+name|field
+argument_list|,
+name|param
+argument_list|,
+literal|0.0f
+argument_list|)
+return|;
 block|}
 comment|/** Returns the float value of the field param,   or the value for param, or def if neither is set. */
 DECL|method|getFieldFloat
@@ -1450,7 +1472,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** Returns the float value of the field param. */
+comment|/**     * Returns the float value of the field param.     * Use this method only when you want to be explicit     * about absence of a value (<code>null</code>) vs the default value zero (<code>0.0d</code>).    * @see #getDouble(String, double)    *    **/
 DECL|method|getFieldDouble
 specifier|public
 name|Double

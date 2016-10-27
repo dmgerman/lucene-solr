@@ -112,7 +112,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -254,7 +254,7 @@ operator|.
 name|nextBoolean
 argument_list|()
 condition|?
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -265,7 +265,7 @@ argument_list|,
 literal|10
 argument_list|)
 else|:
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -287,7 +287,7 @@ operator|.
 name|nextBoolean
 argument_list|()
 condition|?
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -298,7 +298,7 @@ argument_list|,
 literal|10
 argument_list|)
 else|:
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -318,7 +318,7 @@ operator|.
 name|nextBoolean
 argument_list|()
 condition|?
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -329,7 +329,7 @@ argument_list|,
 literal|10
 argument_list|)
 else|:
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -460,7 +460,7 @@ name|randomInstance
 argument_list|(
 name|random
 argument_list|,
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -473,7 +473,7 @@ operator|<<
 literal|15
 argument_list|)
 argument_list|,
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -486,7 +486,7 @@ argument_list|)
 argument_list|,
 name|withSegmentSuffix
 argument_list|,
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

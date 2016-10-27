@@ -59,7 +59,7 @@ specifier|protected
 name|SortedDocValues
 parameter_list|()
 block|{}
-comment|/**    * Returns the ordinal for the current docID.    * @return ordinal for the document: this is dense, starts at 0, then    *         increments by 1 for the next value in sorted order.    */
+comment|/**    * Returns the ordinal for the current docID.    * It is illegal to call this method after {@link #advanceExact(int)}    * returned {@code false}.    * @return ordinal for the document: this is dense, starts at 0, then    *         increments by 1 for the next value in sorted order.    */
 DECL|method|ordValue
 specifier|public
 specifier|abstract

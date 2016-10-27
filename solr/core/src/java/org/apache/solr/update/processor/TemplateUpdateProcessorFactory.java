@@ -54,16 +54,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|function
 operator|.
 name|Function
@@ -116,6 +106,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|Cache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|SolrQueryRequest
@@ -150,12 +156,22 @@ name|AddUpdateCommand
 import|;
 end_import
 
-begin_comment
-comment|//Adds new fields to documents based on a template pattern specified via Template.field
-end_comment
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|ConcurrentLRUCache
+import|;
+end_import
 
 begin_comment
-comment|// request parameters (multi-valued) or 'field' value specified in initArgs
+comment|/** * Adds new fields to documents based on a template pattern specified via Template.field * request parameters (multi-valued) or 'field' value specified in initArgs. *<p> * The format of the parameter is&lt;field-name&gt;:&lt;the-template-string&gt;, for example:<br> *<b>Template.field=fname:${somefield}some_string${someotherfield}</b> * */
 end_comment
 
 begin_class
@@ -166,6 +182,35 @@ name|TemplateUpdateProcessorFactory
 extends|extends
 name|SimpleUpdateProcessorFactory
 block|{
+DECL|field|templateCache
+specifier|private
+name|Cache
+argument_list|<
+name|String
+argument_list|,
+name|Resolved
+argument_list|>
+name|templateCache
+init|=
+operator|new
+name|ConcurrentLRUCache
+argument_list|<>
+argument_list|(
+literal|1000
+argument_list|,
+literal|800
+argument_list|,
+literal|900
+argument_list|,
+literal|10
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|process
@@ -291,7 +336,7 @@ name|replaceTokens
 argument_list|(
 name|template
 argument_list|,
-literal|null
+name|templateCache
 argument_list|,
 name|s
 lambda|->
@@ -331,7 +376,7 @@ parameter_list|(
 name|String
 name|template
 parameter_list|,
-name|Map
+name|Cache
 argument_list|<
 name|String
 argument_list|,
@@ -468,7 +513,7 @@ parameter_list|(
 name|String
 name|template
 parameter_list|,
-name|Map
+name|Cache
 argument_list|<
 name|String
 argument_list|,
@@ -521,7 +566,7 @@ parameter_list|(
 name|String
 name|template
 parameter_list|,
-name|Map
+name|Cache
 argument_list|<
 name|String
 argument_list|,

@@ -2087,10 +2087,28 @@ return|;
 block|}
 else|else
 block|{
-try|try
-block|{
+comment|// /admin/info/key must be always open. see SOLR-9188
+comment|// tests work only w/ getPathInfo
+comment|//otherwise it's just enough to have getServletPath()
 if|if
 condition|(
+name|PKIAuthenticationPlugin
+operator|.
+name|PATH
+operator|.
+name|equals
+argument_list|(
+operator|(
+operator|(
+name|HttpServletRequest
+operator|)
+name|request
+operator|)
+operator|.
+name|getServletPath
+argument_list|()
+argument_list|)
+operator|||
 name|PKIAuthenticationPlugin
 operator|.
 name|PATH
@@ -2111,24 +2129,6 @@ condition|)
 return|return
 literal|true
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|e
-parameter_list|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"Unexpected error "
-argument_list|,
-name|e
-argument_list|)
-expr_stmt|;
-block|}
-comment|//special case when solr is securing inter-node requests
 name|String
 name|header
 init|=
@@ -2198,24 +2198,12 @@ name|request
 argument_list|,
 name|response
 argument_list|,
-operator|new
-name|FilterChain
-argument_list|()
-block|{
-specifier|public
-name|void
-name|doFilter
 parameter_list|(
-name|ServletRequest
 name|req
 parameter_list|,
-name|ServletResponse
 name|rsp
 parameter_list|)
-throws|throws
-name|IOException
-throws|,
-name|ServletException
+lambda|->
 block|{
 name|isAuthenticated
 operator|.
@@ -2232,7 +2220,6 @@ name|req
 argument_list|)
 expr_stmt|;
 block|}
-block|}
 argument_list|)
 expr_stmt|;
 block|}
@@ -2242,10 +2229,14 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|e
+name|log
 operator|.
-name|printStackTrace
-argument_list|()
+name|info
+argument_list|(
+literal|"Error authenticating"
+argument_list|,
+name|e
+argument_list|)
 expr_stmt|;
 throw|throw
 operator|new

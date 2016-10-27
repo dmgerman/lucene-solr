@@ -2882,9 +2882,9 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Solr will not use FastVectorHighlighter because {} field does not store TermPositions and "
+literal|"Solr will use the standard Highlighter instead of FastVectorHighlighter because the {} field "
 operator|+
-literal|"TermOffsets."
+literal|"does not store TermVectors with TermPositions and TermOffsets."
 argument_list|,
 name|schemaField
 operator|.

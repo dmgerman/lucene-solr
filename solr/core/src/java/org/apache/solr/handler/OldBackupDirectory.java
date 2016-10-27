@@ -155,6 +155,11 @@ argument_list|<
 name|Date
 argument_list|>
 name|timestamp
+init|=
+name|Optional
+operator|.
+name|empty
+argument_list|()
 decl_stmt|;
 DECL|method|OldBackupDirectory
 specifier|public

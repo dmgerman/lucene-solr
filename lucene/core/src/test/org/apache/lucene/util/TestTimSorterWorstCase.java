@@ -78,7 +78,7 @@ name|randomizedtesting
 operator|.
 name|generators
 operator|.
-name|RandomInts
+name|RandomNumbers
 import|;
 end_import
 
@@ -111,7 +111,7 @@ condition|)
 block|{
 name|length
 operator|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(
@@ -128,7 +128,7 @@ else|else
 block|{
 name|length
 operator|=
-name|RandomInts
+name|RandomNumbers
 operator|.
 name|randomIntBetween
 argument_list|(

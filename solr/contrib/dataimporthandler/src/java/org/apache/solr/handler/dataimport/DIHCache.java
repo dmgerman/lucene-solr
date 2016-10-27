@@ -60,7 +60,6 @@ argument_list|>
 block|{
 comment|/**    *<p>    * Opens the cache using the specified properties. The {@link Context}    * includes any parameters needed by the cache impl. This must be called    * before any read/write operations are permitted.    */
 DECL|method|open
-specifier|public
 name|void
 name|open
 parameter_list|(
@@ -70,14 +69,12 @@ parameter_list|)
 function_decl|;
 comment|/**    *<p>    * Releases resources used by this cache, if possible. The cache is flushed    * but not destroyed.    *</p>    */
 DECL|method|close
-specifier|public
 name|void
 name|close
 parameter_list|()
 function_decl|;
 comment|/**    *<p>    * Persists any pending data to the cache    *</p>    */
 DECL|method|flush
-specifier|public
 name|void
 name|flush
 parameter_list|()
@@ -91,7 +88,6 @@ parameter_list|()
 function_decl|;
 comment|/**    *<p>    * Adds a document. If a document already exists with the same key, both    * documents will exist in the cache, as the cache allows duplicate keys. To    * update a key's documents, first call delete(Object key).    *</p>    */
 DECL|method|add
-specifier|public
 name|void
 name|add
 parameter_list|(
@@ -108,7 +104,6 @@ comment|/**    *<p>    * Returns an iterator, allowing callers to iterate throug
 annotation|@
 name|Override
 DECL|method|iterator
-specifier|public
 name|Iterator
 argument_list|<
 name|Map
@@ -123,7 +118,6 @@ parameter_list|()
 function_decl|;
 comment|/**    *<p>    * Returns an iterator, allowing callers to iterate through all documents that    * match the given key in insertion order.    *</p>    */
 DECL|method|iterator
-specifier|public
 name|Iterator
 argument_list|<
 name|Map
@@ -141,7 +135,6 @@ parameter_list|)
 function_decl|;
 comment|/**    *<p>    * Delete all documents associated with the given key    *</p>    */
 DECL|method|delete
-specifier|public
 name|void
 name|delete
 parameter_list|(
@@ -151,7 +144,6 @@ parameter_list|)
 function_decl|;
 comment|/**    *<p>    * Delete all data from the cache,leaving the empty cache intact.    *</p>    */
 DECL|method|deleteAll
-specifier|public
 name|void
 name|deleteAll
 parameter_list|()
