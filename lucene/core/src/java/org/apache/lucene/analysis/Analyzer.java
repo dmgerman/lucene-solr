@@ -627,7 +627,9 @@ name|AttributeFactory
 name|attributeFactory
 init|=
 name|attributeFactory
-argument_list|()
+argument_list|(
+name|fieldName
+argument_list|)
 decl_stmt|;
 try|try
 init|(
@@ -800,12 +802,15 @@ return|return
 name|reader
 return|;
 block|}
-comment|/** Return the {@link AttributeFactory} to be used for    *  {@link #tokenStream analysis} and    *  {@link #normalize(String, String) normalization}. The default    *  implementation returns {@link TokenStream#DEFAULT_TOKEN_ATTRIBUTE_FACTORY}. */
+comment|/** Return the {@link AttributeFactory} to be used for    *  {@link #tokenStream analysis} and    *  {@link #normalize(String, String) normalization} on the given    *  {@code FieldName}. The default implementation returns    *  {@link TokenStream#DEFAULT_TOKEN_ATTRIBUTE_FACTORY}. */
 DECL|method|attributeFactory
 specifier|protected
 name|AttributeFactory
 name|attributeFactory
-parameter_list|()
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
 block|{
 return|return
 name|TokenStream

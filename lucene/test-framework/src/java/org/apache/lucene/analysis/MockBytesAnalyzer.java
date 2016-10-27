@@ -89,7 +89,10 @@ DECL|method|attributeFactory
 specifier|protected
 name|AttributeFactory
 name|attributeFactory
-parameter_list|()
+parameter_list|(
+name|String
+name|fieldName
+parameter_list|)
 block|{
 return|return
 name|MockUTF16TermAttributeImpl
