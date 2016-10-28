@@ -265,6 +265,7 @@ block|{
 DECL|field|log
 specifier|private
 specifier|static
+specifier|final
 name|Logger
 name|log
 init|=
@@ -942,7 +943,7 @@ argument_list|(
 literal|"Mismatch in counts between replicas"
 argument_list|)
 expr_stmt|;
-comment|// nocommit improve this!
+comment|// TODO improve this!
 if|if
 condition|(
 name|numCounts
