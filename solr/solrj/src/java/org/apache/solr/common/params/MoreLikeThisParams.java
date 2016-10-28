@@ -218,6 +218,16 @@ operator|+
 literal|"interestingTerms"
 decl_stmt|;
 comment|// false,details,(list or true)
+comment|// the default doc count
+DECL|field|DEFAULT_DOC_COUNT
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|DEFAULT_DOC_COUNT
+init|=
+literal|5
+decl_stmt|;
 DECL|enum|TermStyle
 specifier|public
 enum|enum
