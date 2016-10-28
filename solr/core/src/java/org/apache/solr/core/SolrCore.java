@@ -260,6 +260,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Optional
 import|;
 end_import
@@ -1849,22 +1859,6 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
 import|;
 end_import
 
@@ -5040,18 +5034,18 @@ name|searcherExecutor
 argument_list|)
 assert|;
 comment|// ensure that in unclean shutdown tests we still close this
-name|checkNotNull
+name|this
+operator|.
+name|coreDescriptor
+operator|=
+name|Objects
+operator|.
+name|requireNonNull
 argument_list|(
 name|coreDescriptor
 argument_list|,
 literal|"coreDescriptor cannot be null"
 argument_list|)
-expr_stmt|;
-name|this
-operator|.
-name|coreDescriptor
-operator|=
-name|coreDescriptor
 expr_stmt|;
 name|setName
 argument_list|(

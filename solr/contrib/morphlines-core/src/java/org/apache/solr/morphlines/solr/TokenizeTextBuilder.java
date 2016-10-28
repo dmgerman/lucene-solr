@@ -70,6 +70,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -235,20 +245,6 @@ operator|.
 name|base
 operator|.
 name|AbstractCommand
-import|;
-end_import
-
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
 import|;
 end_import
 
@@ -529,16 +525,14 @@ name|this
 operator|.
 name|analyzer
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|fieldType
 operator|.
 name|getIndexAnalyzer
 argument_list|()
-expr_stmt|;
-name|Preconditions
-operator|.
-name|checkNotNull
-argument_list|(
-name|analyzer
 argument_list|)
 expr_stmt|;
 comment|// register CharTermAttribute for later (implicit) reuse
@@ -546,6 +540,10 @@ name|this
 operator|.
 name|token
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|analyzer
 operator|.
 name|tokenStream
@@ -561,12 +559,6 @@ name|CharTermAttribute
 operator|.
 name|class
 argument_list|)
-expr_stmt|;
-name|Preconditions
-operator|.
-name|checkNotNull
-argument_list|(
-name|token
 argument_list|)
 expr_stmt|;
 name|validateArguments

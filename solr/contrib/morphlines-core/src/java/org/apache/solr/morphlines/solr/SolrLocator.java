@@ -76,15 +76,11 @@ end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Preconditions
+name|Objects
 import|;
 end_import
 
@@ -463,18 +459,16 @@ name|MorphlineContext
 name|context
 parameter_list|)
 block|{
-name|Preconditions
-operator|.
-name|checkNotNull
-argument_list|(
-name|context
-argument_list|)
-expr_stmt|;
 name|this
 operator|.
 name|context
 operator|=
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
 name|context
+argument_list|)
 expr_stmt|;
 block|}
 DECL|method|SolrLocator
