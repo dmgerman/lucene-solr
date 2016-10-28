@@ -19222,7 +19222,7 @@ argument_list|)
 operator|.
 name|withLongOpt
 argument_list|(
-literal|"ms"
+literal|"timeout"
 argument_list|)
 operator|.
 name|hasArg
