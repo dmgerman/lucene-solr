@@ -138,7 +138,7 @@ literal|"conf"
 argument_list|,
 literal|4
 argument_list|,
-literal|2
+literal|3
 argument_list|)
 operator|.
 name|setMaxShardsPerNode
