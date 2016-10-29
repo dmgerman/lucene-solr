@@ -6749,6 +6749,47 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
+comment|// test filter after block join
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{ "
+operator|+
+literal|"pages1:{type:terms, field:v_t, domain:{blockChildren:'type_s:book'}, filter:'*:*' }"
+operator|+
+literal|",pages2:{type:terms, field:v_t, domain:{blockChildren:'type_s:book'}, filter:'-id:3.1' }"
+operator|+
+literal|",books:{type:terms, field:v_t, domain:{blockParent:'type_s:book'}, filter:'*:*' }"
+operator|+
+literal|",books2:{type:terms, field:v_t, domain:{blockParent:'type_s:book'}, filter:'id:1' }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:10"
+operator|+
+literal|", pages1:{ buckets:[ {val:y,count:4},{val:x,count:3},{val:z,count:3} ] }"
+operator|+
+literal|", pages2:{ buckets:[ {val:y,count:4},{val:z,count:3},{val:x,count:2} ] }"
+operator|+
+literal|", books:{ buckets:[ {val:q,count:3},{val:e,count:2},{val:w,count:2} ] }"
+operator|+
+literal|", books2:{ buckets:[ {val:q,count:1} ] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
