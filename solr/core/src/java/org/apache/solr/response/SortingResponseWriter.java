@@ -716,11 +716,6 @@ operator|.
 name|getSortSpec
 argument_list|()
 decl_stmt|;
-name|Exception
-name|exception
-init|=
-literal|null
-decl_stmt|;
 if|if
 condition|(
 name|sortSpec
@@ -728,8 +723,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|exception
-operator|=
+name|writeException
+argument_list|(
+operator|(
 operator|new
 name|IOException
 argument_list|(
@@ -739,7 +735,14 @@ argument_list|(
 literal|"No sort criteria was provided."
 argument_list|)
 argument_list|)
+operator|)
+argument_list|,
+name|writer
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
+return|return;
 block|}
 name|SolrIndexSearcher
 name|searcher
@@ -769,8 +772,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|exception
-operator|=
+name|writeException
+argument_list|(
+operator|(
 operator|new
 name|IOException
 argument_list|(
@@ -780,7 +784,14 @@ argument_list|(
 literal|"No sort criteria was provided."
 argument_list|)
 argument_list|)
+operator|)
+argument_list|,
+name|writer
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
+return|return;
 block|}
 if|if
 condition|(
@@ -794,8 +805,9 @@ name|needsScores
 argument_list|()
 condition|)
 block|{
-name|exception
-operator|=
+name|writeException
+argument_list|(
+operator|(
 operator|new
 name|IOException
 argument_list|(
@@ -805,7 +817,14 @@ argument_list|(
 literal|"Scoring is not currently supported with xsort."
 argument_list|)
 argument_list|)
+operator|)
+argument_list|,
+name|writer
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
+return|return;
 block|}
 comment|// There is a bailout in SolrIndexSearcher.getDocListNC when there are _no_ docs in the index at all.
 comment|// if (lastDocRequested<= 0) {
@@ -885,8 +904,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|exception
-operator|=
+name|writeException
+argument_list|(
+operator|(
 operator|new
 name|IOException
 argument_list|(
@@ -896,7 +916,14 @@ argument_list|(
 literal|"xport RankQuery is required for xsort: rq={!xport}"
 argument_list|)
 argument_list|)
+operator|)
+argument_list|,
+name|writer
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
+return|return;
 block|}
 block|}
 name|SolrParams
@@ -930,8 +957,9 @@ operator|==
 literal|null
 condition|)
 block|{
-name|exception
-operator|=
+name|writeException
+argument_list|(
+operator|(
 operator|new
 name|IOException
 argument_list|(
@@ -941,7 +969,14 @@ argument_list|(
 literal|"export field list (fl) must be specified."
 argument_list|)
 argument_list|)
+operator|)
+argument_list|,
+name|writer
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
+return|return;
 block|}
 else|else
 block|{
@@ -997,8 +1032,9 @@ literal|"score"
 argument_list|)
 condition|)
 block|{
-name|exception
-operator|=
+name|writeException
+argument_list|(
+operator|(
 operator|new
 name|IOException
 argument_list|(
@@ -1008,8 +1044,14 @@ argument_list|(
 literal|"Scoring is not currently supported with xsort."
 argument_list|)
 argument_list|)
+operator|)
+argument_list|,
+name|writer
+argument_list|,
+literal|true
+argument_list|)
 expr_stmt|;
-break|break;
+return|return;
 block|}
 block|}
 block|}
@@ -1040,21 +1082,9 @@ name|Exception
 name|e
 parameter_list|)
 block|{
-name|exception
-operator|=
-name|e
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|exception
-operator|!=
-literal|null
-condition|)
-block|{
 name|writeException
 argument_list|(
-name|exception
+name|e
 argument_list|,
 name|writer
 argument_list|,
