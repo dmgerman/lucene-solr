@@ -816,7 +816,9 @@ block|}
 name|String
 name|url
 init|=
-literal|"jdbc:calcitesolr:"
+name|CalciteSolrDriver
+operator|.
+name|CONNECT_STRING_PREFIX
 decl_stmt|;
 name|Properties
 name|properties
