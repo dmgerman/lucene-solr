@@ -440,20 +440,6 @@ name|apache
 operator|.
 name|commons
 operator|.
-name|codec
-operator|.
-name|Charsets
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
 name|io
 operator|.
 name|FileUtils
@@ -1428,17 +1414,13 @@ end_import
 
 begin_import
 import|import static
-name|com
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|common
+name|Objects
 operator|.
-name|base
-operator|.
-name|Preconditions
-operator|.
-name|checkNotNull
+name|requireNonNull
 import|;
 end_import
 
@@ -3852,7 +3834,7 @@ parameter_list|)
 block|{
 name|testSolrHome
 operator|=
-name|checkNotNull
+name|requireNonNull
 argument_list|(
 name|solrHome
 argument_list|)
@@ -4035,7 +4017,7 @@ parameter_list|)
 block|{
 name|testSolrHome
 operator|=
-name|checkNotNull
+name|requireNonNull
 argument_list|(
 name|solrHome
 argument_list|)
@@ -10818,12 +10800,9 @@ argument_list|)
 argument_list|,
 name|propertiesContent
 argument_list|,
-name|Charsets
+name|StandardCharsets
 operator|.
 name|UTF_8
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

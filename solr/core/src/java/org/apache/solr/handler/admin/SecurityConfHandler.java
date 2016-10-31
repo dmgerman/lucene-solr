@@ -1369,6 +1369,27 @@ argument_list|)
 argument_list|)
 return|;
 block|}
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"SecurityConfig: version="
+operator|+
+name|version
+operator|+
+literal|", data="
+operator|+
+name|Utils
+operator|.
+name|toJSONString
+argument_list|(
+name|data
+argument_list|)
+return|;
+block|}
 block|}
 block|}
 end_class

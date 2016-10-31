@@ -382,6 +382,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|LogLevel
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|After
@@ -643,6 +657,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
+annotation|@
+name|LogLevel
+argument_list|(
+literal|"org.apache.solr=DEBUG"
+argument_list|)
 DECL|method|testBasicAuth
 specifier|public
 name|void
@@ -745,6 +764,24 @@ name|securityConfHandler
 operator|.
 name|securityConfEdited
 argument_list|()
+expr_stmt|;
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Newly written security.json is "
+operator|+
+name|securityConfHandler
+operator|.
+name|getSecurityConfig
+argument_list|(
+literal|false
+argument_list|)
+operator|+
+literal|" and baseUrl is "
+operator|+
+name|baseUrl
+argument_list|)
 expr_stmt|;
 name|verifySecurityStatus
 argument_list|(

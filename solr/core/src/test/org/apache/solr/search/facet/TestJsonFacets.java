@@ -5405,6 +5405,62 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
+comment|// test filter
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"myfilt"
+argument_list|,
+literal|"${cat_s}:A"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"t:{${terms} type:terms, field:${cat_s}, filter:[]}"
+operator|+
+comment|// empty filter list
+literal|",t_filt:{${terms} type:terms, field:${cat_s}, filter:'${cat_s}:B'}"
+operator|+
+literal|",t_filt2:{${terms} type:terms, field:${cat_s}, filter:'{!query v=$myfilt}'}"
+operator|+
+comment|// test access to qparser and other query parameters
+literal|",t_filt3:{${terms} type:terms, field:${cat_s}, filter:['-id:1','-id:2']}"
+operator|+
+literal|",q:{type:query, q:'${cat_s}:B', filter:['-id:5']}"
+operator|+
+comment|// also tests a top-level negative filter
+literal|",r:{type:range, field:${num_d}, start:-5, end:10, gap:5, filter:'-id:4'}"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:6, "
+operator|+
+literal|"t       :{ buckets:[ {val:B, count:3}, {val:A, count:2} ] }"
+operator|+
+literal|",t_filt :{ buckets:[ {val:B, count:3}] } "
+operator|+
+literal|",t_filt2:{ buckets:[ {val:A, count:2}] } "
+operator|+
+literal|",t_filt3:{ buckets:[ {val:B, count:2}, {val:A, count:1}] } "
+operator|+
+literal|",q:{count:2}"
+operator|+
+literal|",r:{buckets:[ {val:-5.0,count:1}, {val:0.0,count:1}, {val:5.0,count:0} ] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -6689,6 +6745,47 @@ operator|+
 literal|"                 ,{val:D,count:1,pages:{buckets:[]}}"
 operator|+
 literal|"] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test filter after block join
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{ "
+operator|+
+literal|"pages1:{type:terms, field:v_t, domain:{blockChildren:'type_s:book'}, filter:'*:*' }"
+operator|+
+literal|",pages2:{type:terms, field:v_t, domain:{blockChildren:'type_s:book'}, filter:'-id:3.1' }"
+operator|+
+literal|",books:{type:terms, field:v_t, domain:{blockParent:'type_s:book'}, filter:'*:*' }"
+operator|+
+literal|",books2:{type:terms, field:v_t, domain:{blockParent:'type_s:book'}, filter:'id:1' }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:10"
+operator|+
+literal|", pages1:{ buckets:[ {val:y,count:4},{val:x,count:3},{val:z,count:3} ] }"
+operator|+
+literal|", pages2:{ buckets:[ {val:y,count:4},{val:z,count:3},{val:x,count:2} ] }"
+operator|+
+literal|", books:{ buckets:[ {val:q,count:3},{val:e,count:2},{val:w,count:2} ] }"
+operator|+
+literal|", books2:{ buckets:[ {val:q,count:1} ] }"
 operator|+
 literal|"}"
 argument_list|)

@@ -314,11 +314,27 @@ return|;
 block|}
 catch|catch
 parameter_list|(
-name|IOException
+name|Exception
 name|e
 parameter_list|)
 block|{
-comment|/* Fall through */
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Failed opening existing security.json file: "
+operator|+
+name|securityJsonPath
+argument_list|,
+name|e
+argument_list|)
+throw|;
 block|}
 block|}
 return|return

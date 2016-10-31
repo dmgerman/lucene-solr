@@ -1752,7 +1752,7 @@ name|waitInBackground
 argument_list|(
 literal|"stateformat1"
 argument_list|,
-literal|10
+name|MAX_WAIT_TIMEOUT
 argument_list|,
 name|TimeUnit
 operator|.

@@ -50,15 +50,13 @@ end_import
 
 begin_import
 import|import
-name|org
+name|java
 operator|.
-name|apache
+name|nio
 operator|.
-name|commons
+name|charset
 operator|.
-name|codec
-operator|.
-name|Charsets
+name|StandardCharsets
 import|;
 end_import
 
@@ -616,12 +614,9 @@ name|schemaFile
 argument_list|,
 name|withWhich
 argument_list|,
-name|Charsets
+name|StandardCharsets
 operator|.
 name|UTF_8
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|String
@@ -648,12 +643,9 @@ name|solrXml
 argument_list|,
 name|discoveryXml
 argument_list|,
-name|Charsets
+name|StandardCharsets
 operator|.
 name|UTF_8
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -892,12 +884,9 @@ name|schemaFile
 argument_list|,
 name|withoutWhich
 argument_list|,
-name|Charsets
+name|StandardCharsets
 operator|.
 name|UTF_8
-operator|.
-name|toString
-argument_list|()
 argument_list|)
 expr_stmt|;
 name|IndexSchema

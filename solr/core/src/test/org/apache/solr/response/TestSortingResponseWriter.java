@@ -1025,6 +1025,101 @@ literal|"{\"responseHeader\": {\"status\": 0}, \"response\":{\"numFound\":1, \"d
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Test
+DECL|method|testExportRequiredParams
+specifier|public
+name|void
+name|testExportRequiredParams
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|//Test whether missing required parameters returns expected errors.
+comment|//String s =  h.query(req("q", "id:1", "qt", "/export", "fl", "floatdv,intdv,stringdv,longdv,doubledv", "sort", "intdv asc"));
+name|String
+name|s
+decl_stmt|;
+name|s
+operator|=
+name|h
+operator|.
+name|query
+argument_list|(
+name|req
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"/export"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Should have had a sort error"
+argument_list|,
+name|s
+operator|.
+name|contains
+argument_list|(
+literal|"No sort criteria"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|s
+operator|=
+name|h
+operator|.
+name|query
+argument_list|(
+name|req
+argument_list|(
+literal|"sort"
+argument_list|,
+literal|"intdv asc"
+argument_list|,
+literal|"qt"
+argument_list|,
+literal|"/export"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Should have had fl error"
+argument_list|,
+name|s
+operator|.
+name|contains
+argument_list|(
+literal|"export field list (fl) must be specified"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|s
+operator|=
+name|h
+operator|.
+name|query
+argument_list|(
+name|req
+argument_list|(
+literal|"sort"
+argument_list|,
+literal|"intdv asc"
+argument_list|,
+literal|"qt"
+argument_list|,
+literal|"/export"
+argument_list|,
+literal|"fl"
+argument_list|,
+literal|"stringdv"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// Interesting you don't even need to specify a "q" parameter.
+block|}
 block|}
 end_class
 

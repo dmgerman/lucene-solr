@@ -88,6 +88,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Predicate
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -173,38 +185,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Predicates
-operator|.
-name|alwaysFalse
-import|;
-end_import
-
-begin_import
-import|import static
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|base
-operator|.
-name|Predicates
-operator|.
-name|alwaysTrue
 import|;
 end_import
 
@@ -840,6 +820,26 @@ argument_list|(
 name|data
 argument_list|)
 expr_stmt|;
+name|Predicate
+argument_list|<
+name|String
+argument_list|>
+name|alwaysTrue
+init|=
+name|s
+lambda|->
+literal|true
+decl_stmt|;
+name|Predicate
+argument_list|<
+name|String
+argument_list|>
+name|alwaysFalse
+init|=
+name|s
+lambda|->
+literal|false
+decl_stmt|;
 comment|// Should be able to get 0, 1, 2, or 3 instantly
 for|for
 control|(
@@ -869,7 +869,6 @@ argument_list|,
 literal|0
 argument_list|,
 name|alwaysTrue
-argument_list|()
 argument_list|)
 operator|.
 name|size
@@ -891,7 +890,6 @@ argument_list|,
 literal|0
 argument_list|,
 name|alwaysTrue
-argument_list|()
 argument_list|)
 operator|.
 name|size
@@ -920,7 +918,6 @@ argument_list|,
 literal|1000
 argument_list|,
 name|alwaysFalse
-argument_list|()
 argument_list|)
 operator|.
 name|size

@@ -649,7 +649,7 @@ block|{
 if|if
 condition|(
 name|targetDocID
-operator|<=
+operator|<
 name|docID
 condition|)
 block|{
@@ -1250,7 +1250,7 @@ block|{
 if|if
 condition|(
 name|targetDocID
-operator|<=
+operator|<
 name|docID
 condition|)
 block|{
@@ -1851,7 +1851,7 @@ block|{
 if|if
 condition|(
 name|targetDocID
-operator|<=
+operator|<
 name|docID
 condition|)
 block|{
@@ -2511,7 +2511,7 @@ block|{
 if|if
 condition|(
 name|targetDocID
-operator|<=
+operator|<
 name|docID
 condition|)
 block|{
@@ -5135,7 +5135,7 @@ block|{
 if|if
 condition|(
 name|targetDocID
-operator|<=
+operator|<
 name|docID
 condition|)
 block|{
