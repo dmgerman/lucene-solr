@@ -110,6 +110,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|LogLevel
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|AfterClass
@@ -145,6 +159,11 @@ operator|.
 name|class
 comment|// hdfs currently leaks thread(s)
 block|}
+argument_list|)
+annotation|@
+name|LogLevel
+argument_list|(
+literal|"org.apache.solr.update.HdfsTransactionLog=DEBUG"
 argument_list|)
 DECL|class|HdfsRecoveryZkTest
 specifier|public
