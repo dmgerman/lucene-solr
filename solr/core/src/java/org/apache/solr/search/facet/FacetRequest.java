@@ -458,14 +458,6 @@ argument_list|>
 name|subFacets
 decl_stmt|;
 comment|// per-bucket sub-facets
-DECL|field|filters
-specifier|protected
-name|List
-argument_list|<
-name|Object
-argument_list|>
-name|filters
-decl_stmt|;
 DECL|field|processEmpty
 specifier|protected
 name|boolean
@@ -506,6 +498,16 @@ specifier|public
 name|String
 name|parents
 decl_stmt|;
+comment|// identifies the parent filter... the full set of parent documents for any block join operation
+DECL|field|filters
+specifier|public
+name|List
+argument_list|<
+name|Object
+argument_list|>
+name|filters
+decl_stmt|;
+comment|// list of symbolic filters (JSON query format)
 block|}
 DECL|method|FacetRequest
 specifier|public
@@ -1856,6 +1858,14 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|FacetRequest
+operator|.
+name|Domain
+name|domain
+init|=
+name|getDomain
+argument_list|()
+decl_stmt|;
 name|excludeTags
 operator|=
 name|getStringList
@@ -1872,8 +1882,7 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|getDomain
-argument_list|()
+name|domain
 operator|.
 name|excludeTags
 operator|=
@@ -1913,15 +1922,13 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|getDomain
-argument_list|()
+name|domain
 operator|.
 name|toParent
 operator|=
 literal|true
 expr_stmt|;
-name|getDomain
-argument_list|()
+name|domain
 operator|.
 name|parents
 operator|=
@@ -1936,26 +1943,23 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|getDomain
-argument_list|()
+name|domain
 operator|.
 name|toChildren
 operator|=
 literal|true
 expr_stmt|;
-name|getDomain
-argument_list|()
+name|domain
 operator|.
 name|parents
 operator|=
 name|blockChildren
 expr_stmt|;
 block|}
-block|}
 name|Object
 name|filterOrList
 init|=
-name|m
+name|domainMap
 operator|.
 name|get
 argument_list|(
@@ -1969,6 +1973,13 @@ operator|!=
 literal|null
 condition|)
 block|{
+assert|assert
+name|domain
+operator|.
+name|filters
+operator|==
+literal|null
+assert|;
 if|if
 condition|(
 name|filterOrList
@@ -1976,7 +1987,7 @@ operator|instanceof
 name|List
 condition|)
 block|{
-name|facet
+name|domain
 operator|.
 name|filters
 operator|=
@@ -1991,7 +2002,7 @@ expr_stmt|;
 block|}
 else|else
 block|{
-name|facet
+name|domain
 operator|.
 name|filters
 operator|=
@@ -2002,7 +2013,7 @@ argument_list|(
 literal|1
 argument_list|)
 expr_stmt|;
-name|facet
+name|domain
 operator|.
 name|filters
 operator|.
@@ -2013,6 +2024,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+comment|// end "domain"
 block|}
 block|}
 DECL|method|getField
