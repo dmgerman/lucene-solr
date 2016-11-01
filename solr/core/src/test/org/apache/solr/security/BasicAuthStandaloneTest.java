@@ -631,6 +631,12 @@ name|getCoreContainer
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|HttpClientUtil
+operator|.
+name|clearRequestInterceptors
+argument_list|()
+expr_stmt|;
+comment|// Clear out any old Authorization headers
 block|}
 annotation|@
 name|Override
@@ -764,24 +770,6 @@ name|securityConfHandler
 operator|.
 name|securityConfEdited
 argument_list|()
-expr_stmt|;
-name|log
-operator|.
-name|debug
-argument_list|(
-literal|"Newly written security.json is "
-operator|+
-name|securityConfHandler
-operator|.
-name|getSecurityConfig
-argument_list|(
-literal|false
-argument_list|)
-operator|+
-literal|" and baseUrl is "
-operator|+
-name|baseUrl
-argument_list|)
 expr_stmt|;
 name|verifySecurityStatus
 argument_list|(
