@@ -886,6 +886,13 @@ name|pwd
 argument_list|)
 condition|)
 block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Bad auth credentials supplied in Authorization header"
+argument_list|)
+expr_stmt|;
 name|authenticationFailure
 argument_list|(
 name|response
