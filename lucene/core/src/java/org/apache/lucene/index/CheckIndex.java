@@ -3415,6 +3415,26 @@ literal|"DocValues test failed"
 argument_list|)
 throw|;
 block|}
+elseif|else
+if|if
+condition|(
+name|segInfoStat
+operator|.
+name|pointsStatus
+operator|.
+name|error
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"Points test failed"
+argument_list|)
+throw|;
+block|}
 block|}
 name|msg
 argument_list|(
@@ -9777,7 +9797,13 @@ argument_list|(
 name|packedValue
 argument_list|)
 operator|+
-literal|" for docID="
+literal|" for field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\", docID="
 operator|+
 name|docID
 operator|+
@@ -9839,7 +9865,13 @@ argument_list|(
 name|packedValue
 argument_list|)
 operator|+
-literal|" for docID="
+literal|" for field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\", docID="
 operator|+
 name|docID
 operator|+
@@ -9915,7 +9947,13 @@ argument_list|(
 name|packedValue
 argument_list|)
 operator|+
-literal|" for docID="
+literal|" for field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\", for docID="
 operator|+
 name|docID
 operator|+
@@ -9956,6 +9994,14 @@ operator|+
 literal|" is out of order vs previous docID="
 operator|+
 name|lastDocID
+operator|+
+literal|", field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
@@ -10075,6 +10121,62 @@ name|bytesPerDim
 operator|*
 name|dim
 decl_stmt|;
+if|if
+condition|(
+name|StringHelper
+operator|.
+name|compare
+argument_list|(
+name|bytesPerDim
+argument_list|,
+name|minPackedValue
+argument_list|,
+name|offset
+argument_list|,
+name|maxPackedValue
+argument_list|,
+name|offset
+argument_list|)
+operator|>
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+literal|"packed points cell minPackedValue "
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|minPackedValue
+argument_list|)
+operator|+
+literal|" is out-of-bounds of the cell's maxPackedValue "
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|maxPackedValue
+argument_list|)
+operator|+
+literal|" dim="
+operator|+
+name|dim
+operator|+
+literal|" field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\""
+argument_list|)
+throw|;
+block|}
 comment|// Make sure this cell is not outside of the global min/max:
 if|if
 condition|(
@@ -10121,6 +10223,14 @@ operator|+
 literal|" dim="
 operator|+
 name|dim
+operator|+
+literal|" field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
@@ -10154,7 +10264,7 @@ name|Arrays
 operator|.
 name|toString
 argument_list|(
-name|minPackedValue
+name|maxPackedValue
 argument_list|)
 operator|+
 literal|" is out-of-bounds of the global minimum "
@@ -10169,6 +10279,14 @@ operator|+
 literal|" dim="
 operator|+
 name|dim
+operator|+
+literal|" field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
@@ -10217,6 +10335,14 @@ operator|+
 literal|" dim="
 operator|+
 name|dim
+operator|+
+literal|" field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
@@ -10265,6 +10391,14 @@ operator|+
 literal|" dim="
 operator|+
 name|dim
+operator|+
+literal|" field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
@@ -10310,6 +10444,14 @@ operator|+
 literal|" is null for docID="
 operator|+
 name|docID
+operator|+
+literal|" field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
@@ -10341,6 +10483,14 @@ operator|+
 literal|" for docID="
 operator|+
 name|docID
+operator|+
+literal|" field=\""
+operator|+
+name|fieldInfo
+operator|.
+name|name
+operator|+
+literal|"\""
 argument_list|)
 throw|;
 block|}
