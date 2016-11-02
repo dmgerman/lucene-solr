@@ -435,6 +435,15 @@ name|JSON_NL_STYLE
 init|=
 literal|"json.nl"
 decl_stmt|;
+DECL|field|JSON_NL_STYLE_COUNT
+specifier|static
+specifier|final
+name|int
+name|JSON_NL_STYLE_COUNT
+init|=
+literal|5
+decl_stmt|;
+comment|// for use by JSONWriterTest
 DECL|field|JSON_NL_MAP
 specifier|static
 specifier|final
@@ -922,6 +931,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|/** Represents a NamedList directly as a JSON Object (essentially a Map)    * repeating any keys if they are repeated in the NamedList.  null is mapped    * to "".    */
+comment|// NamedList("a"=1,"bar"="foo",null=3) => {"a":1,"bar":"foo","":3}
 DECL|method|writeNamedListAsMapWithDups
 specifier|protected
 name|void
