@@ -373,7 +373,10 @@ condition|(
 name|datamodel
 operator|==
 literal|null
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
 name|OS_ARCH
 operator|!=
 literal|null
@@ -397,6 +400,7 @@ name|is64Bit
 operator|=
 literal|false
 expr_stmt|;
+block|}
 block|}
 name|JRE_IS_64BIT
 operator|=

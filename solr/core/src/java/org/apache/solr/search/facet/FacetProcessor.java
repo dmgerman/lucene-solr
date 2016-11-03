@@ -566,41 +566,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// Check filters... if we do have filters they apply after domain changes.
-comment|// We still calculate them first because we can use it in a parent->child domain change.
-name|evalFilters
-argument_list|()
-expr_stmt|;
-name|boolean
-name|appliedFilters
-init|=
 name|handleDomainChanges
 argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|filter
-operator|!=
-literal|null
-operator|&&
-operator|!
-name|appliedFilters
-condition|)
-block|{
-name|fcontext
-operator|.
-name|base
-operator|=
-name|fcontext
-operator|.
-name|base
-operator|.
-name|intersection
-argument_list|(
-name|filter
-argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|evalFilters
 specifier|private
@@ -614,11 +582,15 @@ if|if
 condition|(
 name|freq
 operator|.
+name|domain
+operator|.
 name|filters
 operator|==
 literal|null
 operator|||
 name|freq
+operator|.
+name|domain
 operator|.
 name|filters
 operator|.
@@ -638,6 +610,8 @@ argument_list|<>
 argument_list|(
 name|freq
 operator|.
+name|domain
+operator|.
 name|filters
 operator|.
 name|size
@@ -651,6 +625,8 @@ name|Object
 name|rawFilter
 range|:
 name|freq
+operator|.
+name|domain
 operator|.
 name|filters
 control|)
@@ -759,7 +735,7 @@ expr_stmt|;
 block|}
 DECL|method|handleDomainChanges
 specifier|private
-name|boolean
+name|void
 name|handleDomainChanges
 parameter_list|()
 throws|throws
@@ -773,10 +749,13 @@ name|domain
 operator|==
 literal|null
 condition|)
-return|return
-literal|false
-return|;
+return|return;
 name|handleFilterExclusions
+argument_list|()
+expr_stmt|;
+comment|// Check filters... if we do have filters they apply after domain changes.
+comment|// We still calculate them first because we can use it in a parent->child domain change.
+name|evalFilters
 argument_list|()
 expr_stmt|;
 name|boolean
@@ -785,9 +764,32 @@ init|=
 name|handleBlockJoin
 argument_list|()
 decl_stmt|;
-return|return
+if|if
+condition|(
+name|this
+operator|.
+name|filter
+operator|!=
+literal|null
+operator|&&
+operator|!
 name|appliedFilters
-return|;
+condition|)
+block|{
+name|fcontext
+operator|.
+name|base
+operator|=
+name|fcontext
+operator|.
+name|base
+operator|.
+name|intersection
+argument_list|(
+name|filter
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|handleFilterExclusions
 specifier|private
@@ -1124,7 +1126,7 @@ name|qlist
 argument_list|)
 expr_stmt|;
 block|}
-comment|// returns "true" if filters have already been applied.
+comment|// returns "true" if filters were applied to fcontext.base already
 DECL|method|handleBlockJoin
 specifier|private
 name|boolean

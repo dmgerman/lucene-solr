@@ -5426,20 +5426,20 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"t:{${terms} type:terms, field:${cat_s}, filter:[]}"
+literal|"t:{${terms} type:terms, field:${cat_s}, domain:{filter:[]} }"
 operator|+
 comment|// empty filter list
-literal|",t_filt:{${terms} type:terms, field:${cat_s}, filter:'${cat_s}:B'}"
+literal|",t_filt:{${terms} type:terms, field:${cat_s}, domain:{filter:'${cat_s}:B'} }"
 operator|+
-literal|",t_filt2:{${terms} type:terms, field:${cat_s}, filter:'{!query v=$myfilt}'}"
+literal|",t_filt2:{${terms} type:terms, field:${cat_s}, domain:{filter:'{!query v=$myfilt}'} }"
 operator|+
 comment|// test access to qparser and other query parameters
-literal|",t_filt3:{${terms} type:terms, field:${cat_s}, filter:['-id:1','-id:2']}"
+literal|",t_filt3:{${terms} type:terms, field:${cat_s}, domain:{filter:['-id:1','-id:2']} }"
 operator|+
-literal|",q:{type:query, q:'${cat_s}:B', filter:['-id:5']}"
+literal|",q:{type:query, q:'${cat_s}:B', domain:{filter:['-id:5']} }"
 operator|+
 comment|// also tests a top-level negative filter
-literal|",r:{type:range, field:${num_d}, start:-5, end:10, gap:5, filter:'-id:4'}"
+literal|",r:{type:range, field:${num_d}, start:-5, end:10, gap:5, domain:{filter:'-id:4'} }"
 operator|+
 literal|"}"
 argument_list|)
@@ -6766,13 +6766,13 @@ literal|"json.facet"
 argument_list|,
 literal|"{ "
 operator|+
-literal|"pages1:{type:terms, field:v_t, domain:{blockChildren:'type_s:book'}, filter:'*:*' }"
+literal|"pages1:{type:terms, field:v_t, domain:{blockChildren:'type_s:book', filter:'*:*'} }"
 operator|+
-literal|",pages2:{type:terms, field:v_t, domain:{blockChildren:'type_s:book'}, filter:'-id:3.1' }"
+literal|",pages2:{type:terms, field:v_t, domain:{blockChildren:'type_s:book', filter:'-id:3.1'} }"
 operator|+
-literal|",books:{type:terms, field:v_t, domain:{blockParent:'type_s:book'}, filter:'*:*' }"
+literal|",books:{type:terms, field:v_t, domain:{blockParent:'type_s:book', filter:'*:*'} }"
 operator|+
-literal|",books2:{type:terms, field:v_t, domain:{blockParent:'type_s:book'}, filter:'id:1' }"
+literal|",books2:{type:terms, field:v_t, domain:{blockParent:'type_s:book', filter:'id:1'} }"
 operator|+
 literal|"}"
 argument_list|)

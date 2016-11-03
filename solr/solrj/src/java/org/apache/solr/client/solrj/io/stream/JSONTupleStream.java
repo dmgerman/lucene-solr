@@ -243,6 +243,8 @@ DECL|class|JSONTupleStream
 specifier|public
 class|class
 name|JSONTupleStream
+implements|implements
+name|TupleStreamParser
 block|{
 DECL|field|path
 specifier|private
@@ -428,6 +430,8 @@ argument_list|)
 return|;
 block|}
 comment|/** returns the next Tuple or null */
+annotation|@
+name|Override
 DECL|method|next
 specifier|public
 name|Map

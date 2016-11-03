@@ -651,6 +651,15 @@ argument_list|(
 name|this
 argument_list|)
 assert|;
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Opening new tlog {}"
+argument_list|,
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
@@ -1586,8 +1595,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"Closing tlog"
-operator|+
+literal|"Closing tlog {}"
+argument_list|,
 name|this
 argument_list|)
 expr_stmt|;
