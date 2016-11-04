@@ -812,8 +812,6 @@ argument_list|(
 name|repository
 argument_list|,
 name|zkStateReader
-argument_list|,
-name|restoreCollectionName
 argument_list|)
 decl_stmt|;
 name|Properties

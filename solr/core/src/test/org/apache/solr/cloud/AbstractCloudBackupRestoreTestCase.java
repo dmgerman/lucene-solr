@@ -322,6 +322,22 @@ name|common
 operator|.
 name|params
 operator|.
+name|CollectionAdminParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
 name|CoreAdminParams
 import|;
 end_import
@@ -786,12 +802,39 @@ name|getCollectionName
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|testConfigBackupOnly
+argument_list|(
+literal|"conf1"
+argument_list|,
+name|getCollectionName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|testInvalidPath
 argument_list|(
 name|getCollectionName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
+comment|/**    * This test validates the backup of collection configuration using    *  {@linkplain CollectionAdminParams#NO_INDEX_BACKUP_STRATEGY}.    *    * @param configName The config name for the collection to be backed up.    * @param collectionName The name of the collection to be backed up.    * @throws Exception in case of errors.    */
+DECL|method|testConfigBackupOnly
+specifier|protected
+name|void
+name|testConfigBackupOnly
+parameter_list|(
+name|String
+name|configName
+parameter_list|,
+name|String
+name|collectionName
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+comment|// This is deliberately no-op since we want to run this test only for one of the backup repository
+comment|// implementation (mainly to avoid redundant test execution). Currently HDFS backup repository test
+comment|// implements this.
 block|}
 comment|// This test verifies the system behavior when the backup location cluster property is configured with an invalid
 comment|// value for the specified repository (and the default backup location is not configured in solr.xml).
