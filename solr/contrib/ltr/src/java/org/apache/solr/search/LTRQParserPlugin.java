@@ -1026,17 +1026,27 @@ argument_list|,
 name|DEFAULT_RERANK_DOCS
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
 name|reRankDocs
-operator|=
-name|Math
-operator|.
-name|max
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
 argument_list|(
-literal|1
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
 argument_list|,
-name|reRankDocs
+literal|"Must rerank at least 1 document"
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 comment|// External features
 name|scoringQuery
 operator|.
