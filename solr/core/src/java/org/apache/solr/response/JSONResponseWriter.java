@@ -2514,6 +2514,9 @@ name|iterator
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|writeArrayCloser
+argument_list|()
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -2542,6 +2545,9 @@ name|writeJsonIter
 argument_list|(
 name|val
 argument_list|)
+expr_stmt|;
+name|writeArrayCloser
+argument_list|()
 expr_stmt|;
 block|}
 DECL|method|writeJsonIter
@@ -2607,9 +2613,6 @@ literal|false
 expr_stmt|;
 block|}
 name|decLevel
-argument_list|()
-expr_stmt|;
-name|writeArrayCloser
 argument_list|()
 expr_stmt|;
 block|}
@@ -3011,14 +3014,13 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+name|super
+operator|.
 name|writeArray
 argument_list|(
 name|name
 argument_list|,
 name|l
-operator|.
-name|iterator
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
