@@ -56,6 +56,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashSet
 import|;
 end_import
@@ -368,20 +378,6 @@ name|LoggerFactory
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|google
-operator|.
-name|common
-operator|.
-name|collect
-operator|.
-name|Maps
-import|;
-end_import
-
 begin_comment
 comment|/**  * Provides a plugin for performing cluster analysis. This can either be applied to   * search results (e.g., via<a href="http://project.carrot2.org">Carrot<sup>2</sup></a>) or for  * clustering documents (e.g., via<a href="http://mahout.apache.org/">Mahout</a>).  *<p>  * See Solr example for configuration examples.</p>  *   * @lucene.experimental  */
 end_comment
@@ -438,9 +434,9 @@ name|SearchClusteringEngine
 argument_list|>
 name|searchClusteringEngines
 init|=
-name|Maps
-operator|.
-name|newLinkedHashMap
+operator|new
+name|LinkedHashMap
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * Declaration order list of document clustering engines.    */
@@ -455,9 +451,9 @@ name|DocumentClusteringEngine
 argument_list|>
 name|documentClusteringEngines
 init|=
-name|Maps
-operator|.
-name|newLinkedHashMap
+operator|new
+name|LinkedHashMap
+argument_list|<>
 argument_list|()
 decl_stmt|;
 comment|/**    * An unmodifiable view of {@link #searchClusteringEngines}.    */
@@ -986,9 +982,9 @@ name|Integer
 argument_list|>
 name|docIds
 init|=
-name|Maps
-operator|.
-name|newHashMapWithExpectedSize
+operator|new
+name|HashMap
+argument_list|<>
 argument_list|(
 name|results
 operator|.
