@@ -82,18 +82,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|function
-operator|.
-name|BiConsumer
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -103,20 +91,6 @@ operator|.
 name|common
 operator|.
 name|MapSerializable
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrDocument
 import|;
 end_import
 
