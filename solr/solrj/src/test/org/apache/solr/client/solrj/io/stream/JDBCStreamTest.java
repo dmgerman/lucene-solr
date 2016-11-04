@@ -2418,10 +2418,7 @@ name|Tuple
 argument_list|>
 name|tuples
 decl_stmt|;
-comment|// Basic test
-comment|// the test here is the setting of the property get_column_name=true. In hsqldb if this value is set to true then the use of an
-comment|// as clause in a select will have no effect. As such even though we have PEOPLE.ID as PERSONID we will still expect the column
-comment|// name to come out as ID and not PERSONID
+comment|// Basic test for no alias
 name|expression
 operator|=
 literal|"innerJoin("
@@ -2442,7 +2439,7 @@ literal|"  ),"
 operator|+
 literal|"  select("
 operator|+
-literal|"    jdbc(connection=\"jdbc:hsqldb:mem:.\", sql=\"select PEOPLE.ID as PERSONID, PEOPLE.NAME, COUNTRIES.COUNTRY_NAME from PEOPLE inner join COUNTRIES on PEOPLE.COUNTRY_CODE = COUNTRIES.CODE order by PEOPLE.ID\", sort=\"ID asc\", get_column_name=true),"
+literal|"    jdbc(connection=\"jdbc:hsqldb:mem:.\", sql=\"select PEOPLE.ID, PEOPLE.NAME, COUNTRIES.COUNTRY_NAME from PEOPLE inner join COUNTRIES on PEOPLE.COUNTRY_CODE = COUNTRIES.CODE order by PEOPLE.ID\", sort=\"ID asc\"),"
 operator|+
 literal|"    ID as personId,"
 operator|+
@@ -2590,10 +2587,7 @@ argument_list|,
 literal|"United States"
 argument_list|)
 expr_stmt|;
-comment|// Basic test
-comment|// the test here is the setting of the property get_column_name=false. In hsqldb if this value is set to false then the use of an
-comment|// as clause in a select will have effect. As such we have PEOPLE.ID as PERSONID we will still expect the column name to come out
-comment|// PERSONID and not ID
+comment|// Basic test for alias
 name|expression
 operator|=
 literal|"innerJoin("
@@ -2614,7 +2608,7 @@ literal|"  ),"
 operator|+
 literal|"  select("
 operator|+
-literal|"    jdbc(connection=\"jdbc:hsqldb:mem:.\", sql=\"select PEOPLE.ID as PERSONID, PEOPLE.NAME, COUNTRIES.COUNTRY_NAME from PEOPLE inner join COUNTRIES on PEOPLE.COUNTRY_CODE = COUNTRIES.CODE order by PEOPLE.ID\", sort=\"PERSONID asc\", get_column_name=false),"
+literal|"    jdbc(connection=\"jdbc:hsqldb:mem:.\", sql=\"select PEOPLE.ID as PERSONID, PEOPLE.NAME, COUNTRIES.COUNTRY_NAME from PEOPLE inner join COUNTRIES on PEOPLE.COUNTRY_CODE = COUNTRIES.CODE order by PEOPLE.ID\", sort=\"PERSONID asc\"),"
 operator|+
 literal|"    PERSONID as personId,"
 operator|+
