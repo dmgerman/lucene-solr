@@ -1220,6 +1220,16 @@ index|]
 decl_stmt|;
 if|if
 condition|(
+name|c
+operator|>
+name|min
+condition|)
+block|{
+comment|// NOTE: we use c>min rather than c>=min as an optimization because we are going in
+comment|// index order, so we already know that the keys are ordered.  This can be very
+comment|// important if a lot of the counts are repeated (like zero counts would be).
+if|if
+condition|(
 name|contains
 operator|!=
 literal|null
@@ -1259,16 +1269,6 @@ block|{
 continue|continue;
 block|}
 block|}
-if|if
-condition|(
-name|c
-operator|>
-name|min
-condition|)
-block|{
-comment|// NOTE: we use c>min rather than c>=min as an optimization because we are going in
-comment|// index order, so we already know that the keys are ordered.  This can be very
-comment|// important if a lot of the counts are repeated (like zero counts would be).
 comment|// smaller term numbers sort higher, so subtract the term number instead
 name|long
 name|pair
