@@ -37,7 +37,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Use this class if the Map size is not known  */
+comment|/**  * Use this class to push all entries of a Map into an output.  * This avoids creating map instances and is supposed to be memory efficient.  * If the entries are primitives, unnecessary boxing is also avoided  */
 end_comment
 
 begin_interface
@@ -132,11 +132,12 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+comment|/**    * An interface to push one entry at a time to the output    */
 DECL|interface|EntryWriter
 interface|interface
 name|EntryWriter
 block|{
-comment|/**Writes a key value into the map      * @param k The key      * @param v The value can be any supported object      */
+comment|/**      * Writes a key value into the map      *      * @param k The key      * @param v The value can be any supported object      */
 DECL|method|put
 name|EntryWriter
 name|put

@@ -36,13 +36,13 @@ specifier|public
 interface|interface
 name|IteratorWriter
 block|{
-comment|/**    * @param w after this method returns , the EntryWriter Object is invalid    *          Do not hold a reference to this object    */
+comment|/**    * @param iw after this method returns , the EntryWriter Object is invalid    *          Do not hold a reference to this object    */
 DECL|method|writeIter
 name|void
 name|writeIter
 parameter_list|(
 name|ItemWriter
-name|w
+name|iw
 parameter_list|)
 throws|throws
 name|IOException
@@ -51,6 +51,7 @@ DECL|interface|ItemWriter
 interface|interface
 name|ItemWriter
 block|{
+comment|/**The item could be any supported type      */
 DECL|method|add
 name|ItemWriter
 name|add

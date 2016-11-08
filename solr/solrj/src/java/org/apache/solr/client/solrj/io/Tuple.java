@@ -24,6 +24,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|time
 operator|.
 name|Instant
@@ -66,7 +76,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|Map
+name|List
 import|;
 end_import
 
@@ -76,7 +86,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
+name|Map
 import|;
 end_import
 
@@ -90,7 +100,7 @@ name|solr
 operator|.
 name|common
 operator|.
-name|MapSerializable
+name|MapWriter
 import|;
 end_import
 
@@ -106,7 +116,7 @@ name|Tuple
 implements|implements
 name|Cloneable
 implements|,
-name|MapSerializable
+name|MapWriter
 block|{
 comment|/**    *  When EOF field is true the Tuple marks the end of the stream.    *  The EOF Tuple will not contain a record from the stream, but it may contain    *  metrics/aggregates gathered by underlying streams.    * */
 DECL|field|EOF
@@ -346,7 +356,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|// Convenience method since Booleans can be pased around as Strings.
+comment|// Convenience method since Booleans can be passed around as Strings.
 DECL|method|getBool
 specifier|public
 name|Boolean
@@ -934,23 +944,60 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|toMap
+DECL|method|writeMap
 specifier|public
-name|Map
-name|toMap
+name|void
+name|writeMap
 parameter_list|(
-name|Map
-argument_list|<
+name|EntryWriter
+name|ew
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|fields
+operator|.
+name|forEach
+argument_list|(
+parameter_list|(
+name|k
+parameter_list|,
+name|v
+parameter_list|)
+lambda|->
+block|{
+try|try
+block|{
+name|ew
+operator|.
+name|put
+argument_list|(
+operator|(
 name|String
+operator|)
+name|k
 argument_list|,
-name|Object
-argument_list|>
-name|map
+name|v
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|IOException
+name|e
 parameter_list|)
 block|{
-return|return
-name|fields
-return|;
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|e
+argument_list|)
+throw|;
+block|}
+block|}
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
