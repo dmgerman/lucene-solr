@@ -229,7 +229,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a SpanNotQuery matching spans from<code>include</code> which    * have no overlap with spans from<code>exclude</code> within    *<code>dist</code> tokens of<code>include</code>. */
+comment|/** Construct a SpanNotQuery matching spans from<code>include</code> which    * have no overlap with spans from<code>exclude</code> within    *<code>dist</code> tokens of<code>include</code>. Inversely, a negative    *<code>dist</code> value may be used to specify a certain amount of allowable    * overlap. */
 DECL|method|SpanNotQuery
 specifier|public
 name|SpanNotQuery
@@ -256,7 +256,7 @@ name|dist
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** Construct a SpanNotQuery matching spans from<code>include</code> which    * have no overlap with spans from<code>exclude</code> within    *<code>pre</code> tokens before or<code>post</code> tokens of<code>include</code>. */
+comment|/** Construct a SpanNotQuery matching spans from<code>include</code> which    * have no overlap with spans from<code>exclude</code> within    *<code>pre</code> tokens before or<code>post</code> tokens of    *<code>include</code>. Inversely, negative values for<code>pre</code> and/or    *<code>post</code> allow a certain amount of overlap to occur. */
 DECL|method|SpanNotQuery
 specifier|public
 name|SpanNotQuery
@@ -300,29 +300,13 @@ name|this
 operator|.
 name|pre
 operator|=
-operator|(
 name|pre
-operator|>=
-literal|0
-operator|)
-condition|?
-name|pre
-else|:
-literal|0
 expr_stmt|;
 name|this
 operator|.
 name|post
 operator|=
-operator|(
 name|post
-operator|>=
-literal|0
-operator|)
-condition|?
-name|post
-else|:
-literal|0
 expr_stmt|;
 if|if
 condition|(
