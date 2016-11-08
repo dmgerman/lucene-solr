@@ -1108,6 +1108,13 @@ name|methodsExpectedNotOverriden
 operator|.
 name|add
 argument_list|(
+literal|"public void org.apache.solr.response.JSONWriter.writeArray(java.lang.String,java.util.List) throws java.io.IOException"
+argument_list|)
+expr_stmt|;
+name|methodsExpectedNotOverriden
+operator|.
+name|add
+argument_list|(
 literal|"writeArrayOpener"
 argument_list|)
 expr_stmt|;
