@@ -2365,11 +2365,9 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: what if a zero bucket has a sub-facet with an exclusion that would yield results?
-comment|// should we check for domain-altering exclusions, or even ask the sub-facet for
-comment|// it's domain and then only skip it if it's 0?
-if|if
-condition|(
+name|boolean
+name|emptyDomain
+init|=
 name|domain
 operator|==
 literal|null
@@ -2380,15 +2378,7 @@ name|size
 argument_list|()
 operator|==
 literal|0
-operator|&&
-operator|!
-name|freq
-operator|.
-name|processEmpty
-condition|)
-block|{
-return|return;
-block|}
+decl_stmt|;
 for|for
 control|(
 name|Map
@@ -2410,6 +2400,36 @@ name|entrySet
 argument_list|()
 control|)
 block|{
+name|FacetRequest
+name|subRequest
+init|=
+name|sub
+operator|.
+name|getValue
+argument_list|()
+decl_stmt|;
+comment|// This includes a static check if a sub-facet can possibly produce something from
+comment|// an empty domain.  Should this be changed to a dynamic check as well?  That would
+comment|// probably require actually executing the facet anyway, and dropping it at the
+comment|// end if it was unproductive.
+if|if
+condition|(
+name|emptyDomain
+operator|&&
+operator|!
+name|freq
+operator|.
+name|processEmpty
+operator|&&
+operator|!
+name|subRequest
+operator|.
+name|canProduceFromEmpty
+argument_list|()
+condition|)
+block|{
+continue|continue;
+block|}
 comment|// make a new context for each sub-facet since they can change the domain
 name|FacetContext
 name|subContext
@@ -2426,10 +2446,7 @@ decl_stmt|;
 name|FacetProcessor
 name|subProcessor
 init|=
-name|sub
-operator|.
-name|getValue
-argument_list|()
+name|subRequest
 operator|.
 name|createFacetProcessor
 argument_list|(
@@ -2475,10 +2492,7 @@ name|fdebug
 operator|.
 name|setReqDescription
 argument_list|(
-name|sub
-operator|.
-name|getValue
-argument_list|()
+name|subRequest
 operator|.
 name|getFacetDescription
 argument_list|()

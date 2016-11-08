@@ -4981,6 +4981,61 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
+comment|// test sub-facets of  empty buckets with domain filter exclusions (canProduceFromEmpty) (see SOLR-9519)
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=doc3}id:non-exist"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=CATA}${cat_s}:A"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"f1:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc3} }  "
+operator|+
+literal|",q1 :{type:query, q:'*:*', facet:{ f1:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc3} } }  }  "
+operator|+
+comment|// nested under query
+literal|",q1a:{type:query, q:'id:4', facet:{ f1:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc3} } }  }  "
+operator|+
+comment|// nested under query, make sure id:4 filter still applies
+literal|",r1 :{type:range, field:${num_d}, start:0, gap:3, end:5,  facet:{ f1:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc3} } }  }  "
+operator|+
+comment|// nested under range, make sure range constraints still apply
+literal|",f2:{${terms} type:terms, field:${cat_s}, domain:{filter:'*:*'} }  "
+operator|+
+comment|// domain filter doesn't widen, so f2 should not appear.
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:0, "
+operator|+
+literal|" f1:{ buckets:[ {val:A, count:2} ]  }"
+operator|+
+literal|",q1:{ count:0, f1:{buckets:[{val:A, count:2}]} }"
+operator|+
+literal|",q1a:{ count:0, f1:{buckets:[{val:A, count:1}]} }"
+operator|+
+literal|",r1:{ buckets:[ {val:0.0,count:0,f1:{buckets:[{val:A, count:1}]}}, {val:3.0,count:0,f1:{buckets:[{val:A, count:1}]}} ]  }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
 comment|// nested query facets on subset (with excludeTags)
 name|client
 operator|.
