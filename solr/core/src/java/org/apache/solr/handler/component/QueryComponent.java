@@ -6904,11 +6904,10 @@ argument_list|()
 decl_stmt|;
 comment|// Merge the docs via a priority queue so we don't have to sort *all* of the
 comment|// documents... we only need to order the top (rows+start)
+specifier|final
 name|ShardFieldSortedHitQueue
 name|queue
-decl_stmt|;
-name|queue
-operator|=
+init|=
 operator|new
 name|ShardFieldSortedHitQueue
 argument_list|(
@@ -6931,7 +6930,7 @@ operator|.
 name|getSearcher
 argument_list|()
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|NamedList
 argument_list|<
 name|Object
