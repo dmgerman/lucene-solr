@@ -1125,6 +1125,20 @@ argument_list|(
 literal|"writeArrayCloser"
 argument_list|)
 expr_stmt|;
+name|methodsExpectedNotOverriden
+operator|.
+name|add
+argument_list|(
+literal|"public void org.apache.solr.response.JSONWriter.writeMap(org.apache.solr.common.MapWriter) throws java.io.IOException"
+argument_list|)
+expr_stmt|;
+name|methodsExpectedNotOverriden
+operator|.
+name|add
+argument_list|(
+literal|"public void org.apache.solr.response.JSONWriter.writeIterator(org.apache.solr.common.IteratorWriter) throws java.io.IOException"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|Class
 argument_list|<
@@ -1167,6 +1181,15 @@ init|=
 name|superClassMethod
 operator|.
 name|getName
+argument_list|()
+decl_stmt|;
+specifier|final
+name|String
+name|methodFullName
+init|=
+name|superClassMethod
+operator|.
+name|toString
 argument_list|()
 decl_stmt|;
 if|if
@@ -1229,6 +1252,14 @@ operator|.
 name|contains
 argument_list|(
 name|methodName
+argument_list|)
+operator|&&
+operator|!
+name|methodsExpectedNotOverriden
+operator|.
+name|contains
+argument_list|(
+name|methodFullName
 argument_list|)
 decl_stmt|;
 try|try
@@ -1326,6 +1357,13 @@ operator|.
 name|remove
 argument_list|(
 name|methodName
+argument_list|)
+operator|||
+name|methodsExpectedNotOverriden
+operator|.
+name|remove
+argument_list|(
+name|methodFullName
 argument_list|)
 argument_list|)
 expr_stmt|;

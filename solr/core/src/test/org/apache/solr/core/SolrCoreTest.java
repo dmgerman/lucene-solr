@@ -749,7 +749,7 @@ argument_list|(
 literal|"/export"
 argument_list|)
 argument_list|,
-literal|"solr.SearchHandler"
+literal|"solr.ExportHandler"
 argument_list|)
 expr_stmt|;
 operator|++
