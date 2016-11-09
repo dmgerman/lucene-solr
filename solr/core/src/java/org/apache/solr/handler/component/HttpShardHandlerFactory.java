@@ -268,6 +268,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|request
+operator|.
+name|SolrQueryRequest
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|DefaultSolrThreadFactory
@@ -313,16 +327,6 @@ operator|.
 name|invoke
 operator|.
 name|MethodHandles
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
 import|;
 end_import
 
@@ -611,6 +615,18 @@ init|=
 operator|new
 name|Random
 argument_list|()
+decl_stmt|;
+DECL|field|shufflingReplicaListTransformer
+specifier|private
+specifier|final
+name|ReplicaListTransformer
+name|shufflingReplicaListTransformer
+init|=
+operator|new
+name|ShufflingReplicaListTransformer
+argument_list|(
+name|r
+argument_list|)
 decl_stmt|;
 comment|// URL scheme to be used in distributed search.
 DECL|field|INIT_URL_SCHEME
@@ -1352,14 +1368,14 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a randomized list of urls for the given shard.    *    * @param shard the urls for the shard, separated by '|'    * @return A list of valid urls (including protocol) that are replicas for the shard    */
-DECL|method|makeURLList
+comment|/**    * Creates a list of urls for the given shard.    *    * @param shard the urls for the shard, separated by '|'    * @return A list of valid urls (including protocol) that are replicas for the shard    */
+DECL|method|buildURLList
 specifier|public
 name|List
 argument_list|<
 name|String
 argument_list|>
-name|makeURLList
+name|buildURLList
 parameter_list|(
 name|String
 name|shard
@@ -1419,31 +1435,21 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|//
-comment|// Shuffle the list instead of use round-robin by default.
-comment|// This prevents accidental synchronization where multiple shards could get in sync
-comment|// and query the same replica at the same time.
-comment|//
-if|if
-condition|(
-name|urls
-operator|.
-name|size
-argument_list|()
-operator|>
-literal|1
-condition|)
-name|Collections
-operator|.
-name|shuffle
-argument_list|(
-name|urls
-argument_list|,
-name|r
-argument_list|)
-expr_stmt|;
 return|return
 name|urls
+return|;
+block|}
+DECL|method|getReplicaListTransformer
+name|ReplicaListTransformer
+name|getReplicaListTransformer
+parameter_list|(
+specifier|final
+name|SolrQueryRequest
+name|req
+parameter_list|)
+block|{
+return|return
+name|shufflingReplicaListTransformer
 return|;
 block|}
 comment|/**    * Creates a new completion service for use by a single set of distributed requests.    */
