@@ -422,6 +422,15 @@ name|BM25Similarity
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|allSims
+operator|.
+name|add
+argument_list|(
+operator|new
+name|BooleanSimilarity
+argument_list|()
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|BasicModel

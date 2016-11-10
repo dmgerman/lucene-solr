@@ -407,6 +407,14 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
+if|if
+condition|(
+name|newValues
+operator|!=
+literal|null
+condition|)
+block|{
 name|newValues
 operator|.
 name|add

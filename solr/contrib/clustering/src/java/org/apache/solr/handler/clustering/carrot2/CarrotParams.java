@@ -26,21 +26,27 @@ name|java
 operator|.
 name|util
 operator|.
-name|Set
+name|Arrays
 import|;
 end_import
 
 begin_import
 import|import
-name|com
+name|java
 operator|.
-name|google
+name|util
 operator|.
-name|common
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|collect
+name|util
 operator|.
-name|ImmutableSet
+name|Set
 import|;
 end_import
 
@@ -203,9 +209,13 @@ name|String
 argument_list|>
 name|CARROT_PARAM_NAMES
 init|=
-name|ImmutableSet
+operator|new
+name|HashSet
+argument_list|<>
+argument_list|(
+name|Arrays
 operator|.
-name|of
+name|asList
 argument_list|(
 name|ALGORITHM
 argument_list|,
@@ -232,6 +242,7 @@ argument_list|,
 name|RESOURCES_DIR
 argument_list|,
 name|LANGUAGE_CODE_MAP
+argument_list|)
 argument_list|)
 decl_stmt|;
 comment|/** No instances. */

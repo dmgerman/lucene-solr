@@ -598,6 +598,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|ArrayUtil
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|Bits
 import|;
 end_import
@@ -697,6 +711,20 @@ operator|.
 name|util
 operator|.
 name|ThreadInterruptedException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|UnicodeUtil
 import|;
 end_import
 
@@ -904,6 +932,22 @@ init|=
 name|DocumentsWriterPerThread
 operator|.
 name|MAX_TERM_LENGTH_UTF8
+decl_stmt|;
+comment|/**    * Maximum length string for a stored field.    */
+DECL|field|MAX_STORED_STRING_LENGTH
+specifier|public
+specifier|final
+specifier|static
+name|int
+name|MAX_STORED_STRING_LENGTH
+init|=
+name|ArrayUtil
+operator|.
+name|MAX_ARRAY_LENGTH
+operator|/
+name|UnicodeUtil
+operator|.
+name|MAX_UTF8_BYTES_PER_CHAR
 decl_stmt|;
 comment|// when unrecoverable disaster strikes, we populate this with the reason that we had to close IndexWriter
 DECL|field|tragedy

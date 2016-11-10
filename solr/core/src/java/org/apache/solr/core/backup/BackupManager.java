@@ -528,9 +528,6 @@ name|repository
 parameter_list|,
 name|ZkStateReader
 name|zkStateReader
-parameter_list|,
-name|String
-name|collectionName
 parameter_list|)
 block|{
 name|this
@@ -749,7 +746,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * This method reads the meta-data information for the backed-up collection.    *    * @param backupLoc The base path used to store the backup data.    * @param backupId The unique name for the backup.    * @return the meta-data information for the backed-up collection.    * @throws IOException in case of errors.    */
+comment|/**    * This method reads the meta-data information for the backed-up collection.    *    * @param backupLoc The base path used to store the backup data.    * @param backupId The unique name for the backup.    * @param collectionName The name of the collection whose meta-data is to be returned.    * @return the meta-data information for the backed-up collection.    * @throws IOException in case of errors.    */
 DECL|method|readCollectionState
 specifier|public
 name|DocCollection

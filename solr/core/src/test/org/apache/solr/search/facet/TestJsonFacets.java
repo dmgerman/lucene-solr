@@ -4981,6 +4981,61 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
+comment|// test sub-facets of  empty buckets with domain filter exclusions (canProduceFromEmpty) (see SOLR-9519)
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=doc3}id:non-exist"
+argument_list|,
+literal|"fq"
+argument_list|,
+literal|"{!tag=CATA}${cat_s}:A"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"f1:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc3} }  "
+operator|+
+literal|",q1 :{type:query, q:'*:*', facet:{ f1:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc3} } }  }  "
+operator|+
+comment|// nested under query
+literal|",q1a:{type:query, q:'id:4', facet:{ f1:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc3} } }  }  "
+operator|+
+comment|// nested under query, make sure id:4 filter still applies
+literal|",r1 :{type:range, field:${num_d}, start:0, gap:3, end:5,  facet:{ f1:{${terms} type:terms, field:${cat_s}, domain:{excludeTags:doc3} } }  }  "
+operator|+
+comment|// nested under range, make sure range constraints still apply
+literal|",f2:{${terms} type:terms, field:${cat_s}, domain:{filter:'*:*'} }  "
+operator|+
+comment|// domain filter doesn't widen, so f2 should not appear.
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:0, "
+operator|+
+literal|" f1:{ buckets:[ {val:A, count:2} ]  }"
+operator|+
+literal|",q1:{ count:0, f1:{buckets:[{val:A, count:2}]} }"
+operator|+
+literal|",q1a:{ count:0, f1:{buckets:[{val:A, count:1}]} }"
+operator|+
+literal|",r1:{ buckets:[ {val:0.0,count:0,f1:{buckets:[{val:A, count:1}]}}, {val:3.0,count:0,f1:{buckets:[{val:A, count:1}]}} ]  }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
 comment|// nested query facets on subset (with excludeTags)
 name|client
 operator|.
@@ -5422,6 +5477,14 @@ literal|"myfilt"
 argument_list|,
 literal|"${cat_s}:A"
 argument_list|,
+literal|"ff"
+argument_list|,
+literal|"-id:1"
+argument_list|,
+literal|"ff"
+argument_list|,
+literal|"-id:2"
+argument_list|,
 literal|"json.facet"
 argument_list|,
 literal|"{"
@@ -5431,11 +5494,17 @@ operator|+
 comment|// empty filter list
 literal|",t_filt:{${terms} type:terms, field:${cat_s}, domain:{filter:'${cat_s}:B'} }"
 operator|+
-literal|",t_filt2:{${terms} type:terms, field:${cat_s}, domain:{filter:'{!query v=$myfilt}'} }"
+literal|",t_filt2 :{${terms} type:terms, field:${cat_s}, domain:{filter:'{!query v=$myfilt}'} }"
 operator|+
 comment|// test access to qparser and other query parameters
-literal|",t_filt3:{${terms} type:terms, field:${cat_s}, domain:{filter:['-id:1','-id:2']} }"
+literal|",t_filt2a:{${terms} type:terms, field:${cat_s}, domain:{filter:{param:myfilt} } }"
 operator|+
+comment|// test filter via "param" type
+literal|",t_filt3: {${terms} type:terms, field:${cat_s}, domain:{filter:['-id:1','-id:2']} }"
+operator|+
+literal|",t_filt3a:{${terms} type:terms, field:${cat_s}, domain:{filter:{param:ff}} }"
+operator|+
+comment|// test multi-valued query parameter
 literal|",q:{type:query, q:'${cat_s}:B', domain:{filter:['-id:5']} }"
 operator|+
 comment|// also tests a top-level negative filter
@@ -5446,13 +5515,17 @@ argument_list|)
 argument_list|,
 literal|"facets=={ count:6, "
 operator|+
-literal|"t       :{ buckets:[ {val:B, count:3}, {val:A, count:2} ] }"
+literal|"t        :{ buckets:[ {val:B, count:3}, {val:A, count:2} ] }"
 operator|+
-literal|",t_filt :{ buckets:[ {val:B, count:3}] } "
+literal|",t_filt  :{ buckets:[ {val:B, count:3}] } "
 operator|+
-literal|",t_filt2:{ buckets:[ {val:A, count:2}] } "
+literal|",t_filt2 :{ buckets:[ {val:A, count:2}] } "
 operator|+
-literal|",t_filt3:{ buckets:[ {val:B, count:2}, {val:A, count:1}] } "
+literal|",t_filt2a:{ buckets:[ {val:A, count:2}] } "
+operator|+
+literal|",t_filt3 :{ buckets:[ {val:B, count:2}, {val:A, count:1}] } "
+operator|+
+literal|",t_filt3a:{ buckets:[ {val:B, count:2}, {val:A, count:1}] } "
 operator|+
 literal|",q:{count:2}"
 operator|+
@@ -6773,6 +6846,55 @@ operator|+
 literal|",books:{type:terms, field:v_t, domain:{blockParent:'type_s:book', filter:'*:*'} }"
 operator|+
 literal|",books2:{type:terms, field:v_t, domain:{blockParent:'type_s:book', filter:'id:1'} }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:10"
+operator|+
+literal|", pages1:{ buckets:[ {val:y,count:4},{val:x,count:3},{val:z,count:3} ] }"
+operator|+
+literal|", pages2:{ buckets:[ {val:y,count:4},{val:z,count:3},{val:x,count:2} ] }"
+operator|+
+literal|", books:{ buckets:[ {val:q,count:3},{val:e,count:2},{val:w,count:2} ] }"
+operator|+
+literal|", books2:{ buckets:[ {val:q,count:1} ] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test other various ways to get filters
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"f1"
+argument_list|,
+literal|"-id:3.1"
+argument_list|,
+literal|"f2"
+argument_list|,
+literal|"id:1"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{ "
+operator|+
+literal|"pages1:{type:terms, field:v_t, domain:{blockChildren:'type_s:book', filter:[]} }"
+operator|+
+literal|",pages2:{type:terms, field:v_t, domain:{blockChildren:'type_s:book', filter:{param:f1} } }"
+operator|+
+literal|",books:{type:terms, field:v_t, domain:{blockParent:'type_s:book', filter:[{param:q},{param:missing_param}]} }"
+operator|+
+literal|",books2:{type:terms, field:v_t, domain:{blockParent:'type_s:book', filter:[{param:f2}] } }"
 operator|+
 literal|"}"
 argument_list|)

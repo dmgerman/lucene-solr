@@ -1931,6 +1931,16 @@ literal|"max of:"
 argument_list|)
 decl_stmt|;
 name|boolean
+name|computedOf
+init|=
+name|descr
+operator|.
+name|matches
+argument_list|(
+literal|".*, computed as .* from:"
+argument_list|)
+decl_stmt|;
+name|boolean
 name|maxTimesOthers
 init|=
 literal|false
@@ -1944,6 +1954,8 @@ operator|||
 name|sumOf
 operator|||
 name|maxOf
+operator|||
+name|computedOf
 operator|)
 condition|)
 block|{
@@ -2048,7 +2060,7 @@ literal|": multi valued explanation description=\""
 operator|+
 name|descr
 operator|+
-literal|"\" must be 'max of plus x times others' or end with 'product of'"
+literal|"\" must be 'max of plus x times others', 'computed as x from:' or end with 'product of'"
 operator|+
 literal|" or 'sum of:' or 'max of:' - "
 operator|+
@@ -2059,6 +2071,8 @@ operator|||
 name|sumOf
 operator|||
 name|maxOf
+operator|||
+name|computedOf
 operator|||
 name|maxTimesOthers
 argument_list|)
@@ -2206,8 +2220,12 @@ name|assertTrue
 argument_list|(
 literal|"should never get here!"
 argument_list|,
-literal|false
+name|computedOf
 argument_list|)
+expr_stmt|;
+name|combined
+operator|=
+name|value
 expr_stmt|;
 block|}
 name|Assert

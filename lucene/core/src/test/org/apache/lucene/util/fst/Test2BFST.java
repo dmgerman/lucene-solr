@@ -168,22 +168,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|packed
-operator|.
-name|PackedInts
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|Ignore
@@ -299,31 +283,19 @@ decl_stmt|;
 for|for
 control|(
 name|int
-name|doPackIter
+name|iter
 init|=
 literal|0
 init|;
-name|doPackIter
+name|iter
 operator|<
-literal|2
+literal|1
 condition|;
-name|doPackIter
+name|iter
 operator|++
 control|)
 block|{
-name|boolean
-name|doPack
-init|=
-name|doPackIter
-operator|==
-literal|1
-decl_stmt|;
 comment|// Build FST w/ NoOutputs and stop when nodeCount> 2.2B
-if|if
-condition|(
-operator|!
-name|doPack
-condition|)
 block|{
 name|System
 operator|.
@@ -383,12 +355,6 @@ operator|.
 name|MAX_VALUE
 argument_list|,
 name|outputs
-argument_list|,
-name|doPack
-argument_list|,
-name|PackedInts
-operator|.
-name|COMPACT
 argument_list|,
 literal|true
 argument_list|,
@@ -937,11 +903,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\nTEST: 3 GB size; doPack="
-operator|+
-name|doPack
-operator|+
-literal|" outputs=bytes"
+literal|"\nTEST: 3 GB size; outputs=bytes"
 argument_list|)
 expr_stmt|;
 name|Outputs
@@ -985,12 +947,6 @@ operator|.
 name|MAX_VALUE
 argument_list|,
 name|outputs
-argument_list|,
-name|doPack
-argument_list|,
-name|PackedInts
-operator|.
-name|COMPACT
 argument_list|,
 literal|true
 argument_list|,
@@ -1463,11 +1419,7 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"\nTEST: 3 GB size; doPack="
-operator|+
-name|doPack
-operator|+
-literal|" outputs=long"
+literal|"\nTEST: 3 GB size; outputs=long"
 argument_list|)
 expr_stmt|;
 name|Outputs
@@ -1511,12 +1463,6 @@ operator|.
 name|MAX_VALUE
 argument_list|,
 name|outputs
-argument_list|,
-name|doPack
-argument_list|,
-name|PackedInts
-operator|.
-name|COMPACT
 argument_list|,
 literal|true
 argument_list|,
