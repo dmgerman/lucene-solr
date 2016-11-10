@@ -92,22 +92,6 @@ begin_comment
 comment|// javadoc
 end_comment
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|packed
-operator|.
-name|PackedInts
-import|;
-end_import
-
 begin_comment
 comment|// TODO: could we somehow stream an FST to disk while we
 end_comment
@@ -192,19 +176,6 @@ operator|new
 name|IntsRefBuilder
 argument_list|()
 decl_stmt|;
-comment|// for packing
-DECL|field|doPackFST
-specifier|private
-specifier|final
-name|boolean
-name|doPackFST
-decl_stmt|;
-DECL|field|acceptableOverheadRatio
-specifier|private
-specifier|final
-name|float
-name|acceptableOverheadRatio
-decl_stmt|;
 comment|// NOTE: cutting this over to ArrayList instead loses ~6%
 comment|// in build performance on 9.8M Wikipedia terms; so we
 comment|// left this as an array:
@@ -254,7 +225,7 @@ DECL|field|bytes
 name|BytesStore
 name|bytes
 decl_stmt|;
-comment|/**    * Instantiates an FST/FSA builder without any pruning. A shortcut    * to {@link #Builder(FST.INPUT_TYPE, int, int, boolean,    * boolean, int, Outputs, boolean, float,    * boolean, int)} with pruning options turned off.    */
+comment|/**    * Instantiates an FST/FSA builder without any pruning. A shortcut    * to {@link #Builder(FST.INPUT_TYPE, int, int, boolean,    * boolean, int, Outputs, boolean, int)} with pruning options turned off.    */
 DECL|method|Builder
 specifier|public
 name|Builder
@@ -289,19 +260,13 @@ name|MAX_VALUE
 argument_list|,
 name|outputs
 argument_list|,
-literal|false
-argument_list|,
-name|PackedInts
-operator|.
-name|COMPACT
-argument_list|,
 literal|true
 argument_list|,
 literal|15
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Instantiates an FST/FSA builder with all the possible tuning and construction    * tweaks. Read parameter documentation carefully.    *     * @param inputType     *    The input type (transition labels). Can be anything from {@link INPUT_TYPE}    *    enumeration. Shorter types will consume less memory. Strings (character sequences) are     *    represented as {@link INPUT_TYPE#BYTE4} (full unicode codepoints).     *         * @param minSuffixCount1    *    If pruning the input graph during construction, this threshold is used for telling    *    if a node is kept or pruned. If transition_count(node)&gt;= minSuffixCount1, the node    *    is kept.     *        * @param minSuffixCount2    *    (Note: only Mike McCandless knows what this one is really doing...)     *     * @param doShareSuffix     *    If<code>true</code>, the shared suffixes will be compacted into unique paths.    *    This requires an additional RAM-intensive hash map for lookups in memory. Setting this parameter to    *<code>false</code> creates a single suffix path for all input sequences. This will result in a larger    *    FST, but requires substantially less memory and CPU during building.      *    * @param doShareNonSingletonNodes    *    Only used if doShareSuffix is true.  Set this to    *    true to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param shareMaxTailLength    *    Only used if doShareSuffix is true.  Set this to    *    Integer.MAX_VALUE to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param outputs The output type for each input sequence. Applies only if building an FST. For    *    FSA, use {@link NoOutputs#getSingleton()} and {@link NoOutputs#getNoOutput()} as the    *    singleton output object.    *    * @param doPackFST Pass true to create a packed FST.    *     * @param acceptableOverheadRatio How to trade speed for space when building the FST. This option    *    is only relevant when doPackFST is true. @see PackedInts#getMutable(int, int, float)    *    * @param allowArrayArcs Pass false to disable the array arc optimization    *    while building the FST; this will make the resulting    *    FST smaller but slower to traverse.    *    * @param bytesPageBits How many bits wide to make each    *    byte[] block in the BytesStore; if you know the FST    *    will be large then make this larger.  For example 15    *    bits = 32768 byte pages.    */
+comment|/**    * Instantiates an FST/FSA builder with all the possible tuning and construction    * tweaks. Read parameter documentation carefully.    *     * @param inputType     *    The input type (transition labels). Can be anything from {@link INPUT_TYPE}    *    enumeration. Shorter types will consume less memory. Strings (character sequences) are     *    represented as {@link INPUT_TYPE#BYTE4} (full unicode codepoints).     *         * @param minSuffixCount1    *    If pruning the input graph during construction, this threshold is used for telling    *    if a node is kept or pruned. If transition_count(node)&gt;= minSuffixCount1, the node    *    is kept.     *        * @param minSuffixCount2    *    (Note: only Mike McCandless knows what this one is really doing...)     *     * @param doShareSuffix     *    If<code>true</code>, the shared suffixes will be compacted into unique paths.    *    This requires an additional RAM-intensive hash map for lookups in memory. Setting this parameter to    *<code>false</code> creates a single suffix path for all input sequences. This will result in a larger    *    FST, but requires substantially less memory and CPU during building.      *    * @param doShareNonSingletonNodes    *    Only used if doShareSuffix is true.  Set this to    *    true to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param shareMaxTailLength    *    Only used if doShareSuffix is true.  Set this to    *    Integer.MAX_VALUE to ensure FST is fully minimal, at cost of more    *    CPU and more RAM during building.    *    * @param outputs The output type for each input sequence. Applies only if building an FST. For    *    FSA, use {@link NoOutputs#getSingleton()} and {@link NoOutputs#getNoOutput()} as the    *    singleton output object.    *    * @param allowArrayArcs Pass false to disable the array arc optimization    *    while building the FST; this will make the resulting    *    FST smaller but slower to traverse.    *    * @param bytesPageBits How many bits wide to make each    *    byte[] block in the BytesStore; if you know the FST    *    will be large then make this larger.  For example 15    *    bits = 32768 byte pages.    */
 DECL|method|Builder
 specifier|public
 name|Builder
@@ -331,12 +296,6 @@ argument_list|<
 name|T
 argument_list|>
 name|outputs
-parameter_list|,
-name|boolean
-name|doPackFST
-parameter_list|,
-name|float
-name|acceptableOverheadRatio
 parameter_list|,
 name|boolean
 name|allowArrayArcs
@@ -371,18 +330,6 @@ name|shareMaxTailLength
 expr_stmt|;
 name|this
 operator|.
-name|doPackFST
-operator|=
-name|doPackFST
-expr_stmt|;
-name|this
-operator|.
-name|acceptableOverheadRatio
-operator|=
-name|acceptableOverheadRatio
-expr_stmt|;
-name|this
-operator|.
 name|allowArrayArcs
 operator|=
 name|allowArrayArcs
@@ -396,10 +343,6 @@ argument_list|(
 name|inputType
 argument_list|,
 name|outputs
-argument_list|,
-name|doPackFST
-argument_list|,
-name|acceptableOverheadRatio
 argument_list|,
 name|bytesPageBits
 argument_list|)
@@ -1935,47 +1878,9 @@ operator|.
 name|node
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|doPackFST
-condition|)
-block|{
-return|return
-name|fst
-operator|.
-name|pack
-argument_list|(
-name|this
-argument_list|,
-literal|3
-argument_list|,
-name|Math
-operator|.
-name|max
-argument_list|(
-literal|10
-argument_list|,
-call|(
-name|int
-call|)
-argument_list|(
-name|getNodeCount
-argument_list|()
-operator|/
-literal|4
-argument_list|)
-argument_list|)
-argument_list|,
-name|acceptableOverheadRatio
-argument_list|)
-return|;
-block|}
-else|else
-block|{
 return|return
 name|fst
 return|;
-block|}
 block|}
 DECL|method|compileAllTargets
 specifier|private
