@@ -225,11 +225,12 @@ name|byte
 index|[
 name|UnicodeUtil
 operator|.
-name|MAX_UTF8_BYTES_PER_CHAR
-operator|*
+name|maxUTF8Length
+argument_list|(
 name|chars
 operator|.
 name|length
+argument_list|)
 index|]
 decl_stmt|;
 specifier|final

@@ -3109,6 +3109,28 @@ return|return
 name|out_offset
 return|;
 block|}
+comment|/** Returns the maximum number of utf8 bytes required to encode a utf16 (e.g., java char[], String) */
+DECL|method|maxUTF8Length
+specifier|public
+specifier|static
+name|int
+name|maxUTF8Length
+parameter_list|(
+name|int
+name|utf16Length
+parameter_list|)
+block|{
+return|return
+name|Math
+operator|.
+name|multiplyExact
+argument_list|(
+name|utf16Length
+argument_list|,
+name|MAX_UTF8_BYTES_PER_CHAR
+argument_list|)
+return|;
+block|}
 comment|/**    * Utility method for {@link #UTF8toUTF16(byte[], int, int, char[])}    * @see #UTF8toUTF16(byte[], int, int, char[])    */
 DECL|method|UTF8toUTF16
 specifier|public

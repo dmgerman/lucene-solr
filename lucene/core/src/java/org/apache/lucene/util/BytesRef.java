@@ -187,12 +187,13 @@ name|byte
 index|[
 name|UnicodeUtil
 operator|.
-name|MAX_UTF8_BYTES_PER_CHAR
-operator|*
+name|maxUTF8Length
+argument_list|(
 name|text
 operator|.
 name|length
 argument_list|()
+argument_list|)
 index|]
 argument_list|)
 expr_stmt|;
