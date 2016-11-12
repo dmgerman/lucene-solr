@@ -8,13 +8,15 @@ comment|/**  * APIs and implementations of {@link org.apache.solr.response.trans
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.response.transform
+DECL|package|org.apache.solr.ltr.response.transform
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|solr
+operator|.
+name|ltr
 operator|.
 name|response
 operator|.

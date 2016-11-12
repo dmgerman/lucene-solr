@@ -475,6 +475,8 @@ operator|!=
 literal|null
 condition|)
 block|{
+try|try
+init|(
 name|InputStream
 name|stream
 init|=
@@ -484,7 +486,8 @@ name|openResource
 argument_list|(
 name|userDictionaryPath
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|String
 name|encoding
 init|=
@@ -551,6 +554,7 @@ argument_list|(
 name|reader
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{

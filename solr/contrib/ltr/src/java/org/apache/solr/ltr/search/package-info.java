@@ -8,13 +8,15 @@ comment|/**  * APIs and classes for {@linkplain org.apache.solr.search.QParserPl
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.search
+DECL|package|org.apache.solr.ltr.search
 package|package
 name|org
 operator|.
 name|apache
 operator|.
 name|solr
+operator|.
+name|ltr
 operator|.
 name|search
 package|;
