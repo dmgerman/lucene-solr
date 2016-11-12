@@ -231,6 +231,9 @@ name|RelCollation
 name|collation
 parameter_list|,
 name|RexNode
+name|offset
+parameter_list|,
+name|RexNode
 name|fetch
 parameter_list|)
 block|{
@@ -244,7 +247,7 @@ name|child
 argument_list|,
 name|collation
 argument_list|,
-literal|null
+name|offset
 argument_list|,
 name|fetch
 argument_list|)
@@ -332,6 +335,8 @@ argument_list|,
 name|input
 argument_list|,
 name|collation
+argument_list|,
+name|offset
 argument_list|,
 name|fetch
 argument_list|)

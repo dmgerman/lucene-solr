@@ -382,6 +382,13 @@ name|String
 name|metricIdentifier
 init|=
 name|metric
+operator|.
+name|toLowerCase
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 operator|+
 literal|"("
 operator|+
@@ -403,13 +410,6 @@ argument_list|(
 name|outName
 argument_list|,
 name|metricIdentifier
-operator|.
-name|toLowerCase
-argument_list|(
-name|Locale
-operator|.
-name|ROOT
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

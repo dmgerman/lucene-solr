@@ -1354,7 +1354,12 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"Failed to execute sqlQuery '%s' against JDBC connection '%s'"
+literal|"Failed to execute sqlQuery '%s' against JDBC connection '%s'.\n"
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
 argument_list|,
 name|sqlQuery
 argument_list|,
