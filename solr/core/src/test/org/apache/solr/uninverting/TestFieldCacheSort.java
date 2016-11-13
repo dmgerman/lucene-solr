@@ -472,11 +472,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|store
 operator|.
-name|similarities
-operator|.
-name|BM25Similarity
+name|Directory
 import|;
 end_import
 
@@ -486,11 +484,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|store
+name|uninverting
 operator|.
-name|Directory
+name|UninvertingReader
+operator|.
+name|Type
 import|;
 end_import
 
@@ -519,22 +519,6 @@ operator|.
 name|util
 operator|.
 name|TestUtil
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|uninverting
-operator|.
-name|UninvertingReader
-operator|.
-name|Type
 import|;
 end_import
 
@@ -3566,15 +3550,6 @@ argument_list|(
 name|ir
 argument_list|)
 decl_stmt|;
-name|searcher
-operator|.
-name|setSimilarity
-argument_list|(
-operator|new
-name|BM25Similarity
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|Sort
 name|sort
 init|=
