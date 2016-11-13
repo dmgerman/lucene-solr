@@ -64,7 +64,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|LeafReaderContext
 import|;
 end_import
 
@@ -78,7 +78,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafReaderContext
+name|IndexReader
 import|;
 end_import
 
@@ -107,22 +107,6 @@ operator|.
 name|index
 operator|.
 name|Term
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|similarities
-operator|.
-name|BM25Similarity
 import|;
 end_import
 
@@ -323,15 +307,6 @@ argument_list|(
 name|reader
 argument_list|)
 decl_stmt|;
-name|searcher
-operator|.
-name|setSimilarity
-argument_list|(
-operator|new
-name|BM25Similarity
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|searcher
 operator|.
 name|search
