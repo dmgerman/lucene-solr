@@ -422,15 +422,8 @@ name|BM25Similarity
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|allSims
-operator|.
-name|add
-argument_list|(
-operator|new
-name|BooleanSimilarity
-argument_list|()
-argument_list|)
-expr_stmt|;
+comment|// We cannot do this, because this similarity behaves in "non-traditional" ways:
+comment|// allSims.add(new BooleanSimilarity());
 for|for
 control|(
 name|BasicModel
