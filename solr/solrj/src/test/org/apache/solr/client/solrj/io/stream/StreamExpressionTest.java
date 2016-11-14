@@ -3164,13 +3164,8 @@ literal|"i_multi"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertNull
 argument_list|(
-literal|0L
-argument_list|,
-operator|(
-name|long
-operator|)
 name|tuple
 operator|.
 name|getLong

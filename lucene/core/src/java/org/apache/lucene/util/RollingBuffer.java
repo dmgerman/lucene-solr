@@ -413,6 +413,18 @@ name|inBounds
 argument_list|(
 name|pos
 argument_list|)
+operator|:
+literal|"pos="
+operator|+
+name|pos
+operator|+
+literal|" nextPos="
+operator|+
+name|nextPos
+operator|+
+literal|" count="
+operator|+
+name|count
 assert|;
 specifier|final
 name|int
@@ -432,7 +444,7 @@ name|index
 index|]
 return|;
 block|}
-comment|/** Returns the maximum position looked up, or -1 if no   *  position has been looked up sinc reset/init.  */
+comment|/** Returns the maximum position looked up, or -1 if no   *   position has been looked up since reset/init.  */
 DECL|method|getMaxPos
 specifier|public
 name|int
@@ -443,6 +455,17 @@ return|return
 name|nextPos
 operator|-
 literal|1
+return|;
+block|}
+comment|/** Returns how many active positions are in the buffer. */
+DECL|method|getBufferSize
+specifier|public
+name|int
+name|getBufferSize
+parameter_list|()
+block|{
+return|return
+name|count
 return|;
 block|}
 DECL|method|freeBefore
