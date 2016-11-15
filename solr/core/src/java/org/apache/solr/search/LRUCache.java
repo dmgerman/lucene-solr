@@ -276,6 +276,7 @@ decl_stmt|;
 comment|///  Copied from Lucene's LRUQueryCache
 comment|// memory usage of a simple term query
 DECL|field|DEFAULT_RAM_BYTES_USED
+specifier|public
 specifier|static
 specifier|final
 name|long
@@ -284,6 +285,7 @@ init|=
 literal|192
 decl_stmt|;
 DECL|field|HASHTABLE_RAM_BYTES_PER_ENTRY
+specifier|public
 specifier|static
 specifier|final
 name|long

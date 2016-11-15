@@ -393,6 +393,8 @@ class|class
 name|PreAnalyzedField
 extends|extends
 name|TextField
+implements|implements
+name|HasImplicitIndexAnalyzer
 block|{
 DECL|field|LOG
 specifier|private
