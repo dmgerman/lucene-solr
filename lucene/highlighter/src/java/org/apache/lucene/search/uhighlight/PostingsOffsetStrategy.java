@@ -203,6 +203,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+specifier|final
 name|LeafReader
 name|leafReader
 decl_stmt|;

@@ -409,8 +409,7 @@ DECL|field|indexAnalyzer
 name|Analyzer
 name|indexAnalyzer
 decl_stmt|;
-comment|// note: don't choose reanalysis because it doesn't always know the term frequency, which is a statistic used
-comment|//   in passage ranking.  Sometimes it does (e.g. when it builds a MemoryIndex) but not necessarily.
+comment|// note: all offset sources, by default, use term freq, so it shouldn't matter which we choose.
 DECL|field|fieldType
 specifier|final
 name|FieldType
@@ -422,14 +421,6 @@ name|randomFieldType
 argument_list|(
 name|random
 argument_list|()
-argument_list|,
-name|UHTestHelper
-operator|.
-name|postingsType
-argument_list|,
-name|UHTestHelper
-operator|.
-name|tvType
 argument_list|)
 decl_stmt|;
 comment|/**    * indexes a bunch of gibberish, and then highlights top(n).    * asserts that top(n) highlights is a subset of top(n+1) up to some max N    */
