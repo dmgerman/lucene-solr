@@ -145,6 +145,7 @@ init|=
 literal|0
 decl_stmt|;
 DECL|method|addMatch
+specifier|public
 name|void
 name|addMatch
 parameter_list|(

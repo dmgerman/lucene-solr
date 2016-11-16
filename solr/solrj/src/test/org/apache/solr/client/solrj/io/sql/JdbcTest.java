@@ -307,12 +307,12 @@ name|JdbcTest
 extends|extends
 name|SolrCloudTestCase
 block|{
-DECL|field|COLLECTION
+DECL|field|COLLECTIONORALIAS
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|COLLECTION
+name|COLLECTIONORALIAS
 init|=
 literal|"collection1"
 decl_stmt|;
@@ -324,15 +324,6 @@ name|String
 name|id
 init|=
 literal|"id"
-decl_stmt|;
-DECL|field|TIMEOUT
-specifier|private
-specifier|static
-specifier|final
-name|int
-name|TIMEOUT
-init|=
-literal|30
 decl_stmt|;
 DECL|field|zkHost
 specifier|private
@@ -392,11 +383,59 @@ operator|.
 name|configure
 argument_list|()
 expr_stmt|;
+name|String
+name|collection
+decl_stmt|;
+name|boolean
+name|useAlias
+init|=
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|useAlias
+condition|)
+block|{
+name|collection
+operator|=
+name|COLLECTIONORALIAS
+operator|+
+literal|"_collection"
+expr_stmt|;
+name|CollectionAdminRequest
+operator|.
+name|createAlias
+argument_list|(
+name|COLLECTIONORALIAS
+argument_list|,
+name|collection
+argument_list|)
+operator|.
+name|process
+argument_list|(
+name|cluster
+operator|.
+name|getSolrClient
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|collection
+operator|=
+name|COLLECTIONORALIAS
+expr_stmt|;
+block|}
 name|CollectionAdminRequest
 operator|.
 name|createCollection
 argument_list|(
-name|COLLECTION
+name|collection
 argument_list|,
 literal|"conf"
 argument_list|,
@@ -417,7 +456,7 @@ name|AbstractDistribZkTestBase
 operator|.
 name|waitForRecoveriesToFinish
 argument_list|(
-name|COLLECTION
+name|collection
 argument_list|,
 name|cluster
 operator|.
@@ -431,7 +470,7 @@ literal|false
 argument_list|,
 literal|true
 argument_list|,
-name|TIMEOUT
+name|DEFAULT_TIMEOUT
 argument_list|)
 expr_stmt|;
 operator|new
@@ -675,7 +714,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|collection
 argument_list|)
 expr_stmt|;
 name|zkHost
@@ -719,7 +758,9 @@ literal|"jdbc:solr://"
 operator|+
 name|zkHost
 operator|+
-literal|"?collection=collection1"
+literal|"?collection="
+operator|+
+name|COLLECTIONORALIAS
 argument_list|,
 name|props
 argument_list|)
@@ -745,7 +786,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select id, a_i, a_s, a_f from collection1 order by a_i desc limit 2"
+literal|"select id, a_i, a_s, a_f from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" order by a_i desc limit 2"
 argument_list|)
 init|)
 block|{
@@ -936,7 +981,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select id, a_i, a_s, a_f from collection1 order by a_i asc limit 2"
+literal|"select id, a_i, a_s, a_f from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" order by a_i asc limit 2"
 argument_list|)
 init|)
 block|{
@@ -1139,7 +1188,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select id, a_i, a_s, a_f from collection1 order by a_i desc limit 2"
+literal|"select id, a_i, a_s, a_f from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" order by a_i desc limit 2"
 argument_list|)
 init|)
 block|{
@@ -1233,7 +1286,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select id, a_i, a_s, a_f from collection1 order by a_i asc"
+literal|"select id, a_i, a_s, a_f from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" order by a_i asc"
 argument_list|)
 init|)
 block|{
@@ -1320,7 +1377,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select id, a_i, a_s, a_f from collection1 order by a_i asc    LIMIT   100"
+literal|"select id, a_i, a_s, a_f from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" order by a_i asc    LIMIT   100"
 argument_list|)
 init|)
 block|{
@@ -1392,7 +1453,9 @@ literal|"jdbc:solr://"
 operator|+
 name|zkHost
 operator|+
-literal|"?collection=collection1"
+literal|"?collection="
+operator|+
+name|COLLECTIONORALIAS
 argument_list|,
 name|props
 argument_list|)
@@ -1418,7 +1481,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select a_s, sum(a_f) from collection1 group by a_s "
+literal|"select a_s, sum(a_f) from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" group by a_s "
 operator|+
 literal|"order by sum(a_f) desc"
 argument_list|)
@@ -1668,7 +1735,9 @@ literal|"jdbc:solr://"
 operator|+
 name|zkHost
 operator|+
-literal|"?collection=collection1"
+literal|"?collection="
+operator|+
+name|COLLECTIONORALIAS
 argument_list|,
 name|props
 argument_list|)
@@ -1694,7 +1763,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select a_s, sum(a_f) from collection1 group by a_s "
+literal|"select a_s, sum(a_f) from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" group by a_s "
 operator|+
 literal|"order by sum(a_f) desc"
 argument_list|)
@@ -1919,7 +1992,11 @@ literal|"jdbc:solr://"
 operator|+
 name|zkHost
 operator|+
-literal|"?collection=collection1&aggregationMode=map_reduce&numWorkers=2"
+literal|"?collection="
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|"&aggregationMode=map_reduce&numWorkers=2"
 argument_list|)
 init|)
 block|{
@@ -1986,7 +2063,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select a_s, sum(a_f) from collection1 group by a_s "
+literal|"select a_s, sum(a_f) from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" group by a_s "
 operator|+
 literal|"order by sum(a_f) desc"
 argument_list|)
@@ -2211,7 +2292,11 @@ literal|"jdbc:solr://"
 operator|+
 name|zkHost
 operator|+
-literal|"?collection=collection1&username=&password=&testKey1=testValue&testKey2"
+literal|"?collection="
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|"&username=&password=&testKey1=testValue&testKey2"
 argument_list|)
 init|)
 block|{
@@ -2296,7 +2381,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select a_s, sum(a_f) from collection1 group by a_s "
+literal|"select a_s, sum(a_f) from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" group by a_s "
 operator|+
 literal|"order by sum(a_f) desc"
 argument_list|)
@@ -2521,7 +2610,7 @@ name|put
 argument_list|(
 literal|"collection"
 argument_list|,
-literal|"collection1"
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|providedProperties
@@ -2670,7 +2759,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select a_s, sum(a_f) from collection1 group by a_s "
+literal|"select a_s, sum(a_f) from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" group by a_s "
 operator|+
 literal|"order by sum(a_f) desc"
 argument_list|)
@@ -2916,7 +3009,9 @@ literal|"jdbc:solr://"
 operator|+
 name|zkHost
 operator|+
-literal|"?collection=collection1"
+literal|"?collection="
+operator|+
+name|COLLECTIONORALIAS
 argument_list|,
 name|props
 argument_list|)
@@ -2942,7 +3037,11 @@ name|stmt
 operator|.
 name|executeQuery
 argument_list|(
-literal|"select crap from collection1 group by a_s "
+literal|"select crap from "
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|" group by a_s "
 operator|+
 literal|"order by sum(a_f) desc"
 argument_list|)
@@ -2989,7 +3088,7 @@ block|{
 name|String
 name|badCollection
 init|=
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|"bad"
 decl_stmt|;
@@ -3081,7 +3180,7 @@ block|{
 name|String
 name|collection
 init|=
-name|COLLECTION
+name|COLLECTIONORALIAS
 decl_stmt|;
 name|String
 name|connectionString1

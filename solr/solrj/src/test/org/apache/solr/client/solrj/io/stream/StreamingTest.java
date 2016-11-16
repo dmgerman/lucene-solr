@@ -584,6 +584,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Assume
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Before
 import|;
 end_import
@@ -619,7 +629,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *  All base tests will be done with CloudSolrStream. Under the covers CloudSolrStream uses SolrStream so  *  SolrStream will get fully exercised through these tests.  *  **/
+comment|/** *  All base tests will be done with CloudSolrStream. Under the covers CloudSolrStream uses SolrStream so *  SolrStream will get fully exercised through these tests. * **/
 end_comment
 
 begin_class
@@ -647,21 +657,12 @@ name|StreamingTest
 extends|extends
 name|SolrCloudTestCase
 block|{
-DECL|field|TIMEOUT
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|TIMEOUT
-init|=
-literal|30
-decl_stmt|;
-DECL|field|COLLECTION
+DECL|field|COLLECTIONORALIAS
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|COLLECTION
+name|COLLECTIONORALIAS
 init|=
 literal|"streams"
 decl_stmt|;
@@ -766,6 +767,12 @@ specifier|static
 name|int
 name|numWorkers
 decl_stmt|;
+DECL|field|useAlias
+specifier|private
+specifier|static
+name|boolean
+name|useAlias
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|configureCluster
@@ -851,11 +858,58 @@ operator|.
 name|configure
 argument_list|()
 expr_stmt|;
+name|String
+name|collection
+decl_stmt|;
+name|useAlias
+operator|=
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|useAlias
+condition|)
+block|{
+name|collection
+operator|=
+name|COLLECTIONORALIAS
+operator|+
+literal|"_collection"
+expr_stmt|;
+name|CollectionAdminRequest
+operator|.
+name|createAlias
+argument_list|(
+name|COLLECTIONORALIAS
+argument_list|,
+name|collection
+argument_list|)
+operator|.
+name|process
+argument_list|(
+name|cluster
+operator|.
+name|getSolrClient
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|collection
+operator|=
+name|COLLECTIONORALIAS
+expr_stmt|;
+block|}
 name|CollectionAdminRequest
 operator|.
 name|createCollection
 argument_list|(
-name|COLLECTION
+name|collection
 argument_list|,
 literal|"conf"
 argument_list|,
@@ -876,7 +930,7 @@ name|AbstractDistribZkTestBase
 operator|.
 name|waitForRecoveriesToFinish
 argument_list|(
-name|COLLECTION
+name|collection
 argument_list|,
 name|cluster
 operator|.
@@ -890,7 +944,7 @@ literal|false
 argument_list|,
 literal|true
 argument_list|,
-name|TIMEOUT
+name|DEFAULT_TIMEOUT
 argument_list|)
 expr_stmt|;
 name|zkHost
@@ -907,7 +961,7 @@ name|streamFactory
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|zkHost
 argument_list|)
@@ -948,7 +1002,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 block|}
@@ -1069,7 +1123,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -1100,7 +1154,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -1413,7 +1467,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -1448,7 +1502,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -1695,7 +1749,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -1728,7 +1782,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -2029,14 +2083,14 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|streamFactory
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|zkHost
 argument_list|)
@@ -2079,7 +2133,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|params
 argument_list|)
@@ -2243,7 +2297,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -2272,7 +2326,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -2542,7 +2596,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -2575,7 +2629,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -2882,7 +2936,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Test with spaces in the parameter lists.
@@ -2912,7 +2966,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -2937,7 +2991,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|tuples
 operator|.
@@ -2954,7 +3008,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|tuples
 operator|.
@@ -2971,7 +3025,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|tuples
 operator|.
@@ -2988,7 +3042,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|tuples
 operator|.
@@ -3215,7 +3269,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Test with spaces in the parameter lists.
@@ -3245,7 +3299,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -3431,7 +3485,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -3789,7 +3843,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Test with spaces in the parameter lists.
@@ -3819,7 +3873,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -4088,7 +4142,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -4121,7 +4175,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -4334,7 +4388,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -4707,7 +4761,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Test an error that comes originates from the /select handler
@@ -4737,7 +4791,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -4815,7 +4869,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -5077,7 +5131,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -5106,7 +5160,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -5119,7 +5173,7 @@ name|ParallelStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|stream
 argument_list|,
@@ -5210,7 +5264,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -5222,7 +5276,7 @@ name|ParallelStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|stream
 argument_list|,
@@ -5314,7 +5368,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -5326,7 +5380,7 @@ name|ParallelStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|stream
 argument_list|,
@@ -5598,7 +5652,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -5677,7 +5731,7 @@ name|StatsStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|,
@@ -6124,7 +6178,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -6239,7 +6293,7 @@ name|FacetStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|,
@@ -6948,7 +7002,7 @@ name|FacetStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|,
@@ -7642,7 +7696,7 @@ name|FacetStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|,
@@ -8320,7 +8374,7 @@ name|FacetStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|,
@@ -9267,7 +9321,7 @@ comment|//        selectOrder.add((String) doc.getFieldValue("id"));
 comment|//      }
 comment|//    }
 comment|//    SolrParams exportParams = mapParams("q", "*:*", "qt", "/export", "fl", "id," + field, "sort", field + " " + sortDir + ",id asc");
-comment|//    try (CloudSolrStream solrStream = new CloudSolrStream(zkHost, COLLECTION, exportParams)) {
+comment|//    try (CloudSolrStream solrStream = new CloudSolrStream(zkHost, COLLECTIONORALIAS, exportParams)) {
 comment|//      List<Tuple> tuples = getTuples(solrStream);
 comment|//      assertEquals("There should be exactly 32 responses returned", 32, tuples.size());
 comment|//      // Since the getTuples method doesn't return the EOF tuple, these two entries should be the same size.
@@ -9377,7 +9431,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|exportParams
 argument_list|)
@@ -9629,7 +9683,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -10362,7 +10416,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|JettySolrRunner
@@ -10689,7 +10743,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -10774,7 +10828,7 @@ name|FacetStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|,
@@ -11330,7 +11384,7 @@ name|FacetStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|,
@@ -12055,7 +12109,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -12084,7 +12138,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -12990,7 +13044,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|sParamsA
@@ -13021,7 +13075,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -13347,6 +13401,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+operator|!
+name|useAlias
+argument_list|)
+expr_stmt|;
 name|StreamContext
 name|context
 init|=
@@ -13394,9 +13456,9 @@ name|TopicStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 literal|"50000000"
 argument_list|,
@@ -13495,7 +13557,7 @@ argument_list|()
 operator|+
 literal|"/"
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams1
 argument_list|)
@@ -13669,7 +13731,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 for|for
@@ -13742,7 +13804,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 for|for
@@ -14008,7 +14070,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -14041,7 +14103,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -15037,7 +15099,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -15070,7 +15132,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -15215,7 +15277,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|SolrParams
@@ -15244,7 +15306,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -15568,7 +15630,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Test ascending
@@ -15598,7 +15660,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -15629,7 +15691,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsB
 argument_list|)
@@ -15716,7 +15778,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -15745,7 +15807,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsB
 argument_list|)
@@ -15827,7 +15889,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -15856,7 +15918,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsB
 argument_list|)
@@ -15951,7 +16013,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -15980,7 +16042,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsB
 argument_list|)
@@ -16263,7 +16325,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Test ascending
@@ -16297,7 +16359,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -16332,7 +16394,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsB
 argument_list|)
@@ -16454,7 +16516,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -16487,7 +16549,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsB
 argument_list|)
@@ -16784,7 +16846,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Test ascending
@@ -16818,7 +16880,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsA
 argument_list|)
@@ -16853,7 +16915,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParamsB
 argument_list|)
@@ -17064,7 +17126,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Basic CloudSolrStream Test with Descending Sort
@@ -17094,7 +17156,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -17160,7 +17222,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -17222,7 +17284,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -17283,7 +17345,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -17417,7 +17479,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|trySortWithQt
@@ -17473,7 +17535,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -17545,7 +17607,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -17611,7 +17673,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -17677,7 +17739,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -17847,7 +17909,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|tryWithQt
@@ -17907,7 +17969,7 @@ name|CloudSolrStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|sParams
 argument_list|)
@@ -19062,7 +19124,7 @@ name|ParallelStream
 argument_list|(
 name|zkHost
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|stream
 argument_list|,

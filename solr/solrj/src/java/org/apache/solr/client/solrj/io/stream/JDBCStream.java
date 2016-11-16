@@ -449,6 +449,7 @@ comment|// We'll use a static constructor to load this set.
 DECL|field|directSupportedTypes
 specifier|private
 specifier|static
+specifier|final
 name|HashSet
 argument_list|<
 name|String
@@ -457,9 +458,7 @@ name|directSupportedTypes
 init|=
 operator|new
 name|HashSet
-argument_list|<
-name|String
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 static|static
@@ -886,6 +885,8 @@ operator|.
 name|ROOT
 argument_list|,
 literal|"invalid expression %s - connection not found"
+argument_list|,
+name|connectionUrlExpression
 argument_list|)
 argument_list|)
 throw|;
@@ -946,6 +947,8 @@ operator|.
 name|ROOT
 argument_list|,
 literal|"invalid expression %s - sql not found"
+argument_list|,
+name|sqlQueryExpression
 argument_list|)
 argument_list|)
 throw|;
@@ -960,9 +963,9 @@ if|if
 condition|(
 literal|null
 operator|!=
-name|sqlQueryExpression
+name|definedSortExpression
 operator|&&
-name|sqlQueryExpression
+name|definedSortExpression
 operator|.
 name|getParameter
 argument_list|()
@@ -1015,6 +1018,8 @@ operator|.
 name|ROOT
 argument_list|,
 literal|"invalid expression %s - sort not found"
+argument_list|,
+name|definedSortExpression
 argument_list|)
 argument_list|)
 throw|;
@@ -1090,8 +1095,6 @@ parameter_list|,
 name|String
 name|driverClassName
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
@@ -1237,7 +1240,9 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"Failed to determine JDBC driver from connection url '%s'. Usually this means the driver is not loaded - you can have JDBCStream try to load it by providing the 'driverClassName' value"
+literal|"Failed to determine JDBC driver from connection url '%s'. Usually this means the driver is not loaded - "
+operator|+
+literal|"you can have JDBCStream try to load it by providing the 'driverClassName' value"
 argument_list|,
 name|connectionUrl
 argument_list|)
@@ -1466,6 +1471,7 @@ operator|+
 literal|1
 decl_stmt|;
 comment|// cause it starts at 1
+comment|// Use getColumnLabel instead of getColumnName to make sure fields renamed with AS as picked up properly
 specifier|final
 name|String
 name|columnName
@@ -1925,11 +1931,7 @@ name|fields
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|Object
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 if|if
@@ -2371,9 +2373,7 @@ block|{
 return|return
 operator|new
 name|ArrayList
-argument_list|<
-name|TupleStream
-argument_list|>
+argument_list|<>
 argument_list|()
 return|;
 block|}
@@ -2401,13 +2401,11 @@ interface|interface
 name|ResultSetValueSelector
 block|{
 DECL|method|getColumnName
-specifier|public
 name|String
 name|getColumnName
 parameter_list|()
 function_decl|;
 DECL|method|selectValue
-specifier|public
 name|Object
 name|selectValue
 parameter_list|(

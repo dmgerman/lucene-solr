@@ -427,12 +427,12 @@ name|JDBCStreamTest
 extends|extends
 name|SolrCloudTestCase
 block|{
-DECL|field|COLLECTION
+DECL|field|COLLECTIONORALIAS
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|COLLECTION
+name|COLLECTIONORALIAS
 init|=
 literal|"jdbc"
 decl_stmt|;
@@ -506,11 +506,59 @@ operator|.
 name|configure
 argument_list|()
 expr_stmt|;
+name|String
+name|collection
+decl_stmt|;
+name|boolean
+name|useAlias
+init|=
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|useAlias
+condition|)
+block|{
+name|collection
+operator|=
+name|COLLECTIONORALIAS
+operator|+
+literal|"_collection"
+expr_stmt|;
+name|CollectionAdminRequest
+operator|.
+name|createAlias
+argument_list|(
+name|COLLECTIONORALIAS
+argument_list|,
+name|collection
+argument_list|)
+operator|.
+name|process
+argument_list|(
+name|cluster
+operator|.
+name|getSolrClient
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|collection
+operator|=
+name|COLLECTIONORALIAS
+expr_stmt|;
+block|}
 name|CollectionAdminRequest
 operator|.
 name|createCollection
 argument_list|(
-name|COLLECTION
+name|collection
 argument_list|,
 literal|"conf"
 argument_list|,
@@ -531,7 +579,7 @@ name|AbstractDistribZkTestBase
 operator|.
 name|waitForRecoveriesToFinish
 argument_list|(
-name|COLLECTION
+name|collection
 argument_list|,
 name|cluster
 operator|.
@@ -688,7 +736,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 block|}
@@ -1276,7 +1324,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -1288,7 +1336,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -1381,7 +1429,7 @@ name|constructStream
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", fl=\"code_s,name_s\",q=\"*:*\",sort=\"code_s asc\")"
 argument_list|)
@@ -1491,7 +1539,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -1821,7 +1869,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -1845,7 +1893,7 @@ literal|"  select("
 operator|+
 literal|"    search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", fl=\"personId_i,rating_f\", q=\"rating_f:*\", sort=\"personId_i asc\"),"
 operator|+
@@ -2025,7 +2073,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -2355,7 +2403,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -2370,10 +2418,7 @@ name|Tuple
 argument_list|>
 name|tuples
 decl_stmt|;
-comment|// Basic test
-comment|// the test here is the setting of the property get_column_name=true. In hsqldb if this value is set to true then the use of an
-comment|// as clause in a select will have no effect. As such even though we have PEOPLE.ID as PERSONID we will still expect the column
-comment|// name to come out as ID and not PERSONID
+comment|// Basic test for no alias
 name|expression
 operator|=
 literal|"innerJoin("
@@ -2382,7 +2427,7 @@ literal|"  select("
 operator|+
 literal|"    search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", fl=\"personId_i,rating_f\", q=\"rating_f:*\", sort=\"personId_i asc\"),"
 operator|+
@@ -2394,9 +2439,9 @@ literal|"  ),"
 operator|+
 literal|"  select("
 operator|+
-literal|"    jdbc(connection=\"jdbc:hsqldb:mem:.\", sql=\"select PEOPLE.ID as PERSONID, PEOPLE.NAME, COUNTRIES.COUNTRY_NAME from PEOPLE inner join COUNTRIES on PEOPLE.COUNTRY_CODE = COUNTRIES.CODE order by PEOPLE.ID\", sort=\"PERSONID asc\", get_column_name=true),"
+literal|"    jdbc(connection=\"jdbc:hsqldb:mem:.\", sql=\"select PEOPLE.ID, PEOPLE.NAME, COUNTRIES.COUNTRY_NAME from PEOPLE inner join COUNTRIES on PEOPLE.COUNTRY_CODE = COUNTRIES.CODE order by PEOPLE.ID\", sort=\"ID asc\"),"
 operator|+
-literal|"    PERSONID as personId,"
+literal|"    ID as personId,"
 operator|+
 literal|"    NAME as personName,"
 operator|+
@@ -2542,10 +2587,7 @@ argument_list|,
 literal|"United States"
 argument_list|)
 expr_stmt|;
-comment|// Basic test
-comment|// the test here is the setting of the property get_column_name=false. In hsqldb if this value is set to false then the use of an
-comment|// as clause in a select will have effect. As such we have PEOPLE.ID as PERSONID we will still expect the column name to come out
-comment|// PERSONID and not ID
+comment|// Basic test for alias
 name|expression
 operator|=
 literal|"innerJoin("
@@ -2554,7 +2596,7 @@ literal|"  select("
 operator|+
 literal|"    search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", fl=\"personId_i,rating_f\", q=\"rating_f:*\", sort=\"personId_i asc\"),"
 operator|+
@@ -2566,7 +2608,7 @@ literal|"  ),"
 operator|+
 literal|"  select("
 operator|+
-literal|"    jdbc(connection=\"jdbc:hsqldb:mem:.\", sql=\"select PEOPLE.ID as PERSONID, PEOPLE.NAME, COUNTRIES.COUNTRY_NAME from PEOPLE inner join COUNTRIES on PEOPLE.COUNTRY_CODE = COUNTRIES.CODE order by PEOPLE.ID\", sort=\"PERSONID asc\", get_column_name=false),"
+literal|"    jdbc(connection=\"jdbc:hsqldb:mem:.\", sql=\"select PEOPLE.ID as PERSONID, PEOPLE.NAME, COUNTRIES.COUNTRY_NAME from PEOPLE inner join COUNTRIES on PEOPLE.COUNTRY_CODE = COUNTRIES.CODE order by PEOPLE.ID\", sort=\"PERSONID asc\"),"
 operator|+
 literal|"    PERSONID as personId,"
 operator|+
@@ -2734,7 +2776,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -3109,7 +3151,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -3135,7 +3177,7 @@ literal|"    hashed=select("
 operator|+
 literal|"      search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", fl=\"personId_i,rating_f\", q=\"rating_f:*\", sort=\"personId_i asc\"),"
 operator|+

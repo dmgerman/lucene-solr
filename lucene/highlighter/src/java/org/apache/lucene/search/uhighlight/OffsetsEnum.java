@@ -320,6 +320,10 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|hasMorePositions
+argument_list|()
+assert|;
 name|pos
 operator|++
 expr_stmt|;

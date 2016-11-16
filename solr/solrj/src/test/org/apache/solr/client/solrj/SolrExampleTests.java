@@ -4685,6 +4685,14 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// if you don't ask for it, the schema is null
+name|assertNull
+argument_list|(
+name|rsp
+operator|.
+name|getDynamicFieldInfo
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|luke
 operator|.
 name|setShowSchema
@@ -4746,6 +4754,14 @@ name|FieldFlag
 operator|.
 name|INDEXED
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|rsp
+operator|.
+name|getDynamicFieldInfo
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

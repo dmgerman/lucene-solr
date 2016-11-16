@@ -582,6 +582,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|Assume
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|Before
 import|;
 end_import
@@ -637,12 +647,12 @@ name|StreamExpressionTest
 extends|extends
 name|SolrCloudTestCase
 block|{
-DECL|field|COLLECTION
+DECL|field|COLLECTIONORALIAS
 specifier|private
 specifier|static
 specifier|final
 name|String
-name|COLLECTION
+name|COLLECTIONORALIAS
 init|=
 literal|"collection1"
 decl_stmt|;
@@ -653,7 +663,7 @@ specifier|final
 name|int
 name|TIMEOUT
 init|=
-literal|30
+name|DEFAULT_TIMEOUT
 decl_stmt|;
 DECL|field|id
 specifier|private
@@ -663,6 +673,12 @@ name|String
 name|id
 init|=
 literal|"id"
+decl_stmt|;
+DECL|field|useAlias
+specifier|private
+specifier|static
+name|boolean
+name|useAlias
 decl_stmt|;
 annotation|@
 name|BeforeClass
@@ -749,11 +765,58 @@ operator|.
 name|configure
 argument_list|()
 expr_stmt|;
+name|String
+name|collection
+decl_stmt|;
+name|useAlias
+operator|=
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+expr_stmt|;
+if|if
+condition|(
+name|useAlias
+condition|)
+block|{
+name|collection
+operator|=
+name|COLLECTIONORALIAS
+operator|+
+literal|"_collection"
+expr_stmt|;
+name|CollectionAdminRequest
+operator|.
+name|createAlias
+argument_list|(
+name|COLLECTIONORALIAS
+argument_list|,
+name|collection
+argument_list|)
+operator|.
+name|process
+argument_list|(
+name|cluster
+operator|.
+name|getSolrClient
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|collection
+operator|=
+name|COLLECTIONORALIAS
+expr_stmt|;
+block|}
 name|CollectionAdminRequest
 operator|.
 name|createCollection
 argument_list|(
-name|COLLECTION
+name|collection
 argument_list|,
 literal|"conf"
 argument_list|,
@@ -774,7 +837,7 @@ name|AbstractDistribZkTestBase
 operator|.
 name|waitForRecoveriesToFinish
 argument_list|(
-name|COLLECTION
+name|collection
 argument_list|,
 name|cluster
 operator|.
@@ -818,7 +881,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 block|}
@@ -938,7 +1001,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -950,7 +1013,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -982,7 +1045,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\")"
 argument_list|)
@@ -1052,7 +1115,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\", aliases=\"a_i=alias.a_i, a_s=name\")"
 argument_list|)
@@ -1136,7 +1199,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(0 3 4)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\")"
 argument_list|)
@@ -1203,7 +1266,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\")"
 argument_list|)
@@ -1263,7 +1326,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"blah\", sort=\"a_f asc, a_i asc\")"
 argument_list|)
@@ -1430,7 +1493,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -1461,7 +1524,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", zkHost="
 operator|+
@@ -1541,7 +1604,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\", aliases=\"a_i=alias.a_i, a_s=name\", zkHost="
 operator|+
@@ -1635,7 +1698,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(0 3 4)\", fl=\"id,a_s,a_i,a_f\", zkHost="
 operator|+
@@ -1920,7 +1983,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -1944,7 +2007,7 @@ argument_list|()
 operator|+
 literal|"/"
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 decl_stmt|;
 name|List
 argument_list|<
@@ -1997,7 +2060,7 @@ literal|"q1"
 argument_list|,
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(0 3 4)\", fl=\"id,a_s,a_i,a_f\", sort=${mySort})"
 argument_list|)
@@ -2010,7 +2073,7 @@ literal|"q2"
 argument_list|,
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(1)\", fl=\"id,a_s,a_i,a_f\", sort=${mySort})"
 argument_list|)
@@ -2123,7 +2186,7 @@ literal|"q2"
 argument_list|,
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(1 2)\", fl=\"id,a_s,a_i,a_f\", sort=${mySort})"
 argument_list|)
@@ -2296,7 +2359,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -2320,7 +2383,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -2358,7 +2421,7 @@ name|parse
 argument_list|(
 literal|"unique(search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\"), over=\"a_f\")"
 argument_list|)
@@ -2412,7 +2475,7 @@ name|parse
 argument_list|(
 literal|"unique(search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f desc, a_i desc\"), over=\"a_f\")"
 argument_list|)
@@ -2466,7 +2529,7 @@ name|parse
 argument_list|(
 literal|"unique(search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\"), over=\"a_f, a_i\")"
 argument_list|)
@@ -2522,7 +2585,7 @@ name|constructStream
 argument_list|(
 literal|"unique(search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\"), over=\"a_f, a_i\")"
 argument_list|)
@@ -2695,7 +2758,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -2719,7 +2782,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -2757,7 +2820,7 @@ name|constructStream
 argument_list|(
 literal|"sort(search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\"), by=\"a_i asc\")"
 argument_list|)
@@ -2805,7 +2868,7 @@ name|constructStream
 argument_list|(
 literal|"sort(search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\"), by=\"a_i desc\")"
 argument_list|)
@@ -2853,7 +2916,7 @@ name|constructStream
 argument_list|(
 literal|"sort(search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\"), by=\"a_i asc, a_f desc\")"
 argument_list|)
@@ -3017,7 +3080,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -3044,7 +3107,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -3073,7 +3136,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f, s_multi, i_multi\", qt=\"/export\", sort=\"a_i asc\")"
 argument_list|)
@@ -3262,7 +3325,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f, s_multi, i_multi\", qt=\"/export\", sort=\"a_s asc\")"
 argument_list|)
@@ -3318,7 +3381,7 @@ name|parse
 argument_list|(
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f, s_multi, i_multi\", qt=\"/export\", sort=\"a_s desc\")"
 argument_list|)
@@ -3482,7 +3545,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -3506,7 +3569,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -3555,13 +3618,13 @@ literal|"merge("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(0 3 4)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(1)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\"),"
 operator|+
@@ -3619,13 +3682,13 @@ literal|"merge("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(0 3 4)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f desc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(1)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f desc\"),"
 operator|+
@@ -3683,13 +3746,13 @@ literal|"merge("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(0 3 4)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_s asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(1 2)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_s asc\"),"
 operator|+
@@ -3749,13 +3812,13 @@ literal|"merge("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(0 3 4)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_s asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(1 2)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_s asc\"),"
 operator|+
@@ -3805,19 +3868,19 @@ literal|"merge("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(0 4)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_s asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(1)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_s asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(2)\", fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_s asc\"),"
 operator|+
@@ -3971,7 +4034,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -3995,7 +4058,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -4046,7 +4109,7 @@ literal|"n=3,"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\"),"
 operator|+
@@ -4106,7 +4169,7 @@ literal|"unique("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f desc\"),"
 operator|+
@@ -4166,7 +4229,7 @@ literal|"unique("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\"),"
 operator|+
@@ -4220,7 +4283,7 @@ literal|"unique("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f desc, a_i desc\"),"
 operator|+
@@ -4337,7 +4400,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -4355,7 +4418,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -4406,7 +4469,7 @@ name|parse
 argument_list|(
 literal|"random("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"*:*\", rows=\"1000\", fl=\"id, a_i\")"
 argument_list|)
@@ -4456,7 +4519,7 @@ name|parse
 argument_list|(
 literal|"random("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"*:*\", rows=\"1000\", fl=\"id, a_i\")"
 argument_list|)
@@ -4697,7 +4760,7 @@ name|parse
 argument_list|(
 literal|"random("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"*:*\", rows=\"1\", fl=\"id, a_i\")"
 argument_list|)
@@ -4960,7 +5023,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -5001,7 +5064,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -5050,7 +5113,7 @@ literal|"reduce("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_s asc, a_f asc\"),"
 operator|+
@@ -5185,7 +5248,7 @@ literal|"reduce("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_s asc, a_f       asc\"),"
 operator|+
@@ -5570,7 +5633,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|TupleStream
@@ -5591,7 +5654,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -5628,11 +5691,11 @@ name|constructStream
 argument_list|(
 literal|"fetch("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|",  search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\"), on=\"id=a_i\", batchSize=\"2\", fl=\"subject\")"
 argument_list|)
@@ -5925,11 +5988,11 @@ name|constructStream
 argument_list|(
 literal|"fetch("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|",  search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\"), on=\"id=a_i\", batchSize=\"3\", fl=\"subject\")"
 argument_list|)
@@ -6468,7 +6531,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|TupleStream
@@ -6489,7 +6552,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -6535,15 +6598,15 @@ name|constructStream
 argument_list|(
 literal|"parallel("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", workers=2, sort=\"a_f asc\", fetch("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|",  search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\", partitionKeys=\"id\"), on=\"id=a_i\", batchSize=\"2\", fl=\"subject\"))"
 argument_list|)
@@ -6814,15 +6877,15 @@ name|constructStream
 argument_list|(
 literal|"parallel("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", workers=2, sort=\"a_f asc\", fetch("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|",  search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\", partitionKeys=\"id\"), on=\"id=a_i\", batchSize=\"3\", fl=\"subject\"))"
 argument_list|)
@@ -7296,7 +7359,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -7308,7 +7371,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -7407,7 +7470,7 @@ literal|"daemon(rollup("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"*:*\", fl=\"a_i,a_s\", sort=\"a_s asc\"),"
 operator|+
@@ -7654,7 +7717,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Now lets clear the existing docs in the queue 9, plus 3 more to get passed the run that was blocked. The next run should
@@ -7856,6 +7919,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+operator|!
+name|useAlias
+argument_list|)
+expr_stmt|;
 operator|new
 name|UpdateRequest
 argument_list|()
@@ -8057,7 +8128,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -8069,7 +8140,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -8133,11 +8204,11 @@ name|parse
 argument_list|(
 literal|"daemon(topic("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|","
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"a_s:hello\", initialCheckpoint=0, id=\"topic1\", rows=2, fl=\"id\""
 operator|+
@@ -8401,7 +8472,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -8413,7 +8484,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -8509,7 +8580,7 @@ literal|"rollup("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"a_s,a_i,a_f\", sort=\"a_s asc\"),"
 operator|+
@@ -9383,7 +9454,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -9395,7 +9466,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -9891,7 +9962,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -9914,7 +9985,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|zkHost
 argument_list|)
@@ -9976,7 +10047,7 @@ name|constructStream
 argument_list|(
 literal|"parallel("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", unique(search(collection1, q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc, a_i asc\", partitionKeys=\"a_f\"), over=\"a_f\"), workers=\"2\", zkHost=\""
 operator|+
@@ -10258,7 +10329,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -10281,7 +10352,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|zkHost
 argument_list|)
@@ -10334,7 +10405,7 @@ name|constructStream
 argument_list|(
 literal|"parallel("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", "
 operator|+
@@ -10342,7 +10413,7 @@ literal|"reduce("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"*:*\", fl=\"id,a_s,a_i,a_f\", sort=\"a_s asc,a_f asc\", partitionKeys=\"a_s\"), "
 operator|+
@@ -10493,7 +10564,7 @@ name|constructStream
 argument_list|(
 literal|"parallel("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", "
 operator|+
@@ -10501,7 +10572,7 @@ literal|"reduce("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"*:*\", fl=\"id,a_s,a_i,a_f\", sort=\"a_s desc,a_f asc\", partitionKeys=\"a_s\"), "
 operator|+
@@ -10834,7 +10905,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -10857,7 +10928,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|zkHost
 argument_list|)
@@ -10919,7 +10990,7 @@ name|constructStream
 argument_list|(
 literal|"parallel("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", "
 operator|+
@@ -10927,7 +10998,7 @@ literal|"top("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"*:*\", fl=\"id,a_s,a_i\", sort=\"a_i asc\", partitionKeys=\"a_i\"), "
 operator|+
@@ -11198,7 +11269,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -11221,7 +11292,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|zkHost
 argument_list|)
@@ -11293,15 +11364,15 @@ name|constructStream
 argument_list|(
 literal|"parallel("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", merge(search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(4 1 8 7 9)\", fl=\"id,a_s,a_i\", sort=\"a_i asc\", partitionKeys=\"a_i\"), search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(0 2 3 6)\", fl=\"id,a_s,a_i\", sort=\"a_i asc\", partitionKeys=\"a_i\"), on=\"a_i asc\"), workers=\"2\", zkHost=\""
 operator|+
@@ -11366,15 +11437,15 @@ name|constructStream
 argument_list|(
 literal|"parallel("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", merge(search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(4 1 8 9)\", fl=\"id,a_s,a_i\", sort=\"a_i desc\", partitionKeys=\"a_i\"), search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"id:(0 2 3 6)\", fl=\"id,a_s,a_i\", sort=\"a_i desc\", partitionKeys=\"a_i\"), on=\"a_i desc\"), workers=\"2\", zkHost=\""
 operator|+
@@ -11633,7 +11704,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -11645,7 +11716,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -11748,7 +11819,7 @@ name|parse
 argument_list|(
 literal|"parallel("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|","
 operator|+
@@ -11756,7 +11827,7 @@ literal|"rollup("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=*:*, fl=\"a_s,a_i,a_f\", sort=\"a_s asc\", partitionKeys=\"a_s\"),"
 operator|+
@@ -12837,7 +12908,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -12861,7 +12932,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -12901,13 +12972,13 @@ literal|"innerJoin("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:left\", fl=\"id,join1_i,join2_s,ident_s\", sort=\"join1_i asc, join2_s asc, id asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:right\", fl=\"join1_i,join2_s,ident_s\", sort=\"join1_i asc, join2_s asc\"),"
 operator|+
@@ -12973,13 +13044,13 @@ literal|"innerJoin("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:left\", fl=\"id,join1_i,join2_s,ident_s\", sort=\"join1_i desc, join2_s asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:right\", fl=\"join1_i,join2_s,ident_s\", sort=\"join1_i desc, join2_s asc\"),"
 operator|+
@@ -13045,13 +13116,13 @@ literal|"innerJoin("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:left\", fl=\"id,join1_i,join2_s,ident_s\", sort=\"ident_s asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:right\", fl=\"id,join1_i,join2_s,ident_s\", sort=\"ident_s asc\", aliases=\"id=right.id, join1_i=right.join1_i, join2_s=right.join2_s, ident_s=right.ident_s\"),"
 operator|+
@@ -13096,13 +13167,13 @@ literal|"innerJoin("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:left\", fl=\"id,join1_i,join2_s,ident_s\", sort=\"join1_i asc, join2_s asc, id asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:right\", fl=\"join3_i,join2_s,ident_s\", sort=\"join3_i asc, join2_s asc\", aliases=\"join3_i=aliasesField\"),"
 operator|+
@@ -13564,7 +13635,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -13588,7 +13659,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -13628,13 +13699,13 @@ literal|"leftOuterJoin("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:left\", fl=\"id,join1_i,join2_s,ident_s\", sort=\"join1_i asc, join2_s asc, id asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:right\", fl=\"join1_i,join2_s,ident_s\", sort=\"join1_i asc, join2_s asc\"),"
 operator|+
@@ -13704,13 +13775,13 @@ literal|"leftOuterJoin("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:left\", fl=\"id,join1_i,join2_s,ident_s\", sort=\"join1_i desc, join2_s asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:right\", fl=\"join1_i,join2_s,ident_s\", sort=\"join1_i desc, join2_s asc\"),"
 operator|+
@@ -13780,13 +13851,13 @@ literal|"leftOuterJoin("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:left\", fl=\"id,join1_i,join2_s,ident_s\", sort=\"ident_s asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:right\", fl=\"id,join1_i,join2_s,ident_s\", sort=\"ident_s asc\", aliases=\"id=right.id, join1_i=right.join1_i, join2_s=right.join2_s, ident_s=right.ident_s\"),"
 operator|+
@@ -13852,13 +13923,13 @@ literal|"leftOuterJoin("
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:left\", fl=\"id,join1_i,join2_s,ident_s\", sort=\"join1_i asc, join2_s asc, id asc\"),"
 operator|+
 literal|"search("
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 operator|+
 literal|", q=\"side_s:right\", fl=\"join3_i,join2_s,ident_s\", sort=\"join3_i asc, join2_s asc\", aliases=\"join3_i=aliasesField\"),"
 operator|+
@@ -14324,7 +14395,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -14348,7 +14419,7 @@ argument_list|()
 operator|.
 name|withCollectionZkHost
 argument_list|(
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|,
 name|cluster
 operator|.
@@ -15038,7 +15109,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -15766,7 +15837,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -16560,7 +16631,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -19577,7 +19648,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
@@ -20791,6 +20862,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+operator|!
+name|useAlias
+argument_list|)
+expr_stmt|;
 operator|new
 name|UpdateRequest
 argument_list|()
@@ -20992,7 +21071,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -21280,7 +21359,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|expression
@@ -21722,7 +21801,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Start reading from the DaemonStream
@@ -21841,7 +21920,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Read from the same DaemonStream stream
@@ -21938,6 +22017,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+operator|!
+name|useAlias
+argument_list|)
+expr_stmt|;
 operator|new
 name|UpdateRequest
 argument_list|()
@@ -22179,7 +22266,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -22527,7 +22614,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|expression
@@ -22730,7 +22817,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 comment|//Run the same topic again including the initialCheckpoint. It should start where it left off.
@@ -26090,6 +26177,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+operator|!
+name|useAlias
+argument_list|)
+expr_stmt|;
 name|CollectionAdminRequest
 operator|.
 name|createCollection
@@ -30509,7 +30604,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -30631,6 +30726,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+operator|!
+name|useAlias
+argument_list|)
+expr_stmt|;
 name|CollectionAdminRequest
 operator|.
 name|createCollection
@@ -30836,7 +30939,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|updateRequest
@@ -30914,7 +31017,7 @@ argument_list|()
 operator|+
 literal|"/"
 operator|+
-name|COLLECTION
+name|COLLECTIONORALIAS
 decl_stmt|;
 name|TupleStream
 name|updateTrainModelStream
@@ -31289,7 +31392,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|updateRequest
@@ -31370,7 +31473,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|updateTrainModelStream
@@ -32893,6 +32996,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+operator|!
+name|useAlias
+argument_list|)
+expr_stmt|;
 name|CollectionAdminRequest
 operator|.
 name|createCollection
@@ -33014,7 +33125,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -33815,7 +33926,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory
@@ -33952,6 +34063,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|Assume
+operator|.
+name|assumeTrue
+argument_list|(
+operator|!
+name|useAlias
+argument_list|)
+expr_stmt|;
 name|CollectionAdminRequest
 operator|.
 name|createCollection
@@ -34073,7 +34192,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -34597,7 +34716,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamExpression
@@ -34857,7 +34976,7 @@ operator|.
 name|getSolrClient
 argument_list|()
 argument_list|,
-name|COLLECTION
+name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|StreamFactory

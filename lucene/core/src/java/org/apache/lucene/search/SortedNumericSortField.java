@@ -241,6 +241,19 @@ operator|=
 name|type
 expr_stmt|;
 block|}
+comment|/** Returns the numeric type in use for this sort */
+DECL|method|getNumericType
+specifier|public
+name|SortField
+operator|.
+name|Type
+name|getNumericType
+parameter_list|()
+block|{
+return|return
+name|type
+return|;
+block|}
 comment|/** Returns the selector in use for this sort */
 DECL|method|getSelector
 specifier|public

@@ -1217,7 +1217,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Returns terms as a List, but expanded to any terms in strictPhrases' keySet if present.  That can only    * happen if willRewrite() is true.    */
+comment|/**    * Returns terms as a List, but expanded to any terms in phraseHelper' keySet if present.  That can only    * happen if willRewrite() is true.    */
 DECL|method|expandTermsIfRewrite
 name|List
 argument_list|<
