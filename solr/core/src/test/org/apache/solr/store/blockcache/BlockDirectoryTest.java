@@ -719,7 +719,7 @@ name|slabSize
 init|=
 name|blockSize
 operator|*
-literal|32768
+literal|16384
 decl_stmt|;
 name|long
 name|totalMemory
