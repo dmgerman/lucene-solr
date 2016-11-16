@@ -641,7 +641,6 @@ block|}
 comment|/**    * Creates a query from the analysis chain.    *<p>    * Expert: this is more useful for subclasses such as queryparsers.     * If using this class directly, just use {@link #createBooleanQuery(String, String)}    * and {@link #createPhraseQuery(String, String)}    * @param analyzer analyzer used for this query    * @param operator default boolean operator used for this query    * @param field field to create queries against    * @param queryText text to be passed to the analysis chain    * @param quoted true if phrases should be generated when terms occur at more than one position    * @param phraseSlop slop factor for phrase/multiphrase queries    */
 DECL|method|createFieldQuery
 specifier|protected
-specifier|final
 name|Query
 name|createFieldQuery
 parameter_list|(
