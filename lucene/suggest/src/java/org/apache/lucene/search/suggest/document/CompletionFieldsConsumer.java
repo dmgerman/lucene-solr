@@ -577,6 +577,16 @@ argument_list|(
 name|field
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|terms
+operator|==
+literal|null
+condition|)
+block|{
+comment|// this can happen from ghost fields, where the incoming Fields iterator claims a field exists but it does not
+continue|continue;
+block|}
 name|TermsEnum
 name|termsEnum
 init|=
