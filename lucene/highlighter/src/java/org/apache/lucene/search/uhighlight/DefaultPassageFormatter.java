@@ -58,7 +58,7 @@ specifier|final
 name|boolean
 name|escape
 decl_stmt|;
-comment|/**      * Creates a new DefaultPassageFormatter with the default tags.      */
+comment|/**    * Creates a new DefaultPassageFormatter with the default tags.    */
 DECL|method|DefaultPassageFormatter
 specifier|public
 name|DefaultPassageFormatter
@@ -76,7 +76,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new DefaultPassageFormatter with custom tags.      * @param preTag text which should appear before a highlighted term.      * @param postTag text which should appear after a highlighted term.      * @param ellipsis text which should be used to connect two unconnected passages.      * @param escape true if text should be html-escaped      */
+comment|/**    * Creates a new DefaultPassageFormatter with custom tags.    *    * @param preTag   text which should appear before a highlighted term.    * @param postTag  text which should appear after a highlighted term.    * @param ellipsis text which should be used to connect two unconnected passages.    * @param escape   true if text should be html-escaped    */
 DECL|method|DefaultPassageFormatter
 specifier|public
 name|DefaultPassageFormatter
@@ -347,7 +347,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Appends original text to the response.      * @param dest resulting text, possibly transformed or encoded      * @param content original text content      * @param start index of the first character in content      * @param end index of the character following the last character in content      */
+comment|/**    * Appends original text to the response.    *    * @param dest    resulting text, possibly transformed or encoded    * @param content original text content    * @param start   index of the first character in content    * @param end     index of the character following the last character in content    */
 DECL|method|append
 specifier|protected
 name|void

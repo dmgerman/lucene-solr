@@ -75,7 +75,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a passage (typically a sentence of the document).   *<p>  * A passage contains {@link #getNumMatches} highlights from the query,  * and the offsets and query terms that correspond with each match.  *  * @lucene.experimental  */
+comment|/**  * Represents a passage (typically a sentence of the document).  *<p>  * A passage contains {@link #getNumMatches} highlights from the query,  * and the offsets and query terms that correspond with each match.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -517,7 +517,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**      * Start offset of this passage.      * @return start index (inclusive) of the passage in the      *         original content: always&gt;= 0.      */
+comment|/**    * Start offset of this passage.    *    * @return start index (inclusive) of the passage in the    * original content: always&gt;= 0.    */
 DECL|method|getStartOffset
 specifier|public
 name|int
@@ -528,7 +528,7 @@ return|return
 name|startOffset
 return|;
 block|}
-comment|/**      * End offset of this passage.      * @return end index (exclusive) of the passage in the      *         original content: always&gt;= {@link #getStartOffset()}      */
+comment|/**    * End offset of this passage.    *    * @return end index (exclusive) of the passage in the    * original content: always&gt;= {@link #getStartOffset()}    */
 DECL|method|getEndOffset
 specifier|public
 name|int
@@ -539,7 +539,7 @@ return|return
 name|endOffset
 return|;
 block|}
-comment|/**      * Passage's score.      */
+comment|/**    * Passage's score.    */
 DECL|method|getScore
 specifier|public
 name|float
@@ -550,7 +550,7 @@ return|return
 name|score
 return|;
 block|}
-comment|/**      * Number of term matches available in      * {@link #getMatchStarts}, {@link #getMatchEnds},      * {@link #getMatchTerms}      */
+comment|/**    * Number of term matches available in    * {@link #getMatchStarts}, {@link #getMatchEnds},    * {@link #getMatchTerms}    */
 DECL|method|getNumMatches
 specifier|public
 name|int
@@ -561,7 +561,7 @@ return|return
 name|numMatches
 return|;
 block|}
-comment|/**      * Start offsets of the term matches, in increasing order.      *<p>      * Only {@link #getNumMatches} are valid. Note that these      * offsets are absolute (not relative to {@link #getStartOffset()}).      */
+comment|/**    * Start offsets of the term matches, in increasing order.    *<p>    * Only {@link #getNumMatches} are valid. Note that these    * offsets are absolute (not relative to {@link #getStartOffset()}).    */
 DECL|method|getMatchStarts
 specifier|public
 name|int
@@ -573,7 +573,7 @@ return|return
 name|matchStarts
 return|;
 block|}
-comment|/**      * End offsets of the term matches, corresponding with {@link #getMatchStarts}.      *<p>      * Only {@link #getNumMatches} are valid. Note that its possible that an end offset      * could exceed beyond the bounds of the passage ({@link #getEndOffset()}), if the      * Analyzer produced a term which spans a passage boundary.      */
+comment|/**    * End offsets of the term matches, corresponding with {@link #getMatchStarts}.    *<p>    * Only {@link #getNumMatches} are valid. Note that its possible that an end offset    * could exceed beyond the bounds of the passage ({@link #getEndOffset()}), if the    * Analyzer produced a term which spans a passage boundary.    */
 DECL|method|getMatchEnds
 specifier|public
 name|int
@@ -585,7 +585,7 @@ return|return
 name|matchEnds
 return|;
 block|}
-comment|/**      * BytesRef (term text) of the matches, corresponding with {@link #getMatchStarts()}.      *<p>      * Only {@link #getNumMatches()} are valid.      */
+comment|/**    * BytesRef (term text) of the matches, corresponding with {@link #getMatchStarts()}.    *<p>    * Only {@link #getNumMatches()} are valid.    */
 DECL|method|getMatchTerms
 specifier|public
 name|BytesRef
