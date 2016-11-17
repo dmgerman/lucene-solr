@@ -81,11 +81,11 @@ end_comment
 begin_class
 DECL|class|Passage
 specifier|public
-specifier|final
 class|class
 name|Passage
 block|{
 DECL|field|startOffset
+specifier|private
 name|int
 name|startOffset
 init|=
@@ -93,6 +93,7 @@ operator|-
 literal|1
 decl_stmt|;
 DECL|field|endOffset
+specifier|private
 name|int
 name|endOffset
 init|=
@@ -100,15 +101,17 @@ operator|-
 literal|1
 decl_stmt|;
 DECL|field|score
+specifier|private
 name|float
 name|score
 init|=
 literal|0.0f
 decl_stmt|;
 DECL|field|matchStarts
+specifier|private
 name|int
-name|matchStarts
 index|[]
+name|matchStarts
 init|=
 operator|new
 name|int
@@ -117,9 +120,10 @@ literal|8
 index|]
 decl_stmt|;
 DECL|field|matchEnds
+specifier|private
 name|int
-name|matchEnds
 index|[]
+name|matchEnds
 init|=
 operator|new
 name|int
@@ -128,9 +132,10 @@ literal|8
 index|]
 decl_stmt|;
 DECL|field|matchTerms
+specifier|private
 name|BytesRef
-name|matchTerms
 index|[]
+name|matchTerms
 init|=
 operator|new
 name|BytesRef
@@ -139,11 +144,13 @@ literal|8
 index|]
 decl_stmt|;
 DECL|field|numMatches
+specifier|private
 name|int
 name|numMatches
 init|=
 literal|0
 decl_stmt|;
+comment|/** @lucene.internal */
 DECL|method|addMatch
 specifier|public
 name|void
@@ -327,7 +334,9 @@ name|numMatches
 operator|++
 expr_stmt|;
 block|}
+comment|/** @lucene.internal */
 DECL|method|sort
+specifier|public
 name|void
 name|sort
 parameter_list|()
@@ -485,7 +494,9 @@ name|numMatches
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** @lucene.internal */
 DECL|method|reset
+specifier|public
 name|void
 name|reset
 parameter_list|()
@@ -585,6 +596,57 @@ block|{
 return|return
 name|matchTerms
 return|;
+block|}
+comment|/** @lucene.internal */
+DECL|method|setStartOffset
+specifier|public
+name|void
+name|setStartOffset
+parameter_list|(
+name|int
+name|startOffset
+parameter_list|)
+block|{
+name|this
+operator|.
+name|startOffset
+operator|=
+name|startOffset
+expr_stmt|;
+block|}
+comment|/** @lucene.internal */
+DECL|method|setEndOffset
+specifier|public
+name|void
+name|setEndOffset
+parameter_list|(
+name|int
+name|endOffset
+parameter_list|)
+block|{
+name|this
+operator|.
+name|endOffset
+operator|=
+name|endOffset
+expr_stmt|;
+block|}
+comment|/** @lucene.internal */
+DECL|method|setScore
+specifier|public
+name|void
+name|setScore
+parameter_list|(
+name|float
+name|score
+parameter_list|)
+block|{
+name|this
+operator|.
+name|score
+operator|=
+name|score
+expr_stmt|;
 block|}
 block|}
 end_class

@@ -444,10 +444,8 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|// but this would have a performance cost for likely little gain in the user experience, it
-comment|// would only serve to make this method less bogus.
-comment|// instead, we always return freq() = Integer.MAX_VALUE and let the highlighter terminate based on offset...
-comment|// TODO: DWS perhaps instead OffsetsEnum could become abstract and this would be an impl?
+comment|// See class javadocs.
+comment|// TODO: DWS perhaps instead OffsetsEnum could become abstract and this would be an impl?  See TODOs in OffsetsEnum.
 DECL|class|TokenStreamPostingsEnum
 specifier|private
 specifier|static
@@ -744,6 +742,7 @@ return|return
 name|currentEndOffset
 return|;
 block|}
+comment|// TOTAL HACK; used in OffsetsEnum.getTerm()
 annotation|@
 name|Override
 DECL|method|getPayload

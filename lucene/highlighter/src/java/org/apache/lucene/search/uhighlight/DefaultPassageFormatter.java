@@ -180,7 +180,8 @@ if|if
 condition|(
 name|passage
 operator|.
-name|startOffset
+name|getStartOffset
+argument_list|()
 operator|>
 name|pos
 operator|&&
@@ -201,7 +202,8 @@ name|pos
 operator|=
 name|passage
 operator|.
-name|startOffset
+name|getStartOffset
+argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -214,7 +216,8 @@ name|i
 operator|<
 name|passage
 operator|.
-name|numMatches
+name|getNumMatches
+argument_list|()
 condition|;
 name|i
 operator|++
@@ -225,7 +228,8 @@ name|start
 init|=
 name|passage
 operator|.
-name|matchStarts
+name|getMatchStarts
+argument_list|()
 index|[
 name|i
 index|]
@@ -235,7 +239,8 @@ name|end
 init|=
 name|passage
 operator|.
-name|matchEnds
+name|getMatchEnds
+argument_list|()
 index|[
 name|i
 index|]
@@ -322,7 +327,8 @@ name|pos
 argument_list|,
 name|passage
 operator|.
-name|endOffset
+name|getEndOffset
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -330,7 +336,8 @@ name|pos
 operator|=
 name|passage
 operator|.
-name|endOffset
+name|getEndOffset
+argument_list|()
 expr_stmt|;
 block|}
 return|return

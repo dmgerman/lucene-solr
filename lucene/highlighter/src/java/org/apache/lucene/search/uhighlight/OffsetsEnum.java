@@ -282,7 +282,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-comment|// the dp.getPayload thing is a hack -- see MultiTermHighlighting
+comment|// TODO TokenStreamOffsetStrategy could override OffsetsEnum; then remove this hack here
 return|return
 name|term
 operator|!=
@@ -295,7 +295,7 @@ operator|.
 name|getPayload
 argument_list|()
 return|;
-comment|// We don't deepcopy() because in this hack we know we don't have to.
+comment|// abusing payload like this is a total hack!
 block|}
 DECL|method|hasMorePositions
 name|boolean
@@ -371,6 +371,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+comment|// TODO TokenStreamOffsetStrategy could override OffsetsEnum; then this base impl would be no-op.
 if|if
 condition|(
 name|postingsEnum
@@ -378,7 +379,6 @@ operator|instanceof
 name|Closeable
 condition|)
 block|{
-comment|// the one in MultiTermHighlighting is.
 operator|(
 operator|(
 name|Closeable
