@@ -4662,7 +4662,14 @@ name|?
 argument_list|>
 name|comparator
 init|=
-literal|null
+name|sortField
+operator|.
+name|getComparator
+argument_list|(
+literal|1
+argument_list|,
+literal|0
+argument_list|)
 decl_stmt|;
 name|LeafFieldComparator
 name|leafComparator
@@ -4777,8 +4784,12 @@ operator|!=
 name|lastIdx
 condition|)
 block|{
-comment|// we switched segments.  invalidate comparator.
-name|comparator
+comment|// we switched segments.  invalidate leafComparator.
+name|lastIdx
+operator|=
+name|idx
+expr_stmt|;
+name|leafComparator
 operator|=
 literal|null
 expr_stmt|;
@@ -4786,22 +4797,11 @@ block|}
 block|}
 if|if
 condition|(
-name|comparator
+name|leafComparator
 operator|==
 literal|null
 condition|)
 block|{
-name|comparator
-operator|=
-name|sortField
-operator|.
-name|getComparator
-argument_list|(
-literal|1
-argument_list|,
-literal|0
-argument_list|)
-expr_stmt|;
 name|leafComparator
 operator|=
 name|comparator
