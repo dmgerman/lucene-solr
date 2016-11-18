@@ -4738,7 +4738,7 @@ block|{
 name|writeStr
 argument_list|(
 operator|(
-name|String
+name|CharSequence
 operator|)
 name|val
 argument_list|)
