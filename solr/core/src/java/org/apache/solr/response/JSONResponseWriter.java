@@ -979,8 +979,8 @@ name|writeMapCloser
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** Represents a NamedList directly as a JSON Object (essentially a Map)    * repeating any keys if they are repeated in the NamedList.  null is mapped    * to "".    */
-comment|// NamedList("a"=1,"bar"="foo",null=3) => {"a":1,"bar":"foo","":3}
+comment|/** Represents a NamedList directly as a JSON Object (essentially a Map)    * repeating any keys if they are repeated in the NamedList.    * null key is mapped to "".    */
+comment|// NamedList("a"=1,"bar"="foo",null=3,null=null) => {"a":1,"bar":"foo","":3,"":null}
 DECL|method|writeNamedListAsMapWithDups
 specifier|protected
 name|void
@@ -1088,7 +1088,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Represents a NamedList directly as an array of JSON objects...
-comment|// NamedList("a"=1,"b"=2,null=3) => [{"a":1},{"b":2},3]
+comment|// NamedList("a"=1,"b"=2,null=3,null=null) => [{"a":1},{"b":2},3,null]
 DECL|method|writeNamedListAsArrMap
 specifier|protected
 name|void
@@ -1230,7 +1230,7 @@ argument_list|()
 expr_stmt|;
 block|}
 comment|// Represents a NamedList directly as an array of JSON objects...
-comment|// NamedList("a"=1,"b"=2,null=3) => [["a",1],["b",2],[null,3]]
+comment|// NamedList("a"=1,"b"=2,null=3,null=null) => [["a",1],["b",2],[null,3],[null,null]]
 DECL|method|writeNamedListAsArrArr
 specifier|protected
 name|void
@@ -1378,7 +1378,7 @@ expr_stmt|;
 block|}
 comment|// Represents a NamedList directly as an array with keys/values
 comment|// interleaved.
-comment|// NamedList("a"=1,"b"=2,null=3) => ["a",1,"b",2,null,3]
+comment|// NamedList("a"=1,"b"=2,null=3,null=null) => ["a",1,"b",2,null,3,null,null]
 DECL|method|writeNamedListAsFlat
 specifier|protected
 name|void
@@ -3225,7 +3225,7 @@ block|}
 end_class
 
 begin_comment
-comment|/**  * Writes NamedLists directly as an array of NamedValuePair JSON objects...  * NamedList("a"=1,"b"=2,null=3) => [{"name":"a","int":1},{"name":"b","int":2},{"int":3}]  * NamedList("a"=1,"bar"="foo",null=3.4f) => [{"name":"a","int":1},{"name":"bar","str":"foo"},{"float":3.4}]  */
+comment|/**  * Writes NamedLists directly as an array of NamedValuePair JSON objects...  * NamedList("a"=1,"b"=2,null=3,null=null) => [{"name":"a","int":1},{"name":"b","int":2},{"int":3},{"null":null}]  * NamedList("a"=1,"bar"="foo",null=3.4f) => [{"name":"a","int":1},{"name":"bar","str":"foo"},{"float":3.4}]  */
 end_comment
 
 begin_class
