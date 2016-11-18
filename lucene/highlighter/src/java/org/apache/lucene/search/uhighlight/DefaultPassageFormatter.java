@@ -58,7 +58,7 @@ specifier|final
 name|boolean
 name|escape
 decl_stmt|;
-comment|/**      * Creates a new DefaultPassageFormatter with the default tags.      */
+comment|/**    * Creates a new DefaultPassageFormatter with the default tags.    */
 DECL|method|DefaultPassageFormatter
 specifier|public
 name|DefaultPassageFormatter
@@ -76,7 +76,7 @@ literal|false
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**      * Creates a new DefaultPassageFormatter with custom tags.      * @param preTag text which should appear before a highlighted term.      * @param postTag text which should appear after a highlighted term.      * @param ellipsis text which should be used to connect two unconnected passages.      * @param escape true if text should be html-escaped      */
+comment|/**    * Creates a new DefaultPassageFormatter with custom tags.    *    * @param preTag   text which should appear before a highlighted term.    * @param postTag  text which should appear after a highlighted term.    * @param ellipsis text which should be used to connect two unconnected passages.    * @param escape   true if text should be html-escaped    */
 DECL|method|DefaultPassageFormatter
 specifier|public
 name|DefaultPassageFormatter
@@ -180,7 +180,8 @@ if|if
 condition|(
 name|passage
 operator|.
-name|startOffset
+name|getStartOffset
+argument_list|()
 operator|>
 name|pos
 operator|&&
@@ -201,7 +202,8 @@ name|pos
 operator|=
 name|passage
 operator|.
-name|startOffset
+name|getStartOffset
+argument_list|()
 expr_stmt|;
 for|for
 control|(
@@ -214,7 +216,8 @@ name|i
 operator|<
 name|passage
 operator|.
-name|numMatches
+name|getNumMatches
+argument_list|()
 condition|;
 name|i
 operator|++
@@ -225,7 +228,8 @@ name|start
 init|=
 name|passage
 operator|.
-name|matchStarts
+name|getMatchStarts
+argument_list|()
 index|[
 name|i
 index|]
@@ -235,7 +239,8 @@ name|end
 init|=
 name|passage
 operator|.
-name|matchEnds
+name|getMatchEnds
+argument_list|()
 index|[
 name|i
 index|]
@@ -322,7 +327,8 @@ name|pos
 argument_list|,
 name|passage
 operator|.
-name|endOffset
+name|getEndOffset
+argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -330,7 +336,8 @@ name|pos
 operator|=
 name|passage
 operator|.
-name|endOffset
+name|getEndOffset
+argument_list|()
 expr_stmt|;
 block|}
 return|return
@@ -340,7 +347,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**      * Appends original text to the response.      * @param dest resulting text, possibly transformed or encoded      * @param content original text content      * @param start index of the first character in content      * @param end index of the character following the last character in content      */
+comment|/**    * Appends original text to the response.    *    * @param dest    resulting text, possibly transformed or encoded    * @param content original text content    * @param start   index of the first character in content    * @param end     index of the character following the last character in content    */
 DECL|method|append
 specifier|protected
 name|void

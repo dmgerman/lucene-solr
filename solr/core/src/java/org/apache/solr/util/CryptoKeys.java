@@ -1594,6 +1594,18 @@ operator|new
 name|SecureRandom
 argument_list|()
 decl_stmt|;
+comment|// If this ever comes back to haunt us see the discussion at
+comment|// SOLR-9609 for background and code allowing this to go
+comment|// into security.json
+DECL|field|DEFAULT_KEYPAIR_LENGTH
+specifier|private
+specifier|static
+specifier|final
+name|int
+name|DEFAULT_KEYPAIR_LENGTH
+init|=
+literal|1024
+decl_stmt|;
 DECL|method|RSAKeyPair
 specifier|public
 name|RSAKeyPair
@@ -1640,7 +1652,7 @@ name|keyGen
 operator|.
 name|initialize
 argument_list|(
-literal|512
+name|DEFAULT_KEYPAIR_LENGTH
 argument_list|)
 expr_stmt|;
 name|java

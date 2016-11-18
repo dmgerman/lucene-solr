@@ -677,6 +677,18 @@ parameter_list|)
 throws|throws
 name|SQLException
 block|{    }
+comment|/*    * When using OpenLink ODBC-JDBC bridge on Windows, it runs the method ConnectionImpl.setReadOnly(String ...).    * The spec says that setReadOnly(boolean ...) is required. This causes the ODBC-JDBC bridge to fail on Windows.    * OpenLink case: http://support.openlinksw.com/support/techupdate.vsp?c=21881    */
+DECL|method|setReadOnly
+specifier|public
+name|void
+name|setReadOnly
+parameter_list|(
+name|String
+name|readOnly
+parameter_list|)
+throws|throws
+name|SQLException
+block|{    }
 annotation|@
 name|Override
 DECL|method|isReadOnly

@@ -75,17 +75,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a passage (typically a sentence of the document).   *<p>  * A passage contains {@link #getNumMatches} highlights from the query,  * and the offsets and query terms that correspond with each match.  *  * @lucene.experimental  */
+comment|/**  * Represents a passage (typically a sentence of the document).  *<p>  * A passage contains {@link #getNumMatches} highlights from the query,  * and the offsets and query terms that correspond with each match.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
 DECL|class|Passage
 specifier|public
-specifier|final
 class|class
 name|Passage
 block|{
 DECL|field|startOffset
+specifier|private
 name|int
 name|startOffset
 init|=
@@ -93,6 +93,7 @@ operator|-
 literal|1
 decl_stmt|;
 DECL|field|endOffset
+specifier|private
 name|int
 name|endOffset
 init|=
@@ -100,15 +101,17 @@ operator|-
 literal|1
 decl_stmt|;
 DECL|field|score
+specifier|private
 name|float
 name|score
 init|=
 literal|0.0f
 decl_stmt|;
 DECL|field|matchStarts
+specifier|private
 name|int
-name|matchStarts
 index|[]
+name|matchStarts
 init|=
 operator|new
 name|int
@@ -117,9 +120,10 @@ literal|8
 index|]
 decl_stmt|;
 DECL|field|matchEnds
+specifier|private
 name|int
-name|matchEnds
 index|[]
+name|matchEnds
 init|=
 operator|new
 name|int
@@ -128,9 +132,10 @@ literal|8
 index|]
 decl_stmt|;
 DECL|field|matchTerms
+specifier|private
 name|BytesRef
-name|matchTerms
 index|[]
+name|matchTerms
 init|=
 operator|new
 name|BytesRef
@@ -139,11 +144,13 @@ literal|8
 index|]
 decl_stmt|;
 DECL|field|numMatches
+specifier|private
 name|int
 name|numMatches
 init|=
 literal|0
 decl_stmt|;
+comment|/** @lucene.internal */
 DECL|method|addMatch
 specifier|public
 name|void
@@ -327,7 +334,9 @@ name|numMatches
 operator|++
 expr_stmt|;
 block|}
+comment|/** @lucene.internal */
 DECL|method|sort
+specifier|public
 name|void
 name|sort
 parameter_list|()
@@ -485,7 +494,9 @@ name|numMatches
 argument_list|)
 expr_stmt|;
 block|}
+comment|/** @lucene.internal */
 DECL|method|reset
+specifier|public
 name|void
 name|reset
 parameter_list|()
@@ -506,7 +517,7 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|/**      * Start offset of this passage.      * @return start index (inclusive) of the passage in the      *         original content: always&gt;= 0.      */
+comment|/**    * Start offset of this passage.    *    * @return start index (inclusive) of the passage in the    * original content: always&gt;= 0.    */
 DECL|method|getStartOffset
 specifier|public
 name|int
@@ -517,7 +528,7 @@ return|return
 name|startOffset
 return|;
 block|}
-comment|/**      * End offset of this passage.      * @return end index (exclusive) of the passage in the      *         original content: always&gt;= {@link #getStartOffset()}      */
+comment|/**    * End offset of this passage.    *    * @return end index (exclusive) of the passage in the    * original content: always&gt;= {@link #getStartOffset()}    */
 DECL|method|getEndOffset
 specifier|public
 name|int
@@ -528,7 +539,7 @@ return|return
 name|endOffset
 return|;
 block|}
-comment|/**      * Passage's score.      */
+comment|/**    * Passage's score.    */
 DECL|method|getScore
 specifier|public
 name|float
@@ -539,7 +550,7 @@ return|return
 name|score
 return|;
 block|}
-comment|/**      * Number of term matches available in      * {@link #getMatchStarts}, {@link #getMatchEnds},      * {@link #getMatchTerms}      */
+comment|/**    * Number of term matches available in    * {@link #getMatchStarts}, {@link #getMatchEnds},    * {@link #getMatchTerms}    */
 DECL|method|getNumMatches
 specifier|public
 name|int
@@ -550,7 +561,7 @@ return|return
 name|numMatches
 return|;
 block|}
-comment|/**      * Start offsets of the term matches, in increasing order.      *<p>      * Only {@link #getNumMatches} are valid. Note that these      * offsets are absolute (not relative to {@link #getStartOffset()}).      */
+comment|/**    * Start offsets of the term matches, in increasing order.    *<p>    * Only {@link #getNumMatches} are valid. Note that these    * offsets are absolute (not relative to {@link #getStartOffset()}).    */
 DECL|method|getMatchStarts
 specifier|public
 name|int
@@ -562,7 +573,7 @@ return|return
 name|matchStarts
 return|;
 block|}
-comment|/**      * End offsets of the term matches, corresponding with {@link #getMatchStarts}.      *<p>      * Only {@link #getNumMatches} are valid. Note that its possible that an end offset      * could exceed beyond the bounds of the passage ({@link #getEndOffset()}), if the      * Analyzer produced a term which spans a passage boundary.      */
+comment|/**    * End offsets of the term matches, corresponding with {@link #getMatchStarts}.    *<p>    * Only {@link #getNumMatches} are valid. Note that its possible that an end offset    * could exceed beyond the bounds of the passage ({@link #getEndOffset()}), if the    * Analyzer produced a term which spans a passage boundary.    */
 DECL|method|getMatchEnds
 specifier|public
 name|int
@@ -574,7 +585,7 @@ return|return
 name|matchEnds
 return|;
 block|}
-comment|/**      * BytesRef (term text) of the matches, corresponding with {@link #getMatchStarts()}.      *<p>      * Only {@link #getNumMatches()} are valid.      */
+comment|/**    * BytesRef (term text) of the matches, corresponding with {@link #getMatchStarts()}.    *<p>    * Only {@link #getNumMatches()} are valid.    */
 DECL|method|getMatchTerms
 specifier|public
 name|BytesRef
@@ -585,6 +596,57 @@ block|{
 return|return
 name|matchTerms
 return|;
+block|}
+comment|/** @lucene.internal */
+DECL|method|setStartOffset
+specifier|public
+name|void
+name|setStartOffset
+parameter_list|(
+name|int
+name|startOffset
+parameter_list|)
+block|{
+name|this
+operator|.
+name|startOffset
+operator|=
+name|startOffset
+expr_stmt|;
+block|}
+comment|/** @lucene.internal */
+DECL|method|setEndOffset
+specifier|public
+name|void
+name|setEndOffset
+parameter_list|(
+name|int
+name|endOffset
+parameter_list|)
+block|{
+name|this
+operator|.
+name|endOffset
+operator|=
+name|endOffset
+expr_stmt|;
+block|}
+comment|/** @lucene.internal */
+DECL|method|setScore
+specifier|public
+name|void
+name|setScore
+parameter_list|(
+name|float
+name|score
+parameter_list|)
+block|{
+name|this
+operator|.
+name|score
+operator|=
+name|score
+expr_stmt|;
 block|}
 block|}
 end_class

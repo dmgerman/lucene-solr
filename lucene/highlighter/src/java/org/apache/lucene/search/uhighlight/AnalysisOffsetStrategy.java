@@ -318,6 +318,9 @@ argument_list|)
 return|;
 block|}
 comment|/**    * Wraps an {@link Analyzer} and string text that represents multiple values delimited by a specified character. This    * exposes a TokenStream that matches what would get indexed considering the    * {@link Analyzer#getPositionIncrementGap(String)}. Currently this assumes {@link Analyzer#getOffsetGap(String)} is    * 1; an exception will be thrown if it isn't.    *<br />    * It would be more orthogonal for this to be an Analyzer since we're wrapping an Analyzer but doing so seems like    * more work.  The underlying components see a Reader not a String -- and the String is easy to    * split up without redundant buffering.    *    * @lucene.internal    */
+comment|// TODO we could make this go away.  MemoryIndexOffsetStrategy could simply split and analyze each value into the
+comment|//   MemoryIndex. TokenStreamOffsetStrategy's hack TokenStreamPostingsEnum could incorporate this logic,
+comment|//   albeit with less code, less hack.
 DECL|class|MultiValueTokenStream
 specifier|private
 specifier|static
