@@ -308,6 +308,7 @@ name|SegmentInfos
 name|curInfos
 decl_stmt|;
 DECL|field|writer
+specifier|protected
 specifier|final
 name|IndexWriter
 name|writer
