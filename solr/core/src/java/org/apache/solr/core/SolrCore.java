@@ -13137,25 +13137,23 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|SolrException
+name|log
 operator|.
-name|log
+name|error
 argument_list|(
-name|log
+literal|"Failed to delete data dir for unloaded core: {} dir: {}"
 argument_list|,
-literal|"Failed to delete data dir for unloaded core:"
-operator|+
 name|cd
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|" dir:"
-operator|+
+argument_list|,
 name|dataDir
 operator|.
 name|getAbsolutePath
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
@@ -13187,25 +13185,23 @@ name|IOException
 name|e
 parameter_list|)
 block|{
-name|SolrException
+name|log
 operator|.
-name|log
+name|error
 argument_list|(
-name|log
+literal|"Failed to delete instance dir for unloaded core: {} dir: {}"
 argument_list|,
-literal|"Failed to delete instance dir for unloaded core:"
-operator|+
 name|cd
 operator|.
 name|getName
 argument_list|()
-operator|+
-literal|" dir:"
-operator|+
+argument_list|,
 name|cd
 operator|.
 name|getInstanceDir
 argument_list|()
+argument_list|,
+name|e
 argument_list|)
 expr_stmt|;
 block|}
