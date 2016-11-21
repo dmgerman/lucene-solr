@@ -243,12 +243,12 @@ class|class
 name|QueryBuilder
 block|{
 DECL|field|analyzer
-specifier|private
+specifier|protected
 name|Analyzer
 name|analyzer
 decl_stmt|;
 DECL|field|enablePositionIncrements
-specifier|private
+specifier|protected
 name|boolean
 name|enablePositionIncrements
 init|=
@@ -638,7 +638,7 @@ operator|=
 name|enable
 expr_stmt|;
 block|}
-comment|/**    * Creates a query from the analysis chain.    *<p>    * Expert: this is more useful for subclasses such as queryparsers.     * If using this class directly, just use {@link #createBooleanQuery(String, String)}    * and {@link #createPhraseQuery(String, String)}    * @param analyzer analyzer used for this query    * @param operator default boolean operator used for this query    * @param field field to create queries against    * @param queryText text to be passed to the analysis chain    * @param quoted true if phrases should be generated when terms occur at more than one position    * @param phraseSlop slop factor for phrase/multiphrase queries    */
+comment|/**    * Creates a query from the analysis chain.    *<p>    * Expert: this is more useful for subclasses such as queryparsers.    * If using this class directly, just use {@link #createBooleanQuery(String, String)}    * and {@link #createPhraseQuery(String, String)}.  This is a complex method and    * it is usually not necessary to override it in a subclass; instead, override    * methods like {@link #newBooleanQuery}, etc., if possible.    *    * @param analyzer analyzer used for this query    * @param operator default boolean operator used for this query    * @param field field to create queries against    * @param queryText text to be passed to the analysis chain    * @param quoted true if phrases should be generated when terms occur at more than one position    * @param phraseSlop slop factor for phrase/multiphrase queries    */
 DECL|method|createFieldQuery
 specifier|protected
 name|Query
@@ -933,7 +933,7 @@ block|}
 block|}
 comment|/**     * Creates simple term query from the cached tokenstream contents     */
 DECL|method|analyzeTerm
-specifier|private
+specifier|protected
 name|Query
 name|analyzeTerm
 parameter_list|(
@@ -996,7 +996,7 @@ return|;
 block|}
 comment|/**     * Creates simple boolean query from the cached tokenstream contents     */
 DECL|method|analyzeBoolean
-specifier|private
+specifier|protected
 name|Query
 name|analyzeBoolean
 parameter_list|(
@@ -1082,7 +1082,7 @@ argument_list|)
 return|;
 block|}
 DECL|method|add
-specifier|private
+specifier|protected
 name|void
 name|add
 parameter_list|(
@@ -1171,7 +1171,7 @@ block|}
 block|}
 comment|/**     * Creates complex boolean query from the cached tokenstream contents     */
 DECL|method|analyzeMultiBoolean
-specifier|private
+specifier|protected
 name|Query
 name|analyzeMultiBoolean
 parameter_list|(
@@ -1305,7 +1305,7 @@ return|;
 block|}
 comment|/**     * Creates simple phrase query from the cached tokenstream contents     */
 DECL|method|analyzePhrase
-specifier|private
+specifier|protected
 name|Query
 name|analyzePhrase
 parameter_list|(
@@ -1430,7 +1430,7 @@ return|;
 block|}
 comment|/**     * Creates complex phrase query from the cached tokenstream contents     */
 DECL|method|analyzeMultiPhrase
-specifier|private
+specifier|protected
 name|Query
 name|analyzeMultiPhrase
 parameter_list|(

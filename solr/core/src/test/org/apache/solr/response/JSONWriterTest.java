@@ -596,6 +596,15 @@ argument_list|,
 literal|42
 argument_list|)
 expr_stmt|;
+name|nl
+operator|.
+name|add
+argument_list|(
+literal|null
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 name|rsp
 operator|.
 name|add
@@ -683,7 +692,7 @@ condition|)
 block|{
 name|expectedNLjson
 operator|=
-literal|"\"nl\":[\"data1\",\"he\\u2028llo\\u2029!\",null,42]"
+literal|"\"nl\":[\"data1\",\"he\\u2028llo\\u2029!\",null,42,null,null]"
 expr_stmt|;
 block|}
 elseif|else
@@ -698,7 +707,7 @@ condition|)
 block|{
 name|expectedNLjson
 operator|=
-literal|"\"nl\":{\"data1\":\"he\\u2028llo\\u2029!\",\"\":42}"
+literal|"\"nl\":{\"data1\":\"he\\u2028llo\\u2029!\",\"\":42,\"\":null}"
 expr_stmt|;
 block|}
 elseif|else
@@ -713,7 +722,7 @@ condition|)
 block|{
 name|expectedNLjson
 operator|=
-literal|"\"nl\":[[\"data1\",\"he\\u2028llo\\u2029!\"],[null,42]]"
+literal|"\"nl\":[[\"data1\",\"he\\u2028llo\\u2029!\"],[null,42],[null,null]]"
 expr_stmt|;
 block|}
 elseif|else
@@ -728,7 +737,7 @@ condition|)
 block|{
 name|expectedNLjson
 operator|=
-literal|"\"nl\":[{\"data1\":\"he\\u2028llo\\u2029!\"},42]"
+literal|"\"nl\":[{\"data1\":\"he\\u2028llo\\u2029!\"},42,null]"
 expr_stmt|;
 block|}
 elseif|else
@@ -743,7 +752,7 @@ condition|)
 block|{
 name|expectedNLjson
 operator|=
-literal|"\"nl\":[{\"name\":\"data1\",\"str\":\"he\\u2028llo\\u2029!\"},{\"int\":42}]"
+literal|"\"nl\":[{\"name\":\"data1\",\"str\":\"he\\u2028llo\\u2029!\"},{\"int\":42},{\"null\":null}]"
 expr_stmt|;
 block|}
 else|else
