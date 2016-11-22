@@ -64,6 +64,18 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|codahale
+operator|.
+name|metrics
+operator|.
+name|Timer
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -137,22 +149,6 @@ operator|.
 name|util
 operator|.
 name|Utils
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|stats
-operator|.
-name|TimerContext
 import|;
 end_import
 
@@ -834,7 +830,9 @@ condition|)
 return|return
 name|clusterState
 return|;
-name|TimerContext
+name|Timer
+operator|.
+name|Context
 name|timerContext
 init|=
 name|stats
