@@ -208,8 +208,8 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|Query
-name|funcQ
+name|QParser
+name|subParser
 init|=
 name|subQuery
 argument_list|(
@@ -219,6 +219,19 @@ name|FunctionQParserPlugin
 operator|.
 name|NAME
 argument_list|)
+decl_stmt|;
+name|subParser
+operator|.
+name|setIsFilter
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+comment|// the range can be based on the relevancy score of embedded queries.
+name|Query
+name|funcQ
+init|=
+name|subParser
 operator|.
 name|getQuery
 argument_list|()
