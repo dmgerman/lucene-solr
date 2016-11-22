@@ -169,7 +169,7 @@ specifier|final
 class|class
 name|MultiSorter
 block|{
-comment|/** Does a merge sort of the leaves of the incoming reader, returning {@link DocMap} to map each leaf's    *  documents into the merged segment.  The documents for each incoming leaf reader must already be sorted by the same sort! */
+comment|/** Does a merge sort of the leaves of the incoming reader, returning {@link DocMap} to map each leaf's    *  documents into the merged segment.  The documents for each incoming leaf reader must already be sorted by the same sort!    *  Returns null if the merge sort is not needed (segments are already in index sort order).    **/
 DECL|method|sort
 specifier|static
 name|MergeState
@@ -512,6 +512,16 @@ name|mappedDocID
 init|=
 literal|0
 decl_stmt|;
+name|int
+name|lastReaderIndex
+init|=
+literal|0
+decl_stmt|;
+name|boolean
+name|isSorted
+init|=
+literal|true
+decl_stmt|;
 while|while
 condition|(
 name|queue
@@ -530,6 +540,27 @@ operator|.
 name|top
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|lastReaderIndex
+operator|>
+name|top
+operator|.
+name|readerIndex
+condition|)
+block|{
+comment|// merge sort is needed
+name|isSorted
+operator|=
+literal|false
+expr_stmt|;
+block|}
+name|lastReaderIndex
+operator|=
+name|top
+operator|.
+name|readerIndex
+expr_stmt|;
 name|builders
 index|[
 name|top
@@ -648,6 +679,15 @@ name|pop
 argument_list|()
 expr_stmt|;
 block|}
+block|}
+if|if
+condition|(
+name|isSorted
+condition|)
+block|{
+return|return
+literal|null
+return|;
 block|}
 name|MergeState
 operator|.

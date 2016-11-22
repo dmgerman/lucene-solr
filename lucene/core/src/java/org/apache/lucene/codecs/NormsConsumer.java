@@ -494,12 +494,7 @@ name|subs
 argument_list|,
 name|mergeState
 operator|.
-name|segmentInfo
-operator|.
-name|getIndexSort
-argument_list|()
-operator|!=
-literal|null
+name|needsIndexSort
 argument_list|)
 decl_stmt|;
 return|return

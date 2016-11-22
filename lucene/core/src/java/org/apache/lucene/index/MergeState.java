@@ -232,7 +232,7 @@ name|DocMap
 index|[]
 name|docMaps
 decl_stmt|;
-comment|// Only used by IW when it must remap deletes that arrived against the merging segmetns while a merge was running:
+comment|// Only used by IW when it must remap deletes that arrived against the merging segments while a merge was running:
 DECL|field|leafDocMaps
 specifier|final
 name|DocMap
@@ -330,6 +330,12 @@ specifier|public
 specifier|final
 name|InfoStream
 name|infoStream
+decl_stmt|;
+comment|/** Indicates if the index needs to be sorted **/
+DECL|field|needsIndexSort
+specifier|public
+name|boolean
+name|needsIndexSort
 decl_stmt|;
 comment|/** Sole constructor. */
 DECL|method|MergeState
@@ -743,24 +749,25 @@ name|indexSort
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|buildDocMaps
+comment|// Remap docIDs around deletions
+DECL|method|buildDeletionDocMaps
 specifier|private
 name|DocMap
 index|[]
-name|buildDocMaps
+name|buildDeletionDocMaps
 parameter_list|(
 name|List
 argument_list|<
 name|CodecReader
 argument_list|>
 name|readers
-parameter_list|,
-name|Sort
-name|indexSort
 parameter_list|)
-throws|throws
-name|IOException
 block|{
+name|int
+name|totalDocs
+init|=
+literal|0
+decl_stmt|;
 name|int
 name|numReaders
 init|=
@@ -768,19 +775,6 @@ name|readers
 operator|.
 name|size
 argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|indexSort
-operator|==
-literal|null
-condition|)
-block|{
-comment|// no index sort ... we only must map around deletions, and rebase to the merged segment's docID space
-name|int
-name|totalDocs
-init|=
-literal|0
 decl_stmt|;
 name|DocMap
 index|[]
@@ -792,7 +786,6 @@ index|[
 name|numReaders
 index|]
 decl_stmt|;
-comment|// Remap docIDs around deletions:
 for|for
 control|(
 name|int
@@ -942,6 +935,39 @@ return|return
 name|docMaps
 return|;
 block|}
+DECL|method|buildDocMaps
+specifier|private
+name|DocMap
+index|[]
+name|buildDocMaps
+parameter_list|(
+name|List
+argument_list|<
+name|CodecReader
+argument_list|>
+name|readers
+parameter_list|,
+name|Sort
+name|indexSort
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|indexSort
+operator|==
+literal|null
+condition|)
+block|{
+comment|// no index sort ... we only must map around deletions, and rebase to the merged segment's docID space
+return|return
+name|buildDeletionDocMaps
+argument_list|(
+name|readers
+argument_list|)
+return|;
+block|}
 else|else
 block|{
 comment|// do a merge sort of the incoming leaves:
@@ -966,6 +992,28 @@ argument_list|,
 name|readers
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|result
+operator|==
+literal|null
+condition|)
+block|{
+comment|// already sorted so we can switch back to map around deletions
+return|return
+name|buildDeletionDocMaps
+argument_list|(
+name|readers
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+name|needsIndexSort
+operator|=
+literal|true
+expr_stmt|;
+block|}
 name|long
 name|t1
 init|=
@@ -1234,6 +1282,10 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|needsIndexSort
+operator|=
+literal|true
+expr_stmt|;
 name|leaf
 operator|=
 name|SlowCodecReaderWrapper
