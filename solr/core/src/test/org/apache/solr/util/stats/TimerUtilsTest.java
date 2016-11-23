@@ -219,25 +219,20 @@ name|getSnapshot
 argument_list|()
 decl_stmt|;
 comment|// cannot test avgRequestsPerMinute directly because mean rate changes as time increases!
-comment|// assertEquals(lst.get("avgRequestsPerMinute"), TimerUtils.convertRateToPerMinute(timer.getMeanRate()));
+comment|// assertEquals(lst.get("avgRequestsPerSecond"), timer.getMeanRate());
 name|assertEquals
 argument_list|(
 name|lst
 operator|.
 name|get
 argument_list|(
-literal|"5minRateRequestsPerMinute"
+literal|"5minRateRequestsPerSecond"
 argument_list|)
 argument_list|,
-name|TimerUtils
-operator|.
-name|convertRateToPerMinute
-argument_list|(
 name|timer
 operator|.
 name|getFiveMinuteRate
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -246,18 +241,13 @@ name|lst
 operator|.
 name|get
 argument_list|(
-literal|"15minRateRequestsPerMinute"
+literal|"15minRateRequestsPerSecond"
 argument_list|)
 argument_list|,
-name|TimerUtils
-operator|.
-name|convertRateToPerMinute
-argument_list|(
 name|timer
 operator|.
 name|getFifteenMinuteRate
 argument_list|()
-argument_list|)
 argument_list|)
 expr_stmt|;
 name|assertEquals

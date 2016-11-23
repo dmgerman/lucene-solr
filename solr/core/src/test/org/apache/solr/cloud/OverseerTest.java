@@ -7052,7 +7052,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"\t avgRequestsPerMinute: {}"
+literal|"\t avgRequestsPerSecond: {}"
 argument_list|,
 name|timer
 operator|.
@@ -7064,7 +7064,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"\t 5minRateRequestsPerMinute: {}"
+literal|"\t 5minRateRequestsPerSecond: {}"
 argument_list|,
 name|timer
 operator|.
@@ -7076,7 +7076,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"\t 15minRateRequestsPerMinute: {}"
+literal|"\t 15minRateRequestsPerSecond: {}"
 argument_list|,
 name|timer
 operator|.
