@@ -3542,6 +3542,11 @@ name|DocCollection
 name|get
 parameter_list|()
 block|{
+name|gets
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 comment|// TODO: consider limited caching
 return|return
 name|getCollectionLive
@@ -5019,7 +5024,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Returns the baseURL corresponding to a given node's nodeName --    * NOTE: does not (currently) imply that the nodeName (or resulting     * baseURL) exists in the cluster.    * @lucene.experimental    */
+comment|/**    * Returns the baseURL corresponding to a given node's nodeName --    * NOTE: does not (currently) imply that the nodeName (or resulting    * baseURL) exists in the cluster.    * @lucene.experimental    */
 DECL|method|getBaseUrlForNodeName
 specifier|public
 name|String
@@ -5028,6 +5033,34 @@ parameter_list|(
 specifier|final
 name|String
 name|nodeName
+parameter_list|)
+block|{
+return|return
+name|getBaseUrlForNodeName
+argument_list|(
+name|nodeName
+argument_list|,
+name|getClusterProperty
+argument_list|(
+name|URL_SCHEME
+argument_list|,
+literal|"http"
+argument_list|)
+argument_list|)
+return|;
+block|}
+DECL|method|getBaseUrlForNodeName
+specifier|public
+specifier|static
+name|String
+name|getBaseUrlForNodeName
+parameter_list|(
+specifier|final
+name|String
+name|nodeName
+parameter_list|,
+name|String
+name|urlScheme
 parameter_list|)
 block|{
 specifier|final
@@ -5091,16 +5124,6 @@ name|_offset
 argument_list|)
 argument_list|,
 literal|"UTF-8"
-argument_list|)
-decl_stmt|;
-name|String
-name|urlScheme
-init|=
-name|getClusterProperty
-argument_list|(
-name|URL_SCHEME
-argument_list|,
-literal|"http"
 argument_list|)
 decl_stmt|;
 return|return
