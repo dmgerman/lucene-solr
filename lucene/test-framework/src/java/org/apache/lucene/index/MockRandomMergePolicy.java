@@ -820,7 +820,11 @@ argument_list|(
 operator|new
 name|FilterLeafReader
 argument_list|(
+operator|new
+name|MergeReaderWrapper
+argument_list|(
 name|reader
+argument_list|)
 argument_list|)
 block|{}
 argument_list|)
@@ -865,7 +869,11 @@ argument_list|(
 operator|new
 name|MismatchedLeafReader
 argument_list|(
+operator|new
+name|MergeReaderWrapper
+argument_list|(
 name|reader
+argument_list|)
 argument_list|,
 name|r
 argument_list|)
