@@ -559,6 +559,20 @@ argument_list|(
 name|assignedClasses
 argument_list|)
 expr_stmt|;
+name|max
+operator|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|max
+argument_list|,
+name|assignedClasses
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|assignedClasses
 operator|.
@@ -653,13 +667,6 @@ argument_list|(
 name|fieldName
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|boost
-operator|!=
-literal|null
-condition|)
-block|{
 name|mlt
 operator|.
 name|setBoost
@@ -667,6 +674,14 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
+comment|// we want always to use the boost coming from TF * IDF of the term
+if|if
+condition|(
+name|boost
+operator|!=
+literal|null
+condition|)
+block|{
 name|mlt
 operator|.
 name|setBoostFactor
@@ -679,6 +694,7 @@ name|boost
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// this is an additional multiplicative boost coming from the field boost
 block|}
 name|mlt
 operator|.
@@ -729,13 +745,6 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|mlt
-operator|.
-name|setBoost
-argument_list|(
-literal|false
-argument_list|)
-expr_stmt|;
 block|}
 name|Query
 name|classFieldQuery
