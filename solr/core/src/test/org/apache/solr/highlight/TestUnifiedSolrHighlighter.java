@@ -36,11 +36,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|handler
+name|request
 operator|.
-name|component
-operator|.
-name|HighlightComponent
+name|SolrQueryRequest
 import|;
 end_import
 
@@ -69,14 +67,14 @@ import|;
 end_import
 
 begin_comment
-comment|/** simple tests for PostingsSolrHighlighter */
+comment|/** Tests for the UnifiedHighlighter Solr plugin **/
 end_comment
 
 begin_class
-DECL|class|TestPostingsSolrHighlighter
+DECL|class|TestUnifiedSolrHighlighter
 specifier|public
 class|class
-name|TestPostingsSolrHighlighter
+name|TestUnifiedSolrHighlighter
 extends|extends
 name|SolrTestCaseJ4
 block|{
@@ -93,40 +91,12 @@ name|Exception
 block|{
 name|initCore
 argument_list|(
-literal|"solrconfig-postingshighlight.xml"
+literal|"solrconfig-basic.xml"
 argument_list|,
-literal|"schema-postingshighlight.xml"
+literal|"schema-unifiedhighlight.xml"
 argument_list|)
 expr_stmt|;
 comment|// test our config is sane, just to be sure:
-comment|// postingshighlighter should be used
-name|SolrHighlighter
-name|highlighter
-init|=
-name|HighlightComponent
-operator|.
-name|getHighlighter
-argument_list|(
-name|h
-operator|.
-name|getCore
-argument_list|()
-argument_list|)
-decl_stmt|;
-name|assertTrue
-argument_list|(
-literal|"wrong highlighter: "
-operator|+
-name|highlighter
-operator|.
-name|getClass
-argument_list|()
-argument_list|,
-name|highlighter
-operator|instanceof
-name|PostingsSolrHighlighter
-argument_list|)
-expr_stmt|;
 comment|// 'text' and 'text3' should have offsets, 'text2' should not
 name|IndexSchema
 name|schema
@@ -248,6 +218,30 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|req
+specifier|public
+specifier|static
+name|SolrQueryRequest
+name|req
+parameter_list|(
+name|String
+modifier|...
+name|params
+parameter_list|)
+block|{
+return|return
+name|SolrTestCaseJ4
+operator|.
+name|req
+argument_list|(
+name|params
+argument_list|,
+literal|"hl.method"
+argument_list|,
+literal|"unified"
+argument_list|)
+return|;
+block|}
 DECL|method|testSimple
 specifier|public
 name|void
@@ -271,18 +265,425 @@ argument_list|,
 literal|"hl"
 argument_list|,
 literal|"true"
-argument_list|,
-literal|"hl.method"
-argument_list|,
-literal|"postings"
 argument_list|)
 argument_list|,
-comment|// test hl.method is happy too
 literal|"count(//lst[@name='highlighting']/*)=2"
 argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='<em>document</em> one'"
 argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='second<em>document</em>'"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testImpossibleOffsetSource
+specifier|public
+name|void
+name|testImpossibleOffsetSource
+parameter_list|()
+block|{
+try|try
+block|{
+name|assertQ
+argument_list|(
+literal|"impossible offset source"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text2:document"
+argument_list|,
+literal|"hl.offsetSource"
+argument_list|,
+literal|"postings"
+argument_list|,
+literal|"hl.fl"
+argument_list|,
+literal|"text2"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/*)=2"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='<em>document</em> one'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='second<em>document</em>'"
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Did not encounter exception for no offsets"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|assertTrue
+argument_list|(
+literal|"Cause should be illegal argument"
+argument_list|,
+name|e
+operator|.
+name|getCause
+argument_list|()
+operator|instanceof
+name|IllegalArgumentException
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Should warn no offsets"
+argument_list|,
+name|e
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"indexed without offsets"
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|testMultipleSnippetsReturned
+specifier|public
+name|void
+name|testMultipleSnippetsReturned
+parameter_list|()
+block|{
+name|clearIndex
+argument_list|()
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"text"
+argument_list|,
+literal|"Document snippet one. Intermediate sentence. Document snippet two."
+argument_list|,
+literal|"text2"
+argument_list|,
+literal|"document one"
+argument_list|,
+literal|"text3"
+argument_list|,
+literal|"crappy document"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"101"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"multiple snippets test"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:document"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.snippets"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"hl.bs.type"
+argument_list|,
+literal|"SENTENCE"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/*)=2"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr/str[1]='<em>Document</em> snippet one. '"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr/str[2]='<em>Document</em> snippet two.'"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testStrictPhrasesEnabledByDefault
+specifier|public
+name|void
+name|testStrictPhrasesEnabledByDefault
+parameter_list|()
+block|{
+name|clearIndex
+argument_list|()
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"text"
+argument_list|,
+literal|"Strict phrases should be enabled for phrases"
+argument_list|,
+literal|"text2"
+argument_list|,
+literal|"document one"
+argument_list|,
+literal|"text3"
+argument_list|,
+literal|"crappy document"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"101"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"strict phrase handling"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:\"strict phrases\""
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/*)=1"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr/str[1]='<em>Strict</em><em>phrases</em> should be enabled for phrases'"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testStrictPhrasesCanBeDisabled
+specifier|public
+name|void
+name|testStrictPhrasesCanBeDisabled
+parameter_list|()
+block|{
+name|clearIndex
+argument_list|()
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"text"
+argument_list|,
+literal|"Strict phrases should be disabled for phrases"
+argument_list|,
+literal|"text2"
+argument_list|,
+literal|"document one"
+argument_list|,
+literal|"text3"
+argument_list|,
+literal|"crappy document"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"101"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"strict phrase handling"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:\"strict phrases\""
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.usePhraseHighlighter"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/*)=1"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr/str[1]='<em>Strict</em><em>phrases</em> should be disabled for<em>phrases</em>'"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testMultiTermQueryEnabledByDefault
+specifier|public
+name|void
+name|testMultiTermQueryEnabledByDefault
+parameter_list|()
+block|{
+name|clearIndex
+argument_list|()
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"text"
+argument_list|,
+literal|"Aviary Avenue document"
+argument_list|,
+literal|"text2"
+argument_list|,
+literal|"document one"
+argument_list|,
+literal|"text3"
+argument_list|,
+literal|"crappy document"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"101"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"multi term query handling"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:av*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/*)=1"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr/str[1]='<em>Aviary</em><em>Avenue</em> document'"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testMultiTermQueryCanBeDisabled
+specifier|public
+name|void
+name|testMultiTermQueryCanBeDisabled
+parameter_list|()
+block|{
+name|clearIndex
+argument_list|()
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"text"
+argument_list|,
+literal|"Aviary Avenue document"
+argument_list|,
+literal|"text2"
+argument_list|,
+literal|"document one"
+argument_list|,
+literal|"text3"
+argument_list|,
+literal|"crappy document"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"101"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"multi term query handling"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:av*"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.highlightMultiTerm"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/*)=0"
 argument_list|)
 expr_stmt|;
 block|}
@@ -473,59 +874,6 @@ literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text3']/str='cr
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testMisconfiguredField
-specifier|public
-name|void
-name|testMisconfiguredField
-parameter_list|()
-block|{
-name|ignoreException
-argument_list|(
-literal|"was indexed without offsets"
-argument_list|)
-expr_stmt|;
-try|try
-block|{
-name|assertQ
-argument_list|(
-literal|"should fail, has no offsets"
-argument_list|,
-name|req
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"text2:document"
-argument_list|,
-literal|"sort"
-argument_list|,
-literal|"id asc"
-argument_list|,
-literal|"hl"
-argument_list|,
-literal|"true"
-argument_list|,
-literal|"hl.fl"
-argument_list|,
-literal|"text2"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|fail
-argument_list|()
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Exception
-name|expected
-parameter_list|)
-block|{
-comment|// expected
-block|}
-name|resetExceptionIgnores
-argument_list|()
-expr_stmt|;
-block|}
 DECL|method|testTags
 specifier|public
 name|void
@@ -555,6 +903,88 @@ argument_list|,
 literal|"["
 argument_list|,
 literal|"hl.tag.post"
+argument_list|,
+literal|"]"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/*)=2"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='[document] one'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='second [document]'"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testUsingSimplePrePostTags
+specifier|public
+name|void
+name|testUsingSimplePrePostTags
+parameter_list|()
+block|{
+name|assertQ
+argument_list|(
+literal|"different pre/post tags"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:document"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.simple.pre"
+argument_list|,
+literal|"["
+argument_list|,
+literal|"hl.simple.post"
+argument_list|,
+literal|"]"
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/*)=2"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='[document] one'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='second [document]'"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testUsingSimplePrePostTagsPerField
+specifier|public
+name|void
+name|testUsingSimplePrePostTagsPerField
+parameter_list|()
+block|{
+name|assertQ
+argument_list|(
+literal|"different pre/post tags"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:document"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"f.text.hl.simple.pre"
+argument_list|,
+literal|"["
+argument_list|,
+literal|"f.text.hl.simple.post"
 argument_list|,
 literal|"]"
 argument_list|)
@@ -756,43 +1186,6 @@ literal|"html"
 argument_list|)
 argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='103']/arr[@name='text']/str='<em>Document</em>&#32;one&#32;has&#32;a&#32;first&#32;&lt;i&gt;sentence&lt;&#x2F;i&gt;&#46;'"
-argument_list|)
-expr_stmt|;
-block|}
-DECL|method|testWildcard
-specifier|public
-name|void
-name|testWildcard
-parameter_list|()
-block|{
-name|assertQ
-argument_list|(
-literal|"simplest test"
-argument_list|,
-name|req
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"text:doc*ment"
-argument_list|,
-literal|"sort"
-argument_list|,
-literal|"id asc"
-argument_list|,
-literal|"hl"
-argument_list|,
-literal|"true"
-argument_list|,
-literal|"hl.highlightMultiTerm"
-argument_list|,
-literal|"true"
-argument_list|)
-argument_list|,
-literal|"count(//lst[@name='highlighting']/*)=2"
-argument_list|,
-literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='<em>document</em> one'"
-argument_list|,
-literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='second<em>document</em>'"
 argument_list|)
 expr_stmt|;
 block|}
