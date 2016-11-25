@@ -100,6 +100,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|SolrQueryRequest
@@ -343,6 +359,13 @@ specifier|private
 name|ClassificationUpdateProcessorParams
 name|classificationParams
 decl_stmt|;
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Need toUpperCase to match algorithm enum value"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|init
