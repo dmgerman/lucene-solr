@@ -990,6 +990,18 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// For single segment merge we cannot infer if the segment is already sorted or not.
+if|if
+condition|(
+name|mergeState
+operator|.
+name|docMaps
+operator|.
+name|length
+operator|>
+literal|1
+condition|)
+block|{
 name|assertEquals
 argument_list|(
 name|needsIndexSort
@@ -999,6 +1011,7 @@ operator|.
 name|needsIndexSort
 argument_list|)
 expr_stmt|;
+block|}
 operator|++
 name|numCalls
 expr_stmt|;
