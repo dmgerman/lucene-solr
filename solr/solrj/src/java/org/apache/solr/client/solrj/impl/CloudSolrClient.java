@@ -2687,6 +2687,8 @@ name|parallelUpdates
 expr_stmt|;
 block|}
 comment|/**    * Upload a set of config files to Zookeeper and give it a name    *    * NOTE: You should only allow trusted users to upload configs.  If you    * are allowing client access to zookeeper, you should protect the    * /configs node against unauthorised write access.    *    * @param configPath {@link java.nio.file.Path} to the config files    * @param configName the name of the config    * @throws IOException if an IO error occurs    */
+annotation|@
+name|Deprecated
 DECL|method|uploadConfig
 specifier|public
 name|void
@@ -2746,6 +2748,8 @@ argument_list|)
 throw|;
 block|}
 comment|/**    * Download a named config from Zookeeper to a location on the filesystem    * @param configName    the name of the config    * @param downloadPath  the path to write config files to    * @throws IOException  if an I/O exception occurs    */
+annotation|@
+name|Deprecated
 DECL|method|downloadConfig
 specifier|public
 name|void
@@ -7711,6 +7715,16 @@ argument_list|(
 name|timeout
 argument_list|)
 expr_stmt|;
+block|}
+DECL|method|getClusterStateProvider
+specifier|public
+name|ClusterStateProvider
+name|getClusterStateProvider
+parameter_list|()
+block|{
+return|return
+name|stateProvider
+return|;
 block|}
 DECL|method|hasInfoToFindLeaders
 specifier|private
