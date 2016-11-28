@@ -178,6 +178,42 @@ name|UIMAUpdateRequestProcessorTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
+DECL|field|UIMA_CHAIN
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|UIMA_CHAIN
+init|=
+literal|"uima"
+decl_stmt|;
+DECL|field|UIMA_MULTI_MAP_CHAIN
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|UIMA_MULTI_MAP_CHAIN
+init|=
+literal|"uima-multi-map"
+decl_stmt|;
+DECL|field|UIMA_IGNORE_ERRORS_CHAIN
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|UIMA_IGNORE_ERRORS_CHAIN
+init|=
+literal|"uima-ignoreErrors"
+decl_stmt|;
+DECL|field|UIMA_NOT_IGNORE_ERRORS_CHAIN
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|UIMA_NOT_IGNORE_ERRORS_CHAIN
+init|=
+literal|"uima-not-ignoreErrors"
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -255,7 +291,7 @@ name|core
 operator|.
 name|getUpdateProcessingChain
 argument_list|(
-literal|"uima"
+name|UIMA_CHAIN
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -330,7 +366,7 @@ name|core
 operator|.
 name|getUpdateProcessingChain
 argument_list|(
-literal|"uima-multi-map"
+name|UIMA_MULTI_MAP_CHAIN
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -484,8 +520,6 @@ name|Exception
 block|{
 name|addDoc
 argument_list|(
-literal|"uima"
-argument_list|,
 name|adoc
 argument_list|(
 literal|"id"
@@ -504,6 +538,8 @@ literal|" attached if you need it, but it is also committed to trunk and 3_x bra
 operator|+
 literal|" Last Lucene European Conference has been held in Prague."
 argument_list|)
+argument_list|,
+name|UIMA_CHAIN
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -555,8 +591,6 @@ name|Exception
 block|{
 name|addDoc
 argument_list|(
-literal|"uima"
-argument_list|,
 name|adoc
 argument_list|(
 literal|"id"
@@ -571,6 +605,8 @@ literal|"BarCampApache Sydney, Australia, the first ASF-backed event in the Sout
 operator|+
 literal|"Hemisphere!"
 argument_list|)
+argument_list|,
+name|UIMA_CHAIN
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -591,8 +627,6 @@ argument_list|)
 expr_stmt|;
 name|addDoc
 argument_list|(
-literal|"uima"
-argument_list|,
 name|adoc
 argument_list|(
 literal|"id"
@@ -609,6 +643,8 @@ literal|" attendee-driven, facilitated by members of the Apache community and wi
 operator|+
 literal|"focus on the Apache..."
 argument_list|)
+argument_list|,
+name|UIMA_CHAIN
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -662,8 +698,6 @@ try|try
 block|{
 name|addDoc
 argument_list|(
-literal|"uima-not-ignoreErrors"
-argument_list|,
 name|adoc
 argument_list|(
 literal|"id"
@@ -682,6 +716,8 @@ literal|" attached if you need it, but it is also committed to trunk and 3_x bra
 operator|+
 literal|" Last Lucene European Conference has been held in Prague."
 argument_list|)
+argument_list|,
+name|UIMA_NOT_IGNORE_ERRORS_CHAIN
 argument_list|)
 expr_stmt|;
 name|fail
@@ -714,8 +750,6 @@ argument_list|)
 expr_stmt|;
 name|addDoc
 argument_list|(
-literal|"uima-ignoreErrors"
-argument_list|,
 name|adoc
 argument_list|(
 literal|"id"
@@ -734,6 +768,8 @@ literal|" attached if you need it, but it is also committed to trunk and 3_x bra
 operator|+
 literal|" Last Lucene European Conference has been held in Prague."
 argument_list|)
+argument_list|,
+name|UIMA_IGNORE_ERRORS_CHAIN
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -756,8 +792,6 @@ try|try
 block|{
 name|addDoc
 argument_list|(
-literal|"uima-not-ignoreErrors"
-argument_list|,
 name|adoc
 argument_list|(
 literal|"id"
@@ -768,6 +802,8 @@ literal|"text"
 argument_list|,
 literal|"SpellCheckComponent got improvement related to recent Lucene changes."
 argument_list|)
+argument_list|,
+name|UIMA_NOT_IGNORE_ERRORS_CHAIN
 argument_list|)
 expr_stmt|;
 name|fail
@@ -799,8 +835,6 @@ try|try
 block|{
 name|addDoc
 argument_list|(
-literal|"uima-ignoreErrors"
-argument_list|,
 name|adoc
 argument_list|(
 literal|"id"
@@ -811,6 +845,8 @@ literal|"text"
 argument_list|,
 literal|"SpellCheckComponent got improvement related to recent Lucene changes."
 argument_list|)
+argument_list|,
+name|UIMA_IGNORE_ERRORS_CHAIN
 argument_list|)
 expr_stmt|;
 block|}
