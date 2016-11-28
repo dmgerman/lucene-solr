@@ -271,8 +271,13 @@ argument_list|,
 literal|"hl"
 argument_list|,
 literal|"true"
+argument_list|,
+literal|"hl.method"
+argument_list|,
+literal|"postings"
 argument_list|)
 argument_list|,
+comment|// test hl.method is happy too
 literal|"count(//lst[@name='highlighting']/*)=2"
 argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='<em>document</em> one'"

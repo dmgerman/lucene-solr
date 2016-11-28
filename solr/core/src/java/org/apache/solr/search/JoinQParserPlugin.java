@@ -898,6 +898,13 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+name|fromQueryParser
+operator|.
+name|setIsFilter
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|fromQuery
 operator|=
 name|fromQueryParser

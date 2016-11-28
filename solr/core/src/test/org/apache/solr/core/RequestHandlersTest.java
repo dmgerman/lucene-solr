@@ -531,7 +531,7 @@ name|updateStats
 operator|.
 name|get
 argument_list|(
-literal|"totalTime"
+literal|"avgTimePerRequest"
 argument_list|)
 decl_stmt|;
 name|Double
@@ -544,7 +544,7 @@ name|termStats
 operator|.
 name|get
 argument_list|(
-literal|"totalTime"
+literal|"avgTimePerRequest"
 argument_list|)
 decl_stmt|;
 name|assertFalse

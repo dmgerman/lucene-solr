@@ -1740,6 +1740,12 @@ name|sf
 operator|.
 name|indexed
 argument_list|()
+operator|&&
+operator|!
+name|sf
+operator|.
+name|hasDocValues
+argument_list|()
 condition|)
 block|{
 throw|throw
@@ -1759,7 +1765,7 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|" which is not indexed"
+literal|" which is neither indexed nor docValues"
 argument_list|)
 throw|;
 block|}

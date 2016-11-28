@@ -4878,6 +4878,9 @@ name|val
 parameter_list|,
 name|boolean
 name|quoted
+parameter_list|,
+name|boolean
+name|raw
 parameter_list|)
 throws|throws
 name|SyntaxError
@@ -4886,6 +4889,12 @@ name|this
 operator|.
 name|type
 operator|=
+name|quoted
+condition|?
+name|QType
+operator|.
+name|PHRASE
+else|:
 name|QType
 operator|.
 name|FIELD
@@ -5832,6 +5841,8 @@ operator|==
 name|QType
 operator|.
 name|PHRASE
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// Boolean query on a whitespace-separated string

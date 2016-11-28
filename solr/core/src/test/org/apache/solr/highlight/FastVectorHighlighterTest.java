@@ -404,11 +404,45 @@ name|args
 operator|.
 name|put
 argument_list|(
+literal|"hl.tag.pre"
+argument_list|,
+literal|"<fvpre>"
+argument_list|)
+expr_stmt|;
+comment|//... and let post default to</em>. This is just a test.
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+name|args
+operator|.
+name|put
+argument_list|(
 literal|"hl.useFastVectorHighlighter"
 argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
+comment|// old way
+block|}
+else|else
+block|{
+name|args
+operator|.
+name|put
+argument_list|(
+literal|"hl.method"
+argument_list|,
+literal|"fastVector"
+argument_list|)
+expr_stmt|;
+comment|// the new way
+block|}
 name|TestHarness
 operator|.
 name|LocalRequestFactory
@@ -466,7 +500,7 @@ argument_list|)
 argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='1']"
 argument_list|,
-literal|"//lst[@name='1']/arr[@name='tv_text']/str[.='basic fast<em>vector</em> highlighter test']"
+literal|"//lst[@name='1']/arr[@name='tv_text']/str[.='basic fast<fvpre>vector</em> highlighter test']"
 argument_list|)
 expr_stmt|;
 block|}

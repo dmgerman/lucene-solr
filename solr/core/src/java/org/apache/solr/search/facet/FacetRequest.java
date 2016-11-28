@@ -2932,6 +2932,13 @@ name|getSolrRequest
 argument_list|()
 argument_list|)
 decl_stmt|;
+name|parser
+operator|.
+name|setIsFilter
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|facet
 operator|.
 name|q

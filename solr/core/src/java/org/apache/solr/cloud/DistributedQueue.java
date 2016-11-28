@@ -134,6 +134,18 @@ begin_import
 import|import
 name|com
 operator|.
+name|codahale
+operator|.
+name|metrics
+operator|.
+name|Timer
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
 name|google
 operator|.
 name|common
@@ -233,22 +245,6 @@ operator|.
 name|util
 operator|.
 name|Pair
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|stats
-operator|.
-name|TimerContext
 import|;
 end_import
 
@@ -570,7 +566,9 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-name|TimerContext
+name|Timer
+operator|.
+name|Context
 name|time
 init|=
 name|stats
@@ -651,7 +649,9 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
-name|TimerContext
+name|Timer
+operator|.
+name|Context
 name|time
 decl_stmt|;
 if|if
@@ -775,7 +775,9 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-name|TimerContext
+name|Timer
+operator|.
+name|Context
 name|time
 init|=
 name|stats
@@ -817,7 +819,9 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-name|TimerContext
+name|Timer
+operator|.
+name|Context
 name|time
 init|=
 name|stats
@@ -877,7 +881,9 @@ throws|,
 name|InterruptedException
 block|{
 comment|// Same as for element. Should refactor this.
-name|TimerContext
+name|Timer
+operator|.
+name|Context
 name|timer
 init|=
 name|stats
@@ -955,7 +961,9 @@ name|KeeperException
 throws|,
 name|InterruptedException
 block|{
-name|TimerContext
+name|Timer
+operator|.
+name|Context
 name|time
 init|=
 name|stats

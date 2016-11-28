@@ -173,6 +173,26 @@ argument_list|<>
 argument_list|()
 expr_stmt|;
 block|}
+DECL|method|SolrDocument
+specifier|public
+name|SolrDocument
+parameter_list|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|fields
+parameter_list|)
+block|{
+name|this
+operator|.
+name|_fields
+operator|=
+name|fields
+expr_stmt|;
+block|}
 comment|/**    * @return a list of field names defined in this document - this Collection is directly backed by this SolrDocument.    * @see #keySet    */
 annotation|@
 name|Override

@@ -787,12 +787,7 @@ if|if
 condition|(
 name|mergeState
 operator|.
-name|segmentInfo
-operator|.
-name|getIndexSort
-argument_list|()
-operator|!=
-literal|null
+name|needsIndexSort
 condition|)
 block|{
 comment|// TODO: can we gain back some optos even if index is sorted?  E.g. if sort results in large chunks of contiguous docs from one sub

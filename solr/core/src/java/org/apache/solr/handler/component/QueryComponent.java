@@ -1881,9 +1881,7 @@ literal|null
 condition|?
 operator|new
 name|ArrayList
-argument_list|<
-name|Query
-argument_list|>
+argument_list|<>
 argument_list|(
 name|fqs
 operator|.
@@ -1934,6 +1932,13 @@ argument_list|,
 name|req
 argument_list|)
 decl_stmt|;
+name|fqp
+operator|.
+name|setIsFilter
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 name|filters
 operator|.
 name|add

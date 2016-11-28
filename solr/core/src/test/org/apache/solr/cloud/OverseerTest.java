@@ -202,6 +202,30 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|codahale
+operator|.
+name|metrics
+operator|.
+name|Snapshot
+import|;
+end_import
+
+begin_import
+import|import
+name|com
+operator|.
+name|codahale
+operator|.
+name|metrics
+operator|.
+name|Timer
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -473,54 +497,6 @@ operator|.
 name|util
 operator|.
 name|DefaultSolrThreadFactory
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|stats
-operator|.
-name|Snapshot
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|stats
-operator|.
-name|Timer
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|stats
-operator|.
-name|TimerContext
 import|;
 end_import
 
@@ -6804,7 +6780,9 @@ operator|new
 name|Timer
 argument_list|()
 decl_stmt|;
-name|TimerContext
+name|Timer
+operator|.
+name|Context
 name|context
 init|=
 name|t
@@ -7074,19 +7052,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"\t totalTime: {}"
-argument_list|,
-name|timer
-operator|.
-name|getSum
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"\t avgRequestsPerMinute: {}"
+literal|"\t avgRequestsPerSecond: {}"
 argument_list|,
 name|timer
 operator|.
@@ -7098,7 +7064,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"\t 5minRateRequestsPerMinute: {}"
+literal|"\t 5minRateRequestsPerSecond: {}"
 argument_list|,
 name|timer
 operator|.
@@ -7110,7 +7076,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"\t 15minRateRequestsPerMinute: {}"
+literal|"\t 15minRateRequestsPerSecond: {}"
 argument_list|,
 name|timer
 operator|.
@@ -7124,10 +7090,13 @@ name|info
 argument_list|(
 literal|"\t avgTimePerRequest: {}"
 argument_list|,
-name|timer
+name|nsToMs
+argument_list|(
+name|snapshot
 operator|.
 name|getMean
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|log
@@ -7136,60 +7105,106 @@ name|info
 argument_list|(
 literal|"\t medianRequestTime: {}"
 argument_list|,
+name|nsToMs
+argument_list|(
 name|snapshot
 operator|.
 name|getMedian
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"\t 75thPctlRequestTime: {}"
+literal|"\t 75thPcRequestTime: {}"
 argument_list|,
+name|nsToMs
+argument_list|(
 name|snapshot
 operator|.
 name|get75thPercentile
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"\t 95thPctlRequestTime: {}"
+literal|"\t 95thPcRequestTime: {}"
 argument_list|,
+name|nsToMs
+argument_list|(
 name|snapshot
 operator|.
 name|get95thPercentile
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"\t 99thPctlRequestTime: {}"
+literal|"\t 99thPcRequestTime: {}"
 argument_list|,
+name|nsToMs
+argument_list|(
 name|snapshot
 operator|.
 name|get99thPercentile
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"\t 999thPctlRequestTime: {}"
+literal|"\t 999thPcRequestTime: {}"
 argument_list|,
+name|nsToMs
+argument_list|(
 name|snapshot
 operator|.
 name|get999thPercentile
 argument_list|()
 argument_list|)
+argument_list|)
 expr_stmt|;
+block|}
+end_function
+
+begin_function
+DECL|method|nsToMs
+specifier|private
+specifier|static
+name|long
+name|nsToMs
+parameter_list|(
+name|double
+name|ns
+parameter_list|)
+block|{
+return|return
+name|TimeUnit
+operator|.
+name|NANOSECONDS
+operator|.
+name|convert
+argument_list|(
+operator|(
+name|long
+operator|)
+name|ns
+argument_list|,
+name|TimeUnit
+operator|.
+name|MILLISECONDS
+argument_list|)
+return|;
 block|}
 end_function
 

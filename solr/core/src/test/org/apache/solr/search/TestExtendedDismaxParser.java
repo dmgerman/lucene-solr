@@ -7351,6 +7351,9 @@ name|val
 parameter_list|,
 name|boolean
 name|quoted
+parameter_list|,
+name|boolean
+name|raw
 parameter_list|)
 throws|throws
 name|SyntaxError
@@ -7386,6 +7389,8 @@ argument_list|,
 name|val
 argument_list|,
 name|quoted
+argument_list|,
+name|raw
 argument_list|)
 return|;
 block|}

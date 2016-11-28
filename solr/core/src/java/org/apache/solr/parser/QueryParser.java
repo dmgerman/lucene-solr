@@ -98,7 +98,7 @@ name|solr
 operator|.
 name|search
 operator|.
-name|SyntaxError
+name|QParser
 import|;
 end_import
 
@@ -112,7 +112,7 @@ name|solr
 operator|.
 name|search
 operator|.
-name|QParser
+name|SyntaxError
 import|;
 end_import
 
@@ -699,7 +699,10 @@ condition|(
 literal|true
 condition|)
 return|return
+name|rawToNormal
+argument_list|(
 name|firstQuery
+argument_list|)
 return|;
 block|}
 else|else
@@ -755,6 +758,11 @@ name|Token
 name|localParams
 init|=
 literal|null
+decl_stmt|;
+name|int
+name|flags
+init|=
+literal|0
 decl_stmt|;
 if|if
 condition|(
@@ -970,6 +978,11 @@ argument_list|(
 name|FILTER
 argument_list|)
 expr_stmt|;
+name|flags
+operator|=
+name|startFilter
+argument_list|()
+expr_stmt|;
 name|q
 operator|=
 name|Query
@@ -1028,6 +1041,11 @@ operator|=
 name|getFilter
 argument_list|(
 name|q
+argument_list|)
+expr_stmt|;
+name|restoreFlags
+argument_list|(
+name|flags
 argument_list|)
 expr_stmt|;
 break|break;
