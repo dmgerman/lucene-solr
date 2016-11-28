@@ -561,10 +561,13 @@ operator|==
 literal|null
 operator|||
 name|sort
-operator|==
+operator|.
+name|equals
+argument_list|(
 name|Sort
 operator|.
 name|RELEVANCE
+argument_list|)
 condition|)
 block|{
 name|collector

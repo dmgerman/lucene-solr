@@ -388,21 +388,11 @@ operator|.
 name|getSortWithinGroup
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
+assert|assert
 name|sortWithinGroup
-operator|==
+operator|!=
 literal|null
-condition|)
-block|{
-comment|// TODO prevent it from being null in the first place
-name|sortWithinGroup
-operator|=
-name|Sort
-operator|.
-name|RELEVANCE
-expr_stmt|;
-block|}
+assert|;
 specifier|final
 name|Map
 argument_list|<
