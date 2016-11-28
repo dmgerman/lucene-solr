@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -89,22 +99,6 @@ operator|.
 name|util
 operator|.
 name|NamedList
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|util
-operator|.
-name|SuppressForbidden
 import|;
 end_import
 
@@ -360,13 +354,6 @@ name|ClassificationUpdateProcessorParams
 name|classificationParams
 decl_stmt|;
 annotation|@
-name|SuppressForbidden
-argument_list|(
-name|reason
-operator|=
-literal|"Need toUpperCase to match algorithm enum value"
-argument_list|)
-annotation|@
 name|Override
 DECL|method|init
 specifier|public
@@ -534,7 +521,11 @@ argument_list|(
 name|algorithmString
 operator|.
 name|toUpperCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 argument_list|)
 operator|==
 literal|null
@@ -556,7 +547,11 @@ argument_list|(
 name|algorithmString
 operator|.
 name|toUpperCase
-argument_list|()
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
