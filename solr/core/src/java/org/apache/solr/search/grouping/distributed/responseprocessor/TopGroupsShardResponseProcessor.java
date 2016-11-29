@@ -548,7 +548,7 @@ operator|.
 name|getGroupingSpec
 argument_list|()
 operator|.
-name|getGroupOffset
+name|getWithinGroupOffset
 argument_list|()
 expr_stmt|;
 block|}
@@ -560,7 +560,7 @@ operator|.
 name|getGroupingSpec
 argument_list|()
 operator|.
-name|getGroupLimit
+name|getWithinGroupLimit
 argument_list|()
 decl_stmt|;
 name|Map
