@@ -567,7 +567,7 @@ operator|.
 name|getGroupingSpec
 argument_list|()
 operator|.
-name|getGroupOffset
+name|getWithinGroupOffset
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -736,7 +736,7 @@ operator|.
 name|getGroupingSpec
 argument_list|()
 operator|.
-name|getGroupOffset
+name|getWithinGroupOffset
 argument_list|()
 argument_list|)
 expr_stmt|;

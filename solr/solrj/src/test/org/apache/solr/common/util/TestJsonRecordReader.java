@@ -20,52 +20,6 @@ end_package
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|SolrTestCaseJ4
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|RecordingJSONParser
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|LoggerFactory
-import|;
-end_import
-
-begin_import
-import|import
 name|java
 operator|.
 name|io
@@ -159,6 +113,66 @@ operator|.
 name|atomic
 operator|.
 name|AtomicReference
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|lang
+operator|.
+name|StringUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|RecordingJSONParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
 import|;
 end_import
 
@@ -774,6 +788,19 @@ literal|" {\n"
 operator|+
 literal|"  \"id\" : \"345\",\n"
 operator|+
+literal|"  \"payload\": \""
+operator|+
+name|StringUtils
+operator|.
+name|repeat
+argument_list|(
+literal|"0123456789"
+argument_list|,
+literal|819
+argument_list|)
+operator|+
+literal|"\",\n"
+operator|+
 literal|"  \"description\": \"Testing /json/docs srcField 2\",\n"
 operator|+
 literal|"\n"
@@ -781,6 +808,25 @@ operator|+
 literal|"  \"nested_data\" : {\n"
 operator|+
 literal|"    \"nested_inside\" : \"check check check 2\"\n"
+operator|+
+literal|"  }\n"
+operator|+
+literal|"}"
+decl_stmt|;
+name|String
+name|json3
+init|=
+literal|" {\n"
+operator|+
+literal|"  \"id\" : \"678\",\n"
+operator|+
+literal|"  \"description\": \"Testing /json/docs srcField 3\",\n"
+operator|+
+literal|"\n"
+operator|+
+literal|"  \"nested_data\" : {\n"
+operator|+
+literal|"    \"nested_inside\" : \"check check check 3\"\n"
 operator|+
 literal|"  }\n"
 operator|+
@@ -815,6 +861,8 @@ argument_list|(
 name|json
 operator|+
 name|json2
+operator|+
+name|json3
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -988,6 +1036,61 @@ literal|"nested_inside"
 argument_list|)
 argument_list|,
 literal|"check check check 2"
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|count
+operator|++
+operator|==
+literal|3
+condition|)
+block|{
+name|assertEquals
+argument_list|(
+name|m
+operator|.
+name|get
+argument_list|(
+literal|"id"
+argument_list|)
+argument_list|,
+literal|"678"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|m
+operator|.
+name|get
+argument_list|(
+literal|"description"
+argument_list|)
+argument_list|,
+literal|"Testing /json/docs srcField 3"
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+operator|(
+operator|(
+name|Map
+operator|)
+name|m
+operator|.
+name|get
+argument_list|(
+literal|"nested_data"
+argument_list|)
+operator|)
+operator|.
+name|get
+argument_list|(
+literal|"nested_inside"
+argument_list|)
+argument_list|,
+literal|"check check check 3"
 argument_list|)
 expr_stmt|;
 block|}
