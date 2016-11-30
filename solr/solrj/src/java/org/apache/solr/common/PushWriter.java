@@ -59,7 +59,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**Write an array. The array is opened at the beginning of this method    * and closed at the end. All array entries must be returned before this    * method returns    *    */
+comment|/**Write an array. The array is opened at the beginning of this method    * and closed at the end. All array entries must be written before this    * method returns    *    */
 DECL|method|writeIterator
 name|void
 name|writeIterator
