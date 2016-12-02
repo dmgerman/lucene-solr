@@ -800,6 +800,27 @@ comment|// if (DEBUG) System.out.println("  FieldReader.intersect startTerm=" + 
 comment|//System.out.println("intersect: " + compiled.type + " a=" + compiled.automaton);
 comment|// TODO: we could push "it's a range" or "it's a prefix" down into IntersectTermsEnum?
 comment|// can we optimize knowing that...?
+if|if
+condition|(
+name|compiled
+operator|.
+name|type
+operator|!=
+name|CompiledAutomaton
+operator|.
+name|AUTOMATON_TYPE
+operator|.
+name|NORMAL
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"please use CompiledAutomaton.getTermsEnum instead"
+argument_list|)
+throw|;
+block|}
 return|return
 operator|new
 name|IntersectTermsEnum
