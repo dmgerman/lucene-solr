@@ -257,22 +257,6 @@ import|;
 end_import
 
 begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|bkd
-operator|.
-name|BKDReader
-import|;
-end_import
-
-begin_import
 import|import static
 name|org
 operator|.
@@ -566,7 +550,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|BKDReader
+name|SimpleTextBKDReader
 argument_list|>
 name|readers
 init|=
@@ -835,7 +819,7 @@ expr_stmt|;
 block|}
 DECL|method|initReader
 specifier|private
-name|BKDReader
+name|SimpleTextBKDReader
 name|initReader
 parameter_list|(
 name|long

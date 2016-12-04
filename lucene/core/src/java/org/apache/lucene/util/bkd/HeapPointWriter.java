@@ -86,8 +86,13 @@ name|BytesRef
 import|;
 end_import
 
+begin_comment
+comment|/** Utility class to write new points into in-heap arrays.  *  *  @lucene.internal */
+end_comment
+
 begin_class
 DECL|class|HeapPointWriter
+specifier|public
 specifier|final
 class|class
 name|HeapPointWriter
@@ -95,16 +100,19 @@ implements|implements
 name|PointWriter
 block|{
 DECL|field|docIDs
+specifier|public
 name|int
 index|[]
 name|docIDs
 decl_stmt|;
 DECL|field|ordsLong
+specifier|public
 name|long
 index|[]
 name|ordsLong
 decl_stmt|;
 DECL|field|ords
+specifier|public
 name|int
 index|[]
 name|ords
@@ -125,6 +133,7 @@ name|int
 name|maxSize
 decl_stmt|;
 DECL|field|valuesPerBlock
+specifier|public
 specifier|final
 name|int
 name|valuesPerBlock
@@ -141,6 +150,7 @@ name|singleValuePerDoc
 decl_stmt|;
 comment|// NOTE: can't use ByteBlockPool because we need random-write access when sorting in heap
 DECL|field|blocks
+specifier|public
 specifier|final
 name|List
 argument_list|<
@@ -425,6 +435,7 @@ name|nextWrite
 expr_stmt|;
 block|}
 DECL|method|readPackedValue
+specifier|public
 name|void
 name|readPackedValue
 parameter_list|(
@@ -482,6 +493,7 @@ expr_stmt|;
 block|}
 comment|/** Returns a reference, in<code>result</code>, to the byte[] slice holding this value */
 DECL|method|getPackedValueSlice
+specifier|public
 name|void
 name|getPackedValueSlice
 parameter_list|(
@@ -862,6 +874,25 @@ name|docIDs
 operator|.
 name|length
 assert|;
+assert|assert
+name|start
+operator|+
+name|length
+operator|<=
+name|nextWrite
+operator|:
+literal|"start="
+operator|+
+name|start
+operator|+
+literal|" length="
+operator|+
+name|length
+operator|+
+literal|" nextWrite="
+operator|+
+name|nextWrite
+assert|;
 return|return
 operator|new
 name|HeapPointReader
@@ -883,7 +914,14 @@ name|int
 operator|)
 name|start
 argument_list|,
-name|nextWrite
+name|Math
+operator|.
+name|toIntExact
+argument_list|(
+name|start
+operator|+
+name|length
+argument_list|)
 argument_list|,
 name|singleValuePerDoc
 argument_list|)

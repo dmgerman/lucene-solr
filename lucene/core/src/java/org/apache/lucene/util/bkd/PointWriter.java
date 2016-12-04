@@ -49,11 +49,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Appends many points, and then at the end provides a {@link PointReader} to iterate  *  those points.  This abstracts away whether we write to disk, or use simple arrays  *  in heap. */
+comment|/** Appends many points, and then at the end provides a {@link PointReader} to iterate  *  those points.  This abstracts away whether we write to disk, or use simple arrays  *  in heap.  *  *  @lucene.internal */
 end_comment
 
 begin_interface
 DECL|interface|PointWriter
+specifier|public
 interface|interface
 name|PointWriter
 extends|extends

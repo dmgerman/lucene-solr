@@ -137,11 +137,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Reads points from disk in a fixed-with format, previously written with {@link OfflinePointWriter}. */
+comment|/** Reads points from disk in a fixed-with format, previously written with {@link OfflinePointWriter}.  *  * @lucene.internal */
 end_comment
 
 begin_class
 DECL|class|OfflinePointReader
+specifier|public
 specifier|final
 class|class
 name|OfflinePointReader
@@ -202,6 +203,7 @@ name|String
 name|name
 decl_stmt|;
 DECL|method|OfflinePointReader
+specifier|public
 name|OfflinePointReader
 parameter_list|(
 name|Directory

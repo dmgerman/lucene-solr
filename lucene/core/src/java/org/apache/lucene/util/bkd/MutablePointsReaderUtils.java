@@ -146,8 +146,13 @@ name|PackedInts
 import|;
 end_import
 
+begin_comment
+comment|/** Utility APIs for sorting and partitioning buffered points.  *  * @lucene.internal */
+end_comment
+
 begin_class
 DECL|class|MutablePointsReaderUtils
+specifier|public
 specifier|final
 class|class
 name|MutablePointsReaderUtils
@@ -158,6 +163,7 @@ parameter_list|()
 block|{}
 comment|/** Sort the given {@link MutablePointValues} based on its packed value then doc ID. */
 DECL|method|sort
+specifier|public
 specifier|static
 name|void
 name|sort
@@ -497,6 +503,7 @@ expr_stmt|;
 block|}
 comment|/** Sort points on the given dimension. */
 DECL|method|sortByDim
+specifier|public
 specifier|static
 name|void
 name|sortByDim
@@ -705,6 +712,7 @@ expr_stmt|;
 block|}
 comment|/** Partition points around {@code mid}. All values on the left must be less    *  than or equal to it and all values on the right must be greater than or    *  equal to it. */
 DECL|method|partition
+specifier|public
 specifier|static
 name|void
 name|partition

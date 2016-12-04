@@ -28,8 +28,13 @@ name|List
 import|;
 end_import
 
+begin_comment
+comment|/** Utility class to read buffered points from in-heap arrays.  *  * @lucene.internal */
+end_comment
+
 begin_class
 DECL|class|HeapPointReader
+specifier|public
 specifier|final
 class|class
 name|HeapPointReader
@@ -95,6 +100,7 @@ name|boolean
 name|singleValuePerDoc
 decl_stmt|;
 DECL|method|HeapPointReader
+specifier|public
 name|HeapPointReader
 parameter_list|(
 name|List
