@@ -495,11 +495,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: The default cache implementation, storing all values in memory.  * A WeakHashMap is used for storage.  *  * @since   lucene 1.4  */
+comment|/**  * Expert: The default cache implementation, storing all values in memory.  * A WeakHashMap is used for storage.  *  * @lucene.internal  */
 end_comment
 
 begin_class
 DECL|class|FieldCacheImpl
+specifier|public
 class|class
 name|FieldCacheImpl
 implements|implements
@@ -4317,6 +4318,29 @@ name|SortedDocValues
 name|iterator
 parameter_list|()
 block|{
+return|return
+operator|new
+name|Iter
+argument_list|()
+return|;
+block|}
+DECL|class|Iter
+specifier|public
+class|class
+name|Iter
+extends|extends
+name|SortedDocValues
+block|{
+DECL|field|docID
+specifier|private
+name|int
+name|docID
+init|=
+operator|-
+literal|1
+decl_stmt|;
+DECL|field|term
+specifier|private
 specifier|final
 name|BytesRef
 name|term
@@ -4325,20 +4349,36 @@ operator|new
 name|BytesRef
 argument_list|()
 decl_stmt|;
-return|return
-operator|new
-name|SortedDocValues
-argument_list|()
-block|{
-specifier|private
+comment|/** @lucene.internal Specific to this implementation and subject to change.  For internal optimization only. */
+DECL|method|getOrd
+specifier|public
+name|int
+name|getOrd
+parameter_list|(
 name|int
 name|docID
-init|=
+parameter_list|)
+block|{
+comment|// Subtract 1, matching the 1+ord we did when
+comment|// storing, so that missing values, which are 0 in the
+comment|// packed ints, are returned as -1 ord:
+return|return
+operator|(
+name|int
+operator|)
+name|docToTermOrd
+operator|.
+name|get
+argument_list|(
+name|docID
+argument_list|)
 operator|-
 literal|1
-decl_stmt|;
+return|;
+block|}
 annotation|@
 name|Override
+DECL|method|docID
 specifier|public
 name|int
 name|docID
@@ -4350,6 +4390,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|nextDoc
 specifier|public
 name|int
 name|nextDoc
@@ -4401,6 +4442,7 @@ block|}
 block|}
 annotation|@
 name|Override
+DECL|method|advance
 specifier|public
 name|int
 name|advance
@@ -4460,6 +4502,7 @@ block|}
 block|}
 annotation|@
 name|Override
+DECL|method|advanceExact
 specifier|public
 name|boolean
 name|advanceExact
@@ -4487,6 +4530,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|cost
 specifier|public
 name|long
 name|cost
@@ -4498,6 +4542,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|ordValue
 specifier|public
 name|int
 name|ordValue
@@ -4522,6 +4567,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|getValueCount
 specifier|public
 name|int
 name|getValueCount
@@ -4533,6 +4579,7 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|lookupOrd
 specifier|public
 name|BytesRef
 name|lookupOrd
@@ -4578,8 +4625,6 @@ return|return
 name|term
 return|;
 block|}
-block|}
-return|;
 block|}
 annotation|@
 name|Override

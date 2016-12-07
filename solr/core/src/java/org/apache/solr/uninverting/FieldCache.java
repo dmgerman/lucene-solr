@@ -256,6 +256,7 @@ end_comment
 
 begin_interface
 DECL|interface|FieldCache
+specifier|public
 interface|interface
 name|FieldCache
 block|{
