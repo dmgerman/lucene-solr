@@ -72,18 +72,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|nio
-operator|.
-name|charset
-operator|.
-name|StandardCharsets
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|sql
 operator|.
 name|Blob
@@ -97,16 +85,6 @@ operator|.
 name|sql
 operator|.
 name|SQLException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
 import|;
 end_import
 
