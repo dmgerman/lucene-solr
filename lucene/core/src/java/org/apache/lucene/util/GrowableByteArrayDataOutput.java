@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.codecs.compressing
+DECL|package|org.apache.lucene.store
 package|package
 name|org
 operator|.
@@ -12,9 +12,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|compressing
+name|store
 package|;
 end_package
 
@@ -71,7 +69,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link DataOutput} that can be used to build a byte[].  * @lucene.internal  */
+comment|/**  * A {@link DataOutput} that can be used to build a byte[].  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -94,28 +92,23 @@ literal|65536
 decl_stmt|;
 comment|/** The bytes */
 DECL|field|bytes
-specifier|public
+specifier|private
 name|byte
 index|[]
 name|bytes
 decl_stmt|;
 comment|/** The length */
 DECL|field|length
-specifier|public
+specifier|private
 name|int
 name|length
 decl_stmt|;
 comment|// scratch for utf8 encoding of small strings
 DECL|field|scratchBytes
+specifier|private
 name|byte
 index|[]
 name|scratchBytes
-init|=
-operator|new
-name|byte
-index|[
-literal|16
-index|]
 decl_stmt|;
 comment|/** Create a {@link GrowableByteArrayDataOutput} with the given initial capacity. */
 DECL|method|GrowableByteArrayDataOutput
@@ -215,6 +208,15 @@ name|length
 operator|+
 name|len
 decl_stmt|;
+if|if
+condition|(
+name|newLength
+operator|>
+name|bytes
+operator|.
+name|length
+condition|)
+block|{
 name|bytes
 operator|=
 name|ArrayUtil
@@ -226,6 +228,7 @@ argument_list|,
 name|newLength
 argument_list|)
 expr_stmt|;
+block|}
 name|System
 operator|.
 name|arraycopy
@@ -281,6 +284,33 @@ condition|)
 block|{
 comment|// string is small enough that we don't need to save memory by falling back to double-pass approach
 comment|// this is just an optimized writeString() that re-uses scratchBytes.
+if|if
+condition|(
+name|scratchBytes
+operator|==
+literal|null
+condition|)
+block|{
+name|scratchBytes
+operator|=
+operator|new
+name|byte
+index|[
+name|ArrayUtil
+operator|.
+name|oversize
+argument_list|(
+name|maxLen
+argument_list|,
+name|Character
+operator|.
+name|BYTES
+argument_list|)
+index|]
+expr_stmt|;
+block|}
+else|else
+block|{
 name|scratchBytes
 operator|=
 name|ArrayUtil
@@ -292,6 +322,7 @@ argument_list|,
 name|maxLen
 argument_list|)
 expr_stmt|;
+block|}
 name|int
 name|len
 init|=
@@ -383,6 +414,38 @@ name|length
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+DECL|method|getBytes
+specifier|public
+name|byte
+index|[]
+name|getBytes
+parameter_list|()
+block|{
+return|return
+name|bytes
+return|;
+block|}
+DECL|method|getPosition
+specifier|public
+name|int
+name|getPosition
+parameter_list|()
+block|{
+return|return
+name|length
+return|;
+block|}
+DECL|method|reset
+specifier|public
+name|void
+name|reset
+parameter_list|()
+block|{
+name|length
+operator|=
+literal|0
+expr_stmt|;
 block|}
 block|}
 end_class
