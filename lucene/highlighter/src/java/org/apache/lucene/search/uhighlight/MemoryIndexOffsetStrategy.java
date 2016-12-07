@@ -92,6 +92,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Predicate
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -305,6 +317,12 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
+name|Predicate
+argument_list|<
+name|String
+argument_list|>
+name|fieldMatcher
+parameter_list|,
 name|BytesRef
 index|[]
 name|extractedTerms
@@ -383,7 +401,7 @@ name|preMemIndexFilterAutomaton
 operator|=
 name|buildCombinedAutomaton
 argument_list|(
-name|field
+name|fieldMatcher
 argument_list|,
 name|terms
 argument_list|,
@@ -404,8 +422,11 @@ specifier|static
 name|CharacterRunAutomaton
 name|buildCombinedAutomaton
 parameter_list|(
+name|Predicate
+argument_list|<
 name|String
-name|field
+argument_list|>
+name|fieldMatcher
 parameter_list|,
 name|BytesRef
 index|[]
@@ -504,7 +525,7 @@ name|extractAutomata
 argument_list|(
 name|spanQuery
 argument_list|,
-name|field
+name|fieldMatcher
 argument_list|,
 literal|true
 argument_list|,
