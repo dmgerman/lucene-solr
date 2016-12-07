@@ -1132,12 +1132,7 @@ argument_list|>
 name|terms
 parameter_list|)
 block|{
-comment|// needs to be implemented by query subclasses
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|()
-throw|;
+comment|// no-op
 block|}
 comment|/**      * A 'recipe' for computing a feature      */
 DECL|class|FeatureScorer

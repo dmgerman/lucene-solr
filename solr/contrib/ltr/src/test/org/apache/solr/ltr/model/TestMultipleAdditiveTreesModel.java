@@ -18,9 +18,21 @@ name|model
 package|;
 end_package
 
-begin_comment
-comment|//import static org.junit.internal.matchers.StringContains.containsString;
-end_comment
+begin_import
+import|import static
+name|org
+operator|.
+name|junit
+operator|.
+name|internal
+operator|.
+name|matchers
+operator|.
+name|StringContains
+operator|.
+name|containsString
+import|;
+end_import
 
 begin_import
 import|import
@@ -543,27 +555,159 @@ argument_list|,
 literal|" "
 argument_list|)
 expr_stmt|;
-comment|// FIXME containsString doesn't exist.
-comment|// assertThat(qryResult, containsString("\"debug\":{"));
-comment|// qryResult = qryResult.substring(qryResult.indexOf("debug"));
-comment|//
-comment|// assertThat(qryResult, containsString("\"explain\":{"));
-comment|// qryResult = qryResult.substring(qryResult.indexOf("explain"));
-comment|//
-comment|// assertThat(qryResult, containsString("multipleadditivetreesmodel"));
-comment|// assertThat(qryResult,
-comment|// containsString(MultipleAdditiveTreesModel.class.getCanonicalName()));
-comment|//
-comment|// assertThat(qryResult, containsString("-100.0 = tree 0"));
-comment|// assertThat(qryResult, containsString("50.0 = tree 0"));
-comment|// assertThat(qryResult, containsString("-20.0 = tree 1"));
-comment|// assertThat(qryResult, containsString("'matchedTitle':1.0> 0.5"));
-comment|// assertThat(qryResult, containsString("'matchedTitle':0.0<= 0.5"));
-comment|//
-comment|// assertThat(qryResult, containsString(" Go Right "));
-comment|// assertThat(qryResult, containsString(" Go Left "));
-comment|// assertThat(qryResult,
-comment|// containsString("'this_feature_doesnt_exist' does not exist in FV"));
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|"\"debug\":{"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|qryResult
+operator|=
+name|qryResult
+operator|.
+name|substring
+argument_list|(
+name|qryResult
+operator|.
+name|indexOf
+argument_list|(
+literal|"debug"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|"\"explain\":{"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|qryResult
+operator|=
+name|qryResult
+operator|.
+name|substring
+argument_list|(
+name|qryResult
+operator|.
+name|indexOf
+argument_list|(
+literal|"explain"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|"multipleadditivetreesmodel"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+name|MultipleAdditiveTreesModel
+operator|.
+name|class
+operator|.
+name|getCanonicalName
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|"-100.0 = tree 0"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|"50.0 = tree 0"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|"-20.0 = tree 1"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|"'matchedTitle':1.0> 0.5"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|"'matchedTitle':0.0<= 0.5"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|" Go Right "
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|" Go Left "
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertThat
+argument_list|(
+name|qryResult
+argument_list|,
+name|containsString
+argument_list|(
+literal|"'this_feature_doesnt_exist' does not exist in FV"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test

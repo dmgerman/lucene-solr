@@ -166,6 +166,20 @@ name|SolrQueryRequest
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|BoolField
+import|;
+end_import
+
 begin_comment
 comment|/**  * This feature returns the value of a field in the current document  * Example configuration:  *<pre>{   "name":  "rawHits",   "class": "org.apache.solr.ltr.feature.FieldValueFeature",   "params": {       "field": "hits"   } }</pre>  */
 end_comment
@@ -583,16 +597,34 @@ operator|.
 name|stringValue
 argument_list|()
 decl_stmt|;
-comment|// boolean values in the index are encoded with the
-comment|// chars T/F
 if|if
 condition|(
 name|string
 operator|.
-name|equals
+name|length
+argument_list|()
+operator|==
+literal|1
+condition|)
+block|{
+comment|// boolean values in the index are encoded with the
+comment|// a single char contained in TRUE_TOKEN or FALSE_TOKEN
+comment|// (see BoolField)
+if|if
+condition|(
+name|string
+operator|.
+name|charAt
 argument_list|(
-literal|"T"
+literal|0
 argument_list|)
+operator|==
+name|BoolField
+operator|.
+name|TRUE_TOKEN
+index|[
+literal|0
+index|]
 condition|)
 block|{
 return|return
@@ -603,15 +635,23 @@ if|if
 condition|(
 name|string
 operator|.
-name|equals
+name|charAt
 argument_list|(
-literal|"F"
+literal|0
 argument_list|)
+operator|==
+name|BoolField
+operator|.
+name|FALSE_TOKEN
+index|[
+literal|0
+index|]
 condition|)
 block|{
 return|return
 literal|0
 return|;
+block|}
 block|}
 block|}
 block|}

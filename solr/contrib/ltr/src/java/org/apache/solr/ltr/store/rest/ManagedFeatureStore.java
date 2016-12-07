@@ -343,7 +343,6 @@ name|REST_END_POINT
 init|=
 literal|"/schema/feature-store"
 decl_stmt|;
-comment|// TODO: reduce from public to package visibility (once tests no longer need public access)
 comment|/** name of the attribute containing the feature class **/
 DECL|field|CLASS_KEY
 specifier|static
