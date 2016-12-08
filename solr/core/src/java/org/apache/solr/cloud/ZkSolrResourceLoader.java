@@ -580,7 +580,7 @@ throw|;
 block|}
 catch|catch
 parameter_list|(
-name|KeeperException
+name|Exception
 name|e
 parameter_list|)
 block|{
