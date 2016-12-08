@@ -589,7 +589,7 @@ operator|.
 name|getDocCount
 argument_list|()
 decl_stmt|;
-comment|// We use the normal BKDWriter, but subclass to customize how it writes the index and blocks to disk:
+comment|// We use our own fork of the BKDWriter to customize how it writes the index and blocks to disk:
 try|try
 init|(
 name|SimpleTextBKDWriter
