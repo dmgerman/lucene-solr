@@ -1473,21 +1473,6 @@ end_class
 begin_catch
 catch|catch
 parameter_list|(
-name|ReflectiveOperationException
-name|e
-parameter_list|)
-block|{
-return|return
-literal|"Unmapping is not supported on this platform, because internal Java APIs are not compatible to this Lucene version: "
-operator|+
-name|e
-return|;
-block|}
-end_catch
-
-begin_catch
-catch|catch
-parameter_list|(
 name|SecurityException
 name|e
 parameter_list|)
@@ -1502,6 +1487,23 @@ operator|+
 literal|"RuntimePermission(\"accessClassInPackage.jdk.internal.ref\"), and "
 operator|+
 literal|"ReflectPermission(\"suppressAccessChecks\")]"
+return|;
+block|}
+end_catch
+
+begin_catch
+catch|catch
+parameter_list|(
+name|ReflectiveOperationException
+decl||
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
+return|return
+literal|"Unmapping is not supported on this platform, because internal Java APIs are not compatible to this Lucene version: "
+operator|+
+name|e
 return|;
 block|}
 end_catch
