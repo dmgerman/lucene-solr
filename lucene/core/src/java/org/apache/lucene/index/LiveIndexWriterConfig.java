@@ -18,6 +18,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -310,6 +330,20 @@ name|Sort
 name|indexSort
 init|=
 literal|null
+decl_stmt|;
+comment|/** The field names involved in the index sort */
+DECL|field|indexSortFields
+specifier|protected
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|indexSortFields
+init|=
+name|Collections
+operator|.
+name|emptySet
+argument_list|()
 decl_stmt|;
 comment|// used by IndexWriterConfig
 DECL|method|LiveIndexWriterConfig
@@ -918,6 +952,20 @@ parameter_list|()
 block|{
 return|return
 name|indexSort
+return|;
+block|}
+comment|/**    * Returns the field names involved in the index sort    */
+DECL|method|getIndexSortFields
+specifier|public
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|getIndexSortFields
+parameter_list|()
+block|{
+return|return
+name|indexSortFields
 return|;
 block|}
 annotation|@
