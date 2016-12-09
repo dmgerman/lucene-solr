@@ -1320,14 +1320,9 @@ argument_list|)
 operator|.
 name|map
 argument_list|(
-parameter_list|(
-name|s
-parameter_list|)
-lambda|->
-name|s
-operator|.
+name|SortField
+operator|::
 name|getField
-argument_list|()
 argument_list|)
 operator|.
 name|collect
