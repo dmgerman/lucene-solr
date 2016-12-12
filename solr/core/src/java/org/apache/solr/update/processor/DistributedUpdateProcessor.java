@@ -4554,6 +4554,14 @@ name|leaderReplica
 operator|.
 name|getName
 argument_list|()
+argument_list|,
+literal|null
+argument_list|,
+name|Replica
+operator|.
+name|State
+operator|.
+name|DOWN
 argument_list|)
 decl_stmt|;
 if|if
