@@ -311,6 +311,16 @@ name|stats
 operator|.
 name|get
 argument_list|(
+literal|"total_size"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|stats
+operator|.
+name|get
+argument_list|(
 literal|"entry#0"
 argument_list|)
 argument_list|)
@@ -366,7 +376,7 @@ operator|>
 literal|0
 operator|)
 assert|;
-name|assertNotNull
+name|assertNull
 argument_list|(
 name|stats
 operator|.
