@@ -4649,9 +4649,9 @@ try|try
 block|{
 name|MDCLoggingContext
 operator|.
-name|setCore
+name|setCoreDescriptor
 argument_list|(
-name|core
+name|dcore
 argument_list|)
 expr_stmt|;
 name|SolrIdentifierValidator
