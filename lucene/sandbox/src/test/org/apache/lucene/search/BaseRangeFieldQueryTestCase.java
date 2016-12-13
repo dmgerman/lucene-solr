@@ -569,7 +569,7 @@ operator|==
 literal|17
 condition|)
 block|{
-comment|// dome docs don't have a box:
+comment|// some docs don't have a box:
 name|ranges
 index|[
 name|id
