@@ -739,7 +739,7 @@ name|FREQS
 argument_list|)
 return|;
 block|}
-comment|/** Returns {@link NumericDocValues} for this field, or    *  null if no numeric doc values were indexed for    *  this field.  The returned instance should only be    *  used by a single thread.  This will never return null. */
+comment|/** Returns {@link NumericDocValues} for this field, or    *  null if no numeric doc values were indexed for    *  this field.  The returned instance should only be    *  used by a single thread. */
 DECL|method|getNumericDocValues
 specifier|public
 specifier|abstract
