@@ -152,7 +152,7 @@ name|boolean
 name|init
 parameter_list|(
 name|LeafReaderContext
-name|contxt
+name|context
 parameter_list|)
 throws|throws
 name|IOException
@@ -338,14 +338,14 @@ name|boolean
 name|init
 parameter_list|(
 name|LeafReaderContext
-name|contxt
+name|context
 parameter_list|)
 throws|throws
 name|IOException
 block|{
 name|ndv
 operator|=
-name|contxt
+name|context
 operator|.
 name|reader
 argument_list|()
