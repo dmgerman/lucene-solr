@@ -22,6 +22,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|EOFException
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -835,6 +845,8 @@ name|READ
 argument_list|)
 init|)
 block|{
+try|try
+block|{
 return|return
 name|readCommit
 argument_list|(
@@ -845,6 +857,25 @@ argument_list|,
 name|generation
 argument_list|)
 return|;
+block|}
+catch|catch
+parameter_list|(
+name|EOFException
+name|e
+parameter_list|)
+block|{
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"Unexpected end of file while reading index."
+argument_list|,
+name|input
+argument_list|,
+name|e
+argument_list|)
+throw|;
+block|}
 block|}
 block|}
 comment|/** Read the commit from the provided {@link ChecksumIndexInput}. */

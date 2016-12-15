@@ -82,6 +82,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Predicate
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -422,7 +434,7 @@ specifier|private
 name|MultiTermHighlighting
 parameter_list|()
 block|{   }
-comment|/**    * Extracts all MultiTermQueries for {@code field}, and returns equivalent    * automata that will match terms.    */
+comment|/**    * Extracts MultiTermQueries that match the provided field predicate.    * Returns equivalent automata that will match terms.    */
 DECL|method|extractAutomata
 specifier|public
 specifier|static
@@ -433,8 +445,11 @@ parameter_list|(
 name|Query
 name|query
 parameter_list|,
+name|Predicate
+argument_list|<
 name|String
-name|field
+argument_list|>
+name|fieldMatcher
 parameter_list|,
 name|boolean
 name|lookInSpan
@@ -502,7 +517,7 @@ name|extractAutomata
 argument_list|(
 name|sub
 argument_list|,
-name|field
+name|fieldMatcher
 argument_list|,
 name|lookInSpan
 argument_list|,
@@ -556,7 +571,7 @@ operator|.
 name|getQuery
 argument_list|()
 argument_list|,
-name|field
+name|fieldMatcher
 argument_list|,
 name|lookInSpan
 argument_list|,
@@ -596,7 +611,7 @@ operator|.
 name|getQuery
 argument_list|()
 argument_list|,
-name|field
+name|fieldMatcher
 argument_list|,
 name|lookInSpan
 argument_list|,
@@ -642,7 +657,7 @@ name|extractAutomata
 argument_list|(
 name|sub
 argument_list|,
-name|field
+name|fieldMatcher
 argument_list|,
 name|lookInSpan
 argument_list|,
@@ -691,7 +706,7 @@ name|extractAutomata
 argument_list|(
 name|sub
 argument_list|,
-name|field
+name|fieldMatcher
 argument_list|,
 name|lookInSpan
 argument_list|,
@@ -740,7 +755,7 @@ name|extractAutomata
 argument_list|(
 name|sub
 argument_list|,
-name|field
+name|fieldMatcher
 argument_list|,
 name|lookInSpan
 argument_list|,
@@ -781,7 +796,7 @@ operator|.
 name|getInclude
 argument_list|()
 argument_list|,
-name|field
+name|fieldMatcher
 argument_list|,
 name|lookInSpan
 argument_list|,
@@ -821,7 +836,7 @@ operator|.
 name|getMatch
 argument_list|()
 argument_list|,
-name|field
+name|fieldMatcher
 argument_list|,
 name|lookInSpan
 argument_list|,
@@ -864,7 +879,7 @@ operator|.
 name|getWrappedQuery
 argument_list|()
 argument_list|,
-name|field
+name|fieldMatcher
 argument_list|,
 name|lookInSpan
 argument_list|,
@@ -893,14 +908,14 @@ name|query
 decl_stmt|;
 if|if
 condition|(
+name|fieldMatcher
+operator|.
+name|test
+argument_list|(
 name|aq
 operator|.
 name|getField
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|field
 argument_list|)
 condition|)
 block|{
@@ -963,14 +978,14 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
+name|fieldMatcher
+operator|.
+name|test
+argument_list|(
 name|prefix
 operator|.
 name|field
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|field
 argument_list|)
 condition|)
 block|{
@@ -1040,14 +1055,14 @@ name|query
 decl_stmt|;
 if|if
 condition|(
+name|fieldMatcher
+operator|.
+name|test
+argument_list|(
 name|fq
 operator|.
 name|getField
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|field
 argument_list|)
 condition|)
 block|{
@@ -1259,14 +1274,14 @@ name|query
 decl_stmt|;
 if|if
 condition|(
+name|fieldMatcher
+operator|.
+name|test
+argument_list|(
 name|tq
 operator|.
 name|getField
 argument_list|()
-operator|.
-name|equals
-argument_list|(
-name|field
 argument_list|)
 condition|)
 block|{

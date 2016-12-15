@@ -914,6 +914,9 @@ literal|null
 condition|)
 block|{
 comment|// no docs in this segment indexed this field
+return|return
+literal|null
+return|;
 block|}
 name|checkFieldInfo
 argument_list|(

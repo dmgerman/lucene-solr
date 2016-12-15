@@ -119,11 +119,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** Writes points to disk in a fixed-with format. */
+comment|/** Writes points to disk in a fixed-with format.  *  * @lucene.internal */
 end_comment
 
 begin_class
 DECL|class|OfflinePointWriter
+specifier|public
 specifier|final
 class|class
 name|OfflinePointWriter
@@ -136,11 +137,13 @@ name|Directory
 name|tempDir
 decl_stmt|;
 DECL|field|out
+specifier|public
 specifier|final
 name|IndexOutput
 name|out
 decl_stmt|;
 DECL|field|name
+specifier|public
 specifier|final
 name|String
 name|name

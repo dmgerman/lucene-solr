@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.codecs.compressing
+DECL|package|org.apache.lucene.store
 package|package
 name|org
 operator|.
@@ -12,9 +12,7 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|compressing
+name|store
 package|;
 end_package
 
@@ -215,7 +213,8 @@ name|vintLen
 init|=
 name|dataOutput
 operator|.
-name|length
+name|getPosition
+argument_list|()
 decl_stmt|;
 comment|// now write the string which will internally write number of bytes as a vint and then utf8 bytes
 name|dataOutput
@@ -237,7 +236,8 @@ literal|2
 argument_list|,
 name|dataOutput
 operator|.
-name|length
+name|getPosition
+argument_list|()
 argument_list|)
 expr_stmt|;
 for|for
@@ -273,7 +273,8 @@ index|]
 argument_list|,
 name|dataOutput
 operator|.
-name|bytes
+name|getBytes
+argument_list|()
 index|[
 name|k
 index|]
@@ -400,7 +401,8 @@ name|vintLen
 init|=
 name|dataOutput
 operator|.
-name|length
+name|getPosition
+argument_list|()
 decl_stmt|;
 comment|// now write the string which will internally write number of bytes as a vint and then utf8 bytes
 name|dataOutput
@@ -422,7 +424,8 @@ literal|2
 argument_list|,
 name|dataOutput
 operator|.
-name|length
+name|getPosition
+argument_list|()
 argument_list|)
 expr_stmt|;
 for|for
@@ -458,7 +461,8 @@ index|]
 argument_list|,
 name|dataOutput
 operator|.
-name|bytes
+name|getBytes
+argument_list|()
 index|[
 name|k
 index|]

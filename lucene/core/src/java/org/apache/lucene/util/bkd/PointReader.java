@@ -53,11 +53,12 @@ import|;
 end_import
 
 begin_comment
-comment|/** One pass iterator through all points previously written with a  *  {@link PointWriter}, abstracting away whether points a read  *  from (offline) disk or simple arrays in heap. */
+comment|/** One pass iterator through all points previously written with a  *  {@link PointWriter}, abstracting away whether points a read  *  from (offline) disk or simple arrays in heap.  *  * @lucene.internal */
 end_comment
 
 begin_class
 DECL|class|PointReader
+specifier|public
 specifier|abstract
 class|class
 name|PointReader
@@ -66,6 +67,7 @@ name|Closeable
 block|{
 comment|/** Returns false once iteration is done, else true. */
 DECL|method|next
+specifier|public
 specifier|abstract
 name|boolean
 name|next
@@ -75,6 +77,7 @@ name|IOException
 function_decl|;
 comment|/** Returns the packed byte[] value */
 DECL|method|packedValue
+specifier|public
 specifier|abstract
 name|byte
 index|[]
@@ -83,6 +86,7 @@ parameter_list|()
 function_decl|;
 comment|/** Point ordinal */
 DECL|method|ord
+specifier|public
 specifier|abstract
 name|long
 name|ord
@@ -90,6 +94,7 @@ parameter_list|()
 function_decl|;
 comment|/** DocID for this point */
 DECL|method|docID
+specifier|public
 specifier|abstract
 name|int
 name|docID

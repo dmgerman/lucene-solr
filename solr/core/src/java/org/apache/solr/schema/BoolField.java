@@ -511,7 +511,7 @@ return|;
 block|}
 comment|// avoid instantiating every time...
 DECL|field|TRUE_TOKEN
-specifier|protected
+specifier|public
 specifier|final
 specifier|static
 name|char
@@ -523,7 +523,7 @@ literal|'T'
 block|}
 decl_stmt|;
 DECL|field|FALSE_TOKEN
-specifier|protected
+specifier|public
 specifier|final
 specifier|static
 name|char

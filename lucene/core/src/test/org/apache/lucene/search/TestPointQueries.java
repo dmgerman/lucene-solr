@@ -4753,6 +4753,23 @@ argument_list|(
 literal|100
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|VERBOSE
+condition|)
+block|{
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"TEST: sameValuePct="
+operator|+
+name|sameValuePct
+argument_list|)
+expr_stmt|;
+block|}
 name|byte
 index|[]
 index|[]

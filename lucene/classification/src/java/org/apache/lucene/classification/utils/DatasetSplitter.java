@@ -529,17 +529,22 @@ operator|==
 literal|null
 condition|)
 block|{
-throw|throw
-operator|new
-name|IllegalStateException
+comment|// approximate with no. of terms
+name|noOfClasses
+operator|+=
+name|leave
+operator|.
+name|reader
+argument_list|()
+operator|.
+name|terms
 argument_list|(
-literal|"field \""
-operator|+
 name|classFieldName
-operator|+
-literal|"\" must have sorted (set) doc values"
 argument_list|)
-throw|;
+operator|.
+name|size
+argument_list|()
+expr_stmt|;
 block|}
 name|noOfClasses
 operator|+=

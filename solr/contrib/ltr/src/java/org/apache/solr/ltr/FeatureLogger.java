@@ -615,16 +615,6 @@ argument_list|<
 name|String
 argument_list|>
 block|{
-DECL|field|sb
-name|StringBuilder
-name|sb
-init|=
-operator|new
-name|StringBuilder
-argument_list|(
-literal|500
-argument_list|)
-decl_stmt|;
 DECL|field|keyValueSep
 name|char
 name|keyValueSep
@@ -703,6 +693,22 @@ index|[]
 name|featuresInfo
 parameter_list|)
 block|{
+comment|// Allocate the buffer to a size based on the number of features instead of the
+comment|// default 16.  You need space for the name, value, and two separators per feature,
+comment|// but not all the features are expected to fire, so this is just a naive estimate.
+name|StringBuilder
+name|sb
+init|=
+operator|new
+name|StringBuilder
+argument_list|(
+name|featuresInfo
+operator|.
+name|length
+operator|*
+literal|3
+argument_list|)
+decl_stmt|;
 name|boolean
 name|isDense
 init|=
@@ -794,13 +800,6 @@ else|:
 literal|""
 operator|)
 decl_stmt|;
-name|sb
-operator|.
-name|setLength
-argument_list|(
-literal|0
-argument_list|)
-expr_stmt|;
 return|return
 name|features
 return|;

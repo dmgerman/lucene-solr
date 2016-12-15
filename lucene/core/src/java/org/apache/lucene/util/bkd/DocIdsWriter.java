@@ -54,7 +54,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexInput
+name|DataOutput
 import|;
 end_import
 
@@ -68,7 +68,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexOutput
+name|IndexInput
 import|;
 end_import
 
@@ -97,7 +97,7 @@ parameter_list|,
 name|int
 name|count
 parameter_list|,
-name|IndexOutput
+name|DataOutput
 name|out
 parameter_list|)
 throws|throws

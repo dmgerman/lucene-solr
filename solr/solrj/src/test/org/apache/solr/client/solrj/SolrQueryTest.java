@@ -3724,6 +3724,10 @@ name|solrQuery
 operator|.
 name|setMoreLikeThisFields
 argument_list|(
+operator|(
+name|String
+index|[]
+operator|)
 literal|null
 argument_list|)
 expr_stmt|;

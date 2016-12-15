@@ -135,7 +135,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Prefix codes term instances (prefixes are shared)  * @lucene.internal  */
+comment|/**  * Prefix codes term instances (prefixes are shared). This is expected to be  * faster to build than a FST and might also be more compact if there are no  * common suffixes.  * @lucene.internal  */
 end_comment
 
 begin_class

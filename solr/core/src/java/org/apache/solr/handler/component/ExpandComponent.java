@@ -1939,6 +1939,19 @@ operator|.
 name|leaves
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|contexts
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|0
+condition|)
+block|{
+comment|//When no context is available we can skip the expanding
+return|return;
+block|}
 name|int
 name|currentContext
 init|=

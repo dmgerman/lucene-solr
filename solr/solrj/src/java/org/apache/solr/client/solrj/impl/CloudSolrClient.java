@@ -2686,7 +2686,7 @@ operator|=
 name|parallelUpdates
 expr_stmt|;
 block|}
-comment|/**    * Upload a set of config files to Zookeeper and give it a name    *    * NOTE: You should only allow trusted users to upload configs.  If you    * are allowing client access to zookeeper, you should protect the    * /configs node against unauthorised write access.    *    * @param configPath {@link java.nio.file.Path} to the config files    * @param configName the name of the config    * @throws IOException if an IO error occurs    */
+comment|/**    * Upload a set of config files to Zookeeper and give it a name    *    * NOTE: You should only allow trusted users to upload configs.  If you    * are allowing client access to zookeeper, you should protect the    * /configs node against unauthorised write access.    *    *  @deprecated Please use {@link ZkClientClusterStateProvider#uploadConfig(Path, String)} instead    *    * @param configPath {@link java.nio.file.Path} to the config files    * @param configName the name of the config    * @throws IOException if an IO error occurs    */
 annotation|@
 name|Deprecated
 DECL|method|uploadConfig
@@ -2747,7 +2747,7 @@ literal|"This client does not use ZK"
 argument_list|)
 throw|;
 block|}
-comment|/**    * Download a named config from Zookeeper to a location on the filesystem    * @param configName    the name of the config    * @param downloadPath  the path to write config files to    * @throws IOException  if an I/O exception occurs    */
+comment|/**    * Download a named config from Zookeeper to a location on the filesystem    *    * @deprecated Please use {@link ZkClientClusterStateProvider#downloadConfig(String, Path)} instead    * @param configName    the name of the config    * @param downloadPath  the path to write config files to    * @throws IOException  if an I/O exception occurs    */
 annotation|@
 name|Deprecated
 DECL|method|downloadConfig

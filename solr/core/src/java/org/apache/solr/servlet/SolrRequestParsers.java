@@ -294,6 +294,20 @@ name|commons
 operator|.
 name|io
 operator|.
+name|FileCleaningTracker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|commons
+operator|.
+name|io
+operator|.
 name|input
 operator|.
 name|CloseShieldInputStream
@@ -525,6 +539,20 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|SolrFileCleaningTracker
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -691,6 +719,13 @@ init|=
 operator|new
 name|SolrRequestParsers
 argument_list|()
+decl_stmt|;
+DECL|field|fileCleaningTracker
+specifier|public
+specifier|static
+specifier|volatile
+name|SolrFileCleaningTracker
+name|fileCleaningTracker
 decl_stmt|;
 comment|/**    * Pass in an xml configuration.  A null configuration will enable    * everything with maximum values.    */
 DECL|method|SolrRequestParsers
@@ -2932,6 +2967,15 @@ specifier|final
 name|int
 name|uploadLimitKB
 decl_stmt|;
+DECL|field|factory
+specifier|private
+name|DiskFileItemFactory
+name|factory
+init|=
+operator|new
+name|DiskFileItemFactory
+argument_list|()
+decl_stmt|;
 DECL|method|MultipartRequestParser
 specifier|public
 name|MultipartRequestParser
@@ -2944,6 +2988,29 @@ name|uploadLimitKB
 operator|=
 name|limit
 expr_stmt|;
+comment|// Set factory constraints
+name|FileCleaningTracker
+name|fct
+init|=
+name|fileCleaningTracker
+decl_stmt|;
+if|if
+condition|(
+name|fct
+operator|!=
+literal|null
+condition|)
+block|{
+name|factory
+operator|.
+name|setFileCleaningTracker
+argument_list|(
+name|fileCleaningTracker
+argument_list|)
+expr_stmt|;
+block|}
+comment|// TODO - configure factory.setSizeThreshold(yourMaxMemorySize);
+comment|// TODO - configure factory.setRepository(yourTempDirectory);
 block|}
 annotation|@
 name|Override
@@ -3004,17 +3071,6 @@ name|getQueryString
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|// Create a factory for disk-based file items
-name|DiskFileItemFactory
-name|factory
-init|=
-operator|new
-name|DiskFileItemFactory
-argument_list|()
-decl_stmt|;
-comment|// Set factory constraints
-comment|// TODO - configure factory.setSizeThreshold(yourMaxMemorySize);
-comment|// TODO - configure factory.setRepository(yourTempDirectory);
 comment|// Create a new file upload handler
 name|ServletFileUpload
 name|upload

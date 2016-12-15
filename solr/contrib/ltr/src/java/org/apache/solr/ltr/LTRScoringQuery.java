@@ -1278,8 +1278,6 @@ name|searcher
 argument_list|,
 name|needsScores
 argument_list|,
-name|boost
-argument_list|,
 name|featureWeights
 argument_list|,
 name|features
@@ -1293,8 +1291,6 @@ argument_list|(
 name|searcher
 argument_list|,
 name|needsScores
-argument_list|,
-name|boost
 argument_list|,
 name|featureWeights
 argument_list|,
@@ -1420,9 +1416,6 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
-parameter_list|,
-name|float
-name|boost
 parameter_list|,
 name|List
 argument_list|<
@@ -1690,9 +1683,6 @@ name|searcher
 parameter_list|,
 name|boolean
 name|needsScores
-parameter_list|,
-name|float
-name|boost
 parameter_list|,
 name|List
 argument_list|<
@@ -2223,11 +2213,11 @@ return|return
 name|extractedFeatureWeights
 return|;
 block|}
-comment|/**      * Goes through all the stored feature values, and calculates the normalized      * values for all the features that will be used for scoring.      */
-DECL|method|makeNormalizedFeatures
+comment|/**      * Goes through all the stored feature values, and calculates the normalized      * values for all the features that will be used for scoring.      * Then calculate and return the model's score.      */
+DECL|method|makeNormalizedFeaturesAndScore
 specifier|private
-name|void
-name|makeNormalizedFeatures
+name|float
+name|makeNormalizedFeaturesAndScore
 parameter_list|()
 block|{
 name|int
@@ -2307,6 +2297,14 @@ argument_list|(
 name|modelFeatureValuesNormalized
 argument_list|)
 expr_stmt|;
+return|return
+name|ltrScoringModel
+operator|.
+name|score
+argument_list|(
+name|modelFeatureValuesNormalized
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Override
@@ -2769,8 +2767,7 @@ operator|<=
 literal|1
 condition|)
 block|{
-comment|// TODO: Allow the use of dense
-comment|// features in other cases
+comment|// future enhancement: allow the use of dense features in other cases
 name|featureTraversalScorer
 operator|=
 operator|new
@@ -3125,16 +3122,9 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|makeNormalizedFeatures
-argument_list|()
-expr_stmt|;
 return|return
-name|ltrScoringModel
-operator|.
-name|score
-argument_list|(
-name|modelFeatureValuesNormalized
-argument_list|)
+name|makeNormalizedFeaturesAndScore
+argument_list|()
 return|;
 block|}
 annotation|@
@@ -3557,16 +3547,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-name|makeNormalizedFeatures
-argument_list|()
-expr_stmt|;
 return|return
-name|ltrScoringModel
-operator|.
-name|score
-argument_list|(
-name|modelFeatureValuesNormalized
-argument_list|)
+name|makeNormalizedFeaturesAndScore
+argument_list|()
 return|;
 block|}
 annotation|@

@@ -82,16 +82,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|util
-operator|.
-name|SortedSet
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -823,7 +813,7 @@ parameter_list|,
 name|Query
 name|query
 parameter_list|,
-name|SortedSet
+name|Set
 argument_list|<
 name|Term
 argument_list|>
