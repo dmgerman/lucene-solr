@@ -58,7 +58,7 @@ name|lucene
 operator|.
 name|store
 operator|.
-name|IndexOutput
+name|DataOutput
 import|;
 end_import
 
@@ -85,7 +85,7 @@ name|numValues
 decl_stmt|;
 DECL|field|output
 specifier|final
-name|IndexOutput
+name|DataOutput
 name|output
 decl_stmt|;
 DECL|field|count
@@ -126,7 +126,7 @@ decl_stmt|;
 DECL|method|DirectWriter
 name|DirectWriter
 parameter_list|(
-name|IndexOutput
+name|DataOutput
 name|output
 parameter_list|,
 name|long
@@ -445,7 +445,7 @@ specifier|static
 name|DirectWriter
 name|getInstance
 parameter_list|(
-name|IndexOutput
+name|DataOutput
 name|output
 parameter_list|,
 name|long
