@@ -1856,6 +1856,19 @@ name|buckets
 operator|=
 name|buckets
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"####### Bucket count:"
+operator|+
+name|buckets
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
 name|this
 operator|.
 name|metrics

@@ -599,6 +599,15 @@ expr_stmt|;
 name|commit
 argument_list|()
 expr_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"############# testBasicSelect() ############"
+argument_list|)
+expr_stmt|;
 name|SolrParams
 name|sParams
 init|=
@@ -612,7 +621,7 @@ literal|"/sql"
 argument_list|,
 literal|"stmt"
 argument_list|,
-literal|"select id, field_i, str_s from collection1 where text='XXXX' order by field_i desc"
+literal|"select id, field_i, str_s from collection1 where (text='(XXXX)' OR text='XXXX') AND text='XXXX' order by field_i desc"
 argument_list|)
 decl_stmt|;
 name|SolrStream
@@ -5197,7 +5206,7 @@ literal|"stmt"
 argument_list|,
 literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
 operator|+
-literal|"cast(avg(1.0 * field_i) as float) from collection1 where (text='XXXX' AND NOT (text='XXXY')) "
+literal|"cast(avg(1.0 * field_i) as float) from collection1 where (text='XXXX' AND NOT ((text='XXXY') AND (text='XXXY' OR text='XXXY'))) "
 operator|+
 literal|"group by str_s order by str_s desc"
 argument_list|)
@@ -6469,6 +6478,15 @@ argument_list|,
 literal|"select distinct str_s, field_i from collection1 order by str_s asc, field_i asc"
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"######## selectDistinctFacets #######"
+argument_list|)
+expr_stmt|;
 name|SolrStream
 name|solrStream
 init|=
@@ -6493,6 +6511,7 @@ argument_list|(
 name|solrStream
 argument_list|)
 decl_stmt|;
+comment|//assert(false);
 assert|assert
 operator|(
 name|tuples
@@ -7968,6 +7987,15 @@ argument_list|,
 literal|"select distinct str_s, field_i from collection1 order by str_s asc, field_i asc"
 argument_list|)
 decl_stmt|;
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"##################### testSelectDistinct()"
+argument_list|)
+expr_stmt|;
 name|TupleStream
 name|solrStream
 init|=
