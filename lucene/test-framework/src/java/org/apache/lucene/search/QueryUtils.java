@@ -550,21 +550,6 @@ name|q1
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// possible this test can fail on a hash collision... if that
-comment|// happens, please change test to use a different example.
-name|assertTrue
-argument_list|(
-name|q1
-operator|.
-name|hashCode
-argument_list|()
-operator|!=
-name|q2
-operator|.
-name|hashCode
-argument_list|()
-argument_list|)
-expr_stmt|;
 block|}
 comment|/** deep check that explanations of a query 'score' correctly */
 DECL|method|checkExplanations
