@@ -9442,6 +9442,13 @@ init|(
 name|searcherLock
 init|)
 block|{
+for|for
+control|(
+init|;
+condition|;
+control|)
+block|{
+comment|// this loop is so w can retry in the event that we exceed maxWarmingSearchers
 comment|// see if we can return the current searcher
 if|if
 condition|(
@@ -9591,40 +9598,35 @@ block|{
 name|onDeckSearchers
 operator|--
 expr_stmt|;
-name|String
-name|msg
-init|=
-literal|"Error opening new searcher. exceeded limit of maxWarmingSearchers="
-operator|+
-name|maxWarmingSearchers
-operator|+
-literal|", try again later."
-decl_stmt|;
+try|try
+block|{
+name|searcherLock
+operator|.
+name|wait
+argument_list|()
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|InterruptedException
+name|e
+parameter_list|)
+block|{
 name|log
 operator|.
-name|warn
+name|info
 argument_list|(
-name|logid
-operator|+
-literal|""
-operator|+
-name|msg
+name|SolrException
+operator|.
+name|toStr
+argument_list|(
+name|e
+argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// HTTP 503==service unavailable, or 409==Conflict
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|SERVICE_UNAVAILABLE
-argument_list|,
-name|msg
-argument_list|)
-throw|;
+block|}
+continue|continue;
+comment|// go back to the top of the loop and retry
 block|}
 elseif|else
 if|if
@@ -9645,6 +9647,9 @@ operator|+
 name|onDeckSearchers
 argument_list|)
 expr_stmt|;
+block|}
+break|break;
+comment|// I can now exit the loop and proceed to open a searcher
 block|}
 block|}
 comment|// a signal to decrement onDeckSearchers if something goes wrong.

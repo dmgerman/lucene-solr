@@ -343,11 +343,8 @@ expr_stmt|;
 block|}
 comment|// some of the commits could have failed because maxWarmingSearchers exceeded,
 comment|// so do a final commit to make sure everything is visible.
-name|client
-operator|.
-name|commit
-argument_list|()
-expr_stmt|;
+comment|// This should no longer be true as of SOLR-9712 (Solr 6.4)
+comment|// client.commit();
 name|query
 argument_list|(
 name|threadCount

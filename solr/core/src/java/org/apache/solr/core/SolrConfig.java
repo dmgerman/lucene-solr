@@ -1825,9 +1825,7 @@ name|getInt
 argument_list|(
 literal|"query/maxWarmingSearchers"
 argument_list|,
-name|Integer
-operator|.
-name|MAX_VALUE
+literal|1
 argument_list|)
 expr_stmt|;
 name|slowQueryThresholdMillis

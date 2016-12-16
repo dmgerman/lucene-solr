@@ -431,7 +431,6 @@ name|maxConcurrentCommits
 init|=
 name|nWriteThreads
 decl_stmt|;
-comment|// number of committers at a time... it should be<= maxWarmingSearchers
 specifier|final
 name|AtomicLong
 name|operations
