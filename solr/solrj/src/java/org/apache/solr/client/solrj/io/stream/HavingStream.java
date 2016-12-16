@@ -546,7 +546,7 @@ operator|.
 name|size
 argument_list|()
 operator|+
-literal|2
+literal|1
 condition|)
 block|{
 throw|throw

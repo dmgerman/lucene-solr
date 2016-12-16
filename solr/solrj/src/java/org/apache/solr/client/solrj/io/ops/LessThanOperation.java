@@ -262,6 +262,9 @@ return|;
 block|}
 return|return
 name|d
+operator|.
+name|doubleValue
+argument_list|()
 operator|<
 name|val
 return|;

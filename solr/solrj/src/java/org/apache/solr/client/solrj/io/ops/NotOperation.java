@@ -334,7 +334,7 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|op
+name|streamOp
 operator|instanceof
 name|BooleanOperation
 condition|)
