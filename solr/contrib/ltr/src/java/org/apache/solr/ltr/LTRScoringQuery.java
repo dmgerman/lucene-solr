@@ -450,9 +450,6 @@ comment|// feature logger to output the features.
 DECL|field|fl
 specifier|private
 name|FeatureLogger
-argument_list|<
-name|?
-argument_list|>
 name|fl
 decl_stmt|;
 comment|// Map of external parameters, such as query intent, that can be used by

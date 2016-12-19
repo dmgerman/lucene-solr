@@ -812,9 +812,6 @@ literal|0
 decl_stmt|;
 specifier|final
 name|FeatureLogger
-argument_list|<
-name|?
-argument_list|>
 name|featureLogger
 init|=
 name|scoringQuery
