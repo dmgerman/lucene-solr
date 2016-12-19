@@ -201,7 +201,7 @@ operator|=
 name|initialMax
 expr_stmt|;
 block|}
-comment|/**    * Called after #{@link DocValuesStats#accumulate(int)} was processed and verified that the document has a value for    * the field. Implementations should update the statistics based on the value of the current document.    *    * @param count    *          the updated number of documents with value for this field.    */
+comment|/**    * Called after {@link #accumulate(int)} was processed and verified that the document has a value for    * the field. Implementations should update the statistics based on the value of the current document.    *    * @param count    *          the updated number of documents with value for this field.    */
 DECL|method|doAccumulate
 specifier|protected
 specifier|abstract
@@ -321,7 +321,7 @@ return|return
 name|missing
 return|;
 block|}
-comment|/** The minimum value of the field. Undefined when {@link #count} is zero. */
+comment|/** The minimum value of the field. Undefined when {@link #count()} is zero. */
 DECL|method|min
 specifier|public
 specifier|final
@@ -333,7 +333,7 @@ return|return
 name|min
 return|;
 block|}
-comment|/** The maximum value of the field. Undefined when {@link #count} is zero. */
+comment|/** The maximum value of the field. Undefined when {@link #count()} is zero. */
 DECL|method|max
 specifier|public
 specifier|final
@@ -347,6 +347,7 @@ return|;
 block|}
 comment|/** Holds statistics for a numeric DocValues field. */
 DECL|class|NumericDocValuesStats
+specifier|public
 specifier|static
 specifier|abstract
 class|class
@@ -816,6 +817,7 @@ block|}
 block|}
 comment|/** Holds statistics for a sorted-numeric DocValues field. */
 DECL|class|SortedNumericDocValuesStats
+specifier|public
 specifier|static
 specifier|abstract
 class|class
