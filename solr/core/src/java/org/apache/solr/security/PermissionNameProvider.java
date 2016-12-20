@@ -232,6 +232,14 @@ argument_list|,
 literal|null
 argument_list|)
 block|,
+DECL|enum constant|METRICS_READ_PERM
+name|METRICS_READ_PERM
+argument_list|(
+literal|"metrics-read"
+argument_list|,
+literal|null
+argument_list|)
+block|,
 DECL|enum constant|ALL
 name|ALL
 argument_list|(

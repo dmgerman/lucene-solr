@@ -396,6 +396,12 @@ name|ZK_PATH
 init|=
 literal|"/admin/zookeeper"
 decl_stmt|;
+DECL|field|METRICS_PATH
+name|String
+name|METRICS_PATH
+init|=
+literal|"/admin/metrics"
+decl_stmt|;
 DECL|field|ADMIN_PATHS
 name|Set
 argument_list|<
@@ -420,6 +426,8 @@ argument_list|,
 name|AUTHC_PATH
 argument_list|,
 name|AUTHZ_PATH
+argument_list|,
+name|METRICS_PATH
 argument_list|)
 argument_list|)
 decl_stmt|;
