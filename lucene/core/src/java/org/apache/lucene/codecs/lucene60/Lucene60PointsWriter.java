@@ -783,24 +783,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|mergeState
-operator|.
-name|needsIndexSort
-condition|)
-block|{
-comment|// TODO: can we gain back some optos even if index is sorted?  E.g. if sort results in large chunks of contiguous docs from one sub
-comment|// being copied over...?
-name|super
-operator|.
-name|merge
-argument_list|(
-name|mergeState
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
+comment|/**      * If indexSort is activated and some of the leaves are not sorted the next test will catch that and the non-optimized merge will run.      * If the readers are all sorted then it's safe to perform a bulk merge of the points.      **/
 for|for
 control|(
 name|PointsReader

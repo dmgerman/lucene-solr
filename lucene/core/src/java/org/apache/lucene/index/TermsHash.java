@@ -293,6 +293,11 @@ parameter_list|,
 specifier|final
 name|SegmentWriteState
 name|state
+parameter_list|,
+name|Sorter
+operator|.
+name|DocMap
+name|sortMap
 parameter_list|)
 throws|throws
 name|IOException
@@ -361,6 +366,8 @@ argument_list|(
 name|nextChildFields
 argument_list|,
 name|state
+argument_list|,
+name|sortMap
 argument_list|)
 expr_stmt|;
 block|}

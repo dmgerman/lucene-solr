@@ -12101,15 +12101,6 @@ name|IndexWriter
 operator|.
 name|SOURCE_FLUSH
 case|:
-name|assertNull
-argument_list|(
-name|info
-operator|.
-name|getIndexSort
-argument_list|()
-argument_list|)
-expr_stmt|;
-break|break;
 case|case
 name|IndexWriter
 operator|.

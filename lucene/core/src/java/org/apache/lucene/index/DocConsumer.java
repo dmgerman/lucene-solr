@@ -44,7 +44,9 @@ name|AbortingException
 function_decl|;
 DECL|method|flush
 specifier|abstract
-name|void
+name|Sorter
+operator|.
+name|DocMap
 name|flush
 parameter_list|(
 specifier|final
