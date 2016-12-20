@@ -2846,7 +2846,7 @@ name|maxConcurrentCommits
 init|=
 name|nWriteThreads
 decl_stmt|;
-comment|// number of committers at a time... it should be<= maxWarmingSearchers
+comment|// number of committers at a time...
 comment|// query variables
 specifier|final
 name|int

@@ -287,7 +287,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link org.apache.lucene.index.LeafReader} which supports sorting documents by a given  * {@link Sort}.  This is package private and is only used by Lucene when it needs to merge  * a newly flushed (unsorted) segment.  *  * @lucene.experimental  */
+comment|/**  * An {@link org.apache.lucene.index.LeafReader} which supports sorting documents by a given  * {@link Sort}. This is package private and is only used by Lucene fo BWC when it needs to merge  * an unsorted flushed segment built by an older version (newly flushed segments are sorted since version 7.0).  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -298,7 +298,6 @@ extends|extends
 name|FilterLeafReader
 block|{
 DECL|class|SortingFields
-specifier|private
 specifier|static
 class|class
 name|SortingFields
@@ -848,7 +847,6 @@ return|;
 block|}
 block|}
 DECL|class|SortingBinaryDocValues
-specifier|private
 specifier|static
 class|class
 name|SortingBinaryDocValues
@@ -1049,7 +1047,6 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|class|CachedNumericDVs
-specifier|private
 specifier|static
 class|class
 name|CachedNumericDVs
@@ -1110,7 +1107,6 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|class|CachedBinaryDVs
-specifier|private
 specifier|static
 class|class
 name|CachedBinaryDVs
@@ -1173,7 +1169,6 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|class|SortingNumericDocValues
-specifier|private
 specifier|static
 class|class
 name|SortingNumericDocValues
@@ -1705,7 +1700,6 @@ return|;
 block|}
 block|}
 DECL|class|SortingSortedDocValues
-specifier|private
 specifier|static
 class|class
 name|SortingSortedDocValues
@@ -1990,7 +1984,6 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|class|SortingSortedSetDocValues
-specifier|private
 specifier|static
 class|class
 name|SortingSortedSetDocValues
@@ -2311,7 +2304,6 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|class|SortingSortedNumericDocValues
-specifier|private
 specifier|static
 class|class
 name|SortingSortedNumericDocValues

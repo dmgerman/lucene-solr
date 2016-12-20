@@ -105,9 +105,6 @@ name|SolrQueryRequest
 name|req
 parameter_list|,
 name|FeatureLogger
-argument_list|<
-name|?
-argument_list|>
 name|featureLogger
 parameter_list|)
 block|{
@@ -128,9 +125,6 @@ DECL|method|getFeatureLogger
 specifier|public
 specifier|static
 name|FeatureLogger
-argument_list|<
-name|?
-argument_list|>
 name|getFeatureLogger
 parameter_list|(
 name|SolrQueryRequest
@@ -140,9 +134,6 @@ block|{
 return|return
 operator|(
 name|FeatureLogger
-argument_list|<
-name|?
-argument_list|>
 operator|)
 name|req
 operator|.

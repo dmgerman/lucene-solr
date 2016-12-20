@@ -52,6 +52,7 @@ specifier|public
 interface|interface
 name|SolrInfoMBean
 block|{
+comment|/**    * Category of {@link SolrCore} component.    */
 DECL|enum|Category
 DECL|enum constant|CORE
 DECL|enum constant|QUERYHANDLER
@@ -60,7 +61,6 @@ DECL|enum constant|CACHE
 DECL|enum constant|HIGHLIGHTING
 DECL|enum constant|QUERYPARSER
 DECL|enum constant|OTHER
-specifier|public
 enum|enum
 name|Category
 block|{
@@ -78,7 +78,26 @@ name|QUERYPARSER
 block|,
 name|OTHER
 block|}
-empty_stmt|;
+comment|/**    * Top-level group of beans for a subsystem.    */
+DECL|enum|Group
+DECL|enum constant|jvm
+DECL|enum constant|jetty
+DECL|enum constant|http
+DECL|enum constant|node
+DECL|enum constant|core
+enum|enum
+name|Group
+block|{
+name|jvm
+block|,
+name|jetty
+block|,
+name|http
+block|,
+name|node
+block|,
+name|core
+block|}
 comment|/**    * Simple common usage name, e.g. BasicQueryHandler,    * or fully qualified clas name.    */
 DECL|method|getName
 specifier|public

@@ -146,7 +146,6 @@ end_import
 
 begin_class
 DECL|class|TermVectorsConsumer
-specifier|final
 class|class
 name|TermVectorsConsumer
 extends|extends
@@ -255,6 +254,11 @@ parameter_list|,
 specifier|final
 name|SegmentWriteState
 name|state
+parameter_list|,
+name|Sorter
+operator|.
+name|DocMap
+name|sortMap
 parameter_list|)
 throws|throws
 name|IOException
@@ -368,7 +372,6 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|initTermVectorsWriter
-specifier|private
 name|void
 name|initTermVectorsWriter
 parameter_list|()

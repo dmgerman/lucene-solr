@@ -109,10 +109,10 @@ import|;
 end_import
 
 begin_class
-DECL|class|TimerUtilsTest
+DECL|class|MetricUtilsTest
 specifier|public
 class|class
-name|TimerUtilsTest
+name|MetricUtilsTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
@@ -189,7 +189,7 @@ name|SimpleOrderedMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-name|TimerUtils
+name|MetricUtils
 operator|.
 name|addMetrics
 argument_list|(
@@ -259,7 +259,7 @@ argument_list|(
 literal|"avgTimePerRequest"
 argument_list|)
 argument_list|,
-name|TimerUtils
+name|MetricUtils
 operator|.
 name|nsToMs
 argument_list|(
@@ -279,7 +279,7 @@ argument_list|(
 literal|"medianRequestTime"
 argument_list|)
 argument_list|,
-name|TimerUtils
+name|MetricUtils
 operator|.
 name|nsToMs
 argument_list|(
@@ -299,7 +299,7 @@ argument_list|(
 literal|"75thPcRequestTime"
 argument_list|)
 argument_list|,
-name|TimerUtils
+name|MetricUtils
 operator|.
 name|nsToMs
 argument_list|(
@@ -319,7 +319,7 @@ argument_list|(
 literal|"95thPcRequestTime"
 argument_list|)
 argument_list|,
-name|TimerUtils
+name|MetricUtils
 operator|.
 name|nsToMs
 argument_list|(
@@ -339,7 +339,7 @@ argument_list|(
 literal|"99thPcRequestTime"
 argument_list|)
 argument_list|,
-name|TimerUtils
+name|MetricUtils
 operator|.
 name|nsToMs
 argument_list|(
@@ -359,7 +359,7 @@ argument_list|(
 literal|"999thPcRequestTime"
 argument_list|)
 argument_list|,
-name|TimerUtils
+name|MetricUtils
 operator|.
 name|nsToMs
 argument_list|(

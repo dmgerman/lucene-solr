@@ -88,7 +88,7 @@ name|util
 operator|.
 name|stats
 operator|.
-name|TimerUtils
+name|MetricUtils
 import|;
 end_import
 
@@ -485,7 +485,7 @@ name|longValue
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|TimerUtils
+name|MetricUtils
 operator|.
 name|addMetrics
 argument_list|(

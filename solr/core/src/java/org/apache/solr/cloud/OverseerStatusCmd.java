@@ -178,7 +178,7 @@ name|util
 operator|.
 name|stats
 operator|.
-name|TimerUtils
+name|MetricUtils
 import|;
 end_import
 
@@ -824,7 +824,7 @@ argument_list|()
 operator|.
 name|requestTime
 decl_stmt|;
-name|TimerUtils
+name|MetricUtils
 operator|.
 name|addMetrics
 argument_list|(

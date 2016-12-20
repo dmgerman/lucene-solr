@@ -886,8 +886,6 @@ name|super
 operator|.
 name|initializeAuthHandler
 argument_list|(
-name|KerberosPlugin
-operator|.
 name|RequestContinuesRecorderAuthenticationHandler
 operator|.
 name|class
@@ -898,14 +896,10 @@ argument_list|,
 name|filterConfig
 argument_list|)
 expr_stmt|;
-name|KerberosPlugin
-operator|.
 name|RequestContinuesRecorderAuthenticationHandler
 name|newAuthHandler
 init|=
 operator|(
-name|KerberosPlugin
-operator|.
 name|RequestContinuesRecorderAuthenticationHandler
 operator|)
 name|getAuthenticationHandler

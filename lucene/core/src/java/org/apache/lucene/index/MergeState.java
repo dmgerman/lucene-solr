@@ -1148,7 +1148,7 @@ return|return
 name|originalReaders
 return|;
 block|}
-comment|// If an incoming reader is not sorted, because it was flushed by IW, we sort it here:
+comment|/** If an incoming reader is not sorted, because it was flushed by IW older than {@link Version.LUCENE_7_0_0}      * or because we add unsorted segments from another index {@link IndexWriter#addIndexes(CodecReader...)} ,      * we sort it here:      */
 specifier|final
 name|Sorter
 name|sorter
@@ -1198,8 +1198,6 @@ operator|==
 literal|null
 condition|)
 block|{
-comment|// TODO: fix IW to also sort when flushing?  It's somewhat tricky because of stored fields and term vectors, which write "live"
-comment|// to their index files on each indexed document:
 comment|// This segment was written by flush, so documents are not yet sorted, so we sort them now:
 name|long
 name|t0

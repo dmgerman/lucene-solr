@@ -437,7 +437,6 @@ name|maxConcurrentCommits
 init|=
 name|nWriteThreads
 decl_stmt|;
-comment|// number of committers at a time... it should be<= maxWarmingSearchers
 comment|// query variables
 specifier|final
 name|int
@@ -469,7 +468,7 @@ argument_list|(
 literal|25
 argument_list|)
 decl_stmt|;
-comment|/** // testing     final int commitPercent = 5;     final int softCommitPercent = 100; // what percent of the commits are soft     final int deletePercent = 0;     final int deleteByQueryPercent = 50;     final int ndocs = 1;     int nWriteThreads = 2;      final int maxConcurrentCommits = nWriteThreads;   // number of committers at a time... it should be<= maxWarmingSearchers      // query variables     final int percentRealtimeQuery = 101;     final AtomicLong operations = new AtomicLong(50000);  // number of query operations to perform in total     int nReadThreads = 1;     **/
+comment|/** // testing     final int commitPercent = 5;     final int softCommitPercent = 100; // what percent of the commits are soft     final int deletePercent = 0;     final int deleteByQueryPercent = 50;     final int ndocs = 1;     int nWriteThreads = 2;      final int maxConcurrentCommits = nWriteThreads;      // query variables     final int percentRealtimeQuery = 101;     final AtomicLong operations = new AtomicLong(50000);  // number of query operations to perform in total     int nReadThreads = 1;     **/
 name|verbose
 argument_list|(
 literal|"commitPercent"

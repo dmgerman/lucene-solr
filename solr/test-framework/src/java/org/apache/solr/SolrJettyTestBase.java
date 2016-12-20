@@ -728,11 +728,6 @@ argument_list|,
 name|solrHome
 argument_list|)
 expr_stmt|;
-name|ignoreException
-argument_list|(
-literal|"maxWarmingSearchers"
-argument_list|)
-expr_stmt|;
 name|jetty
 operator|=
 operator|new

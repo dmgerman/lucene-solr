@@ -3784,10 +3784,6 @@ name|h
 parameter_list|)
 lambda|->
 block|{
-specifier|final
-name|String
-name|aliasName
-init|=
 name|SolrIdentifierValidator
 operator|.
 name|validateAliasName
@@ -3802,7 +3798,7 @@ argument_list|(
 name|NAME
 argument_list|)
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 return|return
 name|req
 operator|.

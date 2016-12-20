@@ -11567,7 +11567,7 @@ operator|.
 name|size
 argument_list|()
 operator|!=
-name|solrDocument1
+name|solrDocument2
 operator|.
 name|getFieldNames
 argument_list|()
