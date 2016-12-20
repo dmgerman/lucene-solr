@@ -362,6 +362,7 @@ name|lookupClass
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|/** Common prefix for all registry names that Solr uses. */
 DECL|field|REGISTRY_NAME_PREFIX
 specifier|public
 specifier|static
@@ -371,6 +372,7 @@ name|REGISTRY_NAME_PREFIX
 init|=
 literal|"solr."
 decl_stmt|;
+comment|/** Registry name for Jetty-specific metrics. This name is also subject to overrides controlled by    * system properties. This registry is shared between instances of {@link SolrMetricManager}. */
 DECL|field|JETTY_REGISTRY
 specifier|public
 specifier|static
@@ -389,6 +391,7 @@ operator|.
 name|toString
 argument_list|()
 decl_stmt|;
+comment|/** Registry name for JVM-specific metrics. This name is also subject to overrides controlled by    * system properties. This registry is shared between instances of {@link SolrMetricManager}. */
 DECL|field|JVM_REGISTRY
 specifier|public
 specifier|static
@@ -423,7 +426,6 @@ name|ConcurrentHashMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|// these reporters are per CoreContainer
 DECL|field|reporters
 specifier|private
 specifier|final
@@ -439,29 +441,6 @@ name|SolrMetricReporter
 argument_list|>
 argument_list|>
 name|reporters
-init|=
-operator|new
-name|HashMap
-argument_list|<>
-argument_list|()
-decl_stmt|;
-comment|// these reporters are per JVM
-DECL|field|sharedReporters
-specifier|private
-specifier|static
-specifier|final
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|SolrMetricReporter
-argument_list|>
-argument_list|>
-name|sharedReporters
 init|=
 operator|new
 name|HashMap
@@ -679,6 +658,51 @@ name|set
 argument_list|)
 return|;
 block|}
+comment|/**    * Check for predefined shared registry names. This compares the input name    * with normalized and possibly overriden names of predefined shared registries -    * {@link #JVM_REGISTRY} and {@link #JETTY_REGISTRY}.    * @param registry already normalized and possibly overriden name    * @return true if the name matches one of shared registries    */
+DECL|method|isSharedRegistry
+specifier|private
+specifier|static
+name|boolean
+name|isSharedRegistry
+parameter_list|(
+name|String
+name|registry
+parameter_list|)
+block|{
+if|if
+condition|(
+name|overridableRegistryName
+argument_list|(
+name|JETTY_REGISTRY
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+name|registry
+argument_list|)
+operator|||
+name|overridableRegistryName
+argument_list|(
+name|JVM_REGISTRY
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+name|registry
+argument_list|)
+condition|)
+block|{
+return|return
+literal|true
+return|;
+block|}
+else|else
+block|{
+return|return
+literal|false
+return|;
+block|}
+block|}
 comment|/**    * Get (or create if not present) a named registry    * @param registry name of the registry    * @return existing or newly created registry    */
 DECL|method|registry
 specifier|public
@@ -698,16 +722,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|JETTY_REGISTRY
-operator|.
-name|equals
-argument_list|(
-name|registry
-argument_list|)
-operator|||
-name|JVM_REGISTRY
-operator|.
-name|equals
+name|isSharedRegistry
 argument_list|(
 name|registry
 argument_list|)
@@ -815,16 +830,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|JETTY_REGISTRY
-operator|.
-name|equals
-argument_list|(
-name|registry
-argument_list|)
-operator|||
-name|JVM_REGISTRY
-operator|.
-name|equals
+name|isSharedRegistry
 argument_list|(
 name|registry
 argument_list|)
