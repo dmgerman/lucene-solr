@@ -8790,6 +8790,9 @@ operator|instanceof
 name|SimpleTextCodec
 argument_list|)
 expr_stmt|;
+name|assumeWorkingMMapOnWindows
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|int

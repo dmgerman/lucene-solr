@@ -5172,6 +5172,9 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|assumeWorkingMMapOnWindows
+argument_list|()
+expr_stmt|;
 comment|// "big" as "much bigger than the chunk size"
 comment|// for this test we force a FS dir
 comment|// we can't just use newFSDirectory, because this test doesn't really index anything.

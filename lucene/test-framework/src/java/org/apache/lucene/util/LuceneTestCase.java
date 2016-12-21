@@ -956,6 +956,20 @@ name|lucene
 operator|.
 name|store
 operator|.
+name|MMapDirectory
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|store
+operator|.
 name|MergeInfo
 import|;
 end_import
@@ -2459,6 +2473,44 @@ operator|=
 name|defaultValue
 expr_stmt|;
 block|}
+comment|/** Returns true, if MMapDirectory supports unmapping on this platform (required for Windows), or if we are not on Windows. */
+DECL|method|hasWorkingMMapOnWindows
+specifier|public
+specifier|static
+name|boolean
+name|hasWorkingMMapOnWindows
+parameter_list|()
+block|{
+return|return
+operator|!
+name|Constants
+operator|.
+name|WINDOWS
+operator|||
+name|MMapDirectory
+operator|.
+name|UNMAP_SUPPORTED
+return|;
+block|}
+comment|/** Assumes that the current MMapDirectory implementation supports unmapping, so the test will not fail on Windows.    * @see #hasWorkingMMapOnWindows()    * */
+DECL|method|assumeWorkingMMapOnWindows
+specifier|public
+specifier|static
+name|void
+name|assumeWorkingMMapOnWindows
+parameter_list|()
+block|{
+name|assumeTrue
+argument_list|(
+name|MMapDirectory
+operator|.
+name|UNMAP_NOT_SUPPORTED_REASON
+argument_list|,
+name|hasWorkingMMapOnWindows
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Filesystem-based {@link Directory} implementations. */
 DECL|field|FS_DIRECTORIES
 specifier|private
@@ -2478,7 +2530,13 @@ literal|"SimpleFSDirectory"
 argument_list|,
 literal|"NIOFSDirectory"
 argument_list|,
+comment|// SimpleFSDirectory as replacement for MMapDirectory if unmapping is not supported on Windows (to make randomization stable):
+name|hasWorkingMMapOnWindows
+argument_list|()
+condition|?
 literal|"MMapDirectory"
+else|:
+literal|"SimpleFSDirectory"
 argument_list|)
 decl_stmt|;
 comment|/** All {@link Directory} implementations. */
