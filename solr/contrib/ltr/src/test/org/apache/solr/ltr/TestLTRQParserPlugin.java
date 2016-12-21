@@ -83,14 +83,8 @@ name|Exception
 block|{
 name|setuptest
 argument_list|(
-literal|"solrconfig-ltr.xml"
-argument_list|,
-literal|"schema.xml"
+literal|true
 argument_list|)
-expr_stmt|;
-comment|// store = getModelStore();
-name|bulkIndex
-argument_list|()
 expr_stmt|;
 name|loadFeatures
 argument_list|(
@@ -117,7 +111,6 @@ block|{
 name|aftertest
 argument_list|()
 expr_stmt|;
-comment|// store.clear();
 block|}
 annotation|@
 name|Test
