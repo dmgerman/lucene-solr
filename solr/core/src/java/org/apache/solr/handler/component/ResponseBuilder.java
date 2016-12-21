@@ -770,13 +770,6 @@ argument_list|>
 name|finished
 decl_stmt|;
 comment|// requests that have received responses from all shards
-DECL|field|preferredHostAddress
-specifier|public
-name|String
-name|preferredHostAddress
-init|=
-literal|null
-decl_stmt|;
 DECL|field|shortCircuitedURL
 specifier|public
 name|String

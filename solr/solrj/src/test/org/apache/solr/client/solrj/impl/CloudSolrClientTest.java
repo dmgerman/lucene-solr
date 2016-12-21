@@ -2643,7 +2643,9 @@ name|qParams
 operator|.
 name|add
 argument_list|(
-literal|"preferLocalShards"
+name|CommonParams
+operator|.
+name|PREFER_LOCAL_SHARDS
 argument_list|,
 name|Boolean
 operator|.
