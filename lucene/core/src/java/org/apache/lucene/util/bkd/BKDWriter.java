@@ -2938,7 +2938,6 @@ name|top
 argument_list|()
 decl_stmt|;
 comment|// System.out.println("iter reader=" + reader);
-comment|// NOTE: doesn't work with subclasses (e.g. SimpleText!)
 name|oneDimWriter
 operator|.
 name|add
