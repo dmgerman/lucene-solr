@@ -249,11 +249,9 @@ name|this
 operator|.
 name|docIDMerger
 operator|=
-operator|new
 name|DocIDMerger
-argument_list|<
-name|MappingPostingsSub
-argument_list|>
+operator|.
+name|of
 argument_list|(
 name|subs
 argument_list|,
