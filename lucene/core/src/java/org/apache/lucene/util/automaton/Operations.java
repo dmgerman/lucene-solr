@@ -1937,7 +1937,7 @@ name|c
 argument_list|)
 return|;
 block|}
-comment|/** Returns true if these two automata accept exactly the    *  same language.  This is a costly computation!  Note    *  also that a1 and a2 will be determinized as a side    *  effect.  Both automata must be determinized and have    *  no dead states! */
+comment|/** Returns true if these two automata accept exactly the    *  same language.  This is a costly computation!  Both automata    *  must be determinized and have no dead states! */
 DECL|method|sameLanguage
 specifier|public
 specifier|static

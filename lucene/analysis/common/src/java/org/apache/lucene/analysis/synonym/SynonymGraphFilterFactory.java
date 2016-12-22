@@ -42,16 +42,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|Reader
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|nio
 operator|.
 name|charset
@@ -158,20 +148,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|LowerCaseFilter
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenStream
 import|;
 end_import
@@ -187,6 +163,22 @@ operator|.
 name|analysis
 operator|.
 name|Tokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|core
+operator|.
+name|LowerCaseFilter
 import|;
 end_import
 
@@ -271,16 +263,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link SynonymFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_synonym" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.SynonymFilterFactory" synonyms="synonyms.txt"   *             format="solr" ignoreCase="false" expand="true"   *             tokenizerFactory="solr.WhitespaceTokenizerFactory"  *             [optional tokenizer factory parameters]/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   *<p>  * An optional param name prefix of "tokenizerFactory." may be used for any   * init params that the SynonymFilterFactory needs to pass to the specified   * TokenizerFactory.  If the TokenizerFactory expects an init parameters with   * the same name as an init param used by the SynonymFilterFactory, the prefix   * is mandatory.  *</p>  *   *<p>  * The optional {@code format} parameter controls how the synonyms will be parsed:  * It supports the short names of {@code solr} for {@link SolrSynonymParser}   * and {@code wordnet} for and {@link WordnetSynonymParser}, or your own   * {@code SynonymMap.Parser} class name. The default is {@code solr}.  * A custom {@link SynonymMap.Parser} is expected to have a constructor taking:  *<ul>  *<li><code>boolean dedup</code> - true if duplicates should be ignored, false otherwise</li>  *<li><code>boolean expand</code> - true if conflation groups should be expanded, false if they are one-directional</li>  *<li><code>{@link Analyzer} analyzer</code> - an analyzer used for each raw synonym</li>  *</ul>  * @see SolrSynonymParser SolrSynonymParser: default format  *  * @deprecated Use {@link SynonymGraphFilterFactory} instead, but be sure to also  * use {@link FlattenGraphFilterFactory} at index time (not at search time) as well.  */
+comment|/**  * Factory for {@link SynonymGraphFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_synonym" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt"   *             format="solr" ignoreCase="false" expand="true"   *             tokenizerFactory="solr.WhitespaceTokenizerFactory"  *             [optional tokenizer factory parameters]/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *   *<p>  * An optional param name prefix of "tokenizerFactory." may be used for any   * init params that the SynonymGraphFilterFactory needs to pass to the specified   * TokenizerFactory.  If the TokenizerFactory expects an init parameters with   * the same name as an init param used by the SynonymGraphFilterFactory, the prefix   * is mandatory.  *</p>  *   *<p>  * The optional {@code format} parameter controls how the synonyms will be parsed:  * It supports the short names of {@code solr} for {@link SolrSynonymParser}   * and {@code wordnet} for and {@link WordnetSynonymParser}, or your own   * {@code SynonymMap.Parser} class name. The default is {@code solr}.  * A custom {@link SynonymMap.Parser} is expected to have a constructor taking:  *<ul>  *<li><code>boolean dedup</code> - true if duplicates should be ignored, false otherwise</li>  *<li><code>boolean expand</code> - true if conflation groups should be expanded, false if they are one-directional</li>  *<li><code>{@link Analyzer} analyzer</code> - an analyzer used for each raw synonym</li>  *</ul>  * @see SolrSynonymParser SolrSynonymParser: default format  *  * @lucene.experimental  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
-DECL|class|SynonymFilterFactory
+DECL|class|SynonymGraphFilterFactory
 specifier|public
 class|class
-name|SynonymFilterFactory
+name|SynonymGraphFilterFactory
 extends|extends
 name|TokenFilterFactory
 implements|implements
@@ -343,9 +333,9 @@ specifier|private
 name|SynonymMap
 name|map
 decl_stmt|;
-DECL|method|SynonymFilterFactory
+DECL|method|SynonymGraphFilterFactory
 specifier|public
-name|SynonymFilterFactory
+name|SynonymGraphFilterFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -566,7 +556,7 @@ condition|?
 name|input
 else|:
 operator|new
-name|SynonymFilter
+name|SynonymGraphFilter
 argument_list|(
 name|input
 argument_list|,
@@ -920,12 +910,10 @@ operator|.
 name|reset
 argument_list|()
 expr_stmt|;
-try|try
-init|(
-specifier|final
-name|Reader
-name|isr
-init|=
+name|parser
+operator|.
+name|parse
+argument_list|(
 operator|new
 name|InputStreamReader
 argument_list|(
@@ -938,16 +926,8 @@ argument_list|)
 argument_list|,
 name|decoder
 argument_list|)
-init|)
-block|{
-name|parser
-operator|.
-name|parse
-argument_list|(
-name|isr
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 return|return
 name|parser

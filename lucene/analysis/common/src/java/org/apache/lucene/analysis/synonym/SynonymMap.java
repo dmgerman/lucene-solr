@@ -438,6 +438,18 @@ specifier|final
 name|boolean
 name|dedup
 decl_stmt|;
+comment|/** Default constructor, passes {@code dedup=true}. */
+DECL|method|Builder
+specifier|public
+name|Builder
+parameter_list|()
+block|{
+name|this
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** If dedup is true then identical rules (same input,      *  same output) will be added only once. */
 DECL|method|Builder
 specifier|public
