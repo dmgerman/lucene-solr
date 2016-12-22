@@ -1967,6 +1967,8 @@ block|,
 literal|15
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -1985,6 +1987,10 @@ literal|0
 block|,
 literal|1
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|a
@@ -2144,6 +2150,8 @@ block|,
 literal|15
 block|}
 argument_list|,
+literal|null
+argument_list|,
 operator|new
 name|int
 index|[]
@@ -2164,6 +2172,10 @@ literal|0
 block|,
 literal|1
 block|}
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|a
