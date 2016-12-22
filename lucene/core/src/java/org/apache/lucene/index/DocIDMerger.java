@@ -269,7 +269,7 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns null when done */
+comment|/** Returns null when done.    *<b>NOTE:</b> after the iterator has exhausted you should not call this    *  method, as it may result in unpredicted behavior. */
 DECL|method|next
 specifier|public
 specifier|abstract
@@ -400,18 +400,6 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-if|if
-condition|(
-name|current
-operator|==
-literal|null
-condition|)
-block|{
-comment|// NOTE: it's annoying that caller is allowed to call us again even after we returned null before
-return|return
-literal|null
-return|;
-block|}
 while|while
 condition|(
 literal|true
@@ -749,18 +737,6 @@ operator|.
 name|top
 argument_list|()
 decl_stmt|;
-if|if
-condition|(
-name|top
-operator|==
-literal|null
-condition|)
-block|{
-comment|// NOTE: it's annoying that caller is allowed to call us again even after we returned null before
-return|return
-literal|null
-return|;
-block|}
 while|while
 condition|(
 literal|true
