@@ -370,6 +370,13 @@ name|Properties
 name|initProps
 parameter_list|)
 block|{
+name|resolveVariables
+argument_list|(
+name|context
+argument_list|,
+name|initProps
+argument_list|)
+expr_stmt|;
 name|initProps
 operator|=
 name|decryptPwd
@@ -727,16 +734,11 @@ block|{
 name|String
 name|encryptionKey
 init|=
-name|context
-operator|.
-name|replaceTokens
-argument_list|(
 name|initProps
 operator|.
 name|getProperty
 argument_list|(
 literal|"encryptKeyFile"
-argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -940,13 +942,6 @@ name|initProps
 parameter_list|)
 block|{
 comment|//    final VariableResolver resolver = context.getVariableResolver();
-name|resolveVariables
-argument_list|(
-name|context
-argument_list|,
-name|initProps
-argument_list|)
-expr_stmt|;
 specifier|final
 name|String
 name|jndiName
