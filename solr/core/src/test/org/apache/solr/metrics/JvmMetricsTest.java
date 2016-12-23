@@ -218,6 +218,13 @@ condition|(
 name|gauge
 operator|==
 literal|null
+operator|||
+name|gauge
+operator|.
+name|getValue
+argument_list|()
+operator|==
+literal|null
 condition|)
 block|{
 comment|// some are optional depending on OS
