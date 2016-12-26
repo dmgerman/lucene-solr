@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -186,6 +196,22 @@ name|lucene
 operator|.
 name|document
 operator|.
+name|DateTools
+operator|.
+name|Resolution
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
 name|Document
 import|;
 end_import
@@ -215,22 +241,6 @@ operator|.
 name|document
 operator|.
 name|FieldType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|DateTools
-operator|.
-name|Resolution
 import|;
 end_import
 
@@ -394,6 +404,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|GraphQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|IndexSearcher
 import|;
 end_import
@@ -509,16 +533,6 @@ operator|.
 name|automaton
 operator|.
 name|TooComplexToDeterminizeException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
 import|;
 end_import
 
@@ -3569,23 +3583,11 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
-comment|// A multi-word synonym source will form a synonym query for the same-starting-position tokens
-name|BooleanQuery
-operator|.
-name|Builder
-name|multiWordExpandedBqBuilder
+name|TermQuery
+name|guinea
 init|=
 operator|new
-name|BooleanQuery
-operator|.
-name|Builder
-argument_list|()
-decl_stmt|;
-name|Query
-name|multiWordSynonymQuery
-init|=
-operator|new
-name|SynonymQuery
+name|TermQuery
 argument_list|(
 operator|new
 name|Term
@@ -3594,33 +3596,11 @@ literal|"field"
 argument_list|,
 literal|"guinea"
 argument_list|)
-argument_list|,
-operator|new
-name|Term
-argument_list|(
-literal|"field"
-argument_list|,
-literal|"cavy"
-argument_list|)
 argument_list|)
 decl_stmt|;
-name|multiWordExpandedBqBuilder
-operator|.
-name|add
-argument_list|(
-name|multiWordSynonymQuery
-argument_list|,
-name|BooleanClause
-operator|.
-name|Occur
-operator|.
-name|SHOULD
-argument_list|)
-expr_stmt|;
-name|multiWordExpandedBqBuilder
-operator|.
-name|add
-argument_list|(
+name|TermQuery
+name|pig
+init|=
 operator|new
 name|TermQuery
 argument_list|(
@@ -3632,6 +3612,39 @@ argument_list|,
 literal|"pig"
 argument_list|)
 argument_list|)
+decl_stmt|;
+name|TermQuery
+name|cavy
+init|=
+operator|new
+name|TermQuery
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"cavy"
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|// A multi-word synonym source will form a graph query for synonyms that formed the graph token stream
+name|BooleanQuery
+operator|.
+name|Builder
+name|synonym
+init|=
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|synonym
+operator|.
+name|add
+argument_list|(
+name|guinea
 argument_list|,
 name|BooleanClause
 operator|.
@@ -3640,17 +3653,41 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
-name|Query
-name|multiWordExpandedBq
+name|synonym
+operator|.
+name|add
+argument_list|(
+name|pig
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+expr_stmt|;
+name|BooleanQuery
+name|guineaPig
 init|=
-name|multiWordExpandedBqBuilder
+name|synonym
 operator|.
 name|build
 argument_list|()
 decl_stmt|;
+name|GraphQuery
+name|graphQuery
+init|=
+operator|new
+name|GraphQuery
+argument_list|(
+name|guineaPig
+argument_list|,
+name|cavy
+argument_list|)
+decl_stmt|;
 name|assertEquals
 argument_list|(
-name|multiWordExpandedBq
+name|graphQuery
 argument_list|,
 name|dumb
 operator|.
@@ -3660,27 +3697,22 @@ literal|"guinea pig"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// With the phrase operator, a multi-word synonym source will form a multiphrase query.
-comment|// When the number of expanded term(s) is different from that of the original term(s), this is not good.
-name|MultiPhraseQuery
+comment|// With the phrase operator, a multi-word synonym source will form a graph query with inner phrase queries.
+name|PhraseQuery
 operator|.
 name|Builder
-name|multiWordExpandedMpqBuilder
+name|phraseSynonym
 init|=
 operator|new
-name|MultiPhraseQuery
+name|PhraseQuery
 operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-name|multiWordExpandedMpqBuilder
+name|phraseSynonym
 operator|.
 name|add
 argument_list|(
-operator|new
-name|Term
-index|[]
-block|{
 operator|new
 name|Term
 argument_list|(
@@ -3688,18 +3720,9 @@ literal|"field"
 argument_list|,
 literal|"guinea"
 argument_list|)
-block|,
-operator|new
-name|Term
-argument_list|(
-literal|"field"
-argument_list|,
-literal|"cavy"
-argument_list|)
-block|}
 argument_list|)
 expr_stmt|;
-name|multiWordExpandedMpqBuilder
+name|phraseSynonym
 operator|.
 name|add
 argument_list|(
@@ -3712,17 +3735,27 @@ literal|"pig"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|Query
-name|multiWordExpandedMPQ
+name|PhraseQuery
+name|guineaPigPhrase
 init|=
-name|multiWordExpandedMpqBuilder
+name|phraseSynonym
 operator|.
 name|build
 argument_list|()
 decl_stmt|;
+name|graphQuery
+operator|=
+operator|new
+name|GraphQuery
+argument_list|(
+name|guineaPigPhrase
+argument_list|,
+name|cavy
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
-name|multiWordExpandedMPQ
+name|graphQuery
 argument_list|,
 name|dumb
 operator|.
@@ -3747,9 +3780,19 @@ argument_list|(
 literal|false
 argument_list|)
 expr_stmt|;
+name|graphQuery
+operator|=
+operator|new
+name|GraphQuery
+argument_list|(
+name|guineaPig
+argument_list|,
+name|cavy
+argument_list|)
+expr_stmt|;
 name|assertEquals
 argument_list|(
-name|multiWordExpandedBq
+name|graphQuery
 argument_list|,
 name|smart
 operator|.
@@ -3759,54 +3802,9 @@ literal|"guinea pig"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|PhraseQuery
-operator|.
-name|Builder
-name|multiWordUnexpandedPqBuilder
-init|=
-operator|new
-name|PhraseQuery
-operator|.
-name|Builder
-argument_list|()
-decl_stmt|;
-name|multiWordUnexpandedPqBuilder
-operator|.
-name|add
-argument_list|(
-operator|new
-name|Term
-argument_list|(
-literal|"field"
-argument_list|,
-literal|"guinea"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|multiWordUnexpandedPqBuilder
-operator|.
-name|add
-argument_list|(
-operator|new
-name|Term
-argument_list|(
-literal|"field"
-argument_list|,
-literal|"pig"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|Query
-name|multiWordUnexpandedPq
-init|=
-name|multiWordUnexpandedPqBuilder
-operator|.
-name|build
-argument_list|()
-decl_stmt|;
 name|assertEquals
 argument_list|(
-name|multiWordUnexpandedPq
+name|guineaPigPhrase
 argument_list|,
 name|smart
 operator|.
@@ -4138,7 +4136,7 @@ literal|"(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"Synonym(cavy guinea) pig"
+literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4147,7 +4145,7 @@ literal|"+(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"+(Synonym(cavy guinea) pig)"
+literal|"+Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4156,7 +4154,7 @@ literal|"-(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"-(Synonym(cavy guinea) pig)"
+literal|"-Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4165,7 +4163,7 @@ literal|"!(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"-(Synonym(cavy guinea) pig)"
+literal|"-Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4174,7 +4172,7 @@ literal|"NOT (guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"-(Synonym(cavy guinea) pig)"
+literal|"-Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4183,7 +4181,7 @@ literal|"(guinea pig)^2"
 argument_list|,
 name|a
 argument_list|,
-literal|"(Synonym(cavy guinea) pig)^2.0"
+literal|"(Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false))^2.0"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4192,7 +4190,7 @@ literal|"field:(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"Synonym(cavy guinea) pig"
+literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4201,7 +4199,7 @@ literal|"+small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"+small Synonym(cavy guinea) pig"
+literal|"+small Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4210,7 +4208,7 @@ literal|"-small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"-small Synonym(cavy guinea) pig"
+literal|"-small Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4219,7 +4217,7 @@ literal|"!small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"-small Synonym(cavy guinea) pig"
+literal|"-small Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4228,7 +4226,7 @@ literal|"NOT small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"-small Synonym(cavy guinea) pig"
+literal|"-small Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4237,7 +4235,7 @@ literal|"small* guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"small* Synonym(cavy guinea) pig"
+literal|"small* Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4246,7 +4244,7 @@ literal|"small? guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"small? Synonym(cavy guinea) pig"
+literal|"small? Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4255,7 +4253,7 @@ literal|"\"small\" guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"small Synonym(cavy guinea) pig"
+literal|"small Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4264,7 +4262,7 @@ literal|"guinea pig +running"
 argument_list|,
 name|a
 argument_list|,
-literal|"Synonym(cavy guinea) pig +running"
+literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) +running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4273,7 +4271,7 @@ literal|"guinea pig -running"
 argument_list|,
 name|a
 argument_list|,
-literal|"Synonym(cavy guinea) pig -running"
+literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) -running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4282,7 +4280,7 @@ literal|"guinea pig !running"
 argument_list|,
 name|a
 argument_list|,
-literal|"Synonym(cavy guinea) pig -running"
+literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) -running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4291,7 +4289,7 @@ literal|"guinea pig NOT running"
 argument_list|,
 name|a
 argument_list|,
-literal|"Synonym(cavy guinea) pig -running"
+literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) -running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4300,7 +4298,7 @@ literal|"guinea pig running*"
 argument_list|,
 name|a
 argument_list|,
-literal|"Synonym(cavy guinea) pig running*"
+literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) running*"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4309,7 +4307,7 @@ literal|"guinea pig running?"
 argument_list|,
 name|a
 argument_list|,
-literal|"Synonym(cavy guinea) pig running?"
+literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) running?"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4318,7 +4316,7 @@ literal|"guinea pig \"running\""
 argument_list|,
 name|a
 argument_list|,
-literal|"Synonym(cavy guinea) pig running"
+literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4327,7 +4325,7 @@ literal|"\"guinea pig\"~2"
 argument_list|,
 name|a
 argument_list|,
-literal|"\"(guinea cavy) pig\"~2"
+literal|"Graph(field:\"guinea pig\"~2, field:cavy, hasBoolean=false, hasPhrase=true)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4336,7 +4334,7 @@ literal|"field:\"guinea pig\""
 argument_list|,
 name|a
 argument_list|,
-literal|"\"(guinea cavy) pig\""
+literal|"Graph(field:\"guinea pig\", field:cavy, hasBoolean=false, hasPhrase=true)"
 argument_list|)
 expr_stmt|;
 name|splitOnWhitespace
@@ -4851,7 +4849,7 @@ literal|"\"guinea pig\"~2"
 argument_list|,
 name|a
 argument_list|,
-literal|"\"(guinea cavy) pig\"~2"
+literal|"Graph(field:\"guinea pig\"~2, field:cavy, hasBoolean=false, hasPhrase=true)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4860,7 +4858,7 @@ literal|"field:\"guinea pig\""
 argument_list|,
 name|a
 argument_list|,
-literal|"\"(guinea cavy) pig\""
+literal|"Graph(field:\"guinea pig\", field:cavy, hasBoolean=false, hasPhrase=true)"
 argument_list|)
 expr_stmt|;
 name|splitOnWhitespace
@@ -4899,23 +4897,11 @@ argument_list|)
 expr_stmt|;
 comment|// default is false
 comment|// A multi-word synonym source will form a synonym query for the same-starting-position tokens
-name|BooleanQuery
-operator|.
-name|Builder
-name|bqBuilder
+name|TermQuery
+name|guinea
 init|=
 operator|new
-name|BooleanQuery
-operator|.
-name|Builder
-argument_list|()
-decl_stmt|;
-name|bqBuilder
-operator|.
-name|add
-argument_list|(
-operator|new
-name|SynonymQuery
+name|TermQuery
 argument_list|(
 operator|new
 name|Term
@@ -4924,27 +4910,11 @@ literal|"field"
 argument_list|,
 literal|"guinea"
 argument_list|)
-argument_list|,
-operator|new
-name|Term
-argument_list|(
-literal|"field"
-argument_list|,
-literal|"cavy"
 argument_list|)
-argument_list|)
-argument_list|,
-name|BooleanClause
-operator|.
-name|Occur
-operator|.
-name|SHOULD
-argument_list|)
-expr_stmt|;
-name|bqBuilder
-operator|.
-name|add
-argument_list|(
+decl_stmt|;
+name|TermQuery
+name|pig
+init|=
 operator|new
 name|TermQuery
 argument_list|(
@@ -4956,6 +4926,39 @@ argument_list|,
 literal|"pig"
 argument_list|)
 argument_list|)
+decl_stmt|;
+name|TermQuery
+name|cavy
+init|=
+operator|new
+name|TermQuery
+argument_list|(
+operator|new
+name|Term
+argument_list|(
+literal|"field"
+argument_list|,
+literal|"cavy"
+argument_list|)
+argument_list|)
+decl_stmt|;
+comment|// A multi-word synonym source will form a graph query for synonyms that formed the graph token stream
+name|BooleanQuery
+operator|.
+name|Builder
+name|synonym
+init|=
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+decl_stmt|;
+name|synonym
+operator|.
+name|add
+argument_list|(
+name|guinea
 argument_list|,
 name|BooleanClause
 operator|.
@@ -4964,12 +4967,41 @@ operator|.
 name|SHOULD
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|synonym
+operator|.
+name|add
 argument_list|(
-name|bqBuilder
+name|pig
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+expr_stmt|;
+name|BooleanQuery
+name|guineaPig
+init|=
+name|synonym
 operator|.
 name|build
 argument_list|()
+decl_stmt|;
+name|GraphQuery
+name|graphQuery
+init|=
+operator|new
+name|GraphQuery
+argument_list|(
+name|guineaPig
+argument_list|,
+name|cavy
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|graphQuery
 argument_list|,
 name|parser
 operator|.
@@ -4998,7 +5030,7 @@ operator|new
 name|MockSynonymAnalyzer
 argument_list|()
 argument_list|,
-literal|"Synonym(cavy guinea) pig"
+literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|splitOnWhitespace
