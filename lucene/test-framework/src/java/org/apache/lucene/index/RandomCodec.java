@@ -1936,6 +1936,10 @@ parameter_list|,
 name|byte
 index|[]
 name|maxPackedValue
+parameter_list|,
+name|int
+index|[]
+name|parentDims
 parameter_list|)
 block|{
 comment|// BKD normally defaults by the widest dimension, to try to make as squarish cells as possible, but we just pick a random one ;)
