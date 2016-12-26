@@ -430,6 +430,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|IOUtils
 import|;
 end_import
@@ -2649,6 +2663,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|LuceneTestCase
+operator|.
+name|assumeFalse
+argument_list|(
+literal|"RamUsageTester does not fully work on Java 9"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA9
+argument_list|)
+expr_stmt|;
 specifier|final
 name|LRUQueryCache
 name|queryCache
@@ -6852,6 +6877,17 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|LuceneTestCase
+operator|.
+name|assumeFalse
+argument_list|(
+literal|"LUCENE-7604: For some unknown reason the non-constant BadQuery#hashCode() does not trigger ConcurrentModificationException on Java 9 b150"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA9
+argument_list|)
+expr_stmt|;
 name|Directory
 name|dir
 init|=
