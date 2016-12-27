@@ -246,11 +246,25 @@ operator|.
 name|doubleValue
 argument_list|()
 decl_stmt|;
+comment|// SystemLoadAverage on Windows may be -1.0
 name|assertTrue
 argument_list|(
+literal|"unexpected value of "
+operator|+
+name|metric
+operator|+
+literal|": "
+operator|+
+name|value
+argument_list|,
 name|value
 operator|>=
 literal|0
+operator|||
+name|value
+operator|==
+operator|-
+literal|1.0
 argument_list|)
 expr_stmt|;
 block|}
