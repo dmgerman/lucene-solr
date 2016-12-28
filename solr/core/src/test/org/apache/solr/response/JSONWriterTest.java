@@ -493,7 +493,7 @@ name|JSON_NL_ARROFMAP
 block|,
 name|JSONWriter
 operator|.
-name|JSON_NL_ARROFNVP
+name|JSON_NL_ARROFNTV
 block|,     }
 decl_stmt|;
 for|for
@@ -747,12 +747,16 @@ name|namedListStyle
 operator|==
 name|JSONWriter
 operator|.
-name|JSON_NL_ARROFNVP
+name|JSON_NL_ARROFNTV
 condition|)
 block|{
 name|expectedNLjson
 operator|=
-literal|"\"nl\":[{\"name\":\"data1\",\"str\":\"he\\u2028llo\\u2029!\"},{\"int\":42},{\"null\":null}]"
+literal|"\"nl\":[{\"name\":\"data1\",\"type\":\"str\",\"value\":\"he\\u2028llo\\u2029!\"},"
+operator|+
+literal|"{\"name\":null,\"type\":\"int\",\"value\":42},"
+operator|+
+literal|"{\"name\":null,\"type\":\"null\",\"value\":null}]"
 expr_stmt|;
 block|}
 else|else
@@ -1015,10 +1019,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testArrnvpWriterOverridesAllWrites
+DECL|method|testArrntvWriterOverridesAllWrites
 specifier|public
 name|void
-name|testArrnvpWriterOverridesAllWrites
+name|testArrntvWriterOverridesAllWrites
 parameter_list|()
 block|{
 comment|// List rather than Set because two not-overridden methods could share name but not signature
@@ -1162,7 +1166,7 @@ name|?
 argument_list|>
 name|subClass
 init|=
-name|ArrayOfNamedValuePairJSONWriter
+name|ArrayOfNameTypeValueJSONWriter
 operator|.
 name|class
 decl_stmt|;
@@ -1401,10 +1405,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testArrnvpWriterLacksMethodsOfItsOwn
+DECL|method|testArrntvWriterLacksMethodsOfItsOwn
 specifier|public
 name|void
-name|testArrnvpWriterLacksMethodsOfItsOwn
+name|testArrntvWriterLacksMethodsOfItsOwn
 parameter_list|()
 block|{
 specifier|final
@@ -1414,7 +1418,7 @@ name|?
 argument_list|>
 name|subClass
 init|=
-name|ArrayOfNamedValuePairJSONWriter
+name|ArrayOfNameTypeValueJSONWriter
 operator|.
 name|class
 decl_stmt|;
@@ -1454,7 +1458,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"ifNeededWriteTypeAsKey"
+literal|"ifNeededWriteTypeAndValueKey"
 argument_list|)
 condition|)
 continue|continue;
@@ -1570,11 +1574,11 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"arrnvp"
+literal|"arrntv"
 argument_list|,
 name|JSONWriter
 operator|.
-name|JSON_NL_ARROFNVP
+name|JSON_NL_ARROFNTV
 argument_list|)
 expr_stmt|;
 name|assertEquals
