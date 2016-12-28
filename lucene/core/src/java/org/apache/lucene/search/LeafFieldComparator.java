@@ -92,6 +92,8 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
+throws|throws
+name|IOException
 function_decl|;
 block|}
 end_interface

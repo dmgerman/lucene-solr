@@ -5546,6 +5546,8 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|this
 operator|.
@@ -6667,6 +6669,8 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|this
 operator|.
@@ -8533,6 +8537,8 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|this
 operator|.
@@ -10730,6 +10736,8 @@ parameter_list|(
 name|Scorer
 name|s
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 operator|.
@@ -11483,6 +11491,8 @@ parameter_list|(
 name|Scorer
 name|scorer
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|this
 operator|.
@@ -13558,6 +13568,8 @@ parameter_list|(
 name|Scorer
 name|s
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|super
 operator|.
@@ -14280,6 +14292,8 @@ parameter_list|(
 name|Scorer
 name|s
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 for|for
 control|(
