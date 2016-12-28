@@ -63,7 +63,7 @@ name|radius
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 return|return

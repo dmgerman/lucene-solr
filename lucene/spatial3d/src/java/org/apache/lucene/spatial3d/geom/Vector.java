@@ -38,6 +38,20 @@ name|MINIMUM_RESOLUTION
 init|=
 literal|1.0e-12
 decl_stmt|;
+comment|/**    * Angular version of minimum resolution.    */
+DECL|field|MINIMUM_ANGULAR_RESOLUTION
+specifier|public
+specifier|static
+specifier|final
+name|double
+name|MINIMUM_ANGULAR_RESOLUTION
+init|=
+name|Math
+operator|.
+name|PI
+operator|*
+name|MINIMUM_RESOLUTION
+decl_stmt|;
 comment|/**    * For squared quantities, the bound is squared too.    */
 DECL|field|MINIMUM_RESOLUTION_SQUARED
 specifier|public
