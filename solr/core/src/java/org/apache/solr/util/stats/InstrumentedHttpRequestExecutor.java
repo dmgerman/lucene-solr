@@ -340,11 +340,6 @@ name|IOException
 throws|,
 name|HttpException
 block|{
-assert|assert
-name|metricsRegistry
-operator|!=
-literal|null
-assert|;
 specifier|final
 name|Timer
 operator|.
