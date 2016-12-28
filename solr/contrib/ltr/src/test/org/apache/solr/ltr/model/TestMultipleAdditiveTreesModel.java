@@ -244,18 +244,6 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|loadFeatures
-argument_list|(
-literal|"multipleadditivetreesmodel_features.json"
-argument_list|)
-expr_stmt|;
-comment|// currently needed to force
-comment|// scoring on all docs
-name|loadModels
-argument_list|(
-literal|"multipleadditivetreesmodel.json"
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|AfterClass
@@ -282,6 +270,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|loadFeatures
+argument_list|(
+literal|"multipleadditivetreesmodel_features.json"
+argument_list|)
+expr_stmt|;
+name|loadModels
+argument_list|(
+literal|"multipleadditivetreesmodel.json"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|SolrQuery
 name|query
@@ -437,7 +435,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[0]/score==-20.0"
+literal|"/response/docs/[0]/score==30.0"
 argument_list|)
 expr_stmt|;
 name|assertJQ

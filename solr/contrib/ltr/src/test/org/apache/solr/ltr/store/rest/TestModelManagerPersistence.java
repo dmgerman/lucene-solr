@@ -704,7 +704,7 @@ name|ManagedModelStore
 operator|.
 name|REST_END_POINT
 operator|+
-literal|"/*"
+literal|"/test-model1"
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
@@ -715,7 +715,7 @@ name|ManagedFeatureStore
 operator|.
 name|REST_END_POINT
 operator|+
-literal|"/*"
+literal|"/test1"
 argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
