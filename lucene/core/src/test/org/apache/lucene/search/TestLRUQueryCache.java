@@ -2672,6 +2672,15 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
+name|assumeFalse
+argument_list|(
+literal|"LUCENE-7595: RamUsageTester does not work exact in Java 9 (estimations for maps and lists)"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA9
+argument_list|)
+expr_stmt|;
 specifier|final
 name|LRUQueryCache
 name|queryCache
