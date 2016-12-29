@@ -1257,6 +1257,61 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
+literal|"no reverse, no false positive"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"+id:1 +three:[* TO a]"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=0]"
+argument_list|)
+expr_stmt|;
+block|{
+name|String
+name|reverseField
+init|=
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+literal|"one"
+else|:
+literal|"two"
+decl_stmt|;
+name|assertQ
+argument_list|(
+literal|"false positive"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"+id:1 +"
+operator|+
+name|reverseField
+operator|+
+literal|":[* TO a]"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound=0]"
+argument_list|)
+expr_stmt|;
+block|}
+name|assertQ
+argument_list|(
 literal|"false positive"
 argument_list|,
 name|req
