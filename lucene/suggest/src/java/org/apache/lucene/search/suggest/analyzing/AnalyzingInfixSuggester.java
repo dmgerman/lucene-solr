@@ -1019,6 +1019,7 @@ specifier|protected
 name|SearcherManager
 name|searcherMgr
 decl_stmt|;
+comment|/** Used to manage concurrent access to searcherMgr */
 DECL|field|searcherMgrLock
 specifier|protected
 specifier|final
