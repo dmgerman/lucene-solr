@@ -726,6 +726,16 @@ condition|(
 name|Constants
 operator|.
 name|JRE_IS_MINIMUM_JAVA9
+operator|&&
+name|obClazz
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|startsWith
+argument_list|(
+literal|"java."
+argument_list|)
 condition|)
 block|{
 comment|// Java 9: Best guess for some known types, as we cannot precisely look into runtime classes:
