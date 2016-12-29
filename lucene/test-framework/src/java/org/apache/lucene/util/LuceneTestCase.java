@@ -2877,6 +2877,11 @@ specifier|public
 specifier|static
 name|TestRule
 name|classRules
+decl_stmt|;
+static|static
+block|{
+name|RuleChain
+name|r
 init|=
 name|RuleChain
 operator|.
@@ -2927,6 +2932,19 @@ argument_list|(
 name|suiteFailureMarker
 argument_list|)
 argument_list|)
+decl_stmt|;
+comment|// TODO LUCENE-7595: Java 9 does not allow to look into runtime classes, so we have to fix the RAM usage checker!
+if|if
+condition|(
+operator|!
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA9
+condition|)
+block|{
+name|r
+operator|=
+name|r
 operator|.
 name|around
 argument_list|(
@@ -3003,6 +3021,11 @@ return|;
 block|}
 block|}
 argument_list|)
+expr_stmt|;
+block|}
+name|classRules
+operator|=
+name|r
 operator|.
 name|around
 argument_list|(
@@ -3095,7 +3118,8 @@ operator|new
 name|TestRuleSetupAndRestoreClassEnv
 argument_list|()
 argument_list|)
-decl_stmt|;
+expr_stmt|;
+block|}
 comment|// -----------------------------------------------------------------
 comment|// Test level rules.
 comment|// -----------------------------------------------------------------
