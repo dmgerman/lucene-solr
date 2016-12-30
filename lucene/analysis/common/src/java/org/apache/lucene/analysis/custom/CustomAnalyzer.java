@@ -730,7 +730,7 @@ name|filter
 operator|.
 name|create
 argument_list|(
-name|in
+name|result
 argument_list|)
 expr_stmt|;
 block|}
