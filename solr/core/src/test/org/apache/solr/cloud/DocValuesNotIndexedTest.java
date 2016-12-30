@@ -1883,32 +1883,6 @@ operator|.
 name|getResults
 argument_list|()
 decl_stmt|;
-comment|//TODO remove after SOLR-9843
-if|if
-condition|(
-name|order
-operator|.
-name|length
-operator|!=
-name|res
-operator|.
-name|getNumFound
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"(3) About to fail, response is: "
-operator|+
-name|rsp
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 name|assertEquals
 argument_list|(
 literal|"Should have exactly "
@@ -2240,30 +2214,6 @@ operator|.
 name|getValues
 argument_list|()
 decl_stmt|;
-comment|//TODO: remove me since this is excessive in the normal case, this is in for SOLR-9843
-if|if
-condition|(
-name|expected
-operator|!=
-name|fieldCommandGroups
-operator|.
-name|size
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"(1) About to fail assert, response is: "
-operator|+
-name|rsp
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 name|assertEquals
 argument_list|(
 literal|"Did not find the expected number of groups for field "
@@ -2658,19 +2608,6 @@ argument_list|)
 expr_stmt|;
 break|break;
 default|default:
-comment|//TODO remove me after SOLR-9843
-name|log
-operator|.
-name|error
-argument_list|(
-literal|"(2) About to fail, response is: "
-operator|+
-name|rsp
-operator|.
-name|toString
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|fail
 argument_list|(
 literal|"Unexpected number of elements in the group for "
