@@ -2215,6 +2215,25 @@ literal|"\\s+"
 argument_list|)
 decl_stmt|;
 comment|//This should take into account spaces in the sort spec.
+if|if
+condition|(
+name|spec
+operator|.
+name|length
+operator|!=
+literal|2
+condition|)
+block|{
+throw|throw
+operator|new
+name|IOException
+argument_list|(
+literal|"Invalid sort spec:"
+operator|+
+name|s
+argument_list|)
+throw|;
+block|}
 name|String
 name|fieldName
 init|=
