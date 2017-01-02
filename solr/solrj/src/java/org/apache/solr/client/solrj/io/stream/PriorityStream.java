@@ -267,14 +267,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * The scheduler wraps two topics that represent high priority and low priority task queues.  * Each time the scheduler is called it will check to see if there are any high priority tasks in the queue. If there  * are high priority tasks, then the high priority queue will be read until it returns the EOF Tuple.  *  * If there are no tasks in the high priority queue, then the lower priority task queue will be opened and read until the EOF Tuple is  * returned.  *  * The scheduler is designed to be wrapped by the executor function and a daemon function can be used to call the executor iteratively.  **/
+comment|/**  * The priority function wraps two topics that represent high priority and low priority task queues.  * Each time the priority function is called it will check to see if there are any high priority tasks in the queue. If there  * are high priority tasks, then the high priority queue will be read until it returns the EOF Tuple.  *  * If there are no tasks in the high priority queue, then the lower priority task queue will be opened and read until the EOF Tuple is  * returned.  *  * The scheduler is designed to be wrapped by the executor function and a daemon function can be used to call the executor iteratively.  **/
 end_comment
 
 begin_class
-DECL|class|SchedulerStream
+DECL|class|PriorityStream
 specifier|public
 class|class
-name|SchedulerStream
+name|PriorityStream
 extends|extends
 name|TupleStream
 implements|implements
@@ -315,9 +315,9 @@ specifier|private
 name|TupleStream
 name|currentStream
 decl_stmt|;
-DECL|method|SchedulerStream
+DECL|method|PriorityStream
 specifier|public
-name|SchedulerStream
+name|PriorityStream
 parameter_list|(
 name|StreamExpression
 name|expression

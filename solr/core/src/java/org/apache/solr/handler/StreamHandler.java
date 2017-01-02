@@ -1248,9 +1248,9 @@ argument_list|)
 operator|.
 name|withFunctionName
 argument_list|(
-literal|"schedule"
+literal|"priority"
 argument_list|,
-name|SchedulerStream
+name|PriorityStream
 operator|.
 name|class
 argument_list|)
