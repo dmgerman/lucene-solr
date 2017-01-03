@@ -740,7 +740,7 @@ name|FacetEntry
 argument_list|>
 name|entries
 decl_stmt|;
-name|AbstractGroupFacetCollector
+name|GroupFacetCollector
 name|groupedAirportFacetCollector
 decl_stmt|;
 name|TermGroupFacetCollector
@@ -1013,7 +1013,7 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
-name|AbstractGroupFacetCollector
+name|GroupFacetCollector
 name|groupedDurationFacetCollector
 init|=
 name|createRandomCollector
@@ -2833,7 +2833,7 @@ name|dir
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|AbstractGroupFacetCollector
+name|GroupFacetCollector
 name|groupedAirportFacetCollector
 init|=
 name|createRandomCollector
@@ -3383,7 +3383,7 @@ argument_list|,
 name|facetPrefix
 argument_list|)
 decl_stmt|;
-name|AbstractGroupFacetCollector
+name|GroupFacetCollector
 name|groupFacetCollector
 init|=
 name|createRandomCollector
@@ -5630,7 +5630,7 @@ return|;
 block|}
 DECL|method|createRandomCollector
 specifier|private
-name|AbstractGroupFacetCollector
+name|GroupFacetCollector
 name|createRandomCollector
 parameter_list|(
 name|String

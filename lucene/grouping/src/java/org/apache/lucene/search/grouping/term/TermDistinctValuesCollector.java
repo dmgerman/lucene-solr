@@ -124,7 +124,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractDistinctValuesCollector
+name|DistinctValuesCollector
 import|;
 end_import
 
@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A term based implementation of {@link org.apache.lucene.search.grouping.AbstractDistinctValuesCollector} that relies  * on {@link SortedDocValues} to count the distinct values per group.  *  * @lucene.experimental  */
+comment|/**  * A term based implementation of {@link DistinctValuesCollector} that relies  * on {@link SortedDocValues} to count the distinct values per group.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -182,11 +182,9 @@ specifier|public
 class|class
 name|TermDistinctValuesCollector
 extends|extends
-name|AbstractDistinctValuesCollector
+name|DistinctValuesCollector
 argument_list|<
-name|TermDistinctValuesCollector
-operator|.
-name|GroupCount
+name|BytesRef
 argument_list|>
 block|{
 DECL|field|groupField
@@ -206,7 +204,7 @@ specifier|private
 specifier|final
 name|List
 argument_list|<
-name|GroupCount
+name|TermGroupCount
 argument_list|>
 name|groups
 decl_stmt|;
@@ -219,7 +217,7 @@ decl_stmt|;
 DECL|field|groupCounts
 specifier|private
 specifier|final
-name|GroupCount
+name|TermGroupCount
 name|groupCounts
 index|[]
 decl_stmt|;
@@ -298,7 +296,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|GroupCount
+name|TermGroupCount
 argument_list|(
 name|group
 operator|.
@@ -324,7 +322,7 @@ expr_stmt|;
 name|groupCounts
 operator|=
 operator|new
-name|GroupCount
+name|TermGroupCount
 index|[
 name|ordSet
 operator|.
@@ -413,7 +411,7 @@ condition|)
 block|{
 return|return;
 block|}
-name|GroupCount
+name|TermGroupCount
 name|gc
 init|=
 name|groupCounts
@@ -649,12 +647,20 @@ specifier|public
 name|List
 argument_list|<
 name|GroupCount
+argument_list|<
+name|BytesRef
+argument_list|>
 argument_list|>
 name|getGroups
 parameter_list|()
 block|{
 return|return
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|(
 name|groups
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -705,7 +711,7 @@ argument_list|()
 expr_stmt|;
 for|for
 control|(
-name|GroupCount
+name|TermGroupCount
 name|group
 range|:
 name|groups
@@ -844,13 +850,13 @@ block|}
 block|}
 block|}
 comment|/** Holds distinct values for a single group.    *    * @lucene.experimental */
-DECL|class|GroupCount
+DECL|class|TermGroupCount
 specifier|public
 specifier|static
 class|class
-name|GroupCount
+name|TermGroupCount
 extends|extends
-name|AbstractDistinctValuesCollector
+name|DistinctValuesCollector
 operator|.
 name|GroupCount
 argument_list|<
@@ -862,8 +868,8 @@ name|int
 index|[]
 name|ords
 decl_stmt|;
-DECL|method|GroupCount
-name|GroupCount
+DECL|method|TermGroupCount
+name|TermGroupCount
 parameter_list|(
 name|BytesRef
 name|groupValue

@@ -1255,7 +1255,7 @@ operator|.
 name|RELEVANCE
 decl_stmt|;
 specifier|final
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -1290,7 +1290,7 @@ name|c1
 argument_list|)
 expr_stmt|;
 specifier|final
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -1718,7 +1718,7 @@ expr_stmt|;
 block|}
 DECL|method|createRandomFirstPassCollector
 specifier|private
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -1736,7 +1736,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -1822,7 +1822,7 @@ return|;
 block|}
 DECL|method|createFirstPassCollector
 specifier|private
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -1837,7 +1837,7 @@ parameter_list|,
 name|int
 name|topDocs
 parameter_list|,
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -1916,13 +1916,13 @@ specifier|private
 parameter_list|<
 name|T
 parameter_list|>
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 argument_list|<
 name|T
 argument_list|>
 name|createSecondPassCollector
 parameter_list|(
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 name|firstPassGroupingCollector
 parameter_list|,
 name|String
@@ -1987,7 +1987,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|(
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 operator|)
 operator|new
 name|TermSecondPassGroupingCollector
@@ -2041,7 +2041,7 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|(
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 operator|)
 operator|new
 name|FunctionSecondPassGroupingCollector
@@ -2077,13 +2077,13 @@ literal|"unchecked"
 argument_list|)
 DECL|method|createSecondPassCollector
 specifier|private
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
 name|createSecondPassCollector
 parameter_list|(
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -2300,13 +2300,13 @@ block|}
 block|}
 DECL|method|createAllGroupsCollector
 specifier|private
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 argument_list|<
 name|?
 argument_list|>
 name|createAllGroupsCollector
 parameter_list|(
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -2533,7 +2533,7 @@ argument_list|>
 argument_list|>
 name|getSearchGroups
 parameter_list|(
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -2741,7 +2741,7 @@ name|BytesRef
 argument_list|>
 name|getTopGroups
 parameter_list|(
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 name|c
 parameter_list|,
 name|int
@@ -6778,7 +6778,7 @@ argument_list|)
 expr_stmt|;
 block|}
 specifier|final
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -6804,7 +6804,7 @@ name|Collector
 name|c
 decl_stmt|;
 specifier|final
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 argument_list|<
 name|?
 argument_list|>
@@ -7219,7 +7219,7 @@ literal|false
 argument_list|)
 decl_stmt|;
 specifier|final
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -8897,7 +8897,7 @@ argument_list|()
 decl_stmt|;
 name|List
 argument_list|<
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -8909,7 +8909,7 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>
@@ -9309,7 +9309,7 @@ operator|++
 control|)
 block|{
 specifier|final
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 argument_list|<
 name|?
 argument_list|>

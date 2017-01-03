@@ -92,7 +92,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 import|;
 end_import
 
@@ -133,7 +133,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concrete implementation of {@link AbstractFirstPassGroupingCollector} that groups based on  * {@link ValueSource} instances.  *  * @lucene.experimental  */
+comment|/**  * Concrete implementation of {@link FirstPassGroupingCollector} that groups based on  * {@link ValueSource} instances.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -142,7 +142,7 @@ specifier|public
 class|class
 name|FunctionFirstPassGroupingCollector
 extends|extends
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|MutableValue
 argument_list|>

@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|io
+operator|.
+name|IOException
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -88,16 +98,6 @@ name|TopFieldDocs
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/** Represents result returned by a grouping search.  *  * @lucene.experimental */
 end_comment
@@ -108,7 +108,7 @@ specifier|public
 class|class
 name|TopGroups
 parameter_list|<
-name|GROUP_VALUE_TYPE
+name|T
 parameter_list|>
 block|{
 comment|/** Number of documents matching the search */
@@ -138,7 +138,7 @@ specifier|public
 specifier|final
 name|GroupDocs
 argument_list|<
-name|GROUP_VALUE_TYPE
+name|T
 argument_list|>
 index|[]
 name|groups
@@ -186,7 +186,7 @@ name|totalGroupedHitCount
 parameter_list|,
 name|GroupDocs
 argument_list|<
-name|GROUP_VALUE_TYPE
+name|T
 argument_list|>
 index|[]
 name|groups
@@ -244,7 +244,7 @@ name|TopGroups
 parameter_list|(
 name|TopGroups
 argument_list|<
-name|GROUP_VALUE_TYPE
+name|T
 argument_list|>
 name|oldTopGroups
 parameter_list|,

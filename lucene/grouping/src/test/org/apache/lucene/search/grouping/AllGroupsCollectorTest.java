@@ -763,7 +763,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 argument_list|<
 name|?
 argument_list|>
@@ -943,7 +943,7 @@ expr_stmt|;
 block|}
 DECL|method|createRandomCollector
 specifier|private
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 argument_list|<
 name|?
 argument_list|>
@@ -953,7 +953,7 @@ name|String
 name|groupField
 parameter_list|)
 block|{
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 argument_list|<
 name|?
 argument_list|>

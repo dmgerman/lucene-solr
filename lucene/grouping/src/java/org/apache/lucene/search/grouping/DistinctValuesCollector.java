@@ -67,20 +67,13 @@ comment|/**  * A second pass grouping collector that keeps track of distinct val
 end_comment
 
 begin_class
-DECL|class|AbstractDistinctValuesCollector
+DECL|class|DistinctValuesCollector
 specifier|public
 specifier|abstract
 class|class
-name|AbstractDistinctValuesCollector
+name|DistinctValuesCollector
 parameter_list|<
-name|GC
-extends|extends
-name|AbstractDistinctValuesCollector
-operator|.
-name|GroupCount
-parameter_list|<
-name|?
-parameter_list|>
+name|T
 parameter_list|>
 extends|extends
 name|SimpleCollector
@@ -91,26 +84,28 @@ specifier|public
 specifier|abstract
 name|List
 argument_list|<
-name|GC
+name|GroupCount
+argument_list|<
+name|T
+argument_list|>
 argument_list|>
 name|getGroups
 parameter_list|()
 function_decl|;
-comment|/**    * Returned by {@link AbstractDistinctValuesCollector#getGroups()},    * representing the value and set of distinct values for the group.    */
+comment|/**    * Returned by {@link DistinctValuesCollector#getGroups()},    * representing the value and set of distinct values for the group.    */
 DECL|class|GroupCount
 specifier|public
-specifier|abstract
 specifier|static
 class|class
 name|GroupCount
 parameter_list|<
-name|GROUP_VALUE_TYPE
+name|T
 parameter_list|>
 block|{
 DECL|field|groupValue
 specifier|public
 specifier|final
-name|GROUP_VALUE_TYPE
+name|T
 name|groupValue
 decl_stmt|;
 DECL|field|uniqueValues
@@ -118,7 +113,7 @@ specifier|public
 specifier|final
 name|Set
 argument_list|<
-name|GROUP_VALUE_TYPE
+name|T
 argument_list|>
 name|uniqueValues
 decl_stmt|;
@@ -126,7 +121,7 @@ DECL|method|GroupCount
 specifier|public
 name|GroupCount
 parameter_list|(
-name|GROUP_VALUE_TYPE
+name|T
 name|groupValue
 parameter_list|)
 block|{

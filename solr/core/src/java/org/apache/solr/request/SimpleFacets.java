@@ -456,7 +456,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 import|;
 end_import
 
@@ -2154,7 +2154,7 @@ return|return
 name|base
 return|;
 block|}
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 name|allGroupHeadsCollector
 init|=
 name|grouping

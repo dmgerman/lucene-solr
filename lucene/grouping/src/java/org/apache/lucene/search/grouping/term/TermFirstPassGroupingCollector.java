@@ -98,7 +98,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 import|;
 end_import
 
@@ -131,7 +131,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concrete implementation of {@link org.apache.lucene.search.grouping.AbstractFirstPassGroupingCollector} that groups based on  * field values and more specifically uses {@link SortedDocValues}  * to collect groups.  *  * @lucene.experimental  */
+comment|/**  * Concrete implementation of {@link FirstPassGroupingCollector} that groups based on  * field values and more specifically uses {@link SortedDocValues}  * to collect groups.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -140,7 +140,7 @@ specifier|public
 class|class
 name|TermFirstPassGroupingCollector
 extends|extends
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 argument_list|<
 name|BytesRef
 argument_list|>

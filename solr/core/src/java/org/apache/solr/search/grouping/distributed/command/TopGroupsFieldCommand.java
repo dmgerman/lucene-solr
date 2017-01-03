@@ -78,7 +78,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 import|;
 end_import
 
@@ -616,7 +616,7 @@ name|needMaxScore
 decl_stmt|;
 DECL|field|secondPassCollector
 specifier|private
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 name|secondPassCollector
 decl_stmt|;
 DECL|method|TopGroupsFieldCommand

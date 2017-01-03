@@ -114,7 +114,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 import|;
 end_import
 
@@ -156,7 +156,7 @@ specifier|public
 class|class
 name|TermAllGroupsCollector
 extends|extends
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 argument_list|<
 name|BytesRef
 argument_list|>
@@ -196,7 +196,7 @@ specifier|private
 name|SortedDocValues
 name|index
 decl_stmt|;
-comment|/**    * Expert: Constructs a {@link AbstractAllGroupsCollector}    *    * @param groupField  The field to group by    * @param initialSize The initial allocation size of the    *                    internal int set and group list    *                    which should roughly match the total    *                    number of expected unique groups. Be aware that the    *                    heap usage is 4 bytes * initialSize.    */
+comment|/**    * Expert: Constructs a {@link AllGroupsCollector}    *    * @param groupField  The field to group by    * @param initialSize The initial allocation size of the    *                    internal int set and group list    *                    which should roughly match the total    *                    number of expected unique groups. Be aware that the    *                    heap usage is 4 bytes * initialSize.    */
 DECL|method|TermAllGroupsCollector
 specifier|public
 name|TermAllGroupsCollector
@@ -235,7 +235,7 @@ operator|=
 name|groupField
 expr_stmt|;
 block|}
-comment|/**    * Constructs a {@link AbstractAllGroupsCollector}. This sets the    * initial allocation size for the internal int set and group    * list to 128.    *    * @param groupField The field to group by    */
+comment|/**    * Constructs a {@link AllGroupsCollector}. This sets the    * initial allocation size for the internal int set and group    * list to 128.    *    * @param groupField The field to group by    */
 DECL|method|TermAllGroupsCollector
 specifier|public
 name|TermAllGroupsCollector

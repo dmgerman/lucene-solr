@@ -410,7 +410,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 import|;
 end_import
 
@@ -2045,7 +2045,7 @@ name|prepare
 argument_list|()
 expr_stmt|;
 block|}
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 argument_list|<
 name|?
 argument_list|>
@@ -2859,7 +2859,7 @@ specifier|abstract
 class|class
 name|Command
 parameter_list|<
-name|GROUP_VALUE_TYPE
+name|T
 parameter_list|>
 block|{
 DECL|field|key
@@ -2932,7 +2932,7 @@ decl_stmt|;
 DECL|field|result
 name|TopGroups
 argument_list|<
-name|GROUP_VALUE_TYPE
+name|T
 argument_list|>
 name|result
 decl_stmt|;
@@ -2972,7 +2972,7 @@ block|}
 comment|/**      * Returns a collector that is able to return the most relevant document of all groups.      * Returns<code>null</code> if the command doesn't support this type of collector.      *      * @return a collector that is able to return the most relevant document of all groups.      * @throws IOException If I/O related errors occur      */
 DECL|method|createAllGroupCollector
 specifier|public
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 argument_list|<
 name|?
 argument_list|>
@@ -3990,7 +3990,7 @@ annotation|@
 name|Override
 DECL|method|createAllGroupCollector
 specifier|public
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 argument_list|<
 name|?
 argument_list|>
@@ -4963,7 +4963,7 @@ annotation|@
 name|Override
 DECL|method|createAllGroupCollector
 specifier|public
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 argument_list|<
 name|?
 argument_list|>
