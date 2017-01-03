@@ -60,6 +60,9 @@ DECL|enum constant|UPDATEHANDLER
 DECL|enum constant|CACHE
 DECL|enum constant|HIGHLIGHTING
 DECL|enum constant|QUERYPARSER
+DECL|enum constant|SEARCHER
+DECL|enum constant|INDEX
+DECL|enum constant|DIRECTORY
 DECL|enum constant|OTHER
 enum|enum
 name|Category
@@ -75,6 +78,12 @@ block|,
 name|HIGHLIGHTING
 block|,
 name|QUERYPARSER
+block|,
+name|SEARCHER
+block|,
+name|INDEX
+block|,
+name|DIRECTORY
 block|,
 name|OTHER
 block|}
