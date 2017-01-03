@@ -428,6 +428,22 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|stats
+operator|.
+name|MetricUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -592,7 +608,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|SynchronousQueue
+name|ExecutorService
 import|;
 end_import
 
@@ -604,7 +620,7 @@ name|util
 operator|.
 name|concurrent
 operator|.
-name|ThreadPoolExecutor
+name|SynchronousQueue
 import|;
 end_import
 
@@ -679,7 +695,7 @@ comment|// Consider CallerRuns policy and a lower max threads to throttle
 comment|// requests at some point (or should we simply return failure?)
 DECL|field|commExecutor
 specifier|private
-name|ThreadPoolExecutor
+name|ExecutorService
 name|commExecutor
 init|=
 operator|new
@@ -1349,7 +1365,7 @@ return|;
 block|}
 DECL|method|getThreadPoolExecutor
 specifier|protected
-name|ThreadPoolExecutor
+name|ExecutorService
 name|getThreadPoolExecutor
 parameter_list|()
 block|{
@@ -2244,6 +2260,33 @@ argument_list|,
 name|registry
 argument_list|,
 name|scope
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|commExecutor
+operator|=
+name|MetricUtils
+operator|.
+name|instrumentedExecutorService
+argument_list|(
+name|commExecutor
+argument_list|,
+name|manager
+operator|.
+name|registry
+argument_list|(
+name|registry
+argument_list|)
+argument_list|,
+name|SolrMetricManager
+operator|.
+name|mkName
+argument_list|(
+literal|"httpShardExecutor"
+argument_list|,
+name|scope
+argument_list|,
+literal|"threadPool"
 argument_list|)
 argument_list|)
 expr_stmt|;
