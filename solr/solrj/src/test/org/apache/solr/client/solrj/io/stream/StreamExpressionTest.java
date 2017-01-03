@@ -22575,10 +22575,10 @@ block|}
 block|}
 annotation|@
 name|Test
-DECL|method|testSchedulerStream
+DECL|method|testPriorityStream
 specifier|public
 name|void
-name|testSchedulerStream
+name|testPriorityStream
 parameter_list|()
 throws|throws
 name|Exception
@@ -22826,9 +22826,9 @@ argument_list|)
 operator|.
 name|withFunctionName
 argument_list|(
-literal|"schedule"
+literal|"priority"
 argument_list|,
-name|SchedulerStream
+name|PriorityStream
 operator|.
 name|class
 argument_list|)
@@ -22873,7 +22873,7 @@ name|StreamExpressionParser
 operator|.
 name|parse
 argument_list|(
-literal|"schedule(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0),"
+literal|"priority(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0),"
 operator|+
 literal|"topic(collection1, collection1, q=\"a_s:hello1\", fl=\"id,a_i\", id=2000000, initialCheckpoint=0))"
 argument_list|)
@@ -22954,7 +22954,7 @@ name|StreamExpressionParser
 operator|.
 name|parse
 argument_list|(
-literal|"schedule(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0),"
+literal|"priority(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0),"
 operator|+
 literal|"topic(collection1, collection1, q=\"a_s:hello1\", fl=\"id,a_i\", id=2000000, initialCheckpoint=0))"
 argument_list|)
@@ -23038,7 +23038,7 @@ name|StreamExpressionParser
 operator|.
 name|parse
 argument_list|(
-literal|"schedule(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0),"
+literal|"priority(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0),"
 operator|+
 literal|"topic(collection1, collection1, q=\"a_s:hello1\", fl=\"id,a_i\", id=2000000, initialCheckpoint=0))"
 argument_list|)
@@ -23102,10 +23102,10 @@ block|}
 block|}
 annotation|@
 name|Test
-DECL|method|testParallelSchedulerStream
+DECL|method|testParallelPriorityStream
 specifier|public
 name|void
-name|testParallelSchedulerStream
+name|testParallelPriorityStream
 parameter_list|()
 throws|throws
 name|Exception
@@ -23362,9 +23362,9 @@ argument_list|)
 operator|.
 name|withFunctionName
 argument_list|(
-literal|"schedule"
+literal|"priority"
 argument_list|,
-name|SchedulerStream
+name|PriorityStream
 operator|.
 name|class
 argument_list|)
@@ -23409,7 +23409,7 @@ name|StreamExpressionParser
 operator|.
 name|parse
 argument_list|(
-literal|"parallel(collection1, workers=2, sort=\"_version_ asc\", schedule(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0, partitionKeys=id),"
+literal|"parallel(collection1, workers=2, sort=\"_version_ asc\", priority(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0, partitionKeys=id),"
 operator|+
 literal|"topic(collection1, collection1, q=\"a_s:hello1\", fl=\"id,a_i\", id=2000000, initialCheckpoint=0, partitionKeys=id)))"
 argument_list|)
@@ -23490,7 +23490,7 @@ name|StreamExpressionParser
 operator|.
 name|parse
 argument_list|(
-literal|"parallel(collection1, workers=2, sort=\"_version_ asc\", schedule(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0, partitionKeys=id),"
+literal|"parallel(collection1, workers=2, sort=\"_version_ asc\", priority(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0, partitionKeys=id),"
 operator|+
 literal|"topic(collection1, collection1, q=\"a_s:hello1\", fl=\"id,a_i\", id=2000000, initialCheckpoint=0, partitionKeys=id)))"
 argument_list|)
@@ -23574,7 +23574,7 @@ name|StreamExpressionParser
 operator|.
 name|parse
 argument_list|(
-literal|"parallel(collection1, workers=2, sort=\"_version_ asc\", schedule(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0, partitionKeys=id),"
+literal|"parallel(collection1, workers=2, sort=\"_version_ asc\", priority(topic(collection1, collection1, q=\"a_s:hello\", fl=\"id,a_i\", id=1000000, initialCheckpoint=0, partitionKeys=id),"
 operator|+
 literal|"topic(collection1, collection1, q=\"a_s:hello1\", fl=\"id,a_i\", id=2000000, initialCheckpoint=0, partitionKeys=id)))"
 argument_list|)
