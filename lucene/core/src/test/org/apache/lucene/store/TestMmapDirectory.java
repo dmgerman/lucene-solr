@@ -136,8 +136,6 @@ argument_list|()
 expr_stmt|;
 name|assumeTrue
 argument_list|(
-literal|"test requires a jre that supports unmapping: "
-operator|+
 name|MMapDirectory
 operator|.
 name|UNMAP_NOT_SUPPORTED_REASON

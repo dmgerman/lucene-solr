@@ -841,9 +841,7 @@ name|Exception
 block|{
 name|setuptest
 argument_list|(
-literal|"solrconfig-ltr.xml"
-argument_list|,
-literal|"schema.xml"
+literal|false
 argument_list|)
 expr_stmt|;
 name|assertU

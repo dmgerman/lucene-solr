@@ -1019,6 +1019,17 @@ specifier|protected
 name|SearcherManager
 name|searcherMgr
 decl_stmt|;
+comment|/** Used to manage concurrent access to searcherMgr */
+DECL|field|searcherMgrLock
+specifier|protected
+specifier|final
+name|Object
+name|searcherMgrLock
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
 comment|/** Default minimum number of leading characters before    *  PrefixQuery is used (4). */
 DECL|field|DEFAULT_MIN_PREFIX_CHARS
 specifier|public
@@ -1426,6 +1437,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+synchronized|synchronized
+init|(
+name|searcherMgrLock
+init|)
+block|{
 if|if
 condition|(
 name|searcherMgr
@@ -1621,6 +1637,7 @@ name|writer
 operator|=
 literal|null
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -1838,6 +1855,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+synchronized|synchronized
+init|(
+name|searcherMgrLock
+init|)
+block|{
 name|SearcherManager
 name|oldSearcherMgr
 init|=
@@ -1865,6 +1887,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -3201,14 +3224,30 @@ name|results
 init|=
 literal|null
 decl_stmt|;
+name|SearcherManager
+name|mgr
+decl_stmt|;
 name|IndexSearcher
 name|searcher
-init|=
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|searcherMgrLock
+init|)
+block|{
+name|mgr
+operator|=
 name|searcherMgr
+expr_stmt|;
+comment|// acquire& release on same SearcherManager, via local reference
+name|searcher
+operator|=
+name|mgr
 operator|.
 name|acquire
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
 try|try
 block|{
 comment|//System.out.println("got searcher=" + searcher);
@@ -3253,7 +3292,7 @@ expr_stmt|;
 block|}
 finally|finally
 block|{
-name|searcherMgr
+name|mgr
 operator|.
 name|release
 argument_list|(
@@ -4238,14 +4277,30 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|SearcherManager
+name|mgr
+decl_stmt|;
 name|IndexSearcher
 name|searcher
-init|=
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|searcherMgrLock
+init|)
+block|{
+name|mgr
+operator|=
 name|searcherMgr
+expr_stmt|;
+comment|// acquire& release on same SearcherManager, via local reference
+name|searcher
+operator|=
+name|mgr
 operator|.
 name|acquire
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
 try|try
 block|{
 for|for
@@ -4302,7 +4357,7 @@ block|}
 block|}
 finally|finally
 block|{
-name|searcherMgr
+name|mgr
 operator|.
 name|release
 argument_list|(
@@ -4361,14 +4416,30 @@ operator|!=
 literal|null
 condition|)
 block|{
+name|SearcherManager
+name|mgr
+decl_stmt|;
 name|IndexSearcher
 name|searcher
-init|=
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|searcherMgrLock
+init|)
+block|{
+name|mgr
+operator|=
 name|searcherMgr
+expr_stmt|;
+comment|// acquire& release on same SearcherManager, via local reference
+name|searcher
+operator|=
+name|mgr
 operator|.
 name|acquire
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
 try|try
 block|{
 for|for
@@ -4427,7 +4498,7 @@ block|}
 block|}
 finally|finally
 block|{
-name|searcherMgr
+name|mgr
 operator|.
 name|release
 argument_list|(
@@ -4481,14 +4552,30 @@ return|return
 literal|0
 return|;
 block|}
+name|SearcherManager
+name|mgr
+decl_stmt|;
 name|IndexSearcher
 name|searcher
-init|=
+decl_stmt|;
+synchronized|synchronized
+init|(
+name|searcherMgrLock
+init|)
+block|{
+name|mgr
+operator|=
 name|searcherMgr
+expr_stmt|;
+comment|// acquire& release on same SearcherManager, via local reference
+name|searcher
+operator|=
+name|mgr
 operator|.
 name|acquire
 argument_list|()
-decl_stmt|;
+expr_stmt|;
+block|}
 try|try
 block|{
 return|return
@@ -4503,7 +4590,7 @@ return|;
 block|}
 finally|finally
 block|{
-name|searcherMgr
+name|mgr
 operator|.
 name|release
 argument_list|(
@@ -4514,10 +4601,6 @@ block|}
 block|}
 block|}
 end_class
-
-begin_empty_stmt
-empty_stmt|;
-end_empty_stmt
 
 end_unit
 

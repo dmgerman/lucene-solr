@@ -2535,7 +2535,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 return|return
@@ -2655,7 +2655,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 return|return
@@ -2682,7 +2682,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 comment|// No idea what direction, so try another pole.

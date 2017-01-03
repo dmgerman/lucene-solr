@@ -68,7 +68,63 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|*
+name|Analyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|MockAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|MockSynonymFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|MockTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|Tokenizer
 import|;
 end_import
 
@@ -167,8 +223,6 @@ operator|.
 name|search
 operator|.
 name|BooleanClause
-operator|.
-name|Occur
 import|;
 end_import
 
@@ -183,6 +237,8 @@ operator|.
 name|search
 operator|.
 name|BooleanClause
+operator|.
+name|Occur
 import|;
 end_import
 
@@ -2474,7 +2530,9 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(Synonym(b:cavy b:guinea) Synonym(t:cavy t:guinea)) (b:pig t:pig)"
+literal|"Graph(b:guinea b:pig, b:cavy, hasBoolean=true, hasPhrase=false) "
+operator|+
+literal|"Graph(t:guinea t:pig, t:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|,
 name|q
 operator|.

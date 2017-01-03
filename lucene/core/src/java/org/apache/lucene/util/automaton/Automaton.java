@@ -2765,7 +2765,7 @@ name|String
 name|toDot
 parameter_list|()
 block|{
-comment|// TODO: breadth first search so we can see get layered output...
+comment|// TODO: breadth first search so we can get layered output...
 name|StringBuilder
 name|b
 init|=
@@ -2787,6 +2787,13 @@ argument_list|(
 literal|"  rankdir = LR\n"
 argument_list|)
 expr_stmt|;
+name|b
+operator|.
+name|append
+argument_list|(
+literal|"  node [width=0.2, height=0.2, fontsize=8]\n"
+argument_list|)
+expr_stmt|;
 specifier|final
 name|int
 name|numStates
@@ -2805,7 +2812,7 @@ name|b
 operator|.
 name|append
 argument_list|(
-literal|"  initial [shape=plaintext,label=\"0\"]\n"
+literal|"  initial [shape=plaintext,label=\"\"]\n"
 argument_list|)
 expr_stmt|;
 name|b

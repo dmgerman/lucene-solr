@@ -142,7 +142,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 operator|&&
 name|Math
 operator|.
@@ -157,7 +157,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 operator|)
 operator|||
 operator|(
@@ -174,7 +174,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 operator|&&
 name|Math
 operator|.
@@ -189,7 +189,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 operator|)
 condition|)
 block|{
@@ -210,7 +210,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 operator|&&
 name|Math
 operator|.
@@ -227,7 +227,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 return|return
 operator|new
@@ -249,7 +249,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 if|if
@@ -269,7 +269,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 operator|||
 name|Math
 operator|.
@@ -286,7 +286,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 return|return
 operator|new
@@ -326,7 +326,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 return|return
 operator|new
@@ -355,7 +355,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 return|return
 operator|new
@@ -433,7 +433,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 return|return
 operator|new
@@ -489,7 +489,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 if|if
@@ -505,7 +505,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 return|return
 operator|new
@@ -555,7 +555,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 comment|//System.err.println(" wide degenerate line");
@@ -590,7 +590,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 return|return
@@ -625,7 +625,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 return|return
@@ -672,7 +672,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 if|if
@@ -692,7 +692,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 operator|||
 name|Math
 operator|.
@@ -709,7 +709,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 return|return
@@ -756,7 +756,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 return|return
@@ -791,7 +791,7 @@ argument_list|)
 operator|<
 name|Vector
 operator|.
-name|MINIMUM_RESOLUTION
+name|MINIMUM_ANGULAR_RESOLUTION
 condition|)
 block|{
 return|return

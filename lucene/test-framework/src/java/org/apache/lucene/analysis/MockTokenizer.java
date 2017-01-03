@@ -1514,7 +1514,11 @@ condition|)
 block|{
 name|fail
 argument_list|(
-literal|"end() called before incrementToken() returned false!"
+literal|"end() called in wrong state="
+operator|+
+name|streamState
+operator|+
+literal|"!"
 argument_list|)
 expr_stmt|;
 block|}

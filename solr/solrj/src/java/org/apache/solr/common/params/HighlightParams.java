@@ -127,7 +127,7 @@ name|HIGHLIGHT
 operator|+
 literal|".requireFieldMatch"
 decl_stmt|;
-comment|// OH, FVH
+comment|// OH, FVH, UH
 DECL|field|USE_PHRASE_HIGHLIGHTER
 specifier|public
 specifier|static

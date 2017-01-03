@@ -147,9 +147,7 @@ name|Exception
 block|{
 name|setuptest
 argument_list|(
-literal|"solrconfig-ltr.xml"
-argument_list|,
-literal|"schema.xml"
+literal|false
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -617,7 +615,7 @@ argument_list|)
 expr_stmt|;
 specifier|final
 name|String
-name|docs0fv_sparse_csv
+name|docs0fv_csv
 init|=
 name|FeatureLoggerTestUtils
 operator|.
@@ -679,7 +677,7 @@ argument_list|()
 argument_list|,
 literal|"/response/docs/[0]/fv=='"
 operator|+
-name|docs0fv_sparse_csv
+name|docs0fv_csv
 operator|+
 literal|"'"
 argument_list|)

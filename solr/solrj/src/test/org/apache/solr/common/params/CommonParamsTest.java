@@ -108,6 +108,22 @@ name|ROWS_DEFAULT
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testPreferLocalShards
+specifier|public
+name|void
+name|testPreferLocalShards
+parameter_list|()
+block|{
+name|assertEquals
+argument_list|(
+literal|"preferLocalShards"
+argument_list|,
+name|CommonParams
+operator|.
+name|PREFER_LOCAL_SHARDS
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

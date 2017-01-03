@@ -489,7 +489,6 @@ name|getSolrClient
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// index 10000 docs with a hard commit every 1000 documents
 name|CloudSolrClient
 name|sourceSolrClient
 init|=
@@ -506,6 +505,17 @@ literal|"cdcr-source"
 argument_list|)
 expr_stmt|;
 name|int
+name|docs
+init|=
+operator|(
+name|TEST_NIGHTLY
+condition|?
+literal|100
+else|:
+literal|10
+operator|)
+decl_stmt|;
+name|int
 name|numDocs
 init|=
 literal|0
@@ -519,7 +529,7 @@ literal|0
 init|;
 name|k
 operator|<
-literal|100
+name|docs
 condition|;
 name|k
 operator|++
@@ -605,7 +615,11 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Adding 100 docs with commit=true, numDocs="
+literal|"Adding "
+operator|+
+name|docs
+operator|+
+literal|" docs with commit=true, numDocs="
 operator|+
 name|numDocs
 argument_list|)
@@ -1164,7 +1178,6 @@ name|getSolrClient
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// index 10000 docs with a hard commit every 1000 documents
 name|CloudSolrClient
 name|sourceSolrClient
 init|=
@@ -1181,6 +1194,17 @@ literal|"cdcr-source"
 argument_list|)
 expr_stmt|;
 name|int
+name|docs
+init|=
+operator|(
+name|TEST_NIGHTLY
+condition|?
+literal|100
+else|:
+literal|10
+operator|)
+decl_stmt|;
+name|int
 name|numDocs
 init|=
 literal|0
@@ -1194,7 +1218,7 @@ literal|0
 init|;
 name|k
 operator|<
-literal|100
+name|docs
 condition|;
 name|k
 operator|++
@@ -1280,7 +1304,11 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Adding 100 docs with commit=true, numDocs="
+literal|"Adding "
+operator|+
+name|docs
+operator|+
+literal|" docs with commit=true, numDocs="
 operator|+
 name|numDocs
 argument_list|)
@@ -1445,7 +1473,7 @@ literal|0
 init|;
 name|k
 operator|<
-literal|100
+literal|10
 condition|;
 name|k
 operator|++
@@ -1759,7 +1787,6 @@ name|getSolrClient
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// index 10000 docs with a hard commit every 1000 documents
 name|CloudSolrClient
 name|sourceSolrClient
 init|=
@@ -1776,6 +1803,17 @@ literal|"cdcr-source"
 argument_list|)
 expr_stmt|;
 name|int
+name|docs
+init|=
+operator|(
+name|TEST_NIGHTLY
+condition|?
+literal|100
+else|:
+literal|10
+operator|)
+decl_stmt|;
+name|int
 name|numDocs
 init|=
 literal|0
@@ -1789,7 +1827,7 @@ literal|0
 init|;
 name|k
 operator|<
-literal|100
+name|docs
 condition|;
 name|k
 operator|++
@@ -1875,7 +1913,11 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Adding 100 docs with commit=true, numDocs="
+literal|"Adding "
+operator|+
+name|docs
+operator|+
+literal|" docs with commit=true, numDocs="
 operator|+
 name|numDocs
 argument_list|)
@@ -1997,7 +2039,7 @@ literal|0
 init|;
 name|k
 operator|<
-literal|100
+name|docs
 condition|;
 name|k
 operator|++
@@ -2086,7 +2128,11 @@ name|out
 operator|.
 name|println
 argument_list|(
-literal|"Adding 100 docs with commit=true, numDocs="
+literal|"Adding "
+operator|+
+name|docs
+operator|+
+literal|" docs with commit=true, numDocs="
 operator|+
 name|numDocs
 argument_list|)

@@ -329,9 +329,9 @@ name|TestSubUnsorted
 argument_list|>
 name|merger
 init|=
-operator|new
 name|DocIDMerger
-argument_list|<>
+operator|.
+name|of
 argument_list|(
 name|subs
 argument_list|,
@@ -935,9 +935,9 @@ name|TestSubSorted
 argument_list|>
 name|merger
 init|=
-operator|new
 name|DocIDMerger
-argument_list|<>
+operator|.
+name|of
 argument_list|(
 name|subs
 argument_list|,

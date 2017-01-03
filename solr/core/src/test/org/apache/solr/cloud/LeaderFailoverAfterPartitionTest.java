@@ -785,7 +785,7 @@ name|NANOSECONDS
 operator|.
 name|convert
 argument_list|(
-literal|60
+literal|90
 argument_list|,
 name|TimeUnit
 operator|.

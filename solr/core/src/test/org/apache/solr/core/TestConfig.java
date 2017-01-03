@@ -782,6 +782,18 @@ operator|.
 name|infoStream
 argument_list|)
 expr_stmt|;
+operator|++
+name|numDefaultsTested
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"default metrics"
+argument_list|,
+name|sic
+operator|.
+name|metricsInfo
+argument_list|)
+expr_stmt|;
 comment|// mergePolicyInfo and mergePolicyFactoryInfo are mutually exclusive
 comment|// so ++ count them only once for both instead of individually
 operator|++

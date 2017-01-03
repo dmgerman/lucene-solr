@@ -373,14 +373,14 @@ name|equals
 argument_list|(
 name|JSONWriter
 operator|.
-name|JSON_NL_ARROFNVP
+name|JSON_NL_ARROFNTV
 argument_list|)
 condition|)
 block|{
 name|w
 operator|=
 operator|new
-name|ArrayOfNamedValuePairJSONWriter
+name|ArrayOfNameTypeValueJSONWriter
 argument_list|(
 name|writer
 argument_list|,
@@ -391,6 +391,8 @@ argument_list|,
 name|wrapperFunction
 argument_list|,
 name|namedListStyle
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}
@@ -546,13 +548,13 @@ name|JSON_NL_ARROFMAP
 init|=
 literal|"arrmap"
 decl_stmt|;
-DECL|field|JSON_NL_ARROFNVP
+DECL|field|JSON_NL_ARROFNTV
 specifier|static
 specifier|final
 name|String
-name|JSON_NL_ARROFNVP
+name|JSON_NL_ARROFNTV
 init|=
-literal|"arrnvp"
+literal|"arrntv"
 decl_stmt|;
 DECL|field|JSON_WRAPPER_FUNCTION
 specifier|static
@@ -1598,7 +1600,7 @@ if|if
 condition|(
 name|namedListStyle
 operator|==
-name|JSON_NL_ARROFNVP
+name|JSON_NL_ARROFNTV
 condition|)
 block|{
 throw|throw
@@ -1609,7 +1611,7 @@ name|namedListStyle
 operator|+
 literal|" namedListStyle must only be used with "
 operator|+
-name|ArrayOfNamedValuePairJSONWriter
+name|ArrayOfNameTypeValueJSONWriter
 operator|.
 name|class
 operator|.
@@ -3225,26 +3227,32 @@ block|}
 end_class
 
 begin_comment
-comment|/**  * Writes NamedLists directly as an array of NamedValuePair JSON objects...  * NamedList("a"=1,"b"=2,null=3,null=null) => [{"name":"a","int":1},{"name":"b","int":2},{"int":3},{"null":null}]  * NamedList("a"=1,"bar"="foo",null=3.4f) => [{"name":"a","int":1},{"name":"bar","str":"foo"},{"float":3.4}]  */
+comment|/**  * Writes NamedLists directly as an array of NameTypeValue JSON objects...  * NamedList("a"=1,"b"=null,null=3,null=null) =>  *      [{"name":"a","type":"int","value":1},  *       {"name":"b","type":"null","value":null},  *       {"name":null,"type":"int","value":3},  *       {"name":null,"type":"null","value":null}]  * NamedList("a"=1,"bar"="foo",null=3.4f) =>  *      [{"name":"a","type":"int","value":1},  *      {"name":"bar","type":"str","value":"foo"},  *      {"name":null,"type":"float","value":3.4}]  */
 end_comment
 
 begin_class
-DECL|class|ArrayOfNamedValuePairJSONWriter
+DECL|class|ArrayOfNameTypeValueJSONWriter
 class|class
-name|ArrayOfNamedValuePairJSONWriter
+name|ArrayOfNameTypeValueJSONWriter
 extends|extends
 name|JSONWriter
 block|{
-DECL|field|writeTypeAsKey
-specifier|private
+DECL|field|writeTypeAndValueKey
+specifier|protected
 name|boolean
-name|writeTypeAsKey
+name|writeTypeAndValueKey
 init|=
 literal|false
 decl_stmt|;
-DECL|method|ArrayOfNamedValuePairJSONWriter
+DECL|field|writeNullName
+specifier|private
+specifier|final
+name|boolean
+name|writeNullName
+decl_stmt|;
+DECL|method|ArrayOfNameTypeValueJSONWriter
 specifier|public
-name|ArrayOfNamedValuePairJSONWriter
+name|ArrayOfNameTypeValueJSONWriter
 parameter_list|(
 name|Writer
 name|writer
@@ -3260,6 +3268,9 @@ name|wrapperFunction
 parameter_list|,
 name|String
 name|namedListStyle
+parameter_list|,
+name|boolean
+name|writeNullName
 parameter_list|)
 block|{
 name|super
@@ -3275,32 +3286,12 @@ argument_list|,
 name|namedListStyle
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|namedListStyle
-operator|!=
-name|JSON_NL_ARROFNVP
-condition|)
-block|{
-throw|throw
-operator|new
-name|UnsupportedOperationException
-argument_list|(
-name|ArrayOfNamedValuePairJSONWriter
+name|this
 operator|.
-name|class
-operator|.
-name|getSimpleName
-argument_list|()
-operator|+
-literal|" must only be used with "
-operator|+
-name|JSON_NL_ARROFNVP
-operator|+
-literal|" style"
-argument_list|)
-throw|;
-block|}
+name|writeNullName
+operator|=
+name|writeNullName
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -3417,7 +3408,7 @@ argument_list|(
 name|i
 argument_list|)
 decl_stmt|;
-comment|/*        * JSONWriter's writeNamedListAsArrMap turns NamedList("bar"="foo") into [{"foo":"bar"}]        * but we here wish to turn it into [ {"name":"bar","str":"foo"} ] instead.        *        * So first we write the<code>{"name":"bar",</code> portion ...        */
+comment|/*        * JSONWriter's writeNamedListAsArrMap turns NamedList("bar"="foo") into [{"foo":"bar"}]        * but we here wish to turn it into [ {"name":"bar","type":"str","value":"foo"} ] instead.        *        * So first we write the<code>{"name":"bar",</code> portion ...        */
 name|writeMapOpener
 argument_list|(
 operator|-
@@ -3429,6 +3420,8 @@ condition|(
 name|elementName
 operator|!=
 literal|null
+operator|||
+name|writeNullName
 condition|)
 block|{
 name|writeKey
@@ -3449,8 +3442,8 @@ name|writeMapSeparator
 argument_list|()
 expr_stmt|;
 block|}
-comment|/*        * ... and then we write the<code>"str":"foo"}</code> portion.        */
-name|writeTypeAsKey
+comment|/*        * ... and then we write the<code>"type":"str","value":"foo"}</code> portion.        */
+name|writeTypeAndValueKey
 operator|=
 literal|true
 expr_stmt|;
@@ -3464,14 +3457,14 @@ expr_stmt|;
 comment|// passing null since writeVal doesn't actually use name (and we already wrote elementName above)
 if|if
 condition|(
-name|writeTypeAsKey
+name|writeTypeAndValueKey
 condition|)
 block|{
 throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"writeTypeAsKey should have been reset to false by writeVal('"
+literal|"writeTypeAndValueKey should have been reset to false by writeVal('"
 operator|+
 name|elementName
 operator|+
@@ -3494,10 +3487,10 @@ name|writeArrayCloser
 argument_list|()
 expr_stmt|;
 block|}
-DECL|method|ifNeededWriteTypeAsKey
-specifier|private
+DECL|method|ifNeededWriteTypeAndValueKey
+specifier|protected
 name|void
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 parameter_list|(
 name|String
 name|type
@@ -3507,16 +3500,33 @@ name|IOException
 block|{
 if|if
 condition|(
-name|writeTypeAsKey
+name|writeTypeAndValueKey
 condition|)
 block|{
-name|writeTypeAsKey
+name|writeTypeAndValueKey
 operator|=
 literal|false
 expr_stmt|;
 name|writeKey
 argument_list|(
+literal|"type"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|writeVal
+argument_list|(
+literal|"type"
+argument_list|,
 name|type
+argument_list|)
+expr_stmt|;
+name|writeMapSeparator
+argument_list|()
+expr_stmt|;
+name|writeKey
+argument_list|(
+literal|"value"
 argument_list|,
 literal|false
 argument_list|)
@@ -3539,7 +3549,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"int"
 argument_list|)
@@ -3570,7 +3580,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"long"
 argument_list|)
@@ -3601,7 +3611,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"float"
 argument_list|)
@@ -3632,7 +3642,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"double"
 argument_list|)
@@ -3663,7 +3673,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"bool"
 argument_list|)
@@ -3694,7 +3704,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"date"
 argument_list|)
@@ -3728,7 +3738,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"str"
 argument_list|)
@@ -3767,7 +3777,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"doc"
 argument_list|)
@@ -3811,7 +3821,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"doclist"
 argument_list|)
@@ -3854,7 +3864,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"map"
 argument_list|)
@@ -3889,7 +3899,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"array"
 argument_list|)
@@ -3917,7 +3927,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|ifNeededWriteTypeAsKey
+name|ifNeededWriteTypeAndValueKey
 argument_list|(
 literal|"null"
 argument_list|)

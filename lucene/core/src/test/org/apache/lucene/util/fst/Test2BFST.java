@@ -234,6 +234,9 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeWorkingMMapOnWindows
+argument_list|()
+expr_stmt|;
 name|int
 index|[]
 name|ints

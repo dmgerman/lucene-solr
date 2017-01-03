@@ -119,6 +119,7 @@ name|positionIncrement
 operator|<
 literal|0
 condition|)
+block|{
 throw|throw
 operator|new
 name|IllegalArgumentException
@@ -128,6 +129,7 @@ operator|+
 name|positionIncrement
 argument_list|)
 throw|;
+block|}
 name|this
 operator|.
 name|positionIncrement
@@ -160,6 +162,23 @@ name|int
 name|positionLength
 parameter_list|)
 block|{
+if|if
+condition|(
+name|positionLength
+operator|<
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Position length must be 1 or greater: got "
+operator|+
+name|positionLength
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|positionLength

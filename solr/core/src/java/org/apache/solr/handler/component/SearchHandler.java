@@ -2455,10 +2455,6 @@ argument_list|,
 name|shard
 argument_list|,
 name|params
-argument_list|,
-name|rb
-operator|.
-name|preferredHostAddress
 argument_list|)
 expr_stmt|;
 block|}

@@ -159,9 +159,13 @@ name|int
 name|hashCode
 parameter_list|()
 block|{
+comment|// Don't use s1 ^ s2 since it's vulnerable to the case where s1 == s2 always --> hashCode = 0, e.g. if you call Operations.sameLanguage,
+comment|// passing the same automaton against itself:
 return|return
 name|s1
-operator|^
+operator|*
+literal|31
+operator|+
 name|s2
 return|;
 block|}

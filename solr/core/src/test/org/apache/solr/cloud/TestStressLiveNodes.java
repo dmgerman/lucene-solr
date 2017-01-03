@@ -642,7 +642,11 @@ name|numIters
 init|=
 name|atLeast
 argument_list|(
+name|TEST_NIGHTLY
+condition|?
 literal|1000
+else|:
+literal|100
 argument_list|)
 decl_stmt|;
 for|for

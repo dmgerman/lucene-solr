@@ -636,6 +636,31 @@ if|if
 condition|(
 name|dir
 operator|instanceof
+name|MetricsDirectoryFactory
+operator|.
+name|MetricsDirectory
+condition|)
+block|{
+comment|// unwrap
+name|dir
+operator|=
+operator|(
+operator|(
+name|MetricsDirectoryFactory
+operator|.
+name|MetricsDirectory
+operator|)
+name|dir
+operator|)
+operator|.
+name|getDelegate
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|dir
+operator|instanceof
 name|FSDirectory
 condition|)
 block|{
@@ -1048,6 +1073,31 @@ operator|.
 name|getDirectory
 argument_list|()
 decl_stmt|;
+if|if
+condition|(
+name|dir
+operator|instanceof
+name|MetricsDirectoryFactory
+operator|.
+name|MetricsDirectory
+condition|)
+block|{
+comment|// unwrap
+name|dir
+operator|=
+operator|(
+operator|(
+name|MetricsDirectoryFactory
+operator|.
+name|MetricsDirectory
+operator|)
+name|dir
+operator|)
+operator|.
+name|getDelegate
+argument_list|()
+expr_stmt|;
+block|}
 comment|// For anything persistent, make something that will
 comment|// be the same, regardless of the Directory instance.
 if|if

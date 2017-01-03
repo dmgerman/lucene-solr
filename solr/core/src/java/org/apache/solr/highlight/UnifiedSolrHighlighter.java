@@ -88,6 +88,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|function
+operator|.
+name|Predicate
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -461,7 +473,7 @@ parameter_list|(
 name|PluginInfo
 name|info
 parameter_list|)
-block|{     }
+block|{   }
 annotation|@
 name|Override
 DECL|method|doHighlighting
@@ -639,7 +651,7 @@ name|snippets
 argument_list|)
 return|;
 block|}
-comment|/**      * Creates an instance of the Lucene {@link UnifiedHighlighter}. Provided for subclass extension so that      * a subclass can return a subclass of {@link SolrExtendedUnifiedHighlighter}.      */
+comment|/**    * Creates an instance of the Lucene {@link UnifiedHighlighter}. Provided for subclass extension so that    * a subclass can return a subclass of {@link SolrExtendedUnifiedHighlighter}.    */
 DECL|method|getHighlighter
 specifier|protected
 name|UnifiedHighlighter
@@ -657,7 +669,7 @@ name|req
 argument_list|)
 return|;
 block|}
-comment|/**      * Encodes the resulting snippets into a namedlist      *      * @param keys       the document unique keys      * @param fieldNames field names to highlight in the order      * @param snippets   map from field name to snippet array for the docs      * @return encoded namedlist of summaries      */
+comment|/**    * Encodes the resulting snippets into a namedlist    *    * @param keys       the document unique keys    * @param fieldNames field names to highlight in the order    * @param snippets   map from field name to snippet array for the docs    * @return encoded namedlist of summaries    */
 DECL|method|encodeSnippets
 specifier|protected
 name|NamedList
@@ -798,7 +810,7 @@ return|return
 name|list
 return|;
 block|}
-comment|/**      * Converts solr's DocList to the int[] docIDs      */
+comment|/**    * Converts solr's DocList to the int[] docIDs    */
 DECL|method|toDocIDs
 specifier|protected
 name|int
@@ -891,7 +903,7 @@ return|return
 name|docIDs
 return|;
 block|}
-comment|/**      * Retrieves the unique keys for the topdocs to key the results      */
+comment|/**    * Retrieves the unique keys for the topdocs to key the results    */
 DECL|method|getUniqueKeys
 specifier|protected
 name|String
@@ -1031,7 +1043,7 @@ index|]
 return|;
 block|}
 block|}
-comment|/**      * From {@link #getHighlighter(org.apache.solr.request.SolrQueryRequest)}.      */
+comment|/**    * From {@link #getHighlighter(org.apache.solr.request.SolrQueryRequest)}.    */
 DECL|class|SolrExtendedUnifiedHighlighter
 specifier|protected
 specifier|static
@@ -1040,6 +1052,20 @@ name|SolrExtendedUnifiedHighlighter
 extends|extends
 name|UnifiedHighlighter
 block|{
+DECL|field|NOT_REQUIRED_FIELD_MATCH_PREDICATE
+specifier|protected
+specifier|final
+specifier|static
+name|Predicate
+argument_list|<
+name|String
+argument_list|>
+name|NOT_REQUIRED_FIELD_MATCH_PREDICATE
+init|=
+name|s
+lambda|->
+literal|true
+decl_stmt|;
 DECL|field|params
 specifier|protected
 specifier|final
@@ -1578,7 +1604,7 @@ name|locale
 argument_list|)
 return|;
 block|}
-comment|/**          * parse a break iterator type for the specified locale          */
+comment|/**      * parse a break iterator type for the specified locale      */
 DECL|method|parseBreakIterator
 specifier|protected
 name|BreakIterator
@@ -1710,7 +1736,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**          * parse a locale from a language+country+variant spec          */
+comment|/**      * parse a locale from a language+country+variant spec      */
 DECL|method|parseLocale
 specifier|protected
 name|Locale
@@ -1942,6 +1968,52 @@ argument_list|,
 literal|true
 argument_list|)
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getFieldMatcher
+specifier|protected
+name|Predicate
+argument_list|<
+name|String
+argument_list|>
+name|getFieldMatcher
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+block|{
+comment|// TODO define hl.queryFieldPattern as a more advanced alternative to hl.requireFieldMatch.
+comment|// note that the UH& PH at Lucene level default to effectively "true"
+if|if
+condition|(
+name|params
+operator|.
+name|getFieldBool
+argument_list|(
+name|field
+argument_list|,
+name|HighlightParams
+operator|.
+name|FIELD_MATCH
+argument_list|,
+literal|false
+argument_list|)
+condition|)
+block|{
+return|return
+name|field
+operator|::
+name|equals
+return|;
+comment|// requireFieldMatch
+block|}
+else|else
+block|{
+return|return
+name|NOT_REQUIRED_FIELD_MATCH_PREDICATE
+return|;
+block|}
 block|}
 block|}
 block|}

@@ -486,9 +486,9 @@ name|NumericDocValuesSub
 argument_list|>
 name|docIDMerger
 init|=
-operator|new
 name|DocIDMerger
-argument_list|<>
+operator|.
+name|of
 argument_list|(
 name|subs
 argument_list|,

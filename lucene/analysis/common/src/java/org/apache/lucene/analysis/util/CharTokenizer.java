@@ -867,8 +867,10 @@ name|length
 operator|>=
 name|MAX_WORD_LEN
 condition|)
+block|{
 comment|// buffer overflow! make sure to check for>= surrogate pair could break == test
 break|break;
+block|}
 block|}
 elseif|else
 if|if
@@ -877,9 +879,11 @@ name|length
 operator|>
 literal|0
 condition|)
+block|{
 comment|// at non-Letter w/ chars
 break|break;
 comment|// return 'em
+block|}
 block|}
 name|termAtt
 operator|.

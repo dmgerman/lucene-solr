@@ -3489,7 +3489,7 @@ name|withinGroupSortSpec
 init|=
 name|groupingSpec
 operator|.
-name|getSortSpecWithinGroup
+name|getWithinGroupSortSpec
 argument_list|()
 decl_stmt|;
 name|SortSpec
@@ -3515,7 +3515,7 @@ condition|)
 block|{
 name|groupingSpec
 operator|.
-name|setSortSpecWithinGroup
+name|setWithinGroupSortSpec
 argument_list|(
 name|modWithinGroupSortSpec
 argument_list|)

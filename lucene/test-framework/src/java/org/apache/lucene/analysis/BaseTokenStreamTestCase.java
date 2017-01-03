@@ -1097,6 +1097,10 @@ argument_list|(
 literal|"startOffset "
 operator|+
 name|i
+operator|+
+literal|" term="
+operator|+
+name|termAtt
 argument_list|,
 name|startOffsets
 index|[
@@ -1122,6 +1126,10 @@ argument_list|(
 literal|"endOffset "
 operator|+
 name|i
+operator|+
+literal|" term="
+operator|+
+name|termAtt
 argument_list|,
 name|endOffsets
 index|[
@@ -1147,6 +1155,10 @@ argument_list|(
 literal|"type "
 operator|+
 name|i
+operator|+
+literal|" term="
+operator|+
+name|termAtt
 argument_list|,
 name|types
 index|[
@@ -1172,6 +1184,10 @@ argument_list|(
 literal|"posIncrement "
 operator|+
 name|i
+operator|+
+literal|" term="
+operator|+
+name|termAtt
 argument_list|,
 name|posIncrements
 index|[
@@ -1197,6 +1213,10 @@ argument_list|(
 literal|"posLength "
 operator|+
 name|i
+operator|+
+literal|" term="
+operator|+
+name|termAtt
 argument_list|,
 name|posLengths
 index|[
@@ -1222,6 +1242,10 @@ argument_list|(
 literal|"keywordAtt "
 operator|+
 name|i
+operator|+
+literal|" term="
+operator|+
+name|termAtt
 argument_list|,
 name|keywordAtts
 index|[
@@ -1270,7 +1294,17 @@ condition|)
 block|{
 name|assertTrue
 argument_list|(
-literal|"startOffset must be<= finalOffset"
+literal|"startOffset (= "
+operator|+
+name|startOffset
+operator|+
+literal|") must be<= finalOffset (= "
+operator|+
+name|finalOffset
+operator|+
+literal|") term="
+operator|+
+name|termAtt
 argument_list|,
 name|startOffset
 operator|<=
@@ -1292,6 +1326,10 @@ name|finalOffset
 operator|.
 name|intValue
 argument_list|()
+operator|+
+literal|" term="
+operator|+
+name|termAtt
 argument_list|,
 name|endOffset
 operator|<=
@@ -1316,6 +1354,10 @@ operator|+
 literal|" is< lastStartOffset="
 operator|+
 name|lastStartOffset
+operator|+
+literal|" term="
+operator|+
+name|termAtt
 argument_list|,
 name|offsetAtt
 operator|.
@@ -1402,7 +1444,9 @@ comment|// before; verify the startOffset is the same:
 comment|//System.out.println("  + vs " + pos + " -> " + startOffset);
 name|assertEquals
 argument_list|(
-literal|"pos="
+name|i
+operator|+
+literal|" inconsistent startOffset: pos="
 operator|+
 name|pos
 operator|+
@@ -1466,7 +1510,11 @@ comment|// before; verify the endOffset is the same:
 comment|//System.out.println("  + ve " + endPos + " -> " + endOffset);
 name|assertEquals
 argument_list|(
-literal|"pos="
+literal|"inconsistent endOffset "
+operator|+
+name|i
+operator|+
+literal|" pos="
 operator|+
 name|pos
 operator|+
@@ -2458,6 +2506,18 @@ argument_list|,
 name|input
 argument_list|)
 expr_stmt|;
+name|checkAnalysisConsistency
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+name|a
+argument_list|,
+literal|true
+argument_list|,
+name|input
+argument_list|)
+expr_stmt|;
 name|assertTokenStreamContents
 argument_list|(
 name|a
@@ -2530,6 +2590,18 @@ block|{
 name|checkResetException
 argument_list|(
 name|a
+argument_list|,
+name|input
+argument_list|)
+expr_stmt|;
+name|checkAnalysisConsistency
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+name|a
+argument_list|,
+literal|true
 argument_list|,
 name|input
 argument_list|)
@@ -2611,6 +2683,20 @@ argument_list|(
 name|a
 argument_list|,
 name|input
+argument_list|)
+expr_stmt|;
+name|checkAnalysisConsistency
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+name|a
+argument_list|,
+literal|true
+argument_list|,
+name|input
+argument_list|,
+name|offsetsAreCorrect
 argument_list|)
 expr_stmt|;
 name|assertTokenStreamContents
@@ -2810,6 +2896,57 @@ argument_list|,
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+name|posIncrements
+argument_list|,
+name|posLengths
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|assertAnalyzesToPositions
+specifier|public
+specifier|static
+name|void
+name|assertAnalyzesToPositions
+parameter_list|(
+name|Analyzer
+name|a
+parameter_list|,
+name|String
+name|input
+parameter_list|,
+name|String
+index|[]
+name|output
+parameter_list|,
+name|String
+index|[]
+name|types
+parameter_list|,
+name|int
+index|[]
+name|posIncrements
+parameter_list|,
+name|int
+index|[]
+name|posLengths
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+name|assertAnalyzesTo
+argument_list|(
+name|a
+argument_list|,
+name|input
+argument_list|,
+name|output
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+name|types
 argument_list|,
 name|posIncrements
 argument_list|,
@@ -5301,14 +5438,14 @@ comment|// Catch& ignore MockTokenizer's
 comment|// anger...
 if|if
 condition|(
-literal|"end() called before incrementToken() returned false!"
-operator|.
-name|equals
-argument_list|(
 name|ise
 operator|.
 name|getMessage
 argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"end() called in wrong state="
 argument_list|)
 condition|)
 block|{
@@ -5460,14 +5597,14 @@ comment|// Catch& ignore MockTokenizer's
 comment|// anger...
 if|if
 condition|(
-literal|"end() called before incrementToken() returned false!"
-operator|.
-name|equals
-argument_list|(
 name|ise
 operator|.
 name|getMessage
 argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"end() called in wrong state="
 argument_list|)
 condition|)
 block|{

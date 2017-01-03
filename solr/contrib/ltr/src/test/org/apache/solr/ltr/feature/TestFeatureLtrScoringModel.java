@@ -125,7 +125,9 @@ throws|throws
 name|Exception
 block|{
 name|setuptest
-argument_list|()
+argument_list|(
+literal|true
+argument_list|)
 expr_stmt|;
 name|store
 operator|=
