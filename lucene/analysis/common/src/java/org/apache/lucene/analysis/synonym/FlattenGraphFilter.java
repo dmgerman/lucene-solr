@@ -18,10 +18,6 @@ name|synonym
 package|;
 end_package
 
-begin_comment
-comment|/**  * This filter "casts" token graphs down into a "flat" form,  * for indexing.   This is an inherently lossy process: nodes (positions)  * along side paths are forcefully merged.  *  *<p>In general this means the output graph will accept token sequences  * that the input graph did not accept, and will also fail to accept  * token sequences that the input graph did accept.  *  *<p>This is only necessary at indexing time because Lucene cannot yet index  * an arbitrary token graph.  At search time there are better options, e.g.  * the experimental<code>TermAutomatonQuery</code> in sandbox.  *  * @lucene.experimental  */
-end_comment
-
 begin_import
 import|import
 name|java
@@ -157,7 +153,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Converts an incoming graph token stream, such as one from  * {@link SynonymGraphFilter}, into a flat form so that  * all nodes form a single linear chain with no side paths.  Every  * path through the graph touches every node.  *  *<p>If the graph was not already flat to start, this  * is likely a lossy process, i.e. it will often cause the   * graph to accept token sequences it should not, and to  * reject token sequences it should not.  *  *<p>However, when applying synonyms during indexing, this  * is necessary because Lucene already does not index a graph   * and so the indexing process is already lossy  * (it ignores the {@link PositionLengthAttribute}).  *  * @lucene.experimental  */
+comment|/**  * Converts an incoming graph token stream, such as one from  * {@link SynonymGraphFilter}, into a flat form so that  * all nodes form a single linear chain with no side paths.  Every  * path through the graph touches every node.  This is necessary  * when indexing a graph token stream, because the index does not  * save {@link PositionLengthAttribute} and so it cannot  * preserve the graph structure.  However, at search time,  * query parsers can correctly handle the graph and this token  * filter should<b>not</b> be used.  *  *<p>If the graph was not already flat to start, this  * is likely a lossy process, i.e. it will often cause the   * graph to accept token sequences it should not, and to  * reject token sequences it should not.  *  *<p>However, when applying synonyms during indexing, this  * is necessary because Lucene already does not index a graph   * and so the indexing process is already lossy  * (it ignores the {@link PositionLengthAttribute}).  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -879,14 +875,27 @@ operator|.
 name|startOffset
 argument_list|)
 decl_stmt|;
+comment|// We must do this in case the incoming tokens have broken offsets:
+name|int
+name|endOffset
+init|=
+name|Math
+operator|.
+name|max
+argument_list|(
+name|startOffset
+argument_list|,
+name|outputEndNode
+operator|.
+name|endOffset
+argument_list|)
+decl_stmt|;
 name|offsetAtt
 operator|.
 name|setOffset
 argument_list|(
 name|startOffset
 argument_list|,
-name|outputEndNode
-operator|.
 name|endOffset
 argument_list|)
 expr_stmt|;
