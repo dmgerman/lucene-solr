@@ -388,6 +388,10 @@ name|BoundedTreeSet
 import|;
 end_import
 
+begin_comment
+comment|/**  * A class which performs per-segment field faceting for single-valued string fields.  */
+end_comment
+
 begin_class
 DECL|class|PerSegmentSingleValuedFaceting
 class|class
@@ -431,10 +435,12 @@ name|String
 name|prefix
 decl_stmt|;
 DECL|field|contains
+specifier|private
 name|String
 name|contains
 decl_stmt|;
 DECL|field|ignoreCase
+specifier|private
 name|boolean
 name|ignoreCase
 decl_stmt|;
