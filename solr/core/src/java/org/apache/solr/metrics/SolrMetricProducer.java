@@ -16,32 +16,8 @@ name|metrics
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|core
-operator|.
-name|SolrInfoMBean
-import|;
-end_import
-
 begin_comment
-comment|/**  * Extension of {@link SolrInfoMBean} for use by objects that  * expose metrics through {@link SolrCoreMetricManager}.  */
+comment|/**  * Used by objects that expose metrics through {@link SolrCoreMetricManager}.  */
 end_comment
 
 begin_interface
@@ -49,15 +25,10 @@ DECL|interface|SolrMetricProducer
 specifier|public
 interface|interface
 name|SolrMetricProducer
-extends|extends
-name|SolrInfoMBean
 block|{
-comment|/**    * Initializes metrics specific to this producer    * @param manager an instance of {@link SolrMetricManager}    * @param registry registry name where metrics are registered    * @param scope scope of the metrics (eg. handler name) to separate metrics of    *              instances of the same component executing in different contexts    * @return registered (or existing) unqualified names of metrics specific to this producer.    */
+comment|/**    * Initializes metrics specific to this producer    * @param manager an instance of {@link SolrMetricManager}    * @param registry registry name where metrics are registered    * @param scope scope of the metrics (eg. handler name) to separate metrics of    *              instances of the same component executing in different contexts    */
 DECL|method|initializeMetrics
-name|Collection
-argument_list|<
-name|String
-argument_list|>
+name|void
 name|initializeMetrics
 parameter_list|(
 name|SolrMetricManager

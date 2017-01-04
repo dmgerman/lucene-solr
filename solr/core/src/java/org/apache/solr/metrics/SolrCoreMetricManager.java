@@ -40,16 +40,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|util
-operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|lang
 operator|.
 name|invoke
@@ -379,13 +369,6 @@ operator|||
 name|producer
 operator|==
 literal|null
-operator|||
-name|producer
-operator|.
-name|getCategory
-argument_list|()
-operator|==
-literal|null
 condition|)
 block|{
 throw|throw
@@ -404,12 +387,6 @@ name|producer
 argument_list|)
 throw|;
 block|}
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|registered
-init|=
 name|producer
 operator|.
 name|initializeMetrics
@@ -421,35 +398,7 @@ argument_list|()
 argument_list|,
 name|scope
 argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|registered
-operator|==
-literal|null
-operator|||
-name|registered
-operator|.
-name|isEmpty
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"registerMetricProducer() did not register any metrics "
-operator|+
-literal|"for scope = "
-operator|+
-name|scope
-operator|+
-literal|", producer = "
-operator|+
-name|producer
-argument_list|)
-throw|;
-block|}
+expr_stmt|;
 block|}
 comment|/**    * Closes reporters specific to this core.    */
 annotation|@
