@@ -301,7 +301,10 @@ name|expression
 operator|.
 name|addParameter
 argument_list|(
+name|quote
+argument_list|(
 name|field
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|expression
