@@ -411,9 +411,10 @@ operator|==
 literal|null
 condition|)
 return|return
-literal|null
+name|HLLAgg
+operator|.
+name|NO_VALUES
 return|;
-comment|// TODO: when we get to refinements, may be useful to return something???
 name|HLL
 name|hll
 init|=

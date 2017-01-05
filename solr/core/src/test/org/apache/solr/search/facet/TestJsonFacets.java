@@ -4583,6 +4583,64 @@ operator|+
 literal|" }"
 argument_list|)
 expr_stmt|;
+comment|// stats at top level, matching documents, but no values in the field
+comment|// NOTE: this represents the current state of what is returned, not the ultimate desired state.
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"id:3"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{ sum1:'sum(${num_d})', sumsq1:'sumsq(${num_d})', avg1:'avg(${num_d})', min1:'min(${num_d})', max1:'max(${num_d})'"
+operator|+
+literal|", numwhere:'unique(${where_s})', unique_num_i:'unique(${num_i})', unique_num_d:'unique(${num_d})', unique_date:'unique(${date})'"
+operator|+
+literal|", where_hll:'hll(${where_s})', hll_num_i:'hll(${num_i})', hll_num_d:'hll(${num_d})', hll_date:'hll(${date})'"
+operator|+
+literal|", med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)' }"
+argument_list|)
+argument_list|,
+literal|"facets=={count:1 "
+operator|+
+literal|",sum1:0.0,"
+operator|+
+literal|" sumsq1:0.0,"
+operator|+
+literal|" avg1:0.0,"
+operator|+
+comment|// TODO: undesirable. omit?
+literal|" min1:'NaN',"
+operator|+
+comment|// TODO: undesirable. omit?
+literal|" max1:'NaN',"
+operator|+
+literal|" numwhere:0,"
+operator|+
+literal|" unique_num_i:0,"
+operator|+
+literal|" unique_num_d:0,"
+operator|+
+literal|" unique_date:0,"
+operator|+
+literal|" where_hll:0,"
+operator|+
+literal|" hll_num_i:0,"
+operator|+
+literal|" hll_num_d:0,"
+operator|+
+literal|" hll_date:0"
+operator|+
+literal|" }"
+argument_list|)
+expr_stmt|;
 comment|//
 comment|// tests on a multi-valued field with actual multiple values, just to ensure that we are
 comment|// using a multi-valued method for the rest of the tests when appropriate.
