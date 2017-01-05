@@ -270,7 +270,7 @@ operator|.
 name|ROOT
 argument_list|)
 operator|+
-literal|"-requests"
+literal|".requests"
 return|;
 block|}
 annotation|@
