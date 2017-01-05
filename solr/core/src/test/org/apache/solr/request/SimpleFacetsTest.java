@@ -1716,7 +1716,7 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
-literal|"Return two facet counts for field airport_a"
+literal|"Return two facet counts for field airport_a and duration_i1"
 argument_list|,
 name|req
 argument_list|(
@@ -1751,6 +1751,10 @@ argument_list|,
 literal|"facet.field"
 argument_list|,
 literal|"airport_s1"
+argument_list|,
+literal|"facet.field"
+argument_list|,
+literal|"duration_i1"
 argument_list|)
 argument_list|,
 literal|"//lst[@name='facet_fields']/lst[@name='airport_s1']"
@@ -1760,6 +1764,14 @@ argument_list|,
 literal|"//lst[@name='airport_s1']/int[@name='ams'][.='2']"
 argument_list|,
 literal|"//lst[@name='airport_s1']/int[@name='dus'][.='1']"
+argument_list|,
+literal|"//lst[@name='facet_fields']/lst[@name='duration_i1']"
+argument_list|,
+literal|"*[count(//lst[@name='duration_i1']/int)=2]"
+argument_list|,
+literal|"//lst[@name='duration_i1']/int[@name='5'][.='2']"
+argument_list|,
+literal|"//lst[@name='duration_i1']/int[@name='10'][.='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
