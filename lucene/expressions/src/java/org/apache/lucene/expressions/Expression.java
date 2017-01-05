@@ -32,10 +32,6 @@ name|JavascriptCompiler
 import|;
 end_import
 
-begin_comment
-comment|// javadocs
-end_comment
-
 begin_import
 import|import
 name|org
@@ -44,11 +40,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|search
 operator|.
-name|function
-operator|.
-name|FunctionValues
+name|DoubleValues
 import|;
 end_import
 
@@ -60,11 +54,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|search
 operator|.
-name|function
-operator|.
-name|ValueSource
+name|DoubleValuesSource
 import|;
 end_import
 
@@ -148,26 +140,23 @@ operator|=
 name|variables
 expr_stmt|;
 block|}
-comment|/**    * Evaluates the expression for the given document.    *    * @param document<code>docId</code> of the document to compute a value for    * @param functionValues {@link FunctionValues} for each element of {@link #variables}.    * @return The computed value of the expression for the given document.    */
+comment|/**    * Evaluates the expression for the current document.    *    * @param functionValues {@link DoubleValues} for each element of {@link #variables}.    * @return The computed value of the expression for the given document.    */
 DECL|method|evaluate
 specifier|public
 specifier|abstract
 name|double
 name|evaluate
 parameter_list|(
-name|int
-name|document
-parameter_list|,
-name|FunctionValues
+name|DoubleValues
 index|[]
 name|functionValues
 parameter_list|)
 function_decl|;
-comment|/**    * Get a value source which can compute the value of this expression in the context of the given bindings.    * @param bindings Bindings to use for external values in this expression    * @return A value source which will evaluate this expression when used    */
-DECL|method|getValueSource
+comment|/**    * Get a DoubleValuesSource which can compute the value of this expression in the context of the given bindings.    * @param bindings Bindings to use for external values in this expression    * @return A DoubleValuesSource which will evaluate this expression when used    */
+DECL|method|getDoubleValuesSource
 specifier|public
-name|ValueSource
-name|getValueSource
+name|DoubleValuesSource
+name|getDoubleValuesSource
 parameter_list|(
 name|Bindings
 name|bindings
@@ -197,7 +186,7 @@ name|reverse
 parameter_list|)
 block|{
 return|return
-name|getValueSource
+name|getDoubleValuesSource
 argument_list|(
 name|bindings
 argument_list|)

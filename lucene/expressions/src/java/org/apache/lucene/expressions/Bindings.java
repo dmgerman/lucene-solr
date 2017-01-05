@@ -24,11 +24,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|search
 operator|.
-name|function
-operator|.
-name|ValueSource
+name|DoubleValuesSource
 import|;
 end_import
 
@@ -49,31 +47,17 @@ specifier|protected
 name|Bindings
 parameter_list|()
 block|{}
-comment|/**    * Returns a ValueSource bound to the variable name.    */
-DECL|method|getValueSource
+comment|/**    * Returns a DoubleValuesSource bound to the variable name    */
+DECL|method|getDoubleValuesSource
 specifier|public
 specifier|abstract
-name|ValueSource
-name|getValueSource
+name|DoubleValuesSource
+name|getDoubleValuesSource
 parameter_list|(
 name|String
 name|name
 parameter_list|)
 function_decl|;
-comment|/** Returns a {@code ValueSource} over relevance scores */
-DECL|method|getScoreValueSource
-specifier|protected
-specifier|final
-name|ValueSource
-name|getScoreValueSource
-parameter_list|()
-block|{
-return|return
-operator|new
-name|ScoreValueSource
-argument_list|()
-return|;
-block|}
 block|}
 end_class
 
