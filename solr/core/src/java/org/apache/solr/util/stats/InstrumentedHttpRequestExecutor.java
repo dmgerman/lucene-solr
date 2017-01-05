@@ -447,6 +447,16 @@ name|HttpRequestWrapper
 operator|)
 name|request
 decl_stmt|;
+if|if
+condition|(
+name|wrapper
+operator|.
+name|getTarget
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
 name|schemeHostPort
 operator|=
 name|wrapper
@@ -477,6 +487,7 @@ operator|.
 name|getPort
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 specifier|final
 name|URIBuilder
