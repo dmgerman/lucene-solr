@@ -394,6 +394,43 @@ argument_list|)
 expr_stmt|;
 comment|// phrases inside phrases is bad
 block|}
+DECL|method|testSingleTermPhrase
+specifier|public
+name|void
+name|testSingleTermPhrase
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkMatches
+argument_list|(
+literal|"\"joh*\" \"tom\""
+argument_list|,
+literal|"1,2,3,4"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"+\"j*\" +\"tom\""
+argument_list|,
+literal|"4"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"\"jo*\" \"[sma TO smZ]\" "
+argument_list|,
+literal|"1,2,3"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"+\"j*hn\" +\"sm*h\""
+argument_list|,
+literal|"1,3"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testUnOrderedProximitySearches
 specifier|public
 name|void

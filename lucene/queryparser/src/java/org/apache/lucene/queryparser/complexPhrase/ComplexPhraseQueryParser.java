@@ -1120,6 +1120,10 @@ condition|(
 name|contents
 operator|instanceof
 name|TermQuery
+operator|||
+name|contents
+operator|instanceof
+name|MultiTermQuery
 condition|)
 block|{
 return|return
