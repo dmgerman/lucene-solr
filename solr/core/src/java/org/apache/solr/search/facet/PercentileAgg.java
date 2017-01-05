@@ -815,10 +815,19 @@ condition|)
 block|{
 comment|// we've already calculated everything we need
 return|return
+name|digests
+index|[
+name|slotNum
+index|]
+operator|!=
+literal|null
+condition|?
 name|sortvals
 index|[
 name|slotNum
 index|]
+else|:
+literal|null
 return|;
 block|}
 return|return
@@ -1029,6 +1038,14 @@ index|[]
 operator|)
 name|facetResult
 decl_stmt|;
+if|if
+condition|(
+name|arr
+operator|==
+literal|null
+condition|)
+return|return;
+comment|// an explicit null can mean no values in the field
 name|AVLTreeDigest
 name|subDigest
 init|=
@@ -1083,6 +1100,10 @@ name|size
 argument_list|()
 operator|==
 literal|1
+operator|&&
+name|digest
+operator|!=
+literal|null
 condition|)
 return|return
 name|getSortVal
@@ -1146,6 +1167,14 @@ condition|)
 block|{
 name|sortVal
 operator|=
+name|digest
+operator|==
+literal|null
+condition|?
+name|Double
+operator|.
+name|NEGATIVE_INFINITY
+else|:
 name|digest
 operator|.
 name|quantile

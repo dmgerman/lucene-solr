@@ -2783,6 +2783,22 @@ literal|"num_i"
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|p
+operator|.
+name|set
+argument_list|(
+literal|"sparse_num_d"
+argument_list|,
+literal|"sparse_"
+operator|+
+name|p
+operator|.
+name|get
+argument_list|(
+literal|"num_d"
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|p
@@ -2955,6 +2971,16 @@ argument_list|(
 literal|"${multi_ss}"
 argument_list|)
 decl_stmt|;
+name|String
+name|sparse_num_d
+init|=
+name|m
+operator|.
+name|expand
+argument_list|(
+literal|"${sparse_num_d}"
+argument_list|)
+decl_stmt|;
 name|client
 operator|.
 name|deleteByQuery
@@ -2964,6 +2990,12 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+name|Client
+name|iclient
+init|=
+name|client
+decl_stmt|;
+comment|/*** This code was not needed yet, but may be needed if we want to force empty shard results more often.     // create a new indexing client that doesn't use one shard to better test for empty or non-existent results     if (!client.local()) {       List<SolrClient> shards = client.getClientProvider().all();       iclient = new Client(shards.subList(0, shards.size()-1), client.getClientProvider().getSeed());      }      ***/
 name|SolrInputDocument
 name|doc
 init|=
@@ -2984,6 +3016,10 @@ argument_list|,
 name|num_d
 argument_list|,
 literal|"4"
+argument_list|,
+name|sparse_num_d
+argument_list|,
+literal|"6"
 argument_list|,
 name|num_i
 argument_list|,
@@ -3022,7 +3058,7 @@ argument_list|,
 literal|"one"
 argument_list|)
 decl_stmt|;
-name|client
+name|iclient
 operator|.
 name|add
 argument_list|(
@@ -3031,7 +3067,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|client
+name|iclient
 operator|.
 name|add
 argument_list|(
@@ -3040,7 +3076,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|client
+name|iclient
 operator|.
 name|add
 argument_list|(
@@ -3050,7 +3086,7 @@ literal|null
 argument_list|)
 expr_stmt|;
 comment|// a couple of deleted docs
-name|client
+name|iclient
 operator|.
 name|add
 argument_list|(
@@ -3120,7 +3156,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|client
+name|iclient
 operator|.
 name|add
 argument_list|(
@@ -3134,12 +3170,12 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|client
+name|iclient
 operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|client
+name|iclient
 operator|.
 name|add
 argument_list|(
@@ -3160,6 +3196,10 @@ argument_list|,
 name|num_d
 argument_list|,
 literal|"2"
+argument_list|,
+name|sparse_num_d
+argument_list|,
+literal|"-4"
 argument_list|,
 name|num_i
 argument_list|,
@@ -3205,7 +3245,7 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|client
+name|iclient
 operator|.
 name|add
 argument_list|(
@@ -3259,12 +3299,12 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|client
+name|iclient
 operator|.
 name|commit
 argument_list|()
 expr_stmt|;
-name|client
+name|iclient
 operator|.
 name|add
 argument_list|(
@@ -3325,6 +3365,11 @@ argument_list|)
 argument_list|,
 literal|null
 argument_list|)
+expr_stmt|;
+name|iclient
+operator|.
+name|commit
+argument_list|()
 expr_stmt|;
 name|client
 operator|.
@@ -3689,14 +3734,22 @@ literal|"json.facet"
 argument_list|,
 literal|"{f1:{terms:{${terms} field:'${cat_s}', sort:'n1 desc', facet:{n1:'percentile(${num_d},50)'}  }}"
 operator|+
-literal|" , f2:{terms:{${terms} field:'${cat_s}', sort:'n1 asc', facet:{n1:'percentile(${num_d},50)'}  }} }"
+literal|" , f2:{terms:{${terms} field:'${cat_s}', sort:'n1 asc', facet:{n1:'percentile(${num_d},50)'}  }} "
+operator|+
+literal|" , f3:{terms:{${terms} field:'${cat_s}', sort:'n1 desc', facet:{n1:'percentile(${sparse_num_d},50)'}  }} "
+operator|+
+literal|"}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
 operator|+
 literal|"  f1:{  'buckets':[{ val:'A', count:2, n1:3.0 }, { val:'B', count:3, n1:-5.0}]}"
 operator|+
-literal|", f2:{  'buckets':[{ val:'B', count:3, n1:-5.0}, { val:'A', count:2, n1:3.0 }]} }"
+literal|", f2:{  'buckets':[{ val:'B', count:3, n1:-5.0}, { val:'A', count:2, n1:3.0 }]}"
+operator|+
+literal|", f3:{  'buckets':[{ val:'A', count:2, n1:1.0}, { val:'B', count:3}]}"
+operator|+
+literal|"}"
 argument_list|)
 expr_stmt|;
 comment|// test sorting by multiple percentiles (sort is by first)
