@@ -1506,6 +1506,10 @@ name|testVal
 parameter_list|)
 block|{
 return|return
+name|testVal
+operator|!=
+literal|null
+operator|&&
 name|compareNum
 argument_list|(
 name|ruleVal
@@ -1565,6 +1569,10 @@ name|testVal
 parameter_list|)
 block|{
 return|return
+name|testVal
+operator|!=
+literal|null
+operator|&&
 name|compareNum
 argument_list|(
 name|ruleVal

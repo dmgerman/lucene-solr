@@ -511,7 +511,7 @@ name|rules
 operator|=
 name|parseRules
 argument_list|(
-literal|"[{role:'!overseer'}]"
+literal|"[{role:'!overseer'}, {'freedisk':'>1'}]"
 argument_list|)
 expr_stmt|;
 name|Map
