@@ -251,6 +251,27 @@ argument_list|(
 name|tenum
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|compiled
+operator|.
+name|type
+operator|!=
+name|CompiledAutomaton
+operator|.
+name|AUTOMATON_TYPE
+operator|.
+name|NORMAL
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"please use CompiledAutomaton.getTermsEnum instead"
+argument_list|)
+throw|;
+block|}
 name|this
 operator|.
 name|finite
