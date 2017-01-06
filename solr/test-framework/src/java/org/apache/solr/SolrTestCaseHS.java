@@ -2258,6 +2258,16 @@ return|return
 name|clients
 return|;
 block|}
+DECL|method|getSeed
+specifier|public
+name|int
+name|getSeed
+parameter_list|()
+block|{
+return|return
+name|hashSeed
+return|;
+block|}
 block|}
 comment|//
 comment|// Helper to run an internal Jetty instance.

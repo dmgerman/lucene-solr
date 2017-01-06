@@ -1161,6 +1161,15 @@ name|CommitStream
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"random"
+argument_list|,
+name|RandomStream
+operator|.
+name|class
+argument_list|)
 comment|// decorator streams
 operator|.
 name|withFunctionName

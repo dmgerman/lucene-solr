@@ -63,6 +63,7 @@ DECL|enum constant|QUERYPARSER
 DECL|enum constant|SEARCHER
 DECL|enum constant|INDEX
 DECL|enum constant|DIRECTORY
+DECL|enum constant|HTTP
 DECL|enum constant|OTHER
 enum|enum
 name|Category
@@ -85,13 +86,14 @@ name|INDEX
 block|,
 name|DIRECTORY
 block|,
+name|HTTP
+block|,
 name|OTHER
 block|}
 comment|/**    * Top-level group of beans for a subsystem.    */
 DECL|enum|Group
 DECL|enum constant|jvm
 DECL|enum constant|jetty
-DECL|enum constant|http
 DECL|enum constant|node
 DECL|enum constant|core
 enum|enum
@@ -100,8 +102,6 @@ block|{
 name|jvm
 block|,
 name|jetty
-block|,
-name|http
 block|,
 name|node
 block|,

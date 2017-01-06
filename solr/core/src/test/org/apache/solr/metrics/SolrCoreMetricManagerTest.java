@@ -428,11 +428,6 @@ argument_list|(
 name|category
 argument_list|)
 expr_stmt|;
-name|assertNotNull
-argument_list|(
-name|metrics
-argument_list|)
-expr_stmt|;
 name|assertRegistered
 argument_list|(
 name|scope
@@ -456,13 +451,9 @@ literal|"expected at least one null but got: scope="
 operator|+
 name|scope
 operator|+
-literal|" category="
+literal|", category="
 operator|+
 name|category
-operator|+
-literal|" metrics="
-operator|+
-name|metrics
 argument_list|,
 operator|(
 name|scope
@@ -470,10 +461,6 @@ operator|==
 literal|null
 operator|||
 name|category
-operator|==
-literal|null
-operator|||
-name|metrics
 operator|==
 literal|null
 operator|)
@@ -942,6 +929,10 @@ block|{
 if|if
 condition|(
 name|scope
+operator|==
+literal|null
+operator|||
+name|newMetrics
 operator|==
 literal|null
 condition|)

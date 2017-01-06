@@ -22,23 +22,9 @@ name|ops
 package|;
 end_package
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|io
-operator|.
-name|Tuple
-import|;
-end_import
+begin_comment
+comment|/**  *  A BooleanOperation returns true or false for each tuple that it evaluates. The HavingStream applies a BooleanOperation to  *  determine which tuples to emit.  */
+end_comment
 
 begin_interface
 DECL|interface|BooleanOperation

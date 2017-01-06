@@ -46,16 +46,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|Collections
 import|;
 end_import
@@ -950,10 +940,7 @@ annotation|@
 name|Override
 DECL|method|initializeMetrics
 specifier|public
-name|Collection
-argument_list|<
-name|String
-argument_list|>
+name|void
 name|initializeMetrics
 parameter_list|(
 name|SolrMetricManager
@@ -966,12 +953,6 @@ name|String
 name|scope
 parameter_list|)
 block|{
-name|Collection
-argument_list|<
-name|String
-argument_list|>
-name|metrics
-init|=
 name|super
 operator|.
 name|initializeMetrics
@@ -982,7 +963,7 @@ name|registryName
 argument_list|,
 name|scope
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 name|parallelExecutor
 operator|=
 name|MetricUtils
@@ -1016,9 +997,6 @@ literal|"threadPool"
 argument_list|)
 argument_list|)
 expr_stmt|;
-return|return
-name|metrics
-return|;
 block|}
 comment|/**    * The instance of CoreContainer this handler handles. This should be the CoreContainer instance that created this    * handler.    *    * @return a CoreContainer instance    */
 DECL|method|getCoreContainer

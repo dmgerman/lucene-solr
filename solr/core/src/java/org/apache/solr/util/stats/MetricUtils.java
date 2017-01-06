@@ -393,7 +393,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a NamedList representation of the given metric registry. Only those metrics    * are converted to NamedList which match at least one of the given MetricFilter instances.    *    * @param registry      the {@link MetricRegistry} to be converted to NamedList    * @param metricFilters a list of {@link MetricFilter} instances    * @return a {@link NamedList}    */
+comment|/**    * Returns a NamedList representation of the given metric registry. Only those metrics    * are converted to NamedList which match at least one of the given MetricFilter instances.    *    * @param registry      the {@link MetricRegistry} to be converted to NamedList    * @param shouldMatchFilters a list of {@link MetricFilter} instances.    *                           A metric must match<em>any one</em> of the filters from this list to be    *                           included in the output    * @param mustMatchFilter a {@link MetricFilter}.    *                        A metric<em>must</em> match this filter to be included in the output.    * @return a {@link NamedList}    */
 DECL|method|toNamedList
 specifier|public
 specifier|static
@@ -407,7 +407,10 @@ name|List
 argument_list|<
 name|MetricFilter
 argument_list|>
-name|metricFilters
+name|shouldMatchFilters
+parameter_list|,
+name|MetricFilter
+name|mustMatchFilter
 parameter_list|)
 block|{
 name|NamedList
@@ -450,7 +453,7 @@ name|filter
 argument_list|(
 name|s
 lambda|->
-name|metricFilters
+name|shouldMatchFilters
 operator|.
 name|stream
 argument_list|()
@@ -471,6 +474,25 @@ name|get
 argument_list|(
 name|s
 argument_list|)
+argument_list|)
+argument_list|)
+argument_list|)
+operator|.
+name|filter
+argument_list|(
+name|s
+lambda|->
+name|mustMatchFilter
+operator|.
+name|matches
+argument_list|(
+name|s
+argument_list|,
+name|metrics
+operator|.
+name|get
+argument_list|(
+name|s
 argument_list|)
 argument_list|)
 argument_list|)
