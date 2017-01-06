@@ -6987,7 +6987,7 @@ literal|"having(rollup(over=a_f, sum(a_i), search("
 operator|+
 name|COLLECTIONORALIAS
 operator|+
-literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\")), eq('sum(a_i)', 9))"
+literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\")), and(eq(sum(a_i), 9),eq(sum(a_i), 9)))"
 argument_list|)
 expr_stmt|;
 name|context
@@ -7891,7 +7891,7 @@ literal|", workers=2, sort=\"a_f asc\", having(rollup(over=a_f, sum(a_i), search
 operator|+
 name|COLLECTIONORALIAS
 operator|+
-literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\", partitionKeys=a_f)), eq('sum(a_i)', 9)))"
+literal|", q=*:*, fl=\"id,a_s,a_i,a_f\", sort=\"a_f asc\", partitionKeys=a_f)), and(eq(sum(a_i), 9),eq(sum(a_i),9))))"
 argument_list|)
 expr_stmt|;
 name|context
