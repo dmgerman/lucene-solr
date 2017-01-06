@@ -100,11 +100,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|search
 operator|.
-name|function
-operator|.
-name|ValueSource
+name|LongValuesSource
 import|;
 end_import
 
@@ -539,7 +537,7 @@ return|;
 block|}
 DECL|method|fromExpression
 specifier|public
-name|ValueSource
+name|LongValuesSource
 name|fromExpression
 parameter_list|(
 name|String
@@ -609,10 +607,13 @@ block|}
 return|return
 name|expression
 operator|.
-name|getValueSource
+name|getDoubleValuesSource
 argument_list|(
 name|bindings
 argument_list|)
+operator|.
+name|toLongValuesSource
+argument_list|()
 return|;
 block|}
 DECL|method|getSortFieldType
