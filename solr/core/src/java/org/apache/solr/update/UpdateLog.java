@@ -6913,7 +6913,7 @@ name|loglog
 operator|.
 name|warn
 argument_list|(
-literal|"REYPLAY_ERR: IOException reading log"
+literal|"REPLAY_ERR: IOException reading log"
 argument_list|,
 name|ex
 argument_list|)
@@ -6977,7 +6977,7 @@ name|loglog
 operator|.
 name|warn
 argument_list|(
-literal|"REYPLAY_ERR: IOException reading log"
+literal|"REPLAY_ERR: IOException reading log"
 argument_list|,
 name|ex
 argument_list|)
