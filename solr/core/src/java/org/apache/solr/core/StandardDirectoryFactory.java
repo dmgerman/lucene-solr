@@ -676,7 +676,7 @@ operator|(
 operator|(
 name|FSDirectory
 operator|)
-name|baseFromDir
+name|baseToDir
 operator|)
 operator|.
 name|getDirectory
@@ -737,6 +737,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+return|return;
 block|}
 name|super
 operator|.
