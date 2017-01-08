@@ -213,7 +213,7 @@ name|HIGHLIGHT
 operator|+
 literal|".fragsize"
 decl_stmt|;
-comment|// OH, FVH
+comment|// OH, FVH, UH
 DECL|field|FRAGMENTER
 specifier|public
 specifier|static

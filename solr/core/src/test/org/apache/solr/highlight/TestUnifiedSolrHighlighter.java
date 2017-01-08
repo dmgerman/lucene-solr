@@ -423,6 +423,10 @@ argument_list|,
 literal|"hl.bs.type"
 argument_list|,
 literal|"SENTENCE"
+argument_list|,
+literal|"hl.fragsize"
+argument_list|,
+literal|"0"
 argument_list|)
 argument_list|,
 literal|"count(//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/*)=2"
@@ -1046,10 +1050,10 @@ literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text3']/str='cr
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testBreakIterator
+DECL|method|testBreakIteratorWord
 specifier|public
 name|void
-name|testBreakIterator
+name|testBreakIteratorWord
 parameter_list|()
 block|{
 name|assertQ
@@ -1073,6 +1077,10 @@ argument_list|,
 literal|"hl.bs.type"
 argument_list|,
 literal|"WORD"
+argument_list|,
+literal|"hl.fragsize"
+argument_list|,
+literal|"-1"
 argument_list|)
 argument_list|,
 literal|"count(//lst[@name='highlighting']/*)=2"
@@ -1083,10 +1091,10 @@ literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='<em
 argument_list|)
 expr_stmt|;
 block|}
-DECL|method|testBreakIterator2
+DECL|method|testBreakIteratorWhole
 specifier|public
 name|void
-name|testBreakIterator2
+name|testBreakIteratorWhole
 parameter_list|()
 block|{
 name|assertU
@@ -1130,9 +1138,85 @@ argument_list|,
 literal|"hl.bs.type"
 argument_list|,
 literal|"WHOLE"
+argument_list|,
+literal|"hl.fragsize"
+argument_list|,
+literal|"-1"
 argument_list|)
 argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='103']/arr[@name='text']/str='<em>Document</em> one has a first sentence.<em>Document</em> two has a second sentence.'"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testFragsize
+specifier|public
+name|void
+name|testFragsize
+parameter_list|()
+block|{
+comment|// test default is 70... so make a sentence that is a little less (closer to 70 than end of text)
+name|clearIndex
+argument_list|()
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"10"
+argument_list|,
+literal|"text"
+argument_list|,
+literal|"This is a sentence just under seventy chars in length blah blah. Next sentence is here."
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|commit
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"default fragsize"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:seventy"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='10']/arr[@name='text']/str='This is a sentence just under<em>seventy</em> chars in length blah blah. Next sentence is here.'"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"smaller fragsize"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:seventy"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.fragsize"
+argument_list|,
+literal|"60"
+argument_list|)
+argument_list|,
+comment|// a bit smaller
+literal|"//lst[@name='highlighting']/lst[@name='10']/arr[@name='text']/str='This is a sentence just under<em>seventy</em> chars in length blah blah. '"
 argument_list|)
 expr_stmt|;
 block|}
