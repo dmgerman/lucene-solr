@@ -1354,6 +1354,15 @@ argument_list|)
 operator|.
 name|withFunctionName
 argument_list|(
+literal|"nodes"
+argument_list|,
+name|GatherNodesStream
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
 literal|"select"
 argument_list|,
 name|SelectStream

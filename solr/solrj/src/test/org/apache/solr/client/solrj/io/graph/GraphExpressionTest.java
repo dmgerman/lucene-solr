@@ -2042,6 +2042,15 @@ argument_list|)
 operator|.
 name|withFunctionName
 argument_list|(
+literal|"nodes"
+argument_list|,
+name|GatherNodesStream
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
 literal|"search"
 argument_list|,
 name|CloudSolrStream
@@ -2097,7 +2106,7 @@ decl_stmt|;
 name|String
 name|expr
 init|=
-literal|"gatherNodes(collection1, "
+literal|"nodes(collection1, "
 operator|+
 literal|"walk=\"product1->product_s\","
 operator|+

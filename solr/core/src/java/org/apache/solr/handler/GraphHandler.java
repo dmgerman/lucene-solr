@@ -1018,6 +1018,15 @@ argument_list|)
 operator|.
 name|withFunctionName
 argument_list|(
+literal|"nodes"
+argument_list|,
+name|GatherNodesStream
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
 literal|"sort"
 argument_list|,
 name|SortStream
