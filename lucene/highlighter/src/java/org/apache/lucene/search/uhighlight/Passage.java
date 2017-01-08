@@ -624,6 +624,11 @@ name|int
 name|endOffset
 parameter_list|)
 block|{
+assert|assert
+name|startOffset
+operator|<=
+name|endOffset
+assert|;
 name|this
 operator|.
 name|endOffset
