@@ -61,6 +61,8 @@ DECL|enum constant|CACHE
 DECL|enum constant|HIGHLIGHTING
 DECL|enum constant|QUERYPARSER
 DECL|enum constant|SEARCHER
+DECL|enum constant|REPLICATION
+DECL|enum constant|TLOG
 DECL|enum constant|INDEX
 DECL|enum constant|DIRECTORY
 DECL|enum constant|HTTP
@@ -81,6 +83,10 @@ block|,
 name|QUERYPARSER
 block|,
 name|SEARCHER
+block|,
+name|REPLICATION
+block|,
+name|TLOG
 block|,
 name|INDEX
 block|,
