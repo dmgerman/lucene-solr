@@ -434,7 +434,7 @@ argument_list|(
 literal|"INDEX.merge.minor"
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertTrue
 argument_list|(
 literal|"minorMerge: "
 operator|+
@@ -443,12 +443,12 @@ operator|.
 name|getCount
 argument_list|()
 argument_list|,
-literal|4
-argument_list|,
 name|timer
 operator|.
 name|getCount
 argument_list|()
+operator|>=
+literal|3
 argument_list|)
 expr_stmt|;
 name|timer
@@ -522,7 +522,7 @@ argument_list|(
 literal|"INDEX.flush"
 argument_list|)
 expr_stmt|;
-name|assertEquals
+name|assertTrue
 argument_list|(
 literal|"flush: "
 operator|+
@@ -531,12 +531,12 @@ operator|.
 name|getCount
 argument_list|()
 argument_list|,
-literal|19
-argument_list|,
 name|meter
 operator|.
 name|getCount
 argument_list|()
+operator|>
+literal|10
 argument_list|)
 expr_stmt|;
 comment|// check basic directory meters
