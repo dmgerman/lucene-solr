@@ -1448,7 +1448,7 @@ name|e
 parameter_list|)
 block|{
 return|return
-literal|"Unmapping is not supported on this platform, because internal Java APIs are not compatible to this Lucene version: "
+literal|"Unmapping is not supported on this platform, because internal Java APIs are not compatible with this Lucene version: "
 operator|+
 name|e
 return|;
