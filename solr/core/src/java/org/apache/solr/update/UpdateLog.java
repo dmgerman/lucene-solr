@@ -4587,6 +4587,19 @@ name|State
 operator|.
 name|REPLAYING
 expr_stmt|;
+comment|// The deleteByQueries and oldDeletes lists
+comment|// would've been populated by items from the logs themselves (which we
+comment|// will replay now). So lets clear them out here before the replay.
+name|deleteByQueries
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|oldDeletes
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 block|}
 finally|finally
 block|{
