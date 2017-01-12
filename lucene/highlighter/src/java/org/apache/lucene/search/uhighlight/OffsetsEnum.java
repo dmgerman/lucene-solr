@@ -44,6 +44,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Objects
 import|;
 end_import
@@ -77,7 +87,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Holds the term&amp; PostingsEnum, and info for tracking the occurrences of a term within the text.  * It is advanced with the underlying postings and is placed in a priority queue by highlightOffsetsEnums  * based on the start offset.  *  * @lucene.internal  */
+comment|/**  * Holds the term ({@link BytesRef}), {@link PostingsEnum}, offset iteration tracking.  * It is advanced with the underlying postings and is placed in a priority queue by  * {@link FieldHighlighter#highlightOffsetsEnums(List)} based on the start offset.  *  * @lucene.internal  */
 end_comment
 
 begin_class
@@ -100,20 +110,22 @@ name|BytesRef
 name|term
 decl_stmt|;
 DECL|field|postingsEnum
+specifier|private
 specifier|final
 name|PostingsEnum
 name|postingsEnum
 decl_stmt|;
 comment|// with offsets
 DECL|field|weight
+specifier|private
 name|float
 name|weight
 decl_stmt|;
 comment|// set once in highlightOffsetsEnums
-DECL|field|pos
+DECL|field|posCounter
 specifier|private
 name|int
-name|pos
+name|posCounter
 init|=
 literal|0
 decl_stmt|;
@@ -275,7 +287,9 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** The term at this position; usually always the same. This term is a reference that is safe to continue to refer to,    * even after we move to next position. */
 DECL|method|getTerm
+specifier|public
 name|BytesRef
 name|getTerm
 parameter_list|()
@@ -297,7 +311,33 @@ argument_list|()
 return|;
 comment|// abusing payload like this is a total hack!
 block|}
+DECL|method|getPostingsEnum
+specifier|public
+name|PostingsEnum
+name|getPostingsEnum
+parameter_list|()
+block|{
+return|return
+name|postingsEnum
+return|;
+block|}
+DECL|method|freq
+specifier|public
+name|int
+name|freq
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|postingsEnum
+operator|.
+name|freq
+argument_list|()
+return|;
+block|}
 DECL|method|hasMorePositions
+specifier|public
 name|boolean
 name|hasMorePositions
 parameter_list|()
@@ -305,7 +345,7 @@ throws|throws
 name|IOException
 block|{
 return|return
-name|pos
+name|posCounter
 operator|<
 name|postingsEnum
 operator|.
@@ -314,6 +354,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|nextPosition
+specifier|public
 name|void
 name|nextPosition
 parameter_list|()
@@ -324,7 +365,7 @@ assert|assert
 name|hasMorePositions
 argument_list|()
 assert|;
-name|pos
+name|posCounter
 operator|++
 expr_stmt|;
 name|postingsEnum
@@ -334,6 +375,7 @@ argument_list|()
 expr_stmt|;
 block|}
 DECL|method|startOffset
+specifier|public
 name|int
 name|startOffset
 parameter_list|()
@@ -348,6 +390,7 @@ argument_list|()
 return|;
 block|}
 DECL|method|endOffset
+specifier|public
 name|int
 name|endOffset
 parameter_list|()
@@ -360,6 +403,32 @@ operator|.
 name|endOffset
 argument_list|()
 return|;
+block|}
+DECL|method|getWeight
+specifier|public
+name|float
+name|getWeight
+parameter_list|()
+block|{
+return|return
+name|weight
+return|;
+block|}
+DECL|method|setWeight
+specifier|public
+name|void
+name|setWeight
+parameter_list|(
+name|float
+name|weight
+parameter_list|)
+block|{
+name|this
+operator|.
+name|weight
+operator|=
+name|weight
+expr_stmt|;
 block|}
 annotation|@
 name|Override
