@@ -4852,6 +4852,20 @@ return|return
 literal|"Manage Cross Data Center Replication"
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getCategory
+specifier|public
+name|Category
+name|getCategory
+parameter_list|()
+block|{
+return|return
+name|Category
+operator|.
+name|REPLICATION
+return|;
+block|}
 comment|/**    * A thread subclass for executing a single    * {@link org.apache.solr.handler.CdcrParams.CdcrAction#SHARDCHECKPOINT} action.    */
 DECL|class|SliceCheckpointCallable
 specifier|private

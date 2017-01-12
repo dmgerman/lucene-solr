@@ -78,7 +78,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 import|;
 end_import
 
@@ -94,7 +94,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 import|;
 end_import
 
@@ -453,12 +453,12 @@ name|includeGroupCount
 decl_stmt|;
 DECL|field|firstPassGroupingCollector
 specifier|private
-name|AbstractFirstPassGroupingCollector
+name|FirstPassGroupingCollector
 name|firstPassGroupingCollector
 decl_stmt|;
 DECL|field|allGroupsCollector
 specifier|private
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 name|allGroupsCollector
 decl_stmt|;
 DECL|method|SearchGroupsFieldCommand

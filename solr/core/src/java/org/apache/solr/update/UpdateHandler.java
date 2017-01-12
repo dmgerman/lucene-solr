@@ -991,6 +991,20 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
+annotation|@
+name|Override
+DECL|method|getCategory
+specifier|public
+name|Category
+name|getCategory
+parameter_list|()
+block|{
+return|return
+name|Category
+operator|.
+name|UPDATE
+return|;
+block|}
 block|}
 end_class
 

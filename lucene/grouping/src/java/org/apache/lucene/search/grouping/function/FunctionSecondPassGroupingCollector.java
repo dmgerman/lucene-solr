@@ -92,7 +92,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 import|;
 end_import
 
@@ -179,7 +179,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concrete implementation of {@link AbstractSecondPassGroupingCollector} that groups based on  * {@link ValueSource} instances.  *  * @lucene.experimental  */
+comment|/**  * Concrete implementation of {@link SecondPassGroupingCollector} that groups based on  * {@link ValueSource} instances.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -188,7 +188,7 @@ specifier|public
 class|class
 name|FunctionSecondPassGroupingCollector
 extends|extends
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 argument_list|<
 name|MutableValue
 argument_list|>

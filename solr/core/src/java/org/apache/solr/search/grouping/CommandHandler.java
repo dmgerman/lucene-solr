@@ -212,7 +212,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 import|;
 end_import
 
@@ -1053,7 +1053,7 @@ name|getType
 argument_list|()
 decl_stmt|;
 specifier|final
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 name|allGroupHeadsCollector
 decl_stmt|;
 if|if

@@ -85,13 +85,13 @@ comment|/**  * A collector that collects all groups that match the  * query. Onl
 end_comment
 
 begin_class
-DECL|class|AbstractAllGroupsCollector
+DECL|class|AllGroupsCollector
 specifier|public
 specifier|abstract
 class|class
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 parameter_list|<
-name|GROUP_VALUE_TYPE
+name|T
 parameter_list|>
 extends|extends
 name|SimpleCollector
@@ -117,7 +117,7 @@ specifier|public
 specifier|abstract
 name|Collection
 argument_list|<
-name|GROUP_VALUE_TYPE
+name|T
 argument_list|>
 name|getGroups
 parameter_list|()

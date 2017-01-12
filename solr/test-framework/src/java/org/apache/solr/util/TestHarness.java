@@ -1054,6 +1054,10 @@ argument_list|,
 literal|30000
 argument_list|,
 literal|30000
+argument_list|,
+name|UpdateShardHandlerConfig
+operator|.
+name|DEFAULT_METRICNAMESTRATEGY
 argument_list|)
 decl_stmt|;
 comment|// universal default metric reporter

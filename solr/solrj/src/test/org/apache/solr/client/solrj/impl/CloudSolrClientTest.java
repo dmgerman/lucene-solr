@@ -2957,7 +2957,7 @@ name|baseUrl
 argument_list|,
 name|collectionName
 argument_list|,
-literal|"QUERYHANDLER"
+literal|"QUERY"
 argument_list|,
 literal|"standard"
 argument_list|,
@@ -3308,7 +3308,7 @@ argument_list|()
 argument_list|,
 literal|"foo"
 argument_list|,
-literal|"QUERYHANDLER"
+literal|"QUERY"
 argument_list|,
 name|adminPathToMbean
 operator|.
@@ -3440,7 +3440,7 @@ argument_list|()
 argument_list|,
 literal|"foo"
 argument_list|,
-literal|"QUERYHANDLER"
+literal|"QUERY"
 argument_list|,
 name|adminPathToMbean
 operator|.

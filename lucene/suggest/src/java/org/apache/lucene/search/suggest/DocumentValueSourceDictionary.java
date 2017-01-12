@@ -34,16 +34,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|HashMap
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -112,11 +102,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|search
 operator|.
-name|function
-operator|.
-name|FunctionValues
+name|LongValues
 import|;
 end_import
 
@@ -128,16 +116,14 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|search
 operator|.
-name|function
-operator|.
-name|ValueSource
+name|LongValuesSource
 import|;
 end_import
 
 begin_comment
-comment|/**  *<p>  * Dictionary with terms and optionally payload and  * optionally contexts information  * taken from stored fields in a Lucene index. Similar to   * {@link DocumentDictionary}, except it obtains the weight  * of the terms in a document based on a {@link ValueSource}.  *</p>  *<b>NOTE:</b>   *<ul>  *<li>  *      The term field has to be stored; if it is missing, the document is skipped.  *</li>  *<li>  *      The payload and contexts field are optional and are not required to be stored.  *</li>  *</ul>  *<p>  *  In practice the {@link ValueSource} will likely be obtained  *  using the lucene expression module. The following example shows  *  how to create a {@link ValueSource} from a simple addition of two  *  fields:  *<code>  *    Expression expression = JavascriptCompiler.compile("f1 + f2");  *    SimpleBindings bindings = new SimpleBindings();  *    bindings.add(new SortField("f1", SortField.Type.LONG));  *    bindings.add(new SortField("f2", SortField.Type.LONG));  *    ValueSource valueSource = expression.getValueSource(bindings);  *</code>  *</p>  *  */
+comment|/**  *<p>  * Dictionary with terms and optionally payload and  * optionally contexts information  * taken from stored fields in a Lucene index. Similar to   * {@link DocumentDictionary}, except it obtains the weight  * of the terms in a document based on a {@link LongValuesSource}.  *</p>  *<b>NOTE:</b>   *<ul>  *<li>  *      The term field has to be stored; if it is missing, the document is skipped.  *</li>  *<li>  *      The payload and contexts field are optional and are not required to be stored.  *</li>  *</ul>  *<p>  *  In practice the {@link LongValuesSource} will likely be obtained  *  using the lucene expression module. The following example shows  *  how to create a {@link LongValuesSource} from a simple addition of two  *  fields:  *<code>  *    Expression expression = JavascriptCompiler.compile("f1 + f2");  *    SimpleBindings bindings = new SimpleBindings();  *    bindings.add(new SortField("f1", SortField.Type.LONG));  *    bindings.add(new SortField("f2", SortField.Type.LONG));  *    LongValuesSource valueSource = expression.getDoubleValuesSource(bindings).toLongValuesSource();  *</code>  *</p>  *  */
 end_comment
 
 begin_class
@@ -151,10 +137,10 @@ block|{
 DECL|field|weightsValueSource
 specifier|private
 specifier|final
-name|ValueSource
+name|LongValuesSource
 name|weightsValueSource
 decl_stmt|;
-comment|/**    * Creates a new dictionary with the contents of the fields named<code>field</code>    * for the terms,<code>payload</code> for the corresponding payloads,<code>contexts</code>    * for the associated contexts and uses the<code>weightsValueSource</code> supplied     * to determine the score.    */
+comment|/**    * Creates a new dictionary with the contents of the fields named<code>field</code>    * for the terms,<code>payload</code> for the corresponding payloads,<code>contexts</code>    * for the associated contexts and uses the<code>weightsValueSource</code> supplied    * to determine the score.    */
 DECL|method|DocumentValueSourceDictionary
 specifier|public
 name|DocumentValueSourceDictionary
@@ -165,7 +151,7 @@ parameter_list|,
 name|String
 name|field
 parameter_list|,
-name|ValueSource
+name|LongValuesSource
 name|weightsValueSource
 parameter_list|,
 name|String
@@ -195,7 +181,7 @@ operator|=
 name|weightsValueSource
 expr_stmt|;
 block|}
-comment|/**    * Creates a new dictionary with the contents of the fields named<code>field</code>    * for the terms,<code>payloadField</code> for the corresponding payloads    * and uses the<code>weightsValueSource</code> supplied to determine the     * score.    */
+comment|/**    * Creates a new dictionary with the contents of the fields named<code>field</code>    * for the terms,<code>payloadField</code> for the corresponding payloads    * and uses the<code>weightsValueSource</code> supplied to determine the    * score.    */
 DECL|method|DocumentValueSourceDictionary
 specifier|public
 name|DocumentValueSourceDictionary
@@ -206,7 +192,7 @@ parameter_list|,
 name|String
 name|field
 parameter_list|,
-name|ValueSource
+name|LongValuesSource
 name|weightsValueSource
 parameter_list|,
 name|String
@@ -231,7 +217,7 @@ operator|=
 name|weightsValueSource
 expr_stmt|;
 block|}
-comment|/**     * Creates a new dictionary with the contents of the fields named<code>field</code>    * for the terms and uses the<code>weightsValueSource</code> supplied to determine the     * score.    */
+comment|/**    * Creates a new dictionary with the contents of the fields named<code>field</code>    * for the terms and uses the<code>weightsValueSource</code> supplied to determine the    * score.    */
 DECL|method|DocumentValueSourceDictionary
 specifier|public
 name|DocumentValueSourceDictionary
@@ -242,7 +228,7 @@ parameter_list|,
 name|String
 name|field
 parameter_list|,
-name|ValueSource
+name|LongValuesSource
 name|weightsValueSource
 parameter_list|)
 block|{
@@ -299,7 +285,7 @@ name|DocumentInputIterator
 block|{
 DECL|field|currentWeightValues
 specifier|private
-name|FunctionValues
+name|LongValues
 name|currentWeightValues
 decl_stmt|;
 comment|/** leaves of the reader */
@@ -429,21 +415,14 @@ name|weightsValueSource
 operator|.
 name|getValues
 argument_list|(
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
-argument_list|()
-argument_list|,
 name|leaves
 operator|.
 name|get
 argument_list|(
 name|currentLeafIndex
 argument_list|)
+argument_list|,
+literal|null
 argument_list|)
 else|:
 literal|null
@@ -463,6 +442,8 @@ parameter_list|,
 name|int
 name|docId
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 if|if
 condition|(
@@ -498,53 +479,28 @@ name|currentLeafIndex
 operator|=
 name|subIndex
 expr_stmt|;
-try|try
-block|{
 name|currentWeightValues
 operator|=
 name|weightsValueSource
 operator|.
 name|getValues
 argument_list|(
-operator|new
-name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
-argument_list|()
-argument_list|,
 name|leaves
 operator|.
 name|get
 argument_list|(
 name|currentLeafIndex
 argument_list|)
+argument_list|,
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
-block|}
-try|try
-block|{
-return|return
+if|if
+condition|(
 name|currentWeightValues
 operator|.
-name|longVal
+name|advanceExact
 argument_list|(
 name|docId
 operator|-
@@ -553,22 +509,17 @@ index|[
 name|subIndex
 index|]
 argument_list|)
+condition|)
+return|return
+name|currentWeightValues
+operator|.
+name|longValue
+argument_list|()
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|IOException
-name|e
-parameter_list|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-name|e
-argument_list|)
-throw|;
-block|}
+else|else
+return|return
+literal|0
+return|;
 block|}
 block|}
 block|}

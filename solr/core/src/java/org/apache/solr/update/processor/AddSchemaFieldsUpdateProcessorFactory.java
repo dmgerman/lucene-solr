@@ -427,6 +427,10 @@ extends|extends
 name|UpdateRequestProcessorFactory
 implements|implements
 name|SolrCoreAware
+implements|,
+name|UpdateRequestProcessorFactory
+operator|.
+name|RunAlways
 block|{
 DECL|field|log
 specifier|private

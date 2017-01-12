@@ -42,14 +42,14 @@ specifier|public
 class|class
 name|GroupDocs
 parameter_list|<
-name|GROUP_VALUE_TYPE
+name|T
 parameter_list|>
 block|{
 comment|/** The groupField value for all docs in this group; this    *  may be null if hits did not have the groupField. */
 DECL|field|groupValue
 specifier|public
 specifier|final
-name|GROUP_VALUE_TYPE
+name|T
 name|groupValue
 decl_stmt|;
 comment|/** Max score in this group */
@@ -81,7 +81,7 @@ specifier|final
 name|int
 name|totalHits
 decl_stmt|;
-comment|/** Matches the groupSort passed to {@link    *  AbstractFirstPassGroupingCollector}. */
+comment|/** Matches the groupSort passed to {@link    *  FirstPassGroupingCollector}. */
 DECL|field|groupSortValues
 specifier|public
 specifier|final
@@ -106,7 +106,7 @@ name|ScoreDoc
 index|[]
 name|scoreDocs
 parameter_list|,
-name|GROUP_VALUE_TYPE
+name|T
 name|groupValue
 parameter_list|,
 name|Object

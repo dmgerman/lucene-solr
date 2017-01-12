@@ -37,7 +37,7 @@ comment|// javadocs
 end_comment
 
 begin_comment
-comment|/**   * Expert: representation of a group in {@link AbstractFirstPassGroupingCollector},  * tracking the top doc and {@link FieldComparator} slot.  * @lucene.internal */
+comment|/**   * Expert: representation of a group in {@link FirstPassGroupingCollector},  * tracking the top doc and {@link FieldComparator} slot.  * @lucene.internal */
 end_comment
 
 begin_class

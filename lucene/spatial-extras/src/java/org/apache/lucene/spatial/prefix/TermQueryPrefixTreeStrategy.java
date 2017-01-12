@@ -42,41 +42,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|locationtech
-operator|.
-name|spatial4j
-operator|.
-name|shape
-operator|.
-name|Point
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|locationtech
-operator|.
-name|spatial4j
-operator|.
-name|shape
-operator|.
-name|Shape
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|search
 operator|.
-name|TermsQuery
+name|Query
 import|;
 end_import
 
@@ -90,7 +62,7 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Query
+name|TermInSetQuery
 import|;
 end_import
 
@@ -224,8 +196,36 @@ name|BytesRefBuilder
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|locationtech
+operator|.
+name|spatial4j
+operator|.
+name|shape
+operator|.
+name|Point
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|locationtech
+operator|.
+name|spatial4j
+operator|.
+name|shape
+operator|.
+name|Shape
+import|;
+end_import
+
 begin_comment
-comment|/**  * A basic implementation of {@link PrefixTreeStrategy} using a large  * {@link TermsQuery} of all the cells from  * {@link SpatialPrefixTree#getTreeCellIterator(org.locationtech.spatial4j.shape.Shape, int)}.  * It only supports the search of indexed Point shapes.  *<p>  * The precision of query shapes (distErrPct) is an important factor in using  * this Strategy. If the precision is too precise then it will result in many  * terms which will amount to a slower query.  *  * @lucene.experimental  */
+comment|/**  * A basic implementation of {@link PrefixTreeStrategy} using a large  * {@link TermInSetQuery} of all the cells from  * {@link SpatialPrefixTree#getTreeCellIterator(org.locationtech.spatial4j.shape.Shape, int)}.  * It only supports the search of indexed Point shapes.  *<p>  * The precision of query shapes (distErrPct) is an important factor in using  * this Strategy. If the precision is too precise then it will result in many  * terms which will amount to a slower query.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -536,7 +536,7 @@ comment|//unfortunately TermsQuery will needlessly sort& dedupe
 comment|//TODO an automatonQuery might be faster?
 return|return
 operator|new
-name|TermsQuery
+name|TermInSetQuery
 argument_list|(
 name|getFieldName
 argument_list|()

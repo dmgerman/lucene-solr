@@ -772,6 +772,20 @@ return|return
 literal|"Fetch Zookeeper contents"
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getCategory
+specifier|public
+name|Category
+name|getCategory
+parameter_list|()
+block|{
+return|return
+name|Category
+operator|.
+name|ADMIN
+return|;
+block|}
 comment|/**    * Enumeration of ways to filter collections on the graph panel.    */
 DECL|enum|FilterType
 specifier|static

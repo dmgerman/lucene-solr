@@ -284,11 +284,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|search
 operator|.
-name|function
-operator|.
-name|FunctionValues
+name|DoubleValues
 import|;
 end_import
 
@@ -511,7 +509,7 @@ name|Type
 operator|.
 name|getType
 argument_list|(
-name|FunctionValues
+name|DoubleValues
 operator|.
 name|class
 argument_list|)
@@ -560,11 +558,7 @@ name|class
 argument_list|,
 literal|"evaluate"
 argument_list|,
-name|int
-operator|.
-name|class
-argument_list|,
-name|FunctionValues
+name|DoubleValues
 index|[]
 operator|.
 expr|class
@@ -590,11 +584,7 @@ name|double
 operator|.
 name|class
 argument_list|,
-literal|"doubleVal"
-argument_list|,
-name|int
-operator|.
-name|class
+literal|"doubleValue"
 argument_list|)
 decl_stmt|;
 comment|/** create an ASM Method object from return type, method name, and parameters. */
@@ -811,7 +801,7 @@ parameter_list|()
 throws|throws
 name|IOException
 block|{
-name|FunctionValues
+name|DoubleValues
 name|f
 init|=
 literal|null
@@ -821,10 +811,8 @@ name|ret
 init|=
 name|f
 operator|.
-name|doubleVal
-argument_list|(
-literal|2
-argument_list|)
+name|doubleValue
+argument_list|()
 decl_stmt|;
 block|}
 comment|/**    * Constructs a compiler for expressions.    * @param sourceText The expression to compile    */
@@ -1810,7 +1798,7 @@ name|gen
 operator|.
 name|loadArg
 argument_list|(
-literal|1
+literal|0
 argument_list|)
 expr_stmt|;
 name|gen
@@ -1825,13 +1813,6 @@ operator|.
 name|arrayLoad
 argument_list|(
 name|FUNCTION_VALUES_TYPE
-argument_list|)
-expr_stmt|;
-name|gen
-operator|.
-name|loadArg
-argument_list|(
-literal|0
 argument_list|)
 expr_stmt|;
 name|gen

@@ -1191,7 +1191,7 @@ block|{
 return|return
 name|Category
 operator|.
-name|QUERYHANDLER
+name|QUERY
 return|;
 block|}
 annotation|@

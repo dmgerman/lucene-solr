@@ -425,7 +425,7 @@ name|SolrInfoMBean
 operator|.
 name|Category
 operator|.
-name|QUERYHANDLER
+name|QUERY
 decl_stmt|;
 DECL|field|cc
 specifier|private

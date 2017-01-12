@@ -3030,6 +3030,20 @@ return|return
 literal|"Manage SolrCloud Collections"
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getCategory
+specifier|public
+name|Category
+name|getCategory
+parameter_list|()
+block|{
+return|return
+name|Category
+operator|.
+name|ADMIN
+return|;
+block|}
 DECL|field|SYSTEM_COLL
 specifier|public
 specifier|static

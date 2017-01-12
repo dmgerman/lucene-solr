@@ -78,7 +78,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 import|;
 end_import
 
@@ -158,7 +158,7 @@ specifier|public
 class|class
 name|FunctionAllGroupsCollector
 extends|extends
-name|AbstractAllGroupsCollector
+name|AllGroupsCollector
 argument_list|<
 name|MutableValue
 argument_list|>

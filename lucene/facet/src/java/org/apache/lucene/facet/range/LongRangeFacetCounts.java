@@ -34,16 +34,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -73,8 +63,6 @@ operator|.
 name|facet
 operator|.
 name|FacetsCollector
-operator|.
-name|MatchingDocs
 import|;
 end_import
 
@@ -89,6 +77,8 @@ operator|.
 name|facet
 operator|.
 name|FacetsCollector
+operator|.
+name|MatchingDocs
 import|;
 end_import
 
@@ -132,41 +122,7 @@ name|queries
 operator|.
 name|function
 operator|.
-name|FunctionValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queries
-operator|.
-name|function
-operator|.
 name|ValueSource
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|queries
-operator|.
-name|function
-operator|.
-name|valuesource
-operator|.
-name|LongFieldSource
 import|;
 end_import
 
@@ -222,6 +178,34 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|LongValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|LongValuesSource
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|Query
 import|;
 end_import
@@ -255,7 +239,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** {@link Facets} implementation that computes counts for  *  dynamic long ranges from a provided {@link ValueSource},  *  using {@link FunctionValues#longVal}.  Use  *  this for dimensions that change in real-time (e.g. a  *  relative time based dimension like "Past day", "Past 2  *  days", etc.) or that change for each request (e.g.   *  distance from the user's location, "&lt; 1 km", "&lt; 2 km",  *  etc.).  *  *  @lucene.experimental */
+comment|/** {@link Facets} implementation that computes counts for  *  dynamic long ranges from a provided {@link LongValuesSource}.  Use  *  this for dimensions that change in real-time (e.g. a  *  relative time based dimension like "Past day", "Past 2  *  days", etc.) or that change for each request (e.g.   *  distance from the user's location, "&lt; 1 km", "&lt; 2 km",  *  etc.).  *  *  @lucene.experimental */
 end_comment
 
 begin_class
@@ -266,7 +250,7 @@ name|LongRangeFacetCounts
 extends|extends
 name|RangeFacetCounts
 block|{
-comment|/** Create {@code LongRangeFacetCounts}, using {@link    *  LongFieldSource} from the specified field. */
+comment|/** Create {@code LongRangeFacetCounts}, using {@link    *  LongValuesSource} from the specified field. */
 DECL|method|LongRangeFacetCounts
 specifier|public
 name|LongRangeFacetCounts
@@ -288,8 +272,9 @@ name|this
 argument_list|(
 name|field
 argument_list|,
-operator|new
-name|LongFieldSource
+name|LongValuesSource
+operator|.
+name|fromLongField
 argument_list|(
 name|field
 argument_list|)
@@ -308,7 +293,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|ValueSource
+name|LongValuesSource
 name|valueSource
 parameter_list|,
 name|FacetsCollector
@@ -343,7 +328,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|ValueSource
+name|LongValuesSource
 name|valueSource
 parameter_list|,
 name|FacetsCollector
@@ -384,7 +369,7 @@ specifier|private
 name|void
 name|count
 parameter_list|(
-name|ValueSource
+name|LongValuesSource
 name|valueSource
 parameter_list|,
 name|List
@@ -430,21 +415,18 @@ range|:
 name|matchingDocs
 control|)
 block|{
-name|FunctionValues
+name|LongValues
 name|fv
 init|=
 name|valueSource
 operator|.
 name|getValues
 argument_list|(
-name|Collections
-operator|.
-name|emptyMap
-argument_list|()
-argument_list|,
 name|hits
 operator|.
 name|context
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|totCount
@@ -627,7 +609,7 @@ if|if
 condition|(
 name|fv
 operator|.
-name|exists
+name|advanceExact
 argument_list|(
 name|doc
 argument_list|)
@@ -639,10 +621,8 @@ name|add
 argument_list|(
 name|fv
 operator|.
-name|longVal
-argument_list|(
-name|doc
-argument_list|)
+name|longValue
+argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

@@ -8885,7 +8885,7 @@ operator|.
 name|reader
 argument_list|()
 operator|.
-name|getCoreCacheKey
+name|getCombinedCoreAndDeletesKey
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -8997,7 +8997,7 @@ operator|.
 name|reader
 argument_list|()
 operator|.
-name|getCoreCacheKey
+name|getCombinedCoreAndDeletesKey
 argument_list|()
 argument_list|,
 name|f

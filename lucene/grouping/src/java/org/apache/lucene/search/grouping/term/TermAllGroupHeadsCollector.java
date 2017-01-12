@@ -204,7 +204,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 import|;
 end_import
 
@@ -251,7 +251,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A base implementation of {@link org.apache.lucene.search.grouping.AbstractAllGroupHeadsCollector} for retrieving the most relevant groups when grouping  * on a string based group field. More specifically this all concrete implementations of this base implementation  * use {@link SortedDocValues}.  *  * @lucene.experimental  */
+comment|/**  * A base implementation of {@link AllGroupHeadsCollector} for retrieving the most relevant groups when grouping  * on a string based group field. More specifically this all concrete implementations of this base implementation  * use {@link SortedDocValues}.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -260,20 +260,10 @@ specifier|public
 specifier|abstract
 class|class
 name|TermAllGroupHeadsCollector
-parameter_list|<
-name|GH
 extends|extends
-name|AbstractAllGroupHeadsCollector
-operator|.
-name|GroupHead
-parameter_list|<
-name|?
-parameter_list|>
-parameter_list|>
-extends|extends
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 argument_list|<
-name|GH
+name|BytesRef
 argument_list|>
 block|{
 DECL|field|DEFAULT_INITIAL_SIZE
@@ -325,9 +315,9 @@ comment|/**    * Creates an<code>AbstractAllGroupHeadsCollector</code> instance 
 DECL|method|create
 specifier|public
 specifier|static
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 argument_list|<
-name|?
+name|BytesRef
 argument_list|>
 name|create
 parameter_list|(
@@ -353,9 +343,9 @@ comment|/**    * Creates an<code>AbstractAllGroupHeadsCollector</code> instance 
 DECL|method|create
 specifier|public
 specifier|static
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 argument_list|<
-name|?
+name|BytesRef
 argument_list|>
 name|create
 parameter_list|(
@@ -541,11 +531,6 @@ class|class
 name|GeneralAllGroupHeadsCollector
 extends|extends
 name|TermAllGroupHeadsCollector
-argument_list|<
-name|GeneralAllGroupHeadsCollector
-operator|.
-name|GroupHead
-argument_list|>
 block|{
 DECL|field|sortWithinGroup
 specifier|private
@@ -1005,7 +990,7 @@ DECL|class|GroupHead
 class|class
 name|GroupHead
 extends|extends
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 operator|.
 name|GroupHead
 argument_list|<
@@ -1267,11 +1252,6 @@ class|class
 name|OrdScoreAllGroupHeadsCollector
 extends|extends
 name|TermAllGroupHeadsCollector
-argument_list|<
-name|OrdScoreAllGroupHeadsCollector
-operator|.
-name|GroupHead
-argument_list|>
 block|{
 DECL|field|ordSet
 specifier|private
@@ -2007,7 +1987,7 @@ DECL|class|GroupHead
 class|class
 name|GroupHead
 extends|extends
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 operator|.
 name|GroupHead
 argument_list|<
@@ -2577,11 +2557,6 @@ class|class
 name|OrdAllGroupHeadsCollector
 extends|extends
 name|TermAllGroupHeadsCollector
-argument_list|<
-name|OrdAllGroupHeadsCollector
-operator|.
-name|GroupHead
-argument_list|>
 block|{
 DECL|field|ordSet
 specifier|private
@@ -3246,7 +3221,7 @@ DECL|class|GroupHead
 class|class
 name|GroupHead
 extends|extends
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 operator|.
 name|GroupHead
 argument_list|<
@@ -3677,11 +3652,6 @@ class|class
 name|ScoreAllGroupHeadsCollector
 extends|extends
 name|TermAllGroupHeadsCollector
-argument_list|<
-name|ScoreAllGroupHeadsCollector
-operator|.
-name|GroupHead
-argument_list|>
 block|{
 DECL|field|ordSet
 specifier|final
@@ -4171,7 +4141,7 @@ DECL|class|GroupHead
 class|class
 name|GroupHead
 extends|extends
-name|AbstractAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 operator|.
 name|GroupHead
 argument_list|<

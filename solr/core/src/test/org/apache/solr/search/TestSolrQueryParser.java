@@ -44,20 +44,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
-operator|.
-name|TermsQuery
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|search
 operator|.
 name|BooleanClause
@@ -117,6 +103,20 @@ operator|.
 name|search
 operator|.
 name|Query
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|TermInSetQuery
 import|;
 end_import
 
@@ -1130,7 +1130,7 @@ literal|26
 argument_list|,
 operator|(
 operator|(
-name|TermsQuery
+name|TermInSetQuery
 operator|)
 name|q
 operator|)
@@ -1175,7 +1175,7 @@ literal|20
 argument_list|,
 operator|(
 operator|(
-name|TermsQuery
+name|TermInSetQuery
 operator|)
 name|q
 operator|)
@@ -1298,7 +1298,7 @@ literal|26
 argument_list|,
 operator|(
 operator|(
-name|TermsQuery
+name|TermInSetQuery
 operator|)
 name|qq
 operator|)
@@ -1386,7 +1386,7 @@ if|if
 condition|(
 name|qq
 operator|instanceof
-name|TermsQuery
+name|TermInSetQuery
 condition|)
 break|break;
 block|}
@@ -1396,7 +1396,7 @@ literal|26
 argument_list|,
 operator|(
 operator|(
-name|TermsQuery
+name|TermInSetQuery
 operator|)
 name|qq
 operator|)

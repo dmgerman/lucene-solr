@@ -132,7 +132,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractGroupFacetCollector
+name|GroupFacetCollector
 import|;
 end_import
 
@@ -193,7 +193,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An implementation of {@link AbstractGroupFacetCollector} that computes grouped facets based on the indexed terms  * from DocValues.  *  * @lucene.experimental  */
+comment|/**  * An implementation of {@link GroupFacetCollector} that computes grouped facets based on the indexed terms  * from DocValues.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -203,7 +203,7 @@ specifier|abstract
 class|class
 name|TermGroupFacetCollector
 extends|extends
-name|AbstractGroupFacetCollector
+name|GroupFacetCollector
 block|{
 DECL|field|groupedFacetHits
 specifier|final
@@ -931,7 +931,7 @@ specifier|static
 class|class
 name|SegmentResult
 extends|extends
-name|AbstractGroupFacetCollector
+name|GroupFacetCollector
 operator|.
 name|SegmentResult
 block|{
@@ -1911,7 +1911,7 @@ specifier|static
 class|class
 name|SegmentResult
 extends|extends
-name|AbstractGroupFacetCollector
+name|GroupFacetCollector
 operator|.
 name|SegmentResult
 block|{

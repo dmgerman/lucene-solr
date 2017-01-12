@@ -18,6 +18,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|ArrayList
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -38,9 +58,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|queries
+name|search
 operator|.
-name|TermsQuery
+name|Query
 import|;
 end_import
 
@@ -54,32 +74,12 @@ name|lucene
 operator|.
 name|search
 operator|.
-name|Query
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collection
+name|TermInSetQuery
 import|;
 end_import
 
 begin_comment
-comment|/**  * A multi-terms {@link Query} over a {@link FacetField}.  *<p>  *<b>NOTE:</b>This helper class is an alternative to {@link DrillDownQuery}  * especially in cases where you don't intend to use {@link DrillSideways}  *  * @lucene.experimental  * @see org.apache.lucene.queries.TermsQuery  */
+comment|/**  * A multi-terms {@link Query} over a {@link FacetField}.  *<p>  *<b>NOTE:</b>This helper class is an alternative to {@link DrillDownQuery}  * especially in cases where you don't intend to use {@link DrillSideways}  *  * @lucene.experimental  * @see org.apache.lucene.search.TermInSetQuery  */
 end_comment
 
 begin_class
@@ -88,7 +88,7 @@ specifier|public
 class|class
 name|MultiFacetQuery
 extends|extends
-name|TermsQuery
+name|TermInSetQuery
 block|{
 comment|/**    * Creates a new {@code MultiFacetQuery} filtering the query on the given dimension.    */
 DECL|method|MultiFacetQuery

@@ -310,7 +310,7 @@ name|diff
 operator|.
 name|get
 argument_list|(
-literal|"QUERYHANDLER"
+literal|"ADMIN"
 argument_list|)
 operator|.
 name|get
@@ -385,7 +385,7 @@ name|nl
 operator|.
 name|get
 argument_list|(
-literal|"QUERYHANDLER"
+literal|"ADMIN"
 argument_list|)
 operator|.
 name|get

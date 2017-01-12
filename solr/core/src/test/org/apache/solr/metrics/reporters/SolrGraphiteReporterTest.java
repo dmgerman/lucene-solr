@@ -524,7 +524,7 @@ name|line
 operator|.
 name|startsWith
 argument_list|(
-literal|"test.solr.node.cores."
+literal|"test.solr.node.CONTAINER.cores."
 argument_list|)
 argument_list|)
 expr_stmt|;

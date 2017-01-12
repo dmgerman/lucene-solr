@@ -786,7 +786,7 @@ name|fc
 argument_list|,
 name|expr
 operator|.
-name|getValueSource
+name|getDoubleValuesSource
 argument_list|(
 name|bindings
 argument_list|)

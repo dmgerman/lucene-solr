@@ -160,23 +160,13 @@ name|query
 operator|instanceof
 name|MultiTermQueryConstantScoreWrapper
 operator|||
+name|query
+operator|instanceof
+name|TermInSetQuery
+operator|||
 name|isPointQuery
 argument_list|(
 name|query
-argument_list|)
-operator|||
-comment|// can't refer to TermsQuery directly as it is in another module
-literal|"TermsQuery"
-operator|.
-name|equals
-argument_list|(
-name|query
-operator|.
-name|getClass
-argument_list|()
-operator|.
-name|getSimpleName
-argument_list|()
 argument_list|)
 return|;
 block|}

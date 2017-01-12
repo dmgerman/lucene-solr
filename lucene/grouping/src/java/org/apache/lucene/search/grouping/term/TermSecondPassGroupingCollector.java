@@ -108,7 +108,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 import|;
 end_import
 
@@ -157,7 +157,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Concrete implementation of {@link org.apache.lucene.search.grouping.AbstractSecondPassGroupingCollector} that groups based on  * field values and more specifically uses {@link SortedDocValues}  * to collect grouped docs.  *  * @lucene.experimental  */
+comment|/**  * Concrete implementation of {@link SecondPassGroupingCollector} that groups based on  * field values and more specifically uses {@link SortedDocValues}  * to collect grouped docs.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -166,7 +166,7 @@ specifier|public
 class|class
 name|TermSecondPassGroupingCollector
 extends|extends
-name|AbstractSecondPassGroupingCollector
+name|SecondPassGroupingCollector
 argument_list|<
 name|BytesRef
 argument_list|>

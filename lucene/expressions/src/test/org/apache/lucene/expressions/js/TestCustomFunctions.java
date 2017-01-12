@@ -313,8 +313,6 @@ name|expr
 operator|.
 name|evaluate
 argument_list|(
-literal|0
-argument_list|,
 literal|null
 argument_list|)
 argument_list|,
@@ -396,8 +394,6 @@ name|expr
 operator|.
 name|evaluate
 argument_list|(
-literal|0
-argument_list|,
 literal|null
 argument_list|)
 argument_list|,
@@ -488,8 +484,6 @@ name|expr
 operator|.
 name|evaluate
 argument_list|(
-literal|0
-argument_list|,
 literal|null
 argument_list|)
 argument_list|,
@@ -596,8 +590,6 @@ name|expr
 operator|.
 name|evaluate
 argument_list|(
-literal|0
-argument_list|,
 literal|null
 argument_list|)
 argument_list|,
@@ -687,8 +679,6 @@ name|expr
 operator|.
 name|evaluate
 argument_list|(
-literal|0
-argument_list|,
 literal|null
 argument_list|)
 argument_list|,
@@ -1667,8 +1657,6 @@ name|expr
 operator|.
 name|evaluate
 argument_list|(
-literal|0
-argument_list|,
 literal|null
 argument_list|)
 argument_list|,
@@ -1761,8 +1749,6 @@ name|expr
 operator|.
 name|evaluate
 argument_list|(
-literal|0
-argument_list|,
 literal|null
 argument_list|)
 argument_list|,
@@ -1795,8 +1781,6 @@ name|expr
 operator|.
 name|evaluate
 argument_list|(
-literal|0
-argument_list|,
 literal|null
 argument_list|)
 argument_list|,
@@ -1949,8 +1933,6 @@ name|expr
 operator|.
 name|evaluate
 argument_list|(
-literal|0
-argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
@@ -2081,8 +2063,6 @@ name|expr
 operator|.
 name|evaluate
 argument_list|(
-literal|0
-argument_list|,
 literal|null
 argument_list|)
 argument_list|,

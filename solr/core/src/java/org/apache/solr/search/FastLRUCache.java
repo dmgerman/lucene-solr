@@ -367,7 +367,7 @@ block|}
 if|if
 condition|(
 name|minLimit
-operator|==
+operator|<=
 literal|0
 condition|)
 name|minLimit

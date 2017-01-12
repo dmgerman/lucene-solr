@@ -632,8 +632,8 @@ control|)
 block|{
 name|off
 operator|.
-name|weight
-operator|=
+name|setWeight
+argument_list|(
 name|scorer
 operator|.
 name|weight
@@ -642,10 +642,9 @@ name|contentLength
 argument_list|,
 name|off
 operator|.
-name|postingsEnum
-operator|.
 name|freq
 argument_list|()
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|off
@@ -1120,7 +1119,8 @@ argument_list|()
 operator|+
 name|off
 operator|.
-name|weight
+name|getWeight
+argument_list|()
 operator|*
 name|scorer
 operator|.

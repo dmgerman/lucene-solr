@@ -1494,6 +1494,8 @@ operator|!
 name|success
 condition|)
 block|{
+try|try
+block|{
 name|backupRepo
 operator|.
 name|deleteDirectory
@@ -1501,6 +1503,27 @@ argument_list|(
 name|snapshotDirPath
 argument_list|)
 expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|excDuringDelete
+parameter_list|)
+block|{
+name|LOG
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to delete "
+operator|+
+name|snapshotDirPath
+operator|+
+literal|" after snapshot creation failed due to: "
+operator|+
+name|excDuringDelete
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 block|}
 block|}
