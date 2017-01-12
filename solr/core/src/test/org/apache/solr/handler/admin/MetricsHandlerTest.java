@@ -327,7 +327,7 @@ name|nl
 operator|.
 name|get
 argument_list|(
-literal|"cores.loaded"
+literal|"CONTAINER.cores.loaded"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -344,7 +344,7 @@ name|nl
 operator|.
 name|get
 argument_list|(
-literal|"cores.loaded"
+literal|"CONTAINER.cores.loaded"
 argument_list|)
 operator|)
 operator|.
@@ -360,7 +360,7 @@ name|nl
 operator|.
 name|get
 argument_list|(
-literal|"QUERYHANDLER./admin/authorization.clientErrors"
+literal|"ADMIN./admin/authorization.clientErrors"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -377,7 +377,7 @@ name|nl
 operator|.
 name|get
 argument_list|(
-literal|"QUERYHANDLER./admin/authorization.clientErrors"
+literal|"ADMIN./admin/authorization.clientErrors"
 argument_list|)
 operator|)
 operator|.
@@ -760,7 +760,7 @@ name|values
 operator|.
 name|get
 argument_list|(
-literal|"QUERYHANDLER./admin/authorization.errors"
+literal|"ADMIN./admin/authorization.errors"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -791,7 +791,7 @@ literal|"json"
 argument_list|,
 literal|"prefix"
 argument_list|,
-literal|"cores"
+literal|"CONTAINER.cores"
 argument_list|)
 argument_list|,
 name|resp
@@ -944,7 +944,7 @@ name|values
 operator|.
 name|get
 argument_list|(
-literal|"cores.lazy"
+literal|"CONTAINER.cores.lazy"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -979,7 +979,7 @@ literal|"jvm"
 argument_list|,
 literal|"prefix"
 argument_list|,
-literal|"cores"
+literal|"CONTAINER.cores"
 argument_list|)
 argument_list|,
 name|resp
@@ -1088,7 +1088,7 @@ literal|"timer"
 argument_list|,
 literal|"prefix"
 argument_list|,
-literal|"cores"
+literal|"CONTAINER.cores"
 argument_list|)
 argument_list|,
 name|resp

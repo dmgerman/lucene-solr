@@ -927,6 +927,20 @@ return|return
 literal|"Logging Handler"
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getCategory
+specifier|public
+name|Category
+name|getCategory
+parameter_list|()
+block|{
+return|return
+name|Category
+operator|.
+name|ADMIN
+return|;
+block|}
 block|}
 end_class
 

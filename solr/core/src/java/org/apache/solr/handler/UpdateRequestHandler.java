@@ -1176,6 +1176,20 @@ return|return
 literal|"Add documents using XML (with XSLT), CSV, JSON, or javabin"
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getCategory
+specifier|public
+name|Category
+name|getCategory
+parameter_list|()
+block|{
+return|return
+name|Category
+operator|.
+name|UPDATE
+return|;
+block|}
 DECL|field|DOC_PATH
 specifier|public
 specifier|static

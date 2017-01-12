@@ -5588,7 +5588,7 @@ block|{
 return|return
 name|Category
 operator|.
-name|OTHER
+name|ADMIN
 return|;
 block|}
 DECL|field|SET_PROPERTY

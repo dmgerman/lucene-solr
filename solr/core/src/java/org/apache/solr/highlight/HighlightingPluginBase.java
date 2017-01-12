@@ -233,7 +233,7 @@ block|{
 return|return
 name|Category
 operator|.
-name|HIGHLIGHTING
+name|HIGHLIGHTER
 return|;
 block|}
 annotation|@

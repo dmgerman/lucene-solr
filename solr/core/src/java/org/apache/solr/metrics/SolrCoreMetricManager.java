@@ -441,8 +441,9 @@ return|return
 name|registryName
 return|;
 block|}
-comment|/* package visibility for tests. */
 DECL|method|createRegistryName
+specifier|public
+specifier|static
 name|String
 name|createRegistryName
 parameter_list|(

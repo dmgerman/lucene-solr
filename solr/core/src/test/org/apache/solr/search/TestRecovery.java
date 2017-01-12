@@ -2235,7 +2235,7 @@ name|metrics
 operator|.
 name|get
 argument_list|(
-literal|"TLOG.applying_buffered.ops"
+literal|"TLOG.applyingBuffered.ops"
 argument_list|)
 decl_stmt|;
 name|long

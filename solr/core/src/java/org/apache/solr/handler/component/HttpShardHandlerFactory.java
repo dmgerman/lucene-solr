@@ -2291,7 +2291,7 @@ name|SolrInfoMBean
 operator|.
 name|Category
 operator|.
-name|HTTP
+name|QUERY
 operator|.
 name|name
 argument_list|()

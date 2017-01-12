@@ -5850,7 +5850,7 @@ name|mbeans
 operator|.
 name|get
 argument_list|(
-literal|"UPDATEHANDLER"
+literal|"UPDATE"
 argument_list|)
 decl_stmt|;
 name|NamedList

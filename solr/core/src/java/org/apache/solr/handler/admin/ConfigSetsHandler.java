@@ -1178,6 +1178,20 @@ return|return
 literal|"Manage SolrCloud ConfigSets"
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getCategory
+specifier|public
+name|Category
+name|getCategory
+parameter_list|()
+block|{
+return|return
+name|Category
+operator|.
+name|ADMIN
+return|;
+block|}
 DECL|enum|ConfigSetOperation
 enum|enum
 name|ConfigSetOperation

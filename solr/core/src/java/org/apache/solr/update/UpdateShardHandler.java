@@ -824,7 +824,7 @@ block|{
 return|return
 name|Category
 operator|.
-name|HTTP
+name|UPDATE
 return|;
 block|}
 annotation|@

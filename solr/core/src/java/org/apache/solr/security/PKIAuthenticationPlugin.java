@@ -1572,6 +1572,19 @@ return|return
 literal|"Return the public key of this server"
 return|;
 block|}
+annotation|@
+name|Override
+specifier|public
+name|Category
+name|getCategory
+parameter_list|()
+block|{
+return|return
+name|Category
+operator|.
+name|ADMIN
+return|;
+block|}
 block|}
 return|;
 block|}

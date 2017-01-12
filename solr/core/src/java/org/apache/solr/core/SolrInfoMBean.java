@@ -52,14 +52,38 @@ specifier|public
 interface|interface
 name|SolrInfoMBean
 block|{
-comment|/**    * Category of {@link SolrCore} component.    */
+comment|/**    * Category of Solr component.    */
 DECL|enum|Category
+DECL|enum constant|CONTAINER
+DECL|enum constant|ADMIN
 DECL|enum constant|CORE
-DECL|enum constant|QUERYHANDLER
-DECL|enum constant|UPDATEHANDLER
+DECL|enum constant|QUERY
+DECL|enum constant|UPDATE
 DECL|enum constant|CACHE
-DECL|enum constant|HIGHLIGHTING
+DECL|enum constant|HIGHLIGHTER
 DECL|enum constant|QUERYPARSER
+DECL|enum constant|SPELLCHECKER
+enum|enum
+name|Category
+block|{
+name|CONTAINER
+block|,
+name|ADMIN
+block|,
+name|CORE
+block|,
+name|QUERY
+block|,
+name|UPDATE
+block|,
+name|CACHE
+block|,
+name|HIGHLIGHTER
+block|,
+name|QUERYPARSER
+block|,
+name|SPELLCHECKER
+block|,
 DECL|enum constant|SEARCHER
 DECL|enum constant|REPLICATION
 DECL|enum constant|TLOG
@@ -67,21 +91,6 @@ DECL|enum constant|INDEX
 DECL|enum constant|DIRECTORY
 DECL|enum constant|HTTP
 DECL|enum constant|OTHER
-enum|enum
-name|Category
-block|{
-name|CORE
-block|,
-name|QUERYHANDLER
-block|,
-name|UPDATEHANDLER
-block|,
-name|CACHE
-block|,
-name|HIGHLIGHTING
-block|,
-name|QUERYPARSER
-block|,
 name|SEARCHER
 block|,
 name|REPLICATION
