@@ -3308,7 +3308,7 @@ argument_list|()
 argument_list|,
 literal|"foo"
 argument_list|,
-literal|"QUERY"
+literal|"ADMIN"
 argument_list|,
 name|adminPathToMbean
 operator|.
@@ -3440,7 +3440,7 @@ argument_list|()
 argument_list|,
 literal|"foo"
 argument_list|,
-literal|"QUERY"
+literal|"ADMIN"
 argument_list|,
 name|adminPathToMbean
 operator|.
