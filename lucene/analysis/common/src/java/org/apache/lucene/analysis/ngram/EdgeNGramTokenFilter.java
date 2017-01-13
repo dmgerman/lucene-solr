@@ -99,6 +99,8 @@ operator|.
 name|util
 operator|.
 name|AttributeSource
+operator|.
+name|State
 import|;
 end_import
 
@@ -171,10 +173,10 @@ specifier|private
 name|int
 name|savePosIncr
 decl_stmt|;
-DECL|field|attributes
+DECL|field|state
 specifier|private
-name|AttributeSource
-name|attributes
+name|State
+name|state
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
@@ -340,11 +342,9 @@ name|curGramSize
 operator|=
 name|minGram
 expr_stmt|;
-name|attributes
+name|state
 operator|=
-name|input
-operator|.
-name|cloneAttributes
+name|captureState
 argument_list|()
 expr_stmt|;
 name|savePosIncr
@@ -373,14 +373,9 @@ condition|)
 block|{
 comment|// if the remaining input is too short, we can't generate any n-grams
 comment|// grab gramSize chars from front or back
-name|clearAttributes
-argument_list|()
-expr_stmt|;
-name|attributes
-operator|.
-name|copyTo
+name|restoreState
 argument_list|(
-name|this
+name|state
 argument_list|)
 expr_stmt|;
 comment|// first ngram gets increment, others don't
