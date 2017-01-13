@@ -2261,6 +2261,10 @@ argument_list|,
 literal|false
 argument_list|,
 literal|true
+argument_list|,
+name|Version
+operator|.
+name|LUCENE_7_0_0
 argument_list|)
 expr_stmt|;
 name|CheckIndex
@@ -2287,6 +2291,10 @@ argument_list|,
 name|crossCheckTermVectors
 argument_list|,
 literal|true
+argument_list|,
+name|Version
+operator|.
+name|LUCENE_7_0_0
 argument_list|)
 expr_stmt|;
 name|CheckIndex

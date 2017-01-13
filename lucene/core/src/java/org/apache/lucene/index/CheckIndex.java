@@ -3196,6 +3196,8 @@ argument_list|,
 name|verbose
 argument_list|,
 name|failFast
+argument_list|,
+name|version
 argument_list|)
 expr_stmt|;
 comment|// Test Stored Fields
@@ -3228,6 +3230,8 @@ argument_list|,
 name|crossCheckTermVectors
 argument_list|,
 name|failFast
+argument_list|,
+name|version
 argument_list|)
 expr_stmt|;
 comment|// Test Docvalues
@@ -5818,6 +5822,9 @@ name|infoStream
 parameter_list|,
 name|boolean
 name|verbose
+parameter_list|,
+name|Version
+name|version
 parameter_list|)
 throws|throws
 name|IOException
@@ -7228,12 +7235,21 @@ operator|.
 name|endOffset
 argument_list|()
 decl_stmt|;
-comment|// NOTE: we cannot enforce any bounds whatsoever on vectors... they were a free-for-all before?
-comment|// but for offsets in the postings lists these checks are fine: they were always enforced by IndexWriter
+comment|// In Lucene 7 we fixed IndexWriter to also enforce term vector offsets
 if|if
 condition|(
-operator|!
 name|isVectors
+operator|==
+literal|false
+operator|||
+name|version
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_7_0_0
+argument_list|)
 condition|)
 block|{
 if|if
@@ -7297,6 +7313,8 @@ operator|+
 literal|"< lastStartOffset "
 operator|+
 name|lastOffset
+operator|+
+literal|"; consider using the FixBrokenOffsets tool in Lucene's backward-codecs module to correct your index"
 argument_list|)
 throw|;
 block|}
@@ -9037,6 +9055,9 @@ name|reader
 parameter_list|,
 name|PrintStream
 name|infoStream
+parameter_list|,
+name|Version
+name|version
 parameter_list|)
 throws|throws
 name|IOException
@@ -9051,6 +9072,8 @@ argument_list|,
 literal|false
 argument_list|,
 literal|false
+argument_list|,
+name|version
 argument_list|)
 return|;
 block|}
@@ -9074,6 +9097,9 @@ name|verbose
 parameter_list|,
 name|boolean
 name|failFast
+parameter_list|,
+name|Version
+name|version
 parameter_list|)
 throws|throws
 name|IOException
@@ -9154,6 +9180,8 @@ argument_list|,
 name|infoStream
 argument_list|,
 name|verbose
+argument_list|,
+name|version
 argument_list|)
 expr_stmt|;
 block|}
@@ -13017,6 +13045,9 @@ name|reader
 parameter_list|,
 name|PrintStream
 name|infoStream
+parameter_list|,
+name|Version
+name|version
 parameter_list|)
 throws|throws
 name|IOException
@@ -13033,6 +13064,8 @@ argument_list|,
 literal|false
 argument_list|,
 literal|false
+argument_list|,
+name|version
 argument_list|)
 return|;
 block|}
@@ -13059,6 +13092,9 @@ name|crossCheckTermVectors
 parameter_list|,
 name|boolean
 name|failFast
+parameter_list|,
+name|Version
+name|version
 parameter_list|)
 throws|throws
 name|IOException
@@ -13237,6 +13273,8 @@ argument_list|,
 name|infoStream
 argument_list|,
 name|verbose
+argument_list|,
+name|version
 argument_list|)
 expr_stmt|;
 comment|// Only agg stats if the doc is live:
