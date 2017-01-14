@@ -196,9 +196,7 @@ expr_stmt|;
 name|Directory
 name|dir
 init|=
-name|FSDirectory
-operator|.
-name|open
+name|newFSDirectory
 argument_list|(
 name|path
 argument_list|)
@@ -365,6 +363,11 @@ name|addIndexes
 argument_list|(
 name|codecReaders
 argument_list|)
+expr_stmt|;
+name|reader
+operator|.
+name|close
+argument_list|()
 expr_stmt|;
 name|w
 operator|.
