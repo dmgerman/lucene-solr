@@ -137,6 +137,23 @@ name|emptyList
 argument_list|()
 return|;
 block|}
+comment|/**    * Returns child sub-scorers that match the current document    * @lucene.experimental    */
+DECL|method|getMatchingChildren
+specifier|public
+name|Collection
+argument_list|<
+name|ChildScorer
+argument_list|>
+name|getMatchingChildren
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+return|return
+name|getChildren
+argument_list|()
+return|;
+block|}
 comment|/** A child Scorer and its relationship to its parent.    * the meaning of the relationship depends upon the parent query.     * @lucene.experimental */
 DECL|class|ChildScorer
 specifier|public
