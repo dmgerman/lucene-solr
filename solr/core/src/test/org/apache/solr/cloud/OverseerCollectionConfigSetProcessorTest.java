@@ -92,6 +92,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -789,6 +803,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeFalse
+argument_list|(
+literal|"SOLR-9893: EasyMock does not work with Java 9"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA9
+argument_list|)
+expr_stmt|;
 name|workQueueMock
 operator|=
 name|createMock
