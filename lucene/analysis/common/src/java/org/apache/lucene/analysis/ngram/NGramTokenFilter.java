@@ -104,22 +104,6 @@ name|PositionIncrementAttribute
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|util
-operator|.
-name|AttributeSource
-operator|.
-name|State
-import|;
-end_import
-
 begin_comment
 comment|/**  * Tokenizes the input into n-grams of the given size(s).  * As of Lucene 4.4, this token filter:<ul>  *<li>handles supplementary characters correctly,</li>  *<li>emits all n-grams for the same token at the same position,</li>  *<li>does not modify offsets,</li>  *<li>sorts n-grams by their offset in the original token first, then  * increasing length (meaning that "abc" will give "a", "ab", "abc", "b", "bc",  * "c").</li></ul>  *<p>If you were using this {@link TokenFilter} to perform partial highlighting,  * this won't work anymore since this filter doesn't update offsets. You should  * modify your analysis chain to use {@link NGramTokenizer}, and potentially  * override {@link NGramTokenizer#isTokenChar(int)} to perform pre-tokenization.  */
 end_comment
