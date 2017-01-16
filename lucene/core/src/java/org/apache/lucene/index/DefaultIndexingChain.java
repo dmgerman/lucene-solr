@@ -118,6 +118,22 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|tokenattributes
+operator|.
+name|CharTermAttribute
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|codecs
 operator|.
 name|DocValuesConsumer
@@ -4000,18 +4016,6 @@ name|analyzer
 operator|!=
 literal|null
 decl_stmt|;
-comment|// only bother checking offsets if something will consume them.
-comment|// TODO: after we fix analyzers, also check if termVectorOffsets will be indexed.
-specifier|final
-name|boolean
-name|checkOffsets
-init|=
-name|indexOptions
-operator|==
-name|IndexOptions
-operator|.
-name|DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS
-decl_stmt|;
 comment|/*        * To assist people in tracking down problems in analysis components, we wish to write the field name to the infostream        * when we fail. We expect some caller to eventually deal with the real exception, so we don't want any 'catch' clauses,        * but rather a finally that takes note of the problem.        */
 name|boolean
 name|succeededInProcessingField
@@ -4059,6 +4063,18 @@ argument_list|,
 name|first
 argument_list|)
 expr_stmt|;
+name|CharTermAttribute
+name|termAtt
+init|=
+name|tokenStream
+operator|.
+name|getAttribute
+argument_list|(
+name|CharTermAttribute
+operator|.
+name|class
+argument_list|)
+decl_stmt|;
 while|while
 condition|(
 name|stream
@@ -4241,11 +4257,6 @@ name|numOverlap
 operator|++
 expr_stmt|;
 block|}
-if|if
-condition|(
-name|checkOffsets
-condition|)
-block|{
 name|int
 name|startOffset
 init|=
@@ -4324,7 +4335,6 @@ name|lastStartOffset
 operator|=
 name|startOffset
 expr_stmt|;
-block|}
 name|invertState
 operator|.
 name|length

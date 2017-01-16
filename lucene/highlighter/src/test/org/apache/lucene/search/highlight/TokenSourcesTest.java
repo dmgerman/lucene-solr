@@ -2546,8 +2546,6 @@ argument_list|,
 name|terms
 argument_list|,
 name|termBytes
-argument_list|,
-literal|false
 argument_list|)
 decl_stmt|;
 comment|//check to see if the token streams might have non-deterministic testable result

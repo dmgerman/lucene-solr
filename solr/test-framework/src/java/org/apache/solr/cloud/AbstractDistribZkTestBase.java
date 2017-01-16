@@ -200,24 +200,6 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|Slice
-operator|.
-name|State
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
 name|SolrZkClient
 import|;
 end_import
@@ -1718,9 +1700,14 @@ argument_list|)
 operator|&&
 name|slice
 operator|.
+name|getLeader
+argument_list|()
+operator|.
 name|getState
 argument_list|()
 operator|==
+name|Replica
+operator|.
 name|State
 operator|.
 name|ACTIVE
@@ -1730,7 +1717,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Old leader {}, new leader. New leader got elected in {} ms"
+literal|"Old leader {}, new leader {}. New leader got elected in {} ms"
 argument_list|,
 name|oldLeader
 argument_list|,

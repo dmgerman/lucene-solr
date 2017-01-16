@@ -158,6 +158,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
@@ -241,6 +255,16 @@ import|;
 end_import
 
 begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
+name|BeforeClass
+import|;
+end_import
+
+begin_import
 import|import static
 name|java
 operator|.
@@ -262,6 +286,27 @@ name|CloudSolrClientCacheTest
 extends|extends
 name|SolrTestCaseJ4
 block|{
+annotation|@
+name|BeforeClass
+DECL|method|beforeClass
+specifier|public
+specifier|static
+name|void
+name|beforeClass
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assumeFalse
+argument_list|(
+literal|"SOLR-9893: EasyMock does not work with Java 9"
+argument_list|,
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA9
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testCaching
 specifier|public
 name|void
