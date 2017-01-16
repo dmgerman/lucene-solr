@@ -46,16 +46,6 @@ name|Collection
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|List
-import|;
-end_import
-
 begin_comment
 comment|/** Scorer for conjunctions, sets of queries, all of which are required. */
 end_comment
@@ -85,13 +75,13 @@ parameter_list|(
 name|Weight
 name|weight
 parameter_list|,
-name|List
+name|Collection
 argument_list|<
 name|Scorer
 argument_list|>
 name|required
 parameter_list|,
-name|List
+name|Collection
 argument_list|<
 name|Scorer
 argument_list|>

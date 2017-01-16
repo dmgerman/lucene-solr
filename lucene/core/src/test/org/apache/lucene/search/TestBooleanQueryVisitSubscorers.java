@@ -1576,9 +1576,9 @@ literal|"    MUST MinShouldMatchSumScorer\n"
 operator|+
 literal|"            SHOULD TermScorer body:nutch\n"
 operator|+
-literal|"            SHOULD TermScorer body:web\n"
+literal|"            SHOULD TermScorer body:crawler\n"
 operator|+
-literal|"            SHOULD TermScorer body:crawler"
+literal|"            SHOULD TermScorer body:web"
 argument_list|,
 name|summary
 argument_list|)

@@ -168,7 +168,7 @@ specifier|static
 name|DocIdSetIterator
 name|intersectScorers
 parameter_list|(
-name|List
+name|Collection
 argument_list|<
 name|Scorer
 argument_list|>
