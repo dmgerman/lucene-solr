@@ -257,7 +257,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"startOffset must be non-negative, and endOffset must be>= startOffset, "
+literal|"startOffset must be non-negative, and endOffset must be>= startOffset; got "
 operator|+
 literal|"startOffset="
 operator|+

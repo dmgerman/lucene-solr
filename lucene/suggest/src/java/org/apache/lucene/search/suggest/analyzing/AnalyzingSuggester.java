@@ -1447,6 +1447,13 @@ argument_list|(
 name|preservePositionIncrements
 argument_list|)
 expr_stmt|;
+name|tsta
+operator|.
+name|setFinalOffsetGapAsHole
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 return|return
 name|tsta
 return|;

@@ -97,7 +97,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Increment must be zero or greater: got "
+literal|"Position increment must be zero or greater; got "
 operator|+
 name|positionIncrement
 argument_list|)

@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.analysis.synonym
+DECL|package|org.apache.lucene.analysis.core
 package|package
 name|org
 operator|.
@@ -14,7 +14,7 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|synonym
+name|core
 package|;
 end_package
 
@@ -73,6 +73,22 @@ operator|.
 name|analysis
 operator|.
 name|TokenStream
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|synonym
+operator|.
+name|SynonymGraphFilter
 import|;
 end_import
 
@@ -1621,8 +1637,9 @@ operator|=
 literal|0
 expr_stmt|;
 block|}
-comment|// for testing
+comment|/** For testing */
 DECL|method|getMaxLookaheadUsed
+specifier|public
 name|int
 name|getMaxLookaheadUsed
 parameter_list|()
