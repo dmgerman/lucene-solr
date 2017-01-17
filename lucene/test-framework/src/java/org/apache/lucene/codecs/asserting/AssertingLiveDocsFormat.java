@@ -424,21 +424,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|MutableBits
-name|raw
-init|=
-name|bits
-decl_stmt|;
-comment|/**      * bits is not necessarily an AssertingMutableBits because index sorting needs to wrap it in a sorted view.      */
-if|if
-condition|(
+assert|assert
 name|bits
 operator|instanceof
 name|AssertingMutableBits
-condition|)
-block|{
+assert|;
+name|MutableBits
 name|raw
-operator|=
+init|=
 call|(
 name|MutableBits
 call|)
@@ -450,8 +443,7 @@ name|bits
 argument_list|)
 operator|.
 name|in
-expr_stmt|;
-block|}
+decl_stmt|;
 name|check
 argument_list|(
 name|raw

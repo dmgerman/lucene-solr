@@ -3625,12 +3625,14 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/** Confirms that the incoming index sort (if any) matches the existing index sort (if any).    *  This is unfortunately just best effort, because it could be the old index only has unsorted flushed segments built    *  before {@link Version#LUCENE_7_0_0} (flushed segments are sorted in Lucene 7.0).  */
+comment|/** Confirms that the incoming index sort (if any) matches the existing index sort (if any).    *  This is unfortunately just best effort, because it could be the old index only has unsorted flushed segments built    *  before {@link Version#LUCENE_6_5_0} (flushed segments are sorted in Lucene 7.0).  */
 DECL|method|validateIndexSort
 specifier|private
 name|void
 name|validateIndexSort
 parameter_list|()
+throws|throws
+name|CorruptIndexException
 block|{
 name|Sort
 name|indexSort
@@ -3705,10 +3707,7 @@ condition|(
 name|segmentIndexSort
 operator|==
 literal|null
-condition|)
-block|{
-comment|// Flushed segments are not sorted if they were built with a version prior to 7.0
-assert|assert
+operator|&&
 name|info
 operator|.
 name|info
@@ -3720,11 +3719,27 @@ name|onOrAfter
 argument_list|(
 name|Version
 operator|.
-name|LUCENE_7_0_0
+name|LUCENE_6_5_0
 argument_list|)
-operator|==
-literal|false
-assert|;
+condition|)
+block|{
+comment|// Flushed segments are not sorted if they were built with a version prior to 6.5.0
+throw|throw
+operator|new
+name|CorruptIndexException
+argument_list|(
+literal|"segment not sorted with indexSort="
+operator|+
+name|segmentIndexSort
+argument_list|,
+name|info
+operator|.
+name|info
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+throw|;
 block|}
 block|}
 block|}
