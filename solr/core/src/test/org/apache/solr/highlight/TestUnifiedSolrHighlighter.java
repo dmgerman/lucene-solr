@@ -426,7 +426,7 @@ literal|"SENTENCE"
 argument_list|,
 literal|"hl.fragsize"
 argument_list|,
-literal|"0"
+literal|"-1"
 argument_list|)
 argument_list|,
 literal|"count(//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/*)=2"
@@ -1119,7 +1119,7 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
-literal|"different breakiterator"
+literal|"WHOLE breakiterator"
 argument_list|,
 name|req
 argument_list|(
@@ -1142,6 +1142,32 @@ argument_list|,
 literal|"hl.fragsize"
 argument_list|,
 literal|"-1"
+argument_list|)
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='103']/arr[@name='text']/str='<em>Document</em> one has a first sentence.<em>Document</em> two has a second sentence.'"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"hl.fragsize 0 is equivalent to WHOLE"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:document"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.fragsize"
+argument_list|,
+literal|"0"
 argument_list|)
 argument_list|,
 literal|"//lst[@name='highlighting']/lst[@name='103']/arr[@name='text']/str='<em>Document</em> one has a first sentence.<em>Document</em> two has a second sentence.'"
