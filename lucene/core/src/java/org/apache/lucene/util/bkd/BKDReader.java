@@ -3779,10 +3779,32 @@ name|isLeafNode
 argument_list|()
 condition|)
 block|{
-comment|// Assume all points match and there are no dups
+if|if
+condition|(
+name|r
+operator|==
+name|Relation
+operator|.
+name|CELL_INSIDE_QUERY
+condition|)
+block|{
 return|return
 name|maxPointsInLeafNode
 return|;
+block|}
+else|else
+block|{
+comment|// Assume half the points matched
+return|return
+operator|(
+name|maxPointsInLeafNode
+operator|+
+literal|1
+operator|)
+operator|/
+literal|2
+return|;
+block|}
 block|}
 else|else
 block|{

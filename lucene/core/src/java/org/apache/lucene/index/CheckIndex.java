@@ -9457,13 +9457,15 @@ condition|(
 name|crossCost
 operator|<
 name|size
+operator|/
+literal|2
 condition|)
 block|{
 throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"estimatePointCount should return>= size when all cells match"
+literal|"estimatePointCount should return>= size/2 when all cells match"
 argument_list|)
 throw|;
 block|}
