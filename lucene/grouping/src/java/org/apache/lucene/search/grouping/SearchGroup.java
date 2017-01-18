@@ -22,16 +22,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -756,8 +746,6 @@ parameter_list|(
 name|Sort
 name|groupSort
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 specifier|final
 name|SortField
@@ -1034,8 +1022,6 @@ parameter_list|(
 name|Sort
 name|groupSort
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|groupComp
 operator|=
@@ -1716,8 +1702,6 @@ parameter_list|,
 name|Sort
 name|groupSort
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

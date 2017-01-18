@@ -480,8 +480,6 @@ parameter_list|,
 name|boolean
 name|trackMaxScore
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 comment|// TODO: allow null sort to be specialized to relevance
 comment|// only collector

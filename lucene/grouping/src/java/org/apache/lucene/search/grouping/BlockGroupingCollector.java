@@ -900,8 +900,6 @@ parameter_list|,
 name|Weight
 name|lastDocPerGroup
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

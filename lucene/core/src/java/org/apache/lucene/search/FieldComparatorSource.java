@@ -16,16 +16,6 @@ name|search
 package|;
 end_package
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/**  * Provides a {@link FieldComparator} for custom field sorting.  *  * @lucene.experimental  *  */
 end_comment
@@ -37,7 +27,7 @@ specifier|abstract
 class|class
 name|FieldComparatorSource
 block|{
-comment|/**    * Creates a comparator for the field in the given index.    *     * @param fieldname    *          Name of the field to create comparator for.    * @return FieldComparator.    * @throws IOException    *           If an error occurs reading the index.    */
+comment|/**    * Creates a comparator for the field in the given index.    *     * @param fieldname    *          Name of the field to create comparator for.    * @return FieldComparator.    */
 DECL|method|newComparator
 specifier|public
 specifier|abstract
@@ -59,8 +49,6 @@ parameter_list|,
 name|boolean
 name|reversed
 parameter_list|)
-throws|throws
-name|IOException
 function_decl|;
 block|}
 end_class

@@ -14130,8 +14130,6 @@ parameter_list|,
 name|int
 name|initNumGroups
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|this
 operator|.
