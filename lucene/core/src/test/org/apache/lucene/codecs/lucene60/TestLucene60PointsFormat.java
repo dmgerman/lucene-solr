@@ -1602,7 +1602,7 @@ literal|3
 argument_list|,
 name|uniquePointValue
 index|[
-literal|0
+name|dim
 index|]
 argument_list|,
 literal|0
@@ -1624,7 +1624,7 @@ literal|3
 argument_list|,
 name|uniquePointValue
 index|[
-literal|0
+name|dim
 index|]
 argument_list|,
 literal|0
