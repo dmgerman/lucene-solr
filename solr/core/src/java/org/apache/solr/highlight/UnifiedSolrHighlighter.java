@@ -1543,6 +1543,40 @@ name|String
 name|field
 parameter_list|)
 block|{
+comment|// Use a default fragsize the same as the regex Fragmenter (original Highlighter) since we're
+comment|//  both likely shooting for sentence-like patterns.
+name|int
+name|fragsize
+init|=
+name|params
+operator|.
+name|getFieldInt
+argument_list|(
+name|field
+argument_list|,
+name|HighlightParams
+operator|.
+name|FRAGSIZE
+argument_list|,
+name|LuceneRegexFragmenter
+operator|.
+name|DEFAULT_FRAGMENT_SIZE
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fragsize
+operator|==
+literal|0
+condition|)
+block|{
+comment|// special value; no fragmenting
+return|return
+operator|new
+name|WholeBreakIterator
+argument_list|()
+return|;
+block|}
 name|String
 name|language
 init|=
@@ -1619,26 +1653,6 @@ argument_list|(
 name|type
 argument_list|,
 name|locale
-argument_list|)
-decl_stmt|;
-comment|// Use a default fragsize the same as the regex Fragmenter (original Highlighter) since we're
-comment|//  both likely shooting for sentence-like patterns.
-name|int
-name|fragsize
-init|=
-name|params
-operator|.
-name|getFieldInt
-argument_list|(
-name|field
-argument_list|,
-name|HighlightParams
-operator|.
-name|FRAGSIZE
-argument_list|,
-name|LuceneRegexFragmenter
-operator|.
-name|DEFAULT_FRAGMENT_SIZE
 argument_list|)
 decl_stmt|;
 if|if

@@ -442,10 +442,9 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|arcLabel
-operator|+=
-literal|" / "
-operator|+
+name|String
+name|fragment
+init|=
 name|inputText
 operator|.
 name|substring
@@ -454,7 +453,29 @@ name|startOffset
 argument_list|,
 name|endOffset
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fragment
+operator|.
+name|equals
+argument_list|(
+name|termAtt
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+name|arcLabel
+operator|+=
+literal|" / "
+operator|+
+name|fragment
 expr_stmt|;
+block|}
 block|}
 else|else
 block|{

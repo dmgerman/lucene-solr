@@ -193,16 +193,20 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|org
 operator|.
 name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|analysis
 operator|.
-name|PhraseQuery
+name|miscellaneous
+operator|.
+name|WordDelimiterGraphFilter
+operator|.
+name|*
 import|;
 end_import
 
@@ -218,23 +222,21 @@ name|analysis
 operator|.
 name|miscellaneous
 operator|.
-name|WordDelimiterFilter
+name|WordDelimiterIterator
 operator|.
 name|*
 import|;
 end_import
 
 begin_comment
-comment|/**  * Factory for {@link WordDelimiterFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_wd" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.WordDelimiterFilterFactory" protected="protectedword.txt"  *             preserveOriginal="0" splitOnNumerics="1" splitOnCaseChange="1"  *             catenateWords="0" catenateNumbers="0" catenateAll="0"  *             generateWordParts="1" generateNumberParts="1" stemEnglishPossessive="1"  *             types="wdfftypes.txt" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * @deprecated Use {@link WordDelimiterGraphFilterFactory} instead: it produces a correct  * token graph so that e.g. {@link PhraseQuery} works correctly when it's used in  * the search time analyzer.  */
+comment|/**  * Factory for {@link WordDelimiterGraphFilter}.  *<pre class="prettyprint">  *&lt;fieldType name="text_wd" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory"/&gt;  *&lt;filter class="solr.WordDelimiterGraphFilterFactory" protected="protectedword.txt"  *             preserveOriginal="0" splitOnNumerics="1" splitOnCaseChange="1"  *             catenateWords="0" catenateNumbers="0" catenateAll="0"  *             generateWordParts="1" generateNumberParts="1" stemEnglishPossessive="1"  *             types="wdfftypes.txt" /&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
-DECL|class|WordDelimiterFilterFactory
+DECL|class|WordDelimiterGraphFilterFactory
 specifier|public
 class|class
-name|WordDelimiterFilterFactory
+name|WordDelimiterGraphFilterFactory
 extends|extends
 name|TokenFilterFactory
 implements|implements
@@ -290,10 +292,10 @@ name|protectedWords
 init|=
 literal|null
 decl_stmt|;
-comment|/** Creates a new WordDelimiterFilterFactory */
-DECL|method|WordDelimiterFilterFactory
+comment|/** Creates a new WordDelimiterGraphFilterFactory */
+DECL|method|WordDelimiterGraphFilterFactory
 specifier|public
-name|WordDelimiterFilterFactory
+name|WordDelimiterGraphFilterFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -644,7 +646,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|WordDelimiterFilter
+name|WordDelimiterGraphFilter
 argument_list|(
 name|input
 argument_list|,

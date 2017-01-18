@@ -2654,6 +2654,13 @@ name|writeIndex
 argument_list|(
 name|out
 argument_list|,
+name|Math
+operator|.
+name|toIntExact
+argument_list|(
+name|countPerLeaf
+argument_list|)
+argument_list|,
 name|leafBlockFPs
 argument_list|,
 name|splitPackedValues
@@ -3445,6 +3452,8 @@ block|}
 name|writeIndex
 argument_list|(
 name|out
+argument_list|,
+name|maxPointsInLeafNode
 argument_list|,
 name|arr
 argument_list|,
@@ -5343,6 +5352,13 @@ name|writeIndex
 argument_list|(
 name|out
 argument_list|,
+name|Math
+operator|.
+name|toIntExact
+argument_list|(
+name|countPerLeaf
+argument_list|)
+argument_list|,
 name|leafBlockFPs
 argument_list|,
 name|splitPackedValues
@@ -6441,6 +6457,9 @@ parameter_list|(
 name|IndexOutput
 name|out
 parameter_list|,
+name|int
+name|countPerLeaf
+parameter_list|,
 name|long
 index|[]
 name|leafBlockFPs
@@ -6467,6 +6486,8 @@ name|writeIndex
 argument_list|(
 name|out
 argument_list|,
+name|countPerLeaf
+argument_list|,
 name|leafBlockFPs
 operator|.
 name|length
@@ -6482,6 +6503,9 @@ name|writeIndex
 parameter_list|(
 name|IndexOutput
 name|out
+parameter_list|,
+name|int
+name|countPerLeaf
 parameter_list|,
 name|int
 name|numLeaves
@@ -6515,7 +6539,7 @@ name|out
 operator|.
 name|writeVInt
 argument_list|(
-name|maxPointsInLeafNode
+name|countPerLeaf
 argument_list|)
 expr_stmt|;
 name|out

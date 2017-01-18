@@ -26,6 +26,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|LogDocMergePolicy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|Version
@@ -40,9 +54,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|util
+name|index
 operator|.
-name|AbstractSolrTestCase
+name|LogDocMergePolicyFactory
 import|;
 end_import
 
@@ -50,9 +64,13 @@ begin_import
 import|import
 name|org
 operator|.
-name|junit
+name|apache
 operator|.
-name|Before
+name|solr
+operator|.
+name|util
+operator|.
+name|AbstractSolrTestCase
 import|;
 end_import
 
@@ -117,6 +135,29 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// we need a consistent segmentation to ensure we don't get a random
+comment|// merge that reduces the total num docs in all segments, or the number of deletes
+comment|//
+name|systemSetPropertySolrTestsMergePolicy
+argument_list|(
+name|LogDocMergePolicy
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|systemSetPropertySolrTestsMergePolicyFactory
+argument_list|(
+name|LogDocMergePolicyFactory
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|System
 operator|.
 name|setProperty
@@ -126,15 +167,7 @@ argument_list|,
 literal|"false"
 argument_list|)
 expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"solr.tests.useMergePolicy"
-argument_list|,
-literal|"false"
-argument_list|)
-expr_stmt|;
+comment|// no _version_ in our schema
 name|initCore
 argument_list|(
 literal|"solrconfig.xml"
@@ -142,17 +175,8 @@ argument_list|,
 literal|"schema12.xml"
 argument_list|)
 expr_stmt|;
-block|}
-annotation|@
-name|Before
-DECL|method|before
-specifier|public
-name|void
-name|before
-parameter_list|()
-throws|throws
-name|Exception
-block|{
+comment|// segments API shouldn't depend on _version_ or ulog
+comment|// build up an index with at least 2 segments and some deletes
 for|for
 control|(
 name|int

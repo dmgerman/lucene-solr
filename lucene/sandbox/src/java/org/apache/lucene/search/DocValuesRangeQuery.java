@@ -102,6 +102,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|PointValues
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|SortedNumericDocValues
 import|;
 end_import
@@ -128,6 +142,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|Terms
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|BytesRef
@@ -135,7 +163,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A range query that works on top of the doc values APIs. Such queries are  * usually slow since they do not use an inverted index. However, in the  * dense case where most documents match this query, it<b>might</b> be as  * fast or faster than a regular {@link PointRangeQuery}.  *  *<p>  *<b>NOTE</b>: be very careful using this query: it is  * typically much slower than using {@code TermsQuery},  * but in certain specialized cases may be faster.  *  * @lucene.experimental  */
+comment|/**  * A range query that works on top of the doc values APIs. Such queries are  * usually slow since they do not use an inverted index. However, in the  * dense case where most documents match this query, it<b>might</b> be as  * fast or faster than a regular {@link PointRangeQuery}.  *  *<b>NOTE:</b> This query is typically best used within a  * {@link IndexOrDocValuesQuery} alongside a query that uses an indexed  * structure such as {@link PointValues points} or {@link Terms terms},  * which allows to run the query on doc values when that would be more  * efficient, and using an index otherwise.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

@@ -287,7 +287,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An {@link org.apache.lucene.index.LeafReader} which supports sorting documents by a given  * {@link Sort}. This is package private and is only used by Lucene fo BWC when it needs to merge  * an unsorted flushed segment built by an older version (newly flushed segments are sorted since version 7.0).  *  * @lucene.experimental  */
+comment|/**  * An {@link org.apache.lucene.index.LeafReader} which supports sorting documents by a given  * {@link Sort}. This is package private and is only used by Lucene for BWC when it needs to merge  * an unsorted flushed segment built by an older version (newly flushed segments are sorted since version 7.0).  *  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -1597,6 +1597,26 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|estimatePointCount
+specifier|public
+name|long
+name|estimatePointCount
+parameter_list|(
+name|IntersectVisitor
+name|visitor
+parameter_list|)
+block|{
+return|return
+name|in
+operator|.
+name|estimatePointCount
+argument_list|(
+name|visitor
+argument_list|)
+return|;
 block|}
 annotation|@
 name|Override

@@ -138,6 +138,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|search
+operator|.
+name|DocIdSetIterator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|util
 operator|.
 name|StringHelper
@@ -766,6 +780,17 @@ name|visitor
 parameter_list|)
 throws|throws
 name|IOException
+function_decl|;
+comment|/** Estimate the number of points that would be visited by {@link #intersect}    * with the given {@link IntersectVisitor}. This should run many times faster    * than {@link #intersect(IntersectVisitor)}.    * @see DocIdSetIterator#cost */
+DECL|method|estimatePointCount
+specifier|public
+specifier|abstract
+name|long
+name|estimatePointCount
+parameter_list|(
+name|IntersectVisitor
+name|visitor
+parameter_list|)
 function_decl|;
 comment|/** Returns minimum value for each dimension, packed, or null if {@link #size} is<code>0</code> */
 DECL|method|getMinPackedValue

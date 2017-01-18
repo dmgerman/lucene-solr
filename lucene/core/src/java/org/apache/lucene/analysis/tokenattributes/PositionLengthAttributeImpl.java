@@ -97,7 +97,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"Position length must be 1 or greater: got "
+literal|"Position length must be 1 or greater; got "
 operator|+
 name|positionLength
 argument_list|)
