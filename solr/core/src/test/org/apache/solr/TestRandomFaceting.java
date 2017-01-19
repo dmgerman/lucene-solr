@@ -1572,11 +1572,6 @@ init|=
 name|random
 argument_list|()
 decl_stmt|;
-name|boolean
-name|validate
-init|=
-name|validateResponses
-decl_stmt|;
 name|ModifiableSolrParams
 name|params
 init|=
@@ -2278,6 +2273,43 @@ argument_list|(
 literal|"facet.exists only when enum or ommitted"
 argument_list|,
 literal|"facet.exists"
+argument_list|,
+name|req
+argument_list|(
+name|params
+argument_list|)
+argument_list|,
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|)
+expr_stmt|;
+continue|continue;
+block|}
+if|if
+condition|(
+name|exists
+operator|&&
+name|sf
+operator|.
+name|getType
+argument_list|()
+operator|.
+name|isPointField
+argument_list|()
+condition|)
+block|{
+comment|// PointFields don't yet support "enum" method or the "facet.exists" parameter
+name|assertQEx
+argument_list|(
+literal|"Expecting failure, since "
+argument_list|,
+literal|"facet.exists=true is requested, but facet.method=enum can't be used with "
+operator|+
+name|sf
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|req
 argument_list|(

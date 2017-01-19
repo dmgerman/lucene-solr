@@ -928,6 +928,16 @@ return|return
 literal|false
 return|;
 block|}
+DECL|method|isPointField
+specifier|public
+name|boolean
+name|isPointField
+parameter_list|()
+block|{
+return|return
+literal|false
+return|;
+block|}
 comment|/**    * Returns true if the fields' docValues should be used for obtaining stored value    */
 DECL|method|useDocValuesAsStored
 specifier|public
@@ -1936,7 +1946,7 @@ name|val
 argument_list|)
 return|;
 block|}
-comment|/** Given the readable value, return the term value that will match it. */
+comment|/** Given the readable value, return the term value that will match it.    * This method will modify the size and length of the {@code result}     * parameter and write from offset 0    */
 DECL|method|readableToIndexed
 specifier|public
 name|void

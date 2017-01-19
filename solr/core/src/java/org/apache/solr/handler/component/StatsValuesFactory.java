@@ -347,6 +347,15 @@ name|isInstance
 argument_list|(
 name|fieldType
 argument_list|)
+operator|||
+name|PointField
+operator|.
+name|class
+operator|.
+name|isInstance
+argument_list|(
+name|fieldType
+argument_list|)
 condition|)
 block|{
 return|return

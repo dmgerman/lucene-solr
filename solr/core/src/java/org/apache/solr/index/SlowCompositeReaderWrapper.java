@@ -232,23 +232,6 @@ name|in
 operator|=
 name|reader
 expr_stmt|;
-if|if
-condition|(
-name|getFieldInfos
-argument_list|()
-operator|.
-name|hasPointValues
-argument_list|()
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"cannot wrap points"
-argument_list|)
-throw|;
-block|}
 name|fields
 operator|=
 name|MultiFields
