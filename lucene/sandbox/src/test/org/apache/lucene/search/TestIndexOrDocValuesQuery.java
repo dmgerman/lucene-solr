@@ -552,7 +552,10 @@ name|w1
 operator|.
 name|scorer
 argument_list|(
-name|reader
+name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
 operator|.
 name|leaves
 argument_list|()
@@ -658,7 +661,10 @@ name|w2
 operator|.
 name|scorer
 argument_list|(
-name|reader
+name|searcher
+operator|.
+name|getIndexReader
+argument_list|()
 operator|.
 name|leaves
 argument_list|()
