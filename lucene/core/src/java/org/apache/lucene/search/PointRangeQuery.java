@@ -1401,6 +1401,8 @@ name|IOException
 block|{
 if|if
 condition|(
+literal|false
+operator|&&
 name|values
 operator|.
 name|getDocCount
