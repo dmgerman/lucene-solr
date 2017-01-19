@@ -616,7 +616,15 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Error initializing GenericHadoopAuthPlugin: "
+literal|"Error initializing "
+operator|+
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|": "
 operator|+
 name|e
 argument_list|)
