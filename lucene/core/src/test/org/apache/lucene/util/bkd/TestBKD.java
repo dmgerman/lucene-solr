@@ -8108,7 +8108,7 @@ name|StringHelper
 operator|.
 name|compare
 argument_list|(
-literal|3
+name|numBytesPerDim
 argument_list|,
 name|uniquePointValue
 argument_list|,
@@ -8125,7 +8125,7 @@ name|StringHelper
 operator|.
 name|compare
 argument_list|(
-literal|3
+name|numBytesPerDim
 argument_list|,
 name|uniquePointValue
 argument_list|,
