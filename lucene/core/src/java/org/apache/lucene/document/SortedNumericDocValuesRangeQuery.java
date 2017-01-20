@@ -46,20 +46,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -614,13 +600,10 @@ specifier|final
 name|NumericDocValues
 name|singleton
 init|=
-name|DocValues
-operator|.
-name|unwrapSingleton
-argument_list|(
-name|values
-argument_list|)
+literal|null
 decl_stmt|;
+comment|// TODO: LUCENE-7649, re-consider optimization that broke SOLR-10013
+comment|// final NumericDocValues singleton = DocValues.unwrapSingleton(values);
 specifier|final
 name|TwoPhaseIterator
 name|iterator
@@ -632,6 +615,11 @@ operator|!=
 literal|null
 condition|)
 block|{
+assert|assert
+literal|false
+operator|:
+literal|"imposible code -- or: someone re-enabled singleton optinization w/o reading the whole method"
+assert|;
 name|iterator
 operator|=
 operator|new
