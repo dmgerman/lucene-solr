@@ -537,6 +537,9 @@ condition|)
 block|{
 return|return
 name|val
+operator|.
+name|intValue
+argument_list|()
 return|;
 block|}
 else|else
