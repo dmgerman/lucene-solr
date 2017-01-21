@@ -5237,6 +5237,16 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|// Check using RTG
+if|if
+condition|(
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"enable.update.log"
+argument_list|)
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -5290,6 +5300,7 @@ operator|+
 literal|"']"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 name|assertU
 argument_list|(
@@ -5400,6 +5411,16 @@ name|expected
 argument_list|)
 expr_stmt|;
 comment|// Check using RTG
+if|if
+condition|(
+name|Boolean
+operator|.
+name|getBoolean
+argument_list|(
+literal|"enable.update.log"
+argument_list|)
+condition|)
+block|{
 for|for
 control|(
 name|int
@@ -5453,6 +5474,7 @@ operator|+
 literal|"']"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|doTestIntPointFieldRangeQuery
