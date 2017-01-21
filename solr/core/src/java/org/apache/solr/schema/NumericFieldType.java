@@ -548,7 +548,7 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-literal|"Unknown type for point field"
+literal|"Unknown type for numeric field"
 argument_list|)
 throw|;
 block|}
