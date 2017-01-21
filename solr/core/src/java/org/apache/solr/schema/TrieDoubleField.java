@@ -265,7 +265,7 @@ block|{
 block|{
 name|type
 operator|=
-name|TrieTypes
+name|NumberType
 operator|.
 name|DOUBLE
 expr_stmt|;

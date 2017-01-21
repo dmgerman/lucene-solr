@@ -251,7 +251,7 @@ block|{
 block|{
 name|type
 operator|=
-name|TrieTypes
+name|NumberType
 operator|.
 name|LONG
 expr_stmt|;

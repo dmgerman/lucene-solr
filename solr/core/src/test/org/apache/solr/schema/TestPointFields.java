@@ -281,6 +281,13 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+name|doTestIntPointFieldExactQuery
+argument_list|(
+literal|"number_p_i_ni_ns_dv"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
 comment|// uncomment once MultiValued docValues are supported in PointFields
 comment|//    doTestIntPointFieldExactQuery("number_p_i_ni_mv_dv", false);
 block|}
@@ -381,6 +388,15 @@ block|{
 name|doTestIntPointFieldRangeQuery
 argument_list|(
 literal|"number_p_i"
+argument_list|,
+literal|"int"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|doTestIntPointFieldRangeQuery
+argument_list|(
+literal|"number_p_i_ni_ns_dv"
 argument_list|,
 literal|"int"
 argument_list|,
@@ -1447,6 +1463,11 @@ argument_list|(
 literal|"number_p_d_ni_dv"
 argument_list|)
 expr_stmt|;
+name|doTestFloatPointFieldExactQuery
+argument_list|(
+literal|"number_p_d_ni_ns_dv"
+argument_list|)
+expr_stmt|;
 comment|// TODO enable once MuultiValued docValues are supported with PointFields
 comment|//    doTestFloatPointFieldExactQuery("number_p_d_ni_mv_dv");
 block|}
@@ -1619,6 +1640,15 @@ block|{
 name|doTestFloatPointFieldRangeQuery
 argument_list|(
 literal|"number_p_d"
+argument_list|,
+literal|"double"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|doTestFloatPointFieldRangeQuery
+argument_list|(
+literal|"number_p_d_ni_ns_dv"
 argument_list|,
 literal|"double"
 argument_list|,
@@ -3053,6 +3083,11 @@ argument_list|(
 literal|"number_p_f_ni_dv"
 argument_list|)
 expr_stmt|;
+name|doTestFloatPointFieldExactQuery
+argument_list|(
+literal|"number_p_f_ni_ns_dv"
+argument_list|)
+expr_stmt|;
 comment|//    doTestFloatPointFieldExactQuery("number_p_f_ni_mv_dv");
 block|}
 annotation|@
@@ -3224,6 +3259,15 @@ block|{
 name|doTestFloatPointFieldRangeQuery
 argument_list|(
 literal|"number_p_f"
+argument_list|,
+literal|"float"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+name|doTestFloatPointFieldRangeQuery
+argument_list|(
+literal|"number_p_f_ni_ns_dv"
 argument_list|,
 literal|"float"
 argument_list|,
@@ -3601,6 +3645,13 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|doTestIntPointFieldExactQuery
+argument_list|(
+literal|"number_p_l_ni_ns_dv"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
 comment|//    doTestIntPointFieldExactQuery("number_p_i_ni_mv_dv", true);
 block|}
 annotation|@
@@ -3718,6 +3769,15 @@ block|{
 name|doTestIntPointFieldRangeQuery
 argument_list|(
 literal|"number_p_l"
+argument_list|,
+literal|"long"
+argument_list|,
+literal|true
+argument_list|)
+expr_stmt|;
+name|doTestIntPointFieldRangeQuery
+argument_list|(
+literal|"number_p_l_ni_ns_dv"
 argument_list|,
 literal|"long"
 argument_list|,
