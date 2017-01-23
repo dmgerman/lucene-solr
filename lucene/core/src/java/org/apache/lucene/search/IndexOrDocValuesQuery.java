@@ -28,6 +28,44 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|LongPoint
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|document
+operator|.
+name|SortedNumericDocValuesField
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -54,8 +92,22 @@ name|LeafReaderContext
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
+name|Term
+import|;
+end_import
+
 begin_comment
-comment|/**  * A query that uses either an index (points or terms) or doc values in order  * to run a range query, depending which one is more efficient.  */
+comment|/**  * A query that uses either an index structure (points or terms) or doc values  * in order to run a query, depending which one is more efficient. This is  * typically useful for range queries, whose {@link Weight#scorer} is costly  * to create since it usually needs to sort large lists of doc ids. For  * instance, for a field that both indexed {@link LongPoint}s and  * {@link SortedNumericDocValuesField}s with the same values, an efficient  * range query could be created by doing:  *<pre class="prettyprint">  *   String field;  *   long minValue, maxValue;  *   Query pointQuery = LongPoint.newRangeQuery(field, minValue, maxValue);  *   Query dvQuery = SortedNumericDocValuesField.newRangeQuery(field, minValue, maxValue);  *   Query query = new IndexOrDocValuesQuery(pointQuery, dvQuery);  *</pre>  * The above query will be efficient as it will use points in the case that they  * perform better, ie. when we need a good lead iterator that will be almost  * entirely consumed; and doc values otherwise, ie. in the case that another  * part of the query is already leading iteration but we still need the ability  * to verify that some documents match.  *<p><b>NOTE</b>This query currently only works well with point range/exact  * queries and their equivalent doc values queries.  * @lucene.experimental  */
 end_comment
 
 begin_class
@@ -76,7 +128,7 @@ name|indexQuery
 decl_stmt|,
 name|dvQuery
 decl_stmt|;
-comment|/**    * Constructor that takes both a query that executes on an index structure    * like the inverted index or the points tree, and another query that    * executes on doc values. Both queries must match the same documents and    * attribute constant scores.    */
+comment|/**    * Create an {@link IndexOrDocValuesQuery}. Both provided queries must match    * the same documents and give the same scores.    * @param indexQuery a query that has a good iterator but whose scorer may be costly to create    * @param dvQuery a query whose scorer is cheap to create that can quickly check whether a given document matches    */
 DECL|method|IndexOrDocValuesQuery
 specifier|public
 name|IndexOrDocValuesQuery
@@ -100,6 +152,28 @@ name|dvQuery
 operator|=
 name|dvQuery
 expr_stmt|;
+block|}
+comment|/** Return the wrapped query that may be costly to initialize but has a good    *  iterator. */
+DECL|method|getIndexQuery
+specifier|public
+name|Query
+name|getIndexQuery
+parameter_list|()
+block|{
+return|return
+name|indexQuery
+return|;
+block|}
+comment|/** Return the wrapped query that may be slow at identifying all matching    *  documents, but which is cheap to initialize and can efficiently    *  verify that some documents match. */
+DECL|method|getRandomAccessQuery
+specifier|public
+name|Query
+name|getRandomAccessQuery
+parameter_list|()
+block|{
+return|return
+name|dvQuery
+return|;
 block|}
 annotation|@
 name|Override
@@ -323,13 +397,59 @@ argument_list|)
 decl_stmt|;
 return|return
 operator|new
-name|ConstantScoreWeight
+name|Weight
 argument_list|(
 name|this
-argument_list|,
-name|boost
 argument_list|)
 block|{
+annotation|@
+name|Override
+specifier|public
+name|void
+name|extractTerms
+parameter_list|(
+name|Set
+argument_list|<
+name|Term
+argument_list|>
+name|terms
+parameter_list|)
+block|{
+name|indexWeight
+operator|.
+name|extractTerms
+argument_list|(
+name|terms
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|Explanation
+name|explain
+parameter_list|(
+name|LeafReaderContext
+name|context
+parameter_list|,
+name|int
+name|doc
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+comment|// We need to check a single doc, so the dv query should perform better
+return|return
+name|dvWeight
+operator|.
+name|explain
+argument_list|(
+name|context
+argument_list|,
+name|doc
+argument_list|)
+return|;
+block|}
 annotation|@
 name|Override
 specifier|public
@@ -342,6 +462,8 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// Bulk scorers need to consume the entire set of docs, so using an
+comment|// index structure should perform better
 return|return
 name|indexWeight
 operator|.

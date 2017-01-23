@@ -18,11 +18,15 @@ end_package
 
 begin_import
 import|import
-name|java
+name|org
 operator|.
-name|io
+name|apache
 operator|.
-name|IOException
+name|lucene
+operator|.
+name|geo
+operator|.
+name|GeoUtils
 import|;
 end_import
 
@@ -51,20 +55,6 @@ operator|.
 name|search
 operator|.
 name|SortField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|geo
-operator|.
-name|GeoUtils
 import|;
 end_import
 
@@ -179,8 +169,6 @@ parameter_list|,
 name|int
 name|sortPos
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 operator|new

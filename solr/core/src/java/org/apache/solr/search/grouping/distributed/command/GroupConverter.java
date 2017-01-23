@@ -526,7 +526,7 @@ expr_stmt|;
 comment|// ?
 name|TrieField
 operator|.
-name|TrieTypes
+name|NumberType
 name|type
 init|=
 operator|(

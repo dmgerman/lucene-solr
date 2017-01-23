@@ -89,7 +89,7 @@ name|this
 operator|.
 name|type
 operator|=
-name|TrieTypes
+name|NumberType
 operator|.
 name|DATE
 expr_stmt|;

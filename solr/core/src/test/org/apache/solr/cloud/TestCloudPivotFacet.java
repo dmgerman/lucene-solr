@@ -158,6 +158,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressPointFields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -542,6 +556,8 @@ begin_class
 annotation|@
 name|SuppressSSL
 comment|// Too Slow
+annotation|@
+name|SuppressPointFields
 DECL|class|TestCloudPivotFacet
 specifier|public
 class|class

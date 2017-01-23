@@ -672,12 +672,10 @@ argument_list|(
 literal|"Switching directories"
 argument_list|)
 expr_stmt|;
-name|IndexFetcher
+name|core
 operator|.
 name|modifyIndexProps
 argument_list|(
-name|core
-argument_list|,
 name|restoreIndexName
 argument_list|)
 expr_stmt|;

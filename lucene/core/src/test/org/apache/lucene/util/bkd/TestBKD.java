@@ -8041,16 +8041,11 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 comment|// If only one point matches, then the point count is (actualMaxPointsInLeafNode + 1) / 2
-name|assertEquals
-argument_list|(
-operator|(
-name|actualMaxPointsInLeafNode
-operator|+
-literal|1
-operator|)
-operator|/
-literal|2
-argument_list|,
+comment|// in general, or maybe 2x that if the point is a split value
+specifier|final
+name|long
+name|pointCount
+init|=
 name|points
 operator|.
 name|estimatePointCount
@@ -8108,7 +8103,7 @@ name|StringHelper
 operator|.
 name|compare
 argument_list|(
-literal|3
+name|numBytesPerDim
 argument_list|,
 name|uniquePointValue
 argument_list|,
@@ -8125,7 +8120,7 @@ name|StringHelper
 operator|.
 name|compare
 argument_list|(
-literal|3
+name|numBytesPerDim
 argument_list|,
 name|uniquePointValue
 argument_list|,
@@ -8153,8 +8148,40 @@ return|;
 block|}
 block|}
 argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|""
+operator|+
+name|pointCount
+argument_list|,
+name|pointCount
+operator|==
+operator|(
+name|actualMaxPointsInLeafNode
+operator|+
+literal|1
+operator|)
+operator|/
+literal|2
+operator|||
+comment|// common case
+name|pointCount
+operator|==
+literal|2
+operator|*
+operator|(
+operator|(
+name|actualMaxPointsInLeafNode
+operator|+
+literal|1
+operator|)
+operator|/
+literal|2
+operator|)
 argument_list|)
 expr_stmt|;
+comment|// if the point is a split value
 name|pointsIn
 operator|.
 name|close

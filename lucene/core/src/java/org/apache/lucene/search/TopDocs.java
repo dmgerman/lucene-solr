@@ -30,16 +30,6 @@ name|PriorityQueue
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|io
-operator|.
-name|IOException
-import|;
-end_import
-
 begin_comment
 comment|/** Represents hits returned by {@link  * IndexSearcher#search(Query,int)}. */
 end_comment
@@ -485,8 +475,6 @@ name|TopDocs
 index|[]
 name|shardHits
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -926,8 +914,6 @@ name|TopDocs
 index|[]
 name|shardHits
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|merge
@@ -957,8 +943,6 @@ name|TopDocs
 index|[]
 name|shardHits
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|mergeAux
@@ -990,8 +974,6 @@ name|TopFieldDocs
 index|[]
 name|shardHits
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 return|return
 name|merge
@@ -1026,8 +1008,6 @@ name|TopFieldDocs
 index|[]
 name|shardHits
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(
@@ -1080,8 +1060,6 @@ name|TopDocs
 index|[]
 name|shardHits
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 specifier|final
 name|PriorityQueue

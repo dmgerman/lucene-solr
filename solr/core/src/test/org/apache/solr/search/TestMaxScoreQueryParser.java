@@ -248,6 +248,10 @@ argument_list|(
 name|q
 operator|instanceof
 name|LegacyNumericRangeQuery
+operator|||
+name|q
+operator|instanceof
+name|PointRangeQuery
 argument_list|)
 expr_stmt|;
 block|}

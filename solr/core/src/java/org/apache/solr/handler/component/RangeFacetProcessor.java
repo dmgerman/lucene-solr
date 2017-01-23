@@ -348,11 +348,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Returns a list of value constraints and the associated facet    * counts for each facet numerical field, range, and interval    * specified in the SolrParams    *    * @see org.apache.solr.common.params.FacetParams#FACET_RANGE    */
-annotation|@
-name|SuppressWarnings
-argument_list|(
-literal|"unchecked"
-argument_list|)
 DECL|method|getFacetRangeCounts
 specifier|public
 name|NamedList
@@ -553,6 +548,11 @@ assert|assert
 name|ft
 operator|instanceof
 name|TrieField
+operator|||
+name|ft
+operator|.
+name|isPointField
+argument_list|()
 assert|;
 name|resOuter
 operator|.

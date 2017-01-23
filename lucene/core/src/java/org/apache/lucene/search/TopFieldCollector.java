@@ -1777,7 +1777,7 @@ name|trackMaxScore
 argument_list|)
 return|;
 block|}
-comment|/**    * Creates a new {@link TopFieldCollector} from the given    * arguments.    *    *<p><b>NOTE</b>: The instances returned by this method    * pre-allocate a full array of length    *<code>numHits</code>.    *    * @param sort    *          the sort criteria (SortFields).    * @param numHits    *          the number of results to collect.    * @param after    *          only hits after this FieldDoc will be collected    * @param fillFields    *          specifies whether the actual field values should be returned on    *          the results (FieldDoc).    * @param trackDocScores    *          specifies whether document scores should be tracked and set on the    *          results. Note that if set to false, then the results' scores will    *          be set to Float.NaN. Setting this to true affects performance, as    *          it incurs the score computation on each competitive result.    *          Therefore if document scores are not required by the application,    *          it is recommended to set it to false.    * @param trackMaxScore    *          specifies whether the query's maxScore should be tracked and set    *          on the resulting {@link TopDocs}. Note that if set to false,    *          {@link TopDocs#getMaxScore()} returns Float.NaN. Setting this to    *          true affects performance as it incurs the score computation on    *          each result. Also, setting this true automatically sets    *<code>trackDocScores</code> to true as well.    * @return a {@link TopFieldCollector} instance which will sort the results by    *         the sort criteria.    * @throws IOException if there is a low-level I/O error    */
+comment|/**    * Creates a new {@link TopFieldCollector} from the given    * arguments.    *    *<p><b>NOTE</b>: The instances returned by this method    * pre-allocate a full array of length    *<code>numHits</code>.    *    * @param sort    *          the sort criteria (SortFields).    * @param numHits    *          the number of results to collect.    * @param after    *          only hits after this FieldDoc will be collected    * @param fillFields    *          specifies whether the actual field values should be returned on    *          the results (FieldDoc).    * @param trackDocScores    *          specifies whether document scores should be tracked and set on the    *          results. Note that if set to false, then the results' scores will    *          be set to Float.NaN. Setting this to true affects performance, as    *          it incurs the score computation on each competitive result.    *          Therefore if document scores are not required by the application,    *          it is recommended to set it to false.    * @param trackMaxScore    *          specifies whether the query's maxScore should be tracked and set    *          on the resulting {@link TopDocs}. Note that if set to false,    *          {@link TopDocs#getMaxScore()} returns Float.NaN. Setting this to    *          true affects performance as it incurs the score computation on    *          each result. Also, setting this true automatically sets    *<code>trackDocScores</code> to true as well.    * @return a {@link TopFieldCollector} instance which will sort the results by    *         the sort criteria.    */
 DECL|method|create
 specifier|public
 specifier|static
@@ -1802,8 +1802,6 @@ parameter_list|,
 name|boolean
 name|trackMaxScore
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

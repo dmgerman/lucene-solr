@@ -533,8 +533,6 @@ parameter_list|,
 name|int
 name|sortPos
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 switch|switch
 condition|(

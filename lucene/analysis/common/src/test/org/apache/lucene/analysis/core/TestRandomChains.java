@@ -828,6 +828,22 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|miscellaneous
+operator|.
+name|WordDelimiterGraphFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|path
 operator|.
 name|PathHierarchyTokenizer
@@ -1451,6 +1467,11 @@ name|class
 argument_list|,
 comment|// TODO: needs to be a tokenizer, doesnt handle graph inputs properly (a shingle or similar following will then cause pain)
 name|WordDelimiterFilter
+operator|.
+name|class
+argument_list|,
+comment|// Cannot correct offsets when a char filter had changed them:
+name|WordDelimiterGraphFilter
 operator|.
 name|class
 argument_list|,

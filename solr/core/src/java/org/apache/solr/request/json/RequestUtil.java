@@ -889,6 +889,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|isShard
+condition|)
+block|{
+comment|// Don't expand macros in shard requests
 name|String
 index|[]
 name|doMacrosStr
@@ -939,6 +946,7 @@ argument_list|(
 name|newMap
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// Set these params as soon as possible so if there is an error processing later, things like
 comment|// "wt=json" will take effect from the defaults.

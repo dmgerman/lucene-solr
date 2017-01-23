@@ -187,8 +187,6 @@ parameter_list|,
 name|int
 name|size
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -325,8 +323,6 @@ parameter_list|,
 name|int
 name|size
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -452,8 +448,6 @@ parameter_list|,
 name|int
 name|size
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 name|super
 argument_list|(
@@ -550,7 +544,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Creates a hit queue sorted by the given list of fields.    *     *<p><b>NOTE</b>: The instances returned by this method    * pre-allocate a full array of length<code>numHits</code>.    *     * @param fields    *          SortField array we are sorting by in priority order (highest    *          priority first); cannot be<code>null</code> or empty    * @param size    *          The number of hits to retain. Must be greater than zero.    * @throws IOException if there is a low-level IO error    */
+comment|/**    * Creates a hit queue sorted by the given list of fields.    *     *<p><b>NOTE</b>: The instances returned by this method    * pre-allocate a full array of length<code>numHits</code>.    *     * @param fields    *          SortField array we are sorting by in priority order (highest    *          priority first); cannot be<code>null</code> or empty    * @param size    *          The number of hits to retain. Must be greater than zero.    */
 DECL|method|create
 specifier|public
 specifier|static
@@ -574,8 +568,6 @@ parameter_list|,
 name|int
 name|size
 parameter_list|)
-throws|throws
-name|IOException
 block|{
 if|if
 condition|(

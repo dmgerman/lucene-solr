@@ -20,6 +20,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|EnumSet
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -58,9 +78,13 @@ name|solr
 operator|.
 name|schema
 operator|.
-name|IndexSchema
+name|CustomAnalyzerStrField
 import|;
 end_import
+
+begin_comment
+comment|// jdoc
+end_comment
 
 begin_import
 import|import
@@ -72,13 +96,9 @@ name|solr
 operator|.
 name|schema
 operator|.
-name|CustomAnalyzerStrField
+name|IndexSchema
 import|;
 end_import
-
-begin_comment
-comment|// jdoc
-end_comment
 
 begin_import
 import|import
@@ -135,26 +155,6 @@ operator|.
 name|junit
 operator|.
 name|Test
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|EnumSet
 import|;
 end_import
 
