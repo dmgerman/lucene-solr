@@ -120,7 +120,7 @@ return|return
 name|weight
 return|;
 block|}
-comment|/**    * Returns child sub-scorers positioned on the current document    *    * Note that this method should not be called on Scorers passed to {@link LeafCollector#setScorer(Scorer)},    * as these may be synthetic Scorers produced by {@link BulkScorer} which will throw an Exception.    *    * This method should only be called when the Scorer is positioned    *    * @lucene.experimental    */
+comment|/** Returns child sub-scorers    * @lucene.experimental */
 DECL|method|getChildren
 specifier|public
 name|Collection
@@ -129,8 +129,6 @@ name|ChildScorer
 argument_list|>
 name|getChildren
 parameter_list|()
-throws|throws
-name|IOException
 block|{
 return|return
 name|Collections

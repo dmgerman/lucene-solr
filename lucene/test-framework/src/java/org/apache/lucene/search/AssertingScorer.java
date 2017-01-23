@@ -304,10 +304,6 @@ comment|// We cannot hide that we hold a single child, else
 comment|// collectors (e.g. ToParentBlockJoinCollector) that
 comment|// need to walk the scorer tree will miss/skip the
 comment|// Scorer we wrap:
-assert|assert
-name|iterating
-argument_list|()
-assert|;
 return|return
 name|Collections
 operator|.
