@@ -511,22 +511,17 @@ literal|null
 operator|||
 name|termStates
 operator|.
-name|topReaderContext
-operator|==
+name|wasBuiltFor
+argument_list|(
 name|ReaderUtil
 operator|.
 name|getTopLevelContext
 argument_list|(
 name|context
 argument_list|)
+argument_list|)
 operator|:
-literal|"The top-reader used to create Weight ("
-operator|+
-name|termStates
-operator|.
-name|topReaderContext
-operator|+
-literal|") is not the same as the current reader's top-reader ("
+literal|"The top-reader used to create Weight is not the same as the current reader's top-reader ("
 operator|+
 name|ReaderUtil
 operator|.
@@ -623,22 +618,17 @@ comment|// TermQuery either used as a Query or the term states have been provide
 assert|assert
 name|termStates
 operator|.
-name|topReaderContext
-operator|==
+name|wasBuiltFor
+argument_list|(
 name|ReaderUtil
 operator|.
 name|getTopLevelContext
 argument_list|(
 name|context
 argument_list|)
+argument_list|)
 operator|:
-literal|"The top-reader used to create Weight ("
-operator|+
-name|termStates
-operator|.
-name|topReaderContext
-operator|+
-literal|") is not the same as the current reader's top-reader ("
+literal|"The top-reader used to create Weight is not the same as the current reader's top-reader ("
 operator|+
 name|ReaderUtil
 operator|.
@@ -1068,9 +1058,12 @@ literal|null
 operator|||
 name|perReaderTermState
 operator|.
-name|topReaderContext
-operator|!=
+name|wasBuiltFor
+argument_list|(
 name|context
+argument_list|)
+operator|==
+literal|false
 condition|)
 block|{
 if|if
