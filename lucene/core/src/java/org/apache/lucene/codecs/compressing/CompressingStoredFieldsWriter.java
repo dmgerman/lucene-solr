@@ -584,7 +584,6 @@ name|fieldsStream
 decl_stmt|;
 DECL|field|compressor
 specifier|private
-specifier|final
 name|Compressor
 name|compressor
 decl_stmt|;
@@ -973,6 +972,8 @@ argument_list|(
 name|fieldsStream
 argument_list|,
 name|indexWriter
+argument_list|,
+name|compressor
 argument_list|)
 expr_stmt|;
 block|}
@@ -983,6 +984,10 @@ operator|=
 literal|null
 expr_stmt|;
 name|indexWriter
+operator|=
+literal|null
+expr_stmt|;
+name|compressor
 operator|=
 literal|null
 expr_stmt|;

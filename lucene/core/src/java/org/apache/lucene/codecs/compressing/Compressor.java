@@ -24,6 +24,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|Closeable
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -52,6 +62,8 @@ specifier|public
 specifier|abstract
 class|class
 name|Compressor
+implements|implements
+name|Closeable
 block|{
 comment|/** Sole constructor, typically called from sub-classes. */
 DECL|method|Compressor
