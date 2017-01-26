@@ -886,6 +886,7 @@ name|idBytes
 argument_list|)
 return|;
 block|}
+comment|/**    * Returns the latest version from the index, searched by the given id (bytes) as seen from the realtime searcher.    * Returns null if no document can be found in the index for the given id.    */
 DECL|method|getVersionFromIndex
 specifier|public
 name|Long
@@ -1062,6 +1063,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|/**    * Returns the highest version from the index, or 0L if no versions can be found in the index.    */
 DECL|method|getMaxVersionFromIndex
 specifier|public
 name|Long

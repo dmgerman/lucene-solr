@@ -249,6 +249,16 @@ import|;
 end_import
 
 begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
 import|import static
 name|org
 operator|.
@@ -799,6 +809,7 @@ literal|null
 operator|!=
 name|indexedDocId
 assert|;
+comment|// we don't need any fields populated, we just need to know if the doc is in the tlog...
 name|SolrInputDocument
 name|oldDoc
 init|=
@@ -809,6 +820,18 @@ argument_list|(
 name|core
 argument_list|,
 name|indexedDocId
+argument_list|,
+literal|null
+argument_list|,
+name|Collections
+operator|.
+expr|<
+name|String
+operator|>
+name|emptySet
+argument_list|()
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 if|if

@@ -1214,6 +1214,12 @@ argument_list|(
 name|core
 argument_list|,
 name|indexedDocId
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 if|if
