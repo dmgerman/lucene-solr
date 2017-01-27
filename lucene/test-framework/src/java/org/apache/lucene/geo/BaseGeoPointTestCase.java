@@ -769,6 +769,17 @@ name|nextPolygon
 argument_list|()
 return|;
 block|}
+comment|/** Whether this impl supports polygons. */
+DECL|method|supportsPolygons
+specifier|protected
+name|boolean
+name|supportsPolygons
+parameter_list|()
+block|{
+return|return
+literal|true
+return|;
+block|}
 comment|/** Valid values that should not cause exception */
 DECL|method|testIndexExtremeValues
 specifier|public
@@ -1945,6 +1956,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeTrue
+argument_list|(
+literal|"Impl does not support polygons"
+argument_list|,
+name|supportsPolygons
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -2086,6 +2105,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeTrue
+argument_list|(
+literal|"Impl does not support polygons"
+argument_list|,
+name|supportsPolygons
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -2276,6 +2303,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeTrue
+argument_list|(
+literal|"Impl does not support polygons"
+argument_list|,
+name|supportsPolygons
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -2466,6 +2501,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeTrue
+argument_list|(
+literal|"Impl does not support polygons"
+argument_list|,
+name|supportsPolygons
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|Directory
 name|dir
 init|=
@@ -2654,6 +2697,14 @@ name|void
 name|testPolygonNullField
 parameter_list|()
 block|{
+name|assumeTrue
+argument_list|(
+literal|"Impl does not support polygons"
+argument_list|,
+name|supportsPolygons
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|IllegalArgumentException
 name|expected
 init|=
@@ -4969,6 +5020,12 @@ argument_list|,
 name|lons
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|supportsPolygons
+argument_list|()
+condition|)
+block|{
 name|verifyRandomPolygons
 argument_list|(
 name|lats
@@ -4976,6 +5033,7 @@ argument_list|,
 name|lons
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 end_function
 
@@ -5642,6 +5700,17 @@ operator|new
 name|StringBuilder
 argument_list|()
 decl_stmt|;
+name|b
+operator|.
+name|append
+argument_list|(
+literal|"docID=("
+operator|+
+name|docID
+operator|+
+literal|")\n"
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|expected
@@ -9146,6 +9215,12 @@ name|rect
 operator|.
 name|minLon
 expr_stmt|;
+if|if
+condition|(
+name|supportsPolygons
+argument_list|()
+condition|)
+block|{
 name|q1
 operator|=
 name|newPolygonQuery
@@ -9204,6 +9279,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 end_function
 
@@ -9850,6 +9926,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeTrue
+argument_list|(
+literal|"Impl does not support polygons"
+argument_list|,
+name|supportsPolygons
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|TopDocs
 name|td
 init|=
@@ -9938,6 +10022,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|assumeTrue
+argument_list|(
+literal|"Impl does not support polygons"
+argument_list|,
+name|supportsPolygons
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|TopDocs
 name|td
 init|=

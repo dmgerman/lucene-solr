@@ -72,6 +72,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|document
+operator|.
+name|NumericDocValuesField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|index
 operator|.
 name|IndexableField
@@ -186,6 +200,7 @@ specifier|public
 class|class
 name|DocumentBuilder
 block|{
+comment|/**    * Add a field value to a given document.    * @param doc Document that the field needs to be added to    * @param field The schema field object for the field    * @param val The value for the field to be added    * @param boost Boost value for the field    * @param forInPlaceUpdate Whether the field is to be added for in-place update. If true,    *        only numeric docValues based fields are added to the document. This can be true    *        when constructing a Lucene document for writing an in-place update, and we don't need    *        presence of non-updatable fields (non NDV) in such a document.    */
 DECL|method|addField
 specifier|private
 specifier|static
@@ -203,6 +218,9 @@ name|val
 parameter_list|,
 name|float
 name|boost
+parameter_list|,
+name|boolean
+name|forInPlaceUpdate
 parameter_list|)
 block|{
 if|if
@@ -212,6 +230,21 @@ operator|instanceof
 name|IndexableField
 condition|)
 block|{
+if|if
+condition|(
+name|forInPlaceUpdate
+condition|)
+block|{
+assert|assert
+name|val
+operator|instanceof
+name|NumericDocValuesField
+operator|:
+literal|"Expected in-place update to be done on"
+operator|+
+literal|" NDV fields only."
+assert|;
+block|}
 comment|// set boost to the calculated compound boost
 operator|(
 operator|(
@@ -263,6 +296,27 @@ name|f
 operator|!=
 literal|null
 condition|)
+block|{
+comment|// null fields are not added
+comment|// HACK: workaround for SOLR-9809
+comment|// even though at this point in the code we know the field is single valued and DV only
+comment|// TrieField.createFields() may still return (usless) IndexableField instances that are not
+comment|// NumericDocValuesField instances.
+comment|//
+comment|// once SOLR-9809 is resolved, we should be able to replace this conditional with...
+comment|//    assert f instanceof NumericDocValuesField
+if|if
+condition|(
+name|forInPlaceUpdate
+condition|)
+block|{
+if|if
+condition|(
+name|f
+operator|instanceof
+name|NumericDocValuesField
+condition|)
+block|{
 name|doc
 operator|.
 name|add
@@ -273,7 +327,22 @@ operator|)
 name|f
 argument_list|)
 expr_stmt|;
-comment|// null fields are not added
+block|}
+block|}
+else|else
+block|{
+name|doc
+operator|.
+name|add
+argument_list|(
+operator|(
+name|Field
+operator|)
+name|f
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 block|}
 DECL|method|getID
@@ -330,7 +399,7 @@ return|return
 name|id
 return|;
 block|}
-comment|/**    * Convert a SolrInputDocument to a lucene Document.    *     * This function should go elsewhere.  This builds the Document without an    * extra Map&lt;&gt; checking for multiple values.  For more discussion, see:    * http://www.nabble.com/Re%3A-svn-commit%3A-r547493---in--lucene-solr-trunk%3A-.--src-java-org-apache-solr-common--src-java-org-apache-solr-schema--src-java-org-apache-solr-update--src-test-org-apache-solr-common--tf3931539.html    *     * TODO: /!\ NOTE /!\ This semantics of this function are still in flux.      * Something somewhere needs to be able to fill up a SolrDocument from    * a lucene document - this is one place that may happen.  It may also be    * moved to an independent function    *     * @since solr 1.3    */
+comment|/**    * @see DocumentBuilder#toDocument(SolrInputDocument, IndexSchema, boolean)    */
 DECL|method|toDocument
 specifier|public
 specifier|static
@@ -344,6 +413,58 @@ name|IndexSchema
 name|schema
 parameter_list|)
 block|{
+return|return
+name|toDocument
+argument_list|(
+name|doc
+argument_list|,
+name|schema
+argument_list|,
+literal|false
+argument_list|)
+return|;
+block|}
+comment|/**    * Convert a SolrInputDocument to a lucene Document.    *     * This function should go elsewhere.  This builds the Document without an    * extra Map&lt;&gt; checking for multiple values.  For more discussion, see:    * http://www.nabble.com/Re%3A-svn-commit%3A-r547493---in--lucene-solr-trunk%3A-.--src-java-org-apache-solr-common--src-java-org-apache-solr-schema--src-java-org-apache-solr-update--src-test-org-apache-solr-common--tf3931539.html    *     * TODO: /!\ NOTE /!\ This semantics of this function are still in flux.      * Something somewhere needs to be able to fill up a SolrDocument from    * a lucene document - this is one place that may happen.  It may also be    * moved to an independent function    *     * @since solr 1.3    *     * @param doc SolrInputDocument from which the document has to be built    * @param schema Schema instance    * @param forInPlaceUpdate Whether the output document would be used for an in-place update or not. When this is true,    *        default fields values and copy fields targets are not populated.    * @return Built Lucene document     */
+DECL|method|toDocument
+specifier|public
+specifier|static
+name|Document
+name|toDocument
+parameter_list|(
+name|SolrInputDocument
+name|doc
+parameter_list|,
+name|IndexSchema
+name|schema
+parameter_list|,
+name|boolean
+name|forInPlaceUpdate
+parameter_list|)
+block|{
+specifier|final
+name|SchemaField
+name|uniqueKeyField
+init|=
+name|schema
+operator|.
+name|getUniqueKeyField
+argument_list|()
+decl_stmt|;
+specifier|final
+name|String
+name|uniqueKeyFieldName
+init|=
+literal|null
+operator|==
+name|uniqueKeyField
+condition|?
+literal|null
+else|:
+name|uniqueKeyField
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
 name|Document
 name|out
 init|=
@@ -619,6 +740,17 @@ condition|?
 name|compoundBoost
 else|:
 literal|1f
+argument_list|,
+name|name
+operator|.
+name|equals
+argument_list|(
+name|uniqueKeyFieldName
+argument_list|)
+condition|?
+literal|false
+else|:
+name|forInPlaceUpdate
 argument_list|)
 expr_stmt|;
 comment|// record the field as having a value
@@ -640,6 +772,23 @@ condition|(
 name|copyFields
 operator|!=
 literal|null
+condition|)
+block|{
+comment|// Do not copy this field if this document is to be used for an in-place update,
+comment|// and this is the uniqueKey field (because the uniqueKey can't change so no need to "update" the copyField).
+if|if
+condition|(
+operator|!
+operator|(
+name|forInPlaceUpdate
+operator|&&
+name|name
+operator|.
+name|equals
+argument_list|(
+name|uniqueKeyFieldName
+argument_list|)
+operator|)
 condition|)
 block|{
 for|for
@@ -793,6 +942,20 @@ argument_list|,
 name|val
 argument_list|,
 name|destBoost
+argument_list|,
+name|destinationField
+operator|.
+name|getName
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|uniqueKeyFieldName
+argument_list|)
+condition|?
+literal|false
+else|:
+name|forInPlaceUpdate
 argument_list|)
 expr_stmt|;
 comment|// record the field as having a value
@@ -806,6 +969,7 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|// The final boost for a given field named is the product of the
@@ -919,6 +1083,15 @@ block|}
 block|}
 comment|// Now validate required fields or add default values
 comment|// fields with default values are defacto 'required'
+comment|// Note: We don't need to add default fields if this document is to be used for
+comment|// in-place updates, since this validation and population of default fields would've happened
+comment|// during the full indexing initially.
+if|if
+condition|(
+operator|!
+name|forInPlaceUpdate
+condition|)
+block|{
 for|for
 control|(
 name|SchemaField
@@ -967,6 +1140,8 @@ name|getDefaultValue
 argument_list|()
 argument_list|,
 literal|1.0f
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -1002,6 +1177,7 @@ argument_list|,
 name|msg
 argument_list|)
 throw|;
+block|}
 block|}
 block|}
 block|}

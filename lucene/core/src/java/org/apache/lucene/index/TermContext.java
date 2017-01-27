@@ -61,12 +61,12 @@ specifier|final
 class|class
 name|TermContext
 block|{
-comment|/** Holds the {@link IndexReaderContext} of the top-level    *  {@link IndexReader}, used internally only for    *  asserting.    *    *  @lucene.internal */
-DECL|field|topReaderContext
-specifier|public
+comment|// Important: do NOT keep hard references to index readers
+DECL|field|topReaderContextIdentity
+specifier|private
 specifier|final
-name|IndexReaderContext
-name|topReaderContext
+name|Object
+name|topReaderContextIdentity
 decl_stmt|;
 DECL|field|states
 specifier|private
@@ -104,9 +104,11 @@ name|context
 operator|.
 name|isTopLevel
 assert|;
-name|topReaderContext
+name|topReaderContextIdentity
 operator|=
 name|context
+operator|.
+name|identity
 expr_stmt|;
 name|docFreq
 operator|=
@@ -156,6 +158,24 @@ index|[
 name|len
 index|]
 expr_stmt|;
+block|}
+comment|/**    * Expert: Return whether this {@link TermContext} was built for the given    * {@link IndexReaderContext}. This is typically used for assertions.    * @lucene.internal    */
+DECL|method|wasBuiltFor
+specifier|public
+name|boolean
+name|wasBuiltFor
+parameter_list|(
+name|IndexReaderContext
+name|context
+parameter_list|)
+block|{
+return|return
+name|topReaderContextIdentity
+operator|==
+name|context
+operator|.
+name|identity
+return|;
 block|}
 comment|/**    * Creates a {@link TermContext} with an initial {@link TermState},    * {@link IndexReader} pair.    */
 DECL|method|TermContext

@@ -6024,6 +6024,24 @@ name|get
 argument_list|()
 return|;
 block|}
+comment|/**    * Return an unmodifiable set of all field names as visible    * from this IndexWriter, across all segments of the index.    * Useful for knowing which fields exist, before {@link #updateDocValues(Term, Field...)} is    * attempted. We could phase out this method if    * {@link #updateDocValues(Term, Field...)} could create the non-existent    * docValues fields as necessary, instead of throwing    * IllegalArgumentException for attempts to update non-existent    * docValues fields.    * @lucene.internal    * @lucene.experimental    */
+DECL|method|getFieldNames
+specifier|public
+name|Set
+argument_list|<
+name|String
+argument_list|>
+name|getFieldNames
+parameter_list|()
+block|{
+return|return
+name|globalFieldNumberMap
+operator|.
+name|getFieldNames
+argument_list|()
+return|;
+comment|// FieldNumbers#getFieldNames() returns an unmodifiableSet
+block|}
 DECL|method|newSegmentName
 specifier|final
 name|String

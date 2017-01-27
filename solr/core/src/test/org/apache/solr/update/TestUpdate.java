@@ -127,10 +127,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testUpdateableDocs
+DECL|method|testUpdatableDocs
 specifier|public
 name|void
-name|testUpdateableDocs
+name|testUpdatableDocs
 parameter_list|()
 throws|throws
 name|Exception

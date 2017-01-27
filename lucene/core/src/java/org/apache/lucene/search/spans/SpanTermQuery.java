@@ -355,9 +355,12 @@ literal|null
 operator|||
 name|termContext
 operator|.
-name|topReaderContext
-operator|!=
+name|wasBuiltFor
+argument_list|(
 name|topContext
+argument_list|)
+operator|==
+literal|false
 condition|)
 block|{
 name|context
@@ -535,22 +538,17 @@ block|{
 assert|assert
 name|termContext
 operator|.
-name|topReaderContext
-operator|==
+name|wasBuiltFor
+argument_list|(
 name|ReaderUtil
 operator|.
 name|getTopLevelContext
 argument_list|(
 name|context
 argument_list|)
+argument_list|)
 operator|:
-literal|"The top-reader used to create Weight ("
-operator|+
-name|termContext
-operator|.
-name|topReaderContext
-operator|+
-literal|") is not the same as the current reader's top-reader ("
+literal|"The top-reader used to create Weight is not the same as the current reader's top-reader ("
 operator|+
 name|ReaderUtil
 operator|.

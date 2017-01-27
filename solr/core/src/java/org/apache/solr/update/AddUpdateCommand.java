@@ -210,12 +210,20 @@ specifier|private
 name|BytesRef
 name|indexedId
 decl_stmt|;
-comment|// Higher level SolrInputDocument, normally used to construct the Lucene Document
-comment|// to index.
+comment|/**     * Higher level SolrInputDocument, normally used to construct the Lucene Document     * to index.     */
 DECL|field|solrDoc
 specifier|public
 name|SolrInputDocument
 name|solrDoc
+decl_stmt|;
+comment|/**     * This is the version of a document, previously indexed, on which the current     * update depends on. This version could be that of a previous in-place update     * or a full update. A negative value here, e.g. -1, indicates that this add     * update does not depend on a previous update.     */
+DECL|field|prevVersion
+specifier|public
+name|long
+name|prevVersion
+init|=
+operator|-
+literal|1
 decl_stmt|;
 DECL|field|overwrite
 specifier|public
@@ -315,12 +323,29 @@ return|return
 name|solrDoc
 return|;
 block|}
-comment|/** Creates and returns a lucene Document to index.  Any changes made to the returned Document    * will not be reflected in the SolrInputDocument, or future calls to this method.    */
+comment|/** Creates and returns a lucene Document to index.  Any changes made to the returned Document    * will not be reflected in the SolrInputDocument, or future calls to this method. This defaults    * to false for the inPlaceUpdate parameter of {@link #getLuceneDocument(boolean)}.    */
 DECL|method|getLuceneDocument
 specifier|public
 name|Document
 name|getLuceneDocument
 parameter_list|()
+block|{
+return|return
+name|getLuceneDocument
+argument_list|(
+literal|false
+argument_list|)
+return|;
+block|}
+comment|/** Creates and returns a lucene Document to index.  Any changes made to the returned Document     * will not be reflected in the SolrInputDocument, or future calls to this method.     * @param inPlaceUpdate Whether this document will be used for in-place updates.     */
+DECL|method|getLuceneDocument
+specifier|public
+name|Document
+name|getLuceneDocument
+parameter_list|(
+name|boolean
+name|inPlaceUpdate
+parameter_list|)
 block|{
 return|return
 name|DocumentBuilder
@@ -334,6 +359,8 @@ name|req
 operator|.
 name|getSchema
 argument_list|()
+argument_list|,
+name|inPlaceUpdate
 argument_list|)
 return|;
 block|}
@@ -1053,6 +1080,21 @@ name|sb
 operator|.
 name|toString
 argument_list|()
+return|;
+block|}
+comment|/**    * Is this add update an in-place update? An in-place update is one where only docValues are    * updated, and a new docment is not indexed.    */
+DECL|method|isInPlaceUpdate
+specifier|public
+name|boolean
+name|isInPlaceUpdate
+parameter_list|()
+block|{
+return|return
+operator|(
+name|prevVersion
+operator|>=
+literal|0
+operator|)
 return|;
 block|}
 block|}

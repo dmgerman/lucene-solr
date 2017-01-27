@@ -65,6 +65,18 @@ specifier|final
 name|int
 name|ordInParent
 decl_stmt|;
+comment|// An object that uniquely identifies this context without referencing
+comment|// segments. The goal is to make it fine to have references to this
+comment|// identity object, even after the index reader has been closed
+DECL|field|identity
+specifier|final
+name|Object
+name|identity
+init|=
+operator|new
+name|Object
+argument_list|()
+decl_stmt|;
 DECL|method|IndexReaderContext
 name|IndexReaderContext
 parameter_list|(

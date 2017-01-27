@@ -4977,9 +4977,8 @@ block|}
 block|}
 else|else
 block|{
-specifier|final
-name|DocValuesType
-name|dvType
+name|FieldInfo
+name|fi
 init|=
 name|fieldInfos
 operator|.
@@ -4987,6 +4986,22 @@ name|fieldInfo
 argument_list|(
 name|fieldName
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|fi
+operator|==
+literal|null
+condition|)
+block|{
+continue|continue;
+comment|// Searcher doesn't have info about this field, hence ignore it.
+block|}
+specifier|final
+name|DocValuesType
+name|dvType
+init|=
+name|fi
 operator|.
 name|getDocValuesType
 argument_list|()

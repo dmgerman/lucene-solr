@@ -685,7 +685,7 @@ specifier|final
 name|String
 name|expectedFieldName
 init|=
-literal|"timestamp"
+literal|"timestamp_i_dvo"
 decl_stmt|;
 specifier|final
 name|SortField
@@ -697,7 +697,7 @@ name|SortField
 operator|.
 name|Type
 operator|.
-name|LONG
+name|INT
 decl_stmt|;
 specifier|final
 name|boolean
