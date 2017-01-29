@@ -950,7 +950,7 @@ argument_list|)
 argument_list|)
 return|;
 block|}
-comment|/**    * E.g. {@code constantList("x", "y")} returns    * {@code {ConstantExpression("x"), ConstantExpression("y")}}.    */
+comment|/**    * E.g. {@code constantList("x", "y")} returns "{ConstantExpression("x"), ConstantExpression("y")}".    */
 DECL|method|constantList
 specifier|private
 specifier|static
