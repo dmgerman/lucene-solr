@@ -8348,6 +8348,22 @@ throws|throws
 name|Exception
 block|{
 comment|// Loop through the file=, cf=, tlogFile= params and prove that it throws exception for path traversal attempts
+name|String
+name|absFile
+init|=
+name|Paths
+operator|.
+name|get
+argument_list|(
+literal|"foo"
+argument_list|)
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+decl_stmt|;
 name|List
 argument_list|<
 name|String
@@ -8358,7 +8374,7 @@ name|Arrays
 operator|.
 name|asList
 argument_list|(
-literal|"/foo/bar"
+name|absFile
 argument_list|,
 literal|"../dir/traversal"
 argument_list|,
