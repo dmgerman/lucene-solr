@@ -1124,7 +1124,7 @@ name|size
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// clear "foo.bar"
+comment|// clear all metrics with prefix "foo.bar."
 name|Set
 argument_list|<
 name|String
@@ -1139,7 +1139,7 @@ name|registryName
 argument_list|,
 literal|"foo"
 argument_list|,
-literal|"bar"
+literal|"bar."
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -1184,7 +1184,7 @@ name|registryName
 argument_list|,
 literal|"foo"
 argument_list|,
-literal|"baz"
+literal|"baz."
 argument_list|)
 expr_stmt|;
 name|assertEquals
