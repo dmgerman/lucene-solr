@@ -102,7 +102,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
+name|BitDocIdSet
 import|;
 end_import
 
@@ -116,7 +116,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|BitDocIdSet
+name|Bits
 import|;
 end_import
 
@@ -358,21 +358,93 @@ literal|true
 return|;
 comment|// don't compare matches
 block|}
-comment|// if (this.size() != other.size()) return false;
-return|return
+name|FixedBitSet
+name|bs1
+init|=
 name|this
 operator|.
 name|getBits
 argument_list|()
-operator|.
-name|equals
-argument_list|(
+decl_stmt|;
+name|FixedBitSet
+name|bs2
+init|=
 name|toBitSet
 argument_list|(
 name|other
 argument_list|)
+decl_stmt|;
+comment|// resize both BitSets to make sure they have the same amount of zero padding
+name|int
+name|maxNumBits
+init|=
+name|bs1
+operator|.
+name|length
+argument_list|()
+operator|>
+name|bs2
+operator|.
+name|length
+argument_list|()
+condition|?
+name|bs1
+operator|.
+name|length
+argument_list|()
+else|:
+name|bs2
+operator|.
+name|length
+argument_list|()
+decl_stmt|;
+name|bs1
+operator|=
+name|FixedBitSet
+operator|.
+name|ensureCapacity
+argument_list|(
+name|bs1
+argument_list|,
+name|maxNumBits
+argument_list|)
+expr_stmt|;
+name|bs2
+operator|=
+name|FixedBitSet
+operator|.
+name|ensureCapacity
+argument_list|(
+name|bs2
+argument_list|,
+name|maxNumBits
+argument_list|)
+expr_stmt|;
+comment|// if (this.size() != other.size()) return false;
+return|return
+name|bs1
+operator|.
+name|equals
+argument_list|(
+name|bs2
 argument_list|)
 return|;
+block|}
+DECL|method|clone
+specifier|public
+name|DocSet
+name|clone
+parameter_list|()
+block|{
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+operator|new
+name|CloneNotSupportedException
+argument_list|()
+argument_list|)
+throw|;
 block|}
 comment|/**    * @throws SolrException Base implementation does not allow modifications    */
 annotation|@
@@ -439,7 +511,8 @@ init|=
 operator|new
 name|FixedBitSet
 argument_list|(
-literal|64
+name|size
+argument_list|()
 argument_list|)
 decl_stmt|;
 for|for
@@ -956,6 +1029,7 @@ operator|+
 literal|1
 argument_list|)
 expr_stmt|;
+comment|// TODO: this is buggy if getBits() returns a bitset that does not have a capacity of maxDoc
 return|return
 name|adjustedDoc
 operator|=

@@ -696,17 +696,12 @@ block|}
 annotation|@
 name|Override
 DECL|method|clone
-specifier|protected
+specifier|public
 name|DocSlice
 name|clone
 parameter_list|()
 block|{
-try|try
-block|{
-comment|// DocSlice is not currently mutable
-name|DocSlice
-name|slice
-init|=
+return|return
 operator|(
 name|DocSlice
 operator|)
@@ -714,16 +709,6 @@ name|super
 operator|.
 name|clone
 argument_list|()
-decl_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|CloneNotSupportedException
-name|e
-parameter_list|)
-block|{}
-return|return
-literal|null
 return|;
 block|}
 comment|/** WARNING: this can over-estimate real memory use since backing arrays are shared with other DocSlice instances */

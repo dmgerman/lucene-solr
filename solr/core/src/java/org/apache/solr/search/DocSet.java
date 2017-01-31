@@ -67,6 +67,8 @@ extends|extends
 name|Closeable
 extends|,
 name|Accountable
+extends|,
+name|Cloneable
 comment|/* extends Collection<Integer> */
 block|{
 comment|/**    * Adds the specified document if it is not currently in the DocSet    * (optional operation).    *    * @see #addUnique    * @throws SolrException if the implementation does not allow modifications    */
@@ -199,6 +201,12 @@ parameter_list|(
 name|DocSet
 name|target
 parameter_list|)
+function_decl|;
+DECL|method|clone
+specifier|public
+name|DocSet
+name|clone
+parameter_list|()
 function_decl|;
 DECL|field|EMPTY
 specifier|public

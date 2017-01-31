@@ -262,6 +262,17 @@ name|pos
 operator|++
 expr_stmt|;
 block|}
+comment|/** The number of documents that have been collected */
+DECL|method|size
+specifier|public
+name|int
+name|size
+parameter_list|()
+block|{
+return|return
+name|pos
+return|;
+block|}
 DECL|method|getDocSet
 specifier|public
 name|DocSet
@@ -291,6 +302,8 @@ argument_list|,
 name|pos
 argument_list|)
 return|;
+comment|//    } else if (pos == maxDoc) {
+comment|//      return new MatchAllDocSet(maxDoc);  // a bunch of code currently relies on BitDocSet (either explicitly, or implicitly for performance)
 block|}
 else|else
 block|{
