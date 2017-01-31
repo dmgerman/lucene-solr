@@ -88,7 +88,9 @@ name|queryparser
 operator|.
 name|xml
 operator|.
-name|QueryBuilder
+name|builders
+operator|.
+name|SpanQueryBuilder
 import|;
 end_import
 
@@ -186,7 +188,7 @@ specifier|public
 class|class
 name|ApacheLuceneSolrNearQueryBuilder
 extends|extends
-name|SolrQueryBuilder
+name|SolrSpanQueryBuilder
 block|{
 DECL|method|ApacheLuceneSolrNearQueryBuilder
 specifier|public
@@ -201,8 +203,8 @@ parameter_list|,
 name|SolrQueryRequest
 name|req
 parameter_list|,
-name|QueryBuilder
-name|queryFactory
+name|SpanQueryBuilder
+name|spanFactory
 parameter_list|)
 block|{
 name|super
@@ -213,7 +215,7 @@ name|analyzer
 argument_list|,
 name|req
 argument_list|,
-name|queryFactory
+name|spanFactory
 argument_list|)
 expr_stmt|;
 block|}
@@ -221,6 +223,24 @@ DECL|method|getQuery
 specifier|public
 name|Query
 name|getQuery
+parameter_list|(
+name|Element
+name|e
+parameter_list|)
+throws|throws
+name|ParserException
+block|{
+return|return
+name|getSpanQuery
+argument_list|(
+name|e
+argument_list|)
+return|;
+block|}
+DECL|method|getSpanQuery
+specifier|public
+name|SpanQuery
+name|getSpanQuery
 parameter_list|(
 name|Element
 name|e
