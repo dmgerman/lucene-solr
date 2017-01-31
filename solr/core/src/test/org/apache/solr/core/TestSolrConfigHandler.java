@@ -1705,7 +1705,9 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'update-requesthandler' : { 'name' : '/x', 'class': 'org.apache.solr.handler.DumpRequestHandler' , 'startup' : 'lazy' , 'a':'b' , 'defaults': {'def_a':'def A val', 'multival':['a','b','c']}}\n"
+literal|"'update-requesthandler' : { 'name' : '/x', 'class': 'org.apache.solr.handler.DumpRequestHandler' ,registerPath :'/,/v2', "
+operator|+
+literal|" 'startup' : 'lazy' , 'a':'b' , 'defaults': {'def_a':'def A val', 'multival':['a','b','c']}}\n"
 operator|+
 literal|"}"
 expr_stmt|;
@@ -2681,6 +2683,8 @@ literal|"    'add-requesthandler': {\n"
 operator|+
 literal|"        name : '/dump100',\n"
 operator|+
+literal|"       registerPath :'/,/v2',"
+operator|+
 literal|"        class : 'org.apache.solr.handler.DumpRequestHandler',"
 operator|+
 literal|"        suggester: [{name: s1,lookupImpl: FuzzyLookupFactory, dictionaryImpl : DocumentDictionaryFactory},"
@@ -2752,6 +2756,11 @@ argument_list|(
 literal|"initArgs"
 argument_list|)
 decl_stmt|;
+name|assertNotNull
+argument_list|(
+name|initArgs
+argument_list|)
+expr_stmt|;
 name|assertTrue
 argument_list|(
 name|initArgs
@@ -2772,7 +2781,7 @@ name|initArgs
 operator|.
 name|get
 argument_list|(
-literal|0
+literal|2
 argument_list|)
 operator|)
 operator|.
@@ -2817,7 +2826,9 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"' "
+literal|"', "
+operator|+
+literal|"    registerPath :'/,/v2'"
 operator|+
 literal|", 'startup' : 'lazy'}\n"
 operator|+
