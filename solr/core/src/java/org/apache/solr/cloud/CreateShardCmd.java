@@ -574,12 +574,12 @@ literal|1
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|String
+name|Object
 name|createNodeSetStr
 init|=
 name|message
 operator|.
-name|getStr
+name|get
 argument_list|(
 name|OverseerCollectionMessageHandler
 operator|.

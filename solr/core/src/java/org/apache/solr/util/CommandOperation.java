@@ -331,6 +331,16 @@ operator|=
 name|operationName
 expr_stmt|;
 block|}
+DECL|method|getCommandData
+specifier|public
+name|Object
+name|getCommandData
+parameter_list|()
+block|{
+return|return
+name|commandData
+return|;
+block|}
 DECL|method|getStr
 specifier|public
 name|String
