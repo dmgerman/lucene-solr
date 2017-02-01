@@ -520,7 +520,14 @@ expr_stmt|;
 name|int
 name|dataNodes
 init|=
+name|Integer
+operator|.
+name|getInteger
+argument_list|(
+literal|"tests.hdfs.numdatanodes"
+argument_list|,
 literal|2
+argument_list|)
 decl_stmt|;
 name|Configuration
 name|conf
