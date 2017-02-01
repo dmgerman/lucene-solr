@@ -1638,7 +1638,7 @@ name|clazz
 init|=
 name|core
 operator|.
-name|getResourceLoader
+name|getMemClassLoader
 argument_list|()
 operator|.
 name|findClass
