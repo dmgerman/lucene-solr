@@ -1123,7 +1123,7 @@ if|if
 condition|(
 name|distancePredicate
 operator|.
-name|apply
+name|test
 argument_list|(
 name|docLatitude
 argument_list|,

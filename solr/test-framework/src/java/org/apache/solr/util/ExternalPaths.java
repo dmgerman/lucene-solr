@@ -184,7 +184,14 @@ operator|=
 operator|new
 name|File
 argument_list|(
+name|System
+operator|.
+name|getProperty
+argument_list|(
+literal|"tests.src.home"
+argument_list|,
 literal|"."
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}

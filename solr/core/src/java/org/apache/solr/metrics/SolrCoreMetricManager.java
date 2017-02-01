@@ -323,25 +323,6 @@ argument_list|(
 name|oldRegistryName
 argument_list|)
 expr_stmt|;
-name|metricManager
-operator|.
-name|moveMetrics
-argument_list|(
-name|oldRegistryName
-argument_list|,
-name|registryName
-argument_list|,
-literal|null
-argument_list|)
-expr_stmt|;
-comment|// old registry is no longer used - we have moved the metrics
-name|metricManager
-operator|.
-name|removeRegistry
-argument_list|(
-name|oldRegistryName
-argument_list|)
-expr_stmt|;
 comment|// load reporters again, using the new core name
 name|loadReporters
 argument_list|()

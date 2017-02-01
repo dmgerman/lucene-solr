@@ -1455,7 +1455,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|clone
-specifier|protected
+specifier|public
 name|HashDocSet
 name|clone
 parameter_list|()

@@ -3702,7 +3702,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|clone
-specifier|protected
+specifier|public
 name|SortedIntDocSet
 name|clone
 parameter_list|()

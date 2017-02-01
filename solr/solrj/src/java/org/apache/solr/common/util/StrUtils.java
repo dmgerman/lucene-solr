@@ -154,7 +154,6 @@ block|,
 literal|'f'
 block|}
 decl_stmt|;
-comment|/**    * Split a string based on a separator, but don't split if it's inside    * a string.  Assume '\' escapes the next char both inside and    * outside strings.    */
 DECL|method|splitSmart
 specifier|public
 specifier|static
@@ -184,6 +183,39 @@ argument_list|(
 literal|4
 argument_list|)
 decl_stmt|;
+name|splitSmart
+argument_list|(
+name|s
+argument_list|,
+name|separator
+argument_list|,
+name|lst
+argument_list|)
+expr_stmt|;
+return|return
+name|lst
+return|;
+block|}
+comment|/**    * Split a string based on a separator, but don't split if it's inside    * a string.  Assume '\' escapes the next char both inside and    * outside strings.    */
+DECL|method|splitSmart
+specifier|public
+specifier|static
+name|void
+name|splitSmart
+parameter_list|(
+name|String
+name|s
+parameter_list|,
+name|char
+name|separator
+parameter_list|,
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|lst
+parameter_list|)
+block|{
 name|int
 name|pos
 init|=
@@ -350,9 +382,6 @@ argument_list|)
 expr_stmt|;
 block|}
 comment|/***     if (SolrCore.log.isLoggable(Level.FINEST)) {       SolrCore.log.trace("splitCommand=" + lst);     }     ***/
-return|return
-name|lst
-return|;
 block|}
 comment|/** Splits a backslash escaped string on the separator.    *<p>    * Current backslash escaping supported:    *<br> \n \t \r \b \f are escaped the same as a Java String    *<br> Other characters following a backslash are produced verbatim (\c =&gt; c)    *    * @param s  the string to split    * @param separator the separator to split on    * @param decode decode backslash escaping    */
 DECL|method|splitSmart

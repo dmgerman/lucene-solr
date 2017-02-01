@@ -248,6 +248,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|ValidatingJsonMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|handler
 operator|.
 name|DumpRequestHandler
@@ -321,6 +337,20 @@ operator|.
 name|search
 operator|.
 name|SolrCache
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|RESTfulServerProvider
 import|;
 end_import
 
@@ -662,6 +692,42 @@ argument_list|,
 name|extraServlets
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"These tests are run with V2 API"
+argument_list|)
+expr_stmt|;
+name|restTestHarness
+operator|.
+name|setServerProvider
+argument_list|(
+parameter_list|()
+lambda|->
+name|jetty
+operator|.
+name|getBaseUrl
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"/v2/cores/"
+operator|+
+name|DEFAULT_TEST_CORENAME
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|After
@@ -1639,7 +1705,9 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'update-requesthandler' : { 'name' : '/x', 'class': 'org.apache.solr.handler.DumpRequestHandler' , 'startup' : 'lazy' , 'a':'b' , 'defaults': {'def_a':'def A val', 'multival':['a','b','c']}}\n"
+literal|"'update-requesthandler' : { 'name' : '/x', 'class': 'org.apache.solr.handler.DumpRequestHandler' ,registerPath :'/,/v2', "
+operator|+
+literal|" 'startup' : 'lazy' , 'a':'b' , 'defaults': {'def_a':'def A val', 'multival':['a','b','c']}}\n"
 operator|+
 literal|"}"
 expr_stmt|;
@@ -2615,6 +2683,8 @@ literal|"    'add-requesthandler': {\n"
 operator|+
 literal|"        name : '/dump100',\n"
 operator|+
+literal|"       registerPath :'/,/v2',"
+operator|+
 literal|"        class : 'org.apache.solr.handler.DumpRequestHandler',"
 operator|+
 literal|"        suggester: [{name: s1,lookupImpl: FuzzyLookupFactory, dictionaryImpl : DocumentDictionaryFactory},"
@@ -2686,14 +2756,19 @@ argument_list|(
 literal|"initArgs"
 argument_list|)
 decl_stmt|;
-name|assertEquals
+name|assertNotNull
 argument_list|(
-literal|2
-argument_list|,
+name|initArgs
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
 name|initArgs
 operator|.
 name|size
 argument_list|()
+operator|>=
+literal|2
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2706,7 +2781,7 @@ name|initArgs
 operator|.
 name|get
 argument_list|(
-literal|0
+literal|2
 argument_list|)
 operator|)
 operator|.
@@ -2751,7 +2826,9 @@ operator|.
 name|getName
 argument_list|()
 operator|+
-literal|"' "
+literal|"', "
+operator|+
+literal|"    registerPath :'/,/v2'"
 operator|+
 literal|", 'startup' : 'lazy'}\n"
 operator|+
@@ -3174,14 +3251,9 @@ argument_list|)
 expr_stmt|;
 continue|continue;
 block|}
-if|if
-condition|(
-name|Objects
-operator|.
-name|equals
-argument_list|(
-name|expected
-argument_list|,
+name|Object
+name|actual
+init|=
 name|Utils
 operator|.
 name|getObjectByPath
@@ -3192,6 +3264,58 @@ literal|false
 argument_list|,
 name|jsonPath
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|expected
+operator|instanceof
+name|ValidatingJsonMap
+operator|.
+name|PredicateWithErrMsg
+condition|)
+block|{
+name|ValidatingJsonMap
+operator|.
+name|PredicateWithErrMsg
+name|predicate
+init|=
+operator|(
+name|ValidatingJsonMap
+operator|.
+name|PredicateWithErrMsg
+operator|)
+name|expected
+decl_stmt|;
+if|if
+condition|(
+name|predicate
+operator|.
+name|test
+argument_list|(
+name|actual
+argument_list|)
+operator|==
+literal|null
+condition|)
+block|{
+name|success
+operator|=
+literal|true
+expr_stmt|;
+break|break;
+block|}
+block|}
+else|else
+block|{
+if|if
+condition|(
+name|Objects
+operator|.
+name|equals
+argument_list|(
+name|expected
+argument_list|,
+name|actual
 argument_list|)
 condition|)
 block|{
@@ -3200,6 +3324,7 @@ operator|=
 literal|true
 expr_stmt|;
 break|break;
+block|}
 block|}
 name|Thread
 operator|.
@@ -3346,7 +3471,7 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'create-requesthandler' : { 'name' : '/d', 'class': 'org.apache.solr.handler.DumpRequestHandler' }\n"
+literal|"'create-requesthandler' : { 'name' : '/d', registerPath :'/,/v2' , 'class': 'org.apache.solr.handler.DumpRequestHandler' }\n"
 operator|+
 literal|"}"
 expr_stmt|;
@@ -3447,7 +3572,7 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'create-requesthandler' : { 'name' : '/dump1', 'class': 'org.apache.solr.handler.DumpRequestHandler', 'useParams':'x' }\n"
+literal|"'create-requesthandler' : { 'name' : '/dump1', registerPath :'/,/v2' , 'class': 'org.apache.solr.handler.DumpRequestHandler', 'useParams':'x' }\n"
 operator|+
 literal|"}"
 expr_stmt|;
@@ -3583,7 +3708,7 @@ name|harness
 argument_list|,
 literal|null
 argument_list|,
-literal|"/dump?wt=json&useParams=y"
+literal|"/dump1?wt=json&useParams=y"
 argument_list|,
 literal|null
 argument_list|,
@@ -3905,6 +4030,222 @@ argument_list|,
 literal|null
 argument_list|,
 literal|10
+argument_list|)
+expr_stmt|;
+name|payload
+operator|=
+literal|"{\n"
+operator|+
+literal|"  'create-requesthandler': {\n"
+operator|+
+literal|"    'name': 'aRequestHandler',\n"
+operator|+
+literal|"    'registerPath': '/v2',\n"
+operator|+
+literal|"    'class': 'org.apache.solr.handler.DumpRequestHandler',\n"
+operator|+
+literal|"    'spec': {\n"
+operator|+
+literal|"      'methods': [\n"
+operator|+
+literal|"        'GET',\n"
+operator|+
+literal|"        'POST'\n"
+operator|+
+literal|"      ],\n"
+operator|+
+literal|"      'url': {\n"
+operator|+
+literal|"        'paths': [\n"
+operator|+
+literal|"          '/something/{part1}/fixed/{part2}'\n"
+operator|+
+literal|"        ]\n"
+operator|+
+literal|"      }\n"
+operator|+
+literal|"    }\n"
+operator|+
+literal|"  }\n"
+operator|+
+literal|"}"
+expr_stmt|;
+name|TestSolrConfigHandler
+operator|.
+name|runConfigCommand
+argument_list|(
+name|harness
+argument_list|,
+literal|"/config?wt=json"
+argument_list|,
+name|payload
+argument_list|)
+expr_stmt|;
+name|TestSolrConfigHandler
+operator|.
+name|testForResponseElement
+argument_list|(
+name|harness
+argument_list|,
+literal|null
+argument_list|,
+literal|"/config/overlay?wt=json"
+argument_list|,
+literal|null
+argument_list|,
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"overlay"
+argument_list|,
+literal|"requestHandler"
+argument_list|,
+literal|"aRequestHandler"
+argument_list|,
+literal|"class"
+argument_list|)
+argument_list|,
+literal|"org.apache.solr.handler.DumpRequestHandler"
+argument_list|,
+literal|10
+argument_list|)
+expr_stmt|;
+name|RESTfulServerProvider
+name|oldProvider
+init|=
+name|restTestHarness
+operator|.
+name|getServerProvider
+argument_list|()
+decl_stmt|;
+name|restTestHarness
+operator|.
+name|setServerProvider
+argument_list|(
+parameter_list|()
+lambda|->
+name|jetty
+operator|.
+name|getBaseUrl
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|"/v2/cores/"
+operator|+
+name|DEFAULT_TEST_CORENAME
+argument_list|)
+expr_stmt|;
+name|Map
+name|rsp
+init|=
+name|TestSolrConfigHandler
+operator|.
+name|testForResponseElement
+argument_list|(
+name|harness
+argument_list|,
+literal|null
+argument_list|,
+literal|"/something/part1_Value/fixed/part2_Value?urlTemplateValues=part1&urlTemplateValues=part2"
+argument_list|,
+literal|null
+argument_list|,
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"urlTemplateValues"
+argument_list|)
+argument_list|,
+operator|new
+name|ValidatingJsonMap
+operator|.
+name|PredicateWithErrMsg
+argument_list|()
+block|{
+annotation|@
+name|Override
+specifier|public
+name|String
+name|test
+parameter_list|(
+name|Object
+name|o
+parameter_list|)
+block|{
+if|if
+condition|(
+name|o
+operator|instanceof
+name|Map
+condition|)
+block|{
+name|Map
+name|m
+init|=
+operator|(
+name|Map
+operator|)
+name|o
+decl_stmt|;
+if|if
+condition|(
+literal|"part1_Value"
+operator|.
+name|equals
+argument_list|(
+name|m
+operator|.
+name|get
+argument_list|(
+literal|"part1"
+argument_list|)
+argument_list|)
+operator|&&
+literal|"part2_Value"
+operator|.
+name|equals
+argument_list|(
+name|m
+operator|.
+name|get
+argument_list|(
+literal|"part2"
+argument_list|)
+argument_list|)
+condition|)
+return|return
+literal|null
+return|;
+block|}
+return|return
+literal|"no match"
+return|;
+block|}
+annotation|@
+name|Override
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+literal|"{part1:part1_Value, part2 : part2_Value]"
+return|;
+block|}
+block|}
+argument_list|,
+literal|10
+argument_list|)
+decl_stmt|;
+name|restTestHarness
+operator|.
+name|setServerProvider
+argument_list|(
+name|oldProvider
 argument_list|)
 expr_stmt|;
 block|}

@@ -417,7 +417,7 @@ operator|.
 name|count
 argument_list|()
 operator|>
-literal|50
+literal|20
 argument_list|)
 expr_stmt|;
 comment|// check basic index meters

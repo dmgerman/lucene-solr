@@ -307,6 +307,11 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"This test cannot currently work because it uses a local filesystem output path for the indexes and Solr requires hdfs output paths"
+argument_list|)
 DECL|class|MorphlineReducerTest
 specifier|public
 class|class
@@ -527,11 +532,6 @@ block|}
 block|}
 annotation|@
 name|Test
-annotation|@
-name|Ignore
-argument_list|(
-literal|"This test cannot currently work because it uses a local filesystem output path for the indexes and Solr requires hdfs output paths"
-argument_list|)
 DECL|method|testReducer
 specifier|public
 name|void

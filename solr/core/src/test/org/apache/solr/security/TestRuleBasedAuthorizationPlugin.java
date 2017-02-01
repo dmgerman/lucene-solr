@@ -2145,7 +2145,7 @@ argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|plugin
-name|RuleBasedAuthorizationPlugin
+name|ConfigEditablePlugin
 name|plugin
 init|=
 operator|new

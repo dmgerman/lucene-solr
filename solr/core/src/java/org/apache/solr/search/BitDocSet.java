@@ -1006,7 +1006,7 @@ block|}
 annotation|@
 name|Override
 DECL|method|clone
-specifier|protected
+specifier|public
 name|BitDocSet
 name|clone
 parameter_list|()

@@ -731,7 +731,7 @@ if|if
 condition|(
 name|distancePredicate
 operator|.
-name|apply
+name|test
 argument_list|(
 name|lat
 argument_list|,

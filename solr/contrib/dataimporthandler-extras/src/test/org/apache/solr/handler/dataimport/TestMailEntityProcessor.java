@@ -153,6 +153,11 @@ comment|/**  * Test for MailEntityProcessor. The tests are marked as ignored bec
 end_comment
 
 begin_class
+annotation|@
+name|Ignore
+argument_list|(
+literal|"Needs a Mock Mail Server to work"
+argument_list|)
 DECL|class|TestMailEntityProcessor
 specifier|public
 class|class
