@@ -1732,6 +1732,13 @@ block|}
 block|}
 annotation|@
 name|Test
+annotation|@
+name|AwaitsFix
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/HADOOP-14044"
+argument_list|)
 DECL|method|testDelegationTokenCancelFail
 specifier|public
 name|void
