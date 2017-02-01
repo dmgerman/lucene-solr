@@ -3892,14 +3892,14 @@ specifier|static
 name|SolrConfig
 name|solrConfig
 decl_stmt|;
-comment|/**    * Harness initialized by initTestHarness.    *    *<p>    * For use in test methods as needed.    *</p>    */
+comment|/**    * Harness initialized by create[Default]Core[Container].    *    *<p>    * For use in test methods as needed.    *</p>    */
 DECL|field|h
 specifier|protected
 specifier|static
 name|TestHarness
 name|h
 decl_stmt|;
-comment|/**    * LocalRequestFactory initialized by initTestHarness using sensible    * defaults.    *    *<p>    * For use in test methods as needed.    *</p>    */
+comment|/**    * LocalRequestFactory initialized by create[Default]Core[Container] using sensible    * defaults.    *    *<p>    * For use in test methods as needed.    *</p>    */
 DECL|field|lrf
 specifier|protected
 specifier|static
