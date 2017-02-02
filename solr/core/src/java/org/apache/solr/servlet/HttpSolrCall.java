@@ -2621,6 +2621,10 @@ name|Exception
 block|{
 if|if
 condition|(
+name|core
+operator|==
+literal|null
+operator|&&
 name|SYSTEM_COLL
 operator|.
 name|equals
