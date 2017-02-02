@@ -465,7 +465,7 @@ specifier|final
 name|int
 name|DEFAULT_TIMEOUT
 init|=
-literal|30
+literal|60
 decl_stmt|;
 DECL|class|Config
 specifier|private

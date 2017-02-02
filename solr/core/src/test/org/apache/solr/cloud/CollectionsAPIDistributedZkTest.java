@@ -2475,7 +2475,7 @@ name|MILLISECONDS
 operator|.
 name|sleep
 argument_list|(
-literal|200
+literal|1000
 argument_list|)
 expr_stmt|;
 comment|// in both cases, the collection should have default to the core name
