@@ -2484,7 +2484,9 @@ condition|)
 return|return;
 comment|//core is not available locally or remotely
 name|autoCreateSystemColl
-argument_list|()
+argument_list|(
+name|corename
+argument_list|)
 expr_stmt|;
 if|if
 condition|(
@@ -2610,7 +2612,10 @@ DECL|method|autoCreateSystemColl
 specifier|protected
 name|void
 name|autoCreateSystemColl
-parameter_list|()
+parameter_list|(
+name|String
+name|corename
+parameter_list|)
 throws|throws
 name|Exception
 block|{
