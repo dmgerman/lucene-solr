@@ -404,7 +404,7 @@ name|HIGHLIGHT
 operator|+
 literal|".encoder"
 decl_stmt|;
-comment|// OH, (UH, PH limited)
+comment|// all
 DECL|field|MERGE_CONTIGUOUS_FRAGMENTS
 specifier|public
 specifier|static

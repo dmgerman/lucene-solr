@@ -3290,9 +3290,7 @@ name|HighlightParams
 operator|.
 name|MAX_CHARS
 argument_list|,
-name|Highlighter
-operator|.
-name|DEFAULT_MAX_CHARS_TO_ANALYZE
+name|DEFAULT_MAX_CHARS
 argument_list|)
 decl_stmt|;
 if|if

@@ -167,6 +167,14 @@ specifier|abstract
 class|class
 name|SolrHighlighter
 block|{
+DECL|field|DEFAULT_MAX_CHARS
+specifier|public
+specifier|static
+name|int
+name|DEFAULT_MAX_CHARS
+init|=
+literal|51200
+decl_stmt|;
 DECL|field|DEFAULT_PHRASE_LIMIT
 specifier|public
 specifier|static
