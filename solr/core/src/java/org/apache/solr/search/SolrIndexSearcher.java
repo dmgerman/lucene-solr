@@ -6587,14 +6587,21 @@ name|IOException
 block|{
 comment|// Going through the filter cache will provide thread safety here if we only had getLiveDocs,
 comment|// but the addition of setLiveDocs means we needed to add volatile to "liveDocs".
+name|BitDocSet
+name|docs
+init|=
+name|liveDocs
+decl_stmt|;
 if|if
 condition|(
-name|liveDocs
+name|docs
 operator|==
 literal|null
 condition|)
 block|{
 name|liveDocs
+operator|=
+name|docs
 operator|=
 name|getDocSetBits
 argument_list|(
@@ -6603,7 +6610,7 @@ argument_list|)
 expr_stmt|;
 block|}
 assert|assert
-name|liveDocs
+name|docs
 operator|.
 name|size
 argument_list|()
@@ -6612,7 +6619,7 @@ name|numDocs
 argument_list|()
 assert|;
 return|return
-name|liveDocs
+name|docs
 return|;
 block|}
 comment|/** @lucene.internal */
