@@ -207,7 +207,7 @@ name|setProperty
 argument_list|(
 literal|"solr.hdfs.blockcache.blocksperbank"
 argument_list|,
-literal|"2048"
+literal|"1024"
 argument_list|)
 expr_stmt|;
 name|ZkConfigManager
