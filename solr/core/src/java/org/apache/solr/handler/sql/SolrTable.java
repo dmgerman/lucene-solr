@@ -716,6 +716,17 @@ name|query
 expr_stmt|;
 block|}
 block|}
+name|System
+operator|.
+name|out
+operator|.
+name|println
+argument_list|(
+literal|"####### Limit:"
+operator|+
+name|limit
+argument_list|)
+expr_stmt|;
 name|TupleStream
 name|tupleStream
 decl_stmt|;
@@ -2817,8 +2828,8 @@ operator|=
 name|parallelStream
 expr_stmt|;
 block|}
-comment|//TODO: This should be done on the workers, but it won't serialize because it relies on Presto classes.
-comment|// Once we make this a Expressionable the problem will be solved.
+comment|//TODO: Currently we are not pushing down the having clause.
+comment|//      We need to push down the having clause to ensure that LIMIT does not cut off records prior to the having filter.
 if|if
 condition|(
 name|orders
@@ -2833,22 +2844,6 @@ operator|>
 literal|0
 condition|)
 block|{
-name|int
-name|lim
-init|=
-name|limit
-operator|==
-literal|null
-condition|?
-literal|100
-else|:
-name|Integer
-operator|.
-name|parseInt
-argument_list|(
-name|limit
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
 operator|!
@@ -2862,6 +2857,24 @@ name|orders
 argument_list|)
 condition|)
 block|{
+name|int
+name|lim
+init|=
+operator|(
+name|limit
+operator|==
+literal|null
+operator|)
+condition|?
+literal|100
+else|:
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|limit
+argument_list|)
+decl_stmt|;
 name|StreamComparator
 name|comp
 init|=
@@ -2892,10 +2905,9 @@ comment|// Sort is the same as the same as the underlying stream
 comment|// Only need to limit the result, not Rank the result
 if|if
 condition|(
-name|lim
-operator|>
-operator|-
-literal|1
+name|limit
+operator|!=
+literal|null
 condition|)
 block|{
 name|tupleStream
@@ -2905,10 +2917,42 @@ name|LimitStream
 argument_list|(
 name|tupleStream
 argument_list|,
-name|lim
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|limit
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+block|}
+block|}
+else|else
+block|{
+comment|//No order by, check for limit
+if|if
+condition|(
+name|limit
+operator|!=
+literal|null
+condition|)
+block|{
+name|tupleStream
+operator|=
+operator|new
+name|LimitStream
+argument_list|(
+name|tupleStream
+argument_list|,
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+name|limit
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 return|return
