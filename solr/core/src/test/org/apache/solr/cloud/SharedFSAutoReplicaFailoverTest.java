@@ -1865,7 +1865,7 @@ argument_list|()
 argument_list|,
 name|collection1
 argument_list|,
-literal|60000
+literal|90000
 argument_list|)
 argument_list|)
 expr_stmt|;
