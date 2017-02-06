@@ -756,7 +756,7 @@ index|[]
 name|maxPackedValue
 parameter_list|)
 function_decl|;
-comment|/** Notifies the caller that this many documents (from one block) are about      *  to be visited */
+comment|/** Notifies the caller that this many documents are about to be visited */
 DECL|method|grow
 specifier|default
 name|void
