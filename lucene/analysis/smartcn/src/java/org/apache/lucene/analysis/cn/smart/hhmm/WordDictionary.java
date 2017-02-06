@@ -650,11 +650,6 @@ argument_list|(
 name|wordItem_frequencyTable
 argument_list|)
 expr_stmt|;
-name|output
-operator|.
-name|close
-argument_list|()
-expr_stmt|;
 comment|// log.info("serialize core dict.");
 block|}
 catch|catch
