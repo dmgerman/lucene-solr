@@ -73,7 +73,7 @@ operator|.
 name|Category
 name|category
 decl_stmt|;
-comment|/**    * Creates a new instance of {@link SolrMetricInfo}.    *    * @param category the category of the metric (e.g. `QUERYHANDLERS`)    * @param scope    the scope of the metric (e.g. `/admin/ping`)    * @param name     the name of the metric (e.g. `Requests`)    */
+comment|/**    * Creates a new instance of {@link SolrMetricInfo}.    *    * @param category the category of the metric (e.g. `QUERY`)    * @param scope    the scope of the metric (e.g. `/admin/ping`)    * @param name     the name of the metric (e.g. `Requests`)    */
 DECL|method|SolrMetricInfo
 specifier|public
 name|SolrMetricInfo
@@ -240,7 +240,7 @@ name|name
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the metric name defined by this object.    * For example, if the name is `Requests`, scope is `/admin/ping`,    * and category is `QUERYHANDLERS`, then the metric name is    * `QUERYHANDLERS./admin/ping.Requests`.    *    * @return the metric name defined by this object    */
+comment|/**    * Returns the metric name defined by this object.    * For example, if the name is `Requests`, scope is `/admin/ping`,    * and category is `QUERY`, then the metric name is    * `QUERY./admin/ping.Requests`.    *    * @return the metric name defined by this object    */
 DECL|method|getMetricName
 specifier|public
 name|String
