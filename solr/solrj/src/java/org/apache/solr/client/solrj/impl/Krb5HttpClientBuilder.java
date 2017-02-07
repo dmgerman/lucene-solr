@@ -772,6 +772,24 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+else|else
+block|{
+name|logger
+operator|.
+name|warn
+argument_list|(
+literal|"{} is configured without specifying system property '{}'"
+argument_list|,
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|LOGIN_CONFIG_PROP
+argument_list|)
+expr_stmt|;
+block|}
 return|return
 name|builder
 return|;
