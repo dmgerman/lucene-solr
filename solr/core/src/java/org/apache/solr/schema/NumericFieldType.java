@@ -155,38 +155,18 @@ name|NumericFieldType
 extends|extends
 name|PrimitiveFieldType
 block|{
-DECL|enum|NumberType
-specifier|public
-specifier|static
-enum|enum
-name|NumberType
-block|{
-DECL|enum constant|INTEGER
-name|INTEGER
-block|,
-DECL|enum constant|LONG
-name|LONG
-block|,
-DECL|enum constant|FLOAT
-name|FLOAT
-block|,
-DECL|enum constant|DOUBLE
-name|DOUBLE
-block|,
-DECL|enum constant|DATE
-name|DATE
-block|}
 DECL|field|type
 specifier|protected
 name|NumberType
 name|type
 decl_stmt|;
 comment|/**    * @return the type of this field    */
-DECL|method|getType
-specifier|final
+annotation|@
+name|Override
+DECL|method|getNumberType
 specifier|public
 name|NumberType
-name|getType
+name|getNumberType
 parameter_list|()
 block|{
 return|return
@@ -357,7 +337,7 @@ argument_list|()
 assert|;
 switch|switch
 condition|(
-name|getType
+name|getNumberType
 argument_list|()
 condition|)
 block|{
@@ -594,7 +574,7 @@ literal|null
 condition|?
 literal|null
 else|:
-name|getType
+name|getNumberType
 argument_list|()
 operator|==
 name|NumberType
@@ -624,7 +604,7 @@ literal|null
 condition|?
 literal|null
 else|:
-name|getType
+name|getNumberType
 argument_list|()
 operator|==
 name|NumberType
@@ -654,7 +634,7 @@ literal|null
 condition|?
 literal|null
 else|:
-name|getType
+name|getNumberType
 argument_list|()
 operator|==
 name|NumberType
@@ -693,7 +673,7 @@ literal|null
 condition|?
 literal|null
 else|:
-name|getType
+name|getNumberType
 argument_list|()
 operator|==
 name|NumberType
@@ -726,7 +706,7 @@ decl_stmt|;
 name|long
 name|negativeInfinityBits
 init|=
-name|getType
+name|getNumberType
 argument_list|()
 operator|==
 name|NumberType
@@ -740,7 +720,7 @@ decl_stmt|;
 name|long
 name|positiveInfinityBits
 init|=
-name|getType
+name|getNumberType
 argument_list|()
 operator|==
 name|NumberType
@@ -754,7 +734,7 @@ decl_stmt|;
 name|long
 name|minusZeroBits
 init|=
-name|getType
+name|getNumberType
 argument_list|()
 operator|==
 name|NumberType
@@ -768,7 +748,7 @@ decl_stmt|;
 name|long
 name|zeroBits
 init|=
-name|getType
+name|getNumberType
 argument_list|()
 operator|==
 name|NumberType

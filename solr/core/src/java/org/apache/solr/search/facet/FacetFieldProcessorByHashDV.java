@@ -1088,7 +1088,7 @@ operator|.
 name|getType
 argument_list|()
 operator|.
-name|getNumericType
+name|getNumberType
 argument_list|()
 operator|!=
 literal|null

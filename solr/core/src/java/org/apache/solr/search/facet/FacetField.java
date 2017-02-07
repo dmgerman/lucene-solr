@@ -44,20 +44,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|legacy
-operator|.
-name|LegacyNumericType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|common
@@ -77,6 +63,20 @@ operator|.
 name|schema
 operator|.
 name|FieldType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
+name|NumberType
 import|;
 end_import
 
@@ -396,12 +396,12 @@ operator|.
 name|multiValuedFieldCache
 argument_list|()
 decl_stmt|;
-name|LegacyNumericType
+name|NumberType
 name|ntype
 init|=
 name|ft
 operator|.
-name|getNumericType
+name|getNumberType
 argument_list|()
 decl_stmt|;
 comment|// ensure we can support the requested options for numeric faceting:

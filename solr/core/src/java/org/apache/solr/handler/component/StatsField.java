@@ -150,20 +150,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|legacy
-operator|.
-name|LegacyNumericType
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
 name|LeafReaderContext
@@ -414,6 +400,20 @@ name|solr
 operator|.
 name|schema
 operator|.
+name|NumberType
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|schema
+operator|.
 name|SchemaField
 import|;
 end_import
@@ -558,7 +558,7 @@ name|common
 operator|.
 name|hash
 operator|.
-name|Hashing
+name|HashFunction
 import|;
 end_import
 
@@ -572,7 +572,7 @@ name|common
 operator|.
 name|hash
 operator|.
-name|HashFunction
+name|Hashing
 import|;
 end_import
 
@@ -3015,7 +3015,7 @@ literal|null
 return|;
 block|}
 specifier|final
-name|LegacyNumericType
+name|NumberType
 name|hashableNumType
 init|=
 name|getHashableNumericType
@@ -3038,7 +3038,7 @@ decl_stmt|;
 comment|// with decent hash, this is plenty for all valid long hashes
 if|if
 condition|(
-name|LegacyNumericType
+name|NumberType
 operator|.
 name|FLOAT
 operator|.
@@ -3047,9 +3047,9 @@ argument_list|(
 name|hashableNumType
 argument_list|)
 operator|||
-name|LegacyNumericType
+name|NumberType
 operator|.
-name|INT
+name|INTEGER
 operator|.
 name|equals
 argument_list|(
@@ -3339,7 +3339,8 @@ operator|==
 name|field
 operator|||
 operator|!
-name|LegacyNumericType
+operator|(
+name|NumberType
 operator|.
 name|LONG
 operator|.
@@ -3350,9 +3351,25 @@ operator|.
 name|getType
 argument_list|()
 operator|.
-name|getNumericType
+name|getNumberType
 argument_list|()
 argument_list|)
+operator|||
+name|NumberType
+operator|.
+name|DATE
+operator|.
+name|equals
+argument_list|(
+name|field
+operator|.
+name|getType
+argument_list|()
+operator|.
+name|getNumberType
+argument_list|()
+argument_list|)
+operator|)
 condition|)
 block|{
 throw|throw
@@ -3449,11 +3466,11 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/**    * Returns the effective {@link LegacyNumericType} for the field for the purposes of hash values.    * ie: If the field has an explict LegacyNumericType that is returned; If the field has no explicit    * LegacyNumericType then {@link LegacyNumericType#LONG} is returned;  If field is null, then    * {@link LegacyNumericType#FLOAT} is assumed for ValueSource.    */
+comment|/**    * Returns the effective {@link NumberType} for the field for the purposes of hash values.    * ie: If the field has an explict NumberType that is returned; If the field has no explicit    * NumberType then {@link NumberType#LONG} is returned;  If field is null, then    * {@link NumberType#FLOAT} is assumed for ValueSource.    */
 DECL|method|getHashableNumericType
 specifier|private
 specifier|static
-name|LegacyNumericType
+name|NumberType
 name|getHashableNumericType
 parameter_list|(
 name|SchemaField
@@ -3468,13 +3485,13 @@ name|field
 condition|)
 block|{
 return|return
-name|LegacyNumericType
+name|NumberType
 operator|.
 name|FLOAT
 return|;
 block|}
 specifier|final
-name|LegacyNumericType
+name|NumberType
 name|result
 init|=
 name|field
@@ -3482,7 +3499,7 @@ operator|.
 name|getType
 argument_list|()
 operator|.
-name|getNumericType
+name|getNumberType
 argument_list|()
 decl_stmt|;
 return|return
@@ -3490,7 +3507,7 @@ literal|null
 operator|==
 name|result
 condition|?
-name|LegacyNumericType
+name|NumberType
 operator|.
 name|LONG
 else|:

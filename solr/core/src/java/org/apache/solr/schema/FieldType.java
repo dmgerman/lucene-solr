@@ -2498,11 +2498,24 @@ return|return
 name|similarityFactory
 return|;
 block|}
-comment|/** Return the numeric type of this field, or null if this field is not a    *  numeric field. */
+comment|/** Return the numeric type of this field, or null if this field is not a    *  numeric field.     *  @deprecated Please use {@link FieldType#getNumberType()} instead    */
+annotation|@
+name|Deprecated
 DECL|method|getNumericType
 specifier|public
 name|LegacyNumericType
 name|getNumericType
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+comment|/**    * Return the numeric type of this field, or null if this field is not a    *  numeric field.     */
+DECL|method|getNumberType
+specifier|public
+name|NumberType
+name|getNumberType
 parameter_list|()
 block|{
 return|return

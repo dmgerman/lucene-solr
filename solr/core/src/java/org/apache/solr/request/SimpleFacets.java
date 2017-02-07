@@ -3237,7 +3237,7 @@ if|if
 condition|(
 name|ft
 operator|.
-name|getNumericType
+name|getNumberType
 argument_list|()
 operator|!=
 literal|null
@@ -4066,7 +4066,7 @@ if|if
 condition|(
 name|type
 operator|.
-name|getNumericType
+name|getNumberType
 argument_list|()
 operator|!=
 literal|null
@@ -4108,7 +4108,7 @@ name|FC
 operator|&&
 name|type
 operator|.
-name|getNumericType
+name|getNumberType
 argument_list|()
 operator|!=
 literal|null
@@ -4636,7 +4636,7 @@ operator|.
 name|getType
 argument_list|()
 operator|.
-name|getNumericType
+name|getNumberType
 argument_list|()
 operator|!=
 literal|null

@@ -258,7 +258,7 @@ name|solr
 operator|.
 name|schema
 operator|.
-name|SchemaField
+name|NumberType
 import|;
 end_import
 
@@ -272,7 +272,7 @@ name|solr
 operator|.
 name|schema
 operator|.
-name|TrieField
+name|SchemaField
 import|;
 end_import
 
@@ -524,19 +524,12 @@ operator|.
 name|sortValues
 expr_stmt|;
 comment|// ?
-name|TrieField
-operator|.
 name|NumberType
 name|type
 init|=
-operator|(
-operator|(
-name|TrieField
-operator|)
 name|fieldType
-operator|)
 operator|.
-name|getType
+name|getNumberType
 argument_list|()
 decl_stmt|;
 specifier|final

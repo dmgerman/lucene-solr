@@ -749,7 +749,7 @@ if|if
 condition|(
 name|fieldType
 operator|.
-name|getNumericType
+name|getNumberType
 argument_list|()
 operator|!=
 literal|null
@@ -923,7 +923,7 @@ if|if
 condition|(
 name|fieldType
 operator|.
-name|getNumericType
+name|getNumberType
 argument_list|()
 operator|!=
 literal|null

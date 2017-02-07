@@ -1548,6 +1548,8 @@ block|}
 comment|/**    * {@inheritDoc}    */
 annotation|@
 name|Override
+annotation|@
+name|Deprecated
 DECL|method|getNumericType
 specifier|public
 name|LegacyNumericType
@@ -1558,6 +1560,21 @@ return|return
 name|LegacyNumericType
 operator|.
 name|INT
+return|;
+block|}
+comment|/**    * {@inheritDoc}    */
+annotation|@
+name|Override
+DECL|method|getNumberType
+specifier|public
+name|NumberType
+name|getNumberType
+parameter_list|()
+block|{
+return|return
+name|NumberType
+operator|.
+name|INTEGER
 return|;
 block|}
 comment|/**    * {@inheritDoc}    */
