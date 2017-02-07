@@ -1342,10 +1342,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -1762,10 +1760,8 @@ argument_list|(
 literal|"outOfOrderDeleteUpdatesIndividualReplicaTest: This test passed fine..."
 argument_list|)
 expr_stmt|;
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -1779,10 +1775,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -2667,10 +2661,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -3413,10 +3405,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -3905,10 +3895,8 @@ argument_list|(
 literal|"outOfOrderUpdatesIndividualReplicaTest: This test passed fine..."
 argument_list|)
 expr_stmt|;
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -3923,10 +3911,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -4343,10 +4329,8 @@ argument_list|(
 literal|"outOfOrderDeleteUpdatesIndividualReplicaTest: This test passed fine..."
 argument_list|)
 expr_stmt|;
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -4361,10 +4345,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -5024,10 +5006,8 @@ argument_list|(
 literal|"reorderedDBQsWithInPlaceUpdatesShouldNotThrowReplicaInLIRTest: This test passed fine..."
 argument_list|)
 expr_stmt|;
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -5041,10 +5021,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -5470,10 +5448,8 @@ comment|// Try another round of these updates, this time with a delete request a
 comment|// This is to ensure that the fetch missing update from leader doesn't bomb out if the
 comment|// document has been deleted on the leader later on
 block|{
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
@@ -7012,10 +6988,8 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|del
-argument_list|(
-literal|"*:*"
-argument_list|)
+name|clearIndex
+argument_list|()
 expr_stmt|;
 name|commit
 argument_list|()
