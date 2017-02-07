@@ -5533,30 +5533,7 @@ name|prevVersion
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// Use synchronous=true so that a new connection is used, instead
-comment|// of the update being streamed through an existing streaming client.
-comment|// When using a streaming client, the previous update
-comment|// and the current in-place update (that depends on the previous update), if reordered
-comment|// in the stream, can result in the current update being bottled up behind the previous
-comment|// update in the stream and can lead to degraded performance.
-name|cmdDistrib
-operator|.
-name|distribAdd
-argument_list|(
-name|cmd
-argument_list|,
-name|nodes
-argument_list|,
-name|params
-argument_list|,
-literal|true
-argument_list|,
-name|replicationTracker
-argument_list|)
-expr_stmt|;
 block|}
-else|else
-block|{
 name|cmdDistrib
 operator|.
 name|distribAdd
@@ -5572,7 +5549,6 @@ argument_list|,
 name|replicationTracker
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 comment|// TODO: what to do when no idField?
 if|if
