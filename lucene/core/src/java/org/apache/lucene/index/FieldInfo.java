@@ -997,7 +997,9 @@ return|return
 name|pointNumBytes
 return|;
 block|}
+comment|/** Record that this field is indexed with docvalues, with the specified type */
 DECL|method|setDocValuesType
+specifier|public
 name|void
 name|setDocValuesType
 parameter_list|(
