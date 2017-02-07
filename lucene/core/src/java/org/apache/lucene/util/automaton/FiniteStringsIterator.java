@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|BitSet
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -74,16 +84,6 @@ name|RamUsageEstimator
 import|;
 end_import
 
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|BitSet
-import|;
-end_import
-
 begin_comment
 comment|/**  * Iterates all accepted strings.  *  *<p>If the {@link Automaton} has cycles then this iterator may throw an {@code  * IllegalArgumentException}, but this is not guaranteed!  *  *<p>Be aware that the iteration order is implementation dependent  * and may change across releases.  *  *<p>If the automaton is not determinized then it's possible this iterator  * will return duplicates.  *  * @lucene.experimental  */
 end_comment
@@ -112,6 +112,13 @@ specifier|private
 specifier|final
 name|Automaton
 name|a
+decl_stmt|;
+comment|/**    * The state where each path should stop or -1 if only accepted states should be final.    */
+DECL|field|endState
+specifier|private
+specifier|final
+name|int
+name|endState
 decl_stmt|;
 comment|/**    * Tracks which states are in the current path, for cycle detection.    */
 DECL|field|pathStates
@@ -150,10 +157,42 @@ name|a
 parameter_list|)
 block|{
 name|this
+argument_list|(
+name|a
+argument_list|,
+literal|0
+argument_list|,
+operator|-
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Constructor.    *    * @param a Automaton to create finite string from.    * @param startState The starting state for each path.    * @param endState The state where each path should stop or -1 if only accepted states should be final.    */
+DECL|method|FiniteStringsIterator
+specifier|public
+name|FiniteStringsIterator
+parameter_list|(
+name|Automaton
+name|a
+parameter_list|,
+name|int
+name|startState
+parameter_list|,
+name|int
+name|endState
+parameter_list|)
+block|{
+name|this
 operator|.
 name|a
 operator|=
 name|a
+expr_stmt|;
+name|this
+operator|.
+name|endState
+operator|=
+name|endState
 expr_stmt|;
 name|this
 operator|.
@@ -237,14 +276,14 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
-comment|// Start iteration with node 0.
+comment|// Start iteration with node startState.
 if|if
 condition|(
 name|a
 operator|.
 name|getNumTransitions
 argument_list|(
-literal|0
+name|startState
 argument_list|)
 operator|>
 literal|0
@@ -254,7 +293,7 @@ name|pathStates
 operator|.
 name|set
 argument_list|(
-literal|0
+name|startState
 argument_list|)
 expr_stmt|;
 name|nodes
@@ -266,14 +305,14 @@ name|resetState
 argument_list|(
 name|a
 argument_list|,
-literal|0
+name|startState
 argument_list|)
 expr_stmt|;
 name|string
 operator|.
 name|append
 argument_list|(
-literal|0
+name|startState
 argument_list|)
 expr_stmt|;
 block|}
@@ -372,6 +411,10 @@ name|to
 argument_list|)
 operator|!=
 literal|0
+operator|&&
+name|to
+operator|!=
+name|endState
 condition|)
 block|{
 comment|// Now recurse: the destination of this transition has outgoing transitions:
@@ -439,6 +482,10 @@ block|}
 elseif|else
 if|if
 condition|(
+name|endState
+operator|==
+name|to
+operator|||
 name|a
 operator|.
 name|isAccept

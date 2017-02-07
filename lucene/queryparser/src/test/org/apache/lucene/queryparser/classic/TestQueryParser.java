@@ -3650,7 +3650,7 @@ name|BooleanClause
 operator|.
 name|Occur
 operator|.
-name|SHOULD
+name|MUST
 argument_list|)
 expr_stmt|;
 name|synonym
@@ -3663,7 +3663,7 @@ name|BooleanClause
 operator|.
 name|Occur
 operator|.
-name|SHOULD
+name|MUST
 argument_list|)
 expr_stmt|;
 name|BooleanQuery
@@ -4136,7 +4136,7 @@ literal|"(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4145,7 +4145,7 @@ literal|"+(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"+Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"+Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4154,7 +4154,7 @@ literal|"-(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"-Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"-Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4163,7 +4163,7 @@ literal|"!(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"-Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"-Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4172,7 +4172,7 @@ literal|"NOT (guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"-Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"-Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4181,7 +4181,7 @@ literal|"(guinea pig)^2"
 argument_list|,
 name|a
 argument_list|,
-literal|"(Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false))^2.0"
+literal|"(Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false))^2.0"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4190,7 +4190,7 @@ literal|"field:(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4199,7 +4199,7 @@ literal|"+small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"+small Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"+small Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4208,7 +4208,7 @@ literal|"-small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"-small Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"-small Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4217,7 +4217,7 @@ literal|"!small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"-small Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"-small Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4226,7 +4226,7 @@ literal|"NOT small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"-small Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"-small Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4235,7 +4235,7 @@ literal|"small* guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"small* Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"small* Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4244,7 +4244,7 @@ literal|"small? guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"small? Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"small? Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4253,7 +4253,7 @@ literal|"\"small\" guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"small Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"small Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4262,7 +4262,7 @@ literal|"guinea pig +running"
 argument_list|,
 name|a
 argument_list|,
-literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) +running"
+literal|"Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false) +running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4271,7 +4271,7 @@ literal|"guinea pig -running"
 argument_list|,
 name|a
 argument_list|,
-literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) -running"
+literal|"Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false) -running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4280,7 +4280,7 @@ literal|"guinea pig !running"
 argument_list|,
 name|a
 argument_list|,
-literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) -running"
+literal|"Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false) -running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4289,7 +4289,7 @@ literal|"guinea pig NOT running"
 argument_list|,
 name|a
 argument_list|,
-literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) -running"
+literal|"Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false) -running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4298,7 +4298,7 @@ literal|"guinea pig running*"
 argument_list|,
 name|a
 argument_list|,
-literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) running*"
+literal|"Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false) running*"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4307,7 +4307,7 @@ literal|"guinea pig running?"
 argument_list|,
 name|a
 argument_list|,
-literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) running?"
+literal|"Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false) running?"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4316,7 +4316,7 @@ literal|"guinea pig \"running\""
 argument_list|,
 name|a
 argument_list|,
-literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false) running"
+literal|"Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false) running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4964,7 +4964,7 @@ name|BooleanClause
 operator|.
 name|Occur
 operator|.
-name|SHOULD
+name|MUST
 argument_list|)
 expr_stmt|;
 name|synonym
@@ -4977,7 +4977,7 @@ name|BooleanClause
 operator|.
 name|Occur
 operator|.
-name|SHOULD
+name|MUST
 argument_list|)
 expr_stmt|;
 name|BooleanQuery
@@ -5030,7 +5030,7 @@ operator|new
 name|MockSynonymAnalyzer
 argument_list|()
 argument_list|,
-literal|"Graph(field:guinea field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"Graph(+field:guinea +field:pig, field:cavy, hasBoolean=true, hasPhrase=false)"
 argument_list|)
 expr_stmt|;
 name|splitOnWhitespace
