@@ -4356,6 +4356,13 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|BadApple
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-10101"
+argument_list|)
 comment|// Insure that when a core is aged out of the transient cache, any uncommitted docs are preserved.
 comment|// Note, this needs FS-based indexes to persist!
 comment|// Cores 2, 3, 6, 7, 8, 9 are transient
