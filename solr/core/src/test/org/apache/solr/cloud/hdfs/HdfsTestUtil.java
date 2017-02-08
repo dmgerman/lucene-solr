@@ -324,6 +324,20 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import
+name|io
+operator|.
+name|netty
+operator|.
+name|util
+operator|.
+name|internal
+operator|.
+name|ThreadLocalRandom
+import|;
+end_import
+
 begin_class
 DECL|class|HdfsTestUtil
 specifier|public
@@ -516,6 +530,14 @@ condition|)
 name|haTesting
 operator|=
 literal|false
+expr_stmt|;
+comment|// keep netty from using secure random on startup: SOLR-10098
+name|ThreadLocalRandom
+operator|.
+name|setInitialSeedUniquifier
+argument_list|(
+literal|1L
+argument_list|)
 expr_stmt|;
 name|int
 name|dataNodes
