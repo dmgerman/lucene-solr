@@ -681,10 +681,6 @@ name|super
 argument_list|(
 name|clazz
 argument_list|,
-name|predicate
-operator|::
-name|test
-argument_list|,
 name|Convention
 operator|.
 name|NONE

@@ -103,6 +103,10 @@ argument_list|,
 name|String
 operator|.
 name|class
+argument_list|,
+name|String
+operator|.
+name|class
 argument_list|)
 block|;
 DECL|field|method
