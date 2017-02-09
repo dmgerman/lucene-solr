@@ -385,6 +385,18 @@ name|FACET_CONTAINS
 operator|+
 literal|".ignoreCase"
 decl_stmt|;
+comment|/**    * Only return constraints of a facet field excluding the given string.    */
+DECL|field|FACET_EXCLUDETERMS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|FACET_EXCLUDETERMS
+init|=
+name|FACET
+operator|+
+literal|".excludeTerms"
+decl_stmt|;
 comment|/**    * When faceting by enumerating the terms in a field,    * only use the filterCache for terms with a df&gt;= to this parameter.    */
 DECL|field|FACET_ENUM_CACHE_MINDF
 specifier|public
