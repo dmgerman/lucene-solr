@@ -32,20 +32,6 @@ end_import
 
 begin_import
 import|import static
-name|java
-operator|.
-name|util
-operator|.
-name|concurrent
-operator|.
-name|TimeUnit
-operator|.
-name|SECONDS
-import|;
-end_import
-
-begin_import
-import|import static
 name|org
 operator|.
 name|junit
@@ -53,6 +39,18 @@ operator|.
 name|Assert
 operator|.
 name|assertEquals
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
 import|;
 end_import
 
@@ -214,6 +212,26 @@ name|BeforeClass
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Test auto commit functionality in a way that doesn't suck.  *<p>  * AutoCommitTest is an abomination that is way to brittle in how it   * tries to check that commits happened, and when they happened.  * The goal of this test class is to (ultimately) completely replace all   * of the functionality of that test class using:  *</p>  *<ul>  *<li>A more robust monitor of commit/newSearcher events that records   *       the times of those events in a queue that can be polled.    *       Multiple events in rapid succession are not lost.  *</li>  *<li>Timing checks that are forgiving of slow machines and use   *       knowledge of how slow A-&gt;B was to affect the expectation of   *       how slow B-&gt;C will be  *</li>  *</ul>  */
 end_comment
@@ -228,6 +246,26 @@ name|SoftAutoCommitTest
 extends|extends
 name|AbstractSolrTestCase
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|MethodHandles
+operator|.
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
+argument_list|)
+decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeClass
@@ -321,6 +359,18 @@ argument_list|(
 name|monitor
 argument_list|)
 expr_stmt|;
+comment|// isolate searcher getting ready from this test
+name|monitor
+operator|.
+name|searcher
+operator|.
+name|poll
+argument_list|(
+literal|5000
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Override
@@ -336,17 +386,6 @@ name|super
 operator|.
 name|setUp
 argument_list|()
-expr_stmt|;
-comment|// reset stats
-name|h
-operator|.
-name|getCoreContainer
-argument_list|()
-operator|.
-name|reload
-argument_list|(
-literal|"collection1"
-argument_list|)
 expr_stmt|;
 block|}
 DECL|method|testSoftAndHardCommitMaxTimeMixedAdds
@@ -383,6 +422,22 @@ name|updater
 operator|.
 name|softCommitTracker
 decl_stmt|;
+name|int
+name|startingHardCommits
+init|=
+name|hardTracker
+operator|.
+name|getCommitCount
+argument_list|()
+decl_stmt|;
+name|int
+name|startingSoftCommits
+init|=
+name|softTracker
+operator|.
+name|getCommitCount
+argument_list|()
+decl_stmt|;
 name|softTracker
 operator|.
 name|setTimeUpperBound
@@ -411,6 +466,14 @@ name|setDocsUpperBound
 argument_list|(
 operator|-
 literal|1
+argument_list|)
+expr_stmt|;
+comment|// simplify whats going on by only having soft auto commits trigger new searchers
+name|hardTracker
+operator|.
+name|setOpenSearcher
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// Add a single document
@@ -453,7 +516,7 @@ name|poll
 argument_list|(
 name|softCommitWaitMillis
 operator|*
-literal|3
+literal|500
 argument_list|,
 name|MILLISECONDS
 argument_list|)
@@ -470,6 +533,30 @@ operator|.
 name|assertSaneOffers
 argument_list|()
 expr_stmt|;
+comment|// wait for the hard commit
+name|Long
+name|hard529
+init|=
+name|monitor
+operator|.
+name|hard
+operator|.
+name|poll
+argument_list|(
+name|hardCommitWaitMillis
+operator|*
+literal|5
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+decl_stmt|;
+name|assertNotNull
+argument_list|(
+literal|"hard529 wasn't fast enough"
+argument_list|,
+name|hard529
+argument_list|)
+expr_stmt|;
 comment|// check for the searcher, should have happened right after soft commit
 name|Long
 name|searcher529
@@ -480,9 +567,7 @@ name|searcher
 operator|.
 name|poll
 argument_list|(
-name|softCommitWaitMillis
-operator|*
-literal|3
+literal|5000
 argument_list|,
 name|MILLISECONDS
 argument_list|)
@@ -512,30 +597,6 @@ literal|"subject"
 argument_list|,
 literal|"just for noise/activity"
 argument_list|)
-argument_list|)
-expr_stmt|;
-comment|// wait for the hard commit
-name|Long
-name|hard529
-init|=
-name|monitor
-operator|.
-name|hard
-operator|.
-name|poll
-argument_list|(
-name|hardCommitWaitMillis
-operator|*
-literal|5
-argument_list|,
-name|MILLISECONDS
-argument_list|)
-decl_stmt|;
-name|assertNotNull
-argument_list|(
-literal|"hard529 wasn't fast enough"
-argument_list|,
-name|hard529
 argument_list|)
 expr_stmt|;
 name|monitor
@@ -698,6 +759,8 @@ operator|.
 name|poll
 argument_list|(
 name|hardCommitWaitMillis
+operator|*
+literal|5
 argument_list|,
 name|MILLISECONDS
 argument_list|)
@@ -720,6 +783,8 @@ name|hardTracker
 operator|.
 name|getCommitCount
 argument_list|()
+operator|-
+name|startingHardCommits
 argument_list|)
 expr_stmt|;
 comment|// there may have been a second soft commit for 530,
@@ -755,6 +820,8 @@ name|softTracker
 operator|.
 name|getCommitCount
 argument_list|()
+operator|-
+name|startingSoftCommits
 argument_list|)
 expr_stmt|;
 if|if
@@ -811,6 +878,8 @@ name|softTracker
 operator|.
 name|getCommitCount
 argument_list|()
+operator|-
+name|startingSoftCommits
 argument_list|)
 expr_stmt|;
 block|}
@@ -842,12 +911,22 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// clear commits
 name|monitor
 operator|.
-name|assertSaneOffers
+name|hard
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
-comment|// wait a bit, w/o other action we definitely shouldn't see any
+name|monitor
+operator|.
+name|soft
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+comment|// wait a bit, w/o other action we shouldn't see any
 comment|// new hard/soft commits
 name|assertNull
 argument_list|(
@@ -859,9 +938,9 @@ name|hard
 operator|.
 name|poll
 argument_list|(
-literal|2
+literal|1000
 argument_list|,
-name|SECONDS
+name|MILLISECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -884,6 +963,13 @@ expr_stmt|;
 name|monitor
 operator|.
 name|assertSaneOffers
+argument_list|()
+expr_stmt|;
+name|monitor
+operator|.
+name|searcher
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
 block|}
@@ -921,6 +1007,22 @@ name|updater
 operator|.
 name|softCommitTracker
 decl_stmt|;
+name|int
+name|startingHardCommits
+init|=
+name|hardTracker
+operator|.
+name|getCommitCount
+argument_list|()
+decl_stmt|;
+name|int
+name|startingSoftCommits
+init|=
+name|softTracker
+operator|.
+name|getCommitCount
+argument_list|()
+decl_stmt|;
 name|softTracker
 operator|.
 name|setTimeUpperBound
@@ -949,6 +1051,15 @@ name|setDocsUpperBound
 argument_list|(
 operator|-
 literal|1
+argument_list|)
+expr_stmt|;
+comment|// we don't want to overlap soft and hard opening searchers - this now blocks commits and we
+comment|// are looking for prompt timings
+name|hardTracker
+operator|.
+name|setOpenSearcher
+argument_list|(
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// add a doc and force a commit
@@ -1017,7 +1128,7 @@ name|poll
 argument_list|(
 name|softCommitWaitMillis
 operator|*
-literal|3
+literal|3000
 argument_list|,
 name|MILLISECONDS
 argument_list|)
@@ -1243,6 +1354,18 @@ operator|<=
 name|hard529
 argument_list|)
 expr_stmt|;
+comment|// wait for the last searcher we triggerd with 550
+name|monitor
+operator|.
+name|searcher
+operator|.
+name|poll
+argument_list|(
+literal|5000
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+expr_stmt|;
 comment|// clear commits
 name|monitor
 operator|.
@@ -1258,7 +1381,7 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-comment|// wait a bit, w/o other action we definitely shouldn't see any
+comment|// wait a bit, w/o other action we shouldn't see any
 comment|// new hard/soft commits
 name|assertNull
 argument_list|(
@@ -1270,9 +1393,9 @@ name|hard
 operator|.
 name|poll
 argument_list|(
-literal|2
+literal|1000
 argument_list|,
-name|SECONDS
+name|MILLISECONDS
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1295,6 +1418,13 @@ expr_stmt|;
 name|monitor
 operator|.
 name|assertSaneOffers
+argument_list|()
+expr_stmt|;
+name|monitor
+operator|.
+name|searcher
+operator|.
+name|clear
 argument_list|()
 expr_stmt|;
 block|}
@@ -1362,6 +1492,15 @@ operator|-
 literal|1
 argument_list|)
 expr_stmt|;
+comment|// we don't want to overlap soft and hard opening searchers - this now blocks commits and we
+comment|// are looking for prompt timings
+name|hardTracker
+operator|.
+name|setOpenSearcher
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
 comment|// try to add 5 docs really fast
 name|long
 name|fast5start
@@ -1419,7 +1558,7 @@ name|NANOSECONDS
 operator|.
 name|convert
 argument_list|(
-literal|200
+literal|300
 argument_list|,
 name|TimeUnit
 operator|.
@@ -1484,6 +1623,28 @@ operator|/
 name|hardCommitWaitMillis
 argument_list|)
 decl_stmt|;
+name|expectedSoft
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|1
+argument_list|,
+name|expectedSoft
+argument_list|)
+expr_stmt|;
+name|expectedHard
+operator|=
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|1
+argument_list|,
+name|expectedHard
+argument_list|)
+expr_stmt|;
 comment|// note: counting from 1 for multiplication
 for|for
 control|(
@@ -1500,7 +1661,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// Wait for the soft commit with some fudge
+comment|// Wait for the soft commit with plenty of fudge to survive nasty envs
 name|Long
 name|soft
 init|=
@@ -1517,6 +1678,17 @@ argument_list|,
 name|MILLISECONDS
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|soft
+operator|!=
+literal|null
+operator|||
+name|i
+operator|==
+literal|1
+condition|)
+block|{
 name|assertNotNull
 argument_list|(
 name|i
@@ -1578,6 +1750,27 @@ name|i
 operator|)
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+comment|// we may have guessed wrong and there were fewer commits
+name|assertNull
+argument_list|(
+literal|"Got a soft commit we weren't expecting"
+argument_list|,
+name|monitor
+operator|.
+name|soft
+operator|.
+name|poll
+argument_list|(
+literal|2000
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|// note: counting from 1 for multiplication
 for|for
@@ -1673,6 +1866,87 @@ operator|)
 argument_list|)
 expr_stmt|;
 block|}
+comment|// we are only guessing how many commits we may see, allow one extra of each
+name|monitor
+operator|.
+name|soft
+operator|.
+name|poll
+argument_list|(
+name|softCommitWaitMillis
+operator|+
+literal|200
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+expr_stmt|;
+name|monitor
+operator|.
+name|hard
+operator|.
+name|poll
+argument_list|(
+name|hardCommitWaitMillis
+operator|+
+literal|200
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+expr_stmt|;
+comment|// clear commits
+name|monitor
+operator|.
+name|hard
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+name|monitor
+operator|.
+name|soft
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
+comment|// wait a bit, w/o other action we shouldn't see any
+comment|// new hard/soft commits
+name|assertNull
+argument_list|(
+literal|"Got a hard commit we weren't expecting"
+argument_list|,
+name|monitor
+operator|.
+name|hard
+operator|.
+name|poll
+argument_list|(
+literal|1000
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+literal|"Got a soft commit we weren't expecting"
+argument_list|,
+name|monitor
+operator|.
+name|soft
+operator|.
+name|poll
+argument_list|(
+literal|0
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|monitor
+operator|.
+name|assertSaneOffers
+argument_list|()
+expr_stmt|;
 block|}
 block|}
 end_class
