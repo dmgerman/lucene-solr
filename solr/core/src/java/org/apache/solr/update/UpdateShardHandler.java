@@ -918,10 +918,10 @@ parameter_list|()
 block|{
 try|try
 block|{
-comment|// we interrupt on purpose here, but this executor should not run threads that do disk IO!
+comment|// do not interrupt, do not interrupt
 name|ExecutorUtil
 operator|.
-name|shutdownWithInterruptAndAwaitTermination
+name|shutdownAndAwaitTermination
 argument_list|(
 name|updateExecutor
 argument_list|)
