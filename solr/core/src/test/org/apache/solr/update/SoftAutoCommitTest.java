@@ -1128,7 +1128,7 @@ name|poll
 argument_list|(
 name|softCommitWaitMillis
 operator|*
-literal|3000
+literal|5
 argument_list|,
 name|MILLISECONDS
 argument_list|)
@@ -1198,7 +1198,7 @@ name|poll
 argument_list|(
 name|hardCommitWaitMillis
 operator|*
-literal|3
+literal|5
 argument_list|,
 name|MILLISECONDS
 argument_list|)
@@ -1354,10 +1354,33 @@ operator|<=
 name|hard529
 argument_list|)
 expr_stmt|;
-comment|// wait for the last searcher we triggerd with 550
+comment|// ensure we wait for the last searcher we triggered with 550
 name|monitor
 operator|.
 name|searcher
+operator|.
+name|poll
+argument_list|(
+literal|5000
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+expr_stmt|;
+comment|// ensure we wait for the commits on 550
+name|monitor
+operator|.
+name|hard
+operator|.
+name|poll
+argument_list|(
+literal|5000
+argument_list|,
+name|MILLISECONDS
+argument_list|)
+expr_stmt|;
+name|monitor
+operator|.
+name|soft
 operator|.
 name|poll
 argument_list|(
