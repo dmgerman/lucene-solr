@@ -101,6 +101,7 @@ name|touch
 argument_list|()
 expr_stmt|;
 block|}
+comment|/** The block within the bank.  This has no relationship to the blockId in BlockCacheKey */
 DECL|method|setBlock
 specifier|public
 name|void
@@ -133,6 +134,7 @@ operator|=
 name|bankId
 expr_stmt|;
 block|}
+comment|/** The block within the bank.  This has no relationship to the blockId in BlockCacheKey */
 DECL|method|getBlock
 specifier|public
 name|int

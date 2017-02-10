@@ -563,6 +563,7 @@ name|decrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
+comment|/**    * This is only best-effort... it's possible for false to be returned.    * The blockCacheKey is cloned before it is inserted into the map, so it may be reused by clients if desired.    *    * @param blockCacheKey the key for the block    * @param blockOffset the offset within the block    * @param data source data to write to the block    * @param offset offset within the source data array    * @param length the number of bytes to write.    * @return true if the block was cached/updated    */
 DECL|method|store
 specifier|public
 name|boolean
@@ -655,11 +656,16 @@ name|location
 argument_list|)
 condition|)
 block|{
+comment|// YCS: it looks like when the cache is full (a normal scenario), then two concurrent writes will result in one of them failing
+comment|// because no eviction is done first.  The code seems to rely on leaving just a single block empty.
+comment|// TODO: simplest fix would be to leave more than one block empty
 return|return
 literal|false
 return|;
 block|}
 block|}
+comment|// YCS: I think this means that the block existed, but it is in the process of being
+comment|// concurrently removed.  This flag is set in the releaseLocation eviction listener.
 if|if
 condition|(
 name|location
@@ -747,6 +753,7 @@ return|return
 literal|true
 return|;
 block|}
+comment|/**    * @param blockCacheKey the key for the block    * @param buffer the target buffer for the read result    * @param blockOffset offset within the block    * @param off offset within the target buffer    * @param length the number of bytes to read    * @return true if the block was cached and the bytes were read    */
 DECL|method|fetch
 specifier|public
 name|boolean
@@ -798,6 +805,7 @@ name|isRemoved
 argument_list|()
 condition|)
 block|{
+comment|// location is in the process of being removed and the block may have already been reused by this point.
 return|return
 literal|false
 return|;
@@ -811,7 +819,7 @@ name|getBankId
 argument_list|()
 decl_stmt|;
 name|int
-name|offset
+name|bankOffset
 init|=
 name|location
 operator|.
@@ -837,7 +845,7 @@ name|bank
 operator|.
 name|position
 argument_list|(
-name|offset
+name|bankOffset
 operator|+
 name|blockOffset
 argument_list|)
@@ -1098,6 +1106,7 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** Returns a new copy of the ByteBuffer for the given bank, so it's safe to call position() on w/o additional synchronization */
 DECL|method|getBank
 specifier|private
 name|ByteBuffer
@@ -1117,6 +1126,7 @@ name|duplicate
 argument_list|()
 return|;
 block|}
+comment|/** returns the number of elements in the cache */
 DECL|method|getSize
 specifier|public
 name|int
