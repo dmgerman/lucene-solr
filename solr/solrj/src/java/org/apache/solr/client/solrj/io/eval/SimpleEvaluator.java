@@ -3,8 +3,12 @@ begin_comment
 comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more  * contributor license agreements.  See the NOTICE file distributed with  * this work for additional information regarding copyright ownership.  * The ASF licenses this file to You under the Apache License, Version 2.0  * (the "License"); you may not use this file except in compliance with  * the License.  You may obtain a copy of the License at  *  *     http://www.apache.org/licenses/LICENSE-2.0  *  * Unless required by applicable law or agreed to in writing, software  * distributed under the License is distributed on an "AS IS" BASIS,  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  * See the License for the specific language governing permissions and  * limitations under the License.  */
 end_comment
 
+begin_comment
+comment|/**  *   */
+end_comment
+
 begin_package
-DECL|package|org.apache.solr.client.solrj.io.ops
+DECL|package|org.apache.solr.client.solrj.io.eval
 package|package
 name|org
 operator|.
@@ -18,31 +22,50 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 package|;
 end_package
 
-begin_comment
-comment|/**  *  A BooleanOperation returns true or false for each tuple that it evaluates. The HavingStream applies a BooleanOperation to  *  determine which tuples to emit.  */
-end_comment
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|UUID
+import|;
+end_import
 
-begin_interface
-DECL|interface|BooleanOperation
-specifier|public
-interface|interface
-name|BooleanOperation
-extends|extends
-name|StreamOperation
-block|{
-DECL|method|evaluate
+begin_class
+DECL|class|SimpleEvaluator
 specifier|public
 specifier|abstract
-name|boolean
-name|evaluate
-parameter_list|()
-function_decl|;
+class|class
+name|SimpleEvaluator
+implements|implements
+name|StreamEvaluator
+block|{
+DECL|field|serialVersionUID
+specifier|private
+specifier|static
+specifier|final
+name|long
+name|serialVersionUID
+init|=
+literal|1L
+decl_stmt|;
+DECL|field|nodeId
+specifier|protected
+name|UUID
+name|nodeId
+init|=
+name|UUID
+operator|.
+name|randomUUID
+argument_list|()
+decl_stmt|;
 block|}
-end_interface
+end_class
 
 end_unit
 

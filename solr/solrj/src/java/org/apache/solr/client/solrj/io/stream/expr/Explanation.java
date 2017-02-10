@@ -763,6 +763,15 @@ name|OPERATION
 init|=
 literal|"operation"
 decl_stmt|;
+DECL|field|EVALUATOR
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|EVALUATOR
+init|=
+literal|"evaluator"
+decl_stmt|;
 DECL|field|EQUALITOR
 specifier|public
 specifier|static

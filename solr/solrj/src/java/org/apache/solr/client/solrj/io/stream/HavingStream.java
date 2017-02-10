@@ -114,9 +114,9 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|BooleanOperation
+name|BooleanEvaluator
 import|;
 end_import
 
@@ -134,9 +134,9 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|StreamOperation
+name|StreamEvaluator
 import|;
 end_import
 
@@ -302,10 +302,10 @@ specifier|private
 name|TupleStream
 name|stream
 decl_stmt|;
-DECL|field|op
+DECL|field|evaluator
 specifier|private
-name|BooleanOperation
-name|op
+name|BooleanEvaluator
+name|evaluator
 decl_stmt|;
 DECL|field|currentGroupHead
 specifier|private
@@ -320,8 +320,8 @@ parameter_list|(
 name|TupleStream
 name|stream
 parameter_list|,
-name|BooleanOperation
-name|op
+name|BooleanEvaluator
+name|evaluator
 parameter_list|)
 throws|throws
 name|IOException
@@ -330,7 +330,7 @@ name|init
 argument_list|(
 name|stream
 argument_list|,
-name|op
+name|evaluator
 argument_list|)
 expr_stmt|;
 block|}
@@ -373,7 +373,7 @@ name|List
 argument_list|<
 name|StreamExpression
 argument_list|>
-name|operationExpressions
+name|evaluatorExpressions
 init|=
 name|factory
 operator|.
@@ -381,7 +381,7 @@ name|getExpressionOperandsRepresentingTypes
 argument_list|(
 name|expression
 argument_list|,
-name|BooleanOperation
+name|BooleanEvaluator
 operator|.
 name|class
 argument_list|)
@@ -458,18 +458,18 @@ argument_list|)
 argument_list|)
 throw|;
 block|}
-name|BooleanOperation
-name|booleanOperation
+name|StreamEvaluator
+name|evaluator
 init|=
 literal|null
 decl_stmt|;
 if|if
 condition|(
-name|operationExpressions
+name|evaluatorExpressions
 operator|!=
 literal|null
 operator|&&
-name|operationExpressions
+name|evaluatorExpressions
 operator|.
 name|size
 argument_list|()
@@ -480,45 +480,37 @@ block|{
 name|StreamExpression
 name|ex
 init|=
-name|operationExpressions
+name|evaluatorExpressions
 operator|.
 name|get
 argument_list|(
 literal|0
 argument_list|)
 decl_stmt|;
-name|StreamOperation
-name|operation
-init|=
+name|evaluator
+operator|=
 name|factory
 operator|.
-name|constructOperation
+name|constructEvaluator
 argument_list|(
 name|ex
 argument_list|)
-decl_stmt|;
+expr_stmt|;
 if|if
 condition|(
-name|operation
-operator|instanceof
-name|BooleanOperation
-condition|)
-block|{
-name|booleanOperation
-operator|=
+operator|!
 operator|(
-name|BooleanOperation
+name|evaluator
+operator|instanceof
+name|BooleanEvaluator
 operator|)
-name|operation
-expr_stmt|;
-block|}
-else|else
+condition|)
 block|{
 throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"The HavingStream requires a BooleanOperation. A StreamOperation was provided."
+literal|"The HavingStream requires a BooleanEvaluator. A StreamEvaluator was provided."
 argument_list|)
 throw|;
 block|}
@@ -529,7 +521,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"The HavingStream requires a BooleanOperation."
+literal|"The HavingStream requires a BooleanEvaluator."
 argument_list|)
 throw|;
 block|}
@@ -547,7 +539,10 @@ literal|0
 argument_list|)
 argument_list|)
 argument_list|,
-name|booleanOperation
+operator|(
+name|BooleanEvaluator
+operator|)
+name|evaluator
 argument_list|)
 expr_stmt|;
 block|}
@@ -559,8 +554,8 @@ parameter_list|(
 name|TupleStream
 name|stream
 parameter_list|,
-name|BooleanOperation
-name|op
+name|BooleanEvaluator
+name|evaluator
 parameter_list|)
 throws|throws
 name|IOException
@@ -573,9 +568,9 @@ name|stream
 expr_stmt|;
 name|this
 operator|.
-name|op
+name|evaluator
 operator|=
-name|op
+name|evaluator
 expr_stmt|;
 block|}
 annotation|@
@@ -668,7 +663,7 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|op
+name|evaluator
 operator|instanceof
 name|Expressible
 condition|)
@@ -677,7 +672,7 @@ name|expression
 operator|.
 name|addParameter
 argument_list|(
-name|op
+name|evaluator
 operator|.
 name|toExpression
 argument_list|(
@@ -692,7 +687,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"This ReducerStream contains a non-expressible operation - it cannot be converted to an expression"
+literal|"This HavingStream contains a non-expressible evaluator - it cannot be converted to an expression"
 argument_list|)
 throw|;
 block|}
@@ -789,7 +784,7 @@ operator|new
 name|Explanation
 index|[]
 block|{
-name|op
+name|evaluator
 operator|.
 name|toExplanation
 argument_list|(
@@ -911,19 +906,14 @@ return|return
 name|tuple
 return|;
 block|}
-name|op
+if|if
+condition|(
+name|evaluator
 operator|.
-name|operate
+name|evaluate
 argument_list|(
 name|tuple
 argument_list|)
-expr_stmt|;
-if|if
-condition|(
-name|op
-operator|.
-name|evaluate
-argument_list|()
 condition|)
 block|{
 return|return
