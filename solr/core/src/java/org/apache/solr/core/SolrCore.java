@@ -3929,6 +3929,19 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// only one reload at a time
+synchronized|synchronized
+init|(
+name|getUpdateHandler
+argument_list|()
+operator|.
+name|getSolrCoreState
+argument_list|()
+operator|.
+name|getReloadLock
+argument_list|()
+init|)
+block|{
 name|solrCoreState
 operator|.
 name|increfSolrCoreState
@@ -4029,6 +4042,8 @@ argument_list|,
 name|solrDelPolicy
 argument_list|,
 name|currentCore
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 comment|// we open a new IndexWriter to pick up the latest config
@@ -4084,6 +4099,7 @@ argument_list|(
 name|core
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 block|}
@@ -4249,6 +4265,9 @@ name|void
 name|initIndex
 parameter_list|(
 name|boolean
+name|passOnPreviousState
+parameter_list|,
+name|boolean
 name|reload
 parameter_list|)
 throws|throws
@@ -4307,7 +4326,7 @@ operator|&&
 name|firstTime
 operator|&&
 operator|!
-name|reload
+name|passOnPreviousState
 condition|)
 block|{
 specifier|final
@@ -4457,7 +4476,9 @@ argument_list|()
 expr_stmt|;
 block|}
 name|cleanupOldIndexDirectories
-argument_list|()
+argument_list|(
+name|reload
+argument_list|)
 expr_stmt|;
 block|}
 comment|/**    * Creates an instance by trying a constructor that accepts a SolrCore before    * trying the default (no arg) constructor.    *    * @param className the instance class to create    * @param cast      the class or interface that the instance should extend or implement    * @param msg       a message helping compose the exception error if any occurs.    * @param core      The SolrCore instance for which this object needs to be loaded    * @return the desired instance    * @throws SolrException if the object could not be instantiated    */
@@ -5152,6 +5173,8 @@ argument_list|,
 literal|null
 argument_list|,
 literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}
@@ -5186,6 +5209,9 @@ name|delPolicy
 parameter_list|,
 name|SolrCore
 name|prev
+parameter_list|,
+name|boolean
+name|reload
 parameter_list|)
 block|{
 assert|assert
@@ -5597,6 +5623,8 @@ argument_list|(
 name|prev
 operator|!=
 literal|null
+argument_list|,
+name|reload
 argument_list|)
 expr_stmt|;
 name|initWriters
@@ -8425,6 +8453,30 @@ condition|(
 name|coreStateClosed
 condition|)
 block|{
+try|try
+block|{
+name|cleanupOldIndexDirectories
+argument_list|(
+literal|false
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+name|SolrException
+operator|.
+name|log
+argument_list|(
+name|log
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+block|}
 try|try
 block|{
 name|directoryFactory
@@ -14790,7 +14842,10 @@ DECL|method|cleanupOldIndexDirectories
 specifier|public
 name|void
 name|cleanupOldIndexDirectories
-parameter_list|()
+parameter_list|(
+name|boolean
+name|reload
+parameter_list|)
 block|{
 specifier|final
 name|DirectoryFactory
@@ -14810,9 +14865,10 @@ specifier|final
 name|String
 name|myIndexDir
 init|=
-name|getIndexDir
+name|getNewIndexDir
 argument_list|()
 decl_stmt|;
+comment|// ensure the latest replicated index is protected
 specifier|final
 name|String
 name|coreName
@@ -14864,6 +14920,8 @@ argument_list|(
 name|myDataDir
 argument_list|,
 name|myIndexDir
+argument_list|,
+name|reload
 argument_list|)
 expr_stmt|;
 block|}

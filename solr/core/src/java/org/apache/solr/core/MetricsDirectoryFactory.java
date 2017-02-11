@@ -744,6 +744,9 @@ name|dataDirPath
 parameter_list|,
 name|String
 name|currentIndexDirPath
+parameter_list|,
+name|boolean
+name|reload
 parameter_list|)
 block|{
 name|in
@@ -753,6 +756,8 @@ argument_list|(
 name|dataDirPath
 argument_list|,
 name|currentIndexDirPath
+argument_list|,
+name|reload
 argument_list|)
 expr_stmt|;
 block|}

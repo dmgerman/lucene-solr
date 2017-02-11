@@ -54,6 +54,18 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|common
 operator|.
 name|util
@@ -116,7 +128,7 @@ argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-name|ObjectReleaseTracker
+name|SolrTestCaseJ4
 operator|.
 name|clearObjectTrackerAndCheckEmpty
 argument_list|(
@@ -126,7 +138,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|ObjectReleaseTracker
+name|SolrTestCaseJ4
 operator|.
 name|clearObjectTrackerAndCheckEmpty
 argument_list|(
@@ -157,7 +169,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|ObjectReleaseTracker
+name|SolrTestCaseJ4
 operator|.
 name|clearObjectTrackerAndCheckEmpty
 argument_list|(
@@ -230,7 +242,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|ObjectReleaseTracker
+name|SolrTestCaseJ4
 operator|.
 name|clearObjectTrackerAndCheckEmpty
 argument_list|(
@@ -276,7 +288,7 @@ expr_stmt|;
 comment|// ObjectReleaseTracker.release(obj3);
 name|assertNotNull
 argument_list|(
-name|ObjectReleaseTracker
+name|SolrTestCaseJ4
 operator|.
 name|clearObjectTrackerAndCheckEmpty
 argument_list|(
@@ -286,7 +298,7 @@ argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
-name|ObjectReleaseTracker
+name|SolrTestCaseJ4
 operator|.
 name|clearObjectTrackerAndCheckEmpty
 argument_list|(
