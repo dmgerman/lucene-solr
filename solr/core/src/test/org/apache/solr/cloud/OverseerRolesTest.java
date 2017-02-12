@@ -913,7 +913,7 @@ argument_list|)
 expr_stmt|;
 name|waitForNewOverseer
 argument_list|(
-literal|10
+literal|15
 argument_list|,
 name|s
 lambda|->
@@ -927,6 +927,13 @@ name|s
 argument_list|)
 operator|==
 literal|false
+argument_list|)
+expr_stmt|;
+name|Thread
+operator|.
+name|sleep
+argument_list|(
+literal|1000
 argument_list|)
 expr_stmt|;
 name|logOverseerState
