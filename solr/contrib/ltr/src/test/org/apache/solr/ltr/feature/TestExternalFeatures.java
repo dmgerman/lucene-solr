@@ -376,11 +376,18 @@ argument_list|)
 expr_stmt|;
 name|query
 operator|.
+name|remove
+argument_list|(
+literal|"fl"
+argument_list|)
+expr_stmt|;
+name|query
+operator|.
 name|add
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"[fv]"
+literal|"*,score,[fv]"
 argument_list|)
 expr_stmt|;
 name|query
@@ -389,7 +396,7 @@ name|add
 argument_list|(
 literal|"rq"
 argument_list|,
-literal|"{!ltr reRankDocs=3 model=externalmodel efi.user_query=w3}"
+literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query=w3}"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -413,19 +420,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[0]/score==0.999"
-argument_list|)
-expr_stmt|;
-name|assertJQ
-argument_list|(
-literal|"/query"
-operator|+
-name|query
-operator|.
-name|toQueryString
-argument_list|()
-argument_list|,
-literal|"/response/docs/[1]/id=='1'"
+literal|"/response/docs/[0]/score==0.7693934"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -438,18 +433,6 @@ name|toQueryString
 argument_list|()
 argument_list|,
 literal|"/response/docs/[1]/score==0.0"
-argument_list|)
-expr_stmt|;
-name|assertJQ
-argument_list|(
-literal|"/query"
-operator|+
-name|query
-operator|.
-name|toQueryString
-argument_list|()
-argument_list|,
-literal|"/response/docs/[2]/id=='2'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -479,7 +462,7 @@ name|add
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"id,[fv efi.user_query=w2]"
+literal|"*,score,[fv efi.user_query=w2]"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -503,7 +486,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[1]/id=='1'"
+literal|"/response/docs/[0]/score==0.7693934"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -515,7 +498,19 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[2]/id=='2'"
+literal|"/response/docs/[1]/score==0.0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+literal|"/query"
+operator|+
+name|query
+operator|.
+name|toQueryString
+argument_list|()
+argument_list|,
+literal|"/response/docs/[2]/score==0.0"
 argument_list|)
 expr_stmt|;
 block|}
@@ -569,7 +564,7 @@ name|add
 argument_list|(
 literal|"rq"
 argument_list|,
-literal|"{!ltr reRankDocs=3 model=externalmodel efi.user_query='a'}"
+literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query='a'}"
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -669,7 +664,7 @@ name|FeatureLoggerTestUtils
 operator|.
 name|toFeatureVector
 argument_list|(
-literal|"confidence"
+literal|"occurrences"
 argument_list|,
 literal|"2.3"
 argument_list|,
@@ -714,7 +709,7 @@ name|add
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"score,fvalias:[fv store=fstore2 efi.myconf=2.3]"
+literal|"score,fvalias:[fv store=fstore3 efi.myOcc=2.3]"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -733,7 +728,7 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-comment|// Adding efi in transformer + rq should still use the transformer's params for feature extraction
+comment|// Adding efi in transformer + rq should still returns features
 name|query
 operator|.
 name|remove
@@ -747,7 +742,7 @@ name|add
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"score,fvalias:[fv store=fstore2 efi.myconf=2.3]"
+literal|"score,fvalias:[fv store=fstore3 efi.myOcc=2.3]"
 argument_list|)
 expr_stmt|;
 name|query
@@ -756,7 +751,7 @@ name|add
 argument_list|(
 literal|"rq"
 argument_list|,
-literal|"{!ltr reRankDocs=3 model=externalmodel efi.user_query=w3}"
+literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query=w3}"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -818,7 +813,7 @@ name|FeatureLoggerTestUtils
 operator|.
 name|toFeatureVector
 argument_list|(
-literal|"confidence"
+literal|"occurrences"
 argument_list|,
 literal|"0.0"
 argument_list|,
@@ -865,7 +860,7 @@ name|add
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"fvalias:[fv store=fstore2]"
+literal|"fvalias:[fv store=fstore3]"
 argument_list|)
 expr_stmt|;
 name|assertJQ

@@ -143,7 +143,7 @@ literal|"4"
 argument_list|,
 literal|"title"
 argument_list|,
-literal|"w4 w3"
+literal|"w3 w3"
 argument_list|,
 literal|"description"
 argument_list|,
@@ -193,11 +193,6 @@ argument_list|(
 literal|"external_model.json"
 argument_list|)
 expr_stmt|;
-name|loadModels
-argument_list|(
-literal|"external_model_store.json"
-argument_list|)
-expr_stmt|;
 comment|// check to make sure that the order of results will be the same when using parallel weight creation
 specifier|final
 name|SolrQuery
@@ -238,7 +233,7 @@ name|add
 argument_list|(
 literal|"rq"
 argument_list|,
-literal|"{!ltr reRankDocs=4 model=externalmodel efi.user_query=w3}"
+literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query=w3}"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -250,7 +245,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[0]/id=='1'"
+literal|"/response/docs/[0]/id=='3'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -262,7 +257,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[1]/id=='3'"
+literal|"/response/docs/[1]/id=='4'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -274,7 +269,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[2]/id=='4'"
+literal|"/response/docs/[2]/id=='1'"
 argument_list|)
 expr_stmt|;
 name|aftertest

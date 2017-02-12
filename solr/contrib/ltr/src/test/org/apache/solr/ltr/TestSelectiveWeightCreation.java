@@ -854,7 +854,7 @@ literal|"1"
 argument_list|,
 literal|"title"
 argument_list|,
-literal|"w1 w3"
+literal|"w3 w1"
 argument_list|,
 literal|"description"
 argument_list|,
@@ -920,7 +920,7 @@ literal|"4"
 argument_list|,
 literal|"title"
 argument_list|,
-literal|"w4 w3"
+literal|"w3 w3"
 argument_list|,
 literal|"description"
 argument_list|,
@@ -972,7 +972,7 @@ argument_list|)
 expr_stmt|;
 name|loadModels
 argument_list|(
-literal|"external_model_store.json"
+literal|"external_model2.json"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1038,7 +1038,7 @@ name|newStringField
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"0"
+literal|"10"
 argument_list|,
 name|Field
 operator|.
@@ -1100,7 +1100,7 @@ name|newStringField
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"1"
+literal|"11"
 argument_list|,
 name|Field
 operator|.
@@ -1259,7 +1259,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"0"
+literal|"10"
 argument_list|,
 name|searcher
 operator|.
@@ -1283,7 +1283,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"1"
+literal|"11"
 argument_list|,
 name|searcher
 operator|.
@@ -1685,7 +1685,7 @@ name|assertU
 argument_list|(
 name|delI
 argument_list|(
-literal|"0"
+literal|"10"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1693,7 +1693,7 @@ name|assertU
 argument_list|(
 name|delI
 argument_list|(
-literal|"1"
+literal|"11"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1732,7 +1732,7 @@ literal|"1.0"
 argument_list|,
 literal|"titlePhraseMatch"
 argument_list|,
-literal|"0.40254828"
+literal|"0.6103343"
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -1752,6 +1752,8 @@ argument_list|,
 literal|"1.0"
 argument_list|)
 decl_stmt|;
+comment|// extract all features in externalmodel's store (default store)
+comment|// rerank using externalmodel (default store)
 specifier|final
 name|SolrQuery
 name|query
@@ -1773,7 +1775,7 @@ name|add
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"*,score"
+literal|"*,score,fv:[fv]"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1782,7 +1784,7 @@ name|add
 argument_list|(
 literal|"rows"
 argument_list|,
-literal|"4"
+literal|"5"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1791,16 +1793,7 @@ name|add
 argument_list|(
 literal|"rq"
 argument_list|,
-literal|"{!ltr reRankDocs=4 model=externalmodel efi.user_query=w3}"
-argument_list|)
-expr_stmt|;
-name|query
-operator|.
-name|add
-argument_list|(
-literal|"fl"
-argument_list|,
-literal|"fv:[fv]"
+literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query=w3}"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -1812,7 +1805,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[0]/id=='1'"
+literal|"/response/docs/[0]/id=='3'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -1824,7 +1817,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[1]/id=='3'"
+literal|"/response/docs/[1]/id=='4'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -1836,7 +1829,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[2]/id=='4'"
+literal|"/response/docs/[2]/id=='1'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -1855,7 +1848,20 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-comment|// extract all features in default store
+name|assertJQ
+argument_list|(
+literal|"/query"
+operator|+
+name|query
+operator|.
+name|toQueryString
+argument_list|()
+argument_list|,
+literal|"/response/docs/[0]/score==0.33873552"
+argument_list|)
+expr_stmt|;
+comment|// extract all features from fstore4
+comment|// rerank using externalmodel (default store)
 name|query
 operator|.
 name|remove
@@ -1876,7 +1882,7 @@ name|add
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"*,score"
+literal|"*,score,fv:[fv store=fstore4 efi.myPop=3]"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1885,16 +1891,7 @@ name|add
 argument_list|(
 literal|"rq"
 argument_list|,
-literal|"{!ltr reRankDocs=4 model=externalmodel efi.user_query=w3}"
-argument_list|)
-expr_stmt|;
-name|query
-operator|.
-name|add
-argument_list|(
-literal|"fl"
-argument_list|,
-literal|"fv:[fv store=fstore4 efi.myPop=3]"
+literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query=w3}"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -1906,7 +1903,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[0]/id=='1'"
+literal|"/response/docs/[0]/id=='3'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -1918,7 +1915,19 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[0]/score==0.999"
+literal|"/response/docs/[1]/id=='4'"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+literal|"/query"
+operator|+
+name|query
+operator|.
+name|toQueryString
+argument_list|()
+argument_list|,
+literal|"/response/docs/[2]/id=='1'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -1937,7 +1946,20 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
+name|assertJQ
+argument_list|(
+literal|"/query"
+operator|+
+name|query
+operator|.
+name|toQueryString
+argument_list|()
+argument_list|,
+literal|"/response/docs/[0]/score==0.33873552"
+argument_list|)
+expr_stmt|;
 comment|// extract all features from fstore4
+comment|// rerank using externalmodel2 (fstore2)
 name|query
 operator|.
 name|remove
@@ -1958,7 +1980,7 @@ name|add
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"*,score"
+literal|"*,score,fv:[fv store=fstore4 efi.myPop=3]"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1967,16 +1989,7 @@ name|add
 argument_list|(
 literal|"rq"
 argument_list|,
-literal|"{!ltr reRankDocs=4 model=externalmodelstore efi.user_query=w3 efi.myconf=0.8}"
-argument_list|)
-expr_stmt|;
-name|query
-operator|.
-name|add
-argument_list|(
-literal|"fl"
-argument_list|,
-literal|"fv:[fv store=fstore4 efi.myPop=3]"
+literal|"{!ltr reRankDocs=10 model=externalmodel2 efi.user_query=w3}"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -1988,10 +2001,9 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[0]/id=='1'"
+literal|"/response/docs/[0]/id=='5'"
 argument_list|)
 expr_stmt|;
-comment|// score using fstore2 used by externalmodelstore
 name|assertJQ
 argument_list|(
 literal|"/query"
@@ -2001,7 +2013,19 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[0]/score==0.7992"
+literal|"/response/docs/[1]/id=='4'"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+literal|"/query"
+operator|+
+name|query
+operator|.
+name|toQueryString
+argument_list|()
+argument_list|,
+literal|"/response/docs/[2]/id=='3'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -2020,7 +2044,18 @@ operator|+
 literal|"'"
 argument_list|)
 expr_stmt|;
-comment|// extract all features from fstore4
+name|assertJQ
+argument_list|(
+literal|"/query"
+operator|+
+name|query
+operator|.
+name|toQueryString
+argument_list|()
+argument_list|,
+literal|"/response/docs/[0]/score==2.5"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class
