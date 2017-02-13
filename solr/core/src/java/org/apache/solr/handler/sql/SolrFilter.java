@@ -841,15 +841,23 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|getValue2
-argument_list|()
-operator|.
 name|toString
 argument_list|()
 operator|.
 name|trim
 argument_list|()
 decl_stmt|;
+name|terms
+operator|=
+name|terms
+operator|.
+name|replace
+argument_list|(
+literal|"'"
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 operator|!
@@ -924,9 +932,6 @@ name|binaryTranslated
 operator|.
 name|getValue
 argument_list|()
-operator|.
-name|getValue2
-argument_list|()
 operator|+
 literal|")"
 return|;
@@ -952,9 +957,6 @@ operator|+
 name|binaryTranslated
 operator|.
 name|getValue
-argument_list|()
-operator|.
-name|getValue2
 argument_list|()
 operator|+
 literal|" })"
@@ -982,9 +984,6 @@ name|binaryTranslated
 operator|.
 name|getValue
 argument_list|()
-operator|.
-name|getValue2
-argument_list|()
 operator|+
 literal|" ])"
 return|;
@@ -1011,9 +1010,6 @@ name|binaryTranslated
 operator|.
 name|getValue
 argument_list|()
-operator|.
-name|getValue2
-argument_list|()
 operator|+
 literal|" TO * ])"
 return|;
@@ -1039,9 +1035,6 @@ operator|+
 name|binaryTranslated
 operator|.
 name|getValue
-argument_list|()
-operator|.
-name|getValue2
 argument_list|()
 operator|+
 literal|" TO * ])"
@@ -1908,9 +1901,6 @@ operator|.
 name|getValue
 argument_list|()
 operator|.
-name|getValue2
-argument_list|()
-operator|.
 name|toString
 argument_list|()
 operator|.
@@ -1953,9 +1943,6 @@ name|binaryTranslated
 operator|.
 name|getValue
 argument_list|()
-operator|.
-name|getValue2
-argument_list|()
 operator|+
 literal|"))"
 return|;
@@ -1975,9 +1962,6 @@ operator|+
 name|binaryTranslated
 operator|.
 name|getValue
-argument_list|()
-operator|.
-name|getValue2
 argument_list|()
 operator|+
 literal|")"
@@ -1999,9 +1983,6 @@ name|binaryTranslated
 operator|.
 name|getValue
 argument_list|()
-operator|.
-name|getValue2
-argument_list|()
 operator|+
 literal|")"
 return|;
@@ -2022,9 +2003,6 @@ name|binaryTranslated
 operator|.
 name|getValue
 argument_list|()
-operator|.
-name|getValue2
-argument_list|()
 operator|+
 literal|")"
 return|;
@@ -2044,9 +2022,6 @@ operator|+
 name|binaryTranslated
 operator|.
 name|getValue
-argument_list|()
-operator|.
-name|getValue2
 argument_list|()
 operator|+
 literal|")"

@@ -637,7 +637,7 @@ name|get
 argument_list|(
 literal|"aggregationMode"
 argument_list|,
-literal|"map_reduce"
+literal|"facet"
 argument_list|)
 argument_list|)
 expr_stmt|;

@@ -3388,6 +3388,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select id, Field_i, Str_s from collection1 where Text_t='XXXX' order by Field_i desc"
@@ -3941,6 +3945,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select Str_s, sum(Field_i) from collection1 where id='(1 8)' group by Str_s having (sum(Field_i) = 7 OR sum(Field_i) = 60) order by sum(Field_i) desc"
@@ -4275,6 +4283,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select id, str_s from collection1 where text='XXXX' order by field_iff desc"
@@ -4407,6 +4419,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select str_s, count(*), sum(field_iff), min(field_i), max(field_i), cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s having ((sum(field_iff) = 19) AND (min(field_i) = 8))"
@@ -4471,6 +4487,10 @@ operator|.
 name|QT
 argument_list|,
 literal|"/sql"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -4750,6 +4770,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s order by sum(field_i) asc limit 2"
@@ -4981,6 +5005,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select str_s as myString, count(*), sum(field_i) as mySum, min(field_i), max(field_i), cast(avg(1.0 * field_i) as float) from collection1 where text='XXXX' group by str_s order by mySum asc limit 2"
@@ -5201,6 +5229,10 @@ operator|.
 name|QT
 argument_list|,
 literal|"/sql"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -5519,6 +5551,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select str_s as myString, count(*) as myCount, sum(field_i) as mySum, min(field_i) as myMin, "
@@ -5821,6 +5857,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), cast(avg(1.0 * field_i) as float) "
@@ -5955,6 +5995,10 @@ operator|.
 name|QT
 argument_list|,
 literal|"/sql"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -6091,6 +6135,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select str_s, count(*), sum(field_i) as mySum, min(field_i), max(field_i), "
@@ -6226,6 +6274,10 @@ operator|.
 name|QT
 argument_list|,
 literal|"/sql"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -7982,6 +8034,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select distinct str_s, field_i from collection1 order by str_s asc, field_i asc"
@@ -8258,6 +8314,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select distinct str_s, field_i from collection1 order by str_s desc, field_i desc"
@@ -8517,6 +8577,10 @@ operator|.
 name|QT
 argument_list|,
 literal|"/sql"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -8779,6 +8843,10 @@ name|QT
 argument_list|,
 literal|"/sql"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select distinct str_s, field_i from collection1 order by str_s desc, field_i desc limit 2"
@@ -8895,6 +8963,10 @@ operator|.
 name|QT
 argument_list|,
 literal|"/sql"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -9156,6 +9228,10 @@ operator|.
 name|QT
 argument_list|,
 literal|"/sql"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -9471,6 +9547,10 @@ literal|"numWorkers"
 argument_list|,
 literal|"2"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select distinct str_s, field_i from collection1 order by str_s asc, field_i asc"
@@ -9744,6 +9824,10 @@ literal|"numWorkers"
 argument_list|,
 literal|"2"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select distinct str_s, field_i from collection1 order by str_s desc, field_i desc"
@@ -10008,6 +10092,10 @@ argument_list|,
 literal|"numWorkers"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -10274,6 +10362,10 @@ literal|"numWorkers"
 argument_list|,
 literal|"2"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select distinct str_s, field_i from collection1 order by str_s desc, field_i desc limit 2"
@@ -10394,6 +10486,10 @@ argument_list|,
 literal|"numWorkers"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -10659,6 +10755,10 @@ argument_list|,
 literal|"numWorkers"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -12537,6 +12637,10 @@ literal|"numWorkers"
 argument_list|,
 literal|"2"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
@@ -12776,6 +12880,10 @@ literal|"numWorkers"
 argument_list|,
 literal|"2"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select str_s, count(*), sum(field_i) as mySum, min(field_i), max(field_i), "
@@ -13002,6 +13110,10 @@ argument_list|,
 literal|"numWorkers"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -13322,6 +13434,10 @@ literal|"numWorkers"
 argument_list|,
 literal|"2"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select str_s as myString, count(*), sum(field_i), min(field_i), max(field_i), "
@@ -13641,6 +13757,10 @@ literal|"numWorkers"
 argument_list|,
 literal|"2"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select str_s, count(*), sum(field_i), min(field_i), max(field_i), "
@@ -13779,6 +13899,10 @@ argument_list|,
 literal|"numWorkers"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -13920,6 +14044,10 @@ argument_list|,
 literal|"numWorkers"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -17136,6 +17264,10 @@ literal|"numWorkers"
 argument_list|,
 literal|"2"
 argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
+argument_list|,
 literal|"stmt"
 argument_list|,
 literal|"select year_i, sum(item_i) from collection1 group by year_i order by year_i desc"
@@ -17272,6 +17404,10 @@ argument_list|,
 literal|"numWorkers"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
@@ -17484,6 +17620,10 @@ argument_list|,
 literal|"numWorkers"
 argument_list|,
 literal|"2"
+argument_list|,
+literal|"aggregationMode"
+argument_list|,
+literal|"map_reduce"
 argument_list|,
 literal|"stmt"
 argument_list|,
