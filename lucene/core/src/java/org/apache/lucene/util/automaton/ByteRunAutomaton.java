@@ -51,7 +51,7 @@ name|DEFAULT_MAX_DETERMINIZED_STATES
 argument_list|)
 expr_stmt|;
 block|}
-comment|/** expert: if utf8 is true, the input is already byte-based */
+comment|/** expert: if isBinary is true, the input is already byte-based */
 DECL|method|ByteRunAutomaton
 specifier|public
 name|ByteRunAutomaton
@@ -82,8 +82,6 @@ name|a
 argument_list|)
 argument_list|,
 literal|256
-argument_list|,
-literal|true
 argument_list|,
 name|maxDeterminizedStates
 argument_list|)
