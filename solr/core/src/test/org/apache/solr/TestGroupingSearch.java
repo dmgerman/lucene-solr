@@ -389,6 +389,15 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|SolrTestCaseJ4
+operator|.
+name|SuppressPointFields
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-9992"
+argument_list|)
 DECL|class|TestGroupingSearch
 specifier|public
 class|class
