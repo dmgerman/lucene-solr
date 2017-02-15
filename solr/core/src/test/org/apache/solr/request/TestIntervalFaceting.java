@@ -867,7 +867,7 @@ literal|2
 operator|&&
 name|i
 operator|<
-literal|10
+literal|20
 condition|)
 block|{
 comment|//try to get more than one segment
@@ -900,6 +900,9 @@ argument_list|(
 name|commit
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|i
+operator|++
 expr_stmt|;
 block|}
 if|if
@@ -1964,6 +1967,22 @@ block|,
 literal|"test_ls"
 block|,
 literal|"test_ds"
+block|,
+literal|"test_i_p"
+block|,
+literal|"test_is_p"
+block|,
+literal|"test_l_p"
+block|,
+literal|"test_ls_p"
+block|,
+literal|"test_f_p"
+block|,
+literal|"test_fs_p"
+block|,
+literal|"test_d_p"
+block|,
+literal|"test_ds_p"
 block|}
 decl_stmt|;
 for|for
@@ -6899,7 +6918,7 @@ literal|2
 operator|&&
 name|i
 operator|<
-literal|10
+literal|20
 condition|)
 block|{
 comment|//try to get more than one segment
@@ -6932,6 +6951,9 @@ argument_list|(
 name|commit
 argument_list|()
 argument_list|)
+expr_stmt|;
+name|i
+operator|++
 expr_stmt|;
 block|}
 if|if

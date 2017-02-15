@@ -3432,11 +3432,22 @@ case|case
 name|FCS
 case|:
 assert|assert
+name|ft
+operator|.
+name|isPointField
+argument_list|()
+operator|||
 operator|!
 name|multiToken
 assert|;
 if|if
 condition|(
+name|ft
+operator|.
+name|isPointField
+argument_list|()
+operator|||
+operator|(
 name|ft
 operator|.
 name|getNumberType
@@ -3449,6 +3460,7 @@ name|sf
 operator|.
 name|multiValued
 argument_list|()
+operator|)
 condition|)
 block|{
 comment|// force numeric faceting
@@ -3534,6 +3546,10 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|//            We should do this, but mincount=0 is currently the default
+comment|//            if (ft.isPointField()&& mincount<= 0) {
+comment|//              throw new SolrException(ErrorCode.BAD_REQUEST, FacetParams.FACET_MINCOUNT + "<= 0 is not supported on point types");
+comment|//            }
 name|counts
 operator|=
 name|NumericFacets

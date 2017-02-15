@@ -671,7 +671,15 @@ block|,
 literal|"stats_tf_ni_dv"
 block|,
 literal|"stats_td_ni_dv"
-block|}
+block|,
+literal|"stats_i_ni_p"
+block|,
+literal|"stats_l_ni_p"
+block|,
+literal|"stats_f_ni_p"
+block|,
+literal|"stats_d_ni_p"
+block|,     }
 control|)
 block|{
 comment|// all of our checks should work with all of these params
@@ -809,7 +817,23 @@ block|,
 literal|"stats_tls_ni_dv"
 block|,
 literal|"stats_tds_ni_dv"
+block|,
 comment|// Doc Values Not indexed
+literal|"stats_is_p"
+block|,
+literal|"stats_fs_p"
+block|,
+literal|"stats_ls_p"
+block|,
+literal|"stats_ds_p"
+block|,
+comment|// Point Fields
+literal|"stats_is_ni_p"
+block|,
+literal|"stats_fs_ni_p"
+block|,
+literal|"stats_ls_ni_p"
+comment|// Point Doc Values Not indexed
 block|}
 control|)
 block|{
