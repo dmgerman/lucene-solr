@@ -350,9 +350,9 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|AndOperation
+name|AndEvaluator
 import|;
 end_import
 
@@ -370,9 +370,9 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|BooleanOperation
+name|BooleanEvaluator
 import|;
 end_import
 
@@ -390,9 +390,9 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|EqualsOperation
+name|EqualsEvaluator
 import|;
 end_import
 
@@ -410,9 +410,9 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|GreaterThanEqualToOperation
+name|GreaterThanEqualToEvaluator
 import|;
 end_import
 
@@ -430,9 +430,9 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|GreaterThanOperation
+name|GreaterThanEvaluator
 import|;
 end_import
 
@@ -450,9 +450,9 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|LessThanEqualToOperation
+name|LessThanEqualToEvaluator
 import|;
 end_import
 
@@ -470,9 +470,9 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|LessThanOperation
+name|LessThanEvaluator
 import|;
 end_import
 
@@ -490,9 +490,9 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|NotOperation
+name|NotEvaluator
 import|;
 end_import
 
@@ -510,9 +510,29 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|ops
+name|eval
 operator|.
-name|OrOperation
+name|OrEvaluator
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|client
+operator|.
+name|solrj
+operator|.
+name|io
+operator|.
+name|eval
+operator|.
+name|RawValueEvaluator
 import|;
 end_import
 
@@ -3208,7 +3228,7 @@ name|withFunctionName
 argument_list|(
 literal|"and"
 argument_list|,
-name|AndOperation
+name|AndEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3217,7 +3237,7 @@ name|withFunctionName
 argument_list|(
 literal|"or"
 argument_list|,
-name|OrOperation
+name|OrEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3226,7 +3246,7 @@ name|withFunctionName
 argument_list|(
 literal|"not"
 argument_list|,
-name|NotOperation
+name|NotEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3235,7 +3255,7 @@ name|withFunctionName
 argument_list|(
 literal|"eq"
 argument_list|,
-name|EqualsOperation
+name|EqualsEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3244,7 +3264,7 @@ name|withFunctionName
 argument_list|(
 literal|"gt"
 argument_list|,
-name|GreaterThanOperation
+name|GreaterThanEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3253,7 +3273,16 @@ name|withFunctionName
 argument_list|(
 literal|"lt"
 argument_list|,
-name|LessThanOperation
+name|LessThanEvaluator
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"val"
+argument_list|,
+name|RawValueEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3262,7 +3291,7 @@ name|withFunctionName
 argument_list|(
 literal|"lteq"
 argument_list|,
-name|LessThanEqualToOperation
+name|LessThanEqualToEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3280,7 +3309,7 @@ name|withFunctionName
 argument_list|(
 literal|"gteq"
 argument_list|,
-name|GreaterThanEqualToOperation
+name|GreaterThanEqualToEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3292,15 +3321,15 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|BooleanOperation
+name|BooleanEvaluator
 name|booleanOperation
 init|=
 operator|(
-name|BooleanOperation
+name|BooleanEvaluator
 operator|)
 name|factory
 operator|.
-name|constructOperation
+name|constructEvaluator
 argument_list|(
 name|StreamExpressionParser
 operator|.
@@ -3948,7 +3977,7 @@ name|withFunctionName
 argument_list|(
 literal|"and"
 argument_list|,
-name|AndOperation
+name|AndEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3957,7 +3986,7 @@ name|withFunctionName
 argument_list|(
 literal|"or"
 argument_list|,
-name|OrOperation
+name|OrEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3966,7 +3995,7 @@ name|withFunctionName
 argument_list|(
 literal|"not"
 argument_list|,
-name|NotOperation
+name|NotEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3975,7 +4004,16 @@ name|withFunctionName
 argument_list|(
 literal|"eq"
 argument_list|,
-name|EqualsOperation
+name|EqualsEvaluator
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"val"
+argument_list|,
+name|RawValueEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3984,7 +4022,7 @@ name|withFunctionName
 argument_list|(
 literal|"gt"
 argument_list|,
-name|GreaterThanOperation
+name|GreaterThanEvaluator
 operator|.
 name|class
 argument_list|)
@@ -3993,7 +4031,7 @@ name|withFunctionName
 argument_list|(
 literal|"lt"
 argument_list|,
-name|LessThanOperation
+name|LessThanEvaluator
 operator|.
 name|class
 argument_list|)
@@ -4002,7 +4040,7 @@ name|withFunctionName
 argument_list|(
 literal|"lteq"
 argument_list|,
-name|LessThanEqualToOperation
+name|LessThanEqualToEvaluator
 operator|.
 name|class
 argument_list|)
@@ -4011,7 +4049,7 @@ name|withFunctionName
 argument_list|(
 literal|"gteq"
 argument_list|,
-name|GreaterThanEqualToOperation
+name|GreaterThanEqualToEvaluator
 operator|.
 name|class
 argument_list|)
@@ -4023,15 +4061,15 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|BooleanOperation
+name|BooleanEvaluator
 name|booleanOperation
 init|=
 operator|(
-name|BooleanOperation
+name|BooleanEvaluator
 operator|)
 name|factory
 operator|.
-name|constructOperation
+name|constructEvaluator
 argument_list|(
 name|StreamExpressionParser
 operator|.
