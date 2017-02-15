@@ -2511,7 +2511,7 @@ return|return
 literal|null
 return|;
 block|}
-comment|/**    * Return the numeric type of this field, or null if this field is not a    *  numeric field.     */
+comment|/**    * Return the numeric type of this field, or null if this field is not a    * numeric field.     */
 DECL|method|getNumberType
 specifier|public
 name|NumberType

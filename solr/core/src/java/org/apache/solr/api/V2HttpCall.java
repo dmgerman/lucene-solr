@@ -1109,12 +1109,6 @@ block|{
 name|api
 operator|=
 name|apiInfo
-operator|==
-literal|null
-condition|?
-name|api
-else|:
-name|apiInfo
 expr_stmt|;
 block|}
 name|MDCLoggingContext

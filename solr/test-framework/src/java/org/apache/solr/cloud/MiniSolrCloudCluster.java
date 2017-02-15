@@ -2162,7 +2162,7 @@ name|executor
 operator|.
 name|awaitTermination
 argument_list|(
-literal|2
+literal|15
 argument_list|,
 name|TimeUnit
 operator|.

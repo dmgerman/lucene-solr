@@ -64,6 +64,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+operator|.
+name|SuppressPointFields
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -198,7 +212,18 @@ name|SolrQueryResponse
 import|;
 end_import
 
+begin_comment
+comment|// This test uses grouping requests, which doesn't work yet with PointFields
+end_comment
+
 begin_class
+annotation|@
+name|SuppressPointFields
+argument_list|(
+name|bugUrl
+operator|=
+literal|"https://issues.apache.org/jira/browse/SOLR-9992"
+argument_list|)
 DECL|class|SegmentTerminateEarlyTestState
 class|class
 name|SegmentTerminateEarlyTestState

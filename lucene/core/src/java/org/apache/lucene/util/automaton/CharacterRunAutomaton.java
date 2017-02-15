@@ -68,8 +68,8 @@ argument_list|,
 name|Character
 operator|.
 name|MAX_CODE_POINT
-argument_list|,
-literal|false
+operator|+
+literal|1
 argument_list|,
 name|maxDeterminizedStates
 argument_list|)
