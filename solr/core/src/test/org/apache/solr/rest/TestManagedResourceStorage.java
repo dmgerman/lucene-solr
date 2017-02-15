@@ -266,7 +266,7 @@ name|AwaitsFix
 argument_list|(
 name|bugUrl
 operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-6444"
+literal|"https://issues.apache.org/jira/browse/SOLR-6443"
 argument_list|)
 DECL|class|TestManagedResourceStorage
 specifier|public
