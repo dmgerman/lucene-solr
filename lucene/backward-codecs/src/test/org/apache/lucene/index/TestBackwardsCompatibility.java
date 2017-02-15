@@ -2372,6 +2372,10 @@ block|,
 literal|"5.5.3-cfs"
 block|,
 literal|"5.5.3-nocfs"
+block|,
+literal|"5.5.4-cfs"
+block|,
+literal|"5.5.4-nocfs"
 block|}
 decl_stmt|;
 comment|// TODO: on 6.0.0 release, gen the single segment indices and add here:
