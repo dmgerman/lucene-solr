@@ -538,6 +538,7 @@ operator|.
 name|getBlock
 argument_list|()
 decl_stmt|;
+comment|// mark the block removed before we release the lock to allow it to be reused
 name|location
 operator|.
 name|setRemoved
@@ -594,7 +595,7 @@ name|decrementAndGet
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * This is only best-effort... it's possible for false to be returned.    * The blockCacheKey is cloned before it is inserted into the map, so it may be reused by clients if desired.    *    * @param blockCacheKey the key for the block    * @param blockOffset the offset within the block    * @param data source data to write to the block    * @param offset offset within the source data array    * @param length the number of bytes to write.    * @return true if the block was cached/updated    */
+comment|/**    * This is only best-effort... it's possible for false to be returned, meaning the block was not able to be cached.    * NOTE: blocks may not currently be updated (false will be returned if the block is already cached)    * The blockCacheKey is cloned before it is inserted into the map, so it may be reused by clients if desired.    *    * @param blockCacheKey the key for the block    * @param blockOffset the offset within the block    * @param data source data to write to the block    * @param offset offset within the source data array    * @param length the number of bytes to write.    * @return true if the block was cached/updated    */
 DECL|method|store
 specifier|public
 name|boolean
@@ -656,11 +657,6 @@ argument_list|(
 name|blockCacheKey
 argument_list|)
 decl_stmt|;
-name|boolean
-name|newLocation
-init|=
-literal|false
-decl_stmt|;
 if|if
 condition|(
 name|location
@@ -668,10 +664,6 @@ operator|==
 literal|null
 condition|)
 block|{
-name|newLocation
-operator|=
-literal|true
-expr_stmt|;
 name|location
 operator|=
 operator|new
@@ -695,16 +687,13 @@ literal|false
 return|;
 block|}
 block|}
-comment|// YCS: I think this means that the block existed, but it is in the process of being
-comment|// concurrently removed.  This flag is set in the releaseLocation eviction listener.
-if|if
-condition|(
-name|location
-operator|.
-name|isRemoved
-argument_list|()
-condition|)
+else|else
 block|{
+comment|// If we allocated a new block, then it has never been published and is thus never in danger of being concurrently removed.
+comment|// On the other hand, if this is an existing block we are updating, it may concurrently be removed and reused for another
+comment|// purpose (and then our write may overwrite that).  This can happen even if clients never try to update existing blocks,
+comment|// since two clients can try to cache the same block concurrently.  Because of this, the ability to update an existing
+comment|// block has been removed for the time being (see SOLR-10121).
 return|return
 literal|false
 return|;
@@ -755,11 +744,7 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
-if|if
-condition|(
-name|newLocation
-condition|)
-block|{
+comment|// make sure all modifications to the block have been completed before we publish it.
 name|cache
 operator|.
 name|put
@@ -779,7 +764,6 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
-block|}
 return|return
 literal|true
 return|;
@@ -824,19 +808,6 @@ operator|==
 literal|null
 condition|)
 block|{
-return|return
-literal|false
-return|;
-block|}
-if|if
-condition|(
-name|location
-operator|.
-name|isRemoved
-argument_list|()
-condition|)
-block|{
-comment|// location is in the process of being removed and the block may have already been reused by this point.
 return|return
 literal|false
 return|;
@@ -892,6 +863,20 @@ argument_list|,
 name|length
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|location
+operator|.
+name|isRemoved
+argument_list|()
+condition|)
+block|{
+comment|// must check *after* the read is done since the bank may have been reused for another block
+comment|// before or during the read.
+return|return
+literal|false
+return|;
+block|}
 return|return
 literal|true
 return|;
