@@ -110,20 +110,6 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|SortedNumericDocValuesField
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
 name|SortedSetDocValuesField
 import|;
 end_import
@@ -438,22 +424,6 @@ block|,
 comment|/**       * Multi-valued Double, (e.g. indexed with {@link org.apache.lucene.legacy.LegacyDoubleField})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedSetDocValuesField}.      */
 DECL|enum constant|SORTED_SET_DOUBLE
 name|SORTED_SET_DOUBLE
-block|,
-comment|/**       * Multi-valued Integer, (e.g. indexed with {@link org.apache.lucene.document.IntPoint})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedNumericDocValuesField}.      */
-DECL|enum constant|SORTED_INTEGER
-name|SORTED_INTEGER
-block|,
-comment|/**       * Multi-valued Float, (e.g. indexed with {@link org.apache.lucene.document.FloatPoint})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedNumericDocValuesField}.      */
-DECL|enum constant|SORTED_FLOAT
-name|SORTED_FLOAT
-block|,
-comment|/**       * Multi-valued Long, (e.g. indexed with {@link org.apache.lucene.document.LongPoint})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedNumericDocValuesField}.      */
-DECL|enum constant|SORTED_LONG
-name|SORTED_LONG
-block|,
-comment|/**       * Multi-valued Double, (e.g. indexed with {@link org.apache.lucene.document.DoublePoint})      *<p>      * Fields with this type act as if they were indexed with      * {@link SortedNumericDocValuesField}.      */
-DECL|enum constant|SORTED_DOUBLE
-name|SORTED_DOUBLE
 block|}
 comment|/**    * Wraps a provided DirectoryReader. Note that for convenience, the returned reader    * can be used normally (e.g. passed to {@link DirectoryReader#openIfChanged(DirectoryReader)})    * and so on.     */
 DECL|method|wrap
@@ -823,25 +793,6 @@ operator|=
 name|DocValuesType
 operator|.
 name|SORTED_SET
-expr_stmt|;
-break|break;
-case|case
-name|SORTED_INTEGER
-case|:
-case|case
-name|SORTED_FLOAT
-case|:
-case|case
-name|SORTED_LONG
-case|:
-case|case
-name|SORTED_DOUBLE
-case|:
-name|type
-operator|=
-name|DocValuesType
-operator|.
-name|SORTED_NUMERIC
 expr_stmt|;
 break|break;
 default|default:

@@ -2220,15 +2220,6 @@ literal|null
 operator|!=
 name|schemaField
 operator|&&
-operator|!
-name|schemaField
-operator|.
-name|getType
-argument_list|()
-operator|.
-name|isPointField
-argument_list|()
-operator|&&
 operator|(
 name|schemaField
 operator|.

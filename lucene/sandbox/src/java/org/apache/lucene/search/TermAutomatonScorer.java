@@ -1831,6 +1831,8 @@ argument_list|(
 name|a
 argument_list|,
 name|termCount
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}

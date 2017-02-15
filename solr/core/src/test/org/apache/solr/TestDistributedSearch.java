@@ -687,27 +687,13 @@ DECL|field|i1
 name|String
 name|i1
 init|=
-name|pickRandom
-argument_list|(
 literal|"a_i1"
-argument_list|,
-literal|"a_i_p"
-argument_list|,
-literal|"a_i_ni_p"
-argument_list|)
 decl_stmt|;
 DECL|field|nint
 name|String
 name|nint
 init|=
-name|pickRandom
-argument_list|(
 literal|"n_i"
-argument_list|,
-literal|"n_is_p"
-argument_list|,
-literal|"n_is_ni_p"
-argument_list|)
 decl_stmt|;
 DECL|field|tint
 name|String
@@ -1445,28 +1431,13 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-name|i1
-operator|+
-literal|"[* TO *]"
-argument_list|,
-literal|"sort"
-argument_list|,
-name|i1
-operator|+
-literal|" asc"
-argument_list|)
-expr_stmt|;
-name|query
-argument_list|(
-literal|"q"
-argument_list|,
 literal|"*:*"
 argument_list|,
 literal|"sort"
 argument_list|,
 name|i1
 operator|+
-literal|" asc, id desc"
+literal|" asc"
 argument_list|)
 expr_stmt|;
 name|query
@@ -3609,27 +3580,6 @@ argument_list|,
 literal|"stats.field"
 argument_list|,
 name|i1
-argument_list|)
-expr_stmt|;
-name|query
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"*:*"
-argument_list|,
-literal|"sort"
-argument_list|,
-name|i1
-operator|+
-literal|" desc"
-argument_list|,
-literal|"stats"
-argument_list|,
-literal|"true"
-argument_list|,
-literal|"stats.field"
-argument_list|,
-name|nint
 argument_list|)
 expr_stmt|;
 name|handle

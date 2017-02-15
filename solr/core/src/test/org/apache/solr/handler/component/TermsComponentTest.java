@@ -98,15 +98,7 @@ begin_comment
 comment|/**  *  *  **/
 end_comment
 
-begin_comment
-comment|// TermsComponent not currently supported for PointFields
-end_comment
-
 begin_class
-annotation|@
-name|SolrTestCaseJ4
-operator|.
-name|SuppressPointFields
 DECL|class|TermsComponentTest
 specifier|public
 class|class
