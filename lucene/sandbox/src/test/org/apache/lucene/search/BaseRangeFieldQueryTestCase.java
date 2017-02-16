@@ -351,6 +351,16 @@ name|Range
 name|box
 parameter_list|)
 function_decl|;
+DECL|method|newCrossesQuery
+specifier|protected
+specifier|abstract
+name|Query
+name|newCrossesQuery
+parameter_list|(
+name|Range
+name|box
+parameter_list|)
+function_decl|;
 DECL|method|nextRange
 specifier|protected
 specifier|abstract
@@ -1487,7 +1497,7 @@ argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-literal|3
+literal|4
 argument_list|)
 decl_stmt|;
 name|Query
@@ -1545,7 +1555,13 @@ name|queryRange
 argument_list|)
 expr_stmt|;
 block|}
-else|else
+elseif|else
+if|if
+condition|(
+name|rv
+operator|==
+literal|2
+condition|)
 block|{
 name|queryType
 operator|=
@@ -1558,6 +1574,24 @@ expr_stmt|;
 name|query
 operator|=
 name|newWithinQuery
+argument_list|(
+name|queryRange
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
+name|queryType
+operator|=
+name|Range
+operator|.
+name|QueryType
+operator|.
+name|CROSSES
+expr_stmt|;
+name|query
+operator|=
+name|newCrossesQuery
 argument_list|(
 name|queryRange
 argument_list|)
@@ -2067,6 +2101,14 @@ name|isEqual
 argument_list|(
 name|range
 argument_list|)
+operator|&&
+name|queryType
+operator|!=
+name|Range
+operator|.
+name|QueryType
+operator|.
+name|CROSSES
 condition|)
 block|{
 return|return
@@ -2102,6 +2144,33 @@ operator|!=
 literal|null
 return|;
 block|}
+elseif|else
+if|if
+condition|(
+name|queryType
+operator|==
+name|Range
+operator|.
+name|QueryType
+operator|.
+name|CROSSES
+condition|)
+block|{
+comment|// by definition, RangeFields that CONTAIN the query are also considered to cross
+return|return
+name|relation
+operator|==
+name|queryType
+operator|||
+name|relation
+operator|==
+name|Range
+operator|.
+name|QueryType
+operator|.
+name|CONTAINS
+return|;
+block|}
 return|return
 name|relation
 operator|==
@@ -2125,6 +2194,7 @@ DECL|enum|QueryType
 DECL|enum constant|INTERSECTS
 DECL|enum constant|WITHIN
 DECL|enum constant|CONTAINS
+DECL|enum constant|CROSSES
 enum|enum
 name|QueryType
 block|{
@@ -2133,6 +2203,8 @@ block|,
 name|WITHIN
 block|,
 name|CONTAINS
+block|,
+name|CROSSES
 block|}
 DECL|method|numDimensions
 specifier|protected
@@ -2282,7 +2354,7 @@ block|}
 return|return
 name|QueryType
 operator|.
-name|INTERSECTS
+name|CROSSES
 return|;
 block|}
 block|}
