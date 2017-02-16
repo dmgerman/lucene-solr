@@ -347,8 +347,33 @@ block|}
 else|else
 block|{
 comment|// default: cache after the filter has been seen 5 times
-return|return
+name|int
+name|minFrequency
+init|=
 literal|5
+decl_stmt|;
+if|if
+condition|(
+name|query
+operator|instanceof
+name|BooleanQuery
+operator|||
+name|query
+operator|instanceof
+name|DisjunctionMaxQuery
+condition|)
+block|{
+comment|// Say you keep reusing a boolean query that looks like "A OR B" and
+comment|// never use the A and B queries out of that context. 5 times after it
+comment|// has been used, we would cache both A, B and A OR B, which is
+comment|// wasteful. So instead we cache compound queries a bit earlier so that
+comment|// we would only cache "A OR B" in that case.
+name|minFrequency
+operator|--
+expr_stmt|;
+block|}
+return|return
+name|minFrequency
 return|;
 block|}
 block|}
