@@ -241,17 +241,6 @@ specifier|final
 name|Query
 name|parentQuery
 decl_stmt|;
-comment|// If we are rewritten, this is the original parentQuery we
-comment|// were passed; we use this for .equals() and
-comment|// .hashCode().  This makes rewritten query equal the
-comment|// original, so that user does not have to .rewrite() their
-comment|// query before searching:
-DECL|field|origParentQuery
-specifier|private
-specifier|final
-name|Query
-name|origParentQuery
-decl_stmt|;
 comment|/**    * Create a ToChildBlockJoinQuery.    *     * @param parentQuery Query that matches parent documents    * @param parentsFilter Filter identifying the parent documents.    */
 DECL|method|ToChildBlockJoinQuery
 specifier|public
@@ -266,48 +255,6 @@ parameter_list|)
 block|{
 name|super
 argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|origParentQuery
-operator|=
-name|parentQuery
-expr_stmt|;
-name|this
-operator|.
-name|parentQuery
-operator|=
-name|parentQuery
-expr_stmt|;
-name|this
-operator|.
-name|parentsFilter
-operator|=
-name|parentsFilter
-expr_stmt|;
-block|}
-DECL|method|ToChildBlockJoinQuery
-specifier|private
-name|ToChildBlockJoinQuery
-parameter_list|(
-name|Query
-name|origParentQuery
-parameter_list|,
-name|Query
-name|parentQuery
-parameter_list|,
-name|BitSetProducer
-name|parentsFilter
-parameter_list|)
-block|{
-name|super
-argument_list|()
-expr_stmt|;
-name|this
-operator|.
-name|origParentQuery
-operator|=
-name|origParentQuery
 expr_stmt|;
 name|this
 operator|.
@@ -1249,8 +1196,6 @@ return|return
 operator|new
 name|ToChildBlockJoinQuery
 argument_list|(
-name|parentQuery
-argument_list|,
 name|parentRewrite
 argument_list|,
 name|parentsFilter
@@ -1330,13 +1275,13 @@ name|other
 parameter_list|)
 block|{
 return|return
-name|origParentQuery
+name|parentQuery
 operator|.
 name|equals
 argument_list|(
 name|other
 operator|.
-name|origParentQuery
+name|parentQuery
 argument_list|)
 operator|&&
 name|parentsFilter
@@ -1375,7 +1320,7 @@ name|prime
 operator|*
 name|hash
 operator|+
-name|origParentQuery
+name|parentQuery
 operator|.
 name|hashCode
 argument_list|()
