@@ -1887,7 +1887,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"B1"
+literal|"RDBQ1_1"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1907,7 +1907,7 @@ name|updateJ
 argument_list|(
 name|jsonDelQ
 argument_list|(
-literal|"id:B2"
+literal|"id:RDBQ1_2"
 argument_list|)
 argument_list|,
 name|params
@@ -1931,7 +1931,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"B2"
+literal|"RDBQ1_2"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -1955,7 +1955,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"B3"
+literal|"RDBQ1_3"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2011,7 +2011,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B1"
+literal|"RDBQ2_1"
 argument_list|,
 literal|"1010"
 argument_list|)
@@ -2032,7 +2032,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B2"
+literal|"RDBQ2_2"
 argument_list|,
 literal|"1018"
 argument_list|)
@@ -2051,7 +2051,7 @@ name|updateJ
 argument_list|(
 name|jsonDelQ
 argument_list|(
-literal|"id:*"
+literal|"_root_:RDBQ2_1 _root_:RDBQ2_2 id:RDBQ2_3 _root_:RDBQ2_4"
 argument_list|)
 argument_list|,
 name|params
@@ -2076,7 +2076,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"B3"
+literal|"RDBQ2_3"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2099,7 +2099,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B4"
+literal|"RDBQ2_4"
 argument_list|,
 literal|"1020"
 argument_list|)
@@ -2153,7 +2153,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B1"
+literal|"RDBQ3_1"
 argument_list|,
 literal|"1010"
 argument_list|)
@@ -2174,7 +2174,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B2"
+literal|"RDBQ3_2"
 argument_list|,
 literal|"1018"
 argument_list|)
@@ -2193,7 +2193,7 @@ name|updateJ
 argument_list|(
 name|jsonDelQ
 argument_list|(
-literal|"id:B1 id:B2 id:B3 id:B4"
+literal|"id:RDBQ3_1 id:RDBQ3_2 id:RDBQ3_3 id:RDBQ3_4"
 argument_list|)
 argument_list|,
 name|params
@@ -2218,7 +2218,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"B3"
+literal|"RDBQ3_3"
 argument_list|,
 literal|"_version_"
 argument_list|,
@@ -2241,7 +2241,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B4"
+literal|"RDBQ3_4"
 argument_list|,
 literal|"1020"
 argument_list|)
@@ -2270,7 +2270,7 @@ argument_list|)
 argument_list|,
 literal|"/response/numFound==8"
 argument_list|)
-comment|// B2, B4 and 6 children docs (delete by id does not delete child docs)
+comment|// RDBQ3_2, RDBQ3_4 and 6 children docs (delete by id does not delete child docs)
 argument_list|)
 expr_stmt|;
 block|}
@@ -2293,7 +2293,7 @@ name|updateJ
 argument_list|(
 name|jsonDelQ
 argument_list|(
-literal|"id:B2"
+literal|"id:RDBQ4_2"
 argument_list|)
 argument_list|,
 name|params
@@ -2316,7 +2316,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B1"
+literal|"RDBQ4_1"
 argument_list|,
 literal|"1013"
 argument_list|,
@@ -2347,7 +2347,7 @@ argument_list|)
 argument_list|,
 literal|"/response/numFound==4"
 argument_list|)
-comment|// B1 and B2, plus 2x 3 children
+comment|// RDBQ4_1 and RDBQ4_2, plus 2x 3 children
 argument_list|)
 expr_stmt|;
 block|}
@@ -2374,7 +2374,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B1"
+literal|"RDBQ5_1"
 argument_list|,
 literal|"1011"
 argument_list|,
@@ -2397,7 +2397,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B1"
+literal|"RDBQ5_1"
 argument_list|,
 literal|"1012"
 argument_list|,
@@ -2420,7 +2420,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B2"
+literal|"RDBQ5_2"
 argument_list|,
 literal|"1013"
 argument_list|,
@@ -2440,7 +2440,7 @@ name|updateJ
 argument_list|(
 name|jsonDelQ
 argument_list|(
-literal|"id:B3"
+literal|"id:RDBQ5_3"
 argument_list|)
 argument_list|,
 name|params
@@ -2462,7 +2462,7 @@ name|jsonAdd
 argument_list|(
 name|sdocWithChildren
 argument_list|(
-literal|"B2"
+literal|"RDBQ5_2"
 argument_list|,
 literal|"1018"
 argument_list|,
@@ -2493,7 +2493,7 @@ argument_list|)
 argument_list|,
 literal|"/response/numFound==8"
 argument_list|)
-comment|// B1+3children+B2+3children
+comment|// RDBQ5_1+3children+RDBQ5_2+3children
 argument_list|)
 expr_stmt|;
 block|}
