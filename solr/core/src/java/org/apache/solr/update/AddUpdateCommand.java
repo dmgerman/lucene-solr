@@ -824,6 +824,13 @@ init|=
 name|getHashableId
 argument_list|()
 decl_stmt|;
+name|boolean
+name|isVersion
+init|=
+name|version
+operator|!=
+literal|0
+decl_stmt|;
 for|for
 control|(
 name|SolrInputDocument
@@ -842,6 +849,21 @@ name|idField
 argument_list|)
 expr_stmt|;
 comment|// should this be a string or the same type as the ID?
+if|if
+condition|(
+name|isVersion
+condition|)
+name|sdoc
+operator|.
+name|setField
+argument_list|(
+name|VersionInfo
+operator|.
+name|VERSION_FIELD
+argument_list|,
+name|version
+argument_list|)
+expr_stmt|;
 comment|// TODO: if possible concurrent modification exception (if SolrInputDocument not cloned and is being forwarded to replicas)
 comment|// then we could add this field to the generated lucene document instead.
 block|}
