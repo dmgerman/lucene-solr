@@ -3168,7 +3168,7 @@ name|nextInt
 argument_list|(
 name|TEST_NIGHTLY
 condition|?
-literal|6
+literal|3
 else|:
 literal|1
 argument_list|)
