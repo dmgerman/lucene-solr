@@ -2018,6 +2018,13 @@ expr_stmt|;
 name|this
 operator|.
 name|context
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|context
 operator|=
 name|ctx
 expr_stmt|;

@@ -2837,6 +2837,13 @@ condition|(
 name|allReplicasInLine
 condition|)
 block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Found all replicas participating in election, clear LIR"
+argument_list|)
+expr_stmt|;
 comment|// SOLR-8075: A bug may allow the proper leader to get marked as LIR DOWN and
 comment|// if we are marked as DOWN but were able to become the leader, we remove
 comment|// the DOWN entry here so that we don't fail publishing ACTIVE due to being in LIR.
@@ -4293,6 +4300,20 @@ operator|.
 name|cancelElection
 argument_list|()
 expr_stmt|;
+name|overseer
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+annotation|@
+name|Override
+DECL|method|close
+specifier|public
+name|void
+name|close
+parameter_list|()
+block|{
 name|overseer
 operator|.
 name|close
