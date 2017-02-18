@@ -705,6 +705,7 @@ literal|10
 argument_list|)
 return|;
 block|}
+comment|/** User drills down on the specified range, and also computes drill sideways counts. */
 DECL|method|drillSideways
 specifier|public
 name|DrillSideways
