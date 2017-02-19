@@ -1978,6 +1978,25 @@ argument_list|,
 name|idTerm
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|cmd
+operator|.
+name|isInPlaceUpdate
+argument_list|()
+operator|&&
+name|ulog
+operator|!=
+literal|null
+condition|)
+block|{
+name|ulog
+operator|.
+name|openRealtimeSearcher
+argument_list|()
+expr_stmt|;
+comment|// This is needed due to LUCENE-7344.
+block|}
 for|for
 control|(
 name|Query

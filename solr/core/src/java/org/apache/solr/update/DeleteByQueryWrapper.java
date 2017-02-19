@@ -365,6 +365,16 @@ argument_list|(
 name|wrapped
 argument_list|)
 decl_stmt|;
+name|privateContext
+operator|.
+name|setQueryCache
+argument_list|(
+name|searcher
+operator|.
+name|getQueryCache
+argument_list|()
+argument_list|)
+expr_stmt|;
 specifier|final
 name|Weight
 name|inner
