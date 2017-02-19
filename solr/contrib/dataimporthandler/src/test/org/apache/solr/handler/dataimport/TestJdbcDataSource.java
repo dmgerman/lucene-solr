@@ -3441,14 +3441,15 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-comment|// in JDK9, Class.forName will throw exception for mock classes
-if|if
-condition|(
+name|assumeFalse
+argument_list|(
+literal|"In Java 9, Class.forName() does not work for mock classes"
+argument_list|,
 name|Constants
 operator|.
 name|JRE_IS_MINIMUM_JAVA9
-condition|)
-return|return;
+argument_list|)
+expr_stmt|;
 name|DriverManager
 operator|.
 name|registerDriver
