@@ -1609,6 +1609,34 @@ name|SocketException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+literal|"Socket is closed"
+argument_list|)
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"Failed to set socket timeout on "
+operator|+
+name|src
+operator|+
+literal|" due to: "
+operator|+
+name|e
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 name|log
 operator|.
 name|error
