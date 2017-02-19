@@ -556,9 +556,10 @@ argument_list|)
 expr_stmt|;
 name|waitForThingsToLevelOut
 argument_list|(
-literal|440
+literal|600
 argument_list|)
 expr_stmt|;
+comment|// we can insert random update delays, so this can take a while, especially when beasting this test
 name|Thread
 operator|.
 name|sleep
