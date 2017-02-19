@@ -234,7 +234,7 @@ name|TimeoutSuite
 argument_list|(
 name|millis
 operator|=
-literal|5
+literal|7
 operator|*
 name|TimeUnits
 operator|.
