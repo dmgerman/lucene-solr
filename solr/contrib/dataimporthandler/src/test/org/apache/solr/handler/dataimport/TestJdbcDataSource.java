@@ -196,6 +196,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|handler
@@ -3427,6 +3441,14 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+comment|// in JDK9, Class.forName will throw exception for mock classes
+if|if
+condition|(
+name|Constants
+operator|.
+name|JRE_IS_MINIMUM_JAVA9
+condition|)
+return|return;
 name|DriverManager
 operator|.
 name|registerDriver

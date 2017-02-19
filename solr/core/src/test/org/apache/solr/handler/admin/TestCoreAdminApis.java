@@ -762,14 +762,10 @@ name|getRequestHandlers
 argument_list|()
 argument_list|)
 operator|.
-name|thenReturn
+name|thenAnswer
 argument_list|(
-operator|(
-name|PluginBag
-argument_list|<
-name|SolrRequestHandler
-argument_list|>
-operator|)
+name|invocationOnMock
+lambda|->
 name|out
 operator|.
 name|get
