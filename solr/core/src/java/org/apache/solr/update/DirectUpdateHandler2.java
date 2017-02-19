@@ -1921,14 +1921,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-name|Document
-name|luceneDocument
-init|=
-name|cmd
-operator|.
-name|getLuceneDocument
-argument_list|()
-decl_stmt|;
 name|Term
 name|idTerm
 init|=

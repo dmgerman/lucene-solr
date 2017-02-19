@@ -1164,6 +1164,7 @@ operator|.
 name|getFieldNames
 argument_list|()
 expr_stmt|;
+comment|// This shouldn't be needed once LUCENE-7659 is resolved
 name|segmentSortingFields
 operator|=
 name|iw

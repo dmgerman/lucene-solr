@@ -154,20 +154,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|LogDocMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|LuceneTestCase
@@ -528,7 +514,7 @@ name|solr
 operator|.
 name|index
 operator|.
-name|LogDocMergePolicyFactory
+name|NoMergePolicyFactory
 import|;
 end_import
 
@@ -747,19 +733,9 @@ literal|"solrconfig-tlog.xml"
 expr_stmt|;
 comment|// we need consistent segments that aren't re-ordered on merge because we're
 comment|// asserting inplace updates happen by checking the internal [docid]
-name|systemSetPropertySolrTestsMergePolicy
-argument_list|(
-name|LogDocMergePolicy
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|systemSetPropertySolrTestsMergePolicyFactory
 argument_list|(
-name|LogDocMergePolicyFactory
+name|NoMergePolicyFactory
 operator|.
 name|class
 operator|.
@@ -2098,6 +2074,13 @@ argument_list|,
 name|doc
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"reorderedDBQIndividualReplicaTest: This test passed fine..."
+argument_list|)
+expr_stmt|;
 name|clearIndex
 argument_list|()
 expr_stmt|;
@@ -2338,8 +2321,7 @@ specifier|final
 name|float
 name|multiplier
 init|=
-name|random
-argument_list|()
+name|r
 operator|.
 name|nextBoolean
 argument_list|()
@@ -2396,8 +2378,7 @@ name|shuffle
 argument_list|(
 name|ids
 argument_list|,
-name|random
-argument_list|()
+name|r
 argument_list|)
 expr_stmt|;
 comment|// so updates aren't applied in index order
@@ -2476,8 +2457,7 @@ name|shuffle
 argument_list|(
 name|ids
 argument_list|,
-name|random
-argument_list|()
+name|r
 argument_list|)
 expr_stmt|;
 comment|// so updates aren't applied in the same order as our 'set'
@@ -2509,8 +2489,7 @@ literal|1.0F
 operator|)
 operator|*
 operator|(
-name|random
-argument_list|()
+name|r
 operator|.
 name|nextFloat
 argument_list|()
@@ -2612,6 +2591,13 @@ argument_list|,
 name|luceneDocids
 argument_list|,
 name|valuesList
+argument_list|)
+expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"docValuesUpdateTest: This test passed fine..."
 argument_list|)
 expr_stmt|;
 block|}
@@ -3057,8 +3043,7 @@ name|map
 argument_list|(
 literal|"set"
 argument_list|,
-name|random
-argument_list|()
+name|r
 operator|.
 name|nextFloat
 argument_list|()
@@ -3070,8 +3055,7 @@ name|map
 argument_list|(
 literal|"set"
 argument_list|,
-name|random
-argument_list|()
+name|r
 operator|.
 name|nextInt
 argument_list|()
@@ -3221,8 +3205,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|random
-argument_list|()
+name|r
 operator|.
 name|nextBoolean
 argument_list|()
@@ -3619,6 +3602,13 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"ensureRtgWorksWithPartialUpdatesTest: This test passed fine..."
+argument_list|)
+expr_stmt|;
 block|}
 comment|/**    * Returns the "[docid]" value(s) returned from a non-distrib RTG to each of the clients used     * in this test (in the same order as the clients list)    */
 DECL|method|getInternalDocIds
@@ -4002,8 +3992,7 @@ name|shuffle
 argument_list|(
 name|reorderedUpdates
 argument_list|,
-name|random
-argument_list|()
+name|r
 argument_list|)
 expr_stmt|;
 name|List
@@ -4501,8 +4490,7 @@ name|shuffle
 argument_list|(
 name|reorderedUpdates
 argument_list|,
-name|random
-argument_list|()
+name|r
 argument_list|)
 expr_stmt|;
 name|List
@@ -7465,16 +7453,6 @@ argument_list|,
 literal|8000
 argument_list|)
 expr_stmt|;
-name|long
-name|seed
-init|=
-name|random
-argument_list|()
-operator|.
-name|nextLong
-argument_list|()
-decl_stmt|;
-comment|// seed for randomization within the threads
 name|ExecutorService
 name|threadpool
 init|=

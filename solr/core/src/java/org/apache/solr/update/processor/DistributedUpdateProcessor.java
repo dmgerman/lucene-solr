@@ -6753,9 +6753,8 @@ init|=
 operator|-
 literal|1
 decl_stmt|;
-comment|// Last found version for a dependent update; applicable only for in-place updates; useful for logging later
-comment|// if this is an inplace update, check and wait if we should be waiting for a dependent update, before
-comment|// entering the synchronized block
+comment|// if this is an in-place update, check and wait if we should be waiting for a previous update (on which
+comment|// this update depends), before entering the synchronized block
 if|if
 condition|(
 operator|!
@@ -6788,7 +6787,7 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|// it means in leader, the document has been deleted by now. drop this update
+comment|// it means the document has been deleted by now at the leader. drop this update
 return|return
 literal|true
 return|;
@@ -7246,22 +7245,7 @@ operator|.
 name|utf8ToString
 argument_list|()
 argument_list|,
-operator|(
 name|fetchedFromLeader
-operator|==
-literal|null
-condition|?
-literal|null
-else|:
-operator|(
-operator|(
-name|AddUpdateCommand
-operator|)
-name|fetchedFromLeader
-operator|)
-operator|.
-name|solrDoc
-operator|)
 argument_list|)
 expr_stmt|;
 comment|// Make this update to become a non-inplace update containing the full document obtained from the leader
@@ -7944,7 +7928,7 @@ name|AddUpdateCommand
 assert|;
 name|log
 operator|.
-name|info
+name|debug
 argument_list|(
 literal|"Fetched the document: {}"
 argument_list|,
