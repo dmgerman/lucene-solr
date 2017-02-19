@@ -191,6 +191,20 @@ operator|.
 name|util
 operator|.
 name|LuceneTestCase
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|LuceneTestCase
 operator|.
 name|Slow
 import|;
@@ -763,6 +777,16 @@ name|getAbsolutePath
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.hdfs.blockcache.global"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+comment|// always use global cache, this test can create a lot of directories
 name|schemaString
 operator|=
 literal|"schema15.xml"
