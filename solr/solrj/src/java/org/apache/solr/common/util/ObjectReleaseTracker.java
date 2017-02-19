@@ -226,7 +226,15 @@ argument_list|)
 decl_stmt|;
 operator|new
 name|ObjectTrackerException
+argument_list|(
+name|object
+operator|.
+name|getClass
 argument_list|()
+operator|.
+name|getName
+argument_list|()
+argument_list|)
 operator|.
 name|printStackTrace
 argument_list|(
@@ -549,7 +557,21 @@ class|class
 name|ObjectTrackerException
 extends|extends
 name|RuntimeException
-block|{        }
+block|{
+DECL|method|ObjectTrackerException
+name|ObjectTrackerException
+parameter_list|(
+name|String
+name|msg
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|msg
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 block|}
 end_class
 
