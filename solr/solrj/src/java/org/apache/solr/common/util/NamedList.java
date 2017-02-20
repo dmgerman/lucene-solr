@@ -1218,10 +1218,16 @@ block|}
 DECL|method|getImmutableCopy
 specifier|public
 name|NamedList
+argument_list|<
+name|T
+argument_list|>
 name|getImmutableCopy
 parameter_list|()
 block|{
 name|NamedList
+argument_list|<
+name|T
+argument_list|>
 name|copy
 init|=
 name|clone
