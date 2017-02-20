@@ -179,6 +179,16 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.hdfs.blockcache.global"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+comment|// always use global cache, this test can create a lot of directories
 name|dfsCluster
 operator|=
 name|HdfsTestUtil
