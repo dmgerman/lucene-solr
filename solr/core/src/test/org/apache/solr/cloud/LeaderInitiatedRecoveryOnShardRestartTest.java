@@ -76,11 +76,13 @@ name|org
 operator|.
 name|apache
 operator|.
-name|solr
+name|lucene
 operator|.
-name|SolrTestCaseJ4
+name|util
 operator|.
-name|SuppressSSL
+name|LuceneTestCase
+operator|.
+name|AwaitsFix
 import|;
 end_import
 
@@ -372,14 +374,14 @@ begin_class
 annotation|@
 name|Slow
 annotation|@
-name|SuppressSSL
+name|Nightly
+annotation|@
+name|AwaitsFix
 argument_list|(
 name|bugUrl
 operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-5776"
+literal|"https://issues.apache.org/jira/browse/SOLR-10071"
 argument_list|)
-annotation|@
-name|Nightly
 DECL|class|LeaderInitiatedRecoveryOnShardRestartTest
 specifier|public
 class|class
