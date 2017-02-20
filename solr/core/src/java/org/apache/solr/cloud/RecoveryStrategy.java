@@ -3376,6 +3376,16 @@ name|ExecutionException
 name|e
 parameter_list|)
 block|{
+if|if
+condition|(
+name|e
+operator|.
+name|getCause
+argument_list|()
+operator|instanceof
+name|SolrServerException
+condition|)
+block|{
 name|SolrServerException
 name|solrException
 init|=
@@ -3405,10 +3415,11 @@ name|LOG
 operator|.
 name|warn
 argument_list|(
-literal|"Socket timeout when send prep recovery cmd, retrying.. "
+literal|"Socket timeout on send prep recovery cmd, retrying.. "
 argument_list|)
 expr_stmt|;
 continue|continue;
+block|}
 block|}
 throw|throw
 name|e
