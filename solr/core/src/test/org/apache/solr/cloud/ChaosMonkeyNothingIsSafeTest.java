@@ -366,20 +366,6 @@ name|LoggerFactory
 import|;
 end_import
 
-begin_import
-import|import
-name|com
-operator|.
-name|carrotsearch
-operator|.
-name|randomizedtesting
-operator|.
-name|annotations
-operator|.
-name|ThreadLeakLingering
-import|;
-end_import
-
 begin_class
 annotation|@
 name|Slow
@@ -390,13 +376,7 @@ name|bugUrl
 operator|=
 literal|"https://issues.apache.org/jira/browse/SOLR-5776"
 argument_list|)
-annotation|@
-name|ThreadLeakLingering
-argument_list|(
-name|linger
-operator|=
-literal|60000
-argument_list|)
+comment|//@ThreadLeakLingering(linger = 60000)
 annotation|@
 name|SuppressObjectReleaseTracker
 argument_list|(
@@ -418,7 +398,7 @@ specifier|final
 name|int
 name|FAIL_TOLERANCE
 init|=
-literal|60
+literal|100
 decl_stmt|;
 DECL|field|log
 specifier|private
