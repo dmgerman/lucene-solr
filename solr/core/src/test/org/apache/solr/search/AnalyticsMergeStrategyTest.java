@@ -386,7 +386,7 @@ expr_stmt|;
 name|commit
 argument_list|()
 expr_stmt|;
-comment|/*     *  The count qparser plugin is pointing to the TestAnalyticsQParserPlugin. This class defines a simple AnalyticsQuery and     *  has two merge strategies. If the iterate local param is true then an InterativeMergeStrategy is used.     */
+comment|/*     *  The count qparser plugin is pointing to AnalyticsTestQParserPlugin. This class defines a simple AnalyticsQuery and     *  has two merge strategies. If the iterate local param is true then an InterativeMergeStrategy is used.     */
 name|ModifiableSolrParams
 name|params
 init|=
