@@ -1291,13 +1291,6 @@ block|}
 comment|// Sanity test the underlying concurrent map that BlockCache is using, in the same way that we use it.
 annotation|@
 name|Test
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-10141"
-argument_list|)
 DECL|method|testCacheConcurrent
 specifier|public
 name|void
@@ -1312,6 +1305,7 @@ init|=
 name|random
 argument_list|()
 decl_stmt|;
+comment|// TODO: introduce more randomness in cache size, hit rate, etc
 specifier|final
 name|int
 name|blocksInTest
@@ -1336,7 +1330,7 @@ specifier|final
 name|int
 name|nReads
 init|=
-literal|10000000
+literal|1000000
 decl_stmt|;
 specifier|final
 name|int
