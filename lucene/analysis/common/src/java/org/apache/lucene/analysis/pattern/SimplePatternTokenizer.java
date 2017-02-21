@@ -732,6 +732,11 @@ condition|)
 block|{
 if|if
 condition|(
+name|bufferLimit
+operator|!=
+operator|-
+literal|1
+operator|&&
 name|bufferNextRead
 operator|>=
 name|count

@@ -584,12 +584,7 @@ operator|-
 literal|1
 condition|)
 block|{
-comment|// strip the trailing separater we just matched from the token:
-name|tokenUpto
-operator|-=
-name|lastAcceptLength
-expr_stmt|;
-comment|// we found a token separator
+comment|// we found a token separator; strip the trailing separator we just matched from the token:
 name|int
 name|extra
 init|=
@@ -610,6 +605,10 @@ name|extra
 argument_list|)
 expr_stmt|;
 block|}
+name|tokenUpto
+operator|-=
+name|lastAcceptLength
+expr_stmt|;
 if|if
 condition|(
 name|tokenUpto
@@ -787,6 +786,11 @@ condition|)
 block|{
 if|if
 condition|(
+name|bufferLimit
+operator|!=
+operator|-
+literal|1
+operator|&&
 name|bufferNextRead
 operator|>=
 name|count
@@ -831,8 +835,6 @@ name|buffer
 argument_list|()
 argument_list|,
 name|tokenUpto
-operator|-
-name|count
 argument_list|,
 name|pendingChars
 argument_list|,
