@@ -560,13 +560,6 @@ comment|// return (byte)(pos>>10);
 block|}
 annotation|@
 name|Test
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-10121"
-argument_list|)
 DECL|method|testBlockCacheConcurrent
 specifier|public
 name|void
