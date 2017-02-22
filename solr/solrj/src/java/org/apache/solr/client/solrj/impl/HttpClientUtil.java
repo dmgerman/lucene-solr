@@ -58,26 +58,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -89,6 +69,18 @@ operator|.
 name|util
 operator|.
 name|Optional
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|concurrent
+operator|.
+name|CopyOnWriteArrayList
 import|;
 end_import
 
@@ -877,17 +869,10 @@ name|HttpRequestInterceptor
 argument_list|>
 name|interceptors
 init|=
-name|Collections
-operator|.
-name|synchronizedList
-argument_list|(
 operator|new
-name|ArrayList
-argument_list|<
-name|HttpRequestInterceptor
-argument_list|>
+name|CopyOnWriteArrayList
+argument_list|<>
 argument_list|()
-argument_list|)
 decl_stmt|;
 static|static
 block|{
@@ -1024,6 +1009,9 @@ name|HttpException
 throws|,
 name|IOException
 block|{
+comment|// don't synchronize traversal - can lead to deadlock - CopyOnWriteArrayList is critical
+comment|// we also do not want to have to acquire the mutex when the list is empty or put a global
+comment|// mutex around the process calls
 name|interceptors
 operator|.
 name|forEach
