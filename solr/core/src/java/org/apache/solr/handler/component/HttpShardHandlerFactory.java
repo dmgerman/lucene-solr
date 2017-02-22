@@ -858,7 +858,7 @@ name|HttpClientMetricNameStrategy
 name|metricNameStrategy
 decl_stmt|;
 DECL|field|r
-specifier|private
+specifier|protected
 specifier|final
 name|Random
 name|r
@@ -1978,6 +1978,7 @@ return|;
 block|}
 block|}
 DECL|method|getReplicaListTransformer
+specifier|protected
 name|ReplicaListTransformer
 name|getReplicaListTransformer
 parameter_list|(

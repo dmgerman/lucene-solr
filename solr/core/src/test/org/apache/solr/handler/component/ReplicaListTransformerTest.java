@@ -413,6 +413,7 @@ argument_list|()
 block|{
 annotation|@
 name|Override
+specifier|protected
 name|ReplicaListTransformer
 name|getReplicaListTransformer
 parameter_list|(

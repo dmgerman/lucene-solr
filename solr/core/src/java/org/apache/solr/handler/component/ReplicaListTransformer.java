@@ -62,6 +62,7 @@ end_import
 
 begin_interface
 DECL|interface|ReplicaListTransformer
+specifier|public
 interface|interface
 name|ReplicaListTransformer
 block|{
