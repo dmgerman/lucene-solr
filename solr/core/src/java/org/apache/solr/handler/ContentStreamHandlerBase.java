@@ -410,11 +410,22 @@ block|}
 finally|finally
 block|{
 comment|// finish the request
+try|try
+block|{
 name|processor
 operator|.
 name|finish
 argument_list|()
 expr_stmt|;
+block|}
+finally|finally
+block|{
+name|processor
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|newLoader

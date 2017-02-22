@@ -736,6 +736,11 @@ operator|.
 name|finish
 argument_list|()
 expr_stmt|;
+name|processor
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
 name|req
 operator|.
 name|close

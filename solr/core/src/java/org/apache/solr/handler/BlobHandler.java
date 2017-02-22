@@ -1907,6 +1907,8 @@ name|getParams
 argument_list|()
 argument_list|)
 decl_stmt|;
+try|try
+init|(
 name|UpdateRequestProcessor
 name|processor
 init|=
@@ -1918,7 +1920,8 @@ name|req
 argument_list|,
 name|rsp
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|AddUpdateCommand
 name|cmd
 init|=
@@ -1977,6 +1980,7 @@ operator|.
 name|finish
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Override
