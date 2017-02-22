@@ -610,7 +610,7 @@ specifier|final
 name|long
 name|sleepMsBeforeHealPartition
 init|=
-literal|2000L
+literal|300
 decl_stmt|;
 comment|// give plenty of time for replicas to recover when running in slow Jenkins test envs
 DECL|field|maxWaitSecsToSeeAllActive
@@ -1956,7 +1956,11 @@ comment|// now up the stakes and do more docs
 name|int
 name|numDocs
 init|=
+name|TEST_NIGHTLY
+condition|?
 literal|1000
+else|:
+literal|100
 decl_stmt|;
 name|boolean
 name|hasPartition
@@ -1983,7 +1987,7 @@ if|if
 condition|(
 name|d
 operator|%
-literal|100
+literal|10
 operator|==
 literal|0
 condition|)
@@ -2009,7 +2013,7 @@ if|if
 condition|(
 name|d
 operator|>=
-literal|100
+literal|10
 condition|)
 block|{
 name|proxy
@@ -3960,7 +3964,7 @@ name|Thread
 operator|.
 name|sleep
 argument_list|(
-literal|1000L
+literal|200L
 argument_list|)
 expr_stmt|;
 block|}
@@ -3972,7 +3976,7 @@ parameter_list|)
 block|{}
 name|waitMs
 operator|+=
-literal|1000L
+literal|200L
 expr_stmt|;
 block|}
 block|}
