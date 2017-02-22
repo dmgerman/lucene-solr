@@ -17,14 +17,20 @@ package|;
 end_package
 
 begin_import
-import|import
-name|javax
+import|import static
+name|org
 operator|.
-name|servlet
+name|apache
 operator|.
-name|http
+name|solr
 operator|.
-name|HttpServletRequest
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|PATH
 import|;
 end_import
 
@@ -194,16 +200,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|Collections
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|HashMap
 import|;
 end_import
@@ -245,6 +241,18 @@ operator|.
 name|util
 operator|.
 name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|javax
+operator|.
+name|servlet
+operator|.
+name|http
+operator|.
+name|HttpServletRequest
 import|;
 end_import
 
@@ -587,24 +595,6 @@ operator|.
 name|util
 operator|.
 name|SolrFileCleaningTracker
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|params
-operator|.
-name|CommonParams
-operator|.
-name|PATH
 import|;
 end_import
 
@@ -1559,10 +1549,12 @@ argument_list|)
 return|;
 block|}
 return|return
-name|Collections
+name|super
 operator|.
-name|emptyList
-argument_list|()
+name|getCommands
+argument_list|(
+name|validateInput
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -1601,9 +1593,10 @@ argument_list|()
 return|;
 block|}
 return|return
-name|Collections
+name|super
 operator|.
-name|EMPTY_MAP
+name|getPathTemplateValues
+argument_list|()
 return|;
 block|}
 annotation|@
