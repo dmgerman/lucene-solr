@@ -244,16 +244,6 @@ name|ULOG_NUM_RECORDS_TO_KEEP
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// the default=7000ms artificially slows down recovery and is not needed for this test
-name|System
-operator|.
-name|setProperty
-argument_list|(
-literal|"solr.cloud.wait-for-updates-with-stale-state-pause"
-argument_list|,
-literal|"500"
-argument_list|)
-expr_stmt|;
 comment|// avoid creating too many files, see SOLR-7421
 name|System
 operator|.
@@ -286,13 +276,6 @@ operator|.
 name|clearProperty
 argument_list|(
 literal|"solr.ulog.numRecordsToKeep"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|clearProperty
-argument_list|(
-literal|"solr.cloud.wait-for-updates-with-stale-state-pause"
 argument_list|)
 expr_stmt|;
 name|System
