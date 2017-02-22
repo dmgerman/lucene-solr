@@ -492,6 +492,16 @@ argument_list|)
 expr_stmt|;
 name|client
 operator|.
+name|setPollQueueTime
+argument_list|(
+name|Integer
+operator|.
+name|MAX_VALUE
+argument_list|)
+expr_stmt|;
+comment|// minimize connections created
+name|client
+operator|.
 name|setParser
 argument_list|(
 operator|new
@@ -506,15 +516,6 @@ argument_list|(
 operator|new
 name|BinaryRequestWriter
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|client
-operator|.
-name|setPollQueueTime
-argument_list|(
-name|req
-operator|.
-name|pollQueueTime
 argument_list|)
 expr_stmt|;
 name|Set

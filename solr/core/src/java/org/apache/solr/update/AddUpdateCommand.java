@@ -252,13 +252,6 @@ name|isLastDocInBatch
 init|=
 literal|false
 decl_stmt|;
-DECL|field|pollQueueTime
-specifier|public
-name|int
-name|pollQueueTime
-init|=
-literal|0
-decl_stmt|;
 DECL|method|AddUpdateCommand
 specifier|public
 name|AddUpdateCommand

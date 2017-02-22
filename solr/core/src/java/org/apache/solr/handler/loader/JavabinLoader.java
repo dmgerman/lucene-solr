@@ -702,14 +702,6 @@ argument_list|(
 name|req
 argument_list|)
 decl_stmt|;
-comment|// since we can give a hint to the leader that the end of a batch is being processed, it's OK to have a larger
-comment|// pollQueueTime than the default 0 since we can optimize around not waiting unnecessarily
-name|addCmd
-operator|.
-name|pollQueueTime
-operator|=
-name|pollQueueTime
-expr_stmt|;
 name|addCmd
 operator|.
 name|overwrite

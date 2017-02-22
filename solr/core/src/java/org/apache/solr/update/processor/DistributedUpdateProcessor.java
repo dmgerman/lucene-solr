@@ -5664,6 +5664,28 @@ comment|// an id may fail before it gets to this processor.
 comment|// Given that, it may also make sense to move the version reporting out of this
 comment|// processor too.
 block|}
+annotation|@
+name|Override
+DECL|method|doClose
+specifier|protected
+name|void
+name|doClose
+parameter_list|()
+block|{
+if|if
+condition|(
+name|cmdDistrib
+operator|!=
+literal|null
+condition|)
+block|{
+name|cmdDistrib
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 comment|// TODO: optionally fail if n replicas are not reached...
 DECL|method|doFinish
 specifier|private
