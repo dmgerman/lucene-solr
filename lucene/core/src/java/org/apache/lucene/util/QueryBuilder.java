@@ -310,6 +310,13 @@ name|enablePositionIncrements
 init|=
 literal|true
 decl_stmt|;
+DECL|field|enableGraphQueries
+specifier|protected
+name|boolean
+name|enableGraphQueries
+init|=
+literal|true
+decl_stmt|;
 DECL|field|autoGenerateMultiTermSynonymsPhraseQuery
 specifier|protected
 name|boolean
@@ -839,6 +846,32 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|/** Enable or disable graph TokenStream processing (enabled by default).    *    * @lucene.experimental */
+DECL|method|setEnableGraphQueries
+specifier|public
+name|void
+name|setEnableGraphQueries
+parameter_list|(
+name|boolean
+name|v
+parameter_list|)
+block|{
+name|enableGraphQueries
+operator|=
+name|v
+expr_stmt|;
+block|}
+comment|/** Returns true if graph TokenStream processing is enabled (default).    *    * @lucene.experimental */
+DECL|method|getEnableGraphQueries
+specifier|public
+name|boolean
+name|getEnableGraphQueries
+parameter_list|()
+block|{
+return|return
+name|enableGraphQueries
+return|;
+block|}
 comment|/**    * Creates a query from a token stream.    *    * @param source     the token stream to create the query from    * @param operator   default boolean operator used for this query    * @param field      field to create queries against    * @param quoted     true if phrases should be generated when terms occur at more than one position    * @param phraseSlop slop factor for phrase/multiphrase queries    */
 DECL|method|createFieldQuery
 specifier|protected
@@ -1015,8 +1048,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-operator|!
-name|isGraph
+name|enableGraphQueries
 operator|&&
 name|positionLength
 operator|>
