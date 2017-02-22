@@ -739,7 +739,7 @@ name|getInteger
 argument_list|(
 literal|"solr.cloud.wait-for-updates-with-stale-state-pause"
 argument_list|,
-literal|7000
+literal|2500
 argument_list|)
 decl_stmt|;
 DECL|field|MAX_RETRIES
