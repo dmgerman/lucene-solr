@@ -414,6 +414,20 @@ name|IOUtils
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|/** Replica node, that pulls index changes from the primary node by copying newly flushed or merged index files.  *   *  @lucene.experimental */
 end_comment
@@ -804,7 +818,11 @@ name|infos
 operator|=
 operator|new
 name|SegmentInfos
-argument_list|()
+argument_list|(
+name|Version
+operator|.
+name|LATEST
+argument_list|)
 expr_stmt|;
 name|message
 argument_list|(

@@ -164,6 +164,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
 import|;
 end_import
@@ -2889,26 +2899,37 @@ comment|// Try to read first.  This is to allow create
 comment|// against an index that's currently open for
 comment|// searching.  In this case we write the next
 comment|// segments_N file with no segments:
+specifier|final
 name|SegmentInfos
 name|sis
 init|=
-literal|null
+operator|new
+name|SegmentInfos
+argument_list|(
+name|Version
+operator|.
+name|LATEST
+argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|sis
-operator|=
+specifier|final
+name|SegmentInfos
+name|previous
+init|=
 name|SegmentInfos
 operator|.
 name|readLatestCommit
 argument_list|(
 name|directory
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|sis
 operator|.
-name|clear
-argument_list|()
+name|updateGenerationVersionAndCounter
+argument_list|(
+name|previous
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
@@ -2921,12 +2942,6 @@ comment|// Likely this means it's a fresh directory
 name|initialIndexExists
 operator|=
 literal|false
-expr_stmt|;
-name|sis
-operator|=
-operator|new
-name|SegmentInfos
-argument_list|()
 expr_stmt|;
 block|}
 name|segmentInfos
@@ -8600,7 +8615,7 @@ return|return
 name|locks
 return|;
 block|}
-comment|/**    * Adds all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing. A large document    * collection can be broken into sub-collections. Each sub-collection can be    * indexed in parallel, on a different thread, process or machine. The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>    *<b>NOTE:</b> this method acquires the write lock in    * each directory, to ensure that no {@code IndexWriter}    * is currently open or tries to open while this is    * running.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (for example disk full), then either no indexes    * will have been added or they all will have been.    *    *<p>Note that this requires temporary free space in the    * {@link Directory} up to 2X the sum of all input indexes    * (including the starting index). If readers/searchers    * are open against the starting index, then temporary    * free space required will be higher by the size of the    * starting index (see {@link #forceMerge(int)} for details).    *    *<p>This requires this index not be among those to be added.    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws IllegalArgumentException if addIndexes would cause    *   the index to exceed {@link #MAX_DOCS}, or if the indoming    *   index sort does not match this index's index sort    */
+comment|/**    * Adds all segments from an array of indexes into this index.    *    *<p>This may be used to parallelize batch indexing. A large document    * collection can be broken into sub-collections. Each sub-collection can be    * indexed in parallel, on a different thread, process or machine. The    * complete index can then be created by merging sub-collection indexes    * with this method.    *    *<p>    *<b>NOTE:</b> this method acquires the write lock in    * each directory, to ensure that no {@code IndexWriter}    * is currently open or tries to open while this is    * running.    *    *<p>This method is transactional in how Exceptions are    * handled: it does not commit a new segments_N file until    * all indexes are added.  This means if an Exception    * occurs (for example disk full), then either no indexes    * will have been added or they all will have been.    *    *<p>Note that this requires temporary free space in the    * {@link Directory} up to 2X the sum of all input indexes    * (including the starting index). If readers/searchers    * are open against the starting index, then temporary    * free space required will be higher by the size of the    * starting index (see {@link #forceMerge(int)} for details).    *    *<p>This requires this index not be among those to be added.    *    *<p>All added indexes must have been created by the same    * Lucene version as this index.    *    * @return The<a href="#sequence_number">sequence number</a>    * for this operation    *    * @throws CorruptIndexException if the index is corrupt    * @throws IOException if there is a low-level IO error    * @throws IllegalArgumentException if addIndexes would cause    *   the index to exceed {@link #MAX_DOCS}, or if the indoming    *   index sort does not match this index's index sort    */
 DECL|method|addIndexes
 specifier|public
 name|long
@@ -8750,6 +8765,48 @@ name|dir
 argument_list|)
 decl_stmt|;
 comment|// read infos from dir
+if|if
+condition|(
+name|Objects
+operator|.
+name|equals
+argument_list|(
+name|segmentInfos
+operator|.
+name|getIndexCreatedVersion
+argument_list|()
+argument_list|,
+name|sis
+operator|.
+name|getIndexCreatedVersion
+argument_list|()
+argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"Cannot use addIndexes(Directory) with indexes that have been created "
+operator|+
+literal|"by a different Lucene version. The current index was generated by "
+operator|+
+name|segmentInfos
+operator|.
+name|getIndexCreatedVersion
+argument_list|()
+operator|+
+literal|" while one of the directories contains an index that was generated with "
+operator|+
+name|sis
+operator|.
+name|getIndexCreatedVersion
+argument_list|()
+argument_list|)
+throw|;
+block|}
 name|totalMaxDoc
 operator|+=
 name|sis
@@ -17436,7 +17493,12 @@ name|newSIS
 init|=
 operator|new
 name|SegmentInfos
+argument_list|(
+name|sis
+operator|.
+name|getIndexCreatedVersion
 argument_list|()
+argument_list|)
 decl_stmt|;
 specifier|final
 name|Map

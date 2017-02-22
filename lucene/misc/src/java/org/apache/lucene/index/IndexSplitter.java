@@ -172,6 +172,7 @@ name|IndexSplitter
 block|{
 DECL|field|infos
 specifier|public
+specifier|final
 name|SegmentInfos
 name|infos
 decl_stmt|;
@@ -778,7 +779,12 @@ name|destInfos
 init|=
 operator|new
 name|SegmentInfos
+argument_list|(
+name|infos
+operator|.
+name|getIndexCreatedVersion
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|destInfos
 operator|.
