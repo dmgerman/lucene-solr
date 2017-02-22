@@ -2530,9 +2530,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"Graph(+b:guinea +b:pig, b:cavy, hasBoolean=true, hasPhrase=false) "
-operator|+
-literal|"Graph(+t:guinea +t:pig, t:cavy, hasBoolean=true, hasPhrase=false)"
+literal|"((+b:guinea +b:pig) (+t:guinea +t:pig)) (b:cavy t:cavy)"
 argument_list|,
 name|q
 operator|.
