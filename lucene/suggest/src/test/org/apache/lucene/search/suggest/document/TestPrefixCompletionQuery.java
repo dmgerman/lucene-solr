@@ -948,6 +948,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|3
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertSuggestions
@@ -1182,6 +1184,8 @@ argument_list|(
 name|query
 argument_list|,
 name|num
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -1278,6 +1282,8 @@ argument_list|(
 name|query
 argument_list|,
 name|num
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|assertSuggestions
@@ -1338,6 +1344,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|1
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|assertSuggestions
@@ -1590,6 +1598,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|3
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertSuggestions
@@ -1662,6 +1672,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|3
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 name|assertSuggestions
@@ -1874,6 +1886,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|4
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// all 4
@@ -1939,6 +1953,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|4
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// not the fo
@@ -2160,6 +2176,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|4
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|//matches all 4
@@ -2225,6 +2243,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|4
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// only foobar
@@ -2430,6 +2450,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|4
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 comment|// matches all 4
@@ -2495,6 +2517,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|4
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 comment|// except the fo
@@ -2777,6 +2801,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|3
+argument_list|,
+literal|false
 argument_list|)
 operator|.
 name|totalHits
@@ -2807,6 +2833,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|3
+argument_list|,
+literal|false
 argument_list|)
 argument_list|,
 operator|new

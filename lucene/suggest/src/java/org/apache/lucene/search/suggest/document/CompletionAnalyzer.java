@@ -166,7 +166,7 @@ specifier|final
 name|int
 name|maxGraphExpansions
 decl_stmt|;
-comment|/**    * Wraps an analyzer to convert it's output token stream to an automaton    *    * @param analyzer token stream to be converted to an automaton    * @param preserveSep Preserve separation between tokens when converting to an automaton    * @param preservePositionIncrements Preserve position increments for tokens when converting to an automaton    * @param maxGraphExpansions Sets the maximum number of graph expansions of a completion automaton    */
+comment|/**    * Wraps an analyzer to convert its output token stream to an automaton    *    * @param analyzer token stream to be converted to an automaton    * @param preserveSep Preserve separation between tokens when converting to an automaton    * @param preservePositionIncrements Preserve position increments for tokens when converting to an automaton    * @param maxGraphExpansions Sets the maximum number of graph expansions of a completion automaton    */
 DECL|method|CompletionAnalyzer
 specifier|public
 name|CompletionAnalyzer

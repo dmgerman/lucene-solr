@@ -449,6 +449,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|4
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertSuggestions
@@ -718,6 +720,8 @@ argument_list|(
 name|query
 argument_list|,
 literal|5
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertSuggestions
@@ -1020,6 +1024,8 @@ argument_list|(
 name|contextQuery
 argument_list|,
 literal|5
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 name|assertSuggestions

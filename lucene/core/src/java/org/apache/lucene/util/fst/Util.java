@@ -1196,6 +1196,7 @@ parameter_list|<
 name|T
 parameter_list|>
 block|{
+comment|/** Holds the last arc appended to this path */
 DECL|field|arc
 specifier|public
 name|FST
@@ -1206,10 +1207,11 @@ name|T
 argument_list|>
 name|arc
 decl_stmt|;
-DECL|field|cost
+comment|/** Holds cost plus any usage-specific output: */
+DECL|field|output
 specifier|public
 name|T
-name|cost
+name|output
 decl_stmt|;
 DECL|field|input
 specifier|public
@@ -1229,13 +1231,19 @@ specifier|final
 name|CharSequence
 name|context
 decl_stmt|;
+comment|// Custom int payload for consumers; the NRT suggester uses this to record if this path has already enumerated a surface form
+DECL|field|payload
+specifier|public
+name|int
+name|payload
+decl_stmt|;
 comment|/** Sole constructor */
 DECL|method|FSTPath
 specifier|public
 name|FSTPath
 parameter_list|(
 name|T
-name|cost
+name|output
 parameter_list|,
 name|FST
 operator|.
@@ -1251,7 +1259,7 @@ parameter_list|)
 block|{
 name|this
 argument_list|(
-name|cost
+name|output
 argument_list|,
 name|arc
 argument_list|,
@@ -1260,6 +1268,9 @@ argument_list|,
 literal|0
 argument_list|,
 literal|null
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -1268,7 +1279,7 @@ specifier|public
 name|FSTPath
 parameter_list|(
 name|T
-name|cost
+name|output
 parameter_list|,
 name|FST
 operator|.
@@ -1286,6 +1297,9 @@ name|boost
 parameter_list|,
 name|CharSequence
 name|context
+parameter_list|,
+name|int
+name|payload
 parameter_list|)
 block|{
 name|this
@@ -1308,9 +1322,9 @@ argument_list|)
 expr_stmt|;
 name|this
 operator|.
-name|cost
+name|output
 operator|=
-name|cost
+name|output
 expr_stmt|;
 name|this
 operator|.
@@ -1329,6 +1343,12 @@ operator|.
 name|context
 operator|=
 name|context
+expr_stmt|;
+name|this
+operator|.
+name|payload
+operator|=
+name|payload
 expr_stmt|;
 block|}
 DECL|method|newPath
@@ -1340,7 +1360,7 @@ argument_list|>
 name|newPath
 parameter_list|(
 name|T
-name|cost
+name|output
 parameter_list|,
 name|IntsRefBuilder
 name|input
@@ -1351,7 +1371,7 @@ operator|new
 name|FSTPath
 argument_list|<>
 argument_list|(
-name|cost
+name|output
 argument_list|,
 name|this
 operator|.
@@ -1366,6 +1386,10 @@ argument_list|,
 name|this
 operator|.
 name|context
+argument_list|,
+name|this
+operator|.
+name|payload
 argument_list|)
 return|;
 block|}
@@ -1385,17 +1409,21 @@ operator|.
 name|get
 argument_list|()
 operator|+
-literal|" cost="
+literal|" output="
 operator|+
-name|cost
+name|output
 operator|+
-literal|"context="
+literal|" context="
 operator|+
 name|context
 operator|+
-literal|"boost="
+literal|" boost="
 operator|+
 name|boost
+operator|+
+literal|" payload="
+operator|+
+name|payload
 return|;
 block|}
 block|}
@@ -1473,11 +1501,11 @@ name|compare
 argument_list|(
 name|a
 operator|.
-name|cost
+name|output
 argument_list|,
 name|b
 operator|.
-name|cost
+name|output
 argument_list|)
 decl_stmt|;
 if|if
@@ -1745,7 +1773,7 @@ operator|!=
 literal|null
 assert|;
 name|T
-name|cost
+name|output
 init|=
 name|fst
 operator|.
@@ -1755,7 +1783,7 @@ name|add
 argument_list|(
 name|path
 operator|.
-name|cost
+name|output
 argument_list|,
 name|path
 operator|.
@@ -1764,7 +1792,6 @@ operator|.
 name|output
 argument_list|)
 decl_stmt|;
-comment|//System.out.println("  addIfCompetitive queue.size()=" + queue.size() + " path=" + path + " + label=" + path.arc.label);
 if|if
 condition|(
 name|queue
@@ -1922,18 +1949,34 @@ operator|.
 name|label
 argument_list|)
 expr_stmt|;
-name|queue
-operator|.
-name|add
-argument_list|(
+name|FSTPath
+argument_list|<
+name|T
+argument_list|>
+name|newPath
+init|=
 name|path
 operator|.
 name|newPath
 argument_list|(
-name|cost
+name|output
 argument_list|,
 name|newInput
 argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|acceptPartialPath
+argument_list|(
+name|newPath
+argument_list|)
+condition|)
+block|{
+name|queue
+operator|.
+name|add
+argument_list|(
+name|newPath
 argument_list|)
 expr_stmt|;
 if|if
@@ -1953,6 +1996,7 @@ operator|.
 name|pollLast
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|addStartPaths
@@ -1993,6 +2037,9 @@ argument_list|,
 literal|0
 argument_list|,
 literal|null
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 block|}
@@ -2024,6 +2071,9 @@ name|boost
 parameter_list|,
 name|CharSequence
 name|context
+parameter_list|,
+name|int
+name|payload
 parameter_list|)
 throws|throws
 name|IOException
@@ -2073,6 +2123,8 @@ argument_list|,
 name|boost
 argument_list|,
 name|context
+argument_list|,
+name|payload
 argument_list|)
 decl_stmt|;
 name|fst
@@ -2088,7 +2140,6 @@ argument_list|,
 name|bytesReader
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("add start paths");
 comment|// Bootstrap: find the min starting arc
 while|while
 condition|(
@@ -2167,7 +2218,6 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|//System.out.println("search topN=" + topN);
 specifier|final
 name|BytesReader
 name|fstReader
@@ -2209,7 +2259,6 @@ operator|<
 name|topN
 condition|)
 block|{
-comment|//System.out.println("\nfind next path: queue.size=" + queue.size());
 name|FSTPath
 argument_list|<
 name|T
@@ -2224,7 +2273,6 @@ literal|null
 condition|)
 block|{
 comment|// Ran out of paths
-comment|//System.out.println("  break queue=null");
 break|break;
 block|}
 comment|// Remove top path since we are now going to
@@ -2244,8 +2292,20 @@ literal|null
 condition|)
 block|{
 comment|// There were less than topN paths available:
-comment|//System.out.println("  break no more paths");
 break|break;
+block|}
+comment|//System.out.println("pop path=" + path + " arc=" + path.arc.output);
+if|if
+condition|(
+name|acceptPartialPath
+argument_list|(
+name|path
+argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+continue|continue;
 block|}
 if|if
 condition|(
@@ -2260,7 +2320,6 @@ operator|.
 name|END_LABEL
 condition|)
 block|{
-comment|//System.out.println("    empty string!  cost=" + path.cost);
 comment|// Empty string!
 name|path
 operator|.
@@ -2295,7 +2354,7 @@ argument_list|()
 argument_list|,
 name|path
 operator|.
-name|cost
+name|output
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2323,7 +2382,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|//System.out.println("  path: " + path);
 comment|// We take path and find its "0 output completion",
 comment|// ie, just keep traversing the first arc with
 comment|// NO_OUTPUT that we can find, since this must lead
@@ -2335,7 +2393,6 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|//System.out.println("\n    cycle path: " + path);
 name|fst
 operator|.
 name|readFirstTargetArc
@@ -2362,7 +2419,6 @@ condition|(
 literal|true
 condition|)
 block|{
-comment|//System.out.println("      arc=" + (char) path.arc.label + " cost=" + path.arc.output);
 comment|// tricky: instead of comparing output == 0, we must
 comment|// express it via the comparator compare(output, 0) == 0
 if|if
@@ -2502,10 +2558,9 @@ name|END_LABEL
 condition|)
 block|{
 comment|// Add final output:
-comment|//System.out.println("    done!: " + path);
 name|path
 operator|.
-name|cost
+name|output
 operator|=
 name|fst
 operator|.
@@ -2515,7 +2570,7 @@ name|add
 argument_list|(
 name|path
 operator|.
-name|cost
+name|output
 argument_list|,
 name|path
 operator|.
@@ -2532,7 +2587,6 @@ name|path
 argument_list|)
 condition|)
 block|{
-comment|//System.out.println("    add result: " + path);
 name|results
 operator|.
 name|add
@@ -2550,7 +2604,7 @@ argument_list|()
 argument_list|,
 name|path
 operator|.
-name|cost
+name|output
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2580,7 +2634,7 @@ argument_list|)
 expr_stmt|;
 name|path
 operator|.
-name|cost
+name|output
 operator|=
 name|fst
 operator|.
@@ -2590,7 +2644,7 @@ name|add
 argument_list|(
 name|path
 operator|.
-name|cost
+name|output
 argument_list|,
 name|path
 operator|.
@@ -2599,6 +2653,18 @@ operator|.
 name|output
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|acceptPartialPath
+argument_list|(
+name|path
+argument_list|)
+operator|==
+literal|false
+condition|)
+block|{
+break|break;
+block|}
 block|}
 block|}
 block|}
@@ -2641,8 +2707,25 @@ argument_list|()
 argument_list|,
 name|path
 operator|.
-name|cost
+name|output
 argument_list|)
+return|;
+block|}
+comment|/** Override this to prevent considering a path before it's complete */
+DECL|method|acceptPartialPath
+specifier|protected
+name|boolean
+name|acceptPartialPath
+parameter_list|(
+name|FSTPath
+argument_list|<
+name|T
+argument_list|>
+name|path
+parameter_list|)
+block|{
+return|return
+literal|true
 return|;
 block|}
 DECL|method|acceptResult

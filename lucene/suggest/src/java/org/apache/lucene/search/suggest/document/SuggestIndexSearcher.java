@@ -126,6 +126,8 @@ name|SuggestIndexSearcher
 extends|extends
 name|IndexSearcher
 block|{
+comment|// NOTE: we do not accept an ExecutorService here, because at least the dedup
+comment|// logic in TopSuggestDocsCollector/NRTSuggester would not be thread safe (and maybe other things)
 comment|/**    * Creates a searcher with document suggest capabilities    * for<code>reader</code>.    */
 DECL|method|SuggestIndexSearcher
 specifier|public
@@ -152,6 +154,9 @@ name|query
 parameter_list|,
 name|int
 name|n
+parameter_list|,
+name|boolean
+name|skipDuplicates
 parameter_list|)
 throws|throws
 name|IOException
@@ -163,6 +168,8 @@ operator|new
 name|TopSuggestDocsCollector
 argument_list|(
 name|n
+argument_list|,
+name|skipDuplicates
 argument_list|)
 decl_stmt|;
 name|suggest
