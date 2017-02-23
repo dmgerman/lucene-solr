@@ -2222,13 +2222,27 @@ name|Exception
 name|e
 parameter_list|)
 block|{
+name|String
+name|e1
+init|=
+name|e
+operator|.
+name|getCause
+argument_list|()
+operator|.
+name|getMessage
+argument_list|()
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"Expected error message for non-existent core."
 argument_list|,
-literal|"Core with core name [non-existent-core] does not exist."
+literal|"No such core: non-existent-core"
 argument_list|,
 name|e
+operator|.
+name|getCause
+argument_list|()
 operator|.
 name|getMessage
 argument_list|()
@@ -2295,7 +2309,7 @@ name|assertEquals
 argument_list|(
 literal|"Expected error message for non-existent core."
 argument_list|,
-literal|"Core with core name [null] does not exist."
+literal|"Missing required parameter: core"
 argument_list|,
 name|e
 operator|.
