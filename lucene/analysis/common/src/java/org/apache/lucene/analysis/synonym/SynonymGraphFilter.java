@@ -739,6 +739,7 @@ name|endNode
 expr_stmt|;
 block|}
 block|}
+comment|/**    * Apply previously built synonyms to incoming tokens.    * @param input input tokenstream    * @param synonyms synonym map    * @param ignoreCase case-folds input for matching with {@link Character#toLowerCase(int)}.    *                   Note, if you set this to true, it's your responsibility to lowercase    *                   the input entries when you create the {@link SynonymMap}    */
 DECL|method|SynonymGraphFilter
 specifier|public
 name|SynonymGraphFilter
