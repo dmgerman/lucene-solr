@@ -2857,7 +2857,7 @@ name|valueOf
 argument_list|(
 name|numTerms
 operator|*
-literal|3
+literal|5
 argument_list|)
 argument_list|)
 expr_stmt|;
