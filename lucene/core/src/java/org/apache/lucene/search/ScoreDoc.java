@@ -38,7 +38,7 @@ specifier|public
 name|int
 name|doc
 decl_stmt|;
-comment|/** Only set by {@link TopDocs#merge} */
+comment|/** Only set by {@link TopDocs#merge}*/
 DECL|field|shardIndex
 specifier|public
 name|int
