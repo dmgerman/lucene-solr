@@ -2228,7 +2228,6 @@ operator|.
 name|RELEVANCE
 argument_list|)
 decl_stmt|;
-comment|// groupSort defaults to sort
 name|String
 name|withinGroupSortStr
 init|=
