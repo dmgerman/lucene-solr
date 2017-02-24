@@ -1533,9 +1533,13 @@ name|TopDocs
 operator|.
 name|merge
 argument_list|(
+literal|0
+argument_list|,
 name|cappedNumHits
 argument_list|,
 name|topDocs
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}
@@ -1993,9 +1997,13 @@ name|merge
 argument_list|(
 name|sort
 argument_list|,
+literal|0
+argument_list|,
 name|cappedNumHits
 argument_list|,
 name|topDocs
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}

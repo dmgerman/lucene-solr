@@ -159,6 +159,7 @@ specifier|final
 name|int
 name|shardIndex
 decl_stmt|;
+comment|// True if we should use the incoming ScoreDoc.shardIndex for sort order
 DECL|field|useScoreDocIndex
 specifier|final
 name|boolean
@@ -225,16 +226,32 @@ condition|(
 name|useScoreDocIndex
 condition|)
 block|{
-assert|assert
+if|if
+condition|(
 name|scoreDoc
 operator|.
 name|shardIndex
-operator|!=
+operator|==
 operator|-
 literal|1
-operator|:
-literal|"scoreDoc shardIndex must be predefined set but wasn't"
-assert|;
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"setShardIndex is false but TopDocs["
+operator|+
+name|shardIndex
+operator|+
+literal|"].scoreDocs["
+operator|+
+name|hitIndex
+operator|+
+literal|"] is not set"
+argument_list|)
+throw|;
+block|}
 return|return
 name|scoreDoc
 operator|.
@@ -243,16 +260,7 @@ return|;
 block|}
 else|else
 block|{
-assert|assert
-name|scoreDoc
-operator|.
-name|shardIndex
-operator|==
-operator|-
-literal|1
-operator|:
-literal|"scoreDoc shardIndex must be undefined but wasn't"
-assert|;
+comment|// NOTE: we don't assert that shardIndex is -1 here, because caller could in fact have set it but asked us to ignore it now
 return|return
 name|shardIndex
 return|;
@@ -961,7 +969,7 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** Returns a new TopDocs, containing topN results across    *  the provided TopDocs, sorting by score. Each {@link TopDocs}    *  instance must be sorted.    *    *  @see #merge(int, int, TopDocs[])    *  @lucene.experimental */
+comment|/** Returns a new TopDocs, containing topN results across    *  the provided TopDocs, sorting by score. Each {@link TopDocs}    *  instance must be sorted.    *    *  @see #merge(int, int, TopDocs[], boolean)    *  @lucene.experimental */
 DECL|method|merge
 specifier|public
 specifier|static
@@ -984,10 +992,12 @@ argument_list|,
 name|topN
 argument_list|,
 name|shardHits
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Same as {@link #merge(int, TopDocs[])} but also ignores the top    * {@code start} top docs. This is typically useful for pagination.    *    * Note: This method will fill the {@link ScoreDoc#shardIndex} on all score docs returned iff all ScoreDocs passed    * to this have it's shard index set to<tt>-1</tt>. Otherwise the shard index is not set. This allows to predefine    * the shard index in order to incrementally merge shard responses without losing the original shard index.    * @lucene.experimental    */
+comment|/**    * Same as {@link #merge(int, TopDocs[])} but also ignores the top    * {@code start} top docs. This is typically useful for pagination.    *    * Note: If {@code setShardIndex} is true, this method will assume the incoming order of {@code shardHits} reflects    * each shard's index and will fill the {@link ScoreDoc#shardIndex}, otherwise    * it must already be set for all incoming {@code ScoreDoc}s, which can be useful when doing multiple reductions    * (merges) of TopDocs.    *    * @lucene.experimental    */
 DECL|method|merge
 specifier|public
 specifier|static
@@ -1003,6 +1013,9 @@ parameter_list|,
 name|TopDocs
 index|[]
 name|shardHits
+parameter_list|,
+name|boolean
+name|setShardIndex
 parameter_list|)
 block|{
 return|return
@@ -1015,10 +1028,12 @@ argument_list|,
 name|topN
 argument_list|,
 name|shardHits
+argument_list|,
+name|setShardIndex
 argument_list|)
 return|;
 block|}
-comment|/** Returns a new TopFieldDocs, containing topN results across    *  the provided TopFieldDocs, sorting by the specified {@link    *  Sort}.  Each of the TopDocs must have been sorted by    *  the same Sort, and sort field values must have been    *  filled (ie,<code>fillFields=true</code> must be    *  passed to {@link TopFieldCollector#create}).    *  @see #merge(Sort, int, int, TopFieldDocs[])    * @lucene.experimental */
+comment|/** Returns a new TopFieldDocs, containing topN results across    *  the provided TopFieldDocs, sorting by the specified {@link    *  Sort}.  Each of the TopDocs must have been sorted by    *  the same Sort, and sort field values must have been    *  filled (ie,<code>fillFields=true</code> must be    *  passed to {@link TopFieldCollector#create}).    *  @see #merge(Sort, int, int, TopFieldDocs[], boolean)    * @lucene.experimental */
 DECL|method|merge
 specifier|public
 specifier|static
@@ -1046,10 +1061,12 @@ argument_list|,
 name|topN
 argument_list|,
 name|shardHits
+argument_list|,
+literal|true
 argument_list|)
 return|;
 block|}
-comment|/**    * Same as {@link #merge(Sort, int, TopFieldDocs[])} but also ignores the top    * {@code start} top docs. This is typically useful for pagination.    *    * Note: This method will fill the {@link ScoreDoc#shardIndex} on all score docs returned iff all ScoreDocs passed    * to this have it's shard index set to<tt>-1</tt>. Otherwise the shard index is not set. This allows to predefine    * the shard index in order to incrementally merge shard responses without losing the original shard index.    * @lucene.experimental    */
+comment|/**    * Same as {@link #merge(Sort, int, TopFieldDocs[])} but also ignores the top    * {@code start} top docs. This is typically useful for pagination.    *    * Note: If {@code setShardIndex} is true, this method will assume the incoming order of {@code shardHits} reflects    * each shard's index and will fill the {@link ScoreDoc#shardIndex}, otherwise    * it must already be set for all incoming {@code ScoreDoc}s, which can be useful when doing multiple reductions    * (merges) of TopDocs.    *    * @lucene.experimental    */
 DECL|method|merge
 specifier|public
 specifier|static
@@ -1068,6 +1085,9 @@ parameter_list|,
 name|TopFieldDocs
 index|[]
 name|shardHits
+parameter_list|,
+name|boolean
+name|setShardIndex
 parameter_list|)
 block|{
 if|if
@@ -1098,6 +1118,8 @@ argument_list|,
 name|topN
 argument_list|,
 name|shardHits
+argument_list|,
+name|setShardIndex
 argument_list|)
 return|;
 block|}
@@ -1120,6 +1142,9 @@ parameter_list|,
 name|TopDocs
 index|[]
 name|shardHits
+parameter_list|,
+name|boolean
+name|setShardIndex
 parameter_list|)
 block|{
 specifier|final
@@ -1175,11 +1200,6 @@ name|Float
 operator|.
 name|MIN_VALUE
 decl_stmt|;
-name|Boolean
-name|setShardIndex
-init|=
-literal|null
-decl_stmt|;
 for|for
 control|(
 name|int
@@ -1231,77 +1251,6 @@ operator|>
 literal|0
 condition|)
 block|{
-if|if
-condition|(
-name|shard
-operator|.
-name|scoreDocs
-index|[
-literal|0
-index|]
-operator|.
-name|shardIndex
-operator|==
-operator|-
-literal|1
-condition|)
-block|{
-if|if
-condition|(
-name|setShardIndex
-operator|!=
-literal|null
-operator|&&
-name|setShardIndex
-operator|==
-literal|false
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"scoreDocs at index "
-operator|+
-name|shardIDX
-operator|+
-literal|" has undefined shard indices but previous scoreDocs were predefined"
-argument_list|)
-throw|;
-block|}
-name|setShardIndex
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
-block|{
-if|if
-condition|(
-name|setShardIndex
-operator|!=
-literal|null
-operator|&&
-name|setShardIndex
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalStateException
-argument_list|(
-literal|"scoreDocs at index "
-operator|+
-name|shardIDX
-operator|+
-literal|" has predefined shard indices but previous scoreDocs were undefined"
-argument_list|)
-throw|;
-block|}
-name|setShardIndex
-operator|=
-literal|false
-expr_stmt|;
-block|}
 name|availHitCount
 operator|+=
 name|shard
@@ -1339,7 +1288,6 @@ name|getMaxScore
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|//System.out.println("  maxScore now " + maxScore + " vs " + shard.getMaxScore());
 block|}
 block|}
 if|if
@@ -1467,10 +1415,7 @@ condition|(
 name|setShardIndex
 condition|)
 block|{
-comment|// unless this index is already initialized potentially due to multiple merge phases, or explicitly by the user
-comment|// we set the shard index to the index of the TopDocs array this hit is coming from.
-comment|// this allows multiple merge phases if needed but requires extra accounting on the users end.
-comment|// at the same time this is fully backwards compatible since the value was initialize to -1 from the beginning
+comment|// caller asked us to record shardIndex (index of the TopDocs array) this hit is coming from:
 name|hit
 operator|.
 name|shardIndex
@@ -1479,6 +1424,41 @@ name|ref
 operator|.
 name|shardIndex
 expr_stmt|;
+block|}
+elseif|else
+if|if
+condition|(
+name|hit
+operator|.
+name|shardIndex
+operator|==
+operator|-
+literal|1
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"setShardIndex is false but TopDocs["
+operator|+
+name|ref
+operator|.
+name|shardIndex
+operator|+
+literal|"].scoreDocs["
+operator|+
+operator|(
+name|ref
+operator|.
+name|hitIndex
+operator|-
+literal|1
+operator|)
+operator|+
+literal|"] is not set"
+argument_list|)
+throw|;
 block|}
 if|if
 condition|(
@@ -1497,8 +1477,6 @@ operator|=
 name|hit
 expr_stmt|;
 block|}
-comment|//System.out.println("  hitUpto=" + hitUpto);
-comment|//System.out.println("    doc=" + hits[hitUpto].doc + " score=" + hits[hitUpto].score);
 name|hitUpto
 operator|++
 expr_stmt|;
