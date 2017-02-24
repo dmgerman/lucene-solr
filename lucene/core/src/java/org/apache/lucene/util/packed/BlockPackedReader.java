@@ -178,6 +178,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|index
+operator|.
+name|CorruptIndexException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|store
 operator|.
 name|IndexInput
@@ -389,9 +403,13 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|IOException
+name|CorruptIndexException
 argument_list|(
-literal|"Corrupted"
+literal|"Corrupted Block#"
+operator|+
+name|i
+argument_list|,
+name|in
 argument_list|)
 throw|;
 block|}
