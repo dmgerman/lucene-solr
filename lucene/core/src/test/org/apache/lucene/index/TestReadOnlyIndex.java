@@ -301,6 +301,9 @@ name|createTempDirectory
 argument_list|(
 literal|"readonlyindex"
 argument_list|)
+operator|.
+name|toAbsolutePath
+argument_list|()
 expr_stmt|;
 comment|// borrows from TestDemo, but not important to keep in sync with demo
 name|Analyzer
