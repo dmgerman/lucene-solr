@@ -5165,6 +5165,27 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|coll
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Collection not found: "
+operator|+
+name|requestedCollection
+argument_list|)
+throw|;
+block|}
 name|int
 name|collVer
 init|=
