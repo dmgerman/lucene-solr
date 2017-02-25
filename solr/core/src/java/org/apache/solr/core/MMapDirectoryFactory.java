@@ -159,7 +159,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Directly provide MMapDirectory instead of relying on {@link org.apache.lucene.store.FSDirectory#open}.  *<p>  * Can set the following parameters:  *<ul>  *<li>unmap -- See {@link MMapDirectory#setUseUnmap(boolean)}</li>  *<li>maxChunkSize -- The Max chunk size.  See {@link MMapDirectory#MMapDirectory(Path, LockFactory, int)}</li>  *</ul>  *  **/
+comment|/**  * Directly provide MMapDirectory instead of relying on {@link org.apache.lucene.store.FSDirectory#open}.  *<p>  * Can set the following parameters:  *<ul>  *<li>unmap -- See {@link MMapDirectory#setUseUnmap(boolean)}</li>  *<li>preload -- See {@link MMapDirectory#setPreload(boolean)}</li>  *<li>maxChunkSize -- The Max chunk size.  See {@link MMapDirectory#MMapDirectory(Path, LockFactory, int)}</li>  *</ul>  *  **/
 end_comment
 
 begin_class
@@ -193,6 +193,10 @@ decl_stmt|;
 DECL|field|unmapHack
 name|boolean
 name|unmapHack
+decl_stmt|;
+DECL|field|preload
+name|boolean
+name|preload
 decl_stmt|;
 DECL|field|maxChunk
 specifier|private
@@ -266,6 +270,18 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|preload
+operator|=
+name|params
+operator|.
+name|getBool
+argument_list|(
+literal|"preload"
+argument_list|,
+literal|false
+argument_list|)
+expr_stmt|;
+comment|//default turn-off
 block|}
 annotation|@
 name|Override
@@ -333,6 +349,13 @@ name|e
 argument_list|)
 expr_stmt|;
 block|}
+name|mapDirectory
+operator|.
+name|setPreload
+argument_list|(
+name|preload
+argument_list|)
+expr_stmt|;
 return|return
 name|mapDirectory
 return|;
