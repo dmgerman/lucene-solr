@@ -1456,7 +1456,7 @@ argument_list|)
 expr_stmt|;
 name|assertTrue
 argument_list|(
-literal|"Unexpected error exception"
+literal|"Unexpected exception"
 argument_list|,
 name|e
 operator|.
