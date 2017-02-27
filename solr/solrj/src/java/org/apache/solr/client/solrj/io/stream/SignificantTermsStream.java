@@ -2370,9 +2370,10 @@ expr_stmt|;
 name|float
 name|score
 init|=
-operator|(
+call|(
 name|float
-operator|)
+call|)
+argument_list|(
 name|Math
 operator|.
 name|log
@@ -2381,6 +2382,9 @@ name|freqs
 index|[
 literal|1
 index|]
+argument_list|)
+operator|+
+literal|1.0
 argument_list|)
 operator|*
 call|(
