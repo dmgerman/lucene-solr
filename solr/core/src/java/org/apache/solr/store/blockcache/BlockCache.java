@@ -682,6 +682,13 @@ block|{
 comment|// YCS: it looks like when the cache is full (a normal scenario), then two concurrent writes will result in one of them failing
 comment|// because no eviction is done first.  The code seems to rely on leaving just a single block empty.
 comment|// TODO: simplest fix would be to leave more than one block empty
+name|metrics
+operator|.
+name|blockCacheStoreFail
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 return|return
 literal|false
 return|;
@@ -694,6 +701,7 @@ comment|// On the other hand, if this is an existing block we are updating, it m
 comment|// purpose (and then our write may overwrite that).  This can happen even if clients never try to update existing blocks,
 comment|// since two clients can try to cache the same block concurrently.  Because of this, the ability to update an existing
 comment|// block has been removed for the time being (see SOLR-10121).
+comment|// No metrics to update: we don't count a redundant store as a store fail.
 return|return
 literal|false
 return|;
@@ -808,6 +816,13 @@ operator|==
 literal|null
 condition|)
 block|{
+name|metrics
+operator|.
+name|blockCacheMiss
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 return|return
 literal|false
 return|;
@@ -873,10 +888,24 @@ condition|)
 block|{
 comment|// must check *after* the read is done since the bank may have been reused for another block
 comment|// before or during the read.
+name|metrics
+operator|.
+name|blockCacheMiss
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 return|return
 literal|false
 return|;
 block|}
+name|metrics
+operator|.
+name|blockCacheHit
+operator|.
+name|incrementAndGet
+argument_list|()
+expr_stmt|;
 return|return
 literal|true
 return|;
