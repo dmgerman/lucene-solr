@@ -2366,7 +2366,7 @@ name|OrdinalMap
 operator|.
 name|build
 argument_list|(
-name|this
+literal|null
 argument_list|,
 name|liveTerms
 argument_list|,
@@ -3246,7 +3246,7 @@ name|OrdinalMap
 operator|.
 name|build
 argument_list|(
-name|this
+literal|null
 argument_list|,
 name|liveTerms
 argument_list|,

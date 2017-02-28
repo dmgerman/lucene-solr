@@ -2238,6 +2238,40 @@ operator|=
 name|field
 expr_stmt|;
 block|}
+comment|// NOTE: delegating the caches is wrong here as we are altering the content
+comment|// of the reader, this should ONLY be used under an uninvertingreader which
+comment|// will restore doc values back using uninversion, otherwise all sorts of
+comment|// crazy things could happen.
+annotation|@
+name|Override
+DECL|method|getCoreCacheHelper
+specifier|public
+name|CacheHelper
+name|getCoreCacheHelper
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|getCoreCacheHelper
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getReaderCacheHelper
+specifier|public
+name|CacheHelper
+name|getReaderCacheHelper
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|getReaderCacheHelper
+argument_list|()
+return|;
+block|}
 DECL|method|getSortedDocValues
 specifier|public
 name|SortedDocValues
@@ -2249,19 +2283,6 @@ parameter_list|)
 block|{
 return|return
 literal|null
-return|;
-block|}
-DECL|method|getCoreCacheKey
-specifier|public
-name|Object
-name|getCoreCacheKey
-parameter_list|()
-block|{
-return|return
-name|in
-operator|.
-name|getCoreCacheKey
-argument_list|()
 return|;
 block|}
 DECL|method|getFieldInfos

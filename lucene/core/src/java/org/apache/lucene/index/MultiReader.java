@@ -132,6 +132,45 @@ block|}
 block|}
 annotation|@
 name|Override
+DECL|method|getReaderCacheHelper
+specifier|public
+name|CacheHelper
+name|getReaderCacheHelper
+parameter_list|()
+block|{
+comment|// MultiReader instances can be short-lived, which would make caching trappy
+comment|// so we do not cache on them, unless they wrap a single reader in which
+comment|// case we delegate
+if|if
+condition|(
+name|getSequentialSubReaders
+argument_list|()
+operator|.
+name|size
+argument_list|()
+operator|==
+literal|1
+condition|)
+block|{
+return|return
+name|getSequentialSubReaders
+argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|getReaderCacheHelper
+argument_list|()
+return|;
+block|}
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|doClose
 specifier|protected
 specifier|synchronized

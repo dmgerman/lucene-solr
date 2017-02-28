@@ -586,6 +586,24 @@ name|mapping
 argument_list|)
 return|;
 block|}
+comment|// NOTE: delegating the cache helpers is wrong since this wrapper alters the
+comment|// content of the reader, it is only fine to do that because Solr ALWAYS
+comment|// consumes index readers through this wrapper
+annotation|@
+name|Override
+DECL|method|getReaderCacheHelper
+specifier|public
+name|CacheHelper
+name|getReaderCacheHelper
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|getReaderCacheHelper
+argument_list|()
+return|;
+block|}
 block|}
 DECL|field|mapping
 specifier|final
@@ -1470,33 +1488,36 @@ name|field
 argument_list|)
 return|;
 block|}
+comment|// NOTE: delegating the cache helpers is wrong since this wrapper alters the
+comment|// content of the reader, it is only fine to do that because Solr ALWAYS
+comment|// consumes index readers through this wrapper
 annotation|@
 name|Override
-DECL|method|getCoreCacheKey
+DECL|method|getCoreCacheHelper
 specifier|public
-name|Object
-name|getCoreCacheKey
+name|CacheHelper
+name|getCoreCacheHelper
 parameter_list|()
 block|{
 return|return
 name|in
 operator|.
-name|getCoreCacheKey
+name|getCoreCacheHelper
 argument_list|()
 return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getCombinedCoreAndDeletesKey
+DECL|method|getReaderCacheHelper
 specifier|public
-name|Object
-name|getCombinedCoreAndDeletesKey
+name|CacheHelper
+name|getReaderCacheHelper
 parameter_list|()
 block|{
 return|return
 name|in
 operator|.
-name|getCombinedCoreAndDeletesKey
+name|getReaderCacheHelper
 argument_list|()
 return|;
 block|}

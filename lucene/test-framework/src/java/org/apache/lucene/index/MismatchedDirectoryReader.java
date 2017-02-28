@@ -142,6 +142,21 @@ name|in
 argument_list|)
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|getReaderCacheHelper
+specifier|public
+name|CacheHelper
+name|getReaderCacheHelper
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|getReaderCacheHelper
+argument_list|()
+return|;
+block|}
 block|}
 end_class
 

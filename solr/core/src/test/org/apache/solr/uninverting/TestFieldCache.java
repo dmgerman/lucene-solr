@@ -2194,7 +2194,10 @@ name|purgeByCacheKey
 argument_list|(
 name|reader
 operator|.
-name|getCoreCacheKey
+name|getCoreCacheHelper
+argument_list|()
+operator|.
+name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2299,7 +2302,10 @@ name|purgeByCacheKey
 argument_list|(
 name|reader
 operator|.
-name|getCoreCacheKey
+name|getCoreCacheHelper
+argument_list|()
+operator|.
+name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;

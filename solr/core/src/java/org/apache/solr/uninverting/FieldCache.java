@@ -28,16 +28,6 @@ end_import
 
 begin_import
 import|import
-name|java
-operator|.
-name|io
-operator|.
-name|PrintStream
-import|;
-end_import
-
-begin_import
-import|import
 name|org
 operator|.
 name|apache
@@ -251,7 +241,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Expert: Maintains caches of term values.  *  *<p>Created: May 19, 2004 11:13:14 AM  *  * @since   lucene 1.4  * @see FieldCacheSanityChecker  *  * @lucene.internal  */
+comment|/**  * Expert: Maintains caches of term values.  *  *<p>Created: May 19, 2004 11:13:14 AM  *  * @since   lucene 1.4  *  * @lucene.internal  */
 end_comment
 
 begin_interface
@@ -1144,7 +1134,9 @@ DECL|method|CacheEntry
 specifier|public
 name|CacheEntry
 parameter_list|(
-name|Object
+name|IndexReader
+operator|.
+name|CacheKey
 name|readerKey
 parameter_list|,
 name|String
@@ -1374,32 +1366,17 @@ name|void
 name|purgeAllCaches
 parameter_list|()
 function_decl|;
-comment|/**    * Expert: drops all cache entries associated with this    * reader {@link IndexReader#getCoreCacheKey}.  NOTE: this cache key must    * precisely match the reader that the cache entry is    * keyed on. If you pass a top-level reader, it usually    * will have no effect as Lucene now caches at the segment    * reader level.    */
+comment|/**    * Expert: drops all cache entries associated with this    * reader {@link org.apache.lucene.index.IndexReader.CacheHelper#getKey()}.    * NOTE: this cache key must    * precisely match the reader that the cache entry is    * keyed on. If you pass a top-level reader, it usually    * will have no effect as Lucene now caches at the segment    * reader level.    */
 DECL|method|purgeByCacheKey
 specifier|public
 name|void
 name|purgeByCacheKey
 parameter_list|(
-name|Object
+name|IndexReader
+operator|.
+name|CacheKey
 name|coreCacheKey
 parameter_list|)
-function_decl|;
-comment|/**    * If non-null, FieldCacheImpl will warn whenever    * entries are created that are not sane according to    * {@link FieldCacheSanityChecker}.    */
-DECL|method|setInfoStream
-specifier|public
-name|void
-name|setInfoStream
-parameter_list|(
-name|PrintStream
-name|stream
-parameter_list|)
-function_decl|;
-comment|/** counterpart of {@link #setInfoStream(PrintStream)} */
-DECL|method|getInfoStream
-specifier|public
-name|PrintStream
-name|getInfoStream
-parameter_list|()
 function_decl|;
 block|}
 end_interface

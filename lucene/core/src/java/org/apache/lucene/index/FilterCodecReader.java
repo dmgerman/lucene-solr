@@ -173,7 +173,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * A<code>FilterCodecReader</code> contains another CodecReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality.  */
+comment|/**   * A<code>FilterCodecReader</code> contains another CodecReader, which it  * uses as its basic source of data, possibly transforming the data along the  * way or providing additional functionality.  *<p><b>NOTE</b>: If this {@link FilterCodecReader} does not change the  * content the contained reader, you could consider delegating calls to  * {@link #getCoreCacheHelper()} and {@link #getReaderCacheHelper()}.  */
 end_comment
 
 begin_class
@@ -377,44 +377,6 @@ operator|.
 name|getIndexSort
 argument_list|()
 return|;
-block|}
-annotation|@
-name|Override
-DECL|method|addCoreClosedListener
-specifier|public
-name|void
-name|addCoreClosedListener
-parameter_list|(
-name|CoreClosedListener
-name|listener
-parameter_list|)
-block|{
-name|in
-operator|.
-name|addCoreClosedListener
-argument_list|(
-name|listener
-argument_list|)
-expr_stmt|;
-block|}
-annotation|@
-name|Override
-DECL|method|removeCoreClosedListener
-specifier|public
-name|void
-name|removeCoreClosedListener
-parameter_list|(
-name|CoreClosedListener
-name|listener
-parameter_list|)
-block|{
-name|in
-operator|.
-name|removeCoreClosedListener
-argument_list|(
-name|listener
-argument_list|)
-expr_stmt|;
 block|}
 annotation|@
 name|Override

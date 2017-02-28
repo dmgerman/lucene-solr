@@ -5014,6 +5014,8 @@ argument_list|)
 throw|;
 block|}
 block|}
+comment|// this reader alters the content of the given reader so it should not
+comment|// delegate the caching stuff
 DECL|class|ReaderWrapper
 specifier|private
 class|class
@@ -5060,19 +5062,6 @@ parameter_list|)
 block|{
 return|return
 literal|null
-return|;
-block|}
-DECL|method|getCoreCacheKey
-specifier|public
-name|Object
-name|getCoreCacheKey
-parameter_list|()
-block|{
-return|return
-name|in
-operator|.
-name|getCoreCacheKey
-argument_list|()
 return|;
 block|}
 DECL|method|getFieldInfos
@@ -5235,6 +5224,40 @@ argument_list|)
 decl_stmt|;
 return|return
 name|infos
+return|;
+block|}
+comment|// NOTE: delegating the caches is wrong here as we are altering the content
+comment|// of the reader, this should ONLY be used under an uninvertingreader which
+comment|// will restore doc values back using uninversion, otherwise all sorts of
+comment|// crazy things could happen.
+annotation|@
+name|Override
+DECL|method|getCoreCacheHelper
+specifier|public
+name|CacheHelper
+name|getCoreCacheHelper
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|getCoreCacheHelper
+argument_list|()
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getReaderCacheHelper
+specifier|public
+name|CacheHelper
+name|getReaderCacheHelper
+parameter_list|()
+block|{
+return|return
+name|in
+operator|.
+name|getReaderCacheHelper
+argument_list|()
 return|;
 block|}
 block|}

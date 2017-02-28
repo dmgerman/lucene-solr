@@ -1613,7 +1613,10 @@ name|purgeByCacheKey
 argument_list|(
 name|slowR
 operator|.
-name|getCoreCacheKey
+name|getCoreCacheHelper
+argument_list|()
+operator|.
+name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -2437,7 +2440,10 @@ name|purgeByCacheKey
 argument_list|(
 name|slowR
 operator|.
-name|getCoreCacheKey
+name|getCoreCacheHelper
+argument_list|()
+operator|.
+name|getKey
 argument_list|()
 argument_list|)
 expr_stmt|;

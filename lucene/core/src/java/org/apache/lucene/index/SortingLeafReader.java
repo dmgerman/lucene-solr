@@ -6172,6 +6172,31 @@ operator|+
 literal|")"
 return|;
 block|}
+comment|// no caching on sorted views
+annotation|@
+name|Override
+DECL|method|getCoreCacheHelper
+specifier|public
+name|CacheHelper
+name|getCoreCacheHelper
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|getReaderCacheHelper
+specifier|public
+name|CacheHelper
+name|getReaderCacheHelper
+parameter_list|()
+block|{
+return|return
+literal|null
+return|;
+block|}
 block|}
 end_class
 

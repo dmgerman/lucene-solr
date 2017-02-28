@@ -52,16 +52,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|LinkedHashSet
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|List
 import|;
 end_import
@@ -238,47 +228,64 @@ literal|"IndexReader should never be directly extended, subclass LeafReader or C
 argument_list|)
 throw|;
 block|}
-comment|/**    * A custom listener that's invoked when the IndexReader    * is closed.    *    * @lucene.experimental    */
-DECL|interface|ReaderClosedListener
+comment|/**    * A utility class that gives hooks in order to help build a cache based on    * the data that is contained in this index.     * @lucene.experimental    */
+DECL|interface|CacheHelper
 specifier|public
 specifier|static
 interface|interface
-name|ReaderClosedListener
+name|CacheHelper
 block|{
-comment|/** Invoked when the {@link IndexReader} is closed. */
-DECL|method|onClose
+comment|/**      * Get a key that the resource can be cached on. The given entry can be      * compared using identity, ie. {@link Object#equals} is implemented as      * {@code ==} and {@link Object#hashCode} is implemented as      * {@link System#identityHashCode}.      */
+DECL|method|getKey
+name|CacheKey
+name|getKey
+parameter_list|()
+function_decl|;
+comment|/**      * Add a {@link ClosedListener} which will be called when the resource      * guarded by {@link #getKey()} is closed.      */
+DECL|method|addClosedListener
+name|void
+name|addClosedListener
+parameter_list|(
+name|ClosedListener
+name|listener
+parameter_list|)
+function_decl|;
+block|}
+comment|/** A cache key identifying a resource that is being cached on. */
+DECL|class|CacheKey
 specifier|public
+specifier|static
+specifier|final
+class|class
+name|CacheKey
+block|{
+DECL|method|CacheKey
+name|CacheKey
+parameter_list|()
+block|{}
+comment|// only instantiable by core impls
+block|}
+comment|/**    * A listener that is called when a resource gets closed.    * @lucene.experimental    */
+annotation|@
+name|FunctionalInterface
+DECL|interface|ClosedListener
+specifier|public
+specifier|static
+interface|interface
+name|ClosedListener
+block|{
+comment|/** Invoked when the resource (segment core, or index reader) that is      *  being cached on is closed. */
+DECL|method|onClose
 name|void
 name|onClose
 parameter_list|(
-name|IndexReader
-name|reader
+name|CacheKey
+name|key
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
 block|}
-DECL|field|readerClosedListeners
-specifier|private
-specifier|final
-name|Set
-argument_list|<
-name|ReaderClosedListener
-argument_list|>
-name|readerClosedListeners
-init|=
-name|Collections
-operator|.
-name|synchronizedSet
-argument_list|(
-operator|new
-name|LinkedHashSet
-argument_list|<
-name|ReaderClosedListener
-argument_list|>
-argument_list|()
-argument_list|)
-decl_stmt|;
 DECL|field|parentReaders
 specifier|private
 specifier|final
@@ -307,50 +314,6 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|/** Expert: adds a {@link ReaderClosedListener}.  The    * provided listener will be invoked when this reader is closed.    * At this point, it is safe for apps to evict this reader from    * any caches keyed on {@link #getCombinedCoreAndDeletesKey()}.    *    * @lucene.experimental */
-DECL|method|addReaderClosedListener
-specifier|public
-specifier|final
-name|void
-name|addReaderClosedListener
-parameter_list|(
-name|ReaderClosedListener
-name|listener
-parameter_list|)
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|readerClosedListeners
-operator|.
-name|add
-argument_list|(
-name|listener
-argument_list|)
-expr_stmt|;
-block|}
-comment|/** Expert: remove a previously added {@link ReaderClosedListener}.    *    * @lucene.experimental */
-DECL|method|removeReaderClosedListener
-specifier|public
-specifier|final
-name|void
-name|removeReaderClosedListener
-parameter_list|(
-name|ReaderClosedListener
-name|listener
-parameter_list|)
-block|{
-name|ensureOpen
-argument_list|()
-expr_stmt|;
-name|readerClosedListeners
-operator|.
-name|remove
-argument_list|(
-name|listener
-argument_list|)
-expr_stmt|;
-block|}
 comment|/** Expert: This method is called by {@code IndexReader}s which wrap other readers    * (e.g. {@link CompositeReader} or {@link FilterLeafReader}) to register the parent    * at the child (this reader) on construction of the parent. When this reader is closed,    * it will mark all registered parents as closed, too. The references to parent readers    * are weak only, so they can be GCed once they are no longer in use.    * @lucene.experimental */
 DECL|method|registerParentReader
 specifier|public
@@ -373,8 +336,8 @@ name|reader
 argument_list|)
 expr_stmt|;
 block|}
+comment|// overridden by StandardDirectoryReader and SegmentReader
 DECL|method|notifyReaderClosedListeners
-specifier|private
 name|void
 name|notifyReaderClosedListeners
 parameter_list|(
@@ -384,59 +347,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-synchronized|synchronized
-init|(
-name|readerClosedListeners
-init|)
-block|{
-for|for
-control|(
-name|ReaderClosedListener
-name|listener
-range|:
-name|readerClosedListeners
-control|)
-block|{
-try|try
-block|{
-name|listener
-operator|.
-name|onClose
-argument_list|(
-name|this
-argument_list|)
-expr_stmt|;
-block|}
-catch|catch
-parameter_list|(
-name|Throwable
-name|t
-parameter_list|)
-block|{
-if|if
-condition|(
-name|th
-operator|==
-literal|null
-condition|)
-block|{
-name|th
-operator|=
-name|t
-expr_stmt|;
-block|}
-else|else
-block|{
-name|th
-operator|.
-name|addSuppressed
-argument_list|(
-name|t
-argument_list|)
-expr_stmt|;
-block|}
-block|}
-block|}
+comment|// nothing to notify in the base impl, just rethrow
 name|IOUtils
 operator|.
 name|reThrow
@@ -444,7 +355,6 @@ argument_list|(
 name|th
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 DECL|method|reportCloseToParentReaders
 specifier|private
@@ -730,7 +640,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/** {@inheritDoc}    *<p>For caching purposes, {@code IndexReader} subclasses are not allowed    * to implement equals/hashCode, so methods are declared final.    * To lookup instances from caches use {@link #getCoreCacheKey} and     * {@link #getCombinedCoreAndDeletesKey}.    */
+comment|/** {@inheritDoc}    *<p>{@code IndexReader} subclasses are not allowed    * to implement equals/hashCode, so methods are declared final.    */
 annotation|@
 name|Override
 DECL|method|equals
@@ -751,7 +661,7 @@ name|obj
 operator|)
 return|;
 block|}
-comment|/** {@inheritDoc}    *<p>For caching purposes, {@code IndexReader} subclasses are not allowed    * to implement equals/hashCode, so methods are declared final.    * To lookup instances from caches use {@link #getCoreCacheKey} and     * {@link #getCombinedCoreAndDeletesKey}.    */
+comment|/** {@inheritDoc}    *<p>{@code IndexReader} subclasses are not allowed    * to implement equals/hashCode, so methods are declared final.    */
 annotation|@
 name|Override
 DECL|method|hashCode
@@ -1035,32 +945,14 @@ name|leaves
 argument_list|()
 return|;
 block|}
-comment|/** Expert: Returns a key for this IndexReader, so CachingWrapperFilter can find    * it again.    * This key must not have equals()/hashCode() methods, so&quot;equals&quot; means&quot;identical&quot;. */
-DECL|method|getCoreCacheKey
+comment|/**    * Optional method: Return a {@link CacheHelper} that can be used to cache    * based on the content of this reader. Two readers that have different data    * or different sets of deleted documents will be considered different.    *<p>A return value of {@code null} indicates that this reader is not suited    * for caching, which is typically the case for short-lived wrappers that    * alter the content of the wrapped reader.    * @lucene.experimental    */
+DECL|method|getReaderCacheHelper
 specifier|public
-name|Object
-name|getCoreCacheKey
+specifier|abstract
+name|CacheHelper
+name|getReaderCacheHelper
 parameter_list|()
-block|{
-comment|// Don't call ensureOpen since FC calls this (to evict)
-comment|// on close
-return|return
-name|this
-return|;
-block|}
-comment|/** Expert: Returns a key for this IndexReader that also includes deletions,    * so CachingWrapperFilter can find it again.    * This key must not have equals()/hashCode() methods, so&quot;equals&quot; means&quot;identical&quot;. */
-DECL|method|getCombinedCoreAndDeletesKey
-specifier|public
-name|Object
-name|getCombinedCoreAndDeletesKey
-parameter_list|()
-block|{
-comment|// Don't call ensureOpen since FC calls this (to evict)
-comment|// on close
-return|return
-name|this
-return|;
-block|}
+function_decl|;
 comment|/** Returns the number of documents containing the     *<code>term</code>.  This method returns 0 if the term or    * field does not exists.  This method does not take into    * account deleted documents that have not yet been merged    * away.     * @see TermsEnum#docFreq()    */
 DECL|method|docFreq
 specifier|public
