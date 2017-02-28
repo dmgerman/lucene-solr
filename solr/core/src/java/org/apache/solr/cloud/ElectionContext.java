@@ -2517,6 +2517,13 @@ name|coreName
 argument_list|)
 init|)
 block|{
+if|if
+condition|(
+name|core
+operator|!=
+literal|null
+condition|)
+block|{
 name|core
 operator|.
 name|getCoreDescriptor
@@ -2535,6 +2542,11 @@ argument_list|(
 name|core
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+return|return;
+block|}
 block|}
 name|log
 operator|.

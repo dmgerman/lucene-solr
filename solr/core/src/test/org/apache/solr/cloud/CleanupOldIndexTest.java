@@ -283,11 +283,11 @@ expr_stmt|;
 block|}
 annotation|@
 name|AfterClass
-DECL|method|teardownTestCases
+DECL|method|afterClass
 specifier|public
 specifier|static
 name|void
-name|teardownTestCases
+name|afterClass
 parameter_list|()
 throws|throws
 name|Exception
