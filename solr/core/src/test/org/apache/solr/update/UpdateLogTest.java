@@ -410,6 +410,10 @@ argument_list|(
 literal|"solr.tests.doubleClassName"
 argument_list|)
 expr_stmt|;
+name|ulog
+operator|=
+literal|null
+expr_stmt|;
 block|}
 annotation|@
 name|Test
