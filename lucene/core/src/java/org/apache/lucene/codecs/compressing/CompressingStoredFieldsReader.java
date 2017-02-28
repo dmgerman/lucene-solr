@@ -374,24 +374,6 @@ name|compressing
 operator|.
 name|CompressingStoredFieldsWriter
 operator|.
-name|VERSION_CHUNK_STATS
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|codecs
-operator|.
-name|compressing
-operator|.
-name|CompressingStoredFieldsWriter
-operator|.
 name|VERSION_START
 import|;
 end_import
@@ -1379,13 +1361,6 @@ operator|new
 name|BlockState
 argument_list|()
 expr_stmt|;
-if|if
-condition|(
-name|version
-operator|>=
-name|VERSION_CHUNK_STATS
-condition|)
-block|{
 name|fieldsStream
 operator|.
 name|seek
@@ -1429,17 +1404,6 @@ argument_list|,
 name|fieldsStream
 argument_list|)
 throw|;
-block|}
-block|}
-else|else
-block|{
-name|numChunks
-operator|=
-name|numDirtyChunks
-operator|=
-operator|-
-literal|1
-expr_stmt|;
 block|}
 comment|// NOTE: data file is too costly to verify checksum against all the bytes on open,
 comment|// but for now we at least verify proper structure of the checksum footer: which looks

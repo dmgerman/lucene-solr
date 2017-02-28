@@ -548,14 +548,6 @@ specifier|final
 name|int
 name|VERSION_START
 init|=
-literal|0
-decl_stmt|;
-DECL|field|VERSION_CHUNK_STATS
-specifier|static
-specifier|final
-name|int
-name|VERSION_CHUNK_STATS
-init|=
 literal|1
 decl_stmt|;
 DECL|field|VERSION_CURRENT
@@ -564,7 +556,7 @@ specifier|final
 name|int
 name|VERSION_CURRENT
 init|=
-name|VERSION_CHUNK_STATS
+name|VERSION_START
 decl_stmt|;
 DECL|field|segment
 specifier|private

@@ -447,26 +447,6 @@ specifier|final
 name|int
 name|VERSION_START
 init|=
-literal|0
-decl_stmt|;
-comment|/** Auto-prefix terms. */
-DECL|field|VERSION_AUTO_PREFIX_TERMS
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|VERSION_AUTO_PREFIX_TERMS
-init|=
-literal|1
-decl_stmt|;
-comment|/** Conditional auto-prefix terms: we record at write time whether    *  this field did write any auto-prefix terms. */
-DECL|field|VERSION_AUTO_PREFIX_TERMS_COND
-specifier|public
-specifier|static
-specifier|final
-name|int
-name|VERSION_AUTO_PREFIX_TERMS_COND
-init|=
 literal|2
 decl_stmt|;
 comment|/** Auto-prefix terms have been superseded by points. */
@@ -557,11 +537,6 @@ DECL|field|version
 specifier|final
 name|int
 name|version
-decl_stmt|;
-DECL|field|anyAutoPrefixTerms
-specifier|final
-name|boolean
-name|anyAutoPrefixTerms
 decl_stmt|;
 comment|/** Sole constructor. */
 DECL|method|BlockTreeTermsReader
@@ -666,45 +641,10 @@ if|if
 condition|(
 name|version
 operator|<
-name|VERSION_AUTO_PREFIX_TERMS
-operator|||
-name|version
-operator|>=
 name|VERSION_AUTO_PREFIX_TERMS_REMOVED
 condition|)
 block|{
-comment|// Old (pre-5.2.0) or recent (6.2.0+) index, no auto-prefix terms:
-name|this
-operator|.
-name|anyAutoPrefixTerms
-operator|=
-literal|false
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|version
-operator|==
-name|VERSION_AUTO_PREFIX_TERMS
-condition|)
-block|{
-comment|// 5.2.x index, might have auto-prefix terms:
-name|this
-operator|.
-name|anyAutoPrefixTerms
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
-block|{
-comment|// 5.3.x index, we record up front if we may have written any auto-prefix terms:
-assert|assert
-name|version
-operator|==
-name|VERSION_AUTO_PREFIX_TERMS_COND
-assert|;
+comment|// pre-6.2 index, records whether auto-prefix terms are enabled in the header
 name|byte
 name|b
 init|=
@@ -716,39 +656,15 @@ decl_stmt|;
 if|if
 condition|(
 name|b
-operator|==
+operator|!=
 literal|0
 condition|)
-block|{
-name|this
-operator|.
-name|anyAutoPrefixTerms
-operator|=
-literal|false
-expr_stmt|;
-block|}
-elseif|else
-if|if
-condition|(
-name|b
-operator|==
-literal|1
-condition|)
-block|{
-name|this
-operator|.
-name|anyAutoPrefixTerms
-operator|=
-literal|true
-expr_stmt|;
-block|}
-else|else
 block|{
 throw|throw
 operator|new
 name|CorruptIndexException
 argument_list|(
-literal|"invalid anyAutoPrefixTerms: expected 0 or 1 but got "
+literal|"Index header pretends the index has auto-prefix terms: "
 operator|+
 name|b
 argument_list|,
