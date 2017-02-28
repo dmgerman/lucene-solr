@@ -160,7 +160,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|After
+name|AfterClass
 import|;
 end_import
 
@@ -375,11 +375,12 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|After
-DECL|method|after
+name|AfterClass
+DECL|method|afterClass
 specifier|public
+specifier|static
 name|void
-name|after
+name|afterClass
 parameter_list|()
 block|{
 name|System
