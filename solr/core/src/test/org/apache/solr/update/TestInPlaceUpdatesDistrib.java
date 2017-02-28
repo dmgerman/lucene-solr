@@ -5556,7 +5556,7 @@ name|threadpool
 operator|.
 name|awaitTermination
 argument_list|(
-literal|10
+literal|15
 argument_list|,
 name|TimeUnit
 operator|.
