@@ -196,6 +196,16 @@ name|org
 operator|.
 name|junit
 operator|.
+name|AfterClass
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|junit
+operator|.
 name|BeforeClass
 import|;
 end_import
@@ -271,6 +281,33 @@ name|configure
 argument_list|()
 expr_stmt|;
 block|}
+annotation|@
+name|AfterClass
+DECL|method|teardownTestCases
+specifier|public
+specifier|static
+name|void
+name|teardownTestCases
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+if|if
+condition|(
+name|suiteFailureMarker
+operator|.
+name|wasSuccessful
+argument_list|()
+condition|)
+block|{
+name|zkClient
+argument_list|()
+operator|.
+name|printLayoutToStdOut
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 DECL|field|COLLECTION
 specifier|private
 specifier|static
@@ -334,9 +371,9 @@ index|[]
 block|{
 literal|300
 block|,
-literal|700
+literal|500
 block|,
-literal|1200
+literal|700
 block|}
 decl_stmt|;
 name|int
@@ -395,11 +432,9 @@ operator|new
 name|int
 index|[]
 block|{
-literal|200
-block|,
-literal|2000
-block|,
 literal|3000
+block|,
+literal|4000
 block|}
 decl_stmt|;
 name|Thread
@@ -610,10 +645,12 @@ argument_list|()
 argument_list|)
 expr_stmt|;
 comment|// bring shard replica down
-name|jetty
+name|ChaosMonkey
 operator|.
 name|stop
-argument_list|()
+argument_list|(
+name|jetty
+argument_list|)
 expr_stmt|;
 comment|// wait a moment - lets allow some docs to be indexed so replication time is non 0
 name|Thread
@@ -637,10 +674,12 @@ index|]
 argument_list|)
 expr_stmt|;
 comment|// bring shard replica up
-name|jetty
+name|ChaosMonkey
 operator|.
 name|start
-argument_list|()
+argument_list|(
+name|jetty
+argument_list|)
 expr_stmt|;
 comment|// make sure replication can start
 name|Thread
