@@ -4429,14 +4429,6 @@ throws|throws
 name|Exception
 block|{
 name|int
-name|numTerms
-init|=
-name|atLeast
-argument_list|(
-literal|100
-argument_list|)
-decl_stmt|;
-name|int
 name|digits
 init|=
 name|TestUtil
@@ -4449,6 +4441,30 @@ argument_list|,
 literal|2
 argument_list|,
 literal|3
+argument_list|)
+decl_stmt|;
+comment|// underestimated total number of unique terms that randomSimpleString
+comment|// maybe generate, it assumes all terms have a length of 7
+name|int
+name|vocabularySize
+init|=
+name|digits
+operator|<<
+literal|7
+decl_stmt|;
+name|int
+name|numTerms
+init|=
+name|Math
+operator|.
+name|min
+argument_list|(
+name|atLeast
+argument_list|(
+literal|100
+argument_list|)
+argument_list|,
+name|vocabularySize
 argument_list|)
 decl_stmt|;
 name|Set
