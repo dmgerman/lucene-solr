@@ -466,12 +466,18 @@ name|reader
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// We wrap with a OwnCacheKeyMultiReader so that closing the underlying reader
+comment|// does not terminate the threadpool (if that index searcher uses one)
 name|IndexSearcher
 name|searcher
 init|=
 name|newSearcher
 argument_list|(
+operator|new
+name|OwnCacheKeyMultiReader
+argument_list|(
 name|wrappedReader
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|TermRangeQuery
@@ -565,13 +571,23 @@ name|t
 expr_stmt|;
 block|}
 block|}
-name|assertNotNull
+if|if
+condition|(
+name|ace
+operator|==
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|AssertionError
 argument_list|(
 literal|"Query failed, but not due to an AlreadyClosedException"
 argument_list|,
-name|ace
+name|e
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 name|assertEquals
 argument_list|(
 literal|"this IndexReader cannot be used anymore as one of its child readers was closed"
