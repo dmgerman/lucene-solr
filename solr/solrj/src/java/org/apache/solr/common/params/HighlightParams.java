@@ -380,6 +380,18 @@ operator|+
 literal|".bs.variant"
 decl_stmt|;
 comment|// FVH, UH, PH
+DECL|field|BS_SEP
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|BS_SEP
+init|=
+name|HIGHLIGHT
+operator|+
+literal|".bs.separator"
+decl_stmt|;
+comment|// UH, PH
 comment|// formatting
 DECL|field|FORMATTER
 specifier|public
