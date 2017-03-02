@@ -2463,8 +2463,6 @@ operator|.
 name|createField
 argument_list|(
 literal|"test"
-argument_list|,
-literal|0f
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2502,8 +2500,6 @@ operator|.
 name|createField
 argument_list|(
 literal|"test"
-argument_list|,
-literal|0f
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2543,8 +2539,6 @@ operator|.
 name|createField
 argument_list|(
 literal|"test"
-argument_list|,
-literal|0f
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2587,8 +2581,6 @@ operator|.
 name|createField
 argument_list|(
 literal|"test"
-argument_list|,
-literal|0f
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2631,8 +2623,6 @@ operator|.
 name|createField
 argument_list|(
 literal|"test"
-argument_list|,
-literal|0f
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -2688,8 +2678,6 @@ operator|.
 name|createField
 argument_list|(
 literal|"test"
-argument_list|,
-literal|0f
 argument_list|)
 expr_stmt|;
 name|assertTrue

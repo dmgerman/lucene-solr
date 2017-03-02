@@ -1002,8 +1002,6 @@ argument_list|)
 argument_list|,
 name|stream
 argument_list|,
-literal|1.0f
-argument_list|,
 name|analyzer
 operator|.
 name|getPositionIncrementGap
@@ -1326,30 +1324,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Equivalent to<code>addField(fieldName, stream, 1.0f)</code>.    *    * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from    */
-DECL|method|addField
-specifier|public
-name|void
-name|addField
-parameter_list|(
-name|String
-name|fieldName
-parameter_list|,
-name|TokenStream
-name|stream
-parameter_list|)
-block|{
-name|addField
-argument_list|(
-name|fieldName
-argument_list|,
-name|stream
-argument_list|,
-literal|1.0f
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Adds a lucene {@link IndexableField} to the MemoryIndex using the provided analyzer.    * Also stores doc values based on {@link IndexableFieldType#docValuesType()} if set.    *    * @param field the field to add    * @param analyzer the analyzer to use for term analysis    * @throws IllegalArgumentException if the field is a DocValues or Point field, as these    *                                  structures are not supported by MemoryIndex    */
+comment|/**    * Adds a lucene {@link IndexableField} to the MemoryIndex using the provided analyzer.    * Also stores doc values based on {@link IndexableFieldType#docValuesType()} if set.    *    * @param field the field to add    * @param analyzer the analyzer to use for term analysis    */
 DECL|method|addField
 specifier|public
 name|void
@@ -1360,32 +1335,6 @@ name|field
 parameter_list|,
 name|Analyzer
 name|analyzer
-parameter_list|)
-block|{
-name|addField
-argument_list|(
-name|field
-argument_list|,
-name|analyzer
-argument_list|,
-literal|1.0f
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * Adds a lucene {@link IndexableField} to the MemoryIndex using the provided analyzer.    * Also stores doc values based on {@link IndexableFieldType#docValuesType()} if set.    *    * @param field the field to add    * @param analyzer the analyzer to use for term analysis    * @param boost a field boost    */
-DECL|method|addField
-specifier|public
-name|void
-name|addField
-parameter_list|(
-name|IndexableField
-name|field
-parameter_list|,
-name|Analyzer
-name|analyzer
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 name|Info
@@ -1490,8 +1439,6 @@ argument_list|(
 name|info
 argument_list|,
 name|tokenStream
-argument_list|,
-name|boost
 argument_list|,
 name|positionIncrementGap
 argument_list|,
@@ -1612,7 +1559,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via     * {@link #keywordTokenStream(Collection)}, the Lucene<code>KeywordTokenizer</code> or similar utilities.    *     * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    * @param boost    *            the boost factor for hits for this field    *      * @see org.apache.lucene.document.Field#setBoost(float)    */
+comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via     * {@link #keywordTokenStream(Collection)}, the Lucene<code>KeywordTokenizer</code> or similar utilities.    *     * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    */
 DECL|method|addField
 specifier|public
 name|void
@@ -1623,9 +1570,6 @@ name|fieldName
 parameter_list|,
 name|TokenStream
 name|stream
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 name|addField
@@ -1634,13 +1578,11 @@ name|fieldName
 argument_list|,
 name|stream
 argument_list|,
-name|boost
-argument_list|,
 literal|0
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via    * {@link #keywordTokenStream(Collection)}, the Lucene<code>KeywordTokenizer</code> or similar utilities.    *    * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    * @param boost    *            the boost factor for hits for this field    *    * @param positionIncrementGap    *            the position increment gap if fields with the same name are added more than once    *    *    * @see org.apache.lucene.document.Field#setBoost(float)    */
+comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via    * {@link #keywordTokenStream(Collection)}, the Lucene<code>KeywordTokenizer</code> or similar utilities.    *    * @param fieldName    *            a name to be associated with the text    * @param stream    *            the token stream to retrieve tokens from.    *    * @param positionIncrementGap    *            the position increment gap if fields with the same name are added more than once    *    */
 DECL|method|addField
 specifier|public
 name|void
@@ -1651,9 +1593,6 @@ name|fieldName
 parameter_list|,
 name|TokenStream
 name|stream
-parameter_list|,
-name|float
-name|boost
 parameter_list|,
 name|int
 name|positionIncrementGap
@@ -1665,15 +1604,13 @@ name|fieldName
 argument_list|,
 name|stream
 argument_list|,
-name|boost
-argument_list|,
 name|positionIncrementGap
 argument_list|,
 literal|1
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via     * {@link #keywordTokenStream(Collection)}, the Lucene<code>KeywordTokenizer</code> or similar utilities.    *     *    * @param fieldName    *            a name to be associated with the text    * @param tokenStream    *            the token stream to retrieve tokens from. It's guaranteed to be closed no matter what.    * @param boost    *            the boost factor for hits for this field    * @param positionIncrementGap    *            the position increment gap if fields with the same name are added more than once    * @param offsetGap    *            the offset gap if fields with the same name are added more than once    * @see org.apache.lucene.document.Field#setBoost(float)    */
+comment|/**    * Iterates over the given token stream and adds the resulting terms to the index;    * Equivalent to adding a tokenized, indexed, termVectorStored, unstored,    * Lucene {@link org.apache.lucene.document.Field}.    * Finally closes the token stream. Note that untokenized keywords can be added with this method via     * {@link #keywordTokenStream(Collection)}, the Lucene<code>KeywordTokenizer</code> or similar utilities.    *     *    * @param fieldName    *            a name to be associated with the text    * @param tokenStream    *            the token stream to retrieve tokens from. It's guaranteed to be closed no matter what.    * @param positionIncrementGap    *            the position increment gap if fields with the same name are added more than once    * @param offsetGap    *            the offset gap if fields with the same name are added more than once    */
 DECL|method|addField
 specifier|public
 name|void
@@ -1684,9 +1621,6 @@ name|fieldName
 parameter_list|,
 name|TokenStream
 name|tokenStream
-parameter_list|,
-name|float
-name|boost
 parameter_list|,
 name|int
 name|positionIncrementGap
@@ -1710,8 +1644,6 @@ argument_list|(
 name|info
 argument_list|,
 name|tokenStream
-argument_list|,
-name|boost
 argument_list|,
 name|positionIncrementGap
 argument_list|,
@@ -2492,9 +2424,6 @@ parameter_list|,
 name|TokenStream
 name|tokenStream
 parameter_list|,
-name|float
-name|boost
-parameter_list|,
 name|int
 name|positionIncrementGap
 parameter_list|,
@@ -2502,21 +2431,6 @@ name|int
 name|offsetGap
 parameter_list|)
 block|{
-if|if
-condition|(
-name|boost
-operator|<=
-literal|0.0f
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"boost factor must be greater than 0.0"
-argument_list|)
-throw|;
-block|}
 name|int
 name|pos
 init|=
@@ -2528,23 +2442,6 @@ name|offset
 init|=
 literal|0
 decl_stmt|;
-if|if
-condition|(
-name|info
-operator|.
-name|numTokens
-operator|==
-literal|0
-condition|)
-block|{
-name|info
-operator|.
-name|boost
-operator|=
-name|boost
-expr_stmt|;
-block|}
-elseif|else
 if|if
 condition|(
 name|info
@@ -2569,12 +2466,6 @@ operator|.
 name|lastOffset
 operator|+
 name|offsetGap
-expr_stmt|;
-name|info
-operator|.
-name|boost
-operator|*=
-name|boost
 expr_stmt|;
 block|}
 try|try
@@ -3674,12 +3565,6 @@ specifier|private
 name|int
 name|numOverlapTokens
 decl_stmt|;
-comment|/** Boost factor for hits for this field */
-DECL|field|boost
-specifier|private
-name|float
-name|boost
-decl_stmt|;
 DECL|field|sumTotalTermFreq
 specifier|private
 name|long
@@ -4149,8 +4034,6 @@ argument_list|,
 name|numOverlapTokens
 argument_list|,
 literal|0
-argument_list|,
-name|boost
 argument_list|)
 decl_stmt|;
 specifier|final

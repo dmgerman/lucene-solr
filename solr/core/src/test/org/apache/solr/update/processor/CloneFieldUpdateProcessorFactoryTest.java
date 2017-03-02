@@ -1189,8 +1189,6 @@ name|field
 argument_list|(
 literal|"dest_s"
 argument_list|,
-literal|2.3f
-argument_list|,
 literal|"orig1"
 argument_list|,
 literal|"orig2"
@@ -1277,27 +1275,6 @@ name|getFieldValues
 argument_list|(
 literal|"dest_s"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|chain
-operator|+
-literal|": dest boost changed"
-argument_list|,
-literal|2.3f
-argument_list|,
-name|d
-operator|.
-name|getField
-argument_list|(
-literal|"dest_s"
-argument_list|)
-operator|.
-name|getBoost
-argument_list|()
-argument_list|,
-literal|0.0f
 argument_list|)
 expr_stmt|;
 block|}
@@ -1454,7 +1431,7 @@ literal|"dest_s"
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// append to existing values, preserve boost
+comment|// append to existing values
 name|d
 operator|=
 name|processAdd
@@ -1473,8 +1450,6 @@ argument_list|,
 name|field
 argument_list|(
 literal|"dest_s"
-argument_list|,
-literal|2.3f
 argument_list|,
 literal|"orig1"
 argument_list|,
@@ -1596,27 +1571,6 @@ name|getFieldValues
 argument_list|(
 literal|"dest_s"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|chain
-operator|+
-literal|": dest boost changed"
-argument_list|,
-literal|2.3f
-argument_list|,
-name|d
-operator|.
-name|getField
-argument_list|(
-literal|"dest_s"
-argument_list|)
-operator|.
-name|getBoost
-argument_list|()
-argument_list|,
-literal|0.0f
 argument_list|)
 expr_stmt|;
 block|}
@@ -1758,8 +1712,6 @@ name|field
 argument_list|(
 literal|"dest_s"
 argument_list|,
-literal|2.3f
-argument_list|,
 literal|"orig1"
 argument_list|,
 literal|"orig2"
@@ -1839,27 +1791,6 @@ name|getFieldValues
 argument_list|(
 literal|"dest_s"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|chain
-operator|+
-literal|": dest boost changed"
-argument_list|,
-literal|2.3f
-argument_list|,
-name|d
-operator|.
-name|getField
-argument_list|(
-literal|"dest_s"
-argument_list|)
-operator|.
-name|getBoost
-argument_list|()
-argument_list|,
-literal|0.0f
 argument_list|)
 expr_stmt|;
 block|}

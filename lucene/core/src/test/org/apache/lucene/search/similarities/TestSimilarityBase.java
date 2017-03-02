@@ -3358,13 +3358,6 @@ argument_list|(
 literal|2
 argument_list|)
 expr_stmt|;
-name|state
-operator|.
-name|setBoost
-argument_list|(
-literal|3
-argument_list|)
-expr_stmt|;
 name|assertEquals
 argument_list|(
 name|expected

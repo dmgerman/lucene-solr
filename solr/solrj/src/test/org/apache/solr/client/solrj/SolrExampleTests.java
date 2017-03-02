@@ -855,8 +855,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 name|docID
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -866,8 +864,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"my name!"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|Assert
@@ -1046,8 +1042,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"2"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc2
@@ -1057,8 +1051,6 @@ argument_list|(
 literal|"inStock"
 argument_list|,
 literal|true
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc2
@@ -1068,8 +1060,6 @@ argument_list|(
 literal|"price"
 argument_list|,
 literal|2
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc2
@@ -1085,8 +1075,6 @@ name|util
 operator|.
 name|Date
 argument_list|()
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|docs
@@ -1110,8 +1098,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"3"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc3
@@ -1121,8 +1107,6 @@ argument_list|(
 literal|"inStock"
 argument_list|,
 literal|false
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc3
@@ -1132,8 +1116,6 @@ argument_list|(
 literal|"price"
 argument_list|,
 literal|3
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc3
@@ -1149,8 +1131,6 @@ name|util
 operator|.
 name|Date
 argument_list|()
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|docs
@@ -1174,8 +1154,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"4"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc4
@@ -1185,8 +1163,6 @@ argument_list|(
 literal|"inStock"
 argument_list|,
 literal|true
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc4
@@ -1196,8 +1172,6 @@ argument_list|(
 literal|"price"
 argument_list|,
 literal|4
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc4
@@ -1213,8 +1187,6 @@ name|util
 operator|.
 name|Date
 argument_list|()
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|docs
@@ -1238,8 +1210,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"5"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc5
@@ -1249,8 +1219,6 @@ argument_list|(
 literal|"inStock"
 argument_list|,
 literal|false
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc5
@@ -1260,8 +1228,6 @@ argument_list|(
 literal|"price"
 argument_list|,
 literal|5
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc5
@@ -1277,8 +1243,6 @@ name|util
 operator|.
 name|Date
 argument_list|()
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|docs
@@ -1992,8 +1956,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"id1"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc1
@@ -2003,8 +1965,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"doc1"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc1
@@ -2030,8 +1990,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"id2"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc2
@@ -2041,8 +1999,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"h\uD866\uDF05llo"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc2
@@ -2262,8 +2218,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"id1"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -2273,8 +2227,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"doc1"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -2306,8 +2258,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"id2"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|client
@@ -3057,8 +3007,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"DOCID"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -3068,8 +3016,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"DOCID2"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -3079,8 +3025,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"hello"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 if|if
@@ -3299,8 +3243,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"111"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -3310,8 +3252,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"doc1"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -3349,8 +3289,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"222"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -3360,8 +3298,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"doc2"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -3684,8 +3620,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"111"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -3695,8 +3629,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"doc1"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -4682,8 +4614,6 @@ argument_list|,
 literal|"ID"
 operator|+
 name|i
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|client
@@ -5795,8 +5725,6 @@ argument_list|,
 name|i
 operator|+
 literal|""
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 if|if
@@ -12567,8 +12495,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"DOCID"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -12578,8 +12504,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"hello"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|client

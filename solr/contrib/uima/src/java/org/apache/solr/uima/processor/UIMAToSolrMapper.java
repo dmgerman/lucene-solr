@@ -463,8 +463,6 @@ argument_list|(
 name|fieldName
 argument_list|,
 name|featureValue
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}

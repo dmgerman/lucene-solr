@@ -214,10 +214,7 @@ name|state
 parameter_list|)
 block|{
 return|return
-name|state
-operator|.
-name|getBoost
-argument_list|()
+literal|1
 return|;
 block|}
 DECL|method|tf

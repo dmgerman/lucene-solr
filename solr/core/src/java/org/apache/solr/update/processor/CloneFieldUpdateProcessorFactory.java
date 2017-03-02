@@ -1848,14 +1848,11 @@ range|:
 name|srcFieldValues
 control|)
 block|{
-comment|// preserve existing dest boost (multiplicitive), ignore src boost
 name|destField
 operator|.
 name|addValue
 argument_list|(
 name|val
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}

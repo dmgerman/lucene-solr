@@ -872,18 +872,6 @@ argument_list|(
 literal|50
 argument_list|)
 decl_stmt|;
-specifier|final
-name|float
-name|boost
-init|=
-name|random
-argument_list|()
-operator|.
-name|nextFloat
-argument_list|()
-operator|*
-literal|10
-decl_stmt|;
 name|FieldInvertState
 name|state
 init|=
@@ -899,8 +887,6 @@ argument_list|,
 name|numOverlaps
 argument_list|,
 literal|100
-argument_list|,
-name|boost
 argument_list|)
 decl_stmt|;
 name|assertEquals

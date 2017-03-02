@@ -252,8 +252,6 @@ argument_list|(
 literal|"one"
 argument_list|,
 name|iw
-argument_list|,
-literal|1f
 argument_list|)
 expr_stmt|;
 name|addDoc
@@ -261,8 +259,6 @@ argument_list|(
 literal|"two"
 argument_list|,
 name|iw
-argument_list|,
-literal|20f
 argument_list|)
 expr_stmt|;
 name|addDoc
@@ -270,8 +266,6 @@ argument_list|(
 literal|"three four"
 argument_list|,
 name|iw
-argument_list|,
-literal|300f
 argument_list|)
 expr_stmt|;
 name|IndexReader
@@ -639,9 +633,6 @@ name|text
 parameter_list|,
 name|IndexWriter
 name|iw
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 throws|throws
 name|IOException
@@ -669,13 +660,6 @@ operator|.
 name|YES
 argument_list|)
 decl_stmt|;
-name|f
-operator|.
-name|setBoost
-argument_list|(
-name|boost
-argument_list|)
-expr_stmt|;
 name|doc
 operator|.
 name|add

@@ -1422,8 +1422,6 @@ operator|.
 name|createFields
 argument_list|(
 name|o
-argument_list|,
-literal|1.0f
 argument_list|)
 decl_stmt|;
 for|for

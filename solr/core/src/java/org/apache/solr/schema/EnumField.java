@@ -2237,9 +2237,6 @@ name|field
 parameter_list|,
 name|Object
 name|value
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 specifier|final
@@ -2448,20 +2445,7 @@ argument_list|(
 name|DEFAULT_PRECISION_STEP
 argument_list|)
 expr_stmt|;
-specifier|final
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|document
-operator|.
-name|Field
-name|f
-decl_stmt|;
-name|f
-operator|=
+return|return
 operator|new
 name|LegacyIntField
 argument_list|(
@@ -2477,16 +2461,6 @@ argument_list|()
 argument_list|,
 name|newType
 argument_list|)
-expr_stmt|;
-name|f
-operator|.
-name|setBoost
-argument_list|(
-name|boost
-argument_list|)
-expr_stmt|;
-return|return
-name|f
 return|;
 block|}
 comment|/**    * {@inheritDoc}    */
@@ -2505,9 +2479,6 @@ name|sf
 parameter_list|,
 name|Object
 name|value
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 if|if
@@ -2538,8 +2509,6 @@ argument_list|(
 name|sf
 argument_list|,
 name|value
-argument_list|,
-name|boost
 argument_list|)
 decl_stmt|;
 name|fields
@@ -2647,8 +2616,6 @@ argument_list|(
 name|sf
 argument_list|,
 name|value
-argument_list|,
-name|boost
 argument_list|)
 argument_list|)
 return|;

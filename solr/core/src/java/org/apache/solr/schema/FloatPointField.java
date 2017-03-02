@@ -1118,9 +1118,6 @@ name|field
 parameter_list|,
 name|Object
 name|value
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 if|if
@@ -1134,35 +1131,6 @@ condition|)
 return|return
 literal|null
 return|;
-if|if
-condition|(
-name|boost
-operator|!=
-literal|1.0
-operator|&&
-name|log
-operator|.
-name|isTraceEnabled
-argument_list|()
-condition|)
-block|{
-name|log
-operator|.
-name|trace
-argument_list|(
-literal|"Can't use document/field boost for PointField. Field: "
-operator|+
-name|field
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|", boost: "
-operator|+
-name|boost
-argument_list|)
-expr_stmt|;
-block|}
 name|float
 name|floatValue
 init|=

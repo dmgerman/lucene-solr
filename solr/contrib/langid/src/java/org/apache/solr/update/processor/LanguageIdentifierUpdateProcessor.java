@@ -1688,11 +1688,6 @@ name|inField
 operator|.
 name|getValue
 argument_list|()
-argument_list|,
-name|inField
-operator|.
-name|getBoost
-argument_list|()
 argument_list|)
 expr_stmt|;
 if|if

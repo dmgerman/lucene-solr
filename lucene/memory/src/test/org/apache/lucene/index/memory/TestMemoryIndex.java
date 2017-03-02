@@ -3908,10 +3908,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-DECL|method|testPointValuesDoNotAffectBoostPositionsOrOffset
+DECL|method|testPointValuesDoNotAffectPositionsOrOffset
 specifier|public
 name|void
-name|testPointValuesDoNotAffectBoostPositionsOrOffset
+name|testPointValuesDoNotAffectPositionsOrOffset
 parameter_list|()
 throws|throws
 name|Exception
@@ -3946,8 +3946,6 @@ name|NO
 argument_list|)
 argument_list|,
 name|analyzer
-argument_list|,
-literal|5f
 argument_list|)
 expr_stmt|;
 name|mi
@@ -3970,8 +3968,6 @@ argument_list|)
 argument_list|)
 argument_list|,
 name|analyzer
-argument_list|,
-literal|5f
 argument_list|)
 expr_stmt|;
 name|mi
@@ -3994,8 +3990,6 @@ argument_list|)
 argument_list|)
 argument_list|,
 name|analyzer
-argument_list|,
-literal|5f
 argument_list|)
 expr_stmt|;
 name|LeafReader

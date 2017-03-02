@@ -3231,13 +3231,6 @@ argument_list|)
 decl_stmt|;
 name|state
 operator|.
-name|setBoost
-argument_list|(
-literal|1.0f
-argument_list|)
-expr_stmt|;
-name|state
-operator|.
 name|setLength
 argument_list|(
 literal|4

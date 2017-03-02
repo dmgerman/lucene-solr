@@ -767,9 +767,6 @@ parameter_list|(
 name|String
 name|name
 parameter_list|,
-name|float
-name|boost
-parameter_list|,
 name|Object
 modifier|...
 name|values
@@ -797,18 +794,9 @@ operator|.
 name|addValue
 argument_list|(
 name|v
-argument_list|,
-literal|1.0F
 argument_list|)
 expr_stmt|;
 block|}
-name|f
-operator|.
-name|setBoost
-argument_list|(
-name|boost
-argument_list|)
-expr_stmt|;
 return|return
 name|f
 return|;
@@ -831,8 +819,6 @@ return|return
 name|field
 argument_list|(
 name|name
-argument_list|,
-literal|1.0F
 argument_list|,
 name|values
 argument_list|)

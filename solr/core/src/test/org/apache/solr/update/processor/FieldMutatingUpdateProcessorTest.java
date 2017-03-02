@@ -366,8 +366,6 @@ name|field
 argument_list|(
 literal|"foo_s"
 argument_list|,
-literal|5.0F
-argument_list|,
 literal|" string "
 argument_list|)
 argument_list|)
@@ -446,25 +444,6 @@ name|getFieldValue
 argument_list|(
 literal|"foo_d"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"wrong boost"
-argument_list|,
-literal|5.0F
-argument_list|,
-name|d
-operator|.
-name|getField
-argument_list|(
-literal|"foo_s"
-argument_list|)
-operator|.
-name|getBoost
-argument_list|()
-argument_list|,
-literal|0.0F
 argument_list|)
 expr_stmt|;
 block|}
@@ -2680,8 +2659,6 @@ argument_list|,
 literal|"hhh"
 argument_list|)
 argument_list|)
-argument_list|,
-literal|1.2F
 argument_list|)
 expr_stmt|;
 name|d
@@ -2745,8 +2722,6 @@ literal|"hhh"
 argument_list|,
 literal|"last"
 argument_list|)
-argument_list|,
-literal|1.2F
 argument_list|)
 expr_stmt|;
 name|d
@@ -2816,8 +2791,6 @@ argument_list|,
 literal|"last"
 argument_list|)
 argument_list|)
-argument_list|,
-literal|1.2F
 argument_list|)
 expr_stmt|;
 name|d
@@ -5168,8 +5141,6 @@ name|field
 argument_list|(
 literal|"foo_s"
 argument_list|,
-literal|3.0F
-argument_list|,
 literal|"string3"
 argument_list|,
 literal|"string4"
@@ -5234,25 +5205,6 @@ name|getFieldValue
 argument_list|(
 literal|"foo_d"
 argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"wrong boost"
-argument_list|,
-literal|3.0F
-argument_list|,
-name|d
-operator|.
-name|getField
-argument_list|(
-literal|"foo_s"
-argument_list|)
-operator|.
-name|getBoost
-argument_list|()
-argument_list|,
-literal|0.0F
 argument_list|)
 expr_stmt|;
 block|}

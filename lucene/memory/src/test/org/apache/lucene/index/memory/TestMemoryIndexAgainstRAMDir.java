@@ -4233,8 +4233,6 @@ argument_list|)
 argument_list|)
 argument_list|,
 name|mockAnalyzer
-argument_list|,
-literal|5f
 argument_list|)
 expr_stmt|;
 name|mi
@@ -4256,8 +4254,6 @@ name|NO
 argument_list|)
 argument_list|,
 name|mockAnalyzer
-argument_list|,
-literal|5f
 argument_list|)
 expr_stmt|;
 name|LeafReader
@@ -4323,13 +4319,6 @@ operator|.
 name|NO
 argument_list|)
 decl_stmt|;
-name|field
-operator|.
-name|setBoost
-argument_list|(
-literal|5f
-argument_list|)
-expr_stmt|;
 name|doc
 operator|.
 name|add

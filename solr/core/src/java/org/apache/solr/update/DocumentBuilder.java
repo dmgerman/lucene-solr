@@ -200,7 +200,7 @@ specifier|public
 class|class
 name|DocumentBuilder
 block|{
-comment|/**    * Add a field value to a given document.    * @param doc Document that the field needs to be added to    * @param field The schema field object for the field    * @param val The value for the field to be added    * @param boost Boost value for the field    * @param forInPlaceUpdate Whether the field is to be added for in-place update. If true,    *        only numeric docValues based fields are added to the document. This can be true    *        when constructing a Lucene document for writing an in-place update, and we don't need    *        presence of non-updatable fields (non NDV) in such a document.    */
+comment|/**    * Add a field value to a given document.    * @param doc Document that the field needs to be added to    * @param field The schema field object for the field    * @param val The value for the field to be added    * @param forInPlaceUpdate Whether the field is to be added for in-place update. If true,    *        only numeric docValues based fields are added to the document. This can be true    *        when constructing a Lucene document for writing an in-place update, and we don't need    *        presence of non-updatable fields (non NDV) in such a document.    */
 DECL|method|addField
 specifier|private
 specifier|static
@@ -215,9 +215,6 @@ name|field
 parameter_list|,
 name|Object
 name|val
-parameter_list|,
-name|float
-name|boost
 parameter_list|,
 name|boolean
 name|forInPlaceUpdate
@@ -245,19 +242,6 @@ operator|+
 literal|" NDV fields only."
 assert|;
 block|}
-comment|// set boost to the calculated compound boost
-operator|(
-operator|(
-name|Field
-operator|)
-name|val
-operator|)
-operator|.
-name|setBoost
-argument_list|(
-name|boost
-argument_list|)
-expr_stmt|;
 name|doc
 operator|.
 name|add
@@ -285,8 +269,6 @@ argument_list|(
 name|field
 argument_list|,
 name|val
-argument_list|,
-name|boost
 argument_list|)
 control|)
 block|{
@@ -472,15 +454,6 @@ operator|new
 name|Document
 argument_list|()
 decl_stmt|;
-specifier|final
-name|float
-name|docBoost
-init|=
-name|doc
-operator|.
-name|getDocumentBoost
-argument_list|()
-decl_stmt|;
 name|Set
 argument_list|<
 name|String
@@ -580,87 +553,6 @@ argument_list|()
 argument_list|)
 throw|;
 block|}
-name|float
-name|fieldBoost
-init|=
-name|field
-operator|.
-name|getBoost
-argument_list|()
-decl_stmt|;
-name|boolean
-name|applyBoost
-init|=
-name|sfield
-operator|!=
-literal|null
-operator|&&
-name|sfield
-operator|.
-name|indexed
-argument_list|()
-operator|&&
-operator|!
-name|sfield
-operator|.
-name|omitNorms
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|applyBoost
-operator|==
-literal|false
-operator|&&
-name|fieldBoost
-operator|!=
-literal|1.0F
-condition|)
-block|{
-throw|throw
-operator|new
-name|SolrException
-argument_list|(
-name|SolrException
-operator|.
-name|ErrorCode
-operator|.
-name|BAD_REQUEST
-argument_list|,
-literal|"ERROR: "
-operator|+
-name|getID
-argument_list|(
-name|doc
-argument_list|,
-name|schema
-argument_list|)
-operator|+
-literal|"cannot set an index-time boost, unindexed or norms are omitted for field "
-operator|+
-name|sfield
-operator|.
-name|getName
-argument_list|()
-operator|+
-literal|": "
-operator|+
-name|field
-operator|.
-name|getValue
-argument_list|()
-argument_list|)
-throw|;
-block|}
-comment|// Lucene no longer has a native docBoost, so we have to multiply
-comment|// it ourselves
-name|float
-name|compoundBoost
-init|=
-name|fieldBoost
-operator|*
-name|docBoost
-decl_stmt|;
 name|List
 argument_list|<
 name|CopyField
@@ -734,12 +626,6 @@ argument_list|,
 name|sfield
 argument_list|,
 name|v
-argument_list|,
-name|applyBoost
-condition|?
-name|compoundBoost
-else|:
-literal|1f
 argument_list|,
 name|name
 operator|.
@@ -902,37 +788,6 @@ name|val
 argument_list|)
 expr_stmt|;
 block|}
-comment|// we can't copy any boost unless the dest field is
-comment|// indexed& !omitNorms, but which boost we copy depends
-comment|// on whether the dest field already contains values (we
-comment|// don't want to apply the compounded docBoost more then once)
-specifier|final
-name|float
-name|destBoost
-init|=
-operator|(
-name|destinationField
-operator|.
-name|indexed
-argument_list|()
-operator|&&
-operator|!
-name|destinationField
-operator|.
-name|omitNorms
-argument_list|()
-operator|)
-condition|?
-operator|(
-name|destHasValues
-condition|?
-name|fieldBoost
-else|:
-name|compoundBoost
-operator|)
-else|:
-literal|1.0F
-decl_stmt|;
 name|addField
 argument_list|(
 name|out
@@ -940,8 +795,6 @@ argument_list|,
 name|destinationField
 argument_list|,
 name|val
-argument_list|,
-name|destBoost
 argument_list|,
 name|destinationField
 operator|.
@@ -972,16 +825,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// The final boost for a given field named is the product of the
-comment|// *all* boosts on values of that field.
-comment|// For multi-valued fields, we only want to set the boost on the
-comment|// first field.
-name|fieldBoost
-operator|=
-name|compoundBoost
-operator|=
-literal|1.0f
-expr_stmt|;
 block|}
 block|}
 catch|catch
@@ -1138,8 +981,6 @@ name|field
 operator|.
 name|getDefaultValue
 argument_list|()
-argument_list|,
-literal|1.0f
 argument_list|,
 literal|false
 argument_list|)

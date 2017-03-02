@@ -204,13 +204,6 @@ argument_list|,
 name|list
 argument_list|)
 expr_stmt|;
-name|doc
-operator|.
-name|setDocumentBoost
-argument_list|(
-literal|5f
-argument_list|)
-expr_stmt|;
 name|SolrInputDocument
 name|clone
 init|=

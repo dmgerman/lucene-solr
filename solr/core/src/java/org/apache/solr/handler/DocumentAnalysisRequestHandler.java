@@ -495,15 +495,6 @@ argument_list|(
 name|log
 argument_list|)
 decl_stmt|;
-DECL|field|DEFAULT_BOOST
-specifier|private
-specifier|static
-specifier|final
-name|float
-name|DEFAULT_BOOST
-init|=
-literal|1.0f
-decl_stmt|;
 DECL|field|inputFactory
 specifier|private
 name|XMLInputFactory
@@ -1402,8 +1393,6 @@ name|text
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-name|DEFAULT_BOOST
 argument_list|)
 expr_stmt|;
 if|if

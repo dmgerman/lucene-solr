@@ -408,9 +408,6 @@ name|field
 parameter_list|,
 name|Object
 name|val
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 if|if
@@ -441,8 +438,6 @@ argument_list|(
 name|field
 argument_list|,
 name|val
-argument_list|,
-name|boost
 argument_list|)
 return|;
 block|}

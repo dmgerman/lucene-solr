@@ -298,6 +298,7 @@ literal|"    'boosted': {\n"
 operator|+
 literal|"      'boost': 6.7,\n"
 operator|+
+comment|// make sure we still accept boosts
 literal|"      'value': [ 'aaa', 'bbb' ]\n"
 operator|+
 literal|"    }\n"
@@ -450,18 +451,6 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|6.7f
-argument_list|,
-name|f
-operator|.
-name|getBoost
-argument_list|()
-argument_list|,
-literal|0.1
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
 literal|2
 argument_list|,
 name|f
@@ -511,18 +500,6 @@ argument_list|()
 operator|.
 name|size
 argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|3.45f
-argument_list|,
-name|d
-operator|.
-name|getDocumentBoost
-argument_list|()
-argument_list|,
-literal|0.001
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -1584,23 +1561,6 @@ literal|"f"
 argument_list|)
 operator|.
 name|toArray
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|0.0F
-argument_list|,
-name|fBoost
-argument_list|,
-name|d
-operator|.
-name|getField
-argument_list|(
-literal|"f"
-argument_list|)
-operator|.
-name|getBoost
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -505,8 +505,6 @@ operator|.
 name|createFields
 argument_list|(
 name|point
-argument_list|,
-literal|2
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -612,8 +610,6 @@ operator|.
 name|createFields
 argument_list|(
 name|point
-argument_list|,
-literal|2
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -650,8 +646,6 @@ operator|.
 name|createFields
 argument_list|(
 literal|"35.0,foo"
-argument_list|,
-literal|2
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -696,8 +690,6 @@ operator|.
 name|createFields
 argument_list|(
 literal|"1,2"
-argument_list|,
-literal|0
 argument_list|)
 operator|.
 name|get

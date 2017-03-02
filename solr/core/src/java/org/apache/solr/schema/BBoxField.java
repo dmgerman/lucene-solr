@@ -865,8 +865,6 @@ operator|.
 name|createField
 argument_list|(
 literal|0.0
-argument_list|,
-literal|1.0f
 argument_list|)
 operator|.
 name|fieldType

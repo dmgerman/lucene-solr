@@ -500,8 +500,6 @@ name|groupValue
 operator|.
 name|utf8ToString
 argument_list|()
-argument_list|,
-literal|1.0f
 argument_list|)
 argument_list|)
 argument_list|)

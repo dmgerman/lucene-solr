@@ -494,8 +494,6 @@ operator|.
 name|createFields
 argument_list|(
 name|currencyValue
-argument_list|,
-literal|2
 argument_list|)
 decl_stmt|;
 name|assertEquals

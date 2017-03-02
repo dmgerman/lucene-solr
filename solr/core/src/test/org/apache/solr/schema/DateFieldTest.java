@@ -300,8 +300,6 @@ argument_list|(
 name|sf
 argument_list|,
 literal|"1995-12-31T23:59:59Z"
-argument_list|,
-literal|1.0f
 argument_list|)
 decl_stmt|;
 name|assertEquals
@@ -333,8 +331,6 @@ name|Date
 argument_list|(
 literal|820454399000L
 argument_list|)
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|assertEquals
@@ -362,8 +358,6 @@ argument_list|(
 name|sf
 argument_list|,
 literal|"1995-12-31T23:59:59.99Z+5MINUTES"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|assertEquals

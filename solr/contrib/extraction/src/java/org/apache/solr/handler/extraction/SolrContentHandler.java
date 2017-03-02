@@ -1281,14 +1281,6 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-name|float
-name|boost
-init|=
-name|getBoost
-argument_list|(
-name|name
-argument_list|)
-decl_stmt|;
 if|if
 condition|(
 name|fval
@@ -1308,8 +1300,6 @@ name|fval
 argument_list|,
 name|sf
 argument_list|)
-argument_list|,
-name|boost
 argument_list|)
 expr_stmt|;
 block|}
@@ -1340,8 +1330,6 @@ name|val
 argument_list|,
 name|sf
 argument_list|)
-argument_list|,
-name|boost
 argument_list|)
 expr_stmt|;
 block|}
@@ -1693,29 +1681,6 @@ block|}
 block|}
 return|return
 name|result
-return|;
-block|}
-comment|/**    * Get the value of any boost factor for the mapped name.    *    * @param name The name of the field to see if there is a boost specified    * @return The boost value    */
-DECL|method|getBoost
-specifier|protected
-name|float
-name|getBoost
-parameter_list|(
-name|String
-name|name
-parameter_list|)
-block|{
-return|return
-name|params
-operator|.
-name|getFloat
-argument_list|(
-name|BOOST_PREFIX
-operator|+
-name|name
-argument_list|,
-literal|1.0f
-argument_list|)
 return|;
 block|}
 comment|/**    * Get the name mapping    *    * @param name The name to check to see if there is a mapping    * @return The new name, if there is one, else<code>name</code>    */

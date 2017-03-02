@@ -931,16 +931,11 @@ expr_stmt|;
 return|return
 name|encodeNormValue
 argument_list|(
-name|state
-operator|.
-name|getBoost
-argument_list|()
-argument_list|,
 name|numTerms
 argument_list|)
 return|;
 block|}
-comment|/** Decodes a normalization factor (document length) stored in an index.    * @see #encodeNormValue(float,float)    */
+comment|/** Decodes a normalization factor (document length) stored in an index.    * @see #encodeNormValue(float)    */
 DECL|method|decodeNormValue
 specifier|protected
 name|float
@@ -967,9 +962,6 @@ name|byte
 name|encodeNormValue
 parameter_list|(
 name|float
-name|boost
-parameter_list|,
-name|float
 name|length
 parameter_list|)
 block|{
@@ -978,19 +970,19 @@ name|SmallFloat
 operator|.
 name|floatToByte315
 argument_list|(
-operator|(
-name|boost
-operator|/
-operator|(
+call|(
 name|float
-operator|)
+call|)
+argument_list|(
+literal|1
+operator|/
 name|Math
 operator|.
 name|sqrt
 argument_list|(
 name|length
 argument_list|)
-operator|)
+argument_list|)
 argument_list|)
 return|;
 block|}

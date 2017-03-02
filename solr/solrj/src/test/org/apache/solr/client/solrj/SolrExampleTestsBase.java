@@ -322,8 +322,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"id3"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc3
@@ -333,8 +331,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"doc3"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc3
@@ -510,8 +506,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"id4"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc4
@@ -521,8 +515,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"doc4"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc4
@@ -706,8 +698,6 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"id3"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc3
@@ -717,8 +707,6 @@ argument_list|(
 literal|"name"
 argument_list|,
 literal|"doc3"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc3
@@ -970,8 +958,6 @@ argument_list|,
 name|i
 operator|+
 literal|"& 222"
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}

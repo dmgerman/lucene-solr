@@ -433,15 +433,12 @@ argument_list|)
 return|;
 block|}
 block|}
-comment|/** The default implementation encodes<code>boost / sqrt(length)</code>    * with {@link SmallFloat#floatToByte315(float)}.  This is compatible with     * Lucene's default implementation.  If you change this, then you should     * change {@link #decodeNormValue(byte)} to match. */
+comment|/** The default implementation encodes<code>1 / sqrt(length)</code>    * with {@link SmallFloat#floatToByte315(float)}.  This is compatible with     * Lucene's historic implementation: {@link ClassicSimilarity}.  If you    * change this, then you should change {@link #decodeNormValue(byte)} to match. */
 DECL|method|encodeNormValue
 specifier|protected
 name|byte
 name|encodeNormValue
 parameter_list|(
-name|float
-name|boost
-parameter_list|,
 name|int
 name|fieldLength
 parameter_list|)
@@ -451,16 +448,18 @@ name|SmallFloat
 operator|.
 name|floatToByte315
 argument_list|(
-name|boost
-operator|/
-operator|(
+call|(
 name|float
-operator|)
+call|)
+argument_list|(
+literal|1
+operator|/
 name|Math
 operator|.
 name|sqrt
 argument_list|(
 name|fieldLength
+argument_list|)
 argument_list|)
 argument_list|)
 return|;
@@ -627,11 +626,6 @@ decl_stmt|;
 return|return
 name|encodeNormValue
 argument_list|(
-name|state
-operator|.
-name|getBoost
-argument_list|()
-argument_list|,
 name|numTerms
 argument_list|)
 return|;

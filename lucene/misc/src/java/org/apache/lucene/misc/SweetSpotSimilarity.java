@@ -273,11 +273,6 @@ name|getLength
 argument_list|()
 expr_stmt|;
 return|return
-name|state
-operator|.
-name|getBoost
-argument_list|()
-operator|*
 name|computeLengthNorm
 argument_list|(
 name|numTokens

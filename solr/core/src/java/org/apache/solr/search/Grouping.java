@@ -4206,8 +4206,6 @@ operator|.
 name|createField
 argument_list|(
 name|readableValue
-argument_list|,
-literal|1.0f
 argument_list|)
 decl_stmt|;
 name|nl

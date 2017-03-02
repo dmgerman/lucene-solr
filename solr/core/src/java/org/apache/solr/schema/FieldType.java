@@ -809,7 +809,7 @@ name|lookupClass
 argument_list|()
 argument_list|)
 decl_stmt|;
-comment|/**    * The default poly field separator.    *    * @see #createFields(SchemaField, Object, float)    * @see #isPolyField()    */
+comment|/**    * The default poly field separator.    *    * @see #createFields(SchemaField, Object)    * @see #isPolyField()    */
 DECL|field|POLY_FIELD_SEPARATOR
 specifier|public
 specifier|static
@@ -917,7 +917,7 @@ operator|!=
 literal|0
 return|;
 block|}
-comment|/**    * A "polyField" is a FieldType that can produce more than one IndexableField instance for a single value, via the {@link #createFields(org.apache.solr.schema.SchemaField, Object, float)} method.  This is useful    * when hiding the implementation details of a field from the Solr end user.  For instance, a spatial point may be represented by multiple different fields.    * @return true if the {@link #createFields(org.apache.solr.schema.SchemaField, Object, float)} method may return more than one field    */
+comment|/**    * A "polyField" is a FieldType that can produce more than one IndexableField instance for a single value, via the {@link #createFields(org.apache.solr.schema.SchemaField, Object)} method.  This is useful    * when hiding the implementation details of a field from the Solr end user.  For instance, a spatial point may be represented by multiple different fields.    * @return true if the {@link #createFields(org.apache.solr.schema.SchemaField, Object)} method may return more than one field    */
 DECL|method|isPolyField
 specifier|public
 name|boolean
@@ -1477,9 +1477,6 @@ name|field
 parameter_list|,
 name|Object
 name|value
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 if|if
@@ -1584,12 +1581,10 @@ argument_list|,
 name|val
 argument_list|,
 name|field
-argument_list|,
-name|boost
 argument_list|)
 return|;
 block|}
-comment|/**    * Create the field from native Lucene parts.  Mostly intended for use by FieldTypes outputing multiple    * Fields per SchemaField    * @param name The name of the field    * @param val The _internal_ value to index    * @param type {@link org.apache.lucene.document.FieldType}    * @param boost The boost value    * @return the {@link org.apache.lucene.index.IndexableField}.    */
+comment|/**    * Create the field from native Lucene parts.  Mostly intended for use by FieldTypes outputing multiple    * Fields per SchemaField    * @param name The name of the field    * @param val The _internal_ value to index    * @param type {@link org.apache.lucene.document.FieldType}    * @return the {@link org.apache.lucene.index.IndexableField}.    */
 DECL|method|createField
 specifier|protected
 name|IndexableField
@@ -1611,14 +1606,9 @@ name|index
 operator|.
 name|IndexableFieldType
 name|type
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
-name|Field
-name|f
-init|=
+return|return
 operator|new
 name|Field
 argument_list|(
@@ -1628,19 +1618,9 @@ name|val
 argument_list|,
 name|type
 argument_list|)
-decl_stmt|;
-name|f
-operator|.
-name|setBoost
-argument_list|(
-name|boost
-argument_list|)
-expr_stmt|;
-return|return
-name|f
 return|;
 block|}
-comment|/**    * Given a {@link org.apache.solr.schema.SchemaField}, create one or more {@link org.apache.lucene.index.IndexableField} instances    * @param field the {@link org.apache.solr.schema.SchemaField}    * @param value The value to add to the field    * @param boost The boost to apply    * @return An array of {@link org.apache.lucene.index.IndexableField}    *    * @see #createField(SchemaField, Object, float)    * @see #isPolyField()    */
+comment|/**    * Given a {@link org.apache.solr.schema.SchemaField}, create one or more {@link org.apache.lucene.index.IndexableField} instances    * @param field the {@link org.apache.solr.schema.SchemaField}    * @param value The value to add to the field    * @return An array of {@link org.apache.lucene.index.IndexableField}    *    * @see #createField(SchemaField, Object)    * @see #isPolyField()    */
 DECL|method|createFields
 specifier|public
 name|List
@@ -1654,9 +1634,6 @@ name|field
 parameter_list|,
 name|Object
 name|value
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 name|IndexableField
@@ -1667,8 +1644,6 @@ argument_list|(
 name|field
 argument_list|,
 name|value
-argument_list|,
-name|boost
 argument_list|)
 decl_stmt|;
 if|if
@@ -1840,8 +1815,6 @@ name|ref
 operator|.
 name|toString
 argument_list|()
-argument_list|,
-literal|1.0f
 argument_list|)
 decl_stmt|;
 return|return

@@ -151,10 +151,6 @@ DECL|field|uniqueTermCount
 name|int
 name|uniqueTermCount
 decl_stmt|;
-DECL|field|boost
-name|float
-name|boost
-decl_stmt|;
 comment|// we must track these across field instances (multi-valued case)
 DECL|field|lastStartOffset
 name|int
@@ -223,9 +219,6 @@ name|numOverlap
 parameter_list|,
 name|int
 name|offset
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 name|this
@@ -258,12 +251,6 @@ name|offset
 operator|=
 name|offset
 expr_stmt|;
-name|this
-operator|.
-name|boost
-operator|=
-name|boost
-expr_stmt|;
 block|}
 comment|/**    * Re-initialize the state    */
 DECL|method|reset
@@ -295,10 +282,6 @@ expr_stmt|;
 name|uniqueTermCount
 operator|=
 literal|0
-expr_stmt|;
-name|boost
-operator|=
-literal|1.0f
 expr_stmt|;
 name|lastStartOffset
 operator|=
@@ -457,34 +440,6 @@ block|{
 return|return
 name|offset
 return|;
-block|}
-comment|/**    * Get boost value. This is the cumulative product of    * document boost and field boost for all field instances    * sharing the same field name.    * @return the boost    */
-DECL|method|getBoost
-specifier|public
-name|float
-name|getBoost
-parameter_list|()
-block|{
-return|return
-name|boost
-return|;
-block|}
-comment|/** Set boost value. */
-DECL|method|setBoost
-specifier|public
-name|void
-name|setBoost
-parameter_list|(
-name|float
-name|boost
-parameter_list|)
-block|{
-name|this
-operator|.
-name|boost
-operator|=
-name|boost
-expr_stmt|;
 block|}
 comment|/**    * Get the maximum term-frequency encountered for any term in the field.  A    * field containing "the quick brown fox jumps over the lazy dog" would have    * a value of 2, because "the" appears twice.    */
 DECL|method|getMaxTermFrequency

@@ -815,7 +815,7 @@ specifier|public
 name|PreciseClassicSimilarity
 parameter_list|()
 block|{}
-comment|/**    * Encodes a normalization factor for storage in an index.    *<p>    * The encoding uses a three-bit mantissa, a five-bit exponent, and the    * zero-exponent point at 15, thus representing values from around 7x10^9 to    * 2x10^-9 with about one significant decimal digit of accuracy. Zero is also    * represented. Negative numbers are rounded up to zero. Values too large to    * represent are rounded down to the largest representable value. Positive    * values too small to represent are rounded up to the smallest positive    * representable value.    *    * @see org.apache.lucene.document.Field#setBoost(float)    * @see org.apache.lucene.util.SmallFloat    */
+comment|/**    * Encodes a normalization factor for storage in an index.    *<p>    * The encoding uses a three-bit mantissa, a five-bit exponent, and the    * zero-exponent point at 15, thus representing values from around 7x10^9 to    * 2x10^-9 with about one significant decimal digit of accuracy. Zero is also    * represented. Negative numbers are rounded up to zero. Values too large to    * represent are rounded down to the largest representable value. Positive    * values too small to represent are rounded up to the smallest positive    * representable value.    *    * @see org.apache.lucene.util.SmallFloat    */
 annotation|@
 name|Override
 DECL|method|encodeNormValue
@@ -907,12 +907,6 @@ argument_list|()
 expr_stmt|;
 block|}
 return|return
-name|state
-operator|.
-name|getBoost
-argument_list|()
-operator|*
-operator|(
 call|(
 name|float
 call|)
@@ -926,7 +920,6 @@ argument_list|(
 name|numTerms
 argument_list|)
 argument_list|)
-operator|)
 return|;
 block|}
 comment|/** Implemented as<code>sqrt(freq)</code>. */

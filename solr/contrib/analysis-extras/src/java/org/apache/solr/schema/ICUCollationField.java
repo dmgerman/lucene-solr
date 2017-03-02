@@ -1472,9 +1472,6 @@ name|field
 parameter_list|,
 name|Object
 name|value
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 if|if
@@ -1505,8 +1502,6 @@ argument_list|(
 name|field
 argument_list|,
 name|value
-argument_list|,
-name|boost
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1587,8 +1582,6 @@ argument_list|(
 name|field
 argument_list|,
 name|value
-argument_list|,
-name|boost
 argument_list|)
 argument_list|)
 return|;

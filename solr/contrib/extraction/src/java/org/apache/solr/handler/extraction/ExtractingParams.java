@@ -58,16 +58,6 @@ name|MAP_PREFIX
 init|=
 literal|"fmap."
 decl_stmt|;
-comment|/**    * The boost value for the name of the field.  The boost can be specified by a name mapping.    *<p>    * For example    *<pre>    * map.title=solr.title    * boost.solr.title=2.5    *</pre>    * will boost the solr.title field for this document by 2.5    *    */
-DECL|field|BOOST_PREFIX
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|BOOST_PREFIX
-init|=
-literal|"boost."
-decl_stmt|;
 comment|/**    * Pass in literal values to be added to the document, as in    *<pre>    *  literal.myField=Foo     *</pre>    *    */
 DECL|field|LITERALS_PREFIX
 specifier|public

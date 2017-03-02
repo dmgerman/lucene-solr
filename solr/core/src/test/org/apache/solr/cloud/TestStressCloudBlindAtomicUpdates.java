@@ -2705,8 +2705,6 @@ operator|.
 name|setValue
 argument_list|(
 name|values
-argument_list|,
-literal|1.0F
 argument_list|)
 expr_stmt|;
 comment|// TODO: soooooooooo stupid (but currently neccessary because atomic updates freak out
@@ -2728,8 +2726,6 @@ name|values
 index|[
 literal|0
 index|]
-argument_list|,
-literal|1.0F
 argument_list|)
 expr_stmt|;
 block|}
@@ -2740,8 +2736,6 @@ operator|.
 name|setValue
 argument_list|(
 name|values
-argument_list|,
-literal|1.0F
 argument_list|)
 expr_stmt|;
 block|}

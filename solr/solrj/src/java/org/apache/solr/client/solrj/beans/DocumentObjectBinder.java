@@ -519,8 +519,6 @@ name|e
 operator|.
 name|getValue
 argument_list|()
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}
@@ -562,8 +560,6 @@ name|get
 argument_list|(
 name|obj
 argument_list|)
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}

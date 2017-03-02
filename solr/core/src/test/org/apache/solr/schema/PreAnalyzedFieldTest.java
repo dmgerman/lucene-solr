@@ -487,8 +487,6 @@ argument_list|(
 name|field
 argument_list|,
 name|s
-argument_list|,
-literal|1.0f
 argument_list|)
 decl_stmt|;
 comment|//System.out.println(" - toString: '" + sb.toString() + "'");
@@ -867,8 +865,6 @@ argument_list|(
 name|field
 argument_list|,
 name|s
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|fail
@@ -1157,8 +1153,6 @@ name|valid
 index|[
 literal|0
 index|]
-argument_list|,
-literal|1.0f
 argument_list|)
 decl_stmt|;
 block|}
@@ -1233,8 +1227,6 @@ name|valid
 index|[
 literal|0
 index|]
-argument_list|,
-literal|1.0f
 argument_list|)
 decl_stmt|;
 name|fail
@@ -1327,8 +1319,6 @@ argument_list|(
 name|field
 argument_list|,
 name|jsonValid
-argument_list|,
-literal|1.0f
 argument_list|)
 decl_stmt|;
 name|assertEquals

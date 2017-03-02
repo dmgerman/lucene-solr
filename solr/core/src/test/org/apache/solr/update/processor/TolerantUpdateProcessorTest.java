@@ -529,8 +529,6 @@ name|field
 argument_list|(
 literal|"id"
 argument_list|,
-literal|1f
-argument_list|,
 name|String
 operator|.
 name|valueOf
@@ -544,8 +542,6 @@ argument_list|,
 name|field
 argument_list|(
 literal|"weight"
-argument_list|,
-literal|1f
 argument_list|,
 name|i
 argument_list|)
@@ -563,8 +559,6 @@ name|field
 argument_list|(
 literal|"id"
 argument_list|,
-literal|1f
-argument_list|,
 name|String
 operator|.
 name|valueOf
@@ -580,8 +574,6 @@ argument_list|,
 name|field
 argument_list|(
 literal|"weight"
-argument_list|,
-literal|1f
 argument_list|,
 literal|"b"
 argument_list|)
@@ -741,16 +733,12 @@ name|field
 argument_list|(
 literal|"id"
 argument_list|,
-literal|1f
-argument_list|,
 literal|"1"
 argument_list|)
 argument_list|,
 name|field
 argument_list|(
 literal|"text"
-argument_list|,
-literal|1f
 argument_list|,
 literal|"the quick brown fox"
 argument_list|)
@@ -773,16 +761,12 @@ name|field
 argument_list|(
 literal|"id"
 argument_list|,
-literal|1f
-argument_list|,
 literal|"2"
 argument_list|)
 argument_list|,
 name|field
 argument_list|(
 literal|"text"
-argument_list|,
-literal|1f
 argument_list|,
 literal|"the quick brown fox"
 argument_list|)
@@ -859,8 +843,6 @@ name|field
 argument_list|(
 literal|"text"
 argument_list|,
-literal|1f
-argument_list|,
 literal|"the quick brown fox"
 argument_list|)
 argument_list|)
@@ -936,16 +918,12 @@ name|field
 argument_list|(
 literal|"id"
 argument_list|,
-literal|1f
-argument_list|,
 literal|"1"
 argument_list|)
 argument_list|,
 name|field
 argument_list|(
 literal|"text"
-argument_list|,
-literal|1f
 argument_list|,
 literal|"the quick brown fox"
 argument_list|)
@@ -1070,16 +1048,12 @@ name|field
 argument_list|(
 literal|"id"
 argument_list|,
-literal|1f
-argument_list|,
 literal|"2"
 argument_list|)
 argument_list|,
 name|field
 argument_list|(
 literal|"weight"
-argument_list|,
-literal|1f
 argument_list|,
 literal|"aaa"
 argument_list|)
@@ -1093,16 +1067,12 @@ name|field
 argument_list|(
 literal|"id"
 argument_list|,
-literal|1f
-argument_list|,
 literal|"3"
 argument_list|)
 argument_list|,
 name|field
 argument_list|(
 literal|"weight"
-argument_list|,
-literal|1f
 argument_list|,
 literal|"3"
 argument_list|)

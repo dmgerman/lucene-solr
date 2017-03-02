@@ -139,11 +139,6 @@ name|src
 operator|.
 name|getValueCount
 argument_list|()
-argument_list|,
-name|src
-operator|.
-name|getBoost
-argument_list|()
 argument_list|)
 expr_stmt|;
 return|return

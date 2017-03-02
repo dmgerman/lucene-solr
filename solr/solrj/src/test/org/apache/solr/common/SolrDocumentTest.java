@@ -1526,8 +1526,6 @@ argument_list|(
 literal|"f"
 argument_list|,
 name|fval0
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -1537,8 +1535,6 @@ argument_list|(
 literal|"f"
 argument_list|,
 name|fval1
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 name|doc
@@ -1548,8 +1544,6 @@ argument_list|(
 literal|"f"
 argument_list|,
 name|fval2
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}

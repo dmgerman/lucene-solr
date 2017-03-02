@@ -503,13 +503,6 @@ operator|.
 name|NO
 argument_list|)
 decl_stmt|;
-name|f
-operator|.
-name|setBoost
-argument_list|(
-name|index
-argument_list|)
-expr_stmt|;
 name|doc
 operator|.
 name|add

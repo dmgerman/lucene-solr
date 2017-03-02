@@ -7417,8 +7417,6 @@ operator|.
 name|setValue
 argument_list|(
 name|values
-argument_list|,
-literal|1.0F
 argument_list|)
 expr_stmt|;
 return|return

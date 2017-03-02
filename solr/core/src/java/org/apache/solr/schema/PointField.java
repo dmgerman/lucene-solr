@@ -1163,9 +1163,6 @@ name|sf
 parameter_list|,
 name|Object
 name|value
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 if|if
@@ -1194,8 +1191,6 @@ argument_list|(
 name|sf
 argument_list|,
 name|value
-argument_list|,
-name|boost
 argument_list|)
 argument_list|)
 return|;
@@ -1220,8 +1215,6 @@ argument_list|(
 name|sf
 argument_list|,
 name|value
-argument_list|,
-name|boost
 argument_list|)
 decl_stmt|;
 name|fields

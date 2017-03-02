@@ -1352,9 +1352,6 @@ name|field
 parameter_list|,
 name|Object
 name|val
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 throw|throw
@@ -1395,9 +1392,6 @@ name|field
 parameter_list|,
 name|Object
 name|val
-parameter_list|,
-name|float
-name|boost
 parameter_list|)
 block|{
 name|String
@@ -1549,7 +1543,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/** Called by {@link #createFields(SchemaField, Object, float)} to get the stored value. */
+comment|/** Called by {@link #createFields(SchemaField, Object)} to get the stored value. */
 DECL|method|getStoredValue
 specifier|protected
 name|String

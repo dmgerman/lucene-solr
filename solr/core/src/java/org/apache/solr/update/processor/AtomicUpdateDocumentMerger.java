@@ -1643,11 +1643,6 @@ name|toNativeType
 argument_list|(
 name|fieldVal
 argument_list|)
-argument_list|,
-name|sif
-operator|.
-name|getBoost
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1697,11 +1692,6 @@ name|toNativeType
 argument_list|(
 name|fieldVal
 argument_list|)
-argument_list|,
-name|sif
-operator|.
-name|getBoost
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1750,11 +1740,6 @@ name|getName
 argument_list|()
 argument_list|,
 name|fieldVal
-argument_list|,
-name|sif
-operator|.
-name|getBoost
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}
@@ -1949,11 +1934,6 @@ name|getName
 argument_list|()
 argument_list|,
 name|result
-argument_list|,
-name|sif
-operator|.
-name|getBoost
-argument_list|()
 argument_list|)
 expr_stmt|;
 block|}

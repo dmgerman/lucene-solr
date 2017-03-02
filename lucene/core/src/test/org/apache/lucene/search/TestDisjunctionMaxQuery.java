@@ -412,10 +412,7 @@ parameter_list|)
 block|{
 comment|// Disable length norm
 return|return
-name|state
-operator|.
-name|getBoost
-argument_list|()
+literal|1
 return|;
 block|}
 annotation|@

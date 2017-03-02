@@ -539,8 +539,6 @@ name|column
 index|]
 argument_list|,
 name|val
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}
@@ -585,8 +583,6 @@ name|column
 index|]
 argument_list|,
 name|val
-argument_list|,
-literal|1.0f
 argument_list|)
 expr_stmt|;
 block|}
