@@ -613,7 +613,7 @@ literal|"//*[@numFound='0']"
 argument_list|)
 expr_stmt|;
 comment|// make sure<script> content is excluded
-comment|// load again in the exact same way, but boost one field
+comment|// make sure the fact there is an index-time boost does not fail the parsing
 name|loadLocal
 argument_list|(
 literal|"extraction/simple.html"
@@ -664,7 +664,7 @@ argument_list|(
 literal|"t_href:http"
 argument_list|)
 argument_list|,
-literal|"//doc[1]/str[.='simple3']"
+literal|"//doc[2]/str[.='simple3']"
 argument_list|)
 expr_stmt|;
 name|assertQ
