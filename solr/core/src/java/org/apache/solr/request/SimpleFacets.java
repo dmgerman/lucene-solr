@@ -3463,18 +3463,11 @@ argument_list|()
 operator|)
 condition|)
 block|{
-comment|// force numeric faceting
 if|if
 condition|(
 name|prefix
 operator|!=
 literal|null
-operator|&&
-operator|!
-name|prefix
-operator|.
-name|isEmpty
-argument_list|()
 condition|)
 block|{
 throw|throw
@@ -3500,35 +3493,6 @@ operator|!=
 literal|null
 condition|)
 block|{
-specifier|final
-name|boolean
-name|supportedOperation
-init|=
-operator|(
-name|termFilter
-operator|instanceof
-name|SubstringBytesRefFilter
-operator|)
-operator|&&
-operator|(
-operator|(
-name|SubstringBytesRefFilter
-operator|)
-name|termFilter
-operator|)
-operator|.
-name|substring
-argument_list|()
-operator|.
-name|isEmpty
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-operator|!
-name|supportedOperation
-condition|)
-block|{
 throw|throw
 operator|new
 name|SolrException
@@ -3537,14 +3501,21 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
+literal|"BytesRef term filters ("
+operator|+
 name|FacetParams
 operator|.
 name|FACET_CONTAINS
 operator|+
-literal|" is not supported on numeric types"
+literal|", "
+operator|+
+name|FacetParams
+operator|.
+name|FACET_EXCLUDETERMS
+operator|+
+literal|") are not supported on numeric types"
 argument_list|)
 throw|;
-block|}
 block|}
 comment|//            We should do this, but mincount=0 is currently the default
 comment|//            if (ft.isPointField()&& mincount<= 0) {
