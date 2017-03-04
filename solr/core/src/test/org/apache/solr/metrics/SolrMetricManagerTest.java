@@ -371,6 +371,8 @@ decl_stmt|;
 name|String
 name|fromName
 init|=
+literal|"from-"
+operator|+
 name|TestUtil
 operator|.
 name|randomSimpleString
@@ -385,6 +387,8 @@ decl_stmt|;
 name|String
 name|toName
 init|=
+literal|"to-"
+operator|+
 name|TestUtil
 operator|.
 name|randomSimpleString
