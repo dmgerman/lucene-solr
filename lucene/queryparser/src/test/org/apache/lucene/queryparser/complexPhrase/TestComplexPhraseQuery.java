@@ -64,6 +64,20 @@ name|apache
 operator|.
 name|lucene
 operator|.
+name|analysis
+operator|.
+name|MockSynonymAnalyzer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
 name|document
 operator|.
 name|Document
@@ -271,7 +285,47 @@ literal|"4"
 argument_list|,
 literal|"project manager"
 argument_list|)
-block|}
+block|,
+operator|new
+name|DocData
+argument_list|(
+literal|"johny perkins"
+argument_list|,
+literal|"5"
+argument_list|,
+literal|"orders pizza"
+argument_list|)
+block|,
+operator|new
+name|DocData
+argument_list|(
+literal|"hapax neverson"
+argument_list|,
+literal|"6"
+argument_list|,
+literal|"never matches"
+argument_list|)
+block|,
+operator|new
+name|DocData
+argument_list|(
+literal|"dog cigar"
+argument_list|,
+literal|"7"
+argument_list|,
+literal|"just for synonyms"
+argument_list|)
+block|,
+operator|new
+name|DocData
+argument_list|(
+literal|"dogs don't smoke cigarettes"
+argument_list|,
+literal|"8"
+argument_list|,
+literal|"just for synonyms"
+argument_list|)
+block|,   }
 decl_stmt|;
 DECL|field|searcher
 specifier|private
@@ -404,9 +458,23 @@ name|Exception
 block|{
 name|checkMatches
 argument_list|(
+literal|"\"joh*\""
+argument_list|,
+literal|"1,2,3,5"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"\"joh~\""
+argument_list|,
+literal|"1,3,5"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
 literal|"\"joh*\" \"tom\""
 argument_list|,
-literal|"1,2,3,4"
+literal|"1,2,3,4,5"
 argument_list|)
 expr_stmt|;
 name|checkMatches
@@ -420,7 +488,7 @@ name|checkMatches
 argument_list|(
 literal|"\"jo*\" \"[sma TO smZ]\" "
 argument_list|,
-literal|"1,2,3"
+literal|"1,2,3,5,8"
 argument_list|)
 expr_stmt|;
 name|checkMatches
@@ -428,6 +496,99 @@ argument_list|(
 literal|"+\"j*hn\" +\"sm*h\""
 argument_list|,
 literal|"1,3"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testSynonyms
+specifier|public
+name|void
+name|testSynonyms
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|checkMatches
+argument_list|(
+literal|"\"dogs\""
+argument_list|,
+literal|"8"
+argument_list|)
+expr_stmt|;
+name|MockSynonymAnalyzer
+name|synonym
+init|=
+operator|new
+name|MockSynonymAnalyzer
+argument_list|()
+decl_stmt|;
+name|checkMatches
+argument_list|(
+literal|"\"dogs\""
+argument_list|,
+literal|"7,8"
+argument_list|,
+name|synonym
+argument_list|)
+expr_stmt|;
+comment|// synonym is unidirectional
+name|checkMatches
+argument_list|(
+literal|"\"dog\""
+argument_list|,
+literal|"7"
+argument_list|,
+name|synonym
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"\"dogs cigar*\""
+argument_list|,
+literal|""
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"\"dog cigar*\""
+argument_list|,
+literal|"7"
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"\"dogs cigar*\""
+argument_list|,
+literal|"7"
+argument_list|,
+name|synonym
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"\"dog cigar*\""
+argument_list|,
+literal|"7"
+argument_list|,
+name|synonym
+argument_list|)
+expr_stmt|;
+name|checkMatches
+argument_list|(
+literal|"\"dogs cigar*\"~2"
+argument_list|,
+literal|"7,8"
+argument_list|,
+name|synonym
+argument_list|)
+expr_stmt|;
+comment|// synonym is unidirectional
+name|checkMatches
+argument_list|(
+literal|"\"dog cigar*\"~2"
+argument_list|,
+literal|"7"
+argument_list|,
+name|synonym
 argument_list|)
 expr_stmt|;
 block|}
@@ -525,6 +686,33 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
+name|checkMatches
+argument_list|(
+name|qString
+argument_list|,
+name|expectedVals
+argument_list|,
+name|analyzer
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|checkMatches
+specifier|private
+name|void
+name|checkMatches
+parameter_list|(
+name|String
+name|qString
+parameter_list|,
+name|String
+name|expectedVals
+parameter_list|,
+name|Analyzer
+name|anAnalyzer
+parameter_list|)
+throws|throws
+name|Exception
+block|{
 name|ComplexPhraseQueryParser
 name|qp
 init|=
@@ -533,7 +721,7 @@ name|ComplexPhraseQueryParser
 argument_list|(
 name|defaultFieldName
 argument_list|,
-name|analyzer
+name|anAnalyzer
 argument_list|)
 decl_stmt|;
 name|qp
