@@ -590,7 +590,7 @@ name|getProperty
 argument_list|(
 literal|"pkiauth.ttl"
 argument_list|,
-literal|"5000"
+literal|"10000"
 argument_list|)
 argument_list|)
 decl_stmt|;
