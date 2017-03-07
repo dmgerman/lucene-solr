@@ -5777,12 +5777,15 @@ break|break;
 case|case
 name|DATE
 case|:
-name|newVal
-operator|=
+name|outValues
+operator|.
+name|add
+argument_list|(
 operator|new
 name|Date
 argument_list|(
 name|number
+argument_list|)
 argument_list|)
 expr_stmt|;
 break|break;

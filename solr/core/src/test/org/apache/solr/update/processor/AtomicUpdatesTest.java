@@ -4021,6 +4021,52 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+name|boolean
+name|isPointField
+init|=
+name|h
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getLatestSchema
+argument_list|()
+operator|.
+name|getField
+argument_list|(
+literal|"dateRemove"
+argument_list|)
+operator|.
+name|getType
+argument_list|()
+operator|.
+name|isPointField
+argument_list|()
+decl_stmt|;
+if|if
+condition|(
+name|isPointField
+condition|)
+block|{
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"dateRemove:[* TO *]"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound = '4']"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|assertQ
 argument_list|(
 name|req
@@ -4037,6 +4083,7 @@ argument_list|,
 literal|"//result[@numFound = '4']"
 argument_list|)
 expr_stmt|;
+block|}
 name|assertQ
 argument_list|(
 name|req
@@ -4126,6 +4173,30 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isPointField
+condition|)
+block|{
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"dateRemove:[* TO *]"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound = '4']"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|assertQ
 argument_list|(
 name|req
@@ -4142,6 +4213,7 @@ argument_list|,
 literal|"//result[@numFound = '4']"
 argument_list|)
 expr_stmt|;
+block|}
 name|assertQ
 argument_list|(
 name|req
@@ -4227,6 +4299,30 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isPointField
+condition|)
+block|{
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"dateRemove:[* TO *]"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound = '4']"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|assertQ
 argument_list|(
 name|req
@@ -4243,6 +4339,7 @@ argument_list|,
 literal|"//result[@numFound = '4']"
 argument_list|)
 expr_stmt|;
+block|}
 name|assertQ
 argument_list|(
 name|req
@@ -4305,6 +4402,30 @@ name|commit
 argument_list|()
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|isPointField
+condition|)
+block|{
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"dateRemove:[* TO *]"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//result[@numFound = '4']"
+argument_list|)
+expr_stmt|;
+block|}
+else|else
+block|{
 name|assertQ
 argument_list|(
 name|req
@@ -4321,6 +4442,7 @@ argument_list|,
 literal|"//result[@numFound = '4']"
 argument_list|)
 expr_stmt|;
+block|}
 name|assertQ
 argument_list|(
 name|req
