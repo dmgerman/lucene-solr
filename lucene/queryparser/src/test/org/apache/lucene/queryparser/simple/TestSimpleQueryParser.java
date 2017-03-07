@@ -680,7 +680,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-name|regular
+name|expected
 argument_list|,
 name|parse
 argument_list|(
