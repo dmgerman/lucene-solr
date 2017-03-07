@@ -372,6 +372,7 @@ expr_stmt|;
 block|}
 comment|/**    * Converts a double representing nanoseconds to a double representing milliseconds.    *    * @param ns the amount of time in nanoseconds    * @return the amount of time in milliseconds    */
 DECL|method|nsToMs
+specifier|public
 specifier|static
 name|double
 name|nsToMs
