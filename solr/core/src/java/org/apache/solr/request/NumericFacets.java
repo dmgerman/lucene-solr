@@ -470,20 +470,6 @@ name|SolrIndexSearcher
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|util
-operator|.
-name|DateMathParser
-import|;
-end_import
-
 begin_comment
 comment|/** Utility class to compute facets on numeric fields. */
 end_comment
