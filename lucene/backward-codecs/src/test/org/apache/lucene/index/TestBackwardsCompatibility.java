@@ -2108,6 +2108,10 @@ block|,
 literal|"6.4.1-cfs"
 block|,
 literal|"6.4.1-nocfs"
+block|,
+literal|"6.4.2-cfs"
+block|,
+literal|"6.4.2-nocfs"
 block|}
 decl_stmt|;
 DECL|field|unsupportedNames
