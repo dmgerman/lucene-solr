@@ -198,6 +198,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|util
+operator|.
+name|SuppressForbidden
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|handler
 operator|.
 name|dataimport
@@ -4376,6 +4392,13 @@ return|return
 literal|0
 return|;
 block|}
+annotation|@
+name|SuppressForbidden
+argument_list|(
+name|reason
+operator|=
+literal|"Required by JDBC"
+argument_list|)
 annotation|@
 name|Override
 DECL|method|getParentLogger
