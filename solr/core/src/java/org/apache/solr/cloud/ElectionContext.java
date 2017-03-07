@@ -4058,15 +4058,6 @@ specifier|private
 name|Overseer
 name|overseer
 decl_stmt|;
-DECL|field|OVERSEER_ELECT
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|OVERSEER_ELECT
-init|=
-literal|"/overseer_elect"
-decl_stmt|;
 DECL|method|OverseerElectionContext
 specifier|public
 name|OverseerElectionContext
@@ -4086,8 +4077,12 @@ name|super
 argument_list|(
 name|zkNodeName
 argument_list|,
+name|Overseer
+operator|.
 name|OVERSEER_ELECT
 argument_list|,
+name|Overseer
+operator|.
 name|OVERSEER_ELECT
 operator|+
 literal|"/leader"
@@ -4122,6 +4117,8 @@ argument_list|)
 operator|.
 name|ensureExists
 argument_list|(
+name|Overseer
+operator|.
 name|OVERSEER_ELECT
 argument_list|,
 name|zkClient

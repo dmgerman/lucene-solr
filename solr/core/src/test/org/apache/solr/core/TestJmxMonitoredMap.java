@@ -492,6 +492,8 @@ literal|""
 argument_list|,
 literal|""
 argument_list|,
+literal|""
+argument_list|,
 name|config
 argument_list|)
 expr_stmt|;

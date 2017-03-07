@@ -105,12 +105,16 @@ name|HTTP
 block|,
 name|OTHER
 block|}
-comment|/**    * Top-level group of beans for a subsystem.    */
+comment|/**    * Top-level group of beans or metrics for a subsystem.    */
 DECL|enum|Group
 DECL|enum constant|jvm
 DECL|enum constant|jetty
 DECL|enum constant|node
 DECL|enum constant|core
+DECL|enum constant|collection
+DECL|enum constant|shard
+DECL|enum constant|cluster
+DECL|enum constant|overseer
 enum|enum
 name|Group
 block|{
@@ -121,6 +125,14 @@ block|,
 name|node
 block|,
 name|core
+block|,
+name|collection
+block|,
+name|shard
+block|,
+name|cluster
+block|,
+name|overseer
 block|}
 comment|/**    * Simple common usage name, e.g. BasicQueryHandler,    * or fully qualified clas name.    */
 DECL|method|getName

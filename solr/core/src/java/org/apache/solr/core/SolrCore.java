@@ -5293,6 +5293,13 @@ argument_list|(
 name|config
 argument_list|)
 expr_stmt|;
+name|this
+operator|.
+name|coreMetricManager
+operator|.
+name|loadReporters
+argument_list|()
+expr_stmt|;
 if|if
 condition|(
 name|updateHandler
@@ -6479,11 +6486,6 @@ argument_list|(
 name|this
 argument_list|)
 decl_stmt|;
-name|coreMetricManager
-operator|.
-name|loadReporters
-argument_list|()
-expr_stmt|;
 return|return
 name|coreMetricManager
 return|;
@@ -6524,6 +6526,11 @@ name|SolrInfoMBean
 argument_list|>
 argument_list|(
 name|name
+argument_list|,
+name|coreMetricManager
+operator|.
+name|getRegistryName
+argument_list|()
 argument_list|,
 name|String
 operator|.

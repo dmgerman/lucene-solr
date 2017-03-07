@@ -920,7 +920,7 @@ name|metrics
 operator|.
 name|get
 argument_list|(
-literal|"REPLICATION.time"
+literal|"REPLICATION.peerSync.time"
 argument_list|)
 decl_stmt|;
 name|Counter
@@ -933,7 +933,7 @@ name|metrics
 operator|.
 name|get
 argument_list|(
-literal|"REPLICATION.errors"
+literal|"REPLICATION.peerSync.errors"
 argument_list|)
 decl_stmt|;
 name|Counter
@@ -946,7 +946,7 @@ name|metrics
 operator|.
 name|get
 argument_list|(
-literal|"REPLICATION.skipped"
+literal|"REPLICATION.peerSync.skipped"
 argument_list|)
 decl_stmt|;
 name|replicationCount

@@ -458,12 +458,15 @@ block|}
 block|}
 comment|/*    * A hack to get access to the protected internal buffer and avoid an additional copy    */
 DECL|class|BAOS
+specifier|public
+specifier|static
 class|class
 name|BAOS
 extends|extends
 name|ByteArrayOutputStream
 block|{
 DECL|method|getbuf
+specifier|public
 name|byte
 index|[]
 name|getbuf

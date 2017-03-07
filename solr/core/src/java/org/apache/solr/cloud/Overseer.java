@@ -562,6 +562,15 @@ name|NUM_RESPONSES_TO_STORE
 init|=
 literal|10000
 decl_stmt|;
+DECL|field|OVERSEER_ELECT
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|OVERSEER_ELECT
+init|=
+literal|"/overseer_elect"
+decl_stmt|;
 DECL|field|log
 specifier|private
 specifier|static
@@ -1703,8 +1712,6 @@ decl_stmt|;
 name|String
 name|path
 init|=
-name|OverseerElectionContext
-operator|.
 name|OVERSEER_ELECT
 operator|+
 literal|"/leader"
@@ -2558,8 +2565,6 @@ name|zkClient
 operator|.
 name|getData
 argument_list|(
-name|OverseerElectionContext
-operator|.
 name|OVERSEER_ELECT
 operator|+
 literal|"/leader"

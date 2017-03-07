@@ -1707,6 +1707,12 @@ name|SolrCoreMetricManager
 operator|.
 name|createRegistryName
 argument_list|(
+literal|false
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
 literal|null
 argument_list|,
 literal|"core0"
@@ -1719,6 +1725,12 @@ name|SolrCoreMetricManager
 operator|.
 name|createRegistryName
 argument_list|(
+literal|false
+argument_list|,
+literal|null
+argument_list|,
+literal|null
+argument_list|,
 literal|null
 argument_list|,
 literal|"core1"

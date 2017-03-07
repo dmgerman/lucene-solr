@@ -542,6 +542,12 @@ argument_list|,
 name|metricFilters
 argument_list|,
 name|mustMatchFilter
+argument_list|,
+literal|false
+argument_list|,
+literal|false
+argument_list|,
+literal|null
 argument_list|)
 argument_list|)
 expr_stmt|;

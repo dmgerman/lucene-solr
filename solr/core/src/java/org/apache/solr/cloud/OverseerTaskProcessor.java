@@ -1833,7 +1833,7 @@ name|zk
 operator|.
 name|getChildren
 argument_list|(
-name|OverseerElectionContext
+name|Overseer
 operator|.
 name|OVERSEER_ELECT
 operator|+
@@ -2045,7 +2045,7 @@ name|zkClient
 operator|.
 name|getData
 argument_list|(
-name|OverseerElectionContext
+name|Overseer
 operator|.
 name|OVERSEER_ELECT
 operator|+
@@ -2142,7 +2142,7 @@ argument_list|()
 operator|.
 name|getData
 argument_list|(
-name|OverseerElectionContext
+name|Overseer
 operator|.
 name|OVERSEER_ELECT
 operator|+

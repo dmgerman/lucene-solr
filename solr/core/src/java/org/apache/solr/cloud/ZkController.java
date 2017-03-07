@@ -9600,7 +9600,7 @@ name|zkClient
 operator|.
 name|delete
 argument_list|(
-name|OverseerElectionContext
+name|Overseer
 operator|.
 name|OVERSEER_ELECT
 operator|+

@@ -2872,6 +2872,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// we don't require class in order to support predefined replica and node reporter classes
 name|configs
 index|[
 name|i
@@ -2891,7 +2892,7 @@ literal|"SolrMetricReporter"
 argument_list|,
 literal|true
 argument_list|,
-literal|true
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

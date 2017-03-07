@@ -1268,6 +1268,15 @@ name|this
 argument_list|)
 expr_stmt|;
 block|}
+DECL|field|METRIC_SCOPE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|METRIC_SCOPE
+init|=
+literal|"peerSync"
+decl_stmt|;
 annotation|@
 name|Override
 DECL|method|initializeMetrics
@@ -1296,6 +1305,8 @@ argument_list|,
 literal|"time"
 argument_list|,
 name|scope
+argument_list|,
+name|METRIC_SCOPE
 argument_list|)
 expr_stmt|;
 name|syncErrors
@@ -1309,6 +1320,8 @@ argument_list|,
 literal|"errors"
 argument_list|,
 name|scope
+argument_list|,
+name|METRIC_SCOPE
 argument_list|)
 expr_stmt|;
 name|syncSkipped
@@ -1322,6 +1335,8 @@ argument_list|,
 literal|"skipped"
 argument_list|,
 name|scope
+argument_list|,
+name|METRIC_SCOPE
 argument_list|)
 expr_stmt|;
 block|}
