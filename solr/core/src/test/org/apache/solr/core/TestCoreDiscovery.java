@@ -2097,6 +2097,16 @@ literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"Appears we are a super user, skip test"
+argument_list|,
+name|toSet
+operator|.
+name|canRead
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|CoreContainer
 name|cc
 init|=
@@ -2281,6 +2291,16 @@ literal|false
 argument_list|,
 literal|false
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"Appears we are a super user, skip test"
+argument_list|,
+name|toSet
+operator|.
+name|canRead
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|CoreContainer
@@ -2636,6 +2656,16 @@ literal|false
 argument_list|,
 literal|false
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|assumeFalse
+argument_list|(
+literal|"Appears we are a super user, skip test"
+argument_list|,
+name|homeDir
+operator|.
+name|canRead
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|CoreContainer
