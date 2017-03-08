@@ -1200,6 +1200,22 @@ name|common
 operator|.
 name|util
 operator|.
+name|ObjectReleaseTracker
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|util
+operator|.
 name|SimpleOrderedMap
 import|;
 end_import
@@ -3178,6 +3194,14 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
+assert|assert
+name|ObjectReleaseTracker
+operator|.
+name|track
+argument_list|(
+name|this
+argument_list|)
+assert|;
 block|}
 comment|/*    * Override these two methods to provide a way to use global collection stats.    */
 annotation|@
@@ -3804,6 +3828,14 @@ operator|.
 name|incrementAndGet
 argument_list|()
 expr_stmt|;
+assert|assert
+name|ObjectReleaseTracker
+operator|.
+name|release
+argument_list|(
+name|this
+argument_list|)
+assert|;
 block|}
 comment|/** Direct access to the IndexSchema for use with this searcher */
 DECL|method|getSchema
