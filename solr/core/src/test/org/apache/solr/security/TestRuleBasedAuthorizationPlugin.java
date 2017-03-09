@@ -1862,6 +1862,80 @@ argument_list|,
 name|FORBIDDEN
 argument_list|)
 expr_stmt|;
+name|checkRules
+argument_list|(
+name|makeMap
+argument_list|(
+literal|"resource"
+argument_list|,
+literal|"/update"
+argument_list|,
+literal|"userPrincipal"
+argument_list|,
+literal|"solr"
+argument_list|,
+literal|"requestType"
+argument_list|,
+name|RequestType
+operator|.
+name|UNKNOWN
+argument_list|,
+literal|"collectionRequests"
+argument_list|,
+literal|"go"
+argument_list|,
+literal|"handler"
+argument_list|,
+operator|new
+name|UpdateRequestHandler
+argument_list|()
+argument_list|,
+literal|"params"
+argument_list|,
+operator|new
+name|MapSolrParams
+argument_list|(
+name|singletonMap
+argument_list|(
+literal|"key"
+argument_list|,
+literal|"VAL2"
+argument_list|)
+argument_list|)
+argument_list|)
+argument_list|,
+name|FORBIDDEN
+argument_list|,
+operator|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+operator|)
+name|Utils
+operator|.
+name|fromJSONString
+argument_list|(
+literal|"{user-role:{"
+operator|+
+literal|"      admin:[admin_role],"
+operator|+
+literal|"      update:[update_role],"
+operator|+
+literal|"      solr:[read_role]},"
+operator|+
+literal|"    permissions:["
+operator|+
+literal|"      {name:update, role:[admin_role,update_role]},"
+operator|+
+literal|"      {name:read, role:[admin_role,update_role,read_role]}"
+operator|+
+literal|"]}"
+argument_list|)
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testEditRules
 specifier|public
@@ -2712,6 +2786,27 @@ argument_list|)
 return|;
 block|}
 block|}
+DECL|field|testPerms
+specifier|static
+name|String
+name|testPerms
+init|=
+literal|"{user-role:{"
+operator|+
+literal|"      admin:[admin_role],"
+operator|+
+literal|"      update:[update_role],"
+operator|+
+literal|"      solr:[read_role]},"
+operator|+
+literal|"    permissions:["
+operator|+
+literal|"      {name:update,role:[admin_role,update_role]},"
+operator|+
+literal|"      {name:read,role:[admin_role,update_role,read_role]"
+operator|+
+literal|"]}"
+decl_stmt|;
 block|}
 end_class
 
