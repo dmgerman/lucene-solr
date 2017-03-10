@@ -177,7 +177,7 @@ DECL|method|FieldType
 specifier|public
 name|FieldType
 parameter_list|(
-name|FieldType
+name|IndexableFieldType
 name|ref
 parameter_list|)
 block|{
@@ -268,7 +268,8 @@ name|dimensionCount
 operator|=
 name|ref
 operator|.
-name|dimensionCount
+name|pointDimensionCount
+argument_list|()
 expr_stmt|;
 name|this
 operator|.
@@ -276,7 +277,8 @@ name|dimensionNumBytes
 operator|=
 name|ref
 operator|.
-name|dimensionNumBytes
+name|pointNumBytes
+argument_list|()
 expr_stmt|;
 comment|// Do not copy frozen!
 block|}
