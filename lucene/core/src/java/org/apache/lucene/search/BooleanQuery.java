@@ -658,7 +658,6 @@ operator|.
 name|Builder
 argument_list|()
 decl_stmt|;
-comment|// ignore disableCoord, which only matters for scores
 name|newQuery
 operator|.
 name|setMinimumNumberShouldMatch
