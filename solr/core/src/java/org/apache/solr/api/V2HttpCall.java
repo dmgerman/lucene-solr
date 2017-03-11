@@ -697,10 +697,10 @@ name|path
 operator|.
 name|substring
 argument_list|(
-literal|3
+literal|7
 argument_list|)
 decl_stmt|;
-comment|//strip off '/v2'
+comment|//strip off '/____v2'
 try|try
 block|{
 name|pieces

@@ -450,7 +450,7 @@ operator|.
 name|getBaseUrl
 argument_list|()
 operator|+
-literal|"/v2/c/"
+literal|"/____v2/c/"
 operator|+
 name|COLL_NAME
 expr_stmt|;
@@ -493,7 +493,7 @@ operator|.
 name|getBaseUrl
 argument_list|()
 operator|+
-literal|"/v2/collections/"
+literal|"/____v2/collections/"
 operator|+
 name|COLL_NAME
 expr_stmt|;

@@ -761,11 +761,11 @@ condition|)
 block|{
 name|authcPrefix
 operator|=
-literal|"/v2/cluster/security/authentication"
+literal|"/____v2/cluster/security/authentication"
 expr_stmt|;
 name|authzPrefix
 operator|=
-literal|"/v2/cluster/security/authorization"
+literal|"/____v2/cluster/security/authorization"
 expr_stmt|;
 block|}
 name|NamedList

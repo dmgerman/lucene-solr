@@ -5056,9 +5056,9 @@ name|AUTHC_PATH
 argument_list|,
 name|AUTHZ_PATH
 argument_list|,
-literal|"/v2/cluster/security/authentication"
+literal|"/____v2/cluster/security/authentication"
 argument_list|,
-literal|"/v2/cluster/security/authorization"
+literal|"/____v2/cluster/security/authorization"
 argument_list|)
 argument_list|)
 decl_stmt|;

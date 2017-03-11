@@ -524,7 +524,7 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'create-requesthandler' : { 'name' : '/test1', 'class': 'org.apache.solr.core.BlobStoreTestRequestHandler' ,registerPath: '/,/v2',  'runtimeLib' : true }\n"
+literal|"'create-requesthandler' : { 'name' : '/test1', 'class': 'org.apache.solr.core.BlobStoreTestRequestHandler' ,registerPath: '/solr,/v2',  'runtimeLib' : true }\n"
 operator|+
 literal|"}"
 expr_stmt|;

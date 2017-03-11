@@ -1429,7 +1429,7 @@ name|strs
 operator|.
 name|contains
 argument_list|(
-literal|"/"
+literal|"/solr"
 argument_list|)
 expr_stmt|;
 name|registerApi

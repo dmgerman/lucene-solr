@@ -722,7 +722,7 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"/v2/cores/"
+literal|"/____v2/cores/"
 operator|+
 name|DEFAULT_TEST_CORENAME
 argument_list|)
@@ -1705,7 +1705,7 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'update-requesthandler' : { 'name' : '/x', 'class': 'org.apache.solr.handler.DumpRequestHandler' ,registerPath :'/,/v2', "
+literal|"'update-requesthandler' : { 'name' : '/x', 'class': 'org.apache.solr.handler.DumpRequestHandler' ,registerPath :'/solr,/v2', "
 operator|+
 literal|" 'startup' : 'lazy' , 'a':'b' , 'defaults': {'def_a':'def A val', 'multival':['a','b','c']}}\n"
 operator|+
@@ -2683,7 +2683,7 @@ literal|"    'add-requesthandler': {\n"
 operator|+
 literal|"        name : '/dump100',\n"
 operator|+
-literal|"       registerPath :'/,/v2',"
+literal|"       registerPath :'/solr,/v2',"
 operator|+
 literal|"        class : 'org.apache.solr.handler.DumpRequestHandler',"
 operator|+
@@ -2828,7 +2828,7 @@ argument_list|()
 operator|+
 literal|"', "
 operator|+
-literal|"    registerPath :'/,/v2'"
+literal|"    registerPath :'/solr,/v2'"
 operator|+
 literal|", 'startup' : 'lazy'}\n"
 operator|+
@@ -3471,7 +3471,7 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'create-requesthandler' : { 'name' : '/d', registerPath :'/,/v2' , 'class': 'org.apache.solr.handler.DumpRequestHandler' }\n"
+literal|"'create-requesthandler' : { 'name' : '/d', registerPath :'/solr,/v2' , 'class': 'org.apache.solr.handler.DumpRequestHandler' }\n"
 operator|+
 literal|"}"
 expr_stmt|;
@@ -3572,7 +3572,7 @@ name|payload
 operator|=
 literal|"{\n"
 operator|+
-literal|"'create-requesthandler' : { 'name' : '/dump1', registerPath :'/,/v2' , 'class': 'org.apache.solr.handler.DumpRequestHandler', 'useParams':'x' }\n"
+literal|"'create-requesthandler' : { 'name' : '/dump1', registerPath :'/solr,/v2' , 'class': 'org.apache.solr.handler.DumpRequestHandler', 'useParams':'x' }\n"
 operator|+
 literal|"}"
 expr_stmt|;
@@ -4133,7 +4133,7 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"/v2/cores/"
+literal|"/____v2/cores/"
 operator|+
 name|DEFAULT_TEST_CORENAME
 argument_list|)

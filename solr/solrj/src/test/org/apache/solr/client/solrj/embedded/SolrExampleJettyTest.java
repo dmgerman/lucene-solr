@@ -644,7 +644,7 @@ name|replace
 argument_list|(
 literal|"/collection1"
 argument_list|,
-literal|"/v2/cores/collection1/update"
+literal|"/____v2/cores/collection1/update"
 argument_list|)
 else|:
 name|baseURL

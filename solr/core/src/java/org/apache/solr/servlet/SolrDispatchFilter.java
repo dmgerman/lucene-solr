@@ -2457,14 +2457,14 @@ name|path
 operator|.
 name|startsWith
 argument_list|(
-literal|"/v2/"
+literal|"/____v2/"
 argument_list|)
 operator|||
 name|path
 operator|.
 name|equals
 argument_list|(
-literal|"/v2"
+literal|"/____v2"
 argument_list|)
 operator|)
 condition|)

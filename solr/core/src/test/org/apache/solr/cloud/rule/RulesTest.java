@@ -1294,7 +1294,7 @@ name|GenericSolrRequest
 argument_list|(
 name|GET
 argument_list|,
-literal|"/v2/node/invoke"
+literal|"/____v2/node/invoke"
 argument_list|,
 operator|new
 name|ModifiableSolrParams

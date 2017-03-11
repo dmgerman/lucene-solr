@@ -481,7 +481,7 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"/v2/cores/"
+literal|"/____v2/cores/"
 operator|+
 name|DEFAULT_TEST_CORENAME
 return|;
