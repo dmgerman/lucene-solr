@@ -945,6 +945,13 @@ decl_stmt|;
 comment|// if the internal node is not equal and not contained by the query, all docs do not match
 if|if
 condition|(
+name|queryType
+operator|==
+name|QueryType
+operator|.
+name|CROSSES
+operator|||
+operator|(
 operator|!
 name|Arrays
 operator|.
@@ -956,19 +963,21 @@ name|range
 argument_list|)
 operator|&&
 operator|(
-operator|!
 name|target
 operator|.
 name|contains
 argument_list|(
 name|range
 argument_list|)
+operator|==
+literal|false
 operator|||
 name|queryType
 operator|!=
 name|QueryType
 operator|.
 name|WITHIN
+operator|)
 operator|)
 condition|)
 block|{
