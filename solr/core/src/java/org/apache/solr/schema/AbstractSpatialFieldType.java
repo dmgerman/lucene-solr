@@ -1478,6 +1478,11 @@ name|field
 operator|.
 name|indexed
 argument_list|()
+operator|||
+name|field
+operator|.
+name|hasDocValues
+argument_list|()
 condition|)
 block|{
 name|T
