@@ -20,6 +20,16 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -271,7 +281,7 @@ name|assertNotNull
 argument_list|(
 operator|(
 operator|(
-name|NamedList
+name|Map
 operator|)
 name|nl
 operator|.
@@ -287,13 +297,14 @@ literal|"count"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// response wasn't serialized so we get here whatever MetricUtils produced instead of NamedList
 name|assertEquals
 argument_list|(
 literal|0L
 argument_list|,
 operator|(
 operator|(
-name|NamedList
+name|Map
 operator|)
 name|nl
 operator|.
@@ -338,7 +349,7 @@ literal|1
 argument_list|,
 operator|(
 operator|(
-name|NamedList
+name|Map
 operator|)
 name|nl
 operator|.
@@ -371,7 +382,7 @@ literal|5
 argument_list|,
 operator|(
 operator|(
-name|NamedList
+name|Map
 operator|)
 name|nl
 operator|.
