@@ -102,6 +102,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|cloud
+operator|.
+name|RecoveryStrategy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|CoreContainer
@@ -482,6 +496,16 @@ specifier|public
 specifier|abstract
 name|DirectoryFactory
 name|getDirectoryFactory
+parameter_list|()
+function_decl|;
+comment|/**    * @return the {@link org.apache.solr.cloud.RecoveryStrategy.Builder} that should be used.    */
+DECL|method|getRecoveryStrategyBuilder
+specifier|public
+specifier|abstract
+name|RecoveryStrategy
+operator|.
+name|Builder
+name|getRecoveryStrategyBuilder
 parameter_list|()
 function_decl|;
 DECL|interface|IndexWriterCloser
