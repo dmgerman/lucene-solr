@@ -370,6 +370,8 @@ parameter_list|(
 name|int
 name|dimensions
 parameter_list|)
+throws|throws
+name|Exception
 function_decl|;
 DECL|method|dimension
 specifier|protected
@@ -2177,7 +2179,9 @@ operator|==
 name|queryType
 return|;
 block|}
+comment|/** base class for range verification */
 DECL|class|Range
+specifier|protected
 specifier|abstract
 specifier|static
 class|class
@@ -2190,11 +2194,13 @@ name|isMissing
 init|=
 literal|false
 decl_stmt|;
+comment|/** supported query relations */
 DECL|enum|QueryType
 DECL|enum constant|INTERSECTS
 DECL|enum constant|WITHIN
 DECL|enum constant|CONTAINS
 DECL|enum constant|CROSSES
+specifier|protected
 enum|enum
 name|QueryType
 block|{

@@ -50,7 +50,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|DoubleRangeField
+name|DoubleRange
 import|;
 end_import
 
@@ -180,6 +180,8 @@ parameter_list|(
 name|int
 name|dimensions
 parameter_list|)
+throws|throws
+name|Exception
 block|{
 name|double
 index|[]
@@ -262,7 +264,7 @@ expr_stmt|;
 block|}
 return|return
 operator|new
-name|DoubleRange
+name|DoubleTestRange
 argument_list|(
 name|min
 argument_list|,
@@ -274,7 +276,7 @@ annotation|@
 name|Override
 DECL|method|newRangeField
 specifier|protected
-name|DoubleRangeField
+name|DoubleRange
 name|newRangeField
 parameter_list|(
 name|Range
@@ -283,13 +285,13 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
 operator|(
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|r
 operator|)
@@ -298,7 +300,7 @@ name|min
 argument_list|,
 operator|(
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|r
 operator|)
@@ -319,7 +321,7 @@ name|r
 parameter_list|)
 block|{
 return|return
-name|DoubleRangeField
+name|DoubleRange
 operator|.
 name|newIntersectsQuery
 argument_list|(
@@ -327,7 +329,7 @@ name|FIELD_NAME
 argument_list|,
 operator|(
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|r
 operator|)
@@ -336,7 +338,7 @@ name|min
 argument_list|,
 operator|(
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|r
 operator|)
@@ -357,7 +359,7 @@ name|r
 parameter_list|)
 block|{
 return|return
-name|DoubleRangeField
+name|DoubleRange
 operator|.
 name|newContainsQuery
 argument_list|(
@@ -365,7 +367,7 @@ name|FIELD_NAME
 argument_list|,
 operator|(
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|r
 operator|)
@@ -374,7 +376,7 @@ name|min
 argument_list|,
 operator|(
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|r
 operator|)
@@ -395,7 +397,7 @@ name|r
 parameter_list|)
 block|{
 return|return
-name|DoubleRangeField
+name|DoubleRange
 operator|.
 name|newWithinQuery
 argument_list|(
@@ -403,7 +405,7 @@ name|FIELD_NAME
 argument_list|,
 operator|(
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|r
 operator|)
@@ -412,7 +414,7 @@ name|min
 argument_list|,
 operator|(
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|r
 operator|)
@@ -433,7 +435,7 @@ name|r
 parameter_list|)
 block|{
 return|return
-name|DoubleRangeField
+name|DoubleRange
 operator|.
 name|newCrossesQuery
 argument_list|(
@@ -441,7 +443,7 @@ name|FIELD_NAME
 argument_list|,
 operator|(
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|r
 operator|)
@@ -450,7 +452,7 @@ name|min
 argument_list|,
 operator|(
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|r
 operator|)
@@ -499,7 +501,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -544,7 +546,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -588,7 +590,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -633,7 +635,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -678,7 +680,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -721,7 +723,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -766,7 +768,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -812,7 +814,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -870,7 +872,7 @@ name|searcher
 operator|.
 name|count
 argument_list|(
-name|DoubleRangeField
+name|DoubleRange
 operator|.
 name|newIntersectsQuery
 argument_list|(
@@ -907,7 +909,7 @@ name|searcher
 operator|.
 name|count
 argument_list|(
-name|DoubleRangeField
+name|DoubleRange
 operator|.
 name|newWithinQuery
 argument_list|(
@@ -944,7 +946,7 @@ name|searcher
 operator|.
 name|count
 argument_list|(
-name|DoubleRangeField
+name|DoubleRange
 operator|.
 name|newContainsQuery
 argument_list|(
@@ -981,7 +983,7 @@ name|searcher
 operator|.
 name|count
 argument_list|(
-name|DoubleRangeField
+name|DoubleRange
 operator|.
 name|newCrossesQuery
 argument_list|(
@@ -1026,11 +1028,11 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-comment|/** DoubleRange test class implementation - use to validate DoubleRangeField */
-DECL|class|DoubleRange
+comment|/** DoubleRange test class implementation - use to validate DoubleRange */
+DECL|class|DoubleTestRange
 specifier|private
 class|class
-name|DoubleRange
+name|DoubleTestRange
 extends|extends
 name|Range
 block|{
@@ -1044,8 +1046,8 @@ name|double
 index|[]
 name|max
 decl_stmt|;
-DECL|method|DoubleRange
-name|DoubleRange
+DECL|method|DoubleTestRange
+name|DoubleTestRange
 parameter_list|(
 name|double
 index|[]
@@ -1266,11 +1268,11 @@ name|Range
 name|other
 parameter_list|)
 block|{
-name|DoubleRange
+name|DoubleTestRange
 name|o
 init|=
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|other
 decl_stmt|;
@@ -1309,11 +1311,11 @@ name|Range
 name|o
 parameter_list|)
 block|{
-name|DoubleRange
+name|DoubleTestRange
 name|other
 init|=
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|o
 decl_stmt|;
@@ -1388,11 +1390,11 @@ name|Range
 name|o
 parameter_list|)
 block|{
-name|DoubleRange
+name|DoubleTestRange
 name|other
 init|=
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|o
 decl_stmt|;
@@ -1471,11 +1473,11 @@ name|Range
 name|o
 parameter_list|)
 block|{
-name|DoubleRange
+name|DoubleTestRange
 name|other
 init|=
 operator|(
-name|DoubleRange
+name|DoubleTestRange
 operator|)
 name|o
 decl_stmt|;

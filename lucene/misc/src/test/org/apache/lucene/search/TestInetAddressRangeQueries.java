@@ -46,7 +46,7 @@ name|lucene
 operator|.
 name|document
 operator|.
-name|InetAddressRangeField
+name|InetAddressRange
 import|;
 end_import
 
@@ -65,14 +65,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Random testing for {@link InetAddressRangeField}  */
+comment|/**  * Random testing for {@link InetAddressRange}  */
 end_comment
 
 begin_class
-DECL|class|TestIpRangeFieldQueries
+DECL|class|TestInetAddressRangeQueries
 specifier|public
 class|class
-name|TestIpRangeFieldQueries
+name|TestInetAddressRangeQueries
 extends|extends
 name|BaseRangeFieldQueryTestCase
 block|{
@@ -111,8 +111,8 @@ parameter_list|(
 name|int
 name|dimensions
 parameter_list|)
-block|{
-try|try
+throws|throws
+name|Exception
 block|{
 name|InetAddress
 name|min
@@ -184,22 +184,6 @@ name|min
 argument_list|,
 name|max
 argument_list|)
-return|;
-block|}
-catch|catch
-parameter_list|(
-name|UnknownHostException
-name|e
-parameter_list|)
-block|{
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
-block|}
-return|return
-literal|null
 return|;
 block|}
 comment|/** return random IPv4 or IPv6 address */
@@ -386,7 +370,7 @@ annotation|@
 name|Override
 DECL|method|newRangeField
 specifier|protected
-name|InetAddressRangeField
+name|InetAddressRange
 name|newRangeField
 parameter_list|(
 name|Range
@@ -395,7 +379,7 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|InetAddressRangeField
+name|InetAddressRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -432,7 +416,7 @@ name|r
 parameter_list|)
 block|{
 return|return
-name|InetAddressRangeField
+name|InetAddressRange
 operator|.
 name|newIntersectsQuery
 argument_list|(
@@ -471,7 +455,7 @@ name|r
 parameter_list|)
 block|{
 return|return
-name|InetAddressRangeField
+name|InetAddressRange
 operator|.
 name|newContainsQuery
 argument_list|(
@@ -510,7 +494,7 @@ name|r
 parameter_list|)
 block|{
 return|return
-name|InetAddressRangeField
+name|InetAddressRange
 operator|.
 name|newWithinQuery
 argument_list|(
@@ -549,7 +533,7 @@ name|r
 parameter_list|)
 block|{
 return|return
-name|InetAddressRangeField
+name|InetAddressRange
 operator|.
 name|newCrossesQuery
 argument_list|(

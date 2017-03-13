@@ -75,18 +75,18 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * An indexed Double Range field.  *<p>  * This field indexes dimensional ranges defined as min/max pairs. It supports  * up to a maximum of 4 dimensions (indexed as 8 numeric values). With 1 dimension representing a single double range,  * 2 dimensions representing a bounding box, 3 dimensions a bounding cube, and 4 dimensions a tesseract.  *<p>  * Multiple values for the same field in one document is supported, and open ended ranges can be defined using  * {@code Double.NEGATIVE_INFINITY} and {@code Double.POSITIVE_INFINITY}.  *  *<p>  * This field defines the following static factory methods for common search operations over double ranges:  *<ul>  *<li>{@link #newIntersectsQuery newIntersectsQuery()} matches ranges that intersect the defined search range.  *<li>{@link #newWithinQuery newWithinQuery()} matches ranges that are within the defined search range.  *<li>{@link #newContainsQuery newContainsQuery()} matches ranges that contain the defined search range.  *</ul>  */
+comment|/**  * An indexed Integer Range field.  *<p>  * This field indexes dimensional ranges defined as min/max pairs. It supports  * up to a maximum of 4 dimensions (indexed as 8 numeric values). With 1 dimension representing a single integer range,  * 2 dimensions representing a bounding box, 3 dimensions a bounding cube, and 4 dimensions a tesseract.  *<p>  * Multiple values for the same field in one document is supported, and open ended ranges can be defined using  * {@code Integer.MIN_VALUE} and {@code Integer.MAX_VALUE}.  *  *<p>  * This field defines the following static factory methods for common search operations over integer ranges:  *<ul>  *<li>{@link #newIntersectsQuery newIntersectsQuery()} matches ranges that intersect the defined search range.  *<li>{@link #newWithinQuery newWithinQuery()} matches ranges that are within the defined search range.  *<li>{@link #newContainsQuery newContainsQuery()} matches ranges that contain the defined search range.  *</ul>  */
 end_comment
 
 begin_class
-DECL|class|DoubleRangeField
+DECL|class|IntRange
 specifier|public
 class|class
-name|DoubleRangeField
+name|IntRange
 extends|extends
 name|Field
 block|{
-comment|/** stores double values so number of bytes is 8 */
+comment|/** stores integer values so number of bytes is 4 */
 DECL|field|BYTES
 specifier|public
 specifier|static
@@ -94,25 +94,25 @@ specifier|final
 name|int
 name|BYTES
 init|=
-name|Double
+name|Integer
 operator|.
 name|BYTES
 decl_stmt|;
-comment|/**    * Create a new DoubleRangeField type, from min/max parallel arrays    *    * @param name field name. must not be null.    * @param min range min values; each entry is the min value for the dimension    * @param max range max values; each entry is the max value for the dimension    */
-DECL|method|DoubleRangeField
+comment|/**    * Create a new IntRange type, from min/max parallel arrays    *    * @param name field name. must not be null.    * @param min range min values; each entry is the min value for the dimension    * @param max range max values; each entry is the max value for the dimension    */
+DECL|method|IntRange
 specifier|public
-name|DoubleRangeField
+name|IntRange
 parameter_list|(
 name|String
 name|name
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|min
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|max
 parameter_list|)
@@ -159,7 +159,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"DoubleRangeField does not support greater than 4 dimensions"
+literal|"IntRange does not support greater than 4 dimensions"
 argument_list|)
 throw|;
 block|}
@@ -191,17 +191,17 @@ return|return
 name|ft
 return|;
 block|}
-comment|/**    * Changes the values of the field.    * @param min array of min values. (accepts {@code Double.NEGATIVE_INFINITY})    * @param max array of max values. (accepts {@code Double.POSITIVE_INFINITY})    * @throws IllegalArgumentException if {@code min} or {@code max} is invalid    */
+comment|/**    * Changes the values of the field.    * @param min array of min values. (accepts {@code Integer.NEGATIVE_INFINITY})    * @param max array of max values. (accepts {@code Integer.POSITIVE_INFINITY})    * @throws IllegalArgumentException if {@code min} or {@code max} is invalid    */
 DECL|method|setRangeValues
 specifier|public
 name|void
 name|setRangeValues
 parameter_list|(
-name|double
+name|int
 index|[]
 name|min
 parameter_list|,
-name|double
+name|int
 index|[]
 name|max
 parameter_list|)
@@ -332,12 +332,12 @@ name|void
 name|checkArgs
 parameter_list|(
 specifier|final
-name|double
+name|int
 index|[]
 name|min
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|max
 parameter_list|)
@@ -405,7 +405,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"DoubleRangeField does not support greater than 4 dimensions"
+literal|"IntRange does not support greater than 4 dimensions"
 argument_list|)
 throw|;
 block|}
@@ -418,11 +418,11 @@ name|byte
 index|[]
 name|encode
 parameter_list|(
-name|double
+name|int
 index|[]
 name|min
 parameter_list|,
-name|double
+name|int
 index|[]
 name|max
 parameter_list|)
@@ -469,11 +469,11 @@ specifier|static
 name|void
 name|verifyAndEncode
 parameter_list|(
-name|double
+name|int
 index|[]
 name|min
 parameter_list|,
-name|double
+name|int
 index|[]
 name|max
 parameter_list|,
@@ -544,7 +544,7 @@ name|NaN
 operator|+
 literal|")"
 operator|+
-literal|" in DoubleRangeField"
+literal|" in IntRange"
 argument_list|)
 throw|;
 block|}
@@ -573,7 +573,7 @@ name|NaN
 operator|+
 literal|")"
 operator|+
-literal|" in DoubleRangeField"
+literal|" in IntRange"
 argument_list|)
 throw|;
 block|}
@@ -645,7 +645,7 @@ specifier|static
 name|void
 name|encode
 parameter_list|(
-name|double
+name|int
 name|val
 parameter_list|,
 name|byte
@@ -658,14 +658,9 @@ parameter_list|)
 block|{
 name|NumericUtils
 operator|.
-name|longToSortableBytes
-argument_list|(
-name|NumericUtils
-operator|.
-name|doubleToSortableLong
+name|intToSortableBytes
 argument_list|(
 name|val
-argument_list|)
 argument_list|,
 name|bytes
 argument_list|,
@@ -676,7 +671,7 @@ block|}
 comment|/**    * Get the min value for the given dimension    * @param dimension the dimension, always positive    * @return the decoded min value    */
 DECL|method|getMin
 specifier|public
-name|double
+name|int
 name|getMin
 parameter_list|(
 name|int
@@ -743,7 +738,7 @@ block|}
 comment|/**    * Get the max value for the given dimension    * @param dimension the dimension, always positive    * @return the decoded max value    */
 DECL|method|getMax
 specifier|public
-name|double
+name|int
 name|getMax
 parameter_list|(
 name|int
@@ -810,7 +805,7 @@ block|}
 comment|/** decodes the min value (for the defined dimension) from the encoded input byte array */
 DECL|method|decodeMin
 specifier|static
-name|double
+name|int
 name|decodeMin
 parameter_list|(
 name|byte
@@ -831,23 +826,18 @@ decl_stmt|;
 return|return
 name|NumericUtils
 operator|.
-name|sortableLongToDouble
-argument_list|(
-name|NumericUtils
-operator|.
-name|sortableBytesToLong
+name|sortableBytesToInt
 argument_list|(
 name|b
 argument_list|,
 name|offset
-argument_list|)
 argument_list|)
 return|;
 block|}
 comment|/** decodes the max value (for the defined dimension) from the encoded input byte array */
 DECL|method|decodeMax
 specifier|static
-name|double
+name|int
 name|decodeMax
 parameter_list|(
 name|byte
@@ -874,20 +864,15 @@ decl_stmt|;
 return|return
 name|NumericUtils
 operator|.
-name|sortableLongToDouble
-argument_list|(
-name|NumericUtils
-operator|.
-name|sortableBytesToLong
+name|sortableBytesToInt
 argument_list|(
 name|b
 argument_list|,
 name|offset
 argument_list|)
-argument_list|)
 return|;
 block|}
-comment|/**    * Create a query for matching indexed ranges that intersect the defined range.    * @param field field name. must not be null.    * @param min array of min values. (accepts {@code Double.NEGATIVE_INFINITY})    * @param max array of max values. (accepts {@code Double.POSITIVE_INFINITY})    * @return query for matching intersecting ranges (overlap, within, or contains)    * @throws IllegalArgumentException if {@code field} is null, {@code min} or {@code max} is invalid    */
+comment|/**    * Create a query for matching indexed ranges that intersect the defined range.    * @param field field name. must not be null.    * @param min array of min values. (accepts {@code Integer.MIN_VALUE})    * @param max array of max values. (accepts {@code Integer.MAX_VALUE})    * @return query for matching intersecting ranges (overlap, within, or contains)    * @throws IllegalArgumentException if {@code field} is null, {@code min} or {@code max} is invalid    */
 DECL|method|newIntersectsQuery
 specifier|public
 specifier|static
@@ -898,12 +883,12 @@ name|String
 name|field
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|min
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|max
 parameter_list|)
@@ -945,7 +930,7 @@ name|dimension
 parameter_list|)
 block|{
 return|return
-name|DoubleRangeField
+name|IntRange
 operator|.
 name|toString
 argument_list|(
@@ -958,7 +943,7 @@ block|}
 block|}
 return|;
 block|}
-comment|/**    * Create a query for matching indexed ranges that contain the defined range.    * @param field field name. must not be null.    * @param min array of min values. (accepts {@code Double.MIN_VALUE})    * @param max array of max values. (accepts {@code Double.MAX_VALUE})    * @return query for matching ranges that contain the defined range    * @throws IllegalArgumentException if {@code field} is null, {@code min} or {@code max} is invalid    */
+comment|/**    * Create a query for matching indexed ranges that contain the defined range.    * @param field field name. must not be null.    * @param min array of min values. (accepts {@code Integer.MIN_VALUE})    * @param max array of max values. (accepts {@code Integer.MAX_VALUE})    * @return query for matching ranges that contain the defined range    * @throws IllegalArgumentException if {@code field} is null, {@code min} or {@code max} is invalid    */
 DECL|method|newContainsQuery
 specifier|public
 specifier|static
@@ -969,67 +954,32 @@ name|String
 name|field
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|min
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|max
 parameter_list|)
 block|{
 return|return
-operator|new
-name|RangeFieldQuery
+name|newRelationQuery
 argument_list|(
 name|field
 argument_list|,
-name|encode
-argument_list|(
 name|min
 argument_list|,
 name|max
-argument_list|)
-argument_list|,
-name|min
-operator|.
-name|length
 argument_list|,
 name|QueryType
 operator|.
 name|CONTAINS
 argument_list|)
-block|{
-annotation|@
-name|Override
-specifier|protected
-name|String
-name|toString
-parameter_list|(
-name|byte
-index|[]
-name|ranges
-parameter_list|,
-name|int
-name|dimension
-parameter_list|)
-block|{
-return|return
-name|DoubleRangeField
-operator|.
-name|toString
-argument_list|(
-name|ranges
-argument_list|,
-name|dimension
-argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
-comment|/**    * Create a query for matching indexed ranges that are within the defined range.    * @param field field name. must not be null.    * @param min array of min values. (accepts {@code Double.MIN_VALUE})    * @param max array of max values. (accepts {@code Double.MAX_VALUE})    * @return query for matching ranges within the defined range    * @throws IllegalArgumentException if {@code field} is null, {@code min} or {@code max} is invalid    */
+comment|/**    * Create a query for matching indexed ranges that are within the defined range.    * @param field field name. must not be null.    * @param min array of min values. (accepts {@code Integer.MIN_VALUE})    * @param max array of max values. (accepts {@code Integer.MAX_VALUE})    * @return query for matching ranges within the defined range    * @throws IllegalArgumentException if {@code field} is null, {@code min} or {@code max} is invalid    */
 DECL|method|newWithinQuery
 specifier|public
 specifier|static
@@ -1040,74 +990,32 @@ name|String
 name|field
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|min
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|max
 parameter_list|)
 block|{
-name|checkArgs
-argument_list|(
-name|min
-argument_list|,
-name|max
-argument_list|)
-expr_stmt|;
 return|return
-operator|new
-name|RangeFieldQuery
+name|newRelationQuery
 argument_list|(
 name|field
 argument_list|,
-name|encode
-argument_list|(
 name|min
 argument_list|,
 name|max
-argument_list|)
-argument_list|,
-name|min
-operator|.
-name|length
 argument_list|,
 name|QueryType
 operator|.
 name|WITHIN
 argument_list|)
-block|{
-annotation|@
-name|Override
-specifier|protected
-name|String
-name|toString
-parameter_list|(
-name|byte
-index|[]
-name|ranges
-parameter_list|,
-name|int
-name|dimension
-parameter_list|)
-block|{
-return|return
-name|DoubleRangeField
-operator|.
-name|toString
-argument_list|(
-name|ranges
-argument_list|,
-name|dimension
-argument_list|)
 return|;
 block|}
-block|}
-return|;
-block|}
-comment|/**    * Create a query for matching indexed ranges that cross the defined range.    * A CROSSES is defined as any set of ranges that are not disjoint and not wholly contained by    * the query. Effectively, its the complement of union(WITHIN, DISJOINT).    * @param field field name. must not be null.    * @param min array of min values. (accepts {@code Double.MIN_VALUE})    * @param max array of max values. (accepts {@code Double.MAX_VALUE})    * @return query for matching ranges within the defined range    * @throws IllegalArgumentException if {@code field} is null, {@code min} or {@code max} is invalid    */
+comment|/**    * Create a query for matching indexed ranges that cross the defined range.    * A CROSSES is defined as any set of ranges that are not disjoint and not wholly contained by    * the query. Effectively, its the complement of union(WITHIN, DISJOINT).    * @param field field name. must not be null.    * @param min array of min values. (accepts {@code Integer.MIN_VALUE})    * @param max array of max values. (accepts {@code Integer.MAX_VALUE})    * @return query for matching ranges within the defined range    * @throws IllegalArgumentException if {@code field} is null, {@code min} or {@code max} is invalid    */
 DECL|method|newCrossesQuery
 specifier|public
 specifier|static
@@ -1118,14 +1026,53 @@ name|String
 name|field
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|min
 parameter_list|,
 specifier|final
-name|double
+name|int
 index|[]
 name|max
+parameter_list|)
+block|{
+return|return
+name|newRelationQuery
+argument_list|(
+name|field
+argument_list|,
+name|min
+argument_list|,
+name|max
+argument_list|,
+name|QueryType
+operator|.
+name|CROSSES
+argument_list|)
+return|;
+block|}
+comment|/** helper method for creating the desired relational query */
+DECL|method|newRelationQuery
+specifier|private
+specifier|static
+name|Query
+name|newRelationQuery
+parameter_list|(
+name|String
+name|field
+parameter_list|,
+specifier|final
+name|int
+index|[]
+name|min
+parameter_list|,
+specifier|final
+name|int
+index|[]
+name|max
+parameter_list|,
+name|QueryType
+name|relation
 parameter_list|)
 block|{
 name|checkArgs
@@ -1152,9 +1099,7 @@ name|min
 operator|.
 name|length
 argument_list|,
-name|QueryType
-operator|.
-name|CROSSES
+name|relation
 argument_list|)
 block|{
 annotation|@
@@ -1172,7 +1117,7 @@ name|dimension
 parameter_list|)
 block|{
 return|return
-name|DoubleRangeField
+name|IntRange
 operator|.
 name|toString
 argument_list|(
@@ -1317,7 +1262,7 @@ block|{
 return|return
 literal|"["
 operator|+
-name|Double
+name|Integer
 operator|.
 name|toString
 argument_list|(
@@ -1331,7 +1276,7 @@ argument_list|)
 operator|+
 literal|" : "
 operator|+
-name|Double
+name|Integer
 operator|.
 name|toString
 argument_list|(

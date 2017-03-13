@@ -83,7 +83,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -134,7 +134,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -203,7 +203,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -272,7 +272,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,
@@ -347,7 +347,7 @@ operator|.
 name|add
 argument_list|(
 operator|new
-name|DoubleRangeField
+name|DoubleRange
 argument_list|(
 name|FIELD_NAME
 argument_list|,

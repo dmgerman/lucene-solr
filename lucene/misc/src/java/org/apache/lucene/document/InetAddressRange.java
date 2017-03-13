@@ -89,10 +89,10 @@ comment|/**  * An indexed InetAddress Range Field  *<p>  * This field indexes an
 end_comment
 
 begin_class
-DECL|class|InetAddressRangeField
+DECL|class|InetAddressRange
 specifier|public
 class|class
-name|InetAddressRangeField
+name|InetAddressRange
 extends|extends
 name|Field
 block|{
@@ -138,10 +138,10 @@ name|freeze
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * Create a new InetAddressRangeField from min/max value    * @param name field name. must not be null.    * @param min range min value; defined as an {@code InetAddress}    * @param max range max value; defined as an {@code InetAddress}    */
-DECL|method|InetAddressRangeField
+comment|/**    * Create a new InetAddressRange from min/max value    * @param name field name. must not be null.    * @param min range min value; defined as an {@code InetAddress}    * @param max range max value; defined as an {@code InetAddress}    */
+DECL|method|InetAddressRange
 specifier|public
-name|InetAddressRangeField
+name|InetAddressRange
 parameter_list|(
 name|String
 name|name
@@ -569,7 +569,7 @@ name|dimension
 parameter_list|)
 block|{
 return|return
-name|InetAddressRangeField
+name|InetAddressRange
 operator|.
 name|toString
 argument_list|(
