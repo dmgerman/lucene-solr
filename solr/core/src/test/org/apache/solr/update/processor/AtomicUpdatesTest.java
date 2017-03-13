@@ -8695,13 +8695,6 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9838"
-argument_list|)
 DECL|method|testAtomicUpdateOfFieldsWithDefaultValue
 specifier|public
 name|void
@@ -8941,7 +8934,7 @@ name|sdoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"7"
+literal|"8"
 argument_list|,
 name|fieldToUpdate
 argument_list|,
