@@ -1548,23 +1548,6 @@ block|}
 comment|/**    * {@inheritDoc}    */
 annotation|@
 name|Override
-annotation|@
-name|Deprecated
-DECL|method|getNumericType
-specifier|public
-name|LegacyNumericType
-name|getNumericType
-parameter_list|()
-block|{
-return|return
-name|LegacyNumericType
-operator|.
-name|INT
-return|;
-block|}
-comment|/**    * {@inheritDoc}    */
-annotation|@
-name|Override
 DECL|method|getNumberType
 specifier|public
 name|NumberType
