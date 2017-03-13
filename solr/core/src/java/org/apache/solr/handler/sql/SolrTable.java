@@ -3041,6 +3041,19 @@ argument_list|,
 name|query
 argument_list|)
 expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|WT
+argument_list|,
+name|CommonParams
+operator|.
+name|JAVABIN
+argument_list|)
+expr_stmt|;
 comment|//Always use the /export handler for Group By Queries because it requires exporting full result sets.
 name|params
 operator|.
@@ -4559,6 +4572,19 @@ operator|.
 name|Q
 argument_list|,
 name|query
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CommonParams
+operator|.
+name|WT
+argument_list|,
+name|CommonParams
+operator|.
+name|JAVABIN
 argument_list|)
 expr_stmt|;
 comment|//Always use the /export handler for Distinct Queries because it requires exporting full result sets.
