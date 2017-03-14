@@ -108,6 +108,14 @@ init|=
 literal|0x00000010
 decl_stmt|;
 comment|// clear caches associated with the update log.  used when applying reordered DBQ updates when doing an add.
+DECL|field|IGNORE_INDEXWRITER
+specifier|public
+specifier|static
+name|int
+name|IGNORE_INDEXWRITER
+init|=
+literal|0x00000020
+decl_stmt|;
 DECL|method|UpdateCommand
 specifier|public
 name|UpdateCommand

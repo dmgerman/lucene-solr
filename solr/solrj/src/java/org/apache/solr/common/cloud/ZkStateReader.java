@@ -842,6 +842,15 @@ name|MAX_CORES_PER_NODE
 init|=
 literal|"maxCoresPerNode"
 decl_stmt|;
+DECL|field|REALTIME_REPLICAS
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|REALTIME_REPLICAS
+init|=
+literal|"realtimeReplicas"
+decl_stmt|;
 DECL|field|ROLES
 specifier|public
 specifier|static

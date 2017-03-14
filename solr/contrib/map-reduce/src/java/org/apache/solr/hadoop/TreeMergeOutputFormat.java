@@ -1083,11 +1083,15 @@ argument_list|)
 expr_stmt|;
 comment|// Set Solr's commit data so the created index is usable by SolrCloud. E.g. Currently SolrCloud relies on
 comment|// commitTimeMSec in the commit data to do replication.
+comment|//TODO no commitUpdateCommand
 name|SolrIndexWriter
 operator|.
 name|setCommitData
 argument_list|(
 name|writer
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|timer

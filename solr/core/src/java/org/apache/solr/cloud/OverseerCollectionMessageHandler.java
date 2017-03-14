@@ -1346,6 +1346,12 @@ name|AUTO_ADD_REPLICAS
 argument_list|,
 literal|"false"
 argument_list|,
+name|ZkStateReader
+operator|.
+name|REALTIME_REPLICAS
+argument_list|,
+literal|"-1"
+argument_list|,
 name|DocCollection
 operator|.
 name|RULE

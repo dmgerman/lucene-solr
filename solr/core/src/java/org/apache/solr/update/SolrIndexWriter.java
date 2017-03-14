@@ -449,6 +449,15 @@ name|COMMIT_TIME_MSEC_KEY
 init|=
 literal|"commitTimeMSec"
 decl_stmt|;
+DECL|field|COMMIT_COMMAND_VERSION
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|COMMIT_COMMAND_VERSION
+init|=
+literal|"commitCommandVer"
+decl_stmt|;
 DECL|field|CLOSE_LOCK
 specifier|private
 specifier|final
@@ -1486,6 +1495,9 @@ name|setCommitData
 parameter_list|(
 name|IndexWriter
 name|iw
+parameter_list|,
+name|long
+name|commitCommandVersion
 parameter_list|)
 block|{
 name|log
@@ -1498,6 +1510,10 @@ name|iw
 operator|.
 name|toString
 argument_list|()
+operator|+
+literal|" commitCommandVersion:"
+operator|+
+name|commitCommandVersion
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -1528,6 +1544,20 @@ name|System
 operator|.
 name|currentTimeMillis
 argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|commitData
+operator|.
+name|put
+argument_list|(
+name|COMMIT_COMMAND_VERSION
+argument_list|,
+name|String
+operator|.
+name|valueOf
+argument_list|(
+name|commitCommandVersion
 argument_list|)
 argument_list|)
 expr_stmt|;

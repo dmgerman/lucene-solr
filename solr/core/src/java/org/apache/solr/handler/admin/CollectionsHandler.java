@@ -1508,6 +1508,24 @@ name|cloud
 operator|.
 name|ZkStateReader
 operator|.
+name|REALTIME_REPLICAS
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
+name|ZkStateReader
+operator|.
 name|PROPERTY_PROP
 import|;
 end_import
@@ -3513,6 +3531,8 @@ argument_list|,
 name|RULE
 argument_list|,
 name|SNITCH
+argument_list|,
+name|REALTIME_REPLICAS
 argument_list|)
 expr_stmt|;
 if|if

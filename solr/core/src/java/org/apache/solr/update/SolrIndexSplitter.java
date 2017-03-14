@@ -1062,11 +1062,15 @@ block|}
 comment|// we commit explicitly instead of sending a CommitUpdateCommand through the processor chain
 comment|// because the sub-shard cores will just ignore such a commit because the update log is not
 comment|// in active state at this time.
+comment|//TODO no commitUpdateCommand
 name|SolrIndexWriter
 operator|.
 name|setCommitData
 argument_list|(
 name|iw
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 expr_stmt|;
 name|iw
