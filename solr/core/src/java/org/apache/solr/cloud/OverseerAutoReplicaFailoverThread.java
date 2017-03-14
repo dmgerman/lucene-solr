@@ -1367,6 +1367,17 @@ operator|.
 name|getName
 argument_list|()
 decl_stmt|;
+specifier|final
+name|String
+name|shardId
+init|=
+name|badReplica
+operator|.
+name|slice
+operator|.
+name|getName
+argument_list|()
+decl_stmt|;
 if|if
 condition|(
 name|dataDir
@@ -1429,6 +1440,8 @@ argument_list|,
 name|coreNodeName
 argument_list|,
 name|coreName
+argument_list|,
+name|shardId
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2814,6 +2827,10 @@ parameter_list|,
 specifier|final
 name|String
 name|coreName
+parameter_list|,
+specifier|final
+name|String
+name|shardId
 parameter_list|)
 block|{
 try|try
@@ -2879,6 +2896,13 @@ argument_list|)
 expr_stmt|;
 comment|// TODO: how do we ensure unique coreName
 comment|// for now, the collections API will use unique names
+name|createCmd
+operator|.
+name|setShardId
+argument_list|(
+name|shardId
+argument_list|)
+expr_stmt|;
 name|createCmd
 operator|.
 name|setCoreName
