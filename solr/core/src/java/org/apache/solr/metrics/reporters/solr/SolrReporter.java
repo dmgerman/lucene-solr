@@ -1806,6 +1806,8 @@ name|skipHistograms
 argument_list|,
 name|skipAggregateValues
 argument_list|,
+literal|false
+argument_list|,
 name|metadata
 argument_list|,
 name|doc

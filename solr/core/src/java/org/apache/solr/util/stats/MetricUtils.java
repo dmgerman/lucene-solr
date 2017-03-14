@@ -315,6 +315,15 @@ name|METRIC_NAME
 init|=
 literal|"metric"
 decl_stmt|;
+DECL|field|VALUE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|VALUE
+init|=
+literal|"value"
+decl_stmt|;
 DECL|field|VALUES
 specifier|public
 specifier|static
@@ -678,7 +687,7 @@ literal|1
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns a NamedList representation of the given metric registry. Only those metrics    * are converted to NamedList which match at least one of the given MetricFilter instances.    *    * @param registry      the {@link MetricRegistry} to be converted to NamedList    * @param shouldMatchFilters a list of {@link MetricFilter} instances.    *                           A metric must match<em>any one</em> of the filters from this list to be    *                           included in the output    * @param mustMatchFilter a {@link MetricFilter}.    *                        A metric<em>must</em> match this filter to be included in the output.    * @param skipHistograms discard any {@link Histogram}-s and histogram parts of {@link Timer}-s.    * @param metadata optional metadata. If not null and not empty then this map will be added under a    *                 {@code _metadata_} key.    * @return a {@link NamedList}    */
+comment|/**    * Returns a NamedList representation of the given metric registry. Only those metrics    * are converted to NamedList which match at least one of the given MetricFilter instances.    *    * @param registry      the {@link MetricRegistry} to be converted to NamedList    * @param shouldMatchFilters a list of {@link MetricFilter} instances.    *                           A metric must match<em>any one</em> of the filters from this list to be    *                           included in the output    * @param mustMatchFilter a {@link MetricFilter}.    *                        A metric<em>must</em> match this filter to be included in the output.    * @param skipHistograms discard any {@link Histogram}-s and histogram parts of {@link Timer}-s.    * @param compact use compact representation for counters and gauges.    * @param metadata optional metadata. If not null and not empty then this map will be added under a    *                 {@code _metadata_} key.    * @return a {@link NamedList}    */
 DECL|method|toNamedList
 specifier|public
 specifier|static
@@ -703,6 +712,9 @@ parameter_list|,
 name|boolean
 name|skipAggregateValues
 parameter_list|,
+name|boolean
+name|compact
+parameter_list|,
 name|Map
 argument_list|<
 name|String
@@ -719,7 +731,7 @@ operator|new
 name|SimpleOrderedMap
 argument_list|()
 decl_stmt|;
-name|toNamedMaps
+name|toMaps
 argument_list|(
 name|registry
 argument_list|,
@@ -730,6 +742,8 @@ argument_list|,
 name|skipHistograms
 argument_list|,
 name|skipAggregateValues
+argument_list|,
+name|compact
 argument_list|,
 parameter_list|(
 name|k
@@ -777,7 +791,7 @@ return|return
 name|result
 return|;
 block|}
-comment|/**    * Returns a representation of the given metric registry as a list of {@link SolrInputDocument}-s.    Only those metrics    * are converted to NamedList which match at least one of the given MetricFilter instances.    *    * @param registry      the {@link MetricRegistry} to be converted to NamedList    * @param shouldMatchFilters a list of {@link MetricFilter} instances.    *                           A metric must match<em>any one</em> of the filters from this list to be    *                           included in the output    * @param mustMatchFilter a {@link MetricFilter}.    *                        A metric<em>must</em> match this filter to be included in the output.    * @param skipHistograms discard any {@link Histogram}-s and histogram parts of {@link Timer}-s.    * @param metadata optional metadata. If not null and not empty then this map will be added under a    *                 {@code _metadata_} key.    * @return a list of {@link SolrInputDocument}-s    */
+comment|/**    * Returns a representation of the given metric registry as a list of {@link SolrInputDocument}-s.    Only those metrics    * are converted to NamedList which match at least one of the given MetricFilter instances.    *    * @param registry      the {@link MetricRegistry} to be converted to NamedList    * @param shouldMatchFilters a list of {@link MetricFilter} instances.    *                           A metric must match<em>any one</em> of the filters from this list to be    *                           included in the output    * @param mustMatchFilter a {@link MetricFilter}.    *                        A metric<em>must</em> match this filter to be included in the output.    * @param skipHistograms discard any {@link Histogram}-s and histogram parts of {@link Timer}-s.    * @param compact use compact representation for counters and gauges.    * @param metadata optional metadata. If not null and not empty then this map will be added under a    *                 {@code _metadata_} key.    * @return a list of {@link SolrInputDocument}-s    */
 DECL|method|toSolrInputDocuments
 specifier|public
 specifier|static
@@ -804,6 +818,9 @@ name|skipHistograms
 parameter_list|,
 name|boolean
 name|skipAggregateValues
+parameter_list|,
+name|boolean
+name|compact
 parameter_list|,
 name|Map
 argument_list|<
@@ -836,6 +853,8 @@ argument_list|,
 name|skipHistograms
 argument_list|,
 name|skipAggregateValues
+argument_list|,
+name|compact
 argument_list|,
 name|metadata
 argument_list|,
@@ -880,6 +899,9 @@ parameter_list|,
 name|boolean
 name|skipAggregateValues
 parameter_list|,
+name|boolean
+name|compact
+parameter_list|,
 name|Map
 argument_list|<
 name|String
@@ -908,7 +930,7 @@ operator|.
 name|isEmpty
 argument_list|()
 decl_stmt|;
-name|toNamedMaps
+name|toMaps
 argument_list|(
 name|registry
 argument_list|,
@@ -919,6 +941,8 @@ argument_list|,
 name|skipHistograms
 argument_list|,
 name|skipAggregateValues
+argument_list|,
+name|compact
 argument_list|,
 parameter_list|(
 name|k
@@ -990,6 +1014,42 @@ parameter_list|,
 name|SolrInputDocument
 name|doc
 parameter_list|,
+name|Object
+name|o
+parameter_list|)
+block|{
+if|if
+condition|(
+operator|!
+operator|(
+name|o
+operator|instanceof
+name|Map
+operator|)
+condition|)
+block|{
+name|String
+name|key
+init|=
+name|prefix
+operator|!=
+literal|null
+condition|?
+name|prefix
+else|:
+name|VALUE
+decl_stmt|;
+name|doc
+operator|.
+name|addField
+argument_list|(
+name|key
+argument_list|,
+name|o
+argument_list|)
+expr_stmt|;
+return|return;
+block|}
 name|Map
 argument_list|<
 name|String
@@ -997,8 +1057,17 @@ argument_list|,
 name|Object
 argument_list|>
 name|map
-parameter_list|)
-block|{
+init|=
+operator|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+operator|)
+name|o
+decl_stmt|;
 for|for
 control|(
 name|Map
@@ -1037,14 +1106,6 @@ argument_list|()
 argument_list|,
 name|doc
 argument_list|,
-operator|(
-name|Map
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
-operator|)
 name|entry
 operator|.
 name|getValue
@@ -1090,11 +1151,11 @@ expr_stmt|;
 block|}
 block|}
 block|}
-DECL|method|toNamedMaps
+DECL|method|toMaps
 specifier|public
 specifier|static
 name|void
-name|toNamedMaps
+name|toMaps
 parameter_list|(
 name|MetricRegistry
 name|registry
@@ -1114,16 +1175,14 @@ parameter_list|,
 name|boolean
 name|skipAggregateValues
 parameter_list|,
+name|boolean
+name|compact
+parameter_list|,
 name|BiConsumer
 argument_list|<
 name|String
 argument_list|,
-name|Map
-argument_list|<
-name|String
-argument_list|,
 name|Object
-argument_list|>
 argument_list|>
 name|consumer
 parameter_list|)
@@ -1240,9 +1299,11 @@ name|accept
 argument_list|(
 name|n
 argument_list|,
-name|counterToMap
+name|convertCounter
 argument_list|(
 name|counter
+argument_list|,
+name|compact
 argument_list|)
 argument_list|)
 block|;           }
@@ -1268,9 +1329,11 @@ name|accept
 argument_list|(
 name|n
 argument_list|,
-name|gaugeToMap
+name|convertGauge
 argument_list|(
 name|gauge
+argument_list|,
+name|compact
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1296,7 +1359,7 @@ name|accept
 argument_list|(
 name|n
 argument_list|,
-name|meterToMap
+name|convertMeter
 argument_list|(
 name|meter
 argument_list|)
@@ -1324,7 +1387,7 @@ name|accept
 argument_list|(
 name|n
 argument_list|,
-name|timerToMap
+name|convertTimer
 argument_list|(
 name|timer
 argument_list|,
@@ -1360,7 +1423,7 @@ name|accept
 argument_list|(
 name|n
 argument_list|,
-name|histogramToMap
+name|convertHistogram
 argument_list|(
 name|histogram
 argument_list|)
@@ -1382,7 +1445,7 @@ name|accept
 argument_list|(
 name|n
 argument_list|,
-name|aggregateMetricToMap
+name|convertAggregateMetric
 argument_list|(
 operator|(
 name|AggregateMetric
@@ -1404,14 +1467,14 @@ end_empty_stmt
 
 begin_function
 unit|}    static
-DECL|method|aggregateMetricToMap
+DECL|method|convertAggregateMetric
 name|Map
 argument_list|<
 name|String
 argument_list|,
 name|Object
 argument_list|>
-name|aggregateMetricToMap
+name|convertAggregateMetric
 parameter_list|(
 name|AggregateMetric
 name|metric
@@ -1612,7 +1675,7 @@ block|}
 end_function
 
 begin_function
-DECL|method|histogramToMap
+DECL|method|convertHistogram
 specifier|static
 name|Map
 argument_list|<
@@ -1620,7 +1683,7 @@ name|String
 argument_list|,
 name|Object
 argument_list|>
-name|histogramToMap
+name|convertHistogram
 parameter_list|(
 name|Histogram
 name|histogram
@@ -1949,7 +2012,7 @@ block|}
 end_function
 
 begin_function
-DECL|method|timerToMap
+DECL|method|convertTimer
 specifier|static
 name|Map
 argument_list|<
@@ -1957,7 +2020,7 @@ name|String
 argument_list|,
 name|Object
 argument_list|>
-name|timerToMap
+name|convertTimer
 parameter_list|(
 name|Timer
 name|timer
@@ -2066,7 +2129,7 @@ block|}
 end_function
 
 begin_function
-DECL|method|meterToMap
+DECL|method|convertMeter
 specifier|static
 name|Map
 argument_list|<
@@ -2074,7 +2137,7 @@ name|String
 argument_list|,
 name|Object
 argument_list|>
-name|meterToMap
+name|convertMeter
 parameter_list|(
 name|Meter
 name|meter
@@ -2160,19 +2223,31 @@ block|}
 end_function
 
 begin_function
-DECL|method|gaugeToMap
+DECL|method|convertGauge
 specifier|static
-name|Map
-argument_list|<
-name|String
-argument_list|,
 name|Object
-argument_list|>
-name|gaugeToMap
+name|convertGauge
 parameter_list|(
 name|Gauge
 name|gauge
+parameter_list|,
+name|boolean
+name|compact
 parameter_list|)
+block|{
+if|if
+condition|(
+name|compact
+condition|)
+block|{
+return|return
+name|gauge
+operator|.
+name|getValue
+argument_list|()
+return|;
+block|}
+else|else
 block|{
 name|Map
 argument_list|<
@@ -2203,22 +2278,35 @@ return|return
 name|response
 return|;
 block|}
+block|}
 end_function
 
 begin_function
-DECL|method|counterToMap
+DECL|method|convertCounter
 specifier|static
-name|Map
-argument_list|<
-name|String
-argument_list|,
 name|Object
-argument_list|>
-name|counterToMap
+name|convertCounter
 parameter_list|(
 name|Counter
 name|counter
+parameter_list|,
+name|boolean
+name|compact
 parameter_list|)
+block|{
+if|if
+condition|(
+name|compact
+condition|)
+block|{
+return|return
+name|counter
+operator|.
+name|getCount
+argument_list|()
+return|;
+block|}
+else|else
 block|{
 name|Map
 argument_list|<
@@ -2248,6 +2336,7 @@ expr_stmt|;
 return|return
 name|response
 return|;
+block|}
 block|}
 end_function
 

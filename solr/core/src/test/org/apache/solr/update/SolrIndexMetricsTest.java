@@ -361,7 +361,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|10
+literal|12
 argument_list|,
 name|metrics
 operator|.
@@ -576,9 +576,10 @@ operator|.
 name|getMetrics
 argument_list|()
 decl_stmt|;
+comment|// INDEX.size, INDEX.sizeInBytes
 name|assertEquals
 argument_list|(
-literal|0
+literal|2
 argument_list|,
 name|metrics
 operator|.

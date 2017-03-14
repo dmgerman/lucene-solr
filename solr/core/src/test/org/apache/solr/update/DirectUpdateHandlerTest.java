@@ -745,7 +745,7 @@ operator|(
 operator|(
 name|Gauge
 argument_list|<
-name|Long
+name|Number
 argument_list|>
 operator|)
 name|metrics
@@ -757,6 +757,9 @@ argument_list|)
 operator|)
 operator|.
 name|getValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 decl_stmt|;
 name|long
@@ -889,7 +892,7 @@ operator|(
 operator|(
 name|Gauge
 argument_list|<
-name|Long
+name|Number
 argument_list|>
 operator|)
 name|metrics
@@ -901,6 +904,9 @@ argument_list|)
 operator|)
 operator|.
 name|getValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 decl_stmt|;
 name|long
@@ -984,7 +990,7 @@ operator|(
 operator|(
 name|Gauge
 argument_list|<
-name|Long
+name|Number
 argument_list|>
 operator|)
 name|metrics
@@ -996,6 +1002,9 @@ argument_list|)
 operator|)
 operator|.
 name|getValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 expr_stmt|;
 name|newCumulativeAdds
@@ -1078,7 +1087,7 @@ operator|(
 operator|(
 name|Gauge
 argument_list|<
-name|Long
+name|Number
 argument_list|>
 operator|)
 name|metrics
@@ -1090,6 +1099,9 @@ argument_list|)
 operator|)
 operator|.
 name|getValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 decl_stmt|;
 name|long
@@ -1156,7 +1168,7 @@ operator|(
 operator|(
 name|Gauge
 argument_list|<
-name|Long
+name|Number
 argument_list|>
 operator|)
 name|metrics
@@ -1168,6 +1180,9 @@ argument_list|)
 operator|)
 operator|.
 name|getValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 expr_stmt|;
 name|newCumulativeDelsI
@@ -1248,7 +1263,7 @@ operator|(
 operator|(
 name|Gauge
 argument_list|<
-name|Long
+name|Number
 argument_list|>
 operator|)
 name|metrics
@@ -1260,6 +1275,9 @@ argument_list|)
 operator|)
 operator|.
 name|getValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 decl_stmt|;
 name|long
@@ -1325,7 +1343,7 @@ operator|(
 operator|(
 name|Gauge
 argument_list|<
-name|Long
+name|Number
 argument_list|>
 operator|)
 name|metrics
@@ -1337,6 +1355,9 @@ argument_list|)
 operator|)
 operator|.
 name|getValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 expr_stmt|;
 name|newCumulativeDelsQ
@@ -1424,7 +1445,7 @@ operator|(
 operator|(
 name|Gauge
 argument_list|<
-name|Long
+name|Number
 argument_list|>
 operator|)
 name|metrics
@@ -1436,6 +1457,9 @@ argument_list|)
 operator|)
 operator|.
 name|getValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 expr_stmt|;
 name|assertEquals
@@ -1481,7 +1505,7 @@ operator|(
 operator|(
 name|Gauge
 argument_list|<
-name|Long
+name|Number
 argument_list|>
 operator|)
 name|metrics
@@ -1493,6 +1517,9 @@ argument_list|)
 operator|)
 operator|.
 name|getValue
+argument_list|()
+operator|.
+name|longValue
 argument_list|()
 expr_stmt|;
 name|assertEquals
