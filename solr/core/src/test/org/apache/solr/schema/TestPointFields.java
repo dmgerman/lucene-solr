@@ -6209,14 +6209,14 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|9
 init|;
 name|i
-operator|<
-literal|10
+operator|>=
+literal|0
 condition|;
 name|i
-operator|++
+operator|--
 control|)
 block|{
 name|assertU
@@ -6265,6 +6265,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
@@ -6325,6 +6329,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -6375,6 +6383,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -6425,6 +6437,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
@@ -6465,9 +6481,23 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='9']"
+argument_list|,
+literal|"0=count(//result/doc/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='0'])"
 argument_list|,
 literal|"//result/doc[1]/"
 operator|+
@@ -6495,11 +6525,45 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id desc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
+literal|"0=count(//result/doc/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='3'])"
+argument_list|,
 literal|"//result/doc[1]/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='2']"
+argument_list|,
+literal|"//result/doc[2]/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='1']"
+argument_list|,
+literal|"//result/doc[3]/"
 operator|+
 name|type
 operator|+
@@ -6525,11 +6589,45 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id desc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
+literal|"0=count(//result/doc/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='3'])"
+argument_list|,
 literal|"//result/doc[1]/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='2']"
+argument_list|,
+literal|"//result/doc[2]/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='1']"
+argument_list|,
+literal|"//result/doc[3]/"
 operator|+
 name|type
 operator|+
@@ -6555,6 +6653,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -6599,6 +6701,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
@@ -7797,14 +7903,14 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|9
 init|;
 name|i
-operator|<
-literal|10
+operator|>=
+literal|0
 condition|;
 name|i
-operator|++
+operator|--
 control|)
 block|{
 name|assertU
@@ -7972,6 +8078,10 @@ operator|+
 name|dvFieldName
 operator|+
 literal|")"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -8020,6 +8130,10 @@ operator|+
 name|dvFieldName
 operator|+
 literal|")"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -8931,14 +9045,14 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|9
 init|;
 name|i
-operator|<
-literal|10
+operator|>=
+literal|0
 condition|;
 name|i
-operator|++
+operator|--
 control|)
 block|{
 name|assertU
@@ -9172,27 +9286,10 @@ init|=
 operator|new
 name|String
 index|[
-literal|11
-index|]
-decl_stmt|;
-name|String
-index|[]
-name|expected2
-init|=
-operator|new
-name|String
-index|[
-literal|11
+literal|21
 index|]
 decl_stmt|;
 name|expected
-index|[
-literal|0
-index|]
-operator|=
-literal|"//*[@numFound='10']"
-expr_stmt|;
-name|expected2
 index|[
 literal|0
 index|]
@@ -9214,6 +9311,7 @@ name|i
 operator|++
 control|)
 block|{
+comment|// checks for each doc's two values aren't next to eachother in array, but that doesn't matter for correctness
 name|expected
 index|[
 name|i
@@ -9242,9 +9340,11 @@ index|]
 operator|+
 literal|"']"
 expr_stmt|;
-name|expected2
+name|expected
 index|[
 name|i
+operator|+
+literal|10
 index|]
 operator|=
 literal|"//result/doc["
@@ -9284,27 +9384,13 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 name|expected
-argument_list|)
-expr_stmt|;
-name|assertQ
-argument_list|(
-name|req
-argument_list|(
-literal|"q"
-argument_list|,
-literal|"*:*"
-argument_list|,
-literal|"fl"
-argument_list|,
-literal|"id, "
-operator|+
-name|fieldName
-argument_list|)
-argument_list|,
-name|expected2
 argument_list|)
 expr_stmt|;
 block|}
@@ -9382,14 +9468,14 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|9
 init|;
 name|i
-operator|<
-literal|10
+operator|>=
+literal|0
 condition|;
 name|i
-operator|++
+operator|--
 control|)
 block|{
 name|assertU
@@ -9464,6 +9550,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
@@ -9639,6 +9729,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -9729,6 +9823,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -9819,6 +9917,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
@@ -9887,6 +9989,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -9938,6 +10044,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='9']"
@@ -9989,6 +10099,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -10040,6 +10154,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -10077,6 +10195,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -10162,6 +10284,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
@@ -10281,6 +10407,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
@@ -13016,16 +13146,18 @@ control|(
 name|int
 name|i
 init|=
-literal|0
-init|;
-name|i
-operator|<
 name|arr
 operator|.
 name|length
+operator|-
+literal|1
+init|;
+name|i
+operator|>=
+literal|0
 condition|;
 name|i
-operator|++
+operator|--
 control|)
 block|{
 name|assertU
@@ -13240,14 +13372,14 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|9
 init|;
 name|i
-operator|<
-literal|10
+operator|>=
+literal|0
 condition|;
 name|i
-operator|++
+operator|--
 control|)
 block|{
 name|assertU
@@ -13296,6 +13428,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
@@ -13356,6 +13492,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -13406,6 +13546,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -13456,6 +13600,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
@@ -13496,6 +13644,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='9']"
@@ -13526,6 +13678,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -13539,6 +13695,26 @@ operator|+
 name|fieldName
 operator|+
 literal|"'][.='0.0']"
+argument_list|,
+literal|"//result/doc[2]/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='1.0']"
+argument_list|,
+literal|"//result/doc[3]/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='2.0']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -13556,6 +13732,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -13569,6 +13749,26 @@ operator|+
 name|fieldName
 operator|+
 literal|"'][.='0.0']"
+argument_list|,
+literal|"//result/doc[2]/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='1.0']"
+argument_list|,
+literal|"//result/doc[3]/"
+operator|+
+name|type
+operator|+
+literal|"[@name='"
+operator|+
+name|fieldName
+operator|+
+literal|"'][.='2.0']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -13586,6 +13786,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -14347,14 +14551,14 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|9
 init|;
 name|i
-operator|<
-literal|10
+operator|>=
+literal|0
 condition|;
 name|i
-operator|++
+operator|--
 control|)
 block|{
 name|assertU
@@ -14544,6 +14748,10 @@ operator|+
 name|dvFieldName
 operator|+
 literal|")"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -14592,6 +14800,10 @@ operator|+
 name|dvFieldName
 operator|+
 literal|")"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -16645,14 +16857,14 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|9
 init|;
 name|i
-operator|<
-literal|10
+operator|>=
+literal|0
 condition|;
 name|i
-operator|++
+operator|--
 control|)
 block|{
 name|assertU
@@ -16724,6 +16936,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
@@ -16783,6 +16999,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -16836,6 +17056,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -16889,6 +17113,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
@@ -16934,6 +17162,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='9']"
@@ -16973,6 +17205,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -17012,6 +17248,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
@@ -17038,6 +17278,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -17106,6 +17350,10 @@ argument_list|,
 literal|"id, "
 operator|+
 name|fieldName
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
@@ -18400,14 +18648,14 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|9
 init|;
 name|i
-operator|<
-literal|10
+operator|>=
+literal|0
 condition|;
 name|i
-operator|++
+operator|--
 control|)
 block|{
 name|String
@@ -18516,11 +18764,11 @@ name|dvFieldName
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"product(-1,"
+literal|"product(-1,ms("
 operator|+
 name|dvFieldName
 operator|+
-literal|") asc"
+literal|")) asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -18533,7 +18781,7 @@ literal|"[@name='"
 operator|+
 name|dvFieldName
 operator|+
-literal|"'][.='1995-01-10T10:59:11Z']"
+literal|"'][.='1995-01-10T10:59:20Z']"
 argument_list|,
 literal|"//result/doc[2]/"
 operator|+
@@ -18543,7 +18791,7 @@ literal|"[@name='"
 operator|+
 name|dvFieldName
 operator|+
-literal|"'][.='1995-01-10T10:59:12Z']"
+literal|"'][.='1995-01-10T10:59:19Z']"
 argument_list|,
 literal|"//result/doc[3]/"
 operator|+
@@ -18553,7 +18801,7 @@ literal|"[@name='"
 operator|+
 name|dvFieldName
 operator|+
-literal|"'][.='1995-01-10T10:59:13Z']"
+literal|"'][.='1995-01-10T10:59:18Z']"
 argument_list|,
 literal|"//result/doc[10]/"
 operator|+
@@ -18563,7 +18811,7 @@ literal|"[@name='"
 operator|+
 name|dvFieldName
 operator|+
-literal|"'][.='1995-01-10T10:59:20Z']"
+literal|"'][.='1995-01-10T10:59:11Z']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -18589,6 +18837,10 @@ operator|+
 name|baseDate
 operator|+
 literal|")"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
@@ -18653,6 +18905,10 @@ operator|+
 name|dvFieldName
 operator|+
 literal|")"
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='10']"
