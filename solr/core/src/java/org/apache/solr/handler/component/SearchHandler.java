@@ -3026,6 +3026,20 @@ name|toString
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|registerV2
+specifier|public
+name|Boolean
+name|registerV2
+parameter_list|()
+block|{
+return|return
+name|Boolean
+operator|.
+name|TRUE
+return|;
+block|}
 block|}
 end_class
 
