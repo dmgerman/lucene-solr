@@ -526,7 +526,7 @@ operator|instanceof
 name|Double
 condition|)
 block|{
-name|Double
+name|double
 name|doubleVal
 init|=
 operator|(
@@ -557,10 +557,10 @@ name|MAX_VALUE
 condition|)
 block|{
 return|return
+operator|(
+name|long
+operator|)
 name|doubleVal
-operator|.
-name|longValue
-argument_list|()
 return|;
 block|}
 return|return

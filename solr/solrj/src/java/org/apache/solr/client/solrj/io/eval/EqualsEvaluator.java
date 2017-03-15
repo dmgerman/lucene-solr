@@ -558,14 +558,11 @@ operator|(
 name|boolean
 operator|)
 name|left
-operator|.
-name|equals
-argument_list|(
+operator|==
 operator|(
 name|boolean
 operator|)
 name|right
-argument_list|)
 return|;
 block|}
 block|}

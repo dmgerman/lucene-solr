@@ -1073,9 +1073,14 @@ name|existingGroupCount
 operator|!=
 literal|null
 condition|?
+name|Integer
+operator|.
+name|valueOf
+argument_list|(
 name|existingGroupCount
 operator|+
 name|groupCount
+argument_list|)
 else|:
 name|groupCount
 argument_list|)

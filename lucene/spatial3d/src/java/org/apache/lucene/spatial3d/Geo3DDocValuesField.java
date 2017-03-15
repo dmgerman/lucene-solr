@@ -1318,15 +1318,10 @@ expr_stmt|;
 name|long
 name|currentValue
 init|=
-name|Long
-operator|.
-name|valueOf
-argument_list|(
 operator|(
 name|Long
 operator|)
 name|fieldsData
-argument_list|)
 decl_stmt|;
 name|result
 operator|.

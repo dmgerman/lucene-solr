@@ -5315,9 +5315,6 @@ case|:
 name|newVal
 operator|=
 name|val
-operator|.
-name|longValue
-argument_list|()
 expr_stmt|;
 break|break;
 case|case

@@ -990,7 +990,12 @@ name|min
 operator|==
 literal|null
 condition|?
+name|Long
+operator|.
+name|valueOf
+argument_list|(
 name|negativeInfinityBits
+argument_list|)
 else|:
 name|minBits
 operator|)
@@ -1019,7 +1024,12 @@ name|max
 operator|==
 literal|null
 condition|?
+name|Long
+operator|.
+name|valueOf
+argument_list|(
 name|positiveInfinityBits
+argument_list|)
 else|:
 name|maxBits
 operator|)

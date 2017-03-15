@@ -591,7 +591,9 @@ name|autoAddReplicas
 operator|==
 literal|null
 condition|?
-literal|false
+name|Boolean
+operator|.
+name|FALSE
 else|:
 name|autoAddReplicas
 expr_stmt|;

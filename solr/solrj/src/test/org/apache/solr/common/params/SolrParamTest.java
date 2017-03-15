@@ -1678,9 +1678,6 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 name|pbool
-operator|.
-name|booleanValue
-argument_list|()
 argument_list|,
 name|params
 operator|.
@@ -1731,9 +1728,6 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 name|pbool
-operator|.
-name|booleanValue
-argument_list|()
 argument_list|,
 name|params
 operator|.

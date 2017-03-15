@@ -1699,7 +1699,12 @@ name|meta
 operator|==
 literal|null
 condition|?
+name|Long
+operator|.
+name|valueOf
+argument_list|(
 literal|0l
+argument_list|)
 else|:
 operator|(
 name|Long

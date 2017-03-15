@@ -2431,7 +2431,7 @@ operator|.
 name|add
 argument_list|(
 operator|(
-name|int
+name|Integer
 operator|)
 name|doc
 operator|.

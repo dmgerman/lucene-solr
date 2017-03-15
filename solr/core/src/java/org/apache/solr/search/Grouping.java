@@ -3077,7 +3077,12 @@ name|totalNrOfGroups
 operator|==
 literal|null
 condition|?
+name|Integer
+operator|.
+name|valueOf
+argument_list|(
 literal|0
+argument_list|)
 else|:
 name|totalNrOfGroups
 argument_list|)

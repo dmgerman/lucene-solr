@@ -577,7 +577,7 @@ name|Integer
 name|thisIdx
 init|=
 operator|(
-name|int
+name|Integer
 operator|)
 name|perm
 operator|.
