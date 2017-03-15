@@ -926,7 +926,7 @@ index|]
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|String
 operator|.
@@ -1050,7 +1050,7 @@ index|]
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|String
 operator|.
@@ -1156,7 +1156,7 @@ index|]
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|String
 operator|.
@@ -1278,7 +1278,7 @@ index|]
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|String
 operator|.
@@ -1411,7 +1411,7 @@ index|]
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|String
 operator|.
@@ -1641,7 +1641,7 @@ index|]
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|String
 operator|.
@@ -1927,7 +1927,7 @@ index|]
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|String
 operator|.

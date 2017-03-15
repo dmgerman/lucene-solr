@@ -1416,7 +1416,7 @@ name|val
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|ops
 index|[

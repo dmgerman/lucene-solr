@@ -3366,7 +3366,7 @@ operator|)
 condition|?
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|fieldVsSlop
 index|[
@@ -3376,7 +3376,7 @@ argument_list|)
 else|:
 name|defaultSlop
 decl_stmt|;
-name|Float
+name|float
 name|boost
 init|=
 operator|(
@@ -3391,7 +3391,7 @@ literal|1
 else|:
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|fieldAndSlopVsBoost
 index|[

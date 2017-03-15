@@ -7423,7 +7423,7 @@ name|Date
 argument_list|(
 name|Long
 operator|.
-name|valueOf
+name|parseLong
 argument_list|(
 name|s1
 argument_list|)

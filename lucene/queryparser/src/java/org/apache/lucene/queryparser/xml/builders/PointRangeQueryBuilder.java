@@ -275,7 +275,7 @@ name|MIN_VALUE
 else|:
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|lowerTerm
 argument_list|)
@@ -292,7 +292,7 @@ name|MAX_VALUE
 else|:
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|upperTerm
 argument_list|)
@@ -329,7 +329,7 @@ name|MIN_VALUE
 else|:
 name|Long
 operator|.
-name|valueOf
+name|parseLong
 argument_list|(
 name|lowerTerm
 argument_list|)
@@ -346,7 +346,7 @@ name|MAX_VALUE
 else|:
 name|Long
 operator|.
-name|valueOf
+name|parseLong
 argument_list|(
 name|upperTerm
 argument_list|)
@@ -383,7 +383,7 @@ name|NEGATIVE_INFINITY
 else|:
 name|Double
 operator|.
-name|valueOf
+name|parseDouble
 argument_list|(
 name|lowerTerm
 argument_list|)
@@ -400,7 +400,7 @@ name|POSITIVE_INFINITY
 else|:
 name|Double
 operator|.
-name|valueOf
+name|parseDouble
 argument_list|(
 name|upperTerm
 argument_list|)
@@ -437,7 +437,7 @@ name|NEGATIVE_INFINITY
 else|:
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|lowerTerm
 argument_list|)
@@ -454,7 +454,7 @@ name|POSITIVE_INFINITY
 else|:
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|upperTerm
 argument_list|)

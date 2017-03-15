@@ -2362,15 +2362,12 @@ name|f
 operator|=
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|boost
 operator|.
 name|image
 argument_list|)
-operator|.
-name|floatValue
-argument_list|()
 expr_stmt|;
 comment|// avoid boosting null queries, such as those caused by stop words
 if|if
@@ -2762,7 +2759,7 @@ name|fms
 operator|=
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|fuzzySlop
 operator|.
@@ -2773,9 +2770,6 @@ argument_list|(
 literal|1
 argument_list|)
 argument_list|)
-operator|.
-name|floatValue
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch
@@ -3512,9 +3506,12 @@ try|try
 block|{
 name|phraseSlop
 operator|=
+operator|(
+name|int
+operator|)
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|fuzzySlop
 operator|.
@@ -3525,9 +3522,6 @@ argument_list|(
 literal|1
 argument_list|)
 argument_list|)
-operator|.
-name|intValue
-argument_list|()
 expr_stmt|;
 name|q
 operator|=
@@ -3591,15 +3585,12 @@ name|f
 operator|=
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|boost
 operator|.
 name|image
 argument_list|)
-operator|.
-name|floatValue
-argument_list|()
 expr_stmt|;
 comment|// avoid boosting null queries, such as those caused by stop words
 if|if

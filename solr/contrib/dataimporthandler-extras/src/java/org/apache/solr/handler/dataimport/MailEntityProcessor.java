@@ -5442,7 +5442,7 @@ name|v
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|val
 argument_list|)

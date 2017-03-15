@@ -505,7 +505,7 @@ name|months
 index|[
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|original
 operator|.
@@ -516,9 +516,6 @@ argument_list|,
 literal|7
 argument_list|)
 argument_list|)
-operator|.
-name|intValue
-argument_list|()
 operator|-
 literal|1
 index|]

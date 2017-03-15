@@ -1478,7 +1478,7 @@ name|floatToRawIntBits
 argument_list|(
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|doc
 index|[
@@ -1500,7 +1500,7 @@ literal|"int"
 argument_list|,
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|doc
 index|[
@@ -1521,7 +1521,7 @@ literal|"long"
 argument_list|,
 name|Long
 operator|.
-name|valueOf
+name|parseLong
 argument_list|(
 name|doc
 index|[

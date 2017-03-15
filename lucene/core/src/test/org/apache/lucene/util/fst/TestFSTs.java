@@ -4890,7 +4890,7 @@ name|prune
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|args
 index|[
@@ -4922,7 +4922,7 @@ name|limit
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|args
 index|[

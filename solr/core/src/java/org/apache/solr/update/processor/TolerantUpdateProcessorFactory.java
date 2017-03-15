@@ -242,7 +242,7 @@ name|defaultMaxErrors
 operator|=
 name|Integer
 operator|.
-name|valueOf
+name|parseInt
 argument_list|(
 name|maxErrorsObj
 operator|.

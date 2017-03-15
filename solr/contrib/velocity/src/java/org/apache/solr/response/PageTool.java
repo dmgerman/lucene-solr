@@ -156,8 +156,9 @@ condition|)
 block|{
 name|results_per_page
 operator|=
-operator|new
 name|Integer
+operator|.
+name|parseInt
 argument_list|(
 name|rows
 argument_list|)

@@ -2583,15 +2583,12 @@ name|f
 operator|=
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|weight
 operator|.
 name|image
 argument_list|)
-operator|.
-name|floatValue
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch

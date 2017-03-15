@@ -1246,7 +1246,7 @@ name|fms
 operator|=
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|fuzzySlop
 operator|.
@@ -1266,9 +1266,6 @@ operator|-
 literal|1
 argument_list|)
 argument_list|)
-operator|.
-name|floatValue
-argument_list|()
 expr_stmt|;
 block|}
 catch|catch

@@ -1874,7 +1874,7 @@ index|]
 argument_list|,
 name|Float
 operator|.
-name|valueOf
+name|parseFloat
 argument_list|(
 name|cols
 index|[

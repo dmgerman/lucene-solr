@@ -288,8 +288,9 @@ argument_list|()
 decl_stmt|;
 assert|assert
 operator|(
-operator|new
 name|Integer
+operator|.
+name|parseInt
 argument_list|(
 name|stats
 operator|.
@@ -359,8 +360,9 @@ argument_list|()
 decl_stmt|;
 assert|assert
 operator|(
-operator|new
 name|Integer
+operator|.
+name|parseInt
 argument_list|(
 name|stats
 operator|.

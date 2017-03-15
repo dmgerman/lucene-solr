@@ -2275,7 +2275,7 @@ name|genNumber
 init|=
 name|Long
 operator|.
-name|valueOf
+name|parseLong
 argument_list|(
 call|(
 name|String
