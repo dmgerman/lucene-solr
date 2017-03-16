@@ -12761,7 +12761,7 @@ name|doc
 operator|.
 name|addField
 argument_list|(
-literal|"price_f"
+literal|"price"
 argument_list|,
 literal|1
 argument_list|)
@@ -12793,7 +12793,7 @@ name|setFields
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"price_f"
+literal|"price"
 argument_list|,
 literal|"name"
 argument_list|,
@@ -12869,7 +12869,7 @@ argument_list|)
 operator|.
 name|getFirstValue
 argument_list|(
-literal|"price_f"
+literal|"price"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -12927,7 +12927,7 @@ name|doc
 operator|.
 name|addField
 argument_list|(
-literal|"price_f"
+literal|"price"
 argument_list|,
 name|oper
 argument_list|)
@@ -13050,7 +13050,7 @@ name|doc
 operator|.
 name|addField
 argument_list|(
-literal|"price_f"
+literal|"price"
 argument_list|,
 name|oper
 argument_list|)
@@ -13109,7 +13109,7 @@ argument_list|)
 operator|.
 name|getFirstValue
 argument_list|(
-literal|"price_f"
+literal|"price"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -13164,7 +13164,7 @@ name|doc
 operator|.
 name|addField
 argument_list|(
-literal|"price_f"
+literal|"price"
 argument_list|,
 name|oper
 argument_list|)
@@ -13223,7 +13223,7 @@ argument_list|)
 operator|.
 name|getFirstValue
 argument_list|(
-literal|"price_f"
+literal|"price"
 argument_list|)
 argument_list|)
 expr_stmt|;
