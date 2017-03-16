@@ -1063,7 +1063,7 @@ operator|=
 literal|null
 expr_stmt|;
 block|}
-comment|/**     * Tests thta all TransformerFactories that are implicitly provided by Solr are tested in this class    *    * @see FlValidator#getDefaultTransformerFactoryName    * @see #FL_VALIDATORS    * @see TransformerFactory#defaultFactories    */
+comment|/**     * Tests that all TransformerFactories that are implicitly provided by Solr are tested in this class    *    * @see FlValidator#getDefaultTransformerFactoryName    * @see #FL_VALIDATORS    * @see TransformerFactory#defaultFactories    */
 DECL|method|testCoverage
 specifier|public
 name|void

@@ -1331,16 +1331,13 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|checkSchemaField
-specifier|public
+DECL|method|checkSupportsDocValues
+specifier|protected
 name|void
-name|checkSchemaField
-parameter_list|(
-name|SchemaField
-name|field
-parameter_list|)
+name|checkSupportsDocValues
+parameter_list|()
 block|{
-comment|// no-op
+comment|// we support DocValues
 block|}
 annotation|@
 name|Override

@@ -4134,18 +4134,6 @@ return|return
 literal|null
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|checkSchemaField
-specifier|public
-name|void
-name|checkSchemaField
-parameter_list|(
-specifier|final
-name|SchemaField
-name|field
-parameter_list|)
-block|{   }
 block|}
 end_class
 

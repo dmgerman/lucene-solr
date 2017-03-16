@@ -57,7 +57,7 @@ specifier|static
 name|int
 name|INDEXED
 init|=
-literal|0x00000001
+literal|0b1
 decl_stmt|;
 DECL|field|TOKENIZED
 specifier|protected
@@ -66,7 +66,7 @@ specifier|static
 name|int
 name|TOKENIZED
 init|=
-literal|0x00000002
+literal|0b10
 decl_stmt|;
 DECL|field|STORED
 specifier|protected
@@ -75,7 +75,7 @@ specifier|static
 name|int
 name|STORED
 init|=
-literal|0x00000004
+literal|0b100
 decl_stmt|;
 DECL|field|BINARY
 specifier|protected
@@ -84,7 +84,7 @@ specifier|static
 name|int
 name|BINARY
 init|=
-literal|0x00000008
+literal|0b1000
 decl_stmt|;
 DECL|field|OMIT_NORMS
 specifier|protected
@@ -93,7 +93,7 @@ specifier|static
 name|int
 name|OMIT_NORMS
 init|=
-literal|0x00000010
+literal|0b10000
 decl_stmt|;
 DECL|field|OMIT_TF_POSITIONS
 specifier|protected
@@ -102,7 +102,7 @@ specifier|static
 name|int
 name|OMIT_TF_POSITIONS
 init|=
-literal|0x00000020
+literal|0b100000
 decl_stmt|;
 DECL|field|STORE_TERMVECTORS
 specifier|protected
@@ -111,7 +111,7 @@ specifier|static
 name|int
 name|STORE_TERMVECTORS
 init|=
-literal|0x00000040
+literal|0b1000000
 decl_stmt|;
 DECL|field|STORE_TERMPOSITIONS
 specifier|protected
@@ -120,7 +120,7 @@ specifier|static
 name|int
 name|STORE_TERMPOSITIONS
 init|=
-literal|0x00000080
+literal|0b10000000
 decl_stmt|;
 DECL|field|STORE_TERMOFFSETS
 specifier|protected
@@ -129,7 +129,7 @@ specifier|static
 name|int
 name|STORE_TERMOFFSETS
 init|=
-literal|0x00000100
+literal|0b100000000
 decl_stmt|;
 DECL|field|MULTIVALUED
 specifier|protected
@@ -138,7 +138,7 @@ specifier|static
 name|int
 name|MULTIVALUED
 init|=
-literal|0x00000200
+literal|0b1000000000
 decl_stmt|;
 DECL|field|SORT_MISSING_FIRST
 specifier|protected
@@ -147,7 +147,7 @@ specifier|static
 name|int
 name|SORT_MISSING_FIRST
 init|=
-literal|0x00000400
+literal|0b10000000000
 decl_stmt|;
 DECL|field|SORT_MISSING_LAST
 specifier|protected
@@ -156,7 +156,7 @@ specifier|static
 name|int
 name|SORT_MISSING_LAST
 init|=
-literal|0x00000800
+literal|0b100000000000
 decl_stmt|;
 DECL|field|REQUIRED
 specifier|protected
@@ -165,7 +165,7 @@ specifier|static
 name|int
 name|REQUIRED
 init|=
-literal|0x00001000
+literal|0b1000000000000
 decl_stmt|;
 DECL|field|OMIT_POSITIONS
 specifier|protected
@@ -174,7 +174,7 @@ specifier|static
 name|int
 name|OMIT_POSITIONS
 init|=
-literal|0x00002000
+literal|0b10000000000000
 decl_stmt|;
 DECL|field|STORE_OFFSETS
 specifier|protected
@@ -183,7 +183,7 @@ specifier|static
 name|int
 name|STORE_OFFSETS
 init|=
-literal|0x00004000
+literal|0b100000000000000
 decl_stmt|;
 DECL|field|DOC_VALUES
 specifier|protected
@@ -192,7 +192,7 @@ specifier|static
 name|int
 name|DOC_VALUES
 init|=
-literal|0x00008000
+literal|0b1000000000000000
 decl_stmt|;
 DECL|field|STORE_TERMPAYLOADS
 specifier|protected
@@ -201,7 +201,7 @@ specifier|static
 name|int
 name|STORE_TERMPAYLOADS
 init|=
-literal|0x00010000
+literal|0b10000000000000000
 decl_stmt|;
 DECL|field|USE_DOCVALUES_AS_STORED
 specifier|protected
@@ -210,7 +210,16 @@ specifier|static
 name|int
 name|USE_DOCVALUES_AS_STORED
 init|=
-literal|0x00020000
+literal|0b100000000000000000
+decl_stmt|;
+DECL|field|LARGE_FIELD
+specifier|protected
+specifier|final
+specifier|static
+name|int
+name|LARGE_FIELD
+init|=
+literal|0b1000000000000000000
 decl_stmt|;
 DECL|field|propertyNames
 specifier|static
@@ -255,6 +264,8 @@ block|,
 literal|"termPayloads"
 block|,
 literal|"useDocValuesAsStored"
+block|,
+literal|"large"
 block|}
 decl_stmt|;
 DECL|field|propertyMap

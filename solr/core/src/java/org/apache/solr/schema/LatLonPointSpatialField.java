@@ -408,16 +408,13 @@ decl_stmt|;
 comment|// TODO handle polygons
 annotation|@
 name|Override
-DECL|method|checkSchemaField
-specifier|public
+DECL|method|checkSupportsDocValues
+specifier|protected
 name|void
-name|checkSchemaField
-parameter_list|(
-name|SchemaField
-name|field
-parameter_list|)
+name|checkSupportsDocValues
+parameter_list|()
 block|{
-comment|// override because if we didn't, FieldType will complain about docValues not being supported (we do support it)
+comment|// we support DocValues
 block|}
 annotation|@
 name|Override

@@ -168,17 +168,13 @@ name|BinaryField
 block|{
 annotation|@
 name|Override
-DECL|method|checkSchemaField
-specifier|public
+DECL|method|checkSupportsDocValues
+specifier|protected
 name|void
-name|checkSchemaField
-parameter_list|(
-specifier|final
-name|SchemaField
-name|field
-parameter_list|)
+name|checkSupportsDocValues
+parameter_list|()
 block|{
-comment|// NOOP, It's Aaaaaall Good.
+comment|// we support DocValues
 block|}
 annotation|@
 name|Override

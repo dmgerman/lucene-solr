@@ -519,17 +519,6 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|checkSchemaField
-specifier|public
-name|void
-name|checkSchemaField
-parameter_list|(
-name|SchemaField
-name|field
-parameter_list|)
-block|{   }
-annotation|@
-name|Override
 DECL|method|marshalSortValue
 specifier|public
 name|Object

@@ -1483,20 +1483,6 @@ name|Object
 name|value
 parameter_list|)
 function_decl|;
-annotation|@
-name|Override
-DECL|method|checkSchemaField
-specifier|public
-name|void
-name|checkSchemaField
-parameter_list|(
-specifier|final
-name|SchemaField
-name|field
-parameter_list|)
-block|{
-comment|// PointFields support DocValues
-block|}
 block|}
 end_class
 

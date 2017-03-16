@@ -3084,7 +3084,7 @@ name|CONSTANT_SCORE_REWRITE
 return|;
 block|}
 block|}
-comment|/**    * Check's {@link org.apache.solr.schema.SchemaField} instances constructed     * using this field type to ensure that they are valid.    *    *<p>    * This method is called by the<code>SchemaField</code> constructor to     * check that its initialization does not violate any fundemental     * requirements of the<code>FieldType</code>.  The default implementation     * does nothing, but subclasses may chose to throw a {@link SolrException}      * if invariants are violated by the<code>SchemaField.</code>    *</p>    */
+comment|/**    * Check's {@link org.apache.solr.schema.SchemaField} instances constructed     * using this field type to ensure that they are valid.    *    *<p>    * This method is called by the<code>SchemaField</code> constructor to     * check that its initialization does not violate any fundamental    * requirements of the<code>FieldType</code>.    * Subclasses may choose to throw a {@link SolrException}    * if invariants are violated by the<code>SchemaField.</code>    *</p>    */
 DECL|method|checkSchemaField
 specifier|public
 name|void
@@ -3095,7 +3095,6 @@ name|SchemaField
 name|field
 parameter_list|)
 block|{
-comment|// override if your field type supports doc values
 if|if
 condition|(
 name|field
@@ -3103,6 +3102,76 @@ operator|.
 name|hasDocValues
 argument_list|()
 condition|)
+block|{
+name|checkSupportsDocValues
+argument_list|()
+expr_stmt|;
+block|}
+if|if
+condition|(
+name|field
+operator|.
+name|isLarge
+argument_list|()
+operator|&&
+name|field
+operator|.
+name|multiValued
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Field type "
+operator|+
+name|this
+operator|+
+literal|" is 'large'; can't support multiValued"
+argument_list|)
+throw|;
+block|}
+if|if
+condition|(
+name|field
+operator|.
+name|isLarge
+argument_list|()
+operator|&&
+name|getNumberType
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|SERVER_ERROR
+argument_list|,
+literal|"Field type "
+operator|+
+name|this
+operator|+
+literal|" is 'large'; can't support numerics"
+argument_list|)
+throw|;
+block|}
+block|}
+comment|/** Called by {@link #checkSchemaField(SchemaField)} if the field has docValues. By default none do. */
+DECL|method|checkSupportsDocValues
+specifier|protected
+name|void
+name|checkSupportsDocValues
+parameter_list|()
 block|{
 throw|throw
 operator|new
@@ -3119,7 +3188,6 @@ operator|+
 literal|" does not support doc values"
 argument_list|)
 throw|;
-block|}
 block|}
 DECL|field|TYPE
 specifier|public

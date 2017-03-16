@@ -92,6 +92,16 @@ name|OMIT_NORMS
 expr_stmt|;
 block|}
 block|}
+annotation|@
+name|Override
+DECL|method|checkSupportsDocValues
+specifier|protected
+name|void
+name|checkSupportsDocValues
+parameter_list|()
+block|{
+comment|// primitive types support DocValues
+block|}
 block|}
 end_class
 

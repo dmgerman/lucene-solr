@@ -1804,18 +1804,6 @@ block|}
 comment|/**    * {@inheritDoc}    */
 annotation|@
 name|Override
-DECL|method|checkSchemaField
-specifier|public
-name|void
-name|checkSchemaField
-parameter_list|(
-name|SchemaField
-name|field
-parameter_list|)
-block|{   }
-comment|/**    * {@inheritDoc}    */
-annotation|@
-name|Override
 DECL|method|readableToIndexed
 specifier|public
 name|String
