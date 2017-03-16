@@ -1720,7 +1720,7 @@ name|Exception
 block|{
 specifier|final
 name|String
-name|docs0fv
+name|docs0fv_sparse
 init|=
 name|FeatureLoggerTestUtils
 operator|.
@@ -1733,6 +1733,27 @@ argument_list|,
 literal|"titlePhraseMatch"
 argument_list|,
 literal|"0.6103343"
+argument_list|)
+decl_stmt|;
+specifier|final
+name|String
+name|docs0fv_dense
+init|=
+name|FeatureLoggerTestUtils
+operator|.
+name|toFeatureVector
+argument_list|(
+literal|"matchedTitle"
+argument_list|,
+literal|"1.0"
+argument_list|,
+literal|"titlePhraseMatch"
+argument_list|,
+literal|"0.6103343"
+argument_list|,
+literal|"titlePhrasesMatch"
+argument_list|,
+literal|"0.0"
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -1750,6 +1771,17 @@ argument_list|,
 literal|"originalScore"
 argument_list|,
 literal|"1.0"
+argument_list|)
+decl_stmt|;
+specifier|final
+name|String
+name|docs0fv
+init|=
+name|chooseDefaultFeatureVector
+argument_list|(
+name|docs0fv_dense
+argument_list|,
+name|docs0fv_sparse
 argument_list|)
 decl_stmt|;
 comment|// extract all features in externalmodel's store (default store)
@@ -1793,7 +1825,7 @@ name|add
 argument_list|(
 literal|"rq"
 argument_list|,
-literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query=w3}"
+literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query=w3 efi.userTitlePhrase1=w2 efi.userTitlePhrase2=w1}"
 argument_list|)
 expr_stmt|;
 name|assertJQ

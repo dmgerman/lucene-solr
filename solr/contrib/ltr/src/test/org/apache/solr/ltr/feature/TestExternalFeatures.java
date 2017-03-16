@@ -396,7 +396,7 @@ name|add
 argument_list|(
 literal|"rq"
 argument_list|,
-literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query=w3}"
+literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query=w3 efi.userTitlePhrase1=w4 efi.userTitlePhrase2=w5}"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -462,7 +462,7 @@ name|add
 argument_list|(
 literal|"fl"
 argument_list|,
-literal|"*,score,[fv efi.user_query=w2]"
+literal|"*,score,[fv efi.user_query=w2 efi.userTitlePhrase1=w4 efi.userTitlePhrase2=w5]"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -564,7 +564,7 @@ name|add
 argument_list|(
 literal|"rq"
 argument_list|,
-literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query='a'}"
+literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query='a' efi.userTitlePhrase1='b' efi.userTitlePhrase2='c'}"
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -580,6 +580,10 @@ argument_list|,
 literal|"0.0"
 argument_list|,
 literal|"titlePhraseMatch"
+argument_list|,
+literal|"0.0"
+argument_list|,
+literal|"titlePhrasesMatch"
 argument_list|,
 literal|"0.0"
 argument_list|)
@@ -1050,6 +1054,106 @@ name|toQueryString
 argument_list|()
 argument_list|,
 literal|"/error/msg=='Exception from createWeight for ValueFeature [name=popularity, params={value=${myPop}, required=true}] ValueFeatureWeight requires efi parameter that was not passed in request.'"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|Test
+DECL|method|featureExtraction_valueFeatureRequiredInFq_shouldThrowException
+specifier|public
+name|void
+name|featureExtraction_valueFeatureRequiredInFq_shouldThrowException
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+specifier|final
+name|String
+name|userTitlePhrase1
+init|=
+literal|"userTitlePhrase1"
+decl_stmt|;
+specifier|final
+name|String
+name|userTitlePhrase2
+init|=
+literal|"userTitlePhrase2"
+decl_stmt|;
+specifier|final
+name|String
+name|userTitlePhrasePresent
+init|=
+operator|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+name|userTitlePhrase1
+else|:
+name|userTitlePhrase2
+operator|)
+decl_stmt|;
+specifier|final
+name|SolrQuery
+name|query
+init|=
+operator|new
+name|SolrQuery
+argument_list|()
+decl_stmt|;
+name|query
+operator|.
+name|setQuery
+argument_list|(
+literal|"*:*"
+argument_list|)
+expr_stmt|;
+name|query
+operator|.
+name|add
+argument_list|(
+literal|"rows"
+argument_list|,
+literal|"1"
+argument_list|)
+expr_stmt|;
+name|query
+operator|.
+name|add
+argument_list|(
+literal|"fl"
+argument_list|,
+literal|"score,features:[fv efi.user_query=uq "
+operator|+
+name|userTitlePhrasePresent
+operator|+
+literal|"=utpp]"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+literal|"/query"
+operator|+
+name|query
+operator|.
+name|toQueryString
+argument_list|()
+argument_list|,
+literal|"/error/msg=='Exception from createWeight for "
+operator|+
+literal|"SolrFeature [name=titlePhrasesMatch, params={fq=[{!field f=title}${"
+operator|+
+name|userTitlePhrase1
+operator|+
+literal|"}, {!field f=title}${"
+operator|+
+name|userTitlePhrase2
+operator|+
+literal|"}]}] "
+operator|+
+literal|"SolrFeatureWeight requires efi parameter that was not passed in request.'"
 argument_list|)
 expr_stmt|;
 block|}
