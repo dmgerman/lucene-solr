@@ -22,7 +22,27 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Map
 import|;
 end_import
 
@@ -224,6 +244,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|schema
+operator|.
+name|TextField
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|util
 operator|.
 name|SolrPluginUtils
@@ -247,6 +281,16 @@ operator|.
 name|junit
 operator|.
 name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|noggit
+operator|.
+name|ObjectBuilder
 import|;
 end_import
 
@@ -413,7 +457,7 @@ literal|"trait_ss"
 argument_list|,
 literal|"Pig"
 argument_list|,
-literal|"text"
+literal|"text_sw"
 argument_list|,
 literal|"line up and fly directly at the enemy death cannons, clogging them with wreckage!"
 argument_list|)
@@ -767,6 +811,20 @@ argument_list|)
 expr_stmt|;
 name|assertU
 argument_list|(
+name|adoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"72"
+argument_list|,
+literal|"text_sw"
+argument_list|,
+literal|"wifi ATM"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
 argument_list|)
@@ -781,6 +839,21 @@ name|testSyntax
 parameter_list|()
 throws|throws
 name|Exception
+block|{
+for|for
+control|(
+name|String
+name|sow
+range|:
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"true"
+argument_list|,
+literal|"false"
+argument_list|)
+control|)
 block|{
 comment|// a bare * should be treated as *:*
 name|assertJQ
@@ -798,6 +871,10 @@ argument_list|,
 literal|"df"
 argument_list|,
 literal|"doesnotexist_s"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response/docs/[0]=="
@@ -815,6 +892,10 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"doesnotexist_s:*"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response/numFound==0"
@@ -832,6 +913,10 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"doesnotexist_s:*"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response/numFound==0"
@@ -849,12 +934,17 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"doesnotexist_s:( * * * )"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response/numFound==0"
 comment|// nothing should be found
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|testTrailingOperators
 specifier|public
@@ -863,6 +953,21 @@ name|testTrailingOperators
 parameter_list|()
 throws|throws
 name|Exception
+block|{
+for|for
+control|(
+name|String
+name|sow
+range|:
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"true"
+argument_list|,
+literal|"false"
+argument_list|)
+control|)
 block|{
 comment|// really just test that exceptions aren't thrown by
 comment|// single + -
@@ -877,6 +982,14 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"-"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response=="
@@ -893,6 +1006,14 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"+"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response=="
@@ -909,6 +1030,14 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"+ - +"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response=="
@@ -925,6 +1054,14 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"- + -"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response=="
@@ -941,6 +1078,14 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"id:47 +"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response/numFound==1"
@@ -957,6 +1102,14 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"id:47 -"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response/numFound==1"
@@ -1093,6 +1246,14 @@ argument_list|,
 literal|"q"
 argument_list|,
 name|q
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|)
 argument_list|,
 literal|"/response=="
@@ -1100,11 +1261,27 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+block|}
 DECL|method|testLowercaseOperators
 specifier|public
 name|void
 name|testLowercaseOperators
 parameter_list|()
+block|{
+for|for
+control|(
+name|String
+name|sow
+range|:
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"true"
+argument_list|,
+literal|"false"
+argument_list|)
+control|)
 block|{
 name|assertQ
 argument_list|(
@@ -1123,6 +1300,10 @@ argument_list|,
 literal|"lowercaseOperators"
 argument_list|,
 literal|"false"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -1149,6 +1330,10 @@ argument_list|,
 literal|"lowercaseOperators"
 argument_list|,
 literal|"true"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -1180,6 +1365,10 @@ literal|"lowercaseOperators"
 argument_list|,
 literal|"false"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -1210,6 +1399,10 @@ literal|"lowercaseOperators"
 argument_list|,
 literal|"true"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -1218,6 +1411,7 @@ argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|// test the edismax query parser based on the dismax parser
 DECL|method|testFocusQueryParser
@@ -1479,7 +1673,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1499,7 +1693,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q.op"
 argument_list|,
@@ -1523,7 +1717,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q.op"
 argument_list|,
@@ -1547,7 +1741,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1567,7 +1761,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1587,7 +1781,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1607,7 +1801,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1627,7 +1821,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1647,7 +1841,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1667,7 +1861,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -1687,7 +1881,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"name title subject text"
+literal|"name title subject text_sw"
 argument_list|,
 literal|"q"
 argument_list|,
@@ -2946,6 +3140,10 @@ argument_list|,
 literal|"q"
 argument_list|,
 literal|"cannons"
+argument_list|,
+literal|"qf"
+argument_list|,
+literal|"text_sw"
 argument_list|)
 argument_list|,
 name|oner
@@ -4714,7 +4912,7 @@ literal|"edismax"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"text"
+literal|"text_sw"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
@@ -5305,7 +5503,7 @@ literal|"(line notfound) OR notfound"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"text"
+literal|"text_sw"
 argument_list|,
 literal|"q.op"
 argument_list|,
@@ -5335,7 +5533,7 @@ literal|"line notfound OR notfound"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"text"
+literal|"text_sw"
 argument_list|,
 literal|"q.op"
 argument_list|,
@@ -5365,7 +5563,7 @@ literal|"line notfound OR notfound"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"text"
+literal|"text_sw"
 argument_list|,
 literal|"q.op"
 argument_list|,
@@ -5395,7 +5593,7 @@ literal|"line notfound notfound2 OR notfound"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"text"
+literal|"text_sw"
 argument_list|,
 literal|"q.op"
 argument_list|,
@@ -5425,7 +5623,7 @@ literal|"line notfound notfound2 OR notfound3"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"text"
+literal|"text_sw"
 argument_list|,
 literal|"q.op"
 argument_list|,
@@ -5455,7 +5653,7 @@ literal|"(line enemy) OR notfound"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"text"
+literal|"text_sw"
 argument_list|,
 literal|"q.op"
 argument_list|,
@@ -5485,7 +5683,7 @@ literal|"(line enemy) OR (line notfound) OR (death cannons) OR (death notfound)"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"text"
+literal|"text_sw"
 argument_list|,
 literal|"q.op"
 argument_list|,
@@ -5515,7 +5713,7 @@ literal|"(line enemy) OR (line notfound) OR (death cannons) OR (death notfound)"
 argument_list|,
 literal|"qf"
 argument_list|,
-literal|"text"
+literal|"text_sw"
 argument_list|,
 literal|"q.op"
 argument_list|,
@@ -5543,6 +5741,21 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+for|for
+control|(
+name|String
+name|sow
+range|:
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"true"
+argument_list|,
+literal|"false"
+argument_list|)
+control|)
+block|{
 name|assertQ
 argument_list|(
 literal|"test minShouldMatch (top level optional terms only)"
@@ -5561,6 +5774,41 @@ argument_list|,
 literal|"mm"
 argument_list|,
 literal|"50%"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=4]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"test minShouldMatch (top level optional terms only and sow=false)"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"stocks oil gold"
+argument_list|,
+comment|// +(((text_sw:stock) (text_sw:oil) (text_sw:gold))~1)
+literal|"qf"
+argument_list|,
+literal|"text_sw"
+argument_list|,
+literal|"mm"
+argument_list|,
+literal|"50%"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -5589,6 +5837,10 @@ literal|"mm"
 argument_list|,
 literal|"50%"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5615,6 +5867,10 @@ argument_list|,
 literal|"mm"
 argument_list|,
 literal|"100%"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -5643,6 +5899,10 @@ literal|"mm"
 argument_list|,
 literal|"50%"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5670,6 +5930,10 @@ literal|"mm"
 argument_list|,
 literal|"50%"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5695,6 +5959,10 @@ argument_list|,
 literal|"mm"
 argument_list|,
 literal|"100%"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -5730,6 +5998,10 @@ literal|"mm"
 argument_list|,
 literal|"100%"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5760,6 +6032,10 @@ literal|"mm"
 argument_list|,
 literal|"100%"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5787,6 +6063,10 @@ literal|"mm"
 argument_list|,
 literal|"1<-1"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5795,6 +6075,7 @@ argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/* SOLR-8812 */
 annotation|@
@@ -5808,6 +6089,21 @@ throws|throws
 name|Exception
 block|{
 comment|// Ensure MM is off when explicit operators (+/-/OR/NOT) are used and no explicit mm spec is specified.
+for|for
+control|(
+name|String
+name|sow
+range|:
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"true"
+argument_list|,
+literal|"false"
+argument_list|)
+control|)
+block|{
 name|assertQ
 argument_list|(
 literal|"Explicit OR in query with no explicit mm and q.op=AND => mm = 0%"
@@ -5825,6 +6121,10 @@ argument_list|,
 literal|"q.op"
 argument_list|,
 literal|"AND"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -5856,6 +6156,10 @@ literal|"lowercaseOperators"
 argument_list|,
 literal|"true"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5878,6 +6182,10 @@ literal|"qf"
 argument_list|,
 literal|"text_sw"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5899,6 +6207,10 @@ argument_list|,
 literal|"qf"
 argument_list|,
 literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -5926,6 +6238,10 @@ literal|"q.op"
 argument_list|,
 literal|"AND"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5952,6 +6268,10 @@ literal|"q.op"
 argument_list|,
 literal|"OR"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5974,6 +6294,10 @@ literal|"qf"
 argument_list|,
 literal|"text_sw"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -5995,6 +6319,10 @@ argument_list|,
 literal|"qf"
 argument_list|,
 literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -6021,6 +6349,10 @@ argument_list|,
 literal|"q.op"
 argument_list|,
 literal|"OR"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -6048,6 +6380,10 @@ literal|"q.op"
 argument_list|,
 literal|"OR"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -6073,6 +6409,10 @@ argument_list|,
 literal|"q.op"
 argument_list|,
 literal|"OR"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -6099,6 +6439,10 @@ argument_list|,
 literal|"q.op"
 argument_list|,
 literal|"OR"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -6126,6 +6470,10 @@ literal|"q.op"
 argument_list|,
 literal|"OR"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -6152,6 +6500,10 @@ literal|"q.op"
 argument_list|,
 literal|"AND"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -6173,6 +6525,10 @@ argument_list|,
 literal|"qf"
 argument_list|,
 literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -6200,6 +6556,10 @@ literal|"lowercaseOperators"
 argument_list|,
 literal|"true"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -6225,6 +6585,10 @@ argument_list|,
 literal|"q.op"
 argument_list|,
 literal|"AND"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -6252,6 +6616,10 @@ literal|"q.op"
 argument_list|,
 literal|"AND"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -6277,6 +6645,10 @@ argument_list|,
 literal|"q.op"
 argument_list|,
 literal|"AND"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -6304,6 +6676,10 @@ literal|"q.op"
 argument_list|,
 literal|"OR"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -6325,6 +6701,10 @@ argument_list|,
 literal|"qf"
 argument_list|,
 literal|"text_sw"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
 argument_list|,
 literal|"defType"
 argument_list|,
@@ -6352,6 +6732,10 @@ literal|"q.op"
 argument_list|,
 literal|"AND"
 argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
 literal|"defType"
 argument_list|,
 literal|"edismax"
@@ -6360,6 +6744,7 @@ argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|testEdismaxSimpleExtension
 specifier|public
@@ -6700,6 +7085,2399 @@ literal|5
 argument_list|,
 literal|true
 argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// LUCENE-7533
+DECL|method|testSplitOnWhitespace_with_autoGeneratePhraseQueries
+specifier|public
+name|void
+name|testSplitOnWhitespace_with_autoGeneratePhraseQueries
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|assertTrue
+argument_list|(
+operator|(
+operator|(
+name|TextField
+operator|)
+name|h
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getLatestSchema
+argument_list|()
+operator|.
+name|getField
+argument_list|(
+literal|"text"
+argument_list|)
+operator|.
+name|getType
+argument_list|()
+operator|)
+operator|.
+name|getAutoGeneratePhraseQueries
+argument_list|()
+argument_list|)
+expr_stmt|;
+try|try
+init|(
+name|SolrQueryRequest
+name|req
+init|=
+name|req
+argument_list|()
+init|)
+block|{
+specifier|final
+name|QParser
+name|qparser
+init|=
+name|QParser
+operator|.
+name|getParser
+argument_list|(
+literal|"{!edismax sow=false fq=text}blah blah)"
+argument_list|,
+name|req
+argument_list|)
+decl_stmt|;
+name|expectThrows
+argument_list|(
+name|IllegalArgumentException
+operator|.
+name|class
+argument_list|,
+name|qparser
+operator|::
+name|getQuery
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|Test
+DECL|method|testSplitOnWhitespace_Basic
+specifier|public
+name|void
+name|testSplitOnWhitespace_Basic
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// The "text_sw" field has synonyms loaded from synonyms.txt
+comment|// retrieve the single document containing literal "wifi"
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wifi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='72'"
+argument_list|)
+expr_stmt|;
+comment|// trigger the "wi fi => wifi" synonym
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='72'"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi"
+argument_list|)
+comment|// default sow=true
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!edismax sow=false}wi fi"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='72'"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"df"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!edismax sow=true}wi fi"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"df"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"{!edismax}wi fi"
+argument_list|)
+comment|// default sow=true
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"name title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"barking curds of stigma"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:barking | title:barking))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:curds | title:curds))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:of | title:of))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:stigma | title:stigma))')]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"name title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"barking curds of stigma"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:barking | title:barking))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:curds | title:curds))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:of | title:of))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:stigma | title:stigma))')]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"name title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"barking curds of stigma"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+comment|// Default sow=true
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:barking | title:barking))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:curds | title:curds))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:of | title:of))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((name:stigma | title:stigma))')]"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testSplitOnWhitespace_Different_Field_Analysis
+specifier|public
+name|void
+name|testSplitOnWhitespace_Different_Field_Analysis
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// When the *structure* of produced queries is different in each field,
+comment|// sow=true produces boolean-of-dismax query structure,
+comment|// and sow=false produces dismax-of-boolean query structure.
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"olive the other"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((text_sw:oliv | title:olive))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((title:the))')]"
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'DisjunctionMaxQuery((text_sw:other | title:other))')]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"olive the other"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'+DisjunctionMaxQuery(((text_sw:oliv text_sw:other) | (title:olive title:the title:other)))')]"
+argument_list|)
+expr_stmt|;
+comment|// When field's analysis produce different query structures, mm processing is always done on the boolean query.
+comment|// sow=true produces (boolean-of-dismax)~<mm> query structure,
+comment|// and sow=false produces dismax-of-(boolean)~<mm> query structure.
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"olive the other"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"mm"
+argument_list|,
+literal|"100%"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'+(DisjunctionMaxQuery((text_sw:oliv | title:olive)) DisjunctionMaxQuery((title:the)) DisjunctionMaxQuery((text_sw:other | title:other)))~3')]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"olive the other"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|,
+literal|"mm"
+argument_list|,
+literal|"100%"
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'+DisjunctionMaxQuery((((text_sw:oliv text_sw:other)~2) | ((title:olive title:the title:other)~3)))')]"
+argument_list|)
+expr_stmt|;
+comment|// When the *structure* of produced queries is the same in each field,
+comment|// sow=false/true produce the same boolean-of-dismax query structure
+for|for
+control|(
+name|String
+name|sow
+range|:
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+literal|"true"
+argument_list|,
+literal|"false"
+argument_list|)
+control|)
+block|{
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"olive blah other"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
+literal|"debugQuery"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"//str[@name='parsedquery'][contains(.,'"
+operator|+
+literal|"+(DisjunctionMaxQuery((text_sw:oliv | title:olive))"
+operator|+
+literal|" DisjunctionMaxQuery((text_sw:blah | title:blah))"
+operator|+
+literal|" DisjunctionMaxQuery((text_sw:other | title:other)))')]"
+argument_list|)
+expr_stmt|;
+block|}
+block|}
+DECL|method|testOperatorsAndMultiWordSynonyms
+specifier|public
+name|void
+name|testOperatorsAndMultiWordSynonyms
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+comment|// The "text_sw" field has synonyms loaded from synonyms.txt
+comment|// retrieve the single document containing literal "wifi"
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wifi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"true"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='72'"
+argument_list|)
+expr_stmt|;
+comment|// trigger the "wi fi => wifi" synonym
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='72'"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"+wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"-wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"!wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi* fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==2"
+comment|// matches because wi* matches "wifi" in one doc and "with" in another
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"w? fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi~1 fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==4"
+comment|// matches because wi~1 matches ti (stemmed "ties")
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi^2 fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi^=2 fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi +fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi -fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi !fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi*"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi?"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi~1"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==4"
+comment|// matches because fi~1 matches ti (stemmed "ties")
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi^2"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi^=2"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"text_sw:wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi text_sw:fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"NOT wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi NOT fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi AND ATM"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"ATM AND wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi&& ATM"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"ATM&& wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"(wi fi) AND ATM"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"ATM AND (wi fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"(wi fi)&& ATM"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"ATM&& (wi fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi OR NotThereAtAll"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"NotThereAtAll OR wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi || NotThereAtAll"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"NotThereAtAll || wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"(wi fi) OR NotThereAtAll"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"NotThereAtAll OR (wi fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"(wi fi) || NotThereAtAll"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"NotThereAtAll || (wi fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"\"wi\" fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi \"fi\""
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"(wi) fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi (fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"/wi/ fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi /fi/"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"(wi fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"+(wi fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|Map
+name|all
+init|=
+operator|(
+name|Map
+operator|)
+name|ObjectBuilder
+operator|.
+name|fromJSON
+argument_list|(
+name|h
+operator|.
+name|query
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"wt"
+argument_list|,
+literal|"json"
+argument_list|)
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|int
+name|totalDocs
+init|=
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
+operator|(
+operator|(
+name|Map
+operator|)
+name|all
+operator|.
+name|get
+argument_list|(
+literal|"response"
+argument_list|)
+operator|)
+operator|.
+name|get
+argument_list|(
+literal|"numFound"
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|int
+name|allDocsExceptOne
+init|=
+name|totalDocs
+operator|-
+literal|1
+decl_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"-(wi fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound=="
+operator|+
+name|allDocsExceptOne
+comment|// one doc contains "wifi" in the text_sw field
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"!(wi fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound=="
+operator|+
+name|allDocsExceptOne
+comment|// one doc contains "wifi" in the text_sw field
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"NOT (wi fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound=="
+operator|+
+name|allDocsExceptOne
+comment|// one doc contains "wifi" in the text_sw field
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"(wi fi)^2"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"(wi fi)^=2"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"text_sw:(wi fi)"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"+ATM wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"-ATM wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"-NotThereAtAll wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"!ATM wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"!NotThereAtAll wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"NOT ATM wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"NOT NotThereAtAll wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"AT* wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==2"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"AT? wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"\"ATM\" wi fi"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi +ATM"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi -ATM"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi -NotThereAtAll"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi !ATM"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi !NotThereAtAll"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi NOT ATM"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi NOT NotThereAtAll"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi AT*"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==2"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi AT?"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"wi fi \"ATM\""
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"\"wi fi\"~2"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"qf"
+argument_list|,
+literal|"text_sw title"
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"text_sw:\"wi fi\""
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==1"
 argument_list|)
 expr_stmt|;
 block|}

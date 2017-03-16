@@ -376,6 +376,16 @@ init|=
 literal|"defType"
 decl_stmt|;
 comment|// default parser for any direct subqueries
+DECL|field|SPLIT_ON_WHITESPACE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SPLIT_ON_WHITESPACE
+init|=
+literal|"sow"
+decl_stmt|;
+comment|// Whether to split on whitespace prior to analysis
 DECL|field|LOCALPARAM_START
 specifier|public
 specifier|static
