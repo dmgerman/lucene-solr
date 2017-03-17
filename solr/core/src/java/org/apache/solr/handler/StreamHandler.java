@@ -434,7 +434,7 @@ name|io
 operator|.
 name|eval
 operator|.
-name|DateEvaluator
+name|DatePartEvaluator
 import|;
 end_import
 
@@ -2528,12 +2528,12 @@ expr_stmt|;
 comment|// Date evaluators
 for|for
 control|(
-name|DateEvaluator
+name|DatePartEvaluator
 operator|.
 name|FUNCTION
 name|function
 range|:
-name|DateEvaluator
+name|DatePartEvaluator
 operator|.
 name|FUNCTION
 operator|.
@@ -2550,7 +2550,7 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-name|DateEvaluator
+name|DatePartEvaluator
 operator|.
 name|class
 argument_list|)
