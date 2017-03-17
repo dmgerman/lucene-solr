@@ -683,7 +683,7 @@ parameter_list|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"Invalid field a - The field must be a string formatted ISO_INSTANT or of type Instant,Date or LocalDateTime."
+literal|"Invalid parameter 12 - The parameter must be a string formatted ISO_INSTANT or of type Instant,Date or LocalDateTime."
 argument_list|,
 name|e
 operator|.
@@ -736,7 +736,7 @@ parameter_list|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"Invalid field a - The field must be a string formatted in the ISO_INSTANT date format."
+literal|"Invalid parameter 1995-12-31 - The String must be formatted in the ISO_INSTANT date format."
 argument_list|,
 name|e
 operator|.
