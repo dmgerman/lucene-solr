@@ -340,7 +340,7 @@ argument_list|)
 throw|;
 block|}
 block|}
-comment|/**    * Helper method for creating a dynamic field SchemaField prototype.  Returns a {@link SchemaField} with    * the {@link FieldType} given and a name of "*" + {@link FieldType#POLY_FIELD_SEPARATOR} + {@link FieldType#typeName}    * and props of indexed=true, stored=false.    *    * @param schema the IndexSchema    * @param type   The {@link FieldType} of the prototype.    * @return The {@link SchemaField}    */
+comment|/**    * Helper method for creating a dynamic field SchemaField prototype.  Returns a {@link SchemaField} with    * the {@link FieldType} given and a name of "*" + {@link FieldType#POLY_FIELD_SEPARATOR} + {@link FieldType#typeName}    * and props of indexed=true, stored=false.    *    * @param schema the IndexSchema    * @param subType   The {@link FieldType} of the prototype.    * @param polyField   The poly {@link FieldType}.    * @return The {@link SchemaField}    */
 DECL|method|registerPolyFieldDynamicPrototype
 specifier|static
 name|SchemaField
@@ -350,7 +350,10 @@ name|IndexSchema
 name|schema
 parameter_list|,
 name|FieldType
-name|type
+name|subType
+parameter_list|,
+name|FieldType
+name|polyField
 parameter_list|)
 block|{
 name|String
@@ -362,7 +365,7 @@ name|FieldType
 operator|.
 name|POLY_FIELD_SEPARATOR
 operator|+
-name|type
+name|subType
 operator|.
 name|typeName
 decl_stmt|;
@@ -407,6 +410,27 @@ argument_list|,
 literal|"false"
 argument_list|)
 expr_stmt|;
+comment|// if polyField enables dv, add them to the subtypes
+if|if
+condition|(
+name|polyField
+operator|.
+name|hasProperty
+argument_list|(
+name|DOC_VALUES
+argument_list|)
+condition|)
+block|{
+name|props
+operator|.
+name|put
+argument_list|(
+literal|"docValues"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+block|}
 name|int
 name|p
 init|=
@@ -416,7 +440,7 @@ name|calcProps
 argument_list|(
 name|name
 argument_list|,
-name|type
+name|subType
 argument_list|,
 name|props
 argument_list|)
@@ -430,7 +454,7 @@ name|create
 argument_list|(
 name|name
 argument_list|,
-name|type
+name|subType
 argument_list|,
 name|p
 argument_list|,
@@ -482,6 +506,8 @@ argument_list|(
 name|schema
 argument_list|,
 name|subType
+argument_list|,
+name|this
 argument_list|)
 decl_stmt|;
 name|dynFieldProps

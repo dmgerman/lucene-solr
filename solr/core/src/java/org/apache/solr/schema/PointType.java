@@ -451,7 +451,11 @@ operator|new
 name|ArrayList
 argument_list|<>
 argument_list|(
+operator|(
 name|dimension
+operator|*
+literal|2
+operator|)
 operator|+
 literal|1
 argument_list|)
@@ -493,11 +497,11 @@ argument_list|)
 decl_stmt|;
 name|f
 operator|.
-name|add
+name|addAll
 argument_list|(
 name|sf
 operator|.
-name|createField
+name|createFields
 argument_list|(
 name|point
 index|[
@@ -980,6 +984,33 @@ operator|.
 name|build
 argument_list|()
 return|;
+block|}
+annotation|@
+name|Override
+DECL|method|checkSupportsDocValues
+specifier|protected
+name|void
+name|checkSupportsDocValues
+parameter_list|()
+block|{
+comment|// DocValues supported only when enabled at the fieldType
+if|if
+condition|(
+operator|!
+name|hasProperty
+argument_list|(
+name|DOC_VALUES
+argument_list|)
+condition|)
+block|{
+throw|throw
+operator|new
+name|UnsupportedOperationException
+argument_list|(
+literal|"PointType can't have docValues=true in the field definition, use docValues=true in the fieldType definition, or in subFieldType/subFieldSuffix"
+argument_list|)
+throw|;
+block|}
 block|}
 comment|/**    * Calculates the range and creates a RangeQuery (bounding box) wrapped in a BooleanQuery (unless the dimension is    * 1, one range for every dimension, AND'd together by a Boolean    *    * @param parser  The parser    * @param options The {@link org.apache.solr.search.SpatialOptions} for this filter.    * @return The Query representing the bounding box around the point.    */
 annotation|@
