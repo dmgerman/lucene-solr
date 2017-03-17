@@ -247,6 +247,26 @@ argument_list|,
 literal|0
 argument_list|)
 decl_stmt|;
+comment|/**    * Match settings and bugs in Lucene's 6.6.0 release.    * @deprecated Use latest    */
+annotation|@
+name|Deprecated
+DECL|field|LUCENE_6_6_0
+specifier|public
+specifier|static
+specifier|final
+name|Version
+name|LUCENE_6_6_0
+init|=
+operator|new
+name|Version
+argument_list|(
+literal|6
+argument_list|,
+literal|6
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
 comment|/**    * Match settings and bugs in Lucene's 7.0.0 release.    *<p>    *  Use this to get the latest&amp; greatest settings, bug    *  fixes, etc, for Lucene.    */
 DECL|field|LUCENE_7_0_0
 specifier|public
