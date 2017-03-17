@@ -2183,6 +2183,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
+comment|// TODO: rather than just have a raw "response", perhaps we should model as a bucket object that contains the response plus extra info?
 DECL|method|fillBucket
 name|void
 name|fillBucket
@@ -2198,10 +2199,14 @@ name|q
 parameter_list|,
 name|DocSet
 name|result
+parameter_list|,
+name|boolean
+name|skip
 parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|// TODO: we don't need the DocSet if we've already calculated everything during the first phase
 name|boolean
 name|needDocSet
 init|=
@@ -2225,7 +2230,7 @@ argument_list|()
 operator|>
 literal|0
 decl_stmt|;
-comment|// TODO: always collect counts or not???
+comment|// TODO: put info in for the merger (like "skip=true"?) Maybe we don't need to if we leave out all extraneous info?
 name|int
 name|count
 decl_stmt|;
@@ -2290,6 +2295,7 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
+comment|// don't really need this if we are skipping, but it's free.
 block|}
 else|else
 block|{
@@ -2331,6 +2337,12 @@ block|}
 block|}
 try|try
 block|{
+if|if
+condition|(
+operator|!
+name|skip
+condition|)
+block|{
 name|processStats
 argument_list|(
 name|bucket
@@ -2340,6 +2352,7 @@ argument_list|,
 name|count
 argument_list|)
 expr_stmt|;
+block|}
 name|processSubs
 argument_list|(
 name|bucket
@@ -2347,6 +2360,8 @@ argument_list|,
 name|q
 argument_list|,
 name|result
+argument_list|,
+name|skip
 argument_list|)
 expr_stmt|;
 block|}
@@ -2382,6 +2397,9 @@ name|filter
 parameter_list|,
 name|DocSet
 name|domain
+parameter_list|,
+name|boolean
+name|skip
 parameter_list|)
 throws|throws
 name|IOException
@@ -2451,6 +2469,58 @@ condition|)
 block|{
 continue|continue;
 block|}
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|facetInfoSub
+init|=
+literal|null
+decl_stmt|;
+if|if
+condition|(
+name|fcontext
+operator|.
+name|facetInfo
+operator|!=
+literal|null
+condition|)
+block|{
+name|facetInfoSub
+operator|=
+operator|(
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+operator|)
+name|fcontext
+operator|.
+name|facetInfo
+operator|.
+name|get
+argument_list|(
+name|sub
+operator|.
+name|getKey
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+comment|// If we're skipping this node, then we only need to process sub-facets that have facet info specified.
+if|if
+condition|(
+name|skip
+operator|&&
+name|facetInfoSub
+operator|==
+literal|null
+condition|)
+continue|continue;
 comment|// make a new context for each sub-facet since they can change the domain
 name|FacetContext
 name|subContext
@@ -2464,6 +2534,27 @@ argument_list|,
 name|domain
 argument_list|)
 decl_stmt|;
+name|subContext
+operator|.
+name|facetInfo
+operator|=
+name|facetInfoSub
+expr_stmt|;
+if|if
+condition|(
+operator|!
+name|skip
+condition|)
+name|subContext
+operator|.
+name|flags
+operator|&=
+operator|~
+name|FacetContext
+operator|.
+name|SKIP_FACET
+expr_stmt|;
+comment|// turn off the skip flag if we're not skipping this bucket
 name|FacetProcessor
 name|subProcessor
 init|=

@@ -832,6 +832,35 @@ name|IS_SHARD
 init|=
 literal|0x01
 decl_stmt|;
+DECL|field|IS_REFINEMENT
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|IS_REFINEMENT
+init|=
+literal|0x02
+decl_stmt|;
+DECL|field|SKIP_FACET
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|SKIP_FACET
+init|=
+literal|0x04
+decl_stmt|;
+comment|// refinement: skip calculating this immediate facet, but proceed to specific sub-facets based on facetInfo
+DECL|field|facetInfo
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|facetInfo
+decl_stmt|;
+comment|// refinement info for this node
 DECL|field|qcontext
 name|QueryContext
 name|qcontext

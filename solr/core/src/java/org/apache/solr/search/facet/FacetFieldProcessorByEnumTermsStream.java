@@ -1738,6 +1738,8 @@ argument_list|,
 name|bucketQuery
 argument_list|,
 name|termSet
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

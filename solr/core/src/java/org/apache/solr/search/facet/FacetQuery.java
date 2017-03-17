@@ -220,6 +220,17 @@ operator|.
 name|process
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|fcontext
+operator|.
+name|facetInfo
+operator|!=
+literal|null
+condition|)
+block|{
+comment|// FIXME - what needs to be done here?
+block|}
 name|response
 operator|=
 operator|new
@@ -236,6 +247,18 @@ operator|.
 name|q
 argument_list|,
 literal|null
+argument_list|,
+operator|(
+name|fcontext
+operator|.
+name|flags
+operator|&
+name|FacetContext
+operator|.
+name|SKIP_FACET
+operator|)
+operator|!=
+literal|0
 argument_list|)
 expr_stmt|;
 block|}
