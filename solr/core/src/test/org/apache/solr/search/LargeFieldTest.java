@@ -245,7 +245,7 @@ name|initCore
 argument_list|(
 literal|"solrconfig-managed-schema.xml"
 argument_list|,
-literal|"ignoredSchemaName?"
+literal|"ignoredSchemaName"
 argument_list|)
 expr_stmt|;
 comment|// TODO SOLR-10229 will make this easier
