@@ -134,6 +134,15 @@ argument_list|>
 name|aliases
 parameter_list|)
 function_decl|;
+DECL|method|append
+specifier|public
+name|StreamComparator
+name|append
+parameter_list|(
+name|StreamComparator
+name|other
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 
