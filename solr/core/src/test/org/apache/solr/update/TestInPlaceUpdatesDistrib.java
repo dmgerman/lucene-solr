@@ -2269,12 +2269,6 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
-name|clearIndex
-argument_list|()
-expr_stmt|;
-name|commit
-argument_list|()
-expr_stmt|;
 comment|// number of docs we're testing (0<= id), index may contain additional random docs (id< 0)
 specifier|final
 name|int
