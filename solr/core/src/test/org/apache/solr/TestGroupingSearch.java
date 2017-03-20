@@ -389,15 +389,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SolrTestCaseJ4
-operator|.
-name|SuppressPointFields
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9992"
-argument_list|)
 DECL|class|TestGroupingSearch
 specifier|public
 class|class
@@ -3777,51 +3768,6 @@ operator|+
 name|f
 operator|+
 literal|"==['1',3, '2',3, '3',2, '4',1, '5',1]"
-argument_list|)
-expr_stmt|;
-comment|// test that grouping works with highlighting
-name|assertJQ
-argument_list|(
-name|req
-argument_list|(
-literal|"fq"
-argument_list|,
-name|filt
-argument_list|,
-literal|"q"
-argument_list|,
-literal|"{!func}"
-operator|+
-name|f2
-argument_list|,
-literal|"group"
-argument_list|,
-literal|"true"
-argument_list|,
-literal|"group.field"
-argument_list|,
-name|f
-argument_list|,
-literal|"fl"
-argument_list|,
-literal|"id"
-argument_list|,
-literal|"hl"
-argument_list|,
-literal|"true"
-argument_list|,
-literal|"hl.fl"
-argument_list|,
-name|f
-argument_list|)
-argument_list|,
-literal|"/grouped/"
-operator|+
-name|f
-operator|+
-literal|"/matches==10"
-argument_list|,
-literal|"/highlighting=={'_ORDERED_':'', '8':{},'3':{},'4':{},'1':{},'2':{}}"
 argument_list|)
 expr_stmt|;
 comment|// test that grouping works with debugging

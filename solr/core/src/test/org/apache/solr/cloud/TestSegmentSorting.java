@@ -82,20 +82,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|SolrTestCaseJ4
-operator|.
-name|SuppressPointFields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|client
 operator|.
 name|solrj
@@ -281,13 +267,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SuppressPointFields
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/SOLR-9992"
-argument_list|)
 DECL|class|TestSegmentSorting
 specifier|public
 class|class
