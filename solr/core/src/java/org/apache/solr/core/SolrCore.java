@@ -6759,6 +6759,9 @@ name|resourceLoader
 operator|.
 name|getInstancePath
 argument_list|()
+operator|.
+name|toString
+argument_list|()
 argument_list|,
 literal|true
 argument_list|,
