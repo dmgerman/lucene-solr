@@ -897,7 +897,7 @@ argument_list|)
 expr_stmt|;
 name|testFunction
 argument_list|(
-literal|"dayofyear(a)"
+literal|"dayOfYear(a)"
 argument_list|,
 literal|"1995-12-31T23:59:59Z"
 argument_list|,
@@ -906,7 +906,7 @@ argument_list|)
 expr_stmt|;
 name|testFunction
 argument_list|(
-literal|"dayofquarter(a)"
+literal|"dayOfQuarter(a)"
 argument_list|,
 literal|"1995-12-31T23:59:59Z"
 argument_list|,
@@ -1014,7 +1014,7 @@ argument_list|)
 expr_stmt|;
 name|testFunction
 argument_list|(
-literal|"dayofyear(a)"
+literal|"dayOfYear(a)"
 argument_list|,
 literal|"2017-03-17T10:30:45Z"
 argument_list|,
@@ -1023,7 +1023,7 @@ argument_list|)
 expr_stmt|;
 name|testFunction
 argument_list|(
-literal|"dayofquarter(a)"
+literal|"dayOfQuarter(a)"
 argument_list|,
 literal|"2017-03-17T10:30:45Z"
 argument_list|,

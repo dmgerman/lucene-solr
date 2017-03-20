@@ -274,8 +274,8 @@ DECL|enum|FUNCTION
 DECL|enum constant|year
 DECL|enum constant|month
 DECL|enum constant|day
-DECL|enum constant|dayofyear
-DECL|enum constant|dayofquarter
+DECL|enum constant|dayOfYear
+DECL|enum constant|dayOfQuarter
 DECL|enum constant|hour
 DECL|enum constant|minute
 DECL|enum constant|quarter
@@ -292,9 +292,9 @@ name|month
 block|,
 name|day
 block|,
-name|dayofyear
+name|dayOfYear
 block|,
-name|dayofquarter
+name|dayOfQuarter
 block|,
 name|hour
 block|,
@@ -752,7 +752,7 @@ name|DAY_OF_MONTH
 argument_list|)
 return|;
 case|case
-name|dayofyear
+name|dayOfYear
 case|:
 return|return
 name|date
@@ -804,7 +804,7 @@ name|SECOND_OF_MINUTE
 argument_list|)
 return|;
 case|case
-name|dayofquarter
+name|dayOfQuarter
 case|:
 return|return
 name|date
