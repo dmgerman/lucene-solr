@@ -30,33 +30,17 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|junit
-operator|.
-name|framework
-operator|.
-name|Assert
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|commons
-operator|.
-name|collections
-operator|.
-name|map
-operator|.
-name|HashedMap
 import|;
 end_import
 
@@ -108,7 +92,7 @@ name|io
 operator|.
 name|eval
 operator|.
-name|StreamEvaluator
+name|NotEvaluator
 import|;
 end_import
 
@@ -128,7 +112,7 @@ name|io
 operator|.
 name|eval
 operator|.
-name|NotEvaluator
+name|StreamEvaluator
 import|;
 end_import
 
@@ -161,6 +145,16 @@ operator|.
 name|junit
 operator|.
 name|Test
+import|;
+end_import
+
+begin_import
+import|import
+name|junit
+operator|.
+name|framework
+operator|.
+name|Assert
 import|;
 end_import
 
@@ -211,7 +205,12 @@ expr_stmt|;
 name|values
 operator|=
 operator|new
-name|HashedMap
+name|HashMap
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
 argument_list|()
 expr_stmt|;
 block|}
