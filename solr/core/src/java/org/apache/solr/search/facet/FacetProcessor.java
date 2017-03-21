@@ -2202,6 +2202,14 @@ name|result
 parameter_list|,
 name|boolean
 name|skip
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|facetInfo
 parameter_list|)
 throws|throws
 name|IOException
@@ -2362,6 +2370,8 @@ argument_list|,
 name|result
 argument_list|,
 name|skip
+argument_list|,
+name|facetInfo
 argument_list|)
 expr_stmt|;
 block|}
@@ -2400,6 +2410,14 @@ name|domain
 parameter_list|,
 name|boolean
 name|skip
+parameter_list|,
+name|Map
+argument_list|<
+name|String
+argument_list|,
+name|Object
+argument_list|>
+name|facetInfo
 parameter_list|)
 throws|throws
 name|IOException
@@ -2481,8 +2499,6 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|fcontext
-operator|.
 name|facetInfo
 operator|!=
 literal|null
@@ -2498,8 +2514,6 @@ argument_list|,
 name|Object
 argument_list|>
 operator|)
-name|fcontext
-operator|.
 name|facetInfo
 operator|.
 name|get

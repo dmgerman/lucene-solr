@@ -1039,6 +1039,10 @@ literal|"id"
 argument_list|,
 literal|"01"
 argument_list|,
+literal|"all_s"
+argument_list|,
+literal|"all"
+argument_list|,
 name|cat_s
 argument_list|,
 literal|"A"
@@ -1066,6 +1070,10 @@ literal|"id"
 argument_list|,
 literal|"02"
 argument_list|,
+literal|"all_s"
+argument_list|,
+literal|"all"
+argument_list|,
 name|cat_s
 argument_list|,
 literal|"B"
@@ -1090,6 +1098,10 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"11"
+argument_list|,
+literal|"all_s"
+argument_list|,
+literal|"all"
 argument_list|,
 name|cat_s
 argument_list|,
@@ -1118,6 +1130,10 @@ literal|"id"
 argument_list|,
 literal|"12"
 argument_list|,
+literal|"all_s"
+argument_list|,
+literal|"all"
+argument_list|,
 name|cat_s
 argument_list|,
 literal|"B"
@@ -1144,6 +1160,10 @@ literal|"id"
 argument_list|,
 literal|"13"
 argument_list|,
+literal|"all_s"
+argument_list|,
+literal|"all"
+argument_list|,
 name|cat_s
 argument_list|,
 literal|"A"
@@ -1168,6 +1188,10 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"21"
+argument_list|,
+literal|"all_s"
+argument_list|,
+literal|"all"
 argument_list|,
 name|cat_s
 argument_list|,
@@ -1195,6 +1219,10 @@ literal|"id"
 argument_list|,
 literal|"22"
 argument_list|,
+literal|"all_s"
+argument_list|,
+literal|"all"
+argument_list|,
 name|cat_s
 argument_list|,
 literal|"A"
@@ -1220,6 +1248,10 @@ argument_list|(
 literal|"id"
 argument_list|,
 literal|"23"
+argument_list|,
+literal|"all_s"
+argument_list|,
+literal|"all"
 argument_list|,
 name|cat_s
 argument_list|,
@@ -1347,6 +1379,12 @@ literal|" cat0:{type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overreques
 operator|+
 literal|",cat1:{type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:true,  facet:{ min1:'min(${num_d})'}   }"
 operator|+
+literal|",qfacet:{type:query, q:'*:*', facet:{  cat2:{type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:true,  facet:{ min1:'min(${num_d})'}   }  }}"
+operator|+
+comment|// refinement needed through a query facet
+literal|",allf:{type:terms, field:all_s,  facet:{  cat3:{type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:true,  facet:{ min1:'min(${num_d})'}   }  }}"
+operator|+
+comment|// refinement needed through field facet
 literal|",sum1:'sum(num_d)'"
 operator|+
 comment|// make sure that root bucket stats aren't affected by refinement
@@ -1357,10 +1395,16 @@ literal|"facets=={ count:8"
 operator|+
 literal|", cat0:{ buckets:[ {val:A,count:3, min1:-19.0} ] }"
 operator|+
-comment|// B wins in shard2, so we're missing the "A" count for that shar w/o refinement.
+comment|// B wins in shard2, so we're missing the "A" count for that shard w/o refinement.
 literal|", cat1:{ buckets:[ {val:A,count:4, min1:-19.0} ] }"
 operator|+
 comment|// with refinement, we get the right count
+literal|", qfacet:{ count:8,  cat2:{ buckets:[ {val:A,count:4, min1:-19.0} ] }    }"
+operator|+
+comment|// just like the previous response, just nested under a query facet
+literal|", allf:{ buckets:[  {cat3:{ buckets:[ {val:A,count:4, min1:-19.0} ] }  ,count:8,val:all   }]  }"
+operator|+
+comment|// just like the previous response, just nested under a field facet
 literal|", sum1:2.0"
 operator|+
 literal|"}"

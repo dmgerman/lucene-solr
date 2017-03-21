@@ -259,6 +259,10 @@ name|SKIP_FACET
 operator|)
 operator|!=
 literal|0
+argument_list|,
+name|fcontext
+operator|.
+name|facetInfo
 argument_list|)
 expr_stmt|;
 block|}

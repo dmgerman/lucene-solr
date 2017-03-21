@@ -1469,6 +1469,7 @@ argument_list|(
 name|finfo
 argument_list|)
 decl_stmt|;
+comment|// System.err.println("##################### REFINE=" + finfoStr);
 name|shardsRefineRequest
 operator|.
 name|params
