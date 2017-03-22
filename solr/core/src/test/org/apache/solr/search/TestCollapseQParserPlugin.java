@@ -22,16 +22,6 @@ name|java
 operator|.
 name|util
 operator|.
-name|List
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
 name|ArrayList
 import|;
 end_import
@@ -43,16 +33,6 @@ operator|.
 name|util
 operator|.
 name|Arrays
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|Set
 import|;
 end_import
 
@@ -78,17 +58,21 @@ end_import
 
 begin_import
 import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
+name|java
 operator|.
 name|util
 operator|.
-name|LuceneTestCase
+name|List
+import|;
+end_import
+
+begin_import
+import|import
+name|java
 operator|.
-name|SuppressCodecs
+name|util
+operator|.
+name|Set
 import|;
 end_import
 
@@ -101,20 +85,6 @@ operator|.
 name|solr
 operator|.
 name|SolrTestCaseJ4
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|SolrTestCaseJ4
-operator|.
-name|SuppressPointFields
 import|;
 end_import
 
@@ -226,28 +196,7 @@ name|Test
 import|;
 end_import
 
-begin_comment
-comment|//We want codecs that support DocValues, and ones supporting blank/empty values.
-end_comment
-
 begin_class
-annotation|@
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"Appending"
-block|,
-literal|"Lucene3x"
-block|,
-literal|"Lucene40"
-block|,
-literal|"Lucene41"
-block|,
-literal|"Lucene42"
-block|}
-argument_list|)
-annotation|@
-name|SuppressPointFields
 DECL|class|TestCollapseQParserPlugin
 specifier|public
 class|class
@@ -323,11 +272,11 @@ literal|"group_s"
 argument_list|,
 literal|"group1"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"10"
 argument_list|)
@@ -351,11 +300,11 @@ literal|"group_s"
 argument_list|,
 literal|"group1"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"1000"
 argument_list|)
@@ -373,11 +322,11 @@ literal|"group_s"
 argument_list|,
 literal|"group1"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"1000"
 argument_list|)
@@ -395,11 +344,11 @@ literal|"group_s"
 argument_list|,
 literal|"group1"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"10"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"100"
 argument_list|)
@@ -418,11 +367,11 @@ literal|"group_s"
 argument_list|,
 literal|"group2"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"10"
 argument_list|,
@@ -450,11 +399,11 @@ literal|"group_s"
 argument_list|,
 literal|"group2"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"1000"
 argument_list|)
@@ -472,11 +421,11 @@ literal|"group_s"
 argument_list|,
 literal|"group2"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"1000"
 argument_list|,
@@ -498,11 +447,11 @@ literal|"group_s"
 argument_list|,
 literal|"group2"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"10"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"100"
 argument_list|)
@@ -548,7 +497,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_ti asc, test_tl desc, id desc"
+literal|"test_i asc, test_l desc, id desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -587,7 +536,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='test_ti asc, test_tl desc, id desc'}"
+literal|"{!collapse field=group_s sort='test_i asc, test_l desc, id desc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -635,7 +584,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='test_ti desc, test_tl asc, id asc'}"
+literal|"{!collapse field=group_s sort='test_i desc, test_l asc, id asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -683,7 +632,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='test_tl desc'}"
+literal|"{!collapse field=group_s sort='test_l desc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -731,7 +680,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='score desc, test_tl desc, test_ti asc, id asc'}"
+literal|"{!collapse field=group_s sort='score desc, test_l desc, test_i asc, id asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -779,7 +728,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='score desc, test_tl desc, test_ti asc, id asc'}"
+literal|"{!collapse field=group_s sort='score desc, test_l desc, test_i asc, id asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -827,7 +776,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='term_s desc, test_tl asc'}"
+literal|"{!collapse field=group_s sort='term_s desc, test_l asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -875,7 +824,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='term_s asc, test_tl asc'}"
+literal|"{!collapse field=group_s sort='term_s asc, test_l asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -923,7 +872,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=test_ti sort='term_s asc, group_s asc'}"
+literal|"{!collapse field=test_i sort='term_s asc, group_s asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -971,7 +920,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=term_s nullPolicy=collapse sort='test_ti asc, test_tl desc, id asc'}"
+literal|"{!collapse field=term_s nullPolicy=collapse sort='test_i asc, test_l desc, id asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -980,7 +929,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_tl asc, id asc"
+literal|"test_l asc, id asc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1021,7 +970,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='term_s desc, test_tl asc'}"
+literal|"{!collapse field=group_s sort='term_s desc, test_l asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1030,7 +979,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_tl asc"
+literal|"test_l asc"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1096,7 +1045,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='term_s desc, test_tl asc'}"
+literal|"{!collapse field=group_s sort='term_s desc, test_l asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1105,7 +1054,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_tl asc"
+literal|"test_l asc"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1276,15 +1225,15 @@ literal|"group_i"
 block|,
 literal|"-1000"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"5"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"-10"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"2000.32"
 block|}
@@ -1316,15 +1265,15 @@ literal|"group_i"
 block|,
 literal|"-1000"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"50"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"-100"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"2000.33"
 block|}
@@ -1350,11 +1299,11 @@ literal|"group_i"
 block|,
 literal|"-1000"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"100"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"200"
 block|}
@@ -1382,15 +1331,15 @@ literal|"id"
 block|,
 literal|"4"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"500"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"1000"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"2000"
 block|}
@@ -1416,15 +1365,15 @@ literal|"group_i"
 block|,
 literal|"-1000"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"4"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"10"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"2000.31"
 block|}
@@ -1456,15 +1405,15 @@ literal|"group_i"
 block|,
 literal|"-1000"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"10"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"100"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"-2000.12"
 block|}
@@ -1496,15 +1445,15 @@ literal|"group_i"
 block|,
 literal|"-1000"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"8"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"-50"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"-100.2"
 block|}
@@ -1545,7 +1494,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_i min=test_tf}"
+literal|"{!collapse field=group_i min=test_f}"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1581,7 +1530,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_i max=test_tf}"
+literal|"{!collapse field=group_i max=test_f}"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -2140,15 +2089,15 @@ name|group
 block|,
 literal|"1"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"5"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"10"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"2000"
 block|}
@@ -2184,15 +2133,15 @@ name|group
 block|,
 literal|"1"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"50"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"100"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"200"
 block|}
@@ -2218,15 +2167,15 @@ literal|"term_s"
 block|,
 literal|"YYYY"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"5000"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"100"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"200"
 block|}
@@ -2258,15 +2207,15 @@ literal|"term_s"
 block|,
 literal|"YYYY"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"500"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"1000"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"2000"
 block|}
@@ -2296,15 +2245,15 @@ name|group
 block|,
 literal|"2"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"4"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"10"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"2000"
 block|}
@@ -2340,15 +2289,15 @@ name|group
 block|,
 literal|"2"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"10"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"100"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"200"
 block|}
@@ -2384,15 +2333,15 @@ name|group
 block|,
 literal|"1"
 block|,
-literal|"test_ti"
+literal|"test_i"
 block|,
 literal|"8"
 block|,
-literal|"test_tl"
+literal|"test_l"
 block|,
 literal|"50"
 block|,
-literal|"test_tf"
+literal|"test_f"
 block|,
 literal|"300"
 block|}
@@ -2460,7 +2409,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -2507,7 +2456,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" nullPolicy=expand min=test_tf"
+literal|" nullPolicy=expand min=test_f"
 operator|+
 name|hint
 operator|+
@@ -2529,7 +2478,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|params
@@ -2585,7 +2534,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" nullPolicy=collapse min=field(test_ti)"
+literal|" nullPolicy=collapse min=field(test_i)"
 operator|+
 name|hint
 operator|+
@@ -2598,7 +2547,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_ti desc"
+literal|"test_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -2665,7 +2614,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -2732,7 +2681,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|params
@@ -2795,7 +2744,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" nullPolicy=collapse min=sum(cscore(),field(test_ti))"
+literal|" nullPolicy=collapse min=sum(cscore(),field(test_i))"
 operator|+
 name|hint
 operator|+
@@ -2817,7 +2766,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -2884,7 +2833,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|params
@@ -2989,7 +2938,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|params
@@ -3047,9 +2996,9 @@ operator|new
 name|String
 index|[]
 block|{
-literal|" max=test_ti "
+literal|" max=test_i "
 block|,
-literal|" sort='test_ti desc' "
+literal|" sort='test_i desc' "
 block|}
 control|)
 block|{
@@ -3102,7 +3051,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|params
@@ -3160,9 +3109,9 @@ operator|new
 name|String
 index|[]
 block|{
-literal|" min=test_ti "
+literal|" min=test_i "
 block|,
-literal|" sort='test_ti asc' "
+literal|" sort='test_i asc' "
 block|}
 control|)
 block|{
@@ -3215,7 +3164,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|params
@@ -3310,7 +3259,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|params
@@ -3384,7 +3333,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" nullPolicy=collapse sort='term_s asc, test_ti asc' "
+literal|" nullPolicy=collapse sort='term_s asc, test_i asc' "
 operator|+
 name|hint
 operator|+
@@ -3442,7 +3391,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" nullPolicy=collapse sort='term_s asc, test_ti desc' "
+literal|" nullPolicy=collapse sort='term_s asc, test_i desc' "
 operator|+
 name|hint
 operator|+
@@ -3485,9 +3434,9 @@ operator|new
 name|String
 index|[]
 block|{
-literal|" min=test_ti "
+literal|" min=test_i "
 block|,
-literal|" sort='test_ti asc' "
+literal|" sort='test_i asc' "
 block|}
 control|)
 block|{
@@ -3639,7 +3588,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_tl asc,id desc"
+literal|"test_l asc,id desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3756,7 +3705,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" max=test_ti"
+literal|" max=test_i"
 operator|+
 name|hint
 operator|+
@@ -3769,7 +3718,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_ti asc"
+literal|"test_i asc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3814,7 +3763,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" min=test_tl"
+literal|" min=test_l"
 operator|+
 name|hint
 operator|+
@@ -3827,7 +3776,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_ti desc"
+literal|"test_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3870,7 +3819,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" max=test_tl"
+literal|" max=test_l"
 operator|+
 name|hint
 operator|+
@@ -3883,7 +3832,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_ti desc"
+literal|"test_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3944,7 +3893,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" min=test_tf"
+literal|" min=test_f"
 operator|+
 name|hint
 operator|+
@@ -3957,7 +3906,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_ti desc"
+literal|"test_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -4000,7 +3949,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" max=test_tf"
+literal|" max=test_f"
 operator|+
 name|hint
 operator|+
@@ -4013,7 +3962,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_ti asc"
+literal|"test_i asc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -4056,7 +4005,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" max=test_tf"
+literal|" max=test_f"
 operator|+
 name|hint
 operator|+
@@ -4142,13 +4091,13 @@ operator|new
 name|String
 index|[]
 block|{
-literal|" min=bogus_ti "
+literal|" min=bogus_i "
 block|,
-literal|" sort='bogus_ti asc' "
+literal|" sort='bogus_i asc' "
 block|,
-literal|" max=bogus_ti "
+literal|" max=bogus_i "
 block|,
-literal|" sort='bogus_ti desc' "
+literal|" sort='bogus_i desc' "
 block|,
 literal|" min=bogus_tf "
 block|,
@@ -4248,7 +4197,7 @@ name|params
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!func}sub(sub(test_tl,1000),id)"
+literal|"{!func}sub(sub(test_l,1000),id)"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -4285,19 +4234,19 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" min=test_tf max=test_tf}"
+literal|" min=test_f max=test_f}"
 block|,
 literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" min=test_tf sort='test_tf asc'}"
+literal|" min=test_f sort='test_f asc'}"
 block|,
 literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" max=test_tf sort='test_tf asc'}"
+literal|" max=test_f sort='test_f asc'}"
 block|}
 control|)
 block|{
@@ -4349,7 +4298,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" nullPolicy=collapse sort='test_ti asc'"
+literal|" nullPolicy=collapse sort='test_i asc'"
 operator|+
 name|hint
 operator|+
@@ -4364,7 +4313,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" nullPolicy=collapse min='' sort='test_ti asc'"
+literal|" nullPolicy=collapse min='' sort='test_i asc'"
 operator|+
 name|hint
 operator|+
@@ -4379,7 +4328,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" nullPolicy=collapse max='' sort='test_ti asc'"
+literal|" nullPolicy=collapse max='' sort='test_i asc'"
 operator|+
 name|hint
 operator|+
@@ -4394,7 +4343,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" nullPolicy=collapse min=$x sort='test_ti asc'"
+literal|" nullPolicy=collapse min=$x sort='test_i asc'"
 operator|+
 name|hint
 operator|+
@@ -4409,7 +4358,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" nullPolicy=collapse min=$x sort='test_ti asc'"
+literal|" nullPolicy=collapse min=$x sort='test_i asc'"
 operator|+
 name|hint
 operator|+
@@ -4434,7 +4383,7 @@ literal|"*:*"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"test_ti desc"
+literal|"test_i desc"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
@@ -4473,7 +4422,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" max=test_tf nullPolicy=expand"
+literal|" max=test_f nullPolicy=expand"
 operator|+
 name|hint
 operator|+
@@ -4533,7 +4482,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" max=test_tf nullPolicy=collapse"
+literal|" max=test_f nullPolicy=collapse"
 operator|+
 name|hint
 operator|+
@@ -4610,7 +4559,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|params
@@ -4619,7 +4568,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!tag=test_ti}id:5"
+literal|"{!tag=test_i}id:5"
 argument_list|)
 expr_stmt|;
 name|params
@@ -4637,7 +4586,7 @@ name|add
 argument_list|(
 literal|"facet.field"
 argument_list|,
-literal|"{!ex=test_ti}test_ti"
+literal|"{!ex=test_i}test_i"
 argument_list|)
 expr_stmt|;
 name|params
@@ -4658,7 +4607,7 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|,
-literal|"*[count(//lst[@name='facet_fields']/lst[@name='test_ti']/int)=2]"
+literal|"*[count(//lst[@name='facet_fields']/lst[@name='test_i']/int)=2]"
 argument_list|)
 expr_stmt|;
 comment|// SOLR-5230 - ensure CollapsingFieldValueCollector.finish() is called
@@ -4788,7 +4737,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(test_ti)"
+literal|"field(test_i)"
 argument_list|)
 expr_stmt|;
 name|params
@@ -4924,9 +4873,9 @@ operator|.
 name|nextBoolean
 argument_list|()
 condition|?
-literal|"min=field(test_ti)"
+literal|"min=field(test_i)"
 else|:
-literal|"max=field(test_ti)"
+literal|"max=field(test_i)"
 operator|)
 operator|)
 decl_stmt|;
@@ -4996,11 +4945,11 @@ literal|"group_s"
 argument_list|,
 literal|"group1"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"10"
 argument_list|)
@@ -5024,11 +4973,11 @@ literal|"group_s"
 argument_list|,
 literal|"group1"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"1000"
 argument_list|)
@@ -5046,11 +4995,11 @@ literal|"group_s"
 argument_list|,
 literal|"group1"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"1000"
 argument_list|)
@@ -5068,11 +5017,11 @@ literal|"group_s"
 argument_list|,
 literal|"group1"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"10"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"100"
 argument_list|)
@@ -5091,11 +5040,11 @@ literal|"group_s"
 argument_list|,
 literal|"group2"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"10"
 argument_list|,
@@ -5123,11 +5072,11 @@ literal|"group_s"
 argument_list|,
 literal|"group2"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"1000"
 argument_list|)
@@ -5145,11 +5094,11 @@ literal|"group_s"
 argument_list|,
 literal|"group2"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"5"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"1000"
 argument_list|,
@@ -5171,11 +5120,11 @@ literal|"group_s"
 argument_list|,
 literal|"group2"
 argument_list|,
-literal|"test_ti"
+literal|"test_i"
 argument_list|,
 literal|"10"
 argument_list|,
-literal|"test_tl"
+literal|"test_l"
 argument_list|,
 literal|"100"
 argument_list|)
@@ -5207,7 +5156,7 @@ comment|// alternative docvalues codepath w/ hint
 literal|"field=bogus_s_dv hint=top_fc"
 block|,
 comment|// alternative docvalues codepath w/ hint
-literal|"field=bogus_ti"
+literal|"field=bogus_i"
 block|,
 literal|"field=bogus_tf"
 block|}
@@ -5227,34 +5176,34 @@ literal|""
 block|,
 literal|" sort='score desc' "
 block|,
-literal|" min=test_ti "
+literal|" min=test_i "
 block|,
-literal|" max=test_ti "
+literal|" max=test_i "
 block|,
-literal|" sort='test_ti asc' "
+literal|" sort='test_i asc' "
 block|,
-literal|" sort='test_ti desc' "
+literal|" sort='test_i desc' "
 block|,
-literal|" min=test_tf "
+literal|" min=test_f "
 block|,
-literal|" max=test_tf "
+literal|" max=test_f "
 block|,
-literal|" sort='test_tf asc' "
+literal|" sort='test_f asc' "
 block|,
-literal|" sort='test_tf desc' "
+literal|" sort='test_f desc' "
 block|,
 literal|" sort='group_s asc' "
 block|,
 literal|" sort='group_s desc' "
 block|,
 comment|// fields that don't exist
-literal|" min=bogus_sort_ti "
+literal|" min=bogus_sort_i "
 block|,
-literal|" max=bogus_sort_ti "
+literal|" max=bogus_sort_i "
 block|,
-literal|" sort='bogus_sort_ti asc' "
+literal|" sort='bogus_sort_i asc' "
 block|,
-literal|" sort='bogus_sort_ti desc' "
+literal|" sort='bogus_sort_i desc' "
 block|,
 literal|" sort='bogus_sort_s asc' "
 block|,
