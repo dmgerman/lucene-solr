@@ -2888,6 +2888,7 @@ literal|"_l"
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// We have not seen this bucket: do full faceting for this bucket, including all sub-facets
 name|List
 argument_list|<
 name|List
@@ -2906,6 +2907,7 @@ literal|"_s"
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// We have seen this bucket, so skip stats on it, and skip sub-facets except for the specified sub-facets that should calculate specified buckets.
 name|List
 argument_list|<
 name|List
@@ -2924,6 +2926,7 @@ literal|"_m"
 argument_list|)
 argument_list|)
 decl_stmt|;
+comment|// We have not seen this bucket, do full faceting for this bucket, and most sub-facets... but some sub-facets should only visit specified buckets.
 comment|// For leaf refinements, we do full faceting for each leaf bucket.  Any sub-facets of these buckets will be fully evaluated.  Because of this, we should never
 comment|// encounter leaf refinements that have sub-facets that return partial results.
 name|SimpleOrderedMap

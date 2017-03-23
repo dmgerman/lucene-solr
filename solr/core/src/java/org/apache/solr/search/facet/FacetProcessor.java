@@ -2183,7 +2183,6 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|// TODO: rather than just have a raw "response", perhaps we should model as a bucket object that contains the response plus extra info?
 DECL|method|fillBucket
 name|void
 name|fillBucket
@@ -2214,10 +2213,14 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|// TODO: we don't need the DocSet if we've already calculated everything during the first phase
 name|boolean
 name|needDocSet
 init|=
+operator|(
+name|skip
+operator|==
+literal|false
+operator|&&
 name|freq
 operator|.
 name|getFacetStats
@@ -2227,6 +2230,7 @@ name|size
 argument_list|()
 operator|>
 literal|0
+operator|)
 operator|||
 name|freq
 operator|.
@@ -2238,7 +2242,6 @@ argument_list|()
 operator|>
 literal|0
 decl_stmt|;
-comment|// TODO: put info in for the merger (like "skip=true"?) Maybe we don't need to if we leave out all extraneous info?
 name|int
 name|count
 decl_stmt|;
