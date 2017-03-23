@@ -315,7 +315,7 @@ name|NamedList
 argument_list|<
 name|NamedList
 argument_list|<
-name|Number
+name|Object
 argument_list|>
 argument_list|>
 name|_termsInfo
@@ -1048,7 +1048,7 @@ name|NamedList
 argument_list|<
 name|NamedList
 argument_list|<
-name|Number
+name|Object
 argument_list|>
 argument_list|>
 operator|)
@@ -1211,7 +1211,7 @@ name|NamedList
 argument_list|<
 name|NamedList
 argument_list|<
-name|Number
+name|Object
 argument_list|>
 argument_list|>
 name|termsInfo

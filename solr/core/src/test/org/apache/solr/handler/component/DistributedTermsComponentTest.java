@@ -461,6 +461,33 @@ argument_list|,
 literal|"2, 3, 1"
 argument_list|)
 expr_stmt|;
+name|query
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"/terms"
+argument_list|,
+literal|"shards.qt"
+argument_list|,
+literal|"/terms"
+argument_list|,
+literal|"terms"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"terms.fl"
+argument_list|,
+literal|"b_t"
+argument_list|,
+literal|"terms.list"
+argument_list|,
+literal|"snake, zebra"
+argument_list|,
+literal|"terms.ttf"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

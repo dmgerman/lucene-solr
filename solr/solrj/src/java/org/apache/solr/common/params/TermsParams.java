@@ -92,7 +92,7 @@ name|TERMS_PREFIX
 operator|+
 literal|"fl"
 decl_stmt|;
-comment|/**    * Optional. The list of terms to be retrieved.    *    */
+comment|/**    * Optional. The list of terms to be retrieved.    */
 DECL|field|TERMS_LIST
 specifier|public
 specifier|static
@@ -104,7 +104,7 @@ name|TERMS_PREFIX
 operator|+
 literal|"list"
 decl_stmt|;
-comment|/**    * Optional. The list of terms to be retrieved.    *    */
+comment|/**    * Optional. If true, also returns index-level statistics, such as numDocs.    */
 DECL|field|TERMS_STATS
 specifier|public
 specifier|static
@@ -115,6 +115,18 @@ init|=
 name|TERMS_PREFIX
 operator|+
 literal|"stats"
+decl_stmt|;
+comment|/**    * Optional. If true, also returns terms' total term frequency.    */
+DECL|field|TERMS_TTF
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|TERMS_TTF
+init|=
+name|TERMS_PREFIX
+operator|+
+literal|"ttf"
 decl_stmt|;
 comment|/**    * Optional.  The lower bound term to start at.  The TermEnum will start at the next term after this term in the dictionary.    *    * If not specified, the empty string is used    */
 DECL|field|TERMS_LOWER
