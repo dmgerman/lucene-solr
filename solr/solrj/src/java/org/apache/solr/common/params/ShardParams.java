@@ -30,9 +30,6 @@ name|ShardParams
 block|{
 comment|/** the shards to use (distributed configuration) */
 DECL|field|SHARDS
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|SHARDS
 init|=
@@ -40,18 +37,12 @@ literal|"shards"
 decl_stmt|;
 comment|/** per-shard start and rows */
 DECL|field|SHARDS_ROWS
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|SHARDS_ROWS
 init|=
 literal|"shards.rows"
 decl_stmt|;
 DECL|field|SHARDS_START
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|SHARDS_START
 init|=
@@ -59,9 +50,6 @@ literal|"shards.start"
 decl_stmt|;
 comment|/** IDs of the shard documents */
 DECL|field|IDS
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|IDS
 init|=
@@ -69,9 +57,6 @@ literal|"ids"
 decl_stmt|;
 comment|/** whether the request goes to a shard */
 DECL|field|IS_SHARD
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|IS_SHARD
 init|=
@@ -79,9 +64,6 @@ literal|"isShard"
 decl_stmt|;
 comment|/** The requested URL for this shard */
 DECL|field|SHARD_URL
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|SHARD_URL
 init|=
@@ -89,9 +71,6 @@ literal|"shard.url"
 decl_stmt|;
 comment|/** The Request Handler for shard requests */
 DECL|field|SHARDS_QT
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|SHARDS_QT
 init|=
@@ -99,9 +78,6 @@ literal|"shards.qt"
 decl_stmt|;
 comment|/** Request detailed match info for each shard (true/false) */
 DECL|field|SHARDS_INFO
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|SHARDS_INFO
 init|=
@@ -109,9 +85,6 @@ literal|"shards.info"
 decl_stmt|;
 comment|/** Should things fail if there is an error? (true/false) */
 DECL|field|SHARDS_TOLERANT
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|SHARDS_TOLERANT
 init|=
@@ -119,18 +92,12 @@ literal|"shards.tolerant"
 decl_stmt|;
 comment|/** query purpose for shard requests */
 DECL|field|SHARDS_PURPOSE
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|SHARDS_PURPOSE
 init|=
 literal|"shards.purpose"
 decl_stmt|;
 DECL|field|_ROUTE_
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|_ROUTE_
 init|=
@@ -138,9 +105,6 @@ literal|"_route_"
 decl_stmt|;
 comment|/** Force a single-pass distributed query? (true/false) */
 DECL|field|DISTRIB_SINGLE_PASS
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|DISTRIB_SINGLE_PASS
 init|=

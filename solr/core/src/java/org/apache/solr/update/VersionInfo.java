@@ -326,6 +326,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|VERSION_FIELD
+import|;
+end_import
+
 begin_class
 DECL|class|VersionInfo
 specifier|public
@@ -351,15 +369,6 @@ operator|.
 name|lookupClass
 argument_list|()
 argument_list|)
-decl_stmt|;
-DECL|field|VERSION_FIELD
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|VERSION_FIELD
-init|=
-literal|"_version_"
 decl_stmt|;
 DECL|field|ulog
 specifier|private
@@ -395,7 +404,7 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
-comment|/**    * Gets and returns the {@link #VERSION_FIELD} from the specified     * schema, after verifying that it is indexed, stored, and single-valued.      * If any of these pre-conditions are not met, it throws a SolrException     * with a user suitable message indicating the problem.    */
+comment|/**    * Gets and returns the {@link org.apache.solr.common.params.CommonParams#VERSION_FIELD} from the specified    * schema, after verifying that it is indexed, stored, and single-valued.      * If any of these pre-conditions are not met, it throws a SolrException     * with a user suitable message indicating the problem.    */
 DECL|method|getAndCheckVersionField
 specifier|public
 specifier|static

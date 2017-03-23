@@ -20,6 +20,26 @@ end_package
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collection
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -79,22 +99,20 @@ import|;
 end_import
 
 begin_import
-import|import
-name|java
+import|import static
+name|org
 operator|.
-name|util
+name|apache
 operator|.
-name|Collection
-import|;
-end_import
-
-begin_import
-import|import
-name|java
+name|solr
 operator|.
-name|util
+name|common
 operator|.
-name|Collections
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
 import|;
 end_import
 
@@ -327,7 +345,7 @@ name|sdoc
 operator|.
 name|getFieldValue
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 comment|// blech

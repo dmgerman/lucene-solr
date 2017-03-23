@@ -48,6 +48,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
 import|;
 end_import
@@ -79,16 +89,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
 import|;
 end_import
 
@@ -321,6 +321,24 @@ operator|.
 name|params
 operator|.
 name|ModifiableSolrParams
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|VERSION_FIELD
 import|;
 end_import
 
@@ -977,7 +995,7 @@ index|]
 operator|.
 name|equals
 argument_list|(
-literal|"_version_"
+name|VERSION_FIELD
 argument_list|)
 condition|)
 block|{

@@ -348,6 +348,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
 begin_class
 DECL|class|SpellCheckCollator
 specifier|public
@@ -850,7 +868,7 @@ name|CommonParams
 operator|.
 name|FL
 argument_list|,
-literal|"id"
+name|ID
 argument_list|)
 expr_stmt|;
 comment|// we'll sort by doc id to ensure no scoring is done.

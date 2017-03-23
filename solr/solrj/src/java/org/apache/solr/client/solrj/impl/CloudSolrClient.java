@@ -1016,6 +1016,24 @@ name|CORES_HANDLER_PATH
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
 begin_comment
 comment|/**  * SolrJ client class to communicate with SolrCloud.  * Instances of this class communicate with Zookeeper to discover  * Solr endpoints for SolrCloud collections, and then use the   * {@link LBHttpSolrClient} to issue requests.  *   * This class assumes the id field for your documents is called  * 'id' - if this is not the case, you must set the right name  * with {@link #setIdField(String)}.  */
 end_comment
@@ -1146,7 +1164,7 @@ specifier|private
 name|String
 name|idField
 init|=
-literal|"id"
+name|ID
 decl_stmt|;
 DECL|field|STATE_VERSION
 specifier|public

@@ -416,6 +416,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|VERSION_FIELD
+import|;
+end_import
+
 begin_comment
 comment|/**  * Sends tuples emitted by a wrapped {@link TupleStream} as updates to a SolrCloud collection.  */
 end_comment
@@ -1799,16 +1817,11 @@ block|{
 if|if
 condition|(
 operator|!
-operator|(
-operator|(
-name|String
-operator|)
 name|field
-operator|)
 operator|.
 name|equals
 argument_list|(
-literal|"_version_"
+name|VERSION_FIELD
 argument_list|)
 condition|)
 block|{

@@ -46,6 +46,22 @@ name|solr
 operator|.
 name|common
 operator|.
+name|SolrException
+operator|.
+name|ErrorCode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|SimpleOrderedMap
@@ -53,7 +69,7 @@ import|;
 end_import
 
 begin_import
-import|import
+import|import static
 name|org
 operator|.
 name|apache
@@ -62,23 +78,11 @@ name|solr
 operator|.
 name|common
 operator|.
-name|SolrException
-import|;
-end_import
-
-begin_import
-import|import
-name|org
+name|params
 operator|.
-name|apache
+name|CommonParams
 operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|SolrException
-operator|.
-name|ErrorCode
+name|ID
 import|;
 end_import
 
@@ -265,7 +269,7 @@ name|data
 operator|.
 name|get
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 specifier|final
@@ -611,7 +615,7 @@ name|entry
 operator|.
 name|add
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|id
 argument_list|)

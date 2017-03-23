@@ -132,7 +132,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|TieredMergePolicy
+name|DirectoryReader
 import|;
 end_import
 
@@ -146,7 +146,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|DirectoryReader
+name|TieredMergePolicy
 import|;
 end_import
 
@@ -365,6 +365,24 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|VERSION_FIELD
 import|;
 end_import
 
@@ -834,8 +852,6 @@ argument_list|()
 operator|.
 name|getFieldOrNull
 argument_list|(
-name|VersionInfo
-operator|.
 name|VERSION_FIELD
 argument_list|)
 argument_list|)

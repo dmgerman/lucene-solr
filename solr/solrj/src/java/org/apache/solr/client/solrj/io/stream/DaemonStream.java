@@ -352,6 +352,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
 begin_class
 DECL|class|DaemonStream
 specifier|public
@@ -520,7 +538,7 @@ name|getNamedOperand
 argument_list|(
 name|expression
 argument_list|,
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 name|StreamExpressionNamedParameter
@@ -929,7 +947,7 @@ argument_list|(
 operator|new
 name|StreamExpressionNamedParameter
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|id
 argument_list|)
@@ -1445,7 +1463,7 @@ name|tuple
 operator|.
 name|put
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|id
 argument_list|)

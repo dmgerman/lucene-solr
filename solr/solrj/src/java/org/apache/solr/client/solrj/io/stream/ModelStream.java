@@ -332,6 +332,24 @@ name|StreamFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
 begin_comment
 comment|/** *  The ModelStream retrieves a stored model from a Solr Cloud collection. * *  Syntax: model(collection, id="modelID") **/
 end_comment
@@ -598,7 +616,7 @@ name|params
 operator|.
 name|get
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 if|if
@@ -837,7 +855,7 @@ argument_list|(
 operator|new
 name|StreamExpressionNamedParameter
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|modelID
 argument_list|)

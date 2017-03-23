@@ -576,6 +576,24 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|update
 operator|.
 name|processor
@@ -4791,7 +4809,7 @@ name|sdoc
 operator|.
 name|getField
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 argument_list|)
 expr_stmt|;

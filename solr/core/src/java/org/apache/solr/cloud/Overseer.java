@@ -522,6 +522,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
 begin_comment
 comment|/**  * Cluster leader. Responsible for processing state updates, node assignments, creating/deleting  * collections, shards, replicas and setting various properties.  */
 end_comment
@@ -1780,7 +1798,7 @@ name|m
 operator|.
 name|get
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 if|if
@@ -2438,7 +2456,7 @@ name|message
 operator|.
 name|get
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 argument_list|)
 condition|)
@@ -2587,7 +2605,7 @@ name|props
 operator|.
 name|getStr
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 argument_list|)
 condition|)

@@ -364,6 +364,24 @@ name|XML
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|ShardParams
+operator|.
+name|_ROUTE_
+import|;
+end_import
+
 begin_comment
 comment|/**  *   *   * @since solr 1.3  */
 end_comment
@@ -402,15 +420,6 @@ name|String
 name|VER
 init|=
 literal|"ver"
-decl_stmt|;
-DECL|field|ROUTE
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|ROUTE
-init|=
-literal|"_route_"
 decl_stmt|;
 DECL|field|OVERWRITE
 specifier|public
@@ -995,7 +1004,7 @@ name|params
 operator|.
 name|put
 argument_list|(
-name|ROUTE
+name|_ROUTE_
 argument_list|,
 name|route
 argument_list|)
@@ -1145,7 +1154,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-name|ROUTE
+name|_ROUTE_
 argument_list|,
 name|route
 argument_list|)
@@ -2735,7 +2744,7 @@ name|map
 operator|.
 name|get
 argument_list|(
-name|ROUTE
+name|_ROUTE_
 argument_list|)
 decl_stmt|;
 if|if

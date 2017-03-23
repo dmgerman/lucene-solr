@@ -708,15 +708,6 @@ name|DEFAULT_QUERY
 init|=
 literal|"*:*"
 decl_stmt|;
-DECL|field|DEFAULT_VERSION_FIELD
-specifier|private
-specifier|static
-specifier|final
-name|String
-name|DEFAULT_VERSION_FIELD
-init|=
-literal|"_version_"
-decl_stmt|;
 DECL|field|collection
 specifier|private
 specifier|final

@@ -298,13 +298,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|client
+name|common
 operator|.
-name|solrj
-operator|.
-name|request
-operator|.
-name|UpdateRequest
+name|EmptyEntityResolver
 import|;
 end_import
 
@@ -365,6 +361,22 @@ operator|.
 name|params
 operator|.
 name|ModifiableSolrParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|ShardParams
 import|;
 end_import
 
@@ -614,20 +626,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|common
-operator|.
-name|EmptyEntityResolver
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|util
 operator|.
 name|xslt
@@ -677,6 +675,24 @@ operator|.
 name|sax
 operator|.
 name|XMLReader
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
 import|;
 end_import
 
@@ -2175,7 +2191,7 @@ if|if
 condition|(
 operator|!
 operator|(
-literal|"id"
+name|ID
 operator|.
 name|equals
 argument_list|(
@@ -2228,7 +2244,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-literal|"id"
+name|ID
 operator|.
 name|equals
 argument_list|(
@@ -2301,9 +2317,9 @@ expr_stmt|;
 block|}
 if|if
 condition|(
-name|UpdateRequest
+name|ShardParams
 operator|.
-name|ROUTE
+name|_ROUTE_
 operator|.
 name|equals
 argument_list|(
@@ -2337,7 +2353,7 @@ argument_list|()
 decl_stmt|;
 if|if
 condition|(
-literal|"id"
+name|ID
 operator|.
 name|equals
 argument_list|(

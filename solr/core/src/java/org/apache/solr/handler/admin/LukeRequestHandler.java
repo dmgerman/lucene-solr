@@ -974,7 +974,9 @@ specifier|final
 name|String
 name|ID
 init|=
-literal|"id"
+name|CommonParams
+operator|.
+name|ID
 decl_stmt|;
 DECL|field|DEFAULT_COUNT
 specifier|public

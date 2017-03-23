@@ -116,6 +116,24 @@ name|ModifiableSolrParams
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|VERSION_FIELD
+import|;
+end_import
+
 begin_comment
 comment|/**  *  The Model cache keeps a local in-memory copy of models  */
 end_comment
@@ -449,7 +467,7 @@ name|t
 operator|.
 name|getLong
 argument_list|(
-literal|"_version_"
+name|VERSION_FIELD
 argument_list|)
 decl_stmt|;
 if|if
@@ -460,7 +478,7 @@ name|tuple
 operator|.
 name|getLong
 argument_list|(
-literal|"_version_"
+name|VERSION_FIELD
 argument_list|)
 condition|)
 block|{

@@ -644,7 +644,43 @@ name|params
 operator|.
 name|CommonParams
 operator|.
+name|ID
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
 name|JSON
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|VERSION
 import|;
 end_import
 
@@ -1179,7 +1215,7 @@ name|doc
 init|=
 name|makeMap
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|id
 argument_list|,
@@ -1191,7 +1227,7 @@ literal|"blobName"
 argument_list|,
 name|blobName
 argument_list|,
-literal|"version"
+name|VERSION
 argument_list|,
 name|version
 argument_list|,
@@ -1238,7 +1274,7 @@ name|doc
 operator|.
 name|get
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 argument_list|,
 name|String
@@ -1759,7 +1795,7 @@ name|MapSolrParams
 argument_list|(
 name|singletonMap
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|id
 argument_list|)
@@ -1821,7 +1857,7 @@ name|doc
 operator|.
 name|put
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|id
 argument_list|)

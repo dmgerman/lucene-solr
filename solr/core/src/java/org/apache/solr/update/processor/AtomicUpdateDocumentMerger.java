@@ -244,6 +244,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|core
 operator|.
 name|SolrCore
@@ -381,6 +397,24 @@ operator|.
 name|slf4j
 operator|.
 name|LoggerFactory
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
 import|;
 end_import
 
@@ -871,7 +905,7 @@ name|schema
 operator|.
 name|getFieldOrNull
 argument_list|(
-name|DistributedUpdateProcessor
+name|CommonParams
 operator|.
 name|VERSION_FIELD
 argument_list|)
@@ -922,7 +956,7 @@ name|fieldName
 operator|.
 name|equals
 argument_list|(
-name|DistributedUpdateProcessor
+name|CommonParams
 operator|.
 name|VERSION_FIELD
 argument_list|)
@@ -1272,7 +1306,7 @@ name|updatedFields
 operator|.
 name|add
 argument_list|(
-name|DistributedUpdateProcessor
+name|CommonParams
 operator|.
 name|VERSION_FIELD
 argument_list|)
@@ -1331,7 +1365,7 @@ name|oldDocument
 operator|.
 name|containsKey
 argument_list|(
-name|DistributedUpdateProcessor
+name|CommonParams
 operator|.
 name|VERSION_FIELD
 argument_list|)
@@ -1366,7 +1400,7 @@ name|oldDocument
 operator|.
 name|remove
 argument_list|(
-name|DistributedUpdateProcessor
+name|CommonParams
 operator|.
 name|VERSION_FIELD
 argument_list|)
@@ -1416,7 +1450,7 @@ name|fieldName
 operator|.
 name|equals
 argument_list|(
-name|DistributedUpdateProcessor
+name|CommonParams
 operator|.
 name|VERSION_FIELD
 argument_list|)
@@ -1427,7 +1461,7 @@ name|fieldName
 operator|.
 name|equals
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 operator|==
 literal|false

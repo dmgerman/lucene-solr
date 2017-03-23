@@ -536,6 +536,24 @@ name|params
 operator|.
 name|CommonParams
 operator|.
+name|ID
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
 name|JSON
 import|;
 end_import
@@ -555,6 +573,42 @@ operator|.
 name|CommonParams
 operator|.
 name|PATH
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|VERSION_FIELD
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|ShardParams
+operator|.
+name|_ROUTE_
 import|;
 end_import
 
@@ -2436,7 +2490,7 @@ condition|)
 block|{
 if|if
 condition|(
-literal|"id"
+name|ID
 operator|.
 name|equals
 argument_list|(
@@ -2507,7 +2561,7 @@ block|}
 elseif|else
 if|if
 condition|(
-literal|"_version_"
+name|VERSION_FIELD
 operator|.
 name|equals
 argument_list|(
@@ -2529,7 +2583,7 @@ block|}
 elseif|else
 if|if
 condition|(
-literal|"_route_"
+name|_ROUTE_
 operator|.
 name|equals
 argument_list|(

@@ -692,6 +692,42 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|VERSION_FIELD
+import|;
+end_import
+
 begin_class
 DECL|class|TopicStream
 specifier|public
@@ -770,11 +806,7 @@ name|checkpoints
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Long
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 DECL|field|checkpointCollection
@@ -1077,7 +1109,7 @@ name|getNamedOperand
 argument_list|(
 name|expression
 argument_list|,
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 if|if
@@ -1334,7 +1366,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 operator|&&
 operator|!
@@ -1637,7 +1669,7 @@ argument_list|(
 operator|new
 name|StreamExpressionNamedParameter
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|id
 argument_list|)
@@ -2444,7 +2476,7 @@ name|tuple
 operator|.
 name|getLong
 argument_list|(
-literal|"_version_"
+name|VERSION_FIELD
 argument_list|)
 decl_stmt|;
 name|String
@@ -2864,7 +2896,7 @@ name|doc
 operator|.
 name|addField
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|id
 argument_list|)
@@ -3245,7 +3277,7 @@ name|fl
 operator|.
 name|contains
 argument_list|(
-literal|"_version_"
+name|VERSION_FIELD
 argument_list|)
 condition|)
 block|{

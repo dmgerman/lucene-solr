@@ -162,6 +162,24 @@ name|params
 operator|.
 name|CommonParams
 operator|.
+name|ID
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
 name|NAME
 import|;
 end_import
@@ -492,7 +510,7 @@ name|info
 operator|.
 name|add
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|tid
 argument_list|)
@@ -663,7 +681,7 @@ name|owner
 operator|.
 name|add
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|ti
 operator|.

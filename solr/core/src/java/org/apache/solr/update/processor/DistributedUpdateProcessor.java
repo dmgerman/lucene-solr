@@ -686,6 +686,22 @@ name|common
 operator|.
 name|params
 operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
 name|ModifiableSolrParams
 import|;
 end_import
@@ -1801,15 +1817,6 @@ specifier|final
 name|AtomicUpdateDocumentMerger
 name|docMerger
 decl_stmt|;
-DECL|field|VERSION_FIELD
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|VERSION_FIELD
-init|=
-literal|"_version_"
-decl_stmt|;
 DECL|field|updateHandler
 specifier|private
 specifier|final
@@ -2138,6 +2145,8 @@ name|UPDATE_CHAIN
 argument_list|,
 name|TEST_DISTRIB_SKIP_SERVERS
 argument_list|,
+name|CommonParams
+operator|.
 name|VERSION_FIELD
 argument_list|)
 expr_stmt|;
@@ -6668,7 +6677,7 @@ argument_list|()
 operator|.
 name|getField
 argument_list|(
-name|VersionInfo
+name|CommonParams
 operator|.
 name|VERSION_FIELD
 argument_list|)
@@ -6728,6 +6737,8 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
+name|CommonParams
+operator|.
 name|VERSION_FIELD
 argument_list|)
 decl_stmt|;
@@ -6935,6 +6946,8 @@ name|solrDoc
 operator|.
 name|remove
 argument_list|(
+name|CommonParams
+operator|.
 name|VERSION_FIELD
 argument_list|)
 expr_stmt|;
@@ -7124,7 +7137,7 @@ argument_list|()
 operator|.
 name|setField
 argument_list|(
-name|VersionInfo
+name|CommonParams
 operator|.
 name|VERSION_FIELD
 argument_list|,
@@ -7341,6 +7354,8 @@ name|solrDoc
 operator|.
 name|getFieldValue
 argument_list|(
+name|CommonParams
+operator|.
 name|VERSION_FIELD
 argument_list|)
 argument_list|)
@@ -8472,6 +8487,8 @@ name|leaderDoc
 operator|.
 name|getFieldValue
 argument_list|(
+name|CommonParams
+operator|.
 name|VERSION_FIELD
 argument_list|)
 argument_list|)
@@ -8637,6 +8654,8 @@ name|oldDoc
 operator|.
 name|remove
 argument_list|(
+name|CommonParams
+operator|.
 name|VERSION_FIELD
 argument_list|)
 expr_stmt|;
@@ -9870,6 +9889,8 @@ name|params
 operator|.
 name|set
 argument_list|(
+name|CommonParams
+operator|.
 name|VERSION_FIELD
 argument_list|,
 name|Long
@@ -10425,6 +10446,8 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
+name|CommonParams
+operator|.
 name|VERSION_FIELD
 argument_list|)
 decl_stmt|;
@@ -10931,6 +10954,8 @@ argument_list|()
 operator|.
 name|get
 argument_list|(
+name|CommonParams
+operator|.
 name|VERSION_FIELD
 argument_list|)
 decl_stmt|;

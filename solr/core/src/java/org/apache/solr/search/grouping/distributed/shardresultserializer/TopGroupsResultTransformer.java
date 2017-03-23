@@ -428,6 +428,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
 begin_comment
 comment|/**  * Implementation for transforming {@link TopGroups} and {@link TopDocs} into a {@link NamedList} structure and  * visa versa.  */
 end_comment
@@ -1256,7 +1274,7 @@ name|document
 operator|.
 name|get
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 if|if
@@ -1678,7 +1696,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|uniqueField
 operator|.
@@ -2128,7 +2146,7 @@ name|document
 operator|.
 name|add
 argument_list|(
-literal|"id"
+name|ID
 argument_list|,
 name|uniqueField
 operator|.

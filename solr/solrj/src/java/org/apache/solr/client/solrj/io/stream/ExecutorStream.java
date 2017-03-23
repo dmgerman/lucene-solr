@@ -378,6 +378,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
 begin_comment
 comment|/**  *  The executor function wraps a stream with Tuples containing Streaming Expressions  *  and executes them in parallel. Sample syntax:  *  *  executor(thread=10, topic(storedExpressions, q="*:*", fl="expr_s, id", id="topic1"))  *  *  The Streaming Expression to execute is taken from the expr field in the Tuples.  */
 end_comment
@@ -1198,7 +1216,7 @@ name|tuple
 operator|.
 name|get
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 name|TupleStream

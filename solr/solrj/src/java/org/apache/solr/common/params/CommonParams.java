@@ -659,6 +659,18 @@ name|VALUE_LONG
 init|=
 literal|"val"
 decl_stmt|;
+DECL|field|VERSION_FIELD
+name|String
+name|VERSION_FIELD
+init|=
+literal|"_version_"
+decl_stmt|;
+DECL|field|ID
+name|String
+name|ID
+init|=
+literal|"id"
+decl_stmt|;
 block|}
 end_interface
 

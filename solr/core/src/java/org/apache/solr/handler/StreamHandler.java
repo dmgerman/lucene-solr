@@ -1094,6 +1094,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
 begin_class
 DECL|class|StreamHandler
 specifier|public
@@ -2418,7 +2436,7 @@ name|params
 operator|.
 name|get
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 name|DaemonStream
@@ -2486,7 +2504,8 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-elseif|else
+else|else
+block|{
 if|if
 condition|(
 literal|"start"
@@ -2504,7 +2523,7 @@ name|params
 operator|.
 name|get
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 name|DaemonStream
@@ -2641,6 +2660,7 @@ name|coreName
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|adjustParams

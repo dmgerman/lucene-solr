@@ -142,22 +142,6 @@ begin_import
 import|import
 name|org
 operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|update
-operator|.
-name|processor
-operator|.
-name|DistributedUpdateProcessor
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
 name|junit
 operator|.
 name|AfterClass
@@ -181,6 +165,24 @@ operator|.
 name|junit
 operator|.
 name|Test
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|VERSION_FIELD
 import|;
 end_import
 
@@ -2012,8 +2014,6 @@ name|solrDoc
 operator|.
 name|containsKey
 argument_list|(
-name|DistributedUpdateProcessor
-operator|.
 name|VERSION_FIELD
 argument_list|)
 argument_list|)
@@ -2032,8 +2032,6 @@ name|solrDoc
 operator|.
 name|getFieldValue
 argument_list|(
-name|DistributedUpdateProcessor
-operator|.
 name|VERSION_FIELD
 argument_list|)
 operator|.

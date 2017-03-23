@@ -304,6 +304,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
 begin_comment
 comment|/**  * This reporter sends selected metrics from local registries to {@link Overseer}.  *<p>The following configuration properties are supported:</p>  *<ul>  *<li>handler - (optional str) handler path where reports are sent. Default is  *   {@link MetricsCollectorHandler#HANDLER_PATH}.</li>  *<li>period - (optional int) how often reports are sent, in seconds. Default is 60. Setting this  *   to 0 disables the reporter.</li>  *<li>report - (optional multiple lst) report configuration(s), see below.</li>  *</ul>  * Each report configuration consist of the following properties:  *<ul>  *<li>registry - (required str) regex pattern matching source registries (see {@link SolrMetricManager#registryNames(String...)}),  *   may contain capture groups.</li>  *<li>group - (required str) target registry name where metrics will be grouped. This can be a regex pattern that  *   contains back-references to capture groups collected by<code>registry</code> pattern</li>  *<li>label - (optional str) optional prefix to prepend to metric names, may contain back-references to  *   capture groups collected by<code>registry</code> pattern</li>  *<li>filter - (optional multiple str) regex expression(s) matching selected metrics to be reported.</li>  *</ul>  * NOTE: this reporter uses predefined "overseer" group, and it's always created even if explicit configuration  * is missing. Default configuration uses report specifications from {@link #DEFAULT_REPORTS}.  *<p>Example configuration:</p>  *<pre>  *&lt;reporter name="test" group="overseer"&gt;  *&lt;str name="handler"&gt;/admin/metrics/collector&lt;/str&gt;  *&lt;int name="period"&gt;11&lt;/int&gt;  *&lt;lst name="report"&gt;  *&lt;str name="group"&gt;overseer&lt;/str&gt;  *&lt;str name="label"&gt;jvm&lt;/str&gt;  *&lt;str name="registry"&gt;solr\.jvm&lt;/str&gt;  *&lt;str name="filter"&gt;memory\.total\..*&lt;/str&gt;  *&lt;str name="filter"&gt;memory\.heap\..*&lt;/str&gt;  *&lt;str name="filter"&gt;os\.SystemLoadAverage&lt;/str&gt;  *&lt;str name="filter"&gt;threads\.count&lt;/str&gt;  *&lt;/lst&gt;  *&lt;lst name="report"&gt;  *&lt;str name="group"&gt;overseer&lt;/str&gt;  *&lt;str name="label"&gt;leader.$1&lt;/str&gt;  *&lt;str name="registry"&gt;solr\.core\.(.*)\.leader&lt;/str&gt;  *&lt;str name="filter"&gt;UPDATE\./update/.*&lt;/str&gt;  *&lt;/lst&gt;  *&lt;/reporter&gt;  *</pre>  *  */
 end_comment
@@ -1205,7 +1223,7 @@ name|props
 operator|.
 name|getStr
 argument_list|(
-literal|"id"
+name|ID
 argument_list|)
 decl_stmt|;
 if|if

@@ -992,6 +992,24 @@ name|InputSource
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|ID
+import|;
+end_import
+
 begin_comment
 comment|/**  * A component to elevate some documents to the top of the result set.  *  * @since solr 1.3  */
 end_comment
@@ -2457,7 +2475,7 @@ name|getAttr
 argument_list|(
 name|child
 argument_list|,
-literal|"id"
+name|ID
 argument_list|,
 literal|"missing 'id'"
 argument_list|)
