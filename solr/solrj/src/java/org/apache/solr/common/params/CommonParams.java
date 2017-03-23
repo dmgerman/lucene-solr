@@ -428,6 +428,10 @@ argument_list|,
 name|AUTHZ_PATH
 argument_list|,
 name|METRICS_PATH
+argument_list|,
+literal|"/____v2/cluster/security/authentication"
+argument_list|,
+literal|"/____v2/cluster/security/authorization"
 argument_list|)
 argument_list|)
 decl_stmt|;
