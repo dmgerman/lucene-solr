@@ -686,6 +686,24 @@ name|Collectors
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
 begin_comment
 comment|/**  * Table based on a Solr collection  */
 end_comment
@@ -1921,8 +1939,6 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|CommonParams
-operator|.
 name|SORT
 argument_list|,
 name|getSort
@@ -1945,8 +1961,6 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|CommonParams
-operator|.
 name|SORT
 argument_list|,
 literal|"_version_ desc"
@@ -1965,8 +1979,6 @@ name|params
 operator|.
 name|add
 argument_list|(
-name|CommonParams
-operator|.
 name|SORT
 argument_list|,
 literal|"score desc"
@@ -3081,7 +3093,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|,
 name|sort
 argument_list|)
@@ -4614,7 +4626,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|,
 name|sort
 argument_list|)

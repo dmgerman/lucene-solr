@@ -1092,6 +1092,24 @@ name|RTimer
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
 begin_comment
 comment|/**  * A class that generates simple Facet information for a request.  *  * More advanced facet implementations may compose or subclass this class   * to leverage any of its functionality.  */
 end_comment
@@ -3791,7 +3809,7 @@ name|jsonFacet
 operator|.
 name|put
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|,
 name|sortVal
 argument_list|)

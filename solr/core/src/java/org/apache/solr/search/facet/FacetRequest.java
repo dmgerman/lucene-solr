@@ -262,6 +262,24 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|search
 operator|.
 name|facet
@@ -3331,7 +3349,7 @@ name|m
 operator|.
 name|get
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|)
 argument_list|)
 expr_stmt|;

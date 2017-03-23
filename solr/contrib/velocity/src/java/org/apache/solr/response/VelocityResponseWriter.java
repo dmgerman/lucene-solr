@@ -550,6 +550,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
 begin_class
 DECL|class|VelocityResponseWriter
 specifier|public
@@ -1482,7 +1500,7 @@ name|context
 operator|.
 name|put
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|,
 operator|new
 name|SortTool

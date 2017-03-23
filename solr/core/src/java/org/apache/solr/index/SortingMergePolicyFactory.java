@@ -86,6 +86,24 @@ name|SortSpecParsing
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
 begin_comment
 comment|/**  * A {@link MergePolicyFactory} for {@code SortingMergePolicy} objects.  */
 end_comment
@@ -98,15 +116,6 @@ name|SortingMergePolicyFactory
 extends|extends
 name|WrapperMergePolicyFactory
 block|{
-DECL|field|SORT
-specifier|static
-specifier|final
-name|String
-name|SORT
-init|=
-literal|"sort"
-decl_stmt|;
-comment|// not private so that test(s) can use it
 DECL|field|mergeSort
 specifier|protected
 specifier|final

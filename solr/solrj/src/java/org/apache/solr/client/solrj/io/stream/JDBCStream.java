@@ -430,6 +430,24 @@ name|StreamFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
 begin_comment
 comment|/**  * Connects to a datasource using a registered JDBC driver and execute a query. The results of  * that query will be returned as tuples. An EOF tuple will indicate that all have been read.  *   * Supported Datatypes  * JDBC Type     | Tuple Type  * --------------|---------------  * String        | String  * Short         | Long  * Integer       | Long  * Long          | Long  * Float         | Double  * Double        | Double  * Boolean       | Boolean  **/
 end_comment
@@ -717,7 +735,7 @@ name|getNamedOperand
 argument_list|(
 name|expression
 argument_list|,
-literal|"sort"
+name|SORT
 argument_list|)
 decl_stmt|;
 name|StreamExpressionNamedParameter
@@ -827,7 +845,7 @@ argument_list|()
 operator|.
 name|equals
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|)
 condition|)
 block|{
@@ -2260,7 +2278,7 @@ argument_list|(
 operator|new
 name|StreamExpressionNamedParameter
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|,
 name|definedSort
 operator|.

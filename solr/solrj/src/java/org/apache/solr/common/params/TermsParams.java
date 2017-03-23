@@ -30,6 +30,24 @@ name|Pattern
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
 begin_comment
 comment|/**  *  *  **/
 end_comment
@@ -313,9 +331,6 @@ end_comment
 
 begin_decl_stmt
 DECL|field|TERMS_MAXCOUNT
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|TERMS_MAXCOUNT
 init|=
@@ -331,9 +346,6 @@ end_comment
 
 begin_decl_stmt
 DECL|field|TERMS_RAW
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|TERMS_RAW
 init|=
@@ -349,23 +361,17 @@ end_comment
 
 begin_decl_stmt
 DECL|field|TERMS_SORT
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|TERMS_SORT
 init|=
 name|TERMS_PREFIX
 operator|+
-literal|"sort"
+name|SORT
 decl_stmt|;
 end_decl_stmt
 
 begin_decl_stmt
 DECL|field|TERMS_SORT_COUNT
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|TERMS_SORT_COUNT
 init|=
@@ -375,9 +381,6 @@ end_decl_stmt
 
 begin_decl_stmt
 DECL|field|TERMS_SORT_INDEX
-specifier|public
-specifier|static
-specifier|final
 name|String
 name|TERMS_SORT_INDEX
 init|=

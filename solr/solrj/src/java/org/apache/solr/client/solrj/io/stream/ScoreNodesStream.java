@@ -48,6 +48,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashMap
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Iterator
 import|;
 end_import
@@ -79,16 +89,6 @@ operator|.
 name|util
 operator|.
 name|Map
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
-name|util
-operator|.
-name|HashMap
 import|;
 end_import
 
@@ -401,6 +401,24 @@ operator|.
 name|util
 operator|.
 name|NamedList
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|DISTRIB
 import|;
 end_import
 
@@ -1310,7 +1328,7 @@ name|params
 operator|.
 name|add
 argument_list|(
-literal|"distrib"
+name|DISTRIB
 argument_list|,
 literal|"true"
 argument_list|)

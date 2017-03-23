@@ -438,6 +438,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
 begin_comment
 comment|/**  * TODO!  *   *   * @since solr 1.3  */
 end_comment
@@ -2223,7 +2241,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|,
 literal|"score desc"
 argument_list|)

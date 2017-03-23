@@ -264,6 +264,24 @@ name|JSON
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
 begin_class
 DECL|class|RequestUtil
 specifier|public
@@ -1246,7 +1264,7 @@ block|}
 elseif|else
 if|if
 condition|(
-literal|"sort"
+name|SORT
 operator|.
 name|equals
 argument_list|(
@@ -1256,7 +1274,7 @@ condition|)
 block|{
 name|out
 operator|=
-literal|"sort"
+name|SORT
 expr_stmt|;
 block|}
 elseif|else

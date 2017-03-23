@@ -238,6 +238,24 @@ name|SyntaxError
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
 begin_class
 DECL|class|LegacyFacet
 specifier|public
@@ -1233,11 +1251,7 @@ name|cmd
 init|=
 operator|new
 name|HashMap
-argument_list|<
-name|String
-argument_list|,
-name|Object
-argument_list|>
+argument_list|<>
 argument_list|()
 decl_stmt|;
 name|cmd
@@ -1349,7 +1363,7 @@ name|cmd
 operator|.
 name|put
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|,
 literal|"index asc"
 argument_list|)
@@ -1361,7 +1375,7 @@ name|cmd
 operator|.
 name|put
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|,
 name|sort
 argument_list|)

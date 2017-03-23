@@ -338,6 +338,24 @@ name|StreamFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|SORT
+import|;
+end_import
+
 begin_comment
 comment|/** *  Iterates over a TupleStream and Ranks the topN tuples based on a Comparator. **/
 end_comment
@@ -484,7 +502,7 @@ name|getNamedOperand
 argument_list|(
 name|expression
 argument_list|,
-literal|"sort"
+name|SORT
 argument_list|)
 decl_stmt|;
 comment|// validate expression contains only what we want.
@@ -946,7 +964,7 @@ argument_list|(
 operator|new
 name|StreamExpressionNamedParameter
 argument_list|(
-literal|"sort"
+name|SORT
 argument_list|,
 name|comp
 operator|.

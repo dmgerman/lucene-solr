@@ -386,6 +386,24 @@ name|LoggerFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|CommonParams
+operator|.
+name|DISTRIB
+import|;
+end_import
+
 begin_class
 DECL|class|SyncStrategy
 specifier|public
@@ -1579,7 +1597,7 @@ name|params
 operator|.
 name|set
 argument_list|(
-literal|"distrib"
+name|DISTRIB
 argument_list|,
 literal|false
 argument_list|)
