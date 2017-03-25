@@ -654,7 +654,7 @@ name|assertTrue
 argument_list|(
 name|field
 operator|instanceof
-name|SolrIndexSearcher
+name|SolrDocumentFetcher
 operator|.
 name|LargeLazyField
 argument_list|)
@@ -663,7 +663,7 @@ name|assertFalse
 argument_list|(
 operator|(
 operator|(
-name|SolrIndexSearcher
+name|SolrDocumentFetcher
 operator|.
 name|LargeLazyField
 operator|)
@@ -736,7 +736,7 @@ name|assertTrue
 argument_list|(
 name|field
 operator|instanceof
-name|SolrIndexSearcher
+name|SolrDocumentFetcher
 operator|.
 name|LargeLazyField
 argument_list|)
@@ -745,7 +745,7 @@ name|assertTrue
 argument_list|(
 operator|(
 operator|(
-name|SolrIndexSearcher
+name|SolrDocumentFetcher
 operator|.
 name|LargeLazyField
 operator|)

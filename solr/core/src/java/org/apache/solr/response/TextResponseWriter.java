@@ -966,7 +966,7 @@ name|doc
 init|=
 name|DocsStreamer
 operator|.
-name|getDoc
+name|convertLuceneDocToSolrDoc
 argument_list|(
 operator|(
 name|Document

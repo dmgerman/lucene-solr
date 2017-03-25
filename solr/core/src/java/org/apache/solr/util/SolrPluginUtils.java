@@ -1751,7 +1751,11 @@ condition|(
 operator|!
 name|searcher
 operator|.
-name|enableLazyFieldLoading
+name|getDocFetcher
+argument_list|()
+operator|.
+name|isLazyFieldLoadingEnabled
+argument_list|()
 condition|)
 block|{
 comment|// nothing to do
@@ -5199,7 +5203,7 @@ literal|true
 return|;
 block|}
 block|}
-comment|/**    * Convert a DocList to a SolrDocumentList    *    * The optional param "ids" is populated with the lucene document id    * for each SolrDocument.    *    * @param docs The {@link org.apache.solr.search.DocList} to convert    * @param searcher The {@link org.apache.solr.search.SolrIndexSearcher} to use to load the docs from the Lucene index    * @param fields The names of the Fields to load    * @param ids A map to store the ids of the docs    * @return The new {@link org.apache.solr.common.SolrDocumentList} containing all the loaded docs    * @throws java.io.IOException if there was a problem loading the docs    * @since solr 1.4    */
+comment|/**    * Convert a DocList to a SolrDocumentList    *    * The optional param "ids" is populated with the lucene document id    * for each SolrDocument.    *    * @param docs The {@link org.apache.solr.search.DocList} to convert    * @param searcher The {@link org.apache.solr.search.SolrIndexSearcher} to use to load the docs from the Lucene index    * @param fields The names of the Fields to load    * @param ids A map to store the ids of the docs    * @return The new {@link org.apache.solr.common.SolrDocumentList} containing all the loaded docs    * @throws java.io.IOException if there was a problem loading the docs    * @since solr 1.4    * @deprecated TODO in 7.0 remove this. It was inlined into ClusteringComponent. DWS: 'ids' is ugly.    */
 DECL|method|docListToSolrDocumentList
 specifier|public
 specifier|static
@@ -5229,6 +5233,7 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+comment|/*  DWS deprecation note:      It's only called by ClusteringComponent, and I think the "ids" param aspect is a bit messy and not worth supporting.      If someone wants a similar method they can speak up and we can add a method to SolrDocumentFetcher.      */
 name|IndexSchema
 name|schema
 init|=

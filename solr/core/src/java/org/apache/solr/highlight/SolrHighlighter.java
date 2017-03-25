@@ -346,6 +346,9 @@ operator|.
 name|getSearcher
 argument_list|()
 operator|.
+name|getDocFetcher
+argument_list|()
+operator|.
 name|getStoredHighlightFieldNames
 argument_list|()
 decl_stmt|;

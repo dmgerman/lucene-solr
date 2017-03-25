@@ -844,7 +844,7 @@ name|solrChildDoc
 init|=
 name|DocsStreamer
 operator|.
-name|getDoc
+name|convertLuceneDocToSolrDoc
 argument_list|(
 name|childDoc
 argument_list|,
