@@ -901,6 +901,26 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
+comment|// for testing missing _m, we need a partial facet within a partial facet
+name|doTestRefine
+argument_list|(
+literal|"{top:{type:terms, field:Afield, refine:true, limit:1, facet:{x : {type:terms, field:X, limit:1, refine:true} } } }"
+argument_list|,
+literal|"{top: {buckets:[{val:'A', count:2, x:{buckets:[{val:x1, count:5},{val:x2, count:3}]} } ] } }"
+argument_list|,
+literal|"{top: {buckets:[{val:'B', count:1, x:{buckets:[{val:x2, count:4},{val:x3, count:2}]} } ] } }"
+argument_list|,
+literal|null
+argument_list|,
+literal|"=={top: {"
+operator|+
+literal|"_m:[  ['A' , {x:{_l:[x1]}} ]  ]"
+operator|+
+literal|"    }  "
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -999,6 +1019,10 @@ literal|"cat_s"
 argument_list|,
 literal|"cat_s"
 argument_list|,
+literal|"xy_s"
+argument_list|,
+literal|"xy_s"
+argument_list|,
 literal|"num_d"
 argument_list|,
 literal|"num_d"
@@ -1012,6 +1036,16 @@ operator|.
 name|get
 argument_list|(
 literal|"cat_s"
+argument_list|)
+decl_stmt|;
+name|String
+name|xy_s
+init|=
+name|p
+operator|.
+name|get
+argument_list|(
+literal|"xy_s"
 argument_list|)
 decl_stmt|;
 name|String
@@ -1047,6 +1081,10 @@ name|cat_s
 argument_list|,
 literal|"A"
 argument_list|,
+name|xy_s
+argument_list|,
+literal|"X"
+argument_list|,
 name|num_d
 argument_list|,
 operator|-
@@ -1078,6 +1116,10 @@ name|cat_s
 argument_list|,
 literal|"B"
 argument_list|,
+name|xy_s
+argument_list|,
+literal|"Y"
+argument_list|,
 name|num_d
 argument_list|,
 literal|3
@@ -1106,6 +1148,10 @@ argument_list|,
 name|cat_s
 argument_list|,
 literal|"B"
+argument_list|,
+name|xy_s
+argument_list|,
+literal|"X"
 argument_list|,
 name|num_d
 argument_list|,
@@ -1138,6 +1184,10 @@ name|cat_s
 argument_list|,
 literal|"B"
 argument_list|,
+name|xy_s
+argument_list|,
+literal|"Y"
+argument_list|,
 name|num_d
 argument_list|,
 operator|-
@@ -1168,6 +1218,10 @@ name|cat_s
 argument_list|,
 literal|"A"
 argument_list|,
+name|xy_s
+argument_list|,
+literal|"X"
+argument_list|,
 name|num_d
 argument_list|,
 literal|7
@@ -1196,6 +1250,10 @@ argument_list|,
 name|cat_s
 argument_list|,
 literal|"A"
+argument_list|,
+name|xy_s
+argument_list|,
+literal|"X"
 argument_list|,
 name|num_d
 argument_list|,
@@ -1227,6 +1285,10 @@ name|cat_s
 argument_list|,
 literal|"A"
 argument_list|,
+name|xy_s
+argument_list|,
+literal|"Y"
+argument_list|,
 name|num_d
 argument_list|,
 operator|-
@@ -1256,6 +1318,10 @@ argument_list|,
 name|cat_s
 argument_list|,
 literal|"B"
+argument_list|,
+name|xy_s
+argument_list|,
+literal|"X"
 argument_list|,
 name|num_d
 argument_list|,
@@ -1407,6 +1473,83 @@ operator|+
 comment|// just like the previous response, just nested under a field facet
 literal|", sum1:2.0"
 operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test missing buckets (field facet within field facet)
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"ab:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true,  facet:{  xy:{type:terms, field:${xy_s}, limit:1, overrequest:0, refine:true   }  }}"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:8"
+operator|+
+literal|", ab:{ buckets:[  {val:A, count:4, xy:{buckets:[ {val:X,count:3}]}  }]  }"
+operator|+
+comment|// just like the previous response, just nested under a field facet
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test that sibling facets and stats are included for _m buckets, but skipped for _s buckets
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|" ab :{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true,  facet:{  xy:{type:terms, field:${xy_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
+operator|+
+literal|",ab2:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false, facet:{  xy:{type:terms, field:${xy_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
+operator|+
+comment|// top level refine=false shouldn't matter
+literal|",allf :{type:terms, field:all_s, limit:1, overrequest:0, refine:true,  facet:{cat:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
+operator|+
+literal|",allf2:{type:terms, field:all_s, limit:1, overrequest:0, refine:false, facet:{cat:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
+operator|+
+comment|// top level refine=false shouldn't matter
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:8"
+operator|+
+literal|", ab:{ buckets:[  {val:A, count:4, xy:{buckets:[ {val:X,count:3}]}    ,qq:{count:4}, ww:4.0 }]  }"
+operator|+
+comment|// make sure qq and ww are included for _m buckets
+literal|", allf:{ buckets:[ {count:8, val:all, cat:{buckets:[{val:A,count:4}]} ,qq:{count:8}, ww:2.0 }]  }"
+operator|+
+comment|// make sure qq and ww are excluded (not calculated again in another phase) for _s buckets
+literal|", ab2:{ buckets:[  {val:A, count:4, xy:{buckets:[ {val:X,count:3}]}    ,qq:{count:4}, ww:4.0 }]  }"
+operator|+
+comment|// make sure qq and ww are included for _m buckets
+literal|", allf2:{ buckets:[ {count:8, val:all, cat:{buckets:[{val:A,count:4}]} ,qq:{count:8}, ww:2.0 }]  }"
+operator|+
+comment|// make sure qq and ww are excluded (not calculated again in another phase) for _s buckets
 literal|"}"
 argument_list|)
 expr_stmt|;
