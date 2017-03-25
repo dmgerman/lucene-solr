@@ -15656,7 +15656,7 @@ name|t
 expr_stmt|;
 block|}
 block|}
-comment|// If any error occured, throw it.
+comment|// If any error occurred, throw it.
 if|if
 condition|(
 operator|!
