@@ -1463,6 +1463,9 @@ name|solrParams
 argument_list|,
 literal|false
 argument_list|)
+operator|.
+name|getSuccessful
+argument_list|()
 decl_stmt|;
 if|if
 condition|(

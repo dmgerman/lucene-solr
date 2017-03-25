@@ -4615,6 +4615,9 @@ name|solrParams
 argument_list|,
 literal|false
 argument_list|)
+operator|.
+name|getSuccessful
+argument_list|()
 expr_stmt|;
 comment|// this is required because this callable can race with HttpSolrCall#destroy
 comment|// which clears the request info.
