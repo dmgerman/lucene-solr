@@ -153,7 +153,7 @@ specifier|final
 name|String
 name|fieldDelimiter
 decl_stmt|;
-comment|/**    * Creates a dictionary based on an inputstream.    * Using {@link #DEFAULT_FIELD_DELIMITER} as the     * field seperator in a line.    *<p>    * NOTE: content is treated as UTF-8    */
+comment|/**    * Creates a dictionary based on an inputstream.    * Using {@link #DEFAULT_FIELD_DELIMITER} as the     * field separator in a line.    *<p>    * NOTE: content is treated as UTF-8    */
 DECL|method|FileDictionary
 specifier|public
 name|FileDictionary
@@ -170,7 +170,7 @@ name|DEFAULT_FIELD_DELIMITER
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a dictionary based on a reader.    * Using {@link #DEFAULT_FIELD_DELIMITER} as the     * field seperator in a line.    */
+comment|/**    * Creates a dictionary based on a reader.    * Using {@link #DEFAULT_FIELD_DELIMITER} as the     * field separator in a line.    */
 DECL|method|FileDictionary
 specifier|public
 name|FileDictionary
@@ -187,7 +187,7 @@ name|DEFAULT_FIELD_DELIMITER
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Creates a dictionary based on a reader.     * Using<code>fieldDelimiter</code> to seperate out the    * fields in a line.    */
+comment|/**    * Creates a dictionary based on a reader.     * Using<code>fieldDelimiter</code> to separate out the    * fields in a line.    */
 DECL|method|FileDictionary
 specifier|public
 name|FileDictionary
@@ -214,7 +214,7 @@ operator|=
 name|fieldDelimiter
 expr_stmt|;
 block|}
-comment|/**    * Creates a dictionary based on an inputstream.    * Using<code>fieldDelimiter</code> to seperate out the    * fields in a line.    *<p>    * NOTE: content is treated as UTF-8    */
+comment|/**    * Creates a dictionary based on an inputstream.    * Using<code>fieldDelimiter</code> to separate out the    * fields in a line.    *<p>    * NOTE: content is treated as UTF-8    */
 DECL|method|FileDictionary
 specifier|public
 name|FileDictionary

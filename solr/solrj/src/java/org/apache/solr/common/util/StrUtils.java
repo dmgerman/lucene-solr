@@ -1505,7 +1505,7 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|/**    * writes chars from item to out, backslash escaping as needed based on separator --     * but does not append the seperator itself    */
+comment|/**    * writes chars from item to out, backslash escaping as needed based on separator --     * but does not append the separator itself    */
 DECL|method|appendEscapedTextToBuilder
 specifier|public
 specifier|static

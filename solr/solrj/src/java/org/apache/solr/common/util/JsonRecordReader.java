@@ -2206,7 +2206,7 @@ return|;
 block|}
 block|}
 comment|// end of class Node
-comment|/**    * The path is split into segments using the '/' as a separator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but    * then reassemble things were the '/' appears within a quoted sub-string.    *<p>    * We have already enforced that the string must begin with a separator. This    * method depends heavily on how split behaves if the string starts with the    * seperator or if a sequence of multiple separators appear.    */
+comment|/**    * The path is split into segments using the '/' as a separator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but    * then reassemble things were the '/' appears within a quoted sub-string.    *<p>    * We have already enforced that the string must begin with a separator. This    * method depends heavily on how split behaves if the string starts with the    * separator or if a sequence of multiple separators appear.    */
 DECL|method|splitEscapeQuote
 specifier|private
 specifier|static

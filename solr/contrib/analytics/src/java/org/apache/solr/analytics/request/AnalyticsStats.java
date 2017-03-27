@@ -455,7 +455,7 @@ operator|.
 name|getTopFilter
 argument_list|()
 decl_stmt|;
-comment|// Computing each Analytics Request Seperately
+comment|// Computing each Analytics Request Separately
 for|for
 control|(
 name|AnalyticsRequest

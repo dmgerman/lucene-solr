@@ -2305,7 +2305,7 @@ block|}
 block|}
 else|else
 block|{
-comment|// add one or more comma seperated ids params
+comment|// add one or more comma separated ids params
 name|params
 operator|.
 name|add
@@ -5302,7 +5302,7 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-comment|/**    * Given an ordered list of values to include in a (key) param, randomly groups them (ie: comma seperated)     * into actual param key=values which are returned as a new SolrParams instance    */
+comment|/**    * Given an ordered list of values to include in a (key) param, randomly groups them (ie: comma separated)     * into actual param key=values which are returned as a new SolrParams instance    */
 DECL|method|buildCommaSepParams
 specifier|private
 specifier|static

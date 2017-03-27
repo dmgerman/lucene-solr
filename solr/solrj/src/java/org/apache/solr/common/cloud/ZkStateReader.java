@@ -5094,7 +5094,7 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"nodeName does not contain expected '_' seperator: "
+literal|"nodeName does not contain expected '_' separator: "
 operator|+
 name|nodeName
 argument_list|)

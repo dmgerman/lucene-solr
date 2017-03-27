@@ -136,7 +136,7 @@ name|fillChar
 init|=
 literal|' '
 decl_stmt|;
-comment|/** The seperator character. Defaults to , */
+comment|/** The separator character. Defaults to , */
 DECL|field|delimiter
 specifier|private
 name|char

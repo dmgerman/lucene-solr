@@ -452,7 +452,7 @@ argument_list|(
 name|xpath
 argument_list|)
 decl_stmt|;
-comment|// deal with how split behaves when seperator starts a string!
+comment|// deal with how split behaves when separator starts a string!
 if|if
 condition|(
 literal|""
@@ -2627,7 +2627,7 @@ return|;
 block|}
 block|}
 comment|// end of class Node
-comment|/**    * The Xpath is split into segments using the '/' as a seperator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but     * then reassemble things were the '/' appears within a quoted sub-string.    *    * We have already enforced that the string must begin with a seperator. This    * method depends heavily on how split behaves if the string starts with the    * seperator or if a sequence of multiple seperator's appear.     */
+comment|/**    * The Xpath is split into segments using the '/' as a separator. However    * this method deals with special cases where there is a slash '/' character    * inside the attribute value e.g. x/@html='text/html'. We split by '/' but     * then reassemble things were the '/' appears within a quoted sub-string.    *    * We have already enforced that the string must begin with a separator. This    * method depends heavily on how split behaves if the string starts with the    * separator or if a sequence of multiple separator's appear.     */
 DECL|method|splitEscapeQuote
 specifier|private
 specifier|static
@@ -2680,7 +2680,7 @@ name|i
 operator|++
 control|)
 block|{
-comment|// i=1: skip seperator at start of string
+comment|// i=1: skip separator at start of string
 name|StringBuilder
 name|sb
 init|=

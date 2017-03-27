@@ -341,7 +341,7 @@ argument_list|(
 name|lines
 argument_list|)
 expr_stmt|;
-name|guessFieldSeperator
+name|guessFieldSeparator
 argument_list|(
 name|lines
 argument_list|)
@@ -432,10 +432,10 @@ block|}
 block|}
 block|}
 block|}
-DECL|method|guessFieldSeperator
+DECL|method|guessFieldSeparator
 specifier|protected
 name|void
-name|guessFieldSeperator
+name|guessFieldSeparator
 parameter_list|(
 name|String
 index|[]
@@ -450,7 +450,7 @@ name|isFixedWidth
 argument_list|()
 condition|)
 block|{
-name|guessFixedWidthSeperator
+name|guessFixedWidthSeparator
 argument_list|(
 name|lines
 argument_list|)
@@ -475,10 +475,10 @@ operator|++
 control|)
 block|{         }
 block|}
-DECL|method|guessFixedWidthSeperator
+DECL|method|guessFixedWidthSeparator
 specifier|protected
 name|void
-name|guessFixedWidthSeperator
+name|guessFixedWidthSeparator
 parameter_list|(
 name|String
 index|[]
