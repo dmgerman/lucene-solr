@@ -7228,7 +7228,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * Gets a core by name and increase its refcount.    *    * @see SolrCore#close()    * @param name the core name    * @return the core if found, null if a SolrCore by this name does not exist    * @exception SolrException if a SolrCore with this name failed to be initialized    */
+comment|/**    * Gets a core by name and increase its refcount.    *    * @see SolrCore#close()    * @param name the core name    * @return the core if found, null if a SolrCore by this name does not exist    * @exception SolrCoreInitializationException if a SolrCore with this name failed to be initialized    */
 end_comment
 
 begin_function
@@ -7306,24 +7306,9 @@ condition|)
 block|{
 throw|throw
 operator|new
-name|SolrException
+name|SolrCoreInitializationException
 argument_list|(
-name|ErrorCode
-operator|.
-name|SERVER_ERROR
-argument_list|,
-literal|"SolrCore '"
-operator|+
 name|name
-operator|+
-literal|"' is not available due to init failure: "
-operator|+
-name|loadFailure
-operator|.
-name|exception
-operator|.
-name|getMessage
-argument_list|()
 argument_list|,
 name|loadFailure
 operator|.

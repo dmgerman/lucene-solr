@@ -968,6 +968,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|core
+operator|.
+name|SolrCoreInitializationException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|logging
 operator|.
 name|MDCLoggingContext
@@ -7120,6 +7134,26 @@ expr_stmt|;
 block|}
 block|}
 block|}
+block|}
+catch|catch
+parameter_list|(
+name|SolrCoreInitializationException
+name|ex
+parameter_list|)
+block|{
+comment|// The core had failed to initialize (in a previous request, not this one), hence nothing to do here.
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"The core '{}' had failed to initialize before."
+argument_list|,
+name|cd
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
 block|}
 name|ZkNodeProps
 name|m
