@@ -1841,11 +1841,7 @@ name|byte
 index|[]
 name|data
 init|=
-operator|new
-name|String
-argument_list|(
 literal|"getNode-data"
-argument_list|)
 operator|.
 name|getBytes
 argument_list|(
@@ -1929,11 +1925,7 @@ name|byte
 index|[]
 name|data
 init|=
-operator|new
-name|String
-argument_list|(
 literal|"getFileNode-data"
-argument_list|)
 operator|.
 name|getBytes
 argument_list|(

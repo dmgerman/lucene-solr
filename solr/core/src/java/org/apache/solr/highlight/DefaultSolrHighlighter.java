@@ -4475,7 +4475,6 @@ expr_stmt|;
 block|}
 else|else
 block|{
-comment|//note: seemingly redundant new String(...) releases memory to the larger text. But is copying better?
 name|altList
 operator|.
 name|add
@@ -4493,9 +4492,6 @@ name|encoder
 operator|.
 name|encodeText
 argument_list|(
-operator|new
-name|String
-argument_list|(
 name|altText
 operator|.
 name|substring
@@ -4505,7 +4501,6 @@ argument_list|,
 name|alternateFieldLen
 operator|-
 name|len
-argument_list|)
 argument_list|)
 argument_list|)
 else|:

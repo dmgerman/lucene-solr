@@ -80,15 +80,11 @@ name|sf
 argument_list|,
 name|termStr
 argument_list|,
-operator|new
-name|String
-argument_list|(
 name|Integer
 operator|.
 name|MAX_VALUE
 operator|+
 literal|""
-argument_list|)
 argument_list|,
 literal|true
 argument_list|,

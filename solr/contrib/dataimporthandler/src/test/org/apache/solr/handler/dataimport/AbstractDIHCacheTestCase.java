@@ -310,11 +310,7 @@ operator|=
 operator|new
 name|SerialClob
 argument_list|(
-operator|new
-name|String
-argument_list|(
 literal|"Apples grow on trees and they are good to eat."
-argument_list|)
 operator|.
 name|toCharArray
 argument_list|()

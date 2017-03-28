@@ -502,14 +502,11 @@ operator|.
 name|nextBoolean
 argument_list|()
 condition|?
-operator|new
-name|String
-argument_list|(
 literal|"answer"
-argument_list|)
 else|:
-operator|new
 name|Integer
+operator|.
+name|valueOf
 argument_list|(
 literal|42
 argument_list|)

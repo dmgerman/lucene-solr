@@ -62,11 +62,7 @@ name|char
 index|[]
 name|STRING_CHAR_ARRAY
 init|=
-operator|new
-name|String
-argument_list|(
 literal|"æª##ä¸²"
-argument_list|)
 operator|.
 name|toCharArray
 argument_list|()
@@ -79,11 +75,7 @@ name|char
 index|[]
 name|NUMBER_CHAR_ARRAY
 init|=
-operator|new
-name|String
-argument_list|(
 literal|"æª##æ°"
-argument_list|)
 operator|.
 name|toCharArray
 argument_list|()
@@ -96,11 +88,7 @@ name|char
 index|[]
 name|START_CHAR_ARRAY
 init|=
-operator|new
-name|String
-argument_list|(
 literal|"å§##å§"
-argument_list|)
 operator|.
 name|toCharArray
 argument_list|()
@@ -113,11 +101,7 @@ name|char
 index|[]
 name|END_CHAR_ARRAY
 init|=
-operator|new
-name|String
-argument_list|(
 literal|"æ«##æ«"
-argument_list|)
 operator|.
 name|toCharArray
 argument_list|()

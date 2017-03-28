@@ -76,11 +76,7 @@ name|assertTrue
 argument_list|(
 name|sizeOf
 argument_list|(
-operator|new
-name|String
-argument_list|(
 literal|"test string"
-argument_list|)
 argument_list|)
 operator|>
 name|shallowSizeOfInstance
@@ -182,23 +178,11 @@ operator|new
 name|String
 index|[]
 block|{
-operator|new
-name|String
-argument_list|(
 literal|"test string"
-argument_list|)
 block|,
-operator|new
-name|String
-argument_list|(
 literal|"hollow"
-argument_list|)
 block|,
-operator|new
-name|String
-argument_list|(
 literal|"catchmaster"
-argument_list|)
 block|}
 decl_stmt|;
 name|assertTrue

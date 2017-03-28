@@ -2159,11 +2159,7 @@ block|{
 name|String
 name|res
 init|=
-operator|new
-name|String
-argument_list|(
 name|curkey
-argument_list|)
 decl_stmt|;
 name|cur
 operator|=

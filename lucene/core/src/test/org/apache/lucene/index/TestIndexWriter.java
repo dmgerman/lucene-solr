@@ -7923,9 +7923,6 @@ condition|)
 block|{
 name|fail
 argument_list|(
-operator|new
-name|String
-argument_list|(
 name|t
 operator|.
 name|bytesLog
@@ -7933,7 +7930,6 @@ operator|.
 name|toString
 argument_list|(
 literal|"UTF-8"
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
