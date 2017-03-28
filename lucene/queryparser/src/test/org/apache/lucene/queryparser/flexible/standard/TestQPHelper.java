@@ -2283,6 +2283,7 @@ block|}
 comment|//individual CJK chars as terms, like StandardAnalyzer
 DECL|class|SimpleCJKTokenizer
 specifier|private
+specifier|static
 class|class
 name|SimpleCJKTokenizer
 extends|extends
@@ -2359,6 +2360,7 @@ block|}
 block|}
 DECL|class|SimpleCJKAnalyzer
 specifier|private
+specifier|static
 class|class
 name|SimpleCJKAnalyzer
 extends|extends
@@ -7759,6 +7761,7 @@ expr_stmt|;
 block|}
 DECL|class|CannedTokenizer
 specifier|private
+specifier|static
 class|class
 name|CannedTokenizer
 extends|extends
@@ -7957,6 +7960,7 @@ block|}
 block|}
 DECL|class|CannedAnalyzer
 specifier|private
+specifier|static
 class|class
 name|CannedAnalyzer
 extends|extends

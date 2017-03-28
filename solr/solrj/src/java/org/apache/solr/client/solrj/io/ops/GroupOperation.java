@@ -950,6 +950,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|ReverseComp
+specifier|static
 class|class
 name|ReverseComp
 implements|implements

@@ -1793,6 +1793,7 @@ block|}
 block|}
 DECL|class|TestTerminatedEarlySimpleCollector
 specifier|private
+specifier|static
 class|class
 name|TestTerminatedEarlySimpleCollector
 extends|extends
@@ -1846,6 +1847,7 @@ block|}
 block|}
 DECL|class|TestEarlyTerminatingSortingcollectorQueryTimeout
 specifier|private
+specifier|static
 class|class
 name|TestEarlyTerminatingSortingcollectorQueryTimeout
 implements|implements

@@ -2373,6 +2373,7 @@ literal|"I'm experiencing problems"
 decl_stmt|;
 DECL|class|CrashingFilter
 specifier|private
+specifier|static
 class|class
 name|CrashingFilter
 extends|extends

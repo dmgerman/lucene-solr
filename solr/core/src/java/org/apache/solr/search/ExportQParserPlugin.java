@@ -605,6 +605,7 @@ block|}
 block|}
 DECL|class|ExportCollector
 specifier|private
+specifier|static
 class|class
 name|ExportCollector
 extends|extends

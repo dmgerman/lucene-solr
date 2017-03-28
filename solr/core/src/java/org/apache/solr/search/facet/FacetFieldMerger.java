@@ -710,6 +710,7 @@ comment|// basically , only do at the top-level facet?
 block|}
 DECL|class|FacetNumBucketsMerger
 specifier|private
+specifier|static
 class|class
 name|FacetNumBucketsMerger
 extends|extends

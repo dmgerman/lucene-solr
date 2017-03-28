@@ -103,6 +103,7 @@ function_decl|;
 block|}
 DECL|class|NanoTimeTimerImpl
 specifier|private
+specifier|static
 class|class
 name|NanoTimeTimerImpl
 implements|implements

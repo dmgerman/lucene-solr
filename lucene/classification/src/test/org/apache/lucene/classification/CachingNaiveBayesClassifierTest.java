@@ -499,6 +499,7 @@ block|}
 block|}
 DECL|class|NGramAnalyzer
 specifier|private
+specifier|static
 class|class
 name|NGramAnalyzer
 extends|extends

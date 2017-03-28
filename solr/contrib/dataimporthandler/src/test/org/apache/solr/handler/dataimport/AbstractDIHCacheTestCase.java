@@ -670,6 +670,7 @@ block|}
 comment|//A limitation of this test class is that the primary key needs to be the first one in the list.
 comment|//DIHCaches, however, can handle any field being the primary key.
 DECL|class|ControlData
+specifier|static
 class|class
 name|ControlData
 implements|implements

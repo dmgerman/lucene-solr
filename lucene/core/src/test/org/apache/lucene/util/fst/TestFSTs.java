@@ -11036,6 +11036,7 @@ block|}
 block|}
 comment|// used by slowcompletor
 DECL|class|TwoLongs
+specifier|static
 class|class
 name|TwoLongs
 block|{

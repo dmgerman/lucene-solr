@@ -1520,6 +1520,7 @@ return|;
 block|}
 DECL|class|WFSTInputIterator
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|WFSTInputIterator

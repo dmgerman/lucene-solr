@@ -1051,6 +1051,7 @@ expr_stmt|;
 block|}
 DECL|class|CustomSearcher
 specifier|public
+specifier|static
 class|class
 name|CustomSearcher
 extends|extends
@@ -1256,6 +1257,7 @@ block|}
 block|}
 DECL|class|RandomGen
 specifier|private
+specifier|static
 class|class
 name|RandomGen
 block|{

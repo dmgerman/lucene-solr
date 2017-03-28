@@ -82,6 +82,7 @@ name|TestCase
 block|{
 comment|/**    * TestCSVParser.    */
 DECL|class|TestCSVParser
+specifier|static
 class|class
 name|TestCSVParser
 extends|extends

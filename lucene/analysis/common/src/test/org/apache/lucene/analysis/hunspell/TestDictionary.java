@@ -1254,6 +1254,7 @@ expr_stmt|;
 block|}
 DECL|class|CloseCheckInputStream
 specifier|private
+specifier|static
 class|class
 name|CloseCheckInputStream
 extends|extends

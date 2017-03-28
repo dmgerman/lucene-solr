@@ -379,6 +379,7 @@ block|{
 comment|// Used by test cases below
 DECL|class|IndexerThread
 specifier|private
+specifier|static
 class|class
 name|IndexerThread
 extends|extends

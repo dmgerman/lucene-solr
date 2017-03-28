@@ -475,6 +475,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|class|FieldData
+specifier|static
 class|class
 name|FieldData
 implements|implements
@@ -660,6 +661,7 @@ return|;
 block|}
 block|}
 DECL|class|PositionData
+specifier|static
 class|class
 name|PositionData
 block|{
@@ -698,6 +700,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|TermData
+specifier|static
 class|class
 name|TermData
 implements|implements
@@ -2032,6 +2035,7 @@ expr_stmt|;
 block|}
 DECL|class|Verify
 specifier|private
+specifier|static
 class|class
 name|Verify
 extends|extends

@@ -5731,6 +5731,7 @@ return|;
 block|}
 DECL|class|IndexContext
 specifier|private
+specifier|static
 class|class
 name|IndexContext
 block|{
@@ -5889,6 +5890,7 @@ block|}
 block|}
 DECL|class|GroupedFacetResult
 specifier|private
+specifier|static
 class|class
 name|GroupedFacetResult
 block|{

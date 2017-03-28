@@ -1192,6 +1192,7 @@ block|}
 block|}
 DECL|class|ContextCompletionWeight
 specifier|private
+specifier|static
 class|class
 name|ContextCompletionWeight
 extends|extends

@@ -1185,6 +1185,7 @@ return|;
 block|}
 DECL|class|QueueChangerThread
 specifier|private
+specifier|static
 class|class
 name|QueueChangerThread
 extends|extends

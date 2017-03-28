@@ -2942,6 +2942,7 @@ expr_stmt|;
 block|}
 DECL|class|InvokeSettersTestClass
 specifier|private
+specifier|static
 class|class
 name|InvokeSettersTestClass
 block|{

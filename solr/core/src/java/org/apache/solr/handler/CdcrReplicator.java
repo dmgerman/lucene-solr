@@ -1138,6 +1138,7 @@ block|}
 comment|/**    * Exception to catch update request issues with the target cluster.    */
 DECL|class|CdcrReplicatorException
 specifier|public
+specifier|static
 class|class
 name|CdcrReplicatorException
 extends|extends

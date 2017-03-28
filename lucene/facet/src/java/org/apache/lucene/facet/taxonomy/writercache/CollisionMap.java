@@ -885,6 +885,7 @@ return|;
 block|}
 DECL|class|EntryIterator
 specifier|private
+specifier|static
 class|class
 name|EntryIterator
 implements|implements

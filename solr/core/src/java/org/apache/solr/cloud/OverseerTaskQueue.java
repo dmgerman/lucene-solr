@@ -609,6 +609,7 @@ block|}
 comment|/**    * Watcher that blocks until a WatchedEvent occurs for a znode.    */
 DECL|class|LatchWatcher
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|LatchWatcher

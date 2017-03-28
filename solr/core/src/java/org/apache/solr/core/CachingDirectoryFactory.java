@@ -281,6 +281,7 @@ name|DirectoryFactory
 block|{
 DECL|class|CacheValue
 specifier|protected
+specifier|static
 class|class
 name|CacheValue
 block|{

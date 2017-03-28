@@ -1618,6 +1618,7 @@ block|}
 block|}
 DECL|class|GraphScorer
 specifier|private
+specifier|static
 class|class
 name|GraphScorer
 extends|extends

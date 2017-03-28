@@ -529,6 +529,7 @@ block|}
 comment|/**    * Overrides the call to exec bin/solr to start Solr nodes to start them using the Solr test-framework    * instead of the script, since the script depends on a full build.    */
 DECL|class|RunExampleExecutor
 specifier|private
+specifier|static
 class|class
 name|RunExampleExecutor
 extends|extends

@@ -1677,6 +1677,7 @@ expr_stmt|;
 block|}
 DECL|class|Info
 specifier|private
+specifier|static
 class|class
 name|Info
 block|{

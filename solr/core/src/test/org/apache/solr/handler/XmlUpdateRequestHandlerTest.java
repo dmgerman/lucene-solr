@@ -1053,6 +1053,7 @@ expr_stmt|;
 block|}
 DECL|class|MockUpdateRequestProcessor
 specifier|private
+specifier|static
 class|class
 name|MockUpdateRequestProcessor
 extends|extends

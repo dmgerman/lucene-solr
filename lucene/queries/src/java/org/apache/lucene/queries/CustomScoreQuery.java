@@ -1213,6 +1213,7 @@ comment|//=========================== S C O R E R ============================
 comment|/**    * A scorer that applies a (callback) function on scores of the subQuery.    */
 DECL|class|CustomScorer
 specifier|private
+specifier|static
 class|class
 name|CustomScorer
 extends|extends

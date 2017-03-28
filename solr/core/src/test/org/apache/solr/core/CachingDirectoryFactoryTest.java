@@ -255,6 +255,7 @@ literal|false
 decl_stmt|;
 DECL|class|Tracker
 specifier|private
+specifier|static
 class|class
 name|Tracker
 block|{

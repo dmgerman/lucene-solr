@@ -400,6 +400,7 @@ literal|3
 decl_stmt|;
 DECL|class|TestToken
 specifier|private
+specifier|static
 class|class
 name|TestToken
 implements|implements

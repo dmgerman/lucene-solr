@@ -1891,6 +1891,7 @@ comment|// Just intercepts all merges& verifies that we are never
 comment|// merging a segment with>= 20 (maxMergeDocs) docs
 DECL|class|MyMergeScheduler
 specifier|private
+specifier|static
 class|class
 name|MyMergeScheduler
 extends|extends

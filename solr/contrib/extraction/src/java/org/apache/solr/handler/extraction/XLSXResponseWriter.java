@@ -770,6 +770,7 @@ name|SolrQueryResponse
 name|rsp
 decl_stmt|;
 DECL|class|SerialWriteWorkbook
+specifier|static
 class|class
 name|SerialWriteWorkbook
 block|{

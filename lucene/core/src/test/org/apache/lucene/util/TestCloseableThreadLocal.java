@@ -134,6 +134,7 @@ expr_stmt|;
 block|}
 DECL|class|InitValueThreadLocal
 specifier|public
+specifier|static
 class|class
 name|InitValueThreadLocal
 extends|extends

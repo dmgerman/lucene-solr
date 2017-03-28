@@ -552,6 +552,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|class|TestLeaderElectionContext
+specifier|static
 class|class
 name|TestLeaderElectionContext
 extends|extends

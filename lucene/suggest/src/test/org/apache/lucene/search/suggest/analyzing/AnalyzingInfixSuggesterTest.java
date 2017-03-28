@@ -7578,6 +7578,7 @@ expr_stmt|;
 block|}
 DECL|class|IndexDocument
 specifier|private
+specifier|static
 class|class
 name|IndexDocument
 implements|implements

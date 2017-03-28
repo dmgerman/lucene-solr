@@ -889,6 +889,7 @@ block|}
 block|}
 DECL|class|BoostedComp
 specifier|public
+specifier|static
 class|class
 name|BoostedComp
 implements|implements

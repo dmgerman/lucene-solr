@@ -647,6 +647,7 @@ return|;
 block|}
 DECL|class|MockModel
 specifier|private
+specifier|static
 class|class
 name|MockModel
 extends|extends

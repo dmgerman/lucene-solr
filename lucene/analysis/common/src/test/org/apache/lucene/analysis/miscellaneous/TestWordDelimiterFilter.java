@@ -973,6 +973,7 @@ block|}
 comment|/*    * Set a large position increment gap of 10 if the token is "largegap" or "/"    */
 DECL|class|LargePosIncTokenFilter
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|LargePosIncTokenFilter

@@ -5077,6 +5077,7 @@ end_comment
 begin_class
 DECL|class|ExternalDependency
 specifier|private
+specifier|static
 class|class
 name|ExternalDependency
 implements|implements

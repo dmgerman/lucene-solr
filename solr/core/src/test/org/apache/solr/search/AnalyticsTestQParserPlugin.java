@@ -295,6 +295,7 @@ argument_list|)
 return|;
 block|}
 DECL|class|TestAnalyticsQueryParser
+specifier|static
 class|class
 name|TestAnalyticsQueryParser
 extends|extends
@@ -391,6 +392,7 @@ return|;
 block|}
 block|}
 DECL|class|TestAnalyticsQuery
+specifier|static
 class|class
 name|TestAnalyticsQuery
 extends|extends
@@ -448,6 +450,7 @@ return|;
 block|}
 block|}
 DECL|class|TestAnalyticsCollector
+specifier|static
 class|class
 name|TestAnalyticsCollector
 extends|extends
@@ -573,6 +576,7 @@ block|}
 block|}
 block|}
 DECL|class|TestAnalyticsMergeStrategy
+specifier|static
 class|class
 name|TestAnalyticsMergeStrategy
 implements|implements
@@ -722,6 +726,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|TestIterative
+specifier|static
 class|class
 name|TestIterative
 extends|extends

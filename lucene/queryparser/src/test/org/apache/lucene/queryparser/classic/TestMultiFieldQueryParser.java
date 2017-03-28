@@ -2416,6 +2416,7 @@ block|}
 comment|/** whitespace+lowercase analyzer with synonyms (dogs,dog) and (guinea pig,cavy) */
 DECL|class|MockSynonymAnalyzer
 specifier|private
+specifier|static
 class|class
 name|MockSynonymAnalyzer
 extends|extends

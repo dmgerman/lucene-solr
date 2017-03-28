@@ -3183,6 +3183,7 @@ block|}
 block|}
 DECL|class|Edge
 specifier|private
+specifier|static
 class|class
 name|Edge
 block|{

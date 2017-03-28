@@ -471,6 +471,7 @@ block|}
 comment|/**    * Iterate over byte refs in a file.    */
 comment|// TODO: this class is a bit silly ... sole purpose is to "remove" Closeable from what #iterator returns:
 DECL|class|ByteSequenceIterator
+specifier|static
 class|class
 name|ByteSequenceIterator
 implements|implements

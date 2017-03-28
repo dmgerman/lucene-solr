@@ -667,6 +667,7 @@ block|}
 decl_stmt|;
 DECL|class|RandomValueSource
 specifier|public
+specifier|static
 class|class
 name|RandomValueSource
 extends|extends

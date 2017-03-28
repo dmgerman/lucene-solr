@@ -1813,6 +1813,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|ModuloTokenFilter
+specifier|static
 class|class
 name|ModuloTokenFilter
 extends|extends
@@ -1900,6 +1901,7 @@ return|;
 block|}
 block|}
 DECL|class|ModuloSinkFilter
+specifier|static
 class|class
 name|ModuloSinkFilter
 extends|extends

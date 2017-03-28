@@ -1872,6 +1872,7 @@ return|;
 block|}
 DECL|class|FeatureInfo
 specifier|public
+specifier|static
 class|class
 name|FeatureInfo
 block|{

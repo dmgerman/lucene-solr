@@ -273,6 +273,7 @@ block|}
 comment|//================================================= Inner Classes ==================================================
 DECL|class|TokenInfo
 specifier|protected
+specifier|static
 class|class
 name|TokenInfo
 block|{

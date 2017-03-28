@@ -1752,6 +1752,7 @@ block|}
 block|}
 DECL|class|SolrInstance
 specifier|private
+specifier|static
 class|class
 name|SolrInstance
 block|{

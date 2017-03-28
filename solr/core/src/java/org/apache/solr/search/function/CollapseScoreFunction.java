@@ -179,6 +179,7 @@ return|;
 block|}
 DECL|class|CollapseScoreFunctionValues
 specifier|public
+specifier|static
 class|class
 name|CollapseScoreFunctionValues
 extends|extends

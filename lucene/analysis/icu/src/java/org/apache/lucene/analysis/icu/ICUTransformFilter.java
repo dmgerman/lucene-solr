@@ -347,6 +347,7 @@ block|}
 block|}
 comment|/**    * Wrap a {@link CharTermAttribute} with the Replaceable API.    */
 DECL|class|ReplaceableTermAttribute
+specifier|static
 specifier|final
 class|class
 name|ReplaceableTermAttribute

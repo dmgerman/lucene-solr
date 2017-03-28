@@ -675,6 +675,7 @@ block|}
 comment|/**    * Expands "multi" to "multi" and "multi2", both at the same position,    * and expands "triplemulti" to "triplemulti", "multi3", and "multi2".    */
 DECL|class|MultiAnalyzer
 specifier|private
+specifier|static
 class|class
 name|MultiAnalyzer
 extends|extends
@@ -721,6 +722,7 @@ block|}
 block|}
 DECL|class|TestFilter
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|TestFilter
@@ -1016,6 +1018,7 @@ block|}
 comment|/**    * Analyzes "the quick brown" as: quick(incr=2) brown(incr=1).    * Does not work correctly for input other than "the quick brown ...".    */
 DECL|class|PosIncrementAnalyzer
 specifier|private
+specifier|static
 class|class
 name|PosIncrementAnalyzer
 extends|extends
@@ -1062,6 +1065,7 @@ block|}
 block|}
 DECL|class|TestPosIncrementFilter
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|TestPosIncrementFilter

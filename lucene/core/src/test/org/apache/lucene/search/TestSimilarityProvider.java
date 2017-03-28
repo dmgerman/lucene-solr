@@ -649,6 +649,7 @@ expr_stmt|;
 block|}
 DECL|class|ExampleSimilarityProvider
 specifier|private
+specifier|static
 class|class
 name|ExampleSimilarityProvider
 extends|extends
@@ -707,6 +708,7 @@ block|}
 block|}
 DECL|class|Sim1
 specifier|private
+specifier|static
 class|class
 name|Sim1
 extends|extends
@@ -835,6 +837,7 @@ block|}
 block|}
 DECL|class|Sim2
 specifier|private
+specifier|static
 class|class
 name|Sim2
 extends|extends

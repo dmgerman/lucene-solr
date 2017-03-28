@@ -919,6 +919,7 @@ return|;
 block|}
 block|}
 DECL|class|NumericAcc
+specifier|static
 class|class
 name|NumericAcc
 extends|extends

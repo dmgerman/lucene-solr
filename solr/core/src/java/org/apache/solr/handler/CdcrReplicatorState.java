@@ -855,6 +855,7 @@ return|;
 block|}
 block|}
 DECL|class|BenchmarkTimer
+specifier|static
 class|class
 name|BenchmarkTimer
 block|{
@@ -1201,6 +1202,7 @@ block|}
 block|}
 DECL|class|ErrorQueueEntry
 specifier|private
+specifier|static
 class|class
 name|ErrorQueueEntry
 block|{
@@ -1241,6 +1243,7 @@ block|}
 block|}
 DECL|class|FixedQueue
 specifier|private
+specifier|static
 class|class
 name|FixedQueue
 parameter_list|<

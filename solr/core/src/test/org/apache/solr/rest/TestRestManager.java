@@ -308,6 +308,7 @@ block|{}
 block|}
 DECL|class|MockAnalysisComponent
 specifier|private
+specifier|static
 class|class
 name|MockAnalysisComponent
 implements|implements

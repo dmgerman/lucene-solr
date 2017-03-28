@@ -858,6 +858,7 @@ block|}
 block|}
 DECL|class|MockZkClientConnectionStrategy
 specifier|private
+specifier|static
 class|class
 name|MockZkClientConnectionStrategy
 extends|extends

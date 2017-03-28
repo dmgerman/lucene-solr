@@ -1787,6 +1787,7 @@ expr_stmt|;
 block|}
 DECL|class|LengthThenMaxFreqComparator
 specifier|private
+specifier|static
 class|class
 name|LengthThenMaxFreqComparator
 implements|implements
@@ -1866,6 +1867,7 @@ block|}
 block|}
 DECL|class|LengthThenSumFreqComparator
 specifier|private
+specifier|static
 class|class
 name|LengthThenSumFreqComparator
 implements|implements
@@ -1945,6 +1947,7 @@ block|}
 block|}
 DECL|class|CombinationsThenFreqComparator
 specifier|private
+specifier|static
 class|class
 name|CombinationsThenFreqComparator
 implements|implements
@@ -2032,6 +2035,7 @@ block|}
 block|}
 DECL|class|SuggestWordArrayWrapper
 specifier|private
+specifier|static
 class|class
 name|SuggestWordArrayWrapper
 block|{
@@ -2119,6 +2123,7 @@ block|}
 block|}
 DECL|class|CombineSuggestionWrapper
 specifier|private
+specifier|static
 class|class
 name|CombineSuggestionWrapper
 block|{

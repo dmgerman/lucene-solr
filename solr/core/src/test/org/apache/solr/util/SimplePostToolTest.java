@@ -1470,12 +1470,6 @@ block|{
 name|PageFetcherResult
 name|res
 init|=
-operator|(
-operator|new
-name|SimplePostTool
-argument_list|()
-operator|)
-operator|.
 operator|new
 name|PageFetcherResult
 argument_list|()

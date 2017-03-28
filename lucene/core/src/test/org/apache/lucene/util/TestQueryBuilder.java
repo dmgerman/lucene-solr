@@ -2276,6 +2276,7 @@ block|}
 block|}
 DECL|class|SimpleCJKAnalyzer
 specifier|private
+specifier|static
 class|class
 name|SimpleCJKAnalyzer
 extends|extends

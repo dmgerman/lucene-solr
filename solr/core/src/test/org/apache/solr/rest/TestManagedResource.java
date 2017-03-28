@@ -289,6 +289,7 @@ block|{
 comment|/**    * Mock class that acts like an analysis component that depends on    * data managed by a ManagedResource    */
 DECL|class|MockAnalysisComponent
 specifier|private
+specifier|static
 class|class
 name|MockAnalysisComponent
 implements|implements
@@ -653,6 +654,7 @@ block|}
 comment|/**    * Implements a Java serialization based storage format.    */
 DECL|class|SerializableStorage
 specifier|private
+specifier|static
 class|class
 name|SerializableStorage
 extends|extends

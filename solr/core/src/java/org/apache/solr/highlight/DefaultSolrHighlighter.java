@@ -4586,6 +4586,7 @@ block|}
 comment|// Wraps FVH to allow pass-by-reference. Public access to allow use in 3rd party subclasses
 DECL|class|FvhContainer
 specifier|public
+specifier|static
 class|class
 name|FvhContainer
 block|{

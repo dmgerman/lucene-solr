@@ -945,6 +945,7 @@ argument_list|)
 return|;
 block|}
 DECL|class|CurrentLevel
+specifier|static
 class|class
 name|CurrentLevel
 block|{

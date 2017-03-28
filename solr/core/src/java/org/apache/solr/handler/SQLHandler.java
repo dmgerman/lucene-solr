@@ -938,6 +938,7 @@ block|}
 comment|/*    * Only necessary for SolrJ JDBC driver since metadata has to be passed back    */
 DECL|class|SqlHandlerStream
 specifier|private
+specifier|static
 class|class
 name|SqlHandlerStream
 extends|extends

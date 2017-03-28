@@ -1306,6 +1306,7 @@ block|}
 block|}
 DECL|class|SolrZkClientFactoryUsingCompletelyNewProviders
 specifier|private
+specifier|static
 class|class
 name|SolrZkClientFactoryUsingCompletelyNewProviders
 block|{
@@ -1571,6 +1572,7 @@ block|}
 block|}
 DECL|class|SolrZkClientUsingVMParamsProvidersButWithDifferentVMParamsNames
 specifier|private
+specifier|static
 class|class
 name|SolrZkClientUsingVMParamsProvidersButWithDifferentVMParamsNames
 extends|extends

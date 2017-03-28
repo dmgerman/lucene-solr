@@ -963,6 +963,7 @@ block|}
 comment|/** Sorts {@link PivotFacetValue} instances by their count */
 DECL|class|PivotFacetCountComparator
 specifier|public
+specifier|static
 class|class
 name|PivotFacetCountComparator
 implements|implements
@@ -1023,6 +1024,7 @@ block|}
 comment|/** Sorts {@link PivotFacetValue} instances by their value */
 DECL|class|PivotFacetValueComparator
 specifier|public
+specifier|static
 class|class
 name|PivotFacetValueComparator
 implements|implements

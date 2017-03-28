@@ -10077,6 +10077,7 @@ block|}
 block|}
 DECL|class|DirectoryFile
 specifier|private
+specifier|static
 class|class
 name|DirectoryFile
 implements|implements
@@ -10273,6 +10274,7 @@ block|}
 block|}
 DECL|class|LocalFsFile
 specifier|private
+specifier|static
 class|class
 name|LocalFsFile
 implements|implements

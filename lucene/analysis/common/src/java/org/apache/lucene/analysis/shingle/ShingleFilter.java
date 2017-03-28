@@ -1867,6 +1867,7 @@ block|}
 block|}
 DECL|class|InputWindowToken
 specifier|private
+specifier|static
 class|class
 name|InputWindowToken
 block|{

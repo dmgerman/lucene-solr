@@ -9874,6 +9874,7 @@ literal|false
 return|;
 block|}
 DECL|class|MultilanguageQueryParser
+specifier|static
 class|class
 name|MultilanguageQueryParser
 extends|extends
@@ -10009,6 +10010,7 @@ block|}
 block|}
 block|}
 DECL|class|FuzzyDismaxQParser
+specifier|static
 class|class
 name|FuzzyDismaxQParser
 extends|extends

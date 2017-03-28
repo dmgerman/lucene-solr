@@ -1106,6 +1106,7 @@ block|}
 block|}
 DECL|class|Collation
 specifier|public
+specifier|static
 class|class
 name|Collation
 block|{
@@ -1225,6 +1226,7 @@ block|}
 block|}
 DECL|class|Correction
 specifier|public
+specifier|static
 class|class
 name|Correction
 block|{

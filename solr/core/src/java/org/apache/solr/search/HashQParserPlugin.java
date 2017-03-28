@@ -439,6 +439,7 @@ return|;
 block|}
 DECL|class|HashQParser
 specifier|private
+specifier|static
 class|class
 name|HashQParser
 extends|extends
@@ -539,6 +540,7 @@ block|}
 block|}
 DECL|class|HashQuery
 specifier|private
+specifier|static
 class|class
 name|HashQuery
 extends|extends
@@ -869,6 +871,7 @@ return|;
 block|}
 DECL|class|BitsFilter
 specifier|public
+specifier|static
 class|class
 name|BitsFilter
 extends|extends
@@ -1017,6 +1020,7 @@ return|;
 block|}
 block|}
 DECL|class|SegmentPartitioner
+specifier|static
 class|class
 name|SegmentPartitioner
 implements|implements
@@ -1476,6 +1480,7 @@ block|}
 block|}
 DECL|class|HashCollector
 specifier|private
+specifier|static
 class|class
 name|HashCollector
 extends|extends
@@ -1654,6 +1659,7 @@ function_decl|;
 block|}
 DECL|class|BytesHash
 specifier|private
+specifier|static
 class|class
 name|BytesHash
 implements|implements
@@ -1817,6 +1823,7 @@ block|}
 block|}
 DECL|class|NumericHash
 specifier|private
+specifier|static
 class|class
 name|NumericHash
 implements|implements
@@ -1944,6 +1951,7 @@ block|}
 block|}
 DECL|class|ZeroHash
 specifier|private
+specifier|static
 class|class
 name|ZeroHash
 implements|implements
@@ -1974,6 +1982,7 @@ block|{      }
 block|}
 DECL|class|CompositeHash
 specifier|private
+specifier|static
 class|class
 name|CompositeHash
 implements|implements

@@ -601,6 +601,7 @@ return|;
 block|}
 comment|/**    * Simple similarity that encodes maxTermFrequency directly as a byte    */
 DECL|class|TestSimilarity
+specifier|static
 class|class
 name|TestSimilarity
 extends|extends

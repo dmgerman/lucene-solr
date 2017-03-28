@@ -575,6 +575,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|FailureRecordingConcurrentUpdateSolrClient
+specifier|static
 class|class
 name|FailureRecordingConcurrentUpdateSolrClient
 extends|extends

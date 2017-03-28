@@ -3938,6 +3938,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|class|PayloadAnalyzer
+specifier|static
 specifier|final
 class|class
 name|PayloadAnalyzer
@@ -3984,6 +3985,7 @@ return|;
 block|}
 block|}
 DECL|class|PayloadFilter
+specifier|static
 specifier|final
 class|class
 name|PayloadFilter
@@ -4225,6 +4227,7 @@ block|}
 block|}
 DECL|class|TestPayloadAnalyzer
 specifier|public
+specifier|static
 specifier|final
 class|class
 name|TestPayloadAnalyzer

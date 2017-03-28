@@ -310,6 +310,7 @@ expr_stmt|;
 block|}
 DECL|class|WordTokenFilter
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|WordTokenFilter

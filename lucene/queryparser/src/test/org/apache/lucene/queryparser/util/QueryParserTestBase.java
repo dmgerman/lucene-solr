@@ -1531,6 +1531,7 @@ block|}
 block|}
 DECL|class|SimpleCJKAnalyzer
 specifier|private
+specifier|static
 class|class
 name|SimpleCJKAnalyzer
 extends|extends
@@ -6819,6 +6820,7 @@ block|}
 comment|/** whitespace+lowercase analyzer with synonyms */
 DECL|class|Analyzer1
 specifier|protected
+specifier|static
 class|class
 name|Analyzer1
 extends|extends
@@ -6875,6 +6877,7 @@ block|}
 comment|/** whitespace+lowercase analyzer without synonyms */
 DECL|class|Analyzer2
 specifier|protected
+specifier|static
 class|class
 name|Analyzer2
 extends|extends
@@ -6929,6 +6932,7 @@ function_decl|;
 comment|/**    * Mock collation analyzer: indexes terms as "collated" + term    */
 DECL|class|MockCollationFilter
 specifier|private
+specifier|static
 class|class
 name|MockCollationFilter
 extends|extends
@@ -7016,6 +7020,7 @@ block|}
 block|}
 DECL|class|MockCollationAnalyzer
 specifier|private
+specifier|static
 class|class
 name|MockCollationAnalyzer
 extends|extends

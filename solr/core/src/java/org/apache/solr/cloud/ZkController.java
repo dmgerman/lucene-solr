@@ -1902,6 +1902,7 @@ block|}
 comment|// notifies registered listeners after the ZK reconnect in the background
 DECL|class|OnReconnectNotifyAsync
 specifier|private
+specifier|static
 class|class
 name|OnReconnectNotifyAsync
 implements|implements

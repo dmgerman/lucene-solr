@@ -177,6 +177,7 @@ block|{
 comment|/**    * An inner class of Ternary Search Trie that represents a node in the trie.    */
 DECL|class|TSTNode
 specifier|protected
+specifier|static
 specifier|final
 class|class
 name|TSTNode

@@ -1590,6 +1590,7 @@ name|VERSION_START
 decl_stmt|;
 DECL|class|MemoryFieldsConsumer
 specifier|private
+specifier|static
 class|class
 name|MemoryFieldsConsumer
 extends|extends

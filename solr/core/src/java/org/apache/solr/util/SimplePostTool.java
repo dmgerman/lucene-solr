@@ -6130,6 +6130,7 @@ return|;
 block|}
 comment|/**    * Inner class to filter files based on glob wildcards    */
 DECL|class|GlobFileFilter
+specifier|static
 class|class
 name|GlobFileFilter
 implements|implements
@@ -7264,6 +7265,7 @@ block|}
 comment|/**    * Utility class to hold the result form a page fetch    */
 DECL|class|PageFetcherResult
 specifier|public
+specifier|static
 class|class
 name|PageFetcherResult
 block|{

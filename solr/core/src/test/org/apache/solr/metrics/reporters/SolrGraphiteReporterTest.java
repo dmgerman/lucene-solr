@@ -541,6 +541,7 @@ block|}
 block|}
 DECL|class|MockGraphite
 specifier|private
+specifier|static
 class|class
 name|MockGraphite
 extends|extends

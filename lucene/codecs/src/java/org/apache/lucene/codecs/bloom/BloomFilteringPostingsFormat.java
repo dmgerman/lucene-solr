@@ -972,6 +972,7 @@ argument_list|()
 return|;
 block|}
 DECL|class|BloomFilteredTerms
+specifier|static
 class|class
 name|BloomFilteredTerms
 extends|extends
@@ -1223,6 +1224,7 @@ return|;
 block|}
 block|}
 DECL|class|BloomFilteredTermsEnum
+specifier|static
 specifier|final
 class|class
 name|BloomFilteredTermsEnum

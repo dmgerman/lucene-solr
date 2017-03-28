@@ -2373,6 +2373,7 @@ block|}
 block|}
 DECL|class|FieldExistsException
 specifier|public
+specifier|static
 class|class
 name|FieldExistsException
 extends|extends
@@ -2400,6 +2401,7 @@ block|}
 block|}
 DECL|class|SchemaChangedInZkException
 specifier|public
+specifier|static
 class|class
 name|SchemaChangedInZkException
 extends|extends

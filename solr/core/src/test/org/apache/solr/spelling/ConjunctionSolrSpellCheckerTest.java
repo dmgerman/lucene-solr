@@ -223,6 +223,7 @@ comment|// correct behavior
 block|}
 block|}
 DECL|class|MockSolrSpellChecker
+specifier|static
 class|class
 name|MockSolrSpellChecker
 extends|extends

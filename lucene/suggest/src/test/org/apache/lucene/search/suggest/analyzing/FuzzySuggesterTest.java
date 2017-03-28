@@ -7936,6 +7936,7 @@ argument_list|()
 decl_stmt|;
 DECL|class|CompareByCostThenAlpha
 specifier|public
+specifier|static
 class|class
 name|CompareByCostThenAlpha
 implements|implements

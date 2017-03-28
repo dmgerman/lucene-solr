@@ -1406,6 +1406,7 @@ block|}
 decl_stmt|;
 DECL|class|DBQ
 specifier|public
+specifier|static
 class|class
 name|DBQ
 block|{

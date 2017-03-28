@@ -465,6 +465,7 @@ block|}
 comment|/** a stupid prefix query that just blasts thru the terms */
 DECL|class|DumbPrefixQuery
 specifier|private
+specifier|static
 class|class
 name|DumbPrefixQuery
 extends|extends
@@ -530,6 +531,7 @@ return|;
 block|}
 DECL|class|SimplePrefixTermsEnum
 specifier|private
+specifier|static
 class|class
 name|SimplePrefixTermsEnum
 extends|extends

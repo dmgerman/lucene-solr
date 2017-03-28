@@ -245,6 +245,7 @@ block|}
 comment|/** We return this as our {@link BulkScorer} so that if the CSQ    *  wraps a query with its own optimized top-level    *  scorer (e.g. BooleanScorer) we can use that    *  top-level scorer. */
 DECL|class|ConstantBulkScorer
 specifier|protected
+specifier|static
 class|class
 name|ConstantBulkScorer
 extends|extends

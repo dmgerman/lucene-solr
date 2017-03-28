@@ -2116,6 +2116,7 @@ expr_stmt|;
 block|}
 DECL|class|IndexThread
 specifier|public
+specifier|static
 class|class
 name|IndexThread
 extends|extends

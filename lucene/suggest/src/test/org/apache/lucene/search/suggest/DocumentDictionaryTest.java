@@ -3182,6 +3182,7 @@ return|;
 block|}
 DECL|class|Suggestion
 specifier|private
+specifier|static
 class|class
 name|Suggestion
 block|{

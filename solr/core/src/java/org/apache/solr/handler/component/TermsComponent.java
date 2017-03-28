@@ -2085,6 +2085,7 @@ return|;
 block|}
 DECL|class|TermsHelper
 specifier|public
+specifier|static
 class|class
 name|TermsHelper
 block|{

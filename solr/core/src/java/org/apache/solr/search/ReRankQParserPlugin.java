@@ -378,6 +378,7 @@ block|}
 block|}
 DECL|class|ReRankQueryRescorer
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|ReRankQueryRescorer

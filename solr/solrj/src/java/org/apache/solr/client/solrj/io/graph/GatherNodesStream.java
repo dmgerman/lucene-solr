@@ -3866,6 +3866,7 @@ literal|null
 return|;
 block|}
 DECL|class|NodeStream
+specifier|static
 class|class
 name|NodeStream
 extends|extends

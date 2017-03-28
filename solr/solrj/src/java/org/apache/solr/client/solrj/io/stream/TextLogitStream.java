@@ -3373,6 +3373,7 @@ return|;
 block|}
 DECL|class|TermsStream
 specifier|protected
+specifier|static
 class|class
 name|TermsStream
 extends|extends

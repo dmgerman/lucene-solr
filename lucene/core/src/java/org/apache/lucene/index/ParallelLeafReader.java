@@ -812,6 +812,7 @@ block|}
 comment|// Single instance of this, per ParallelReader instance
 DECL|class|ParallelFields
 specifier|private
+specifier|static
 specifier|final
 class|class
 name|ParallelFields

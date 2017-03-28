@@ -301,12 +301,14 @@ return|;
 block|}
 comment|/**    * Modified from {@link org.apache.solr.search.LuceneQParser} and {@link org.apache.solr.search.SurroundQParserPlugin.SurroundQParser}    */
 DECL|class|ComplexPhraseQParser
+specifier|static
 class|class
 name|ComplexPhraseQParser
 extends|extends
 name|QParser
 block|{
 DECL|class|SolrQueryParserDelegate
+specifier|static
 specifier|final
 class|class
 name|SolrQueryParserDelegate

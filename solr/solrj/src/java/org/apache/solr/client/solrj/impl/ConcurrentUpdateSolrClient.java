@@ -2392,6 +2392,7 @@ block|}
 block|}
 comment|/**    * Class representing an UpdateRequest and an optional collection.    */
 DECL|class|Update
+specifier|static
 class|class
 name|Update
 block|{

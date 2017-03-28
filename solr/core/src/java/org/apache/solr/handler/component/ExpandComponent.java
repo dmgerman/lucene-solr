@@ -3666,6 +3666,7 @@ expr_stmt|;
 block|}
 DECL|class|GroupExpandCollector
 specifier|private
+specifier|static
 class|class
 name|GroupExpandCollector
 implements|implements
@@ -4224,6 +4225,7 @@ block|}
 block|}
 DECL|class|NumericGroupExpandCollector
 specifier|private
+specifier|static
 class|class
 name|NumericGroupExpandCollector
 implements|implements
@@ -5018,6 +5020,7 @@ comment|// this reader alters the content of the given reader so it should not
 comment|// delegate the caching stuff
 DECL|class|ReaderWrapper
 specifier|private
+specifier|static
 class|class
 name|ReaderWrapper
 extends|extends

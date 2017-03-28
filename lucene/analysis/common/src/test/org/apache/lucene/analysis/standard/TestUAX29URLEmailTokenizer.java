@@ -785,6 +785,7 @@ block|}
 comment|/** Passes through tokens with type "<URL>" and blocks all other types. */
 DECL|class|URLFilter
 specifier|private
+specifier|static
 class|class
 name|URLFilter
 extends|extends
@@ -877,6 +878,7 @@ block|}
 comment|/** Passes through tokens with type "<EMAIL>" and blocks all other types. */
 DECL|class|EmailFilter
 specifier|private
+specifier|static
 class|class
 name|EmailFilter
 extends|extends

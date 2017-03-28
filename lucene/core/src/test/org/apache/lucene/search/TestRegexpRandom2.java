@@ -717,6 +717,7 @@ block|}
 comment|/** a stupid regexp query that just blasts thru the terms */
 DECL|class|DumbRegexpQuery
 specifier|private
+specifier|static
 class|class
 name|DumbRegexpQuery
 extends|extends

@@ -821,9 +821,7 @@ block|{
 name|TSTNode
 name|kid
 init|=
-name|trie
-operator|.
-expr|new
+operator|new
 name|TSTNode
 argument_list|(
 literal|'\0'
@@ -864,9 +862,7 @@ block|{
 name|TSTNode
 name|kid
 init|=
-name|trie
-operator|.
-expr|new
+operator|new
 name|TSTNode
 argument_list|(
 literal|'\0'
@@ -907,9 +903,7 @@ block|{
 name|TSTNode
 name|kid
 init|=
-name|trie
-operator|.
-expr|new
+operator|new
 name|TSTNode
 argument_list|(
 literal|'\0'
@@ -1201,9 +1195,7 @@ expr_stmt|;
 name|TSTNode
 name|root
 init|=
-name|trie
-operator|.
-expr|new
+operator|new
 name|TSTNode
 argument_list|(
 literal|'\0'

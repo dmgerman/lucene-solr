@@ -1535,6 +1535,7 @@ block|}
 block|}
 DECL|class|SearcherThread
 specifier|private
+specifier|static
 class|class
 name|SearcherThread
 extends|extends

@@ -1172,6 +1172,7 @@ block|}
 comment|/** Tests maintaining extensibility/visibility of {@link org.apache.lucene.search.uhighlight.FieldHighlighter} out of package. */
 DECL|class|CustomFieldHighlighter
 specifier|private
+specifier|static
 class|class
 name|CustomFieldHighlighter
 extends|extends

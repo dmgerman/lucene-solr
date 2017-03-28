@@ -1371,6 +1371,7 @@ literal|0
 return|;
 block|}
 DECL|class|ReverseComp
+specifier|static
 class|class
 name|ReverseComp
 implements|implements

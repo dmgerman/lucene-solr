@@ -2204,6 +2204,7 @@ block|}
 block|}
 DECL|class|ScoreComp
 specifier|private
+specifier|static
 class|class
 name|ScoreComp
 implements|implements

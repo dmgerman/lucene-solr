@@ -611,6 +611,7 @@ argument_list|)
 decl_stmt|;
 DECL|class|OverseerCollectionConfigSetProcessorToBeTested
 specifier|private
+specifier|static
 class|class
 name|OverseerCollectionConfigSetProcessorToBeTested
 extends|extends

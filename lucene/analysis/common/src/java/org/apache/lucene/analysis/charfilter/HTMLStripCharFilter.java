@@ -62143,6 +62143,7 @@ return|;
 block|}
 DECL|class|TextSegment
 specifier|private
+specifier|static
 class|class
 name|TextSegment
 extends|extends

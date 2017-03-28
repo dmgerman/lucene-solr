@@ -392,6 +392,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|MockLockFactory
+specifier|static
 class|class
 name|MockLockFactory
 extends|extends
@@ -458,6 +459,7 @@ return|;
 block|}
 DECL|class|MockLock
 specifier|public
+specifier|static
 class|class
 name|MockLock
 extends|extends

@@ -4580,6 +4580,7 @@ block|{
 comment|/** A simple container for storing alias info      */
 DECL|class|Alias
 specifier|protected
+specifier|static
 class|class
 name|Alias
 block|{
@@ -8057,6 +8058,7 @@ block|}
 comment|/**    * Simple container for configuration information used when parsing queries    */
 DECL|class|ExtendedDismaxConfiguration
 specifier|public
+specifier|static
 class|class
 name|ExtendedDismaxConfiguration
 block|{

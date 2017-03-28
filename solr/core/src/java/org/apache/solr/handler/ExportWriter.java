@@ -5820,6 +5820,7 @@ parameter_list|()
 function_decl|;
 block|}
 DECL|class|IntDesc
+specifier|static
 class|class
 name|IntDesc
 implements|implements
@@ -5882,6 +5883,7 @@ block|}
 block|}
 block|}
 DECL|class|IntAsc
+specifier|static
 class|class
 name|IntAsc
 implements|implements
@@ -6236,6 +6238,7 @@ parameter_list|()
 function_decl|;
 block|}
 DECL|class|LongDesc
+specifier|static
 class|class
 name|LongDesc
 implements|implements
@@ -6298,6 +6301,7 @@ block|}
 block|}
 block|}
 DECL|class|LongAsc
+specifier|static
 class|class
 name|LongAsc
 implements|implements
@@ -6661,6 +6665,7 @@ function_decl|;
 block|}
 DECL|class|FloatDesc
 specifier|public
+specifier|static
 class|class
 name|FloatDesc
 implements|implements
@@ -6725,6 +6730,7 @@ block|}
 block|}
 DECL|class|FloatAsc
 specifier|public
+specifier|static
 class|class
 name|FloatAsc
 implements|implements
@@ -7105,6 +7111,7 @@ function_decl|;
 block|}
 DECL|class|DoubleDesc
 specifier|public
+specifier|static
 class|class
 name|DoubleDesc
 implements|implements
@@ -7169,6 +7176,7 @@ block|}
 block|}
 DECL|class|DoubleAsc
 specifier|public
+specifier|static
 class|class
 name|DoubleAsc
 implements|implements
@@ -9439,6 +9447,7 @@ block|}
 block|}
 DECL|class|IgnoreException
 specifier|public
+specifier|static
 class|class
 name|IgnoreException
 extends|extends

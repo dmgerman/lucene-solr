@@ -9174,6 +9174,7 @@ block|}
 block|}
 DECL|class|FldType
 specifier|protected
+specifier|static
 class|class
 name|FldType
 block|{

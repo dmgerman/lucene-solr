@@ -4775,6 +4775,7 @@ return|;
 block|}
 block|}
 DECL|class|MailsSinceLastCheckFilter
+specifier|static
 class|class
 name|MailsSinceLastCheckFilter
 implements|implements

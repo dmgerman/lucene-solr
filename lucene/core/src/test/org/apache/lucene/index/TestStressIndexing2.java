@@ -4533,6 +4533,7 @@ expr_stmt|;
 block|}
 DECL|class|IndexingThread
 specifier|private
+specifier|static
 class|class
 name|IndexingThread
 extends|extends

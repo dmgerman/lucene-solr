@@ -780,6 +780,7 @@ expr_stmt|;
 block|}
 comment|// Rolls back to previous commit point
 DECL|class|RollbackDeletionPolicy
+specifier|static
 class|class
 name|RollbackDeletionPolicy
 extends|extends
@@ -932,6 +933,7 @@ block|}
 block|}
 block|}
 DECL|class|DeleteLastCommitPolicy
+specifier|static
 class|class
 name|DeleteLastCommitPolicy
 extends|extends
@@ -1070,6 +1072,7 @@ block|}
 block|}
 comment|// Keeps all commit points (used to build index)
 DECL|class|KeepAllDeletionPolicy
+specifier|static
 class|class
 name|KeepAllDeletionPolicy
 extends|extends

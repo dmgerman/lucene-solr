@@ -1855,6 +1855,7 @@ block|}
 block|}
 DECL|class|TestSpellChecker
 specifier|private
+specifier|static
 class|class
 name|TestSpellChecker
 extends|extends

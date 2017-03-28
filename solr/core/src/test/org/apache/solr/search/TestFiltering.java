@@ -1019,6 +1019,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|class|Model
+specifier|static
 class|class
 name|Model
 block|{

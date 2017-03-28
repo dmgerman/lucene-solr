@@ -927,6 +927,7 @@ argument_list|()
 decl_stmt|;
 DECL|class|Dependency
 specifier|private
+specifier|static
 class|class
 name|Dependency
 block|{

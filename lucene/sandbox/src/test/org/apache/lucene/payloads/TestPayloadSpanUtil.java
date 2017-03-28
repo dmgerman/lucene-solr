@@ -549,6 +549,7 @@ expr_stmt|;
 block|}
 DECL|class|PayloadAnalyzer
 specifier|final
+specifier|static
 class|class
 name|PayloadAnalyzer
 extends|extends
@@ -594,6 +595,7 @@ return|;
 block|}
 block|}
 DECL|class|PayloadFilter
+specifier|static
 specifier|final
 class|class
 name|PayloadFilter

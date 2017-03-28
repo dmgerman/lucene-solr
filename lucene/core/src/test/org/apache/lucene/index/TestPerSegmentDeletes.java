@@ -1060,6 +1060,7 @@ return|;
 block|}
 DECL|class|RangeMergePolicy
 specifier|public
+specifier|static
 class|class
 name|RangeMergePolicy
 extends|extends

@@ -1881,6 +1881,7 @@ throw|;
 block|}
 DECL|class|RankedSpellPossibility
 specifier|public
+specifier|static
 class|class
 name|RankedSpellPossibility
 block|{
@@ -2156,6 +2157,7 @@ block|}
 block|}
 DECL|class|StartOffsetComparator
 specifier|private
+specifier|static
 class|class
 name|StartOffsetComparator
 implements|implements
@@ -2199,6 +2201,7 @@ block|}
 block|}
 DECL|class|RankComparator
 specifier|private
+specifier|static
 class|class
 name|RankComparator
 implements|implements

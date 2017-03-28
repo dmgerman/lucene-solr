@@ -1243,6 +1243,7 @@ name|rsp
 return|;
 block|}
 DECL|class|SolrPingWithDistrib
+specifier|static
 class|class
 name|SolrPingWithDistrib
 extends|extends

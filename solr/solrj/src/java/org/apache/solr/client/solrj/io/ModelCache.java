@@ -551,6 +551,7 @@ block|}
 block|}
 DECL|class|Model
 specifier|private
+specifier|static
 class|class
 name|Model
 block|{
@@ -611,6 +612,7 @@ block|}
 block|}
 DECL|class|LRU
 specifier|private
+specifier|static
 class|class
 name|LRU
 extends|extends

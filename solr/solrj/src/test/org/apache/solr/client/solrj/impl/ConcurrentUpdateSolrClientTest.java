@@ -1487,6 +1487,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|SendDocsRunnable
+specifier|static
 class|class
 name|SendDocsRunnable
 implements|implements
@@ -1686,6 +1687,7 @@ block|}
 block|}
 block|}
 DECL|class|OutcomeCountingConcurrentUpdateSolrClient
+specifier|static
 class|class
 name|OutcomeCountingConcurrentUpdateSolrClient
 extends|extends

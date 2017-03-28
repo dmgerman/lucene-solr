@@ -965,6 +965,7 @@ expr_stmt|;
 block|}
 DECL|class|TestHit
 specifier|private
+specifier|static
 class|class
 name|TestHit
 block|{

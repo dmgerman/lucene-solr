@@ -290,6 +290,7 @@ name|LuceneTestCase
 block|{
 DECL|class|MyField
 specifier|private
+specifier|static
 class|class
 name|MyField
 implements|implements

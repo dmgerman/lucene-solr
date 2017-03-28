@@ -359,6 +359,7 @@ init|=
 literal|"normsTestByte"
 decl_stmt|;
 DECL|class|CustomNormEncodingSimilarity
+specifier|static
 class|class
 name|CustomNormEncodingSimilarity
 extends|extends

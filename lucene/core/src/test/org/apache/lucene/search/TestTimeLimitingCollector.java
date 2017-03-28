@@ -1731,6 +1731,7 @@ block|}
 comment|// counting collector that can slow down at collect().
 DECL|class|MyHitCollector
 specifier|private
+specifier|static
 class|class
 name|MyHitCollector
 extends|extends

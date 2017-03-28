@@ -707,6 +707,7 @@ argument_list|)
 return|;
 block|}
 DECL|class|TestRankQueryParser
+specifier|static
 class|class
 name|TestRankQueryParser
 extends|extends
@@ -785,6 +786,7 @@ return|;
 block|}
 block|}
 DECL|class|TestRankQuery
+specifier|static
 class|class
 name|TestRankQuery
 extends|extends
@@ -1023,6 +1025,7 @@ return|;
 block|}
 block|}
 DECL|class|TestMergeStrategy
+specifier|static
 class|class
 name|TestMergeStrategy
 implements|implements
@@ -1969,6 +1972,7 @@ block|}
 block|}
 block|}
 DECL|class|TestMergeStrategy1
+specifier|static
 class|class
 name|TestMergeStrategy1
 implements|implements
@@ -2725,6 +2729,7 @@ block|}
 block|}
 DECL|class|FakeScorer
 specifier|private
+specifier|static
 class|class
 name|FakeScorer
 extends|extends
@@ -4049,6 +4054,7 @@ return|;
 block|}
 block|}
 DECL|class|TestCollector
+specifier|static
 class|class
 name|TestCollector
 extends|extends
@@ -4391,6 +4397,7 @@ return|;
 block|}
 block|}
 DECL|class|TestCollector1
+specifier|static
 class|class
 name|TestCollector1
 extends|extends

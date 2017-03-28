@@ -2247,6 +2247,7 @@ block|}
 comment|// see: http://svn.apache.org/repos/asf/velocity/tools/branches/2.0.x/src/main/java/org/apache/velocity/tools/generic/ResourceTool.java
 DECL|class|SolrVelocityResourceTool
 specifier|private
+specifier|static
 class|class
 name|SolrVelocityResourceTool
 extends|extends

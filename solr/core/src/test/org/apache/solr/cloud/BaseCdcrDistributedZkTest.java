@@ -4766,6 +4766,7 @@ return|;
 block|}
 DECL|class|CollectionInfo
 specifier|protected
+specifier|static
 class|class
 name|CollectionInfo
 block|{
@@ -5066,6 +5067,7 @@ expr_stmt|;
 block|}
 DECL|class|CoreInfo
 specifier|public
+specifier|static
 class|class
 name|CoreInfo
 block|{

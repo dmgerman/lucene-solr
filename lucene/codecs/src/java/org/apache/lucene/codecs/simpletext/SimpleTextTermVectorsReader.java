@@ -1578,6 +1578,7 @@ return|;
 block|}
 DECL|class|SimpleTVFields
 specifier|private
+specifier|static
 class|class
 name|SimpleTVFields
 extends|extends

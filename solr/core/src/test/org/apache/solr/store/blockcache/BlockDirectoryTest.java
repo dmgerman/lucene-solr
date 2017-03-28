@@ -224,6 +224,7 @@ name|SolrTestCaseJ4
 block|{
 DECL|class|MapperCache
 specifier|private
+specifier|static
 class|class
 name|MapperCache
 implements|implements

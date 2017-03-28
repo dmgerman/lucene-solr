@@ -3296,6 +3296,7 @@ argument_list|)
 return|;
 block|}
 DECL|class|IntChanges
+specifier|static
 class|class
 name|IntChanges
 block|{

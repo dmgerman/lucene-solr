@@ -1081,6 +1081,7 @@ argument_list|)
 decl_stmt|;
 DECL|class|CollectionWatch
 specifier|private
+specifier|static
 class|class
 name|CollectionWatch
 block|{

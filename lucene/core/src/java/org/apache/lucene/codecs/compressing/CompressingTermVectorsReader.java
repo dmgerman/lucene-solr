@@ -5311,6 +5311,7 @@ block|}
 block|}
 DECL|class|TVTerms
 specifier|private
+specifier|static
 class|class
 name|TVTerms
 extends|extends

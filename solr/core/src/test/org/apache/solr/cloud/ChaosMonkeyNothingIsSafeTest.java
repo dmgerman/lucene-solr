@@ -2141,6 +2141,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|class|ErrorLoggingConcurrentUpdateSolrClient
+specifier|static
 class|class
 name|ErrorLoggingConcurrentUpdateSolrClient
 extends|extends

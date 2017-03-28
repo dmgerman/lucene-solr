@@ -2766,6 +2766,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|OverseerThread
+specifier|static
 class|class
 name|OverseerThread
 extends|extends

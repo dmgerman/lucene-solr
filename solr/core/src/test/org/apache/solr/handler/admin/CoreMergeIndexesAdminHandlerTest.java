@@ -303,6 +303,7 @@ name|MockFSDirectoryFactory
 block|{
 DECL|class|FailingDirectoryFactoryException
 specifier|public
+specifier|static
 class|class
 name|FailingDirectoryFactoryException
 extends|extends

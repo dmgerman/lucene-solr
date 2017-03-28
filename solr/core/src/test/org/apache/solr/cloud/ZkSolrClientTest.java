@@ -222,6 +222,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|class|ZkConnection
+specifier|static
 class|class
 name|ZkConnection
 implements|implements

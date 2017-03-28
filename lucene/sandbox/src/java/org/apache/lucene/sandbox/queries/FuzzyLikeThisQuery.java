@@ -665,6 +665,7 @@ name|maxNumTerms
 expr_stmt|;
 block|}
 DECL|class|FieldVals
+specifier|static
 class|class
 name|FieldVals
 block|{

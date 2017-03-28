@@ -479,6 +479,7 @@ block|}
 block|}
 DECL|class|TestStream
 specifier|private
+specifier|static
 class|class
 name|TestStream
 extends|extends
