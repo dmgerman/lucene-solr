@@ -2407,7 +2407,7 @@ literal|"                       'class':'solr.TextField',\n"
 operator|+
 literal|"                       'positionIncrementGap':'100',\n"
 operator|+
-literal|"                       'analyzer' : {\n"
+literal|"                       'indexAnalyzer' : {\n"
 operator|+
 literal|"                               'charFilters':[\n"
 operator|+
@@ -2429,7 +2429,57 @@ literal|"                               'filters':[\n"
 operator|+
 literal|"                                          {\n"
 operator|+
-literal|"                                           'class':'solr.WordDelimiterFilterFactory',\n"
+literal|"                                           'class':'solr.WordDelimiterGraphFilterFactory',\n"
+operator|+
+literal|"                                           'preserveOriginal':'0'\n"
+operator|+
+literal|"                                          },\n"
+operator|+
+literal|"                                          {\n"
+operator|+
+literal|"                                           'class':'solr.StopFilterFactory',\n"
+operator|+
+literal|"                                           'words':'stopwords.txt',\n"
+operator|+
+literal|"                                           'ignoreCase':'true'\n"
+operator|+
+literal|"                                          },\n"
+operator|+
+literal|"                                          {'class':'solr.LowerCaseFilterFactory'},\n"
+operator|+
+literal|"                                          {'class':'solr.ASCIIFoldingFilterFactory'},\n"
+operator|+
+literal|"                                          {'class':'solr.KStemFilterFactory'},\n"
+operator|+
+literal|"                                          {'class':'solr.FlattenGraphFilterFactory'}\n"
+operator|+
+literal|"                                         ]\n"
+operator|+
+literal|"                               },\n"
+operator|+
+literal|"                       'queryAnalyzer' : {\n"
+operator|+
+literal|"                               'charFilters':[\n"
+operator|+
+literal|"                                          {\n"
+operator|+
+literal|"                                           'class':'solr.PatternReplaceCharFilterFactory',\n"
+operator|+
+literal|"                                           'replacement':'$1$1',\n"
+operator|+
+literal|"                                           'pattern':'([a-zA-Z])\\\\\\\\1+'\n"
+operator|+
+literal|"                                          }\n"
+operator|+
+literal|"                                         ],\n"
+operator|+
+literal|"                               'tokenizer':{'class':'solr.WhitespaceTokenizerFactory'},\n"
+operator|+
+literal|"                               'filters':[\n"
+operator|+
+literal|"                                          {\n"
+operator|+
+literal|"                                           'class':'solr.WordDelimiterGraphFilterFactory',\n"
 operator|+
 literal|"                                           'preserveOriginal':'0'\n"
 operator|+

@@ -4016,7 +4016,7 @@ name|put
 argument_list|(
 literal|"class"
 argument_list|,
-literal|"solr.WordDelimiterFilterFactory"
+literal|"solr.WordDelimiterGraphFilterFactory"
 argument_list|)
 expr_stmt|;
 name|filterAttributes

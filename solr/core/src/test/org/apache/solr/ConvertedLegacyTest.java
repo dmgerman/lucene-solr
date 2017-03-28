@@ -2952,7 +2952,7 @@ argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|)
 expr_stmt|;
-comment|// intra-word delimiter testing (WordDelimiterFilter)
+comment|// intra-word delimiter testing (WordDelimiterGraphFilter)
 name|assertU
 argument_list|(
 literal|"<add><doc><field name=\"id\">42</field><field name=\"subword\">foo bar</field></doc></add>"

@@ -5412,10 +5412,10 @@ expr_stmt|;
 block|}
 annotation|@
 name|Test
-DECL|method|testPositionHistoryWithWDF
+DECL|method|testPositionHistoryWithWDGF
 specifier|public
 name|void
-name|testPositionHistoryWithWDF
+name|testPositionHistoryWithWDGF
 parameter_list|()
 throws|throws
 name|Exception
@@ -5730,12 +5730,12 @@ name|indexPart
 operator|.
 name|get
 argument_list|(
-literal|"org.apache.lucene.analysis.miscellaneous.WordDelimiterFilter"
+literal|"org.apache.lucene.analysis.miscellaneous.WordDelimiterGraphFilter"
 argument_list|)
 expr_stmt|;
 name|assertNotNull
 argument_list|(
-literal|"Expcting WordDelimiterFilter analysis breakdown"
+literal|"Expcting WordDelimiterGraphFilter analysis breakdown"
 argument_list|,
 name|tokenList
 argument_list|)
@@ -5801,7 +5801,7 @@ argument_list|,
 operator|new
 name|TokenInfo
 argument_list|(
-literal|"3456"
+literal|"345612"
 argument_list|,
 literal|null
 argument_list|,
@@ -5809,7 +5809,7 @@ literal|"word"
 argument_list|,
 literal|4
 argument_list|,
-literal|8
+literal|11
 argument_list|,
 literal|2
 argument_list|,
@@ -5840,7 +5840,7 @@ argument_list|,
 operator|new
 name|TokenInfo
 argument_list|(
-literal|"345612"
+literal|"3456"
 argument_list|,
 literal|null
 argument_list|,
@@ -5848,7 +5848,7 @@ literal|"word"
 argument_list|,
 literal|4
 argument_list|,
-literal|11
+literal|8
 argument_list|,
 literal|2
 argument_list|,
@@ -6063,7 +6063,7 @@ argument_list|,
 operator|new
 name|TokenInfo
 argument_list|(
-literal|"3456"
+literal|"345612"
 argument_list|,
 literal|null
 argument_list|,
@@ -6071,7 +6071,7 @@ literal|"word"
 argument_list|,
 literal|4
 argument_list|,
-literal|8
+literal|11
 argument_list|,
 literal|2
 argument_list|,
@@ -6104,7 +6104,7 @@ argument_list|,
 operator|new
 name|TokenInfo
 argument_list|(
-literal|"345612"
+literal|"3456"
 argument_list|,
 literal|null
 argument_list|,
@@ -6112,7 +6112,7 @@ literal|"word"
 argument_list|,
 literal|4
 argument_list|,
-literal|11
+literal|8
 argument_list|,
 literal|2
 argument_list|,
