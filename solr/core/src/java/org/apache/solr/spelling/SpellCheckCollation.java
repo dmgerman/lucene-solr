@@ -80,14 +80,12 @@ block|{
 name|int
 name|c
 init|=
-operator|new
 name|Integer
+operator|.
+name|compare
 argument_list|(
 name|internalRank
-argument_list|)
-operator|.
-name|compareTo
-argument_list|(
+argument_list|,
 name|scc
 operator|.
 name|internalRank

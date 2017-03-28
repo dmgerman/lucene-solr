@@ -464,7 +464,7 @@ block|{
 return|return
 name|Integer
 operator|.
-name|valueOf
+name|compare
 argument_list|(
 name|m1
 operator|.
@@ -472,10 +472,7 @@ name|getImplementationDistance
 argument_list|(
 name|clazz
 argument_list|)
-argument_list|)
-operator|.
-name|compareTo
-argument_list|(
+argument_list|,
 name|m2
 operator|.
 name|getImplementationDistance
