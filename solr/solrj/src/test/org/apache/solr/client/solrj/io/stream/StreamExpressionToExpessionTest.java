@@ -1056,7 +1056,7 @@ name|expressionString
 operator|.
 name|contains
 argument_list|(
-literal|"avg(a_i)"
+literal|"avg(a_i,false)"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1661,7 +1661,7 @@ name|expressionString
 operator|.
 name|contains
 argument_list|(
-literal|"avg(a_i)"
+literal|"avg(a_i,false)"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1671,7 +1671,7 @@ name|expressionString
 operator|.
 name|contains
 argument_list|(
-literal|"avg(a_f)"
+literal|"avg(a_f,false)"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2457,7 +2457,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"avg(foo)"
+literal|"avg(foo,false)"
 argument_list|,
 name|expressionString
 argument_list|)

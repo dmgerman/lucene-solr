@@ -241,6 +241,9 @@ name|key
 parameter_list|,
 name|String
 name|val
+parameter_list|,
+name|boolean
+name|overwrite
 parameter_list|)
 block|{
 if|if
@@ -248,7 +251,12 @@ condition|(
 name|key
 operator|!=
 literal|null
-operator|&&
+condition|)
+block|{
+if|if
+condition|(
+name|overwrite
+operator|||
 operator|!
 name|fieldMappings
 operator|.
@@ -269,6 +277,7 @@ argument_list|,
 name|val
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|addReverseAggMapping
@@ -487,6 +496,8 @@ argument_list|(
 name|outName
 argument_list|,
 name|metricIdentifier
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 block|}

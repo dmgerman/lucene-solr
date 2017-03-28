@@ -181,6 +181,12 @@ specifier|private
 name|String
 name|identifier
 decl_stmt|;
+DECL|field|outputLong
+specifier|public
+name|boolean
+name|outputLong
+decl_stmt|;
+comment|// This is only used for SQL in facet mode.
 DECL|method|getFunctionName
 specifier|public
 name|String

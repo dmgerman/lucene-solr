@@ -702,6 +702,12 @@ argument_list|)
 expr_stmt|;
 break|break;
 case|case
+literal|"tint"
+case|:
+case|case
+literal|"tlong"
+case|:
+case|case
 literal|"int"
 case|:
 case|case
@@ -719,6 +725,12 @@ name|class
 argument_list|)
 expr_stmt|;
 break|break;
+case|case
+literal|"tfloat"
+case|:
+case|case
+literal|"tdouble"
+case|:
 case|case
 literal|"float"
 case|:
