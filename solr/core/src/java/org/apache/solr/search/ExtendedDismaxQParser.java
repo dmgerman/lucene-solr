@@ -1620,17 +1620,6 @@ block|}
 block|}
 catch|catch
 parameter_list|(
-name|QueryParserConfigurationException
-name|e
-parameter_list|)
-block|{
-throw|throw
-name|e
-throw|;
-comment|// Don't ignore configuration exceptions
-block|}
-catch|catch
-parameter_list|(
 name|Exception
 name|e
 parameter_list|)
@@ -5191,33 +5180,6 @@ parameter_list|)
 throws|throws
 name|SyntaxError
 block|{
-if|if
-condition|(
-operator|(
-name|getAutoGeneratePhraseQueries
-argument_list|()
-operator|||
-name|fieldAutoGenPhraseQueries
-operator|)
-operator|&&
-name|getSplitOnWhitespace
-argument_list|()
-operator|==
-literal|false
-condition|)
-block|{
-throw|throw
-operator|new
-name|QueryParserConfigurationException
-argument_list|(
-literal|"Field '"
-operator|+
-name|field
-operator|+
-literal|"': autoGeneratePhraseQueries == true is disallowed when sow/splitOnWhitespace == false"
-argument_list|)
-throw|;
-block|}
 name|Analyzer
 name|actualAnalyzer
 decl_stmt|;
@@ -7108,17 +7070,6 @@ block|}
 return|return
 literal|null
 return|;
-block|}
-catch|catch
-parameter_list|(
-name|QueryParserConfigurationException
-name|e
-parameter_list|)
-block|{
-throw|throw
-name|e
-throw|;
-comment|// Don't ignore configuration exceptions
 block|}
 catch|catch
 parameter_list|(
