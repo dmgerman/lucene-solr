@@ -808,7 +808,7 @@ argument_list|()
 decl_stmt|;
 comment|// Was this whole facet missing (i.e. inside a bucket that was missing)?
 comment|// TODO: add information in sub-shard response about dropped buckets (i.e. not all returned due to limit)
-comment|// If we know we've seen all the buckets from a shard, then we don't have to add to leafBuckets or missingBuckets, only skipBuckets
+comment|// If we know we've seen all the buckets from a shard, then we don't have to add to leafBuckets or partialBuckets, only skipBuckets
 name|boolean
 name|isCommandPartial
 init|=
@@ -948,11 +948,11 @@ name|ArrayList
 argument_list|<
 name|Object
 argument_list|>
-name|missingBuckets
+name|partialBuckets
 init|=
 literal|null
 decl_stmt|;
-comment|// "_m" missing buckets that need to specify values for partial facets.. each entry is [bucketval, subs]
+comment|// "_p" missing buckets that have a partial sub-facet that need to specify those bucket values... each entry is [bucketval, subs]
 name|ArrayList
 argument_list|<
 name|Object
@@ -1078,18 +1078,18 @@ condition|)
 block|{
 if|if
 condition|(
-name|missingBuckets
+name|partialBuckets
 operator|==
 literal|null
 condition|)
-name|missingBuckets
+name|partialBuckets
 operator|=
 operator|new
 name|ArrayList
 argument_list|<>
 argument_list|()
 expr_stmt|;
-name|missingBuckets
+name|partialBuckets
 operator|.
 name|add
 argument_list|(
@@ -1107,7 +1107,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// if we didn't add to "_m" (missing), then we should add to "_l" (leaf missing)
+comment|// if we didn't add to "_p" (missing with partial sub-facets), then we should add to "_l" (missing leaf)
 if|if
 condition|(
 name|bucketRefinement
@@ -1207,7 +1207,7 @@ block|}
 block|}
 block|}
 comment|// TODO: what if we don't need to refine any variable buckets, but we do need to contribute to numBuckets, missing, allBuckets, etc...
-comment|// because we were "missing".  That will be handled at a higher level (i.e. we'll be in someone's missing bucket?)
+comment|// because we were "partial".  That will be handled at a higher level (i.e. we'll be in someone's missing bucket?)
 comment|// TODO: test with a sub-facet with a limit of 0 and something like a missing bucket
 if|if
 condition|(
@@ -1215,7 +1215,7 @@ name|leafBuckets
 operator|!=
 literal|null
 operator|||
-name|missingBuckets
+name|partialBuckets
 operator|!=
 literal|null
 operator|||
@@ -1250,7 +1250,7 @@ argument_list|)
 expr_stmt|;
 if|if
 condition|(
-name|missingBuckets
+name|partialBuckets
 operator|!=
 literal|null
 condition|)
@@ -1258,9 +1258,9 @@ name|refinement
 operator|.
 name|put
 argument_list|(
-literal|"_m"
+literal|"_p"
 argument_list|,
-name|missingBuckets
+name|partialBuckets
 argument_list|)
 expr_stmt|;
 if|if

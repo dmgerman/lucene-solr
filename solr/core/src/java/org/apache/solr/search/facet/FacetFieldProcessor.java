@@ -2912,7 +2912,7 @@ name|List
 argument_list|<
 name|List
 argument_list|>
-name|missing
+name|partial
 init|=
 name|asList
 argument_list|(
@@ -2922,11 +2922,11 @@ name|facetInfo
 operator|.
 name|get
 argument_list|(
-literal|"_m"
+literal|"_p"
 argument_list|)
 argument_list|)
 decl_stmt|;
-comment|// We have not seen this bucket, do full faceting for this bucket, and most sub-facets... but some sub-facets should only visit specified buckets.
+comment|// We have not seen this bucket, do full faceting for this bucket, and most sub-facets... but some sub-facets are partial and should only visit specified buckets.
 comment|// For leaf refinements, we do full faceting for each leaf bucket.  Any sub-facets of these buckets will be fully evaluated.  Because of this, we should never
 comment|// encounter leaf refinements that have sub-facets that return partial results.
 name|SimpleOrderedMap
@@ -2960,7 +2960,7 @@ operator|.
 name|size
 argument_list|()
 operator|+
-name|missing
+name|partial
 operator|.
 name|size
 argument_list|()
@@ -3077,7 +3077,7 @@ control|(
 name|List
 name|bucketAndFacetInfo
 range|:
-name|missing
+name|partial
 control|)
 block|{
 assert|assert

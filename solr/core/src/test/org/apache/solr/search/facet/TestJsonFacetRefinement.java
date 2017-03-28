@@ -189,12 +189,6 @@ name|SolrInstances
 name|servers
 decl_stmt|;
 comment|// for distributed testing
-DECL|field|origTableSize
-specifier|private
-specifier|static
-name|int
-name|origTableSize
-decl_stmt|;
 annotation|@
 name|BeforeClass
 DECL|method|beforeTests
@@ -901,7 +895,7 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
-comment|// for testing missing _m, we need a partial facet within a partial facet
+comment|// for testing partial _p, we need a partial facet within a partial facet
 name|doTestRefine
 argument_list|(
 literal|"{top:{type:terms, field:Afield, refine:true, limit:1, facet:{x : {type:terms, field:X, limit:1, refine:true} } } }"
@@ -914,7 +908,7 @@ literal|null
 argument_list|,
 literal|"=={top: {"
 operator|+
-literal|"_m:[  ['A' , {x:{_l:[x1]}} ]  ]"
+literal|"_p:[  ['A' , {x:{_l:[x1]}} ]  ]"
 operator|+
 literal|"    }  "
 operator|+
@@ -1506,7 +1500,7 @@ comment|// just like the previous response, just nested under a field facet
 literal|"}"
 argument_list|)
 expr_stmt|;
-comment|// test that sibling facets and stats are included for _m buckets, but skipped for _s buckets
+comment|// test that sibling facets and stats are included for _p buckets, but skipped for _s buckets
 name|client
 operator|.
 name|testJQ
@@ -1540,13 +1534,13 @@ literal|"facets=={ count:8"
 operator|+
 literal|", ab:{ buckets:[  {val:A, count:4, xy:{buckets:[ {val:X,count:3}]}    ,qq:{count:4}, ww:4.0 }]  }"
 operator|+
-comment|// make sure qq and ww are included for _m buckets
+comment|// make sure qq and ww are included for _p buckets
 literal|", allf:{ buckets:[ {count:8, val:all, cat:{buckets:[{val:A,count:4}]} ,qq:{count:8}, ww:2.0 }]  }"
 operator|+
 comment|// make sure qq and ww are excluded (not calculated again in another phase) for _s buckets
 literal|", ab2:{ buckets:[  {val:A, count:4, xy:{buckets:[ {val:X,count:3}]}    ,qq:{count:4}, ww:4.0 }]  }"
 operator|+
-comment|// make sure qq and ww are included for _m buckets
+comment|// make sure qq and ww are included for _p buckets
 literal|", allf2:{ buckets:[ {count:8, val:all, cat:{buckets:[{val:A,count:4}]} ,qq:{count:8}, ww:2.0 }]  }"
 operator|+
 comment|// make sure qq and ww are excluded (not calculated again in another phase) for _s buckets
