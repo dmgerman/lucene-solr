@@ -462,9 +462,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|term
-operator|.
-name|TermAllGroupsCollector
+name|AllGroupsCollector
 import|;
 end_import
 
@@ -480,9 +478,23 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|term
-operator|.
 name|TermGroupFacetCollector
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|grouping
+operator|.
+name|TermGroupSelector
 import|;
 end_import
 
@@ -2424,13 +2436,18 @@ literal|"Specify the group.field as parameter or local parameter"
 argument_list|)
 throw|;
 block|}
-name|TermAllGroupsCollector
+name|AllGroupsCollector
 name|collector
 init|=
 operator|new
-name|TermAllGroupsCollector
+name|AllGroupsCollector
+argument_list|<>
+argument_list|(
+operator|new
+name|TermGroupSelector
 argument_list|(
 name|groupField
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|Filter

@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.search.grouping.term
+DECL|package|org.apache.lucene.search.grouping
 package|package
 name|org
 operator|.
@@ -15,8 +15,6 @@ operator|.
 name|search
 operator|.
 name|grouping
-operator|.
-name|term
 package|;
 end_package
 
@@ -117,22 +115,6 @@ operator|.
 name|index
 operator|.
 name|TermsEnum
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|search
-operator|.
-name|grouping
-operator|.
-name|GroupFacetCollector
 import|;
 end_import
 
@@ -2027,11 +2009,9 @@ expr_stmt|;
 block|}
 block|}
 block|}
-block|}
-end_class
-
-begin_class
 DECL|class|GroupedFacetHit
+specifier|private
+specifier|static
 class|class
 name|GroupedFacetHit
 block|{
@@ -2067,6 +2047,7 @@ name|facetValue
 operator|=
 name|facetValue
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

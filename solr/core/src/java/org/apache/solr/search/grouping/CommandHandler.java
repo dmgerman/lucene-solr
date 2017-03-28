@@ -228,9 +228,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|function
-operator|.
-name|FunctionAllGroupHeadsCollector
+name|TermGroupSelector
 import|;
 end_import
 
@@ -246,9 +244,7 @@ name|search
 operator|.
 name|grouping
 operator|.
-name|term
-operator|.
-name|TermAllGroupHeadsCollector
+name|ValueSourceGroupSelector
 import|;
 end_import
 
@@ -1094,14 +1090,20 @@ argument_list|)
 decl_stmt|;
 name|allGroupHeadsCollector
 operator|=
+name|AllGroupHeadsCollector
+operator|.
+name|newCollector
+argument_list|(
 operator|new
-name|FunctionAllGroupHeadsCollector
+name|ValueSourceGroupSelector
 argument_list|(
 name|vs
 argument_list|,
 operator|new
 name|HashMap
+argument_list|<>
 argument_list|()
+argument_list|)
 argument_list|,
 name|firstCommand
 operator|.
@@ -1114,14 +1116,18 @@ else|else
 block|{
 name|allGroupHeadsCollector
 operator|=
-name|TermAllGroupHeadsCollector
+name|AllGroupHeadsCollector
 operator|.
-name|create
+name|newCollector
+argument_list|(
+operator|new
+name|TermGroupSelector
 argument_list|(
 name|firstCommand
 operator|.
 name|getKey
 argument_list|()
+argument_list|)
 argument_list|,
 name|firstCommand
 operator|.

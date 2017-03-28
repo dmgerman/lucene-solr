@@ -177,12 +177,11 @@ import|;
 end_import
 
 begin_comment
-comment|/** FirstPassGroupingCollector is the first of two passes necessary  *  to collect grouped hits.  This pass gathers the top N sorted  *  groups. Concrete subclasses define what a group is and how it  *  is internally collected.  *  *<p>See {@link org.apache.lucene.search.grouping} for more  *  details including a full code example.</p>  *  * @lucene.experimental  */
+comment|/** FirstPassGroupingCollector is the first of two passes necessary  *  to collect grouped hits.  This pass gathers the top N sorted  *  groups. Groups are defined by a {@link GroupSelector}  *  *<p>See {@link org.apache.lucene.search.grouping} for more  *  details including a full code example.</p>  *  * @lucene.experimental  */
 end_comment
 
 begin_class
 DECL|class|FirstPassGroupingCollector
-specifier|abstract
 specifier|public
 class|class
 name|FirstPassGroupingCollector
@@ -192,6 +191,15 @@ parameter_list|>
 extends|extends
 name|SimpleCollector
 block|{
+DECL|field|groupSelector
+specifier|private
+specifier|final
+name|GroupSelector
+argument_list|<
+name|T
+argument_list|>
+name|groupSelector
+decl_stmt|;
 DECL|field|comparators
 specifier|private
 specifier|final
@@ -271,7 +279,7 @@ specifier|private
 name|int
 name|spareSlot
 decl_stmt|;
-comment|/**    * Create the first pass collector.    *    *  @param groupSort The {@link Sort} used to sort the    *    groups.  The top sorted document within each group    *    according to groupSort, determines how that group    *    sorts against other groups.  This must be non-null,    *    ie, if you want to groupSort by relevance use    *    Sort.RELEVANCE.    *  @param topNGroups How many top groups to keep.    */
+comment|/**    * Create the first pass collector.    *    * @param groupSelector a GroupSelector used to defined groups    * @param groupSort The {@link Sort} used to sort the    *    groups.  The top sorted document within each group    *    according to groupSort, determines how that group    *    sorts against other groups.  This must be non-null,    *    ie, if you want to groupSort by relevance use    *    Sort.RELEVANCE.    * @param topNGroups How many top groups to keep.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -285,6 +293,12 @@ DECL|method|FirstPassGroupingCollector
 specifier|public
 name|FirstPassGroupingCollector
 parameter_list|(
+name|GroupSelector
+argument_list|<
+name|T
+argument_list|>
+name|groupSelector
+parameter_list|,
 name|Sort
 name|groupSort
 parameter_list|,
@@ -292,6 +306,12 @@ name|int
 name|topNGroups
 parameter_list|)
 block|{
+name|this
+operator|.
+name|groupSelector
+operator|=
+name|groupSelector
+expr_stmt|;
 if|if
 condition|(
 name|topNGroups
@@ -576,7 +596,7 @@ condition|)
 block|{
 continue|continue;
 block|}
-comment|//System.out.println("  group=" + (group.groupValue == null ? "null" : group.groupValue.utf8ToString()));
+comment|// System.out.println("  group=" + (group.groupValue == null ? "null" : group.groupValue.toString()));
 name|SearchGroup
 argument_list|<
 name|T
@@ -690,12 +710,10 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-annotation|@
-name|Override
-DECL|method|collect
-specifier|public
-name|void
-name|collect
+DECL|method|isCompetitive
+specifier|private
+name|boolean
+name|isCompetitive
 parameter_list|(
 name|int
 name|doc
@@ -703,7 +721,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-comment|//System.out.println("FP.collect doc=" + doc);
 comment|// If orderedGroups != null we already have collected N groups and
 comment|// can short circuit by comparing this document to the bottom group,
 comment|// without having to find what group this document belongs to.
@@ -757,7 +774,9 @@ literal|0
 condition|)
 block|{
 comment|// Definitely not competitive. So don't even bother to continue
-return|return;
+return|return
+literal|false
+return|;
 block|}
 elseif|else
 if|if
@@ -781,21 +800,56 @@ block|{
 comment|// Here c=0. If we're at the last comparator, this doc is not
 comment|// competitive, since docs are visited in doc Id order, which means
 comment|// this doc cannot compete with any other document in the queue.
-return|return;
+return|return
+literal|false
+return|;
 block|}
 block|}
 block|}
-comment|// TODO: should we add option to mean "ignore docs that
-comment|// don't have the group field" (instead of stuffing them
-comment|// under null group)?
-specifier|final
-name|T
-name|groupValue
-init|=
-name|getDocGroupValue
+return|return
+literal|true
+return|;
+block|}
+annotation|@
+name|Override
+DECL|method|collect
+specifier|public
+name|void
+name|collect
+parameter_list|(
+name|int
+name|doc
+parameter_list|)
+throws|throws
+name|IOException
+block|{
+if|if
+condition|(
+name|isCompetitive
 argument_list|(
 name|doc
 argument_list|)
+operator|==
+literal|false
+condition|)
+return|return;
+comment|// TODO: should we add option to mean "ignore docs that
+comment|// don't have the group field" (instead of stuffing them
+comment|// under null group)?
+name|groupSelector
+operator|.
+name|advanceTo
+argument_list|(
+name|doc
+argument_list|)
+expr_stmt|;
+name|T
+name|groupValue
+init|=
+name|groupSelector
+operator|.
+name|currentValue
+argument_list|()
 decl_stmt|;
 specifier|final
 name|CollectedSearchGroup
@@ -850,12 +904,10 @@ name|sg
 operator|.
 name|groupValue
 operator|=
-name|copyDocGroupValue
-argument_list|(
-name|groupValue
-argument_list|,
-literal|null
-argument_list|)
+name|groupSelector
+operator|.
+name|copyValue
+argument_list|()
 expr_stmt|;
 name|sg
 operator|.
@@ -962,14 +1014,10 @@ name|bottomGroup
 operator|.
 name|groupValue
 operator|=
-name|copyDocGroupValue
-argument_list|(
-name|groupValue
-argument_list|,
-name|bottomGroup
+name|groupSelector
 operator|.
-name|groupValue
-argument_list|)
+name|copyValue
+argument_list|()
 expr_stmt|;
 name|bottomGroup
 operator|.
@@ -1538,34 +1586,28 @@ name|readerContext
 argument_list|)
 expr_stmt|;
 block|}
+name|groupSelector
+operator|.
+name|setNextReader
+argument_list|(
+name|readerContext
+argument_list|)
+expr_stmt|;
 block|}
-comment|/**    * Returns the group value for the specified doc.    *    * @param doc The specified doc    * @return the group value for the specified doc    */
-DECL|method|getDocGroupValue
-specifier|protected
-specifier|abstract
+comment|/**    * @return the GroupSelector used for this Collector    */
+DECL|method|getGroupSelector
+specifier|public
+name|GroupSelector
+argument_list|<
 name|T
-name|getDocGroupValue
-parameter_list|(
-name|int
-name|doc
-parameter_list|)
-throws|throws
-name|IOException
-function_decl|;
-comment|/**    * Returns a copy of the specified group value by creating a new instance and copying the value from the specified    * groupValue in the new instance. Or optionally the reuse argument can be used to copy the group value in.    *    * @param groupValue The group value to copy    * @param reuse Optionally a reuse instance to prevent a new instance creation    * @return a copy of the specified group value    */
-DECL|method|copyDocGroupValue
-specifier|protected
-specifier|abstract
-name|T
-name|copyDocGroupValue
-parameter_list|(
-name|T
-name|groupValue
-parameter_list|,
-name|T
-name|reuse
-parameter_list|)
-function_decl|;
+argument_list|>
+name|getGroupSelector
+parameter_list|()
+block|{
+return|return
+name|groupSelector
+return|;
+block|}
 block|}
 end_class
 

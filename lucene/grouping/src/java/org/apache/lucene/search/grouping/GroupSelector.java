@@ -46,79 +46,86 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|index
 operator|.
-name|Sort
+name|LeafReaderContext
 import|;
 end_import
 
 begin_comment
-comment|/**  * A factory object to create first and second-pass collectors, run by a {@link GroupingSearch}  * @param<T> the type the group value  */
+comment|/**  * Defines a group, for use by grouping collectors  *  * A GroupSelector acts as an iterator over documents.  For each segment, clients  * should call {@link #setNextReader(LeafReaderContext)}, and then {@link #advanceTo(int)}  * for each matching document.  *  * @param<T> the type of the group value  */
 end_comment
 
 begin_class
-DECL|class|Grouper
+DECL|class|GroupSelector
 specifier|public
 specifier|abstract
 class|class
-name|Grouper
+name|GroupSelector
 parameter_list|<
 name|T
 parameter_list|>
 block|{
-comment|/**    * Create a first-pass collector    * @param sort  the order in which groups should be returned    * @param count how many groups to return    */
-DECL|method|getFirstPassCollector
+comment|/**    * What to do with the current value    */
+DECL|enum|State
+DECL|enum constant|SKIP
+DECL|enum constant|ACCEPT
+specifier|public
+enum|enum
+name|State
+block|{
+name|SKIP
+block|,
+name|ACCEPT
+block|}
+comment|/**    * Set the LeafReaderContext    */
+DECL|method|setNextReader
 specifier|public
 specifier|abstract
-name|FirstPassGroupingCollector
-argument_list|<
-name|T
-argument_list|>
-name|getFirstPassCollector
+name|void
+name|setNextReader
 parameter_list|(
-name|Sort
-name|sort
-parameter_list|,
-name|int
-name|count
+name|LeafReaderContext
+name|readerContext
 parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Create an {@link AllGroupsCollector}    */
-DECL|method|getAllGroupsCollector
+comment|/**    * Advance the GroupSelector's iterator to the given document    */
+DECL|method|advanceTo
 specifier|public
 specifier|abstract
-name|AllGroupsCollector
-argument_list|<
+name|State
+name|advanceTo
+parameter_list|(
+name|int
+name|doc
+parameter_list|)
+throws|throws
+name|IOException
+function_decl|;
+comment|/**    * Get the group value of the current document    *    * N.B. this object may be reused, for a persistent version use {@link #copyValue()}    */
+DECL|method|currentValue
+specifier|public
+specifier|abstract
 name|T
-argument_list|>
-name|getAllGroupsCollector
+name|currentValue
 parameter_list|()
 function_decl|;
-comment|/**    * Create an {@link AllGroupHeadsCollector}    * @param sort a within-group sort order to determine which doc is the group head    */
-DECL|method|getGroupHeadsCollector
+comment|/**    * @return a copy of the group value of the current document    */
+DECL|method|copyValue
 specifier|public
 specifier|abstract
-name|AllGroupHeadsCollector
-argument_list|<
 name|T
-argument_list|>
-name|getGroupHeadsCollector
-parameter_list|(
-name|Sort
-name|sort
-parameter_list|)
+name|copyValue
+parameter_list|()
 function_decl|;
-comment|/**    * Create a second-pass collector    */
-DECL|method|getSecondPassCollector
+comment|/**    * Set a restriction on the group values returned by this selector    *    * If the selector is positioned on a document whose group value is not contained    * within this set, then {@link #advanceTo(int)} will return {@link State#SKIP}    *    * @param groups a set of {@link SearchGroup} objects to limit selections to    */
+DECL|method|setGroups
 specifier|public
 specifier|abstract
-name|SecondPassGroupingCollector
-argument_list|<
-name|T
-argument_list|>
-name|getSecondPassCollector
+name|void
+name|setGroups
 parameter_list|(
 name|Collection
 argument_list|<
@@ -128,27 +135,7 @@ name|T
 argument_list|>
 argument_list|>
 name|groups
-parameter_list|,
-name|Sort
-name|groupSort
-parameter_list|,
-name|Sort
-name|withinGroupSort
-parameter_list|,
-name|int
-name|maxDocsPerGroup
-parameter_list|,
-name|boolean
-name|getScores
-parameter_list|,
-name|boolean
-name|getMaxScores
-parameter_list|,
-name|boolean
-name|fillSortFields
 parameter_list|)
-throws|throws
-name|IOException
 function_decl|;
 block|}
 end_class

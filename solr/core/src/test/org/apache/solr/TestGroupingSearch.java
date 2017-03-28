@@ -6108,7 +6108,11 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"GROUPING MISMATCH: "
+literal|"GROUPING MISMATCH ("
+operator|+
+name|queryIter
+operator|+
+literal|"): "
 operator|+
 name|err
 operator|+
@@ -6178,7 +6182,11 @@ name|log
 operator|.
 name|error
 argument_list|(
-literal|"GROUPING MISMATCH: "
+literal|"GROUPING MISMATCH ("
+operator|+
+name|queryIter
+operator|+
+literal|"): "
 operator|+
 name|err
 operator|+
