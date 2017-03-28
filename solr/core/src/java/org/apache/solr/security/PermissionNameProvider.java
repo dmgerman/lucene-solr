@@ -189,7 +189,20 @@ name|CONFIG_EDIT_PERM
 argument_list|(
 literal|"config-edit"
 argument_list|,
+name|unmodifiableSet
+argument_list|(
+operator|new
+name|HashSet
+argument_list|<>
+argument_list|(
+name|asList
+argument_list|(
 literal|"*"
+argument_list|,
+literal|null
+argument_list|)
+argument_list|)
+argument_list|)
 argument_list|)
 block|,
 DECL|enum constant|CONFIG_READ_PERM

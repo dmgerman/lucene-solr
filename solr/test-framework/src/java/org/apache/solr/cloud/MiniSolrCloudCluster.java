@@ -2217,6 +2217,16 @@ expr_stmt|;
 block|}
 block|}
 block|}
+DECL|method|getBaseDir
+specifier|public
+name|Path
+name|getBaseDir
+parameter_list|()
+block|{
+return|return
+name|baseDir
+return|;
+block|}
 DECL|method|getSolrClient
 specifier|public
 name|CloudSolrClient

@@ -42,6 +42,22 @@ name|solr
 operator|.
 name|common
 operator|.
+name|SolrException
+operator|.
+name|ErrorCode
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|NamedList
@@ -703,6 +719,34 @@ name|SolrCore
 name|core
 parameter_list|)
 block|{
+if|if
+condition|(
+operator|!
+name|core
+operator|.
+name|getCoreDescriptor
+argument_list|()
+operator|.
+name|isConfigSetTrusted
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|ErrorCode
+operator|.
+name|UNAUTHORIZED
+argument_list|,
+literal|"The configset for this collection was uploaded without any authentication in place,"
+operator|+
+literal|" and this operation is not available for collections with untrusted configsets. To use this component, re-upload the configset"
+operator|+
+literal|" after enabling authentication and authorization."
+argument_list|)
+throw|;
+block|}
 name|resourceLoader
 operator|=
 name|core

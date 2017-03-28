@@ -5517,11 +5517,21 @@ argument_list|(
 name|dcore
 argument_list|)
 decl_stmt|;
+name|dcore
+operator|.
+name|setConfigSetTrusted
+argument_list|(
+name|coreConfig
+operator|.
+name|isTrusted
+argument_list|()
+argument_list|)
+expr_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Creating SolrCore '{}' using configuration from {}"
+literal|"Creating SolrCore '{}' using configuration from {}, trusted={}"
 argument_list|,
 name|dcore
 operator|.
@@ -5531,6 +5541,11 @@ argument_list|,
 name|coreConfig
 operator|.
 name|getName
+argument_list|()
+argument_list|,
+name|dcore
+operator|.
+name|isConfigSetTrusted
 argument_list|()
 argument_list|)
 expr_stmt|;

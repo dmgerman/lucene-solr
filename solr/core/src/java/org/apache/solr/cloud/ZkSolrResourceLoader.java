@@ -401,6 +401,17 @@ decl_stmt|;
 name|String
 name|file
 init|=
+operator|(
+literal|"."
+operator|.
+name|equals
+argument_list|(
+name|resource
+argument_list|)
+operator|)
+condition|?
+name|configSetZkPath
+else|:
 name|configSetZkPath
 operator|+
 literal|"/"

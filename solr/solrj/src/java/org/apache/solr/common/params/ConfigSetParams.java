@@ -55,6 +55,9 @@ block|{
 DECL|enum constant|CREATE
 name|CREATE
 block|,
+DECL|enum constant|UPLOAD
+name|UPLOAD
+block|,
 DECL|enum constant|DELETE
 name|DELETE
 block|,

@@ -439,6 +439,14 @@ name|separator
 operator|+
 literal|"solrcore.properties"
 decl_stmt|;
+comment|/**    * Whether this core was configured using a configSet that was trusted.    * This helps in avoiding the loading of plugins that have potential    * vulnerabilities, when the configSet was not uploaded from a trusted    * user.    */
+DECL|field|trustedConfigSet
+specifier|private
+name|boolean
+name|trustedConfigSet
+init|=
+literal|true
+decl_stmt|;
 comment|/**    * Get the standard properties in persistable form    * @return the standard core properties in persistable form    */
 DECL|method|getPersistableStandardProperties
 specifier|public
@@ -914,6 +922,14 @@ name|CORE_NAME
 argument_list|,
 name|coreName
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|trustedConfigSet
+operator|=
+name|other
+operator|.
+name|trustedConfigSet
 expr_stmt|;
 block|}
 comment|/**    * Create a new CoreDescriptor.    * @param container       the CoreDescriptor's container    * @param name            the CoreDescriptor's name    * @param instanceDir     a Path resolving to the instanceDir    * @param coreProps       a Map of the properties for this core    */
@@ -1706,6 +1722,32 @@ argument_list|(
 name|CORE_CONFIGSET_PROPERTIES
 argument_list|)
 return|;
+block|}
+DECL|method|isConfigSetTrusted
+specifier|public
+name|boolean
+name|isConfigSetTrusted
+parameter_list|()
+block|{
+return|return
+name|trustedConfigSet
+return|;
+block|}
+DECL|method|setConfigSetTrusted
+specifier|public
+name|void
+name|setConfigSetTrusted
+parameter_list|(
+name|boolean
+name|trusted
+parameter_list|)
+block|{
+name|this
+operator|.
+name|trustedConfigSet
+operator|=
+name|trusted
+expr_stmt|;
 block|}
 block|}
 end_class

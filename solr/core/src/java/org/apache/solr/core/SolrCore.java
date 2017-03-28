@@ -5855,6 +5855,15 @@ name|this
 argument_list|)
 expr_stmt|;
 comment|// last call before the latch is released.
+name|this
+operator|.
+name|updateHandler
+operator|.
+name|informEventListeners
+argument_list|(
+name|this
+argument_list|)
+expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
