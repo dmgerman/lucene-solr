@@ -1469,7 +1469,7 @@ literal|100
 decl_stmt|,
 name|WAIT_TIME
 init|=
-literal|10
+literal|50
 decl_stmt|;
 comment|// The following should work: full update to doc 0, in-place update for doc 0, delete doc 0
 DECL|method|reorderedDBQsSimpleTest
@@ -1898,12 +1898,6 @@ argument_list|(
 literal|"reorderedDBQsSimpleTest: This test passed fine..."
 argument_list|)
 expr_stmt|;
-name|clearIndex
-argument_list|()
-expr_stmt|;
-name|commit
-argument_list|()
-expr_stmt|;
 block|}
 DECL|method|reorderedDBQIndividualReplicaTest
 specifier|private
@@ -2270,7 +2264,6 @@ throws|throws
 name|Exception
 block|{
 comment|// number of docs we're testing (0<= id), index may contain additional random docs (id< 0)
-specifier|final
 name|int
 name|numDocs
 init|=
@@ -2279,6 +2272,24 @@ argument_list|(
 literal|100
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|onlyLeaderIndexes
+condition|)
+name|numDocs
+operator|=
+name|TestUtil
+operator|.
+name|nextInt
+argument_list|(
+name|random
+argument_list|()
+argument_list|,
+literal|10
+argument_list|,
+literal|50
+argument_list|)
+expr_stmt|;
 name|log
 operator|.
 name|info
@@ -4609,12 +4620,6 @@ argument_list|(
 literal|"outOfOrderUpdatesIndividualReplicaTest: This test passed fine..."
 argument_list|)
 expr_stmt|;
-name|clearIndex
-argument_list|()
-expr_stmt|;
-name|commit
-argument_list|()
-expr_stmt|;
 block|}
 comment|// The following should work: full update to doc 0, in-place update for doc 0, delete doc 0
 DECL|method|reorderedDeletesTest
@@ -5041,12 +5046,6 @@ name|info
 argument_list|(
 literal|"reorderedDeletesTest: This test passed fine..."
 argument_list|)
-expr_stmt|;
-name|clearIndex
-argument_list|()
-expr_stmt|;
-name|commit
-argument_list|()
 expr_stmt|;
 block|}
 comment|/* Test for a situation when a document requiring in-place update cannot be "resurrected"    * when the original full indexed document has been deleted by an out of order DBQ.    * Expected behaviour in this case should be to throw the replica into LIR (since this will    * be rare). Here's an example of the situation:         ADD(id=x, val=5, ver=1)         UPD(id=x, val=10, ver = 2)         DBQ(q=val:10, v=4)         DV(id=x, val=5, ver=3)    */
@@ -6667,7 +6666,6 @@ expr_stmt|;
 block|}
 DECL|class|AsyncUpdateWithRandomCommit
 specifier|private
-specifier|static
 class|class
 name|AsyncUpdateWithRandomCommit
 implements|implements
@@ -6688,6 +6686,16 @@ DECL|field|rnd
 specifier|final
 name|Random
 name|rnd
+decl_stmt|;
+DECL|field|commitBound
+name|int
+name|commitBound
+init|=
+name|onlyLeaderIndexes
+condition|?
+literal|50
+else|:
+literal|3
 decl_stmt|;
 DECL|method|AsyncUpdateWithRandomCommit
 specifier|public
@@ -6753,7 +6761,7 @@ name|rnd
 operator|.
 name|nextInt
 argument_list|(
-literal|3
+name|commitBound
 argument_list|)
 operator|==
 literal|0
@@ -7489,6 +7497,8 @@ name|numPreDocs
 init|=
 name|rarely
 argument_list|()
+operator|||
+name|onlyLeaderIndexes
 condition|?
 name|TestUtil
 operator|.
@@ -7633,6 +7643,8 @@ name|numPostDocs
 init|=
 name|rarely
 argument_list|()
+operator|||
+name|onlyLeaderIndexes
 condition|?
 name|TestUtil
 operator|.
@@ -7643,7 +7655,7 @@ argument_list|()
 argument_list|,
 literal|0
 argument_list|,
-literal|9
+literal|2
 argument_list|)
 else|:
 name|atLeast
