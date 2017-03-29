@@ -1412,17 +1412,6 @@ name|limit
 argument_list|)
 throw|;
 block|}
-name|numHits
-operator|=
-name|Math
-operator|.
-name|min
-argument_list|(
-name|numHits
-argument_list|,
-name|limit
-argument_list|)
-expr_stmt|;
 specifier|final
 name|int
 name|cappedNumHits
