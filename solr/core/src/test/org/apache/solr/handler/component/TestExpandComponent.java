@@ -68,20 +68,6 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|SolrTestCaseJ4
-operator|.
-name|SuppressPointFields
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
 name|common
 operator|.
 name|params
@@ -135,8 +121,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|SuppressPointFields
 DECL|class|TestExpandComponent
 specifier|public
 class|class
