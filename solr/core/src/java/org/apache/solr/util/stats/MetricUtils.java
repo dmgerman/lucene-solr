@@ -1398,6 +1398,26 @@ name|InternalError
 name|ie
 parameter_list|)
 block|{
+if|if
+condition|(
+name|n
+operator|.
+name|startsWith
+argument_list|(
+literal|"memory."
+argument_list|)
+operator|&&
+name|ie
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+literal|"Memory Pool not found"
+argument_list|)
+condition|)
+block|{
 name|LOG
 operator|.
 name|warn
@@ -1420,6 +1440,13 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
+block|}
+else|else
+block|{
+throw|throw
+name|ie
+throw|;
+block|}
 block|}
 block|}
 argument_list|else if

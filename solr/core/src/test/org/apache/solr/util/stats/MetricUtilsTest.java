@@ -634,7 +634,7 @@ throw|throw
 operator|new
 name|InternalError
 argument_list|(
-literal|"expected error"
+literal|"Memory Pool not found error"
 argument_list|)
 throw|;
 block|}
@@ -643,7 +643,7 @@ name|registry
 operator|.
 name|register
 argument_list|(
-literal|"expected.error"
+literal|"memory.expected.error"
 argument_list|,
 name|error
 argument_list|)
@@ -984,7 +984,7 @@ name|k
 operator|.
 name|startsWith
 argument_list|(
-literal|"expected.error"
+literal|"memory.expected.error"
 argument_list|)
 condition|)
 block|{
@@ -1390,7 +1390,7 @@ name|k
 operator|.
 name|startsWith
 argument_list|(
-literal|"expected.error"
+literal|"memory.expected.error"
 argument_list|)
 condition|)
 block|{
