@@ -671,25 +671,6 @@ block|}
 block|}
 if|if
 condition|(
-name|srcIsZk
-operator|==
-literal|false
-operator|&&
-name|dstIsZk
-operator|==
-literal|false
-condition|)
-block|{
-throw|throw
-operator|new
-name|SolrServerException
-argument_list|(
-literal|"At least one of the source and dest parameters must be prefixed with 'zk:' "
-argument_list|)
-throw|;
-block|}
-if|if
-condition|(
 name|dstIsZk
 operator|&&
 name|dst
@@ -713,8 +694,13 @@ argument_list|(
 name|src
 argument_list|,
 name|dst
+argument_list|,
+name|srcIsZk
+argument_list|,
+name|dstIsZk
 argument_list|)
 expr_stmt|;
+comment|// ZK -> ZK copy.
 if|if
 condition|(
 name|srcIsZk
@@ -745,6 +731,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|//local -> ZK copy
 if|if
 condition|(
 name|dstIsZk
@@ -768,8 +755,9 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
-comment|// Copying individual files from ZK requires special handling since downloadFromZK assumes it's a directory.
+comment|// Copying individual files from ZK requires special handling since downloadFromZK assumes the node has children.
 comment|// This is kind of a weak test for the notion of "directory" on Zookeeper.
+comment|// ZK -> local copy where ZK is a parent node
 if|if
 condition|(
 name|zkClient
@@ -805,6 +793,7 @@ argument_list|)
 expr_stmt|;
 return|return;
 block|}
+comment|// Single file ZK -> local copy where ZK is a leaf node
 if|if
 condition|(
 name|Files
@@ -826,14 +815,18 @@ name|dst
 operator|.
 name|endsWith
 argument_list|(
-literal|"/"
+name|File
+operator|.
+name|separator
 argument_list|)
 operator|==
 literal|false
 condition|)
 name|dst
 operator|+=
-literal|"/"
+name|File
+operator|.
+name|separator
 expr_stmt|;
 name|dst
 operator|=
@@ -842,6 +835,10 @@ argument_list|(
 name|src
 argument_list|,
 name|dst
+argument_list|,
+name|srcIsZk
+argument_list|,
+name|dstIsZk
 argument_list|)
 expr_stmt|;
 block|}
@@ -901,6 +898,8 @@ name|data
 argument_list|)
 expr_stmt|;
 block|}
+comment|// If the dest ends with a separator, it's a directory or non-leaf znode, so return the
+comment|// last element of the src to appended to the dstName.
 DECL|method|normalizeDest
 specifier|private
 specifier|static
@@ -912,6 +911,12 @@ name|srcName
 parameter_list|,
 name|String
 name|dstName
+parameter_list|,
+name|boolean
+name|srcIsZk
+parameter_list|,
+name|boolean
+name|dstIsZk
 parameter_list|)
 block|{
 comment|// Special handling for "."
@@ -943,19 +948,43 @@ name|toString
 argument_list|()
 return|;
 block|}
-comment|// Pull the last element of the src path and add it to the dst if the src does NOT end in a slash
-comment|// If the source ends in a slash, do not append the last segment to the dest
+name|String
+name|dstSeparator
+init|=
+operator|(
+name|dstIsZk
+operator|)
+condition|?
+literal|"/"
+else|:
+name|File
+operator|.
+name|separator
+decl_stmt|;
+name|String
+name|srcSeparator
+init|=
+operator|(
+name|srcIsZk
+operator|)
+condition|?
+literal|"/"
+else|:
+name|File
+operator|.
+name|separator
+decl_stmt|;
 if|if
 condition|(
 name|dstName
 operator|.
 name|endsWith
 argument_list|(
-literal|"/"
+name|dstSeparator
 argument_list|)
 condition|)
 block|{
-comment|// Dest is a directory.
+comment|// Dest is a directory or non-leaf znode, append last element of the src path.
 name|int
 name|pos
 init|=
@@ -963,7 +992,7 @@ name|srcName
 operator|.
 name|lastIndexOf
 argument_list|(
-literal|"/"
+name|srcSeparator
 argument_list|)
 decl_stmt|;
 if|if
@@ -1038,6 +1067,10 @@ argument_list|(
 name|src
 argument_list|,
 name|dst
+argument_list|,
+literal|true
+argument_list|,
+literal|true
 argument_list|)
 decl_stmt|;
 comment|// Special handling if the source has no children, i.e. copying just a single file.
@@ -2257,7 +2290,7 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-comment|// Take into account Windows file separaters when making a Znode's name.
+comment|// Take into account Windows file separators when making a Znode's name.
 DECL|method|createZkNodeName
 specifier|public
 specifier|static
@@ -2288,23 +2321,14 @@ name|toString
 argument_list|()
 decl_stmt|;
 comment|// Windows shenanigans
-name|String
-name|separator
-init|=
-name|root
-operator|.
-name|getFileSystem
-argument_list|()
-operator|.
-name|getSeparator
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
 literal|"\\"
 operator|.
 name|equals
 argument_list|(
+name|File
+operator|.
 name|separator
 argument_list|)
 condition|)

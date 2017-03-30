@@ -32,6 +32,16 @@ name|java
 operator|.
 name|io
 operator|.
+name|File
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|io
+operator|.
 name|IOException
 import|;
 end_import
@@ -1319,7 +1329,7 @@ argument_list|)
 expr_stmt|;
 comment|// NOTE: really can't test copying to '.' because the test framework doesn't allow altering the source tree
 comment|// and at least IntelliJ's CWD is in the source tree.
-comment|// copy to local ending in '/'
+comment|// copy to local ending in separator
 comment|//src and cp3 and cp4 are valid
 name|String
 name|localSlash
@@ -1329,7 +1339,15 @@ operator|.
 name|normalize
 argument_list|()
 operator|+
-literal|"/cpToLocal/"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"cpToLocal"
+operator|+
+name|File
+operator|.
+name|separator
 decl_stmt|;
 name|args
 operator|=
@@ -1429,7 +1447,11 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"/solrconfig.xml"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"solrconfig.xml"
 block|,
 literal|"-dst"
 block|,
@@ -1514,7 +1536,11 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"/solrconfig.xml"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"solrconfig.xml"
 block|,
 literal|"-dst"
 block|,
@@ -1589,7 +1615,17 @@ operator|.
 name|toString
 argument_list|()
 operator|+
-literal|"/localnamed/renamed.txt"
+name|File
+operator|.
+name|separator
+operator|+
+literal|"localnamed"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
+literal|"renamed.txt"
 decl_stmt|;
 name|args
 operator|=
@@ -2443,7 +2479,13 @@ index|[]
 block|{
 literal|"-src"
 block|,
-literal|"file:/mv2"
+literal|"file:"
+operator|+
+name|File
+operator|.
+name|separator
+operator|+
+literal|"mv2"
 block|,
 literal|"-dst"
 block|,
