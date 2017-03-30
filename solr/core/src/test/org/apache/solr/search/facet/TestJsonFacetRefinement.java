@@ -915,6 +915,26 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
+comment|// test partial _p under a missing bucket
+name|doTestRefine
+argument_list|(
+literal|"{top:{type:terms, field:Afield, refine:true, limit:1, missing:true, facet:{x : {type:terms, field:X, limit:1, refine:true} } } }"
+argument_list|,
+literal|"{top: {buckets:[], missing:{count:12, x:{buckets:[{val:x2, count:4},{val:x3, count:2}]} }  } }"
+argument_list|,
+literal|"{top: {buckets:[], missing:{count:10, x:{buckets:[{val:x1, count:5},{val:x4, count:3}]} }  } }"
+argument_list|,
+literal|"=={top: {"
+operator|+
+literal|"missing:{x:{_l:[x1]}}"
+operator|+
+literal|"    }  "
+operator|+
+literal|"}"
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test
@@ -1331,6 +1351,36 @@ expr_stmt|;
 comment|// Shard responses should be A=1, B=2, A=2, merged should be "A=3, B=2"
 comment|// One shard will have _facet_={"refine":{"cat0":{"_l":["A"]}}} on the second phase
 comment|/****     // fake a refinement request... good for development/debugging     assertJQ(clients.get(1),         params(p, "q", "*:*",     "_facet_","{refine:{cat0:{_l:[A]}}}", "isShard","true", "distrib","false", "shards.purpose","2097216", "ids","11,12,13",             "json.facet", "{" +                 "cat0:{type:terms, field:cat_s, sort:'count desc', limit:1, overrequest:0, refine:true}" +                 "}"         )         , "facets=={foo:555}"     );     ****/
+comment|// test refining under the special "missing" bucket of a field facet
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"f:{type:terms, field:missing_s, limit:1, overrequest:0, missing:true, refine:true,  facet:{  cat:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true   }  }}"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:8"
+operator|+
+literal|", f:{ buckets:[], missing:{count:8, cat:{buckets:[{val:A,count:4}]}  }  }"
+operator|+
+comment|// just like the previous response, just nested under a field facet
+literal|"}"
+argument_list|)
+expr_stmt|;
 name|client
 operator|.
 name|testJQ
@@ -1470,7 +1520,7 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
-comment|// test missing buckets (field facet within field facet)
+comment|// test partial buckets (field facet within field facet)
 name|client
 operator|.
 name|testJQ
