@@ -299,8 +299,17 @@ comment|// specific versions afterwards ("3.0.0", "3.1.0" etc.).
 comment|// see o.a.l.util.Version.
 DECL|field|version
 specifier|private
+specifier|final
 name|Version
 name|version
+decl_stmt|;
+comment|// Tracks the minimum version that contributed documents to a segment. For
+comment|// flush segments, that is the version that wrote it. For merged segments,
+comment|// this is the minimum minVersion of all the segments that have been merged
+comment|// into this segment
+DECL|field|minVersion
+name|Version
+name|minVersion
 decl_stmt|;
 DECL|method|setDiagnostics
 name|void
@@ -353,6 +362,9 @@ name|dir
 parameter_list|,
 name|Version
 name|version
+parameter_list|,
+name|Version
+name|minVersion
 parameter_list|,
 name|String
 name|name
@@ -419,6 +431,12 @@ name|requireNonNull
 argument_list|(
 name|version
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|minVersion
+operator|=
+name|minVersion
 expr_stmt|;
 name|this
 operator|.
@@ -928,6 +946,17 @@ parameter_list|()
 block|{
 return|return
 name|version
+return|;
+block|}
+comment|/**    * Return the minimum Lucene version that contributed documents to this    * segment, or {@code null} if it is unknown.    */
+DECL|method|getMinVersion
+specifier|public
+name|Version
+name|getMinVersion
+parameter_list|()
+block|{
+return|return
+name|minVersion
 return|;
 block|}
 comment|/** Return the id that uniquely identifies this segment. */

@@ -1188,7 +1188,10 @@ name|segmentSort
 init|=
 name|leaf
 operator|.
-name|getIndexSort
+name|getMetaData
+argument_list|()
+operator|.
+name|getSort
 argument_list|()
 decl_stmt|;
 if|if

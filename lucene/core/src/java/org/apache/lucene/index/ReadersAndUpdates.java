@@ -706,6 +706,13 @@ name|SegmentReader
 argument_list|(
 name|info
 argument_list|,
+name|writer
+operator|.
+name|segmentInfos
+operator|.
+name|getIndexCreatedVersionMajor
+argument_list|()
+argument_list|,
 name|context
 argument_list|)
 expr_stmt|;
@@ -2655,6 +2662,13 @@ operator|new
 name|SegmentReader
 argument_list|(
 name|info
+argument_list|,
+name|writer
+operator|.
+name|segmentInfos
+operator|.
+name|getIndexCreatedVersionMajor
+argument_list|()
 argument_list|,
 name|IOContext
 operator|.

@@ -3125,6 +3125,10 @@ name|Version
 operator|.
 name|LATEST
 argument_list|,
+name|Version
+operator|.
+name|LATEST
+argument_list|,
 literal|"_0"
 argument_list|,
 name|maxDoc

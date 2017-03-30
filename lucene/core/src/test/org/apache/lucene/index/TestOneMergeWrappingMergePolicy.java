@@ -712,6 +712,11 @@ operator|.
 name|LATEST
 argument_list|,
 comment|// version
+name|Version
+operator|.
+name|LATEST
+argument_list|,
+comment|// min version
 name|TestUtil
 operator|.
 name|randomSimpleString

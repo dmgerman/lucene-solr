@@ -402,6 +402,8 @@ name|dir
 argument_list|,
 name|version
 argument_list|,
+literal|null
+argument_list|,
 name|segment
 argument_list|,
 name|docCount

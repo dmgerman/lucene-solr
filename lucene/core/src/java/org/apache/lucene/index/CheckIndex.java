@@ -2826,6 +2826,11 @@ name|SegmentReader
 argument_list|(
 name|info
 argument_list|,
+name|sis
+operator|.
+name|getIndexCreatedVersionMajor
+argument_list|()
+argument_list|,
 name|IOContext
 operator|.
 name|DEFAULT

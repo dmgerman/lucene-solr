@@ -1215,6 +1215,12 @@ name|SegmentReader
 argument_list|(
 name|si1
 argument_list|,
+name|Version
+operator|.
+name|LATEST
+operator|.
+name|major
+argument_list|,
 name|context
 argument_list|)
 decl_stmt|;
@@ -1225,6 +1231,12 @@ operator|new
 name|SegmentReader
 argument_list|(
 name|si2
+argument_list|,
+name|Version
+operator|.
+name|LATEST
+operator|.
+name|major
 argument_list|,
 name|context
 argument_list|)
@@ -1267,6 +1279,8 @@ argument_list|,
 name|Version
 operator|.
 name|LATEST
+argument_list|,
+literal|null
 argument_list|,
 name|merged
 argument_list|,
@@ -1463,6 +1477,12 @@ operator|new
 name|SegmentReader
 argument_list|(
 name|si
+argument_list|,
+name|Version
+operator|.
+name|LATEST
+operator|.
+name|major
 argument_list|,
 name|newIOContext
 argument_list|(

@@ -400,6 +400,12 @@ name|SegmentReader
 argument_list|(
 name|info1
 argument_list|,
+name|Version
+operator|.
+name|LATEST
+operator|.
+name|major
+argument_list|,
 name|newIOContext
 argument_list|(
 name|random
@@ -413,6 +419,12 @@ operator|new
 name|SegmentReader
 argument_list|(
 name|info2
+argument_list|,
+name|Version
+operator|.
+name|LATEST
+operator|.
+name|major
 argument_list|,
 name|newIOContext
 argument_list|(
@@ -534,6 +546,8 @@ argument_list|,
 name|Version
 operator|.
 name|LATEST
+argument_list|,
+literal|null
 argument_list|,
 name|mergedSegment
 argument_list|,
@@ -671,6 +685,12 @@ argument_list|,
 operator|-
 literal|1L
 argument_list|)
+argument_list|,
+name|Version
+operator|.
+name|LATEST
+operator|.
+name|major
 argument_list|,
 name|newIOContext
 argument_list|(

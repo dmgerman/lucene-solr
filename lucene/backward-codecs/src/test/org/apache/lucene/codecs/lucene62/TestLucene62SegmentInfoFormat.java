@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene53
+DECL|package|org.apache.lucene.codecs.lucene62
 package|package
 name|org
 operator|.
@@ -14,7 +14,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene53
+name|lucene62
 package|;
 end_package
 
@@ -40,25 +40,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|codecs
-operator|.
-name|lucene62
-operator|.
-name|Lucene62RWCodec
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|index
 operator|.
-name|BaseNormsFormatTestCase
+name|BaseSegmentInfoFormatTestCase
 import|;
 end_import
 
@@ -77,27 +61,17 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Tests Lucene53NormsFormat  */
+comment|/**  * Tests Lucene62SegmentInfoFormat  */
 end_comment
 
 begin_class
-DECL|class|TestLucene53NormsFormat
+DECL|class|TestLucene62SegmentInfoFormat
 specifier|public
 class|class
-name|TestLucene53NormsFormat
+name|TestLucene62SegmentInfoFormat
 extends|extends
-name|BaseNormsFormatTestCase
+name|BaseSegmentInfoFormatTestCase
 block|{
-DECL|field|codec
-specifier|private
-specifier|final
-name|Codec
-name|codec
-init|=
-operator|new
-name|Lucene62RWCodec
-argument_list|()
-decl_stmt|;
 annotation|@
 name|Override
 DECL|method|getCreatedVersionMajor
@@ -116,6 +90,26 @@ return|;
 block|}
 annotation|@
 name|Override
+DECL|method|getVersions
+specifier|protected
+name|Version
+index|[]
+name|getVersions
+parameter_list|()
+block|{
+return|return
+operator|new
+name|Version
+index|[]
+block|{
+name|Version
+operator|.
+name|LUCENE_6_2_0
+block|}
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|getCodec
 specifier|protected
 name|Codec
@@ -123,15 +117,17 @@ name|getCodec
 parameter_list|()
 block|{
 return|return
-name|codec
+operator|new
+name|Lucene62RWCodec
+argument_list|()
 return|;
 block|}
 annotation|@
 name|Override
-DECL|method|codecSupportsSparsity
+DECL|method|supportsMinVersion
 specifier|protected
 name|boolean
-name|codecSupportsSparsity
+name|supportsMinVersion
 parameter_list|()
 block|{
 return|return

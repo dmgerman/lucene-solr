@@ -128,6 +128,20 @@ name|lucene
 operator|.
 name|index
 operator|.
+name|LeafMetaData
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|index
+operator|.
 name|IndexOptions
 import|;
 end_import
@@ -252,9 +266,9 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
+name|util
 operator|.
-name|Sort
+name|Bits
 import|;
 end_import
 
@@ -268,7 +282,7 @@ name|lucene
 operator|.
 name|util
 operator|.
-name|Bits
+name|Version
 import|;
 end_import
 
@@ -740,14 +754,26 @@ name|IOException
 block|{   }
 annotation|@
 name|Override
-DECL|method|getIndexSort
+DECL|method|getMetaData
 specifier|public
-name|Sort
-name|getIndexSort
+name|LeafMetaData
+name|getMetaData
 parameter_list|()
 block|{
 return|return
+operator|new
+name|LeafMetaData
+argument_list|(
+name|Version
+operator|.
+name|LATEST
+operator|.
+name|major
+argument_list|,
 literal|null
+argument_list|,
+literal|null
+argument_list|)
 return|;
 block|}
 annotation|@

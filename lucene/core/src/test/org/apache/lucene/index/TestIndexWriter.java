@@ -18311,6 +18311,8 @@ argument_list|(
 name|Version
 operator|.
 name|LATEST
+operator|.
+name|major
 argument_list|,
 name|SegmentInfos
 operator|.
@@ -18319,7 +18321,7 @@ argument_list|(
 name|dir
 argument_list|)
 operator|.
-name|getIndexCreatedVersion
+name|getIndexCreatedVersionMajor
 argument_list|()
 argument_list|)
 expr_stmt|;

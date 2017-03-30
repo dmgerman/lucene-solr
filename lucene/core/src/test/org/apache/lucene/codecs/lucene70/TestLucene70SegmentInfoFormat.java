@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.codecs.lucene62
+DECL|package|org.apache.lucene.codecs.lucene70
 package|package
 name|org
 operator|.
@@ -14,7 +14,7 @@ name|lucene
 operator|.
 name|codecs
 operator|.
-name|lucene62
+name|lucene70
 package|;
 end_package
 
@@ -74,15 +74,11 @@ name|Version
 import|;
 end_import
 
-begin_comment
-comment|/**  * Tests Lucene62SegmentInfoFormat  */
-end_comment
-
 begin_class
-DECL|class|TestLucene62SegmentInfoFormat
+DECL|class|TestLucene70SegmentInfoFormat
 specifier|public
 class|class
-name|TestLucene62SegmentInfoFormat
+name|TestLucene70SegmentInfoFormat
 extends|extends
 name|BaseSegmentInfoFormatTestCase
 block|{

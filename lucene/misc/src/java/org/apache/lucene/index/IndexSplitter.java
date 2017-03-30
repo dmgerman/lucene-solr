@@ -782,7 +782,7 @@ name|SegmentInfos
 argument_list|(
 name|infos
 operator|.
-name|getIndexCreatedVersion
+name|getIndexCreatedVersionMajor
 argument_list|()
 argument_list|)
 decl_stmt|;
@@ -829,6 +829,11 @@ argument_list|,
 name|info
 operator|.
 name|getVersion
+argument_list|()
+argument_list|,
+name|info
+operator|.
+name|getMinVersion
 argument_list|()
 argument_list|,
 name|info

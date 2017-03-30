@@ -1374,6 +1374,10 @@ name|Version
 operator|.
 name|LATEST
 argument_list|,
+name|Version
+operator|.
+name|LATEST
+argument_list|,
 name|SEGMENT
 argument_list|,
 literal|10000
@@ -1823,6 +1827,10 @@ operator|new
 name|SegmentInfo
 argument_list|(
 name|dir
+argument_list|,
+name|Version
+operator|.
+name|LATEST
 argument_list|,
 name|Version
 operator|.

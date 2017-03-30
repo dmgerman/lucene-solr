@@ -3046,8 +3046,11 @@ block|}
 name|Directory
 name|dir
 init|=
+name|applyCreatedVersionMajor
+argument_list|(
 name|newDirectory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|Analyzer
 name|analyzer
@@ -3731,8 +3734,11 @@ block|{
 name|Directory
 name|dir
 init|=
+name|applyCreatedVersionMajor
+argument_list|(
 name|newDirectory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|RandomIndexWriter
 name|w
@@ -4174,8 +4180,11 @@ block|}
 name|Directory
 name|dir
 init|=
+name|applyCreatedVersionMajor
+argument_list|(
 name|newDirectory
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|Analyzer
 name|analyzer

@@ -822,6 +822,8 @@ argument_list|(
 name|Version
 operator|.
 name|LATEST
+operator|.
+name|major
 argument_list|)
 expr_stmt|;
 name|message

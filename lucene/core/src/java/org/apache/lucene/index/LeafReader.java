@@ -50,20 +50,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|search
-operator|.
-name|Sort
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|Bits
@@ -662,12 +648,12 @@ parameter_list|()
 throws|throws
 name|IOException
 function_decl|;
-comment|/** Returns null if this leaf is unsorted, or the {@link Sort} that it was sorted by */
-DECL|method|getIndexSort
+comment|/**    * Return metadata about this leaf.    * @lucene.experimental */
+DECL|method|getMetaData
 specifier|public
 specifier|abstract
-name|Sort
-name|getIndexSort
+name|LeafMetaData
+name|getMetaData
 parameter_list|()
 function_decl|;
 block|}

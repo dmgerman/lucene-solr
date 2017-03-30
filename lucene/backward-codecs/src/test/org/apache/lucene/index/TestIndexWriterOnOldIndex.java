@@ -196,7 +196,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|null
+literal|6
 comment|/** 6.3.0 */
 argument_list|,
 name|SegmentInfos
@@ -206,7 +206,7 @@ argument_list|(
 name|tmpDir
 argument_list|)
 operator|.
-name|getIndexCreatedVersion
+name|getIndexCreatedVersionMajor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -250,6 +250,8 @@ argument_list|(
 name|Version
 operator|.
 name|LATEST
+operator|.
+name|major
 argument_list|,
 name|SegmentInfos
 operator|.
@@ -258,7 +260,7 @@ argument_list|(
 name|tmpDir
 argument_list|)
 operator|.
-name|getIndexCreatedVersion
+name|getIndexCreatedVersionMajor
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -266,7 +268,7 @@ break|break;
 default|default:
 name|assertEquals
 argument_list|(
-literal|null
+literal|6
 comment|/** 6.3.0 */
 argument_list|,
 name|SegmentInfos
@@ -276,7 +278,7 @@ argument_list|(
 name|tmpDir
 argument_list|)
 operator|.
-name|getIndexCreatedVersion
+name|getIndexCreatedVersionMajor
 argument_list|()
 argument_list|)
 expr_stmt|;

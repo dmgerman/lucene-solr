@@ -16553,7 +16553,10 @@ argument_list|(
 name|r2
 argument_list|)
 operator|.
-name|getIndexSort
+name|getMetaData
+argument_list|()
+operator|.
+name|getSort
 argument_list|()
 argument_list|)
 expr_stmt|;

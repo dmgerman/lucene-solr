@@ -486,6 +486,20 @@ name|TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_comment
 comment|// TODO:
 end_comment
@@ -2245,6 +2259,12 @@ name|info
 argument_list|(
 literal|0
 argument_list|)
+argument_list|,
+name|Version
+operator|.
+name|LATEST
+operator|.
+name|major
 argument_list|,
 name|IOContext
 operator|.
