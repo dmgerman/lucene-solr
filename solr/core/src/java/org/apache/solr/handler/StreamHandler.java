@@ -1953,6 +1953,15 @@ name|IfThenElseEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"analyze"
+argument_list|,
+name|AnalyzeEvaluator
+operator|.
+name|class
+argument_list|)
 expr_stmt|;
 comment|// This pulls all the overrides and additions from the config
 name|List
