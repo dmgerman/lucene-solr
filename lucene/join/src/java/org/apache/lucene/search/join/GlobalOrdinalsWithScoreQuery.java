@@ -62,7 +62,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexReader
+name|IndexReaderContext
 import|;
 end_import
 
@@ -316,11 +316,12 @@ specifier|final
 name|int
 name|max
 decl_stmt|;
-DECL|field|indexReader
+comment|// id of the context rather than the context itself in order not to hold references to index readers
+DECL|field|indexReaderContextId
 specifier|private
 specifier|final
-name|IndexReader
-name|indexReader
+name|Object
+name|indexReaderContextId
 decl_stmt|;
 DECL|method|GlobalOrdinalsWithScoreQuery
 name|GlobalOrdinalsWithScoreQuery
@@ -348,8 +349,8 @@ parameter_list|,
 name|int
 name|max
 parameter_list|,
-name|IndexReader
-name|indexReader
+name|IndexReaderContext
+name|context
 parameter_list|)
 block|{
 name|this
@@ -396,9 +397,12 @@ name|max
 expr_stmt|;
 name|this
 operator|.
-name|indexReader
+name|indexReaderContextId
 operator|=
-name|indexReader
+name|context
+operator|.
+name|id
+argument_list|()
 expr_stmt|;
 block|}
 annotation|@
@@ -420,6 +424,27 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+if|if
+condition|(
+name|searcher
+operator|.
+name|getTopReaderContext
+argument_list|()
+operator|.
+name|id
+argument_list|()
+operator|!=
+name|indexReaderContextId
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalStateException
+argument_list|(
+literal|"Creating the weight against a different index reader than this query has been built for."
+argument_list|)
+throw|;
+block|}
 return|return
 operator|new
 name|W
@@ -517,13 +542,13 @@ operator|.
 name|toQuery
 argument_list|)
 operator|&&
-name|indexReader
+name|indexReaderContextId
 operator|.
 name|equals
 argument_list|(
 name|other
 operator|.
-name|indexReader
+name|indexReaderContextId
 argument_list|)
 return|;
 block|}
@@ -596,7 +621,7 @@ literal|31
 operator|*
 name|result
 operator|+
-name|indexReader
+name|indexReaderContextId
 operator|.
 name|hashCode
 argument_list|()

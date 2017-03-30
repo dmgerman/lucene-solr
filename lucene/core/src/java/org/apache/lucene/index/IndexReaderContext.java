@@ -137,6 +137,17 @@ operator|==
 literal|null
 expr_stmt|;
 block|}
+comment|/** Expert: Return an {@link Object} that uniquely identifies this context.    *  The returned object does neither reference this {@link IndexReaderContext}    *  nor the wrapped {@link IndexReader}.    *  @lucene.experimental */
+DECL|method|id
+specifier|public
+name|Object
+name|id
+parameter_list|()
+block|{
+return|return
+name|identity
+return|;
+block|}
 comment|/** Returns the {@link IndexReader}, this context represents. */
 DECL|method|reader
 specifier|public
