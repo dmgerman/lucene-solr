@@ -246,6 +246,7 @@ decl_stmt|;
 comment|// scheduler delay for maxDoc-triggered autocommits
 DECL|field|DOC_COMMIT_DELAY_MS
 specifier|public
+specifier|static
 specifier|final
 name|int
 name|DOC_COMMIT_DELAY_MS
@@ -327,11 +328,12 @@ specifier|private
 name|boolean
 name|openSearcher
 decl_stmt|;
-DECL|field|waitSearcher
+DECL|field|WAIT_SEARCHER
 specifier|private
+specifier|static
 specifier|final
 name|boolean
-name|waitSearcher
+name|WAIT_SEARCHER
 init|=
 literal|true
 decl_stmt|;
@@ -824,7 +826,7 @@ name|command
 operator|.
 name|waitSearcher
 operator|=
-name|waitSearcher
+name|WAIT_SEARCHER
 expr_stmt|;
 name|command
 operator|.

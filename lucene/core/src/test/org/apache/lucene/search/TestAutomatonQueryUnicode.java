@@ -185,6 +185,7 @@ name|directory
 decl_stmt|;
 DECL|field|FN
 specifier|private
+specifier|static
 specifier|final
 name|String
 name|FN

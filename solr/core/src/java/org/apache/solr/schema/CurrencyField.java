@@ -2836,6 +2836,7 @@ name|FunctionValues
 argument_list|()
 block|{
 specifier|private
+specifier|static
 specifier|final
 name|int
 name|MAX_CURRENCIES_TO_CACHE

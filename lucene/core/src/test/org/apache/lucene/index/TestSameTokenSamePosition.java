@@ -352,11 +352,12 @@ operator|.
 name|class
 argument_list|)
 decl_stmt|;
-DECL|field|tokenCount
+DECL|field|TOKEN_COUNT
 specifier|private
+specifier|static
 specifier|final
 name|int
-name|tokenCount
+name|TOKEN_COUNT
 init|=
 literal|4
 decl_stmt|;
@@ -459,7 +460,7 @@ if|if
 condition|(
 name|nextTokenIndex
 operator|<
-name|tokenCount
+name|TOKEN_COUNT
 condition|)
 block|{
 name|termAtt

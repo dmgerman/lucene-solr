@@ -182,6 +182,7 @@ name|int
 name|NUM_DOCS
 decl_stmt|;
 DECL|field|NUM_SEARCH_THREADS
+specifier|static
 specifier|final
 name|int
 name|NUM_SEARCH_THREADS

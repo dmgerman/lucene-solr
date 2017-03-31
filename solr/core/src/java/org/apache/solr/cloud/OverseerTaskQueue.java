@@ -244,11 +244,12 @@ name|lookupClass
 argument_list|()
 argument_list|)
 decl_stmt|;
-DECL|field|response_prefix
+DECL|field|RESPONSE_PREFIX
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|response_prefix
+name|RESPONSE_PREFIX
 init|=
 literal|"qnr-"
 decl_stmt|;
@@ -514,7 +515,7 @@ name|dir
 operator|+
 literal|"/"
 operator|+
-name|response_prefix
+name|RESPONSE_PREFIX
 operator|+
 name|path
 operator|.
@@ -1144,7 +1145,7 @@ name|dir
 operator|+
 literal|"/"
 operator|+
-name|response_prefix
+name|RESPONSE_PREFIX
 argument_list|,
 literal|null
 argument_list|,

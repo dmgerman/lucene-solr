@@ -351,10 +351,11 @@ name|TestNorms
 extends|extends
 name|LuceneTestCase
 block|{
-DECL|field|byteTestField
+DECL|field|BYTE_TEST_FIELD
+specifier|static
 specifier|final
 name|String
-name|byteTestField
+name|BYTE_TEST_FIELD
 init|=
 literal|"normsTestByte"
 decl_stmt|;
@@ -797,7 +798,7 @@ name|getNormValues
 argument_list|(
 name|open
 argument_list|,
-name|byteTestField
+name|BYTE_TEST_FIELD
 argument_list|)
 decl_stmt|;
 name|assertNotNull
@@ -844,7 +845,7 @@ name|document
 operator|.
 name|get
 argument_list|(
-name|byteTestField
+name|BYTE_TEST_FIELD
 argument_list|)
 operator|.
 name|split
@@ -1065,7 +1066,7 @@ init|=
 operator|new
 name|TextField
 argument_list|(
-name|byteTestField
+name|BYTE_TEST_FIELD
 argument_list|,
 name|value
 argument_list|,
@@ -1094,7 +1095,7 @@ name|doc
 operator|.
 name|removeField
 argument_list|(
-name|byteTestField
+name|BYTE_TEST_FIELD
 argument_list|)
 expr_stmt|;
 if|if
@@ -1154,7 +1155,7 @@ parameter_list|)
 block|{
 if|if
 condition|(
-name|byteTestField
+name|BYTE_TEST_FIELD
 operator|.
 name|equals
 argument_list|(

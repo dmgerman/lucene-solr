@@ -303,11 +303,12 @@ specifier|volatile
 name|int
 name|lastId
 decl_stmt|;
-DECL|field|field
+DECL|field|FIELD
 specifier|protected
+specifier|static
 specifier|final
 name|String
-name|field
+name|FIELD
 init|=
 literal|"val_l"
 decl_stmt|;

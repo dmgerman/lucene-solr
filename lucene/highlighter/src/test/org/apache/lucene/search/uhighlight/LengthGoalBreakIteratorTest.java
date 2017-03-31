@@ -170,10 +170,11 @@ comment|//whitespace, punctuation, lowercase
 comment|// We do a '.' BreakIterator and test varying the length goal.
 comment|//                      0         1
 comment|//                      01234567890123456789
-DECL|field|content
+DECL|field|CONTENT
+specifier|static
 specifier|final
 name|String
-name|content
+name|CONTENT
 init|=
 literal|"Aa bb. Cc dd. Ee ff"
 decl_stmt|;
@@ -203,7 +204,7 @@ literal|"<b>Aa</b> bb."
 argument_list|,
 name|highlightClosestToLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -219,7 +220,7 @@ literal|"<b>Aa</b> bb. Cc dd."
 argument_list|,
 name|highlightClosestToLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -235,7 +236,7 @@ literal|"<b>Aa</b> bb. Cc dd. Ee ff"
 argument_list|,
 name|highlightClosestToLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -267,7 +268,7 @@ literal|" Cc<b>dd</b>."
 argument_list|,
 name|highlightClosestToLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -289,7 +290,7 @@ literal|" Cc<b>dd</b>."
 argument_list|,
 name|highlightClosestToLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -305,7 +306,7 @@ literal|" Cc<b>dd</b>. Ee ff"
 argument_list|,
 name|highlightClosestToLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -321,7 +322,7 @@ literal|" Cc<b>dd</b>. Ee ff"
 argument_list|,
 name|highlightClosestToLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -363,7 +364,7 @@ literal|" Cc<b>dd</b>."
 argument_list|,
 name|highlightMinLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -379,7 +380,7 @@ literal|" Cc<b>dd</b>. Ee ff"
 argument_list|,
 name|highlightMinLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -410,7 +411,7 @@ literal|"Aa bb."
 argument_list|,
 name|highlightClosestToLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -431,7 +432,7 @@ literal|"Aa bb. Cc dd."
 argument_list|,
 name|highlightClosestToLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,
@@ -448,7 +449,7 @@ literal|"Aa bb. Cc dd. Ee ff"
 argument_list|,
 name|highlightClosestToLen
 argument_list|(
-name|content
+name|CONTENT
 argument_list|,
 name|query
 argument_list|,

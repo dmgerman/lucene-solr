@@ -6321,6 +6321,7 @@ argument_list|>
 name|robotsCache
 decl_stmt|;
 DECL|field|DISALLOW
+specifier|static
 specifier|final
 name|String
 name|DISALLOW

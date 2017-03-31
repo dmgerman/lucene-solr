@@ -293,7 +293,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigWithCaseInsensitiveFields
+name|DATA_CONFIG_WITH_CASE_INSENSITIVE_FIELDS
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -390,7 +390,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigWithErrorHandler
+name|DATA_CONFIG_WITH_ERROR_HANDLER
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -470,7 +470,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigWithDynamicTransformer
+name|DATA_CONFIG_WITH_DYNAMIC_TRANSFORMER
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -573,7 +573,7 @@ literal|"search"
 argument_list|,
 literal|"dataConfig"
 argument_list|,
-name|requestParamAsVariable
+name|REQUEST_PARAM_AS_VARIABLE
 argument_list|)
 decl_stmt|;
 name|h
@@ -671,7 +671,7 @@ literal|"true"
 argument_list|,
 literal|"dataConfig"
 argument_list|,
-name|dataConfigWithDynamicFieldNames
+name|DATA_CONFIG_WITH_DYNAMIC_FIELD_NAMES
 argument_list|)
 decl_stmt|;
 name|h
@@ -779,7 +779,7 @@ literal|"desc"
 argument_list|,
 literal|"dataConfig"
 argument_list|,
-name|dataConfigWithTemplatizedFieldNames
+name|DATA_CONFIG_WITH_TEMPLATIZED_FIELD_NAMES
 argument_list|)
 decl_stmt|;
 name|h
@@ -935,7 +935,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigWithDynamicTransformer
+name|DATA_CONFIG_WITH_DYNAMIC_TRANSFORMER
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1033,7 +1033,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigWithDynamicTransformer
+name|DATA_CONFIG_WITH_DYNAMIC_TRANSFORMER
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1179,7 +1179,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigWithTwoEntities
+name|DATA_CONFIG_WITH_TWO_ENTITIES
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1295,7 +1295,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigForSkipTransform
+name|DATA_CONFIG_FOR_SKIP_TRANSFORM
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1419,7 +1419,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigForSkipTransform
+name|DATA_CONFIG_FOR_SKIP_TRANSFORM
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1549,7 +1549,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigForSkipTransform
+name|DATA_CONFIG_FOR_SKIP_TRANSFORM
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1639,7 +1639,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigForSkipTransform
+name|DATA_CONFIG_FOR_SKIP_TRANSFORM
 argument_list|,
 name|createMap
 argument_list|(
@@ -1776,7 +1776,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigFileList
+name|DATA_CONFIG_FILE_LIST
 argument_list|,
 name|params
 argument_list|)
@@ -1812,7 +1812,7 @@ argument_list|)
 expr_stmt|;
 name|runFullImport
 argument_list|(
-name|dataConfigFileList
+name|DATA_CONFIG_FILE_LIST
 argument_list|,
 name|params
 argument_list|)
@@ -2085,11 +2085,12 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-DECL|field|requestParamAsVariable
+DECL|field|REQUEST_PARAM_AS_VARIABLE
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|requestParamAsVariable
+name|REQUEST_PARAM_AS_VARIABLE
 init|=
 literal|"<dataConfig>\n"
 operator|+
@@ -2109,11 +2110,12 @@ literal|"</document>\n"
 operator|+
 literal|"</dataConfig>"
 decl_stmt|;
-DECL|field|dataConfigWithDynamicTransformer
+DECL|field|DATA_CONFIG_WITH_DYNAMIC_TRANSFORMER
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|dataConfigWithDynamicTransformer
+name|DATA_CONFIG_WITH_DYNAMIC_TRANSFORMER
 init|=
 literal|"<dataConfig><dataSource type=\"MockDataSource\"/>\n"
 operator|+
@@ -2133,11 +2135,12 @@ literal|"</document>\n"
 operator|+
 literal|"</dataConfig>"
 decl_stmt|;
-DECL|field|dataConfigForSkipTransform
+DECL|field|DATA_CONFIG_FOR_SKIP_TRANSFORM
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|dataConfigForSkipTransform
+name|DATA_CONFIG_FOR_SKIP_TRANSFORM
 init|=
 literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
@@ -2159,11 +2162,12 @@ literal|"</document>\n"
 operator|+
 literal|"</dataConfig>"
 decl_stmt|;
-DECL|field|dataConfigWithTwoEntities
+DECL|field|DATA_CONFIG_WITH_TWO_ENTITIES
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|dataConfigWithTwoEntities
+name|DATA_CONFIG_WITH_TWO_ENTITIES
 init|=
 literal|"<dataConfig><dataSource type=\"MockDataSource\"/>\n"
 operator|+
@@ -2187,11 +2191,12 @@ literal|"</document>\n"
 operator|+
 literal|"</dataConfig>"
 decl_stmt|;
-DECL|field|dataConfigWithCaseInsensitiveFields
+DECL|field|DATA_CONFIG_WITH_CASE_INSENSITIVE_FIELDS
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|dataConfigWithCaseInsensitiveFields
+name|DATA_CONFIG_WITH_CASE_INSENSITIVE_FIELDS
 init|=
 literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
@@ -2209,11 +2214,12 @@ literal|"</document>\n"
 operator|+
 literal|"</dataConfig>"
 decl_stmt|;
-DECL|field|dataConfigWithErrorHandler
+DECL|field|DATA_CONFIG_WITH_ERROR_HANDLER
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|dataConfigWithErrorHandler
+name|DATA_CONFIG_WITH_ERROR_HANDLER
 init|=
 literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
@@ -2231,11 +2237,12 @@ literal|"</document>\n"
 operator|+
 literal|"</dataConfig>"
 decl_stmt|;
-DECL|field|dataConfigWithTemplatizedFieldNames
+DECL|field|DATA_CONFIG_WITH_TEMPLATIZED_FIELD_NAMES
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|dataConfigWithTemplatizedFieldNames
+name|DATA_CONFIG_WITH_TEMPLATIZED_FIELD_NAMES
 init|=
 literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
@@ -2253,11 +2260,12 @@ literal|"</document>\n"
 operator|+
 literal|"</dataConfig>"
 decl_stmt|;
-DECL|field|dataConfigWithDynamicFieldNames
+DECL|field|DATA_CONFIG_WITH_DYNAMIC_FIELD_NAMES
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|dataConfigWithDynamicFieldNames
+name|DATA_CONFIG_WITH_DYNAMIC_FIELD_NAMES
 init|=
 literal|"<dataConfig><dataSource  type=\"MockDataSource\"/>\n"
 operator|+
@@ -2275,11 +2283,12 @@ literal|"</document>\n"
 operator|+
 literal|"</dataConfig>"
 decl_stmt|;
-DECL|field|dataConfigFileList
+DECL|field|DATA_CONFIG_FILE_LIST
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|dataConfigFileList
+name|DATA_CONFIG_FILE_LIST
 init|=
 literal|"<dataConfig>\n"
 operator|+

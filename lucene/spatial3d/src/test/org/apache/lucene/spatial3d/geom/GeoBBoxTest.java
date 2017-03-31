@@ -92,6 +92,7 @@ name|GeoBBoxTest
 block|{
 DECL|field|DEGREES_TO_RADIANS
 specifier|protected
+specifier|static
 specifier|final
 name|double
 name|DEGREES_TO_RADIANS

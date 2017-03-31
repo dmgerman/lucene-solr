@@ -497,10 +497,11 @@ literal|9
 else|:
 literal|5
 decl_stmt|;
-DECL|field|resetInterval
+DECL|field|RESET_INTERVAL
+specifier|static
 specifier|final
 name|int
-name|resetInterval
+name|RESET_INTERVAL
 init|=
 literal|30
 operator|*
@@ -904,7 +905,7 @@ name|Math
 operator|.
 name|min
 argument_list|(
-name|resetInterval
+name|RESET_INTERVAL
 argument_list|,
 name|secondsRemaining
 argument_list|)
@@ -987,7 +988,7 @@ name|max
 argument_list|(
 name|secondsRemaining
 operator|-
-name|resetInterval
+name|RESET_INTERVAL
 argument_list|,
 literal|0
 argument_list|)

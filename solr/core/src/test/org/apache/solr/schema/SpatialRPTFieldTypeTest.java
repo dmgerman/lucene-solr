@@ -396,6 +396,7 @@ argument_list|)
 expr_stmt|;
 block|}
 DECL|field|INDEXED_COORDINATES
+specifier|static
 specifier|final
 name|String
 name|INDEXED_COORDINATES
@@ -403,6 +404,7 @@ init|=
 literal|"25,82"
 decl_stmt|;
 DECL|field|QUERY_COORDINATES
+specifier|static
 specifier|final
 name|String
 name|QUERY_COORDINATES
@@ -410,6 +412,7 @@ init|=
 literal|"24,81"
 decl_stmt|;
 DECL|field|DISTANCE_DEGREES
+specifier|static
 specifier|final
 name|String
 name|DISTANCE_DEGREES
@@ -417,6 +420,7 @@ init|=
 literal|"1.3520328"
 decl_stmt|;
 DECL|field|DISTANCE_KILOMETERS
+specifier|static
 specifier|final
 name|String
 name|DISTANCE_KILOMETERS
@@ -424,6 +428,7 @@ init|=
 literal|"150.33939"
 decl_stmt|;
 DECL|field|DISTANCE_MILES
+specifier|static
 specifier|final
 name|String
 name|DISTANCE_MILES

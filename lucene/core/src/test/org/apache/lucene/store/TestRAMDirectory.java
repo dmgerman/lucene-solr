@@ -276,11 +276,12 @@ argument_list|()
 return|;
 block|}
 comment|// add enough document so that the index will be larger than RAMDirectory.READ_BUFFER_SIZE
-DECL|field|docsToAdd
+DECL|field|DOCS_TO_ADD
 specifier|private
+specifier|static
 specifier|final
 name|int
-name|docsToAdd
+name|DOCS_TO_ADD
 init|=
 literal|500
 decl_stmt|;
@@ -350,7 +351,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|docsToAdd
+name|DOCS_TO_ADD
 condition|;
 name|i
 operator|++
@@ -398,7 +399,7 @@ expr_stmt|;
 block|}
 name|assertEquals
 argument_list|(
-name|docsToAdd
+name|DOCS_TO_ADD
 argument_list|,
 name|writer
 operator|.
@@ -595,7 +596,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-name|docsToAdd
+name|DOCS_TO_ADD
 argument_list|,
 name|reader
 operator|.
@@ -622,7 +623,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|docsToAdd
+name|DOCS_TO_ADD
 condition|;
 name|i
 operator|++
@@ -658,19 +659,21 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
-DECL|field|numThreads
+DECL|field|NUM_THREADS
 specifier|private
+specifier|static
 specifier|final
 name|int
-name|numThreads
+name|NUM_THREADS
 init|=
 literal|10
 decl_stmt|;
-DECL|field|docsPerThread
+DECL|field|DOCS_PER_THREAD
 specifier|private
+specifier|static
 specifier|final
 name|int
-name|docsPerThread
+name|DOCS_PER_THREAD
 init|=
 literal|40
 decl_stmt|;
@@ -782,7 +785,7 @@ init|=
 operator|new
 name|Thread
 index|[
-name|numThreads
+name|NUM_THREADS
 index|]
 decl_stmt|;
 for|for
@@ -794,7 +797,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|numThreads
+name|NUM_THREADS
 condition|;
 name|i
 operator|++
@@ -831,7 +834,7 @@ literal|1
 init|;
 name|j
 operator|<
-name|docsPerThread
+name|DOCS_PER_THREAD
 condition|;
 name|j
 operator|++
@@ -858,7 +861,7 @@ name|intToEnglish
 argument_list|(
 name|num
 operator|*
-name|docsPerThread
+name|DOCS_PER_THREAD
 operator|+
 name|j
 argument_list|)
@@ -912,7 +915,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|numThreads
+name|NUM_THREADS
 condition|;
 name|i
 operator|++
@@ -936,7 +939,7 @@ literal|0
 init|;
 name|i
 operator|<
-name|numThreads
+name|NUM_THREADS
 condition|;
 name|i
 operator|++

@@ -147,11 +147,12 @@ specifier|protected
 name|SolrZkClient
 name|zookeeper
 decl_stmt|;
-DECL|field|prefix
+DECL|field|PREFIX
 specifier|protected
+specifier|static
 specifier|final
 name|String
-name|prefix
+name|PREFIX
 init|=
 literal|"mn-"
 decl_stmt|;
@@ -272,7 +273,7 @@ name|dir
 operator|+
 literal|"/"
 operator|+
-name|prefix
+name|PREFIX
 operator|+
 name|trackingId
 argument_list|,
@@ -313,7 +314,7 @@ name|dir
 operator|+
 literal|"/"
 operator|+
-name|prefix
+name|PREFIX
 operator|+
 name|trackingId
 argument_list|,
@@ -347,7 +348,7 @@ name|dir
 operator|+
 literal|"/"
 operator|+
-name|prefix
+name|PREFIX
 operator|+
 name|trackingId
 argument_list|,
@@ -416,7 +417,7 @@ name|dir
 operator|+
 literal|"/"
 operator|+
-name|prefix
+name|PREFIX
 operator|+
 name|trackingId
 argument_list|,

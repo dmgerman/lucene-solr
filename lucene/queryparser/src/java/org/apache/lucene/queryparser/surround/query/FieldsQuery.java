@@ -96,11 +96,12 @@ specifier|final
 name|char
 name|fieldOp
 decl_stmt|;
-DECL|field|OrOperatorName
+DECL|field|OR_OPERATOR_NAME
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|OrOperatorName
+name|OR_OPERATOR_NAME
 init|=
 literal|"OR"
 decl_stmt|;
@@ -304,7 +305,7 @@ argument_list|,
 literal|true
 comment|/* infix OR for field names */
 argument_list|,
-name|OrOperatorName
+name|OR_OPERATOR_NAME
 argument_list|)
 decl_stmt|;
 comment|// System.out.println(getClass().toString() + ", fields expanded: " + oq.toString()); /* needs testing */

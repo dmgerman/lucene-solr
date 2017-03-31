@@ -831,7 +831,7 @@ name|grandChildrenNum
 decl_stmt|;
 name|runFullImport
 argument_list|(
-name|threeLevelHierarchyConfig
+name|THREE_LEVEL_HIERARCHY_CONFIG
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -1832,7 +1832,7 @@ name|StrUtils
 operator|.
 name|formatString
 argument_list|(
-name|rootEntityTemplate
+name|ROOT_ENTITY_TEMPLATE
 argument_list|,
 name|parentType
 argument_list|,
@@ -1852,7 +1852,7 @@ name|StrUtils
 operator|.
 name|formatString
 argument_list|(
-name|dataConfigTemplate
+name|DATA_CONFIG_TEMPLATE
 argument_list|,
 name|rootEntity
 argument_list|)
@@ -2336,7 +2336,7 @@ name|StrUtils
 operator|.
 name|formatString
 argument_list|(
-name|childEntityTemplate
+name|CHILD_ENTITY_TEMPLATE
 argument_list|,
 name|childName
 argument_list|,
@@ -2432,11 +2432,12 @@ name|toString
 argument_list|()
 return|;
 block|}
-DECL|field|threeLevelHierarchyConfig
+DECL|field|THREE_LEVEL_HIERARCHY_CONFIG
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|threeLevelHierarchyConfig
+name|THREE_LEVEL_HIERARCHY_CONFIG
 init|=
 literal|"<dataConfig>\n"
 operator|+
@@ -2479,29 +2480,32 @@ operator|+
 literal|"</dataConfig>"
 decl_stmt|;
 comment|/** {0} is rootEntity block **/
-DECL|field|dataConfigTemplate
+DECL|field|DATA_CONFIG_TEMPLATE
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|dataConfigTemplate
+name|DATA_CONFIG_TEMPLATE
 init|=
 literal|"<dataConfig><dataSource type=\"MockDataSource\" />\n<document>\n {0}</document></dataConfig>"
 decl_stmt|;
 comment|/**     * {0} - entityName,     * {1} - select query    * {2} - fieldsList    * {3} - childEntitiesList     **/
-DECL|field|rootEntityTemplate
+DECL|field|ROOT_ENTITY_TEMPLATE
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|rootEntityTemplate
+name|ROOT_ENTITY_TEMPLATE
 init|=
 literal|"<entity name=\"{0}\" query=\"{1}\">\n{2} {3}\n</entity>\n"
 decl_stmt|;
 comment|/**     * {0} - entityName,     * {1} - select query    * {2} - fieldsList    * {3} - childEntitiesList     **/
-DECL|field|childEntityTemplate
+DECL|field|CHILD_ENTITY_TEMPLATE
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|childEntityTemplate
+name|CHILD_ENTITY_TEMPLATE
 init|=
 literal|"<entity "
 operator|+

@@ -513,19 +513,21 @@ operator|new
 name|NullComparator
 argument_list|()
 decl_stmt|;
-DECL|field|groupField
+DECL|field|GROUP_FIELD
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|groupField
+name|GROUP_FIELD
 init|=
 literal|"author"
 decl_stmt|;
-DECL|field|countField
+DECL|field|COUNT_FIELD
 specifier|private
+specifier|static
 specifier|final
 name|String
-name|countField
+name|COUNT_FIELD
 init|=
 literal|"publisher"
 decl_stmt|;
@@ -586,7 +588,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 literal|"1"
 argument_list|)
@@ -595,7 +597,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|,
 literal|"1"
 argument_list|)
@@ -656,7 +658,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 literal|"1"
 argument_list|)
@@ -665,7 +667,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|,
 literal|"1"
 argument_list|)
@@ -726,7 +728,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 literal|"1"
 argument_list|)
@@ -735,7 +737,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|,
 literal|"2"
 argument_list|)
@@ -802,7 +804,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 literal|"2"
 argument_list|)
@@ -863,7 +865,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 literal|"3"
 argument_list|)
@@ -872,7 +874,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|,
 literal|"1"
 argument_list|)
@@ -933,7 +935,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 literal|"3"
 argument_list|)
@@ -942,7 +944,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|,
 literal|"1"
 argument_list|)
@@ -1022,7 +1024,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|,
 literal|"1"
 argument_list|)
@@ -1202,7 +1204,7 @@ operator|new
 name|Sort
 argument_list|()
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 literal|10
 argument_list|)
@@ -1239,9 +1241,9 @@ name|createDistinctCountCollector
 argument_list|(
 name|firstCollector
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|)
 decl_stmt|;
 name|indexSearcher
@@ -1562,7 +1564,7 @@ operator|new
 name|Sort
 argument_list|()
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 literal|10
 argument_list|)
@@ -1592,9 +1594,9 @@ name|createDistinctCountCollector
 argument_list|(
 name|firstCollector
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|)
 expr_stmt|;
 name|indexSearcher
@@ -1841,7 +1843,7 @@ operator|new
 name|Sort
 argument_list|()
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 literal|10
 argument_list|)
@@ -1871,9 +1873,9 @@ name|createDistinctCountCollector
 argument_list|(
 name|firstCollector
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|)
 expr_stmt|;
 name|indexSearcher
@@ -2213,7 +2215,7 @@ name|createRandomFirstPassCollector
 argument_list|(
 name|groupSort
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 name|topN
 argument_list|)
@@ -2250,9 +2252,9 @@ name|createDistinctCountCollector
 argument_list|(
 name|firstCollector
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|)
 decl_stmt|;
 name|searcher
@@ -3982,7 +3984,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|groupField
+name|GROUP_FIELD
 argument_list|,
 name|groupValue
 argument_list|)
@@ -3999,7 +4001,7 @@ name|addField
 argument_list|(
 name|doc
 argument_list|,
-name|countField
+name|COUNT_FIELD
 argument_list|,
 name|countValue
 argument_list|)

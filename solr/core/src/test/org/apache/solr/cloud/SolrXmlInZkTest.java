@@ -864,6 +864,7 @@ comment|// Just a random port, I'm not going to use it but just check that the S
 comment|// file in ZK overrides the default port.
 DECL|field|XML_FOR_ZK
 specifier|private
+specifier|static
 specifier|final
 name|String
 name|XML_FOR_ZK

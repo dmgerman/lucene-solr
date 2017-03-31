@@ -290,6 +290,7 @@ expr_stmt|;
 block|}
 DECL|field|PAGE1
 specifier|private
+specifier|static
 specifier|final
 name|String
 name|PAGE1
@@ -330,6 +331,7 @@ literal|"</page>\r\n"
 decl_stmt|;
 DECL|field|PAGE2
 specifier|private
+specifier|static
 specifier|final
 name|String
 name|PAGE2

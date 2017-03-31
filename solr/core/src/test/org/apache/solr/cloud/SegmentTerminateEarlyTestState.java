@@ -203,41 +203,42 @@ DECL|class|SegmentTerminateEarlyTestState
 class|class
 name|SegmentTerminateEarlyTestState
 block|{
-DECL|field|keyField
+DECL|field|KEY_FIELD
+specifier|static
 specifier|final
 name|String
-name|keyField
+name|KEY_FIELD
 init|=
 literal|"id"
 decl_stmt|;
 comment|// for historic reasons, this is refered to as a "timestamp" field, but in actuallity is just an int
 comment|// value representing a number of "minutes" between 0-60.
 comment|// aka: I decided not to rename a million things while refactoring this test
-DECL|field|timestampField
+DECL|field|TIMESTAMP_FIELD
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|timestampField
+name|TIMESTAMP_FIELD
 init|=
 literal|"timestamp_i_dvo"
 decl_stmt|;
-DECL|field|oddField
+DECL|field|ODD_FIELD
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|oddField
+name|ODD_FIELD
 init|=
 literal|"odd_l1"
 decl_stmt|;
 comment|//<dynamicField name="*_l1"  type="long"   indexed="true"  stored="true" multiValued="false"/>
-DECL|field|quadField
+DECL|field|QUAD_FIELD
 specifier|public
 specifier|static
 specifier|final
 name|String
-name|quadField
+name|QUAD_FIELD
 init|=
 literal|"quad_l1"
 decl_stmt|;
@@ -379,7 +380,7 @@ name|doc
 operator|.
 name|setField
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|,
 literal|""
 operator|+
@@ -502,7 +503,7 @@ name|doc
 operator|.
 name|setField
 argument_list|(
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|,
 operator|(
 name|Integer
@@ -514,7 +515,7 @@ name|doc
 operator|.
 name|setField
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|,
 literal|""
 operator|+
@@ -529,7 +530,7 @@ name|doc
 operator|.
 name|setField
 argument_list|(
-name|quadField
+name|QUAD_FIELD
 argument_list|,
 literal|""
 operator|+
@@ -635,7 +636,7 @@ init|=
 operator|new
 name|SolrQuery
 argument_list|(
-name|oddField
+name|ODD_FIELD
 operator|+
 literal|":"
 operator|+
@@ -646,7 +647,7 @@ name|query
 operator|.
 name|setSort
 argument_list|(
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|,
 name|SolrQuery
 operator|.
@@ -659,11 +660,11 @@ name|query
 operator|.
 name|setFields
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|,
-name|oddField
+name|ODD_FIELD
 argument_list|,
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|)
 expr_stmt|;
 name|query
@@ -737,7 +738,7 @@ name|TestMiniSolrCloudCluster
 operator|.
 name|assertTrue
 argument_list|(
-name|keyField
+name|KEY_FIELD
 operator|+
 literal|" of ("
 operator|+
@@ -757,7 +758,7 @@ name|solrDocument0
 operator|.
 name|getFieldValue
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|)
 argument_list|)
 argument_list|)
@@ -766,7 +767,7 @@ name|TestMiniSolrCloudCluster
 operator|.
 name|assertEquals
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|,
 name|oddFieldValue
 argument_list|,
@@ -774,7 +775,7 @@ name|solrDocument0
 operator|.
 name|getFieldValue
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -872,7 +873,7 @@ init|=
 operator|new
 name|SolrQuery
 argument_list|(
-name|oddField
+name|ODD_FIELD
 operator|+
 literal|":"
 operator|+
@@ -883,7 +884,7 @@ name|query
 operator|.
 name|setSort
 argument_list|(
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|,
 name|SolrQuery
 operator|.
@@ -896,11 +897,11 @@ name|query
 operator|.
 name|setFields
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|,
-name|oddField
+name|ODD_FIELD
 argument_list|,
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|)
 expr_stmt|;
 specifier|final
@@ -1051,7 +1052,7 @@ name|TestMiniSolrCloudCluster
 operator|.
 name|assertTrue
 argument_list|(
-name|keyField
+name|KEY_FIELD
 operator|+
 literal|" of ("
 operator|+
@@ -1071,7 +1072,7 @@ name|solrDocument0
 operator|.
 name|getFieldValue
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1080,7 +1081,7 @@ name|TestMiniSolrCloudCluster
 operator|.
 name|assertEquals
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|,
 name|oddFieldValue
 argument_list|,
@@ -1096,7 +1097,7 @@ argument_list|)
 operator|.
 name|getFieldValue
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1360,7 +1361,7 @@ init|=
 operator|new
 name|SolrQuery
 argument_list|(
-name|oddField
+name|ODD_FIELD
 operator|+
 literal|":"
 operator|+
@@ -1371,7 +1372,7 @@ name|query
 operator|.
 name|setSort
 argument_list|(
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|,
 name|SolrQuery
 operator|.
@@ -1384,11 +1385,11 @@ name|query
 operator|.
 name|setFields
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|,
-name|oddField
+name|ODD_FIELD
 argument_list|,
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|)
 expr_stmt|;
 name|query
@@ -1516,7 +1517,7 @@ name|TestMiniSolrCloudCluster
 operator|.
 name|assertTrue
 argument_list|(
-name|keyField
+name|KEY_FIELD
 operator|+
 literal|" of ("
 operator|+
@@ -1536,7 +1537,7 @@ name|solrDocument0
 operator|.
 name|getFieldValue
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|)
 argument_list|)
 argument_list|)
@@ -1545,7 +1546,7 @@ name|TestMiniSolrCloudCluster
 operator|.
 name|assertEquals
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|,
 name|oddFieldValue
 argument_list|,
@@ -1561,7 +1562,7 @@ argument_list|)
 operator|.
 name|getFieldValue
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1820,7 +1821,7 @@ init|=
 operator|new
 name|SolrQuery
 argument_list|(
-name|oddField
+name|ODD_FIELD
 operator|+
 literal|":"
 operator|+
@@ -1831,7 +1832,7 @@ name|query
 operator|.
 name|setSort
 argument_list|(
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|,
 name|SolrQuery
 operator|.
@@ -1844,11 +1845,11 @@ name|query
 operator|.
 name|setFields
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|,
-name|oddField
+name|ODD_FIELD
 argument_list|,
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|)
 expr_stmt|;
 name|query
@@ -1894,7 +1895,7 @@ name|add
 argument_list|(
 literal|"group.field"
 argument_list|,
-name|quadField
+name|QUAD_FIELD
 argument_list|)
 expr_stmt|;
 name|query
@@ -2004,7 +2005,7 @@ name|TestMiniSolrCloudCluster
 operator|.
 name|assertTrue
 argument_list|(
-name|keyField
+name|KEY_FIELD
 operator|+
 literal|" of ("
 operator|+
@@ -2024,7 +2025,7 @@ name|solrDocument
 operator|.
 name|getFieldValue
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2033,7 +2034,7 @@ name|TestMiniSolrCloudCluster
 operator|.
 name|assertEquals
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|,
 name|oddFieldValue
 argument_list|,
@@ -2041,7 +2042,7 @@ name|solrDocument
 operator|.
 name|getFieldValue
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -2147,7 +2148,7 @@ init|=
 operator|new
 name|SolrQuery
 argument_list|(
-name|oddField
+name|ODD_FIELD
 operator|+
 literal|":"
 operator|+
@@ -2158,7 +2159,7 @@ name|query
 operator|.
 name|setSort
 argument_list|(
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|,
 name|SolrQuery
 operator|.
@@ -2172,11 +2173,11 @@ name|query
 operator|.
 name|setFields
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|,
-name|oddField
+name|ODD_FIELD
 argument_list|,
-name|timestampField
+name|TIMESTAMP_FIELD
 argument_list|)
 expr_stmt|;
 name|query
@@ -2260,7 +2261,7 @@ name|TestMiniSolrCloudCluster
 operator|.
 name|assertTrue
 argument_list|(
-name|keyField
+name|KEY_FIELD
 operator|+
 literal|" of ("
 operator|+
@@ -2280,7 +2281,7 @@ name|solrDocument0
 operator|.
 name|getFieldValue
 argument_list|(
-name|keyField
+name|KEY_FIELD
 argument_list|)
 argument_list|)
 argument_list|)
@@ -2289,7 +2290,7 @@ name|TestMiniSolrCloudCluster
 operator|.
 name|assertEquals
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|,
 name|oddFieldValue
 argument_list|,
@@ -2297,7 +2298,7 @@ name|solrDocument0
 operator|.
 name|getFieldValue
 argument_list|(
-name|oddField
+name|ODD_FIELD
 argument_list|)
 argument_list|)
 expr_stmt|;

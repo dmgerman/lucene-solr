@@ -197,6 +197,7 @@ block|{
 comment|// XML Element/Attribute Name Constants
 DECL|field|ANALYTICS_REQUEST_ENVELOPE
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|ANALYTICS_REQUEST_ENVELOPE
@@ -205,6 +206,7 @@ literal|"analyticsRequestEnvelope"
 decl_stmt|;
 DECL|field|ANALYTICS_REQUEST
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|ANALYTICS_REQUEST
@@ -213,6 +215,7 @@ literal|"analyticsRequest"
 decl_stmt|;
 DECL|field|NAME
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|NAME
@@ -221,6 +224,7 @@ literal|"name"
 decl_stmt|;
 DECL|field|STATISTIC
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|STATISTIC
@@ -229,6 +233,7 @@ literal|"statistic"
 decl_stmt|;
 DECL|field|EXPRESSION
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|EXPRESSION
@@ -237,6 +242,7 @@ literal|"expression"
 decl_stmt|;
 DECL|field|FIELD_FACET
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|FIELD_FACET
@@ -245,6 +251,7 @@ literal|"fieldFacet"
 decl_stmt|;
 DECL|field|FIELD
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|FIELD
@@ -253,6 +260,7 @@ literal|"field"
 decl_stmt|;
 DECL|field|SHOW_MISSING
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|SHOW_MISSING
@@ -261,6 +269,7 @@ literal|"showMissing"
 decl_stmt|;
 DECL|field|LIMIT
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|LIMIT
@@ -269,6 +278,7 @@ literal|"limit"
 decl_stmt|;
 DECL|field|MIN_COUNT
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|MIN_COUNT
@@ -277,6 +287,7 @@ literal|"minCount"
 decl_stmt|;
 DECL|field|SORT_SPECIFICATION
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|SORT_SPECIFICATION
@@ -285,6 +296,7 @@ literal|"sortSpecification"
 decl_stmt|;
 DECL|field|STAT_NAME
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|STAT_NAME
@@ -293,6 +305,7 @@ literal|"statName"
 decl_stmt|;
 DECL|field|DIRECTION
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|DIRECTION
@@ -301,6 +314,7 @@ literal|"direction"
 decl_stmt|;
 DECL|field|RANGE_FACET
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|RANGE_FACET
@@ -309,6 +323,7 @@ literal|"rangeFacet"
 decl_stmt|;
 DECL|field|START
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|START
@@ -317,6 +332,7 @@ literal|"start"
 decl_stmt|;
 DECL|field|END
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|END
@@ -325,6 +341,7 @@ literal|"end"
 decl_stmt|;
 DECL|field|GAP
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|GAP
@@ -333,6 +350,7 @@ literal|"gap"
 decl_stmt|;
 DECL|field|INCLUDE_BOUNDARY
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|INCLUDE_BOUNDARY
@@ -341,6 +359,7 @@ literal|"includeBoundary"
 decl_stmt|;
 DECL|field|OTHER_RANGE
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|OTHER_RANGE
@@ -349,6 +368,7 @@ literal|"otherRange"
 decl_stmt|;
 DECL|field|HARD_END
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|HARD_END
@@ -357,6 +377,7 @@ literal|"hardend"
 decl_stmt|;
 DECL|field|QUERY_FACET
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|QUERY_FACET
@@ -365,6 +386,7 @@ literal|"queryFacet"
 decl_stmt|;
 DECL|field|QUERY
 specifier|public
+specifier|static
 specifier|final
 name|String
 name|QUERY

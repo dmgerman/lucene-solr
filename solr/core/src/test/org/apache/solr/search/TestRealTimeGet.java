@@ -3725,7 +3725,7 @@ argument_list|(
 name|id
 argument_list|)
 argument_list|,
-name|field
+name|FIELD
 argument_list|,
 name|Long
 operator|.
@@ -4273,7 +4273,7 @@ operator|)
 operator|.
 name|get
 argument_list|(
-name|field
+name|FIELD
 argument_list|)
 argument_list|)
 decl_stmt|;

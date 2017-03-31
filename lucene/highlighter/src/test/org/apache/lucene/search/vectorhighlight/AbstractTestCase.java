@@ -395,6 +395,7 @@ name|LuceneTestCase
 block|{
 DECL|field|F
 specifier|protected
+specifier|static
 specifier|final
 name|String
 name|F
@@ -403,6 +404,7 @@ literal|"f"
 decl_stmt|;
 DECL|field|F1
 specifier|protected
+specifier|static
 specifier|final
 name|String
 name|F1
@@ -411,6 +413,7 @@ literal|"f1"
 decl_stmt|;
 DECL|field|F2
 specifier|protected
+specifier|static
 specifier|final
 name|String
 name|F2

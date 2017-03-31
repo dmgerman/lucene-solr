@@ -682,7 +682,7 @@ name|updateField
 init|=
 name|SegmentTerminateEarlyTestState
 operator|.
-name|timestampField
+name|TIMESTAMP_FIELD
 decl_stmt|;
 comment|// sanity check that updateField is in fact a DocValues only field, meaning it
 comment|// would normally be eligable for inplace updates -- if it weren't also used for merge sorting

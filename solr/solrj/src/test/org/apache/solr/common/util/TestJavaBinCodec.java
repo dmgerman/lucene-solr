@@ -335,6 +335,7 @@ literal|"/solrj/javabin_backcompat.bin"
 decl_stmt|;
 DECL|field|BIN_FILE_LOCATION
 specifier|private
+specifier|static
 specifier|final
 name|String
 name|BIN_FILE_LOCATION
@@ -352,6 +353,7 @@ literal|"/solrj/javabin_backcompat_child_docs.bin"
 decl_stmt|;
 DECL|field|BIN_FILE_LOCATION_CHILD_DOCS
 specifier|private
+specifier|static
 specifier|final
 name|String
 name|BIN_FILE_LOCATION_CHILD_DOCS

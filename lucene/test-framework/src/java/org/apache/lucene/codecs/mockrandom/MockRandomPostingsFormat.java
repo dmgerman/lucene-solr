@@ -571,6 +571,7 @@ name|seedRandom
 decl_stmt|;
 DECL|field|SEED_EXT
 specifier|private
+specifier|static
 specifier|final
 name|String
 name|SEED_EXT
