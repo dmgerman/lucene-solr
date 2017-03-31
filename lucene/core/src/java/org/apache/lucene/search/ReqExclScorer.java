@@ -584,7 +584,7 @@ return|;
 block|}
 else|else
 block|{
-comment|// reqTwoPhaseIterator is MORE costly than exclTwoPhaseIterator, check it first
+comment|// reqTwoPhaseIterator is MORE costly than exclTwoPhaseIterator, check it last
 return|return
 operator|new
 name|TwoPhaseIterator
