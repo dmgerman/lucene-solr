@@ -1237,7 +1237,7 @@ operator|.
 name|FLOAT
 argument_list|)
 decl_stmt|;
-comment|/**    * Set the {@link Sort} order to use when merging segments.  Note that newly flushed segments will remain unsorted.    */
+comment|/**    * Set the {@link Sort} order to use when merging segments.    */
 DECL|method|setIndexSort
 specifier|public
 name|IndexWriterConfig
