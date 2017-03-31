@@ -1040,6 +1040,10 @@ argument_list|,
 literal|"num_d"
 argument_list|,
 literal|"num_d"
+argument_list|,
+literal|"qw_s"
+argument_list|,
+literal|"qw_s"
 argument_list|)
 decl_stmt|;
 name|String
@@ -1060,6 +1064,16 @@ operator|.
 name|get
 argument_list|(
 literal|"xy_s"
+argument_list|)
+decl_stmt|;
+name|String
+name|qw_s
+init|=
+name|p
+operator|.
+name|get
+argument_list|(
+literal|"qw_s"
 argument_list|)
 decl_stmt|;
 name|String
@@ -1103,6 +1117,10 @@ name|num_d
 argument_list|,
 operator|-
 literal|1
+argument_list|,
+name|qw_s
+argument_list|,
+literal|"Q"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1206,6 +1224,10 @@ name|num_d
 argument_list|,
 operator|-
 literal|11
+argument_list|,
+name|qw_s
+argument_list|,
+literal|"W"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1272,6 +1294,10 @@ argument_list|,
 name|num_d
 argument_list|,
 literal|17
+argument_list|,
+name|qw_s
+argument_list|,
+literal|"W"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1351,36 +1377,6 @@ expr_stmt|;
 comment|// Shard responses should be A=1, B=2, A=2, merged should be "A=3, B=2"
 comment|// One shard will have _facet_={"refine":{"cat0":{"_l":["A"]}}} on the second phase
 comment|/****     // fake a refinement request... good for development/debugging     assertJQ(clients.get(1),         params(p, "q", "*:*",     "_facet_","{refine:{cat0:{_l:[A]}}}", "isShard","true", "distrib","false", "shards.purpose","2097216", "ids","11,12,13",             "json.facet", "{" +                 "cat0:{type:terms, field:cat_s, sort:'count desc', limit:1, overrequest:0, refine:true}" +                 "}"         )         , "facets=={foo:555}"     );     ****/
-comment|// test refining under the special "missing" bucket of a field facet
-name|client
-operator|.
-name|testJQ
-argument_list|(
-name|params
-argument_list|(
-name|p
-argument_list|,
-literal|"q"
-argument_list|,
-literal|"*:*"
-argument_list|,
-literal|"json.facet"
-argument_list|,
-literal|"{"
-operator|+
-literal|"f:{type:terms, field:missing_s, limit:1, overrequest:0, missing:true, refine:true,  facet:{  cat:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true   }  }}"
-operator|+
-literal|"}"
-argument_list|)
-argument_list|,
-literal|"facets=={ count:8"
-operator|+
-literal|", f:{ buckets:[], missing:{count:8, cat:{buckets:[{val:A,count:4}]}  }  }"
-operator|+
-comment|// just like the previous response, just nested under a field facet
-literal|"}"
-argument_list|)
-expr_stmt|;
 name|client
 operator|.
 name|testJQ
@@ -1594,6 +1590,79 @@ comment|// make sure qq and ww are included for _p buckets
 literal|", allf2:{ buckets:[ {count:8, val:all, cat:{buckets:[{val:A,count:4}]} ,qq:{count:8}, ww:2.0 }]  }"
 operator|+
 comment|// make sure qq and ww are excluded (not calculated again in another phase) for _s buckets
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test refining under the special "missing" bucket of a field facet
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"f:{type:terms, field:missing_s, limit:1, overrequest:0, missing:true, refine:true,  facet:{  cat:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true   }  }}"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:8"
+operator|+
+literal|", f:{ buckets:[], missing:{count:8, cat:{buckets:[{val:A,count:4}]}  }  }"
+operator|+
+comment|// just like the previous response, just nested under a field facet
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test filling in "missing" bucket for partially refined facets
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+comment|// test all values missing in sub-facet
+literal|" ab :{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false,  facet:{  zz:{type:terms, field:missing_s, limit:1, overrequest:0, refine:false, missing:true}  }}"
+operator|+
+literal|",ab2:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true ,  facet:{  zz:{type:terms, field:missing_s, limit:1, overrequest:0, refine:true , missing:true}  }}"
+operator|+
+comment|// test some values missing in sub-facet (and test that this works with normal partial bucket refinement)
+literal|", cd :{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false,  facet:{  qw:{type:terms, field:${qw_s}, limit:1, overrequest:0, refine:false, missing:true,   facet:{qq:{query:'*:*'}}   }  }}"
+operator|+
+literal|", cd2:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true ,  facet:{  qw:{type:terms, field:${qw_s}, limit:1, overrequest:0, refine:true , missing:true,   facet:{qq:{query:'*:*'}}   }  }}"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:8"
+operator|+
+literal|", ab:{ buckets:[  {val:A, count:3, zz:{buckets:[], missing:{count:3}}}]  }"
+operator|+
+literal|",ab2:{ buckets:[  {val:A, count:4, zz:{buckets:[], missing:{count:4}}}]  }"
+operator|+
+literal|", cd:{ buckets:[  {val:A, count:3,  qw:{buckets:[{val:Q, count:1, qq:{count:1}}], missing:{count:1,qq:{count:1}}}}]  }"
+operator|+
+literal|",cd2:{ buckets:[  {val:A, count:4,  qw:{buckets:[{val:Q, count:1, qq:{count:1}}], missing:{count:2,qq:{count:2}}}}]  }"
+operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
