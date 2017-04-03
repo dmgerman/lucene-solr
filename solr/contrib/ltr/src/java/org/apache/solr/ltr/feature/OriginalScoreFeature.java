@@ -493,6 +493,10 @@ decl_stmt|;
 return|return
 operator|(
 name|docInfo
+operator|!=
+literal|null
+operator|&&
+name|docInfo
 operator|.
 name|hasOriginalDocScore
 argument_list|()
