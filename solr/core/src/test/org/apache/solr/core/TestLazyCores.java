@@ -286,6 +286,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|servlet
+operator|.
+name|SolrDispatchFilter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|update
 operator|.
 name|AddUpdateCommand
@@ -584,6 +598,16 @@ operator|.
 name|toFile
 argument_list|()
 expr_stmt|;
+name|copyXmlToHome
+argument_list|(
+name|solrHomeDirectory
+operator|.
+name|getAbsoluteFile
+argument_list|()
+argument_list|,
+literal|"solr.xml"
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|int
@@ -613,43 +637,25 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
-name|SolrResourceLoader
-name|loader
+name|NodeConfig
+name|cfg
 init|=
-operator|new
-name|SolrResourceLoader
+name|SolrDispatchFilter
+operator|.
+name|loadNodeConfig
 argument_list|(
 name|solrHomeDirectory
 operator|.
 name|toPath
 argument_list|()
-argument_list|)
-decl_stmt|;
-name|NodeConfig
-name|config
-init|=
-operator|new
-name|NodeConfig
-operator|.
-name|NodeConfigBuilder
-argument_list|(
-literal|"testNode"
 argument_list|,
-name|loader
+literal|null
 argument_list|)
-operator|.
-name|setTransientCacheSize
-argument_list|(
-literal|4
-argument_list|)
-operator|.
-name|build
-argument_list|()
 decl_stmt|;
 return|return
 name|createCoreContainer
 argument_list|(
-name|config
+name|cfg
 argument_list|,
 name|testCores
 argument_list|)
@@ -1214,7 +1220,13 @@ name|checkInCores
 argument_list|(
 name|cc
 argument_list|,
+literal|"collection1"
+argument_list|,
+literal|"collection2"
+argument_list|,
 literal|"collection4"
+argument_list|,
+literal|"collection5"
 argument_list|)
 expr_stmt|;
 name|core4
@@ -2660,6 +2672,7 @@ comment|// Test that transient cores
 comment|// 1> produce errors as appropriate when the config or schema files are foo'd
 comment|// 2> "self heal". That is, if the problem is corrected can the core be reloaded and used?
 comment|// 3> that OK cores can be searched even when some cores failed to load.
+comment|// 4> that having no solr.xml entry for transient chache handler correctly uses the default.
 annotation|@
 name|Test
 DECL|method|testBadConfigsGenerateErrors
@@ -2919,6 +2932,7 @@ argument_list|(
 literal|"badConfig1"
 argument_list|)
 decl_stmt|;
+empty_stmt|;
 name|SolrCore
 name|bc2
 init|=
@@ -3804,7 +3818,7 @@ name|Collection
 argument_list|<
 name|String
 argument_list|>
-name|names
+name|loadedNames
 init|=
 name|cc
 operator|.
@@ -3827,7 +3841,125 @@ name|name
 operator|+
 literal|" was found in the list of cores"
 argument_list|,
-name|names
+name|loadedNames
+operator|.
+name|contains
+argument_list|(
+name|name
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// There was a problem at one point exacerbated by the poor naming conventions. So parallel to loaded cores, there
+comment|// should be the ability to get the core _names_ that are loaded as well as all the core names _possible_
+comment|//
+comment|// the names above should only contain loaded core names. Every name in names should be in allNames, but none of
+comment|// the names in nameCheck should be loaded and thus should not be in names.
+name|Collection
+argument_list|<
+name|String
+argument_list|>
+name|allNames
+init|=
+name|cc
+operator|.
+name|getAllCoreNames
+argument_list|()
+decl_stmt|;
+comment|// Every core, loaded or not should be in the accumulated coredescriptors:
+name|List
+argument_list|<
+name|CoreDescriptor
+argument_list|>
+name|descriptors
+init|=
+name|cc
+operator|.
+name|getCoreDescriptors
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"There should be as many coreDescriptors as coreNames"
+argument_list|,
+name|allNames
+operator|.
+name|size
+argument_list|()
+argument_list|,
+name|descriptors
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|CoreDescriptor
+name|desc
+range|:
+name|descriptors
+control|)
+block|{
+name|assertTrue
+argument_list|(
+literal|"Name should have a corresponding descriptor"
+argument_list|,
+name|allNames
+operator|.
+name|contains
+argument_list|(
+name|desc
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+comment|// First check that all loaded cores are in allNames.
+for|for
+control|(
+name|String
+name|name
+range|:
+name|loadedNames
+control|)
+block|{
+name|assertTrue
+argument_list|(
+literal|"Loaded core "
+operator|+
+name|name
+operator|+
+literal|" should have been found in the list of all possible core names"
+argument_list|,
+name|allNames
+operator|.
+name|contains
+argument_list|(
+name|name
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+for|for
+control|(
+name|String
+name|name
+range|:
+name|nameCheck
+control|)
+block|{
+name|assertTrue
+argument_list|(
+literal|"Not-currently-loaded core "
+operator|+
+name|name
+operator|+
+literal|" should have been found in the list of all possible core names"
+argument_list|,
+name|allNames
 operator|.
 name|contains
 argument_list|(
@@ -3855,13 +3987,27 @@ name|Collection
 argument_list|<
 name|String
 argument_list|>
-name|names
+name|loadedNames
 init|=
 name|cc
 operator|.
 name|getCoreNames
 argument_list|()
 decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"There whould be exactly as many loaded cores as loaded names returned. "
+argument_list|,
+name|loadedNames
+operator|.
+name|size
+argument_list|()
+argument_list|,
+name|nameCheck
+operator|.
+name|length
+argument_list|)
+expr_stmt|;
 for|for
 control|(
 name|String
@@ -3878,7 +4024,7 @@ name|name
 operator|+
 literal|" was not found in the list of cores"
 argument_list|,
-name|names
+name|loadedNames
 operator|.
 name|contains
 argument_list|(

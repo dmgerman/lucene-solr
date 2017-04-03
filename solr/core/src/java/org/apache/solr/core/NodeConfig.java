@@ -164,6 +164,9 @@ specifier|final
 name|Integer
 name|coreLoadThreads
 decl_stmt|;
+annotation|@
+name|Deprecated
+comment|// This should be part of the transientCacheConfig, remove in 7.0
 DECL|field|transientCacheSize
 specifier|private
 specifier|final
@@ -195,6 +198,12 @@ specifier|final
 name|PluginInfo
 index|[]
 name|metricReporterPlugins
+decl_stmt|;
+DECL|field|transientCacheConfig
+specifier|private
+specifier|final
+name|PluginInfo
+name|transientCacheConfig
 decl_stmt|;
 DECL|method|NodeConfig
 specifier|private
@@ -261,6 +270,9 @@ parameter_list|,
 name|PluginInfo
 index|[]
 name|metricReporterPlugins
+parameter_list|,
+name|PluginInfo
+name|transientCacheConfig
 parameter_list|)
 block|{
 name|this
@@ -382,6 +394,12 @@ operator|.
 name|metricReporterPlugins
 operator|=
 name|metricReporterPlugins
+expr_stmt|;
+name|this
+operator|.
+name|transientCacheConfig
+operator|=
+name|transientCacheConfig
 expr_stmt|;
 if|if
 condition|(
@@ -655,6 +673,16 @@ return|return
 name|metricReporterPlugins
 return|;
 block|}
+DECL|method|getTransientCachePluginInfo
+specifier|public
+name|PluginInfo
+name|getTransientCachePluginInfo
+parameter_list|()
+block|{
+return|return
+name|transientCacheConfig
+return|;
+block|}
 DECL|class|NodeConfigBuilder
 specifier|public
 specifier|static
@@ -744,9 +772,14 @@ name|cloudConfig
 decl_stmt|;
 DECL|field|coreLoadThreads
 specifier|private
-name|Integer
+name|int
 name|coreLoadThreads
+init|=
+name|DEFAULT_CORE_LOAD_THREADS
 decl_stmt|;
+annotation|@
+name|Deprecated
+comment|//Remove in 7.0 and put it all in the transientCache element in solrconfig.xml
 DECL|field|transientCacheSize
 specifier|private
 name|int
@@ -787,6 +820,11 @@ name|PluginInfo
 index|[]
 name|metricReporterPlugins
 decl_stmt|;
+DECL|field|transientCacheConfig
+specifier|private
+name|PluginInfo
+name|transientCacheConfig
+decl_stmt|;
 DECL|field|loader
 specifier|private
 specifier|final
@@ -819,7 +857,7 @@ init|=
 literal|8
 decl_stmt|;
 DECL|field|DEFAULT_TRANSIENT_CACHE_SIZE
-specifier|private
+specifier|public
 specifier|static
 specifier|final
 name|int
@@ -1156,6 +1194,9 @@ return|return
 name|this
 return|;
 block|}
+comment|// Remove in Solr 7.0
+annotation|@
+name|Deprecated
 DECL|method|setTransientCacheSize
 specifier|public
 name|NodeConfigBuilder
@@ -1272,6 +1313,25 @@ return|return
 name|this
 return|;
 block|}
+DECL|method|setSolrCoreCacheFactoryConfig
+specifier|public
+name|NodeConfigBuilder
+name|setSolrCoreCacheFactoryConfig
+parameter_list|(
+name|PluginInfo
+name|transientCacheConfig
+parameter_list|)
+block|{
+name|this
+operator|.
+name|transientCacheConfig
+operator|=
+name|transientCacheConfig
+expr_stmt|;
+return|return
+name|this
+return|;
+block|}
 DECL|method|build
 specifier|public
 name|NodeConfig
@@ -1321,6 +1381,8 @@ argument_list|,
 name|backupRepositoryPlugins
 argument_list|,
 name|metricReporterPlugins
+argument_list|,
+name|transientCacheConfig
 argument_list|)
 return|;
 block|}

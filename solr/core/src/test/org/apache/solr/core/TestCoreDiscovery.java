@@ -352,7 +352,7 @@ name|String
 name|name
 parameter_list|,
 name|boolean
-name|isLazy
+name|isTransient
 parameter_list|,
 name|boolean
 name|loadOnStartup
@@ -414,7 +414,7 @@ name|Boolean
 operator|.
 name|toString
 argument_list|(
-name|isLazy
+name|isTransient
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -878,8 +878,6 @@ argument_list|,
 literal|"lazy1"
 argument_list|,
 literal|"core2"
-argument_list|,
-literal|"collection1"
 argument_list|)
 expr_stmt|;
 comment|// force loading of core2 and lazy1 by getting them from the CoreContainer

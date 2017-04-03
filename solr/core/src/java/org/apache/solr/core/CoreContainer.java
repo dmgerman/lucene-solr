@@ -1370,6 +1370,13 @@ name|collectionsHandler
 init|=
 literal|null
 decl_stmt|;
+DECL|field|transientSolrCoreCache
+specifier|protected
+name|TransientSolrCoreCache
+name|transientSolrCoreCache
+init|=
+literal|null
+decl_stmt|;
 DECL|field|infoHandler
 specifier|private
 name|InfoHandler
@@ -1415,6 +1422,11 @@ DECL|field|updateShardHandler
 specifier|private
 name|UpdateShardHandler
 name|updateShardHandler
+decl_stmt|;
+DECL|field|transientCoreCache
+specifier|private
+name|TransientSolrCoreCacheFactory
+name|transientCoreCache
 decl_stmt|;
 DECL|field|coreContainerWorkExecutor
 specifier|private
@@ -3025,16 +3037,15 @@ argument_list|,
 literal|"updateShardHandler"
 argument_list|)
 expr_stmt|;
-name|solrCores
+name|transientCoreCache
+operator|=
+name|TransientSolrCoreCacheFactory
 operator|.
-name|allocateLazyCores
+name|newInstance
 argument_list|(
-name|cfg
-operator|.
-name|getTransientCacheSize
-argument_list|()
-argument_list|,
 name|loader
+argument_list|,
+name|this
 argument_list|)
 expr_stmt|;
 name|logging
@@ -3457,7 +3468,7 @@ parameter_list|()
 lambda|->
 name|solrCores
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 operator|.
 name|size
@@ -3505,7 +3516,7 @@ argument_list|()
 operator|-
 name|solrCores
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 operator|.
 name|size
@@ -4054,6 +4065,42 @@ expr_stmt|;
 block|}
 block|}
 end_class
+
+begin_function
+DECL|method|getTransientCacheHandler
+specifier|public
+name|TransientSolrCoreCache
+name|getTransientCacheHandler
+parameter_list|()
+block|{
+if|if
+condition|(
+name|transientCoreCache
+operator|==
+literal|null
+condition|)
+block|{
+name|log
+operator|.
+name|error
+argument_list|(
+literal|"No transient handler has been defined. Check solr.xml to see if an attempt to provide a custom "
+operator|+
+literal|"TransientSolrCoreCacheFactory was done incorrectly since the default should have been used otherwise."
+argument_list|)
+expr_stmt|;
+return|return
+literal|null
+return|;
+block|}
+return|return
+name|transientCoreCache
+operator|.
+name|getTransientSolrCoreCache
+argument_list|()
+return|;
+block|}
+end_function
 
 begin_function
 DECL|method|securityNodeChanged
@@ -6244,7 +6291,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * @return a Collection of the names that cores are mapped to    */
+comment|/**    * @return a Collection of the names that loaded cores are mapped to    */
 end_comment
 
 begin_function
@@ -6260,7 +6307,7 @@ block|{
 return|return
 name|solrCores
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 return|;
 block|}
@@ -6295,7 +6342,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * get a list of all the cores that are currently loaded    * @return a list of al lthe available core names in either permanent or transient core lists.    */
+comment|/**    * get a list of all the cores that are currently loaded    * @return a list of al lthe available core names in either permanent or transient core lists.    *     * Note: this implies that the core is loaded    */
 end_comment
 
 begin_function
