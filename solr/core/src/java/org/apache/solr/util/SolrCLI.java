@@ -17284,6 +17284,11 @@ if|if
 condition|(
 name|handler
 operator|.
+name|hasResult
+argument_list|()
+operator|&&
+name|handler
+operator|.
 name|getExitValue
 argument_list|()
 operator|!=
