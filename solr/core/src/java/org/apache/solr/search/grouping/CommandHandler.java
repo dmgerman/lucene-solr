@@ -1105,7 +1105,7 @@ argument_list|()
 argument_list|,
 name|firstCommand
 operator|.
-name|getSortWithinGroup
+name|getWithinGroupSort
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -1125,7 +1125,7 @@ argument_list|()
 argument_list|,
 name|firstCommand
 operator|.
-name|getSortWithinGroup
+name|getWithinGroupSort
 argument_list|()
 argument_list|)
 expr_stmt|;

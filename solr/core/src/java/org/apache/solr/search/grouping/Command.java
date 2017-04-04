@@ -111,9 +111,9 @@ name|getGroupSort
 parameter_list|()
 function_decl|;
 comment|/**    * @return The sort inside a group    */
-DECL|method|getSortWithinGroup
+DECL|method|getWithinGroupSort
 name|Sort
-name|getSortWithinGroup
+name|getWithinGroupSort
 parameter_list|()
 function_decl|;
 block|}

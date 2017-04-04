@@ -681,10 +681,10 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getSortWithinGroup
+DECL|method|getWithinGroupSort
 specifier|public
 name|Sort
-name|getSortWithinGroup
+name|getWithinGroupSort
 parameter_list|()
 block|{
 return|return
