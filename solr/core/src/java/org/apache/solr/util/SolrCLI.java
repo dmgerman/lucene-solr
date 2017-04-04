@@ -17262,7 +17262,9 @@ block|{
 name|handler
 operator|.
 name|waitFor
-argument_list|()
+argument_list|(
+literal|3000
+argument_list|)
 expr_stmt|;
 block|}
 catch|catch
