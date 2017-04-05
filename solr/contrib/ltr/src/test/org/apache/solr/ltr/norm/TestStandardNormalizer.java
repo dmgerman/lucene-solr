@@ -194,6 +194,27 @@ argument_list|,
 literal|0.0
 argument_list|)
 expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"{avg=\""
+operator|+
+name|expectedAvg
+operator|+
+literal|"\", std=\""
+operator|+
+name|expectedStd
+operator|+
+literal|"\"}"
+argument_list|,
+name|sn
+operator|.
+name|paramsToMap
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|n
 return|;
