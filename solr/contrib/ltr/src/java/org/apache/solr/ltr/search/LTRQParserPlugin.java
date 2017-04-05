@@ -32,18 +32,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|lang
-operator|.
-name|invoke
-operator|.
-name|MethodHandles
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|HashMap
@@ -424,26 +412,6 @@ name|SolrPluginUtils
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|Logger
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|slf4j
-operator|.
-name|LoggerFactory
-import|;
-end_import
-
 begin_comment
 comment|/**  * Plug into solr a rerank model.  *  * Learning to Rank Query Parser Syntax: rq={!ltr model=6029760550880411648 reRankDocs=300  * efi.myCompanyQueryIntent=0.98}  *  */
 end_comment
@@ -478,26 +446,6 @@ init|=
 operator|new
 name|MatchAllDocsQuery
 argument_list|()
-decl_stmt|;
-DECL|field|log
-specifier|private
-specifier|static
-specifier|final
-name|Logger
-name|log
-init|=
-name|LoggerFactory
-operator|.
-name|getLogger
-argument_list|(
-name|MethodHandles
-operator|.
-name|lookup
-argument_list|()
-operator|.
-name|lookupClass
-argument_list|()
-argument_list|)
 decl_stmt|;
 comment|// params for setting custom external info that features can use, like query
 comment|// intent
