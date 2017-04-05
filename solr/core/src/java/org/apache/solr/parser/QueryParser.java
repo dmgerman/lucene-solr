@@ -321,6 +321,9 @@ name|quoted
 parameter_list|,
 name|boolean
 name|fieldAutoGenPhraseQueries
+parameter_list|,
+name|boolean
+name|fieldEnableGraphQueries
 parameter_list|)
 throws|throws
 name|SyntaxError
@@ -365,6 +368,8 @@ argument_list|,
 name|treatAsQuoted
 argument_list|,
 literal|false
+argument_list|,
+name|fieldEnableGraphQueries
 argument_list|)
 return|;
 block|}

@@ -5176,6 +5176,9 @@ name|quoted
 parameter_list|,
 name|boolean
 name|fieldAutoGenPhraseQueries
+parameter_list|,
+name|boolean
+name|enableGraphQueries
 parameter_list|)
 throws|throws
 name|SyntaxError
@@ -5263,6 +5266,8 @@ argument_list|,
 name|quoted
 argument_list|,
 name|fieldAutoGenPhraseQueries
+argument_list|,
+name|enableGraphQueries
 argument_list|)
 return|;
 block|}
