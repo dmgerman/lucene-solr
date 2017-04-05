@@ -126,6 +126,36 @@ name|ZkWriteCommand
 argument_list|()
 return|;
 block|}
+annotation|@
+name|Override
+DECL|method|toString
+specifier|public
+name|String
+name|toString
+parameter_list|()
+block|{
+return|return
+name|getClass
+argument_list|()
+operator|.
+name|getSimpleName
+argument_list|()
+operator|+
+literal|": "
+operator|+
+operator|(
+name|noop
+condition|?
+literal|"no-op"
+else|:
+name|name
+operator|+
+literal|"="
+operator|+
+name|collection
+operator|)
+return|;
+block|}
 block|}
 end_class
 

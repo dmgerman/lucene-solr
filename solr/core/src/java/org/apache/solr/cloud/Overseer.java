@@ -2505,10 +2505,7 @@ case|:
 return|return
 operator|new
 name|NodeMutator
-argument_list|(
-name|getZkStateReader
 argument_list|()
-argument_list|)
 operator|.
 name|downNode
 argument_list|(
