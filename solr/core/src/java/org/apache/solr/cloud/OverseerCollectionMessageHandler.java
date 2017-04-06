@@ -1897,6 +1897,17 @@ name|this
 argument_list|)
 argument_list|)
 operator|.
+name|put
+argument_list|(
+name|MOVEREPLICA
+argument_list|,
+operator|new
+name|MoveReplicaCmd
+argument_list|(
+name|this
+argument_list|)
+argument_list|)
+operator|.
 name|build
 argument_list|()
 expr_stmt|;

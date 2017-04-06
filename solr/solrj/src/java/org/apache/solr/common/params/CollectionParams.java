@@ -411,6 +411,16 @@ operator|.
 name|SHARD
 argument_list|)
 block|,
+DECL|enum constant|MOVEREPLICA
+name|MOVEREPLICA
+argument_list|(
+literal|true
+argument_list|,
+name|LockLevel
+operator|.
+name|SHARD
+argument_list|)
+block|,
 DECL|enum constant|OVERSEERSTATUS
 name|OVERSEERSTATUS
 argument_list|(
