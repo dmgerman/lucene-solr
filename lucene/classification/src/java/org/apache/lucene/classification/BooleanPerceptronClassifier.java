@@ -415,11 +415,11 @@ argument_list|<
 name|Boolean
 argument_list|>
 block|{
-DECL|field|threshold
+DECL|field|bias
 specifier|private
 specifier|final
 name|Double
-name|threshold
+name|bias
 decl_stmt|;
 DECL|field|textTerms
 specifier|private
@@ -447,7 +447,7 @@ name|Long
 argument_list|>
 name|fst
 decl_stmt|;
-comment|/**    * Creates a {@link BooleanPerceptronClassifier}    *    * @param indexReader     the reader on the index to be used for classification    * @param analyzer       an {@link Analyzer} used to analyze unseen text    * @param query          a {@link Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param batchSize      the size of the batch of docs to use for updating the perceptron weights    * @param threshold      the threshold used for class separation    * @param classFieldName the name of the field used as the output for the classifier    * @param textFieldName  the name of the field used as input for the classifier    * @throws IOException if the building of the underlying {@link FST} fails and / or {@link TermsEnum} for the text field    *                     cannot be found    */
+comment|/**    * Creates a {@link BooleanPerceptronClassifier}    *    * @param indexReader     the reader on the index to be used for classification    * @param analyzer       an {@link Analyzer} used to analyze unseen text    * @param query          a {@link Query} to eventually filter the docs used for training the classifier, or {@code null}    *                       if all the indexed docs should be used    * @param batchSize      the size of the batch of docs to use for updating the perceptron weights    * @param bias      the bias used for class separation    * @param classFieldName the name of the field used as the output for the classifier    * @param textFieldName  the name of the field used as input for the classifier    * @throws IOException if the building of the underlying {@link FST} fails and / or {@link TermsEnum} for the text field    *                     cannot be found    */
 DECL|method|BooleanPerceptronClassifier
 specifier|public
 name|BooleanPerceptronClassifier
@@ -465,7 +465,7 @@ name|Integer
 name|batchSize
 parameter_list|,
 name|Double
-name|threshold
+name|bias
 parameter_list|,
 name|String
 name|classFieldName
@@ -520,29 +520,42 @@ name|textFieldName
 expr_stmt|;
 if|if
 condition|(
-name|threshold
+name|bias
 operator|==
 literal|null
 operator|||
-name|threshold
+name|bias
 operator|==
 literal|0d
 condition|)
 block|{
-comment|// automatic assign a threshold
-name|long
-name|sumDocFreq
+comment|// automatic assign the bias to be the average total term freq
+name|double
+name|t
 init|=
+operator|(
+name|double
+operator|)
 name|indexReader
 operator|.
-name|getSumDocFreq
+name|getSumTotalTermFreq
+argument_list|(
+name|textFieldName
+argument_list|)
+operator|/
+operator|(
+name|double
+operator|)
+name|indexReader
+operator|.
+name|getDocCount
 argument_list|(
 name|textFieldName
 argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|sumDocFreq
+name|t
 operator|!=
 operator|-
 literal|1
@@ -550,14 +563,9 @@ condition|)
 block|{
 name|this
 operator|.
-name|threshold
+name|bias
 operator|=
-operator|(
-name|double
-operator|)
-name|sumDocFreq
-operator|/
-literal|2d
+name|t
 expr_stmt|;
 block|}
 else|else
@@ -566,7 +574,7 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"threshold cannot be assigned since term vectors for field "
+literal|"bias cannot be assigned since term vectors for field "
 operator|+
 name|textFieldName
 operator|+
@@ -579,9 +587,9 @@ else|else
 block|{
 name|this
 operator|.
-name|threshold
+name|bias
 operator|=
-name|threshold
+name|bias
 expr_stmt|;
 block|}
 comment|// TODO : remove this map as soon as we have a writable FST
@@ -1027,11 +1035,18 @@ literal|null
 condition|?
 literal|0
 else|:
+name|Math
+operator|.
+name|max
+argument_list|(
+literal|0
+argument_list|,
 name|previousValue
 operator|+
 name|modifier
 operator|*
 name|termFreqLocal
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
@@ -1288,7 +1303,7 @@ name|Math
 operator|.
 name|abs
 argument_list|(
-name|threshold
+name|bias
 operator|-
 name|output
 operator|.
@@ -1296,7 +1311,7 @@ name|doubleValue
 argument_list|()
 argument_list|)
 operator|/
-name|threshold
+name|bias
 argument_list|)
 decl_stmt|;
 return|return
@@ -1306,7 +1321,7 @@ argument_list|<>
 argument_list|(
 name|output
 operator|>=
-name|threshold
+name|bias
 argument_list|,
 name|score
 argument_list|)
