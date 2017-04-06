@@ -965,9 +965,7 @@ name|removeReplicasProps
 argument_list|,
 name|deleteResult
 argument_list|,
-parameter_list|()
-lambda|->
-block|{}
+literal|null
 argument_list|)
 expr_stmt|;
 if|if
@@ -1112,9 +1110,7 @@ name|addReplicasProps
 argument_list|,
 name|addResult
 argument_list|,
-parameter_list|()
-lambda|->
-block|{}
+literal|null
 argument_list|)
 expr_stmt|;
 if|if
@@ -1330,9 +1326,7 @@ name|addReplicasProps
 argument_list|,
 name|addResult
 argument_list|,
-parameter_list|()
-lambda|->
-block|{}
+literal|null
 argument_list|)
 expr_stmt|;
 if|if
@@ -1456,9 +1450,7 @@ name|removeReplicasProps
 argument_list|,
 name|deleteResult
 argument_list|,
-parameter_list|()
-lambda|->
-block|{}
+literal|null
 argument_list|)
 expr_stmt|;
 if|if
