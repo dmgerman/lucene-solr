@@ -541,7 +541,7 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"Invalid parameter %s - The parameter must be a string formatted ISO_INSTANT or of type Instant,Date or LocalDateTime."
+literal|"Invalid parameter %s - The parameter must be a string formatted ISO_INSTANT or of type Long,Instant,Date,LocalDateTime or TemporalAccessor."
 argument_list|,
 name|String
 operator|.

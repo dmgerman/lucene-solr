@@ -1046,7 +1046,7 @@ parameter_list|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"Invalid parameter 12 - The parameter must be a string formatted ISO_INSTANT or of type Instant,Date or LocalDateTime."
+literal|"Invalid parameter 12 - The parameter must be a string formatted ISO_INSTANT or of type Long,Instant,Date,LocalDateTime or TemporalAccessor."
 argument_list|,
 name|e
 operator|.
@@ -1152,7 +1152,7 @@ parameter_list|)
 block|{
 name|assertEquals
 argument_list|(
-literal|"Invalid parameter  - The parameter must be a string formatted ISO_INSTANT or of type Instant,Date or LocalDateTime."
+literal|"Invalid parameter  - The parameter must be a string formatted ISO_INSTANT or of type Long,Instant,Date,LocalDateTime or TemporalAccessor."
 argument_list|,
 name|e
 operator|.
