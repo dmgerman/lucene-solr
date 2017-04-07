@@ -933,16 +933,6 @@ name|INIT_FAIRNESS_POLICY
 init|=
 literal|"fairnessPolicy"
 decl_stmt|;
-comment|// Turn on retries for certain IOExceptions, many of which can happen
-comment|// due to connection pooling limitations / races
-DECL|field|USE_RETRIES
-specifier|static
-specifier|final
-name|String
-name|USE_RETRIES
-init|=
-literal|"useRetries"
-decl_stmt|;
 comment|/**    * Get {@link ShardHandler} that uses the default http client.    */
 annotation|@
 name|Override
