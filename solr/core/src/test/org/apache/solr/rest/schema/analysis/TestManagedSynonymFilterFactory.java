@@ -34,6 +34,16 @@ begin_import
 import|import
 name|java
 operator|.
+name|net
+operator|.
+name|URLEncoder
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
 name|util
 operator|.
 name|ArrayList
@@ -658,6 +668,45 @@ argument_list|,
 literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
 argument_list|)
 expr_stmt|;
+comment|// multi-term synonym logic - SOLR-10264
+specifier|final
+name|String
+name|multiTermOrigin
+decl_stmt|;
+specifier|final
+name|String
+name|multiTermSynonym
+decl_stmt|;
+if|if
+condition|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|)
+block|{
+name|multiTermOrigin
+operator|=
+literal|"hansestadt hamburg"
+expr_stmt|;
+name|multiTermSynonym
+operator|=
+literal|"hh"
+expr_stmt|;
+block|}
+else|else
+block|{
+name|multiTermOrigin
+operator|=
+literal|"hh"
+expr_stmt|;
+name|multiTermSynonym
+operator|=
+literal|"hansestadt hamburg"
+expr_stmt|;
+block|}
+comment|// multi-term logic similar to the angry/mad logic (angry ~ origin, mad ~ synonym)
 name|assertU
 argument_list|(
 name|adoc
@@ -669,6 +718,22 @@ argument_list|,
 literal|"id"
 argument_list|,
 literal|"5150"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertU
+argument_list|(
+name|adoc
+argument_list|(
+name|newFieldName
+argument_list|,
+name|multiTermOrigin
+operator|+
+literal|" is in North Germany."
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"040"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -691,6 +756,30 @@ argument_list|,
 literal|"/response/result[@name='response'][@numFound='1']"
 argument_list|,
 literal|"/response/result[@name='response']/doc/str[@name='id'][.='5150']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+literal|"/select?q="
+operator|+
+name|newFieldName
+operator|+
+literal|":"
+operator|+
+name|URLEncoder
+operator|.
+name|encode
+argument_list|(
+name|multiTermOrigin
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
+argument_list|,
+literal|"/response/result[@name='response'][@numFound='1']"
+argument_list|,
+literal|"/response/result[@name='response']/doc/str[@name='id'][.='040']"
 argument_list|)
 expr_stmt|;
 comment|// add a mapping that will expand a query for "mad" to match docs with "angry"
@@ -736,6 +825,68 @@ argument_list|,
 literal|"/synonymMappings/managedMap/mad==['angry']"
 argument_list|)
 expr_stmt|;
+comment|// add a mapping that will expand a query for "multi-term synonym" to match docs with "acronym"
+name|syns
+operator|=
+operator|new
+name|HashMap
+argument_list|<>
+argument_list|()
+expr_stmt|;
+name|syns
+operator|.
+name|put
+argument_list|(
+name|multiTermSynonym
+argument_list|,
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|multiTermOrigin
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertJPut
+argument_list|(
+name|endpoint
+argument_list|,
+name|JSONUtil
+operator|.
+name|toJSON
+argument_list|(
+name|syns
+argument_list|)
+argument_list|,
+literal|"/responseHeader/status==0"
+argument_list|)
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|endpoint
+operator|+
+literal|"/"
+operator|+
+name|URLEncoder
+operator|.
+name|encode
+argument_list|(
+name|multiTermSynonym
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+argument_list|,
+literal|"/"
+operator|+
+name|multiTermSynonym
+operator|+
+literal|"==['"
+operator|+
+name|multiTermOrigin
+operator|+
+literal|"']"
+argument_list|)
+expr_stmt|;
 comment|// should not match as the synonym mapping between mad and angry does not
 comment|// get applied until core reload
 name|assertQ
@@ -745,6 +896,32 @@ operator|+
 name|newFieldName
 operator|+
 literal|":mad"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
+argument_list|,
+literal|"/response/result[@name='response'][@numFound='0']"
+argument_list|)
+expr_stmt|;
+comment|// should not match as the synonym mapping between "origin" and "synonym"
+comment|// was not added before the document was indexed
+name|assertQ
+argument_list|(
+literal|"/select?q="
+operator|+
+name|newFieldName
+operator|+
+literal|":("
+operator|+
+name|URLEncoder
+operator|.
+name|encode
+argument_list|(
+name|multiTermSynonym
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+operator|+
+literal|")&sow=false"
 argument_list|,
 literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
 argument_list|,
@@ -770,6 +947,33 @@ argument_list|,
 literal|"/response/result[@name='response'][@numFound='1']"
 argument_list|,
 literal|"/response/result[@name='response']/doc/str[@name='id'][.='5150']"
+argument_list|)
+expr_stmt|;
+comment|// now query for "synonym" and we should see our test doc with "origin"
+name|assertQ
+argument_list|(
+literal|"/select?q="
+operator|+
+name|newFieldName
+operator|+
+literal|":("
+operator|+
+name|URLEncoder
+operator|.
+name|encode
+argument_list|(
+name|multiTermSynonym
+argument_list|,
+literal|"UTF-8"
+argument_list|)
+operator|+
+literal|")&sow=false"
+argument_list|,
+literal|"/response/lst[@name='responseHeader']/int[@name='status'] = '0'"
+argument_list|,
+literal|"/response/result[@name='response'][@numFound='1']"
+argument_list|,
+literal|"/response/result[@name='response']/doc/str[@name='id'][.='040']"
 argument_list|)
 expr_stmt|;
 comment|// test for SOLR-6015
