@@ -1592,6 +1592,17 @@ operator|.
 name|READ_PERM
 return|;
 block|}
+DECL|method|getClientCache
+specifier|public
+specifier|static
+name|SolrClientCache
+name|getClientCache
+parameter_list|()
+block|{
+return|return
+name|clientCache
+return|;
+block|}
 DECL|method|inform
 specifier|public
 name|void
