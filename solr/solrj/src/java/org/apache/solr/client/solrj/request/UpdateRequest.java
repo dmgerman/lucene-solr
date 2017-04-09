@@ -1445,11 +1445,6 @@ operator|.
 name|Req
 name|request
 init|=
-operator|(
-name|LBHttpSolrClient
-operator|.
-name|Req
-operator|)
 name|routes
 operator|.
 name|get
@@ -1510,6 +1505,14 @@ name|getBasicAuthUser
 argument_list|()
 argument_list|,
 name|getBasicAuthPassword
+argument_list|()
+argument_list|)
+expr_stmt|;
+name|updateRequest
+operator|.
+name|setResponseParser
+argument_list|(
+name|getResponseParser
 argument_list|()
 argument_list|)
 expr_stmt|;
