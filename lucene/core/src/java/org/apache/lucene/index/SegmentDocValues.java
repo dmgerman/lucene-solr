@@ -479,7 +479,7 @@ block|{
 if|if
 condition|(
 name|t
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{

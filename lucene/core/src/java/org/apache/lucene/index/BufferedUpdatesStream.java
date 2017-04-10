@@ -2365,7 +2365,7 @@ block|{
 if|if
 condition|(
 name|firstExc
-operator|!=
+operator|==
 literal|null
 condition|)
 block|{
