@@ -1564,6 +1564,11 @@ name|skipped
 init|=
 literal|null
 decl_stmt|;
+name|boolean
+name|timeAllowedExceeded
+init|=
+literal|false
+decl_stmt|;
 name|long
 name|timeAllowedNano
 init|=
@@ -1598,6 +1603,8 @@ control|)
 block|{
 if|if
 condition|(
+name|timeAllowedExceeded
+operator|=
 name|isTimeExceeded
 argument_list|(
 name|timeAllowedNano
@@ -1774,6 +1781,8 @@ control|)
 block|{
 if|if
 condition|(
+name|timeAllowedExceeded
+operator|=
 name|isTimeExceeded
 argument_list|(
 name|timeAllowedNano
@@ -1847,6 +1856,27 @@ expr_stmt|;
 block|}
 block|}
 block|}
+specifier|final
+name|String
+name|solrServerExceptionMessage
+decl_stmt|;
+if|if
+condition|(
+name|timeAllowedExceeded
+condition|)
+block|{
+name|solrServerExceptionMessage
+operator|=
+literal|"Time allowed to handle this request exceeded"
+expr_stmt|;
+block|}
+else|else
+block|{
+name|solrServerExceptionMessage
+operator|=
+literal|"No live SolrServers available to handle this request"
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|ex
@@ -1858,7 +1888,7 @@ throw|throw
 operator|new
 name|SolrServerException
 argument_list|(
-literal|"No live SolrServers available to handle this request"
+name|solrServerExceptionMessage
 argument_list|)
 throw|;
 block|}
@@ -1868,7 +1898,9 @@ throw|throw
 operator|new
 name|SolrServerException
 argument_list|(
-literal|"No live SolrServers available to handle this request:"
+name|solrServerExceptionMessage
+operator|+
+literal|":"
 operator|+
 name|zombieServers
 operator|.
@@ -2723,6 +2755,11 @@ name|justFailed
 init|=
 literal|null
 decl_stmt|;
+name|boolean
+name|timeAllowedExceeded
+init|=
+literal|false
+decl_stmt|;
 name|long
 name|timeAllowedNano
 init|=
@@ -2758,6 +2795,8 @@ control|)
 block|{
 if|if
 condition|(
+name|timeAllowedExceeded
+operator|=
 name|isTimeExceeded
 argument_list|(
 name|timeAllowedNano
@@ -2905,6 +2944,8 @@ control|)
 block|{
 if|if
 condition|(
+name|timeAllowedExceeded
+operator|=
 name|isTimeExceeded
 argument_list|(
 name|timeAllowedNano
@@ -3032,6 +3073,27 @@ argument_list|)
 throw|;
 block|}
 block|}
+specifier|final
+name|String
+name|solrServerExceptionMessage
+decl_stmt|;
+if|if
+condition|(
+name|timeAllowedExceeded
+condition|)
+block|{
+name|solrServerExceptionMessage
+operator|=
+literal|"Time allowed to handle this request exceeded"
+expr_stmt|;
+block|}
+else|else
+block|{
+name|solrServerExceptionMessage
+operator|=
+literal|"No live SolrServers available to handle this request"
+expr_stmt|;
+block|}
 if|if
 condition|(
 name|ex
@@ -3043,7 +3105,7 @@ throw|throw
 operator|new
 name|SolrServerException
 argument_list|(
-literal|"No live SolrServers available to handle this request"
+name|solrServerExceptionMessage
 argument_list|)
 throw|;
 block|}
@@ -3053,7 +3115,7 @@ throw|throw
 operator|new
 name|SolrServerException
 argument_list|(
-literal|"No live SolrServers available to handle this request"
+name|solrServerExceptionMessage
 argument_list|,
 name|ex
 argument_list|)
