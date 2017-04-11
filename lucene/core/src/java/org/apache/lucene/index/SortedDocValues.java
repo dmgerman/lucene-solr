@@ -82,6 +82,8 @@ specifier|abstract
 name|int
 name|ordValue
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 comment|/** Retrieves the value for the specified ordinal. The returned    * {@link BytesRef} may be re-used across calls to {@link #lookupOrd(int)}    * so make sure to {@link BytesRef#deepCopyOf(BytesRef) copy it} if you want    * to keep it around.    * @param ord ordinal to lookup (must be&gt;= 0 and&lt; {@link #getValueCount()})    * @see #ordValue()     */
 DECL|method|lookupOrd

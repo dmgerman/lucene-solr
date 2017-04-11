@@ -818,6 +818,8 @@ specifier|public
 name|long
 name|longValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 comment|// Keys are always expressed as a long so we obtain the
 comment|// ordinal for our String-based artist name here

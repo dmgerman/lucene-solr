@@ -3183,6 +3183,8 @@ specifier|public
 name|int
 name|ordValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|assertThread
 argument_list|(

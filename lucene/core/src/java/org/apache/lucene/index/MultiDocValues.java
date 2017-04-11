@@ -5301,6 +5301,8 @@ specifier|public
 name|int
 name|ordValue
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 return|return
 operator|(
