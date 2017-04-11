@@ -360,7 +360,7 @@ name|StandardAnalyzer
 operator|.
 name|DEFAULT_MAX_TOKEN_LENGTH
 decl_stmt|;
-comment|/**    * Set the max allowed token length.  No tokens longer than this are emitted.    *     * @throws IllegalArgumentException if the given length is outside of the    *  range [1, {@value #MAX_TOKEN_LENGTH_LIMIT}].    */
+comment|/**    * Set the max allowed token length.  Tokens larger than this will be chopped    * up at this token length and emitted as multiple tokens.  If you need to    * skip such large tokens, you could increase this max length, and then    * use {@code LengthFilter} to remove long tokens.  The default is    * {@link StandardAnalyzer#DEFAULT_MAX_TOKEN_LENGTH}.    *     * @throws IllegalArgumentException if the given length is outside of the    *  range [1, {@value #MAX_TOKEN_LENGTH_LIMIT}].    */
 DECL|method|setMaxTokenLength
 specifier|public
 name|void

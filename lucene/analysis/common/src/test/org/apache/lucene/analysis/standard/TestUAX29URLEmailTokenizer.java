@@ -680,9 +680,9 @@ name|tokenizer
 operator|.
 name|setMaxTokenLength
 argument_list|(
-name|Integer
+name|UAX29URLEmailTokenizer
 operator|.
-name|MAX_VALUE
+name|MAX_TOKEN_LENGTH_LIMIT
 argument_list|)
 expr_stmt|;
 comment|// Tokenize arbitrary length URLs
