@@ -1065,7 +1065,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|String
+name|Object
 argument_list|>
 name|attributes
 init|=
@@ -1106,10 +1106,6 @@ argument_list|(
 literal|"reporter"
 argument_list|,
 name|attributes
-argument_list|,
-literal|null
-argument_list|,
-literal|null
 argument_list|)
 decl_stmt|;
 return|return

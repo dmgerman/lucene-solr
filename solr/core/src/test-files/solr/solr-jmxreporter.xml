@@ -38,33 +38,6 @@
   </solrcloud>
 
   <metrics>
-    <!-- disable default JMX reporter to avoid conflicts with multiple CoreContainers. -->
-    <reporter name="defaultJmx" class="org.apache.solr.metrics.reporters.SolrJmxReporter">
-      <bool name="enabled">false</bool>
-    </reporter>
-    <reporter name="test" group="shard">
-      <int name="period">5</int>
-      <str name="filter">UPDATE\./update/.*requests</str>
-      <str name="filter">QUERY\./select.*requests</str>
-    </reporter>
-    <reporter name="test" group="cluster">
-      <str name="handler">/admin/metrics/collector</str>
-      <int name="period">5</int>
-      <lst name="report">
-        <str name="group">cluster</str>
-        <str name="label">jvm</str>
-        <str name="registry">solr\.jvm</str>
-        <str name="filter">memory\.total\..*</str>
-        <str name="filter">memory\.heap\..*</str>
-        <str name="filter">os\.SystemLoadAverage</str>
-        <str name="filter">threads\.count</str>
-      </lst>
-      <lst name="report">
-        <str name="group">cluster</str>
-        <str name="label">leader.$1</str>
-        <str name="registry">solr\.collection\.(.*)\.leader</str>
-        <str name="filter">UPDATE\./update/.*</str>
-      </lst>
-    </reporter>
+    <reporter name="defaultJmx" class="org.apache.solr.metrics.reporters.SolrJmxReporter"/>
   </metrics>
 </solr>

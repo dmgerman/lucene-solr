@@ -42,7 +42,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -70,7 +70,7 @@ specifier|public
 interface|interface
 name|SolrRequestHandler
 extends|extends
-name|SolrInfoMBean
+name|SolrInfoBean
 block|{
 comment|/**<code>init</code> will be called just once, immediately after creation.    *<p>The args are user-level initialization parameters that    * may be specified when declaring a request handler in    * solrconfig.xml    */
 DECL|method|init

@@ -2125,14 +2125,14 @@ if|if
 condition|(
 name|inst
 operator|instanceof
-name|SolrInfoMBean
+name|SolrInfoBean
 condition|)
 block|{
-name|SolrInfoMBean
+name|SolrInfoBean
 name|mBean
 init|=
 operator|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|)
 name|inst
 decl_stmt|;

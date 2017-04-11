@@ -1018,6 +1018,8 @@ name|instrumentedExecutorService
 argument_list|(
 name|parallelExecutor
 argument_list|,
+name|this
+argument_list|,
 name|manager
 operator|.
 name|registry

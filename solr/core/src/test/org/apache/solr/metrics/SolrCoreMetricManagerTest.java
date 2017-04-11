@@ -170,7 +170,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -364,7 +364,7 @@ argument_list|(
 name|random
 argument_list|)
 decl_stmt|;
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 name|category
@@ -519,7 +519,7 @@ argument_list|,
 literal|true
 argument_list|)
 decl_stmt|;
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 name|category

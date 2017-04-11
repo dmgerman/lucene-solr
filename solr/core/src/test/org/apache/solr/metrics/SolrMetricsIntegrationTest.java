@@ -164,7 +164,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -209,6 +209,20 @@ operator|.
 name|reporters
 operator|.
 name|MockMetricReporter
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|JmxUtil
 import|;
 end_import
 
@@ -406,12 +420,12 @@ DECL|field|HANDLER_CATEGORY
 specifier|private
 specifier|static
 specifier|final
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 name|HANDLER_CATEGORY
 init|=
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -431,6 +445,11 @@ DECL|field|tag
 specifier|private
 name|String
 name|tag
+decl_stmt|;
+DECL|field|jmxReporter
+specifier|private
+name|int
+name|jmxReporter
 decl_stmt|;
 DECL|method|assertTagged
 specifier|private
@@ -583,6 +602,19 @@ name|coreName
 operator|=
 name|DEFAULT_TEST_CORENAME
 expr_stmt|;
+name|jmxReporter
+operator|=
+name|JmxUtil
+operator|.
+name|findFirstMBeanServer
+argument_list|()
+operator|!=
+literal|null
+condition|?
+literal|1
+else|:
+literal|0
+expr_stmt|;
 name|metricManager
 operator|=
 name|cc
@@ -626,6 +658,8 @@ argument_list|(
 name|INITIAL_REPORTERS
 operator|.
 name|length
+operator|+
+name|jmxReporter
 argument_list|,
 name|reporters
 operator|.
@@ -689,6 +723,8 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|10
+operator|+
+name|jmxReporter
 argument_list|,
 name|plugins
 operator|.
@@ -707,6 +743,8 @@ expr_stmt|;
 name|assertEquals
 argument_list|(
 literal|4
+operator|+
+name|jmxReporter
 argument_list|,
 name|reporters
 operator|.
@@ -990,6 +1028,8 @@ name|metricManager
 operator|.
 name|timer
 argument_list|(
+literal|null
+argument_list|,
 name|coreMetricManager
 operator|.
 name|getRegistryName
@@ -1088,6 +1128,8 @@ argument_list|(
 name|RENAMED_REPORTERS
 operator|.
 name|length
+operator|+
+name|jmxReporter
 argument_list|,
 name|reporters
 operator|.

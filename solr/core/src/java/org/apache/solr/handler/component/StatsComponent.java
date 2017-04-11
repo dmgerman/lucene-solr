@@ -944,7 +944,7 @@ name|stats
 return|;
 block|}
 comment|/////////////////////////////////////////////
-comment|///  SolrInfoMBean
+comment|///  SolrInfoBean
 comment|////////////////////////////////////////////
 annotation|@
 name|Override

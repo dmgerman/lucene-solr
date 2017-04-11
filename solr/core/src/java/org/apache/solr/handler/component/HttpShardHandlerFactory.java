@@ -346,7 +346,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -2279,7 +2279,7 @@ name|mkName
 argument_list|(
 name|scope
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -2318,6 +2318,8 @@ operator|.
 name|instrumentedExecutorService
 argument_list|(
 name|commExecutor
+argument_list|,
+literal|null
 argument_list|,
 name|manager
 operator|.

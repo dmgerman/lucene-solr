@@ -44,16 +44,6 @@ begin_import
 import|import
 name|java
 operator|.
-name|net
-operator|.
-name|URL
-import|;
-end_import
-
-begin_import
-import|import
-name|java
-operator|.
 name|util
 operator|.
 name|ArrayList
@@ -2712,7 +2702,7 @@ name|mlt
 return|;
 block|}
 comment|// ///////////////////////////////////////////
-comment|// / SolrInfoMBean
+comment|// / SolrInfoBean
 comment|// //////////////////////////////////////////
 annotation|@
 name|Override
@@ -2738,19 +2728,6 @@ return|return
 name|Category
 operator|.
 name|QUERY
-return|;
-block|}
-annotation|@
-name|Override
-DECL|method|getDocs
-specifier|public
-name|URL
-index|[]
-name|getDocs
-parameter_list|()
-block|{
-return|return
-literal|null
 return|;
 block|}
 block|}

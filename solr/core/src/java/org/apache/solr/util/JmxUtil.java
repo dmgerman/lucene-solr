@@ -93,7 +93,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Utility methods to find a MBeanServer.  *  * This was factored out from {@link org.apache.solr.core.JmxMonitoredMap}  * and can eventually replace the logic used there.  */
+comment|/**  * Utility methods to find a MBeanServer.  */
 end_comment
 
 begin_class

@@ -504,7 +504,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -2367,7 +2367,7 @@ argument_list|()
 operator|.
 name|registerMetricProducer
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -2481,6 +2481,8 @@ name|manager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 name|bufferedOpsGauge
@@ -2498,6 +2500,8 @@ name|manager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -2522,6 +2526,8 @@ name|manager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -2546,6 +2552,8 @@ name|manager
 operator|.
 name|meter
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"ops"
@@ -2561,6 +2569,8 @@ name|manager
 operator|.
 name|meter
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"ops"
@@ -2574,6 +2584,8 @@ name|manager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()

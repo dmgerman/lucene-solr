@@ -615,6 +615,16 @@ literal|"<int name=\"distribUpdateSoTimeout\">${distribUpdateSoTimeout:340000}</
 operator|+
 literal|"</solrcloud>\n"
 operator|+
+literal|"<metrics>\n"
+operator|+
+literal|"<reporter name=\"default\" class=\"org.apache.solr.metrics.reporters.SolrJmxReporter\">\n"
+operator|+
+literal|"<str name=\"rootName\">solr_${hostPort:8983}</str>\n"
+operator|+
+literal|"</reporter>\n"
+operator|+
+literal|"</metrics>\n"
+operator|+
 literal|"  \n"
 operator|+
 literal|"</solr>\n"

@@ -158,7 +158,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -423,6 +423,8 @@ name|metricManager
 operator|.
 name|register
 argument_list|(
+literal|null
+argument_list|,
 name|fromName
 argument_list|,
 name|entry
@@ -463,6 +465,8 @@ name|metricManager
 operator|.
 name|register
 argument_list|(
+literal|null
+argument_list|,
 name|toName
 argument_list|,
 name|entry
@@ -946,6 +950,8 @@ name|metricManager
 operator|.
 name|register
 argument_list|(
+literal|null
+argument_list|,
 name|registryName
 argument_list|,
 name|entry
@@ -988,6 +994,8 @@ name|metricManager
 operator|.
 name|register
 argument_list|(
+literal|null
+argument_list|,
 name|registryName
 argument_list|,
 name|entry
@@ -1030,6 +1038,8 @@ name|metricManager
 operator|.
 name|register
 argument_list|(
+literal|null
+argument_list|,
 name|registryName
 argument_list|,
 name|entry
@@ -1252,6 +1262,8 @@ name|metricManager
 operator|.
 name|counter
 argument_list|(
+literal|null
+argument_list|,
 name|registryName
 argument_list|,
 literal|"simple_counter"
@@ -1265,6 +1277,8 @@ name|metricManager
 operator|.
 name|timer
 argument_list|(
+literal|null
+argument_list|,
 name|registryName
 argument_list|,
 literal|"simple_timer"
@@ -1278,6 +1292,8 @@ name|metricManager
 operator|.
 name|meter
 argument_list|(
+literal|null
+argument_list|,
 name|registryName
 argument_list|,
 literal|"simple_meter"
@@ -1291,6 +1307,8 @@ name|metricManager
 operator|.
 name|histogram
 argument_list|(
+literal|null
+argument_list|,
 name|registryName
 argument_list|,
 literal|"simple_histogram"
@@ -1398,7 +1416,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1427,7 +1445,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1454,7 +1472,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1587,7 +1605,7 @@ name|loader
 argument_list|,
 name|tag
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1610,7 +1628,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1686,7 +1704,7 @@ name|loader
 argument_list|,
 name|tag
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1705,7 +1723,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1795,7 +1813,7 @@ name|loader
 argument_list|,
 name|tag
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1812,7 +1830,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1871,7 +1889,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1906,7 +1924,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -1941,7 +1959,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.

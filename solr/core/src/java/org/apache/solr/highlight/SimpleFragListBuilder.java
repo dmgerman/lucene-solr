@@ -73,7 +73,9 @@ comment|// NOTE: This class (currently) makes no use of params
 comment|// If that ever changes, it should wrap them with defaults...
 comment|// params = SolrParams.wrapDefaults(params, defaults)
 name|numRequests
-operator|++
+operator|.
+name|inc
+argument_list|()
 expr_stmt|;
 return|return
 operator|new

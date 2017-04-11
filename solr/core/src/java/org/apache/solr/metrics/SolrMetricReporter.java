@@ -102,6 +102,13 @@ specifier|protected
 name|PluginInfo
 name|pluginInfo
 decl_stmt|;
+DECL|field|enabled
+specifier|protected
+name|boolean
+name|enabled
+init|=
+literal|true
+decl_stmt|;
 comment|/**    * Create a reporter for metrics managed in a named registry.    * @param registryName registry to use, one of registries managed by    *                     {@link SolrMetricManager}    */
 DECL|method|SolrMetricReporter
 specifier|protected
@@ -187,6 +194,31 @@ block|}
 name|validate
 argument_list|()
 expr_stmt|;
+block|}
+comment|/**    * Enable reporting, defaults to true. Implementations should check this flag in    * {@link #validate()} and accordingly enable or disable reporting.    * @param enabled enable, defaults to true when null or not set.    */
+DECL|method|setEnabled
+specifier|public
+name|void
+name|setEnabled
+parameter_list|(
+name|Boolean
+name|enabled
+parameter_list|)
+block|{
+if|if
+condition|(
+name|enabled
+operator|!=
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|enabled
+operator|=
+name|enabled
+expr_stmt|;
+block|}
 block|}
 comment|/**    * Get the effective {@link PluginInfo} instance that was used for    * initialization of this plugin.    * @return plugin info, or null if not yet initialized.    */
 DECL|method|getPluginInfo

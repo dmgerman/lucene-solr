@@ -867,7 +867,7 @@ name|getDescription
 parameter_list|()
 block|{
 return|return
-literal|"Handler for collecting and aggregating metric reports."
+literal|"Handler for collecting and aggregating SolrCloud metric reports."
 return|;
 block|}
 DECL|class|MetricUpdateProcessor

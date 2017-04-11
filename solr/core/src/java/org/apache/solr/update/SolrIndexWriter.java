@@ -320,7 +320,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -1071,11 +1071,13 @@ name|metricManager
 operator|.
 name|meter
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"docs"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1095,11 +1097,13 @@ name|metricManager
 operator|.
 name|meter
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"deletedDocs"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1125,11 +1129,13 @@ name|metricManager
 operator|.
 name|timer
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"minor"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1147,11 +1153,13 @@ name|metricManager
 operator|.
 name|timer
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"major"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1169,11 +1177,13 @@ name|metricManager
 operator|.
 name|counter
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"errors"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1189,6 +1199,8 @@ name|metricManager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -1202,7 +1214,7 @@ literal|true
 argument_list|,
 literal|"running"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1220,6 +1232,8 @@ name|metricManager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -1233,7 +1247,7 @@ literal|true
 argument_list|,
 literal|"running"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1251,6 +1265,8 @@ name|metricManager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -1264,7 +1280,7 @@ literal|true
 argument_list|,
 literal|"running.docs"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1282,6 +1298,8 @@ name|metricManager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -1295,7 +1313,7 @@ literal|true
 argument_list|,
 literal|"running.docs"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1313,6 +1331,8 @@ name|metricManager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -1326,7 +1346,7 @@ literal|true
 argument_list|,
 literal|"running.segments"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1344,6 +1364,8 @@ name|metricManager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -1357,7 +1379,7 @@ literal|true
 argument_list|,
 literal|"running.segments"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1377,11 +1399,13 @@ name|metricManager
 operator|.
 name|meter
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"flush"
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.

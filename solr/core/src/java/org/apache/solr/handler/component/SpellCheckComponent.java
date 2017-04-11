@@ -5695,7 +5695,7 @@ argument_list|)
 return|;
 block|}
 comment|// ///////////////////////////////////////////
-comment|// / SolrInfoMBean
+comment|// / SolrInfoBean
 comment|// //////////////////////////////////////////
 annotation|@
 name|Override

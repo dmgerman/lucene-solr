@@ -26,7 +26,21 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|metrics
+operator|.
+name|SolrMetricProducer
 import|;
 end_import
 
@@ -55,7 +69,9 @@ parameter_list|,
 name|V
 parameter_list|>
 extends|extends
-name|SolrInfoMBean
+name|SolrInfoBean
+extends|,
+name|SolrMetricProducer
 block|{
 comment|/**    * The initialization routine. Instance specific arguments are passed in    * the<code>args</code> map.    *<p>    * The persistence object will exist across different lifetimes of similar caches.    * For example, all filter caches will share the same persistence object, sometimes    * at the same time (it must be thread-safe).  If null is passed, then the cache    * implementation should create and return a new persistence object.  If not null,    * the passed in object should be returned again.    *<p>    * Since it will exist across the lifetime of many caches, care should be taken to    * not reference any particular cache instance and prevent it from being    * garbage collected (no using inner classes unless they are static).    *<p>    * The persistence object is designed to be used as a way for statistics    * to accumulate across all instances of the same type of cache, however the    * object may be of any type desired by the cache implementation.    *<p>    * The {@link CacheRegenerator} is what the cache uses during auto-warming to    * regenerate an item in the new cache from an entry in the old cache.    *    */
 DECL|method|init

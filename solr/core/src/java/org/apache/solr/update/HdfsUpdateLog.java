@@ -284,7 +284,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -1414,7 +1414,7 @@ argument_list|()
 operator|.
 name|registerMetricProducer
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.

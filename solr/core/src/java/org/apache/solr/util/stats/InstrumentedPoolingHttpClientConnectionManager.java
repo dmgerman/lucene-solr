@@ -144,6 +144,8 @@ name|manager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -171,6 +173,8 @@ name|manager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -197,6 +201,8 @@ name|manager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()
@@ -223,6 +229,8 @@ name|manager
 operator|.
 name|registerGauge
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 parameter_list|()

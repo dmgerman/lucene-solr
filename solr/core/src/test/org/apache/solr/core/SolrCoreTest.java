@@ -1828,7 +1828,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 argument_list|>
 name|infoRegistry
 init|=
@@ -1859,7 +1859,7 @@ literal|0
 argument_list|)
 expr_stmt|;
 comment|//try out some that we know are in the config
-name|SolrInfoMBean
+name|SolrInfoBean
 name|bean
 init|=
 name|infoRegistry

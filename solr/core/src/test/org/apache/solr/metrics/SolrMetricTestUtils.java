@@ -92,7 +92,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -116,13 +116,13 @@ DECL|field|CATEGORIES
 specifier|private
 specifier|static
 specifier|final
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 name|CATEGORIES
 index|[]
 init|=
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -185,7 +185,7 @@ block|}
 DECL|method|getRandomCategory
 specifier|public
 specifier|static
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 name|getRandomCategory
@@ -209,7 +209,7 @@ block|}
 DECL|method|getRandomCategory
 specifier|public
 specifier|static
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 name|getRandomCategory
@@ -490,7 +490,7 @@ parameter_list|(
 name|SolrMetricManager
 name|metricManager
 parameter_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 name|category
@@ -579,6 +579,8 @@ name|manager
 operator|.
 name|counter
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 name|entry

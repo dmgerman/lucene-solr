@@ -204,7 +204,9 @@ name|params
 parameter_list|)
 block|{
 name|numRequests
-operator|++
+operator|.
+name|inc
+argument_list|()
 expr_stmt|;
 name|params
 operator|=

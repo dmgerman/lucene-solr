@@ -50,6 +50,18 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|codahale
+operator|.
+name|metrics
+operator|.
+name|MetricRegistry
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -114,7 +126,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -375,7 +387,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Load reporters configured globally and specific to {@link org.apache.solr.core.SolrInfoMBean.Group#core}    * group or with a registry name specific to this core.    */
+comment|/**    * Load reporters configured globally and specific to {@link org.apache.solr.core.SolrInfoBean.Group#core}    * group or with a registry name specific to this core.    */
 DECL|method|loadReporters
 specifier|public
 name|void
@@ -418,7 +430,7 @@ argument_list|()
 argument_list|,
 name|tag
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -589,6 +601,36 @@ name|scope
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Return the registry used by this SolrCore.    */
+DECL|method|getRegistry
+specifier|public
+name|MetricRegistry
+name|getRegistry
+parameter_list|()
+block|{
+if|if
+condition|(
+name|registryName
+operator|!=
+literal|null
+condition|)
+block|{
+return|return
+name|metricManager
+operator|.
+name|registry
+argument_list|(
+name|registryName
+argument_list|)
+return|;
+block|}
+else|else
+block|{
+return|return
+literal|null
+return|;
+block|}
+block|}
 comment|/**    * Closes reporters specific to this core.    */
 annotation|@
 name|Override
@@ -610,6 +652,25 @@ argument_list|,
 name|tag
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|getLeaderRegistryName
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|metricManager
+operator|.
+name|closeReporters
+argument_list|(
+name|getLeaderRegistryName
+argument_list|()
+argument_list|,
+name|tag
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 DECL|method|getCore
 specifier|public
@@ -687,7 +748,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -708,7 +769,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.
@@ -938,7 +999,7 @@ name|SolrMetricManager
 operator|.
 name|getRegistryName
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Group
 operator|.

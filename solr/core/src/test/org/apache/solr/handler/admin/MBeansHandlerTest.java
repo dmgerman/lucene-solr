@@ -365,7 +365,7 @@ name|stats
 operator|.
 name|get
 argument_list|(
-literal|"requests"
+literal|"ADMIN./admin/mbeans.requests"
 argument_list|)
 operator|.
 name|toString

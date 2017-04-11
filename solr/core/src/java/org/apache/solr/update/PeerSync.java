@@ -348,7 +348,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -1291,7 +1291,7 @@ argument_list|()
 operator|.
 name|registerMetricProducer
 argument_list|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|.
 name|Category
 operator|.
@@ -1336,6 +1336,8 @@ name|manager
 operator|.
 name|timer
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"time"
@@ -1351,6 +1353,8 @@ name|manager
 operator|.
 name|counter
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"errors"
@@ -1366,6 +1370,8 @@ name|manager
 operator|.
 name|counter
 argument_list|(
+literal|null
+argument_list|,
 name|registry
 argument_list|,
 literal|"skipped"

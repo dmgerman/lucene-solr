@@ -54,6 +54,18 @@ end_import
 
 begin_import
 import|import
+name|com
+operator|.
+name|codahale
+operator|.
+name|metrics
+operator|.
+name|Gauge
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -79,6 +91,22 @@ operator|.
 name|util
 operator|.
 name|SimpleOrderedMap
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|stats
+operator|.
+name|MetricUtils
 import|;
 end_import
 
@@ -154,7 +182,7 @@ name|getArch
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// make another using addMXBeanProperties()
+comment|// make another using MetricUtils.addMXBeanMetrics()
 name|SimpleOrderedMap
 argument_list|<
 name|Object
@@ -166,9 +194,9 @@ name|SimpleOrderedMap
 argument_list|<>
 argument_list|()
 decl_stmt|;
-name|SystemInfoHandler
+name|MetricUtils
 operator|.
-name|addMXBeanProperties
+name|addMXBeanMetrics
 argument_list|(
 name|os
 argument_list|,
@@ -176,7 +204,33 @@ name|OperatingSystemMXBean
 operator|.
 name|class
 argument_list|,
+literal|null
+argument_list|,
+parameter_list|(
+name|k
+parameter_list|,
+name|v
+parameter_list|)
+lambda|->
+block|{
 name|info2
+operator|.
+name|add
+argument_list|(
+name|k
+argument_list|,
+operator|(
+operator|(
+name|Gauge
+operator|)
+name|v
+operator|)
+operator|.
+name|getValue
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
 argument_list|)
 expr_stmt|;
 comment|// make sure they got the same thing

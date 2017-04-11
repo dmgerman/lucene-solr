@@ -928,7 +928,7 @@ specifier|private
 specifier|final
 name|List
 argument_list|<
-name|SolrInfoMBean
+name|SolrInfoBean
 argument_list|>
 name|infoMBeans
 init|=
@@ -939,7 +939,7 @@ argument_list|(
 operator|new
 name|ArrayList
 argument_list|<
-name|SolrInfoMBean
+name|SolrInfoBean
 argument_list|>
 argument_list|()
 argument_list|)
@@ -3645,7 +3645,7 @@ if|if
 condition|(
 name|obj
 operator|instanceof
-name|SolrInfoMBean
+name|SolrInfoBean
 condition|)
 block|{
 comment|//TODO: Assert here?
@@ -3654,7 +3654,7 @@ operator|.
 name|add
 argument_list|(
 operator|(
-name|SolrInfoMBean
+name|SolrInfoBean
 operator|)
 name|obj
 argument_list|)
@@ -3822,7 +3822,7 @@ expr_stmt|;
 block|}
 block|}
 block|}
-comment|/**    * Register any {@link org.apache.solr.core.SolrInfoMBean}s    * @param infoRegistry The Info Registry    */
+comment|/**    * Register any {@link SolrInfoBean}s    * @param infoRegistry The Info Registry    */
 DECL|method|inform
 specifier|public
 name|void
@@ -3832,14 +3832,14 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|SolrInfoMBean
+name|SolrInfoBean
 argument_list|>
 name|infoRegistry
 parameter_list|)
 block|{
 comment|// this can currently happen concurrently with requests starting and lazy components
 comment|// loading.  Make sure infoMBeans doesn't change.
-name|SolrInfoMBean
+name|SolrInfoBean
 index|[]
 name|arr
 decl_stmt|;
@@ -3855,7 +3855,7 @@ operator|.
 name|toArray
 argument_list|(
 operator|new
-name|SolrInfoMBean
+name|SolrInfoBean
 index|[
 name|infoMBeans
 operator|.
@@ -3872,7 +3872,7 @@ expr_stmt|;
 block|}
 for|for
 control|(
-name|SolrInfoMBean
+name|SolrInfoBean
 name|bean
 range|:
 name|arr
@@ -4461,7 +4461,7 @@ DECL|method|getInfoMBeans
 specifier|public
 name|List
 argument_list|<
-name|SolrInfoMBean
+name|SolrInfoBean
 argument_list|>
 name|getInfoMBeans
 parameter_list|()

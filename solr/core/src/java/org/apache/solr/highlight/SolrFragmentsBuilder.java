@@ -104,7 +104,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -133,7 +133,7 @@ name|SolrFragmentsBuilder
 extends|extends
 name|HighlightingPluginBase
 implements|implements
-name|SolrInfoMBean
+name|SolrInfoBean
 implements|,
 name|NamedListInitializedPlugin
 block|{
@@ -169,7 +169,9 @@ name|bs
 parameter_list|)
 block|{
 name|numRequests
-operator|++
+operator|.
+name|inc
+argument_list|()
 expr_stmt|;
 name|params
 operator|=

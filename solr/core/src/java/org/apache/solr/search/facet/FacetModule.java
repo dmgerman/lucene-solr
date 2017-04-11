@@ -1889,18 +1889,6 @@ operator|.
 name|QUERY
 return|;
 block|}
-annotation|@
-name|Override
-DECL|method|getSource
-specifier|public
-name|String
-name|getSource
-parameter_list|()
-block|{
-return|return
-literal|null
-return|;
-block|}
 block|}
 end_class
 

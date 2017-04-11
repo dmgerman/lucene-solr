@@ -74,7 +74,7 @@ name|solr
 operator|.
 name|core
 operator|.
-name|SolrInfoMBean
+name|SolrInfoBean
 import|;
 end_import
 
@@ -100,7 +100,7 @@ specifier|public
 interface|interface
 name|SolrFragmenter
 extends|extends
-name|SolrInfoMBean
+name|SolrInfoBean
 extends|,
 name|NamedListInitializedPlugin
 block|{
