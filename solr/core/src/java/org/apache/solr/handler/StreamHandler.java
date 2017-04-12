@@ -2303,6 +2303,15 @@ name|ShuffleStream
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"calc"
+argument_list|,
+name|CalculatorStream
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
