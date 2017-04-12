@@ -38831,7 +38831,7 @@ block|{
 name|String
 name|expr
 init|=
-literal|"select(calc(), add(1, 1) as result)"
+literal|"select(eval(), add(1, 1) as result)"
 decl_stmt|;
 name|ModifiableSolrParams
 name|paramsLoc

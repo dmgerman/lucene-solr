@@ -2306,7 +2306,7 @@ argument_list|)
 operator|.
 name|withFunctionName
 argument_list|(
-literal|"calc"
+literal|"eval"
 argument_list|,
 name|CalculatorStream
 operator|.
