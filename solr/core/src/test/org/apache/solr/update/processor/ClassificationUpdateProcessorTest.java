@@ -597,7 +597,7 @@ argument_list|)
 argument_list|,
 name|is
 argument_list|(
-literal|"class1"
+literal|"class2"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -711,7 +711,7 @@ argument_list|)
 argument_list|,
 name|is
 argument_list|(
-literal|"class1"
+literal|"class2"
 argument_list|)
 argument_list|)
 expr_stmt|;
