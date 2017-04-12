@@ -398,6 +398,11 @@ specifier|private
 name|TupleStream
 name|stream
 decl_stmt|;
+DECL|field|streamContext
+specifier|private
+name|StreamContext
+name|streamContext
+decl_stmt|;
 DECL|field|selectedFields
 specifier|private
 name|Map
@@ -1490,6 +1495,12 @@ parameter_list|)
 block|{
 name|this
 operator|.
+name|streamContext
+operator|=
+name|context
+expr_stmt|;
+name|this
+operator|.
 name|stream
 operator|.
 name|setStreamContext
@@ -1635,6 +1646,18 @@ argument_list|<>
 argument_list|()
 argument_list|)
 decl_stmt|;
+comment|//Clear the TupleContext before running the evaluators.
+comment|//The TupleContext allows evaluators to cache values within the scope of a single tuple.
+comment|//For example a LocalDateTime could be parsed by one evaluator and used by other evaluators within the scope of the tuple.
+comment|//This avoids the need to create multiple LocalDateTime instances for the same tuple to satisfy a select expression.
+name|streamContext
+operator|.
+name|getTupleContext
+argument_list|()
+operator|.
+name|clear
+argument_list|()
+expr_stmt|;
 for|for
 control|(
 name|Object
