@@ -129,6 +129,9 @@ name|ClosedListener
 name|listener
 parameter_list|)
 block|{
+name|ensureOpen
+argument_list|()
+expr_stmt|;
 name|readerClosedListeners
 operator|.
 name|add
