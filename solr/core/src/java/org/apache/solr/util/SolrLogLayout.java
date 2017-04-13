@@ -907,9 +907,6 @@ name|zkController
 operator|=
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.

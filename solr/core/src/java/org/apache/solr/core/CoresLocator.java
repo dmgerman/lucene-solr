@@ -123,6 +123,19 @@ name|CoreContainer
 name|cc
 parameter_list|)
 function_decl|;
+comment|/**    * reload an existing CoreDescriptor, that is read it from disk.    *     * @param cc the CoreContainer    * @param cd the old CoreDescriptor. If null, this is a no-op    * @return the reloaded coreDescriptor or null              */
+DECL|method|reload
+specifier|public
+name|CoreDescriptor
+name|reload
+parameter_list|(
+name|CoreContainer
+name|cc
+parameter_list|,
+name|CoreDescriptor
+name|cd
+parameter_list|)
+function_decl|;
 block|}
 end_interface
 

@@ -3084,9 +3084,6 @@ name|cc
 init|=
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 decl_stmt|;
@@ -3766,9 +3763,6 @@ name|CoreContainer
 name|cc
 init|=
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()
@@ -4682,9 +4676,6 @@ operator|<
 literal|1
 operator|||
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()
@@ -8367,9 +8358,6 @@ block|{
 if|if
 condition|(
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()

@@ -1208,9 +1208,6 @@ operator|.
 name|getCore
 argument_list|()
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -4697,9 +4694,6 @@ operator|.
 name|req
 operator|.
 name|getCore
-argument_list|()
-operator|.
-name|getCoreDescriptor
 argument_list|()
 operator|.
 name|getCoreContainer

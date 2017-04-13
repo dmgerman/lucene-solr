@@ -91,10 +91,6 @@ parameter_list|()
 block|{
 name|super
 argument_list|(
-operator|new
-name|MockCoreContainer
-argument_list|()
-argument_list|,
 literal|"mock"
 argument_list|,
 name|Paths
@@ -103,6 +99,10 @@ name|get
 argument_list|(
 literal|"path"
 argument_list|)
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

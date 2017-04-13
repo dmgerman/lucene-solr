@@ -1928,7 +1928,7 @@ literal|" in "
 operator|+
 name|cc
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 argument_list|)
 throw|;
@@ -2127,7 +2127,7 @@ literal|" in "
 operator|+
 name|cc
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 argument_list|)
 throw|;
@@ -2434,9 +2434,6 @@ operator|.
 name|debug
 argument_list|(
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()
@@ -2757,7 +2754,7 @@ literal|" in "
 operator|+
 name|cc
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 argument_list|)
 expr_stmt|;

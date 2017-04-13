@@ -1844,9 +1844,6 @@ name|coreContainer
 init|=
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 decl_stmt|;
@@ -1880,9 +1877,6 @@ expr_stmt|;
 name|defaultZkhost
 operator|=
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()

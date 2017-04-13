@@ -305,7 +305,7 @@ name|CORES
 argument_list|,
 name|cc
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 operator|.
 name|size

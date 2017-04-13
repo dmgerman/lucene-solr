@@ -458,7 +458,7 @@ if|if
 condition|(
 name|cc
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 operator|.
 name|contains

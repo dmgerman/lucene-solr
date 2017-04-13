@@ -199,7 +199,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Set's per thread context info for logging. Nested calls will use the top level parent for all context. The first  * caller always owns the context until it calls {@link #clear()}. Always call {@link #setCore(SolrCore)} or  * {@link #setCoreDescriptor(CoreDescriptor)} and then {@link #clear()} in a finally block.  */
+comment|/**  * Set's per thread context info for logging. Nested calls will use the top level parent for all context. The first  * caller always owns the context until it calls {@link #clear()}. Always call {@link #setCore(SolrCore)} or  * {@link #setCoreDescriptor(CoreContainer, CoreDescriptor)} and then {@link #clear()} in a finally block.  */
 end_comment
 
 begin_class
@@ -537,17 +537,17 @@ operator|!=
 literal|null
 condition|)
 block|{
-name|CoreDescriptor
-name|cd
-init|=
+name|setCoreDescriptor
+argument_list|(
+name|core
+operator|.
+name|getCoreContainer
+argument_list|()
+argument_list|,
 name|core
 operator|.
 name|getCoreDescriptor
 argument_list|()
-decl_stmt|;
-name|setCoreDescriptor
-argument_list|(
-name|cd
 argument_list|)
 expr_stmt|;
 block|}
@@ -558,6 +558,9 @@ specifier|static
 name|void
 name|setCoreDescriptor
 parameter_list|(
+name|CoreContainer
+name|coreContainer
+parameter_list|,
 name|CoreDescriptor
 name|cd
 parameter_list|)
@@ -603,17 +606,9 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|CoreContainer
-name|cc
-init|=
-name|cd
-operator|.
-name|getCoreContainer
-argument_list|()
-decl_stmt|;
 if|if
 condition|(
-name|cc
+name|coreContainer
 operator|!=
 literal|null
 condition|)
@@ -621,7 +616,7 @@ block|{
 name|ZkController
 name|zkController
 init|=
-name|cc
+name|coreContainer
 operator|.
 name|getZkController
 argument_list|()

@@ -948,9 +948,6 @@ name|zkController
 init|=
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -4470,9 +4467,6 @@ if|if
 condition|(
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -4665,9 +4659,6 @@ operator|.
 name|injectNonGracefullClose
 argument_list|(
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()

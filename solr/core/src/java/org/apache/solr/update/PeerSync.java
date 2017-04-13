@@ -1226,9 +1226,6 @@ name|client
 operator|=
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -1265,9 +1262,6 @@ operator|(
 name|HttpShardHandlerFactory
 operator|)
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()
@@ -1459,9 +1453,6 @@ init|=
 name|uhandler
 operator|.
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()
@@ -5280,9 +5271,6 @@ name|ShardHandlerFactory
 name|shardHandlerFactory
 init|=
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()

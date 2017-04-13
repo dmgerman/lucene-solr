@@ -1534,9 +1534,6 @@ condition|(
 operator|!
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -2186,9 +2183,6 @@ name|ZkController
 name|zkController
 init|=
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()
@@ -3966,9 +3960,6 @@ name|bootstrapFuture
 operator|=
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -4079,9 +4070,6 @@ decl_stmt|;
 try|try
 block|{
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()

@@ -2017,7 +2017,10 @@ specifier|final
 name|ZkController
 name|zkController
 init|=
-name|coreDescriptor
+name|req
+operator|.
+name|getCore
+argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()

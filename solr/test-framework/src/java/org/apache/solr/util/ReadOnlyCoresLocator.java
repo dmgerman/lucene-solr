@@ -156,6 +156,25 @@ parameter_list|)
 block|{
 comment|// no-op
 block|}
+annotation|@
+name|Override
+DECL|method|reload
+specifier|public
+name|CoreDescriptor
+name|reload
+parameter_list|(
+name|CoreContainer
+name|cc
+parameter_list|,
+name|CoreDescriptor
+name|cd
+parameter_list|)
+block|{
+return|return
+literal|null
+return|;
+comment|// no-op
+block|}
 block|}
 end_class
 

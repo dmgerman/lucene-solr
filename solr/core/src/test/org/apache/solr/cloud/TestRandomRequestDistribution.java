@@ -1355,9 +1355,6 @@ name|leaderMetricManager
 init|=
 name|leaderCore
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.

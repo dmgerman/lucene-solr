@@ -309,9 +309,6 @@ name|zkClient
 init|=
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -494,9 +491,6 @@ name|zkClient
 init|=
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -587,9 +581,6 @@ name|SolrZkClient
 name|zkClient
 init|=
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()
@@ -849,9 +840,6 @@ name|SolrZkClient
 name|zkClient
 init|=
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()

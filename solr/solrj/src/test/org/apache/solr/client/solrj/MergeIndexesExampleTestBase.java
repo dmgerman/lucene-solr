@@ -432,7 +432,7 @@ literal|" : "
 operator|+
 name|cores
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 argument_list|)
 expr_stmt|;

@@ -410,9 +410,6 @@ name|SyncStrategy
 argument_list|(
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 argument_list|)
@@ -531,9 +528,6 @@ operator|.
 name|debug
 argument_list|(
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()

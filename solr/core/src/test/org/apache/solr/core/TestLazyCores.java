@@ -423,8 +423,6 @@ return|return
 operator|new
 name|CoreDescriptor
 argument_list|(
-name|cc
-argument_list|,
 name|coreName
 argument_list|,
 name|cc
@@ -436,6 +434,13 @@ name|resolve
 argument_list|(
 name|coreName
 argument_list|)
+argument_list|,
+name|cc
+operator|.
+name|getContainerProperties
+argument_list|()
+argument_list|,
+literal|false
 argument_list|,
 name|CoreDescriptor
 operator|.
@@ -2921,7 +2926,37 @@ argument_list|,
 literal|"schema.xml"
 argument_list|)
 expr_stmt|;
-comment|// This should force a reload of the cores.
+comment|// Reload the cores and insure that
+comment|// 1> they pick up the new configs
+comment|// 2> they don't fail again b/c they still have entries in loadFailure in core container.
+name|cc
+operator|.
+name|reload
+argument_list|(
+literal|"badConfig1"
+argument_list|)
+expr_stmt|;
+name|cc
+operator|.
+name|reload
+argument_list|(
+literal|"badConfig2"
+argument_list|)
+expr_stmt|;
+name|cc
+operator|.
+name|reload
+argument_list|(
+literal|"badSchema1"
+argument_list|)
+expr_stmt|;
+name|cc
+operator|.
+name|reload
+argument_list|(
+literal|"badSchema2"
+argument_list|)
+expr_stmt|;
 name|SolrCore
 name|bc1
 init|=
@@ -3822,7 +3857,7 @@ name|loadedNames
 init|=
 name|cc
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 decl_stmt|;
 for|for
@@ -3991,7 +4026,7 @@ name|loadedNames
 init|=
 name|cc
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 decl_stmt|;
 name|assertEquals

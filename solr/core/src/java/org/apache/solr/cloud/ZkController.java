@@ -6622,6 +6622,8 @@ name|MDCLoggingContext
 operator|.
 name|setCoreDescriptor
 argument_list|(
+name|cc
+argument_list|,
 name|cd
 argument_list|)
 expr_stmt|;

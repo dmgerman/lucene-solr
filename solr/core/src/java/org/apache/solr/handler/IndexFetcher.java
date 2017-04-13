@@ -1726,9 +1726,6 @@ name|httpClientParams
 argument_list|,
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -3348,9 +3345,6 @@ if|if
 condition|(
 name|solrCore
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -4142,9 +4136,6 @@ name|zkController
 init|=
 name|solrCore
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -4253,9 +4244,6 @@ block|}
 if|if
 condition|(
 name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()
@@ -5509,9 +5497,6 @@ name|core
 init|=
 name|solrCore
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -5658,9 +5643,6 @@ block|{
 try|try
 block|{
 name|solrCore
-operator|.
-name|getCoreDescriptor
-argument_list|()
 operator|.
 name|getCoreContainer
 argument_list|()

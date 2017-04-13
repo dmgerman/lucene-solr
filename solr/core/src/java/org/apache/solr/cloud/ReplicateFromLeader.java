@@ -364,7 +364,7 @@ literal|" in "
 operator|+
 name|cc
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 argument_list|)
 throw|;

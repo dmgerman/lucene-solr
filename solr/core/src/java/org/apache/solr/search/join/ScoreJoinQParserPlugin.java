@@ -533,9 +533,6 @@ operator|.
 name|getCore
 argument_list|()
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 decl_stmt|;
@@ -1369,9 +1366,6 @@ init|=
 name|req
 operator|.
 name|getCore
-argument_list|()
-operator|.
-name|getCoreDescriptor
 argument_list|()
 operator|.
 name|getCoreContainer

@@ -987,9 +987,6 @@ name|shardHandlerFactory
 operator|=
 name|core
 operator|.
-name|getCoreDescriptor
-argument_list|()
-operator|.
 name|getCoreContainer
 argument_list|()
 operator|.
@@ -1408,9 +1405,6 @@ init|=
 name|req
 operator|.
 name|getCore
-argument_list|()
-operator|.
-name|getCoreDescriptor
 argument_list|()
 operator|.
 name|getCoreContainer

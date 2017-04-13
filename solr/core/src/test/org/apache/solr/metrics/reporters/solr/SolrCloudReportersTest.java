@@ -450,7 +450,7 @@ name|name
 range|:
 name|cc
 operator|.
-name|getCoreNames
+name|getLoadedCoreNames
 argument_list|()
 control|)
 block|{
