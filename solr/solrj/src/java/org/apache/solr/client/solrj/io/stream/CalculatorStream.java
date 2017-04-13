@@ -234,10 +234,6 @@ name|StreamFactory
 import|;
 end_import
 
-begin_comment
-comment|/**  *  The NullStream Iterates over a TupleStream and eats the tuples. It returns the tuple count in the EOF tuple.  *  Because the NullStreaam eats all the Tuples it see's it can be used as a simple tool for performance analysis of  *  underlying streams.  **/
-end_comment
-
 begin_class
 DECL|class|CalculatorStream
 specifier|public
