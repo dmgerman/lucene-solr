@@ -1058,6 +1058,10 @@ argument_list|,
 name|UpdateShardHandlerConfig
 operator|.
 name|DEFAULT_METRICNAMESTRATEGY
+argument_list|,
+name|UpdateShardHandlerConfig
+operator|.
+name|DEFAULT_MAXRECOVERYTHREADS
 argument_list|)
 decl_stmt|;
 comment|// universal default metric reporter
