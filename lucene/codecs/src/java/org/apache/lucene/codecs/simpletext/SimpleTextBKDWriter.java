@@ -5037,6 +5037,9 @@ name|getWriter
 parameter_list|(
 name|IndexOutput
 name|out
+parameter_list|,
+name|long
+name|count
 parameter_list|)
 block|{
 return|return
