@@ -454,6 +454,18 @@ argument_list|,
 name|CLUSTERSTATUS_OP
 argument_list|)
 operator|,
+DECL|enum constant|LIST_ALIASES
+name|LIST_ALIASES
+argument_list|(
+name|EndPoint
+operator|.
+name|CLUSTER_ALIASES
+argument_list|,
+name|GET
+argument_list|,
+name|LISTALIASES_OP
+argument_list|)
+operator|,
 DECL|enum constant|CREATE_COLLECTION
 name|CREATE_COLLECTION
 argument_list|(
@@ -1620,6 +1632,12 @@ DECL|enum constant|CLUSTER
 name|CLUSTER
 argument_list|(
 literal|"cluster"
+argument_list|)
+block|,
+DECL|enum constant|CLUSTER_ALIASES
+name|CLUSTER_ALIASES
+argument_list|(
+literal|"cluster.aliases"
 argument_list|)
 block|,
 DECL|enum constant|CLUSTER_CMD

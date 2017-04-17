@@ -291,6 +291,16 @@ operator|.
 name|COLLECTION
 argument_list|)
 block|,
+DECL|enum constant|LISTALIASES
+name|LISTALIASES
+argument_list|(
+literal|false
+argument_list|,
+name|LockLevel
+operator|.
+name|NONE
+argument_list|)
+block|,
 DECL|enum constant|SPLITSHARD
 name|SPLITSHARD
 argument_list|(

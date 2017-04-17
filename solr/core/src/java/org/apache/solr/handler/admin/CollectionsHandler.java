@@ -504,6 +504,22 @@ name|common
 operator|.
 name|cloud
 operator|.
+name|Aliases
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|cloud
+operator|.
 name|ClusterProperties
 import|;
 end_import
@@ -3992,6 +4008,74 @@ name|NAME
 argument_list|)
 argument_list|)
 operator|,
+comment|/**      * Handle cluster status request.      * Can return status per specific collection/shard or per all collections.      */
+DECL|enum constant|LISTALIASES_OP
+name|LISTALIASES_OP
+argument_list|(
+name|LISTALIASES
+argument_list|,
+parameter_list|(
+name|req
+parameter_list|,
+name|rsp
+parameter_list|,
+name|h
+parameter_list|)
+lambda|->
+block|{
+name|ZkStateReader
+name|zkStateReader
+operator|=
+name|h
+operator|.
+name|coreContainer
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getZkStateReader
+argument_list|()
+argument_list|;
+name|Aliases
+name|aliases
+operator|=
+name|zkStateReader
+operator|.
+name|getAliases
+argument_list|()
+argument_list|;       if
+operator|(
+name|aliases
+operator|!=
+literal|null
+operator|)
+block|{
+name|rsp
+operator|.
+name|getValues
+argument_list|()
+operator|.
+name|add
+argument_list|(
+literal|"aliases"
+argument_list|,
+name|aliases
+operator|.
+name|getCollectionAliasMap
+argument_list|()
+argument_list|)
+block|;       }
+return|return
+literal|null
+return|;
+end_class
+
+begin_operator
+unit|})
+operator|,
+end_operator
+
+begin_expr_stmt
 DECL|enum constant|SPLITSHARD_OP
 name|SPLITSHARD_OP
 argument_list|(
@@ -4014,7 +4098,7 @@ lambda|->
 block|{
 name|String
 name|name
-operator|=
+init|=
 name|req
 operator|.
 name|getParams
@@ -4027,11 +4111,11 @@ name|get
 argument_list|(
 name|COLLECTION_PROP
 argument_list|)
-argument_list|;
+decl_stmt|;
 comment|// TODO : add support for multiple shards
 name|String
 name|shard
-operator|=
+init|=
 name|req
 operator|.
 name|getParams
@@ -4041,10 +4125,10 @@ name|get
 argument_list|(
 name|SHARD_ID_PROP
 argument_list|)
-argument_list|;
+decl_stmt|;
 name|String
 name|rangesStr
-operator|=
+init|=
 name|req
 operator|.
 name|getParams
@@ -4056,10 +4140,10 @@ name|CoreAdminParams
 operator|.
 name|RANGES
 argument_list|)
-argument_list|;
+decl_stmt|;
 name|String
 name|splitKey
-operator|=
+init|=
 name|req
 operator|.
 name|getParams
@@ -4069,8 +4153,9 @@ name|get
 argument_list|(
 literal|"split.key"
 argument_list|)
-argument_list|;        if
-operator|(
+decl_stmt|;
+if|if
+condition|(
 name|splitKey
 operator|==
 literal|null
@@ -4078,10 +4163,10 @@ operator|&&
 name|shard
 operator|==
 literal|null
-operator|)
+condition|)
 block|{
 throw|throw
-argument_list|new
+operator|new
 name|SolrException
 argument_list|(
 name|ErrorCode
@@ -4090,7 +4175,8 @@ name|BAD_REQUEST
 argument_list|,
 literal|"At least one of shard, or split.key should be specified."
 argument_list|)
-block|;       }
+throw|;
+block|}
 if|if
 condition|(
 name|splitKey
@@ -4114,9 +4200,6 @@ literal|"Only one of 'shard' or 'split.key' should be specified"
 argument_list|)
 throw|;
 block|}
-end_class
-
-begin_if
 if|if
 condition|(
 name|splitKey
@@ -4140,9 +4223,6 @@ literal|"Only one of 'ranges' or 'split.key' should be specified"
 argument_list|)
 throw|;
 block|}
-end_if
-
-begin_decl_stmt
 name|Map
 argument_list|<
 name|String
@@ -4171,9 +4251,6 @@ operator|.
 name|RANGES
 argument_list|)
 decl_stmt|;
-end_decl_stmt
-
-begin_return
 return|return
 name|copyPropertiesWithPrefix
 argument_list|(
@@ -4187,14 +4264,9 @@ argument_list|,
 name|COLL_PROP_PREFIX
 argument_list|)
 return|;
-end_return
-
-begin_operator
-unit|})
+block|}
+argument_list|)
 operator|,
-end_operator
-
-begin_expr_stmt
 DECL|enum constant|DELETESHARD_OP
 name|DELETESHARD_OP
 argument_list|(

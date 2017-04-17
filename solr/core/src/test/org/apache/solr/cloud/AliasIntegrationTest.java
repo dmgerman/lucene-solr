@@ -392,6 +392,34 @@ name|getSolrClient
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// ensure that the alias has been registered
+name|assertEquals
+argument_list|(
+literal|"collection1"
+argument_list|,
+operator|new
+name|CollectionAdminRequest
+operator|.
+name|ListAliases
+argument_list|()
+operator|.
+name|process
+argument_list|(
+name|cluster
+operator|.
+name|getSolrClient
+argument_list|()
+argument_list|)
+operator|.
+name|getAliases
+argument_list|()
+operator|.
+name|get
+argument_list|(
+literal|"testalias"
+argument_list|)
+argument_list|)
+expr_stmt|;
 comment|// search for alias
 name|QueryResponse
 name|res
