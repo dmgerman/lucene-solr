@@ -785,8 +785,6 @@ return|;
 block|}
 DECL|method|getStateProvider
 specifier|private
-name|CloudSolrClient
-operator|.
 name|ClusterStateProvider
 name|getStateProvider
 parameter_list|(
@@ -809,8 +807,6 @@ parameter_list|)
 block|{
 return|return
 operator|new
-name|CloudSolrClient
-operator|.
 name|ClusterStateProvider
 argument_list|()
 block|{

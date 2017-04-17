@@ -200,8 +200,6 @@ specifier|public
 class|class
 name|ZkClientClusterStateProvider
 implements|implements
-name|CloudSolrClient
-operator|.
 name|ClusterStateProvider
 block|{
 DECL|field|log
@@ -337,7 +335,7 @@ name|String
 name|getAlias
 parameter_list|(
 name|String
-name|collection
+name|alias
 parameter_list|)
 block|{
 name|Aliases
@@ -353,7 +351,7 @@ name|aliases
 operator|.
 name|getCollectionAlias
 argument_list|(
-name|collection
+name|alias
 argument_list|)
 return|;
 block|}

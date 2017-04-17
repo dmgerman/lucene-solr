@@ -330,8 +330,6 @@ specifier|public
 class|class
 name|HttpClusterStateProvider
 implements|implements
-name|CloudSolrClient
-operator|.
 name|ClusterStateProvider
 block|{
 DECL|field|log
@@ -572,9 +570,9 @@ literal|"succeeded in obtaining the cluster state from none of them."
 operator|+
 literal|"If you think your Solr cluster is up and is accessible,"
 operator|+
-literal|" you could try re-creating a new CloudSolrClient using a working"
+literal|" you could try re-creating a new CloudSolrClient using working"
 operator|+
-literal|" solrUrl or zkUrl."
+literal|" solrUrl(s) or zkHost(s)."
 argument_list|)
 throw|;
 block|}
@@ -753,9 +751,9 @@ literal|"succeeded in obtaining the cluster state from none of them."
 operator|+
 literal|"If you think your Solr cluster is up and is accessible,"
 operator|+
-literal|" you could try re-creating a new CloudSolrClient using a working"
+literal|" you could try re-creating a new CloudSolrClient using working"
 operator|+
-literal|" solrUrl or zkUrl."
+literal|" solrUrl(s) or zkHost(s)."
 argument_list|)
 throw|;
 block|}
@@ -851,6 +849,12 @@ name|Object
 argument_list|>
 name|collectionsMap
 init|=
+name|Collections
+operator|.
+name|singletonMap
+argument_list|(
+name|collection
+argument_list|,
 operator|(
 operator|(
 name|NamedList
@@ -863,8 +867,11 @@ literal|"collections"
 argument_list|)
 operator|)
 operator|.
-name|asShallowMap
-argument_list|()
+name|get
+argument_list|(
+name|collection
+argument_list|)
+argument_list|)
 decl_stmt|;
 name|int
 name|znodeVersion
@@ -984,9 +991,9 @@ literal|" latest live_nodes information from. "
 operator|+
 literal|"If you think your Solr cluster is up and is accessible,"
 operator|+
-literal|" you could try re-creating a new CloudSolrClient using a working"
+literal|" you could try re-creating a new CloudSolrClient using working"
 operator|+
-literal|" solrUrl or zkUrl."
+literal|" solrUrl(s) or zkHost(s)."
 argument_list|)
 throw|;
 block|}
@@ -1128,9 +1135,9 @@ literal|"succeeded in obtaining the cluster state from none of them."
 operator|+
 literal|"If you think your Solr cluster is up and is accessible,"
 operator|+
-literal|" you could try re-creating a new CloudSolrClient using a working"
+literal|" you could try re-creating a new CloudSolrClient using working"
 operator|+
-literal|" solrUrl or zkUrl."
+literal|" solrUrl(s) or zkHost(s)."
 argument_list|)
 throw|;
 block|}
@@ -1244,7 +1251,7 @@ name|String
 name|getAlias
 parameter_list|(
 name|String
-name|collection
+name|alias
 parameter_list|)
 block|{
 name|Map
@@ -1265,7 +1272,7 @@ name|aliases
 operator|.
 name|get
 argument_list|(
-name|collection
+name|alias
 argument_list|)
 return|;
 block|}
@@ -1302,9 +1309,9 @@ literal|" latest aliases information from. "
 operator|+
 literal|"If you think your Solr cluster is up and is accessible,"
 operator|+
-literal|" you could try re-creating a new CloudSolrClient using a working"
+literal|" you could try re-creating a new CloudSolrClient using working"
 operator|+
-literal|" solrUrl or zkUrl."
+literal|" solrUrl(s) or zkHost(s)."
 argument_list|)
 throw|;
 block|}
@@ -1438,6 +1445,59 @@ name|IOException
 name|e
 parameter_list|)
 block|{
+comment|// Situation where we're hitting an older Solr which doesn't have LISTALIASES
+if|if
+condition|(
+name|e
+operator|instanceof
+name|RemoteSolrException
+operator|&&
+operator|(
+operator|(
+name|RemoteSolrException
+operator|)
+name|e
+operator|)
+operator|.
+name|code
+argument_list|()
+operator|==
+literal|400
+condition|)
+block|{
+name|log
+operator|.
+name|warn
+argument_list|(
+literal|"LISTALIASES not found, possibly using older Solr server. Aliases won't work"
+operator|+
+literal|" unless you re-create the CloudSolrClient using zkHost(s) or upgrade Solr server"
+argument_list|,
+name|e
+argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|aliases
+operator|=
+name|Collections
+operator|.
+name|emptyMap
+argument_list|()
+expr_stmt|;
+name|this
+operator|.
+name|aliasesTimestamp
+operator|=
+name|System
+operator|.
+name|nanoTime
+argument_list|()
+expr_stmt|;
+return|return
+name|aliases
+return|;
+block|}
 name|log
 operator|.
 name|warn
@@ -1476,7 +1536,7 @@ literal|"If you think your Solr cluster is up and is accessible,"
 operator|+
 literal|" you could try re-creating a new CloudSolrClient using a working"
 operator|+
-literal|" solrUrl or zkUrl."
+literal|" solrUrl or zkHost."
 argument_list|)
 throw|;
 block|}
