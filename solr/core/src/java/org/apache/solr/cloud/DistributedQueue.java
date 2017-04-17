@@ -418,13 +418,19 @@ operator|.
 name|newCondition
 argument_list|()
 decl_stmt|;
-comment|/**    * If non-null, the last watcher to listen for child changes.  If null, the in-memory contents are dirty.    */
-DECL|field|lastWatcher
+DECL|field|isDirty
 specifier|private
-name|ChildWatcher
-name|lastWatcher
+name|boolean
+name|isDirty
 init|=
-literal|null
+literal|true
+decl_stmt|;
+DECL|field|watcherCount
+specifier|private
+name|int
+name|watcherCount
+init|=
+literal|0
 decl_stmt|;
 DECL|method|DistributedQueue
 specifier|public
@@ -984,9 +990,8 @@ condition|)
 block|{
 try|try
 block|{
-comment|// We don't need to explicitly set isDirty here; if there is a watcher, it will
-comment|// see the update and set the bit itself; if there is no watcher we can defer
-comment|// the update anyway.
+comment|// Explicitly set isDirty here so that synchronous same-thread calls behave as expected.
+comment|// This will get set again when the watcher actually fires, but that's ok.
 name|zookeeper
 operator|.
 name|create
@@ -1005,6 +1010,10 @@ name|PERSISTENT_SEQUENTIAL
 argument_list|,
 literal|true
 argument_list|)
+expr_stmt|;
+name|isDirty
+operator|=
+literal|true
 expr_stmt|;
 return|return;
 block|}
@@ -1093,13 +1102,15 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-comment|// If we're not in a dirty state, and we have in-memory children, return from in-memory.
 if|if
 condition|(
-name|lastWatcher
-operator|!=
-literal|null
-operator|&&
+operator|!
+name|isDirty
+condition|)
+block|{
+comment|// If we're not in a dirty state...
+if|if
+condition|(
 operator|!
 name|knownChildren
 operator|.
@@ -1107,6 +1118,7 @@ name|isEmpty
 argument_list|()
 condition|)
 block|{
+comment|// and we have in-memory children, return from in-memory.
 return|return
 name|remove
 condition|?
@@ -1121,13 +1133,30 @@ name|first
 argument_list|()
 return|;
 block|}
-comment|// Try to fetch an updated list of children from ZK.
+else|else
+block|{
+comment|// otherwise there's nothing to return
+return|return
+literal|null
+return|;
+block|}
+block|}
+comment|// Dirty, try to fetch an updated list of children from ZK.
+comment|// Only set a new watcher if there isn't already a watcher.
 name|ChildWatcher
 name|newWatcher
 init|=
+operator|(
+name|watcherCount
+operator|==
+literal|0
+operator|)
+condition|?
 operator|new
 name|ChildWatcher
 argument_list|()
+else|:
+literal|null
 decl_stmt|;
 name|knownChildren
 operator|=
@@ -1136,11 +1165,22 @@ argument_list|(
 name|newWatcher
 argument_list|)
 expr_stmt|;
-name|lastWatcher
-operator|=
+if|if
+condition|(
 name|newWatcher
+operator|!=
+literal|null
+condition|)
+block|{
+name|watcherCount
+operator|++
 expr_stmt|;
-comment|// only set after fetchZkChildren returns successfully
+comment|// watcher was successfully set
+block|}
+name|isDirty
+operator|=
+literal|false
+expr_stmt|;
 if|if
 condition|(
 name|knownChildren
@@ -1788,11 +1828,11 @@ block|}
 block|}
 block|}
 block|}
-DECL|method|hasWatcher
+DECL|method|watcherCount
 annotation|@
 name|VisibleForTesting
-name|boolean
-name|hasWatcher
+name|int
+name|watcherCount
 parameter_list|()
 throws|throws
 name|InterruptedException
@@ -1805,9 +1845,36 @@ expr_stmt|;
 try|try
 block|{
 return|return
-name|lastWatcher
-operator|!=
-literal|null
+name|watcherCount
+return|;
+block|}
+finally|finally
+block|{
+name|updateLock
+operator|.
+name|unlock
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+DECL|method|isDirty
+annotation|@
+name|VisibleForTesting
+name|boolean
+name|isDirty
+parameter_list|()
+throws|throws
+name|InterruptedException
+block|{
+name|updateLock
+operator|.
+name|lockInterruptibly
+argument_list|()
+expr_stmt|;
+try|try
+block|{
+return|return
+name|isDirty
 return|;
 block|}
 finally|finally
@@ -1820,7 +1887,8 @@ expr_stmt|;
 block|}
 block|}
 DECL|class|ChildWatcher
-specifier|private
+annotation|@
+name|VisibleForTesting
 class|class
 name|ChildWatcher
 implements|implements
@@ -1879,19 +1947,13 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-comment|// this watcher is automatically cleared when fired
-if|if
-condition|(
-name|lastWatcher
-operator|==
-name|this
-condition|)
-block|{
-name|lastWatcher
+name|isDirty
 operator|=
-literal|null
+literal|true
 expr_stmt|;
-block|}
+name|watcherCount
+operator|--
+expr_stmt|;
 comment|// optimistically signal any waiters that the queue may not be empty now, so they can wake up and retry
 name|changed
 operator|.
