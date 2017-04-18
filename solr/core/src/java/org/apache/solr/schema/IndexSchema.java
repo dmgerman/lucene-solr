@@ -348,20 +348,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexOptions
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -1941,6 +1927,7 @@ name|IndexReader
 name|reader
 parameter_list|)
 block|{
+specifier|final
 name|Map
 argument_list|<
 name|String
@@ -1979,17 +1966,11 @@ operator|==
 name|DocValuesType
 operator|.
 name|NONE
-operator|&&
-name|f
-operator|.
-name|getIndexOptions
-argument_list|()
-operator|!=
-name|IndexOptions
-operator|.
-name|NONE
 condition|)
 block|{
+comment|// we have a field (of some kind) in the reader w/o DocValues
+comment|// if we have an equivilent indexed=true field in the schema, trust it's uninversion type (if any)
+specifier|final
 name|SchemaField
 name|sf
 init|=
@@ -2005,8 +1986,14 @@ condition|(
 name|sf
 operator|!=
 literal|null
+operator|&&
+name|sf
+operator|.
+name|indexed
+argument_list|()
 condition|)
 block|{
+specifier|final
 name|UninvertingReader
 operator|.
 name|Type

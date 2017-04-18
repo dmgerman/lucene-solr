@@ -974,9 +974,7 @@ argument_list|()
 condition|)
 block|{
 return|return
-name|Type
-operator|.
-name|SORTED_DOUBLE
+literal|null
 return|;
 block|}
 else|else

@@ -2087,7 +2087,7 @@ return|return
 name|query
 return|;
 block|}
-comment|/**    * DocValues is not enabled for a field, but it's indexed, docvalues can be constructed     * on the fly (uninverted, aka fieldcache) on the first request to sort, facet, etc.     * This specifies the structure to use.    *     * @param sf field instance    * @return type to uninvert, or {@code null} (to disallow uninversion for the field)    */
+comment|/**    * If DocValues is not enabled for a field, but it's indexed, docvalues can be constructed     * on the fly (uninverted, aka fieldcache) on the first request to sort, facet, etc.     * This specifies the structure to use.    *     * @param sf field instance    * @return type to uninvert, or {@code null} (to disallow uninversion for the field)    */
 DECL|method|getUninversionType
 specifier|public
 specifier|abstract

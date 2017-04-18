@@ -959,11 +959,7 @@ argument_list|()
 condition|)
 block|{
 return|return
-name|UninvertingReader
-operator|.
-name|Type
-operator|.
-name|SORTED_LONG
+literal|null
 return|;
 block|}
 else|else

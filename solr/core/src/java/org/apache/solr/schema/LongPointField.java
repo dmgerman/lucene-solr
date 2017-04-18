@@ -871,9 +871,7 @@ argument_list|()
 condition|)
 block|{
 return|return
-name|Type
-operator|.
-name|SORTED_LONG
+literal|null
 return|;
 block|}
 else|else

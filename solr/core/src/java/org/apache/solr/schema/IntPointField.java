@@ -888,9 +888,7 @@ argument_list|()
 condition|)
 block|{
 return|return
-name|Type
-operator|.
-name|SORTED_INTEGER
+literal|null
 return|;
 block|}
 else|else
