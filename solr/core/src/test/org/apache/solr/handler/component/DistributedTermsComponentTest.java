@@ -136,6 +136,10 @@ argument_list|,
 literal|"b_t"
 argument_list|,
 literal|"snake spider"
+argument_list|,
+literal|"c_t"
+argument_list|,
+literal|"snake spider"
 argument_list|)
 expr_stmt|;
 name|index
@@ -145,6 +149,10 @@ argument_list|,
 literal|23
 argument_list|,
 literal|"b_t"
+argument_list|,
+literal|"snake"
+argument_list|,
+literal|"c_t"
 argument_list|,
 literal|"snake"
 argument_list|)
@@ -158,6 +166,10 @@ argument_list|,
 literal|"b_t"
 argument_list|,
 literal|"ant zebra"
+argument_list|,
+literal|"c_t"
+argument_list|,
+literal|"ant zebra"
 argument_list|)
 expr_stmt|;
 name|index
@@ -169,6 +181,10 @@ argument_list|,
 literal|"b_t"
 argument_list|,
 literal|"zebra"
+argument_list|,
+literal|"c_t"
+argument_list|,
+literal|"zebra"
 argument_list|)
 expr_stmt|;
 name|commit
@@ -178,6 +194,15 @@ name|handle
 operator|.
 name|clear
 argument_list|()
+expr_stmt|;
+name|handle
+operator|.
+name|put
+argument_list|(
+literal|"terms"
+argument_list|,
+name|UNORDERED
+argument_list|)
 expr_stmt|;
 name|query
 argument_list|(
@@ -482,6 +507,37 @@ argument_list|,
 literal|"terms.list"
 argument_list|,
 literal|"snake, zebra"
+argument_list|,
+literal|"terms.ttf"
+argument_list|,
+literal|"true"
+argument_list|)
+expr_stmt|;
+name|query
+argument_list|(
+literal|"qt"
+argument_list|,
+literal|"/terms"
+argument_list|,
+literal|"shards.qt"
+argument_list|,
+literal|"/terms"
+argument_list|,
+literal|"terms"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"terms.fl"
+argument_list|,
+literal|"b_t"
+argument_list|,
+literal|"terms.fl"
+argument_list|,
+literal|"c_t"
+argument_list|,
+literal|"terms.list"
+argument_list|,
+literal|"snake, ant, zebra"
 argument_list|,
 literal|"terms.ttf"
 argument_list|,
