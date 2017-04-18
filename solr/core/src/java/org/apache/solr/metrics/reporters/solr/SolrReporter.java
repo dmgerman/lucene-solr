@@ -1802,6 +1802,12 @@ name|MetricFilter
 operator|.
 name|ALL
 argument_list|,
+name|MetricUtils
+operator|.
+name|PropertyFilter
+operator|.
+name|ALL
+argument_list|,
 name|skipHistograms
 argument_list|,
 name|skipAggregateValues
