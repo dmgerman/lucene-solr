@@ -879,6 +879,20 @@ name|heatMaxY
 argument_list|)
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|topAcceptDocs
+operator|instanceof
+name|Bits
+operator|.
+name|MatchNoBits
+condition|)
+block|{
+return|return
+name|heatmap
+return|;
+comment|// short-circuit
+block|}
 comment|//All ancestor cell counts (of facetLevel) will be captured during facet visiting and applied later. If the data is
 comment|// just points then there won't be any ancestors.
 comment|//Facet count of ancestors covering all of the heatmap:
