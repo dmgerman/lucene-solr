@@ -290,6 +290,20 @@ name|lucene
 operator|.
 name|search
 operator|.
+name|BoostQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
 name|ConstantScoreQuery
 import|;
 end_import
@@ -473,6 +487,22 @@ operator|.
 name|search
 operator|.
 name|WildcardQuery
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|spans
+operator|.
+name|SpanBoostQuery
 import|;
 end_import
 
@@ -1280,9 +1310,13 @@ argument_list|,
 name|indexAnalyzer
 argument_list|)
 decl_stmt|;
+comment|// wrap in a BoostQuery to also show we see inside it
 name|Query
 name|query
 init|=
+operator|new
+name|BoostQuery
+argument_list|(
 operator|new
 name|PrefixQuery
 argument_list|(
@@ -1293,6 +1327,9 @@ literal|"body"
 argument_list|,
 literal|"te"
 argument_list|)
+argument_list|)
+argument_list|,
+literal|2.0f
 argument_list|)
 decl_stmt|;
 name|TopDocs
@@ -4169,9 +4206,13 @@ argument_list|,
 name|indexAnalyzer
 argument_list|)
 decl_stmt|;
+comment|// wrap in a SpanBoostQuery to also show we see inside it
 name|Query
 name|query
 init|=
+operator|new
+name|SpanBoostQuery
+argument_list|(
 operator|new
 name|SpanMultiTermQueryWrapper
 argument_list|<>
@@ -4187,6 +4228,9 @@ argument_list|,
 literal|"te*"
 argument_list|)
 argument_list|)
+argument_list|)
+argument_list|,
+literal|2.0f
 argument_list|)
 decl_stmt|;
 name|TopDocs
