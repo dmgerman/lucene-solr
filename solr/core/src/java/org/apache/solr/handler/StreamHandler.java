@@ -1406,6 +1406,15 @@ name|CalculatorStream
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"echo"
+argument_list|,
+name|EchoStream
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
