@@ -66,7 +66,7 @@ literal|"/schema/fields/test_postv?indent=on&wt=xml&showDefaults=true"
 argument_list|,
 literal|"count(/response/lst[@name='field']) = 1"
 argument_list|,
-literal|"count(/response/lst[@name='field']/*) = 17"
+literal|"count(/response/lst[@name='field']/*) = 18"
 argument_list|,
 literal|"/response/lst[@name='field']/str[@name='name'] = 'test_postv'"
 argument_list|,
@@ -95,6 +95,8 @@ argument_list|,
 literal|"/response/lst[@name='field']/bool[@name='storeOffsetsWithPositions'] = 'false'"
 argument_list|,
 literal|"/response/lst[@name='field']/bool[@name='multiValued'] = 'false'"
+argument_list|,
+literal|"/response/lst[@name='field']/bool[@name='large'] = 'false'"
 argument_list|,
 literal|"/response/lst[@name='field']/bool[@name='required'] = 'false'"
 argument_list|,
