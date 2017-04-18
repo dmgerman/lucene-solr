@@ -3686,6 +3686,8 @@ literal|" , f3:{${terms} type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'
 operator|+
 literal|" , f4:{${terms} type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'hll(${where_s})'}  } "
 operator|+
+literal|" , f5:{${terms} type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'variance(${num_d})'}  } "
+operator|+
 literal|"}"
 argument_list|)
 argument_list|,
@@ -3698,6 +3700,8 @@ operator|+
 literal|", f3:{  'buckets':[{ val:'A', count:2, x:2 },    { val:'B', count:3, x:2 }]} "
 operator|+
 literal|", f4:{  'buckets':[{ val:'A', count:2, x:2 },    { val:'B', count:3, x:2 }]} "
+operator|+
+literal|", f5:{  'buckets':[{ val:'B', count:3, x:74.6666666666666 },    { val:'A', count:2, x:1.0 }]} "
 operator|+
 literal|"}"
 argument_list|)
@@ -4554,7 +4558,7 @@ literal|", numwhere:'unique(${where_s})', unique_num_i:'unique(${num_i})', uniqu
 operator|+
 literal|", where_hll:'hll(${where_s})', hll_num_i:'hll(${num_i})', hll_num_d:'hll(${num_d})', hll_date:'hll(${date})'"
 operator|+
-literal|", med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)' }"
+literal|", med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)', variance:'variance(${num_d})', stddev:'stddev(${num_d})' }"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
@@ -4565,7 +4569,7 @@ literal|", numwhere:2, unique_num_i:4, unique_num_d:5, unique_date:5"
 operator|+
 literal|", where_hll:2, hll_num_i:4, hll_num_d:5, hll_date:5"
 operator|+
-literal|", med:2.0, perc:[-9.0,2.0,11.0]  }"
+literal|", med:2.0, perc:[-9.0,2.0,11.0], variance:49.04, stddev:7.002856560004639}"
 argument_list|)
 expr_stmt|;
 comment|// stats at top level, no matches
@@ -4589,12 +4593,12 @@ literal|", numwhere:'unique(${where_s})', unique_num_i:'unique(${num_i})', uniqu
 operator|+
 literal|", where_hll:'hll(${where_s})', hll_num_i:'hll(${num_i})', hll_num_d:'hll(${num_d})', hll_date:'hll(${date})'"
 operator|+
-literal|", med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)' }"
+literal|", med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)', variance:'variance(${num_d})', stddev:'stddev(${num_d})' }"
 argument_list|)
 argument_list|,
 literal|"facets=={count:0 "
 operator|+
-literal|"/* ,sum1:0.0, sumsq1:0.0, avg1:0.0, min1:'NaN', max1:'NaN', numwhere:0 */"
+literal|"\n//  ,sum1:0.0, sumsq1:0.0, avg1:0.0, min1:'NaN', max1:'NaN', numwhere:0 \n"
 operator|+
 literal|" }"
 argument_list|)
@@ -4621,7 +4625,7 @@ literal|", numwhere:'unique(${where_s})', unique_num_i:'unique(${num_i})', uniqu
 operator|+
 literal|", where_hll:'hll(${where_s})', hll_num_i:'hll(${num_i})', hll_num_d:'hll(${num_d})', hll_date:'hll(${date})'"
 operator|+
-literal|", med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)' }"
+literal|", med:'percentile(${num_d},50)', perc:'percentile(${num_d},0,50.0,100)', variance:'variance(${num_d})', stddev:'stddev(${num_d})' }"
 argument_list|)
 argument_list|,
 literal|"facets=={count:1 "
@@ -4652,7 +4656,11 @@ literal|" hll_num_i:0,"
 operator|+
 literal|" hll_num_d:0,"
 operator|+
-literal|" hll_date:0"
+literal|" hll_date:0,"
+operator|+
+literal|" variance:0.0,"
+operator|+
+literal|" stddev:0.0"
 operator|+
 literal|" }"
 argument_list|)

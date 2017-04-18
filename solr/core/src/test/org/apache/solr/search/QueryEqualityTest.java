@@ -4454,7 +4454,20 @@ argument_list|,
 literal|"agg_percentile(foo_i,50)"
 argument_list|)
 expr_stmt|;
-comment|// assertFuncEquals("agg_stdev(foo_i)", "agg_stdev(foo_i)");
+name|assertFuncEquals
+argument_list|(
+literal|"agg_variance(foo_i)"
+argument_list|,
+literal|"agg_variance(foo_i)"
+argument_list|)
+expr_stmt|;
+name|assertFuncEquals
+argument_list|(
+literal|"agg_stddev(foo_i)"
+argument_list|,
+literal|"agg_stddev(foo_i)"
+argument_list|)
+expr_stmt|;
 comment|// assertFuncEquals("agg_multistat(foo_i)", "agg_multistat(foo_i)");
 block|}
 DECL|method|testCompares
