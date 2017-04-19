@@ -1289,8 +1289,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"Adding  component:"
-operator|+
+literal|"Adding  component:{}"
+argument_list|,
 name|comp
 argument_list|)
 expr_stmt|;
@@ -1318,8 +1318,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"Adding  debug component:"
-operator|+
+literal|"Adding  debug component:{}"
+argument_list|,
 name|dbgCmp
 argument_list|)
 expr_stmt|;

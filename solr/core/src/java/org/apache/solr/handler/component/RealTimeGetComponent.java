@@ -4567,8 +4567,8 @@ name|log
 operator|.
 name|debug
 argument_list|(
-literal|"Don't know how to handle field "
-operator|+
+literal|"Don't know how to handle field {}"
+argument_list|,
 name|f
 argument_list|)
 expr_stmt|;
