@@ -180,17 +180,23 @@ name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
-literal|"Ð¦Ñ Ð¿Ê¼ÑÑÐ°, Ñ ÑÐ²Ð¾ÌÑ ÑÐµÑÐ³Ñ ÑÑÑÐ°ÑÑÑÑÑ."
+literal|"Ð¼'ÑÑÐ° Ð¼'Ñ\u0301ÑÐ° Ð¼\u02BCÑÑÐ° Ð¼\u2019ÑÑÐ° Ð¼\u2018ÑÑÐ° Ð¼`ÑÑÐ°"
 argument_list|,
 operator|new
 name|String
 index|[]
 block|{
-literal|"Ð¿'ÑÑÐ°"
+literal|"Ð¼'ÑÑÐ¾"
 block|,
-literal|"ÑÐµÑÐ³Ð°"
+literal|"Ð¼'ÑÑÐ¾"
 block|,
-literal|"ÑÑÑÐ°ÑÐ¸ÑÑ"
+literal|"Ð¼'ÑÑÐ¾"
+block|,
+literal|"Ð¼'ÑÑÐ¾"
+block|,
+literal|"Ð¼'ÑÑÐ¾"
+block|,
+literal|"Ð¼'ÑÑÐ¾"
 block|}
 argument_list|)
 expr_stmt|;
@@ -219,15 +225,17 @@ name|assertAnalyzesTo
 argument_list|(
 name|a
 argument_list|,
-literal|"Ð¦ÐµÐ¹ Ð§Ð°Ð¹ÐºÐ¾Ð²ÑÑÐºÐ¸Ð¹ Ñ ÒÐµÑÐµ."
+literal|"Ð¦Ð¸Ñ Ð§Ð°Ð¹ÐºÐ¾Ð²ÑÑÐºÐ¾Ð³Ð¾ Ñ ÒÐµÑÐµ."
 argument_list|,
 operator|new
 name|String
 index|[]
 block|{
-literal|"ÑÐ°Ð¹ÐºÐ¾Ð²ÑÑÐºÐ¸Ð¹"
+literal|"Ð§Ð°Ð¹ÐºÐ¾Ð²ÑÑÐºÐµ"
 block|,
-literal|"ÒÐµÑÐµ"
+literal|"Ð§Ð°Ð¹ÐºÐ¾Ð²ÑÑÐºÐ¸Ð¹"
+block|,
+literal|"ÒÐµÑÐµ"
 block|}
 argument_list|)
 expr_stmt|;
@@ -277,6 +285,8 @@ block|,
 literal|"ÑÐºÑÐ°ÑÐ½ÑÑÐºÐ°"
 block|,
 literal|"ÑÐºÑÐ°ÑÐ½ÑÑÐºÐ¸Ð¹"
+block|,
+literal|"Ð£ÐºÑÐ°ÑÐ½ÑÑÐºÐ°"
 block|,
 literal|"Ð¼Ð¾Ð²Ð°"
 block|}
