@@ -947,6 +947,68 @@ literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text3']/str='cr
 argument_list|)
 expr_stmt|;
 block|}
+comment|// SOLR-5127
+DECL|method|testMultipleFieldsViaWildcard
+specifier|public
+name|void
+name|testMultipleFieldsViaWildcard
+parameter_list|()
+block|{
+name|assertQ
+argument_list|(
+literal|"highlighting text and text3*"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+operator|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+literal|"text:document text3:document"
+else|:
+literal|"text3:document text:document"
+operator|)
+argument_list|,
+literal|"sort"
+argument_list|,
+literal|"id asc"
+argument_list|,
+literal|"hl"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"hl.fl"
+argument_list|,
+operator|(
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
+condition|?
+literal|"text,text3*"
+else|:
+literal|"text3*,text"
+operator|)
+argument_list|)
+argument_list|,
+literal|"count(//lst[@name='highlighting']/*)=2"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text']/str='<em>document</em> one'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='101']/arr[@name='text3']/str='crappy<em>document</em>'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text']/str='second<em>document</em>'"
+argument_list|,
+literal|"//lst[@name='highlighting']/lst[@name='102']/arr[@name='text3']/str='crappier<em>document</em>'"
+argument_list|)
+expr_stmt|;
+block|}
 DECL|method|testTags
 specifier|public
 name|void
