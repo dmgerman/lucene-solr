@@ -414,7 +414,7 @@ name|getFields
 argument_list|()
 decl_stmt|;
 name|Sort
-name|sortWithinGroup
+name|withinGroupSort
 init|=
 name|rb
 operator|.
@@ -425,7 +425,7 @@ name|getSortWithinGroup
 argument_list|()
 decl_stmt|;
 assert|assert
-name|sortWithinGroup
+name|withinGroupSort
 operator|!=
 literal|null
 assert|;
@@ -1002,7 +1002,7 @@ name|firstPhaseResult
 argument_list|,
 name|groupSort
 argument_list|,
-name|sortWithinGroup
+name|withinGroupSort
 argument_list|,
 name|srsp
 operator|.

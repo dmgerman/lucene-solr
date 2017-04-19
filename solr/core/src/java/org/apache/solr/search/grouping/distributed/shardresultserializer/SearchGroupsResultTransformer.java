@@ -471,7 +471,7 @@ name|Sort
 name|groupSort
 parameter_list|,
 name|Sort
-name|sortWithinGroup
+name|withinGroupSort
 parameter_list|,
 name|String
 name|shard

@@ -466,7 +466,7 @@ name|getQueries
 argument_list|()
 decl_stmt|;
 name|Sort
-name|sortWithinGroup
+name|withinGroupSort
 init|=
 name|rb
 operator|.
@@ -477,7 +477,7 @@ name|getSortWithinGroup
 argument_list|()
 decl_stmt|;
 assert|assert
-name|sortWithinGroup
+name|withinGroupSort
 operator|!=
 literal|null
 assert|;
@@ -989,7 +989,7 @@ name|secondPhaseResult
 argument_list|,
 name|groupSort
 argument_list|,
-name|sortWithinGroup
+name|withinGroupSort
 argument_list|,
 name|srsp
 operator|.
@@ -1309,7 +1309,7 @@ argument_list|)
 argument_list|,
 name|groupSort
 argument_list|,
-name|sortWithinGroup
+name|withinGroupSort
 argument_list|,
 name|groupOffsetDefault
 argument_list|,
@@ -1420,7 +1420,7 @@ name|mergedTopDocs
 decl_stmt|;
 if|if
 condition|(
-name|sortWithinGroup
+name|withinGroupSort
 operator|.
 name|equals
 argument_list|(
@@ -1462,7 +1462,7 @@ name|TopDocs
 operator|.
 name|merge
 argument_list|(
-name|sortWithinGroup
+name|withinGroupSort
 argument_list|,
 name|topN
 argument_list|,

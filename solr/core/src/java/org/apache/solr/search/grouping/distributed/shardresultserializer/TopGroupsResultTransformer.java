@@ -686,7 +686,7 @@ name|Sort
 name|groupSort
 parameter_list|,
 name|Sort
-name|sortWithinGroup
+name|withinGroupSort
 parameter_list|,
 name|String
 name|shard
@@ -874,7 +874,7 @@ name|topDocs
 decl_stmt|;
 if|if
 condition|(
-name|sortWithinGroup
+name|withinGroupSort
 operator|.
 name|equals
 argument_list|(
@@ -908,7 +908,7 @@ name|totalHits
 argument_list|,
 name|scoreDocs
 argument_list|,
-name|sortWithinGroup
+name|withinGroupSort
 operator|.
 name|getSort
 argument_list|()
@@ -1091,7 +1091,7 @@ name|transformToNativeShardDoc
 argument_list|(
 name|documents
 argument_list|,
-name|sortWithinGroup
+name|withinGroupSort
 argument_list|,
 name|shard
 argument_list|,
@@ -1179,7 +1179,7 @@ operator|.
 name|getSort
 argument_list|()
 argument_list|,
-name|sortWithinGroup
+name|withinGroupSort
 operator|.
 name|getSort
 argument_list|()
@@ -1823,7 +1823,7 @@ name|j
 index|]
 decl_stmt|;
 name|Sort
-name|sortWithinGroup
+name|withinGroupSort
 init|=
 name|rb
 operator|.
@@ -1836,7 +1836,7 @@ decl_stmt|;
 name|SchemaField
 name|field
 init|=
-name|sortWithinGroup
+name|withinGroupSort
 operator|.
 name|getSort
 argument_list|()
@@ -1853,7 +1853,7 @@ name|schema
 operator|.
 name|getFieldOrNull
 argument_list|(
-name|sortWithinGroup
+name|withinGroupSort
 operator|.
 name|getSort
 argument_list|()
