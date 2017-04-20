@@ -248,7 +248,7 @@ name|termStats
 operator|.
 name|get
 argument_list|(
-literal|"docFreq"
+literal|"df"
 argument_list|)
 operator|.
 name|longValue
@@ -258,7 +258,7 @@ name|termStats
 operator|.
 name|get
 argument_list|(
-literal|"totalTermFreq"
+literal|"ttf"
 argument_list|)
 operator|.
 name|longValue

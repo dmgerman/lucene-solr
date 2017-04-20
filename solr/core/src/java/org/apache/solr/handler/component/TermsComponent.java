@@ -319,7 +319,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Return TermEnum information, useful for things like auto suggest.  *   *<pre class="prettyprint">  *&lt;searchComponent name="termsComponent" class="solr.TermsComponent"/&gt;  *   *&lt;requestHandler name="/terms" class="solr.SearchHandler"&gt;  *&lt;lst name="defaults"&gt;  *&lt;bool name="terms"&gt;true&lt;/bool&gt;  *&lt;/lst&gt;  *&lt;arr name="components"&gt;  *&lt;str&gt;termsComponent&lt;/str&gt;  *&lt;/arr&gt;  *&lt;/requestHandler&gt;</pre>  *  * @see org.apache.solr.common.params.TermsParams  *      See Lucene's TermEnum class  *  */
+comment|/**  * Return TermEnum information, useful for things like auto suggest.  *  *<pre class="prettyprint">  *&lt;searchComponent name="termsComponent" class="solr.TermsComponent"/&gt;  *  *&lt;requestHandler name="/terms" class="solr.SearchHandler"&gt;  *&lt;lst name="defaults"&gt;  *&lt;bool name="terms"&gt;true&lt;/bool&gt;  *&lt;/lst&gt;  *&lt;arr name="components"&gt;  *&lt;str&gt;termsComponent&lt;/str&gt;  *&lt;/arr&gt;  *&lt;/requestHandler&gt;</pre>  *  * @see org.apache.solr.common.params.TermsParams  *      See Lucene's TermEnum class  *  */
 end_comment
 
 begin_class
@@ -2721,7 +2721,7 @@ name|termStats
 operator|.
 name|add
 argument_list|(
-literal|"docFreq"
+literal|"df"
 argument_list|,
 name|tc
 operator|.
@@ -2733,7 +2733,7 @@ name|termStats
 operator|.
 name|add
 argument_list|(
-literal|"totalTermFreq"
+literal|"ttf"
 argument_list|,
 name|tc
 operator|.
@@ -3326,7 +3326,7 @@ name|termStats
 operator|.
 name|add
 argument_list|(
-literal|"docFreq"
+literal|"df"
 argument_list|,
 operator|(
 name|long
@@ -3338,7 +3338,7 @@ name|termStats
 operator|.
 name|add
 argument_list|(
-literal|"totalTermFreq"
+literal|"ttf"
 argument_list|,
 name|totalTermFreq
 argument_list|)
