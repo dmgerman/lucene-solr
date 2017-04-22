@@ -1081,11 +1081,21 @@ name|getIndexReader
 argument_list|()
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertEquals
 argument_list|(
 name|rewrittenQuery
 operator|+
-literal|" should be Lucene's"
+literal|" is expected to be from Solr"
+argument_list|,
+name|ScoreJoinQParserPlugin
+operator|.
+name|class
+operator|.
+name|getPackage
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|,
 name|rewrittenQuery
 operator|.
@@ -1097,11 +1107,6 @@ argument_list|()
 operator|.
 name|getName
 argument_list|()
-operator|.
-name|startsWith
-argument_list|(
-literal|"org.apache.lucene"
-argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
