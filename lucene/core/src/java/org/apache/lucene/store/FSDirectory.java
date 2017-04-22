@@ -619,9 +619,9 @@ decl_stmt|;
 if|if
 condition|(
 name|skipNames
-operator|!=
+operator|==
 literal|null
-operator|&&
+operator|||
 name|skipNames
 operator|.
 name|contains
