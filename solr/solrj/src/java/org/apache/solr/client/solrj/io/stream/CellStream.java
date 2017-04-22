@@ -496,6 +496,13 @@ argument_list|()
 argument_list|)
 argument_list|)
 decl_stmt|;
+name|expression
+operator|.
+name|addParameter
+argument_list|(
+name|name
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|includeStreams

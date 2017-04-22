@@ -40644,6 +40644,32 @@ argument_list|)
 expr_stmt|;
 name|updateRequest
 operator|.
+name|add
+argument_list|(
+name|id
+argument_list|,
+literal|"hello1"
+argument_list|,
+literal|"test_t"
+argument_list|,
+literal|"l b c d c"
+argument_list|)
+expr_stmt|;
+name|updateRequest
+operator|.
+name|add
+argument_list|(
+name|id
+argument_list|,
+literal|"hello2"
+argument_list|,
+literal|"test_t"
+argument_list|,
+literal|"l b c d c"
+argument_list|)
+expr_stmt|;
+name|updateRequest
+operator|.
 name|commit
 argument_list|(
 name|cluster
@@ -40655,24 +40681,46 @@ name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
 name|String
-name|expr
+name|expr1
 init|=
 literal|"search("
 operator|+
 name|COLLECTIONORALIAS
 operator|+
-literal|", q=\"*:*\", fl=id, sort=\"id desc\")"
+literal|", q=\"id:hello\",  fl=id, sort=\"id desc\")"
+decl_stmt|;
+name|String
+name|expr2
+init|=
+literal|"search("
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|", q=\"id:hello1\", fl=id, sort=\"id desc\")"
+decl_stmt|;
+name|String
+name|expr3
+init|=
+literal|"search("
+operator|+
+name|COLLECTIONORALIAS
+operator|+
+literal|", q=\"id:hello2\", fl=id, sort=\"id desc\")"
 decl_stmt|;
 name|String
 name|cat
 init|=
 literal|"list("
 operator|+
-name|expr
+name|expr1
 operator|+
 literal|","
 operator|+
-name|expr
+name|expr2
+operator|+
+literal|","
+operator|+
+name|expr3
 operator|+
 literal|")"
 decl_stmt|;
@@ -40767,7 +40815,7 @@ operator|.
 name|size
 argument_list|()
 operator|==
-literal|2
+literal|3
 argument_list|)
 expr_stmt|;
 name|String
@@ -40821,7 +40869,34 @@ name|s
 operator|.
 name|equals
 argument_list|(
-literal|"hello"
+literal|"hello1"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|s
+operator|=
+operator|(
+name|String
+operator|)
+name|tuples
+operator|.
+name|get
+argument_list|(
+literal|2
+argument_list|)
+operator|.
+name|get
+argument_list|(
+literal|"id"
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|s
+operator|.
+name|equals
+argument_list|(
+literal|"hello2"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -40853,7 +40928,7 @@ literal|"hello"
 argument_list|,
 literal|"test_t"
 argument_list|,
-literal|"l b c d c"
+literal|"l b c d c e"
 argument_list|)
 expr_stmt|;
 name|updateRequest
@@ -40888,7 +40963,7 @@ literal|"search("
 operator|+
 name|COLLECTIONORALIAS
 operator|+
-literal|", q=\"*:*\", fl=id, sort=\"id desc\")"
+literal|", q=\"*:*\", fl=\"id,test_t\", sort=\"id desc\")"
 decl_stmt|;
 name|String
 name|cat
@@ -41043,6 +41118,26 @@ name|results
 operator|.
 name|get
 argument_list|(
+literal|0
+argument_list|)
+operator|.
+name|get
+argument_list|(
+literal|"test_t"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"l b c d c"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|results
+operator|.
+name|get
+argument_list|(
 literal|1
 argument_list|)
 operator|.
@@ -41054,6 +41149,26 @@ operator|.
 name|equals
 argument_list|(
 literal|"hello"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertTrue
+argument_list|(
+name|results
+operator|.
+name|get
+argument_list|(
+literal|1
+argument_list|)
+operator|.
+name|get
+argument_list|(
+literal|"test_t"
+argument_list|)
+operator|.
+name|equals
+argument_list|(
+literal|"l b c d c e"
 argument_list|)
 argument_list|)
 expr_stmt|;
