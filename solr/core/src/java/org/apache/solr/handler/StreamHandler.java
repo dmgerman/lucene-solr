@@ -1442,6 +1442,24 @@ name|ListStream
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"let"
+argument_list|,
+name|LetStream
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"get"
+argument_list|,
+name|GetStream
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
