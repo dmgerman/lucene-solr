@@ -4314,7 +4314,7 @@ operator|+
 literal|"'f1':{ numBuckets:1, buckets:[{val:B, count:3}]} } "
 argument_list|)
 expr_stmt|;
-comment|// mincount should lower numBuckets
+comment|// mincount should not lower numBuckets (since SOLR-10552)
 name|client
 operator|.
 name|testJQ
@@ -4342,7 +4342,7 @@ argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
 operator|+
-literal|"'f1':{ numBuckets:1, buckets:[{val:B, count:3}]} } "
+literal|"'f1':{ numBuckets:2, buckets:[{val:B, count:3}]} } "
 argument_list|)
 expr_stmt|;
 comment|// basic range facet
@@ -5364,7 +5364,7 @@ literal|",f5:{${terms}  type:field, field:${num_i}, sort:'index desc', limit:1, 
 operator|+
 literal|",f6:{${terms}  type:field, field:${num_i}, sort:'index desc', mincount:2, numBuckets:true }"
 operator|+
-comment|// mincount should lower numbuckets
+comment|// mincount should not lower numbuckets (since SOLR-10552)
 literal|",f7:{${terms}  type:field, field:${num_i}, sort:'index desc', offset:2, numBuckets:true }"
 operator|+
 comment|// test offset
@@ -5395,7 +5395,7 @@ literal|",f4:{ buckets:[{val:7,count:1},{val:3,count:1},{val:2,count:1},{val:-5,
 operator|+
 literal|",f5:{ buckets:[{val:7,count:1}]   , numBuckets:4, allBuckets:{count:5}, missing:{count:1}  } "
 operator|+
-literal|",f6:{ buckets:[{val:-5,count:2}]  , numBuckets:1  } "
+literal|",f6:{ buckets:[{val:-5,count:2}]  , numBuckets:4  } "
 operator|+
 literal|",f7:{ buckets:[{val:2,count:1},{val:-5,count:2}] , numBuckets:4 } "
 operator|+
