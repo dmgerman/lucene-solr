@@ -731,6 +731,11 @@ argument_list|(
 name|id
 argument_list|)
 operator|.
+name|setCompact
+argument_list|(
+literal|true
+argument_list|)
+operator|.
 name|cloudClient
 argument_list|(
 literal|false

@@ -855,7 +855,7 @@ decl_stmt|;
 name|String
 name|key
 init|=
-literal|"QUERY./select.requests.count"
+literal|"QUERY./select.requests"
 decl_stmt|;
 name|assertTrue
 argument_list|(
@@ -885,7 +885,7 @@ argument_list|)
 expr_stmt|;
 name|key
 operator|=
-literal|"UPDATE./update/json.requests.count"
+literal|"UPDATE./update/json.requests"
 expr_stmt|;
 name|assertTrue
 argument_list|(
@@ -951,7 +951,7 @@ decl_stmt|;
 name|String
 name|key
 init|=
-literal|"jvm.memory.heap.init.value"
+literal|"jvm.memory.heap.init"
 decl_stmt|;
 name|assertTrue
 argument_list|(
@@ -981,7 +981,7 @@ argument_list|)
 expr_stmt|;
 name|key
 operator|=
-literal|"leader.test_collection.shard1.UPDATE./update/json.requests.count.max"
+literal|"leader.test_collection.shard1.UPDATE./update/json.requests.max"
 expr_stmt|;
 name|assertTrue
 argument_list|(

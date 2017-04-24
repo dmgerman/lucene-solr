@@ -556,7 +556,7 @@ name|getBool
 argument_list|(
 name|COMPACT_PARAM
 argument_list|,
-literal|false
+literal|true
 argument_list|)
 decl_stmt|;
 name|MetricFilter
