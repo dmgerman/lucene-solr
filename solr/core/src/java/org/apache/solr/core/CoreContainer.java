@@ -1262,6 +1262,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|core
+operator|.
+name|CorePropertiesLocator
+operator|.
+name|PROPERTIES_FILENAME
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|security
 operator|.
 name|AuthenticationPlugin
@@ -6516,6 +6532,111 @@ begin_comment
 comment|// ---------------- Core name related methods ---------------
 end_comment
 
+begin_function
+DECL|method|reloadCoreDescriptor
+specifier|private
+name|CoreDescriptor
+name|reloadCoreDescriptor
+parameter_list|(
+name|CoreDescriptor
+name|oldDesc
+parameter_list|)
+block|{
+if|if
+condition|(
+name|oldDesc
+operator|==
+literal|null
+condition|)
+block|{
+return|return
+literal|null
+return|;
+block|}
+name|CorePropertiesLocator
+name|cpl
+init|=
+operator|new
+name|CorePropertiesLocator
+argument_list|(
+literal|null
+argument_list|)
+decl_stmt|;
+name|CoreDescriptor
+name|ret
+init|=
+name|cpl
+operator|.
+name|buildCoreDescriptor
+argument_list|(
+name|oldDesc
+operator|.
+name|getInstanceDir
+argument_list|()
+operator|.
+name|resolve
+argument_list|(
+name|PROPERTIES_FILENAME
+argument_list|)
+argument_list|,
+name|this
+argument_list|)
+decl_stmt|;
+comment|// Ok, this little jewel is all because we still create core descriptors on the fly from lists of properties
+comment|// in tests particularly. Theoretically, there should be _no_ way to create a CoreDescriptor in the new world
+comment|// of core discovery without writing the core.properties file out first.
+comment|//
+comment|// TODO: remove core.properties from the conf directory in test files, it's in a bad place there anyway.
+if|if
+condition|(
+name|ret
+operator|==
+literal|null
+condition|)
+block|{
+name|oldDesc
+operator|.
+name|loadExtraProperties
+argument_list|()
+expr_stmt|;
+comment|// there may be changes to extra properties that we need to pick up.
+return|return
+name|oldDesc
+return|;
+block|}
+comment|// The CloudDescriptor bit here is created in a very convoluted way, requiring access to private methods
+comment|// in ZkController. When reloading, this behavior is identical to what used to happen where a copy of the old
+comment|// CoreDescriptor was just re-used.
+if|if
+condition|(
+name|ret
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|!=
+literal|null
+condition|)
+block|{
+name|ret
+operator|.
+name|getCloudDescriptor
+argument_list|()
+operator|.
+name|reload
+argument_list|(
+name|oldDesc
+operator|.
+name|getCloudDescriptor
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+return|return
+name|ret
+return|;
+block|}
+end_function
+
 begin_comment
 comment|/**    * Recreates a SolrCore.    * While the new core is loading, requests will continue to be dispatched to    * and processed by the old core    *     * @param name the name of the SolrCore to reload    */
 end_comment
@@ -6550,44 +6671,18 @@ literal|null
 condition|)
 block|{
 comment|// The underlying core properties files may have changed, we don't really know. So we have a (perhaps) stale
-comment|// CoreDescriptor we need to reload it if it's out there.
-name|CorePropertiesLocator
-name|cpl
-init|=
-operator|new
-name|CorePropertiesLocator
-argument_list|(
-literal|null
-argument_list|)
-decl_stmt|;
+comment|// CoreDescriptor and we need to reload it from the disk files
 name|CoreDescriptor
 name|cd
 init|=
-name|cpl
-operator|.
-name|reload
+name|reloadCoreDescriptor
 argument_list|(
-name|this
-argument_list|,
 name|core
 operator|.
 name|getCoreDescriptor
 argument_list|()
 argument_list|)
 decl_stmt|;
-if|if
-condition|(
-name|cd
-operator|==
-literal|null
-condition|)
-name|cd
-operator|=
-name|core
-operator|.
-name|getCoreDescriptor
-argument_list|()
-expr_stmt|;
 name|solrCores
 operator|.
 name|addCoreDescriptor
