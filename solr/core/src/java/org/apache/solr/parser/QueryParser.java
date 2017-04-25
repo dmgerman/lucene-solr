@@ -177,7 +177,7 @@ specifier|final
 name|boolean
 name|DEFAULT_SPLIT_ON_WHITESPACE
 init|=
-literal|true
+literal|false
 decl_stmt|;
 DECL|method|QueryParser
 specifier|public

@@ -1511,6 +1511,13 @@ argument_list|(
 name|slop
 argument_list|)
 expr_stmt|;
+name|parser
+operator|.
+name|setSplitOnWhitespace
+argument_list|(
+literal|true
+argument_list|)
+expr_stmt|;
 return|return
 name|parser
 return|;

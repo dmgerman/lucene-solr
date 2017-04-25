@@ -564,6 +564,7 @@ name|void
 name|testPhrase
 parameter_list|()
 block|{
+comment|// "text" field's type has WordDelimiterGraphFilter (WDGFF) and autoGeneratePhraseQueries=true
 comment|// should generate a phrase of "now cow" and match only one doc
 name|assertQ
 argument_list|(
@@ -576,11 +577,57 @@ argument_list|,
 literal|"indent"
 argument_list|,
 literal|"true"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"true"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|)
 expr_stmt|;
+comment|// When sow=false, autoGeneratePhraseQueries=true only works when a graph is produced
+comment|// (i.e. overlapping terms, e.g. if WDGFF's preserveOriginal=1 or concatenateWords=1).
+comment|// The WDGFF config on the "text" field doesn't produce a graph, so the generated query
+comment|// is not a phrase query.  As a result, docs can match that don't match phrase query "now cow"
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:now-cow"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|,
+literal|"sow"
+argument_list|,
+literal|"false"
+argument_list|)
+argument_list|,
+literal|"//*[@numFound='2']"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"text:now-cow"
+argument_list|,
+literal|"indent"
+argument_list|,
+literal|"true"
+argument_list|)
+comment|// default sow=false
+argument_list|,
+literal|"//*[@numFound='2']"
+argument_list|)
+expr_stmt|;
+comment|// "text_np" field's type has WDGFF and (default) autoGeneratePhraseQueries=false
 comment|// should generate a query of (now OR cow) and match both docs
 name|assertQ
 argument_list|(
@@ -3539,9 +3586,11 @@ literal|"q"
 argument_list|,
 literal|"wi fi"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -3590,9 +3639,11 @@ literal|"q"
 argument_list|,
 literal|"{!lucene}wi fi"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3855,9 +3906,11 @@ literal|"q"
 argument_list|,
 literal|"wi fi"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -3872,9 +3925,11 @@ literal|"q"
 argument_list|,
 literal|"wi /* foo */ fi"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -3889,9 +3944,11 @@ literal|"q"
 argument_list|,
 literal|"wi /* foo */ /* bar */ fi"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -3904,11 +3961,13 @@ literal|"syn"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"/* foo */ wi fi /* bar */"
+literal|" /* foo */ wi fi /* bar */"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -3921,11 +3980,13 @@ literal|"syn"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"/* foo */ wi /* bar */ fi /* baz */"
+literal|" /* foo */ wi /* bar */ fi /* baz */"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -4110,9 +4171,11 @@ literal|"q"
 argument_list|,
 literal|"{!lucene}wi fi"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -4127,9 +4190,11 @@ literal|"q"
 argument_list|,
 literal|"{!lucene}wi /* foo */ fi"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -4144,9 +4209,11 @@ literal|"q"
 argument_list|,
 literal|"{!lucene}wi /* foo */ /* bar */ fi"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -4161,9 +4228,11 @@ literal|"q"
 argument_list|,
 literal|"{!lucene}/* foo */ wi fi /* bar */"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -4178,9 +4247,11 @@ literal|"q"
 argument_list|,
 literal|"{!lucene}/* foo */ wi /* bar */ fi /* baz */"
 argument_list|)
-comment|// default sow=true
+comment|// default sow=false
 argument_list|,
-literal|"/response/numFound==0"
+literal|"/response/numFound==1"
+argument_list|,
+literal|"/response/docs/[0]/id=='20'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -5818,6 +5889,21 @@ name|req
 argument_list|()
 init|)
 block|{
+for|for
+control|(
+name|SolrParams
+name|params
+range|:
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|noSowParams
+argument_list|,
+name|sowFalseParams
+argument_list|)
+control|)
+block|{
 name|QParser
 name|qParser
 init|=
@@ -5856,23 +5942,10 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-for|for
-control|(
-name|SolrParams
-name|params
-range|:
-name|Arrays
-operator|.
-name|asList
-argument_list|(
-name|noSowParams
-argument_list|,
-name|sowTrueParams
-argument_list|)
-control|)
-block|{
+block|}
+name|QParser
 name|qParser
-operator|=
+init|=
 name|QParser
 operator|.
 name|getParser
@@ -5881,21 +5954,22 @@ literal|"text:grackle"
 argument_list|,
 name|req
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|qParser
 operator|.
 name|setParams
 argument_list|(
-name|params
+name|sowTrueParams
 argument_list|)
 expr_stmt|;
+name|Query
 name|q
-operator|=
+init|=
 name|qParser
 operator|.
 name|getQuery
 argument_list|()
-expr_stmt|;
+decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"spanOr([spanNear([text:crow, text:blackbird], 0, true), text:grackl])"
@@ -5906,7 +5980,6 @@ name|toString
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
 for|for
 control|(
 name|SolrParams
