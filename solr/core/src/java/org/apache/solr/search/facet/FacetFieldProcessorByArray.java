@@ -275,17 +275,10 @@ if|if
 condition|(
 name|skipThisFacet
 operator|||
-operator|(
 operator|!
 name|freq
 operator|.
 name|allBuckets
-operator|&&
-operator|!
-name|freq
-operator|.
-name|numBuckets
-operator|)
 condition|)
 return|return
 name|refineResult

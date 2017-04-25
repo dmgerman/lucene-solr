@@ -1044,6 +1044,10 @@ argument_list|,
 literal|"qw_s"
 argument_list|,
 literal|"qw_s"
+argument_list|,
+literal|"er_s"
+argument_list|,
+literal|"er_s"
 argument_list|)
 decl_stmt|;
 name|String
@@ -1076,6 +1080,17 @@ argument_list|(
 literal|"qw_s"
 argument_list|)
 decl_stmt|;
+name|String
+name|er_s
+init|=
+name|p
+operator|.
+name|get
+argument_list|(
+literal|"er_s"
+argument_list|)
+decl_stmt|;
+comment|// this field is designed to test numBuckets refinement... the first phase will only have a single bucket returned for the top count bucket of cat_s
 name|String
 name|num_d
 init|=
@@ -1121,6 +1136,10 @@ argument_list|,
 name|qw_s
 argument_list|,
 literal|"Q"
+argument_list|,
+name|er_s
+argument_list|,
+literal|"E"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1189,6 +1208,10 @@ name|num_d
 argument_list|,
 operator|-
 literal|5
+argument_list|,
+name|er_s
+argument_list|,
+literal|"E"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1261,9 +1284,14 @@ argument_list|,
 name|num_d
 argument_list|,
 literal|7
+argument_list|,
+name|er_s
+argument_list|,
+literal|"R"
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// "R" will only be picked up via refinement when parent facet is cat_s
 name|clients
 operator|.
 name|get
@@ -1298,6 +1326,10 @@ argument_list|,
 name|qw_s
 argument_list|,
 literal|"W"
+argument_list|,
+name|er_s
+argument_list|,
+literal|"E"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1667,7 +1699,6 @@ literal|"}"
 argument_list|)
 expr_stmt|;
 comment|// test filling in missing "allBuckets"
-comment|// test filling in "missing" bucket for partially refined facets
 name|client
 operator|.
 name|testJQ
@@ -1700,6 +1731,40 @@ operator|+
 literal|",cat2:{ allBuckets:{count:8}, buckets:[  {val:A, count:4, xy:{buckets:[{count:3, val:X}], allBuckets:{count:4}}}]  }"
 operator|+
 literal|",cat3:{ allBuckets:{count:8}, buckets:[  {val:A, count:4, xy:{buckets:[{count:3, val:X, f:23.0}], allBuckets:{count:4, f:4.0}}}]  }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test filling in missing numBuckets
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"  cat :{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false, numBuckets:true, facet:{  er:{type:terms, field:${er_s}, limit:1, overrequest:0, numBuckets:true, refine:false}  }  }"
+operator|+
+literal|", cat2:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true , numBuckets:true, facet:{  er:{type:terms, field:${er_s}, limit:1, overrequest:0, numBuckets:true, refine:true }  }  }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:8"
+operator|+
+literal|", cat:{ numBuckets:2, buckets:[  {val:A, count:3, er:{numBuckets:1,buckets:[{count:2, val:E}]  }}]  }"
+operator|+
+comment|// the "R" bucket will not be seen w/o refinement
+literal|",cat2:{ numBuckets:2, buckets:[  {val:A, count:4, er:{numBuckets:2,buckets:[{count:2, val:E}]  }}]  }"
 operator|+
 literal|"}"
 argument_list|)
