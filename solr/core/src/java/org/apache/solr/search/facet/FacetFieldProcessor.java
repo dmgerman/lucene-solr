@@ -1167,7 +1167,6 @@ name|isShard
 argument_list|()
 condition|)
 block|{
-comment|// add over-request if this is a shard request
 if|if
 condition|(
 name|freq
@@ -1176,6 +1175,16 @@ name|overrequest
 operator|==
 operator|-
 literal|1
+condition|)
+block|{
+comment|// add over-request if this is a shard request and if we have a small offset (large offsets will already be gathering many more buckets than needed)
+if|if
+condition|(
+name|freq
+operator|.
+name|offset
+operator|<
+literal|10
 condition|)
 block|{
 name|effectiveLimit
@@ -1192,6 +1201,7 @@ literal|4
 argument_list|)
 expr_stmt|;
 comment|// default: add 10% plus 4 (to overrequest for very small limits)
+block|}
 block|}
 else|else
 block|{
@@ -1230,7 +1240,9 @@ name|Math
 operator|.
 name|min
 argument_list|(
-name|off
+name|freq
+operator|.
+name|offset
 operator|+
 name|effectiveLimit
 argument_list|,
@@ -1804,7 +1816,7 @@ decl_stmt|;
 assert|assert
 name|collectCount
 operator|<=
-name|effectiveLimit
+name|maxTopVals
 assert|;
 name|int
 index|[]
