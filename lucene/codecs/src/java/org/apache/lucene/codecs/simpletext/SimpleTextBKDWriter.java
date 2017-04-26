@@ -5026,6 +5026,10 @@ argument_list|,
 name|offlineSorterMaxTempFiles
 argument_list|,
 name|bytesPerDoc
+argument_list|,
+literal|null
+argument_list|,
+literal|0
 argument_list|)
 block|{
 comment|/** We write/read fixed-byte-width file that {@link OfflinePointReader} can read. */
