@@ -667,6 +667,9 @@ operator|.
 name|getValues
 argument_list|()
 decl_stmt|;
+comment|// this is not guaranteed to exist right away after core reload - there's a
+comment|// small window between core load and before searcher metrics are registered
+comment|// so we may have to check a few times, and then fail softly if reload is not complete yet
 name|NamedList
 name|metrics
 init|=
@@ -680,6 +683,39 @@ argument_list|(
 literal|"metrics"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|metrics
+operator|==
+literal|null
+condition|)
+block|{
+if|if
+condition|(
+name|softFail
+condition|)
+block|{
+return|return;
+block|}
+else|else
+block|{
+name|fail
+argument_list|(
+literal|"missing 'metrics' element in handler's output: "
+operator|+
+name|values
+operator|.
+name|asMap
+argument_list|(
+literal|5
+argument_list|)
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 name|metrics
 operator|=
 operator|(
@@ -692,9 +728,6 @@ argument_list|(
 name|registry
 argument_list|)
 expr_stmt|;
-comment|// this is not guaranteed to exist right away after core reload - there's a
-comment|// small window between core load and before searcher metrics are registered
-comment|// so we may have to check a few times
 if|if
 condition|(
 name|metrics
