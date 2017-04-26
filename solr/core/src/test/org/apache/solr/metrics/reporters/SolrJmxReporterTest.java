@@ -452,7 +452,7 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-literal|1
+literal|5
 argument_list|,
 literal|10
 argument_list|)
@@ -665,7 +665,7 @@ name|randomSimpleString
 argument_list|(
 name|random
 argument_list|,
-literal|1
+literal|5
 argument_list|,
 literal|10
 argument_list|)
@@ -1339,7 +1339,7 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-literal|1
+literal|5
 argument_list|,
 literal|10
 argument_list|)
@@ -1389,7 +1389,7 @@ argument_list|(
 name|random
 argument_list|()
 argument_list|,
-literal|1
+literal|5
 argument_list|,
 literal|10
 argument_list|)
