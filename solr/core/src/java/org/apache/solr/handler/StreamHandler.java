@@ -1460,6 +1460,15 @@ name|GetStream
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"timeseries"
+argument_list|,
+name|TimeSeriesStream
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
