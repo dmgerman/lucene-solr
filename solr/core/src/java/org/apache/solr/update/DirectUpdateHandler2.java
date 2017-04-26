@@ -1176,12 +1176,23 @@ name|SolrMetricManager
 name|manager
 parameter_list|,
 name|String
-name|registry
+name|registryName
 parameter_list|,
 name|String
 name|scope
 parameter_list|)
 block|{
+name|this
+operator|.
+name|registry
+operator|=
+name|manager
+operator|.
+name|registry
+argument_list|(
+name|registryName
+argument_list|)
+expr_stmt|;
 name|commitCommands
 operator|=
 name|manager
@@ -1190,7 +1201,7 @@ name|meter
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 literal|"commits"
 argument_list|,
@@ -1209,7 +1220,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1237,7 +1248,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1275,7 +1286,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1314,7 +1325,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1357,7 +1368,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1396,7 +1407,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1431,7 +1442,7 @@ name|meter
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 literal|"optimizes"
 argument_list|,
@@ -1452,7 +1463,7 @@ name|meter
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 literal|"rollbacks"
 argument_list|,
@@ -1473,7 +1484,7 @@ name|meter
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 literal|"splits"
 argument_list|,
@@ -1494,7 +1505,7 @@ name|meter
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 literal|"merges"
 argument_list|,
@@ -1515,7 +1526,7 @@ name|meter
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 literal|"expungeDeletes"
 argument_list|,
@@ -1534,7 +1545,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1562,7 +1573,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1590,7 +1601,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1618,7 +1629,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1646,7 +1657,7 @@ name|registerGauge
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 parameter_list|()
 lambda|->
@@ -1676,7 +1687,7 @@ name|meter
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 literal|"cumulativeAdds"
 argument_list|,
@@ -1697,7 +1708,7 @@ name|meter
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 literal|"cumulativeDeletesById"
 argument_list|,
@@ -1718,7 +1729,7 @@ name|meter
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 literal|"cumulativeDeletesByQuery"
 argument_list|,
@@ -1739,7 +1750,7 @@ name|meter
 argument_list|(
 name|this
 argument_list|,
-name|registry
+name|registryName
 argument_list|,
 literal|"cumulativeErrors"
 argument_list|,
