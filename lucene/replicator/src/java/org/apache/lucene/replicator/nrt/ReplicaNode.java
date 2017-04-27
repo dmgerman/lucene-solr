@@ -2553,7 +2553,7 @@ name|version
 operator|+
 literal|") is older than current (version="
 operator|+
-name|version
+name|curVersion
 operator|+
 literal|"); skipping"
 argument_list|)
