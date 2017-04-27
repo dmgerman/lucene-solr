@@ -1469,6 +1469,24 @@ name|TimeSeriesStream
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"tuple"
+argument_list|,
+name|TupStream
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"col"
+argument_list|,
+name|ColumnEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName

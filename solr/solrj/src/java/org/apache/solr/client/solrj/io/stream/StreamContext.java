@@ -174,10 +174,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|List
-argument_list|<
-name|Tuple
-argument_list|>
+name|Object
 argument_list|>
 name|lets
 init|=
@@ -216,10 +213,7 @@ name|Map
 argument_list|<
 name|String
 argument_list|,
-name|List
-argument_list|<
-name|Tuple
-argument_list|>
+name|Object
 argument_list|>
 name|getLets
 parameter_list|()

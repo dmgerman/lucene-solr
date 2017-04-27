@@ -172,7 +172,7 @@ operator|.
 name|size
 argument_list|()
 operator|<
-literal|2
+literal|1
 condition|)
 block|{
 throw|throw
@@ -187,7 +187,7 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"Invalid expression %s - expecting at least two values but found %d"
+literal|"Invalid expression %s - expecting at least 1 value but found %d"
 argument_list|,
 name|expression
 argument_list|,
