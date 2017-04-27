@@ -1887,6 +1887,13 @@ name|fld
 argument_list|)
 expr_stmt|;
 block|}
+name|values
+operator|.
+name|remove
+argument_list|(
+literal|null
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 block|}
