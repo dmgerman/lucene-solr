@@ -184,6 +184,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|List
 import|;
 end_import
@@ -402,7 +412,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|BeforeClass
+name|AfterClass
 import|;
 end_import
 
@@ -412,7 +422,7 @@ name|org
 operator|.
 name|junit
 operator|.
-name|Ignore
+name|BeforeClass
 import|;
 end_import
 
@@ -523,6 +533,35 @@ name|contains
 argument_list|(
 literal|" "
 argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// to be true
+name|System
+operator|.
+name|setProperty
+argument_list|(
+literal|"solr.directoryFactory"
+argument_list|,
+literal|"solr.NRTCachingDirectoryFactory"
+argument_list|)
+expr_stmt|;
+block|}
+annotation|@
+name|AfterClass
+DECL|method|cleanupDirectoryFactory
+specifier|public
+specifier|static
+name|void
+name|cleanupDirectoryFactory
+parameter_list|()
+throws|throws
+name|IOException
+block|{
+name|System
+operator|.
+name|clearProperty
+argument_list|(
+literal|"solr.directoryFactory"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1704,8 +1743,6 @@ expr_stmt|;
 block|}
 block|}
 annotation|@
-name|Ignore
-annotation|@
 name|Test
 DECL|method|testTechproductsExample
 specifier|public
@@ -1799,6 +1836,21 @@ operator|.
 name|getParentFile
 argument_list|()
 decl_stmt|;
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|2
+condition|;
+name|i
+operator|++
+control|)
+block|{
 comment|// need a port to start the example server on
 name|int
 name|bindPort
@@ -1940,6 +1992,10 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
+specifier|final
+name|int
+name|status
+init|=
 name|tool
 operator|.
 name|runTool
@@ -1960,6 +2016,26 @@ argument_list|)
 argument_list|,
 name|toolArgs
 argument_list|)
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"it should be ok "
+operator|+
+name|tool
+operator|+
+literal|" "
+operator|+
+name|Arrays
+operator|.
+name|toString
+argument_list|(
+name|toolArgs
+argument_list|)
+argument_list|,
+literal|0
+argument_list|,
+name|status
 argument_list|)
 expr_stmt|;
 block|}
@@ -2071,6 +2147,8 @@ operator|+
 name|exampleName
 argument_list|)
 decl_stmt|;
+try|try
+block|{
 name|SolrQuery
 name|query
 init|=
@@ -2174,6 +2252,15 @@ literal|32
 argument_list|)
 expr_stmt|;
 block|}
+finally|finally
+block|{
+name|solrClient
+operator|.
+name|close
+argument_list|()
+expr_stmt|;
+block|}
+block|}
 comment|// stop the test instance
 name|executor
 operator|.
@@ -2197,6 +2284,7 @@ name|bindPort
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**    * Tests the interactive SolrCloud example; we cannot test the non-interactive because we need control over    * the port and can only test with one node since the test relies on setting the host and jetty.port system    * properties, i.e. there is no test coverage for the -noprompt option.    */
 annotation|@

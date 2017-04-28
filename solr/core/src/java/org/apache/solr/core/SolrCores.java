@@ -564,6 +564,13 @@ name|void
 name|close
 parameter_list|()
 block|{
+name|waitForLoadingCoresToFinish
+argument_list|(
+literal|30
+operator|*
+literal|1000
+argument_list|)
+expr_stmt|;
 name|Collection
 argument_list|<
 name|SolrCore
