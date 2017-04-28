@@ -7311,7 +7311,7 @@ block|}
 comment|/** Called on exception, to check whether the checksum is also corrupt in this source, and add that    *  information (checksum matched or didn't) as a suppressed exception. */
 DECL|method|verifyChecksum
 specifier|private
-name|void
+name|Error
 name|verifyChecksum
 parameter_list|(
 name|Throwable
@@ -7323,6 +7323,11 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
+assert|assert
+name|priorException
+operator|!=
+literal|null
+assert|;
 comment|// TODO: we could improve this, to always validate checksum as we recurse, if we shared left and
 comment|// right reader after recursing to children, and possibly within recursed children,
 comment|// since all together they make a single pass through the file.  But this is a sizable re-org,
@@ -7375,17 +7380,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
-else|else
-block|{
 comment|// We are reading from heap; nothing to add:
+throw|throw
 name|IOUtils
 operator|.
-name|reThrow
+name|rethrowAlways
 argument_list|(
 name|priorException
 argument_list|)
-expr_stmt|;
-block|}
+throw|;
 block|}
 comment|/** Marks bits for the ords (points) that belong in the right sub tree (those docs that have values>= the splitValue). */
 DECL|method|markRightTree
@@ -7534,6 +7537,7 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
+throw|throw
 name|verifyChecksum
 argument_list|(
 name|t
@@ -7542,7 +7546,7 @@ name|source
 operator|.
 name|writer
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 return|return
 name|scratch1
@@ -7981,6 +7985,7 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
+throw|throw
 name|verifyChecksum
 argument_list|(
 name|t
@@ -7989,11 +7994,7 @@ name|source
 operator|.
 name|writer
 argument_list|)
-expr_stmt|;
-comment|// Dead code but javac disagrees:
-return|return
-literal|null
-return|;
+throw|;
 block|}
 block|}
 comment|/* Recursively reorders the provided reader and writes the bkd-tree on the fly; this method is used    * when we are writing a new segment directly from IndexWriter's indexing buffer (MutablePointsReader). */
@@ -10007,6 +10008,7 @@ name|Throwable
 name|t
 parameter_list|)
 block|{
+throw|throw
 name|verifyChecksum
 argument_list|(
 name|t
@@ -10018,7 +10020,7 @@ index|]
 operator|.
 name|writer
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 block|}
 name|parentSplits

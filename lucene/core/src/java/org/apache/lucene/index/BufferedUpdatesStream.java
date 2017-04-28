@@ -2381,14 +2381,22 @@ condition|(
 name|success
 condition|)
 block|{
-comment|// Does nothing if firstExc is null:
+if|if
+condition|(
+name|firstExc
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
 name|IOUtils
 operator|.
-name|reThrow
+name|rethrowAlways
 argument_list|(
 name|firstExc
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 block|}
 if|if
 condition|(

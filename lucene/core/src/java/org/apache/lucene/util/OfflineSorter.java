@@ -2783,20 +2783,29 @@ name|ExecutionException
 name|ee
 parameter_list|)
 block|{
-name|IOUtils
-operator|.
-name|reThrow
-argument_list|(
+comment|// Theoretically cause can be null; guard against that.
+name|Throwable
+name|cause
+init|=
 name|ee
 operator|.
 name|getCause
 argument_list|()
-argument_list|)
-expr_stmt|;
-comment|// oh so soon to go away:
-return|return
+decl_stmt|;
+throw|throw
+name|IOUtils
+operator|.
+name|rethrowAlways
+argument_list|(
+name|cause
+operator|!=
 literal|null
-return|;
+condition|?
+name|cause
+else|:
+name|ee
+argument_list|)
+throw|;
 block|}
 block|}
 comment|/** Merges multiple file-based partitions to a single on-disk partition. */

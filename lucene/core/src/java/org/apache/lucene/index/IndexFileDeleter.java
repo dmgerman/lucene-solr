@@ -1698,6 +1698,8 @@ specifier|private
 name|void
 name|deleteCommits
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|int
 name|size
@@ -1808,14 +1810,22 @@ operator|.
 name|clear
 argument_list|()
 expr_stmt|;
-comment|// NOTE: does nothing if firstThrowable is null
+if|if
+condition|(
+name|firstThrowable
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
 name|IOUtils
 operator|.
-name|reThrowUnchecked
+name|rethrowAlways
 argument_list|(
 name|firstThrowable
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 comment|// Now compact commits to remove deleted ones (preserving the sort):
 name|size
 operator|=
@@ -2612,14 +2622,22 @@ name|t
 expr_stmt|;
 block|}
 block|}
-comment|// NOTE: does nothing if firstThrowable is null
+if|if
+condition|(
+name|firstThrowable
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
 name|IOUtils
 operator|.
-name|reThrow
+name|rethrowAlways
 argument_list|(
 name|firstThrowable
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 block|}
 comment|/** Decrefs all provided files, ignoring any exceptions hit; call this if    *  you are already handling an exception. */
 DECL|method|decRefWhileHandlingException

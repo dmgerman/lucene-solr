@@ -628,6 +628,11 @@ operator|.
 name|readObject
 argument_list|()
 expr_stmt|;
+assert|assert
+name|t
+operator|!=
+literal|null
+assert|;
 block|}
 catch|catch
 parameter_list|(
@@ -655,13 +660,14 @@ name|close
 argument_list|()
 expr_stmt|;
 block|}
+throw|throw
 name|IOUtils
 operator|.
-name|reThrow
+name|rethrowAlways
 argument_list|(
 name|t
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 comment|/**    *<b>internal:</b> execute a request and return its result    * The<code>params</code> argument is treated as: name1,value1,name2,value2,...    */
 DECL|method|executePOST
@@ -1265,23 +1271,14 @@ expr_stmt|;
 block|}
 block|}
 block|}
-assert|assert
-name|th
-operator|!=
-literal|null
-assert|;
-comment|// extra safety - if we get here, it means the callable failed
+throw|throw
 name|IOUtils
 operator|.
-name|reThrow
+name|rethrowAlways
 argument_list|(
 name|th
 argument_list|)
-expr_stmt|;
-return|return
-literal|null
-return|;
-comment|// silly, if we're here, IOUtils.reThrow always throws an exception
+throw|;
 block|}
 annotation|@
 name|Override

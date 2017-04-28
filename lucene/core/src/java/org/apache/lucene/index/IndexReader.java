@@ -348,13 +348,22 @@ throws|throws
 name|IOException
 block|{
 comment|// nothing to notify in the base impl, just rethrow
+if|if
+condition|(
+name|th
+operator|!=
+literal|null
+condition|)
+block|{
+throw|throw
 name|IOUtils
 operator|.
-name|reThrow
+name|rethrowAlways
 argument_list|(
 name|th
 argument_list|)
-expr_stmt|;
+throw|;
+block|}
 block|}
 DECL|method|reportCloseToParentReaders
 specifier|private

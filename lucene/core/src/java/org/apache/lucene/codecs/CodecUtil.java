@@ -1642,13 +1642,14 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+throw|throw
 name|IOUtils
 operator|.
-name|reThrow
+name|rethrowAlways
 argument_list|(
 name|priorException
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 block|}
 comment|/**     * Returns (but does not validate) the checksum previously written by {@link #checkFooter}.    * @return actual checksum value    * @throws IOException if the footer is invalid    */

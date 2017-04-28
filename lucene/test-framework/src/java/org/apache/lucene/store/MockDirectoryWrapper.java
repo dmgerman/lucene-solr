@@ -5087,13 +5087,14 @@ name|out
 argument_list|)
 expr_stmt|;
 block|}
+throw|throw
 name|IOUtils
 operator|.
-name|reThrow
+name|rethrowAlways
 argument_list|(
 name|t
 argument_list|)
-expr_stmt|;
+throw|;
 block|}
 block|}
 block|}
