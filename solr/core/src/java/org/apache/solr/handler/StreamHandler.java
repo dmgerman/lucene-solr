@@ -2011,6 +2011,15 @@ name|UuidEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"corr"
+argument_list|,
+name|CorrelationEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// Conditional Stream Evaluators
 operator|.
 name|withFunctionName
