@@ -234,13 +234,6 @@ literal|"childfield(surname_s1,$q2) desc"
 argument_list|)
 expr_stmt|;
 block|}
-annotation|@
-name|AwaitsFix
-argument_list|(
-name|bugUrl
-operator|=
-literal|"https://issues.apache.org/jira/browse/LUCENE-7798"
-argument_list|)
 DECL|method|testEqualityUpToBlockJoin
 specifier|public
 name|void

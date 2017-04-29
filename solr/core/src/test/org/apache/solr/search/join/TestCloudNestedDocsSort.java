@@ -290,6 +290,20 @@ name|Test
 import|;
 end_import
 
+begin_import
+import|import
+name|com
+operator|.
+name|carrotsearch
+operator|.
+name|randomizedtesting
+operator|.
+name|annotations
+operator|.
+name|Repeat
+import|;
+end_import
+
 begin_class
 DECL|class|TestCloudNestedDocsSort
 specifier|public
@@ -841,6 +855,13 @@ block|}
 block|}
 annotation|@
 name|Test
+annotation|@
+name|Repeat
+argument_list|(
+name|iterations
+operator|=
+literal|2
+argument_list|)
 DECL|method|test
 specifier|public
 name|void
