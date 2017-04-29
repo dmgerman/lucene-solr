@@ -105,6 +105,16 @@ operator|=
 name|streamContext
 expr_stmt|;
 block|}
+DECL|method|getStreamContext
+specifier|public
+name|StreamContext
+name|getStreamContext
+parameter_list|()
+block|{
+return|return
+name|streamContext
+return|;
+block|}
 block|}
 end_class
 

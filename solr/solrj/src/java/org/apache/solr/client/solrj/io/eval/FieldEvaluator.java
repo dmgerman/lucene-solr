@@ -274,6 +274,8 @@ parameter_list|(
 name|Tuple
 name|tuple
 parameter_list|)
+throws|throws
+name|IOException
 block|{
 name|Object
 name|value
@@ -285,6 +287,61 @@ argument_list|(
 name|fieldName
 argument_list|)
 decl_stmt|;
+comment|// This is somewhat radical.
+comment|// Here, we allow for the use of the context to provide alternative values
+comment|// when they are not available in the provided tuple. This means that all
+comment|// evaluators can evaluate over both a stream's tuple and the context, and
+comment|// can even evaluate over fields from both of them in the same evaluation
+if|if
+condition|(
+literal|null
+operator|==
+name|value
+operator|&&
+literal|null
+operator|!=
+name|getStreamContext
+argument_list|()
+condition|)
+block|{
+name|value
+operator|=
+name|getStreamContext
+argument_list|()
+operator|.
+name|getLets
+argument_list|()
+operator|.
+name|get
+argument_list|(
+name|fieldName
+argument_list|)
+expr_stmt|;
+comment|// If what's contained in the context is itself an evaluator then
+comment|// we need to evaluate it
+if|if
+condition|(
+name|value
+operator|instanceof
+name|StreamEvaluator
+condition|)
+block|{
+name|value
+operator|=
+operator|(
+operator|(
+name|StreamEvaluator
+operator|)
+name|value
+operator|)
+operator|.
+name|evaluate
+argument_list|(
+name|tuple
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 comment|// if we have an array then convert to an ArrayList
 comment|// if we have an iterable that is not a list then convert to ArrayList
 comment|// lists are good to go

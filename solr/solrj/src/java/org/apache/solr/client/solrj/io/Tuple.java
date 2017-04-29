@@ -159,6 +159,13 @@ decl_stmt|;
 DECL|method|Tuple
 specifier|public
 name|Tuple
+parameter_list|()
+block|{
+comment|// just an empty tuple
+block|}
+DECL|method|Tuple
+specifier|public
+name|Tuple
 parameter_list|(
 name|Map
 name|fields
