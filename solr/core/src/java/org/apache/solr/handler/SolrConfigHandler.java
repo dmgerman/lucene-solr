@@ -1210,6 +1210,16 @@ argument_list|(
 literal|true
 argument_list|)
 decl_stmt|;
+DECL|method|getReloadLock
+specifier|public
+name|Lock
+name|getReloadLock
+parameter_list|()
+block|{
+return|return
+name|reloadLock
+return|;
+block|}
 DECL|field|isImmutableConfigSet
 specifier|private
 name|boolean
