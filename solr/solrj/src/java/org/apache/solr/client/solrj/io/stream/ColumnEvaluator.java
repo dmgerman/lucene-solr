@@ -380,17 +380,6 @@ range|:
 name|tuples
 control|)
 block|{
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"###### Field:"
-operator|+
-name|fieldName
-argument_list|)
-expr_stmt|;
 name|Object
 name|o
 init|=
