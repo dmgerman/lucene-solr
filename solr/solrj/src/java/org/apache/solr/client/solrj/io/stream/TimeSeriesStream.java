@@ -784,7 +784,7 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|startExpression
+name|endExpression
 operator|!=
 literal|null
 condition|)
@@ -812,7 +812,7 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|startExpression
+name|gapExpression
 operator|!=
 literal|null
 condition|)
@@ -840,7 +840,7 @@ literal|null
 decl_stmt|;
 if|if
 condition|(
-name|startExpression
+name|fieldExpression
 operator|!=
 literal|null
 condition|)
