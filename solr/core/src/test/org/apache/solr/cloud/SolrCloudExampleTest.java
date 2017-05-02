@@ -1505,6 +1505,40 @@ argument_list|,
 name|maxTimeFromConfig
 argument_list|)
 expr_stmt|;
+comment|// Just check that we can access paths with slashes in them both through an intermediate method and explicitly
+comment|// using atPath.
+name|assertEquals
+argument_list|(
+literal|"Should have been able to get a value from the /query request handler"
+argument_list|,
+literal|"explicit"
+argument_list|,
+name|SolrCLI
+operator|.
+name|asString
+argument_list|(
+literal|"/config/requestHandler/\\/query/defaults/echoParams"
+argument_list|,
+name|configJson
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Should have been able to get a value from the /query request handler"
+argument_list|,
+literal|"explicit"
+argument_list|,
+name|SolrCLI
+operator|.
+name|atPath
+argument_list|(
+literal|"/config/requestHandler/\\/query/defaults/echoParams"
+argument_list|,
+name|configJson
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|log
 operator|.
 name|info

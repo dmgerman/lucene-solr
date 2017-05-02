@@ -5049,7 +5049,7 @@ return|return
 name|val
 return|;
 block|}
-comment|/**    * Helper function for reading an Object of unknown type from a JSON Object tree.     */
+comment|/**    * Helper function for reading an Object of unknown type from a JSON Object tree.    *     * To find a path to a child that starts with a slash (e.g. queryHandler named /query)    * you must escape the slash. For instance /config/requestHandler/\/query/defaults/echoParams    * would get the echoParams value for the "/query" request handler.    */
 annotation|@
 name|SuppressWarnings
 argument_list|(
@@ -5133,9 +5133,10 @@ name|jsonPath
 operator|.
 name|split
 argument_list|(
-literal|"/"
+literal|"(?<![\\\\])/"
 argument_list|)
 decl_stmt|;
+comment|// Break on all slashes _not_ preceeded by a backslash
 for|for
 control|(
 name|int
@@ -5153,6 +5154,34 @@ name|p
 operator|++
 control|)
 block|{
+name|String
+name|part
+init|=
+name|path
+index|[
+name|p
+index|]
+decl_stmt|;
+if|if
+condition|(
+name|part
+operator|.
+name|startsWith
+argument_list|(
+literal|"\\"
+argument_list|)
+condition|)
+block|{
+name|part
+operator|=
+name|part
+operator|.
+name|substring
+argument_list|(
+literal|1
+argument_list|)
+expr_stmt|;
+block|}
 name|Object
 name|child
 init|=
@@ -5160,10 +5189,7 @@ name|parent
 operator|.
 name|get
 argument_list|(
-name|path
-index|[
-name|p
-index|]
+name|part
 argument_list|)
 decl_stmt|;
 if|if
