@@ -1006,7 +1006,7 @@ name|buffer
 operator|.
 name|append
 argument_list|(
-literal|"spanPayCheck("
+literal|"SpanPayloadCheckQuery("
 argument_list|)
 expr_stmt|;
 name|buffer

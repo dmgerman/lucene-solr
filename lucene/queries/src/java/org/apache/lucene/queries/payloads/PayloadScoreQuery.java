@@ -331,7 +331,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A Query class that uses a {@link PayloadFunction} to modify the score of a  * wrapped SpanQuery  *  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link ClassicSimilarity}), you must override {@link ClassicSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *  * @see org.apache.lucene.search.similarities.Similarity.SimScorer#computePayloadFactor(int, int, int, BytesRef)  */
+comment|/**  * A Query class that uses a {@link PayloadFunction} to modify the score of a wrapped SpanQuery  *  * NOTE: In order to take advantage of this with the default scoring implementation  * ({@link ClassicSimilarity}), you must override {@link ClassicSimilarity#scorePayload(int, int, int, BytesRef)},  * which returns 1 by default.  *  * @see org.apache.lucene.search.similarities.Similarity.SimScorer#computePayloadFactor(int, int, int, BytesRef)  */
 end_comment
 
 begin_class
@@ -510,18 +510,43 @@ name|String
 name|field
 parameter_list|)
 block|{
-return|return
-literal|"PayloadScoreQuery["
-operator|+
+name|StringBuilder
+name|buffer
+init|=
+operator|new
+name|StringBuilder
+argument_list|()
+decl_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
+literal|"PayloadScoreQuery("
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
 name|wrappedQuery
 operator|.
 name|toString
 argument_list|(
 name|field
 argument_list|)
-operator|+
-literal|"; "
-operator|+
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
+literal|", function: "
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
 name|function
 operator|.
 name|getClass
@@ -529,12 +554,34 @@ argument_list|()
 operator|.
 name|getSimpleName
 argument_list|()
-operator|+
-literal|"; "
-operator|+
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
+literal|", includeSpanScore: "
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
 name|includeSpanScore
-operator|+
-literal|"]"
+argument_list|)
+expr_stmt|;
+name|buffer
+operator|.
+name|append
+argument_list|(
+literal|")"
+argument_list|)
+expr_stmt|;
+return|return
+name|buffer
+operator|.
+name|toString
+argument_list|()
 return|;
 block|}
 annotation|@
