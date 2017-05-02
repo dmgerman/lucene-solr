@@ -356,8 +356,6 @@ name|decoder
 operator|.
 name|decode
 argument_list|(
-name|simScorer
-argument_list|,
 name|doc
 argument_list|,
 name|start

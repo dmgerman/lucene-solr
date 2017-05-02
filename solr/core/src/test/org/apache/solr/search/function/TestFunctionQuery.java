@@ -3497,7 +3497,7 @@ literal|"id"
 argument_list|,
 literal|"1"
 argument_list|,
-literal|"vals_dp"
+literal|"vals_dpf"
 argument_list|,
 literal|"A|1.0 B|2.0 C|3.0 mult|50 mult|100 x|22 x|37 x|19"
 argument_list|,
@@ -3523,7 +3523,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,A)"
+literal|"{!func}payload(vals_dpf,A)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='1.0'"
@@ -3539,7 +3539,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,B)"
+literal|"{!func}payload(vals_dpf,B)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='2.0'"
@@ -3555,7 +3555,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,C,0)"
+literal|"{!func}payload(vals_dpf,C,0)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='3.0'"
@@ -3572,7 +3572,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,D,37.0)"
+literal|"{!func}payload(vals_dpf,D,37.0)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='37.0'"
@@ -3588,7 +3588,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,E,default_f)"
+literal|"{!func}payload(vals_dpf,E,default_f)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='42.0'"
@@ -3604,7 +3604,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,E,mul(2,default_f))"
+literal|"{!func}payload(vals_dpf,E,mul(2,default_f))"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='84.0'"
@@ -3621,7 +3621,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,mult,0.0,min)"
+literal|"{!func}payload(vals_dpf,mult,0.0,min)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='50.0'"
@@ -3637,7 +3637,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,mult,0.0,max)"
+literal|"{!func}payload(vals_dpf,mult,0.0,max)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='100.0'"
@@ -3653,7 +3653,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,mult,0.0,average)"
+literal|"{!func}payload(vals_dpf,mult,0.0,average)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='75.0'"
@@ -3669,7 +3669,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,mult)"
+literal|"{!func}payload(vals_dpf,mult)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='75.0'"
@@ -3686,7 +3686,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,x,0.0,min)"
+literal|"{!func}payload(vals_dpf,x,0.0,min)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='19.0'"
@@ -3702,7 +3702,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,x,0.0,max)"
+literal|"{!func}payload(vals_dpf,x,0.0,max)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='37.0'"
@@ -3718,7 +3718,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,x,0.0,average)"
+literal|"{!func}payload(vals_dpf,x,0.0,average)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='26.0'"
@@ -3734,7 +3734,7 @@ literal|"*,score"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"{!func}payload(vals_dp,x,0.0,first)"
+literal|"{!func}payload(vals_dpf,x,0.0,first)"
 argument_list|)
 argument_list|,
 literal|"//float[@name='score']='22.0'"

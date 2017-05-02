@@ -738,8 +738,6 @@ name|decoder
 operator|.
 name|decode
 argument_list|(
-literal|null
-argument_list|,
 name|atDoc
 argument_list|,
 name|docs

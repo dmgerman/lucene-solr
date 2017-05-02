@@ -60,11 +60,6 @@ DECL|method|decode
 name|float
 name|decode
 parameter_list|(
-name|Similarity
-operator|.
-name|SimScorer
-name|simScorer
-parameter_list|,
 name|int
 name|doc
 parameter_list|,
