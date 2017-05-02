@@ -7425,6 +7425,13 @@ argument_list|()
 argument_list|,
 name|ZkStateReader
 operator|.
+name|BASE_URL_PROP
+argument_list|,
+name|getBaseUrl
+argument_list|()
+argument_list|,
+name|ZkStateReader
+operator|.
 name|CORE_NODE_NAME_PROP
 argument_list|,
 name|coreNodeName
