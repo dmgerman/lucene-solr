@@ -66,7 +66,7 @@ literal|"/schema/fieldtypes/float?indent=on&wt=xml&showDefaults=true"
 argument_list|,
 literal|"count(/response/lst[@name='fieldType']) = 1"
 argument_list|,
-literal|"count(/response/lst[@name='fieldType']/*) = 16"
+literal|"count(/response/lst[@name='fieldType']/*) = 17"
 argument_list|,
 literal|"/response/lst[@name='fieldType']/str[@name='name'] = 'float'"
 argument_list|,
@@ -95,6 +95,8 @@ argument_list|,
 literal|"/response/lst[@name='fieldType']/bool[@name='storeOffsetsWithPositions'] = 'false'"
 argument_list|,
 literal|"/response/lst[@name='fieldType']/bool[@name='multiValued'] = 'false'"
+argument_list|,
+literal|"/response/lst[@name='fieldType']/bool[@name='large'] = 'false'"
 argument_list|,
 literal|"/response/lst[@name='fieldType']/bool[@name='tokenized'] = 'false'"
 argument_list|)
