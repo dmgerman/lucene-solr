@@ -291,7 +291,7 @@ specifier|final
 name|int
 name|NUM_MYEARS
 init|=
-literal|585
+literal|586
 decl_stmt|;
 comment|// we assert how this was computed in the constructor
 comment|/** An instanced based on {@link Calendar#getInstance(TimeZone, Locale)} with UTC and Locale.Root. This    * will (always?) be a {@link GregorianCalendar} with a so-called "Gregorian Change Date" of 1582.    */
@@ -583,6 +583,7 @@ operator|)
 operator|*
 literal|1000_000
 expr_stmt|;
+comment|// align year 0 at an even # of million years
 assert|assert
 name|BC_LASTYEAR
 operator|==
@@ -602,6 +603,8 @@ name|AD_LASTYEAR
 operator|)
 operator|/
 literal|1000_000
+operator|+
+literal|1
 assert|;
 name|maxLV
 operator|=
@@ -739,6 +742,8 @@ argument_list|()
 operator|+
 literal|1
 argument_list|)
+operator|+
+literal|1
 return|;
 comment|// if using GregorianCalendar and we're after the "Gregorian change date" then we'll compute
 comment|//  the sub-cells ourselves more efficiently without the need to construct a Calendar.
