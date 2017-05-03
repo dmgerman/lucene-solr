@@ -43300,11 +43300,11 @@ decl_stmt|;
 name|String
 name|cat
 init|=
-literal|"let(a="
+literal|"let(a ="
 operator|+
 name|expr
 operator|+
-literal|", b=add(1,3), c=col(a, test_i), tuple(test=add(1,1), test1=b, results=a, test2=add(c)))"
+literal|", b = add(1,3), c=col(a, test_i), tuple(test = add(1,1), test1=b, results=a, test2=add(c)))"
 decl_stmt|;
 name|ModifiableSolrParams
 name|paramsLoc
