@@ -1769,6 +1769,139 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
+specifier|final
+name|String
+name|sort_limit_over
+init|=
+literal|"sort:'count desc', limit:1, overrequest:0, "
+decl_stmt|;
+comment|// simplistic join domain testing: no refinement == low count
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"${xy_s}:Y"
+argument_list|,
+comment|// query only matches one doc per shard
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"  cat0:{type:terms, field:${cat_s}, "
+operator|+
+name|sort_limit_over
+operator|+
+literal|" refine:false,"
+operator|+
+comment|// self join on all_s ensures every doc on every shard included in facets
+literal|"        domain: { join: { from:all_s, to:all_s } } }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==3"
+argument_list|,
+literal|"facets=={ count:3, "
+operator|+
+comment|// w/o overrequest and refinement, count for 'A' is lower than it should be
+comment|// (we don't see the A from the middle shard)
+literal|"          cat0:{ buckets:[ {val:A,count:3} ] } }"
+argument_list|)
+expr_stmt|;
+comment|// simplistic join domain testing: refinement == correct count
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"${xy_s}:Y"
+argument_list|,
+comment|// query only matches one doc per shard
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"  cat0:{type:terms, field:${cat_s}, "
+operator|+
+name|sort_limit_over
+operator|+
+literal|" refine:true,"
+operator|+
+comment|// self join on all_s ensures every doc on every shard included in facets
+literal|"        domain: { join: { from:all_s, to:all_s } } }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==3"
+argument_list|,
+literal|"facets=={ count:3,"
+operator|+
+comment|// w/o overrequest, we need refining to get the correct count for 'A'.
+literal|"          cat0:{ buckets:[ {val:A,count:4} ] } }"
+argument_list|)
+expr_stmt|;
+comment|// contrived join domain + refinement (at second level) + testing
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"${xy_s}:Y"
+argument_list|,
+comment|// query only matches one doc per shard
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+comment|// top level facet has a single term
+literal|"  all:{type:terms, field:all_s, "
+operator|+
+name|sort_limit_over
+operator|+
+literal|" refine:true, "
+operator|+
+literal|"       facet:{  "
+operator|+
+comment|// subfacet will facet on cat after joining on all (so all docs should be included in subfacet)
+literal|"         cat0:{type:terms, field:${cat_s}, "
+operator|+
+name|sort_limit_over
+operator|+
+literal|" refine:true,"
+operator|+
+literal|"               domain: { join: { from:all_s, to:all_s } } } } }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"/response/numFound==3"
+argument_list|,
+literal|"facets=={ count:3,"
+operator|+
+comment|// all 3 docs matching base query have same 'all' value in top facet
+literal|"          all:{ buckets:[ { val:all, count:3, "
+operator|+
+comment|// sub facet has refinement, so count for 'A' should be correct
+literal|"                            cat0:{ buckets: [{val:A,count:4}] } } ] } }"
+argument_list|)
+expr_stmt|;
 block|}
 block|}
 end_class

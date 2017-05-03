@@ -272,6 +272,22 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
+name|params
+operator|.
+name|SolrParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|request
 operator|.
 name|macro
@@ -1401,6 +1417,496 @@ name|client
 operator|.
 name|commit
 argument_list|()
+expr_stmt|;
+block|}
+DECL|method|testDomainJoinSelf
+specifier|public
+name|void
+name|testDomainJoinSelf
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Client
+name|client
+init|=
+name|Client
+operator|.
+name|localClient
+argument_list|()
+decl_stmt|;
+name|indexSimple
+argument_list|(
+name|client
+argument_list|)
+expr_stmt|;
+comment|// self join domain switch at the second level of faceting
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|""
+operator|+
+literal|"{x: { type: terms, field: 'num_i', "
+operator|+
+literal|"      facet: { y: { domain: { join: { from: 'cat_s', to: 'cat_s' } }, "
+operator|+
+literal|"                    type: terms, field: 'where_s' "
+operator|+
+literal|"                  } } } }"
+argument_list|)
+argument_list|,
+literal|"facets=={count:6, x:{ buckets:["
+operator|+
+literal|"   { val:-5, count:2, "
+operator|+
+literal|"     y : { buckets:[{ val:'NJ', count:2 }, { val:'NY', count:1 } ] } }, "
+operator|+
+literal|"   { val:2, count:1, "
+operator|+
+literal|"     y : { buckets:[{ val:'NJ', count:1 }, { val:'NY', count:1 } ] } }, "
+operator|+
+literal|"   { val:3, count:1, "
+operator|+
+literal|"     y : { buckets:[{ val:'NJ', count:1 }, { val:'NY', count:1 } ] } }, "
+operator|+
+literal|"   { val:7, count:1, "
+operator|+
+literal|"     y : { buckets:[{ val:'NJ', count:2 }, { val:'NY', count:1 } ] } } ] } }"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testNestedJoinDomain
+specifier|public
+name|void
+name|testNestedJoinDomain
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Client
+name|client
+init|=
+name|Client
+operator|.
+name|localClient
+argument_list|()
+decl_stmt|;
+name|client
+operator|.
+name|deleteByQuery
+argument_list|(
+literal|"*:*"
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|client
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"1_s"
+argument_list|,
+literal|"A"
+argument_list|,
+literal|"2_s"
+argument_list|,
+literal|"A"
+argument_list|,
+literal|"3_s"
+argument_list|,
+literal|"C"
+argument_list|,
+literal|"y_s"
+argument_list|,
+literal|"B"
+argument_list|,
+literal|"x_t"
+argument_list|,
+literal|"x   z"
+argument_list|,
+literal|"z_t"
+argument_list|,
+literal|"  2 3"
+argument_list|)
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|client
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"1_s"
+argument_list|,
+literal|"B"
+argument_list|,
+literal|"2_s"
+argument_list|,
+literal|"A"
+argument_list|,
+literal|"3_s"
+argument_list|,
+literal|"B"
+argument_list|,
+literal|"y_s"
+argument_list|,
+literal|"B"
+argument_list|,
+literal|"x_t"
+argument_list|,
+literal|"x y  "
+argument_list|,
+literal|"z_t"
+argument_list|,
+literal|"1   3"
+argument_list|)
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|client
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"3"
+argument_list|,
+literal|"1_s"
+argument_list|,
+literal|"C"
+argument_list|,
+literal|"2_s"
+argument_list|,
+literal|"A"
+argument_list|,
+literal|"3_s"
+argument_list|,
+literal|"#"
+argument_list|,
+literal|"y_s"
+argument_list|,
+literal|"A"
+argument_list|,
+literal|"x_t"
+argument_list|,
+literal|"  y z"
+argument_list|,
+literal|"z_t"
+argument_list|,
+literal|"1 2  "
+argument_list|)
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|client
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"4"
+argument_list|,
+literal|"1_s"
+argument_list|,
+literal|"A"
+argument_list|,
+literal|"2_s"
+argument_list|,
+literal|"B"
+argument_list|,
+literal|"3_s"
+argument_list|,
+literal|"C"
+argument_list|,
+literal|"y_s"
+argument_list|,
+literal|"A"
+argument_list|,
+literal|"x_t"
+argument_list|,
+literal|"    z"
+argument_list|,
+literal|"z_t"
+argument_list|,
+literal|"    3"
+argument_list|)
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|client
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"5"
+argument_list|,
+literal|"1_s"
+argument_list|,
+literal|"B"
+argument_list|,
+literal|"2_s"
+argument_list|,
+literal|"_"
+argument_list|,
+literal|"3_s"
+argument_list|,
+literal|"B"
+argument_list|,
+literal|"y_s"
+argument_list|,
+literal|"C"
+argument_list|,
+literal|"x_t"
+argument_list|,
+literal|"x    "
+argument_list|,
+literal|"z_t"
+argument_list|,
+literal|"1   3"
+argument_list|)
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|client
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"6"
+argument_list|,
+literal|"1_s"
+argument_list|,
+literal|"C"
+argument_list|,
+literal|"2_s"
+argument_list|,
+literal|"B"
+argument_list|,
+literal|"3_s"
+argument_list|,
+literal|"A"
+argument_list|,
+literal|"y_s"
+argument_list|,
+literal|"C"
+argument_list|,
+literal|"x_t"
+argument_list|,
+literal|"x y z"
+argument_list|,
+literal|"z_t"
+argument_list|,
+literal|"1    "
+argument_list|)
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+name|client
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+name|assertJQ
+argument_list|(
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"x_t:x"
+argument_list|,
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|,
+comment|// NOTE q - only x=x in base set (1,2,5,6)
+literal|"json.facet"
+argument_list|,
+literal|""
+operator|+
+literal|"{x: { type: terms, field: 'x_t', "
+operator|+
+literal|"      domain: { join: { from:'1_s', to:'2_s' } },"
+comment|//                y1& y2 are the same facet, with *similar* child facet z1/z2 ...
+operator|+
+literal|"      facet: { y1: { type: terms, field: 'y_s', "
+comment|//                               z1& z2 are same field, diff join...
+operator|+
+literal|"                     facet: { z1: { type: terms, field: 'z_t', "
+operator|+
+literal|"                                    domain: { join: { from:'2_s', to:'3_s' } } } } },"
+operator|+
+literal|"               y2: { type: terms, field: 'y_s', "
+comment|//                               z1& z2 are same field, diff join...
+operator|+
+literal|"                     facet: { z2: { type: terms, field: 'z_t', "
+operator|+
+literal|"                                    domain: { join: { from:'3_s', to:'1_s' } } } } } } } }"
+argument_list|)
+argument_list|,
+literal|"facets=={count:4, "
+operator|+
+literal|"x:{ buckets:["
+comment|// joined 1->2: doc5 drops out, counts: z=4, x=3, y=3
+operator|+
+literal|"   { val:z, count:4, "
+comment|// x=z (docs 1,3,4,6) y terms: A=2, B=1, C=1
+operator|+
+literal|"     y1 : { buckets:[ "
+comment|// z1 joins 2->3...
+operator|+
+literal|"             { val:A, count:2, "
+comment|// A in docs(3,4), joins (A,B) -> docs(2,5,6)
+operator|+
+literal|"               z1: { buckets:[{ val:'1', count:3 }, { val:'3', count:2 }] } }, "
+operator|+
+literal|"             { val:B, count:1, "
+comment|// B in doc1, joins A -> doc6
+operator|+
+literal|"               z1: { buckets:[{ val:'1', count:1 }] } }, "
+operator|+
+literal|"             { val:C, count:1, "
+comment|// C in doc6, joins B -> docs(2,5)
+operator|+
+literal|"               z1: { buckets:[{ val:'1', count:2 }, { val:'3', count:2 }] } } "
+operator|+
+literal|"          ] }, "
+operator|+
+literal|"     y2 : { buckets:[ "
+comment|// z2 joins 3->1...
+operator|+
+literal|"             { val:A, count:2, "
+comment|// A in docs(3,4), joins C -> docs(3,6)
+operator|+
+literal|"               z2: { buckets:[{ val:'1', count:2 }, { val:'2', count:1 }] } }, "
+operator|+
+literal|"             { val:B, count:1, "
+comment|// B in doc1, joins C -> docs(3,6)
+operator|+
+literal|"               z2: { buckets:[{ val:'1', count:2 }, { val:'2', count:1 }] } }, "
+operator|+
+literal|"             { val:C, count:1, "
+comment|// C in doc6, joins A -> docs(1,4)
+operator|+
+literal|"               z2: { buckets:[{ val:'3', count:2 }, { val:'2', count:1 }] } } "
+operator|+
+literal|"          ] } }, "
+operator|+
+literal|"   { val:x, count:3, "
+comment|// x=x (docs 1,2,!5,6) y terms: B=2, C=1
+operator|+
+literal|"     y1 : { buckets:[ "
+comment|// z1 joins 2->3...
+operator|+
+literal|"             { val:B, count:2, "
+comment|// B in docs(1,2), joins A -> doc6
+operator|+
+literal|"               z1: { buckets:[{ val:'1', count:1 }] } }, "
+operator|+
+literal|"             { val:C, count:1, "
+comment|// C in doc6, joins B -> docs(2,5)
+operator|+
+literal|"               z1: { buckets:[{ val:'1', count:2 }, { val:'3', count:2 }] } } "
+operator|+
+literal|"          ] }, "
+operator|+
+literal|"     y2 : { buckets:[ "
+comment|// z2 joins 3->1...
+operator|+
+literal|"             { val:B, count:2, "
+comment|// B in docs(1,2), joins C,B -> docs(2,3,5,6)
+operator|+
+literal|"               z2: { buckets:[{ val:'1', count:4 }, { val:'3', count:2 }, { val:'2', count:1 }] } }, "
+operator|+
+literal|"             { val:C, count:1, "
+comment|// C in doc6, joins A -> docs(1,4)
+operator|+
+literal|"               z2: { buckets:[{ val:'3', count:2 }, { val:'2', count:1 }] } } "
+operator|+
+literal|"          ] } }, "
+operator|+
+literal|"   { val:y, count:3, "
+comment|// x=y (docs 2,3,6) y terms: A=1, B=1, C=1
+operator|+
+literal|"     y1 : { buckets:[ "
+comment|// z1 joins 2->3...
+operator|+
+literal|"             { val:A, count:1, "
+comment|// A in doc3, joins A -> doc6
+operator|+
+literal|"               z1: { buckets:[{ val:'1', count:1 }] } }, "
+operator|+
+literal|"             { val:B, count:1, "
+comment|// B in doc2, joins A -> doc6
+operator|+
+literal|"               z1: { buckets:[{ val:'1', count:1 }] } }, "
+operator|+
+literal|"             { val:C, count:1, "
+comment|// C in doc6, joins B -> docs(2,5)
+operator|+
+literal|"               z1: { buckets:[{ val:'1', count:2 }, { val:'3', count:2 }] } } "
+operator|+
+literal|"          ] }, "
+operator|+
+literal|"     y2 : { buckets:[ "
+comment|// z2 joins 3->1...
+operator|+
+literal|"             { val:A, count:1, "
+comment|// A in doc3, joins # -> empty set
+operator|+
+literal|"               z2: { buckets:[ ] } }, "
+operator|+
+literal|"             { val:B, count:1, "
+comment|// B in doc2, joins B -> docs(2,5)
+operator|+
+literal|"               z2: { buckets:[{ val:'1', count:2 }, { val:'3', count:2 }] } }, "
+operator|+
+literal|"             { val:C, count:1, "
+comment|// C in doc6, joins A -> docs(1,4)
+operator|+
+literal|"               z2: { buckets:[{ val:'3', count:2 }, { val:'2', count:1 }] } } "
+operator|+
+literal|"          ]}  }"
+operator|+
+literal|"   ]}}"
+argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -7175,6 +7681,670 @@ operator|+
 literal|", books:{ buckets:[ {val:q,count:3},{val:e,count:2},{val:w,count:2} ] }"
 operator|+
 literal|", books2:{ buckets:[ {val:q,count:1} ] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+block|}
+comment|/**    * Similar to {@link #testBlockJoin} but uses query time joining.    *<p>    * (asserts are slightly diff because if a query matches multiple types of documents, blockJoin domain switches    * to parent/child domains preserve any existing parent/children from the original domain - eg: when q=*:*)    *</p>    */
+DECL|method|testQureyJoinBooksAndPages
+specifier|public
+name|void
+name|testQureyJoinBooksAndPages
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+specifier|final
+name|Client
+name|client
+init|=
+name|Client
+operator|.
+name|localClient
+argument_list|()
+decl_stmt|;
+specifier|final
+name|SolrParams
+name|p
+init|=
+name|params
+argument_list|(
+literal|"rows"
+argument_list|,
+literal|"0"
+argument_list|)
+decl_stmt|;
+name|client
+operator|.
+name|deleteByQuery
+argument_list|(
+literal|"*:*"
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+comment|// build up a list of the docs we want to test with
+name|List
+argument_list|<
+name|SolrInputDocument
+argument_list|>
+name|docsToAdd
+init|=
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|(
+literal|10
+argument_list|)
+decl_stmt|;
+name|docsToAdd
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"1"
+argument_list|,
+literal|"type_s"
+argument_list|,
+literal|"book"
+argument_list|,
+literal|"book_s"
+argument_list|,
+literal|"A"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"q"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docsToAdd
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"type_s"
+argument_list|,
+literal|"book"
+argument_list|,
+literal|"book_s"
+argument_list|,
+literal|"B"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"q w"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docsToAdd
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"book_id_s"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"2.1"
+argument_list|,
+literal|"type_s"
+argument_list|,
+literal|"page"
+argument_list|,
+literal|"page_s"
+argument_list|,
+literal|"a"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"x y z"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docsToAdd
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"book_id_s"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"2.2"
+argument_list|,
+literal|"type_s"
+argument_list|,
+literal|"page"
+argument_list|,
+literal|"page_s"
+argument_list|,
+literal|"b"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"x y  "
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docsToAdd
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"book_id_s"
+argument_list|,
+literal|"2"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"2.3"
+argument_list|,
+literal|"type_s"
+argument_list|,
+literal|"page"
+argument_list|,
+literal|"page_s"
+argument_list|,
+literal|"c"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"  y z"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docsToAdd
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"3"
+argument_list|,
+literal|"type_s"
+argument_list|,
+literal|"book"
+argument_list|,
+literal|"book_s"
+argument_list|,
+literal|"C"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"q w e"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docsToAdd
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"book_id_s"
+argument_list|,
+literal|"3"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"3.1"
+argument_list|,
+literal|"type_s"
+argument_list|,
+literal|"page"
+argument_list|,
+literal|"page_s"
+argument_list|,
+literal|"d"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"x    "
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docsToAdd
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"book_id_s"
+argument_list|,
+literal|"3"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"3.2"
+argument_list|,
+literal|"type_s"
+argument_list|,
+literal|"page"
+argument_list|,
+literal|"page_s"
+argument_list|,
+literal|"e"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"  y  "
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docsToAdd
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"book_id_s"
+argument_list|,
+literal|"3"
+argument_list|,
+literal|"id"
+argument_list|,
+literal|"3.3"
+argument_list|,
+literal|"type_s"
+argument_list|,
+literal|"page"
+argument_list|,
+literal|"page_s"
+argument_list|,
+literal|"f"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"    z"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|docsToAdd
+operator|.
+name|add
+argument_list|(
+name|sdoc
+argument_list|(
+literal|"id"
+argument_list|,
+literal|"4"
+argument_list|,
+literal|"type_s"
+argument_list|,
+literal|"book"
+argument_list|,
+literal|"book_s"
+argument_list|,
+literal|"D"
+argument_list|,
+literal|"v_t"
+argument_list|,
+literal|"e"
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// shuffle the docs since order shouldn't matter
+name|Collections
+operator|.
+name|shuffle
+argument_list|(
+name|docsToAdd
+argument_list|,
+name|random
+argument_list|()
+argument_list|)
+expr_stmt|;
+for|for
+control|(
+name|SolrInputDocument
+name|doc
+range|:
+name|docsToAdd
+control|)
+block|{
+name|client
+operator|.
+name|add
+argument_list|(
+name|doc
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
+block|}
+name|client
+operator|.
+name|commit
+argument_list|()
+expr_stmt|;
+comment|// the domains we'll be testing, initially setup for block join
+specifier|final
+name|String
+name|toChildren
+init|=
+literal|"join: { from:'id', to:'book_id_s' }"
+decl_stmt|;
+specifier|final
+name|String
+name|toParents
+init|=
+literal|"join: { from:'book_id_s', to:'id' }"
+decl_stmt|;
+specifier|final
+name|String
+name|toBogusChildren
+init|=
+literal|"join: { from:'id', to:'does_not_exist' }"
+decl_stmt|;
+specifier|final
+name|String
+name|toBogusParents
+init|=
+literal|"join: { from:'book_id_s', to:'does_not_exist' }"
+decl_stmt|;
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{ "
+operator|+
+literal|"pages:{ type:query, domain:{"
+operator|+
+name|toChildren
+operator|+
+literal|"} , facet:{ x:{field:v_t} } }"
+operator|+
+literal|",pages2:{type:terms, field:v_t, domain:{"
+operator|+
+name|toChildren
+operator|+
+literal|"} }"
+operator|+
+literal|",books:{ type:query, domain:{"
+operator|+
+name|toParents
+operator|+
+literal|"}  , facet:{ x:{field:v_t} } }"
+operator|+
+literal|",books2:{type:terms, field:v_t, domain:{"
+operator|+
+name|toParents
+operator|+
+literal|"} }"
+operator|+
+literal|",pageof3:{ type:query, q:'id:3', facet : { x : { type:terms, field:page_s, domain:{"
+operator|+
+name|toChildren
+operator|+
+literal|"}}} }"
+operator|+
+literal|",bookof22:{ type:query, q:'id:2.2', facet : { x : { type:terms, field:book_s, domain:{"
+operator|+
+name|toParents
+operator|+
+literal|"}}} }"
+operator|+
+literal|",missing_Parents:{ type:query, domain:{"
+operator|+
+name|toBogusParents
+operator|+
+literal|"} }"
+operator|+
+literal|",missing_Children:{ type:query, domain:{"
+operator|+
+name|toBogusChildren
+operator|+
+literal|"} }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:10"
+operator|+
+literal|", pages:{count:6 , x:{buckets:[ {val:y,count:4},{val:x,count:3},{val:z,count:3} ]}  }"
+operator|+
+literal|", pages2:{ buckets:[ {val:y,count:4},{val:x,count:3},{val:z,count:3} ] }"
+operator|+
+literal|", books:{count:2 , x:{buckets:[ {val:q,count:2},{val:w,count:2},{val:e,count:1} ]}  }"
+operator|+
+literal|", books2:{ buckets:[ {val:q,count:2},{val:w,count:2},{val:e,count:1} ] }"
+operator|+
+literal|", pageof3:{count:1 , x:{buckets:[ {val:d,count:1},{val:e,count:1},{val:f,count:1} ]}  }"
+operator|+
+literal|", bookof22:{count:1 , x:{buckets:[ {val:B,count:1} ]}  }"
+operator|+
+literal|", missing_Parents:{count:0}"
+operator|+
+literal|", missing_Children:{count:0}"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// no matches in base query
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"no_match_s:NO_MATCHES"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{ processEmpty:true,"
+operator|+
+literal|"pages:{ type:query, domain:{"
+operator|+
+name|toChildren
+operator|+
+literal|"} }"
+operator|+
+literal|",books:{ type:query, domain:{"
+operator|+
+name|toParents
+operator|+
+literal|"} }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:0"
+operator|+
+literal|", pages:{count:0}"
+operator|+
+literal|", books:{count:0}"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test facet on children nested under terms facet on parents
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"books:{ type:terms, field:book_s, facet:{ pages:{type:terms, field:v_t, domain:{"
+operator|+
+name|toChildren
+operator|+
+literal|"}} } }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:10"
+operator|+
+literal|", books:{buckets:[{val:A,count:1,pages:{buckets:[]}}"
+operator|+
+literal|"                 ,{val:B,count:1,pages:{buckets:[{val:y,count:3},{val:x,count:2},{val:z,count:2}]}}"
+operator|+
+literal|"                 ,{val:C,count:1,pages:{buckets:[{val:x,count:1},{val:y,count:1},{val:z,count:1}]}}"
+operator|+
+literal|"                 ,{val:D,count:1,pages:{buckets:[]}}"
+operator|+
+literal|"] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test filter after join
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{ "
+operator|+
+literal|"pages1:{type:terms, field:v_t, domain:{"
+operator|+
+name|toChildren
+operator|+
+literal|", filter:'*:*'} }"
+operator|+
+literal|",pages2:{type:terms, field:v_t, domain:{"
+operator|+
+name|toChildren
+operator|+
+literal|", filter:'-id:3.1'} }"
+operator|+
+literal|",books:{type:terms, field:v_t, domain:{"
+operator|+
+name|toParents
+operator|+
+literal|", filter:'*:*'} }"
+operator|+
+literal|",books2:{type:terms, field:v_t, domain:{"
+operator|+
+name|toParents
+operator|+
+literal|", filter:'id:2'} }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:10"
+operator|+
+literal|", pages1:{ buckets:[ {val:y,count:4},{val:x,count:3},{val:z,count:3} ] }"
+operator|+
+literal|", pages2:{ buckets:[ {val:y,count:4},{val:z,count:3},{val:x,count:2} ] }"
+operator|+
+literal|", books:{ buckets:[ {val:q,count:2},{val:w,count:2},{val:e,count:1} ] }"
+operator|+
+literal|", books2:{ buckets:[ {val:q,count:1}, {val:w,count:1} ] }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// test other various ways to get filters
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"f1"
+argument_list|,
+literal|"-id:3.1"
+argument_list|,
+literal|"f2"
+argument_list|,
+literal|"id:2"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{ "
+operator|+
+literal|"pages1:{type:terms, field:v_t, domain:{"
+operator|+
+name|toChildren
+operator|+
+literal|", filter:[]} }"
+operator|+
+literal|",pages2:{type:terms, field:v_t, domain:{"
+operator|+
+name|toChildren
+operator|+
+literal|", filter:{param:f1} } }"
+operator|+
+literal|",books:{type:terms, field:v_t, domain:{"
+operator|+
+name|toParents
+operator|+
+literal|", filter:[{param:q},{param:missing_param}]} }"
+operator|+
+literal|",books2:{type:terms, field:v_t, domain:{"
+operator|+
+name|toParents
+operator|+
+literal|", filter:[{param:f2}] } }"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:10"
+operator|+
+literal|", pages1:{ buckets:[ {val:y,count:4},{val:x,count:3},{val:z,count:3} ] }"
+operator|+
+literal|", pages2:{ buckets:[ {val:y,count:4},{val:z,count:3},{val:x,count:2} ] }"
+operator|+
+literal|", books:{ buckets:[ {val:q,count:2},{val:w,count:2},{val:e,count:1} ] }"
+operator|+
+literal|", books2:{ buckets:[ {val:q,count:1}, {val:w,count:1} ] }"
 operator|+
 literal|"}"
 argument_list|)
