@@ -167,7 +167,7 @@ name|RTimerTree
 argument_list|()
 return|;
 block|}
-comment|/** Create new subtimer with given name    *    * Subtimer will be started.    */
+comment|/**    * Returns a subtimer given its name.    * If the subtimer did not exist a new subtimer will be started and returned,    * otherwise an existing subtimer will be returned as-is.    */
 DECL|method|sub
 specifier|public
 name|RTimerTree
