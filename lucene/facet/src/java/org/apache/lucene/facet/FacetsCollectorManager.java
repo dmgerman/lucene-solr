@@ -61,11 +61,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A {@link CollectorManager} implementation which produce FacetsCollector and product a merged FacetsCollector.  * This is used for concurrent FacetsCollection.  */
+comment|/**  * A {@link CollectorManager} implementation which produces FacetsCollector and produces a merged FacetsCollector.  * This is used for concurrent FacetsCollection.  */
 end_comment
 
 begin_class
 DECL|class|FacetsCollectorManager
+specifier|public
 class|class
 name|FacetsCollectorManager
 implements|implements
@@ -76,17 +77,12 @@ argument_list|,
 name|FacetsCollector
 argument_list|>
 block|{
-DECL|field|EMPTY
+comment|/** Sole constructor. */
+DECL|method|FacetsCollectorManager
 specifier|public
-specifier|final
-specifier|static
-name|FacetsCollector
-name|EMPTY
-init|=
-operator|new
-name|FacetsCollector
-argument_list|()
-decl_stmt|;
+name|FacetsCollectorManager
+parameter_list|()
+block|{   }
 annotation|@
 name|Override
 DECL|method|newCollector
@@ -132,9 +128,13 @@ argument_list|()
 operator|==
 literal|0
 condition|)
+block|{
 return|return
-name|EMPTY
+operator|new
+name|FacetsCollector
+argument_list|()
 return|;
+block|}
 if|if
 condition|(
 name|collectors
@@ -144,6 +144,7 @@ argument_list|()
 operator|==
 literal|1
 condition|)
+block|{
 return|return
 name|collectors
 operator|.
@@ -153,6 +154,7 @@ operator|.
 name|next
 argument_list|()
 return|;
+block|}
 return|return
 operator|new
 name|ReducedFacetsCollector

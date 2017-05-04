@@ -311,11 +311,11 @@ name|int
 name|valueCount
 decl_stmt|;
 comment|/** {@link IndexReader} passed to the constructor. */
-DECL|field|origReader
+DECL|field|reader
 specifier|public
 specifier|final
 name|IndexReader
-name|origReader
+name|reader
 decl_stmt|;
 DECL|field|cachedOrdMaps
 specifier|private
@@ -392,7 +392,7 @@ name|field
 expr_stmt|;
 name|this
 operator|.
-name|origReader
+name|reader
 operator|=
 name|reader
 expr_stmt|;
@@ -710,9 +710,9 @@ literal|"DefaultSortedSetDocValuesReaderState(field="
 operator|+
 name|field
 operator|+
-literal|" origReader="
+literal|" reader="
 operator|+
-name|origReader
+name|reader
 operator|+
 literal|")"
 return|;
@@ -766,7 +766,7 @@ name|MultiDocValues
 operator|.
 name|getSortedSetValues
 argument_list|(
-name|origReader
+name|reader
 argument_list|,
 name|field
 argument_list|)
@@ -798,7 +798,7 @@ operator|.
 name|CacheHelper
 name|cacheHelper
 init|=
-name|origReader
+name|reader
 operator|.
 name|getReaderCacheHelper
 argument_list|()
@@ -843,7 +843,7 @@ assert|;
 name|int
 name|size
 init|=
-name|origReader
+name|reader
 operator|.
 name|leaves
 argument_list|()
@@ -898,7 +898,7 @@ block|{
 name|LeafReaderContext
 name|context
 init|=
-name|origReader
+name|reader
 operator|.
 name|leaves
 argument_list|()
@@ -1005,7 +1005,7 @@ index|[
 name|size
 index|]
 operator|=
-name|origReader
+name|reader
 operator|.
 name|maxDoc
 argument_list|()
@@ -1078,14 +1078,14 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|getOrigReader
+DECL|method|getReader
 specifier|public
 name|IndexReader
-name|getOrigReader
+name|getReader
 parameter_list|()
 block|{
 return|return
-name|origReader
+name|reader
 return|;
 block|}
 comment|/** Number of unique labels. */

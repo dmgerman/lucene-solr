@@ -100,6 +100,7 @@ argument_list|()
 decl_stmt|;
 static|static
 block|{
+comment|// NOTE: we don't actually use these index options, because this field is "processed" by FacetsConfig.build()
 name|TYPE
 operator|.
 name|setIndexOptions

@@ -190,11 +190,11 @@ name|getPrefixToOrdRange
 parameter_list|()
 function_decl|;
 comment|/** Returns top-level index reader. */
-DECL|method|getOrigReader
+DECL|method|getReader
 specifier|public
 specifier|abstract
 name|IndexReader
-name|getOrigReader
+name|getReader
 parameter_list|()
 function_decl|;
 comment|/** Number of unique labels. */

@@ -232,14 +232,16 @@ operator|.
 name|getName
 argument_list|()
 expr_stmt|;
-comment|// last 8 bytes are checksum:
+comment|// last 8 bytes are checksum, which we write ourselves after copying all bytes and confirming checksum:
 name|bytesToCopy
 operator|=
 name|metaData
 operator|.
 name|length
 operator|-
-literal|8
+name|Long
+operator|.
+name|BYTES
 expr_stmt|;
 if|if
 condition|(
@@ -545,6 +547,12 @@ name|writeLong
 argument_list|(
 name|checksum
 argument_list|)
+expr_stmt|;
+name|bytesCopied
+operator|+=
+name|Long
+operator|.
+name|BYTES
 expr_stmt|;
 name|close
 argument_list|()

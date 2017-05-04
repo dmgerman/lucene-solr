@@ -73,11 +73,13 @@ import|;
 end_import
 
 begin_comment
-comment|/** An {@code ExecutorService} that executes tasks immediately in the calling thread during submit. */
+comment|/** An {@code ExecutorService} that executes tasks immediately in the calling thread during submit.  *  *  @lucene.internal */
 end_comment
 
 begin_class
 DECL|class|SameThreadExecutorService
+specifier|public
+specifier|final
 class|class
 name|SameThreadExecutorService
 extends|extends
