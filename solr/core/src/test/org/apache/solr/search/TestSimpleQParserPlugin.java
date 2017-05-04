@@ -647,6 +647,10 @@ literal|"defType"
 argument_list|,
 literal|"simple"
 argument_list|,
+literal|"df"
+argument_list|,
+literal|"text0"
+argument_list|,
 literal|"q"
 argument_list|,
 literal|"t2 t9 t12"
@@ -662,6 +666,10 @@ argument_list|(
 literal|"defType"
 argument_list|,
 literal|"simple"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"text0"
 argument_list|,
 literal|"q"
 argument_list|,

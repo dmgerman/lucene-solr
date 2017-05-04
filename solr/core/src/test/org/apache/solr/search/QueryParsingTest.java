@@ -126,7 +126,11 @@ name|SolrQueryRequest
 name|req
 init|=
 name|req
-argument_list|()
+argument_list|(
+literal|"df"
+argument_list|,
+literal|"text"
+argument_list|)
 decl_stmt|;
 specifier|final
 name|String

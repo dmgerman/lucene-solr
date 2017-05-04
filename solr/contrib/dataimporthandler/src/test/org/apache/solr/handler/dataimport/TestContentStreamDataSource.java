@@ -603,6 +603,10 @@ argument_list|(
 literal|"q"
 argument_list|,
 literal|"*"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"desc"
 argument_list|)
 decl_stmt|;
 name|QueryResponse

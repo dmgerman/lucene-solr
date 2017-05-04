@@ -1473,6 +1473,10 @@ name|getWSResultForQuery
 argument_list|(
 name|req
 argument_list|(
+literal|"df"
+argument_list|,
+literal|"text"
+argument_list|,
 literal|"q"
 argument_list|,
 literal|"*"

@@ -1274,6 +1274,10 @@ literal|"q"
 argument_list|,
 literal|"t"
 argument_list|,
+literal|"df"
+argument_list|,
+literal|"name"
+argument_list|,
 literal|"qt"
 argument_list|,
 name|handler

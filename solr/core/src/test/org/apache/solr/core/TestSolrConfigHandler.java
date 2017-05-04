@@ -2578,7 +2578,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|l
 operator|.
@@ -2598,7 +2598,7 @@ name|l
 operator|.
 name|get
 argument_list|(
-literal|0
+literal|1
 argument_list|)
 operator|)
 operator|.

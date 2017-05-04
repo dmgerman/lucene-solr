@@ -9502,6 +9502,15 @@ operator|new
 name|ModifiableSolrParams
 argument_list|()
 decl_stmt|;
+name|noSowParams
+operator|.
+name|add
+argument_list|(
+literal|"df"
+argument_list|,
+literal|"text"
+argument_list|)
+expr_stmt|;
 name|ModifiableSolrParams
 name|sowFalseParams
 init|=
@@ -9518,6 +9527,15 @@ argument_list|,
 literal|"false"
 argument_list|)
 expr_stmt|;
+name|sowFalseParams
+operator|.
+name|add
+argument_list|(
+literal|"df"
+argument_list|,
+literal|"text"
+argument_list|)
+expr_stmt|;
 name|ModifiableSolrParams
 name|sowTrueParams
 init|=
@@ -9532,6 +9550,15 @@ argument_list|(
 literal|"sow"
 argument_list|,
 literal|"true"
+argument_list|)
+expr_stmt|;
+name|sowTrueParams
+operator|.
+name|add
+argument_list|(
+literal|"df"
+argument_list|,
+literal|"text"
 argument_list|)
 expr_stmt|;
 comment|// From synonyms.txt:

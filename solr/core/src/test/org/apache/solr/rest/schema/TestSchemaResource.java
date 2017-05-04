@@ -77,10 +77,6 @@ literal|"count(/response/lst[@name='schema']/str[@name='uniqueKey']) = 1"
 argument_list|,
 literal|"/response/lst[@name='schema']/str[@name='uniqueKey'][.='id']"
 argument_list|,
-literal|"count(/response/lst[@name='schema']/str[@name='defaultSearchField']) = 1"
-argument_list|,
-literal|"/response/lst[@name='schema']/str[@name='defaultSearchField'][.='text']"
-argument_list|,
 literal|"(/response/lst[@name='schema']/arr[@name='fieldTypes']/lst/str[@name='name'])[1] = 'HTMLstandardtok'"
 argument_list|,
 literal|"(/response/lst[@name='schema']/arr[@name='fieldTypes']/lst/str[@name='name'])[2] = 'HTMLwhitetok'"
@@ -196,8 +192,6 @@ literal|"/schema/version==1.6"
 argument_list|,
 literal|"/schema/uniqueKey=='id'"
 argument_list|,
-literal|"/schema/defaultSearchField=='text'"
-argument_list|,
 literal|"/schema/fieldTypes/[0]/name=='HTMLstandardtok'"
 argument_list|,
 literal|"/schema/fieldTypes/[1]/name=='HTMLwhitetok'"
@@ -262,8 +256,6 @@ argument_list|,
 literal|"/schema/@version = '1.6'"
 argument_list|,
 literal|"/schema/uniqueKey = 'id'"
-argument_list|,
-literal|"/schema/defaultSearchField = 'text'"
 argument_list|,
 literal|"(/schema/fieldType)[1]/@name = 'HTMLstandardtok'"
 argument_list|,

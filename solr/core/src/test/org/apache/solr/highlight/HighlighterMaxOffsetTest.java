@@ -349,6 +349,10 @@ literal|"q"
 argument_list|,
 literal|"id:DOC1"
 argument_list|,
+literal|"df"
+argument_list|,
+literal|"content"
+argument_list|,
 literal|"hl.q"
 argument_list|,
 literal|"JPEG"

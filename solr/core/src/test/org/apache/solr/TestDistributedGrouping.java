@@ -491,6 +491,10 @@ argument_list|,
 literal|"qt"
 argument_list|,
 literal|"spellCheckCompRH"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"subject"
 argument_list|)
 expr_stmt|;
 name|query
@@ -1531,6 +1535,10 @@ argument_list|,
 literal|"qt"
 argument_list|,
 literal|"spellCheckCompRH"
+argument_list|,
+literal|"df"
+argument_list|,
+literal|"subject"
 argument_list|)
 expr_stmt|;
 name|query
