@@ -1754,8 +1754,9 @@ argument_list|,
 name|extraProperties
 argument_list|)
 decl_stmt|;
-name|cores
-operator|=
+name|CoreContainer
+name|coreContainer
+init|=
 operator|new
 name|CoreContainer
 argument_list|(
@@ -1765,14 +1766,14 @@ name|extraProperties
 argument_list|,
 literal|true
 argument_list|)
-expr_stmt|;
-name|cores
+decl_stmt|;
+name|coreContainer
 operator|.
 name|load
 argument_list|()
 expr_stmt|;
 return|return
-name|cores
+name|coreContainer
 return|;
 block|}
 comment|/**    * Get the NodeConfig whether stored on disk, in ZooKeeper, etc.    * This may also be used by custom filters to load relevant configuration.    * @return the NodeConfig    */
