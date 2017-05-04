@@ -248,8 +248,7 @@ name|UniqueMultiDvSlotAcc
 argument_list|(
 name|fcontext
 argument_list|,
-name|getArg
-argument_list|()
+name|sf
 argument_list|,
 name|numSlots
 argument_list|,
@@ -265,8 +264,7 @@ name|UniqueMultivaluedSlotAcc
 argument_list|(
 name|fcontext
 argument_list|,
-name|getArg
-argument_list|()
+name|sf
 argument_list|,
 name|numSlots
 argument_list|,
@@ -311,8 +309,7 @@ name|UniqueSinglevaluedSlotAcc
 argument_list|(
 name|fcontext
 argument_list|,
-name|getArg
-argument_list|()
+name|sf
 argument_list|,
 name|numSlots
 argument_list|,

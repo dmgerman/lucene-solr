@@ -1891,6 +1891,8 @@ DECL|method|resetStats
 name|void
 name|resetStats
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|countAcc
 operator|.

@@ -530,6 +530,8 @@ specifier|abstract
 name|void
 name|reset
 parameter_list|()
+throws|throws
+name|IOException
 function_decl|;
 DECL|method|resize
 specifier|public

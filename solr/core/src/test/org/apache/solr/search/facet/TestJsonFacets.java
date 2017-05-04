@@ -6185,6 +6185,30 @@ operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;
+comment|// test acc reuse (i.e. reset() method).  This is normally used for stats that are not calculated in the first phase,
+comment|// currently non-sorting stats.
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{f1:{type:terms, field:'${cat_s}', facet:{h:'hll(${where_s})'}   }}"
+argument_list|)
+argument_list|,
+literal|"facets=={ 'count':6, "
+operator|+
+literal|"'f1':{  buckets:[{val:B, count:3, h:2},{val:A, count:2, h:2}] } } "
+argument_list|)
+expr_stmt|;
 block|}
 annotation|@
 name|Test

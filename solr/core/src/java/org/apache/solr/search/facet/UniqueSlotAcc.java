@@ -210,7 +210,7 @@ parameter_list|(
 name|FacetContext
 name|fcontext
 parameter_list|,
-name|String
+name|SchemaField
 name|field
 parameter_list|,
 name|int
@@ -247,17 +247,7 @@ name|this
 operator|.
 name|field
 operator|=
-name|fcontext
-operator|.
-name|searcher
-operator|.
-name|getSchema
-argument_list|()
-operator|.
-name|getField
-argument_list|(
 name|field
-argument_list|)
 expr_stmt|;
 block|}
 annotation|@
@@ -267,6 +257,8 @@ specifier|public
 name|void
 name|reset
 parameter_list|()
+throws|throws
+name|IOException
 block|{
 name|counts
 operator|=
