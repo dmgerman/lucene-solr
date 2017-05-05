@@ -924,6 +924,7 @@ name|result
 return|;
 block|}
 DECL|method|createPlugin
+specifier|public
 name|PluginHolder
 argument_list|<
 name|T
