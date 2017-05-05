@@ -6201,12 +6201,14 @@ literal|"*:*"
 argument_list|,
 literal|"json.facet"
 argument_list|,
-literal|"{f1:{type:terms, field:'${cat_s}', facet:{h:'hll(${where_s})'}   }}"
+literal|"{f1:{type:terms, field:'${cat_s}', facet:{h:'hll(${where_s})' , u:'unique(${where_s})', mind:'min(${num_d})', maxd:'max(${num_d})', sumd:'sum(${num_d})', avgd:'avg(${num_d})', variance:'variance(${num_d})', stddev:'stddev(${num_d})'         }   }}"
 argument_list|)
 argument_list|,
 literal|"facets=={ 'count':6, "
 operator|+
-literal|"'f1':{  buckets:[{val:B, count:3, h:2},{val:A, count:2, h:2}] } } "
+literal|"'f1':{  buckets:[{val:B, count:3, h:2, u:2, mind:-9.0, maxd:11.0, sumd:-3.0, avgd:-1.0, variance:74.66666666666667, stddev:8.640987597877148},"
+operator|+
+literal|"                 {val:A, count:2, h:2, u:2, mind:2.0, maxd:4.0, sumd:6.0, avgd:3.0, variance:1.0, stddev:1.0}] } } "
 argument_list|)
 expr_stmt|;
 block|}
