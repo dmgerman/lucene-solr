@@ -857,14 +857,12 @@ literal|"Usage: java [SystemProperties] -jar post.jar [-h|-] [<file|folder|url|a
 decl_stmt|;
 comment|// Used in tests to avoid doing actual network traffic
 DECL|field|mockMode
-specifier|static
 name|boolean
 name|mockMode
 init|=
 literal|false
 decl_stmt|;
 DECL|field|pageFetcher
-specifier|static
 name|PageFetcher
 name|pageFetcher
 decl_stmt|;
@@ -4738,6 +4736,14 @@ operator|+
 literal|" to [base]"
 operator|+
 name|suffix
+operator|+
+operator|(
+name|mockMode
+condition|?
+literal|" MOCK!"
+else|:
+literal|""
+operator|)
 argument_list|)
 expr_stmt|;
 name|is
@@ -4943,7 +4949,6 @@ block|}
 comment|/**    * Performs a simple get on the given URL    */
 DECL|method|doGet
 specifier|public
-specifier|static
 name|void
 name|doGet
 parameter_list|(
@@ -4983,7 +4988,6 @@ block|}
 comment|/**    * Performs a simple get on the given URL    */
 DECL|method|doGet
 specifier|public
-specifier|static
 name|void
 name|doGet
 parameter_list|(
