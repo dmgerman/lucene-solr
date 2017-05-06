@@ -6211,6 +6211,71 @@ operator|+
 literal|"                 {val:A, count:2, h:2, u:2, mind:2.0, maxd:4.0, sumd:6.0, avgd:3.0, variance:1.0, stddev:1.0}] } } "
 argument_list|)
 expr_stmt|;
+comment|// test min/max of string field
+if|if
+condition|(
+name|where_s
+operator|.
+name|equals
+argument_list|(
+literal|"where_s"
+argument_list|)
+operator|||
+name|where_s
+operator|.
+name|equals
+argument_list|(
+literal|"where_sd"
+argument_list|)
+condition|)
+block|{
+comment|// supports only single valued currently...
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:* -(+${cat_s}:A +${where_s}:NJ)"
+comment|// make NY the only value in bucket A
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"  f1:{type:terms, field:'${cat_s}', facet:{min:'min(${where_s})', max:'max(${where_s})'}   }"
+operator|+
+literal|", f2:{type:terms, field:'${cat_s}', facet:{min:'min(${where_s})', max:'max(${where_s})'} , sort:'min desc'}"
+operator|+
+literal|", f3:{type:terms, field:'${cat_s}', facet:{min:'min(${where_s})', max:'max(${where_s})'} , sort:'min asc'}"
+operator|+
+literal|", f4:{type:terms, field:'${cat_s}', facet:{min:'min(${super_s})', max:'max(${super_s})'} , sort:'max asc'}"
+operator|+
+literal|", f5:{type:terms, field:'${cat_s}', facet:{min:'min(${super_s})', max:'max(${super_s})'} , sort:'max desc'}"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:5, "
+operator|+
+literal|" f1:{ buckets:[{val:B, count:3, min:NJ, max:NY}, {val:A, count:1, min:NY, max:NY}]}"
+operator|+
+literal|",f2:{ buckets:[{val:A, count:1, min:NY, max:NY}, {val:B, count:3, min:NJ, max:NY}]}"
+operator|+
+literal|",f3:{ buckets:[{val:B, count:3, min:NJ, max:NY}, {val:A, count:1, min:NY, max:NY}]}"
+operator|+
+literal|",f4:{ buckets:[{val:B, count:3, min:batman, max:superman}, {val:A, count:1, min:zodiac, max:zodiac}]}"
+operator|+
+literal|",f5:{ buckets:[{val:A, count:1, min:zodiac, max:zodiac}, {val:B, count:3, min:batman, max:superman}]}"
+operator|+
+literal|" } "
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 annotation|@
 name|Test
