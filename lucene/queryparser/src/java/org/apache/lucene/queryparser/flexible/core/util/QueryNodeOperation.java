@@ -205,7 +205,7 @@ expr_stmt|;
 elseif|else
 if|if
 condition|(
-name|q1
+name|q2
 operator|instanceof
 name|AndQueryNode
 condition|)
