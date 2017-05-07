@@ -1487,6 +1487,24 @@ name|ColumnEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"predict"
+argument_list|,
+name|PredictEvaluator
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"regress"
+argument_list|,
+name|RegressionEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
