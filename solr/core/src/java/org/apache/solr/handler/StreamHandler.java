@@ -1514,6 +1514,15 @@ name|CovarianceEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"conv"
+argument_list|,
+name|ConvolutionEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
