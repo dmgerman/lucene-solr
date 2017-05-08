@@ -7192,7 +7192,7 @@ block|{
 return|return
 name|TimeUnit
 operator|.
-name|NANOSECONDS
+name|MILLISECONDS
 operator|.
 name|convert
 argument_list|(
@@ -7203,7 +7203,7 @@ name|ns
 argument_list|,
 name|TimeUnit
 operator|.
-name|MILLISECONDS
+name|NANOSECONDS
 argument_list|)
 return|;
 block|}
