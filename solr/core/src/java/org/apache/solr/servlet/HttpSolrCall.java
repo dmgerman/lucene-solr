@@ -6985,6 +6985,12 @@ name|getParams
 parameter_list|()
 block|{
 return|return
+literal|null
+operator|==
+name|solrReq
+condition|?
+literal|null
+else|:
 name|solrReq
 operator|.
 name|getParams
@@ -7232,8 +7238,6 @@ argument_list|)
 operator|.
 name|append
 argument_list|(
-name|solrReq
-operator|.
 name|getParams
 argument_list|()
 argument_list|)
