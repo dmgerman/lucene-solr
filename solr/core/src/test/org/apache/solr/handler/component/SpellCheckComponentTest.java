@@ -598,9 +598,13 @@ argument_list|,
 literal|"7"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/brwn/numFound==1"
+literal|"/spellcheck/suggestions/[0]=='brwn'"
+argument_list|,
+literal|"/spellcheck/suggestions/[1]/numFound==1"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|assertJQ
 argument_list|(
 name|req
@@ -644,10 +648,23 @@ argument_list|,
 literal|"6"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions=={}"
+literal|"/spellcheck/suggestions/[1]/numFound==1"
 argument_list|)
 expr_stmt|;
-comment|// there should have been no suggestions (6<7)
+name|fail
+argument_list|(
+literal|"there should have been no suggestions (6<7)"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|//correctly threw exception
+block|}
 name|assertJQ
 argument_list|(
 name|req
@@ -701,9 +718,13 @@ argument_list|,
 literal|".90"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/brwn/numFound==1"
+literal|"/spellcheck/suggestions/[0]=='brwn'"
+argument_list|,
+literal|"/spellcheck/suggestions/[1]/numFound==1"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|assertJQ
 argument_list|(
 name|req
@@ -757,10 +778,23 @@ argument_list|,
 literal|".80"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions=={}"
+literal|"/spellcheck/suggestions/[1]/numFound==1"
 argument_list|)
 expr_stmt|;
-comment|// there should have been no suggestions ((.8 * 8)<7)
+name|fail
+argument_list|(
+literal|"there should have been no suggestions ((.8 * 8)<7)"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|//correctly threw exception
+block|}
 name|assertJQ
 argument_list|(
 name|req
@@ -814,9 +848,13 @@ argument_list|,
 literal|".70"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/brwn/numFound==1"
+literal|"/spellcheck/suggestions/[0]=='brwn'"
+argument_list|,
+literal|"/spellcheck/suggestions/[1]/numFound==1"
 argument_list|)
 expr_stmt|;
+try|try
+block|{
 name|assertJQ
 argument_list|(
 name|req
@@ -870,10 +908,23 @@ argument_list|,
 literal|".64"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions=={}"
+literal|"/spellcheck/suggestions/[1]/numFound==1"
 argument_list|)
 expr_stmt|;
-comment|// there should have been no suggestions ((.64 * 10)<7)
+name|fail
+argument_list|(
+literal|"there should have been no suggestions ((.64 * 10)<7)"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|Exception
+name|e
+parameter_list|)
+block|{
+comment|//correctly threw exception
+block|}
 block|}
 annotation|@
 name|Test
@@ -922,7 +973,9 @@ argument_list|,
 literal|"false"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/bluo/numFound==5"
+literal|"/spellcheck/suggestions/[0]=='bluo'"
+argument_list|,
+literal|"/spellcheck/suggestions/[1]/numFound==5"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -956,7 +1009,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/bluo/suggestion==[{'word':'blud','freq':1}, {'word':'blue','freq':1}, {'word':'blee','freq':1}]"
+literal|"/spellcheck/suggestions/[1]/suggestion==[{'word':'blud','freq':1}, {'word':'blue','freq':1}, {'word':'blee','freq':1}]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -989,7 +1042,7 @@ argument_list|,
 literal|"documemt"
 argument_list|)
 argument_list|,
-literal|"/spellcheck=={'suggestions':{'documemt':{'numFound':1,'startOffset':0,'endOffset':8,'suggestion':['document']}}}"
+literal|"/spellcheck=={'suggestions':['documemt',{'numFound':1,'startOffset':0,'endOffset':8,'suggestion':['document']}]}"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1022,7 +1075,7 @@ argument_list|,
 literal|"12346"
 argument_list|)
 argument_list|,
-literal|"/spellcheck=={'suggestions':{'12346':{'numFound':1,'startOffset':0,'endOffset':5,'suggestion':['12345']}}}"
+literal|"/spellcheck=={'suggestions':['12346',{'numFound':1,'startOffset':0,'endOffset':5,'suggestion':['12345']}]}"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1258,17 +1311,7 @@ specifier|final
 name|String
 name|jsonNl
 init|=
-operator|(
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-condition|?
 literal|"map"
-else|:
-literal|"arrntv"
-operator|)
 decl_stmt|;
 specifier|final
 name|boolean
@@ -1318,52 +1361,6 @@ condition|(
 name|jsonNl
 condition|)
 block|{
-case|case
-literal|"arrntv"
-case|:
-name|testsList
-operator|.
-name|add
-argument_list|(
-literal|"/spellcheck/collations/collation/misspellingsAndCorrections/[0]/name=='documemtsss'"
-argument_list|)
-expr_stmt|;
-name|testsList
-operator|.
-name|add
-argument_list|(
-literal|"/spellcheck/collations/collation/misspellingsAndCorrections/[0]/type=='str'"
-argument_list|)
-expr_stmt|;
-name|testsList
-operator|.
-name|add
-argument_list|(
-literal|"/spellcheck/collations/collation/misspellingsAndCorrections/[0]/value=='document'"
-argument_list|)
-expr_stmt|;
-name|testsList
-operator|.
-name|add
-argument_list|(
-literal|"/spellcheck/collations/collation/misspellingsAndCorrections/[1]/name=='broens'"
-argument_list|)
-expr_stmt|;
-name|testsList
-operator|.
-name|add
-argument_list|(
-literal|"/spellcheck/collations/collation/misspellingsAndCorrections/[1]/type=='str'"
-argument_list|)
-expr_stmt|;
-name|testsList
-operator|.
-name|add
-argument_list|(
-literal|"/spellcheck/collations/collation/misspellingsAndCorrections/[1]/value=='brown'"
-argument_list|)
-expr_stmt|;
-break|break;
 case|case
 literal|"map"
 case|:
@@ -2133,7 +2130,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/documenq/suggestion==[{'word':'document','freq':2}]"
+literal|"/spellcheck/suggestions/[1]/suggestion==[{'word':'document','freq':2}]"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -2173,7 +2170,7 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"/spellcheck/suggestions/documenq/suggestion==[{'word':'document','freq':2}]"
+literal|"/spellcheck/suggestions/[1]/suggestion==[{'word':'document','freq':2}]"
 argument_list|)
 expr_stmt|;
 comment|//TODO:  how do we make this into a 1-liner using "assertQ()" ???
