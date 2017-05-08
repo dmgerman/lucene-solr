@@ -568,9 +568,18 @@ specifier|final
 name|int
 name|STATE_UPDATE_DELAY
 init|=
-literal|1500
+literal|2000
 decl_stmt|;
 comment|// delay between cloud state updates
+DECL|field|STATE_UPDATE_BATCH_SIZE
+specifier|public
+specifier|static
+specifier|final
+name|int
+name|STATE_UPDATE_BATCH_SIZE
+init|=
+literal|10000
+decl_stmt|;
 DECL|field|NUM_RESPONSES_TO_STORE
 specifier|public
 specifier|static
