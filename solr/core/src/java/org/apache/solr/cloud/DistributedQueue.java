@@ -317,7 +317,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * A distributed queue.  */
+comment|/**  * A distributed queue. Optimized for single-consumer,  * multiple-producer: if there are multiple consumers on the same ZK queue,  * the results should be correct but inefficient  */
 end_comment
 
 begin_class
@@ -1089,6 +1089,9 @@ name|firstChild
 parameter_list|(
 name|boolean
 name|remove
+parameter_list|,
+name|boolean
+name|refetchIfDirty
 parameter_list|)
 throws|throws
 name|KeeperException
@@ -1102,13 +1105,7 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
-if|if
-condition|(
-operator|!
-name|isDirty
-condition|)
-block|{
-comment|// If we're not in a dirty state...
+comment|// We always return from cache first, the cache will be cleared if the node is not exist
 if|if
 condition|(
 operator|!
@@ -1116,9 +1113,15 @@ name|knownChildren
 operator|.
 name|isEmpty
 argument_list|()
+operator|&&
+operator|!
+operator|(
+name|isDirty
+operator|&&
+name|refetchIfDirty
+operator|)
 condition|)
 block|{
-comment|// and we have in-memory children, return from in-memory.
 return|return
 name|remove
 condition|?
@@ -1133,13 +1136,20 @@ name|first
 argument_list|()
 return|;
 block|}
-else|else
+if|if
+condition|(
+operator|!
+name|isDirty
+operator|&&
+name|knownChildren
+operator|.
+name|isEmpty
+argument_list|()
+condition|)
 block|{
-comment|// otherwise there's nothing to return
 return|return
 literal|null
 return|;
-block|}
 block|}
 comment|// Dirty, try to fetch an updated list of children from ZK.
 comment|// Only set a new watcher if there isn't already a watcher.
@@ -1411,15 +1421,23 @@ argument_list|(
 name|waitMillis
 argument_list|)
 decl_stmt|;
+name|boolean
+name|first
+init|=
+literal|true
+decl_stmt|;
 while|while
 condition|(
 literal|true
 condition|)
 block|{
-comment|// Trigger a fetch if needed.
+comment|// Trigger a refresh, but only force it if this is not the first iteration.
 name|firstChild
 argument_list|(
 literal|false
+argument_list|,
+operator|!
+name|first
 argument_list|)
 expr_stmt|;
 name|updateLock
@@ -1475,6 +1493,18 @@ literal|0
 condition|)
 block|{
 break|break;
+block|}
+comment|// If this is our first time through, force a refresh before waiting.
+if|if
+condition|(
+name|first
+condition|)
+block|{
+name|first
+operator|=
+literal|false
+expr_stmt|;
+continue|continue;
 block|}
 name|waitNanos
 operator|=
@@ -1645,6 +1675,8 @@ init|=
 name|firstChild
 argument_list|(
 literal|false
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 if|if
@@ -1695,12 +1727,15 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+comment|// Efficient only for single-consumer
 name|knownChildren
 operator|.
-name|remove
-argument_list|(
-name|firstChild
-argument_list|)
+name|clear
+argument_list|()
+expr_stmt|;
+name|isDirty
+operator|=
+literal|true
 expr_stmt|;
 block|}
 finally|finally
@@ -1736,6 +1771,8 @@ init|=
 name|firstChild
 argument_list|(
 literal|true
+argument_list|,
+literal|false
 argument_list|)
 decl_stmt|;
 if|if
@@ -1789,6 +1826,16 @@ argument_list|,
 literal|true
 argument_list|)
 expr_stmt|;
+name|stats
+operator|.
+name|setQueueLength
+argument_list|(
+name|knownChildren
+operator|.
+name|size
+argument_list|()
+argument_list|)
+expr_stmt|;
 return|return
 name|result
 return|;
@@ -1809,12 +1856,15 @@ argument_list|()
 expr_stmt|;
 try|try
 block|{
+comment|// Efficient only for single-consumer
 name|knownChildren
 operator|.
-name|remove
-argument_list|(
-name|firstChild
-argument_list|)
+name|clear
+argument_list|()
+expr_stmt|;
+name|isDirty
+operator|=
+literal|true
 expr_stmt|;
 block|}
 finally|finally
