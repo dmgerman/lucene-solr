@@ -601,9 +601,9 @@ literal|"/c2"
 argument_list|)
 argument_list|)
 decl_stmt|;
-name|assertTrue
+name|assertFalse
 argument_list|(
-literal|"Different (new) collection create cannot be batched together with another create"
+literal|"Different (new) collection create can be batched together with another create"
 argument_list|,
 name|writer
 operator|.
@@ -675,7 +675,7 @@ name|c1
 argument_list|)
 argument_list|)
 expr_stmt|;
-comment|// simulate three state changes on two different collections with stateFormat=2, none should be batched
+comment|// simulate three state changes on two different collections with stateFormat=2, all should be batched
 name|assertFalse
 argument_list|(
 name|writer
@@ -697,7 +697,7 @@ name|c1
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertFalse
 argument_list|(
 name|writer
 operator|.
@@ -717,7 +717,7 @@ name|c2
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertTrue
+name|assertFalse
 argument_list|(
 name|writer
 operator|.
