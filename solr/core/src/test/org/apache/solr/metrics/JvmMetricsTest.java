@@ -769,6 +769,9 @@ name|s
 argument_list|,
 name|config
 operator|.
+name|getMetricsConfig
+argument_list|()
+operator|.
 name|getHiddenSysProps
 argument_list|()
 operator|.
@@ -839,6 +842,9 @@ argument_list|(
 name|s
 argument_list|,
 name|config2
+operator|.
+name|getMetricsConfig
+argument_list|()
 operator|.
 name|getHiddenSysProps
 argument_list|()

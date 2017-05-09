@@ -408,7 +408,10 @@ name|pluginInfos
 init|=
 name|nodeConfig
 operator|.
-name|getMetricReporterPlugins
+name|getMetricsConfig
+argument_list|()
+operator|.
+name|getMetricReporters
 argument_list|()
 decl_stmt|;
 name|metricManager

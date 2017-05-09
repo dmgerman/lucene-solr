@@ -1384,6 +1384,9 @@ operator|.
 name|getConfig
 argument_list|()
 operator|.
+name|getMetricsConfig
+argument_list|()
+operator|.
 name|getHiddenSysProps
 argument_list|()
 decl_stmt|;

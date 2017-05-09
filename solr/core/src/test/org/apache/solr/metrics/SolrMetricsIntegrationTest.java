@@ -712,7 +712,10 @@ name|plugins
 init|=
 name|cfg
 operator|.
-name|getMetricReporterPlugins
+name|getMetricsConfig
+argument_list|()
+operator|.
+name|getMetricReporters
 argument_list|()
 decl_stmt|;
 name|assertNotNull
