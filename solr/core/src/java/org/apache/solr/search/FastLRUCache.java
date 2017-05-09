@@ -1708,6 +1708,7 @@ return|return
 name|name
 argument_list|()
 operator|+
+operator|(
 name|cacheMap
 operator|!=
 literal|null
@@ -1721,6 +1722,7 @@ name|toString
 argument_list|()
 else|:
 literal|""
+operator|)
 return|;
 block|}
 block|}
