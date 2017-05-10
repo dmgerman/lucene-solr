@@ -63,6 +63,26 @@ name|COUNT_PROP
 init|=
 literal|"count"
 decl_stmt|;
+comment|/**    * A parameter to specify list of Solr nodes to be used (e.g. for collection creation or restore operation).    */
+DECL|field|CREATE_NODE_SET_PARAM
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CREATE_NODE_SET_PARAM
+init|=
+literal|"createNodeSet"
+decl_stmt|;
+comment|/**    * A parameter which specifies if the provided list of Solr nodes (via {@linkplain #CREATE_NODE_SET_PARAM})    * should be shuffled before being used.    */
+DECL|field|CREATE_NODE_SET_SHUFFLE_PARAM
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|CREATE_NODE_SET_SHUFFLE_PARAM
+init|=
+literal|"createNodeSet.shuffle"
+decl_stmt|;
 comment|/**    * A parameter to specify the name of the index backup strategy to be used.    */
 DECL|field|INDEX_BACKUP_STRATEGY
 specifier|public
