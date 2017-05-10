@@ -44,6 +44,8 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|CommandOperation
@@ -62,7 +64,6 @@ name|ConfigEditablePlugin
 block|{
 comment|/** Operate the commands on the latest conf and return a new conf object    * If there are errors in the commands , throw a SolrException. return a null    * if no changes are to be made as a result of this edit. It is the responsibility    * of the implementation to ensure that the returned config is valid . The framework    * does no validation of the data    */
 DECL|method|edit
-specifier|public
 name|Map
 argument_list|<
 name|String

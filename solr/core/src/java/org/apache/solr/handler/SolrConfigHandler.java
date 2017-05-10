@@ -754,6 +754,8 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|CommandOperation
@@ -3031,6 +3033,9 @@ name|getContentStreams
 argument_list|()
 argument_list|,
 name|resp
+operator|.
+name|getValues
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if

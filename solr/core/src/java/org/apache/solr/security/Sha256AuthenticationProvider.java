@@ -172,7 +172,7 @@ name|common
 operator|.
 name|util
 operator|.
-name|ValidatingJsonMap
+name|CommandOperation
 import|;
 end_import
 
@@ -184,9 +184,11 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
 name|util
 operator|.
-name|CommandOperation
+name|ValidatingJsonMap
 import|;
 end_import
 
