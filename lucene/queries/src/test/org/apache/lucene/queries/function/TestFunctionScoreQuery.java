@@ -427,6 +427,8 @@ name|scoringFunction
 argument_list|(
 name|iii
 argument_list|,
+literal|"v * s"
+argument_list|,
 parameter_list|(
 name|v
 parameter_list|,
@@ -627,6 +629,8 @@ argument_list|(
 name|DoubleValuesSource
 operator|.
 name|SCORES
+argument_list|,
+literal|"ln(v + 4)"
 argument_list|,
 name|v
 lambda|->

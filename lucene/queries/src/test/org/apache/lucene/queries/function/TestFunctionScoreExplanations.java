@@ -474,6 +474,8 @@ name|DoubleValuesSource
 operator|.
 name|SCORES
 argument_list|,
+literal|"v * 2"
+argument_list|,
 name|v
 lambda|->
 name|v

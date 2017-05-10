@@ -882,7 +882,7 @@ name|expl
 operator|.
 name|contains
 argument_list|(
-literal|"= variable \"popularity\""
+literal|"= double(popularity)"
 argument_list|)
 argument_list|)
 expr_stmt|;
