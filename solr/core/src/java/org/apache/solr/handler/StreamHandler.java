@@ -1532,6 +1532,15 @@ name|NormalizeEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"rev"
+argument_list|,
+name|ReverseEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName

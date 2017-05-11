@@ -1384,6 +1384,21 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
+name|replicaFailures
+condition|)
+block|{
+comment|// In this case one of the Solr servers would be down. Hence we need to increase
+comment|// max_shards_per_node property for restore command to succeed.
+name|restore
+operator|.
+name|setMaxShardsPerNode
+argument_list|(
+literal|2
+argument_list|)
+expr_stmt|;
+block|}
+if|if
+condition|(
 name|random
 argument_list|()
 operator|.
