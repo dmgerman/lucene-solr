@@ -6286,6 +6286,8 @@ operator|.
 name|shuffle
 argument_list|(
 name|liveNodesList
+argument_list|,
+name|rand
 argument_list|)
 expr_stmt|;
 name|theUrlList
