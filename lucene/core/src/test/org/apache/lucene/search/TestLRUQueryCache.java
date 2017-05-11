@@ -4785,6 +4785,13 @@ argument_list|,
 name|ramBytesUsed
 argument_list|)
 block|;
+name|assertNotNull
+argument_list|(
+literal|"cached query is null"
+argument_list|,
+name|query
+argument_list|)
+block|;
 name|ramBytesUsage
 operator|.
 name|addAndGet
@@ -4812,6 +4819,13 @@ argument_list|(
 name|query
 argument_list|,
 name|ramBytesUsed
+argument_list|)
+block|;
+name|assertNotNull
+argument_list|(
+literal|"evicted query is null"
+argument_list|,
+name|query
 argument_list|)
 block|;
 name|ramBytesUsage
