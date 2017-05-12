@@ -474,7 +474,7 @@ literal|" 1 as id, "
 operator|+
 literal|" 'SELECT' as SELECT_KEYWORD, "
 operator|+
-literal|" CURRENT_TIMESTAMP as FIRST_TS "
+literal|" {ts '2017-02-18 12:34:56'} as FIRST_TS "
 operator|+
 literal|"from DUAL \">\n"
 argument_list|)
@@ -503,7 +503,7 @@ literal|"${dataimporter.functions.encodeUrl(FIRST.SELECT_KEYWORD)} "
 operator|+
 literal|" 1 as SORT, "
 operator|+
-literal|" CURRENT_TIMESTAMP as SECOND_TS, "
+literal|" {ts '2017-02-18 12:34:56'} as SECOND_TS, "
 operator|+
 literal|" '${dataimporter.functions.formatDate(FIRST.FIRST_TS, 'yyyy'"
 operator|+
@@ -529,7 +529,7 @@ literal|"${dataimporter.functions.encodeUrl(FIRST.SELECT_KEYWORD)} "
 operator|+
 literal|" 2 as SORT, "
 operator|+
-literal|" CURRENT_TIMESTAMP as SECOND_TS, "
+literal|" {ts '2017-02-18 12:34:56'} as SECOND_TS, "
 operator|+
 literal|" '${dataimporter.functions.formatDate(FIRST.FIRST_TS, 'yyyy'"
 operator|+
@@ -642,7 +642,7 @@ argument_list|()
 decl_stmt|;
 name|log
 operator|.
-name|debug
+name|info
 argument_list|(
 name|config
 argument_list|)
