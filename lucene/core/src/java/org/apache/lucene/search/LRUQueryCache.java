@@ -1156,7 +1156,7 @@ condition|)
 block|{
 name|onQueryCache
 argument_list|(
-name|singleton
+name|query
 argument_list|,
 name|LINKED_HASHTABLE_RAM_BYTES_PER_ENTRY
 operator|+
