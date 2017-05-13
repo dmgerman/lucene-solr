@@ -1550,6 +1550,15 @@ name|LengthEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"rank"
+argument_list|,
+name|RankEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
