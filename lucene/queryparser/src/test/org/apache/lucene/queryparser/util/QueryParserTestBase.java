@@ -294,6 +294,22 @@ name|lucene
 operator|.
 name|queryparser
 operator|.
+name|classic
+operator|.
+name|TestQueryParser
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
 name|flexible
 operator|.
 name|standard
@@ -3531,6 +3547,386 @@ argument_list|,
 literal|null
 argument_list|,
 literal|"[\\* TO *]"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testRangeQueryEndpointTO
+specifier|public
+name|void
+name|testRangeQueryEndpointTO
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Analyzer
+name|a
+init|=
+operator|new
+name|MockAnalyzer
+argument_list|(
+name|random
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[to TO to]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[to TO to]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[to TO TO]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[to TO to]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[TO TO to]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[to TO to]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[TO TO TO]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[to TO to]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[\"TO\" TO \"TO\"]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[to TO to]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[\"TO\" TO TO]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[to TO to]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[TO TO \"TO\"]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[to TO to]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[to TO xx]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[to TO xx]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[\"TO\" TO xx]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[to TO xx]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[TO TO xx]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[to TO xx]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[xx TO to]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[xx TO to]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[xx TO \"TO\"]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[xx TO to]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[xx TO TO]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[xx TO to]"
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|testRangeQueryRequiresTO
+specifier|public
+name|void
+name|testRangeQueryRequiresTO
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|Analyzer
+name|a
+init|=
+operator|new
+name|MockAnalyzer
+argument_list|(
+name|random
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"{A TO B}"
+argument_list|,
+name|a
+argument_list|,
+literal|"{a TO b}"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[A TO B}"
+argument_list|,
+name|a
+argument_list|,
+literal|"[a TO b}"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"{A TO B]"
+argument_list|,
+name|a
+argument_list|,
+literal|"{a TO b]"
+argument_list|)
+expr_stmt|;
+name|assertQueryEquals
+argument_list|(
+literal|"[A TO B]"
+argument_list|,
+name|a
+argument_list|,
+literal|"[a TO b]"
+argument_list|)
+expr_stmt|;
+comment|// " TO " is required between range endpoints
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|Throwable
+argument_list|>
+name|exceptionClass
+init|=
+name|this
+operator|instanceof
+name|TestQueryParser
+condition|?
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|classic
+operator|.
+name|ParseException
+operator|.
+name|class
+else|:
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|queryparser
+operator|.
+name|flexible
+operator|.
+name|standard
+operator|.
+name|parser
+operator|.
+name|ParseException
+operator|.
+name|class
+decl_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"{A B}"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"[A B}"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"{A B]"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"[A B]"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"{TO B}"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"[TO B}"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"{TO B]"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"[TO B]"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"{A TO}"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"[A TO}"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"{A TO]"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|expectThrows
+argument_list|(
+name|exceptionClass
+argument_list|,
+parameter_list|()
+lambda|->
+name|getQuery
+argument_list|(
+literal|"[A TO]"
+argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
