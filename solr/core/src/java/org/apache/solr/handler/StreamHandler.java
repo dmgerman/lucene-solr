@@ -1577,6 +1577,15 @@ name|DistanceEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"copyOf"
+argument_list|,
+name|CopyOfEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
