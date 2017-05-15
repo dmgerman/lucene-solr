@@ -459,6 +459,22 @@ literal|"ft-does-not-exist"
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testDefaultOperatorBanned
+specifier|public
+name|void
+name|testDefaultOperatorBanned
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-default-operator.xml"
+argument_list|,
+literal|"default operator in schema (solrQueryParser/@defaultOperator) not supported"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

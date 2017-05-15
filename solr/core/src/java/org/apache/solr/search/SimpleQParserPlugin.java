@@ -831,13 +831,8 @@ name|defaultOp
 init|=
 name|QueryParsing
 operator|.
-name|getQueryParserDefaultOperator
+name|parseOP
 argument_list|(
-name|req
-operator|.
-name|getSchema
-argument_list|()
-argument_list|,
 name|defaultParams
 operator|.
 name|get

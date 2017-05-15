@@ -243,7 +243,7 @@ name|IMPOSSIBLE_FIELD_NAME
 init|=
 literal|"\uFFFC\uFFFC\uFFFC"
 decl_stmt|;
-comment|/**    * Applies the appropriate default rules for the "mm" param based on the     * effective value of the "q.op" param    *    * @see QueryParsing#getQueryParserDefaultOperator    * @see QueryParsing#OP    * @see DisMaxParams#MM    */
+comment|/**    * Applies the appropriate default rules for the "mm" param based on the     * effective value of the "q.op" param    *    * @see QueryParsing#OP    * @see DisMaxParams#MM    */
 DECL|method|parseMinShouldMatch
 specifier|public
 specifier|static
@@ -274,10 +274,8 @@ name|op
 init|=
 name|QueryParsing
 operator|.
-name|getQueryParserDefaultOperator
+name|parseOP
 argument_list|(
-name|schema
-argument_list|,
 name|params
 operator|.
 name|get
