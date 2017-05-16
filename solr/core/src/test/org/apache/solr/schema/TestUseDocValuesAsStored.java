@@ -796,8 +796,11 @@ block|{
 name|clearIndex
 argument_list|()
 expr_stmt|;
+name|assertU
+argument_list|(
 name|commit
 argument_list|()
+argument_list|)
 expr_stmt|;
 name|deleteCore
 argument_list|()
