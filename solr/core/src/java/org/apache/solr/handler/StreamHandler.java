@@ -1586,6 +1586,24 @@ name|CopyOfEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"percentile"
+argument_list|,
+name|PercentileEvaluator
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"empiricalDistribution"
+argument_list|,
+name|EmpiricalDistributionEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
