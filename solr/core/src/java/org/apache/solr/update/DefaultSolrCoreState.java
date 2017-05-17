@@ -1401,11 +1401,11 @@ name|CoreDescriptor
 name|cd
 parameter_list|)
 block|{
-name|Thread
-name|thread
+name|Runnable
+name|recoveryTask
 init|=
 operator|new
-name|Thread
+name|Runnable
 argument_list|()
 block|{
 annotation|@
@@ -1701,7 +1701,7 @@ argument_list|()
 operator|.
 name|submit
 argument_list|(
-name|thread
+name|recoveryTask
 argument_list|)
 expr_stmt|;
 block|}
