@@ -1481,6 +1481,15 @@ argument_list|)
 operator|.
 name|withFunctionName
 argument_list|(
+literal|"sql"
+argument_list|,
+name|SqlStream
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
 literal|"col"
 argument_list|,
 name|ColumnEvaluator
