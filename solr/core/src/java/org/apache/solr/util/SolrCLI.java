@@ -14756,6 +14756,23 @@ name|OptionBuilder
 operator|.
 name|withArgName
 argument_list|(
+literal|"FORCE"
+argument_list|)
+operator|.
+name|withDescription
+argument_list|(
+literal|"Force option in case Solr is run as root"
+argument_list|)
+operator|.
+name|create
+argument_list|(
+literal|"force"
+argument_list|)
+block|,
+name|OptionBuilder
+operator|.
+name|withArgName
+argument_list|(
 literal|"DIR"
 argument_list|)
 operator|.
@@ -17090,6 +17107,20 @@ else|:
 literal|""
 decl_stmt|;
 name|String
+name|forceArg
+init|=
+name|cli
+operator|.
+name|hasOption
+argument_list|(
+literal|"force"
+argument_list|)
+condition|?
+literal|" -force"
+else|:
+literal|""
+decl_stmt|;
+name|String
 name|addlOpts
 init|=
 name|cli
@@ -17247,7 +17278,7 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"%s start %s -p %d -s \"%s\" %s %s %s %s %s"
+literal|"%s start %s -p %d -s \"%s\" %s %s %s %s %s %s"
 argument_list|,
 name|callScript
 argument_list|,
@@ -17262,6 +17293,8 @@ argument_list|,
 name|zkHostArg
 argument_list|,
 name|memArg
+argument_list|,
+name|forceArg
 argument_list|,
 name|extraArgs
 argument_list|,
