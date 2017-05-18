@@ -306,7 +306,7 @@ name|Utils
 operator|.
 name|fromJSONString
 argument_list|(
-literal|"{name : x, collections: c1 }"
+literal|"{name : x, collections: [c1] }"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -404,7 +404,7 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
-literal|"Expected type"
+literal|"expected"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -419,43 +419,6 @@ operator|.
 name|fromJSONString
 argument_list|(
 literal|"{x:y, collections: [ c1 , c2]}"
-argument_list|)
-argument_list|)
-expr_stmt|;
-name|assertEquals
-argument_list|(
-name|toJSONString
-argument_list|(
-name|errs
-argument_list|)
-argument_list|,
-literal|2
-argument_list|,
-name|errs
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
-name|assertTrue
-argument_list|(
-name|toJSONString
-argument_list|(
-name|errs
-argument_list|)
-argument_list|,
-name|StrUtils
-operator|.
-name|join
-argument_list|(
-name|errs
-argument_list|,
-literal|'|'
-argument_list|)
-operator|.
-name|contains
-argument_list|(
-literal|"Missing field"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -524,7 +487,7 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
-literal|"Expected elements of type"
+literal|"expected"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -579,7 +542,7 @@ literal|"{name:x, age:'21', adult:'true'}"
 argument_list|)
 argument_list|)
 expr_stmt|;
-name|assertNull
+name|assertNotNull
 argument_list|(
 name|errs
 argument_list|)
@@ -822,7 +785,7 @@ argument_list|)
 operator|.
 name|contains
 argument_list|(
-literal|"value of enum"
+literal|"Value of enum"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -917,6 +880,66 @@ literal|"  ]\n"
 operator|+
 literal|"}"
 argument_list|)
+argument_list|)
+expr_stmt|;
+name|schema
+operator|=
+literal|"{\n"
+operator|+
+literal|"'type' : 'object',\n"
+operator|+
+literal|"'oneOf' : ['a', 'b']\n"
+operator|+
+literal|"}"
+expr_stmt|;
+name|validator
+operator|=
+operator|new
+name|JsonSchemaValidator
+argument_list|(
+name|schema
+argument_list|)
+expr_stmt|;
+name|errs
+operator|=
+name|validator
+operator|.
+name|validateJson
+argument_list|(
+name|Utils
+operator|.
+name|fromJSONString
+argument_list|(
+literal|""
+operator|+
+literal|"{'c':'val'}"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNotNull
+argument_list|(
+name|errs
+argument_list|)
+expr_stmt|;
+name|errs
+operator|=
+name|validator
+operator|.
+name|validateJson
+argument_list|(
+name|Utils
+operator|.
+name|fromJSONString
+argument_list|(
+literal|""
+operator|+
+literal|"{'a':'val'}"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|assertNull
+argument_list|(
+name|errs
 argument_list|)
 expr_stmt|;
 block|}
