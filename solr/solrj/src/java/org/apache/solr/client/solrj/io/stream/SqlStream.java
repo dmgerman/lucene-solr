@@ -110,6 +110,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Random
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|stream
 operator|.
 name|Collectors
@@ -1547,6 +1557,10 @@ operator|.
 name|shuffle
 argument_list|(
 name|shardUrls
+argument_list|,
+operator|new
+name|Random
+argument_list|()
 argument_list|)
 expr_stmt|;
 name|String
