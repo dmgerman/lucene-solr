@@ -3408,9 +3408,9 @@ operator|new
 name|float
 index|[]
 block|{
-literal|0f
+literal|1f
 block|,
-literal|0f
+literal|1f
 block|}
 argument_list|)
 expr_stmt|;

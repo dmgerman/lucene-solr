@@ -353,9 +353,9 @@ literal|"//*[@numFound='3']"
 argument_list|,
 literal|"//result/doc[1]/int[@name='id'][.='42']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.='8675309']"
+literal|"//result/doc[2]/int[@name='id'][.='666']"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.='666']"
+literal|"//result/doc[3]/int[@name='id'][.='8675309']"
 argument_list|)
 expr_stmt|;
 name|assertQ

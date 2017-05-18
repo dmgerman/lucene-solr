@@ -4021,6 +4021,12 @@ init|=
 operator|new
 name|FieldInvertState
 argument_list|(
+name|Version
+operator|.
+name|LATEST
+operator|.
+name|major
+argument_list|,
 name|fieldInfo
 operator|.
 name|name

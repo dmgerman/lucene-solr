@@ -92,11 +92,11 @@ name|PerFieldSimilarityWrapper
 block|{
 DECL|field|defaultSim
 specifier|final
-name|ClassicSimilarity
+name|BM25Similarity
 name|defaultSim
 init|=
 operator|new
-name|ClassicSimilarity
+name|BM25Similarity
 argument_list|()
 decl_stmt|;
 DECL|field|knownSims

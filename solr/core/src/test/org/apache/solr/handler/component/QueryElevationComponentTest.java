@@ -713,9 +713,9 @@ literal|"//*[@numFound='3']"
 argument_list|,
 literal|"//result/doc[1]/float[@name='id'][.='7.0']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='8.0']"
+literal|"//result/doc[2]/float[@name='id'][.='9.0']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='9.0']"
+literal|"//result/doc[3]/float[@name='id'][.='8.0']"
 argument_list|,
 literal|"//result/doc[1]/bool[@name='[elevated]'][.='true']"
 argument_list|,

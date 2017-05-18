@@ -252,6 +252,16 @@ name|random
 argument_list|()
 argument_list|,
 name|dir
+argument_list|,
+name|newIndexWriterConfig
+argument_list|()
+operator|.
+name|setSimilarity
+argument_list|(
+operator|new
+name|ClassicSimilarity
+argument_list|()
+argument_list|)
 argument_list|)
 decl_stmt|;
 name|Document

@@ -174,20 +174,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|FieldInvertState
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|IndexReader
 import|;
 end_import
@@ -406,8 +392,8 @@ specifier|public
 name|float
 name|lengthNorm
 parameter_list|(
-name|FieldInvertState
-name|state
+name|int
+name|length
 parameter_list|)
 block|{
 comment|// Disable length norm

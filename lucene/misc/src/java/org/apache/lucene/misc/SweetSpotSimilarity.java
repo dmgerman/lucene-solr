@@ -32,20 +32,6 @@ name|ClassicSimilarity
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|FieldInvertState
-import|;
-end_import
-
 begin_comment
 comment|/**  *<p>  * A similarity with a lengthNorm that provides for a "plateau" of  * equally good lengths, and tf helper functions.  *</p>  *<p>  * For lengthNorm, A min/max can be specified to define the  * plateau of lengths that should all have a norm of 1.0.  * Below the min, and above the max the lengthNorm drops off in a  * sqrt function.  *</p>  *<p>  * For tf, baselineTf and hyperbolicTf functions are provided, which  * subclasses can choose between.  *</p>  *  * @see<a href="doc-files/ss.gnuplot">A Gnuplot file used to generate some of the visualizations refrenced from each function.</a>   */
 end_comment
@@ -188,7 +174,7 @@ operator|=
 name|xoffset
 expr_stmt|;
 block|}
-comment|/**    * Sets the default function variables used by lengthNorm when no field    * specific variables have been set.    *    * @see #computeLengthNorm    */
+comment|/**    * Sets the default function variables used by lengthNorm when no field    * specific variables have been set.    *    * @see #lengthNorm    */
 DECL|method|setLengthNormFactors
 specifier|public
 name|void
@@ -232,58 +218,13 @@ operator|=
 name|discountOverlaps
 expr_stmt|;
 block|}
-comment|/**    * Implemented as<code> state.getBoost() *    * computeLengthNorm(numTokens)</code> where    * numTokens does not count overlap tokens if    * discountOverlaps is true by default or true for this    * specific field.     */
+comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimization is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    * @see<a href="doc-files/ss.computeLengthNorm.svg">An SVG visualization of this function</a>     */
 annotation|@
 name|Override
 DECL|method|lengthNorm
 specifier|public
 name|float
 name|lengthNorm
-parameter_list|(
-name|FieldInvertState
-name|state
-parameter_list|)
-block|{
-specifier|final
-name|int
-name|numTokens
-decl_stmt|;
-if|if
-condition|(
-name|discountOverlaps
-condition|)
-name|numTokens
-operator|=
-name|state
-operator|.
-name|getLength
-argument_list|()
-operator|-
-name|state
-operator|.
-name|getNumOverlap
-argument_list|()
-expr_stmt|;
-else|else
-name|numTokens
-operator|=
-name|state
-operator|.
-name|getLength
-argument_list|()
-expr_stmt|;
-return|return
-name|computeLengthNorm
-argument_list|(
-name|numTokens
-argument_list|)
-return|;
-block|}
-comment|/**    * Implemented as:    *<code>    * 1/sqrt( steepness * (abs(x-min) + abs(x-max) - (max-min)) + 1 )    *</code>.    *    *<p>    * This degrades to<code>1/sqrt(x)</code> when min and max are both 1 and    * steepness is 0.5    *</p>    *    *<p>    * :TODO: potential optimization is to just flat out return 1.0f if numTerms    * is between min and max.    *</p>    *    * @see #setLengthNormFactors    * @see<a href="doc-files/ss.computeLengthNorm.svg">An SVG visualization of this function</a>     */
-DECL|method|computeLengthNorm
-specifier|public
-name|float
-name|computeLengthNorm
 parameter_list|(
 name|int
 name|numTerms

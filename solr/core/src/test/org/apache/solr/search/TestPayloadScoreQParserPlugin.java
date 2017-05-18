@@ -291,7 +291,7 @@ argument_list|,
 literal|"{!payload_score f=vals_dpf v=A func=min includeSpanScore=true}"
 argument_list|)
 argument_list|,
-literal|"//float[@name='score']='0.25811607'"
+literal|"//float[@name='score']='0.2876821'"
 argument_list|)
 expr_stmt|;
 block|}

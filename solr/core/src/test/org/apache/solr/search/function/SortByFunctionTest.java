@@ -314,11 +314,11 @@ literal|"//*[@numFound='4']"
 argument_list|,
 literal|"//result/doc[1]/int[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.='4']"
+literal|"//result/doc[2]/int[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.='2']"
+literal|"//result/doc[3]/int[@name='id'][.='3']"
 argument_list|,
-literal|"//result/doc[4]/int[@name='id'][.='3']"
+literal|"//result/doc[4]/int[@name='id'][.='4']"
 argument_list|)
 expr_stmt|;
 name|assertQ

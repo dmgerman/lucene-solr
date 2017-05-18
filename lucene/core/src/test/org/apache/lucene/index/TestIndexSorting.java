@@ -19106,7 +19106,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|124
+literal|1
 argument_list|,
 name|normsValues
 operator|.

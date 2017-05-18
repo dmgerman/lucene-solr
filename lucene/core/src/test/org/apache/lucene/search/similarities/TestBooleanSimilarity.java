@@ -254,6 +254,20 @@ name|TestUtil
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
 begin_class
 DECL|class|TestBooleanSimilarity
 specifier|public
@@ -869,7 +883,7 @@ argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-literal|50
+name|length
 argument_list|)
 decl_stmt|;
 name|FieldInvertState
@@ -878,6 +892,12 @@ init|=
 operator|new
 name|FieldInvertState
 argument_list|(
+name|Version
+operator|.
+name|LATEST
+operator|.
+name|major
+argument_list|,
 literal|"foo"
 argument_list|,
 name|position

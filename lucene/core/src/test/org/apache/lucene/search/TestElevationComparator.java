@@ -228,6 +228,22 @@ name|search
 operator|.
 name|similarities
 operator|.
+name|BM25Similarity
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|search
+operator|.
+name|similarities
+operator|.
 name|ClassicSimilarity
 import|;
 end_import
@@ -530,7 +546,7 @@ operator|.
 name|setSimilarity
 argument_list|(
 operator|new
-name|ClassicSimilarity
+name|BM25Similarity
 argument_list|()
 argument_list|)
 expr_stmt|;
@@ -771,7 +787,7 @@ condition|)
 block|{
 name|assertEquals
 argument_list|(
-literal|2
+literal|1
 argument_list|,
 name|topDocs
 operator|.
@@ -785,7 +801,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|topDocs
 operator|.
@@ -802,7 +818,7 @@ else|else
 block|{
 name|assertEquals
 argument_list|(
-literal|1
+literal|2
 argument_list|,
 name|topDocs
 operator|.
@@ -816,7 +832,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2
+literal|1
 argument_list|,
 name|topDocs
 operator|.

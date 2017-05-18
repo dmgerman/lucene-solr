@@ -3515,6 +3515,11 @@ operator|=
 operator|new
 name|PerField
 argument_list|(
+name|docWriter
+operator|.
+name|getIndexCreatedVersionMajor
+argument_list|()
+argument_list|,
 name|fi
 argument_list|,
 name|invert
@@ -3655,6 +3660,11 @@ argument_list|<
 name|PerField
 argument_list|>
 block|{
+DECL|field|indexCreatedVersionMajor
+specifier|final
+name|int
+name|indexCreatedVersionMajor
+decl_stmt|;
 DECL|field|fieldInfo
 specifier|final
 name|FieldInfo
@@ -3711,6 +3721,9 @@ DECL|method|PerField
 specifier|public
 name|PerField
 parameter_list|(
+name|int
+name|indexCreatedVersionMajor
+parameter_list|,
 name|FieldInfo
 name|fieldInfo
 parameter_list|,
@@ -3718,6 +3731,12 @@ name|boolean
 name|invert
 parameter_list|)
 block|{
+name|this
+operator|.
+name|indexCreatedVersionMajor
+operator|=
+name|indexCreatedVersionMajor
+expr_stmt|;
 name|this
 operator|.
 name|fieldInfo
@@ -3750,6 +3769,8 @@ operator|=
 operator|new
 name|FieldInvertState
 argument_list|(
+name|indexCreatedVersionMajor
+argument_list|,
 name|fieldInfo
 operator|.
 name|name
