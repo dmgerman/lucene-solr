@@ -675,6 +675,9 @@ comment|// iterate over existing documents
 for|for
 control|(
 name|GroupDocs
+argument_list|<
+name|Object
+argument_list|>
 name|group
 range|:
 name|topGroups
