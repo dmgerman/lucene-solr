@@ -1397,7 +1397,7 @@ name|score
 operator|=
 name|Math
 operator|.
-name|min
+name|max
 argument_list|(
 name|score
 argument_list|,
