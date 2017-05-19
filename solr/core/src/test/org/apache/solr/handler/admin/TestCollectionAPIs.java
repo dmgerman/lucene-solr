@@ -120,6 +120,20 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|api
+operator|.
+name|ApiException
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -718,7 +732,7 @@ literal|"/collections/collName"
 argument_list|,
 name|POST
 argument_list|,
-literal|"{modify : {rule : 'replica:*,cores:<5', autoAddReplicas : false} }"
+literal|"{modify : {rule : ['replica:*, cores:<5'], autoAddReplicas : false} }"
 argument_list|,
 literal|null
 argument_list|,
@@ -1142,9 +1156,7 @@ expr_stmt|;
 block|}
 catch|catch
 parameter_list|(
-name|ApiBag
-operator|.
-name|ExceptionWithErrObject
+name|ApiException
 name|e
 parameter_list|)
 block|{
