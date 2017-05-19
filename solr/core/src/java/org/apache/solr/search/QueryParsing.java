@@ -441,7 +441,9 @@ name|df
 argument_list|)
 return|;
 block|}
-comment|/**    * Returns the effective default field based on the 'df' param or    * hardcoded schema default.  May be null if either exists specified.    * @see org.apache.solr.common.params.CommonParams#DF    * @see org.apache.solr.schema.IndexSchema#getDefaultSearchFieldName    */
+comment|/**    * Returns the effective default field based on the 'df' param.    * TODO: This is kept for 3rd party QParser compat in 7.x. Remove this method in Solr 8.0    * @param ignored Not in use    * @param df the default field, which will be returned as-is    * @see org.apache.solr.common.params.CommonParams#DF    * @deprecated IndexScema does not contain defaultField anymore, you must rely on df alone    */
+annotation|@
+name|Deprecated
 DECL|method|getDefaultField
 specifier|public
 specifier|static
@@ -450,7 +452,7 @@ name|getDefaultField
 parameter_list|(
 specifier|final
 name|IndexSchema
-name|s
+name|ignored
 parameter_list|,
 specifier|final
 name|String
@@ -459,15 +461,6 @@ parameter_list|)
 block|{
 return|return
 name|df
-operator|!=
-literal|null
-condition|?
-name|df
-else|:
-name|s
-operator|.
-name|getDefaultSearchFieldName
-argument_list|()
 return|;
 block|}
 comment|/**    * @param txt Text to parse    * @param start Index into text for start of parsing    * @param target Object to inject with parsed settings    * @param params Additional existing parameters    */

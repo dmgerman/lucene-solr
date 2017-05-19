@@ -475,6 +475,22 @@ literal|"default operator in schema (solrQueryParser/@defaultOperator) not suppo
 argument_list|)
 expr_stmt|;
 block|}
+DECL|method|testSchemaWithDefaultSearchField
+specifier|public
+name|void
+name|testSchemaWithDefaultSearchField
+parameter_list|()
+throws|throws
+name|Exception
+block|{
+name|doTest
+argument_list|(
+literal|"bad-schema-defaultsearchfield.xml"
+argument_list|,
+literal|"Setting defaultSearchField in schema not supported since Solr 7"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 end_class
 

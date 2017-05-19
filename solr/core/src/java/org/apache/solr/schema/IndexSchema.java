@@ -893,15 +893,6 @@ name|DEFAULT_SCHEMA_FILE
 init|=
 literal|"schema.xml"
 decl_stmt|;
-DECL|field|DEFAULT_SEARCH_FIELD
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|DEFAULT_SEARCH_FIELD
-init|=
-literal|"defaultSearchField"
-decl_stmt|;
 DECL|field|DESTINATION
 specifier|public
 specifier|static
@@ -1299,13 +1290,6 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-DECL|field|defaultSearchFieldName
-specifier|protected
-name|String
-name|defaultSearchFieldName
-init|=
-literal|null
-decl_stmt|;
 DECL|field|copyFieldsMap
 specifier|protected
 name|Map
@@ -1672,17 +1656,6 @@ parameter_list|()
 block|{
 return|return
 name|queryAnalyzer
-return|;
-block|}
-comment|/**    * Name of the default search field specified in the schema file.    *<br><b>Note:</b>Avoid calling this, try to use this method so that the 'df' param is consulted as an override:    * {@link org.apache.solr.search.QueryParsing#getDefaultField(IndexSchema, String)}    */
-DECL|method|getDefaultSearchFieldName
-specifier|public
-name|String
-name|getDefaultSearchFieldName
-parameter_list|()
-block|{
-return|return
-name|defaultSearchFieldName
 return|;
 block|}
 DECL|field|uniqueKeyField
@@ -2809,7 +2782,7 @@ name|stepsToPath
 argument_list|(
 name|SCHEMA
 argument_list|,
-name|DEFAULT_SEARCH_FIELD
+literal|"defaultSearchField"
 argument_list|,
 name|TEXT_FUNCTION
 argument_list|)
@@ -2835,73 +2808,10 @@ expr_stmt|;
 if|if
 condition|(
 name|node
-operator|==
-literal|null
-condition|)
-block|{
-name|log
-operator|.
-name|debug
-argument_list|(
-literal|"no default search field specified in schema."
-argument_list|)
-expr_stmt|;
-block|}
-else|else
-block|{
-name|defaultSearchFieldName
-operator|=
-name|node
-operator|.
-name|getNodeValue
-argument_list|()
-operator|.
-name|trim
-argument_list|()
-expr_stmt|;
-comment|// throw exception if specified, but not found or not indexed
-if|if
-condition|(
-name|defaultSearchFieldName
 operator|!=
 literal|null
 condition|)
 block|{
-name|SchemaField
-name|defaultSearchField
-init|=
-name|getFields
-argument_list|()
-operator|.
-name|get
-argument_list|(
-name|defaultSearchFieldName
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-operator|(
-name|defaultSearchField
-operator|==
-literal|null
-operator|)
-operator|||
-operator|!
-name|defaultSearchField
-operator|.
-name|indexed
-argument_list|()
-condition|)
-block|{
-name|String
-name|msg
-init|=
-literal|"default search field '"
-operator|+
-name|defaultSearchFieldName
-operator|+
-literal|"' not defined or not indexed"
-decl_stmt|;
 throw|throw
 operator|new
 name|SolrException
@@ -2910,22 +2820,9 @@ name|ErrorCode
 operator|.
 name|SERVER_ERROR
 argument_list|,
-name|msg
+literal|"Setting defaultSearchField in schema not supported since Solr 7"
 argument_list|)
 throw|;
-block|}
-block|}
-name|log
-operator|.
-name|warn
-argument_list|(
-literal|"[{}] default search field in schema is {}. WARNING: Deprecated, please use 'df' on request instead."
-argument_list|,
-name|coreName
-argument_list|,
-name|defaultSearchFieldName
-argument_list|)
-expr_stmt|;
 block|}
 comment|//                      /schema/solrQueryParser/@defaultOperator
 name|expression
@@ -7420,22 +7317,6 @@ operator|.
 name|schema
 operator|.
 name|uniqueKeyFieldName
-argument_list|)
-block|,
-DECL|enum constant|DEFAULT_SEARCH_FIELD
-name|DEFAULT_SEARCH_FIELD
-argument_list|(
-name|IndexSchema
-operator|.
-name|DEFAULT_SEARCH_FIELD
-argument_list|,
-name|sp
-lambda|->
-name|sp
-operator|.
-name|schema
-operator|.
-name|defaultSearchFieldName
 argument_list|)
 block|,
 DECL|enum constant|SIMILARITY

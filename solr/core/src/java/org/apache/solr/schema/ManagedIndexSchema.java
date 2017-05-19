@@ -8658,12 +8658,6 @@ name|version
 expr_stmt|;
 name|newSchema
 operator|.
-name|defaultSearchFieldName
-operator|=
-name|defaultSearchFieldName
-expr_stmt|;
-name|newSchema
-operator|.
 name|similarity
 operator|=
 name|similarity

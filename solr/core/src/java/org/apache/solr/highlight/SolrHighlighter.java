@@ -42,6 +42,22 @@ name|common
 operator|.
 name|params
 operator|.
+name|CommonParams
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|common
+operator|.
+name|params
+operator|.
 name|HighlightParams
 import|;
 end_import
@@ -249,7 +265,7 @@ name|fields
 argument_list|)
 condition|)
 block|{
-comment|// use default search field if highlight fieldlist not specified.
+comment|// use default search field from request if highlight fieldlist not specified.
 if|if
 condition|(
 name|emptyArray
@@ -263,11 +279,15 @@ name|defaultSearchField
 init|=
 name|request
 operator|.
-name|getSchema
+name|getParams
 argument_list|()
 operator|.
-name|getDefaultSearchFieldName
-argument_list|()
+name|get
+argument_list|(
+name|CommonParams
+operator|.
+name|DF
+argument_list|)
 decl_stmt|;
 name|fields
 operator|=

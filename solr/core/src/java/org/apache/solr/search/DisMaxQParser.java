@@ -312,7 +312,7 @@ literal|"0%"
 argument_list|)
 return|;
 block|}
-comment|/**    * Uses {@link SolrPluginUtils#parseFieldBoosts(String)} with the 'qf' parameter. Falls back to the 'df' parameter    * or {@link org.apache.solr.schema.IndexSchema#getDefaultSearchFieldName()}.    */
+comment|/**    * Uses {@link SolrPluginUtils#parseFieldBoosts(String)} with the 'qf' parameter. Falls back to the 'df' parameter    */
 DECL|method|parseQueryFields
 specifier|public
 specifier|static
@@ -368,12 +368,6 @@ block|{
 name|String
 name|df
 init|=
-name|QueryParsing
-operator|.
-name|getDefaultField
-argument_list|(
-name|indexSchema
-argument_list|,
 name|solrParams
 operator|.
 name|get
@@ -381,7 +375,6 @@ argument_list|(
 name|CommonParams
 operator|.
 name|DF
-argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -401,13 +394,13 @@ name|DisMaxParams
 operator|.
 name|QF
 operator|+
-literal|", "
+literal|" nor "
 operator|+
 name|CommonParams
 operator|.
 name|DF
 operator|+
-literal|", nor the default search field are present."
+literal|" are present."
 argument_list|)
 throw|;
 block|}

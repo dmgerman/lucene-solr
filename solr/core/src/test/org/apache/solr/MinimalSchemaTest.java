@@ -270,8 +270,6 @@ argument_list|,
 literal|"//int[@name='numDocs'][.='2']"
 argument_list|,
 literal|"//null[@name='uniqueKeyField']"
-argument_list|,
-literal|"//null[@name='defaultSearchField']"
 argument_list|)
 expr_stmt|;
 block|}

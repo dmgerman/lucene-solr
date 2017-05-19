@@ -604,15 +604,6 @@ comment|// It qf is not specified setup up the queryFields map to use the defaul
 name|String
 name|defaultField
 init|=
-name|QueryParsing
-operator|.
-name|getDefaultField
-argument_list|(
-name|req
-operator|.
-name|getSchema
-argument_list|()
-argument_list|,
 name|defaultParams
 operator|.
 name|get
@@ -620,7 +611,6 @@ argument_list|(
 name|CommonParams
 operator|.
 name|DF
-argument_list|)
 argument_list|)
 decl_stmt|;
 if|if
@@ -641,13 +631,13 @@ name|SimpleParams
 operator|.
 name|QF
 operator|+
-literal|", "
+literal|" nor "
 operator|+
 name|CommonParams
 operator|.
 name|DF
 operator|+
-literal|", nor the default search field are present."
+literal|" are present."
 argument_list|)
 throw|;
 block|}
