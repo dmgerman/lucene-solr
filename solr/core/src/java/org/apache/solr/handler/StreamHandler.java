@@ -1598,6 +1598,15 @@ argument_list|)
 operator|.
 name|withFunctionName
 argument_list|(
+literal|"copyOfRange"
+argument_list|,
+name|CopyOfRangeEvaluator
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
 literal|"percentile"
 argument_list|,
 name|PercentileEvaluator
