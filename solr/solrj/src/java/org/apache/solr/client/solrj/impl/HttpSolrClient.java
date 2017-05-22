@@ -3188,6 +3188,15 @@ argument_list|,
 name|respBody
 argument_list|)
 expr_stmt|;
+name|rsp
+operator|.
+name|add
+argument_list|(
+literal|"closeableResponse"
+argument_list|,
+name|response
+argument_list|)
+expr_stmt|;
 comment|// Only case where stream should not be closed
 name|shouldClose
 operator|=

@@ -1960,11 +1960,6 @@ name|ex
 init|=
 name|e
 decl_stmt|;
-name|e
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
 while|while
 condition|(
 name|ex
