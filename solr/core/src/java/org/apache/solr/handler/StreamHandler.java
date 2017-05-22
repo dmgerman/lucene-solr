@@ -1622,6 +1622,15 @@ name|EmpiricalDistributionEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"describe"
+argument_list|,
+name|DescribeEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
