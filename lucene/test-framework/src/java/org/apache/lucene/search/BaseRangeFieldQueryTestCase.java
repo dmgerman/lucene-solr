@@ -400,6 +400,21 @@ throws|throws
 name|Exception
 block|{
 comment|// Make sure single-leaf-node case is OK:
+for|for
+control|(
+name|int
+name|i
+init|=
+literal|0
+init|;
+name|i
+operator|<
+literal|10
+condition|;
+operator|++
+name|i
+control|)
+block|{
 name|doTestRandom
 argument_list|(
 literal|10
@@ -407,6 +422,7 @@ argument_list|,
 literal|false
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 DECL|method|testRandomMedium
 specifier|public
