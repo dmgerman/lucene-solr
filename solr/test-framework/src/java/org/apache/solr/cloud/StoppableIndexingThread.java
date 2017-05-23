@@ -769,9 +769,6 @@ try|try
 block|{
 name|Thread
 operator|.
-name|currentThread
-argument_list|()
-operator|.
 name|sleep
 argument_list|(
 name|AbstractFullDistribZkTestBase

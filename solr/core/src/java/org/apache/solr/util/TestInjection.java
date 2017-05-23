@@ -825,6 +825,10 @@ argument_list|(
 literal|0
 argument_list|)
 expr_stmt|;
+name|waitForReplicasInSync
+operator|=
+literal|"true:60"
+expr_stmt|;
 for|for
 control|(
 name|Timer
@@ -2292,7 +2296,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Waiting time for replica in sync with leader: {}"
+literal|"Waiting time for tlog replica to be in sync with leader: {}"
 argument_list|,
 name|System
 operator|.
@@ -2308,6 +2312,19 @@ return|;
 block|}
 else|else
 block|{
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Tlog replica not in sync with leader yet. Attempt: {}. Local Version={}, leader Version={}"
+argument_list|,
+name|i
+argument_list|,
+name|localVersion
+argument_list|,
+name|leaderVersion
+argument_list|)
+expr_stmt|;
 name|Thread
 operator|.
 name|sleep

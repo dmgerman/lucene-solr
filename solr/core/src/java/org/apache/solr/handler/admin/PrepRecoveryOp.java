@@ -32,6 +32,16 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Objects
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -490,36 +500,63 @@ argument_list|(
 literal|"onlyIfLeaderActive"
 argument_list|)
 decl_stmt|;
+name|CoreContainer
+name|coreContainer
+init|=
+name|it
+operator|.
+name|handler
+operator|.
+name|coreContainer
+decl_stmt|;
+comment|// wait long enough for the leader conflict to work itself out plus a little extra
+name|int
+name|conflictWaitMs
+init|=
+name|coreContainer
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getLeaderConflictResolveWait
+argument_list|()
+decl_stmt|;
+name|int
+name|maxTries
+init|=
+operator|(
+name|int
+operator|)
+name|Math
+operator|.
+name|round
+argument_list|(
+name|conflictWaitMs
+operator|/
+literal|1000
+argument_list|)
+operator|+
+literal|3
+decl_stmt|;
 name|log
 operator|.
 name|info
 argument_list|(
-literal|"Going to wait for coreNodeName: "
-operator|+
+literal|"Going to wait for coreNodeName: {}, state: {}, checkLive: {}, onlyIfLeader: {}, onlyIfLeaderActive: {}, maxTime: {} s"
+argument_list|,
 name|coreNodeName
-operator|+
-literal|", state: "
-operator|+
+argument_list|,
 name|waitForState
-operator|+
-literal|", checkLive: "
-operator|+
+argument_list|,
 name|checkLive
-operator|+
-literal|", onlyIfLeader: "
-operator|+
+argument_list|,
 name|onlyIfLeader
-operator|+
-literal|", onlyIfLeaderActive: "
-operator|+
+argument_list|,
 name|onlyIfLeaderActive
+argument_list|,
+name|maxTries
 argument_list|)
 expr_stmt|;
-name|int
-name|maxTries
-init|=
-literal|0
-decl_stmt|;
 name|Replica
 operator|.
 name|State
@@ -542,15 +579,6 @@ condition|(
 literal|true
 condition|)
 block|{
-name|CoreContainer
-name|coreContainer
-init|=
-name|it
-operator|.
-name|handler
-operator|.
-name|coreContainer
-decl_stmt|;
 try|try
 init|(
 name|SolrCore
@@ -572,7 +600,14 @@ literal|null
 operator|&&
 name|retry
 operator|==
+name|Math
+operator|.
+name|min
+argument_list|(
 literal|30
+argument_list|,
+name|maxTries
+argument_list|)
 condition|)
 block|{
 throw|throw
@@ -723,73 +758,6 @@ operator|.
 name|forceUpdateCollection
 argument_list|(
 name|collectionName
-argument_list|)
-expr_stmt|;
-block|}
-if|if
-condition|(
-name|maxTries
-operator|==
-literal|0
-condition|)
-block|{
-comment|// wait long enough for the leader conflict to work itself out plus a little extra
-name|int
-name|conflictWaitMs
-init|=
-name|coreContainer
-operator|.
-name|getZkController
-argument_list|()
-operator|.
-name|getLeaderConflictResolveWait
-argument_list|()
-decl_stmt|;
-name|maxTries
-operator|=
-operator|(
-name|int
-operator|)
-name|Math
-operator|.
-name|round
-argument_list|(
-name|conflictWaitMs
-operator|/
-literal|1000
-argument_list|)
-operator|+
-literal|3
-expr_stmt|;
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Will wait a max of "
-operator|+
-name|maxTries
-operator|+
-literal|" seconds to see "
-operator|+
-name|cname
-operator|+
-literal|" ("
-operator|+
-name|cloudDescriptor
-operator|.
-name|getShardId
-argument_list|()
-operator|+
-literal|" of "
-operator|+
-name|cloudDescriptor
-operator|.
-name|getCollectionName
-argument_list|()
-operator|+
-literal|") have state: "
-operator|+
-name|waitForState
 argument_list|)
 expr_stmt|;
 block|}
@@ -1215,10 +1183,12 @@ name|nodeName
 operator|+
 literal|" but I still do not see the requested state. I see state: "
 operator|+
-name|state
+name|Objects
 operator|.
 name|toString
-argument_list|()
+argument_list|(
+name|state
+argument_list|)
 operator|+
 literal|" live:"
 operator|+
@@ -1259,6 +1229,10 @@ name|log
 operator|.
 name|isDebugEnabled
 argument_list|()
+operator|&&
+name|core
+operator|!=
+literal|null
 condition|)
 block|{
 try|try

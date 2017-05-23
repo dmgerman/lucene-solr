@@ -872,6 +872,11 @@ name|slice
 operator|.
 name|getName
 argument_list|()
+argument_list|,
+name|replica
+operator|.
+name|getType
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|ZkNodeProps
@@ -1255,6 +1260,11 @@ argument_list|,
 name|slice
 operator|.
 name|getName
+argument_list|()
+argument_list|,
+name|replica
+operator|.
+name|getType
 argument_list|()
 argument_list|)
 decl_stmt|;

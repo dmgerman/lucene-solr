@@ -384,6 +384,11 @@ name|solrConfigOverride
 parameter_list|,
 name|String
 name|schemaOverride
+parameter_list|,
+name|Replica
+operator|.
+name|Type
+name|replicaType
 parameter_list|)
 throws|throws
 name|Exception
@@ -400,6 +405,8 @@ argument_list|,
 name|solrConfigOverride
 argument_list|,
 name|schemaOverride
+argument_list|,
+name|replicaType
 argument_list|)
 return|;
 block|}

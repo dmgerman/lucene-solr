@@ -2055,10 +2055,7 @@ name|oldReplica
 init|=
 name|slice
 operator|.
-name|getReplicasMap
-argument_list|()
-operator|.
-name|get
+name|getReplica
 argument_list|(
 name|coreNodeName
 argument_list|)
@@ -2101,6 +2098,23 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+name|replicaProps
+operator|.
+name|put
+argument_list|(
+name|ZkStateReader
+operator|.
+name|REPLICA_TYPE
+argument_list|,
+name|oldReplica
+operator|.
+name|getType
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+argument_list|)
+expr_stmt|;
 comment|// Move custom props over.
 for|for
 control|(
@@ -2350,6 +2364,15 @@ argument_list|,
 name|replicaProps
 argument_list|)
 decl_stmt|;
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Will update state for replica: {}"
+argument_list|,
+name|replica
+argument_list|)
+expr_stmt|;
 name|Map
 argument_list|<
 name|String
@@ -2505,6 +2528,15 @@ argument_list|,
 name|slice
 argument_list|)
 decl_stmt|;
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Collection is now: {}"
+argument_list|,
+name|newCollection
+argument_list|)
+expr_stmt|;
 return|return
 operator|new
 name|ZkWriteCommand

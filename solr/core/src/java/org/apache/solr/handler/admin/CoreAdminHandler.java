@@ -1616,6 +1616,17 @@ operator|.
 name|NUM_SHARDS
 argument_list|)
 decl|.
+name|put
+argument_list|(
+name|CoreAdminParams
+operator|.
+name|REPLICA_TYPE
+argument_list|,
+name|CloudDescriptor
+operator|.
+name|REPLICA_TYPE
+argument_list|)
+decl|.
 name|build
 argument_list|()
 decl_stmt|;

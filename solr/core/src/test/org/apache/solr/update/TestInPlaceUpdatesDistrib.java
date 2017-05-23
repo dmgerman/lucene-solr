@@ -968,19 +968,14 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|getRealtimeReplicas
+DECL|method|useTlogReplicas
 specifier|protected
-name|int
-name|getRealtimeReplicas
+name|boolean
+name|useTlogReplicas
 parameter_list|()
 block|{
 return|return
 name|onlyLeaderIndexes
-condition|?
-literal|1
-else|:
-operator|-
-literal|1
 return|;
 block|}
 annotation|@
@@ -1916,7 +1911,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"RTG with DBQs are not working in append replicas"
+literal|"RTG with DBQs are not working in tlog replicas"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -5066,7 +5061,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"RTG with DBQs are not working in append replicas"
+literal|"RTG with DBQs are not working in tlog replicas"
 argument_list|)
 expr_stmt|;
 return|return;
@@ -7738,7 +7733,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"RTG with DBQs are not working in append replicas"
+literal|"RTG with DBQs are not working in tlog replicas"
 argument_list|)
 expr_stmt|;
 return|return;

@@ -400,7 +400,7 @@ name|common
 operator|.
 name|cloud
 operator|.
-name|DocCollection
+name|Replica
 import|;
 end_import
 
@@ -959,35 +959,23 @@ condition|(
 name|zkController
 operator|!=
 literal|null
-condition|)
-block|{
-name|DocCollection
-name|dc
-init|=
-name|zkController
-operator|.
-name|getClusterState
-argument_list|()
-operator|.
-name|getCollection
-argument_list|(
+operator|&&
 name|core
 operator|.
 name|getCoreDescriptor
 argument_list|()
 operator|.
-name|getCollectionName
+name|getCloudDescriptor
 argument_list|()
-argument_list|)
-decl_stmt|;
-if|if
-condition|(
-name|dc
 operator|.
-name|getRealtimeReplicas
+name|getReplicaType
 argument_list|()
 operator|==
-literal|1
+name|Replica
+operator|.
+name|Type
+operator|.
+name|TLOG
 condition|)
 block|{
 name|commitWithinSoftCommit
@@ -1001,7 +989,6 @@ argument_list|(
 literal|true
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 DECL|method|DirectUpdateHandler2
@@ -5079,7 +5066,7 @@ argument_list|()
 expr_stmt|;
 block|}
 block|}
-comment|/**    * Calls either {@link IndexWriter#updateDocValues} or {@link IndexWriter#updateDocument} as     * needed based on {@link AddUpdateCommand#isInPlaceUpdate}.    *<p>    * If the this is an UPDATE_INPLACE cmd, then all fields inclued in     * {@link AddUpdateCommand#getLuceneDocument} must either be the uniqueKey field, or be DocValue     * only fields.    *</p>    *    * @param cmd - cmd apply to IndexWriter    * @param writer - IndexWriter to use    * @param updateTerm - used if this cmd results in calling {@link IndexWriter#updateDocument}    */
+comment|/**    * Calls either {@link IndexWriter#updateDocValues} or {@link IndexWriter#updateDocument} as     * needed based on {@link AddUpdateCommand#isInPlaceUpdate}.    *<p>    * If the this is an UPDATE_INPLACE cmd, then all fields included in     * {@link AddUpdateCommand#getLuceneDocument} must either be the uniqueKey field, or be DocValue     * only fields.    *</p>    *    * @param cmd - cmd apply to IndexWriter    * @param writer - IndexWriter to use    * @param updateTerm - used if this cmd results in calling {@link IndexWriter#updateDocument}    */
 DECL|method|updateDocOrDocValues
 specifier|private
 name|void

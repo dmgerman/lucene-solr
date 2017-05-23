@@ -180,6 +180,23 @@ argument_list|)
 return|;
 block|}
 block|}
+DECL|enum|Type
+specifier|public
+enum|enum
+name|Type
+block|{
+comment|/**      * Writes updates to transaction log and indexes locally. Replicas of type {@link Type#NRT} support NRT (soft commits) and RTG.       * Any {@link Type#NRT} replica can become a leader. A shard leader will forward updates to all active {@link Type#NRT} and      * {@link Type#TLOG} replicas.       */
+DECL|enum constant|NRT
+name|NRT
+block|,
+comment|/**      * Writes to transaction log, but not to index, uses replication. Any {@link Type#TLOG} replica can become leader (by first      * applying all local transaction log elements). If a replica is of type {@link Type#TLOG} but is also the leader, it will behave       * as a {@link Type#NRT}. A shard leader will forward updates to all active {@link Type#NRT} and {@link Type#TLOG} replicas.      */
+DECL|enum constant|TLOG
+name|TLOG
+block|,
+comment|/**      * Doesnât index or writes to transaction log. Just replicates from {@link Type#NRT} or {@link Type#TLOG} replicas. {@link Type#PULL}      * replicas canât become shard leaders (i.e., if there are only pull replicas in the collection at some point, updates will fail      * same as if there is no leaders, queries continue to work), so they donât even participate in elections.      */
+DECL|enum constant|PULL
+name|PULL
+block|}
 DECL|field|name
 specifier|private
 specifier|final
@@ -197,6 +214,12 @@ specifier|private
 specifier|final
 name|State
 name|state
+decl_stmt|;
+DECL|field|type
+specifier|private
+specifier|final
+name|Type
+name|type
 decl_stmt|;
 DECL|method|Replica
 specifier|public
@@ -300,6 +323,51 @@ name|state
 operator|.
 name|toString
 argument_list|()
+argument_list|)
+expr_stmt|;
+block|}
+name|String
+name|typeString
+init|=
+operator|(
+name|String
+operator|)
+name|propMap
+operator|.
+name|get
+argument_list|(
+name|ZkStateReader
+operator|.
+name|REPLICA_TYPE
+argument_list|)
+decl_stmt|;
+if|if
+condition|(
+name|typeString
+operator|==
+literal|null
+condition|)
+block|{
+name|this
+operator|.
+name|type
+operator|=
+name|Type
+operator|.
+name|NRT
+expr_stmt|;
+block|}
+else|else
+block|{
+name|this
+operator|.
+name|type
+operator|=
+name|Type
+operator|.
+name|valueOf
+argument_list|(
+name|typeString
 argument_list|)
 expr_stmt|;
 block|}
@@ -416,6 +484,18 @@ operator|==
 name|State
 operator|.
 name|ACTIVE
+return|;
+block|}
+DECL|method|getType
+specifier|public
+name|Type
+name|getType
+parameter_list|()
+block|{
+return|return
+name|this
+operator|.
+name|type
 return|;
 block|}
 annotation|@

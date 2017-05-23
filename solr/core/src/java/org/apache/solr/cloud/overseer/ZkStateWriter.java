@@ -1272,6 +1272,15 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+name|log
+operator|.
+name|trace
+argument_list|(
+literal|"New Cluster State is: {}"
+argument_list|,
+name|clusterState
+argument_list|)
+expr_stmt|;
 return|return
 name|clusterState
 return|;

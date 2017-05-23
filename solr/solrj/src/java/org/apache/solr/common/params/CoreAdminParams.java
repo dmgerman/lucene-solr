@@ -376,6 +376,16 @@ name|NEW_COLLECTION
 init|=
 literal|"newCollection"
 decl_stmt|;
+comment|/**    * Tells the CoreAdminHandler that the new Core will be a replica of a particular {@link org.apache.solr.common.cloud.Replica.Type}    */
+DECL|field|REPLICA_TYPE
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|REPLICA_TYPE
+init|=
+literal|"replicaType"
+decl_stmt|;
 DECL|enum|CoreAdminAction
 specifier|public
 enum|enum

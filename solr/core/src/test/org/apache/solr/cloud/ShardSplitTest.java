@@ -826,20 +826,6 @@ literal|null
 argument_list|)
 expr_stmt|;
 block|}
-comment|//TODO for now, onlyLeaderIndexes do not work with ShardSplitTest
-annotation|@
-name|Override
-DECL|method|getRealtimeReplicas
-specifier|protected
-name|int
-name|getRealtimeReplicas
-parameter_list|()
-block|{
-return|return
-operator|-
-literal|1
-return|;
-block|}
 annotation|@
 name|Test
 DECL|method|test

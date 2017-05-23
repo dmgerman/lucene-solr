@@ -5471,7 +5471,7 @@ name|recoveryInfo
 argument_list|)
 return|;
 block|}
-comment|/**    * Replay current tlog, so all updates will be written to index.    * This is must do task for a append replica become a new leader.    * @return future of this task    */
+comment|/**    * Replay current tlog, so all updates will be written to index.    * This is must do task for a tlog replica become a new leader.    * @return future of this task    */
 DECL|method|recoverFromCurrentLog
 specifier|public
 name|Future
@@ -8276,6 +8276,10 @@ operator|+
 name|recoveryInfo
 operator|.
 name|positionOfStart
+operator|+
+literal|" inSortedOrder="
+operator|+
+name|inSortedOrder
 argument_list|)
 expr_stmt|;
 name|long
@@ -8649,6 +8653,10 @@ operator|.
 name|IGNORE_AUTOCOMMIT
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+name|debug
+condition|)
 name|log
 operator|.
 name|debug

@@ -306,11 +306,15 @@ operator|=
 name|coreName
 expr_stmt|;
 block|}
+comment|/**    * Start a replication handler thread that will periodically pull indices from the shard leader    * @param switchTransactionLog if true, ReplicationHandler will rotate the transaction log once    * the replication is done    */
 DECL|method|startReplication
 specifier|public
 name|void
 name|startReplication
-parameter_list|()
+parameter_list|(
+name|boolean
+name|switchTransactionLog
+parameter_list|)
 throws|throws
 name|InterruptedException
 block|{
@@ -433,6 +437,15 @@ literal|2
 argument_list|)
 expr_stmt|;
 block|}
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Will start replication from leader with poll interval: {}"
+argument_list|,
+name|pollIntervalStr
+argument_list|)
+expr_stmt|;
 name|NamedList
 name|slaveConfig
 init|=
@@ -505,6 +518,11 @@ operator|new
 name|ReplicationHandler
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+name|switchTransactionLog
+condition|)
+block|{
 name|replicationProcess
 operator|.
 name|setPollListener
@@ -615,6 +633,7 @@ block|}
 block|}
 argument_list|)
 expr_stmt|;
+block|}
 name|replicationProcess
 operator|.
 name|init
@@ -764,11 +783,19 @@ name|void
 name|stopReplication
 parameter_list|()
 block|{
+if|if
+condition|(
+name|replicationProcess
+operator|!=
+literal|null
+condition|)
+block|{
 name|replicationProcess
 operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 end_class

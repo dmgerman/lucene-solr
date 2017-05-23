@@ -654,19 +654,14 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
-DECL|method|getRealtimeReplicas
+DECL|method|useTlogReplicas
 specifier|protected
-name|int
-name|getRealtimeReplicas
+name|boolean
+name|useTlogReplicas
 parameter_list|()
 block|{
 return|return
 name|onlyLeaderIndexes
-condition|?
-literal|1
-else|:
-operator|-
-literal|1
 return|;
 block|}
 comment|/**    * We need to turn off directUpdatesToLeadersOnly due to SOLR-9512    */
@@ -774,6 +769,11 @@ name|solrConfigOverride
 parameter_list|,
 name|String
 name|schemaOverride
+parameter_list|,
+name|Replica
+operator|.
+name|Type
+name|replicaType
 parameter_list|)
 throws|throws
 name|Exception
@@ -790,6 +790,8 @@ argument_list|,
 name|solrConfigOverride
 argument_list|,
 name|schemaOverride
+argument_list|,
+name|replicaType
 argument_list|)
 return|;
 block|}

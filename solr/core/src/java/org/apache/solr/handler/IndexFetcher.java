@@ -1501,6 +1501,23 @@ argument_list|,
 literal|null
 argument_list|)
 decl_stmt|;
+DECL|field|CONTAINER_IS_SHUTTING_DOWN
+specifier|public
+specifier|static
+specifier|final
+name|IndexFetchResult
+name|CONTAINER_IS_SHUTTING_DOWN
+init|=
+operator|new
+name|IndexFetchResult
+argument_list|(
+literal|"I was asked to replicate but CoreContainer is shutting down"
+argument_list|,
+literal|false
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
 DECL|field|MASTER_VERSION_ZERO
 specifier|public
 specifier|static
@@ -1580,6 +1597,23 @@ operator|new
 name|IndexFetchResult
 argument_list|(
 literal|"Replicating from leader but I'm the shard leader"
+argument_list|,
+literal|false
+argument_list|,
+literal|null
+argument_list|)
+decl_stmt|;
+DECL|field|LEADER_IS_NOT_ACTIVE
+specifier|public
+specifier|static
+specifier|final
+name|IndexFetchResult
+name|LEADER_IS_NOT_ACTIVE
+init|=
+operator|new
+name|IndexFetchResult
+argument_list|(
+literal|"Replicating from leader but leader is not active"
 argument_list|,
 literal|false
 argument_list|,
@@ -2607,6 +2641,13 @@ name|forceReplication
 operator|=
 literal|true
 expr_stmt|;
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Last replication failed, so I'll force replication"
+argument_list|)
+expr_stmt|;
 block|}
 try|try
 block|{
@@ -2615,6 +2656,15 @@ condition|(
 name|fetchFromLeader
 condition|)
 block|{
+assert|assert
+operator|!
+name|solrCore
+operator|.
+name|isClosed
+argument_list|()
+operator|:
+literal|"Replication should be stopped before closing the core"
+assert|;
 name|Replica
 name|replica
 init|=
@@ -2654,6 +2704,98 @@ operator|.
 name|EXPECTING_NON_LEADER
 return|;
 block|}
+if|if
+condition|(
+name|replica
+operator|.
+name|getState
+argument_list|()
+operator|!=
+name|Replica
+operator|.
+name|State
+operator|.
+name|ACTIVE
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Replica {} is leader but it's state is {}, skipping replication"
+argument_list|,
+name|replica
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|replica
+operator|.
+name|getState
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|IndexFetchResult
+operator|.
+name|LEADER_IS_NOT_ACTIVE
+return|;
+block|}
+if|if
+condition|(
+operator|!
+name|solrCore
+operator|.
+name|getCoreContainer
+argument_list|()
+operator|.
+name|getZkController
+argument_list|()
+operator|.
+name|getClusterState
+argument_list|()
+operator|.
+name|liveNodesContain
+argument_list|(
+name|replica
+operator|.
+name|getNodeName
+argument_list|()
+argument_list|)
+condition|)
+block|{
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"Replica {} is leader but it's not hosted on a live node, skipping replication"
+argument_list|,
+name|replica
+operator|.
+name|getName
+argument_list|()
+argument_list|)
+expr_stmt|;
+return|return
+name|IndexFetchResult
+operator|.
+name|LEADER_IS_NOT_ACTIVE
+return|;
+block|}
+if|if
+condition|(
+operator|!
+name|replica
+operator|.
+name|getCoreUrl
+argument_list|()
+operator|.
+name|equals
+argument_list|(
+name|masterUrl
+argument_list|)
+condition|)
+block|{
 name|masterUrl
 operator|=
 name|replica
@@ -2665,11 +2807,23 @@ name|LOG
 operator|.
 name|info
 argument_list|(
-literal|"Updated masterUrl to "
-operator|+
+literal|"Updated masterUrl to {}"
+argument_list|,
 name|masterUrl
 argument_list|)
 expr_stmt|;
+comment|// TODO: Do we need to set forceReplication = true?
+block|}
+else|else
+block|{
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"masterUrl didn't change"
+argument_list|)
+expr_stmt|;
+block|}
 block|}
 comment|//get the current 'replicateable' index version in the master
 name|NamedList
@@ -2952,6 +3106,13 @@ condition|)
 block|{
 comment|// since we won't get the files for an empty index,
 comment|// we just clear ours and commit
+name|LOG
+operator|.
+name|info
+argument_list|(
+literal|"New index in Master. Deleting mine..."
+argument_list|)
+expr_stmt|;
 name|RefCounted
 argument_list|<
 name|IndexWriter
@@ -3024,6 +3185,13 @@ comment|//there is nothing to be replicated
 name|successfulInstall
 operator|=
 literal|true
+expr_stmt|;
+name|LOG
+operator|.
+name|debug
+argument_list|(
+literal|"Nothing to replicate, master's version is 0"
+argument_list|)
 expr_stmt|;
 return|return
 name|IndexFetchResult

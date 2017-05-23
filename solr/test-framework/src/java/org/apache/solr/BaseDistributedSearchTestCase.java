@@ -2503,6 +2503,7 @@ return|;
 block|}
 DECL|method|addFields
 specifier|protected
+specifier|static
 name|void
 name|addFields
 parameter_list|(
@@ -6546,6 +6547,15 @@ argument_list|(
 literal|"coreNodeName"
 argument_list|,
 literal|"${coreNodeName:}"
+argument_list|)
+expr_stmt|;
+name|coreProperties
+operator|.
+name|setProperty
+argument_list|(
+literal|"replicaType"
+argument_list|,
+literal|"${replicaType:}"
 argument_list|)
 expr_stmt|;
 name|writeCoreProperties

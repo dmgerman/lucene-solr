@@ -509,17 +509,19 @@ literal|"config"
 argument_list|,
 literal|2
 argument_list|,
-literal|2
-argument_list|)
-operator|.
-name|setRealtimeReplicas
-argument_list|(
 name|onlyLeaderIndexes
 condition|?
-literal|1
+literal|0
 else|:
-operator|-
-literal|1
+literal|2
+argument_list|,
+name|onlyLeaderIndexes
+condition|?
+literal|2
+else|:
+literal|0
+argument_list|,
+literal|0
 argument_list|)
 operator|.
 name|setMaxShardsPerNode
@@ -831,7 +833,7 @@ condition|(
 name|onlyLeaderIndexes
 condition|)
 block|{
-comment|// Leader election can be kicked off, so 2 append replicas will replay its tlog before becoming new leader
+comment|// Leader election can be kicked off, so 2 tlog replicas will replay its tlog before becoming new leader
 name|assertTrue
 argument_list|(
 name|countReplayLog

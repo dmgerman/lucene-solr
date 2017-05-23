@@ -594,25 +594,7 @@ name|cloud
 operator|.
 name|ZkStateReader
 operator|.
-name|MAX_SHARDS_PER_NODE
-import|;
-end_import
-
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|common
-operator|.
-name|cloud
-operator|.
-name|ZkStateReader
-operator|.
-name|REPLICATION_FACTOR
+name|*
 import|;
 end_import
 
@@ -863,8 +845,14 @@ block|{
 comment|// look at the replication factor and see if it matches reality
 comment|// if it does not, find best nodes to create more cores
 name|int
-name|repFactor
+name|numNrtReplicas
 init|=
+name|message
+operator|.
+name|getInt
+argument_list|(
+name|NRT_REPLICAS
+argument_list|,
 name|message
 operator|.
 name|getInt
@@ -872,6 +860,31 @@ argument_list|(
 name|REPLICATION_FACTOR
 argument_list|,
 literal|1
+argument_list|)
+argument_list|)
+decl_stmt|;
+name|int
+name|numPullReplicas
+init|=
+name|message
+operator|.
+name|getInt
+argument_list|(
+name|PULL_REPLICAS
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+name|int
+name|numTlogReplicas
+init|=
+name|message
+operator|.
+name|getInt
+argument_list|(
+name|TLOG_REPLICAS
+argument_list|,
+literal|0
 argument_list|)
 decl_stmt|;
 name|ShardHandler
@@ -1017,7 +1030,9 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-name|repFactor
+name|numNrtReplicas
+operator|+
+name|numTlogReplicas
 operator|<=
 literal|0
 condition|)
@@ -1032,7 +1047,11 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-name|REPLICATION_FACTOR
+name|NRT_REPLICAS
+operator|+
+literal|" + "
+operator|+
+name|TLOG_REPLICAS
 operator|+
 literal|" must be greater than 0"
 argument_list|)
@@ -1124,9 +1143,18 @@ expr_stmt|;
 block|}
 else|else
 block|{
+name|int
+name|totalNumReplicas
+init|=
+name|numNrtReplicas
+operator|+
+name|numTlogReplicas
+operator|+
+name|numPullReplicas
+decl_stmt|;
 if|if
 condition|(
-name|repFactor
+name|totalNumReplicas
 operator|>
 name|nodeList
 operator|.
@@ -1138,19 +1166,15 @@ name|log
 operator|.
 name|warn
 argument_list|(
-literal|"Specified "
+literal|"Specified number of replicas of "
 operator|+
-name|REPLICATION_FACTOR
-operator|+
-literal|" of "
-operator|+
-name|repFactor
+name|totalNumReplicas
 operator|+
 literal|" on collection "
 operator|+
 name|collectionName
 operator|+
-literal|" is higher than or equal to the number of Solr instances currently live or live and part of your "
+literal|" is higher than the number of Solr instances currently live or live and part of your "
 operator|+
 name|CREATE_NODE_SET
 operator|+
@@ -1180,7 +1204,7 @@ name|requestedShardsToCreate
 init|=
 name|numSlices
 operator|*
-name|repFactor
+name|totalNumReplicas
 decl_stmt|;
 if|if
 condition|(
@@ -1234,13 +1258,29 @@ literal|" is "
 operator|+
 name|numSlices
 operator|+
-literal|" and value of "
+literal|", value of "
 operator|+
-name|REPLICATION_FACTOR
+name|NRT_REPLICAS
 operator|+
 literal|" is "
 operator|+
-name|repFactor
+name|numNrtReplicas
+operator|+
+literal|", value of "
+operator|+
+name|TLOG_REPLICAS
+operator|+
+literal|" is "
+operator|+
+name|numTlogReplicas
+operator|+
+literal|" and value of "
+operator|+
+name|PULL_REPLICAS
+operator|+
+literal|" is "
+operator|+
+name|numPullReplicas
 operator|+
 literal|". This requires "
 operator|+
@@ -1264,7 +1304,11 @@ name|message
 argument_list|,
 name|shardNames
 argument_list|,
-name|repFactor
+name|numNrtReplicas
+argument_list|,
+name|numTlogReplicas
+argument_list|,
+name|numPullReplicas
 argument_list|)
 expr_stmt|;
 block|}
@@ -1515,13 +1559,17 @@ name|debug
 argument_list|(
 name|formatString
 argument_list|(
-literal|"Creating SolrCores for new collection {0}, shardNames {1} , replicationFactor : {2}"
+literal|"Creating SolrCores for new collection {0}, shardNames {1} , nrtReplicas : {2}, tlogReplicas: {3}, pullReplicas: {4}"
 argument_list|,
 name|collectionName
 argument_list|,
 name|shardNames
 argument_list|,
-name|repFactor
+name|numNrtReplicas
+argument_list|,
+name|numTlogReplicas
+argument_list|,
+name|numPullReplicas
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1579,23 +1627,26 @@ decl_stmt|;
 name|String
 name|coreName
 init|=
+name|Assign
+operator|.
+name|buildCoreName
+argument_list|(
 name|collectionName
-operator|+
-literal|"_"
-operator|+
+argument_list|,
 name|position
 operator|.
 name|shard
-operator|+
-literal|"_replica"
-operator|+
-operator|(
+argument_list|,
+name|position
+operator|.
+name|type
+argument_list|,
 name|position
 operator|.
 name|index
 operator|+
 literal|1
-operator|)
+argument_list|)
 decl_stmt|;
 name|log
 operator|.
@@ -1688,6 +1739,17 @@ operator|.
 name|BASE_URL_PROP
 argument_list|,
 name|baseUrl
+argument_list|,
+name|ZkStateReader
+operator|.
+name|REPLICA_TYPE
+argument_list|,
+name|position
+operator|.
+name|type
+operator|.
+name|name
+argument_list|()
 argument_list|)
 decl_stmt|;
 name|Overseer
@@ -1801,6 +1863,22 @@ operator|.
 name|NEW_COLLECTION
 argument_list|,
 literal|"true"
+argument_list|)
+expr_stmt|;
+name|params
+operator|.
+name|set
+argument_list|(
+name|CoreAdminParams
+operator|.
+name|REPLICA_TYPE
+argument_list|,
+name|position
+operator|.
+name|type
+operator|.
+name|name
+argument_list|()
 argument_list|)
 expr_stmt|;
 if|if
