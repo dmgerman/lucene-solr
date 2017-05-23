@@ -33,10 +33,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see TermQueryPrefixTreeStrategy  * @lucene.experimental  */
+comment|/**  * @see TermQueryPrefixTreeStrategy  * @deprecated use {@link org.apache.lucene.spatial.prefix.RecursivePrefixTreeStrategy} or {@link RptWithGeometrySpatialField}  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|SpatialTermQueryPrefixTreeFieldType
 specifier|public
 class|class

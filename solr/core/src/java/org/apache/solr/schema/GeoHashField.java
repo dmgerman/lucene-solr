@@ -279,10 +279,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * This is a class that represents a<a  * href="http://en.wikipedia.org/wiki/Geohash">Geohash</a> field. The field is  * provided as a lat/lon pair and is internally represented as a string.  */
+comment|/**  * This is a class that represents a<a  * href="http://en.wikipedia.org/wiki/Geohash">Geohash</a> field. The field is  * provided as a lat/lon pair and is internally represented as a string.  *  * @deprecated use {@link LatLonPointSpatialField} instead  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|GeoHashField
 specifier|public
 class|class

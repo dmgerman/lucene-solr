@@ -487,10 +487,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Represents a Latitude/Longitude as a 2 dimensional point.  Latitude is<b>always</b> specified first.  */
+comment|/**  * Represents a Latitude/Longitude as a 2 dimensional point.  Latitude is<b>always</b> specified first.  *  * @deprecated use {@link LatLonPointSpatialField} instead  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|LatLonType
 specifier|public
 class|class

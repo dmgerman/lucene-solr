@@ -77,10 +77,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * @see PointVectorStrategy  * @lucene.experimental  */
+comment|/**  * @see PointVectorStrategy  * @deprecated use {@link LatLonPointSpatialField} instead  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|SpatialPointVectorFieldType
 specifier|public
 class|class
