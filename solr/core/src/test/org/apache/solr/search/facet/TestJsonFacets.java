@@ -4204,6 +4204,9 @@ literal|" , f4:{${terms} type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'
 operator|+
 literal|" , f5:{${terms} type:terms, field:'${cat_s}', sort:'x desc', facet:{x:'variance(${num_d})'}  } "
 operator|+
+literal|" , f6:{type:terms, field:${num_d}, limit:1, sort:'x desc', facet:{x:'hll(${num_i})'}  } "
+operator|+
+comment|// facet on a field that will cause hashing and exercise hll.resize on numeric field
 literal|"}"
 argument_list|)
 argument_list|,
@@ -4218,6 +4221,8 @@ operator|+
 literal|", f4:{  'buckets':[{ val:'A', count:2, x:2 },    { val:'B', count:3, x:2 }]} "
 operator|+
 literal|", f5:{  'buckets':[{ val:'B', count:3, x:74.6666666666666 },    { val:'A', count:2, x:1.0 }]} "
+operator|+
+literal|", f6:{  buckets:[{ val:-9.0, count:1, x:1 }]} "
 operator|+
 literal|"}"
 argument_list|)
