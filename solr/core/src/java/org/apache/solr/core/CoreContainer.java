@@ -1619,6 +1619,42 @@ specifier|protected
 name|MetricsCollectorHandler
 name|metricsCollectorHandler
 decl_stmt|;
+comment|// Bits for the state variable.
+DECL|field|LOAD_COMPLETE
+specifier|public
+specifier|final
+specifier|static
+name|long
+name|LOAD_COMPLETE
+init|=
+literal|0x1L
+decl_stmt|;
+DECL|field|CORE_DISCOVERY_COMPLETE
+specifier|public
+specifier|final
+specifier|static
+name|long
+name|CORE_DISCOVERY_COMPLETE
+init|=
+literal|0x2L
+decl_stmt|;
+DECL|field|INITIAL_CORE_LOAD_COMPLETE
+specifier|public
+specifier|final
+specifier|static
+name|long
+name|INITIAL_CORE_LOAD_COMPLETE
+init|=
+literal|0x4L
+decl_stmt|;
+DECL|field|status
+specifier|private
+specifier|volatile
+name|long
+name|status
+init|=
+literal|0L
+decl_stmt|;
 DECL|enum|CoreInitFailedAction
 DECL|enum constant|fromleader
 DECL|enum constant|none
@@ -3933,6 +3969,10 @@ argument_list|(
 name|cds
 argument_list|)
 expr_stmt|;
+name|status
+operator||=
+name|CORE_DISCOVERY_COMPLETE
+expr_stmt|;
 for|for
 control|(
 specifier|final
@@ -4232,6 +4272,13 @@ name|checkOverseerDesignate
 argument_list|()
 expr_stmt|;
 block|}
+comment|// This is a bit redundant but these are two distinct concepts for all they're accomplished at the same time.
+name|status
+operator||=
+name|LOAD_COMPLETE
+operator||
+name|INITIAL_CORE_LOAD_COMPLETE
+expr_stmt|;
 block|}
 end_class
 
@@ -8386,6 +8433,19 @@ parameter_list|()
 block|{
 return|return
 name|cfg
+return|;
+block|}
+end_function
+
+begin_function
+DECL|method|getStatus
+specifier|public
+name|long
+name|getStatus
+parameter_list|()
+block|{
+return|return
+name|status
 return|;
 block|}
 end_function
