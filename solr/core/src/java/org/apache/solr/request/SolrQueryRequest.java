@@ -175,7 +175,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  *<p>Container for a request to execute a query.</p>  *<p><code>SolrQueryRequest</code> is not thread safe.</p>  *   *  */
+comment|/**  *<p>Container for a request to execute a query.</p>  *<p><code>SolrQueryRequest</code> is not thread safe.</p>  *  *  */
 end_comment
 
 begin_interface
@@ -188,14 +188,12 @@ name|AutoCloseable
 block|{
 comment|/** returns the current request parameters */
 DECL|method|getParams
-specifier|public
 name|SolrParams
 name|getParams
 parameter_list|()
 function_decl|;
 comment|/** Change the parameters for this request.  This does not affect    *  the original parameters returned by getOriginalParams()    */
 DECL|method|setParams
-specifier|public
 name|void
 name|setParams
 parameter_list|(
@@ -205,7 +203,6 @@ parameter_list|)
 function_decl|;
 comment|/** A Collection of ContentStreams passed to the request    */
 DECL|method|getContentStreams
-specifier|public
 name|Iterable
 argument_list|<
 name|ContentStream
@@ -215,14 +212,12 @@ parameter_list|()
 function_decl|;
 comment|/** Returns the original request parameters.  As this    * does not normally include configured defaults    * it's more suitable for logging.    */
 DECL|method|getOriginalParams
-specifier|public
 name|SolrParams
 name|getOriginalParams
 parameter_list|()
 function_decl|;
 comment|/**    * Generic information associated with this request that may be both read and updated.    */
 DECL|method|getContext
-specifier|public
 name|Map
 argument_list|<
 name|Object
@@ -234,35 +229,30 @@ parameter_list|()
 function_decl|;
 comment|/**    * This method should be called when all uses of this request are    * finished, so that resources can be freed.    */
 DECL|method|close
-specifier|public
 name|void
 name|close
 parameter_list|()
 function_decl|;
 comment|/** The start time of this request in milliseconds.    * Use this only if you need the absolute system time at the start of the request,    * getRequestTimer() provides a more accurate mechanism for timing purposes.    */
 DECL|method|getStartTime
-specifier|public
 name|long
 name|getStartTime
 parameter_list|()
 function_decl|;
 comment|/** The timer for this request, created when the request started being processed */
 DECL|method|getRequestTimer
-specifier|public
 name|RTimerTree
 name|getRequestTimer
 parameter_list|()
 function_decl|;
 comment|/** The index searcher associated with this request */
 DECL|method|getSearcher
-specifier|public
 name|SolrIndexSearcher
 name|getSearcher
 parameter_list|()
 function_decl|;
 comment|/** The solr core (coordinator, etc) associated with this request */
 DECL|method|getCore
-specifier|public
 name|SolrCore
 name|getCore
 parameter_list|()
@@ -290,7 +280,6 @@ parameter_list|()
 function_decl|;
 comment|/** Returns any associated JSON (or null if none) in deserialized generic form.    * Java classes used to represent the JSON are as follows: Map, List, String, Long, Double, Boolean    */
 DECL|method|getJSON
-specifier|public
 name|Map
 argument_list|<
 name|String
@@ -301,7 +290,6 @@ name|getJSON
 parameter_list|()
 function_decl|;
 DECL|method|setJSON
-specifier|public
 name|void
 name|setJSON
 parameter_list|(
@@ -315,7 +303,6 @@ name|json
 parameter_list|)
 function_decl|;
 DECL|method|getUserPrincipal
-specifier|public
 name|Principal
 name|getUserPrincipal
 parameter_list|()
@@ -339,6 +326,7 @@ literal|"path"
 argument_list|)
 return|;
 block|}
+comment|/** Only for V2 API.    * Returns a map of path segments and their values . For example ,    * if the path is configured as /path/{segment1}/{segment2} and a reguest is made    * as /path/x/y the returned map would contain {segment1:x ,segment2:y}    */
 DECL|method|getPathTemplateValues
 specifier|default
 name|Map
@@ -357,6 +345,7 @@ name|emptyMap
 argument_list|()
 return|;
 block|}
+comment|/** Only for v2 API    * if the  request contains a command payload, it's parsed and returned as a list of    * CommandOperation objects    * @param validateInput , If true it is validated against the json schema spec    */
 DECL|method|getCommands
 specifier|default
 name|List
