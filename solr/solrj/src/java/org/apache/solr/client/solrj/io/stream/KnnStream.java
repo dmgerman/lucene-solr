@@ -709,20 +709,6 @@ argument_list|)
 throw|;
 block|}
 comment|// Named parameters - passed directly to solr as solrparams
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"####Params:"
-operator|+
-name|namedParams
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
 if|if
 condition|(
 name|namedParams
