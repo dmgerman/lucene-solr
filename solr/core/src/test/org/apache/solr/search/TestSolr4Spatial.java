@@ -112,11 +112,9 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|spatial
-operator|.
-name|bbox
+name|legacy
 operator|.
 name|BBoxStrategy
 import|;

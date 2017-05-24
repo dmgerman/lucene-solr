@@ -4,13 +4,13 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.legacy
+DECL|package|org.apache.solr.legacy
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 package|;
@@ -120,7 +120,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -134,7 +134,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -148,7 +148,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -162,7 +162,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -176,7 +176,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.

@@ -170,7 +170,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -184,7 +184,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -198,7 +198,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -212,7 +212,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -226,7 +226,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -240,7 +240,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -254,7 +254,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -268,7 +268,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -601,7 +601,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Provides field types to support for Lucene's {@link  * org.apache.lucene.legacy.LegacyIntField}, {@link org.apache.lucene.legacy.LegacyLongField}, {@link org.apache.lucene.legacy.LegacyFloatField} and  * {@link org.apache.lucene.legacy.LegacyDoubleField}.  * See {@link org.apache.lucene.legacy.LegacyNumericRangeQuery} for more details.  * It supports integer, float, long, double and date types.  *<p>  * For each number being added to this field, multiple terms are generated as per the algorithm described in the above  * link. The possible number of terms increases dramatically with lower precision steps. For  * the fast range search to work, trie fields must be indexed.  *<p>  * Trie fields are sortable in numerical order and can be used in function queries.  *<p>  * Note that if you use a precisionStep of 32 for int/float and 64 for long/double/date, then multiple terms will not be  * generated, range search will be no faster than any other number field, but sorting will still be possible.  *  *  * @see org.apache.lucene.legacy.LegacyNumericRangeQuery  * @since solr 1.4  */
+comment|/**  * Provides field types to support for Lucene's {@link  * org.apache.solr.legacy.LegacyIntField}, {@link org.apache.solr.legacy.LegacyLongField}, {@link org.apache.solr.legacy.LegacyFloatField} and  * {@link org.apache.solr.legacy.LegacyDoubleField}.  * See {@link org.apache.solr.legacy.LegacyNumericRangeQuery} for more details.  * It supports integer, float, long, double and date types.  *<p>  * For each number being added to this field, multiple terms are generated as per the algorithm described in the above  * link. The possible number of terms increases dramatically with lower precision steps. For  * the fast range search to work, trie fields must be indexed.  *<p>  * Trie fields are sortable in numerical order and can be used in function queries.  *<p>  * Note that if you use a precisionStep of 32 for int/float and 64 for long/double/date, then multiple terms will not be  * generated, range search will be no faster than any other number field, but sorting will still be possible.  *  *  * @see org.apache.solr.legacy.LegacyNumericRangeQuery  * @since solr 1.4  */
 end_comment
 
 begin_class

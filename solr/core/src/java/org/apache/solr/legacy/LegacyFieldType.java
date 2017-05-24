@@ -4,13 +4,13 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.lucene.legacy
+DECL|package|org.apache.solr.legacy
 package|package
 name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 package|;
@@ -130,7 +130,7 @@ operator|=
 name|type
 expr_stmt|;
 block|}
-comment|/**     * LegacyNumericType: if non-null then the field's value will be indexed    * numerically so that {@link org.apache.lucene.legacy.LegacyNumericRangeQuery} can be used at    * search time.     *<p>    * The default is<code>null</code> (no numeric type)     * @see #setNumericType(LegacyNumericType)    *    * @deprecated Please switch to {@link org.apache.lucene.index.PointValues} instead    */
+comment|/**     * LegacyNumericType: if non-null then the field's value will be indexed    * numerically so that {@link org.apache.solr.legacy.LegacyNumericRangeQuery} can be used at    * search time.     *<p>    * The default is<code>null</code> (no numeric type)     * @see #setNumericType(LegacyNumericType)    *    * @deprecated Please switch to {@link org.apache.lucene.index.PointValues} instead    */
 annotation|@
 name|Deprecated
 DECL|method|numericType
@@ -184,7 +184,7 @@ operator|=
 name|precisionStep
 expr_stmt|;
 block|}
-comment|/**     * Precision step for numeric field.     *<p>    * This has no effect if {@link #numericType()} returns null.    *<p>    * The default is {@link org.apache.lucene.legacy.LegacyNumericUtils#PRECISION_STEP_DEFAULT}    * @see #setNumericPrecisionStep(int)    *    * @deprecated Please switch to {@link org.apache.lucene.index.PointValues} instead    */
+comment|/**     * Precision step for numeric field.     *<p>    * This has no effect if {@link #numericType()} returns null.    *<p>    * The default is {@link org.apache.solr.legacy.LegacyNumericUtils#PRECISION_STEP_DEFAULT}    * @see #setNumericPrecisionStep(int)    *    * @deprecated Please switch to {@link org.apache.lucene.index.PointValues} instead    */
 annotation|@
 name|Deprecated
 DECL|method|numericPrecisionStep

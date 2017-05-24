@@ -162,7 +162,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -590,7 +590,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A parser instance for int values encoded by {@link org.apache.lucene.legacy.LegacyNumericUtils}, e.g. when indexed    * via {@link org.apache.lucene.legacy.LegacyIntField}/{@link org.apache.lucene.legacy.LegacyNumericTokenStream}.    * @deprecated Index with points and use {@link #INT_POINT_PARSER} instead.    */
+comment|/**    * A parser instance for int values encoded by {@link org.apache.solr.legacy.LegacyNumericUtils}, e.g. when indexed    * via {@link org.apache.solr.legacy.LegacyIntField}/{@link org.apache.solr.legacy.LegacyNumericTokenStream}.    * @deprecated Index with points and use {@link #INT_POINT_PARSER} instead.    */
 annotation|@
 name|Deprecated
 DECL|field|LEGACY_INT_PARSER
@@ -667,7 +667,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A parser instance for float values encoded with {@link org.apache.lucene.legacy.LegacyNumericUtils}, e.g. when indexed    * via {@link org.apache.lucene.legacy.LegacyFloatField}/{@link org.apache.lucene.legacy.LegacyNumericTokenStream}.    * @deprecated Index with points and use {@link #FLOAT_POINT_PARSER} instead.    */
+comment|/**    * A parser instance for float values encoded with {@link org.apache.solr.legacy.LegacyNumericUtils}, e.g. when indexed    * via {@link org.apache.solr.legacy.LegacyFloatField}/{@link org.apache.solr.legacy.LegacyNumericTokenStream}.    * @deprecated Index with points and use {@link #FLOAT_POINT_PARSER} instead.    */
 annotation|@
 name|Deprecated
 DECL|field|LEGACY_FLOAT_PARSER
@@ -759,7 +759,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A parser instance for long values encoded by {@link org.apache.lucene.legacy.LegacyNumericUtils}, e.g. when indexed    * via {@link org.apache.lucene.legacy.LegacyLongField}/{@link org.apache.lucene.legacy.LegacyNumericTokenStream}.    * @deprecated Index with points and use {@link #LONG_POINT_PARSER} instead.    */
+comment|/**    * A parser instance for long values encoded by {@link org.apache.solr.legacy.LegacyNumericUtils}, e.g. when indexed    * via {@link org.apache.solr.legacy.LegacyLongField}/{@link org.apache.solr.legacy.LegacyNumericTokenStream}.    * @deprecated Index with points and use {@link #LONG_POINT_PARSER} instead.    */
 annotation|@
 name|Deprecated
 DECL|field|LEGACY_LONG_PARSER
@@ -836,7 +836,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
-comment|/**    * A parser instance for double values encoded with {@link org.apache.lucene.legacy.LegacyNumericUtils}, e.g. when indexed    * via {@link org.apache.lucene.legacy.LegacyDoubleField}/{@link org.apache.lucene.legacy.LegacyNumericTokenStream}.    * @deprecated Index with points and use {@link #DOUBLE_POINT_PARSER} instead.    */
+comment|/**    * A parser instance for double values encoded with {@link org.apache.solr.legacy.LegacyNumericUtils}, e.g. when indexed    * via {@link org.apache.solr.legacy.LegacyDoubleField}/{@link org.apache.solr.legacy.LegacyNumericTokenStream}.    * @deprecated Index with points and use {@link #DOUBLE_POINT_PARSER} instead.    */
 annotation|@
 name|Deprecated
 DECL|field|LEGACY_DOUBLE_PARSER
@@ -946,7 +946,7 @@ parameter_list|)
 throws|throws
 name|IOException
 function_decl|;
-comment|/**    * Returns a {@link NumericDocValues} over the values found in documents in the given    * field. If the field was indexed as {@link NumericDocValuesField}, it simply    * uses {@link org.apache.lucene.index.LeafReader#getNumericDocValues(String)} to read the values.    * Otherwise, it checks the internal cache for an appropriate entry, and if    * none is found, reads the terms/points in<code>field</code> as longs and returns    * an array of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    *     * @param reader    *          Used to get field values.    * @param field    *          Which field contains the longs.    * @param parser    *          Computes long for string values. May be {@code null} if the    *          requested field was indexed as {@link NumericDocValuesField} or    *          {@link org.apache.lucene.legacy.LegacyLongField}.    * @return The values in the given field for each document.    * @throws IOException    *           If any error occurs.    */
+comment|/**    * Returns a {@link NumericDocValues} over the values found in documents in the given    * field. If the field was indexed as {@link NumericDocValuesField}, it simply    * uses {@link org.apache.lucene.index.LeafReader#getNumericDocValues(String)} to read the values.    * Otherwise, it checks the internal cache for an appropriate entry, and if    * none is found, reads the terms/points in<code>field</code> as longs and returns    * an array of size<code>reader.maxDoc()</code> of the value each document    * has in the given field.    *     * @param reader    *          Used to get field values.    * @param field    *          Which field contains the longs.    * @param parser    *          Computes long for string values. May be {@code null} if the    *          requested field was indexed as {@link NumericDocValuesField} or    *          {@link org.apache.solr.legacy.LegacyLongField}.    * @return The values in the given field for each document.    * @throws IOException    *           If any error occurs.    */
 DECL|method|getNumerics
 specifier|public
 name|NumericDocValues
