@@ -10506,11 +10506,11 @@ control|(
 name|int
 name|i
 init|=
-literal|0
+literal|14
 init|;
 name|i
 operator|<
-literal|13
+literal|26
 condition|;
 name|i
 operator|++
@@ -10681,7 +10681,7 @@ argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
-literal|"Query shouldn't be equal, because different index readers "
+literal|"Query shouldn't be equal, because new join values have been indexed"
 argument_list|,
 name|x
 operator|.
