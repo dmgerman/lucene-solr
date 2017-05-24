@@ -89,8 +89,7 @@ decl_stmt|;
 comment|//    KEY:
 comment|// OH = (original) Highlighter   (AKA the standard Highlighter)
 comment|// FVH = FastVectorHighlighter
-comment|// PH = PostingsHighlighter
-comment|// UH = UnifiedHighlighter
+comment|// UH = UnifiedHighlighter (evolved from PostingsHighlighter)
 comment|// query interpretation
 DECL|field|Q
 specifier|public
@@ -164,7 +163,7 @@ name|HIGHLIGHT
 operator|+
 literal|".defaultSummary"
 decl_stmt|;
-comment|// UH, PH
+comment|// UH
 DECL|field|ALTERNATE_FIELD
 specifier|public
 specifier|static
@@ -343,7 +342,7 @@ name|HIGHLIGHT
 operator|+
 literal|".bs.type"
 decl_stmt|;
-comment|// FVH, UH, PH
+comment|// FVH, UH
 DECL|field|BS_LANGUAGE
 specifier|public
 specifier|static
@@ -355,7 +354,7 @@ name|HIGHLIGHT
 operator|+
 literal|".bs.language"
 decl_stmt|;
-comment|// FVH, UH, PH
+comment|// FVH, UH
 DECL|field|BS_COUNTRY
 specifier|public
 specifier|static
@@ -367,7 +366,7 @@ name|HIGHLIGHT
 operator|+
 literal|".bs.country"
 decl_stmt|;
-comment|// FVH, UH, PH
+comment|// FVH, UH
 DECL|field|BS_VARIANT
 specifier|public
 specifier|static
@@ -379,7 +378,7 @@ name|HIGHLIGHT
 operator|+
 literal|".bs.variant"
 decl_stmt|;
-comment|// FVH, UH, PH
+comment|// FVH, UH
 DECL|field|BS_SEP
 specifier|public
 specifier|static
@@ -391,7 +390,7 @@ name|HIGHLIGHT
 operator|+
 literal|".bs.separator"
 decl_stmt|;
-comment|// UH, PH
+comment|// UH
 comment|// formatting
 DECL|field|FORMATTER
 specifier|public
@@ -494,7 +493,7 @@ name|HIGHLIGHT
 operator|+
 literal|".tag.pre"
 decl_stmt|;
-comment|// FVH, UH, PH
+comment|// FVH, UH
 DECL|field|TAG_POST
 specifier|public
 specifier|static
@@ -506,7 +505,7 @@ name|HIGHLIGHT
 operator|+
 literal|".tag.post"
 decl_stmt|;
-comment|// FVH, UH, PH
+comment|// FVH, UH
 DECL|field|TAG_ELLIPSIS
 specifier|public
 specifier|static
@@ -518,7 +517,7 @@ name|HIGHLIGHT
 operator|+
 literal|".tag.ellipsis"
 decl_stmt|;
-comment|// FVH, UH, PH
+comment|// FVH, UH
 DECL|field|MULTI_VALUED_SEPARATOR
 specifier|public
 specifier|static
@@ -530,7 +529,7 @@ name|HIGHLIGHT
 operator|+
 literal|".multiValuedSeparatorChar"
 decl_stmt|;
-comment|// FVH, PH
+comment|// FVH
 comment|// ordering
 DECL|field|PRESERVE_MULTI
 specifier|public
@@ -565,7 +564,7 @@ name|SCORE
 init|=
 literal|"score"
 decl_stmt|;
-comment|// UH, PH
+comment|// UH
 DECL|field|SCORE_K1
 specifier|public
 specifier|static
@@ -581,7 +580,7 @@ name|SCORE
 operator|+
 literal|".k1"
 decl_stmt|;
-comment|// UH, PH
+comment|// UH
 DECL|field|SCORE_B
 specifier|public
 specifier|static
@@ -597,7 +596,7 @@ name|SCORE
 operator|+
 literal|".b"
 decl_stmt|;
-comment|// UH, PH
+comment|// UH
 DECL|field|SCORE_PIVOT
 specifier|public
 specifier|static
@@ -613,7 +612,7 @@ name|SCORE
 operator|+
 literal|".pivot"
 decl_stmt|;
-comment|// UH, PH
+comment|// UH
 comment|// misc
 DECL|field|MAX_CHARS
 specifier|public
