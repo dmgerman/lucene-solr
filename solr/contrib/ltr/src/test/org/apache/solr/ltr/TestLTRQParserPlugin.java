@@ -452,11 +452,8 @@ argument_list|,
 literal|"true"
 argument_list|)
 expr_stmt|;
-name|String
-name|nonRerankedScore
-init|=
-literal|"0.09271725"
-decl_stmt|;
+comment|// FIXME: design better way to test this, we cannot check an absolute score
+comment|// String nonRerankedScore = "0.09271725";
 comment|// Normal solr order
 name|assertJQ
 argument_list|(
@@ -474,10 +471,7 @@ argument_list|,
 literal|"/response/docs/[2]/id=='7'"
 argument_list|,
 literal|"/response/docs/[3]/id=='6'"
-argument_list|,
-literal|"/response/docs/[3]/score=="
-operator|+
-name|nonRerankedScore
+comment|//  "/response/docs/[3]/score=="+nonRerankedScore
 argument_list|)
 expr_stmt|;
 name|query
@@ -506,10 +500,7 @@ argument_list|,
 literal|"/response/docs/[2]/id=='9'"
 argument_list|,
 literal|"/response/docs/[3]/id=='6'"
-argument_list|,
-literal|"/response/docs/[3]/score=="
-operator|+
-name|nonRerankedScore
+comment|//  "/response/docs/[3]/score=="+nonRerankedScore
 argument_list|)
 expr_stmt|;
 block|}

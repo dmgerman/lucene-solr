@@ -236,6 +236,7 @@ argument_list|,
 literal|"{!ltr reRankDocs=10 model=externalmodel efi.user_query=w3}"
 argument_list|)
 expr_stmt|;
+comment|// SOLR-10710, feature based on query with term w3 now scores higher on doc 4, updated
 name|assertJQ
 argument_list|(
 literal|"/query"
@@ -245,7 +246,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[0]/id=='3'"
+literal|"/response/docs/[0]/id=='4'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
@@ -257,7 +258,7 @@ operator|.
 name|toQueryString
 argument_list|()
 argument_list|,
-literal|"/response/docs/[1]/id=='4'"
+literal|"/response/docs/[1]/id=='3'"
 argument_list|)
 expr_stmt|;
 name|assertJQ
