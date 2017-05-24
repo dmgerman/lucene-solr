@@ -6827,11 +6827,11 @@ name|add
 argument_list|(
 name|id
 argument_list|,
-literal|"2"
+literal|"4"
 argument_list|,
 literal|"a_t"
 argument_list|,
-literal|"hello world have a very nice day fancy sky"
+literal|"hello world have a very streaming is fun"
 argument_list|)
 expr_stmt|;
 name|update
@@ -6853,11 +6853,11 @@ name|add
 argument_list|(
 name|id
 argument_list|,
-literal|"4"
+literal|"2"
 argument_list|,
 literal|"a_t"
 argument_list|,
-literal|"hello world have a very streaming is fun"
+literal|"hello world have a very nice day fancy sky"
 argument_list|)
 expr_stmt|;
 name|update
@@ -6872,41 +6872,6 @@ argument_list|,
 name|COLLECTIONORALIAS
 argument_list|)
 expr_stmt|;
-name|StreamExpression
-name|expression
-decl_stmt|;
-name|TupleStream
-name|stream
-decl_stmt|;
-name|StreamFactory
-name|factory
-init|=
-operator|new
-name|StreamFactory
-argument_list|()
-operator|.
-name|withCollectionZkHost
-argument_list|(
-name|COLLECTIONORALIAS
-argument_list|,
-name|cluster
-operator|.
-name|getZkServer
-argument_list|()
-operator|.
-name|getZkAddress
-argument_list|()
-argument_list|)
-operator|.
-name|withFunctionName
-argument_list|(
-literal|"random"
-argument_list|,
-name|RandomStream
-operator|.
-name|class
-argument_list|)
-decl_stmt|;
 name|StreamContext
 name|context
 init|=
@@ -6958,7 +6923,7 @@ literal|"knn("
 operator|+
 name|COLLECTIONORALIAS
 operator|+
-literal|", id=\"1\", qf=\"a_t\", rows=\"4\", fl=\"id\")"
+literal|", id=\"1\", qf=\"a_t\", rows=\"4\", fl=\"id, score\", mintf=\"1\")"
 argument_list|)
 expr_stmt|;
 name|JettySolrRunner
@@ -7001,20 +6966,6 @@ argument_list|(
 name|solrStream
 argument_list|)
 decl_stmt|;
-name|System
-operator|.
-name|out
-operator|.
-name|println
-argument_list|(
-literal|"## Tuples:"
-operator|+
-name|tuples
-operator|.
-name|size
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|assertTrue
 argument_list|(
 name|tuples
@@ -7022,6 +6973,17 @@ operator|.
 name|size
 argument_list|()
 operator|==
+literal|3
+argument_list|)
+expr_stmt|;
+name|assertOrder
+argument_list|(
+name|tuples
+argument_list|,
+literal|2
+argument_list|,
+literal|3
+argument_list|,
 literal|4
 argument_list|)
 expr_stmt|;
