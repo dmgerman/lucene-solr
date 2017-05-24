@@ -365,6 +365,26 @@ operator|)
 name|o
 return|;
 block|}
+elseif|else
+if|if
+condition|(
+name|o
+operator|instanceof
+name|Number
+condition|)
+block|{
+return|return
+operator|(
+operator|(
+name|Number
+operator|)
+name|o
+operator|)
+operator|.
+name|longValue
+argument_list|()
+return|;
+block|}
 else|else
 block|{
 comment|//Attempt to parse the long

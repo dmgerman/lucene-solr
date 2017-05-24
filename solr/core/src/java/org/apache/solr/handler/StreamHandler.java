@@ -1640,6 +1640,15 @@ name|DescribeEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"finddelay"
+argument_list|,
+name|FindDelayEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
