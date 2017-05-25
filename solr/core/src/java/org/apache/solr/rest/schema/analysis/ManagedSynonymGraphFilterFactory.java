@@ -156,26 +156,6 @@ name|lucene
 operator|.
 name|analysis
 operator|.
-name|core
-operator|.
-name|FlattenGraphFilterFactory
-import|;
-end_import
-
-begin_comment
-comment|// javadocs
-end_comment
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|analysis
-operator|.
 name|TokenStream
 import|;
 end_import
@@ -192,7 +172,7 @@ name|analysis
 operator|.
 name|synonym
 operator|.
-name|SynonymFilterFactory
+name|SynonymGraphFilterFactory
 import|;
 end_import
 
@@ -419,16 +399,14 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TokenFilterFactory and ManagedResource implementation for   * doing CRUD on synonyms using the REST API.  *   * @deprecated Use {@link ManagedSynonymGraphFilterFactory} instead, but be sure to also  * use {@link FlattenGraphFilterFactory} at index time (not at search time) as well.  */
+comment|/**  * TokenFilterFactory and ManagedResource implementation for   * doing CRUD on synonyms using the REST API.  */
 end_comment
 
 begin_class
-annotation|@
-name|Deprecated
-DECL|class|ManagedSynonymFilterFactory
+DECL|class|ManagedSynonymGraphFilterFactory
 specifier|public
 class|class
-name|ManagedSynonymFilterFactory
+name|ManagedSynonymGraphFilterFactory
 extends|extends
 name|BaseManagedTokenFilterFactory
 block|{
@@ -2122,12 +2100,12 @@ block|}
 block|}
 DECL|field|delegate
 specifier|protected
-name|SynonymFilterFactory
+name|SynonymGraphFilterFactory
 name|delegate
 decl_stmt|;
-DECL|method|ManagedSynonymFilterFactory
+DECL|method|ManagedSynonymGraphFilterFactory
 specifier|public
-name|ManagedSynonymFilterFactory
+name|ManagedSynonymGraphFilterFactory
 parameter_list|(
 name|Map
 argument_list|<
@@ -2295,7 +2273,7 @@ comment|// from synonymMappings using a custom parser implementation
 name|delegate
 operator|=
 operator|new
-name|SynonymFilterFactory
+name|SynonymGraphFilterFactory
 argument_list|(
 name|filtArgs
 argument_list|)
