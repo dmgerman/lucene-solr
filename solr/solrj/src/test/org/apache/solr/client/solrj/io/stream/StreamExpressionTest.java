@@ -7218,7 +7218,7 @@ literal|"knn("
 operator|+
 name|COLLECTIONORALIAS
 operator|+
-literal|", id=\"1\", qf=\"a_t\", r=\"2\", fl=\"id, score\", mintf=\"1\", minwl=\"20\")"
+literal|", id=\"1\", qf=\"a_t\", rows=\"2\", fl=\"id, score\", mintf=\"1\", minwl=\"20\")"
 argument_list|)
 expr_stmt|;
 name|solrStream
