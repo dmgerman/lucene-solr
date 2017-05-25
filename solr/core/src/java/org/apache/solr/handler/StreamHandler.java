@@ -1649,6 +1649,15 @@ name|FindDelayEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"sequence"
+argument_list|,
+name|SequenceEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
