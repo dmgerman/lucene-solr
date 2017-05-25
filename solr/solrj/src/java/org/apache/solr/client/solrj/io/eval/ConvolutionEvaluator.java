@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.client.solrj.io.stream
+DECL|package|org.apache.solr.client.solrj.io.eval
 package|package
 name|org
 operator|.
@@ -18,7 +18,7 @@ name|solrj
 operator|.
 name|io
 operator|.
-name|stream
+name|eval
 package|;
 end_package
 
@@ -83,46 +83,6 @@ operator|.
 name|io
 operator|.
 name|Tuple
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|io
-operator|.
-name|eval
-operator|.
-name|ComplexEvaluator
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|client
-operator|.
-name|solrj
-operator|.
-name|io
-operator|.
-name|eval
-operator|.
-name|StreamEvaluator
 import|;
 end_import
 
