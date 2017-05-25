@@ -785,7 +785,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** @lucene.experimental */
+comment|/**   * @lucene.experimental   * This holds references to the transaction logs and pointers for the document IDs to their  * exact positions in the transaction logs.  */
 end_comment
 
 begin_class
@@ -1404,6 +1404,7 @@ return|;
 block|}
 block|}
 decl_stmt|;
+comment|/**    * Holds the query and the version for a DeleteByQuery command    */
 DECL|class|DBQ
 specifier|public
 specifier|static

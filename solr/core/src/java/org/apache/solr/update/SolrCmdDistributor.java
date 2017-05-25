@@ -466,6 +466,10 @@ name|Future
 import|;
 end_import
 
+begin_comment
+comment|/**  * Used for distributing commands from a shard leader to its replicas.  */
+end_comment
+
 begin_class
 DECL|class|SolrCmdDistributor
 specifier|public
