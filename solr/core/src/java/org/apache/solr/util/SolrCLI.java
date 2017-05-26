@@ -17278,7 +17278,7 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"%s start %s -p %d -s \"%s\" %s %s %s %s %s %s"
+literal|"\"%s\" start %s -p %d -s \"%s\" %s %s %s %s %s %s"
 argument_list|,
 name|callScript
 argument_list|,
