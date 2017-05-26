@@ -1540,7 +1540,7 @@ name|log
 operator|.
 name|info
 argument_list|(
-literal|"Begining periodic deletion of expired docs"
+literal|"Beginning periodic deletion of expired docs"
 argument_list|)
 expr_stmt|;
 name|UpdateRequestProcessorChain
