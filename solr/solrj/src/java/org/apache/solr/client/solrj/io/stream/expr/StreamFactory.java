@@ -3126,7 +3126,7 @@ argument_list|)
 condition|)
 block|{
 return|return
-name|Float
+name|Double
 operator|.
 name|valueOf
 argument_list|(

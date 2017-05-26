@@ -1724,6 +1724,15 @@ name|SequenceEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"array"
+argument_list|,
+name|ArrayEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
