@@ -785,7 +785,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**   * @lucene.experimental   * This holds references to the transaction logs and pointers for the document IDs to their  * exact positions in the transaction logs.  */
+comment|/**   * This holds references to the transaction logs and pointers for the document IDs to their  * exact positions in the transaction logs.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
