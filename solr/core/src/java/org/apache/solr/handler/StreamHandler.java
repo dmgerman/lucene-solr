@@ -2508,7 +2508,7 @@ argument_list|(
 operator|new
 name|StreamExpressionNamedParameter
 argument_list|(
-literal|"out"
+literal|"return-value"
 argument_list|,
 name|streamExpression
 argument_list|)
