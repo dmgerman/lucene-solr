@@ -279,22 +279,6 @@ return|return
 name|credentialsProviderProvider
 return|;
 block|}
-comment|/**    * @deprecated use {@link #createContext(Object)}    */
-annotation|@
-name|Deprecated
-DECL|method|createContext
-specifier|public
-name|HttpClientContext
-name|createContext
-parameter_list|()
-block|{
-return|return
-name|createContext
-argument_list|(
-literal|null
-argument_list|)
-return|;
-block|}
 DECL|method|createContext
 specifier|public
 name|HttpClientContext

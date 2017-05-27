@@ -1077,58 +1077,9 @@ name|server
 return|;
 block|}
 block|}
-comment|/**    * @deprecated use {@link Builder} instead.    */
-annotation|@
-name|Deprecated
+comment|/**    * The provided httpClient should use a multi-threaded connection manager    */
 DECL|method|LBHttpSolrClient
-specifier|public
-name|LBHttpSolrClient
-parameter_list|(
-name|String
-modifier|...
-name|solrServerUrls
-parameter_list|)
-throws|throws
-name|MalformedURLException
-block|{
-name|this
-argument_list|(
-literal|null
-argument_list|,
-name|solrServerUrls
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * The provided httpClient should use a multi-threaded connection manager    * @deprecated use {@link Builder} instead.    */
-annotation|@
-name|Deprecated
-DECL|method|LBHttpSolrClient
-specifier|public
-name|LBHttpSolrClient
-parameter_list|(
-name|HttpClient
-name|httpClient
-parameter_list|,
-name|String
-modifier|...
-name|solrServerUrl
-parameter_list|)
-block|{
-name|this
-argument_list|(
-name|httpClient
-argument_list|,
-operator|new
-name|BinaryResponseParser
-argument_list|()
-argument_list|,
-name|solrServerUrl
-argument_list|)
-expr_stmt|;
-block|}
-comment|/**    * The provided httpClient should use a multi-threaded connection manager    * @deprecated use {@link Builder} instead.  This will soon be a protected    * method and will only be available for use in implementing subclasses.    */
-DECL|method|LBHttpSolrClient
-specifier|public
+specifier|protected
 name|LBHttpSolrClient
 parameter_list|(
 name|HttpSolrClient
@@ -1214,11 +1165,9 @@ name|updateAliveList
 argument_list|()
 expr_stmt|;
 block|}
-comment|/**    * The provided httpClient should use a multi-threaded connection manager    * @deprecated use {@link Builder} instead.  This will soon be a protected    * method and will only be available for use in implementing subclasses.    */
-annotation|@
-name|Deprecated
+comment|/**    * The provided httpClient should use a multi-threaded connection manager    */
 DECL|method|LBHttpSolrClient
-specifier|public
+specifier|protected
 name|LBHttpSolrClient
 parameter_list|(
 name|HttpClient

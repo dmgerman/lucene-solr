@@ -50,20 +50,6 @@ operator|+
 literal|".method"
 decl_stmt|;
 comment|// original|fastVector|postings|unified
-annotation|@
-name|Deprecated
-comment|// see hl.method
-DECL|field|USE_FVH
-specifier|public
-specifier|static
-specifier|final
-name|String
-name|USE_FVH
-init|=
-name|HIGHLIGHT
-operator|+
-literal|".useFastVectorHighlighter"
-decl_stmt|;
 DECL|field|FIELDS
 specifier|public
 specifier|static
