@@ -214,6 +214,24 @@ name|AttributeFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|standard
+operator|.
+name|StandardTokenizer
+operator|.
+name|MAX_TOKEN_LENGTH_LIMIT
+import|;
+end_import
+
 begin_comment
 comment|/**  * An abstract base class for simple, character-oriented tokenizers.  *<p>  * The base class also provides factories to create instances of  * {@code CharTokenizer} using Java 8 lambdas or method references.  * It is possible to create an instance which behaves exactly like  * {@link LetterTokenizer}:  *<pre class="prettyprint lang-java">  * Tokenizer tok = CharTokenizer.fromTokenCharPredicate(Character::isLetter);  *</pre>  */
 end_comment
@@ -232,7 +250,14 @@ DECL|method|CharTokenizer
 specifier|public
 name|CharTokenizer
 parameter_list|()
-block|{   }
+block|{
+name|this
+operator|.
+name|maxTokenLen
+operator|=
+name|DEFAULT_MAX_WORD_LEN
+expr_stmt|;
+block|}
 comment|/**    * Creates a new {@link CharTokenizer} instance    *     * @param factory    *          the attribute factory to use for this {@link Tokenizer}    */
 DECL|method|CharTokenizer
 specifier|public
@@ -246,6 +271,61 @@ name|super
 argument_list|(
 name|factory
 argument_list|)
+expr_stmt|;
+name|this
+operator|.
+name|maxTokenLen
+operator|=
+name|DEFAULT_MAX_WORD_LEN
+expr_stmt|;
+block|}
+comment|/**    * Creates a new {@link CharTokenizer} instance    *    * @param factory the attribute factory to use for this {@link Tokenizer}    * @param maxTokenLen maximum token length the tokenizer will emit.     *        Must be greater than 0 and less than MAX_TOKEN_LENGTH_LIMIT (1024*1024)    * @throws IllegalArgumentException if maxTokenLen is invalid.    */
+DECL|method|CharTokenizer
+specifier|public
+name|CharTokenizer
+parameter_list|(
+name|AttributeFactory
+name|factory
+parameter_list|,
+name|int
+name|maxTokenLen
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|factory
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|maxTokenLen
+operator|>
+name|MAX_TOKEN_LENGTH_LIMIT
+operator|||
+name|maxTokenLen
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxTokenLen must be greater than 0 and less than "
+operator|+
+name|MAX_TOKEN_LENGTH_LIMIT
+operator|+
+literal|" passed: "
+operator|+
+name|maxTokenLen
+argument_list|)
+throw|;
+block|}
+name|this
+operator|.
+name|maxTokenLen
+operator|=
+name|maxTokenLen
 expr_stmt|;
 block|}
 comment|/**    * Creates a new instance of CharTokenizer using a custom predicate, supplied as method reference or lambda expression.    * The predicate should return {@code true} for all valid token characters.    *<p>    * This factory is intended to be used with lambdas or method references. E.g., an elegant way    * to create an instance which behaves exactly as {@link LetterTokenizer} is:    *<pre class="prettyprint lang-java">    * Tokenizer tok = CharTokenizer.fromTokenCharPredicate(Character::isLetter);    *</pre>    */
@@ -542,12 +622,12 @@ name|finalOffset
 init|=
 literal|0
 decl_stmt|;
-DECL|field|MAX_WORD_LEN
-specifier|private
+DECL|field|DEFAULT_MAX_WORD_LEN
+specifier|public
 specifier|static
 specifier|final
 name|int
-name|MAX_WORD_LEN
+name|DEFAULT_MAX_WORD_LEN
 init|=
 literal|255
 decl_stmt|;
@@ -559,6 +639,12 @@ name|int
 name|IO_BUFFER_SIZE
 init|=
 literal|4096
+decl_stmt|;
+DECL|field|maxTokenLen
+specifier|private
+specifier|final
+name|int
+name|maxTokenLen
 decl_stmt|;
 DECL|field|termAtt
 specifier|private
@@ -865,7 +951,7 @@ if|if
 condition|(
 name|length
 operator|>=
-name|MAX_WORD_LEN
+name|maxTokenLen
 condition|)
 block|{
 comment|// buffer overflow! make sure to check for>= surrogate pair could break == test

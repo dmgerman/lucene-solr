@@ -80,6 +80,26 @@ name|factory
 argument_list|)
 expr_stmt|;
 block|}
+comment|/**    * Construct a new LowerCaseTokenizer using a given    * {@link org.apache.lucene.util.AttributeFactory}.    *    * @param factory the attribute factory to use for this {@link Tokenizer}    * @param maxTokenLen maximum token length the tokenizer will emit.     *        Must be greater than 0 and less than MAX_TOKEN_LENGTH_LIMIT (1024*1024)    * @throws IllegalArgumentException if maxTokenLen is invalid.    */
+DECL|method|LowerCaseTokenizer
+specifier|public
+name|LowerCaseTokenizer
+parameter_list|(
+name|AttributeFactory
+name|factory
+parameter_list|,
+name|int
+name|maxTokenLen
+parameter_list|)
+block|{
+name|super
+argument_list|(
+name|factory
+argument_list|,
+name|maxTokenLen
+argument_list|)
+expr_stmt|;
+block|}
 comment|/** Converts char to lower case    * {@link Character#toLowerCase(int)}.*/
 annotation|@
 name|Override
