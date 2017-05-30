@@ -569,6 +569,8 @@ operator|.
 name|cloud
 operator|.
 name|ClusterState
+operator|.
+name|CollectionRef
 import|;
 end_import
 
@@ -936,7 +938,7 @@ name|params
 operator|.
 name|CommonParams
 operator|.
-name|ADMIN_PATHS
+name|ID
 import|;
 end_import
 
@@ -954,7 +956,7 @@ name|params
 operator|.
 name|CommonParams
 operator|.
-name|ID
+name|ADMIN_PATHS
 import|;
 end_import
 
@@ -2006,6 +2008,11 @@ name|ZkClientClusterStateProvider
 operator|)
 name|stateProvider
 decl_stmt|;
+name|stateProvider
+operator|.
+name|connect
+argument_list|()
+expr_stmt|;
 return|return
 name|provider
 operator|.
@@ -6746,8 +6753,6 @@ return|return
 name|col
 return|;
 block|}
-name|ClusterState
-operator|.
 name|CollectionRef
 name|ref
 init|=
@@ -6966,8 +6971,6 @@ return|;
 block|}
 block|}
 DECL|method|getCollectionRef
-name|ClusterState
-operator|.
 name|CollectionRef
 name|getCollectionRef
 parameter_list|(

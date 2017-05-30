@@ -211,16 +211,6 @@ operator|=
 name|session
 expr_stmt|;
 block|}
-DECL|method|getSnitchInfo
-specifier|public
-name|SnitchInfo
-name|getSnitchInfo
-parameter_list|()
-block|{
-return|return
-name|snitchInfo
-return|;
-block|}
 DECL|method|getTags
 specifier|public
 name|Map

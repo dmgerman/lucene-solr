@@ -812,7 +812,7 @@ argument_list|(
 literal|"path"
 argument_list|)
 decl_stmt|;
-name|SolrConfigHandler
+name|RequestHandlerUtils
 operator|.
 name|setWt
 argument_list|(
