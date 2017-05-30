@@ -1751,6 +1751,15 @@ name|AnovaEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"movingAvg"
+argument_list|,
+name|MovingAverageEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
