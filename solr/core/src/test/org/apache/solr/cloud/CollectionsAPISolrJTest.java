@@ -2208,6 +2208,36 @@ name|IOException
 throws|,
 name|SolrServerException
 block|{
+comment|// sanity check our expected default
+specifier|final
+name|ClusterProperties
+name|props
+init|=
+operator|new
+name|ClusterProperties
+argument_list|(
+name|zkClient
+argument_list|()
+argument_list|)
+decl_stmt|;
+name|assertEquals
+argument_list|(
+literal|"Expecting prop to default to unset, test needs upated"
+argument_list|,
+name|props
+operator|.
+name|getClusterProperty
+argument_list|(
+name|ZkStateReader
+operator|.
+name|LEGACY_CLOUD
+argument_list|,
+literal|null
+argument_list|)
+argument_list|,
+literal|null
+argument_list|)
+expr_stmt|;
 name|CollectionAdminResponse
 name|response
 init|=
@@ -2240,16 +2270,6 @@ name|getStatus
 argument_list|()
 argument_list|)
 expr_stmt|;
-name|ClusterProperties
-name|props
-init|=
-operator|new
-name|ClusterProperties
-argument_list|(
-name|zkClient
-argument_list|()
-argument_list|)
-decl_stmt|;
 name|assertEquals
 argument_list|(
 literal|"Cluster property was not set"
@@ -2262,7 +2282,7 @@ name|ZkStateReader
 operator|.
 name|LEGACY_CLOUD
 argument_list|,
-literal|"true"
+literal|null
 argument_list|)
 argument_list|,
 literal|"false"
@@ -2300,10 +2320,10 @@ name|ZkStateReader
 operator|.
 name|LEGACY_CLOUD
 argument_list|,
-literal|"true"
+literal|null
 argument_list|)
 argument_list|,
-literal|"true"
+literal|null
 argument_list|)
 expr_stmt|;
 block|}

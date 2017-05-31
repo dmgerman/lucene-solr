@@ -471,6 +471,8 @@ operator|.
 name|Create
 name|create
 decl_stmt|;
+comment|// NOTE: always using the createCollection that takes in 'int' for all types of replicas, so we never
+comment|// have to worry about null checking when comparing the Create command with the final Slices
 name|create
 operator|=
 name|pickRandom
@@ -486,6 +488,10 @@ argument_list|,
 literal|5
 argument_list|,
 literal|2
+argument_list|,
+literal|0
+argument_list|,
+literal|0
 argument_list|)
 argument_list|,
 name|CollectionAdminRequest

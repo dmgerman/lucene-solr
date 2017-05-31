@@ -613,6 +613,27 @@ operator|.
 name|Create
 name|create
 init|=
+name|isImplicit
+condition|?
+comment|// NOTE: use shard list with same # of shards as NUM_SHARDS; we assume this later
+name|CollectionAdminRequest
+operator|.
+name|createCollectionWithImplicitRouter
+argument_list|(
+name|getCollectionName
+argument_list|()
+argument_list|,
+literal|"conf1"
+argument_list|,
+literal|"shard1,shard2"
+argument_list|,
+name|replFactor
+argument_list|,
+name|numTlogReplicas
+argument_list|,
+name|numPullReplicas
+argument_list|)
+else|:
 name|CollectionAdminRequest
 operator|.
 name|createCollection
@@ -757,31 +778,6 @@ name|isImplicit
 condition|)
 block|{
 comment|//implicit router
-name|create
-operator|.
-name|setRouterName
-argument_list|(
-name|ImplicitDocRouter
-operator|.
-name|NAME
-argument_list|)
-expr_stmt|;
-name|create
-operator|.
-name|setNumShards
-argument_list|(
-literal|null
-argument_list|)
-expr_stmt|;
-comment|//erase it. TODO suggest a new createCollectionWithImplicitRouter method
-name|create
-operator|.
-name|setShards
-argument_list|(
-literal|"shard1,shard2"
-argument_list|)
-expr_stmt|;
-comment|// however still same number as NUM_SHARDS; we assume this later
 name|create
 operator|.
 name|setRouterField
