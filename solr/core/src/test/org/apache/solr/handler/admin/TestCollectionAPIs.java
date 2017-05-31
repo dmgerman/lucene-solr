@@ -510,7 +510,8 @@ name|api
 argument_list|,
 name|Collections
 operator|.
-name|EMPTY_MAP
+name|emptyMap
+argument_list|()
 argument_list|)
 expr_stmt|;
 comment|//test a simple create collection call
@@ -527,6 +528,36 @@ argument_list|,
 literal|null
 argument_list|,
 literal|"{name:newcoll, fromApi:'true', replicationFactor:'2', collection.configName:schemaless, numShards:'2', stateFormat:'2', operation:create}"
+argument_list|)
+expr_stmt|;
+name|compareOutput
+argument_list|(
+name|apiBag
+argument_list|,
+literal|"/collections"
+argument_list|,
+name|POST
+argument_list|,
+literal|"{create:{name:'newcoll', config:'schemaless', numShards:2, nrtReplicas:2 }}"
+argument_list|,
+literal|null
+argument_list|,
+literal|"{name:newcoll, fromApi:'true', nrtReplicas:'2', collection.configName:schemaless, numShards:'2', stateFormat:'2', operation:create}"
+argument_list|)
+expr_stmt|;
+name|compareOutput
+argument_list|(
+name|apiBag
+argument_list|,
+literal|"/collections"
+argument_list|,
+name|POST
+argument_list|,
+literal|"{create:{name:'newcoll', config:'schemaless', numShards:2, nrtReplicas:2, tlogReplicas:2, pullReplicas:2 }}"
+argument_list|,
+literal|null
+argument_list|,
+literal|"{name:newcoll, fromApi:'true', nrtReplicas:'2', tlogReplicas:'2', pullReplicas:'2', collection.configName:schemaless, numShards:'2', stateFormat:'2', operation:create}"
 argument_list|)
 expr_stmt|;
 comment|//test a create collection with custom properties
@@ -678,6 +709,51 @@ argument_list|,
 literal|null
 argument_list|,
 literal|"{collection: collName , split.key : id12345 , operation : splitshard, property.prop1:prop1Val, property.prop2: prop2Val}"
+argument_list|)
+expr_stmt|;
+name|compareOutput
+argument_list|(
+name|apiBag
+argument_list|,
+literal|"/collections/collName/shards"
+argument_list|,
+name|POST
+argument_list|,
+literal|"{add-replica:{shard: shard1, node: 'localhost_8978' , type:'TLOG' }}"
+argument_list|,
+literal|null
+argument_list|,
+literal|"{collection: collName , shard : shard1, node :'localhost_8978', operation : addreplica, type: TLOG}"
+argument_list|)
+expr_stmt|;
+name|compareOutput
+argument_list|(
+name|apiBag
+argument_list|,
+literal|"/collections/collName/shards"
+argument_list|,
+name|POST
+argument_list|,
+literal|"{add-replica:{shard: shard1, node: 'localhost_8978' , type:'PULL' }}"
+argument_list|,
+literal|null
+argument_list|,
+literal|"{collection: collName , shard : shard1, node :'localhost_8978', operation : addreplica, type: PULL}"
+argument_list|)
+expr_stmt|;
+name|assertErrorContains
+argument_list|(
+name|apiBag
+argument_list|,
+literal|"/collections/collName/shards"
+argument_list|,
+name|POST
+argument_list|,
+literal|"{add-replica:{shard: shard1, node: 'localhost_8978' , type:'foo' }}"
+argument_list|,
+literal|null
+argument_list|,
+literal|"Value of enum must be one of"
 argument_list|)
 expr_stmt|;
 name|compareOutput
@@ -886,6 +962,92 @@ return|return
 name|output
 return|;
 block|}
+DECL|method|assertErrorContains
+specifier|static
+name|void
+name|assertErrorContains
+parameter_list|(
+specifier|final
+name|ApiBag
+name|apiBag
+parameter_list|,
+specifier|final
+name|String
+name|path
+parameter_list|,
+specifier|final
+name|SolrRequest
+operator|.
+name|METHOD
+name|method
+parameter_list|,
+specifier|final
+name|String
+name|payload
+parameter_list|,
+specifier|final
+name|CoreContainer
+name|cc
+parameter_list|,
+name|String
+name|expectedErrorMsg
+parameter_list|)
+throws|throws
+name|Exception
+block|{
+try|try
+block|{
+name|makeCall
+argument_list|(
+name|apiBag
+argument_list|,
+name|path
+argument_list|,
+name|method
+argument_list|,
+name|payload
+argument_list|,
+name|cc
+argument_list|)
+expr_stmt|;
+name|fail
+argument_list|(
+literal|"Expected exception"
+argument_list|)
+expr_stmt|;
+block|}
+catch|catch
+parameter_list|(
+name|RuntimeException
+name|e
+parameter_list|)
+block|{
+name|assertTrue
+argument_list|(
+literal|"Expected exception with error message '"
+operator|+
+name|expectedErrorMsg
+operator|+
+literal|"' but got: "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|e
+operator|.
+name|getMessage
+argument_list|()
+operator|.
+name|contains
+argument_list|(
+name|expectedErrorMsg
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
+block|}
 DECL|method|makeCall
 specifier|public
 specifier|static
@@ -929,7 +1091,8 @@ name|MultiMapSolrParams
 argument_list|(
 name|Collections
 operator|.
-name|EMPTY_MAP
+name|emptyMap
+argument_list|()
 argument_list|)
 decl_stmt|;
 if|if
