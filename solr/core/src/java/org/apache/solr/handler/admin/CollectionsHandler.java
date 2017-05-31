@@ -424,6 +424,22 @@ name|solr
 operator|.
 name|cloud
 operator|.
+name|autoscaling
+operator|.
+name|Policy
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|cloud
+operator|.
 name|overseer
 operator|.
 name|SliceMutator
@@ -1379,6 +1395,24 @@ operator|.
 name|OverseerCollectionMessageHandler
 operator|.
 name|SHARD_UNIQUE
+import|;
+end_import
+
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|cloud
+operator|.
+name|autoscaling
+operator|.
+name|Policy
+operator|.
+name|POLICY
 import|;
 end_import
 
@@ -3425,6 +3459,8 @@ argument_list|,
 name|TLOG_REPLICAS
 argument_list|,
 name|NRT_REPLICAS
+argument_list|,
+name|POLICY
 argument_list|)
 expr_stmt|;
 if|if
