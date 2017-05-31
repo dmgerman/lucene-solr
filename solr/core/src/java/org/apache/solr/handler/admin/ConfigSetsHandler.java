@@ -1809,6 +1809,16 @@ argument_list|)
 expr_stmt|;
 block|}
 block|}
+comment|// The configset created via an API should be mutable.
+name|props
+operator|.
+name|put
+argument_list|(
+literal|"immutable"
+argument_list|,
+literal|"false"
+argument_list|)
+expr_stmt|;
 return|return
 name|props
 return|;
