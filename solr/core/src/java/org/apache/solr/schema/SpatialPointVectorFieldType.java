@@ -52,7 +52,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -66,11 +66,9 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
-name|spatial
-operator|.
-name|vector
+name|legacy
 operator|.
 name|PointVectorStrategy
 import|;

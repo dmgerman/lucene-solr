@@ -1306,7 +1306,7 @@ argument_list|)
 expr_stmt|;
 name|assertWarnOrFail
 argument_list|(
-literal|"Begining with Solr 5.0,<checkIntegrityAtMerge> option is no longer supported and should be removed from solrconfig.xml (these integrity checks are now automatic)"
+literal|"Beginning with Solr 5.0,<checkIntegrityAtMerge> option is no longer supported and should be removed from solrconfig.xml (these integrity checks are now automatic)"
 argument_list|,
 operator|(
 literal|null

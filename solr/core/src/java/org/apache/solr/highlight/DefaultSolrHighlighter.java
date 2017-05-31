@@ -858,6 +858,20 @@ name|SolrHighlighter
 implements|implements
 name|PluginInfoInitialized
 block|{
+comment|/**     * This constant was formerly part of HighlightParams.  After deprecation it was removed so clients     * would no longer use it, but we still support it server side.    */
+DECL|field|USE_FVH
+specifier|private
+specifier|static
+specifier|final
+name|String
+name|USE_FVH
+init|=
+name|HighlightParams
+operator|.
+name|HIGHLIGHT
+operator|+
+literal|".useFastVectorHighlighter"
+decl_stmt|;
 DECL|field|log
 specifier|private
 specifier|static
@@ -3027,8 +3041,6 @@ operator|.
 name|getName
 argument_list|()
 argument_list|,
-name|HighlightParams
-operator|.
 name|USE_FVH
 argument_list|,
 literal|false

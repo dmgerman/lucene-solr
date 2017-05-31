@@ -46,6 +46,22 @@ name|analysis
 operator|.
 name|util
 operator|.
+name|CharTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
 name|MultiTermAwareComponent
 import|;
 end_import
@@ -100,8 +116,26 @@ name|Map
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|standard
+operator|.
+name|StandardTokenizer
+operator|.
+name|MAX_TOKEN_LENGTH_LIMIT
+import|;
+end_import
+
 begin_comment
-comment|/**  * Factory for {@link LowerCaseTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_lwrcase" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.LowerCaseTokenizerFactory"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  */
+comment|/**  * Factory for {@link LowerCaseTokenizer}.  *<pre class="prettyprint">  *&lt;fieldType name="text_lwrcase" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.LowerCaseTokenizerFactory" maxTokenLen="256"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *<p>  * Options:  *<ul>  *<li>maxTokenLen: max token length, should be greater than 0 and less than MAX_TOKEN_LENGTH_LIMIT (1024*1024).  *     It is rare to need to change this  * else {@link CharTokenizer}::DEFAULT_MAX_WORD_LEN</li>  *</ul>  */
 end_comment
 
 begin_class
@@ -114,7 +148,13 @@ name|TokenizerFactory
 implements|implements
 name|MultiTermAwareComponent
 block|{
-comment|/** Creates a new LowerCaseTokenizerFactory */
+DECL|field|maxTokenLen
+specifier|private
+specifier|final
+name|int
+name|maxTokenLen
+decl_stmt|;
+comment|/**    * Creates a new LowerCaseTokenizerFactory    */
 DECL|method|LowerCaseTokenizerFactory
 specifier|public
 name|LowerCaseTokenizerFactory
@@ -133,6 +173,44 @@ argument_list|(
 name|args
 argument_list|)
 expr_stmt|;
+name|maxTokenLen
+operator|=
+name|getInt
+argument_list|(
+name|args
+argument_list|,
+literal|"maxTokenLen"
+argument_list|,
+name|CharTokenizer
+operator|.
+name|DEFAULT_MAX_WORD_LEN
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|maxTokenLen
+operator|>
+name|MAX_TOKEN_LENGTH_LIMIT
+operator|||
+name|maxTokenLen
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxTokenLen must be greater than 0 and less than "
+operator|+
+name|MAX_TOKEN_LENGTH_LIMIT
+operator|+
+literal|" passed: "
+operator|+
+name|maxTokenLen
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -169,6 +247,8 @@ operator|new
 name|LowerCaseTokenizer
 argument_list|(
 name|factory
+argument_list|,
+name|maxTokenLen
 argument_list|)
 return|;
 block|}
@@ -180,10 +260,9 @@ name|AbstractAnalysisFactory
 name|getMultiTermComponent
 parameter_list|()
 block|{
-return|return
-operator|new
-name|LowerCaseFilterFactory
-argument_list|(
+name|Map
+name|map
+init|=
 operator|new
 name|HashMap
 argument_list|<>
@@ -191,6 +270,20 @@ argument_list|(
 name|getOriginalArgs
 argument_list|()
 argument_list|)
+decl_stmt|;
+name|map
+operator|.
+name|remove
+argument_list|(
+literal|"maxTokenLen"
+argument_list|)
+expr_stmt|;
+comment|//removing "maxTokenLen" argument for LowerCaseFilterFactory init
+return|return
+operator|new
+name|LowerCaseFilterFactory
+argument_list|(
+name|map
 argument_list|)
 return|;
 block|}

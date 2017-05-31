@@ -88,6 +88,24 @@ name|AttributeFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|standard
+operator|.
+name|StandardTokenizer
+operator|.
+name|MAX_TOKEN_LENGTH_LIMIT
+import|;
+end_import
+
 begin_comment
 comment|/**  * Emits the entire input as a single token.  */
 end_comment
@@ -170,6 +188,10 @@ block|{
 if|if
 condition|(
 name|bufferSize
+operator|>
+name|MAX_TOKEN_LENGTH_LIMIT
+operator|||
+name|bufferSize
 operator|<=
 literal|0
 condition|)
@@ -178,7 +200,13 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"bufferSize must be> 0"
+literal|"maxTokenLen must be greater than 0 and less than "
+operator|+
+name|MAX_TOKEN_LENGTH_LIMIT
+operator|+
+literal|" passed: "
+operator|+
+name|bufferSize
 argument_list|)
 throw|;
 block|}
@@ -209,6 +237,10 @@ expr_stmt|;
 if|if
 condition|(
 name|bufferSize
+operator|>
+name|MAX_TOKEN_LENGTH_LIMIT
+operator|||
+name|bufferSize
 operator|<=
 literal|0
 condition|)
@@ -217,7 +249,13 @@ throw|throw
 operator|new
 name|IllegalArgumentException
 argument_list|(
-literal|"bufferSize must be> 0"
+literal|"maxTokenLen must be greater than 0 and less than "
+operator|+
+name|MAX_TOKEN_LENGTH_LIMIT
+operator|+
+literal|" passed: "
+operator|+
+name|bufferSize
 argument_list|)
 throw|;
 block|}

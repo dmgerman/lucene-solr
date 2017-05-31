@@ -156,6 +156,26 @@ name|lucene
 operator|.
 name|analysis
 operator|.
+name|core
+operator|.
+name|FlattenGraphFilterFactory
+import|;
+end_import
+
+begin_comment
+comment|// javadocs
+end_comment
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
 name|TokenStream
 import|;
 end_import
@@ -399,10 +419,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * TokenFilterFactory and ManagedResource implementation for   * doing CRUD on synonyms using the REST API.  */
+comment|/**  * TokenFilterFactory and ManagedResource implementation for   * doing CRUD on synonyms using the REST API.  *   * @deprecated Use {@link ManagedSynonymGraphFilterFactory} instead, but be sure to also  * use {@link FlattenGraphFilterFactory} at index time (not at search time) as well.  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|ManagedSynonymFilterFactory
 specifier|public
 class|class

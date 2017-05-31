@@ -403,15 +403,6 @@ throws|throws
 name|IOException
 block|{
 comment|// note: does not require docValues
-if|if
-condition|(
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-condition|)
-block|{
 name|this
 operator|.
 name|strategy
@@ -429,28 +420,6 @@ name|getSimpleName
 argument_list|()
 argument_list|)
 expr_stmt|;
-block|}
-else|else
-block|{
-comment|// switch to legacy instance sometimes, which has no docValues
-name|this
-operator|.
-name|strategy
-operator|=
-name|PointVectorStrategy
-operator|.
-name|newLegacyInstance
-argument_list|(
-name|ctx
-argument_list|,
-name|getClass
-argument_list|()
-operator|.
-name|getSimpleName
-argument_list|()
-argument_list|)
-expr_stmt|;
-block|}
 name|getAddAndVerifyIndexedDocuments
 argument_list|(
 name|DATA_WORLD_CITIES_POINTS

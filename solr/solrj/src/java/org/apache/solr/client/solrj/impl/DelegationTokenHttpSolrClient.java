@@ -207,11 +207,8 @@ name|DELEGATION_TOKEN_PARAM
 init|=
 literal|"delegation"
 decl_stmt|;
-comment|/**    * This constructor is deprecated in favor of passing delegation token via    * {@linkplain org.apache.solr.client.solrj.impl.HttpSolrClient.Builder#withInvariantParams(ModifiableSolrParams)}.    *    * @param baseURL The base url to communicate with the Solr server    * @param client Http client instance to use for communication    * @param parser Response parser instance to use to decode response from Solr server    * @param allowCompression Should compression be allowed ?    * @param delegationToken The delegation token string.    */
-annotation|@
-name|Deprecated
+comment|/**    * Package protected constructor for use by     * {@linkplain org.apache.solr.client.solrj.impl.HttpSolrClient.Builder}.    * @lucene.internal    */
 DECL|method|DelegationTokenHttpSolrClient
-specifier|public
 name|DelegationTokenHttpSolrClient
 parameter_list|(
 name|String

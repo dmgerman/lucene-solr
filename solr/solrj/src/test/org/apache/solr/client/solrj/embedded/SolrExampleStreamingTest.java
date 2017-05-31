@@ -275,9 +275,15 @@ name|super
 argument_list|(
 name|solrServerUrl
 argument_list|,
+literal|null
+argument_list|,
 name|queueSize
 argument_list|,
 name|threadCount
+argument_list|,
+literal|null
+argument_list|,
+literal|false
 argument_list|)
 expr_stmt|;
 block|}

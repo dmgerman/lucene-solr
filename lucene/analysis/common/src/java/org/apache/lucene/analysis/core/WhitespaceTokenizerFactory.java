@@ -74,6 +74,22 @@ name|analysis
 operator|.
 name|util
 operator|.
+name|CharTokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|util
+operator|.
 name|TokenizerFactory
 import|;
 end_import
@@ -92,8 +108,26 @@ name|AttributeFactory
 import|;
 end_import
 
+begin_import
+import|import static
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|standard
+operator|.
+name|StandardTokenizer
+operator|.
+name|MAX_TOKEN_LENGTH_LIMIT
+import|;
+end_import
+
 begin_comment
-comment|/**  * Factory for {@link WhitespaceTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory" rule="unicode"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * Options:  *<ul>  *<li>rule: either "java" for {@link WhitespaceTokenizer}  *      or "unicode" for {@link UnicodeWhitespaceTokenizer}</li>  *</ul>  */
+comment|/**  * Factory for {@link WhitespaceTokenizer}.   *<pre class="prettyprint">  *&lt;fieldType name="text_ws" class="solr.TextField" positionIncrementGap="100"&gt;  *&lt;analyzer&gt;  *&lt;tokenizer class="solr.WhitespaceTokenizerFactory" rule="unicode"  maxTokenLen="256"/&gt;  *&lt;/analyzer&gt;  *&lt;/fieldType&gt;</pre>  *  * Options:  *<ul>  *<li>rule: either "java" for {@link WhitespaceTokenizer}  *      or "unicode" for {@link UnicodeWhitespaceTokenizer}</li>  *<li>maxTokenLen: max token length, should be greater than 0 and less than MAX_TOKEN_LENGTH_LIMIT (1024*1024).  *       It is rare to need to change this  *      else {@link CharTokenizer}::DEFAULT_MAX_TOKEN_LEN</li>  *</ul>  */
 end_comment
 
 begin_class
@@ -147,6 +181,12 @@ specifier|final
 name|String
 name|rule
 decl_stmt|;
+DECL|field|maxTokenLen
+specifier|private
+specifier|final
+name|int
+name|maxTokenLen
+decl_stmt|;
 comment|/** Creates a new WhitespaceTokenizerFactory */
 DECL|method|WhitespaceTokenizerFactory
 specifier|public
@@ -179,6 +219,44 @@ argument_list|,
 name|RULE_JAVA
 argument_list|)
 expr_stmt|;
+name|maxTokenLen
+operator|=
+name|getInt
+argument_list|(
+name|args
+argument_list|,
+literal|"maxTokenLen"
+argument_list|,
+name|CharTokenizer
+operator|.
+name|DEFAULT_MAX_WORD_LEN
+argument_list|)
+expr_stmt|;
+if|if
+condition|(
+name|maxTokenLen
+operator|>
+name|MAX_TOKEN_LENGTH_LIMIT
+operator|||
+name|maxTokenLen
+operator|<=
+literal|0
+condition|)
+block|{
+throw|throw
+operator|new
+name|IllegalArgumentException
+argument_list|(
+literal|"maxTokenLen must be greater than 0 and less than "
+operator|+
+name|MAX_TOKEN_LENGTH_LIMIT
+operator|+
+literal|" passed: "
+operator|+
+name|maxTokenLen
+argument_list|)
+throw|;
+block|}
 if|if
 condition|(
 operator|!
@@ -223,6 +301,8 @@ operator|new
 name|WhitespaceTokenizer
 argument_list|(
 name|factory
+argument_list|,
+name|maxTokenLen
 argument_list|)
 return|;
 case|case
@@ -233,6 +313,8 @@ operator|new
 name|UnicodeWhitespaceTokenizer
 argument_list|(
 name|factory
+argument_list|,
+name|maxTokenLen
 argument_list|)
 return|;
 default|default:

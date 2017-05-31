@@ -735,7 +735,7 @@ argument_list|,
 literal|"/responseHeader/status==0"
 argument_list|)
 expr_stmt|;
-comment|/*      * TODO: can't assume these will be here unless schema-rest.xml includes these declarations      *               "/managedResources/[0]/class=='org.apache.solr.rest.schema.analysis.ManagedWordSetResource'",              "/managedResources/[0]/resourceId=='/schema/analysis/stopwords/english'",              "/managedResources/[1]/class=='org.apache.solr.rest.schema.analysis.ManagedSynonymFilterFactory$SynonymManager'",              "/managedResources/[1]/resourceId=='/schema/analysis/synonyms/english'");     */
+comment|/*      * TODO: can't assume these will be here unless schema-rest.xml includes these declarations      *               "/managedResources/[0]/class=='org.apache.solr.rest.schema.analysis.ManagedWordSetResource'",              "/managedResources/[0]/resourceId=='/schema/analysis/stopwords/english'",              "/managedResources/[1]/class=='org.apache.solr.rest.schema.analysis.ManagedSynonymGraphFilterFactory$SynonymManager'",              "/managedResources/[1]/resourceId=='/schema/analysis/synonyms/englishgraph'");     */
 comment|// no pre-existing managed config components
 comment|//    assertJQ("/config/managed", "/managedResources==[]");
 comment|// add a ManagedWordSetResource for managing protected words (for stemming)

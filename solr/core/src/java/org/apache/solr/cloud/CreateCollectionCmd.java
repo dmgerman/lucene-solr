@@ -845,6 +845,18 @@ block|{
 comment|// look at the replication factor and see if it matches reality
 comment|// if it does not, find best nodes to create more cores
 name|int
+name|numTlogReplicas
+init|=
+name|message
+operator|.
+name|getInt
+argument_list|(
+name|TLOG_REPLICAS
+argument_list|,
+literal|0
+argument_list|)
+decl_stmt|;
+name|int
 name|numNrtReplicas
 init|=
 name|message
@@ -859,6 +871,12 @@ name|getInt
 argument_list|(
 name|REPLICATION_FACTOR
 argument_list|,
+name|numTlogReplicas
+operator|>
+literal|0
+condition|?
+literal|0
+else|:
 literal|1
 argument_list|)
 argument_list|)
@@ -871,18 +889,6 @@ operator|.
 name|getInt
 argument_list|(
 name|PULL_REPLICAS
-argument_list|,
-literal|0
-argument_list|)
-decl_stmt|;
-name|int
-name|numTlogReplicas
-init|=
-name|message
-operator|.
-name|getInt
-argument_list|(
-name|TLOG_REPLICAS
 argument_list|,
 literal|0
 argument_list|)

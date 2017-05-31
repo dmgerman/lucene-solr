@@ -36,7 +36,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -50,7 +50,7 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
+name|solr
 operator|.
 name|legacy
 operator|.
@@ -137,7 +137,7 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Creates a {@link org.apache.lucene.legacy.LegacyNumericRangeQuery}. The table below specifies the required  * attributes and the defaults if optional attributes are omitted. For more  * detail on what each of the attributes actually do, consult the documentation  * for {@link org.apache.lucene.legacy.LegacyNumericRangeQuery}:  *<table summary="supported attributes">  *<tr>  *<th>Attribute name</th>  *<th>Values</th>  *<th>Required</th>  *<th>Default</th>  *</tr>  *<tr>  *<td>fieldName</td>  *<td>String</td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>lowerTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>No</td>  *<td>Null</td>  *</tr>  *<tr>  *<td>upperTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>No</td>  *<td>Null</td>  *</tr>  *<tr>  *<td>type</td>  *<td>int, long, float, double</td>  *<td>No</td>  *<td>int</td>  *</tr>  *<tr>  *<td>includeLower</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>includeUpper</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>precisionStep</td>  *<td>Integer</td>  *<td>No</td>  *<td>4</td>  *</tr>  *</table>  *<p>  * A {@link ParserException} will be thrown if an error occurs parsing the  * supplied<tt>lowerTerm</tt> or<tt>upperTerm</tt> into the numeric type  * specified by<tt>type</tt>.  * @deprecated Index with points and use {@link PointRangeQueryBuilder} instead   */
+comment|/**  * Creates a {@link org.apache.solr.legacy.LegacyNumericRangeQuery}. The table below specifies the required  * attributes and the defaults if optional attributes are omitted. For more  * detail on what each of the attributes actually do, consult the documentation  * for {@link org.apache.solr.legacy.LegacyNumericRangeQuery}:  *<table summary="supported attributes">  *<tr>  *<th>Attribute name</th>  *<th>Values</th>  *<th>Required</th>  *<th>Default</th>  *</tr>  *<tr>  *<td>fieldName</td>  *<td>String</td>  *<td>Yes</td>  *<td>N/A</td>  *</tr>  *<tr>  *<td>lowerTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>No</td>  *<td>Null</td>  *</tr>  *<tr>  *<td>upperTerm</td>  *<td>Specified by<tt>type</tt></td>  *<td>No</td>  *<td>Null</td>  *</tr>  *<tr>  *<td>type</td>  *<td>int, long, float, double</td>  *<td>No</td>  *<td>int</td>  *</tr>  *<tr>  *<td>includeLower</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>includeUpper</td>  *<td>true, false</td>  *<td>No</td>  *<td>true</td>  *</tr>  *<tr>  *<td>precisionStep</td>  *<td>Integer</td>  *<td>No</td>  *<td>4</td>  *</tr>  *</table>  *<p>  * A {@link ParserException} will be thrown if an error occurs parsing the  * supplied<tt>lowerTerm</tt> or<tt>upperTerm</tt> into the numeric type  * specified by<tt>type</tt>.  * @deprecated Index with points and use {@link PointRangeQueryBuilder} instead   */
 end_comment
 
 begin_class

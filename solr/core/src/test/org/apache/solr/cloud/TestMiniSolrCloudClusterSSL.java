@@ -1711,11 +1711,18 @@ argument_list|()
 condition|)
 block|{
 return|return
+operator|(
 operator|new
 name|HttpSolrClient
+operator|.
+name|Builder
 argument_list|(
 name|url
 argument_list|)
+operator|)
+operator|.
+name|build
+argument_list|()
 return|;
 block|}
 comment|// else...

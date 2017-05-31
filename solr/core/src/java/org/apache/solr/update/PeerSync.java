@@ -643,7 +643,7 @@ import|;
 end_import
 
 begin_comment
-comment|/** @lucene.experimental */
+comment|/**  * This class is useful for performing peer to peer synchronization of recently indexed update commands during  * recovery process.  *  * @lucene.experimental  */
 end_comment
 
 begin_class

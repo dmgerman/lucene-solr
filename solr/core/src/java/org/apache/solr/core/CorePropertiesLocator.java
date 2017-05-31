@@ -268,6 +268,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|FileUtils
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|slf4j
 operator|.
 name|Logger
@@ -515,7 +529,7 @@ argument_list|)
 decl_stmt|;
 try|try
 block|{
-name|Files
+name|FileUtils
 operator|.
 name|createDirectories
 argument_list|(
@@ -525,6 +539,7 @@ name|getParent
 argument_list|()
 argument_list|)
 expr_stmt|;
+comment|// Handling for symlinks.
 try|try
 init|(
 name|Writer
@@ -577,6 +592,34 @@ name|getMessage
 argument_list|()
 argument_list|)
 expr_stmt|;
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Couldn't persist core properties to "
+operator|+
+name|propfile
+operator|.
+name|toAbsolutePath
+argument_list|()
+operator|.
+name|toString
+argument_list|()
+operator|+
+literal|" : "
+operator|+
+name|e
+operator|.
+name|getMessage
+argument_list|()
+argument_list|)
+throw|;
 block|}
 block|}
 annotation|@

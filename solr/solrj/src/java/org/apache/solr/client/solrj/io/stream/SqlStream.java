@@ -430,7 +430,7 @@ specifier|transient
 name|StreamContext
 name|streamContext
 decl_stmt|;
-comment|/**    * @param zkHost         Zookeeper ensemble connection string    * @param collectionName Name of the collection to operate on    * @param params         Map&lt;String, String&gt; of parameter/value pairs    * @throws IOException Something went wrong    *<p>    *                     This form does not allow specifying multiple clauses, say "fq" clauses, use the form that    *                     takes a SolrParams. Transition code can call the preferred method that takes SolrParams    *                     by calling CloudSolrStream(zkHost, collectionName,    *                     new ModifiableSolrParams(SolrParams.toMultiMap(new NamedList(Map&lt;String, String&gt;)));    * @deprecated         Use the constructor that has a SolrParams obj rather than a Map    */
+comment|/**    * @param zkHost         Zookeeper ensemble connection string    * @param collectionName Name of the collection to operate on    * @param params         Map&lt;String, String&gt; of parameter/value pairs    * @throws IOException Something went wrong    *<p>    *                     This form does not allow specifying multiple clauses, say "fq" clauses, use the form that    *                     takes a SolrParams. Transition code can call the preferred method that takes SolrParams    *                     by calling CloudSolrStream(zkHost, collectionName,    *                     new ModifiableSolrParams(SolrParams.toMultiMap(new NamedList(Map&lt;String, String&gt;)));    */
 DECL|method|SqlStream
 specifier|public
 name|SqlStream

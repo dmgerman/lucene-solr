@@ -2213,8 +2213,7 @@ specifier|final
 name|SolrClient
 name|solrClient
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|solrCluster
 operator|.
@@ -3708,8 +3707,7 @@ init|(
 name|HttpSolrClient
 name|client
 init|=
-operator|new
-name|HttpSolrClient
+name|getHttpSolrClient
 argument_list|(
 name|baseUrl
 operator|+

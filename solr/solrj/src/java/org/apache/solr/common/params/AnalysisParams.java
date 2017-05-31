@@ -48,7 +48,7 @@ name|PREFIX
 operator|+
 literal|".query"
 decl_stmt|;
-comment|/**    * Set to {@code true} to indicate that the index tokens that match query tokens should be marked as "mateched".    */
+comment|/**    * Set to {@code true} to indicate that the index tokens that match query tokens should be marked as "matched".    */
 DECL|field|SHOW_MATCH
 specifier|static
 specifier|final
