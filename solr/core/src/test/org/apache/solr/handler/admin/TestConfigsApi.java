@@ -336,7 +336,7 @@ literal|"{create:{name : newconf, baseConfigSet: sample }}"
 argument_list|,
 literal|null
 argument_list|,
-literal|"{operation:create, name :newconf,  baseConfigSet: sample }"
+literal|"{operation:create, name :newconf,  baseConfigSet: sample, immutable: false }"
 argument_list|)
 expr_stmt|;
 block|}
