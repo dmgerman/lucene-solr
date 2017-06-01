@@ -748,24 +748,6 @@ name|makeMap
 import|;
 end_import
 
-begin_import
-import|import static
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|security
-operator|.
-name|PermissionNameProvider
-operator|.
-name|Name
-operator|.
-name|UPDATE_PERM
-import|;
-end_import
-
 begin_class
 DECL|class|BlobHandler
 specifier|public
