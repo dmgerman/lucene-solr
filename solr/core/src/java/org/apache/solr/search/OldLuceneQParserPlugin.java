@@ -47,10 +47,12 @@ import|;
 end_import
 
 begin_comment
-comment|/**  * Parse Solr's variant of Lucene QueryParser syntax, including the  * deprecated sort specification after the query.  *<br>Example:<code>{!lucenePlusSort}myfield:foo +bar -baz;price asc</code>  */
+comment|/**  * Parse Solr's variant of Lucene QueryParser syntax, including the  * deprecated sort specification after the query.  *<br>Example:<code>{!lucenePlusSort}myfield:foo +bar -baz;price asc</code>  *  * @deprecated This class should have been removed a long time ago, it will be removed in Solr 8.0  */
 end_comment
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|OldLuceneQParserPlugin
 specifier|public
 class|class

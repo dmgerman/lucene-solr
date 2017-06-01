@@ -364,6 +364,8 @@ literal|" +apache +solr"
 argument_list|)
 expr_stmt|;
 block|}
+annotation|@
+name|Deprecated
 DECL|method|testQueryLucenePlusSort
 specifier|public
 name|void

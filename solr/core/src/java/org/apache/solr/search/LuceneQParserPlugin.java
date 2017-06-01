@@ -161,6 +161,8 @@ block|}
 end_class
 
 begin_class
+annotation|@
+name|Deprecated
 DECL|class|OldLuceneQParser
 class|class
 name|OldLuceneQParser
