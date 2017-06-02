@@ -1021,27 +1021,6 @@ return|return
 name|nestedParser
 return|;
 block|}
-comment|/**    * @param useGlobalParams look up sort, start, rows in global params if not in local params    * @return the sort specification    * @deprecated Use the not misleadingly named getSortSpec() function instead.    */
-annotation|@
-name|Deprecated
-DECL|method|getSort
-specifier|public
-name|SortSpec
-name|getSort
-parameter_list|(
-name|boolean
-name|useGlobalParams
-parameter_list|)
-throws|throws
-name|SyntaxError
-block|{
-return|return
-name|getSortSpec
-argument_list|(
-name|useGlobalParams
-argument_list|)
-return|;
-block|}
 comment|/**    * @param useGlobalParams look up sort, start, rows in global params if not in local params    * @return the sort specification    */
 DECL|method|getSortSpec
 specifier|public
