@@ -605,8 +605,10 @@ argument_list|(
 name|shardIdNames
 argument_list|,
 parameter_list|(
+name|String
 name|o1
 parameter_list|,
+name|String
 name|o2
 parameter_list|)
 lambda|->

@@ -1529,8 +1529,10 @@ argument_list|(
 name|sortedLiveNodes
 argument_list|,
 parameter_list|(
+name|String
 name|n1
 parameter_list|,
+name|String
 name|n2
 parameter_list|)
 lambda|->
