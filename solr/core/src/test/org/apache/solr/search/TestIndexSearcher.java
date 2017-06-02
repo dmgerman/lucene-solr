@@ -210,20 +210,6 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LogDocMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
 name|ReaderUtil
 import|;
 end_import
@@ -519,16 +505,6 @@ name|Exception
 block|{
 comment|// we need a consistent segmentation because reopen test validation
 comment|// dependso n merges not happening when it doesn't expect
-name|systemSetPropertySolrTestsMergePolicy
-argument_list|(
-name|LogDocMergePolicy
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|systemSetPropertySolrTestsMergePolicyFactory
 argument_list|(
 name|LogDocMergePolicyFactory
@@ -556,9 +532,6 @@ name|void
 name|afterClass
 parameter_list|()
 block|{
-name|systemClearPropertySolrTestsMergePolicy
-argument_list|()
-expr_stmt|;
 name|systemClearPropertySolrTestsMergePolicyFactory
 argument_list|()
 expr_stmt|;

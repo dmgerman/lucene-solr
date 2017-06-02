@@ -152,20 +152,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|LogDocMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|client
@@ -464,16 +450,6 @@ name|Exception
 block|{
 comment|// force LogDocMergePolicy so that we get a predictable doc order
 comment|// when doing unsorted group collection
-name|systemSetPropertySolrTestsMergePolicy
-argument_list|(
-name|LogDocMergePolicy
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|systemSetPropertySolrTestsMergePolicyFactory
 argument_list|(
 name|LogDocMergePolicyFactory
@@ -511,9 +487,6 @@ name|void
 name|afterTests
 parameter_list|()
 block|{
-name|systemClearPropertySolrTestsMergePolicy
-argument_list|()
-expr_stmt|;
 name|systemClearPropertySolrTestsMergePolicyFactory
 argument_list|()
 expr_stmt|;

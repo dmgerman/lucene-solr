@@ -157,14 +157,6 @@ name|Exception
 block|{
 name|initCore
 argument_list|(
-name|random
-argument_list|()
-operator|.
-name|nextBoolean
-argument_list|()
-condition|?
-literal|"solrconfig-indexconfig.xml"
-else|:
 literal|"solrconfig-indexconfig-mergepolicyfactory.xml"
 argument_list|,
 literal|"schema.xml"

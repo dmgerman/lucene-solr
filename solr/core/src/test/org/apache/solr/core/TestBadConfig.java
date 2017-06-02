@@ -291,15 +291,6 @@ name|Exception
 block|{
 name|assertConfigs
 argument_list|(
-literal|"bad-mp-solrconfig.xml"
-argument_list|,
-literal|"schema-minimal.xml"
-argument_list|,
-literal|"DummyMergePolicy"
-argument_list|)
-expr_stmt|;
-name|assertConfigs
-argument_list|(
 literal|"bad-mpf-solrconfig.xml"
 argument_list|,
 literal|"schema-minimal.xml"

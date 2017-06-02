@@ -110,20 +110,6 @@ name|org
 operator|.
 name|apache
 operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|LogDocMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
 name|solr
 operator|.
 name|BaseDistributedSearchTestCase
@@ -598,16 +584,6 @@ name|Exception
 block|{
 comment|// we can't use the Randomized merge policy because the test depends on
 comment|// being able to call optimize to have all deletes expunged.
-name|systemSetPropertySolrTestsMergePolicy
-argument_list|(
-name|LogDocMergePolicy
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|systemSetPropertySolrTestsMergePolicyFactory
 argument_list|(
 name|LogDocMergePolicyFactory
@@ -628,9 +604,6 @@ name|void
 name|afterClass
 parameter_list|()
 block|{
-name|systemClearPropertySolrTestsMergePolicy
-argument_list|()
-expr_stmt|;
 name|systemClearPropertySolrTestsMergePolicyFactory
 argument_list|()
 expr_stmt|;

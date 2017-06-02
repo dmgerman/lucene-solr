@@ -144,20 +144,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|TieredMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|store
 operator|.
 name|Directory
@@ -462,16 +448,6 @@ literal|"false"
 argument_list|)
 expr_stmt|;
 comment|// schema12 doesn't support _version_
-name|systemSetPropertySolrTestsMergePolicy
-argument_list|(
-name|TieredMergePolicy
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|systemSetPropertySolrTestsMergePolicyFactory
 argument_list|(
 name|TieredMergePolicyFactory
@@ -499,9 +475,6 @@ name|void
 name|afterClass
 parameter_list|()
 block|{
-name|systemClearPropertySolrTestsMergePolicy
-argument_list|()
-expr_stmt|;
 name|systemClearPropertySolrTestsMergePolicyFactory
 argument_list|()
 expr_stmt|;

@@ -26,20 +26,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|LogDocMergePolicy
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|Version
@@ -138,16 +124,6 @@ block|{
 comment|// we need a consistent segmentation to ensure we don't get a random
 comment|// merge that reduces the total num docs in all segments, or the number of deletes
 comment|//
-name|systemSetPropertySolrTestsMergePolicy
-argument_list|(
-name|LogDocMergePolicy
-operator|.
-name|class
-operator|.
-name|getName
-argument_list|()
-argument_list|)
-expr_stmt|;
 name|systemSetPropertySolrTestsMergePolicyFactory
 argument_list|(
 name|LogDocMergePolicyFactory

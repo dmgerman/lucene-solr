@@ -227,25 +227,6 @@ name|getName
 argument_list|()
 argument_list|)
 expr_stmt|;
-comment|// HACK: Don't use a RandomMergePolicy, but only use the mergePolicyFactory that we've just set
-name|System
-operator|.
-name|setProperty
-argument_list|(
-name|SYSTEM_PROPERTY_SOLR_TESTS_USEMERGEPOLICYFACTORY
-argument_list|,
-literal|"true"
-argument_list|)
-expr_stmt|;
-name|System
-operator|.
-name|setProperty
-argument_list|(
-name|SYSTEM_PROPERTY_SOLR_TESTS_USEMERGEPOLICY
-argument_list|,
-literal|"false"
-argument_list|)
-expr_stmt|;
 name|initCore
 argument_list|(
 literal|"solrconfig-basic.xml"

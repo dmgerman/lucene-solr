@@ -889,8 +889,7 @@ literal|false
 argument_list|,
 name|sic
 operator|.
-name|getUseCompoundFile
-argument_list|()
+name|useCompoundFile
 argument_list|)
 expr_stmt|;
 operator|++
@@ -906,36 +905,6 @@ argument_list|,
 name|sic
 operator|.
 name|maxBufferedDocs
-argument_list|)
-expr_stmt|;
-operator|++
-name|numDefaultsTested
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"default maxMergeDocs"
-argument_list|,
-operator|-
-literal|1
-argument_list|,
-name|sic
-operator|.
-name|maxMergeDocs
-argument_list|)
-expr_stmt|;
-operator|++
-name|numDefaultsTested
-expr_stmt|;
-name|assertEquals
-argument_list|(
-literal|"default mergeFactor"
-argument_list|,
-operator|-
-literal|1
-argument_list|,
-name|sic
-operator|.
-name|mergeFactor
 argument_list|)
 expr_stmt|;
 operator|++
@@ -1013,22 +982,11 @@ operator|.
 name|metricsInfo
 argument_list|)
 expr_stmt|;
-comment|// mergePolicyInfo and mergePolicyFactoryInfo are mutually exclusive
-comment|// so ++ count them only once for both instead of individually
 operator|++
 name|numDefaultsTested
 expr_stmt|;
 operator|++
 name|numNullDefaults
-expr_stmt|;
-name|assertNull
-argument_list|(
-literal|"default mergePolicyInfo"
-argument_list|,
-name|sic
-operator|.
-name|mergePolicyInfo
-argument_list|)
 expr_stmt|;
 name|assertNull
 argument_list|(
@@ -1270,8 +1228,7 @@ argument_list|)
 argument_list|,
 name|sic
 operator|.
-name|getUseCompoundFile
-argument_list|()
+name|useCompoundFile
 argument_list|)
 expr_stmt|;
 block|}
