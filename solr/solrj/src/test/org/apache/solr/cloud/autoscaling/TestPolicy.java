@@ -716,6 +716,8 @@ argument_list|(
 literal|"replica"
 argument_list|,
 literal|"1"
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -730,6 +732,8 @@ argument_list|(
 literal|"collection"
 argument_list|,
 literal|"c"
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -744,6 +748,8 @@ argument_list|(
 literal|"shard"
 argument_list|,
 literal|"s"
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -758,6 +764,8 @@ argument_list|(
 literal|"nodeRole"
 argument_list|,
 literal|"overseer"
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -818,6 +826,8 @@ argument_list|(
 literal|"sysLoadAvg"
 argument_list|,
 literal|"12.46"
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -832,6 +842,8 @@ argument_list|(
 literal|"sysLoadAvg"
 argument_list|,
 literal|12.46d
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -883,6 +895,8 @@ argument_list|(
 literal|"ip_1"
 argument_list|,
 literal|"1"
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -916,6 +930,8 @@ argument_list|(
 literal|"heapUsage"
 argument_list|,
 literal|"69.9"
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -930,6 +946,8 @@ argument_list|(
 literal|"heapUsage"
 argument_list|,
 literal|69.9d
+argument_list|,
+literal|true
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1004,6 +1022,8 @@ argument_list|(
 name|name
 argument_list|,
 name|val
+argument_list|,
+literal|true
 argument_list|)
 expr_stmt|;
 name|fail
@@ -1411,7 +1431,7 @@ literal|"      { 'replica': '1', 'sysprop.fs': 'ssd', 'shard': '#EACH'},"
 operator|+
 literal|"      { 'replica': '<2', 'shard': '#ANY', 'node': '#ANY'},"
 operator|+
-literal|"      { 'replica': '<2', 'shard': '#EACH', 'rack': 'rack1'}"
+literal|"      { 'replica': '<2', 'shard': '#EACH', 'sysprop.rack': 'rack1'}"
 operator|+
 literal|"    ]"
 operator|+
@@ -1554,7 +1574,7 @@ name|original
 operator|.
 name|get
 argument_list|(
-literal|"rack"
+literal|"sysprop.rack"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -1597,7 +1617,7 @@ literal|"      { 'replica':'<1', 'node':'node3', 'shard':'#EACH'},"
 operator|+
 literal|"      { 'replica':'<2', 'node':'#ANY', 'shard':'#EACH'},"
 operator|+
-literal|"      { 'replica':1, 'rack':'rack1'}]"
+literal|"      { 'replica':1, 'sysprop.rack':'rack1'}]"
 operator|+
 literal|"  }"
 decl_stmt|;
@@ -1664,7 +1684,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"rack"
+literal|"sysprop.rack"
 argument_list|,
 name|clauses
 operator|.
@@ -3104,7 +3124,7 @@ literal|"{'replica':'<1','node':'node3'},"
 operator|+
 literal|"{'replica':'<2','node':'#ANY','shard':'#EACH'},"
 operator|+
-literal|"{'replica':'<3','shard':'#EACH','rack':'#ANY'}"
+literal|"{'replica':'<3','shard':'#EACH','sysprop.rack':'#ANY'}"
 operator|+
 literal|"]"
 operator|+
@@ -3140,7 +3160,7 @@ literal|"node2:{cores:4, freedisk: 749, heapUsage:6873, rack: rack3},"
 operator|+
 literal|"node3:{cores:7, freedisk: 262, heapUsage:7834, rack: rack2},"
 operator|+
-literal|"node4:{cores:8, freedisk: 375, heapUsage:16900, nodeRole:overseer, rack: rack1}"
+literal|"node4:{cores:8, freedisk: 375, heapUsage:16900, nodeRole:overseer, sysprop.rack: rack1}"
 operator|+
 literal|"}"
 argument_list|)
@@ -3855,7 +3875,7 @@ literal|"    'policy1': ["
 operator|+
 literal|"      { 'replica': '<2', 'shard': '#EACH', 'node': '#ANY'},"
 operator|+
-literal|"      { 'replica': '<2', 'shard': '#EACH', 'rack': 'rack1'}"
+literal|"      { 'replica': '<2', 'shard': '#EACH', 'sysprop.rack': 'rack1'}"
 operator|+
 literal|"    ]"
 operator|+
@@ -3885,13 +3905,13 @@ name|fromJSONString
 argument_list|(
 literal|"{"
 operator|+
-literal|"node1:{cores:12, freedisk: 334, heap:10480, rack:rack3},"
+literal|"node1:{cores:12, freedisk: 334, heap:10480, sysprop.rack:rack3},"
 operator|+
-literal|"node2:{cores:4, freedisk: 749, heap:6873, sysprop.fs : ssd, rack:rack1},"
+literal|"node2:{cores:4, freedisk: 749, heap:6873, sysprop.fs : ssd, sysprop.rack:rack1},"
 operator|+
-literal|"node3:{cores:7, freedisk: 262, heap:7834, rack:rack4},"
+literal|"node3:{cores:7, freedisk: 262, heap:7834, sysprop.rack:rack4},"
 operator|+
-literal|"node4:{cores:0, freedisk: 900, heap:16900, nodeRole:overseer, rack:rack2}"
+literal|"node4:{cores:0, freedisk: 900, heap:16900, nodeRole:overseer, sysprop.rack:rack2}"
 operator|+
 literal|"}"
 argument_list|)
