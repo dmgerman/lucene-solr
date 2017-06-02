@@ -802,7 +802,7 @@ operator|.
 name|val
 operator|)
 operator|.
-name|intValue
+name|longValue
 argument_list|()
 operator|+
 literal|1
