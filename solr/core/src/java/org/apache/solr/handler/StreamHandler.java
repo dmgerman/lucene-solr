@@ -1700,6 +1700,15 @@ argument_list|)
 operator|.
 name|withFunctionName
 argument_list|(
+literal|"cumulativeProbability"
+argument_list|,
+name|CumulativeProbabilityEvaluator
+operator|.
+name|class
+argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
 literal|"describe"
 argument_list|,
 name|DescribeEvaluator
