@@ -946,6 +946,125 @@ parameter_list|()
 throws|throws
 name|Exception
 block|{
+name|ModifiableSolrParams
+name|p
+init|=
+name|params
+argument_list|(
+literal|"cat_s"
+argument_list|,
+literal|"cat_s"
+argument_list|,
+literal|"xy_s"
+argument_list|,
+literal|"xy_s"
+argument_list|,
+literal|"num_d"
+argument_list|,
+literal|"num_d"
+argument_list|,
+literal|"qw_s"
+argument_list|,
+literal|"qw_s"
+argument_list|,
+literal|"er_s"
+argument_list|,
+literal|"er_s"
+argument_list|)
+decl_stmt|;
+name|doBasicRefinement
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
+name|p
+operator|.
+name|set
+argument_list|(
+literal|"terms"
+argument_list|,
+literal|"method:dv,"
+argument_list|)
+expr_stmt|;
+name|doBasicRefinement
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
+comment|// multi-valued strings
+name|p
+operator|=
+name|params
+argument_list|(
+literal|"cat_s"
+argument_list|,
+literal|"cat_ss"
+argument_list|,
+literal|"xy_s"
+argument_list|,
+literal|"xy_ss"
+argument_list|,
+literal|"num_d"
+argument_list|,
+literal|"num_d"
+argument_list|,
+literal|"qw_s"
+argument_list|,
+literal|"qw_ss"
+argument_list|,
+literal|"er_s"
+argument_list|,
+literal|"er_ss"
+argument_list|)
+expr_stmt|;
+name|doBasicRefinement
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
+comment|// single valued docvalues
+name|p
+operator|=
+name|params
+argument_list|(
+literal|"cat_s"
+argument_list|,
+literal|"cat_sd"
+argument_list|,
+literal|"xy_s"
+argument_list|,
+literal|"xy_sd"
+argument_list|,
+literal|"num_d"
+argument_list|,
+literal|"num_dd"
+argument_list|,
+literal|"qw_s"
+argument_list|,
+literal|"qw_sd"
+argument_list|,
+literal|"er_s"
+argument_list|,
+literal|"er_sd"
+argument_list|)
+expr_stmt|;
+name|doBasicRefinement
+argument_list|(
+name|p
+argument_list|)
+expr_stmt|;
+block|}
+DECL|method|doBasicRefinement
+specifier|public
+name|void
+name|doBasicRefinement
+parameter_list|(
+name|ModifiableSolrParams
+name|p
+parameter_list|)
+throws|throws
+name|Exception
+block|{
 name|initServers
 argument_list|()
 expr_stmt|;
@@ -1024,32 +1143,6 @@ argument_list|,
 literal|null
 argument_list|)
 expr_stmt|;
-name|ModifiableSolrParams
-name|p
-init|=
-name|params
-argument_list|(
-literal|"cat_s"
-argument_list|,
-literal|"cat_s"
-argument_list|,
-literal|"xy_s"
-argument_list|,
-literal|"xy_s"
-argument_list|,
-literal|"num_d"
-argument_list|,
-literal|"num_d"
-argument_list|,
-literal|"qw_s"
-argument_list|,
-literal|"qw_s"
-argument_list|,
-literal|"er_s"
-argument_list|,
-literal|"er_s"
-argument_list|)
-decl_stmt|;
 name|String
 name|cat_s
 init|=
@@ -1425,7 +1518,7 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"cat0:{type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:0, refine:false}"
+literal|"cat0:{${terms} type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:0, refine:false}"
 operator|+
 literal|"}"
 argument_list|)
@@ -1454,7 +1547,7 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"cat0:{type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:0, refine:true}"
+literal|"cat0:{${terms} type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:0, refine:true}"
 operator|+
 literal|"}"
 argument_list|)
@@ -1484,7 +1577,7 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"cat0:{type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:0, refine:true, facet:{ stat1:'sum(${num_d})'}   }"
+literal|"cat0:{${terms} type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:0, refine:true, facet:{ stat1:'sum(${num_d})'}   }"
 operator|+
 literal|"}"
 argument_list|)
@@ -1513,17 +1606,17 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|" cat0:{type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:false, facet:{ min1:'min(${num_d})'}   }"
+literal|" cat0:{${terms} type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:false, facet:{ min1:'min(${num_d})'}   }"
 operator|+
-literal|",cat1:{type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:true,  facet:{ min1:'min(${num_d})'}   }"
+literal|",cat1:{${terms} type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:true,  facet:{ min1:'min(${num_d})'}   }"
 operator|+
-literal|",qfacet:{type:query, q:'*:*', facet:{  cat2:{type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:true,  facet:{ min1:'min(${num_d})'}   }  }}"
+literal|",qfacet:{type:query, q:'*:*', facet:{  cat2:{${terms} type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:true,  facet:{ min1:'min(${num_d})'}   }  }}"
 operator|+
 comment|// refinement needed through a query facet
-literal|",allf:{type:terms, field:all_s,  facet:{  cat3:{type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:true,  facet:{ min1:'min(${num_d})'}   }  }}"
+literal|",allf:{${terms} type:terms, field:all_s,  facet:{  cat3:{${terms} type:terms, field:${cat_s}, sort:'min1 asc', limit:1, overrequest:0, refine:true,  facet:{ min1:'min(${num_d})'}   }  }}"
 operator|+
 comment|// refinement needed through field facet
-literal|",sum1:'sum(num_d)'"
+literal|",sum1:'sum(${num_d})'"
 operator|+
 comment|// make sure that root bucket stats aren't affected by refinement
 literal|"}"
@@ -1565,7 +1658,7 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"ab:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true,  facet:{  xy:{type:terms, field:${xy_s}, limit:1, overrequest:0, refine:true   }  }}"
+literal|"ab:{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true,  facet:{  xy:{${terms} type:terms, field:${xy_s}, limit:1, overrequest:0, refine:true   }  }}"
 operator|+
 literal|"}"
 argument_list|)
@@ -1595,14 +1688,14 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|" ab :{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true,  facet:{  xy:{type:terms, field:${xy_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
+literal|" ab :{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true,  facet:{  xy:{${terms} type:terms, field:${xy_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
 operator|+
-literal|",ab2:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false, facet:{  xy:{type:terms, field:${xy_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
+literal|",ab2:{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false, facet:{  xy:{${terms} type:terms, field:${xy_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
 operator|+
 comment|// top level refine=false shouldn't matter
-literal|",allf :{type:terms, field:all_s, limit:1, overrequest:0, refine:true,  facet:{cat:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
+literal|",allf :{${terms} type:terms, field:all_s, limit:1, overrequest:0, refine:true,  facet:{cat:{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
 operator|+
-literal|",allf2:{type:terms, field:all_s, limit:1, overrequest:0, refine:false, facet:{cat:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
+literal|",allf2:{${terms} type:terms, field:all_s, limit:1, overrequest:0, refine:false, facet:{cat:{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true}, qq:{query:'*:*'},ww:'sum(${num_d})'  }}"
 operator|+
 comment|// top level refine=false shouldn't matter
 literal|"}"
@@ -1642,7 +1735,7 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"f:{type:terms, field:missing_s, limit:1, overrequest:0, missing:true, refine:true,  facet:{  cat:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true   }  }}"
+literal|"f:{${terms} type:terms, field:missing_s, limit:1, overrequest:0, missing:true, refine:true,  facet:{  cat:{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true   }  }}"
 operator|+
 literal|"}"
 argument_list|)
@@ -1673,14 +1766,14 @@ argument_list|,
 literal|"{"
 operator|+
 comment|// test all values missing in sub-facet
-literal|" ab :{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false,  facet:{  zz:{type:terms, field:missing_s, limit:1, overrequest:0, refine:false, missing:true}  }}"
+literal|" ab :{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false,  facet:{  zz:{${terms} type:terms, field:missing_s, limit:1, overrequest:0, refine:false, missing:true}  }}"
 operator|+
-literal|",ab2:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true ,  facet:{  zz:{type:terms, field:missing_s, limit:1, overrequest:0, refine:true , missing:true}  }}"
+literal|",ab2:{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true ,  facet:{  zz:{${terms} type:terms, field:missing_s, limit:1, overrequest:0, refine:true , missing:true}  }}"
 operator|+
 comment|// test some values missing in sub-facet (and test that this works with normal partial bucket refinement)
-literal|", cd :{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false,  facet:{  qw:{type:terms, field:${qw_s}, limit:1, overrequest:0, refine:false, missing:true,   facet:{qq:{query:'*:*'}}   }  }}"
+literal|", cd :{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false,  facet:{  qw:{${terms} type:terms, field:${qw_s}, limit:1, overrequest:0, refine:false, missing:true,   facet:{qq:{query:'*:*'}}   }  }}"
 operator|+
-literal|", cd2:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true ,  facet:{  qw:{type:terms, field:${qw_s}, limit:1, overrequest:0, refine:true , missing:true,   facet:{qq:{query:'*:*'}}   }  }}"
+literal|", cd2:{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true ,  facet:{  qw:{${terms} type:terms, field:${qw_s}, limit:1, overrequest:0, refine:true , missing:true,   facet:{qq:{query:'*:*'}}   }  }}"
 operator|+
 literal|"}"
 argument_list|)
@@ -1715,11 +1808,11 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"  cat :{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false, allBuckets:true, facet:{  xy:{type:terms, field:${xy_s}, limit:1, overrequest:0, allBuckets:true, refine:false}  }  }"
+literal|"  cat :{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false, allBuckets:true, facet:{  xy:{${terms} type:terms, field:${xy_s}, limit:1, overrequest:0, allBuckets:true, refine:false}  }  }"
 operator|+
-literal|", cat2:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true , allBuckets:true, facet:{  xy:{type:terms, field:${xy_s}, limit:1, overrequest:0, allBuckets:true, refine:true }  }  }"
+literal|", cat2:{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true , allBuckets:true, facet:{  xy:{${terms} type:terms, field:${xy_s}, limit:1, overrequest:0, allBuckets:true, refine:true }  }  }"
 operator|+
-literal|", cat3:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true , allBuckets:true, facet:{  xy:{type:terms, field:${xy_s}, limit:1, overrequest:0, allBuckets:true, refine:true , facet:{f:'sum(${num_d})'}   }  }  }"
+literal|", cat3:{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true , allBuckets:true, facet:{  xy:{${terms} type:terms, field:${xy_s}, limit:1, overrequest:0, allBuckets:true, refine:true , facet:{f:'sum(${num_d})'}   }  }  }"
 operator|+
 literal|"}"
 argument_list|)
@@ -1752,9 +1845,9 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"  cat :{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false, numBuckets:true, facet:{  er:{type:terms, field:${er_s}, limit:1, overrequest:0, numBuckets:true, refine:false}  }  }"
+literal|"  cat :{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:false, numBuckets:true, facet:{  er:{${terms} type:terms, field:${er_s}, limit:1, overrequest:0, numBuckets:true, refine:false}  }  }"
 operator|+
-literal|", cat2:{type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true , numBuckets:true, facet:{  er:{type:terms, field:${er_s}, limit:1, overrequest:0, numBuckets:true, refine:true }  }  }"
+literal|", cat2:{${terms} type:terms, field:${cat_s}, limit:1, overrequest:0, refine:true , numBuckets:true, facet:{  er:{${terms} type:terms, field:${er_s}, limit:1, overrequest:0, numBuckets:true, refine:true }  }  }"
 operator|+
 literal|"}"
 argument_list|)
@@ -1793,7 +1886,7 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"  cat0:{type:terms, field:${cat_s}, "
+literal|"  cat0:{${terms} type:terms, field:${cat_s}, "
 operator|+
 name|sort_limit_over
 operator|+
@@ -1832,7 +1925,7 @@ literal|"json.facet"
 argument_list|,
 literal|"{"
 operator|+
-literal|"  cat0:{type:terms, field:${cat_s}, "
+literal|"  cat0:{${terms} type:terms, field:${cat_s}, "
 operator|+
 name|sort_limit_over
 operator|+
@@ -1871,7 +1964,7 @@ argument_list|,
 literal|"{"
 operator|+
 comment|// top level facet has a single term
-literal|"  all:{type:terms, field:all_s, "
+literal|"  all:{${terms} type:terms, field:all_s, "
 operator|+
 name|sort_limit_over
 operator|+
@@ -1880,7 +1973,7 @@ operator|+
 literal|"       facet:{  "
 operator|+
 comment|// subfacet will facet on cat after joining on all (so all docs should be included in subfacet)
-literal|"         cat0:{type:terms, field:${cat_s}, "
+literal|"         cat0:{${terms} type:terms, field:${cat_s}, "
 operator|+
 name|sort_limit_over
 operator|+
