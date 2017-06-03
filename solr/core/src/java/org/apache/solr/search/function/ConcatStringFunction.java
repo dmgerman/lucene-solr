@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.analytics.util.valuesource
+DECL|package|org.apache.solr.search.function
 package|package
 name|org
 operator|.
@@ -12,11 +12,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|analytics
+name|search
 operator|.
-name|util
-operator|.
-name|valuesource
+name|function
 package|;
 end_package
 
@@ -62,22 +60,6 @@ name|ValueSource
 import|;
 end_import
 
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|solr
-operator|.
-name|analytics
-operator|.
-name|util
-operator|.
-name|AnalyticsParams
-import|;
-end_import
-
 begin_comment
 comment|/**  *<code>ConcatStringFunction</code> concatenates the string values of its   * components in the order given.  */
 end_comment
@@ -97,9 +79,7 @@ specifier|static
 name|String
 name|NAME
 init|=
-name|AnalyticsParams
-operator|.
-name|CONCATENATE
+literal|"concat"
 decl_stmt|;
 DECL|method|ConcatStringFunction
 specifier|public

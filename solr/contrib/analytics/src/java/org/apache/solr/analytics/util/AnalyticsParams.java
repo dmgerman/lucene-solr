@@ -86,6 +86,22 @@ end_import
 
 begin_import
 import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|search
+operator|.
+name|function
+operator|.
+name|ConcatStringFunction
+import|;
+end_import
+
+begin_import
+import|import
 name|com
 operator|.
 name|google
@@ -751,7 +767,9 @@ specifier|static
 name|String
 name|CONCATENATE
 init|=
-literal|"concat"
+name|ConcatStringFunction
+operator|.
+name|NAME
 decl_stmt|;
 DECL|field|STRING_OPERATION_SET
 specifier|public

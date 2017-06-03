@@ -4,7 +4,7 @@ comment|/*  * Licensed to the Apache Software Foundation (ASF) under one or more
 end_comment
 
 begin_package
-DECL|package|org.apache.solr.analytics.util.valuesource
+DECL|package|org.apache.solr.search.function
 package|package
 name|org
 operator|.
@@ -12,11 +12,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|analytics
+name|search
 operator|.
-name|util
-operator|.
-name|valuesource
+name|function
 package|;
 end_package
 
