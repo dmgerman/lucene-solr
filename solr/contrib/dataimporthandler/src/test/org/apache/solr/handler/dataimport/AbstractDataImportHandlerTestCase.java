@@ -480,7 +480,7 @@ block|}
 block|}
 DECL|method|runFullImport
 specifier|protected
-name|void
+name|String
 name|runFullImport
 parameter_list|(
 name|String
@@ -517,6 +517,7 @@ argument_list|,
 name|dataConfig
 argument_list|)
 decl_stmt|;
+return|return
 name|h
 operator|.
 name|query
@@ -525,7 +526,7 @@ literal|"/dataimport"
 argument_list|,
 name|request
 argument_list|)
-expr_stmt|;
+return|;
 block|}
 DECL|method|runDeltaImport
 specifier|protected

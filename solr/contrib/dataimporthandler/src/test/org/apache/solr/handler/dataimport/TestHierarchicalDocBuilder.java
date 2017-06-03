@@ -318,6 +318,20 @@ begin_import
 import|import
 name|org
 operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|util
+operator|.
+name|TestHarness
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
 name|junit
 operator|.
 name|After
@@ -596,6 +610,7 @@ name|random
 argument_list|()
 argument_list|)
 expr_stmt|;
+specifier|final
 name|String
 name|parentId1
 init|=
@@ -672,6 +687,7 @@ name|size
 argument_list|()
 expr_stmt|;
 comment|// grand children of first parent first child
+specifier|final
 name|String
 name|childId
 init|=
@@ -727,20 +743,22 @@ name|size
 argument_list|()
 expr_stmt|;
 comment|// grand children of first parent second child
-name|childId
-operator|=
+block|{
+name|String
+name|childId2
+init|=
 name|childrenIds
 operator|.
 name|get
 argument_list|(
 literal|1
 argument_list|)
-expr_stmt|;
+decl_stmt|;
 name|description
 operator|=
 literal|"grandchild of first parent, child of "
 operator|+
-name|childId
+name|childId2
 operator|+
 literal|" child"
 expr_stmt|;
@@ -748,10 +766,12 @@ name|select
 operator|=
 literal|"select * from GRANDCHILD where parent_id='"
 operator|+
-name|childId
+name|childId2
 operator|+
 literal|"'"
 expr_stmt|;
+block|}
+specifier|final
 name|List
 argument_list|<
 name|String
@@ -779,7 +799,20 @@ operator|.
 name|size
 argument_list|()
 expr_stmt|;
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|allGrandChildrenIds
+init|=
+operator|new
+name|ArrayList
+argument_list|<>
+argument_list|(
 name|grandChildrenIds
+argument_list|)
+decl_stmt|;
+name|allGrandChildrenIds
 operator|.
 name|addAll
 argument_list|(
@@ -829,9 +862,69 @@ name|childrenNum
 operator|+
 name|grandChildrenNum
 decl_stmt|;
+name|String
+name|resp
+init|=
 name|runFullImport
 argument_list|(
 name|THREE_LEVEL_HIERARCHY_CONFIG
+argument_list|)
+decl_stmt|;
+name|String
+name|xpath
+init|=
+literal|"//arr[@name='documents']/lst/arr[@name='id' and .='"
+operator|+
+name|parentId1
+operator|+
+literal|"']/../"
+operator|+
+literal|"arr[@name='_childDocuments_']/lst/arr[@name='id' and .='"
+operator|+
+name|childId
+operator|+
+literal|"']/../"
+operator|+
+literal|"arr[@name='_childDocuments_']/lst/arr[@name='id' and .='"
+operator|+
+name|grandChildrenIds
+operator|.
+name|get
+argument_list|(
+literal|0
+argument_list|)
+operator|+
+literal|"']"
+decl_stmt|;
+name|String
+name|results
+init|=
+name|TestHarness
+operator|.
+name|validateXPath
+argument_list|(
+name|resp
+argument_list|,
+name|xpath
+argument_list|)
+decl_stmt|;
+name|assertTrue
+argument_list|(
+literal|"Debug documents does not contain child documents\n"
+operator|+
+name|resp
+operator|+
+literal|"\n"
+operator|+
+name|xpath
+operator|+
+literal|"\n"
+operator|+
+name|results
+argument_list|,
+name|results
+operator|==
+literal|null
 argument_list|)
 expr_stmt|;
 name|assertTrue
@@ -923,7 +1016,7 @@ comment|// get first parent by any grand children
 name|String
 name|randomGrandChildId
 init|=
-name|grandChildrenIds
+name|allGrandChildrenIds
 operator|.
 name|get
 argument_list|(
@@ -932,7 +1025,7 @@ argument_list|()
 operator|.
 name|nextInt
 argument_list|(
-name|grandChildrenIds
+name|allGrandChildrenIds
 operator|.
 name|size
 argument_list|()
