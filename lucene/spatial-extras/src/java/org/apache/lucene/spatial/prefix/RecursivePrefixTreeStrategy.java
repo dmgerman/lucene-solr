@@ -1028,6 +1028,12 @@ name|getLevel
 argument_list|()
 assert|;
 block|}
+assert|assert
+name|cell
+operator|.
+name|isLeaf
+argument_list|()
+assert|;
 return|return
 operator|new
 name|TermQuery
