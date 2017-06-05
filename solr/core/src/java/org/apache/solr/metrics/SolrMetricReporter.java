@@ -28,6 +28,18 @@ end_import
 
 begin_import
 import|import
+name|java
+operator|.
+name|lang
+operator|.
+name|invoke
+operator|.
+name|MethodHandles
+import|;
+end_import
+
+begin_import
+import|import
 name|org
 operator|.
 name|apache
@@ -70,6 +82,26 @@ name|PluginInfoInitialized
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|Logger
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|slf4j
+operator|.
+name|LoggerFactory
+import|;
+end_import
+
 begin_comment
 comment|/**  * Interface for 'pluggable' metric reporters.  */
 end_comment
@@ -85,6 +117,26 @@ name|Closeable
 implements|,
 name|PluginInfoInitialized
 block|{
+DECL|field|log
+specifier|private
+specifier|static
+specifier|final
+name|Logger
+name|log
+init|=
+name|LoggerFactory
+operator|.
+name|getLogger
+argument_list|(
+name|MethodHandles
+operator|.
+name|lookup
+argument_list|()
+operator|.
+name|lookupClass
+argument_list|()
+argument_list|)
+decl_stmt|;
 DECL|field|registryName
 specifier|protected
 specifier|final
@@ -194,8 +246,45 @@ block|}
 name|validate
 argument_list|()
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|enabled
+condition|)
+block|{
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"Reporter disabled for registry "
+operator|+
+name|registryName
+argument_list|)
+expr_stmt|;
+return|return;
 block|}
-comment|/**    * Enable reporting, defaults to true. Implementations should check this flag in    * {@link #validate()} and accordingly enable or disable reporting.    * @param enabled enable, defaults to true when null or not set.    */
+name|log
+operator|.
+name|debug
+argument_list|(
+literal|"Initializing for registry "
+operator|+
+name|registryName
+argument_list|)
+expr_stmt|;
+name|doInit
+argument_list|()
+expr_stmt|;
+block|}
+comment|/**    * Reporter initialization implementation.    */
+DECL|method|doInit
+specifier|protected
+specifier|abstract
+name|void
+name|doInit
+parameter_list|()
+function_decl|;
+comment|/**    * Enable reporting, defaults to true. {@link #init(PluginInfo)} checks    * this flag before calling {@link #doInit()} to initialize reporting.    * @param enabled - whether or not reporting is to be enabled    */
 DECL|method|setEnabled
 specifier|public
 name|void

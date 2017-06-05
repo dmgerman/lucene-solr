@@ -835,13 +835,11 @@ return|;
 block|}
 annotation|@
 name|Override
-DECL|method|validate
+DECL|method|doInit
 specifier|protected
 name|void
-name|validate
+name|doInit
 parameter_list|()
-throws|throws
-name|IllegalStateException
 block|{
 if|if
 condition|(
@@ -857,6 +855,18 @@ operator|=
 name|DEFAULT_REPORTS
 expr_stmt|;
 block|}
+block|}
+annotation|@
+name|Override
+DECL|method|validate
+specifier|protected
+name|void
+name|validate
+parameter_list|()
+throws|throws
+name|IllegalStateException
+block|{
+comment|// Nothing to validate
 block|}
 annotation|@
 name|Override

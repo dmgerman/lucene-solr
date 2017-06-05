@@ -476,6 +476,25 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|doInit
+specifier|protected
+name|void
+name|doInit
+parameter_list|()
+block|{
+if|if
+condition|(
+operator|!
+name|testing
+condition|)
+block|{
+name|start
+argument_list|()
+expr_stmt|;
+block|}
+block|}
+annotation|@
+name|Override
 DECL|method|validate
 specifier|protected
 name|void
@@ -484,23 +503,6 @@ parameter_list|()
 throws|throws
 name|IllegalStateException
 block|{
-if|if
-condition|(
-operator|!
-name|enabled
-condition|)
-block|{
-name|log
-operator|.
-name|info
-argument_list|(
-literal|"Reporter disabled for registry "
-operator|+
-name|registryName
-argument_list|)
-expr_stmt|;
-return|return;
-block|}
 if|if
 condition|(
 name|host
@@ -546,16 +548,6 @@ argument_list|(
 literal|"Init argument 'period' is in time unit 'seconds' and must be at least 1."
 argument_list|)
 throw|;
-block|}
-if|if
-condition|(
-operator|!
-name|testing
-condition|)
-block|{
-name|start
-argument_list|()
-expr_stmt|;
 block|}
 block|}
 comment|//this is a separate method for unit tests
