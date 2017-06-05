@@ -983,7 +983,7 @@ name|set
 argument_list|(
 literal|"terms"
 argument_list|,
-literal|"method:dv,"
+literal|"method:dvhash,"
 argument_list|)
 expr_stmt|;
 name|doBasicRefinement
