@@ -54,6 +54,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -223,18 +233,6 @@ operator|.
 name|Collections
 operator|.
 name|singletonMap
-import|;
-end_import
-
-begin_import
-import|import static
-name|java
-operator|.
-name|util
-operator|.
-name|Collections
-operator|.
-name|unmodifiableSet
 import|;
 end_import
 
@@ -673,8 +671,8 @@ name|StrUtils
 operator|.
 name|formatString
 argument_list|(
-literal|"'replica' is required"
-operator|+
+literal|"'replica' is required in {0}"
+argument_list|,
 name|Utils
 operator|.
 name|toJSONString
@@ -2753,7 +2751,22 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"wrong min value type"
+literal|"wrong min value type, expected: "
+operator|+
+name|type
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" actual: "
+operator|+
+name|min
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 name|this
@@ -2780,7 +2793,22 @@ throw|throw
 operator|new
 name|RuntimeException
 argument_list|(
-literal|"wrong max value type"
+literal|"wrong max value type, expected: "
+operator|+
+name|type
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|" actual: "
+operator|+
+name|max
+operator|.
+name|getClass
+argument_list|()
+operator|.
+name|getName
+argument_list|()
 argument_list|)
 throw|;
 block|}
@@ -3280,12 +3308,33 @@ operator|)
 name|val
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|num
+operator|!=
+literal|null
+condition|)
+block|{
 return|return
 name|num
 operator|.
 name|longValue
 argument_list|()
 return|;
+block|}
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|name
+operator|+
+literal|": "
+operator|+
+name|val
+operator|+
+literal|"not a valid number"
+argument_list|)
+throw|;
 block|}
 DECL|method|parseDouble
 specifier|public
@@ -3324,7 +3373,7 @@ return|;
 name|Number
 name|num
 init|=
-literal|0
+literal|null
 decl_stmt|;
 if|if
 condition|(
@@ -3387,12 +3436,33 @@ operator|)
 name|val
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|num
+operator|!=
+literal|null
+condition|)
+block|{
 return|return
 name|num
 operator|.
 name|doubleValue
 argument_list|()
 return|;
+block|}
+throw|throw
+operator|new
+name|RuntimeException
+argument_list|(
+name|name
+operator|+
+literal|": "
+operator|+
+name|val
+operator|+
+literal|"not a valid number"
+argument_list|)
+throw|;
 block|}
 DECL|field|validatetypes
 specifier|private
@@ -3408,6 +3478,7 @@ name|validatetypes
 init|=
 operator|new
 name|HashMap
+argument_list|<>
 argument_list|()
 decl_stmt|;
 static|static
@@ -3469,7 +3540,7 @@ name|class
 argument_list|,
 literal|null
 argument_list|,
-literal|0l
+literal|0L
 argument_list|,
 literal|null
 argument_list|)
@@ -3492,9 +3563,9 @@ name|class
 argument_list|,
 literal|null
 argument_list|,
-literal|1024l
+literal|1L
 argument_list|,
-literal|65535l
+literal|65535L
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -3509,15 +3580,15 @@ argument_list|,
 operator|new
 name|ValidateInfo
 argument_list|(
-name|Long
+name|Double
 operator|.
 name|class
 argument_list|,
 literal|null
 argument_list|,
-literal|0l
+literal|0d
 argument_list|,
-name|Long
+name|Double
 operator|.
 name|MAX_VALUE
 argument_list|)
@@ -3538,18 +3609,11 @@ name|String
 operator|.
 name|class
 argument_list|,
-name|unmodifiableSet
-argument_list|(
-operator|new
-name|HashSet
-argument_list|(
-name|Arrays
+name|Collections
 operator|.
-name|asList
+name|singleton
 argument_list|(
 literal|"overseer"
-argument_list|)
-argument_list|)
 argument_list|)
 argument_list|,
 literal|null
@@ -3575,7 +3639,7 @@ name|class
 argument_list|,
 literal|null
 argument_list|,
-literal|0l
+literal|0L
 argument_list|,
 name|Long
 operator|.
@@ -3644,7 +3708,7 @@ name|class
 argument_list|,
 literal|null
 argument_list|,
-literal|0l
+literal|0L
 argument_list|,
 name|Long
 operator|.
@@ -3720,9 +3784,9 @@ name|class
 argument_list|,
 literal|null
 argument_list|,
-literal|0l
+literal|0L
 argument_list|,
-literal|255l
+literal|255L
 argument_list|)
 argument_list|)
 expr_stmt|;

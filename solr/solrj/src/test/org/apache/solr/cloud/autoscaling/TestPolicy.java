@@ -973,7 +973,7 @@ name|expectError
 argument_list|(
 literal|"port"
 argument_list|,
-literal|"1000"
+literal|"0"
 argument_list|,
 literal|"must be greater than"
 argument_list|)
@@ -982,7 +982,7 @@ name|expectError
 argument_list|(
 literal|"port"
 argument_list|,
-literal|1000
+literal|0
 argument_list|,
 literal|"must be greater than"
 argument_list|)
@@ -1967,7 +1967,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"node3"
+literal|"node4"
 argument_list|,
 name|l
 operator|.
@@ -1981,7 +1981,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"node4"
+literal|"node3"
 argument_list|,
 name|l
 operator|.
