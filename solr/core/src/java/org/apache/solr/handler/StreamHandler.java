@@ -1769,6 +1769,15 @@ name|MovingAverageEvaluator
 operator|.
 name|class
 argument_list|)
+operator|.
+name|withFunctionName
+argument_list|(
+literal|"arraySort"
+argument_list|,
+name|ArraySortEvaluator
+operator|.
+name|class
+argument_list|)
 comment|// metrics
 operator|.
 name|withFunctionName
