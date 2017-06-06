@@ -4319,32 +4319,23 @@ expr_stmt|;
 name|invertState
 operator|.
 name|length
-operator|++
-expr_stmt|;
-if|if
-condition|(
+operator|=
+name|Math
+operator|.
+name|addExact
+argument_list|(
 name|invertState
 operator|.
 name|length
-operator|<
-literal|0
-condition|)
-block|{
-throw|throw
-operator|new
-name|IllegalArgumentException
-argument_list|(
-literal|"too many tokens in field '"
-operator|+
-name|field
+argument_list|,
+name|invertState
 operator|.
-name|name
+name|termFreqAttribute
+operator|.
+name|getTermFrequency
 argument_list|()
-operator|+
-literal|"'"
 argument_list|)
-throw|;
-block|}
+expr_stmt|;
 comment|//System.out.println("  term=" + invertState.termAttribute);
 comment|// If we hit an exception in here, we abort
 comment|// all buffered documents since the last

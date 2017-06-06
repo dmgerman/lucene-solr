@@ -14497,6 +14497,10 @@ name|expectedType
 operator|.
 name|getSimpleName
 argument_list|()
+operator|+
+literal|" but got "
+operator|+
+name|e
 argument_list|)
 decl_stmt|;
 name|assertion
@@ -14520,6 +14524,8 @@ name|expectedType
 operator|.
 name|getSimpleName
 argument_list|()
+operator|+
+literal|" but no exception was thrown"
 argument_list|)
 throw|;
 block|}
