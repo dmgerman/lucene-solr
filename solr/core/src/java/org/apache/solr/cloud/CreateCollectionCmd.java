@@ -1306,6 +1306,8 @@ name|clusterState
 argument_list|,
 name|nodeList
 argument_list|,
+name|collectionName
+argument_list|,
 name|message
 argument_list|,
 name|shardNames

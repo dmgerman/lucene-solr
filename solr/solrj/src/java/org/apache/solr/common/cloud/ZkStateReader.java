@@ -828,6 +828,15 @@ name|SOLR_SECURITY_CONF_PATH
 init|=
 literal|"/security.json"
 decl_stmt|;
+DECL|field|SOLR_AUTOSCALING_CONF_PATH
+specifier|public
+specifier|static
+specifier|final
+name|String
+name|SOLR_AUTOSCALING_CONF_PATH
+init|=
+literal|"/autoscaling.json"
+decl_stmt|;
 DECL|field|REPLICATION_FACTOR
 specifier|public
 specifier|static

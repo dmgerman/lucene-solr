@@ -232,7 +232,7 @@ name|solr
 operator|.
 name|handler
 operator|.
-name|SolrConfigHandler
+name|RequestHandlerUtils
 import|;
 end_import
 
@@ -560,7 +560,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|SolrConfigHandler
+name|RequestHandlerUtils
 operator|.
 name|setWt
 argument_list|(

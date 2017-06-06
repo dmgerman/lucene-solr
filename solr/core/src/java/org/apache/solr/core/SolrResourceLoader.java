@@ -857,6 +857,8 @@ block|,
 literal|"security."
 block|,
 literal|"handler.admin."
+block|,
+literal|"cloud.autoscaling."
 block|}
 decl_stmt|;
 DECL|field|SOLR_CORE_NAME

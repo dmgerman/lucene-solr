@@ -612,6 +612,22 @@ name|solr
 operator|.
 name|cloud
 operator|.
+name|autoscaling
+operator|.
+name|AutoScalingHandler
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
+name|cloud
+operator|.
 name|CloudDescriptor
 import|;
 end_import
@@ -1654,6 +1670,11 @@ name|long
 name|status
 init|=
 literal|0L
+decl_stmt|;
+DECL|field|autoScalingHandler
+specifier|protected
+name|AutoScalingHandler
+name|autoScalingHandler
 decl_stmt|;
 DECL|enum|CoreInitFailedAction
 DECL|enum constant|fromleader
@@ -3367,6 +3388,26 @@ operator|.
 name|init
 argument_list|(
 literal|null
+argument_list|)
+expr_stmt|;
+name|autoScalingHandler
+operator|=
+name|createHandler
+argument_list|(
+name|AutoScalingHandler
+operator|.
+name|HANDLER_PATH
+argument_list|,
+name|AutoScalingHandler
+operator|.
+name|class
+operator|.
+name|getName
+argument_list|()
+argument_list|,
+name|AutoScalingHandler
+operator|.
+name|class
 argument_list|)
 expr_stmt|;
 name|containerHandlers
@@ -6549,7 +6590,7 @@ block|}
 end_function
 
 begin_comment
-comment|/**    * get a list of all the cores that are currently loaded    * @return a list of al lthe available core names in either permanent or transient core lists.    *     * Note: this implies that the core is loaded    */
+comment|/**    * get a list of all the cores that are currently loaded    * @return a list of al lthe available core names in either permanent or transient core lists.    *    * Note: this implies that the core is loaded    */
 end_comment
 
 begin_function

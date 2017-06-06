@@ -253,6 +253,22 @@ argument_list|,
 literal|null
 argument_list|)
 block|,
+DECL|enum constant|AUTOSCALING_READ_PERM
+name|AUTOSCALING_READ_PERM
+argument_list|(
+literal|"autoscaling-read"
+argument_list|,
+literal|null
+argument_list|)
+block|,
+DECL|enum constant|AUTOSCALING_WRITE_PERM
+name|AUTOSCALING_WRITE_PERM
+argument_list|(
+literal|"autoscaling-write"
+argument_list|,
+literal|null
+argument_list|)
+block|,
 DECL|enum constant|ALL
 name|ALL
 argument_list|(

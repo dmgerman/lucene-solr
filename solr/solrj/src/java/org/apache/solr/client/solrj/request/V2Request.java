@@ -447,6 +447,13 @@ name|String
 name|payload
 parameter_list|)
 block|{
+if|if
+condition|(
+name|payload
+operator|!=
+literal|null
+condition|)
+block|{
 name|this
 operator|.
 name|payload
@@ -464,6 +471,7 @@ name|UTF_8
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|this
 return|;

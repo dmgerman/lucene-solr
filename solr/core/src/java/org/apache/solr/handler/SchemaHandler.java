@@ -641,7 +641,7 @@ parameter_list|)
 throws|throws
 name|Exception
 block|{
-name|SolrConfigHandler
+name|RequestHandlerUtils
 operator|.
 name|setWt
 argument_list|(
