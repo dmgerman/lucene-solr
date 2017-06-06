@@ -291,7 +291,7 @@ block|}
 block|}
 name|log
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"StoppableCommitThread finished. Committed {} times. Failed {} times."
 argument_list|,
