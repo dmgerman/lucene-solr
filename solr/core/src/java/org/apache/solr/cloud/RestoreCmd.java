@@ -1876,6 +1876,8 @@ name|clusterState
 argument_list|,
 name|nodeList
 argument_list|,
+name|restoreCollectionName
+argument_list|,
 name|message
 argument_list|,
 name|sliceNames

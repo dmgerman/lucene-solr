@@ -1419,6 +1419,8 @@ argument_list|()
 operator|.
 name|getZkStateReader
 argument_list|()
+argument_list|,
+name|createNodeList
 argument_list|)
 expr_stmt|;
 block|}
@@ -1563,6 +1565,12 @@ name|policyName
 parameter_list|,
 name|ZkStateReader
 name|zkStateReader
+parameter_list|,
+name|List
+argument_list|<
+name|String
+argument_list|>
+name|nodesList
 parameter_list|)
 throws|throws
 name|KeeperException
@@ -1655,6 +1663,8 @@ argument_list|,
 name|shardNames
 argument_list|,
 name|numReplicas
+argument_list|,
+name|nodesList
 argument_list|)
 decl_stmt|;
 name|Map

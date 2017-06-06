@@ -3935,6 +3935,8 @@ literal|"shard2"
 argument_list|)
 argument_list|,
 literal|1
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertTrue
@@ -4262,6 +4264,8 @@ literal|"shard2"
 argument_list|)
 argument_list|,
 literal|3
+argument_list|,
+literal|null
 argument_list|)
 decl_stmt|;
 name|assertTrue
