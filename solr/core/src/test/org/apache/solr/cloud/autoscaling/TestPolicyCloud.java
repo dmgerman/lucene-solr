@@ -92,6 +92,20 @@ name|lucene
 operator|.
 name|util
 operator|.
+name|Constants
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|util
+operator|.
 name|LuceneTestCase
 import|;
 end_import
@@ -1510,6 +1524,15 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+operator|!
+name|Constants
+operator|.
+name|WINDOWS
+condition|)
+block|{
+comment|// the system load average metrics is not available on windows platform
 name|assertTrue
 argument_list|(
 literal|"sysLoadAvg value is "
@@ -1554,6 +1577,7 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
+block|}
 name|String
 name|overseerNode
 init|=
