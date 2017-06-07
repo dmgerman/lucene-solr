@@ -404,17 +404,7 @@ argument_list|,
 name|numSlots
 argument_list|)
 expr_stmt|;
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"DEBUG Acc numSlots="
-operator|+
-name|numSlots
-argument_list|)
-operator|.
-name|printStackTrace
-argument_list|()
-expr_stmt|;
+comment|//      new RuntimeException("DEBUG Acc numSlots=" + numSlots).printStackTrace();
 block|}
 annotation|@
 name|Override
