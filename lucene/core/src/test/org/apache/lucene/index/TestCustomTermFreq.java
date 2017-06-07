@@ -2277,7 +2277,7 @@ argument_list|)
 expr_stmt|;
 name|expectThrows
 argument_list|(
-name|ArithmeticException
+name|IllegalArgumentException
 operator|.
 name|class
 argument_list|,
