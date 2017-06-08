@@ -194,9 +194,13 @@ literal|1
 argument_list|)
 expr_stmt|;
 block|}
-name|FSDirectory
+comment|// Try to use hardlinks to source segments, if possible.
+name|Directory
 name|mergedIndex
 init|=
+operator|new
+name|HardlinkCopyDirectoryWrapper
+argument_list|(
 name|FSDirectory
 operator|.
 name|open
@@ -209,6 +213,7 @@ name|args
 index|[
 literal|0
 index|]
+argument_list|)
 argument_list|)
 argument_list|)
 decl_stmt|;
@@ -265,7 +270,6 @@ name|i
 operator|++
 control|)
 block|{
-comment|// try to use hardlinks if possible
 name|indexes
 index|[
 name|i
@@ -273,9 +277,6 @@ operator|-
 literal|1
 index|]
 operator|=
-operator|new
-name|HardlinkCopyDirectoryWrapper
-argument_list|(
 name|FSDirectory
 operator|.
 name|open
@@ -288,7 +289,6 @@ name|args
 index|[
 name|i
 index|]
-argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
