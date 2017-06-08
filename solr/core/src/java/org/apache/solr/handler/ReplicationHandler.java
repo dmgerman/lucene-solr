@@ -8376,7 +8376,14 @@ if|if
 condition|(
 name|enableMaster
 operator|||
+operator|(
 name|enableSlave
+operator|&&
+operator|!
+name|currentIndexFetcher
+operator|.
+name|fetchFromLeader
+operator|)
 condition|)
 block|{
 if|if

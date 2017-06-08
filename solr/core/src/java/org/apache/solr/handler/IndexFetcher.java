@@ -1359,7 +1359,6 @@ init|=
 literal|false
 decl_stmt|;
 DECL|field|fetchFromLeader
-specifier|private
 name|boolean
 name|fetchFromLeader
 init|=

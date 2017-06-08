@@ -1262,6 +1262,18 @@ operator|+
 literal|"\n\n"
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"collection state: "
+operator|+
+name|printClusterStateInfo
+argument_list|(
+name|DEFAULT_COLLECTION
+argument_list|)
+argument_list|)
+expr_stmt|;
 name|waitForReplicationFromReplicas
 argument_list|(
 name|DEFAULT_COLLECTION

@@ -70,6 +70,18 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|SolrTestCaseJ4
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|solr
+operator|.
 name|client
 operator|.
 name|solrj
@@ -175,6 +187,10 @@ import|;
 end_import
 
 begin_class
+annotation|@
+name|SolrTestCaseJ4
+operator|.
+name|SuppressPointFields
 DECL|class|TestJsonFacetRefinement
 specifier|public
 class|class
@@ -1557,6 +1573,72 @@ operator|+
 literal|", cat0:{ buckets:[ {val:A,count:4} ] }"
 operator|+
 comment|// w/o overrequest, we need refining to get the correct count.
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// basic refining test through/under a query facet
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"q1 : { type:query, q:'*:*', facet:{"
+operator|+
+literal|"cat0:{${terms} type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:0, refine:true}"
+operator|+
+literal|"}}"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:8"
+operator|+
+literal|", q1:{ count:8, cat0:{ buckets:[ {val:A,count:4} ] }   }"
+operator|+
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// basic refining test through/under a range facet
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"r1 : { type:range, field:${num_d} start:-20, end:20, gap:40   , facet:{"
+operator|+
+literal|"cat0:{${terms} type:terms, field:${cat_s}, sort:'count desc', limit:1, overrequest:0, refine:true}"
+operator|+
+literal|"}}"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:8"
+operator|+
+literal|", r1:{ buckets:[{val:-20.0,count:8,  cat0:{buckets:[{val:A,count:4}]}  }]   }"
+operator|+
 literal|"}"
 argument_list|)
 expr_stmt|;

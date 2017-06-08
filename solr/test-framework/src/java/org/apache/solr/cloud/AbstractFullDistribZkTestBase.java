@@ -13536,7 +13536,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Leader replica's version ({}) in sync with replica({}): {} == {}"
 argument_list|,
@@ -13640,7 +13640,7 @@ else|else
 block|{
 name|log
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Replica {} has the correct version replicated, but the searcher is not ready yet. Replicated version: {}, Serving version: {}"
 argument_list|,
@@ -13727,7 +13727,7 @@ condition|)
 block|{
 name|log
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"{} version is {} and leader's is {}, will wait for replication"
 argument_list|,
@@ -13746,7 +13746,7 @@ else|else
 block|{
 name|log
 operator|.
-name|debug
+name|info
 argument_list|(
 literal|"Leader replica's version ({}) is lower than pull replica({}): {}< {}"
 argument_list|,

@@ -1604,6 +1604,18 @@ operator|>
 literal|0
 argument_list|)
 expr_stmt|;
+name|log
+operator|.
+name|info
+argument_list|(
+literal|"collection state: "
+operator|+
+name|printClusterStateInfo
+argument_list|(
+name|DEFAULT_COLLECTION
+argument_list|)
+argument_list|)
+expr_stmt|;
 if|if
 condition|(
 name|VERBOSE

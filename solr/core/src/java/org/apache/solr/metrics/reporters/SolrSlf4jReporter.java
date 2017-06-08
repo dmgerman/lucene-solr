@@ -156,6 +156,11 @@ name|SolrSlf4jReporter
 extends|extends
 name|SolrMetricReporter
 block|{
+annotation|@
+name|SuppressWarnings
+argument_list|(
+literal|"unused"
+argument_list|)
 comment|// we need this to pass validate-source-patterns
 DECL|field|log
 specifier|private
