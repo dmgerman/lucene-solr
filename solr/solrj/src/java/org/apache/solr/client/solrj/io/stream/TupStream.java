@@ -1239,9 +1239,6 @@ name|streamTuples
 init|=
 operator|new
 name|ArrayList
-argument_list|<
-name|Tuple
-argument_list|>
 argument_list|()
 decl_stmt|;
 comment|// open the stream, closed in finally block
