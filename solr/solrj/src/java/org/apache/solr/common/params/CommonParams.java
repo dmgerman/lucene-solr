@@ -34,6 +34,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Collections
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashSet
 import|;
 end_import
@@ -421,6 +431,10 @@ name|String
 argument_list|>
 name|ADMIN_PATHS
 init|=
+name|Collections
+operator|.
+name|unmodifiableSet
+argument_list|(
 operator|new
 name|HashSet
 argument_list|<>
@@ -446,6 +460,19 @@ argument_list|,
 name|AUTOSCALING_DIAGNOSTICS_PATH
 argument_list|)
 argument_list|)
+argument_list|)
+decl_stmt|;
+DECL|field|APISPEC_LOCATION
+name|String
+name|APISPEC_LOCATION
+init|=
+literal|"apispec/"
+decl_stmt|;
+DECL|field|INTROSPECT
+name|String
+name|INTROSPECT
+init|=
+literal|"/_introspect"
 decl_stmt|;
 comment|/** valid values for:<code>echoParams</code> */
 DECL|enum|EchoParamStyle

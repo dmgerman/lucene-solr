@@ -288,7 +288,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|api
+name|common
 operator|.
 name|SpecProvider
 import|;

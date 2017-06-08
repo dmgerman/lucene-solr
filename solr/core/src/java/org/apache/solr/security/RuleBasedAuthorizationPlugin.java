@@ -128,9 +128,9 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|api
+name|common
 operator|.
-name|ApiBag
+name|SpecProvider
 import|;
 end_import
 
@@ -142,9 +142,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|api
+name|common
 operator|.
-name|SpecProvider
+name|util
+operator|.
+name|Utils
 import|;
 end_import
 
@@ -1655,7 +1657,7 @@ name|getSpec
 parameter_list|()
 block|{
 return|return
-name|ApiBag
+name|Utils
 operator|.
 name|getSpec
 argument_list|(

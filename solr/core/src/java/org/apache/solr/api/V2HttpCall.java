@@ -434,6 +434,8 @@ name|apache
 operator|.
 name|solr
 operator|.
+name|common
+operator|.
 name|util
 operator|.
 name|PathTrie
@@ -557,6 +559,8 @@ operator|.
 name|apache
 operator|.
 name|solr
+operator|.
+name|common
 operator|.
 name|util
 operator|.
@@ -872,7 +876,7 @@ name|path
 operator|.
 name|endsWith
 argument_list|(
-name|ApiBag
+name|CommonParams
 operator|.
 name|INTROSPECT
 argument_list|)
@@ -1012,7 +1016,7 @@ name|path
 operator|.
 name|endsWith
 argument_list|(
-name|ApiBag
+name|CommonParams
 operator|.
 name|INTROSPECT
 argument_list|)
@@ -1467,7 +1471,7 @@ name|path
 operator|.
 name|endsWith
 argument_list|(
-name|ApiBag
+name|CommonParams
 operator|.
 name|INTROSPECT
 argument_list|)
@@ -1759,7 +1763,7 @@ name|path
 operator|.
 name|endsWith
 argument_list|(
-name|ApiBag
+name|CommonParams
 operator|.
 name|INTROSPECT
 argument_list|)
@@ -1775,7 +1779,7 @@ operator|.
 name|length
 argument_list|()
 operator|-
-name|ApiBag
+name|CommonParams
 operator|.
 name|INTROSPECT
 operator|.
@@ -1875,7 +1879,7 @@ name|fullPath
 operator|.
 name|endsWith
 argument_list|(
-name|ApiBag
+name|CommonParams
 operator|.
 name|INTROSPECT
 argument_list|)
@@ -1891,7 +1895,7 @@ operator|.
 name|length
 argument_list|()
 operator|-
-name|ApiBag
+name|CommonParams
 operator|.
 name|INTROSPECT
 operator|.
@@ -1952,7 +1956,7 @@ argument_list|()
 operator|.
 name|endsWith
 argument_list|(
-name|ApiBag
+name|CommonParams
 operator|.
 name|INTROSPECT
 argument_list|)

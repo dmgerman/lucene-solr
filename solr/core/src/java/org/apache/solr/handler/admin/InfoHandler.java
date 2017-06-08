@@ -210,9 +210,11 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|api
+name|common
 operator|.
-name|ApiBag
+name|util
+operator|.
+name|Utils
 operator|.
 name|getSpec
 import|;

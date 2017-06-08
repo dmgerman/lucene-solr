@@ -388,7 +388,7 @@ name|apache
 operator|.
 name|solr
 operator|.
-name|api
+name|common
 operator|.
 name|SpecProvider
 import|;
@@ -1597,7 +1597,7 @@ specifier|final
 name|SpecProvider
 name|authcCommands
 init|=
-name|ApiBag
+name|Utils
 operator|.
 name|getSpec
 argument_list|(
@@ -1608,7 +1608,7 @@ specifier|final
 name|SpecProvider
 name|authzCommands
 init|=
-name|ApiBag
+name|Utils
 operator|.
 name|getSpec
 argument_list|(
@@ -1624,7 +1624,7 @@ name|ReqHandlerToApi
 argument_list|(
 name|this
 argument_list|,
-name|ApiBag
+name|Utils
 operator|.
 name|getSpec
 argument_list|(
@@ -1642,7 +1642,7 @@ name|ReqHandlerToApi
 argument_list|(
 name|this
 argument_list|,
-name|ApiBag
+name|Utils
 operator|.
 name|getSpec
 argument_list|(
