@@ -240,6 +240,13 @@ argument_list|,
 literal|"can not be configured to be multivalued"
 argument_list|)
 expr_stmt|;
+name|doTest
+argument_list|(
+literal|"bad-schema-uniquekey-uses-points.xml"
+argument_list|,
+literal|"can not be configured to use a Points based FieldType"
+argument_list|)
+expr_stmt|;
 block|}
 DECL|method|testMultivaluedCurrency
 specifier|public
