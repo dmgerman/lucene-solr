@@ -414,7 +414,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"tdate"
+literal|"pdates"
 argument_list|,
 name|schema
 operator|.
@@ -521,7 +521,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"tfloat"
+literal|"pfloats"
 argument_list|,
 name|schema
 operator|.
@@ -662,7 +662,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"tdouble"
+literal|"pdoubles"
 argument_list|,
 name|schema
 operator|.
@@ -1042,7 +1042,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"tdouble"
+literal|"pdoubles"
 argument_list|,
 name|schema
 operator|.
@@ -1057,7 +1057,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"tlong"
+literal|"plongs"
 argument_list|,
 name|schema
 operator|.
@@ -1479,7 +1479,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"tdouble"
+literal|"pdoubles"
 argument_list|,
 name|schema
 operator|.
@@ -1494,7 +1494,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"tlong"
+literal|"plongs"
 argument_list|,
 name|schema
 operator|.
@@ -1524,7 +1524,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"tdate"
+literal|"pdates"
 argument_list|,
 name|schema
 operator|.
