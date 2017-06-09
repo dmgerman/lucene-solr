@@ -1136,6 +1136,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|orderBy
+operator|!=
+literal|null
+condition|)
+block|{
 name|expression
 operator|.
 name|addParameter
@@ -1154,6 +1161,7 @@ argument_list|)
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|expression
 return|;
@@ -1267,6 +1275,13 @@ argument_list|)
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+name|orderBy
+operator|!=
+literal|null
+condition|)
+block|{
 name|explanation
 operator|.
 name|addHelper
@@ -1279,6 +1294,7 @@ name|factory
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 return|return
 name|explanation
 return|;
