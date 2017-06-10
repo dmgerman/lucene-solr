@@ -32,7 +32,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|TreeSet
+name|ArrayList
 import|;
 end_import
 
@@ -52,7 +52,7 @@ name|java
 operator|.
 name|util
 operator|.
-name|ArrayList
+name|TreeSet
 import|;
 end_import
 
@@ -67,20 +67,6 @@ operator|.
 name|index
 operator|.
 name|LeafReaderContext
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
-name|index
-operator|.
-name|MultiFields
 import|;
 end_import
 
@@ -939,15 +925,15 @@ decl_stmt|;
 name|Terms
 name|terms
 init|=
-name|MultiFields
-operator|.
-name|getFields
-argument_list|(
+operator|(
+operator|(
+name|SolrIndexSearcher
+operator|)
 name|searcher
+operator|)
 operator|.
-name|getIndexReader
+name|getSlowAtomicReader
 argument_list|()
-argument_list|)
 operator|.
 name|terms
 argument_list|(
@@ -957,6 +943,14 @@ decl_stmt|;
 name|TermsEnum
 name|termsEnum
 init|=
+name|terms
+operator|==
+literal|null
+condition|?
+name|TermsEnum
+operator|.
+name|EMPTY
+else|:
 name|terms
 operator|.
 name|iterator
