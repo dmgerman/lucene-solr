@@ -68,6 +68,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Arrays
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -78,7 +88,27 @@ name|java
 operator|.
 name|util
 operator|.
+name|HashSet
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|Map
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
+name|Set
 import|;
 end_import
 
@@ -135,6 +165,22 @@ operator|.
 name|analysis
 operator|.
 name|Tokenizer
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|analysis
+operator|.
+name|miscellaneous
+operator|.
+name|DelimitedTermFrequencyTokenFilterFactory
 import|;
 end_import
 
@@ -282,6 +328,36 @@ name|TestFactories
 extends|extends
 name|BaseTokenStreamTestCase
 block|{
+comment|/** Factories that are excluded from testing it with random data */
+DECL|field|EXCLUDE_FACTORIES_RANDOM_DATA
+specifier|private
+specifier|static
+specifier|final
+name|Set
+argument_list|<
+name|Class
+argument_list|<
+name|?
+extends|extends
+name|AbstractAnalysisFactory
+argument_list|>
+argument_list|>
+name|EXCLUDE_FACTORIES_RANDOM_DATA
+init|=
+operator|new
+name|HashSet
+argument_list|<>
+argument_list|(
+name|Arrays
+operator|.
+name|asList
+argument_list|(
+name|DelimitedTermFrequencyTokenFilterFactory
+operator|.
+name|class
+argument_list|)
+argument_list|)
+decl_stmt|;
 DECL|method|test
 specifier|public
 name|void
@@ -422,6 +498,20 @@ name|CharFilterFactory
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|EXCLUDE_FACTORIES_RANDOM_DATA
+operator|.
+name|contains
+argument_list|(
+name|factory
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
+condition|)
+block|{
 comment|// beast it just a little, it shouldnt throw exceptions:
 comment|// (it should have thrown them in initialize)
 name|Analyzer
@@ -458,6 +548,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|doTestTokenFilter
@@ -540,6 +631,20 @@ name|TokenFilterFactory
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|EXCLUDE_FACTORIES_RANDOM_DATA
+operator|.
+name|contains
+argument_list|(
+name|factory
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
+condition|)
+block|{
 comment|// beast it just a little, it shouldnt throw exceptions:
 comment|// (it should have thrown them in initialize)
 name|Analyzer
@@ -576,6 +681,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 DECL|method|doTestCharFilter
@@ -658,6 +764,20 @@ name|CharFilterFactory
 argument_list|)
 expr_stmt|;
 block|}
+if|if
+condition|(
+operator|!
+name|EXCLUDE_FACTORIES_RANDOM_DATA
+operator|.
+name|contains
+argument_list|(
+name|factory
+operator|.
+name|getClass
+argument_list|()
+argument_list|)
+condition|)
+block|{
 comment|// beast it just a little, it shouldnt throw exceptions:
 comment|// (it should have thrown them in initialize)
 name|Analyzer
@@ -694,6 +814,7 @@ operator|.
 name|close
 argument_list|()
 expr_stmt|;
+block|}
 block|}
 block|}
 comment|/** tries to initialize a factory with no arguments */
