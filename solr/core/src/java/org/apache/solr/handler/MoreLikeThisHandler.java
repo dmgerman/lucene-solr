@@ -2364,6 +2364,37 @@ literal|false
 argument_list|)
 argument_list|)
 expr_stmt|;
+comment|// There is no default for maxDocFreqPct. Also, it's a bit oddly expressed as an integer value
+comment|// (percentage of the collection's documents count). We keep Lucene's convention here.
+if|if
+condition|(
+name|params
+operator|.
+name|getInt
+argument_list|(
+name|MoreLikeThisParams
+operator|.
+name|MAX_DOC_FREQ_PCT
+argument_list|)
+operator|!=
+literal|null
+condition|)
+block|{
+name|mlt
+operator|.
+name|setMaxDocFreqPct
+argument_list|(
+name|params
+operator|.
+name|getInt
+argument_list|(
+name|MoreLikeThisParams
+operator|.
+name|MAX_DOC_FREQ_PCT
+argument_list|)
+argument_list|)
+expr_stmt|;
+block|}
 name|boostFields
 operator|=
 name|SolrPluginUtils

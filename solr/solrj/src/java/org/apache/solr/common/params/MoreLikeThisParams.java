@@ -90,6 +90,17 @@ name|PREFIX
 operator|+
 literal|"maxdf"
 decl_stmt|;
+DECL|field|MAX_DOC_FREQ_PCT
+specifier|public
+specifier|final
+specifier|static
+name|String
+name|MAX_DOC_FREQ_PCT
+init|=
+name|PREFIX
+operator|+
+literal|"maxdfpct"
+decl_stmt|;
 DECL|field|MIN_DOC_FREQ
 specifier|public
 specifier|final
