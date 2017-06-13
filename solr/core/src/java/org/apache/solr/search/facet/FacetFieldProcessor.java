@@ -3754,6 +3754,16 @@ operator|.
 name|getType
 argument_list|()
 decl_stmt|;
+name|bucketVal
+operator|=
+name|ft
+operator|.
+name|toNativeType
+argument_list|(
+name|bucketVal
+argument_list|)
+expr_stmt|;
+comment|// refinement info passed in as JSON will cause int->long and float->double
 name|bucket
 operator|.
 name|add

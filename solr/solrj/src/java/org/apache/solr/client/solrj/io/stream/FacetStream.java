@@ -3324,6 +3324,27 @@ argument_list|(
 literal|"val"
 argument_list|)
 decl_stmt|;
+if|if
+condition|(
+name|val
+operator|instanceof
+name|Integer
+condition|)
+block|{
+name|val
+operator|=
+operator|(
+operator|(
+name|Integer
+operator|)
+name|val
+operator|)
+operator|.
+name|longValue
+argument_list|()
+expr_stmt|;
+comment|// calcite currently expects Long values here
+block|}
 name|Tuple
 name|t
 init|=

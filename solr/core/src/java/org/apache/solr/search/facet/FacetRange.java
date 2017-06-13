@@ -2858,6 +2858,24 @@ expr_stmt|;
 block|}
 annotation|@
 name|Override
+DECL|method|bitsToValue
+specifier|public
+name|Comparable
+name|bitsToValue
+parameter_list|(
+name|long
+name|bits
+parameter_list|)
+block|{
+return|return
+operator|(
+name|int
+operator|)
+name|bits
+return|;
+block|}
+annotation|@
+name|Override
 DECL|method|parseStr
 specifier|protected
 name|Integer
@@ -3822,9 +3840,12 @@ name|add
 argument_list|(
 literal|"val"
 argument_list|,
-name|bucketVal
+name|range
+operator|.
+name|low
 argument_list|)
 expr_stmt|;
+comment|// use "low" instead of bucketVal because it will be the right type (we may have been passed back long instead of int for example)
 comment|// String internal = ft.toInternal( tobj.toString() );  // TODO - we need a better way to get from object to query...
 name|Query
 name|domainQ

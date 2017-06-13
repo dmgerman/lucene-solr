@@ -971,6 +971,10 @@ literal|"cat_s"
 argument_list|,
 literal|"cat_s"
 argument_list|,
+literal|"cat_i"
+argument_list|,
+literal|"cat_i"
+argument_list|,
 literal|"xy_s"
 argument_list|,
 literal|"xy_s"
@@ -1007,7 +1011,7 @@ argument_list|(
 name|p
 argument_list|)
 expr_stmt|;
-comment|// multi-valued strings
+comment|// multi-valued
 name|p
 operator|=
 name|params
@@ -1015,6 +1019,10 @@ argument_list|(
 literal|"cat_s"
 argument_list|,
 literal|"cat_ss"
+argument_list|,
+literal|"cat_i"
+argument_list|,
+literal|"cat_is"
 argument_list|,
 literal|"xy_s"
 argument_list|,
@@ -1046,6 +1054,10 @@ argument_list|(
 literal|"cat_s"
 argument_list|,
 literal|"cat_sd"
+argument_list|,
+literal|"cat_i"
+argument_list|,
+literal|"cat_id"
 argument_list|,
 literal|"xy_s"
 argument_list|,
@@ -1170,6 +1182,17 @@ literal|"cat_s"
 argument_list|)
 decl_stmt|;
 name|String
+name|cat_i
+init|=
+name|p
+operator|.
+name|get
+argument_list|(
+literal|"cat_i"
+argument_list|)
+decl_stmt|;
+comment|// just like cat_s, but a number
+name|String
 name|xy_s
 init|=
 name|p
@@ -1233,6 +1256,10 @@ name|cat_s
 argument_list|,
 literal|"A"
 argument_list|,
+name|cat_i
+argument_list|,
+literal|1
+argument_list|,
 name|xy_s
 argument_list|,
 literal|"X"
@@ -1276,6 +1303,10 @@ name|cat_s
 argument_list|,
 literal|"B"
 argument_list|,
+name|cat_i
+argument_list|,
+literal|2
+argument_list|,
 name|xy_s
 argument_list|,
 literal|"Y"
@@ -1308,6 +1339,10 @@ argument_list|,
 name|cat_s
 argument_list|,
 literal|"B"
+argument_list|,
+name|cat_i
+argument_list|,
+literal|2
 argument_list|,
 name|xy_s
 argument_list|,
@@ -1348,6 +1383,10 @@ name|cat_s
 argument_list|,
 literal|"B"
 argument_list|,
+name|cat_i
+argument_list|,
+literal|2
+argument_list|,
 name|xy_s
 argument_list|,
 literal|"Y"
@@ -1386,6 +1425,10 @@ name|cat_s
 argument_list|,
 literal|"A"
 argument_list|,
+name|cat_i
+argument_list|,
+literal|1
+argument_list|,
 name|xy_s
 argument_list|,
 literal|"X"
@@ -1423,6 +1466,10 @@ argument_list|,
 name|cat_s
 argument_list|,
 literal|"A"
+argument_list|,
+name|cat_i
+argument_list|,
+literal|1
 argument_list|,
 name|xy_s
 argument_list|,
@@ -1466,6 +1513,10 @@ name|cat_s
 argument_list|,
 literal|"A"
 argument_list|,
+name|cat_i
+argument_list|,
+literal|1
+argument_list|,
 name|xy_s
 argument_list|,
 literal|"Y"
@@ -1499,6 +1550,10 @@ argument_list|,
 name|cat_s
 argument_list|,
 literal|"B"
+argument_list|,
+name|cat_i
+argument_list|,
+literal|2
 argument_list|,
 name|xy_s
 argument_list|,
@@ -1571,6 +1626,36 @@ argument_list|,
 literal|"facets=={ count:8"
 operator|+
 literal|", cat0:{ buckets:[ {val:A,count:4} ] }"
+operator|+
+comment|// w/o overrequest, we need refining to get the correct count.
+literal|"}"
+argument_list|)
+expr_stmt|;
+comment|// same as above, but with an integer field instead of a string
+name|client
+operator|.
+name|testJQ
+argument_list|(
+name|params
+argument_list|(
+name|p
+argument_list|,
+literal|"q"
+argument_list|,
+literal|"*:*"
+argument_list|,
+literal|"json.facet"
+argument_list|,
+literal|"{"
+operator|+
+literal|"cat0:{${terms} type:terms, field:${cat_i}, sort:'count desc', limit:1, overrequest:0, refine:true}"
+operator|+
+literal|"}"
+argument_list|)
+argument_list|,
+literal|"facets=={ count:8"
+operator|+
+literal|", cat0:{ buckets:[ {val:1,count:4} ] }"
 operator|+
 comment|// w/o overrequest, we need refining to get the correct count.
 literal|"}"
