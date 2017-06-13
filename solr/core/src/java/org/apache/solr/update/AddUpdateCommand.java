@@ -852,12 +852,13 @@ name|sdoc
 operator|.
 name|setField
 argument_list|(
-literal|"_root_"
+name|IndexSchema
+operator|.
+name|ROOT_FIELD_NAME
 argument_list|,
 name|idField
 argument_list|)
 expr_stmt|;
-comment|// should this be a string or the same type as the ID?
 if|if
 condition|(
 name|isVersion
@@ -968,6 +969,47 @@ argument_list|,
 name|root
 argument_list|)
 expr_stmt|;
+if|if
+condition|(
+literal|1
+operator|<
+name|unwrappedDocs
+operator|.
+name|size
+argument_list|()
+operator|&&
+operator|!
+name|req
+operator|.
+name|getSchema
+argument_list|()
+operator|.
+name|isUsableForChildDocs
+argument_list|()
+condition|)
+block|{
+throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|BAD_REQUEST
+argument_list|,
+literal|"Unable to index docs with children: the schema must "
+operator|+
+literal|"include definitions for both a uniqueKey field and the '"
+operator|+
+name|IndexSchema
+operator|.
+name|ROOT_FIELD_NAME
+operator|+
+literal|"' field, using the exact same fieldType"
+argument_list|)
+throw|;
+block|}
 return|return
 name|unwrappedDocs
 return|;

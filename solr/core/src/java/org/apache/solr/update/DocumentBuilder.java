@@ -761,16 +761,7 @@ name|ErrorCode
 operator|.
 name|BAD_REQUEST
 argument_list|,
-literal|"ERROR: "
-operator|+
-name|getID
-argument_list|(
-name|doc
-argument_list|,
-name|schema
-argument_list|)
-operator|+
-literal|"multiple values encountered for non multiValued copy field "
+literal|"Multiple values encountered for non multiValued copy field "
 operator|+
 name|destinationField
 operator|.
@@ -866,7 +857,53 @@ name|ex
 parameter_list|)
 block|{
 throw|throw
+operator|new
+name|SolrException
+argument_list|(
+name|SolrException
+operator|.
+name|ErrorCode
+operator|.
+name|getErrorCode
+argument_list|(
 name|ex
+operator|.
+name|code
+argument_list|()
+argument_list|)
+argument_list|,
+literal|"ERROR: "
+operator|+
+name|getID
+argument_list|(
+name|doc
+argument_list|,
+name|schema
+argument_list|)
+operator|+
+literal|"Error adding field '"
+operator|+
+name|field
+operator|.
+name|getName
+argument_list|()
+operator|+
+literal|"'='"
+operator|+
+name|field
+operator|.
+name|getValue
+argument_list|()
+operator|+
+literal|"' msg="
+operator|+
+name|ex
+operator|.
+name|getMessage
+argument_list|()
+argument_list|,
+name|ex
+argument_list|)
 throw|;
 block|}
 catch|catch
