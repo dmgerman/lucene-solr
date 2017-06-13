@@ -397,7 +397,11 @@ argument_list|)
 decl_stmt|;
 if|if
 condition|(
-literal|true
+name|random
+argument_list|()
+operator|.
+name|nextBoolean
+argument_list|()
 condition|)
 block|{
 name|harness
