@@ -248,7 +248,7 @@ DECL|method|evaluate
 specifier|public
 name|List
 argument_list|<
-name|Number
+name|Object
 argument_list|>
 name|evaluate
 parameter_list|(
@@ -260,12 +260,13 @@ name|IOException
 block|{
 name|List
 argument_list|<
-name|Number
+name|Object
 argument_list|>
 name|list
 init|=
 operator|new
 name|ArrayList
+argument_list|<>
 argument_list|()
 decl_stmt|;
 for|for
@@ -276,8 +277,8 @@ range|:
 name|subEvaluators
 control|)
 block|{
-name|Number
-name|num
+name|Object
+name|value
 init|=
 operator|(
 name|Number
@@ -293,7 +294,7 @@ name|list
 operator|.
 name|add
 argument_list|(
-name|num
+name|value
 argument_list|)
 expr_stmt|;
 block|}
