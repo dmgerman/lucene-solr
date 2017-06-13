@@ -58,6 +58,16 @@ name|java
 operator|.
 name|util
 operator|.
+name|Locale
+import|;
+end_import
+
+begin_import
+import|import
+name|java
+operator|.
+name|util
+operator|.
 name|HashMap
 import|;
 end_import
@@ -295,12 +305,23 @@ throw|throw
 operator|new
 name|IOException
 argument_list|(
-literal|"ANOVA evaluator expects atleast 2 parameters found: "
-operator|+
+name|String
+operator|.
+name|format
+argument_list|(
+name|Locale
+operator|.
+name|ROOT
+argument_list|,
+literal|"Invalid expression %s - expecting at least two values but found %d"
+argument_list|,
+name|expression
+argument_list|,
 name|subEvaluators
 operator|.
 name|size
 argument_list|()
+argument_list|)
 argument_list|)
 throw|;
 block|}
