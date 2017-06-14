@@ -496,20 +496,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|NumericDocValues
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|queryparser
 operator|.
 name|classic
@@ -703,8 +689,6 @@ operator|.
 name|util
 operator|.
 name|ByteBlockPool
-operator|.
-name|Allocator
 import|;
 end_import
 
@@ -719,6 +703,8 @@ operator|.
 name|util
 operator|.
 name|ByteBlockPool
+operator|.
+name|Allocator
 import|;
 end_import
 
@@ -1376,8 +1362,10 @@ name|memFields
 init|=
 name|memIndexReader
 operator|.
-name|fields
-argument_list|()
+name|getTermVectors
+argument_list|(
+literal|0
+argument_list|)
 decl_stmt|;
 for|for
 control|(

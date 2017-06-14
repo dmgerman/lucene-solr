@@ -1216,9 +1216,6 @@ name|terms
 init|=
 name|reader
 operator|.
-name|fields
-argument_list|()
-operator|.
 name|terms
 argument_list|(
 literal|"field"

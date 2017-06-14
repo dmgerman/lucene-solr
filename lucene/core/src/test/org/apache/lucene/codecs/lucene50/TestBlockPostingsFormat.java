@@ -405,9 +405,6 @@ operator|.
 name|reader
 argument_list|()
 operator|.
-name|fields
-argument_list|()
-operator|.
 name|terms
 argument_list|(
 literal|"field"

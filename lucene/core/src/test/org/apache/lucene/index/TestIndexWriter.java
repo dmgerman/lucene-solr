@@ -5016,9 +5016,6 @@ name|te
 init|=
 name|subreader
 operator|.
-name|fields
-argument_list|()
-operator|.
 name|terms
 argument_list|(
 literal|""
@@ -5234,9 +5231,6 @@ name|TermsEnum
 name|te
 init|=
 name|subreader
-operator|.
-name|fields
-argument_list|()
 operator|.
 name|terms
 argument_list|(

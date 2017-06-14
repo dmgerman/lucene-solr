@@ -889,13 +889,10 @@ name|terms
 init|=
 name|MultiFields
 operator|.
-name|getFields
+name|getTerms
 argument_list|(
 name|r
-argument_list|)
-operator|.
-name|terms
-argument_list|(
+argument_list|,
 literal|"f"
 argument_list|)
 operator|.

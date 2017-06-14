@@ -2197,9 +2197,6 @@ name|termsEnum
 init|=
 name|sub
 operator|.
-name|fields
-argument_list|()
-operator|.
 name|terms
 argument_list|(
 literal|"content"

@@ -468,13 +468,10 @@ name|te
 init|=
 name|MultiFields
 operator|.
-name|getFields
+name|getTerms
 argument_list|(
 name|reader
-argument_list|)
-operator|.
-name|terms
-argument_list|(
+argument_list|,
 literal|"body"
 argument_list|)
 operator|.

@@ -1696,9 +1696,6 @@ operator|.
 name|getSlowAtomicReader
 argument_list|()
 operator|.
-name|fields
-argument_list|()
-operator|.
 name|terms
 argument_list|(
 name|fieldName

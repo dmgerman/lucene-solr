@@ -82,10 +82,6 @@ name|PostingsFormat
 import|;
 end_import
 
-begin_comment
-comment|// javadocs
-end_comment
-
 begin_import
 import|import
 name|org
@@ -2460,9 +2456,6 @@ assert|;
 name|termsEnum
 operator|=
 name|reader
-operator|.
-name|fields
-argument_list|()
 operator|.
 name|terms
 argument_list|(

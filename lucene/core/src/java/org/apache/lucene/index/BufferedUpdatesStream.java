@@ -2546,36 +2546,18 @@ literal|0
 decl_stmt|;
 for|for
 control|(
-name|int
-name|i
-init|=
-literal|0
-init|;
-name|i
-operator|<
-name|numReaders
-condition|;
-name|i
-operator|++
-control|)
-block|{
 name|SegmentState
 name|state
-init|=
+range|:
 name|segStates
-index|[
-name|i
-index|]
-decl_stmt|;
+control|)
+block|{
 name|Terms
 name|terms
 init|=
 name|state
 operator|.
 name|reader
-operator|.
-name|fields
-argument_list|()
 operator|.
 name|terms
 argument_list|(
@@ -3101,16 +3083,6 @@ parameter_list|)
 throws|throws
 name|IOException
 block|{
-name|Fields
-name|fields
-init|=
-name|segState
-operator|.
-name|reader
-operator|.
-name|fields
-argument_list|()
-decl_stmt|;
 comment|// TODO: we can process the updates per DV field, from last to first so that
 comment|// if multiple terms affect same document for the same field, we add an update
 comment|// only once (that of the last term). To do that, we can keep a bitset which
@@ -3192,7 +3164,9 @@ expr_stmt|;
 name|Terms
 name|terms
 init|=
-name|fields
+name|segState
+operator|.
+name|reader
 operator|.
 name|terms
 argument_list|(
