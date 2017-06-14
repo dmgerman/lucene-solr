@@ -760,6 +760,10 @@ argument_list|,
 name|cache
 argument_list|,
 name|fun
+argument_list|,
+name|TemplateUpdateProcessorFactory
+operator|.
+name|DOLLAR_BRACES_PLACEHOLDER_PATTERN
 argument_list|)
 return|;
 block|}
@@ -941,6 +945,10 @@ argument_list|(
 name|expr
 argument_list|,
 name|cache
+argument_list|,
+name|TemplateUpdateProcessorFactory
+operator|.
+name|DOLLAR_BRACES_PLACEHOLDER_PATTERN
 argument_list|)
 return|;
 block|}

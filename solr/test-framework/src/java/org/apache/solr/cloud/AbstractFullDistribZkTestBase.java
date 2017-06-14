@@ -2393,7 +2393,7 @@ expr_stmt|;
 block|}
 block|}
 DECL|method|waitForCollection
-specifier|protected
+specifier|public
 specifier|static
 name|void
 name|waitForCollection
