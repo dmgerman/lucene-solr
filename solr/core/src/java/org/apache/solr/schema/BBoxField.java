@@ -551,27 +551,6 @@ name|numberType
 argument_list|)
 throw|;
 block|}
-if|if
-condition|(
-operator|!
-name|numberType
-operator|.
-name|hasProperty
-argument_list|(
-name|DOC_VALUES
-argument_list|)
-condition|)
-block|{
-throw|throw
-operator|new
-name|RuntimeException
-argument_list|(
-literal|"Must have doc values: "
-operator|+
-name|numberType
-argument_list|)
-throw|;
-block|}
 comment|//note: this only works for explicit fields, not dynamic fields
 name|List
 argument_list|<
