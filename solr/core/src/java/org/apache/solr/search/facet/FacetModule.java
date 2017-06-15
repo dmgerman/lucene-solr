@@ -1467,6 +1467,9 @@ operator|.
 name|toJSON
 argument_list|(
 name|finfo
+argument_list|,
+operator|-
+literal|1
 argument_list|)
 decl_stmt|;
 comment|// System.err.println("##################### REFINE=" + finfoStr);
@@ -1714,19 +1717,8 @@ operator|!=
 literal|0
 condition|)
 block|{
-name|System
-operator|.
-name|err
-operator|.
-name|println
-argument_list|(
-literal|"REFINE FACET RESULT FROM SHARD = "
-operator|+
-name|facet
-argument_list|)
-expr_stmt|;
+comment|// System.err.println("REFINE FACET RESULT FROM SHARD = " + facet);
 comment|// call merge again with a diff flag set on the context???
-comment|//        throw new SolrException(SolrException.ErrorCode.BAD_REQUEST, "WORK IN PROGRESS, MERGING FACET REFINEMENT NOT SUPPORTED YET!");
 name|facetState
 operator|.
 name|mcontext
