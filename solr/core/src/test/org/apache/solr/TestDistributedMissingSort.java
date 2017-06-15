@@ -782,7 +782,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|10
 argument_list|,
@@ -837,7 +837,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|11
 argument_list|,
@@ -878,11 +878,7 @@ literal|"sort"
 argument_list|,
 name|sint1_ml
 operator|+
-literal|" desc,"
-operator|+
-name|id
-operator|+
-literal|" asc"
+literal|" desc, id_i asc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -896,7 +892,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|10
 argument_list|,
@@ -1045,11 +1041,7 @@ literal|"sort"
 argument_list|,
 name|sint1_ml
 operator|+
-literal|" asc,"
-operator|+
-name|id
-operator|+
-literal|" desc"
+literal|" asc, id_i desc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -1063,7 +1055,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|11
 argument_list|,
@@ -1230,7 +1222,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|10
 argument_list|,
@@ -1285,7 +1277,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|11
 argument_list|,
@@ -1326,11 +1318,7 @@ literal|"sort"
 argument_list|,
 name|long1_ml
 operator|+
-literal|" desc,"
-operator|+
-name|id
-operator|+
-literal|" asc"
+literal|" desc, id_i asc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -1344,7 +1332,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|10
 argument_list|,
@@ -1493,11 +1481,7 @@ literal|"sort"
 argument_list|,
 name|long1_ml
 operator|+
-literal|" asc,"
-operator|+
-name|id
-operator|+
-literal|" desc"
+literal|" asc, id_i desc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -1511,7 +1495,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|11
 argument_list|,
@@ -1678,7 +1662,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|5
 argument_list|,
@@ -1733,7 +1717,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|2
 argument_list|,
@@ -1774,11 +1758,7 @@ literal|"sort"
 argument_list|,
 name|string1_ml
 operator|+
-literal|" desc,"
-operator|+
-name|id
-operator|+
-literal|" asc"
+literal|" desc, id_i asc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -1792,7 +1772,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|5
 argument_list|,
@@ -1942,11 +1922,7 @@ literal|"sort"
 argument_list|,
 name|string1_ml
 operator|+
-literal|" asc,"
-operator|+
-name|id
-operator|+
-literal|" desc"
+literal|" asc, id_i desc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -1960,7 +1936,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|2
 argument_list|,
@@ -2124,11 +2100,7 @@ literal|"sort"
 argument_list|,
 name|sint1_mf
 operator|+
-literal|" desc,"
-operator|+
-name|id
-operator|+
-literal|" asc"
+literal|" desc, id_i asc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -2142,7 +2114,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|14
 argument_list|,
@@ -2291,11 +2263,7 @@ literal|"sort"
 argument_list|,
 name|sint1_mf
 operator|+
-literal|" asc,"
-operator|+
-name|id
-operator|+
-literal|" desc"
+literal|" asc, id_i desc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -2309,7 +2277,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|149
 argument_list|,
@@ -2462,11 +2430,7 @@ literal|"sort"
 argument_list|,
 name|long1_mf
 operator|+
-literal|" desc,"
-operator|+
-name|id
-operator|+
-literal|" asc"
+literal|" desc, id_i asc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -2480,7 +2444,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|14
 argument_list|,
@@ -2629,11 +2593,7 @@ literal|"sort"
 argument_list|,
 name|long1_mf
 operator|+
-literal|" asc,"
-operator|+
-name|id
-operator|+
-literal|" desc"
+literal|" asc, id_i desc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -2647,7 +2607,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 literal|149
 argument_list|,
@@ -2800,11 +2760,7 @@ literal|"sort"
 argument_list|,
 name|string1_mf
 operator|+
-literal|" desc,"
-operator|+
-name|id
-operator|+
-literal|" asc"
+literal|" desc, id_i asc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -2818,7 +2774,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 comment|// missing field string1_mf="a_s1_mf", ascending id sort
 literal|14
@@ -2968,11 +2924,7 @@ literal|"sort"
 argument_list|,
 name|string1_mf
 operator|+
-literal|" asc,"
-operator|+
-name|id
-operator|+
-literal|" desc"
+literal|" asc, id_i desc"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -2986,7 +2938,7 @@ operator|.
 name|getResults
 argument_list|()
 argument_list|,
-name|id
+literal|"id_i"
 argument_list|,
 comment|// missing field string1_mf="a_s1_mf", descending id sort
 literal|149

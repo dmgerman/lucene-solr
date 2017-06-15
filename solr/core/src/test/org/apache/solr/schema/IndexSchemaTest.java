@@ -284,7 +284,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='10']"
+literal|"//result/doc[1]/str[@name='id'][.='10']"
 argument_list|)
 expr_stmt|;
 name|args
@@ -336,7 +336,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='10']"
+literal|"//result/doc[1]/str[@name='id'][.='10']"
 argument_list|)
 expr_stmt|;
 name|args
@@ -388,7 +388,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='10']"
+literal|"//result/doc[1]/str[@name='id'][.='10']"
 argument_list|)
 expr_stmt|;
 name|clearIndex

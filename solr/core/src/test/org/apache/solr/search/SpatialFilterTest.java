@@ -1023,7 +1023,7 @@ name|i
 operator|++
 index|]
 operator|=
-literal|"//result/doc/int[@name='id'][.='"
+literal|"//result/doc/str[@name='id'][.='"
 operator|+
 name|docId
 operator|+

@@ -892,7 +892,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"{!frange l=0 u=2}product(id,2)"
+literal|"{!frange l=0 u=2}product(id_i,2)"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
@@ -902,7 +902,7 @@ name|assertQ
 argument_list|(
 name|req
 argument_list|(
-literal|"{!frange l=100 u=102}sum(id,100)"
+literal|"{!frange l=100 u=102}sum(id_i,100)"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"

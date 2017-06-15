@@ -492,7 +492,7 @@ decl_stmt|;
 DECL|field|toDocId
 specifier|private
 specifier|static
-name|Integer
+name|String
 name|toDocId
 decl_stmt|;
 annotation|@
@@ -917,7 +917,7 @@ parameter_list|,
 name|String
 name|fromColl
 parameter_list|,
-name|Integer
+name|String
 name|toDocId
 parameter_list|,
 name|boolean
@@ -1538,7 +1538,7 @@ block|}
 DECL|method|indexDoc
 specifier|protected
 specifier|static
-name|Integer
+name|String
 name|indexDoc
 parameter_list|(
 name|String
@@ -1589,14 +1589,12 @@ operator|new
 name|SolrInputDocument
 argument_list|()
 decl_stmt|;
-name|Integer
+name|String
 name|docId
 init|=
-operator|new
-name|Integer
-argument_list|(
+literal|""
+operator|+
 name|id
-argument_list|)
 decl_stmt|;
 name|doc
 operator|.

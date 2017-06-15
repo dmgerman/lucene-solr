@@ -186,7 +186,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound=1]"
 argument_list|,
-literal|"//int[@name='id'][.='4055']"
+literal|"//str[@name='id'][.='4055']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -296,7 +296,7 @@ name|req
 argument_list|,
 literal|"//result[@numFound=1]"
 argument_list|,
-literal|"//int[@name='id'][.='4055']"
+literal|"//str[@name='id'][.='4055']"
 argument_list|)
 expr_stmt|;
 comment|/* make your own LocalRequestFactory to build a request      *      * Note: the qt proves we are using our custom config...      */

@@ -7823,7 +7823,7 @@ argument_list|,
 literal|"id:2"
 argument_list|)
 argument_list|,
-literal|"/response/docs/[0]/id==2"
+literal|"/response/docs/[0]/id=='2'"
 argument_list|,
 literal|"/response/docs/[0]/title/[0]=='newtitle2'"
 argument_list|,
@@ -7841,7 +7841,7 @@ argument_list|)
 argument_list|,
 literal|1e-4
 argument_list|,
-literal|"/response/docs/[0]/id==3"
+literal|"/response/docs/[0]/id=='3'"
 argument_list|,
 literal|"/response/docs/[0]/title/[0]=='newtitle3'"
 argument_list|,
@@ -7859,7 +7859,7 @@ argument_list|)
 argument_list|,
 literal|1e-4
 argument_list|,
-literal|"/response/docs/[0]/id==4"
+literal|"/response/docs/[0]/id=='4'"
 argument_list|,
 literal|"/response/docs/[0]/single_s_dvo=='abc'"
 argument_list|,
@@ -7908,7 +7908,7 @@ argument_list|)
 argument_list|,
 literal|1e-4
 argument_list|,
-literal|"/response/docs/[0]/id==3"
+literal|"/response/docs/[0]/id=='3'"
 argument_list|,
 literal|"/response/docs/[0]/title/[0]=='newertitle3'"
 argument_list|,
@@ -7999,7 +7999,7 @@ argument_list|,
 literal|"id:1"
 argument_list|)
 argument_list|,
-literal|"/response/docs/[0]/id==1"
+literal|"/response/docs/[0]/id=='1'"
 argument_list|,
 literal|"/response/docs/[0]/title/[0]=='newtitle1'"
 argument_list|,
@@ -8218,7 +8218,7 @@ argument_list|,
 literal|"id:101"
 argument_list|)
 argument_list|,
-literal|"/response/docs/[0]/id==101"
+literal|"/response/docs/[0]/id=='101'"
 argument_list|,
 literal|"/response/docs/[0]/title/[0]=='newtitle2'"
 argument_list|,
@@ -8236,7 +8236,7 @@ argument_list|)
 argument_list|,
 literal|1e-4
 argument_list|,
-literal|"/response/docs/[0]/id==102"
+literal|"/response/docs/[0]/id=='102'"
 argument_list|,
 literal|"/response/docs/[0]/title/[0]=='newtitle3'"
 argument_list|,
@@ -8252,7 +8252,7 @@ argument_list|,
 literal|"id:103"
 argument_list|)
 argument_list|,
-literal|"/response/docs/[0]/id==103"
+literal|"/response/docs/[0]/id=='103'"
 argument_list|,
 literal|"/response/docs/[0]/single_s_dvn=='abc'"
 argument_list|,
@@ -8310,7 +8310,7 @@ argument_list|,
 literal|"id:103"
 argument_list|)
 argument_list|,
-literal|"/response/docs/[0]/id==103"
+literal|"/response/docs/[0]/id=='103'"
 argument_list|,
 literal|"/response/docs/[0]/single_s_dvn=='abcupdate'"
 argument_list|,
@@ -8560,7 +8560,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
-literal|"//doc/int[@name='id'][.='7']"
+literal|"//doc/str[@name='id'][.='7']"
 argument_list|,
 literal|"//doc/int[@name='"
 operator|+
@@ -8626,7 +8626,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
-literal|"//doc/int[@name='id'][.='7']"
+literal|"//doc/str[@name='id'][.='7']"
 argument_list|,
 literal|"//doc/int[@name='"
 operator|+
@@ -8672,7 +8672,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
-literal|"//doc/int[@name='id'][.='7']"
+literal|"//doc/str[@name='id'][.='7']"
 argument_list|,
 literal|"//doc/int[@name='"
 operator|+
@@ -8764,7 +8764,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
-literal|"//doc/int[@name='id'][.='7']"
+literal|"//doc/str[@name='id'][.='7']"
 argument_list|,
 literal|"//doc/int[@name='"
 operator|+
@@ -8833,7 +8833,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
-literal|"//doc/int[@name='id'][.='7']"
+literal|"//doc/str[@name='id'][.='7']"
 argument_list|,
 literal|"//doc/int[@name='"
 operator|+
@@ -8901,7 +8901,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
-literal|"//doc/int[@name='id'][.='8']"
+literal|"//doc/str[@name='id'][.='8']"
 argument_list|,
 literal|"//doc/int[@name='"
 operator|+
@@ -8970,7 +8970,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
-literal|"//doc/int[@name='id'][.='8']"
+literal|"//doc/str[@name='id'][.='8']"
 argument_list|,
 literal|"//doc/int[@name='"
 operator|+
@@ -9019,7 +9019,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
-literal|"//doc/int[@name='id'][.='7']"
+literal|"//doc/str[@name='id'][.='7']"
 argument_list|,
 literal|"//doc/int[@name='"
 operator|+
@@ -9062,7 +9062,7 @@ argument_list|)
 argument_list|,
 literal|"count(//doc)=1"
 argument_list|,
-literal|"//doc/int[@name='id'][.='8']"
+literal|"//doc/str[@name='id'][.='8']"
 argument_list|,
 literal|"//doc/int[@name='"
 operator|+

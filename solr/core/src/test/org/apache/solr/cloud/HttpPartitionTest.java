@@ -3397,11 +3397,7 @@ argument_list|(
 literal|"doc"
 argument_list|)
 argument_list|,
-operator|new
-name|Integer
-argument_list|(
 name|docId
-argument_list|)
 argument_list|)
 decl_stmt|;
 name|assertTrue

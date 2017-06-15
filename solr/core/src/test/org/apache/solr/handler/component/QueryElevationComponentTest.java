@@ -711,11 +711,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='7.0']"
+literal|"//result/doc[1]/str[@name='id'][.='7']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='9.0']"
+literal|"//result/doc[2]/str[@name='id'][.='9']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='8.0']"
+literal|"//result/doc[3]/str[@name='id'][.='8']"
 argument_list|,
 literal|"//result/doc[1]/bool[@name='[elevated]'][.='true']"
 argument_list|,
@@ -1047,7 +1047,7 @@ literal|"//*[@name='matches'][.='6']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[1]/float[@name='id'][.='6.0']"
+literal|"/lst[1]//doc[1]/str[@name='id'][.='6']"
 argument_list|,
 name|groups
 operator|+
@@ -1055,7 +1055,7 @@ literal|"/lst[1]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[2]/float[@name='id'][.='66.0']"
+literal|"/lst[1]//doc[2]/str[@name='id'][.='66']"
 argument_list|,
 name|groups
 operator|+
@@ -1063,7 +1063,7 @@ literal|"/lst[1]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[1]/float[@name='id'][.='7.0']"
+literal|"/lst[2]//doc[1]/str[@name='id'][.='7']"
 argument_list|,
 name|groups
 operator|+
@@ -1071,7 +1071,7 @@ literal|"/lst[2]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[2]/float[@name='id'][.='77.0']"
+literal|"/lst[2]//doc[2]/str[@name='id'][.='77']"
 argument_list|,
 name|groups
 operator|+
@@ -1079,7 +1079,7 @@ literal|"/lst[2]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[1]/float[@name='id'][.='2.0']"
+literal|"/lst[3]//doc[1]/str[@name='id'][.='2']"
 argument_list|,
 name|groups
 operator|+
@@ -1087,7 +1087,7 @@ literal|"/lst[3]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[2]/float[@name='id'][.='22.0']"
+literal|"/lst[3]//doc[2]/str[@name='id'][.='22']"
 argument_list|,
 name|groups
 operator|+
@@ -1149,7 +1149,7 @@ literal|"//*[@name='matches'][.='6']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[1]/float[@name='id'][.='7.0']"
+literal|"/lst[1]//doc[1]/str[@name='id'][.='7']"
 argument_list|,
 name|groups
 operator|+
@@ -1157,7 +1157,7 @@ literal|"/lst[1]//doc[1]/bool[@name='[elevated]'][.='true']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[2]/float[@name='id'][.='77.0']"
+literal|"/lst[1]//doc[2]/str[@name='id'][.='77']"
 argument_list|,
 name|groups
 operator|+
@@ -1165,7 +1165,7 @@ literal|"/lst[1]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[1]/float[@name='id'][.='6.0']"
+literal|"/lst[2]//doc[1]/str[@name='id'][.='6']"
 argument_list|,
 name|groups
 operator|+
@@ -1173,7 +1173,7 @@ literal|"/lst[2]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[2]/float[@name='id'][.='66.0']"
+literal|"/lst[2]//doc[2]/str[@name='id'][.='66']"
 argument_list|,
 name|groups
 operator|+
@@ -1181,7 +1181,7 @@ literal|"/lst[2]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[1]/float[@name='id'][.='2.0']"
+literal|"/lst[3]//doc[1]/str[@name='id'][.='2']"
 argument_list|,
 name|groups
 operator|+
@@ -1189,7 +1189,7 @@ literal|"/lst[3]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[2]/float[@name='id'][.='22.0']"
+literal|"/lst[3]//doc[2]/str[@name='id'][.='22']"
 argument_list|,
 name|groups
 operator|+
@@ -1257,7 +1257,7 @@ literal|"//*[@name='matches'][.='6']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[1]/float[@name='id'][.='2.0']"
+literal|"/lst[1]//doc[1]/str[@name='id'][.='2']"
 argument_list|,
 name|groups
 operator|+
@@ -1265,7 +1265,7 @@ literal|"/lst[1]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[2]/float[@name='id'][.='22.0']"
+literal|"/lst[1]//doc[2]/str[@name='id'][.='22']"
 argument_list|,
 name|groups
 operator|+
@@ -1273,7 +1273,7 @@ literal|"/lst[1]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[1]/float[@name='id'][.='6.0']"
+literal|"/lst[2]//doc[1]/str[@name='id'][.='6']"
 argument_list|,
 name|groups
 operator|+
@@ -1281,7 +1281,7 @@ literal|"/lst[2]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[2]/float[@name='id'][.='66.0']"
+literal|"/lst[2]//doc[2]/str[@name='id'][.='66']"
 argument_list|,
 name|groups
 operator|+
@@ -1289,7 +1289,7 @@ literal|"/lst[2]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[1]/float[@name='id'][.='7.0']"
+literal|"/lst[3]//doc[1]/str[@name='id'][.='7']"
 argument_list|,
 name|groups
 operator|+
@@ -1297,7 +1297,7 @@ literal|"/lst[3]//doc[1]/bool[@name='[elevated]'][.='true']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[2]/float[@name='id'][.='77.0']"
+literal|"/lst[3]//doc[2]/str[@name='id'][.='77']"
 argument_list|,
 name|groups
 operator|+
@@ -1371,7 +1371,7 @@ literal|"//*[@name='matches'][.='6']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[1]/float[@name='id'][.='7.0']"
+literal|"/lst[1]//doc[1]/str[@name='id'][.='7']"
 argument_list|,
 name|groups
 operator|+
@@ -1379,7 +1379,7 @@ literal|"/lst[1]//doc[1]/bool[@name='[elevated]'][.='true']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[2]/float[@name='id'][.='77.0']"
+literal|"/lst[1]//doc[2]/str[@name='id'][.='77']"
 argument_list|,
 name|groups
 operator|+
@@ -1387,7 +1387,7 @@ literal|"/lst[1]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[1]/float[@name='id'][.='2.0']"
+literal|"/lst[2]//doc[1]/str[@name='id'][.='2']"
 argument_list|,
 name|groups
 operator|+
@@ -1395,7 +1395,7 @@ literal|"/lst[2]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[2]/float[@name='id'][.='22.0']"
+literal|"/lst[2]//doc[2]/str[@name='id'][.='22']"
 argument_list|,
 name|groups
 operator|+
@@ -1403,7 +1403,7 @@ literal|"/lst[2]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[1]/float[@name='id'][.='6.0']"
+literal|"/lst[3]//doc[1]/str[@name='id'][.='6']"
 argument_list|,
 name|groups
 operator|+
@@ -1411,7 +1411,7 @@ literal|"/lst[3]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[2]/float[@name='id'][.='66.0']"
+literal|"/lst[3]//doc[2]/str[@name='id'][.='66']"
 argument_list|,
 name|groups
 operator|+
@@ -1485,7 +1485,7 @@ literal|"//*[@name='matches'][.='6']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[1]/float[@name='id'][.='22.0']"
+literal|"/lst[1]//doc[1]/str[@name='id'][.='22']"
 argument_list|,
 name|groups
 operator|+
@@ -1493,7 +1493,7 @@ literal|"/lst[1]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[2]/float[@name='id'][.='2.0']"
+literal|"/lst[1]//doc[2]/str[@name='id'][.='2']"
 argument_list|,
 name|groups
 operator|+
@@ -1501,7 +1501,7 @@ literal|"/lst[1]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[1]/float[@name='id'][.='66.0']"
+literal|"/lst[2]//doc[1]/str[@name='id'][.='66']"
 argument_list|,
 name|groups
 operator|+
@@ -1509,7 +1509,7 @@ literal|"/lst[2]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[2]/float[@name='id'][.='6.0']"
+literal|"/lst[2]//doc[2]/str[@name='id'][.='6']"
 argument_list|,
 name|groups
 operator|+
@@ -1517,7 +1517,7 @@ literal|"/lst[2]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[1]/float[@name='id'][.='77.0']"
+literal|"/lst[3]//doc[1]/str[@name='id'][.='77']"
 argument_list|,
 name|groups
 operator|+
@@ -1525,7 +1525,7 @@ literal|"/lst[3]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[2]/float[@name='id'][.='7.0']"
+literal|"/lst[3]//doc[2]/str[@name='id'][.='7']"
 argument_list|,
 name|groups
 operator|+
@@ -1605,7 +1605,7 @@ literal|"//*[@name='matches'][.='6']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[1]/float[@name='id'][.='7.0']"
+literal|"/lst[1]//doc[1]/str[@name='id'][.='7']"
 argument_list|,
 name|groups
 operator|+
@@ -1613,7 +1613,7 @@ literal|"/lst[1]//doc[1]/bool[@name='[elevated]'][.='true']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[1]//doc[2]/float[@name='id'][.='77.0']"
+literal|"/lst[1]//doc[2]/str[@name='id'][.='77']"
 argument_list|,
 name|groups
 operator|+
@@ -1621,7 +1621,7 @@ literal|"/lst[1]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[1]/float[@name='id'][.='22.0']"
+literal|"/lst[2]//doc[1]/str[@name='id'][.='22']"
 argument_list|,
 name|groups
 operator|+
@@ -1629,7 +1629,7 @@ literal|"/lst[2]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[2]//doc[2]/float[@name='id'][.='2.0']"
+literal|"/lst[2]//doc[2]/str[@name='id'][.='2']"
 argument_list|,
 name|groups
 operator|+
@@ -1637,7 +1637,7 @@ literal|"/lst[2]//doc[2]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[1]/float[@name='id'][.='66.0']"
+literal|"/lst[3]//doc[1]/str[@name='id'][.='66']"
 argument_list|,
 name|groups
 operator|+
@@ -1645,7 +1645,7 @@ literal|"/lst[3]//doc[1]/bool[@name='[elevated]'][.='false']"
 argument_list|,
 name|groups
 operator|+
-literal|"/lst[3]//doc[2]/float[@name='id'][.='6.0']"
+literal|"/lst[3]//doc[2]/str[@name='id'][.='6']"
 argument_list|,
 name|groups
 operator|+
@@ -1881,11 +1881,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='7']"
+literal|"//result/doc[1]/str[@name='id'][.='7']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.='8']"
+literal|"//result/doc[2]/str[@name='id'][.='8']"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.='9']"
+literal|"//result/doc[3]/str[@name='id'][.='9']"
 argument_list|,
 literal|"//result/doc[1]/bool[@name='[elevated]'][.='true']"
 argument_list|,
@@ -4393,7 +4393,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='7.0']"
+literal|"//result/doc[1]/str[@name='id'][.='7']"
 argument_list|,
 literal|"//result/doc[1]/bool[@name='[elevated]'][.='true']"
 argument_list|)
@@ -4425,7 +4425,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='7.0']"
+literal|"//result/doc[1]/str[@name='id'][.='7']"
 argument_list|,
 literal|"//result/doc[1]/bool[@name='[elevated]'][.='true']"
 argument_list|)
@@ -4457,7 +4457,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='7.0']"
+literal|"//result/doc[1]/str[@name='id'][.='7']"
 argument_list|,
 literal|"//result/doc[1]/bool[@name='[elevated]'][.='true']"
 argument_list|)

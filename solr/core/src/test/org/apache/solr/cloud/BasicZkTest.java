@@ -343,7 +343,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//int[@name='id'][.='42']"
+literal|"//str[@name='id'][.='42']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -357,7 +357,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//int[@name='id'][.='42']"
+literal|"//str[@name='id'][.='42']"
 argument_list|)
 expr_stmt|;
 name|assertQ

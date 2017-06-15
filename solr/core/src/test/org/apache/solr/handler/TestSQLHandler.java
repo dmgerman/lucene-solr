@@ -1225,7 +1225,7 @@ argument_list|)
 argument_list|,
 name|sParams
 argument_list|,
-literal|"{\"docs\":[{\"id\":8,\"field_i\":60,\"str_s\":\"c\"}"
+literal|"{\"docs\":[{\"id\":\"8\",\"field_i\":60,\"str_s\":\"c\"}"
 argument_list|)
 expr_stmt|;
 comment|//Test unlimited unsorted result. Should sort on _version_ desc
@@ -2856,7 +2856,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|1L
+literal|"1"
 argument_list|,
 name|tuple
 operator|.
@@ -2922,7 +2922,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2L
+literal|"2"
 argument_list|,
 name|tuple
 operator|.
@@ -2943,7 +2943,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|3L
+literal|"3"
 argument_list|,
 name|tuple
 operator|.
@@ -2964,7 +2964,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|4L
+literal|"4"
 argument_list|,
 name|tuple
 operator|.
@@ -2985,7 +2985,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|5L
+literal|"5"
 argument_list|,
 name|tuple
 operator|.
@@ -3006,7 +3006,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|6L
+literal|"6"
 argument_list|,
 name|tuple
 operator|.
@@ -3027,7 +3027,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|7L
+literal|"7"
 argument_list|,
 name|tuple
 operator|.
@@ -3048,7 +3048,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|8L
+literal|"8"
 argument_list|,
 name|tuple
 operator|.
@@ -3138,7 +3138,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1L
+literal|"1"
 argument_list|,
 name|tuple
 operator|.
@@ -3204,7 +3204,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1L
+literal|"1"
 argument_list|,
 name|tuple
 operator|.
@@ -3225,7 +3225,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2L
+literal|"2"
 argument_list|,
 name|tuple
 operator|.
@@ -3291,7 +3291,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|8L
+literal|"8"
 argument_list|,
 name|tuple
 operator|.
@@ -3357,7 +3357,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|7L
+literal|"7"
 argument_list|,
 name|tuple
 operator|.
@@ -3378,7 +3378,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|8L
+literal|"8"
 argument_list|,
 name|tuple
 operator|.

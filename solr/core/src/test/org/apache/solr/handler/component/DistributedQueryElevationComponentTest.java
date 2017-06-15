@@ -742,7 +742,7 @@ argument_list|)
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|6.0f
+literal|"6"
 argument_list|,
 name|document
 operator|.
@@ -916,7 +916,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|6.0f
+literal|"6"
 argument_list|,
 name|document
 operator|.

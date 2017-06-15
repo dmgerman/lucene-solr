@@ -303,7 +303,7 @@ parameter_list|(
 name|String
 name|field
 parameter_list|,
-name|float
+name|int
 modifier|...
 name|values
 parameter_list|)
@@ -311,7 +311,7 @@ block|{
 comment|// lrf.args.put("version","2.0");
 for|for
 control|(
-name|float
+name|int
 name|val
 range|:
 name|values
@@ -320,7 +320,7 @@ block|{
 name|String
 name|s
 init|=
-name|Float
+name|Integer
 operator|.
 name|toString
 argument_list|(
@@ -519,6 +519,9 @@ modifier|...
 name|results
 parameter_list|)
 block|{
+comment|// NOTE: we're abusing the "results" float[] here ...
+comment|// - even elements are ids which must be valid 'ints'
+comment|// - odd elements are the expected score values
 name|String
 name|parseableQuery
 init|=
@@ -603,8 +606,6 @@ name|ArrayList
 argument_list|<>
 argument_list|()
 decl_stmt|;
-comment|// Construct xpaths like the following:
-comment|// "//doc[./float[@name='foo_f']='10.0' and ./float[@name='score']='10.0']"
 for|for
 control|(
 name|int
@@ -623,21 +624,41 @@ operator|+=
 literal|2
 control|)
 block|{
-name|String
-name|xpath
+specifier|final
+name|int
+name|id
 init|=
-literal|"//doc[./float[@name='"
-operator|+
-literal|"id"
-operator|+
-literal|"']='"
-operator|+
+operator|(
+name|int
+operator|)
 name|results
 index|[
 name|i
 index|]
+decl_stmt|;
+assert|assert
+operator|(
+operator|(
+name|float
+operator|)
+name|id
+operator|)
+operator|==
+name|results
+index|[
+name|i
+index|]
+assert|;
+name|String
+name|xpath
+init|=
+literal|"//doc[./str[@name='id']='"
 operator|+
-literal|"' and ./float[@name='score']='"
+name|id
+operator|+
+literal|"' "
+operator|+
+literal|" and ./float[@name='score']='"
 operator|+
 name|results
 index|[
@@ -719,13 +740,10 @@ name|field
 parameter_list|)
 block|{
 comment|// lrf.args.put("version","2.0");
-name|float
+name|int
 index|[]
 name|vals
 init|=
-operator|new
-name|float
-index|[]
 block|{
 literal|100
 block|,
@@ -1367,7 +1385,7 @@ name|field
 init|=
 literal|"foo_extf"
 decl_stmt|;
-name|float
+name|int
 index|[]
 name|ids
 init|=
@@ -1614,7 +1632,7 @@ operator|.
 name|length
 argument_list|)
 decl_stmt|;
-name|float
+name|int
 name|v
 init|=
 name|ids
@@ -2915,9 +2933,9 @@ argument_list|,
 literal|"text:(batman OR superman)"
 argument_list|)
 argument_list|,
-literal|"*//doc[1]/float[.='120.0']"
+literal|"*//doc[1]/str[.='120']"
 argument_list|,
-literal|"*//doc[2]/float[.='121.0']"
+literal|"*//doc[2]/str[.='121']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3808,7 +3826,7 @@ decl_stmt|;
 name|String
 name|q
 init|=
-literal|"id:[1 TO 3]"
+literal|"id_i:[1 TO 3]"
 decl_stmt|;
 name|assertJQ
 argument_list|(
@@ -5093,7 +5111,7 @@ name|fieldAsFunc
 init|=
 literal|"field(\"CoMpleX fieldName _extf\")"
 decl_stmt|;
-name|float
+name|int
 index|[]
 name|ids
 init|=
@@ -5287,7 +5305,7 @@ name|fieldAsFunc
 init|=
 literal|"field(\"CoMpleX \\\" fieldName _f\")"
 decl_stmt|;
-name|float
+name|int
 index|[]
 name|ids
 init|=
@@ -5646,10 +5664,10 @@ literal|"id:1"
 argument_list|,
 literal|"fl"
 argument_list|,
-literal|"x:def(id,testfunc(123.0)), y:def(foo_f,234.0)"
+literal|"x:def(id,testfunc(123)), y:def(foo_f,234.0)"
 argument_list|)
 argument_list|,
-literal|"/response/docs/[0]=={'x':1.0, 'y':234.0}"
+literal|"/response/docs/[0]=={'x':'1', 'y':234.0}"
 argument_list|)
 expr_stmt|;
 name|assertJQ

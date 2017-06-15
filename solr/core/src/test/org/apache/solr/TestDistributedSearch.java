@@ -1959,7 +1959,7 @@ expr_stmt|;
 name|String
 name|facetQuery
 init|=
-literal|"id:[1 TO 15]"
+literal|"id_i1:[1 TO 15]"
 decl_stmt|;
 comment|// simple range facet on one field
 name|query
@@ -3220,7 +3220,7 @@ argument_list|()
 condition|?
 literal|"*:*"
 else|:
-literal|"id:(1 3 5 7 9 11 13) OR id:[100 TO "
+literal|"id:(1 3 5 7 9 11 13) OR id_i1:[100 TO "
 operator|+
 name|random
 argument_list|()
@@ -3487,11 +3487,11 @@ name|t1
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{!tag=a}id:[1 TO 7]"
+literal|"{!tag=a}id_i1:[1 TO 7]"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{!tag=b}id:[3 TO 9]"
+literal|"{!tag=b}id_i1:[3 TO 9]"
 argument_list|)
 expr_stmt|;
 name|queryAndCompareUIF
@@ -4451,7 +4451,7 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{!tag=xxx}id:[3 TO 9]"
+literal|"{!tag=xxx}id_i1:[3 TO 9]"
 argument_list|,
 literal|"stats.field"
 argument_list|,
@@ -7353,7 +7353,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[1 TO 5]"
+literal|"id_i1:[1 TO 5]"
 argument_list|,
 name|CommonParams
 operator|.
@@ -7366,7 +7366,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[1 TO 5]"
+literal|"id_i1:[1 TO 5]"
 argument_list|,
 name|CommonParams
 operator|.
@@ -7381,7 +7381,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[1 TO 5]"
+literal|"id_i1:[1 TO 5]"
 argument_list|,
 name|CommonParams
 operator|.
@@ -7396,7 +7396,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[1 TO 5]"
+literal|"id_i1:[1 TO 5]"
 argument_list|,
 name|CommonParams
 operator|.
@@ -7456,7 +7456,7 @@ argument_list|()
 argument_list|,
 literal|"id"
 argument_list|,
-literal|19
+literal|"19"
 argument_list|)
 expr_stmt|;
 name|rsp
@@ -7485,7 +7485,7 @@ argument_list|()
 argument_list|,
 literal|"id"
 argument_list|,
-literal|19
+literal|"19"
 argument_list|)
 expr_stmt|;
 comment|// Check Info is added to for each shard

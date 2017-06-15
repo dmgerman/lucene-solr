@@ -351,11 +351,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='42']"
+literal|"//result/doc[1]/str[@name='id'][.='42']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.='666']"
+literal|"//result/doc[2]/str[@name='id'][.='666']"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.='8675309']"
+literal|"//result/doc[3]/str[@name='id'][.='8675309']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -431,11 +431,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='666']"
+literal|"//result/doc[1]/str[@name='id'][.='666']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.='42']"
+literal|"//result/doc[2]/str[@name='id'][.='42']"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.='8675309']"
+literal|"//result/doc[3]/str[@name='id'][.='8675309']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -475,11 +475,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='666']"
+literal|"//result/doc[1]/str[@name='id'][.='666']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.='8675309']"
+literal|"//result/doc[2]/str[@name='id'][.='8675309']"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.='42']"
+literal|"//result/doc[3]/str[@name='id'][.='42']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -493,9 +493,9 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][. ='42']"
+literal|"//result/doc[1]/str[@name='id'][. ='42']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][. ='666']"
+literal|"//result/doc[2]/str[@name='id'][. ='666']"
 argument_list|)
 expr_stmt|;
 name|assertQ

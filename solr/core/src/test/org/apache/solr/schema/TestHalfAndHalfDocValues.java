@@ -737,11 +737,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=2]"
+literal|"//result/doc[2]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=3]"
+literal|"//result/doc[3]/str[@name='id'][.=3]"
 argument_list|)
 expr_stmt|;
 block|}

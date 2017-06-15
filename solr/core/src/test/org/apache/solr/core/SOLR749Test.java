@@ -264,7 +264,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!notfoo}id:[* TO 49]"
+literal|"{!notfoo}id_i1:[* TO 49]"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound=50]"
@@ -280,7 +280,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!boost b=$boostFunc defType=notfoo}id:[* TO 49]"
+literal|"{!boost b=$boostFunc defType=notfoo}id_i1:[* TO 49]"
 argument_list|,
 literal|"boostFunc"
 argument_list|,
@@ -310,11 +310,11 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!func}product(id,countUsage('func_q',4.5))"
+literal|"{!func}product(id_i1,countUsage('func_q',4.5))"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{!notfoo}id:[30 TO 59]"
+literal|"{!notfoo}id_i1:[30 TO 59]"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound=30]"
@@ -344,7 +344,7 @@ literal|"{!func}product(query($qq),countUsage('func_q_wrapping_fq',4.5))"
 argument_list|,
 literal|"qq"
 argument_list|,
-literal|"{!notfoo}id:[20 TO 39]"
+literal|"{!notfoo}id_i1:[20 TO 39]"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -374,7 +374,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!notfoo}(+id:[20 TO 39] -id:25 +{!frange l=4.5 u=4.5 v='countUsage(frange_in_bq,4.5)'})"
+literal|"{!notfoo}(+id_i1:[20 TO 39] -id:25 +{!frange l=4.5 u=4.5 v='countUsage(frange_in_bq,4.5)'})"
 argument_list|)
 argument_list|,
 literal|"//result[@numFound=19]"

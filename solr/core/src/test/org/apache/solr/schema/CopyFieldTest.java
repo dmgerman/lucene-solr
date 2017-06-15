@@ -775,7 +775,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='5']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 name|args
@@ -827,7 +827,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='5']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
 literal|"//result/doc[1]/arr[@name='highlight']/str[.='this is a simple test of ']"
 argument_list|)
@@ -1184,7 +1184,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='5']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 name|args
@@ -1236,7 +1236,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='5']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
 literal|"//result/doc[1]/arr[@name='sku1']/str[.='10-1839ACX-93']"
 argument_list|)
@@ -1476,7 +1476,7 @@ name|req
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='5']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1563,7 +1563,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='5']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 block|}

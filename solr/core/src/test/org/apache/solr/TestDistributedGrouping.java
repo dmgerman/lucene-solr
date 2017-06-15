@@ -3046,7 +3046,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!func}id"
+literal|"{!func}id_i1"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -3087,7 +3087,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!func}id"
+literal|"{!func}id_i1"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -3121,7 +3121,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!func}id"
+literal|"{!func}id_i1"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -3152,7 +3152,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!func}id"
+literal|"{!func}id_i1"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -3190,7 +3190,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!func}id"
+literal|"{!func}id_i1"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -3232,7 +3232,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!func}id"
+literal|"{!func}id_i1"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -3276,7 +3276,7 @@ name|query
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!func}id"
+literal|"{!func}id_i1"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -3480,7 +3480,7 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-literal|22
+literal|"22"
 argument_list|,
 name|docs
 operator|.
@@ -3502,7 +3502,7 @@ operator|.
 name|toString
 argument_list|()
 argument_list|,
-literal|21
+literal|"21"
 argument_list|,
 name|docs
 operator|.

@@ -283,7 +283,7 @@ index|[]
 block|{
 literal|"id"
 block|,
-literal|999.0
+literal|999
 block|,
 literal|"v_s"
 block|,
@@ -460,7 +460,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//*[@name='id'][.='999.0']"
+literal|"//*[@name='id'][.='999']"
 argument_list|,
 literal|"//*[@name='"
 operator|+
@@ -660,9 +660,9 @@ operator|new
 name|Object
 index|[]
 block|{
-literal|"id"
+literal|"id_i"
 block|,
-literal|999.0
+literal|999
 block|,
 literal|"v_s"
 block|,
@@ -863,7 +863,7 @@ expr_stmt|;
 if|if
 condition|(
 operator|!
-literal|"id"
+literal|"id_i"
 operator|.
 name|equals
 argument_list|(
@@ -1419,7 +1419,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//*[@name='id'][.='1.0']"
+literal|"//*[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1439,7 +1439,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//*[@name='id'][.='2.0']"
+literal|"//*[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1459,7 +1459,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//*[@name='id'][.='2.0']"
+literal|"//*[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1479,7 +1479,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//*[@name='id'][.='2.0']"
+literal|"//*[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1503,7 +1503,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//*[@name='id'][.='1.0']"
+literal|"//*[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1527,7 +1527,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//*[@name='id'][.='1.0']"
+literal|"//*[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1551,7 +1551,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//*[@name='id'][.='1.0']"
+literal|"//*[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 try|try

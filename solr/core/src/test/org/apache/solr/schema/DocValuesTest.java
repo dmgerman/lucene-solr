@@ -1608,7 +1608,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='2']"
+literal|"//str[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1632,7 +1632,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='2']"
+literal|"//str[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1656,7 +1656,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='1']"
+literal|"//str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1680,7 +1680,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='1']"
+literal|"//str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1704,7 +1704,7 @@ argument_list|,
 literal|"id,datedv"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='2']"
+literal|"//str[@name='id'][.='2']"
 argument_list|,
 literal|"//result/doc[1]/date[@name='datedv'][.='1997-12-31T23:59:59.999Z']"
 argument_list|)
@@ -1730,7 +1730,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='4']"
+literal|"//str[@name='id'][.='4']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1754,7 +1754,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='4']"
+literal|"//str[@name='id'][.='4']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1778,7 +1778,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='3']"
+literal|"//str[@name='id'][.='3']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1802,7 +1802,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='3']"
+literal|"//str[@name='id'][.='3']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1826,7 +1826,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='3']"
+literal|"//str[@name='id'][.='3']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1850,7 +1850,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='1']"
+literal|"//str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1874,7 +1874,7 @@ argument_list|,
 literal|"id"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id'][.='2']"
+literal|"//str[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -2037,19 +2037,19 @@ argument_list|,
 literal|"doubledv asc"
 argument_list|)
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='6']"
+literal|"//result/doc[1]/str[@name='id'][.='6']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.='5']"
+literal|"//result/doc[2]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.='3']"
+literal|"//result/doc[3]/str[@name='id'][.='3']"
 argument_list|,
-literal|"//result/doc[4]/int[@name='id'][.='4']"
+literal|"//result/doc[4]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[5]/int[@name='id'][.='1']"
+literal|"//result/doc[5]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[6]/int[@name='id'][.='2']"
+literal|"//result/doc[6]/str[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[7]/int[@name='id'][.='7']"
+literal|"//result/doc[7]/str[@name='id'][.='7']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3459,12 +3459,12 @@ literal|"stringdv:car"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=4]"
+literal|"//result/doc[1]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// string: range query
@@ -3478,16 +3478,16 @@ literal|"stringdv:[b TO d]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=3]"
+literal|"//result/doc[2]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=4]"
+literal|"//result/doc[3]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// string: prefix query
@@ -3501,14 +3501,14 @@ literal|"stringdv:c*"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=3]"
+literal|"//result/doc[1]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=4]"
+literal|"//result/doc[2]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// string: wildcard query
@@ -3522,12 +3522,12 @@ literal|"stringdv:c?r"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=4]"
+literal|"//result/doc[1]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// string: regexp query
@@ -3541,12 +3541,12 @@ literal|"stringdv:/c[a-b]r/"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=4]"
+literal|"//result/doc[1]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// float: termquery
@@ -3560,14 +3560,14 @@ literal|"floatdv:3"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=3]"
+literal|"//result/doc[1]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=4]"
+literal|"//result/doc[2]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// float: rangequery
@@ -3581,16 +3581,16 @@ literal|"floatdv:[2 TO 3]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=3]"
+literal|"//result/doc[2]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=4]"
+literal|"//result/doc[3]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// (neg) float: termquery
@@ -3604,12 +3604,12 @@ literal|"floatdv:\"-5\""
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|)
 expr_stmt|;
 comment|// (neg) float: rangequery
@@ -3623,12 +3623,12 @@ literal|"floatdv:[-6 TO -4]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|)
 expr_stmt|;
 comment|// (cross zero bounds) float: rangequery
@@ -3642,14 +3642,14 @@ literal|"floatdv:[-6 TO 2.1]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=2]"
+literal|"//result/doc[2]/str[@name='id'][.=2]"
 argument_list|)
 expr_stmt|;
 comment|// int: termquery
@@ -3663,12 +3663,12 @@ literal|"intdv:1"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=3]"
+literal|"//result/doc[1]/str[@name='id'][.=3]"
 argument_list|)
 expr_stmt|;
 comment|// int: rangequery
@@ -3682,14 +3682,14 @@ literal|"intdv:[3 TO 4]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=2]"
+literal|"//result/doc[2]/str[@name='id'][.=2]"
 argument_list|)
 expr_stmt|;
 comment|// (neg) int: termquery
@@ -3703,12 +3703,12 @@ literal|"intdv:\"-1\""
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=4]"
+literal|"//result/doc[1]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// (neg) int: rangequery
@@ -3722,14 +3722,14 @@ literal|"intdv:[-1 TO 1]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=3]"
+literal|"//result/doc[1]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=4]"
+literal|"//result/doc[2]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// long: termquery
@@ -3743,14 +3743,14 @@ literal|"longdv:1"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=3]"
+literal|"//result/doc[1]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=4]"
+literal|"//result/doc[2]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// long: rangequery
@@ -3764,16 +3764,16 @@ literal|"longdv:[1 TO 2]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=3]"
+literal|"//result/doc[2]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=4]"
+literal|"//result/doc[3]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// double: termquery
@@ -3787,12 +3787,12 @@ literal|"doubledv:3.1"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|)
 expr_stmt|;
 comment|// double: rangequery
@@ -3806,14 +3806,14 @@ literal|"doubledv:[2 TO 3.3]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=3]"
+literal|"//result/doc[2]/str[@name='id'][.=3]"
 argument_list|)
 expr_stmt|;
 comment|// (neg) double: termquery
@@ -3827,12 +3827,12 @@ literal|"doubledv:\"-4.3\""
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|)
 expr_stmt|;
 comment|// (neg) double: rangequery
@@ -3846,12 +3846,12 @@ literal|"doubledv:[-6 TO -4]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|)
 expr_stmt|;
 comment|// (cross zero bounds) double: rangequery
@@ -3865,14 +3865,14 @@ literal|"doubledv:[-6 TO 2.0]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=4]"
+literal|"//result/doc[2]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// boolean basic queries:
@@ -3886,14 +3886,14 @@ literal|"booldv:false"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=3]"
+literal|"//result/doc[2]/str[@name='id'][.=3]"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3906,14 +3906,14 @@ literal|"booldv:true"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=4]"
+literal|"//result/doc[2]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -4898,7 +4898,7 @@ literal|"//result/doc["
 operator|+
 name|counter
 operator|+
-literal|"]/int[@name='id'][.="
+literal|"]/str[@name='id'][.="
 operator|+
 operator|(
 name|k
@@ -5025,7 +5025,7 @@ operator|)
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5320,7 +5320,7 @@ literal|":[-0.0 TO 2.5]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5336,7 +5336,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|)
 expr_stmt|;
 comment|// Negative to Positive Zero
@@ -5355,7 +5355,7 @@ literal|":[-6 TO 0]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5371,9 +5371,9 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=5]"
+literal|"//result/doc[2]/str[@name='id'][.=5]"
 argument_list|)
 expr_stmt|;
 comment|// Negative to Positive
@@ -5392,7 +5392,7 @@ literal|":[-6 TO 2.5]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5408,11 +5408,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=2]"
+literal|"//result/doc[2]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=5]"
+literal|"//result/doc[3]/str[@name='id'][.=5]"
 argument_list|)
 expr_stmt|;
 comment|// Positive to Positive
@@ -5431,7 +5431,7 @@ literal|":[2 TO 3]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5447,11 +5447,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=3]"
+literal|"//result/doc[2]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=4]"
+literal|"//result/doc[3]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 comment|// Positive to POSITIVE_INF
@@ -5470,7 +5470,7 @@ literal|":[2 TO *]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5486,13 +5486,13 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=3]"
+literal|"//result/doc[2]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=4]"
+literal|"//result/doc[3]/str[@name='id'][.=4]"
 argument_list|,
-literal|"//result/doc[4]/int[@name='id'][.=7]"
+literal|"//result/doc[4]/str[@name='id'][.=7]"
 argument_list|)
 expr_stmt|;
 comment|// NEGATIVE_INF to Negative
@@ -5511,7 +5511,7 @@ literal|":[* TO -1]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5527,9 +5527,9 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=6]"
+literal|"//result/doc[2]/str[@name='id'][.=6]"
 argument_list|)
 expr_stmt|;
 comment|// NEGATIVE_INF to Positive
@@ -5548,7 +5548,7 @@ literal|":[* TO 2]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5562,13 +5562,13 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=2]"
+literal|"//result/doc[2]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=5]"
+literal|"//result/doc[3]/str[@name='id'][.=5]"
 argument_list|,
-literal|"//result/doc[4]/int[@name='id'][.=6]"
+literal|"//result/doc[4]/str[@name='id'][.=6]"
 argument_list|)
 expr_stmt|;
 comment|// NEGATIVE_INF to Positive (non-inclusive)
@@ -5587,7 +5587,7 @@ literal|":[* TO 2}"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5601,11 +5601,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=5]"
+literal|"//result/doc[2]/str[@name='id'][.=5]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=6]"
+literal|"//result/doc[3]/str[@name='id'][.=6]"
 argument_list|)
 expr_stmt|;
 comment|// Negative to POSITIVE_INF
@@ -5624,7 +5624,7 @@ literal|":[-6 TO *]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5638,17 +5638,17 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='6']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=2]"
+literal|"//result/doc[2]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=3]"
+literal|"//result/doc[3]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[4]/int[@name='id'][.=4]"
+literal|"//result/doc[4]/str[@name='id'][.=4]"
 argument_list|,
-literal|"//result/doc[5]/int[@name='id'][.=5]"
+literal|"//result/doc[5]/str[@name='id'][.=5]"
 argument_list|,
-literal|"//result/doc[6]/int[@name='id'][.=7]"
+literal|"//result/doc[6]/str[@name='id'][.=7]"
 argument_list|)
 expr_stmt|;
 comment|// NEGATIVE_INF to POSITIVE_INF
@@ -5667,7 +5667,7 @@ literal|":[* TO *]"
 argument_list|,
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|,
 literal|"fl"
 argument_list|,
@@ -5683,19 +5683,19 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='7']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.=2]"
+literal|"//result/doc[2]/str[@name='id'][.=2]"
 argument_list|,
-literal|"//result/doc[3]/int[@name='id'][.=3]"
+literal|"//result/doc[3]/str[@name='id'][.=3]"
 argument_list|,
-literal|"//result/doc[4]/int[@name='id'][.=4]"
+literal|"//result/doc[4]/str[@name='id'][.=4]"
 argument_list|,
-literal|"//result/doc[5]/int[@name='id'][.=5]"
+literal|"//result/doc[5]/str[@name='id'][.=5]"
 argument_list|,
-literal|"//result/doc[6]/int[@name='id'][.=6]"
+literal|"//result/doc[6]/str[@name='id'][.=6]"
 argument_list|,
-literal|"//result/doc[7]/int[@name='id'][.=7]"
+literal|"//result/doc[7]/str[@name='id'][.=7]"
 argument_list|,
 literal|"//result/doc[1]/float[@name='score'][.=1.0]"
 argument_list|,

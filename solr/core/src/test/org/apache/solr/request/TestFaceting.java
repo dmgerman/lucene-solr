@@ -357,7 +357,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-name|Float
+name|Integer
 operator|.
 name|toString
 argument_list|(
@@ -1920,7 +1920,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"1.0"
+literal|"1"
 argument_list|,
 literal|"f_td"
 argument_list|,
@@ -1934,7 +1934,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"2.0"
+literal|"2"
 argument_list|,
 literal|"f_td"
 argument_list|,
@@ -1948,7 +1948,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"3.0"
+literal|"3"
 argument_list|,
 literal|"f_td"
 argument_list|,
@@ -2159,7 +2159,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"1.0"
+literal|"1"
 argument_list|,
 literal|"f_td"
 argument_list|,
@@ -2173,7 +2173,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"2.0"
+literal|"2"
 argument_list|,
 literal|"f_td"
 argument_list|,
@@ -2187,7 +2187,7 @@ name|adoc
 argument_list|(
 literal|"id"
 argument_list|,
-literal|"3.0"
+literal|"3"
 argument_list|,
 literal|"f_td"
 argument_list|,

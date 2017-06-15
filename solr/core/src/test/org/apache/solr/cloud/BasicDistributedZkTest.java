@@ -2609,11 +2609,11 @@ name|t1
 block|,
 literal|"fq"
 block|,
-literal|"{!tag=a}id:[1 TO 7]"
+literal|"{!tag=a}id_i1:[1 TO 7]"
 block|,
 literal|"fq"
 block|,
-literal|"{!tag=b}id:[3 TO 9]"
+literal|"{!tag=b}id_i1:[3 TO 9]"
 block|}
 argument_list|)
 expr_stmt|;
@@ -3032,7 +3032,7 @@ index|[]
 block|{
 literal|"q"
 block|,
-literal|"id:[1 TO 5]"
+literal|"id_i1:[1 TO 5]"
 block|,
 name|CommonParams
 operator|.
@@ -3052,7 +3052,7 @@ index|[]
 block|{
 literal|"q"
 block|,
-literal|"id:[1 TO 5]"
+literal|"id_i1:[1 TO 5]"
 block|,
 name|CommonParams
 operator|.
@@ -3074,7 +3074,7 @@ index|[]
 block|{
 literal|"q"
 block|,
-literal|"id:[1 TO 5]"
+literal|"id_i1:[1 TO 5]"
 block|,
 name|CommonParams
 operator|.
@@ -3096,7 +3096,7 @@ index|[]
 block|{
 literal|"q"
 block|,
-literal|"id:[1 TO 5]"
+literal|"id_i1:[1 TO 5]"
 block|,
 name|CommonParams
 operator|.

@@ -1212,7 +1212,7 @@ literal|"/response/numFound==9"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':9},{'id':8},{'id':7},{'id':6}]"
+literal|"/response/docs==[{'id':'9'},{'id':'8'},{'id':'7'},{'id':'6'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1232,7 +1232,7 @@ literal|"/response/numFound==9"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':5},{'id':3},{'id':2},{'id':1}]"
+literal|"/response/docs==[{'id':'5'},{'id':'3'},{'id':'2'},{'id':'1'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1252,7 +1252,7 @@ literal|"/response/numFound==9"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':0}]"
+literal|"/response/docs==[{'id':'0'}]"
 argument_list|)
 expr_stmt|;
 comment|// no more, so no change to cursorMark, and no new docs
@@ -1334,7 +1334,7 @@ literal|"/response/numFound==7"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':6},{'id':1},{'id':8},{'id':5}]"
+literal|"/response/docs==[{'id':'6'},{'id':'1'},{'id':'8'},{'id':'5'}]"
 argument_list|,
 literal|"/facet_counts/facet_fields/str=={'a':4,'b':3,'c':0}"
 argument_list|)
@@ -1356,7 +1356,7 @@ literal|"/response/numFound==7"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':4},{'id':3},{'id':0}]"
+literal|"/response/docs==[{'id':'4'},{'id':'3'},{'id':'0'}]"
 argument_list|,
 literal|"/facet_counts/facet_fields/str=={'a':4,'b':3,'c':0}"
 argument_list|)
@@ -1444,7 +1444,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':7},{'id':0},{'id':3}]"
+literal|"/response/docs==[{'id':'7'},{'id':'0'},{'id':'3'}]"
 argument_list|,
 literal|"/facet_counts/facet_fields/str=={'a':4,'b':1,'c':3}"
 argument_list|)
@@ -1466,7 +1466,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':4},{'id':1},{'id':6}]"
+literal|"/response/docs==[{'id':'4'},{'id':'1'},{'id':'6'}]"
 argument_list|,
 literal|"/facet_counts/facet_fields/str=={'a':4,'b':1,'c':3}"
 argument_list|)
@@ -1488,7 +1488,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':9},{'id':2}]"
+literal|"/response/docs==[{'id':'9'},{'id':'2'}]"
 argument_list|,
 literal|"/facet_counts/facet_fields/str=={'a':4,'b':1,'c':3}"
 argument_list|)
@@ -1568,7 +1568,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':3},{'id':7},{'id':0}]"
+literal|"/response/docs==[{'id':'3'},{'id':'7'},{'id':'0'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1588,7 +1588,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':4},{'id':1},{'id':6}]"
+literal|"/response/docs==[{'id':'4'},{'id':'1'},{'id':'6'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1608,7 +1608,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':9},{'id':2}]"
+literal|"/response/docs==[{'id':'9'},{'id':'2'}]"
 argument_list|)
 expr_stmt|;
 comment|// no more, so no change to cursorMark, and no new docs
@@ -1684,7 +1684,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':7},{'id':0},{'id':4}]"
+literal|"/response/docs==[{'id':'7'},{'id':'0'},{'id':'4'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1704,7 +1704,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':1},{'id':6},{'id':9}]"
+literal|"/response/docs==[{'id':'1'},{'id':'6'},{'id':'9'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1724,7 +1724,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':2},{'id':3}]"
+literal|"/response/docs==[{'id':'2'},{'id':'3'}]"
 argument_list|)
 expr_stmt|;
 comment|// no more, so no change to cursorMark, and no new docs
@@ -1794,7 +1794,7 @@ literal|"/response/numFound==10"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':6},{'id':4},{'id':3},{'id':1},{'id':8},{'id':5}]"
+literal|"/response/docs==[{'id':'6'},{'id':'4'},{'id':'3'},{'id':'1'},{'id':'8'},{'id':'5'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1814,7 +1814,7 @@ literal|"/response/numFound==10"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':0},{'id':9},{'id':7},{'id':2}]"
+literal|"/response/docs==[{'id':'0'},{'id':'9'},{'id':'7'},{'id':'2'}]"
 argument_list|)
 expr_stmt|;
 comment|// no more, so no change to cursorMark, and no new docs
@@ -1888,7 +1888,7 @@ literal|"/response/numFound==10"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':2},{'id':9}]"
+literal|"/response/docs==[{'id':'2'},{'id':'9'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1908,7 +1908,7 @@ literal|"/response/numFound==10"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':7},{'id':4}]"
+literal|"/response/docs==[{'id':'7'},{'id':'4'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1928,7 +1928,7 @@ literal|"/response/numFound==10"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':3},{'id':8}]"
+literal|"/response/docs==[{'id':'3'},{'id':'8'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1948,7 +1948,7 @@ literal|"/response/numFound==10"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':5},{'id':6}]"
+literal|"/response/docs==[{'id':'5'},{'id':'6'}]"
 argument_list|)
 expr_stmt|;
 name|cursorMark
@@ -1968,7 +1968,7 @@ literal|"/response/numFound==10"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':1},{'id':0}]"
+literal|"/response/docs==[{'id':'1'},{'id':'0'}]"
 argument_list|)
 expr_stmt|;
 comment|// we've exactly exhausted all the results, but solr had no way of know that
@@ -2041,7 +2041,7 @@ literal|"/response/numFound==2"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':7},{'id':3}]"
+literal|"/response/docs==[{'id':'7'},{'id':'3'}]"
 argument_list|)
 expr_stmt|;
 comment|// no more, so no change to cursorMark, and no new docs
@@ -2315,7 +2315,7 @@ literal|"/response/numFound==10"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':1},{'id':3}]"
+literal|"/response/docs==[{'id':'1'},{'id':'3'}]"
 argument_list|)
 expr_stmt|;
 comment|// delete the last guy we got
@@ -2350,7 +2350,7 @@ literal|"/response/numFound==9"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':4},{'id':6}]"
+literal|"/response/docs==[{'id':'4'},{'id':'6'}]"
 argument_list|)
 expr_stmt|;
 comment|// delete the next guy we expect
@@ -2385,7 +2385,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':5},{'id':8}]"
+literal|"/response/docs==[{'id':'5'},{'id':'8'}]"
 argument_list|)
 expr_stmt|;
 comment|// update a doc we've already seen so it repeats
@@ -2426,7 +2426,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':2},{'id':5}]"
+literal|"/response/docs==[{'id':'2'},{'id':'5'}]"
 argument_list|)
 expr_stmt|;
 comment|// update the next doc we expect so it's now in the past
@@ -2467,7 +2467,7 @@ literal|"/response/numFound==8"
 argument_list|,
 literal|"/response/start==0"
 argument_list|,
-literal|"/response/docs==[{'id':9}]"
+literal|"/response/docs==[{'id':'9'}]"
 argument_list|)
 expr_stmt|;
 comment|// no more, so no change to cursorMark, and no new docs
@@ -3731,20 +3731,20 @@ block|{
 name|int
 name|id
 init|=
-operator|(
-operator|(
-name|Long
-operator|)
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
 name|doc
 operator|.
 name|get
 argument_list|(
 literal|"id"
 argument_list|)
-operator|)
 operator|.
-name|intValue
+name|toString
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(
@@ -4397,20 +4397,20 @@ block|{
 name|int
 name|id
 init|=
-operator|(
-operator|(
-name|Long
-operator|)
+name|Integer
+operator|.
+name|parseInt
+argument_list|(
 name|doc
 operator|.
 name|get
 argument_list|(
 literal|"id"
 argument_list|)
-operator|)
 operator|.
-name|intValue
+name|toString
 argument_list|()
+argument_list|)
 decl_stmt|;
 name|assertFalse
 argument_list|(

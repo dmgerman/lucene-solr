@@ -507,7 +507,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_i asc, test_l desc, id desc"
+literal|"test_i asc, test_l desc, id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -519,9 +519,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='7.0']"
+literal|"//result/doc[1]/str[@name='id'][.='7']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='3.0']"
+literal|"//result/doc[2]/str[@name='id'][.='3']"
 argument_list|)
 expr_stmt|;
 comment|// group heads are selected using a complex sort, simpler sort used for final groups
@@ -546,7 +546,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='test_i asc, test_l desc, id desc'}"
+literal|"{!collapse field=group_s sort='test_i asc, test_l desc, id_i desc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -555,7 +555,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -567,9 +567,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='3.0']"
+literal|"//result/doc[1]/str[@name='id'][.='3']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='7.0']"
+literal|"//result/doc[2]/str[@name='id'][.='7']"
 argument_list|)
 expr_stmt|;
 comment|// diff up the sort directions, only first clause matters with our data
@@ -594,7 +594,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='test_i desc, test_l asc, id asc'}"
+literal|"{!collapse field=group_s sort='test_i desc, test_l asc, id_i asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -603,7 +603,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -615,9 +615,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='8.0']"
+literal|"//result/doc[1]/str[@name='id'][.='8']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='4.0']"
+literal|"//result/doc[2]/str[@name='id'][.='4']"
 argument_list|)
 expr_stmt|;
 comment|// tie broken by index order
@@ -651,7 +651,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -663,9 +663,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='6.0']"
+literal|"//result/doc[1]/str[@name='id'][.='6']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='2.0']"
+literal|"//result/doc[2]/str[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 comment|// score, then tiebreakers; note top level sort by score ASCENDING (just for weirdness)
@@ -690,7 +690,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='score desc, test_l desc, test_i asc, id asc'}"
+literal|"{!collapse field=group_s sort='score desc, test_l desc, test_i asc, id_i asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -711,9 +711,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='2.0']"
+literal|"//result/doc[1]/str[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='5.0']"
+literal|"//result/doc[2]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 comment|// score, then tiebreakers; note no score in top level sort/fl to check needsScores logic
@@ -738,7 +738,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=group_s sort='score desc, test_l desc, test_i asc, id asc'}"
+literal|"{!collapse field=group_s sort='score desc, test_l desc, test_i asc, id_i asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -747,7 +747,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -759,9 +759,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='2.0']"
+literal|"//result/doc[2]/str[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 comment|// term_s desc -- term_s is missing from many docs, and uses sortMissingLast=true
@@ -795,7 +795,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -807,9 +807,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='1.0']"
+literal|"//result/doc[1]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='5.0']"
+literal|"//result/doc[2]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 comment|// term_s asc -- term_s is missing from many docs, and uses sortMissingLast=true
@@ -843,7 +843,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -855,9 +855,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='1.0']"
+literal|"//result/doc[1]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='7.0']"
+literal|"//result/doc[2]/str[@name='id'][.='7']"
 argument_list|)
 expr_stmt|;
 comment|// collapse on int field
@@ -891,7 +891,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -903,9 +903,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='4.0']"
+literal|"//result/doc[1]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='7.0']"
+literal|"//result/doc[2]/str[@name='id'][.='7']"
 argument_list|)
 expr_stmt|;
 comment|// collapse on term_s (very sparse) with nullPolicy=collapse
@@ -930,7 +930,7 @@ name|add
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!collapse field=term_s nullPolicy=collapse sort='test_i asc, test_l desc, id asc'}"
+literal|"{!collapse field=term_s nullPolicy=collapse sort='test_i asc, test_l desc, id_i asc'}"
 argument_list|)
 expr_stmt|;
 name|params
@@ -939,7 +939,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_l asc, id asc"
+literal|"test_l asc, id_i asc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -951,11 +951,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='2.0']"
+literal|"//result/doc[2]/str[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='7.0']"
+literal|"//result/doc[3]/str[@name='id'][.='7']"
 argument_list|)
 expr_stmt|;
 comment|// sort local param + elevation
@@ -1016,7 +1016,7 @@ name|add
 argument_list|(
 literal|"elevateIds"
 argument_list|,
-literal|"4.0"
+literal|"4"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1028,9 +1028,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='4.0']"
+literal|"//result/doc[1]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='5.0']"
+literal|"//result/doc[2]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 comment|//
@@ -1091,7 +1091,7 @@ name|add
 argument_list|(
 literal|"elevateIds"
 argument_list|,
-literal|"7.0"
+literal|"7"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1103,9 +1103,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='7.0']"
+literal|"//result/doc[1]/str[@name='id'][.='7']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='1.0']"
+literal|"//result/doc[2]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -1516,7 +1516,7 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='6.0']"
+literal|"//result/doc[1]/str[@name='id'][.='6']"
 argument_list|)
 expr_stmt|;
 name|params
@@ -1552,7 +1552,7 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='2.0']"
+literal|"//result/doc[1]/str[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2435,9 +2435,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='2.0']"
+literal|"//result/doc[1]/str[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='6.0']"
+literal|"//result/doc[2]/str[@name='id'][.='6']"
 argument_list|)
 expr_stmt|;
 comment|// SOLR-5544 test ordering with empty sort param
@@ -2509,13 +2509,13 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=4]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='3.0']"
+literal|"//result/doc[1]/str[@name='id'][.='3']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='4.0']"
+literal|"//result/doc[2]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='2.0']"
+literal|"//result/doc[3]/str[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[4]/float[@name='id'][.='6.0']"
+literal|"//result/doc[4]/str[@name='id'][.='6']"
 argument_list|)
 expr_stmt|;
 comment|// Test value source collapse criteria
@@ -2569,11 +2569,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='4.0']"
+literal|"//result/doc[1]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='1.0']"
+literal|"//result/doc[2]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='5.0']"
+literal|"//result/doc[3]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 comment|// Test value source collapse criteria with cscore function
@@ -2636,11 +2636,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='4.0']"
+literal|"//result/doc[1]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='1.0']"
+literal|"//result/doc[2]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='5.0']"
+literal|"//result/doc[3]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 comment|// Test value source collapse criteria with cscore function but no top level score sort
@@ -2709,7 +2709,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -2721,11 +2721,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='4.0']"
+literal|"//result/doc[2]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='1.0']"
+literal|"//result/doc[3]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 comment|// Test value source collapse criteria with compound cscore function
@@ -2788,11 +2788,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='4.0']"
+literal|"//result/doc[1]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='1.0']"
+literal|"//result/doc[2]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='5.0']"
+literal|"//result/doc[3]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 comment|//Test collapse by score with elevation
@@ -2873,13 +2873,13 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=4]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='1.0']"
+literal|"//result/doc[1]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='2.0']"
+literal|"//result/doc[2]/str[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='3.0']"
+literal|"//result/doc[3]/str[@name='id'][.='3']"
 argument_list|,
-literal|"//result/doc[4]/float[@name='id'][.='6.0']"
+literal|"//result/doc[4]/str[@name='id'][.='6']"
 argument_list|)
 expr_stmt|;
 comment|//Test SOLR-5773 with score collapse criteria
@@ -2987,11 +2987,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='1.0']"
+literal|"//result/doc[1]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='5.0']"
+literal|"//result/doc[2]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='3.0']"
+literal|"//result/doc[3]/str[@name='id'][.='3']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3100,11 +3100,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='1.0']"
+literal|"//result/doc[1]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='5.0']"
+literal|"//result/doc[2]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='3.0']"
+literal|"//result/doc[3]/str[@name='id'][.='3']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3213,11 +3213,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='1.0']"
+literal|"//result/doc[1]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='5.0']"
+literal|"//result/doc[2]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='4.0']"
+literal|"//result/doc[3]/str[@name='id'][.='4']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3308,13 +3308,13 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=4]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='3.0']"
+literal|"//result/doc[1]/str[@name='id'][.='3']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='4.0']"
+literal|"//result/doc[2]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='2.0']"
+literal|"//result/doc[3]/str[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[4]/float[@name='id'][.='6.0']"
+literal|"//result/doc[4]/str[@name='id'][.='6']"
 argument_list|)
 expr_stmt|;
 comment|// Non trivial sort local param for picking group head
@@ -3356,7 +3356,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3368,11 +3368,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='4.0']"
+literal|"//result/doc[2]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='1.0']"
+literal|"//result/doc[3]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 comment|//
@@ -3414,7 +3414,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3426,11 +3426,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='6.0']"
+literal|"//result/doc[1]/str[@name='id'][.='6']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='3.0']"
+literal|"//result/doc[2]/str[@name='id'][.='3']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='2.0']"
+literal|"//result/doc[3]/str[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 comment|// Test collapse by min int field and top level sort
@@ -3488,7 +3488,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3500,9 +3500,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='1.0']"
+literal|"//result/doc[2]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 name|params
@@ -3543,7 +3543,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id asc"
+literal|"id_i asc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3555,9 +3555,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='1.0']"
+literal|"//result/doc[1]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='5.0']"
+literal|"//result/doc[2]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 name|params
@@ -3598,7 +3598,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"test_l asc,id desc"
+literal|"test_l asc,id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3610,9 +3610,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='1.0']"
+literal|"//result/doc[2]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 name|params
@@ -3653,7 +3653,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"score desc,id asc"
+literal|"score desc,id_i asc"
 argument_list|)
 expr_stmt|;
 name|params
@@ -3671,7 +3671,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(id)"
+literal|"field(id_i)"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -3683,9 +3683,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='1.0']"
+literal|"//result/doc[2]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3740,9 +3740,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='6.0']"
+literal|"//result/doc[1]/str[@name='id'][.='6']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='2.0']"
+literal|"//result/doc[2]/str[@name='id'][.='2']"
 argument_list|)
 expr_stmt|;
 try|try
@@ -3798,9 +3798,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='1.0']"
+literal|"//result/doc[1]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='5.0']"
+literal|"//result/doc[2]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 comment|//Test collapse by max long field
@@ -3854,9 +3854,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='2.0']"
+literal|"//result/doc[1]/str[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='6.0']"
+literal|"//result/doc[2]/str[@name='id'][.='6']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -3928,9 +3928,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='2.0']"
+literal|"//result/doc[1]/str[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='6.0']"
+literal|"//result/doc[2]/str[@name='id'][.='6']"
 argument_list|)
 expr_stmt|;
 comment|//Test collapse by min float field
@@ -3984,9 +3984,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='1.0']"
+literal|"//result/doc[2]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 comment|//Test collapse by min float field sort by score
@@ -4037,7 +4037,7 @@ name|add
 argument_list|(
 literal|"bf"
 argument_list|,
-literal|"field(id)"
+literal|"field(id_i)"
 argument_list|)
 expr_stmt|;
 name|params
@@ -4085,9 +4085,9 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=2]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='1.0']"
+literal|"//result/doc[2]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 comment|// Test collapse using selector field in no docs
@@ -4207,7 +4207,7 @@ name|params
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"{!func}sub(sub(test_l,1000),id)"
+literal|"{!func}sub(sub(test_l,1000),id_i)"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -4215,7 +4215,7 @@ literal|"{!collapse field="
 operator|+
 name|group
 operator|+
-literal|" sort='abs(cscore()) asc, id asc'}"
+literal|" sort='abs(cscore()) asc, id_i asc'}"
 argument_list|,
 literal|"sort"
 argument_list|,
@@ -4398,11 +4398,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='4.0']"
+literal|"//result/doc[1]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='1.0']"
+literal|"//result/doc[2]/str[@name='id'][.='1']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='5.0']"
+literal|"//result/doc[3]/str[@name='id'][.='5']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -4445,7 +4445,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -4457,13 +4457,13 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=4]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='4.0']"
+literal|"//result/doc[2]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='3.0']"
+literal|"//result/doc[3]/str[@name='id'][.='3']"
 argument_list|,
-literal|"//result/doc[4]/float[@name='id'][.='1.0']"
+literal|"//result/doc[4]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 comment|//Test nullPolicy collapse
@@ -4505,7 +4505,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -4517,11 +4517,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='5.0']"
+literal|"//result/doc[1]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='4.0']"
+literal|"//result/doc[2]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='1.0']"
+literal|"//result/doc[3]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 name|params
@@ -4777,11 +4777,11 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=3]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='3.0']"
+literal|"//result/doc[1]/str[@name='id'][.='3']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='6.0']"
+literal|"//result/doc[2]/str[@name='id'][.='6']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='7.0']"
+literal|"//result/doc[3]/str[@name='id'][.='7']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -5248,7 +5248,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|params
@@ -5300,7 +5300,7 @@ name|add
 argument_list|(
 literal|"sort"
 argument_list|,
-literal|"id desc"
+literal|"id_i desc"
 argument_list|)
 expr_stmt|;
 name|params
@@ -5329,21 +5329,21 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=8]"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id'][.='8.0']"
+literal|"//result/doc[1]/str[@name='id'][.='8']"
 argument_list|,
-literal|"//result/doc[2]/float[@name='id'][.='7.0']"
+literal|"//result/doc[2]/str[@name='id'][.='7']"
 argument_list|,
-literal|"//result/doc[3]/float[@name='id'][.='6.0']"
+literal|"//result/doc[3]/str[@name='id'][.='6']"
 argument_list|,
-literal|"//result/doc[4]/float[@name='id'][.='5.0']"
+literal|"//result/doc[4]/str[@name='id'][.='5']"
 argument_list|,
-literal|"//result/doc[5]/float[@name='id'][.='4.0']"
+literal|"//result/doc[5]/str[@name='id'][.='4']"
 argument_list|,
-literal|"//result/doc[6]/float[@name='id'][.='3.0']"
+literal|"//result/doc[6]/str[@name='id'][.='3']"
 argument_list|,
-literal|"//result/doc[7]/float[@name='id'][.='2.0']"
+literal|"//result/doc[7]/str[@name='id'][.='2']"
 argument_list|,
-literal|"//result/doc[8]/float[@name='id'][.='1.0']"
+literal|"//result/doc[8]/str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 block|}

@@ -208,13 +208,13 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
 argument_list|,
-literal|"//int[@name='id' and .='40']"
+literal|"//str[@name='id' and .='40']"
 argument_list|,
-literal|"//int[@name='id' and .='41']"
+literal|"//str[@name='id' and .='41']"
 argument_list|,
-literal|"//int[@name='id' and .='42']"
+literal|"//str[@name='id' and .='42']"
 argument_list|,
-literal|"//int[@name='id' and .='43']"
+literal|"//str[@name='id' and .='43']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -226,9 +226,9 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//int[@name='id' and .='41']"
+literal|"//str[@name='id' and .='41']"
 argument_list|,
-literal|"//int[@name='id' and .='42']"
+literal|"//str[@name='id' and .='42']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -240,9 +240,9 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//int[@name='id' and .='42']"
+literal|"//str[@name='id' and .='42']"
 argument_list|,
-literal|"//int[@name='id' and .='43']"
+literal|"//str[@name='id' and .='43']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -263,9 +263,9 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='2']"
 argument_list|,
-literal|"//int[@name='id' and .='40']"
+literal|"//str[@name='id' and .='40']"
 argument_list|,
-literal|"//int[@name='id' and .='42']"
+literal|"//str[@name='id' and .='42']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -277,11 +277,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//int[@name='id' and .='40']"
+literal|"//str[@name='id' and .='40']"
 argument_list|,
-literal|"//int[@name='id' and .='41']"
+literal|"//str[@name='id' and .='41']"
 argument_list|,
-literal|"//int[@name='id' and .='42']"
+literal|"//str[@name='id' and .='42']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -293,11 +293,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//int[@name='id' and .='40']"
+literal|"//str[@name='id' and .='40']"
 argument_list|,
-literal|"//int[@name='id' and .='42']"
+literal|"//str[@name='id' and .='42']"
 argument_list|,
-literal|"//int[@name='id' and .='43']"
+literal|"//str[@name='id' and .='43']"
 argument_list|)
 expr_stmt|;
 block|}

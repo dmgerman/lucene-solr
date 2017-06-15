@@ -597,7 +597,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//int[@name='id'][.='42']"
+literal|"//str[@name='id'][.='42']"
 argument_list|)
 expr_stmt|;
 block|}
@@ -797,7 +797,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//int[@name='id'][.='42']"
+literal|"//str[@name='id'][.='42']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -811,7 +811,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//int[@name='id'][.='42']"
+literal|"//str[@name='id'][.='42']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1393,7 +1393,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//int[@name='id'][.='103']"
+literal|"//str[@name='id'][.='103']"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -1405,15 +1405,15 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='5']"
 argument_list|,
-literal|"//int[@name='id'][.='101']"
+literal|"//str[@name='id'][.='101']"
 argument_list|,
-literal|"//int[@name='id'][.='102']"
+literal|"//str[@name='id'][.='102']"
 argument_list|,
-literal|"//int[@name='id'][.='104']"
+literal|"//str[@name='id'][.='104']"
 argument_list|,
-literal|"//int[@name='id'][.='105']"
+literal|"//str[@name='id'][.='105']"
 argument_list|,
-literal|"//int[@name='id'][.='106']"
+literal|"//str[@name='id'][.='106']"
 argument_list|)
 expr_stmt|;
 comment|// tests
@@ -1465,13 +1465,13 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='4']"
 argument_list|,
-literal|"//int[@name='id'][.='101']"
+literal|"//str[@name='id'][.='101']"
 argument_list|,
-literal|"//int[@name='id'][.='102']"
+literal|"//str[@name='id'][.='102']"
 argument_list|,
-literal|"//int[@name='id'][.='103']"
+literal|"//str[@name='id'][.='103']"
 argument_list|,
-literal|"//int[@name='id'][.='106']"
+literal|"//str[@name='id'][.='106']"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -1497,11 +1497,11 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='3']"
 argument_list|,
-literal|"//int[@name='id'][.='101']"
+literal|"//str[@name='id'][.='101']"
 argument_list|,
-literal|"//int[@name='id'][.='102']"
+literal|"//str[@name='id'][.='102']"
 argument_list|,
-literal|"//int[@name='id'][.='103']"
+literal|"//str[@name='id'][.='103']"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -1527,7 +1527,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//int[@name='id'][.='103']"
+literal|"//str[@name='id'][.='103']"
 argument_list|)
 expr_stmt|;
 name|assertU
@@ -5233,7 +5233,7 @@ argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
 argument_list|,
-literal|"//int[@name='id'][.='1']"
+literal|"//str[@name='id'][.='1']"
 argument_list|)
 expr_stmt|;
 block|}

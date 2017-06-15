@@ -117,7 +117,7 @@ operator|+
 literal|":15.00,EUR"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id']='2'"
+literal|"//str[@name='id']='2'"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -136,7 +136,7 @@ operator|+
 literal|":7.50,USD"
 argument_list|)
 argument_list|,
-literal|"//int[@name='id']='2'"
+literal|"//str[@name='id']='2'"
 argument_list|)
 expr_stmt|;
 name|assertQ

@@ -160,7 +160,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=1]"
+literal|"//result/doc[1]/str[@name='id'][.=1]"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -184,7 +184,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=2]"
+literal|"//result/doc[1]/str[@name='id'][.=2]"
 argument_list|)
 expr_stmt|;
 block|}
@@ -216,7 +216,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=3]"
+literal|"//result/doc[1]/str[@name='id'][.=3]"
 argument_list|)
 expr_stmt|;
 name|assertQ
@@ -240,7 +240,7 @@ argument_list|)
 argument_list|,
 literal|"//*[@numFound='1']"
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.=4]"
+literal|"//result/doc[1]/str[@name='id'][.=4]"
 argument_list|)
 expr_stmt|;
 block|}

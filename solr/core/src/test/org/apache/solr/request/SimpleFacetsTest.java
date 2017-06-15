@@ -1279,7 +1279,7 @@ literal|"true"
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -1376,7 +1376,7 @@ literal|"*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|,
 literal|"group"
 argument_list|,
@@ -1417,7 +1417,7 @@ literal|"*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -1461,7 +1461,7 @@ literal|"*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|,
 literal|"group"
 argument_list|,
@@ -1524,7 +1524,7 @@ literal|"*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -1591,7 +1591,7 @@ literal|"*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -1708,7 +1708,7 @@ literal|"Return 5 docs with id range 1937 till 1940"
 argument_list|,
 name|req
 argument_list|(
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=5]"
@@ -1726,7 +1726,7 @@ literal|"*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|,
 literal|"group"
 argument_list|,
@@ -1786,7 +1786,7 @@ literal|"*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|,
 literal|"group"
 argument_list|,
@@ -1836,7 +1836,7 @@ literal|"*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -1888,7 +1888,7 @@ literal|"*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|,
 literal|"group"
 argument_list|,
@@ -1940,7 +1940,7 @@ literal|"*:*"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[2000 TO 2004]"
+literal|"id_i1:[2000 TO 2004]"
 argument_list|,
 literal|"group.facet"
 argument_list|,
@@ -2408,7 +2408,7 @@ literal|"standard request handler returns all matches"
 argument_list|,
 name|req
 argument_list|(
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=6]"
@@ -2422,11 +2422,11 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 46]"
+literal|"id_i1:[42 TO 46]"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[43 TO 47]"
+literal|"id_i1:[43 TO 47]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=4]"
@@ -2440,7 +2440,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 46]"
+literal|"id_i1:[42 TO 46]"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -2458,7 +2458,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 46]"
+literal|"id_i1:[42 TO 46]"
 argument_list|,
 literal|"fq"
 argument_list|,
@@ -2466,7 +2466,7 @@ literal|"trait_s:Obnoxious"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[43 TO 47]"
+literal|"id_i1:[43 TO 47]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=1]"
@@ -2535,7 +2535,7 @@ name|methodParam
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -2547,11 +2547,11 @@ literal|"trait_s:Obnoxious"
 argument_list|,
 literal|"facet.query"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.query"
 argument_list|,
-literal|"id:[43 TO 47]"
+literal|"id_i1:[43 TO 47]"
 argument_list|,
 literal|"facet.field"
 argument_list|,
@@ -2564,9 +2564,9 @@ literal|"//lst[@name='facet_counts']/lst[@name='facet_queries']"
 argument_list|,
 literal|"//lst[@name='facet_queries']/int[@name='trait_s:Obnoxious'][.='2']"
 argument_list|,
-literal|"//lst[@name='facet_queries']/int[@name='id:[42 TO 45]'][.='4']"
+literal|"//lst[@name='facet_queries']/int[@name='id_i1:[42 TO 45]'][.='4']"
 argument_list|,
-literal|"//lst[@name='facet_queries']/int[@name='id:[43 TO 47]'][.='5']"
+literal|"//lst[@name='facet_queries']/int[@name='id_i1:[43 TO 47]'][.='5']"
 argument_list|,
 literal|"//lst[@name='facet_counts']/lst[@name='facet_fields']"
 argument_list|,
@@ -2591,7 +2591,7 @@ name|methodParam
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -2603,12 +2603,12 @@ literal|"{!ex=1}trait_s:Obnoxious"
 argument_list|,
 literal|"facet.query"
 argument_list|,
-literal|"{!ex=2 key=foo}id:[42 TO 45]"
+literal|"{!ex=2 key=foo}id_i1:[42 TO 45]"
 comment|// tag=2 same as 1
 argument_list|,
 literal|"facet.query"
 argument_list|,
-literal|"{!ex=3,4 key=bar}id:[43 TO 47]"
+literal|"{!ex=3,4 key=bar}id_i1:[43 TO 47]"
 comment|// tag=3,4 don't exist
 argument_list|,
 literal|"facet.field"
@@ -2701,7 +2701,7 @@ name|methodParam
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -2709,7 +2709,7 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.field"
 argument_list|,
@@ -2717,20 +2717,20 @@ literal|"trait_s"
 argument_list|,
 literal|"facet.query"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.query"
 argument_list|,
-literal|"id:[43 TO 47]"
+literal|"id_i1:[43 TO 47]"
 argument_list|)
 argument_list|,
 literal|"*[count(//doc)=4]"
 argument_list|,
 literal|"//lst[@name='facet_counts']/lst[@name='facet_queries']"
 argument_list|,
-literal|"//lst[@name='facet_queries']/int[@name='id:[42 TO 45]'][.='4']"
+literal|"//lst[@name='facet_queries']/int[@name='id_i1:[42 TO 45]'][.='4']"
 argument_list|,
-literal|"//lst[@name='facet_queries']/int[@name='id:[43 TO 47]'][.='3']"
+literal|"//lst[@name='facet_queries']/int[@name='id_i1:[43 TO 47]'][.='3']"
 argument_list|,
 literal|"*[count(//lst[@name='trait_s']/int)=4]"
 argument_list|,
@@ -2753,7 +2753,7 @@ name|methodParam
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -2769,7 +2769,7 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.field"
 argument_list|,
@@ -2799,7 +2799,7 @@ name|methodParam
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -2815,7 +2815,7 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.field"
 argument_list|,
@@ -2845,7 +2845,7 @@ name|methodParam
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -2861,7 +2861,7 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.field"
 argument_list|,
@@ -2887,7 +2887,7 @@ name|methodParam
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -2895,7 +2895,7 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.field"
 argument_list|,
@@ -2936,7 +2936,7 @@ name|methodParam
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -2944,7 +2944,7 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.field"
 argument_list|,
@@ -2983,7 +2983,7 @@ name|methodParam
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -2991,7 +2991,7 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.field"
 argument_list|,
@@ -3032,7 +3032,7 @@ name|methodParam
 argument_list|,
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -3040,7 +3040,7 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.field"
 argument_list|,
@@ -3095,7 +3095,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -3103,7 +3103,7 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"id:[42 TO 45]"
+literal|"id_i1:[42 TO 45]"
 argument_list|,
 literal|"facet.field"
 argument_list|,
@@ -6177,7 +6177,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[30 TO 60]"
+literal|"id_i1:[30 TO 60]"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -7116,7 +7116,7 @@ parameter_list|()
 block|{
 name|helpTestWholeNumberRangeFacets
 argument_list|(
-literal|"id"
+literal|"id_i1"
 argument_list|)
 expr_stmt|;
 block|}
@@ -7144,7 +7144,7 @@ parameter_list|()
 block|{
 name|helpTestWholeNumberRangeFacets
 argument_list|(
-literal|"id"
+literal|"id_i1"
 argument_list|,
 name|FacetRangeMethod
 operator|.
@@ -7324,7 +7324,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[30 TO 60]"
+literal|"id_i1:[30 TO 60]"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -7480,7 +7480,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[30 TO 60]"
+literal|"id_i1:[30 TO 60]"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -7564,7 +7564,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[30 TO 60]"
+literal|"id_i1:[30 TO 60]"
 argument_list|,
 literal|"rows"
 argument_list|,
@@ -12508,7 +12508,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -12599,7 +12599,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -12735,7 +12735,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -12827,7 +12827,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -12919,7 +12919,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -13011,7 +13011,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -13109,7 +13109,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -13167,7 +13167,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -13266,7 +13266,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -13376,7 +13376,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -13477,7 +13477,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -13578,7 +13578,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -13679,7 +13679,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -13780,7 +13780,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[12345 TO 12345]"
+literal|"id_i1:[12345 TO 12345]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -13866,7 +13866,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[42 TO 47]"
+literal|"id_i1:[42 TO 47]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -14751,7 +14751,7 @@ name|req
 argument_list|(
 literal|"q"
 argument_list|,
-literal|"id:[101 TO 102]"
+literal|"id_i1:[101 TO 102]"
 argument_list|,
 literal|"facet"
 argument_list|,
@@ -14844,7 +14844,7 @@ name|Locale
 operator|.
 name|ROOT
 argument_list|,
-literal|"id: [%d TO %d]"
+literal|"id_i1:[%d TO %d]"
 argument_list|,
 name|values
 index|[
@@ -15050,7 +15050,7 @@ literal|"range_facet_l"
 block|,
 literal|"duration_i1"
 block|,
-literal|"id"
+literal|"id_i1"
 block|}
 index|[
 name|random

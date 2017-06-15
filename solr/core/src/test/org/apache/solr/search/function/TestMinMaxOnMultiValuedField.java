@@ -1859,9 +1859,9 @@ argument_list|,
 literal|"//*[@numFound='2']"
 comment|// no assumptions about order for now, see bug: SOLR-8005
 argument_list|,
-literal|"//float[@name='id']='1.0'"
+literal|"//str[@name='id']='1'"
 argument_list|,
-literal|"//float[@name='id']='2.0'"
+literal|"//str[@name='id']='2'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2145,7 +2145,7 @@ name|numDocs
 operator|+
 literal|"']"
 argument_list|,
-literal|"//result/doc[1]/float[@name='id']='0.0'"
+literal|"//result/doc[1]/str[@name='id']='0'"
 argument_list|)
 expr_stmt|;
 block|}
@@ -2196,7 +2196,7 @@ literal|"//result/doc["
 operator|+
 name|numDocs
 operator|+
-literal|"]/float[@name='id']='0.0'"
+literal|"]/str[@name='id']='0'"
 argument_list|)
 expr_stmt|;
 block|}

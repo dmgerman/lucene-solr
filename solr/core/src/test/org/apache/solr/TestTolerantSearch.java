@@ -1054,7 +1054,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|"1"
 argument_list|,
 name|response
 operator|.
@@ -1444,7 +1444,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|"1"
 argument_list|,
 name|response
 operator|.

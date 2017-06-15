@@ -559,7 +559,7 @@ argument_list|)
 argument_list|,
 literal|"//result[@numFound='1']"
 argument_list|,
-literal|"//int[@name='id'][.='12345']"
+literal|"//str[@name='id'][.='12345']"
 argument_list|)
 expr_stmt|;
 block|}

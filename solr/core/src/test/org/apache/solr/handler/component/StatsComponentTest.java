@@ -718,11 +718,11 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{!tag=fq1}-id:[0 TO 2]"
+literal|"{!tag=fq1}-id_i:[0 TO 2]"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{!tag=fq2}-id:[2 TO 1000]"
+literal|"{!tag=fq2}-id_i:[2 TO 1000]"
 argument_list|)
 block|,
 name|params
@@ -1773,11 +1773,11 @@ literal|"true"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{!tag=fq1}-id:[0 TO 2]"
+literal|"{!tag=fq1}-id_i:[0 TO 2]"
 argument_list|,
 literal|"fq"
 argument_list|,
-literal|"{!tag=fq2}-id:[2 TO 1000]"
+literal|"{!tag=fq2}-id_i:[2 TO 1000]"
 argument_list|)
 block|}
 control|)
@@ -4615,7 +4615,7 @@ name|StatsParams
 operator|.
 name|STATS_FIELD
 argument_list|,
-literal|"{!ex=id}id"
+literal|"{!ex=id}id_i"
 argument_list|)
 expr_stmt|;
 name|args
@@ -4624,7 +4624,7 @@ name|put
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!tag=id}id:[2 TO 3]"
+literal|"{!tag=id}id_i:[2 TO 3]"
 argument_list|)
 expr_stmt|;
 name|SolrQueryRequest
@@ -4648,9 +4648,9 @@ literal|"test exluding filter query"
 argument_list|,
 name|req
 argument_list|,
-literal|"//lst[@name='id']/double[@name='min'][.='1.0']"
+literal|"//lst[@name='id_i']/double[@name='min'][.='1.0']"
 argument_list|,
-literal|"//lst[@name='id']/double[@name='max'][.='4.0']"
+literal|"//lst[@name='id_i']/double[@name='max'][.='4.0']"
 argument_list|)
 expr_stmt|;
 name|args
@@ -4694,7 +4694,7 @@ name|StatsParams
 operator|.
 name|STATS_FIELD
 argument_list|,
-literal|"{!key=id2}id"
+literal|"{!key=id2}id_i"
 argument_list|)
 expr_stmt|;
 name|args
@@ -4703,7 +4703,7 @@ name|put
 argument_list|(
 literal|"fq"
 argument_list|,
-literal|"{!tag=id}id:[2 TO 3]"
+literal|"{!tag=id}id_i:[2 TO 3]"
 argument_list|)
 expr_stmt|;
 name|req

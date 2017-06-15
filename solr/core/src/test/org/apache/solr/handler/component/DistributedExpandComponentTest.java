@@ -990,9 +990,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"1.0"
+literal|"1"
 argument_list|,
-literal|"7.0"
+literal|"7"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1003,9 +1003,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"5.0"
+literal|"5"
 argument_list|,
-literal|"8.0"
+literal|"8"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1016,9 +1016,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"11.0"
+literal|"11"
 argument_list|,
-literal|"9.0"
+literal|"9"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1029,9 +1029,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"12.0"
+literal|"12"
 argument_list|,
-literal|"14.0"
+literal|"14"
 argument_list|)
 expr_stmt|;
 comment|//Test expand.sort
@@ -1139,9 +1139,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"7.0"
+literal|"7"
 argument_list|,
-literal|"1.0"
+literal|"1"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1152,9 +1152,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"8.0"
+literal|"8"
 argument_list|,
-literal|"5.0"
+literal|"5"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1165,9 +1165,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"9.0"
+literal|"9"
 argument_list|,
-literal|"11.0"
+literal|"11"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1178,9 +1178,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"14.0"
+literal|"14"
 argument_list|,
-literal|"12.0"
+literal|"12"
 argument_list|)
 expr_stmt|;
 comment|//Test expand.rows
@@ -1297,7 +1297,7 @@ literal|1
 argument_list|,
 name|results
 argument_list|,
-literal|"7.0"
+literal|"7"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1308,7 +1308,7 @@ literal|1
 argument_list|,
 name|results
 argument_list|,
-literal|"8.0"
+literal|"8"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1319,7 +1319,7 @@ literal|1
 argument_list|,
 name|results
 argument_list|,
-literal|"9.0"
+literal|"9"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1330,7 +1330,7 @@ literal|1
 argument_list|,
 name|results
 argument_list|,
-literal|"14.0"
+literal|"14"
 argument_list|)
 expr_stmt|;
 comment|//Test key-only fl
@@ -1438,9 +1438,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"1.0"
+literal|"1"
 argument_list|,
-literal|"7.0"
+literal|"7"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1451,9 +1451,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"5.0"
+literal|"5"
 argument_list|,
-literal|"8.0"
+literal|"8"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1464,9 +1464,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"11.0"
+literal|"11"
 argument_list|,
-literal|"9.0"
+literal|"9"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1477,9 +1477,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"12.0"
+literal|"12"
 argument_list|,
-literal|"14.0"
+literal|"14"
 argument_list|)
 expr_stmt|;
 comment|//Test distrib.singlePass true
@@ -1587,9 +1587,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"1.0"
+literal|"1"
 argument_list|,
-literal|"7.0"
+literal|"7"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1600,9 +1600,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"5.0"
+literal|"5"
 argument_list|,
-literal|"8.0"
+literal|"8"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1613,9 +1613,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"11.0"
+literal|"11"
 argument_list|,
-literal|"9.0"
+literal|"9"
 argument_list|)
 expr_stmt|;
 name|assertExpandGroupCountAndOrder
@@ -1626,9 +1626,9 @@ literal|2
 argument_list|,
 name|results
 argument_list|,
-literal|"12.0"
+literal|"12"
 argument_list|,
-literal|"14.0"
+literal|"14"
 argument_list|)
 expr_stmt|;
 block|}

@@ -456,7 +456,7 @@ name|validateXPath
 argument_list|(
 name|response
 argument_list|,
-literal|"*[count(//int[@name='id'][.='"
+literal|"*[count(//str[@name='id'][.='"
 operator|+
 name|s
 operator|+
@@ -579,7 +579,7 @@ name|validateXPath
 argument_list|(
 name|response
 argument_list|,
-literal|"*[count(//int[@name='id'][.='"
+literal|"*[count(//str[@name='id'][.='"
 operator|+
 name|s
 operator|+
@@ -702,7 +702,7 @@ name|validateXPath
 argument_list|(
 name|response
 argument_list|,
-literal|"*[count(//int[@name='id'][.='"
+literal|"*[count(//str[@name='id'][.='"
 operator|+
 name|s
 operator|+
@@ -899,7 +899,7 @@ name|validateXPath
 argument_list|(
 name|response
 argument_list|,
-literal|"*[count(//int[@name='id'][.='"
+literal|"*[count(//str[@name='id'][.='"
 operator|+
 name|s
 operator|+
@@ -1021,7 +1021,7 @@ name|validateXPath
 argument_list|(
 name|response
 argument_list|,
-literal|"*[count(//int[@name='id'][.='"
+literal|"*[count(//str[@name='id'][.='"
 operator|+
 name|s
 operator|+
@@ -1189,7 +1189,7 @@ name|validateXPath
 argument_list|(
 name|response
 argument_list|,
-literal|"*[count(//int[@name='id'][.='"
+literal|"*[count(//str[@name='id'][.='"
 operator|+
 name|s
 operator|+
@@ -1311,7 +1311,7 @@ name|validateXPath
 argument_list|(
 name|response
 argument_list|,
-literal|"*[count(//int[@name='id'][.='"
+literal|"*[count(//str[@name='id'][.='"
 operator|+
 name|s
 operator|+

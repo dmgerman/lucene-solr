@@ -193,15 +193,15 @@ argument_list|,
 literal|"true"
 argument_list|)
 argument_list|,
-literal|"//result/doc[int='2'  and position()=1]"
+literal|"//result/doc[str='2'  and position()=1]"
 argument_list|,
-literal|"//result/doc[int='3'  and position()=2]"
+literal|"//result/doc[str='3'  and position()=2]"
 argument_list|,
-literal|"//result/doc[int='5'  and position()=3]"
+literal|"//result/doc[str='5'  and position()=3]"
 argument_list|,
-literal|"//result/doc[int='1'  and position()=4]"
+literal|"//result/doc[str='1'  and position()=4]"
 argument_list|,
-literal|"//result/doc[int='4'  and position()=5]"
+literal|"//result/doc[str='4'  and position()=5]"
 argument_list|)
 expr_stmt|;
 block|}

@@ -634,9 +634,9 @@ literal|"morelikethis - tom cruise"
 argument_list|,
 name|mltreq
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='46']"
+literal|"//result/doc[1]/str[@name='id'][.='46']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.='43']"
+literal|"//result/doc[2]/str[@name='id'][.='43']"
 argument_list|)
 expr_stmt|;
 name|params
@@ -671,9 +671,9 @@ literal|"morelikethis - tom cruise"
 argument_list|,
 name|mltreq
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='46']"
+literal|"//result/doc[1]/str[@name='id'][.='46']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.='43']"
+literal|"//result/doc[2]/str[@name='id'][.='43']"
 argument_list|)
 expr_stmt|;
 name|params
@@ -711,7 +711,7 @@ literal|"morelike this - harrison ford"
 argument_list|,
 name|mltreq
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='45']"
+literal|"//result/doc[1]/str[@name='id'][.='45']"
 argument_list|)
 expr_stmt|;
 comment|// test MoreLikeThis debug
@@ -802,7 +802,7 @@ name|assertQ
 argument_list|(
 name|mltreq
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='45']"
+literal|"//result/doc[1]/str[@name='id'][.='45']"
 argument_list|)
 expr_stmt|;
 name|params
@@ -851,9 +851,9 @@ literal|"morelikethis with weights"
 argument_list|,
 name|mltreq
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='43']"
+literal|"//result/doc[1]/str[@name='id'][.='43']"
 argument_list|,
-literal|"//result/doc[2]/int[@name='id'][.='46']"
+literal|"//result/doc[2]/str[@name='id'][.='46']"
 argument_list|)
 expr_stmt|;
 comment|// test that qparser plugins work w/ the MoreLikeThisHandler
@@ -901,7 +901,7 @@ name|assertQ
 argument_list|(
 name|mltreq
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='45']"
+literal|"//result/doc[1]/str[@name='id'][.='45']"
 argument_list|)
 expr_stmt|;
 comment|// test that debugging works (test for MoreLikeThis*Handler*)
@@ -949,7 +949,7 @@ name|assertQ
 argument_list|(
 name|mltreq
 argument_list|,
-literal|"//result/doc[1]/int[@name='id'][.='45']"
+literal|"//result/doc[1]/str[@name='id'][.='45']"
 argument_list|,
 literal|"//lst[@name='debug']/lst[@name='explain']"
 argument_list|)

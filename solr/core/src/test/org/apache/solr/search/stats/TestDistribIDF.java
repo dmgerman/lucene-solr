@@ -562,7 +562,7 @@ name|setField
 argument_list|(
 literal|"id"
 argument_list|,
-literal|1
+literal|"1"
 argument_list|)
 expr_stmt|;
 name|doc
@@ -621,7 +621,7 @@ name|setField
 argument_list|(
 literal|"id"
 argument_list|,
-literal|2
+literal|"2"
 argument_list|)
 expr_stmt|;
 name|doc
@@ -710,9 +710,13 @@ name|setField
 argument_list|(
 literal|"id"
 argument_list|,
+literal|""
+operator|+
+operator|(
 literal|3
 operator|+
 name|i
+operator|)
 argument_list|)
 expr_stmt|;
 name|String
@@ -1025,7 +1029,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2
+literal|"2"
 argument_list|,
 name|queryResponse
 operator|.
@@ -1045,7 +1049,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|"1"
 argument_list|,
 name|queryResponse
 operator|.
@@ -1386,7 +1390,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|2
+literal|"2"
 argument_list|,
 name|queryResponse
 operator|.
@@ -1406,7 +1410,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|1
+literal|"1"
 argument_list|,
 name|queryResponse
 operator|.

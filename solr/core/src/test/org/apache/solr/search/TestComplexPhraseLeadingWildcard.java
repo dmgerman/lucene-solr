@@ -480,7 +480,7 @@ name|i
 operator|++
 index|]
 operator|=
-literal|"//doc/int[@name='id' and text()='"
+literal|"//doc/str[@name='id' and text()='"
 operator|+
 name|id
 operator|+
