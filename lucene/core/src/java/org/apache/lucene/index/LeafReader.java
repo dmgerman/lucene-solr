@@ -34,22 +34,6 @@ name|apache
 operator|.
 name|lucene
 operator|.
-name|index
-operator|.
-name|IndexReader
-operator|.
-name|CacheHelper
-import|;
-end_import
-
-begin_import
-import|import
-name|org
-operator|.
-name|apache
-operator|.
-name|lucene
-operator|.
 name|util
 operator|.
 name|Bits
@@ -107,23 +91,13 @@ return|return
 name|readerContext
 return|;
 block|}
-comment|/**    * Optional method: Return a {@link CacheHelper} that can be used to cache    * based on the content of this leaf regardless of deletions. Two readers    * that have the same data but different sets of deleted documents or doc    * values updates may be considered equal. Consider using    * {@link #getReaderCacheHelper} if you need deletions or dv updates to be    * taken into account.    *<p>A return value of {@code null} indicates that this reader is not suited    * for caching, which is typically the case for short-lived wrappers that    * alter the content of the wrapped leaf reader.    * @lucene.experimental    */
+comment|/**    * Optional method: Return a {@link IndexReader.CacheHelper} that can be used to cache    * based on the content of this leaf regardless of deletions. Two readers    * that have the same data but different sets of deleted documents or doc    * values updates may be considered equal. Consider using    * {@link #getReaderCacheHelper} if you need deletions or dv updates to be    * taken into account.    *<p>A return value of {@code null} indicates that this reader is not suited    * for caching, which is typically the case for short-lived wrappers that    * alter the content of the wrapped leaf reader.    * @lucene.experimental    */
 DECL|method|getCoreCacheHelper
 specifier|public
 specifier|abstract
 name|CacheHelper
 name|getCoreCacheHelper
 parameter_list|()
-function_decl|;
-comment|/**    * Returns {@link Fields} for this reader.    * This method will not return null.    */
-DECL|method|fields
-specifier|public
-specifier|abstract
-name|Fields
-name|fields
-parameter_list|()
-throws|throws
-name|IOException
 function_decl|;
 annotation|@
 name|Override
@@ -395,10 +369,10 @@ name|getSumTotalTermFreq
 argument_list|()
 return|;
 block|}
-comment|/** This may return null if the field does not exist.*/
+comment|/** Returns the {@link Terms} index for this field, or null if it has none. */
 DECL|method|terms
 specifier|public
-specifier|final
+specifier|abstract
 name|Terms
 name|terms
 parameter_list|(
@@ -407,17 +381,7 @@ name|field
 parameter_list|)
 throws|throws
 name|IOException
-block|{
-return|return
-name|fields
-argument_list|()
-operator|.
-name|terms
-argument_list|(
-name|field
-argument_list|)
-return|;
-block|}
+function_decl|;
 comment|/** Returns {@link PostingsEnum} for the specified term.    *  This will return null if either the field or    *  term does not exist.    *<p><b>NOTE:</b> The returned {@link PostingsEnum} may contain deleted docs.    *  @see TermsEnum#postings(PostingsEnum) */
 DECL|method|postings
 specifier|public

@@ -128,7 +128,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|LeafMetaData
+name|IndexOptions
 import|;
 end_import
 
@@ -142,7 +142,7 @@ name|lucene
 operator|.
 name|index
 operator|.
-name|IndexOptions
+name|LeafMetaData
 import|;
 end_import
 
@@ -519,16 +519,24 @@ name|IOException
 block|{   }
 annotation|@
 name|Override
-DECL|method|fields
+DECL|method|terms
 specifier|public
-name|Fields
-name|fields
-parameter_list|()
+name|Terms
+name|terms
+parameter_list|(
+name|String
+name|field
+parameter_list|)
 throws|throws
 name|IOException
 block|{
 return|return
 name|fields
+operator|.
+name|terms
+argument_list|(
+name|field
+argument_list|)
 return|;
 block|}
 annotation|@
@@ -709,7 +717,6 @@ return|;
 block|}
 return|return
 name|fields
-argument_list|()
 return|;
 block|}
 annotation|@

@@ -2385,10 +2385,12 @@ name|consumer
 operator|.
 name|write
 argument_list|(
-name|oneDocReader
+name|MultiFields
 operator|.
-name|fields
-argument_list|()
+name|getFields
+argument_list|(
+name|oneDocReader
+argument_list|)
 argument_list|)
 expr_stmt|;
 name|IOUtils

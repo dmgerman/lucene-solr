@@ -366,16 +366,29 @@ block|}
 block|}
 annotation|@
 name|Override
-DECL|method|fields
+DECL|method|terms
 specifier|public
 specifier|final
-name|Fields
-name|fields
-parameter_list|()
+name|Terms
+name|terms
+parameter_list|(
+name|String
+name|field
+parameter_list|)
+throws|throws
+name|IOException
 block|{
+comment|//ensureOpen(); no; getPostingsReader calls this
+comment|// We could check the FieldInfo IndexOptions but there's no point since
+comment|//   PostingsReader will simply return null for fields that don't exist or that have no terms index.
 return|return
 name|getPostingsReader
 argument_list|()
+operator|.
+name|terms
+argument_list|(
+name|field
+argument_list|)
 return|;
 block|}
 comment|// returns the FieldInfo that corresponds to the given field and type, or

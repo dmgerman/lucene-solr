@@ -36,8 +36,22 @@ name|Iterator
 import|;
 end_import
 
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
+name|lucene
+operator|.
+name|codecs
+operator|.
+name|FieldsProducer
+import|;
+end_import
+
 begin_comment
-comment|/** Flex API for access to fields and terms  *  @lucene.experimental */
+comment|/**  * Provides a {@link Terms} index for fields that have it, and lists which fields do.  * This is primarily an internal/experimental API (see {@link FieldsProducer}),  * although it is also used to expose the set of term vectors per document.  *  * @lucene.experimental  */
 end_comment
 
 begin_class
