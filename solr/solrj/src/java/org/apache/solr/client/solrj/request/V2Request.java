@@ -152,7 +152,9 @@ name|client
 operator|.
 name|solrj
 operator|.
-name|SolrResponse
+name|response
+operator|.
+name|V2Response
 import|;
 end_import
 
@@ -241,6 +243,9 @@ class|class
 name|V2Request
 extends|extends
 name|SolrRequest
+argument_list|<
+name|V2Response
+argument_list|>
 block|{
 comment|//only for debugging purposes
 DECL|field|v2Calls
@@ -432,7 +437,7 @@ annotation|@
 name|Override
 DECL|method|createResponse
 specifier|protected
-name|SolrResponse
+name|V2Response
 name|createResponse
 parameter_list|(
 name|SolrClient
@@ -440,7 +445,9 @@ name|client
 parameter_list|)
 block|{
 return|return
-literal|null
+operator|new
+name|V2Response
+argument_list|()
 return|;
 block|}
 DECL|class|Builder
