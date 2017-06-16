@@ -9615,7 +9615,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"+(text:\"crow blackbird\" text:grackl)"
+literal|"+((text:\"crow blackbird\" text:grackl))"
 argument_list|,
 name|q
 operator|.
@@ -9722,7 +9722,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"+((+text_sw:crow +text_sw:blackbird) text_sw:grackl)"
+literal|"+(((+text_sw:crow +text_sw:blackbird) text_sw:grackl))"
 argument_list|,
 name|q
 operator|.
@@ -9807,9 +9807,9 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"+((text:\"crow blackbird\" text:grackl)"
+literal|"+(((text:\"crow blackbird\" text:grackl))"
 operator|+
-literal|" | ((+text_sw:crow +text_sw:blackbird) text_sw:grackl))"
+literal|" | (((+text_sw:crow +text_sw:blackbird) text_sw:grackl)))"
 argument_list|,
 name|q
 operator|.
@@ -9888,7 +9888,7 @@ name|assertEquals
 argument_list|(
 literal|"+(spanOr([spanNear([text:crow, text:blackbird], 0, true), text:grackl])"
 operator|+
-literal|" | ((+text_sw:crow +text_sw:blackbird) text_sw:grackl))"
+literal|" | (((+text_sw:crow +text_sw:blackbird) text_sw:grackl)))"
 argument_list|,
 name|q
 operator|.
@@ -9920,7 +9920,7 @@ name|assertEquals
 argument_list|(
 literal|"+((spanOr([spanNear([text:crow, text:blackbird], 0, true), text:grackl])"
 operator|+
-literal|" | ((+text_sw:crow +text_sw:blackbird) text_sw:grackl)) (text:wi | text_sw:wi) (text:fi | text_sw:fi))"
+literal|" | (((+text_sw:crow +text_sw:blackbird) text_sw:grackl))) (text:wi | text_sw:wi) (text:fi | text_sw:fi))"
 argument_list|,
 name|q
 operator|.

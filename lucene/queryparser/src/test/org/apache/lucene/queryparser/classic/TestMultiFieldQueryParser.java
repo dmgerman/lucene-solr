@@ -2531,7 +2531,7 @@ argument_list|)
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"((+b:guinea +b:pig) (+t:guinea +t:pig)) (b:cavy t:cavy)"
+literal|"((+b:guinea +b:pig) b:cavy) ((+t:guinea +t:pig) t:cavy)"
 argument_list|,
 name|q
 operator|.

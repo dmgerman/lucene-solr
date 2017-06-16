@@ -3766,6 +3766,14 @@ argument_list|()
 operator|.
 name|add
 argument_list|(
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+operator|.
+name|add
+argument_list|(
 name|guineaPig
 argument_list|,
 name|BooleanClause
@@ -3778,6 +3786,16 @@ operator|.
 name|add
 argument_list|(
 name|cavy
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+operator|.
+name|build
+argument_list|()
 argument_list|,
 name|BooleanClause
 operator|.
@@ -3918,6 +3936,14 @@ argument_list|()
 operator|.
 name|add
 argument_list|(
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+operator|.
+name|add
+argument_list|(
 name|guineaPig
 argument_list|,
 name|BooleanClause
@@ -3930,6 +3956,16 @@ operator|.
 name|add
 argument_list|(
 name|cavy
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+operator|.
+name|build
+argument_list|()
 argument_list|,
 name|BooleanClause
 operator|.
@@ -3962,6 +3998,154 @@ operator|.
 name|parse
 argument_list|(
 literal|"\"guinea pig\""
+argument_list|)
+argument_list|)
+expr_stmt|;
+comment|// with the AND operator
+name|dumb
+operator|.
+name|setDefaultOperator
+argument_list|(
+name|Operator
+operator|.
+name|AND
+argument_list|)
+expr_stmt|;
+name|BooleanQuery
+name|graphAndQuery
+init|=
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+operator|.
+name|add
+argument_list|(
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+operator|.
+name|add
+argument_list|(
+name|guineaPig
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+operator|.
+name|add
+argument_list|(
+name|cavy
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+operator|.
+name|build
+argument_list|()
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
+argument_list|)
+operator|.
+name|build
+argument_list|()
+decl_stmt|;
+name|assertEquals
+argument_list|(
+name|graphAndQuery
+argument_list|,
+name|dumb
+operator|.
+name|parse
+argument_list|(
+literal|"guinea pig"
+argument_list|)
+argument_list|)
+expr_stmt|;
+name|graphAndQuery
+operator|=
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+operator|.
+name|add
+argument_list|(
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+operator|.
+name|add
+argument_list|(
+name|guineaPig
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+operator|.
+name|add
+argument_list|(
+name|cavy
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+operator|.
+name|build
+argument_list|()
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
+argument_list|)
+operator|.
+name|add
+argument_list|(
+name|cavy
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|MUST
+argument_list|)
+operator|.
+name|build
+argument_list|()
+expr_stmt|;
+name|assertEquals
+argument_list|(
+name|graphAndQuery
+argument_list|,
+name|dumb
+operator|.
+name|parse
+argument_list|(
+literal|"guinea pig cavy"
 argument_list|)
 argument_list|)
 expr_stmt|;
@@ -4454,7 +4638,7 @@ literal|"(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"(+guinea +pig) cavy"
+literal|"((+guinea +pig) cavy)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4463,7 +4647,7 @@ literal|"+(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"+((+guinea +pig) cavy)"
+literal|"+(((+guinea +pig) cavy))"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4472,7 +4656,7 @@ literal|"-(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"-((+guinea +pig) cavy)"
+literal|"-(((+guinea +pig) cavy))"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4481,7 +4665,7 @@ literal|"!(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"-((+guinea +pig) cavy)"
+literal|"-(((+guinea +pig) cavy))"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4490,7 +4674,7 @@ literal|"NOT (guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"-((+guinea +pig) cavy)"
+literal|"-(((+guinea +pig) cavy))"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4499,7 +4683,7 @@ literal|"(guinea pig)^2"
 argument_list|,
 name|a
 argument_list|,
-literal|"((+guinea +pig) cavy)^2.0"
+literal|"(((+guinea +pig) cavy))^2.0"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4508,7 +4692,7 @@ literal|"field:(guinea pig)"
 argument_list|,
 name|a
 argument_list|,
-literal|"(+guinea +pig) cavy"
+literal|"((+guinea +pig) cavy)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4517,7 +4701,7 @@ literal|"+small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"+small (+guinea +pig) cavy"
+literal|"+small ((+guinea +pig) cavy)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4526,7 +4710,7 @@ literal|"-small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"-small (+guinea +pig) cavy"
+literal|"-small ((+guinea +pig) cavy)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4535,7 +4719,7 @@ literal|"!small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"-small (+guinea +pig) cavy"
+literal|"-small ((+guinea +pig) cavy)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4544,7 +4728,7 @@ literal|"NOT small guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"-small (+guinea +pig) cavy"
+literal|"-small ((+guinea +pig) cavy)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4553,7 +4737,7 @@ literal|"small* guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"small* (+guinea +pig) cavy"
+literal|"small* ((+guinea +pig) cavy)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4562,7 +4746,7 @@ literal|"small? guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"small? (+guinea +pig) cavy"
+literal|"small? ((+guinea +pig) cavy)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4571,7 +4755,7 @@ literal|"\"small\" guinea pig"
 argument_list|,
 name|a
 argument_list|,
-literal|"small (+guinea +pig) cavy"
+literal|"small ((+guinea +pig) cavy)"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4580,7 +4764,7 @@ literal|"guinea pig +running"
 argument_list|,
 name|a
 argument_list|,
-literal|"(+guinea +pig) cavy +running"
+literal|"((+guinea +pig) cavy) +running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4589,7 +4773,7 @@ literal|"guinea pig -running"
 argument_list|,
 name|a
 argument_list|,
-literal|"(+guinea +pig) cavy -running"
+literal|"((+guinea +pig) cavy) -running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4598,7 +4782,7 @@ literal|"guinea pig !running"
 argument_list|,
 name|a
 argument_list|,
-literal|"(+guinea +pig) cavy -running"
+literal|"((+guinea +pig) cavy) -running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4607,7 +4791,7 @@ literal|"guinea pig NOT running"
 argument_list|,
 name|a
 argument_list|,
-literal|"(+guinea +pig) cavy -running"
+literal|"((+guinea +pig) cavy) -running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4616,7 +4800,7 @@ literal|"guinea pig running*"
 argument_list|,
 name|a
 argument_list|,
-literal|"(+guinea +pig) cavy running*"
+literal|"((+guinea +pig) cavy) running*"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4625,7 +4809,7 @@ literal|"guinea pig running?"
 argument_list|,
 name|a
 argument_list|,
-literal|"(+guinea +pig) cavy running?"
+literal|"((+guinea +pig) cavy) running?"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -4634,7 +4818,7 @@ literal|"guinea pig \"running\""
 argument_list|,
 name|a
 argument_list|,
-literal|"(+guinea +pig) cavy running"
+literal|"((+guinea +pig) cavy) running"
 argument_list|)
 expr_stmt|;
 name|assertQueryEquals
@@ -5317,6 +5501,14 @@ argument_list|()
 operator|.
 name|add
 argument_list|(
+operator|new
+name|BooleanQuery
+operator|.
+name|Builder
+argument_list|()
+operator|.
+name|add
+argument_list|(
 name|guineaPig
 argument_list|,
 name|BooleanClause
@@ -5339,8 +5531,17 @@ argument_list|)
 operator|.
 name|build
 argument_list|()
+argument_list|,
+name|BooleanClause
+operator|.
+name|Occur
+operator|.
+name|SHOULD
+argument_list|)
+operator|.
+name|build
+argument_list|()
 decl_stmt|;
-empty_stmt|;
 name|assertEquals
 argument_list|(
 name|graphQuery
@@ -5372,7 +5573,7 @@ operator|new
 name|MockSynonymAnalyzer
 argument_list|()
 argument_list|,
-literal|"(+guinea +pig) cavy"
+literal|"((+guinea +pig) cavy)"
 argument_list|)
 expr_stmt|;
 name|splitOnWhitespace

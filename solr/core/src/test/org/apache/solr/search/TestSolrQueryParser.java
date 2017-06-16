@@ -5948,7 +5948,7 @@ argument_list|()
 decl_stmt|;
 name|assertEquals
 argument_list|(
-literal|"text:\"crow blackbird\" text:grackl"
+literal|"(text:\"crow blackbird\" text:grackl)"
 argument_list|,
 name|q
 operator|.
@@ -6039,7 +6039,7 @@ argument_list|()
 expr_stmt|;
 name|assertEquals
 argument_list|(
-literal|"(+text_sw:crow +text_sw:blackbird) text_sw:grackl"
+literal|"((+text_sw:crow +text_sw:blackbird) text_sw:grackl)"
 argument_list|,
 name|q
 operator|.
