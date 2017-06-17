@@ -555,8 +555,7 @@ argument_list|)
 return|;
 block|}
 comment|//TODO it'd be nice if we could get at the underlying Automaton in CharacterRunAutomaton so that we
-comment|//  could union them all. But it's not exposed, and note TermRangeQuery isn't modelled as an Automaton
-comment|//  by MultiTermHighlighting.
+comment|//  could union them all. But it's not exposed, and sometimes the automaton is byte (not char) oriented
 comment|// Return an aggregate CharacterRunAutomaton of others
 return|return
 operator|new

@@ -162,6 +162,12 @@ specifier|final
 name|Term
 name|term
 decl_stmt|;
+DECL|field|automatonIsBinary
+specifier|protected
+specifier|final
+name|boolean
+name|automatonIsBinary
+decl_stmt|;
 comment|/**    * Create a new AutomatonQuery from an {@link Automaton}.    *     * @param term Term containing field and possibly some pattern structure. The    *        term text is ignored.    * @param automaton Automaton to run, terms that are accepted are considered a    *        match.    */
 DECL|method|AutomatonQuery
 specifier|public
@@ -253,6 +259,12 @@ operator|.
 name|automaton
 operator|=
 name|automaton
+expr_stmt|;
+name|this
+operator|.
+name|automatonIsBinary
+operator|=
+name|isBinary
 expr_stmt|;
 comment|// TODO: we could take isFinite too, to save a bit of CPU in CompiledAutomaton ctor?:
 name|this
@@ -573,6 +585,17 @@ parameter_list|()
 block|{
 return|return
 name|automaton
+return|;
+block|}
+comment|/** Is this a binary (byte) oriented automaton. See the constructor.  */
+DECL|method|isAutomatonBinary
+specifier|public
+name|boolean
+name|isAutomatonBinary
+parameter_list|()
+block|{
+return|return
+name|automatonIsBinary
 return|;
 block|}
 block|}
