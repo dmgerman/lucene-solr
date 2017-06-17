@@ -207,33 +207,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|LuceneTestCase
-operator|.
-name|SuppressCodecs
-argument_list|(
-block|{
-literal|"MockFixedIntBlock"
-block|,
-literal|"MockVariableIntBlock"
-block|,
-literal|"MockSep"
-block|,
-literal|"MockRandom"
-block|,
-literal|"Lucene3x"
-block|}
-argument_list|)
-annotation|@
-name|LuceneTestCase
-operator|.
-name|SuppressSysoutChecks
-argument_list|(
-name|bugUrl
-operator|=
-literal|""
-argument_list|)
-comment|//Gradle interferes with this Lucene test rule
 DECL|class|TestUnifiedHighlighterReanalysis
 specifier|public
 class|class

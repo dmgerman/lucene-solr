@@ -83,16 +83,6 @@ import|;
 end_import
 
 begin_class
-annotation|@
-name|LuceneTestCase
-operator|.
-name|SuppressSysoutChecks
-argument_list|(
-name|bugUrl
-operator|=
-literal|""
-argument_list|)
-comment|//Gradle interferes with this Lucene test rule
 DECL|class|TestSplittingBreakIterator
 specifier|public
 class|class

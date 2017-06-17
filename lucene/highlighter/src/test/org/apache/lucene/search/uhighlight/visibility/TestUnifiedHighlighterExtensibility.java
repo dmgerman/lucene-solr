@@ -1272,6 +1272,11 @@ name|IOException
 block|{
 comment|// TEST OffsetsEnums& Passage visibility
 comment|// this code never runs; just for compilation
+name|Passage
+name|p
+decl_stmt|;
+try|try
+init|(
 name|OffsetsEnum
 name|oe
 init|=
@@ -1282,7 +1287,8 @@ literal|null
 argument_list|,
 name|EMPTY
 argument_list|)
-decl_stmt|;
+init|)
+block|{
 name|oe
 operator|.
 name|getTerm
@@ -1330,13 +1336,13 @@ argument_list|(
 literal|2f
 argument_list|)
 expr_stmt|;
-name|Passage
+block|}
 name|p
-init|=
+operator|=
 operator|new
 name|Passage
 argument_list|()
-decl_stmt|;
+expr_stmt|;
 name|p
 operator|.
 name|setStartOffset
