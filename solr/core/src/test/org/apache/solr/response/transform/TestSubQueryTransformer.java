@@ -2134,7 +2134,6 @@ name|Object
 argument_list|>
 name|unmarshalled
 decl_stmt|;
-block|{
 name|SolrCore
 name|core
 init|=
@@ -2216,6 +2215,16 @@ argument_list|,
 name|response
 argument_list|)
 expr_stmt|;
+try|try
+init|(
+name|JavaBinCodec
+name|jbc
+init|=
+operator|new
+name|JavaBinCodec
+argument_list|()
+init|)
+block|{
 name|unmarshalled
 operator|=
 operator|(
@@ -2224,9 +2233,7 @@ argument_list|<
 name|Object
 argument_list|>
 operator|)
-operator|new
-name|JavaBinCodec
-argument_list|()
+name|jbc
 operator|.
 name|unmarshal
 argument_list|(
@@ -2240,6 +2247,7 @@ argument_list|()
 argument_list|)
 argument_list|)
 expr_stmt|;
+block|}
 name|johnTwoFL
 operator|.
 name|close
@@ -2250,7 +2258,6 @@ operator|.
 name|clearRequestInfo
 argument_list|()
 expr_stmt|;
-block|}
 name|SolrDocumentList
 name|resultDocs
 init|=
@@ -2266,7 +2273,6 @@ literal|"response"
 argument_list|)
 argument_list|)
 decl_stmt|;
-block|{
 name|Map
 argument_list|<
 name|String
@@ -2448,7 +2454,6 @@ name|deptDoc
 argument_list|)
 argument_list|)
 expr_stmt|;
-block|}
 block|}
 block|}
 block|}

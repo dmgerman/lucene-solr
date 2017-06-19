@@ -206,7 +206,7 @@ name|encoding
 parameter_list|)
 block|{
 try|try
-block|{
+init|(
 name|JavaBinCodec
 name|codec
 init|=
@@ -408,7 +408,9 @@ name|solrDocs
 return|;
 block|}
 block|}
-decl_stmt|;
+init|;
+init|)
+block|{
 return|return
 operator|(
 name|NamedList

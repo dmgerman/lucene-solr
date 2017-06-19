@@ -511,13 +511,16 @@ name|docIter
 argument_list|)
 expr_stmt|;
 block|}
+try|try
+init|(
 name|JavaBinCodec
 name|codec
 init|=
 operator|new
 name|JavaBinCodec
 argument_list|()
-decl_stmt|;
+init|)
+block|{
 name|codec
 operator|.
 name|marshal
@@ -527,6 +530,7 @@ argument_list|,
 name|os
 argument_list|)
 expr_stmt|;
+block|}
 block|}
 comment|/**    * Reads a NamedList from the given InputStream, converts it into a SolrInputDocument and passes it to the given    * StreamingUpdateHandler    *    * @param is      the InputStream from which to read    * @param handler an instance of StreamingUpdateHandler to which SolrInputDocuments are streamed one by one    *    * @return the UpdateRequest    *    * @throws IOException in case of an exception while reading from the input stream or unmarshalling    */
 DECL|method|unmarshal
@@ -613,6 +617,8 @@ index|[
 literal|1
 index|]
 decl_stmt|;
+try|try
+init|(
 name|JavaBinCodec
 name|codec
 init|=
@@ -1069,7 +1075,9 @@ name|EMPTY_LIST
 return|;
 block|}
 block|}
-decl_stmt|;
+init|;
+init|)
+block|{
 name|codec
 operator|.
 name|unmarshal
@@ -1077,6 +1085,7 @@ argument_list|(
 name|is
 argument_list|)
 expr_stmt|;
+block|}
 comment|// NOTE: if the update request contains only delete commands the params
 comment|// must be loaded now
 if|if
