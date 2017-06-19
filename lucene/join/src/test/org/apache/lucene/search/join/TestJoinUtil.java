@@ -12014,6 +12014,9 @@ decl_stmt|;
 do|do
 block|{
 comment|// the trick is to generate values which will be ordered similarly for string, ints&longs, positive nums makes it easier
+comment|//
+comment|// Additionally in order to avoid precision loss when joining via a float field we can't generate values higher than
+comment|// 0xFFFFFF, so we can't use Integer#MAX_VALUE as upper bound here:
 specifier|final
 name|int
 name|nextInt
@@ -12022,9 +12025,7 @@ name|random
 operator|.
 name|nextInt
 argument_list|(
-name|Integer
-operator|.
-name|MAX_VALUE
+literal|0xFFFFFF
 argument_list|)
 decl_stmt|;
 name|uniqueRandomValue
