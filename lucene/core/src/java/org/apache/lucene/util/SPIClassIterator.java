@@ -223,7 +223,7 @@ name|String
 argument_list|>
 name|linesIterator
 decl_stmt|;
-comment|/** Creates a new SPI iterator to lookup services of type {@code clazz} using the context classloader. */
+comment|/** Creates a new SPI iterator to lookup services of type {@code clazz} using    * the same {@link ClassLoader} as the argument. */
 DECL|method|get
 specifier|public
 specifier|static
@@ -243,32 +243,6 @@ argument_list|>
 name|clazz
 parameter_list|)
 block|{
-name|ClassLoader
-name|cl
-init|=
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getContextClassLoader
-argument_list|()
-decl_stmt|;
-if|if
-condition|(
-name|cl
-operator|==
-literal|null
-condition|)
-block|{
-name|cl
-operator|=
-name|clazz
-operator|.
-name|getClassLoader
-argument_list|()
-expr_stmt|;
-block|}
 return|return
 operator|new
 name|SPIClassIterator
@@ -276,7 +250,21 @@ argument_list|<>
 argument_list|(
 name|clazz
 argument_list|,
-name|cl
+name|Objects
+operator|.
+name|requireNonNull
+argument_list|(
+name|clazz
+operator|.
+name|getClassLoader
+argument_list|()
+argument_list|,
+parameter_list|()
+lambda|->
+name|clazz
+operator|+
+literal|" has no classloader."
+argument_list|)
 argument_list|)
 return|;
 block|}

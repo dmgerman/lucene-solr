@@ -257,13 +257,7 @@ name|clazz
 argument_list|,
 name|suffixes
 argument_list|,
-name|Thread
-operator|.
-name|currentThread
-argument_list|()
-operator|.
-name|getContextClassLoader
-argument_list|()
+literal|null
 argument_list|)
 expr_stmt|;
 block|}
