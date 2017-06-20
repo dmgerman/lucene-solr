@@ -4774,12 +4774,8 @@ block|}
 name|QueryResponseWriter
 name|writer
 init|=
-name|core
-operator|.
-name|getQueryResponseWriter
-argument_list|(
-name|solrReq
-argument_list|)
+name|getResponseWriter
+argument_list|()
 decl_stmt|;
 name|writeResponse
 argument_list|(
