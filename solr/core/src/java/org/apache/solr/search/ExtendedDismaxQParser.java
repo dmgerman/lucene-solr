@@ -398,6 +398,20 @@ name|org
 operator|.
 name|apache
 operator|.
+name|lucene
+operator|.
+name|util
+operator|.
+name|Version
+import|;
+end_import
+
+begin_import
+import|import
+name|org
+operator|.
+name|apache
+operator|.
 name|solr
 operator|.
 name|analysis
@@ -8714,6 +8728,7 @@ operator|.
 name|ALTQ
 argument_list|)
 expr_stmt|;
+comment|// lowercaseOperators defaults to true for luceneMatchVersion< 7.0 and to false for>= 7.0
 name|lowercaseOperators
 operator|=
 name|solrParams
@@ -8724,7 +8739,23 @@ name|DMP
 operator|.
 name|LOWERCASE_OPS
 argument_list|,
-literal|true
+operator|!
+name|req
+operator|.
+name|getCore
+argument_list|()
+operator|.
+name|getSolrConfig
+argument_list|()
+operator|.
+name|luceneMatchVersion
+operator|.
+name|onOrAfter
+argument_list|(
+name|Version
+operator|.
+name|LUCENE_7_0_0
+argument_list|)
 argument_list|)
 expr_stmt|;
 comment|/* * * Boosting Query * * */

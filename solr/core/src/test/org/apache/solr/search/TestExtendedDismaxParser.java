@@ -1391,6 +1391,36 @@ argument_list|)
 expr_stmt|;
 name|assertQ
 argument_list|(
+literal|"The default for lowercaseOperators should not allow lower case and"
+argument_list|,
+name|req
+argument_list|(
+literal|"q"
+argument_list|,
+literal|"Zapp and Brannigan"
+argument_list|,
+literal|"qf"
+argument_list|,
+literal|"name"
+argument_list|,
+literal|"q.op"
+argument_list|,
+literal|"AND"
+argument_list|,
+literal|"sow"
+argument_list|,
+name|sow
+argument_list|,
+literal|"defType"
+argument_list|,
+literal|"edismax"
+argument_list|)
+argument_list|,
+literal|"*[count(//doc)=0]"
+argument_list|)
+expr_stmt|;
+name|assertQ
+argument_list|(
 literal|"Lower case operator, allow lower case operators"
 argument_list|,
 name|req
@@ -1780,7 +1810,7 @@ argument_list|,
 literal|"Order and op"
 argument_list|)
 argument_list|,
-name|oner
+name|twor
 argument_list|)
 expr_stmt|;
 name|assertQ
